@@ -93,7 +93,17 @@
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
     }
     .banner .subtitle { font-size: 1.05rem; opacity: 0.95; margin-bottom: 0.25rem; }
-    .banner .place-name { font-size: 0.88rem; opacity: 0.9; }
+    .banner .place-name { font-size: 0.88rem; opacity: 0.9; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem; }
+    .banner .temp-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(255,255,255,0.22);
+      padding: 0.15rem 0.65rem;
+      border-radius: 14px;
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
     .banner .hijri-date {
       font-size: 0.95rem; margin-top: 0.45rem;
       background: rgba(255,255,255,0.20);
@@ -657,7 +667,7 @@
       <div class="bismillah arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
       <h1><span class="title-icon" title="Inkpot &amp; quill">✒️</span> Clarity</h1>
       <div class="subtitle">Furnish your grave • Prepare for the long stay</div>
-      <div class="place-name" id="place-name">Masjid al-Haram • The Holy Kaaba</div>
+      <div class="place-name" id="place-name">Masjid al-Haram • The Holy Kaaba <span class="temp-live" id="place-temp">…°C</span></div>
       <div class="hijri-date" id="hijri-date">Loading Hijri date…</div>
 
       <div class="rabbana-box">
@@ -1058,13 +1068,26 @@
           </div>
 
           <div class="lecture-box">
-            <h3>🕌 Maulana Ishaq (RA) – Jummah Khutbas (YouTube)</h3>
-            <ul>
-              <li><a href="https://www.youtube.com/playlist?list=PLH3gvuJis52MDUOlpiilZaJ_TNc8YMZVN" target="_blank" rel="noopener">Complete Khutba Jummah playlist</a></li>
-              <li><a href="https://www.youtube.com/playlist?list=PLfosM5KUg91uQ57MoSipEXa1ieXVddTEd" target="_blank" rel="noopener">Another complete collection</a></li>
-              <li><a href="https://www.youtube.com/@Sheikh-ul-IslamMaulanaIshaq/playlists" target="_blank" rel="noopener">All channel playlists</a></li>
-            </ul>
-            <p class="lecture-note">These khutbas cover aqeedah, fiqh, seerah and purification of the heart.</p>
+            <h3>🕌 Maulana Ishaq (RA) – Jummah Khutbas &amp; Lectures</h3>
+            <label style="font-size:0.88rem; color:#555;">Choose a lecture / playlist:</label>
+            <select id="ishaq-select" onchange="loadIshaqPlayer()" style="margin:0.4rem 0 0.7rem; width:100%; max-width:480px;">
+              <option value="PLH3gvuJis52MDUOlpiilZaJ_TNc8YMZVN">Full Khutba Jummah – Complete Playlist</option>
+              <option value="PLfosM5KUg91uQ57MoSipEXa1ieXVddTEd">Complete Khutba Jumma Collection</option>
+              <option value="PLH3gvuJis52O1a2OkfIf8edUPlyECPSiv">Khutbat e Touheed Series</option>
+              <option value="PLH3gvuJis52OnlUkdat0ECcZVJ3lnJzuZ">Seerat un Nabi ﷺ</option>
+              <option value="PLH3gvuJis52Oxc5X69qa6l83Fy99TwoHw">Khutbaat e Zulhijja &amp; Qurbani</option>
+              <option value="video:81LvfkFrujg">Last Khutba Jumma (Pulsiraat &amp; Waseela)</option>
+              <option value="video:B5yva_e_rcs">Waqia e Karbala – Lecture 1</option>
+              <option value="video:6QcPMInk7NA">Shab-e-Bara’t – Bid’ah discussion</option>
+            </select>
+            <div class="spotify-player-wrap" style="background:#0f0f0f;">
+              <iframe id="ishaq-player"
+                src="https://www.youtube.com/embed/videoseries?list=PLH3gvuJis52MDUOlpiilZaJ_TNc8YMZVN"
+                width="100%" height="315" frameborder="0" allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy">
+              </iframe>
+            </div>
+            <p class="lecture-note">Select a playlist or individual lecture above and play it directly here. Full channel: <a href="https://www.youtube.com/@Sheikh-ul-IslamMaulanaIshaq/playlists" target="_blank" rel="noopener">Sheikh-ul-Islam Maulana Ishaq</a>.</p>
           </div>
         </div>
       </div>
@@ -1671,14 +1694,32 @@
       document.getElementById("rabbana-ref").textContent = dua.ref;
     }
     const bannerImages = [
-      { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg", caption: "Masjid al-Haram • The Holy Kaaba, Makkah" },
-      { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg", caption: "Masjid an-Nabawi • The Prophet’s Mosque, Madinah" }
+      { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg", caption: "Masjid al-Haram • The Holy Kaaba, Makkah", lat: 21.4225, lon: 39.8262 },
+      { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg", caption: "Masjid an-Nabawi • The Prophet’s Mosque, Madinah", lat: 24.4672, lon: 39.6117 }
     ];
     function setDailyBanner() {
       const dayNumber = Math.floor(Date.now() / 86400000);
       const img = bannerImages[dayNumber % bannerImages.length];
       document.getElementById("banner-img").src = img.url;
-      document.getElementById("place-name").textContent = img.caption;
+      const placeEl = document.getElementById("place-name");
+      placeEl.innerHTML = img.caption + ' <span class="temp-live" id="place-temp">…°C</span>';
+      loadPlaceTemperature(img.lat, img.lon);
+    }
+    async function loadPlaceTemperature(lat, lon) {
+      const el = document.getElementById("place-temp");
+      if (!el) return;
+      try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m`);
+        const data = await res.json();
+        if (data.current && data.current.temperature_2m != null) {
+          const t = Math.round(data.current.temperature_2m);
+          el.textContent = t + "°C";
+        } else {
+          el.textContent = "—°C";
+        }
+      } catch (e) {
+        el.textContent = "—°C";
+      }
     }
     async function loadHijriDate() {
       const el = document.getElementById("hijri-date");
@@ -1783,34 +1824,34 @@
       if (noteEl) { saved.note = noteEl.value.trim(); localStorage.setItem(key, JSON.stringify(saved)); loadCommand(); }
     }
 
-    // ========== PONDERING ==========
+    // ========== EXPANDED REFLECTION (live feed style, no modern-context title) ==========
     function ponder(text) {
       const t = (text || "").toLowerCase();
       if (t.includes("patient") || t.includes("patience") || t.includes("sabr")) {
-        return "Modern context (tazkiyah): Patience (sabr) is not passive waiting — it is active trust while continuing rightful action. In daily life this means staying calm in traffic, at work under pressure, or with family disagreements. Scholars note that sabr in hardship is half of faith. Practical step: when irritation rises, pause, make wudu if possible, and say “Hasbiyallahu wa ni‘mal wakeel.” Every restrained moment becomes light in the grave.";
+        return "Patience (sabr) is not passive waiting — it is active trust while continuing rightful action. In daily life this means staying calm in traffic, at work under pressure, or with family disagreements. Scholars note that sabr in hardship is half of faith. When irritation rises, pause, make wudu if possible, and say “Hasbiyallahu wa ni‘mal wakeel.” Every restrained moment becomes light in the grave and softens the heart for the long stay ahead.";
       }
       if (t.includes("pray") || t.includes("prayer") || t.includes("salah") || t.includes("salat")) {
-        return "Modern context (tazkiyah): The five daily prayers structure the heart around Allah throughout a busy modern day. Protecting them — even during travel, work meetings or fatigue — is among the greatest investments for the grave. Practical step: set phone reminders 5–10 minutes before each prayer and treat the prayer as a non-negotiable appointment with Allah. Missing prayer weakens the soul more than missing food.";
+        return "The five daily prayers structure the heart around Allah throughout a busy day. Protecting them — even during travel, work meetings or fatigue — is among the greatest investments for the grave. Set reminders a few minutes before each prayer and treat the prayer as a non-negotiable appointment with Allah. Missing prayer weakens the soul more than missing food; guarding it builds a fortress of light that accompanies the believer after death.";
       }
       if (t.includes("charity") || t.includes("spend") || t.includes("give") || t.includes("sadaqah")) {
-        return "Modern context (tazkiyah): Wealth given purely for Allah never decreases. It travels ahead as shade, intercession and coolness in the grave. Even a kind word, a smile, or sharing knowledge is sadaqah. Practical step: automate a small monthly sadaqah or give something every time you receive good news. The Prophet ﷺ taught that charity extinguishes sin as water extinguishes fire.";
+        return "Wealth given purely for Allah never decreases. It travels ahead as shade, intercession and coolness in the grave. Even a kind word, a smile, or sharing knowledge is sadaqah. Automate a small monthly sadaqah or give something every time you receive good news. The Prophet ﷺ taught that charity extinguishes sin as water extinguishes fire — and it furnishes the grave with lasting companionship.";
       }
       if (t.includes("anger") || t.includes("angry") || t.includes("rage")) {
-        return "Modern context (tazkiyah): True strength is self-control when anger rises. The Prophet ﷺ advised: if standing, sit; if sitting, lie down; make wudu; change place. In modern settings (online arguments, traffic, family stress) the same principles apply. Practical step: when anger flares, leave the screen or room for 60 seconds and recite “A‘udhu billahi min ash-shaytan ir-rajim.” Controlling anger softens the heart and lightens the scales.";
+        return "True strength is self-control when anger rises. The Prophet ﷺ advised: if standing, sit; if sitting, lie down; make wudu; change place. In online arguments, traffic or family stress the same principles apply. When anger flares, leave the screen or room for a minute and recite “A‘udhu billahi min ash-shaytan ir-rajim.” Controlling anger softens the heart and lightens the scales on the Day when only pure deeds remain.";
       }
       if (t.includes("parent") || t.includes("mother") || t.includes("father") || t.includes("parents")) {
-        return "Modern context (tazkiyah): After the rights of Allah, the rights of parents rank highest. A gentle word, regular du‘a, phone calls, or simply being present can open doors of mercy. Even if parents are difficult, lower the wing of humility. Practical step: make a weekly habit of asking about their needs and making du‘a for them by name. Serving parents is a form of worship that continues to benefit after their death through ongoing du‘a.";
+        return "After the rights of Allah, the rights of parents rank highest. A gentle word, regular du‘a, phone calls, or simply being present can open doors of mercy. Even if parents are difficult, lower the wing of humility. Make a weekly habit of asking about their needs and making du‘a for them by name. Serving parents is a form of worship that continues to benefit after their death through ongoing du‘a and becomes light for the one who served them.";
       }
       if (t.includes("death") || t.includes("grave") || t.includes("die") || t.includes("hereafter")) {
-        return "Modern context (tazkiyah): Remembering death is not meant to cause despair but to awaken us to what truly matters. Every night of sleep is a small death; every morning is a new chance to send light to the grave. Practical step: once a day, ask “If I die tonight, what have I sent ahead?” Then do one small good deed immediately. The Prophet ﷺ said: “Remember often the destroyer of pleasures (death).”";
+        return "Remembering death is not meant to cause despair but to awaken us to what truly matters. Every night of sleep is a small death; every morning is a new chance to send light to the grave. Once a day, ask “If I die tonight, what have I sent ahead?” Then do one small good deed immediately. The Prophet ﷺ said: “Remember often the destroyer of pleasures (death).” This remembrance keeps the heart soft and the deeds purposeful.";
       }
       if (t.includes("forgiv") || t.includes("repent") || t.includes("istighfar") || t.includes("mercy")) {
-        return "Modern context (tazkiyah): The door of tawbah remains open until the soul reaches the throat. No sin is too great for Allah’s mercy when repentance is sincere. Practical step: after every mistake, immediately say “Astaghfirullah,” repair any harm done to others, and resolve not to return. Consistent istighfar polishes the heart and prepares the grave.";
+        return "The door of tawbah remains open until the soul reaches the throat. No sin is too great for Allah’s mercy when repentance is sincere. After every mistake, immediately say “Astaghfirullah,” repair any harm done to others, and resolve not to return. Consistent istighfar polishes the heart and prepares the grave with the fragrance of forgiveness and hope in the Most Merciful.";
       }
       if (t.includes("truth") || t.includes("honest") || t.includes("lie") || t.includes("trust")) {
-        return "Modern context (tazkiyah): Honesty and keeping trusts are foundations of character. In work, business, and online life, truthfulness builds barakah while deceit destroys it. Practical step: when tempted to exaggerate or hide, choose the harder truth. The Prophet ﷺ said that truthfulness leads to righteousness and righteousness leads to Paradise.";
+        return "Honesty and keeping trusts are foundations of character. In work, business and online life, truthfulness builds barakah while deceit destroys it. When tempted to exaggerate or hide, choose the harder truth. The Prophet ﷺ said that truthfulness leads to righteousness and righteousness leads to Paradise — and a truthful tongue is a companion of light in the darkness of the grave.";
       }
-      return "Modern context (tazkiyah): Let this teaching settle in the heart. Ask: What one concrete action can I take today because of these words? That small, sincere change — done for Allah alone — is what will accompany you when all other company is left behind. Start with one step before the day ends.";
+      return "Let this teaching settle in the heart. Ask: What one concrete action can I take today because of these words? That small, sincere change — done for Allah alone — is what will accompany you when all other company is left behind. Start with one step before the day ends, and send it ahead as light for the long stay in the grave.";
     }
 
     // ========== HADITH & VERSE ==========
@@ -1825,7 +1866,7 @@
         const ref = [h.collection, h.hadithNumber || h.number].filter(Boolean).join(" ");
         el.innerHTML = `
           <p style="font-size:1.05rem; font-weight:500; margin-bottom:0.55rem">“${text}”</p>
-          <div class="ponder-box"><strong>Pondering:</strong> ${ponder(text)}</div>
+          <div class="ponder-box">${ponder(text)}</div>
           <div class="ref">${ref || "Authentic collection"}</div>`;
       } catch(e) {
         el.innerHTML = `Unable to load. <a href="https://sunnah.com" target="_blank">Visit sunnah.com</a>`;
@@ -1875,7 +1916,7 @@
             <div class="arabic-calligraphy">${arAyah.text}</div>
             <p style="margin-top:0.55rem; font-size:1.02rem">${enAyah.text}</p>
             <div class="ref">${enData.data.englishName} ${enAyah.numberInSurah} • Sahih International</div>
-            <div class="ponder-box"><strong>Pondering:</strong> ${ponder(enAyah.text)}</div>`;
+            <div class="ponder-box">${ponder(enAyah.text)}</div>`;
         } else el.innerHTML = "Could not load verse.";
       } catch(e) { el.innerHTML = "Unable to load verse."; }
     }
@@ -1912,7 +1953,7 @@
         el.innerHTML = `
           <strong style="font-size:1.12rem; color:var(--accent)">Character from the Sunnah</strong>
           <p style="margin-top:0.65rem; font-size:1.02rem;">“${text}”</p>
-          <div class="ponder-box"><strong>Pondering:</strong> ${ponder(text)}</div>
+          <div class="ponder-box">${ponder(text)}</div>
           <div class="ref">${ref}</div>`;
         if (count) recordLesson();
       } catch(e) { el.innerHTML = "Could not load lesson."; }
@@ -1963,7 +2004,7 @@
       document.getElementById("seerah-content").innerHTML = `
         <div class="story-title">${s.title}</div>
         <p>${s.event}</p>
-        <div class="ponder-box"><strong>Pondering:</strong> ${s.lesson}</div>
+        <div class="ponder-box">${s.lesson}</div>
         <div class="ref">${s.ref}</div>`;
     }
 
@@ -2065,7 +2106,7 @@
       document.getElementById("prophet-story").innerHTML = `
         <div class="story-title">${s.title}</div>
         <p>${s.short}</p>
-        <div class="ponder-box"><strong>Lesson for us:</strong> ${s.more}</div>
+        <div class="ponder-box">${s.more}</div>
         <div class="ref">${s.ref}</div>`;
     }
 
@@ -2109,19 +2150,19 @@
       document.getElementById("israeliyat-content").innerHTML = `
         <div class="story-title">${item.title}</div>
         <p>${item.text}</p>
-        <div class="ponder-box"><strong>Lesson for us:</strong> ${item.modern}</div>
+        <div class="ponder-box">${item.modern}</div>
         <div class="ref">${item.ref}</div>`;
     }
 
     // ========== LIFE EVENTS ==========
     const lifeTopics = [
-      { title: "Patience in Hardship", q: "patience", modern: "In modern life — job loss, illness, family strain or online hostility — sabr means continuing good deeds while trusting Allah’s wisdom. Tazkiyah practice: journal one hardship daily and write “Hasbiyallah” next to it." },
-      { title: "Family & Parents", q: "parents", modern: "Even when parents are difficult or distant, lower the wing of humility. Modern application: regular calls, financial help if needed, and sincere du‘a. Tazkiyah: make du‘a for them by name every night before sleep." },
-      { title: "Charity & Wealth", q: "charity", modern: "Automate small monthly sadaqah; give when you receive a raise or good news. Wealth is a trust. Tazkiyah: before buying non-essentials, ask “Will this accompany me in the grave?”" },
-      { title: "Controlling Anger", q: "anger", modern: "Online arguments, traffic, workplace stress — the Prophetic remedies still apply: sit down, make wudu, leave the place. Tazkiyah: when anger rises, count to 10 and recite the isti‘adhah before speaking." },
-      { title: "Prayer & Remembrance", q: "prayer", modern: "Protect the five daily prayers even during travel, meetings or fatigue. Tazkiyah: treat each salah as a non-negotiable appointment; set reminders and prepare a clean space." },
-      { title: "Honesty & Trusts", q: "truth", modern: "In business, work emails and social media, truthfulness builds barakah. Tazkiyah: if tempted to exaggerate or hide, choose the harder truth and seek Allah’s pleasure over people’s praise." },
-      { title: "Repentance & Mercy", q: "forgiveness", modern: "No sin is too great when tawbah is sincere. After any mistake: stop, regret, resolve, and repair harm. Tazkiyah: end each day with istighfar and a short review of the heart." }
+      { title: "Patience in Hardship", q: "patience", modern: "In times of job loss, illness, family strain or online hostility, sabr means continuing good deeds while trusting Allah’s wisdom. Journal one hardship daily and write “Hasbiyallah” next to it. Each moment of restrained complaint becomes light that travels ahead to the grave." },
+      { title: "Family & Parents", q: "parents", modern: "Even when parents are difficult or distant, lower the wing of humility. Keep regular contact, offer practical help when needed, and make sincere du‘a for them by name every night before sleep. Serving parents is worship that continues after their death and becomes companionship in the grave." },
+      { title: "Charity & Wealth", q: "charity", modern: "Automate a small monthly sadaqah; give when you receive a raise or good news. Wealth is a trust. Before buying non-essentials, ask “Will this accompany me in the grave?” What is spent for Allah never decreases and becomes shade and intercession after death." },
+      { title: "Controlling Anger", q: "anger", modern: "Online arguments, traffic and workplace stress still call for the Prophetic remedies: sit down, make wudu, leave the place. When anger rises, count to ten and recite the isti‘adhah before speaking. Restraining anger softens the heart and lightens the scales for the Day of Reckoning." },
+      { title: "Prayer & Remembrance", q: "prayer", modern: "Protect the five daily prayers even during travel, meetings or fatigue. Treat each salah as a non-negotiable appointment with Allah; set reminders and prepare a clean space. Guarding the prayer builds a fortress of light that accompanies the believer in the grave." },
+      { title: "Honesty & Trusts", q: "truth", modern: "In business, work and social media, truthfulness builds barakah while deceit destroys it. When tempted to exaggerate or hide, choose the harder truth and seek Allah’s pleasure over people’s praise. A truthful tongue becomes a companion of light in the darkness of the grave." },
+      { title: "Repentance & Mercy", q: "forgiveness", modern: "No sin is too great when tawbah is sincere. After any mistake: stop, regret, resolve, and repair harm done to others. End each day with istighfar and a short review of the heart. Consistent repentance polishes the heart and prepares the grave with the fragrance of hope in Allah’s mercy." }
     ];
     async function loadLifeEvent() {
       const el = document.getElementById("life-event");
@@ -2137,14 +2178,14 @@
           el.innerHTML = `
             <div class="story-title">${topic.title}</div>
             <p><strong>From the Sunnah:</strong> “${text}”</p>
-            <div class="ponder-box"><strong>Modern context & tazkiyah:</strong> ${topic.modern}</div>
-            <div class="ponder-box"><strong>Pondering:</strong> ${ponder(text)}</div>
+            <div class="ponder-box">${topic.modern}</div>
+            <div class="ponder-box">${ponder(text)}</div>
             <div class="ref">${[h.collection, h.hadithNumber].filter(Boolean).join(" ")}</div>`;
         } else throw new Error("empty");
       } catch(e) {
         el.innerHTML = `
           <div class="story-title">${topic.title}</div>
-          <div class="ponder-box"><strong>Modern context & tazkiyah:</strong> ${topic.modern}</div>
+          <div class="ponder-box">${topic.modern}</div>
           <p style="margin-top:0.55rem;">Search “${topic.q}” on <a href="https://sunnah.com/search?q=${encodeURIComponent(topic.q)}" target="_blank" rel="noopener">sunnah.com</a> for authentic narrations.</p>`;
       }
     }
@@ -2241,6 +2282,17 @@
       const iframe = document.getElementById("spotify-player");
       if (iframe && val) {
         iframe.src = "https://open.spotify.com/embed/" + val + "?utm_source=generator&theme=0";
+      }
+    }
+    function loadIshaqPlayer() {
+      const val = document.getElementById("ishaq-select").value;
+      const iframe = document.getElementById("ishaq-player");
+      if (!iframe || !val) return;
+      if (val.startsWith("video:")) {
+        const id = val.replace("video:", "");
+        iframe.src = "https://www.youtube.com/embed/" + id + "?rel=0";
+      } else {
+        iframe.src = "https://www.youtube.com/embed/videoseries?list=" + val;
       }
     }
 
