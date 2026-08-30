@@ -142,7 +142,7 @@
       font-weight: 500;
     }
     /* Portrait calendar / events cards */
-    .hijri-cal-section, .upcoming-events-section {
+    .hijri-cal-section, .salah-times-section {
       background: rgba(0,0,0,0.30);
       border-radius: 10px;
       padding: 0.3rem 0.4rem 0.35rem;
@@ -154,7 +154,7 @@
       justify-content: center;
     }
     .hijri-cal-section .cal-title,
-    .upcoming-events-section .ev-title {
+    .salah-times-section .salah-title {
       font-size: 0.68rem;
       font-weight: 600;
       opacity: 0.95;
@@ -188,7 +188,24 @@
       margin-top: 0.12rem;
       opacity: 0.9;
     }
-    .upcoming-events-list {
+    .hijri-local-time {
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-top: 0.18rem;
+      letter-spacing: 0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .hijri-local-loc {
+      font-size: 0.58rem;
+      opacity: 0.85;
+      margin-top: 0.06rem;
+      line-height: 1.2;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .salah-times-list {
       list-style: none;
       margin: 0;
       padding: 0;
@@ -196,29 +213,70 @@
       font-size: 0.64rem;
       line-height: 1.3;
     }
-    .upcoming-events-list li {
+    .salah-times-list li {
       display: flex;
       justify-content: space-between;
       gap: 0.3rem;
       padding: 0.1rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.12);
     }
-    .upcoming-events-list li:last-child { border-bottom: none; }
-    .upcoming-events-list .ev-name { font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .upcoming-events-list .ev-days {
+    .salah-times-list li:last-child { border-bottom: none; }
+    .salah-times-list .salah-name { font-weight: 500; flex: 1; min-width: 0; }
+    .salah-times-list .salah-time {
       background: rgba(255,255,255,0.22);
       padding: 0.04rem 0.28rem;
       border-radius: 7px;
       font-weight: 600;
       white-space: nowrap;
       font-size: 0.6rem;
+      font-variant-numeric: tabular-nums;
     }
-    /* Mobile one-liner strip (hidden on desktop) */
+    .salah-times-list li.next-prayer .salah-name,
+    .salah-times-list li.next-prayer .salah-time {
+      font-weight: 700;
+    }
+    .salah-times-list li.next-prayer .salah-time {
+      background: rgba(255,255,255,0.40);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.35);
+    }
+    .salah-times-list li.passed { opacity: 0.55; }
+    .salah-meta {
+      font-size: 0.58rem;
+      margin-top: 0.12rem;
+      opacity: 0.88;
+      line-height: 1.25;
+    }
+    /* Center one-liner: next Islamic event (always visible) */
+    .banner-event-strip {
+      display: flex;
+      width: 100%;
+      max-width: 520px;
+      margin: 0.15rem auto 0;
+      background: rgba(0,0,0,0.28);
+      border-radius: 10px;
+      padding: 0.22rem 0.55rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      line-height: 1.3;
+    }
+    .banner-event-strip .ms-sep { opacity: 0.45; }
+    .banner-event-strip .ms-days {
+      background: rgba(255,255,255,0.22);
+      padding: 0.05rem 0.35rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.64rem;
+    }
+    /* Mobile: extra strip with Hijri + next prayer */
     .banner-mobile-strip {
       display: none;
       width: 100%;
       max-width: 520px;
-      margin: 0.15rem auto 0;
+      margin: 0.12rem auto 0;
       background: rgba(0,0,0,0.28);
       border-radius: 10px;
       padding: 0.22rem 0.55rem;
@@ -1150,7 +1208,7 @@
     <div class="banner-overlay">
       <button type="button" class="theme-toggle" id="theme-toggle" onclick="cycleTheme()" aria-label="Toggle theme">🌓 System</button>
 
-      <!-- Left: portrait Hijri calendar -->
+      <!-- Left: portrait Hijri calendar + local time (IP-based) -->
       <div class="banner-side left">
         <div class="hijri-cal-section">
           <div class="cal-title" id="hijri-cal-title">Hijri Calendar</div>
@@ -1158,6 +1216,8 @@
             <span class="dow">S</span><span class="dow">M</span><span class="dow">T</span><span class="dow">W</span><span class="dow">T</span><span class="dow">F</span><span class="dow">S</span>
           </div>
           <div class="hijri-cal-meta" id="hijri-cal-meta">Loading…</div>
+          <div class="hijri-local-time" id="hijri-local-time">—:—</div>
+          <div class="hijri-local-loc" id="hijri-local-loc">Detecting location…</div>
         </div>
       </div>
 
@@ -1168,11 +1228,16 @@
         <div class="subtitle">Furnish your grave • Prepare for the long stay</div>
         <div class="place-name" id="place-name">Masjid al-Haram • The Holy Kaaba <span class="temp-live" id="place-temp">…°C</span></div>
 
-        <!-- Mobile one-liner (calendar date + next event) -->
+        <!-- Always-visible one-liner: next Islamic event -->
+        <div class="banner-event-strip" id="banner-event-strip">
+          <span id="ms-event">Loading next event…</span>
+        </div>
+
+        <!-- Mobile one-liner: Hijri + next prayer -->
         <div class="banner-mobile-strip" id="banner-mobile-strip">
           <span id="ms-hijri">…</span>
           <span class="ms-sep">·</span>
-          <span id="ms-event">…</span>
+          <span id="ms-next-prayer">…</span>
         </div>
 
         <div class="rabbana-box">
@@ -1203,13 +1268,14 @@
         </div><!-- /.stream-controls -->
       </div><!-- /.banner-center -->
 
-      <!-- Right: portrait upcoming events -->
+      <!-- Right: IP-based Salah timings for the day -->
       <div class="banner-side right">
-        <div class="upcoming-events-section">
-          <div class="ev-title">Upcoming</div>
-          <ul class="upcoming-events-list" id="upcoming-events-list">
-            <li><span class="ev-name">Loading events…</span></li>
+        <div class="salah-times-section">
+          <div class="salah-title" id="salah-title">Salah · Today</div>
+          <ul class="salah-times-list" id="salah-times-list">
+            <li><span class="salah-name">Loading…</span><span class="salah-time">…</span></li>
           </ul>
+          <div class="salah-meta" id="salah-meta"></div>
         </div>
       </div>
     </div><!-- /.banner-overlay -->
@@ -2506,18 +2572,222 @@
       { name: "Mawlid an-Nabī", date: new Date(2027, 7, 14) }
     ];
 
+    // User location from IP (fallback: Makkah)
+    let userGeo = {
+      lat: 21.4225,
+      lon: 39.8262,
+      city: "Makkah",
+      country: "SA",
+      timezone: "Asia/Riyadh",
+      label: "Makkah"
+    };
+    let salahTimingsCache = null;
+    let localClockTimer = null;
+
+    function formatClockInTimezone(tz) {
+      try {
+        return new Intl.DateTimeFormat(undefined, {
+          timeZone: tz || undefined,
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true
+        }).format(new Date());
+      } catch (e) {
+        return new Date().toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+      }
+    }
+
+    function updateLocalClock() {
+      const el = document.getElementById("hijri-local-time");
+      if (el) el.textContent = formatClockInTimezone(userGeo.timezone);
+    }
+
+    function startLocalClock() {
+      updateLocalClock();
+      if (localClockTimer) clearInterval(localClockTimer);
+      localClockTimer = setInterval(updateLocalClock, 30000);
+    }
+
+    async function detectUserLocationByIP() {
+      const locEl = document.getElementById("hijri-local-loc");
+      // Try multiple free HTTPS IP geolocation endpoints
+      const endpoints = [
+        {
+          url: "https://ipapi.co/json/",
+          parse: (d) => ({
+            lat: d.latitude,
+            lon: d.longitude,
+            city: d.city,
+            country: d.country_code || d.country,
+            timezone: d.timezone,
+            label: [d.city, d.region, d.country_name || d.country].filter(Boolean).join(", ")
+          })
+        },
+        {
+          url: "https://ipwho.is/",
+          parse: (d) => ({
+            lat: d.latitude,
+            lon: d.longitude,
+            city: d.city,
+            country: d.country_code,
+            timezone: d.timezone && d.timezone.id,
+            label: [d.city, d.region, d.country].filter(Boolean).join(", ")
+          })
+        },
+        {
+          url: "https://api.ipbase.com/v1/json/",
+          parse: (d) => ({
+            lat: parseFloat(d.latitude),
+            lon: parseFloat(d.longitude),
+            city: d.city,
+            country: d.country_code,
+            timezone: d.time_zone,
+            label: [d.city, d.region_name, d.country_name].filter(Boolean).join(", ")
+          })
+        }
+      ];
+      for (const ep of endpoints) {
+        try {
+          const controller = new AbortController();
+          const to = setTimeout(() => controller.abort(), 5000);
+          const res = await fetch(ep.url, { signal: controller.signal });
+          clearTimeout(to);
+          if (!res.ok) continue;
+          const data = await res.json();
+          const parsed = ep.parse(data);
+          if (parsed && parsed.lat != null && parsed.lon != null && !isNaN(parsed.lat) && !isNaN(parsed.lon)) {
+            userGeo = {
+              lat: parsed.lat,
+              lon: parsed.lon,
+              city: parsed.city || "Your city",
+              country: parsed.country || "",
+              timezone: parsed.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
+              label: parsed.label || parsed.city || "Your location"
+            };
+            if (locEl) locEl.textContent = userGeo.label;
+            return userGeo;
+          }
+        } catch (e) { /* try next */ }
+      }
+      // Browser timezone fallback without IP coords
+      try {
+        userGeo.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || userGeo.timezone;
+      } catch (e) {}
+      if (locEl) locEl.textContent = "Location approx. (Makkah times)";
+      return userGeo;
+    }
+
+    function parsePrayerTimeToDate(timeStr) {
+      // Aladhan returns "HH:MM" 24h
+      if (!timeStr) return null;
+      const clean = String(timeStr).split(" ")[0];
+      const [hh, mm] = clean.split(":").map(Number);
+      if (isNaN(hh) || isNaN(mm)) return null;
+      const d = new Date();
+      d.setHours(hh, mm, 0, 0);
+      return d;
+    }
+
+    function renderSalahTimes(timings, meta) {
+      const listEl = document.getElementById("salah-times-list");
+      const titleEl = document.getElementById("salah-title");
+      const metaEl = document.getElementById("salah-meta");
+      const msNext = document.getElementById("ms-next-prayer");
+      if (!listEl) return;
+
+      const order = [
+        { key: "Fajr", label: "Fajr" },
+        { key: "Sunrise", label: "Sunrise" },
+        { key: "Dhuhr", label: "Dhuhr" },
+        { key: "Asr", label: "Asr" },
+        { key: "Maghrib", label: "Maghrib" },
+        { key: "Isha", label: "Isha" }
+      ];
+      const now = new Date();
+      let nextIdx = -1;
+      const rows = order.map((p, i) => {
+        const t = timings[p.key];
+        const dt = parsePrayerTimeToDate(t);
+        const passed = dt ? dt < now : false;
+        return { ...p, time: t || "—", dt, passed, i };
+      });
+      for (let i = 0; i < rows.length; i++) {
+        if (rows[i].key === "Sunrise") continue;
+        if (rows[i].dt && rows[i].dt >= now) { nextIdx = i; break; }
+      }
+      // If all passed, next is tomorrow Fajr (highlight none as next, or still show)
+      listEl.innerHTML = rows.map((r, i) => {
+        const cls = [
+          r.passed ? "passed" : "",
+          i === nextIdx ? "next-prayer" : ""
+        ].filter(Boolean).join(" ");
+        return `<li class="${cls}"><span class="salah-name">${r.label}</span><span class="salah-time">${r.time}</span></li>`;
+      }).join("");
+
+      if (titleEl) {
+        const city = (userGeo.city || "Local").split(",")[0];
+        titleEl.textContent = `Salah · ${city}`;
+      }
+      if (metaEl) {
+        const method = meta && meta.method && meta.method.name ? meta.method.name : "Standard";
+        metaEl.textContent = method.length > 28 ? method.slice(0, 26) + "…" : method;
+      }
+      if (msNext) {
+        if (nextIdx >= 0) {
+          const n = rows[nextIdx];
+          msNext.innerHTML = `Next: ${n.label} <span class="ms-days">${n.time}</span>`;
+        } else {
+          const fajr = rows[0];
+          msNext.innerHTML = `Next: Fajr <span class="ms-days">${fajr.time}</span>`;
+        }
+      }
+      salahTimingsCache = { timings, meta, at: Date.now() };
+    }
+
+    async function loadSalahTimings() {
+      const listEl = document.getElementById("salah-times-list");
+      if (listEl) listEl.innerHTML = '<li><span class="salah-name">Loading…</span><span class="salah-time">…</span></li>';
+      try {
+        const url = `https://api.aladhan.com/v1/timings?latitude=${userGeo.lat}&longitude=${userGeo.lon}&method=2`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.code === 200 && data.data && data.data.timings) {
+          renderSalahTimes(data.data.timings, data.data.meta);
+        } else {
+          if (listEl) listEl.innerHTML = '<li><span class="salah-name">Unavailable</span><span class="salah-time">—</span></li>';
+        }
+      } catch (e) {
+        if (listEl) listEl.innerHTML = '<li><span class="salah-name">Offline</span><span class="salah-time">—</span></li>';
+      }
+    }
+
+    function updateUpcomingEventOneLiner() {
+      const msEvent = document.getElementById("ms-event");
+      if (!msEvent) return;
+      const now = new Date(); now.setHours(0, 0, 0, 0);
+      const upcoming = islamicFestivals
+        .map(f => ({ name: f.name, date: new Date(f.date) }))
+        .filter(f => { f.date.setHours(0, 0, 0, 0); return f.date >= now; })
+        .slice(0, 1);
+      if (!upcoming.length) {
+        msEvent.textContent = "No upcoming events listed";
+        return;
+      }
+      const next = upcoming[0];
+      const days = Math.ceil((next.date - now) / 86400000);
+      const label = days === 0 ? "Today" : days === 1 ? "Tomorrow" : days + " days";
+      msEvent.innerHTML = `Next: ${next.name} <span class="ms-days">${label}</span>`;
+    }
+
     async function loadHijriCalendarAndEvents() {
       const titleEl = document.getElementById("hijri-cal-title");
       const gridEl = document.getElementById("hijri-cal-grid");
       const metaEl = document.getElementById("hijri-cal-meta");
-      const listEl = document.getElementById("upcoming-events-list");
       const msHijri = document.getElementById("ms-hijri");
-      const msEvent = document.getElementById("ms-event");
-      let hijriLabel = "Hijri date";
       try {
         const t = new Date();
-        const dd = String(t.getDate()).padStart(2,'0');
-        const mm = String(t.getMonth()+1).padStart(2,'0');
+        const dd = String(t.getDate()).padStart(2, "0");
+        const mm = String(t.getMonth() + 1).padStart(2, "0");
         const yyyy = t.getFullYear();
         const res = await fetch(`https://api.aladhan.com/v1/gToH/${dd}-${mm}-${yyyy}`);
         const data = await res.json();
@@ -2526,27 +2796,26 @@
           const monthName = h.month.en;
           const year = h.year;
           const todayDay = parseInt(h.day, 10);
-          hijriLabel = `${todayDay} ${monthName} ${year} AH`;
+          const hijriLabel = `${todayDay} ${monthName} ${year} AH`;
           if (titleEl) titleEl.textContent = `${monthName} ${year} AH`;
           if (metaEl) metaEl.textContent = `Today: ${todayDay} ${monthName}`;
           if (msHijri) msHijri.textContent = hijriLabel;
 
-          // Build compact month grid using Aladhan Hijri calendar
           const calRes = await fetch(`https://api.aladhan.com/v1/hToGCalendar/${h.month.number}/${year}`);
           const calData = await calRes.json();
           if (gridEl && calData.code === 200 && Array.isArray(calData.data)) {
             const days = calData.data;
             let startOffset = 0;
             if (days[0] && days[0].gregorian && days[0].gregorian.weekday) {
-              const map = { SUNDAY:0, MONDAY:1, TUESDAY:2, WEDNESDAY:3, THURSDAY:4, FRIDAY:5, SATURDAY:6 };
-              startOffset = map[(days[0].gregorian.weekday.en || '').toUpperCase()] || 0;
+              const map = { SUNDAY: 0, MONDAY: 1, TUESDAY: 2, WEDNESDAY: 3, THURSDAY: 4, FRIDAY: 5, SATURDAY: 6 };
+              startOffset = map[(days[0].gregorian.weekday.en || "").toUpperCase()] || 0;
             }
             let html = '<span class="dow">S</span><span class="dow">M</span><span class="dow">T</span><span class="dow">W</span><span class="dow">T</span><span class="dow">F</span><span class="dow">S</span>';
             for (let i = 0; i < startOffset; i++) html += '<span class="day empty"></span>';
             days.forEach(d => {
               const num = d.hijri ? parseInt(d.hijri.day, 10) : 0;
               const isToday = num === todayDay;
-              html += `<span class="day${isToday ? ' today' : ''}">${num || ''}</span>`;
+              html += `<span class="day${isToday ? " today" : ""}">${num || ""}</span>`;
             });
             gridEl.innerHTML = html;
           } else if (gridEl) {
@@ -2563,28 +2832,21 @@
         if (msHijri) msHijri.textContent = "Hijri date";
       }
 
-      // Upcoming events list (next 4) + mobile one-liner
-      if (listEl) {
-        const now = new Date(); now.setHours(0,0,0,0);
-        const upcoming = islamicFestivals
-          .map(f => ({ name: f.name, date: new Date(f.date) }))
-          .filter(f => { f.date.setHours(0,0,0,0); return f.date >= now; })
-          .slice(0, 4);
-        if (!upcoming.length) {
-          listEl.innerHTML = '<li><span class="ev-name">No upcoming listed</span></li>';
-          if (msEvent) msEvent.textContent = "No upcoming events";
-        } else {
-          listEl.innerHTML = upcoming.map(f => {
-            const days = Math.ceil((f.date - now) / 86400000);
-            const label = days === 0 ? 'Today' : days === 1 ? '1d' : days + 'd';
-            return `<li><span class="ev-name">${f.name}</span><span class="ev-days">${label}</span></li>`;
-          }).join('');
-          const next = upcoming[0];
-          const days = Math.ceil((next.date - now) / 86400000);
-          const label = days === 0 ? 'Today' : days === 1 ? 'Tomorrow' : days + ' days';
-          if (msEvent) msEvent.innerHTML = `Next: ${next.name} <span class="ms-days">${label}</span>`;
+      // Center one-liner: next Islamic event (always)
+      updateUpcomingEventOneLiner();
+    }
+
+    async function initLocationSalahAndClock() {
+      startLocalClock();
+      await detectUserLocationByIP();
+      startLocalClock();
+      await loadSalahTimings();
+      // Refresh next-prayer highlight every minute
+      setInterval(() => {
+        if (salahTimingsCache && salahTimingsCache.timings) {
+          renderSalahTimes(salahTimingsCache.timings, salahTimingsCache.meta);
         }
-      }
+      }, 60000);
     }
 
     // Live refresh of additional scholar links / notes each page load
@@ -3179,6 +3441,7 @@
     setDailyBanner();
     setDailyRabbana();
     loadHijriCalendarAndEvents();
+    initLocationSalahAndClock();
     loadScholarsLive();
     showWelcome();
     updateDepositDisplay();
