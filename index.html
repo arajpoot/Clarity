@@ -26,14 +26,20 @@
       color: var(--text);
       line-height: 1.65;
       min-height: 100vh;
-      background: #eef6f0 url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+      /* Nature / signs of Allah SWT — mountains, sky, creation visible */
+      background:
+        linear-gradient(180deg, rgba(248, 245, 238, 0.68) 0%, rgba(238, 246, 240, 0.75) 45%, rgba(232, 242, 236, 0.80) 100%),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+      background-color: #eef6f0;
     }
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background: rgba(248, 245, 238, 0.90);
+      /* Lighter wash so nature remains visible as ayat of creation */
+      background: rgba(248, 245, 238, 0.52);
       z-index: -1;
+      pointer-events: none;
     }
     .arabic, .arabic-calligraphy, .rabbana-arabic {
       font-family: 'Scheherazade New', 'Amiri', 'Noto Naskh Arabic', 'Lateef', 'Traditional Arabic', serif !important;
@@ -327,7 +333,7 @@
       background: rgba(255,255,255,0.12);
       color: rgba(255,255,255,0.95);
       border: 1px solid rgba(255,255,255,0.18);
-      padding: 0.5rem 0.85rem 0.4rem;
+      padding: 0.45rem 0.75rem 0.35rem;
       border-radius: 12px 12px 0 0;
       font-size: 0.9rem;
       font-weight: 600;
@@ -340,6 +346,14 @@
       position: relative;
       margin-bottom: -1px;
       box-shadow: 0 -2px 6px rgba(0,0,0,0.12);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.12rem;
+      line-height: 1.2;
+    }
+    .nav-tab .tab-label-row {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -392,15 +406,18 @@
     .nav-tab.active[data-tab="lectures"] { background: linear-gradient(180deg, #f5e8f8, #ecd4f0); color: #5a3a70; text-shadow: none; }
     .nav-tab.active[data-tab="search"] { background: linear-gradient(180deg, #e0f0f8, #c8e4f0); color: #2a5a70; text-shadow: none; }
     .tab-visit-count {
-      font-size: 0.62rem;
-      opacity: 0.85;
-      margin-left: 0.25rem;
+      font-size: 0.58rem;
+      opacity: 0.88;
+      margin: 0;
       font-weight: 500;
-      display: inline;
+      display: block;
+      width: 100%;
+      text-align: center;
       font-family: 'Inter', sans-serif;
-      letter-spacing: 0;
+      letter-spacing: 0.01em;
+      line-height: 1.1;
     }
-    .nav-tab.active .tab-visit-count { opacity: 0.75; }
+    .nav-tab.active .tab-visit-count { opacity: 0.8; }
     .visit-badge {
       background: rgba(255,255,255,0.9);
       border: 1px solid var(--border);
@@ -878,10 +895,13 @@
       color-scheme: dark;
     }
     html[data-theme="dark"] body {
-      background: #0f1612;
+      background:
+        linear-gradient(180deg, rgba(12, 20, 16, 0.78) 0%, rgba(15, 22, 18, 0.85) 50%, rgba(12, 20, 16, 0.88) 100%),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+      background-color: #0f1612;
     }
     html[data-theme="dark"] body::before {
-      background: rgba(12, 20, 16, 0.92);
+      background: rgba(12, 20, 16, 0.62);
     }
     html[data-theme="dark"] .arabic-calligraphy {
       color: #e8efe8;
@@ -1198,14 +1218,14 @@
   <!-- ========== STICKY TAB NAVIGATION ========== -->
   <nav class="nav-tabs" role="tablist">
     <div class="nav-tabs-inner">
-      <button class="nav-tab active" data-tab="journey" onclick="switchTab('journey')"><span class="tab-bubble">🧭</span>Journey<span class="tab-visit-count" id="vc-journey">…</span></button>
-      <button class="nav-tab" data-tab="commands" onclick="switchTab('commands')"><span class="tab-bubble">📜</span>Commands<span class="tab-visit-count" id="vc-commands">…</span></button>
-      <button class="nav-tab" data-tab="tafseer" onclick="switchTab('tafseer')"><span class="tab-bubble">📚</span>Tafseer<span class="tab-visit-count" id="vc-tafseer">…</span></button>
-      <button class="nav-tab" data-tab="grave" onclick="switchTab('grave')"><span class="tab-bubble">🌙</span>Grave<span class="tab-visit-count" id="vc-grave">…</span></button>
-      <button class="nav-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="tab-bubble">📖</span>Seerah<span class="tab-visit-count" id="vc-seerah">…</span></button>
-      <button class="nav-tab" data-tab="tajweed" onclick="switchTab('tajweed')"><span class="tab-bubble">🔤</span>Tajweed<span class="tab-visit-count" id="vc-tajweed">…</span></button>
-      <button class="nav-tab" data-tab="lectures" onclick="switchTab('lectures')"><span class="tab-bubble">🎧</span>Lectures<span class="tab-visit-count" id="vc-lectures">…</span></button>
-      <button class="nav-tab" data-tab="search" onclick="switchTab('search')"><span class="tab-bubble">🔍</span>Search &amp; Ask<span class="tab-visit-count" id="vc-search">…</span></button>
+      <button class="nav-tab active" data-tab="journey" onclick="switchTab('journey')"><span class="tab-label-row"><span class="tab-bubble">🧭</span>Journey</span><span class="tab-visit-count" id="vc-journey">…</span></button>
+      <button class="nav-tab" data-tab="commands" onclick="switchTab('commands')"><span class="tab-label-row"><span class="tab-bubble">📜</span>Commands</span><span class="tab-visit-count" id="vc-commands">…</span></button>
+      <button class="nav-tab" data-tab="tafseer" onclick="switchTab('tafseer')"><span class="tab-label-row"><span class="tab-bubble">📚</span>Tafseer</span><span class="tab-visit-count" id="vc-tafseer">…</span></button>
+      <button class="nav-tab" data-tab="tajweed" onclick="switchTab('tajweed')"><span class="tab-label-row"><span class="tab-bubble">🔤</span>Tajweed</span><span class="tab-visit-count" id="vc-tajweed">…</span></button>
+      <button class="nav-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="tab-label-row"><span class="tab-bubble">📖</span>Seerah</span><span class="tab-visit-count" id="vc-seerah">…</span></button>
+      <button class="nav-tab" data-tab="lectures" onclick="switchTab('lectures')"><span class="tab-label-row"><span class="tab-bubble">🎧</span>Lectures</span><span class="tab-visit-count" id="vc-lectures">…</span></button>
+      <button class="nav-tab" data-tab="grave" onclick="switchTab('grave')"><span class="tab-label-row"><span class="tab-bubble">🌙</span>Grave</span><span class="tab-visit-count" id="vc-grave">…</span></button>
+      <button class="nav-tab" data-tab="search" onclick="switchTab('search')"><span class="tab-label-row"><span class="tab-bubble">🔍</span>Search &amp; Ask</span><span class="tab-visit-count" id="vc-search">…</span></button>
     </div>
   </nav>
 
@@ -1845,6 +1865,77 @@
               <li><a href="https://www.ghazali.org/" target="_blank" rel="noopener">Ghazali.org – Ihya resources</a></li>
               <li><a href="https://www.abuaminaelias.com/dailyhadithonline/tag/grave/" target="_blank" rel="noopener">Abu Amina Elias – Hadith on the grave</a></li>
             </ul>
+          </div>
+        </div>
+
+        <div class="card card-grave">
+          <h2>Preparing the Deceased &amp; Islamic Burial — Process &amp; Resources</h2>
+          <p style="font-size:0.94rem; margin-bottom:0.85rem;">
+            When a Muslim dies, the community has a collective duty (farḍ kifāyah) to wash, shroud, pray over, and bury the body with dignity and without unnecessary delay. Below is a concise overview and trusted online resources for Muslim-majority and non-Muslim countries.
+          </p>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem; border-left-color:#0f4c3a;">
+            <strong>Core steps (Sunnah process)</strong>
+            <ol style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;">
+              <li><strong>Confirm death</strong> and notify family / local mosque / Islamic funeral service promptly.</li>
+              <li><strong>Ghusl</strong> — ritual washing by same-gender Muslims (or trained helpers).</li>
+              <li><strong>Kafan</strong> — shrouding in simple white cloth (typically 3 layers for men, 5 for women).</li>
+              <li><strong>Ṣalāt al-Janāzah</strong> — funeral prayer (standing, no rukūʿ/sujūd).</li>
+              <li><strong>Burial (dafn)</strong> — preferably in a Muslim cemetery or Muslim section; body on the right side facing the Qiblah; haste is recommended.</li>
+            </ol>
+            <p style="margin-top:0.5rem; font-size:0.88rem;">Avoid cremation. Embalming is generally avoided when possible; scholars allow exceptions for legal/transport necessity.</p>
+          </div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem;">
+            <strong>In Muslim countries</strong>
+            <ul style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;">
+              <li>Local mosques and municipal Islamic burial offices usually handle ghusl, kafan, janāzah and cemetery allocation quickly.</li>
+              <li>Follow local health and civil registration requirements (death certificate) while keeping the ritual sequence intact.</li>
+              <li>Contact your neighbourhood mosque or the national Islamic affairs authority for the nearest facility.</li>
+            </ul>
+          </div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem;">
+            <strong>In non-Muslim countries</strong>
+            <ul style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;">
+              <li>Contact the nearest mosque or a Muslim funeral director experienced in Islamic rites as soon as possible.</li>
+              <li>Prefer burial where the person died (local Muslim cemetery or Muslim section). Repatriation is costly, often requires embalming or sealed caskets, and delays burial — many scholars discourage it unless there is a clear need.</li>
+              <li>If only a non-Muslim cemetery is available, bury there under necessity (ḍarūrah); request Qiblah orientation and a plot near other Muslims when possible.</li>
+              <li>Obtain the legal burial permit / death certificate; funeral directors familiar with Islamic practice coordinate paperwork, ghusl facilities, and cemetery booking.</li>
+            </ul>
+          </div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem;">
+            <strong>Online guides — burial process</strong>
+            <ul style="margin:0.4rem 0 0 1.1rem; font-size:0.9rem;">
+              <li><a href="https://d1.islamhouse.com/data/en/ih_books/single2/en-preparation-of-the-deceased.pdf" target="_blank" rel="noopener">Preparation of the Deceased (PDF) – IslamHouse</a></li>
+              <li><a href="https://www.alim.org/funeral-services/complementary-funeral-guidance/" target="_blank" rel="noopener">Alim.org – Islamic funeral procedure (ghusl to burial)</a></li>
+              <li><a href="https://gardens-of-peace.org.uk/wp-content/uploads/2020/04/B07-GOP-What-to-do-When-Someone-Dies-2020.pdf" target="_blank" rel="noopener">Gardens of Peace (UK) – What to do when someone dies (PDF)</a></li>
+              <li><a href="https://fiqh.islamonline.net/en/burying-a-muslim-in-a-non-muslim-cemetery/" target="_blank" rel="noopener">IslamOnline – Burying a Muslim in a non-Muslim cemetery</a></li>
+              <li><a href="https://imam-us.org/islamic-laws-of-death-and-burial-book-online" target="_blank" rel="noopener">IMAM-US – Islamic laws of death and burial</a></li>
+            </ul>
+          </div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem; border-left-color:#b0892e;">
+            <strong>Waṣiyyah (Islamic will) — fulfilling commands before and after death</strong>
+            <p style="font-size:0.92rem; margin:0.35rem 0;">
+              The Prophet ﷺ encouraged writing a will. A Muslim may bequeath up to one-third of the estate; the rest follows fixed Qurʾānic inheritance shares (farāʾiḍ) after debts and funeral costs. The will should also record funeral wishes, unpaid religious obligations (missed prayers/fasts, zakat, Hajj), trusts held for others, and an executor (waṣī).
+            </p>
+            <ul style="margin:0.4rem 0 0 1.1rem; font-size:0.9rem;">
+              <li><a href="https://anic.org.au/last-islamic-will-wasiyah-testament/" target="_blank" rel="noopener">ANIC (Australia) – Last Islamic Will (Wasiyah) template</a></li>
+              <li><a href="https://freeislamicwill.com/will-templates-and-sample-wills" target="_blank" rel="noopener">FreeIslamicWill.com – Sample will templates</a></li>
+              <li><a href="https://theblessednights.com/free-islamic-tools/islamic-will/" target="_blank" rel="noopener">The Blessed Nights – Islamic will generator</a></li>
+              <li><a href="https://trybarakah.com/learn/islamic-will" target="_blank" rel="noopener">Try Barakah – How to write an Islamic will (guide)</a></li>
+              <li><a href="https://shariawiz.com/last-will-and-testament" target="_blank" rel="noopener">Shariawiz – Sharīʿah-compliant will tools</a></li>
+              <li><a href="https://islamqa.info/en/answers/20017" target="_blank" rel="noopener">IslamQA – Ruling on writing a will</a></li>
+            </ul>
+            <p style="margin-top:0.55rem; font-size:0.86rem; color:#555;">
+              Have any will reviewed by a local scholar and a lawyer so it is both Sharīʿah-compliant and legally enforceable in your country. Store copies with family, the executor, and your lawyer.
+            </p>
+          </div>
+
+          <div class="grave-note">
+            <strong>Note:</strong> This summary is educational. Procedures and civil law differ by country. Always consult a qualified local scholar and an experienced Muslim funeral service for your situation.
           </div>
         </div>
       </div>
@@ -3277,8 +3368,8 @@
     <div class="mobile-bottom-nav-inner">
       <button type="button" class="mb-tab active" data-tab="journey" onclick="switchTab('journey')"><span class="mb-icon">🧭</span>Journey</button>
       <button type="button" class="mb-tab" data-tab="commands" onclick="switchTab('commands')"><span class="mb-icon">📜</span>Commands</button>
-      <button type="button" class="mb-tab" data-tab="grave" onclick="switchTab('grave')"><span class="mb-icon">🌙</span>Grave</button>
       <button type="button" class="mb-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="mb-icon">📖</span>Seerah</button>
+      <button type="button" class="mb-tab" data-tab="grave" onclick="switchTab('grave')"><span class="mb-icon">🌙</span>Grave</button>
       <button type="button" class="mb-tab" data-tab="search" onclick="switchTab('search')"><span class="mb-icon">🔍</span>Search</button>
     </div>
   </nav>
