@@ -1044,27 +1044,43 @@
       <!-- ==================== TAB: LECTURES ==================== -->
       <div id="tab-lectures" class="tab-panel">
         <div class="card card-lectures">
-          <h2>Lectures &amp; Tafseer Playlists</h2>
+          <h2>Lectures &amp; Series</h2>
           <p style="margin-bottom:0.9rem; font-size:0.95rem;">
-            Select a Spotify show and play it directly on this page (no need to open Spotify).
+            Select a series or playlist and play it directly on this page.
           </p>
 
           <div class="lecture-box">
-            <h3>📖 Dr. Israr Ahmed – Bayan-ul-Quran &amp; Lectures</h3>
-            <label style="font-size:0.88rem; color:#555;">Choose playlist / show:</label>
-            <select id="spotify-select" onchange="loadSpotifyPlayer()" style="margin:0.4rem 0 0.7rem; width:100%; max-width:420px;">
-              <option value="show/2l99KzfBjGo9D7n9iLv8mv">Bayan-ul-Quran (English) – Dr Israr Ahmed</option>
-              <option value="show/366UKi048QVTJsm8GWBvpg">Dr. Israr Ahmed – Full Lectures</option>
-              <option value="show/21etcnbQ6h8OrwCAD2z5eR">Urdu Tafsir – Dr Israr Ahmed</option>
+            <h3>🌟 Yaqeen Institute – The Firsts (Dr. Omar Suleiman)</h3>
+            <p style="font-size:0.92rem; margin-bottom:0.5rem; color:#444;">The Forerunners of Islam – stories of the Sahaba who were the first of their kind. Join Dr. Omar Suleiman as he explores the lives of the trailblazers of the Ummah.</p>
+            <label style="font-size:0.88rem; color:#555;">Choose series:</label>
+            <select id="yaqeen-select" onchange="loadYaqeenPlayer()" style="margin:0.4rem 0 0.7rem; width:100%; max-width:480px;">
+              <option value="PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp">The Firsts – Full Series (Yaqeen Institute)</option>
             </select>
-            <div class="spotify-player-wrap">
-              <iframe id="spotify-player"
-                src="https://open.spotify.com/embed/show/2l99KzfBjGo9D7n9iLv8mv?utm_source=generator&theme=0"
-                width="100%" height="352" frameborder="0" allowfullscreen
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+            <div class="spotify-player-wrap" style="background:#0f0f0f;">
+              <iframe id="yaqeen-player"
+                src="https://www.youtube.com/embed/videoseries?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp"
+                width="100%" height="315" frameborder="0" allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy">
               </iframe>
             </div>
-            <p class="lecture-note">The player streams the selected show inside this page. You can also open it in the Spotify app if preferred.</p>
+            <p class="lecture-note">Full playlist on YouTube: <a href="https://www.youtube.com/playlist?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp" target="_blank" rel="noopener">The Firsts | The Forerunners of Islam</a> · <a href="https://yaqeeninstitute.org" target="_blank" rel="noopener">Yaqeen Institute</a></p>
+          </div>
+
+          <div class="lecture-box">
+            <h3>📖 Seerat-e-Sahabiyat – Farhat Hashmi</h3>
+            <p style="font-size:0.92rem; margin-bottom:0.5rem; color:#444;">Seerah of the female companions of the Prophet ﷺ – lessons from the lives of the Sahabiyat.</p>
+            <label style="font-size:0.88rem; color:#555;">Choose playlist:</label>
+            <select id="farhat-select" onchange="loadFarhatPlayer()" style="margin:0.4rem 0 0.7rem; width:100%; max-width:480px;">
+              <option value="PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs">Seerat-e-Sahabiyat – Full Playlist (Farhat Hashmi)</option>
+            </select>
+            <div class="spotify-player-wrap" style="background:#0f0f0f;">
+              <iframe id="farhat-player"
+                src="https://www.youtube.com/embed/videoseries?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs"
+                width="100%" height="315" frameborder="0" allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy">
+              </iframe>
+            </div>
+            <p class="lecture-note">Playlist: <a href="https://www.youtube.com/playlist?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs" target="_blank" rel="noopener">Seerat-e-Sahabiyat by Farhat Hashmi</a></p>
           </div>
 
           <div class="lecture-box">
@@ -1095,25 +1111,48 @@
       <!-- ==================== TAB: TAFSEER ==================== -->
       <div id="tab-tafseer" class="tab-panel">
         <div class="card card-tafseer">
-          <h2>Tafseer by Ustazah Najiha Hashmi</h2>
-          <p style="margin-bottom:0.75rem; font-size:0.94rem;">
-            From <strong>ArRahmah Islamic Institute</strong>. Track the lessons you study. Progress is saved only on this device.
-          </p>
-          <div class="tafseer-progress">
-            <strong>Lessons studied:</strong> <span id="tafseer-count">0</span><br>
-            <span id="tafseer-last" style="font-size:0.86rem; color:#666;"></span>
-          </div>
-          <div style="margin-bottom:0.85rem;">
-            <label style="font-size:0.88rem; color:#555;">Select a lesson:</label>
-            <select id="tafseer-select" onchange="focusTafseerLesson(this.value)" style="margin-top:0.35rem;">
-              <option value="all">Show all lessons</option>
+          <h2>Tafseer Resources</h2>
+
+          <div class="lecture-box" style="margin-top:0.5rem;">
+            <h3>📖 Dr. Israr Ahmed – Bayan-ul-Quran &amp; Lectures</h3>
+            <p style="font-size:0.92rem; margin-bottom:0.5rem; color:#444;">Complete Quranic tafseer and lectures by Dr. Israr Ahmed (RA). Stream directly from Spotify.</p>
+            <label style="font-size:0.88rem; color:#555;">Choose playlist / show:</label>
+            <select id="spotify-select" onchange="loadSpotifyPlayer()" style="margin:0.4rem 0 0.7rem; width:100%; max-width:420px;">
+              <option value="show/2l99KzfBjGo9D7n9iLv8mv">Bayan-ul-Quran (English) – Dr Israr Ahmed</option>
+              <option value="show/366UKi048QVTJsm8GWBvpg">Dr. Israr Ahmed – Full Lectures</option>
+              <option value="show/21etcnbQ6h8OrwCAD2z5eR">Urdu Tafsir – Dr Israr Ahmed</option>
             </select>
+            <div class="spotify-player-wrap">
+              <iframe id="spotify-player"
+                src="https://open.spotify.com/embed/show/2l99KzfBjGo9D7n9iLv8mv?utm_source=generator&theme=0"
+                width="100%" height="352" frameborder="0" allowfullscreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+              </iframe>
+            </div>
+            <p class="lecture-note">The player streams the selected show inside this page. You can also open it in the Spotify app if preferred.</p>
           </div>
-          <div id="tafseer-list"></div>
-          <p style="margin-top:0.95rem; font-size:0.86rem; color:#555;">
-            Full courses & live classes: <a href="https://www.arrahmah.org/" target="_blank" rel="noopener">arrahmah.org</a> · 
-            <a href="https://www.youtube.com/c/arrahmahislamicinstitute" target="_blank" rel="noopener">YouTube Channel</a>
-          </p>
+
+          <div style="margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid var(--border);">
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--accent); margin-bottom:0.7rem;">Tafseer by Ustazah Najiha Hashmi</h2>
+            <p style="margin-bottom:0.75rem; font-size:0.94rem;">
+              From <strong>ArRahmah Islamic Institute</strong>. Track the lessons you study. Progress is saved only on this device.
+            </p>
+            <div class="tafseer-progress">
+              <strong>Lessons studied:</strong> <span id="tafseer-count">0</span><br>
+              <span id="tafseer-last" style="font-size:0.86rem; color:#666;"></span>
+            </div>
+            <div style="margin-bottom:0.85rem;">
+              <label style="font-size:0.88rem; color:#555;">Select a lesson:</label>
+              <select id="tafseer-select" onchange="focusTafseerLesson(this.value)" style="margin-top:0.35rem;">
+                <option value="all">Show all lessons</option>
+              </select>
+            </div>
+            <div id="tafseer-list"></div>
+            <p style="margin-top:0.95rem; font-size:0.86rem; color:#555;">
+              Full courses & live classes: <a href="https://www.arrahmah.org/" target="_blank" rel="noopener">arrahmah.org</a> · 
+              <a href="https://www.youtube.com/c/arrahmahislamicinstitute" target="_blank" rel="noopener">YouTube Channel</a>
+            </p>
+          </div>
         </div>
       </div>
 
@@ -2292,6 +2331,20 @@
         const id = val.replace("video:", "");
         iframe.src = "https://www.youtube.com/embed/" + id + "?rel=0";
       } else {
+        iframe.src = "https://www.youtube.com/embed/videoseries?list=" + val;
+      }
+    }
+    function loadYaqeenPlayer() {
+      const val = document.getElementById("yaqeen-select").value;
+      const iframe = document.getElementById("yaqeen-player");
+      if (iframe && val) {
+        iframe.src = "https://www.youtube.com/embed/videoseries?list=" + val;
+      }
+    }
+    function loadFarhatPlayer() {
+      const val = document.getElementById("farhat-select").value;
+      const iframe = document.getElementById("farhat-player");
+      if (iframe && val) {
         iframe.src = "https://www.youtube.com/embed/videoseries?list=" + val;
       }
     }
