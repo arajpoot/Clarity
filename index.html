@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="theme-color" content="#0f4c3a" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Clarity – Preparing the heart and the grave with Quran, authentic Hadith and daily good deeds." />
   <title>Clarity – Furnish Your Grave</title>
@@ -705,6 +706,280 @@
       .banner { min-height: 170px; }
       .banner-overlay { min-height: 170px; padding: 0.4rem 0.6rem 0.55rem; }
     }
+
+    /* ===== UPGRADE: theme tokens ===== */
+    :root {
+      --bg: #f7f3eb;
+      --bg-elevated: #faf7f0;
+      --text: #1c241c;
+      --text-muted: #5a6358;
+      --accent: #0f4c3a;
+      --accent-light: #1a6b52;
+      --accent-fg: #f7f3eb;
+      --accent-soft: #dce8e1;
+      --border: #e5ddd0;
+      --card-bg: rgba(255,255,255,0.94);
+      --banner: #0f4c3a;
+      --gold: #b0892e;
+      --shadow: 0 0 0 1px rgba(28,36,28,0.06), 0 2px 8px rgba(28,36,28,0.05);
+    }
+    html[data-theme="dark"] {
+      --bg: #0f1612;
+      --bg-elevated: #162019;
+      --text: #e8efe8;
+      --text-muted: #a3b0a6;
+      --accent: #3d9b72;
+      --accent-light: #4db384;
+      --accent-fg: #0a120e;
+      --accent-soft: #1e3329;
+      --border: #2a3830;
+      --card-bg: rgba(26,36,32,0.95);
+      --banner: #0c1a14;
+      --gold: #d4a84b;
+      --shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 4px 14px rgba(0,0,0,0.35);
+      color-scheme: dark;
+    }
+    html[data-theme="dark"] body {
+      background: #0f1612;
+    }
+    html[data-theme="dark"] body::before {
+      background: rgba(12, 20, 16, 0.92);
+    }
+    html[data-theme="dark"] .arabic-calligraphy {
+      color: #e8efe8;
+      background: linear-gradient(145deg, rgba(30,40,34,0.95), rgba(22,32,26,0.9));
+      border-color: rgba(61,155,114,0.25);
+      text-shadow: none;
+    }
+    html[data-theme="dark"] .card {
+      box-shadow: var(--shadow);
+    }
+    html[data-theme="dark"] .sidebar-card a { border-color: #2a3830; color: var(--accent); }
+    html[data-theme="dark"] .stat { background: var(--bg-elevated); border-color: var(--border); color: var(--accent); }
+    html[data-theme="dark"] .welcome-box { background: rgba(30,40,34,0.85); }
+    html[data-theme="dark"] .modern-context,
+    html[data-theme="dark"] .ponder-box,
+    html[data-theme="dark"] .shariah-advice,
+    html[data-theme="dark"] .grave-note { background: rgba(30,40,34,0.8); color: var(--text); }
+    html[data-theme="dark"] .deposit-item { background: rgba(30,40,34,0.85); border-color: #2a3830; }
+    html[data-theme="dark"] .command-box,
+    html[data-theme="dark"] .search-result,
+    html[data-theme="dark"] .hifz-ayah,
+    html[data-theme="dark"] .tafseer-item,
+    html[data-theme="dark"] .tajweed-level,
+    html[data-theme="dark"] .lecture-box { background: rgba(30,40,34,0.88); border-color: var(--border); color: var(--text); }
+    html[data-theme="dark"] input[type="text"],
+    html[data-theme="dark"] input[type="number"],
+    html[data-theme="dark"] textarea,
+    html[data-theme="dark"] select {
+      background: var(--bg-elevated);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    html[data-theme="dark"] .ref { color: var(--text-muted); }
+    html[data-theme="dark"] .loading-msg { color: var(--text-muted); }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    .card {
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    button, .btn {
+      background: var(--accent);
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    button:active, .btn:active { transform: scale(0.98); }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: absolute;
+      top: 0.65rem;
+      right: 0.75rem;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+    .theme-toggle:hover { background: rgba(255,255,255,0.28); }
+
+    /* Progress strip */
+    .progress-strip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 520px) {
+      .progress-strip { grid-template-columns: repeat(4, 1fr); }
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.55rem 0.7rem;
+      box-shadow: var(--shadow);
+    }
+    .stat-pill .icon {
+      width: 1.7rem; height: 1.7rem;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+    }
+    .stat-pill .label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .stat-pill .value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .hifz-goal-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .hifz-goal-bar .row {
+      display: flex; justify-content: space-between;
+      font-size: 0.88rem; margin-bottom: 0.4rem;
+    }
+    .hifz-goal-bar .track {
+      height: 0.55rem; border-radius: 999px;
+      background: var(--accent-soft); overflow: hidden;
+    }
+    .hifz-goal-bar .fill {
+      height: 100%; border-radius: 999px;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    /* Mobile bottom nav */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      inset-inline: 0;
+      bottom: 0;
+      z-index: 200;
+      background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 0.25rem 0.2rem max(0.35rem, env(safe-area-inset-bottom));
+    }
+    .mobile-bottom-nav-inner {
+      display: flex;
+      justify-content: space-around;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .mb-tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      padding: 0.45rem 0.2rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.62rem;
+      font-weight: 600;
+      cursor: pointer;
+      min-height: 3rem;
+      margin: 0;
+    }
+    .mb-tab.active { color: var(--accent); }
+    .mb-tab .mb-icon { font-size: 1.15rem; line-height: 1; }
+
+    @media (max-width: 900px) {
+      .mobile-bottom-nav { display: block; }
+      .nav-tabs { display: none; }
+      .page-wrapper { padding-bottom: 5.5rem; }
+      .sidebar { display: none !important; }
+    }
+
+    /* Scroll top */
+    .scroll-top-btn {
+      position: fixed;
+      right: 1rem;
+      bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+      z-index: 190;
+      width: 2.75rem; height: 2.75rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--accent-fg);
+      border: none;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font-size: 1.15rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      margin: 0; padding: 0;
+    }
+    @media (min-width: 901px) {
+      .scroll-top-btn { bottom: 1.5rem; }
+    }
+    .scroll-top-btn.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Bookmark chip */
+    .bm-btn {
+      background: var(--accent-soft) !important;
+      color: var(--accent) !important;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      padding: 0.4rem 0.8rem !important;
+      margin-top: 0.5rem;
+    }
+    .bookmarks-list { margin-top: 0.5rem; }
+    .bm-item {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      margin-bottom: 0.55rem;
+    }
+    .bm-item .bm-title { font-weight: 600; color: var(--accent); font-size: 0.9rem; }
+    .bm-item .bm-snip { font-size: 0.88rem; margin-top: 0.25rem; color: var(--text); }
+    .bm-item .bm-ref { font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 0.2rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -715,6 +990,7 @@
   <div class="banner">
     <img id="banner-img" src="" alt="Islamic holy place" onerror="this.style.display='none'">
     <div class="banner-overlay">
+      <button type="button" class="theme-toggle" id="theme-toggle" onclick="cycleTheme()" aria-label="Toggle theme">🌓 System</button>
       <div class="bismillah arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
       <h1><span class="title-icon" title="Inkpot &amp; quill">✒️</span> Clarity</h1>
       <div class="subtitle">Furnish your grave • Prepare for the long stay</div>
@@ -781,7 +1057,18 @@
 
       <!-- ==================== TAB: JOURNEY ==================== -->
       <div id="tab-journey" class="tab-panel active">
-        <div class="card card-journey">
+        
+        <div class="progress-strip" id="progress-strip">
+          <div class="stat-pill"><div class="icon">🔥</div><div><div class="label">Streak</div><div class="value" id="pill-streak">0d</div></div></div>
+          <div class="stat-pill"><div class="icon">📖</div><div><div class="label">Lessons</div><div class="value" id="pill-lessons">0</div></div></div>
+          <div class="stat-pill"><div class="icon">✨</div><div><div class="label">Istighfar</div><div class="value" id="pill-istighfar">0</div></div></div>
+          <div class="stat-pill"><div class="icon">💚</div><div><div class="label">Salawat</div><div class="value" id="pill-salawat">0</div></div></div>
+        </div>
+        <div class="hifz-goal-bar">
+          <div class="row"><span>Hifz goal today</span><span id="hifz-goal-label">0/3 ayahs</span></div>
+          <div class="track"><div class="fill" id="hifz-goal-fill"></div></div>
+        </div>
+<div class="card card-journey">
           <h2>My Journey</h2>
           <div id="profile-input">
             <p>Enter your name to personalize (saved only on this device).</p>
@@ -812,18 +1099,26 @@
           <h2>Today’s Character Lesson</h2>
           <div id="lesson"><div class="loading-msg">Loading…</div></div>
           <button type="button" onclick="loadLesson(true)">New lesson</button>
+          <button type="button" class="bm-btn" onclick="bookmarkCurrentLesson()">🔖 Save</button>
         </div>
 
         <div class="card card-verse">
           <h2>A Verse from the Quran</h2>
           <div id="verse"><div class="loading-msg">Loading…</div></div>
           <button type="button" onclick="loadVerse()">Another verse</button>
+          <button type="button" class="bm-btn" onclick="bookmarkCurrentVerse()">🔖 Save</button>
         </div>
 
         <div class="card card-life">
           <h2>Life Events Guidance</h2>
           <div id="life-event"><div class="loading-msg">Loading…</div></div>
           <button type="button" onclick="loadLifeEvent()">Another life event</button>
+        </div>
+
+        <div class="card card-journey" id="bookmarks-card" style="display:none">
+          <h2>Your Bookmarks</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.5rem">Saved on this device.</p>
+          <div class="bookmarks-list" id="bookmarks-list"></div>
         </div>
       </div>
 
@@ -2587,6 +2882,175 @@
     loadAllTabCounts();
     // Also respond to browser back/forward
     window.addEventListener('hashchange', initTabFromHash);
+
+    // ===== UPGRADE: theme, progress, bookmarks, mobile nav sync =====
+    function cycleTheme() {
+      const order = ['light', 'dark', 'system'];
+      const cur = localStorage.getItem('clarity_theme') || 'system';
+      const next = order[(order.indexOf(cur) + 1) % order.length];
+      localStorage.setItem('clarity_theme', next);
+      applyTheme(next);
+    }
+    function resolveTheme(mode) {
+      if (mode === 'light' || mode === 'dark') return mode;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    function applyTheme(mode) {
+      mode = mode || localStorage.getItem('clarity_theme') || 'system';
+      const resolved = resolveTheme(mode);
+      document.documentElement.setAttribute('data-theme', resolved);
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.textContent = mode === 'light' ? '☀️ Light' : mode === 'dark' ? '🌙 Dark' : '🌓 System';
+      }
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', resolved === 'dark' ? '#0c1a14' : '#0f4c3a');
+    }
+    applyTheme();
+    try {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if ((localStorage.getItem('clarity_theme') || 'system') === 'system') applyTheme('system');
+      });
+    } catch (e) {}
+
+    function getDepositCount(type) {
+      try {
+        if (typeof getTodayKey === 'function') {
+          return parseInt(localStorage.getItem(getTodayKey(type)) || '0', 10) || 0;
+        }
+        return parseInt(localStorage.getItem('clarity_' + type + '_' + new Date().toDateString()) || '0', 10) || 0;
+      } catch (e) { return 0; }
+    }
+    function getHifzTodayCountNum() {
+      try {
+        if (typeof getHifzKey === 'function') {
+          return parseInt(localStorage.getItem(getHifzKey()) || '0', 10) || 0;
+        }
+        return parseInt(localStorage.getItem('clarity_hifz_' + new Date().toDateString()) || '0', 10) || 0;
+      } catch (e) { return 0; }
+    }
+
+    function updateProgressPills() {
+      const streak = localStorage.getItem('clarity_streak') || '0';
+      const lessons = localStorage.getItem('clarity_lessons') || '0';
+      const set = (id, v) => { const n = document.getElementById(id); if (n) n.textContent = v; };
+      set('pill-streak', streak + 'd');
+      set('pill-lessons', lessons);
+      set('pill-istighfar', String(getDepositCount('istighfar')));
+      set('pill-salawat', String(getDepositCount('salawat')));
+      const goal = parseInt(localStorage.getItem('clarity_hifz_goal') || '3', 10) || 3;
+      const today = getHifzTodayCountNum();
+      set('hifz-goal-label', today + '/' + goal + ' ayahs');
+      const fill = document.getElementById('hifz-goal-fill');
+      if (fill) fill.style.width = Math.min(100, Math.round((today / Math.max(1, goal)) * 100)) + '%';
+    }
+
+    // Hook existing updaters
+    if (typeof updateStats === 'function') {
+      const _us = updateStats;
+      updateStats = function () { _us(); updateProgressPills(); };
+    }
+    if (typeof updateDepositDisplay === 'function') {
+      const _ud = updateDepositDisplay;
+      updateDepositDisplay = function () { _ud(); updateProgressPills(); };
+    }
+    if (typeof updateHifzTodayCount === 'function') {
+      const _uh = updateHifzTodayCount;
+      updateHifzTodayCount = function () { _uh(); updateProgressPills(); };
+    }
+    if (typeof addDeposit === 'function') {
+      const _ad = addDeposit;
+      addDeposit = function (type) { _ad(type); updateProgressPills(); };
+    }
+    if (typeof markMemorized === 'function') {
+      const _mm = markMemorized;
+      markMemorized = function () { _mm(); updateProgressPills(); };
+    }
+
+    function getBookmarks() {
+      try { return JSON.parse(localStorage.getItem('clarity_bookmarks') || '[]'); } catch (e) { return []; }
+    }
+    function saveBookmarks(list) {
+      localStorage.setItem('clarity_bookmarks', JSON.stringify(list.slice(0, 100)));
+      renderBookmarks();
+    }
+    function addBookmark(item) {
+      const list = getBookmarks();
+      if (list.some(b => b.id === item.id)) return;
+      list.unshift(Object.assign({}, item, { savedAt: new Date().toISOString() }));
+      saveBookmarks(list);
+    }
+    function removeBookmark(id) {
+      saveBookmarks(getBookmarks().filter(b => b.id !== id));
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+    function renderBookmarks() {
+      const list = getBookmarks();
+      const card = document.getElementById('bookmarks-card');
+      const box = document.getElementById('bookmarks-list');
+      if (!card || !box) return;
+      if (!list.length) { card.style.display = 'none'; return; }
+      card.style.display = 'block';
+      box.innerHTML = list.map(b =>
+        '<div class="bm-item">' +
+          '<div class="bm-title">🔖 ' + escapeHtml(b.title || 'Saved') + '</div>' +
+          '<div class="bm-snip">' + escapeHtml((b.snippet || '').slice(0, 220)) + '</div>' +
+          (b.ref ? '<div class="bm-ref">' + escapeHtml(b.ref) + '</div>' : '') +
+          '<button type="button" class="bm-btn" onclick="removeBookmark(\'' + escapeHtml(b.id).replace(/'/g, '') + '\')">Remove</button>' +
+        '</div>'
+      ).join('');
+    }
+    function bookmarkCurrentVerse() {
+      const el = document.getElementById('verse');
+      if (!el) return;
+      const text = el.innerText || '';
+      if (!text || text.indexOf('Loading') !== -1) return alert('Load a verse first.');
+      addBookmark({ id: 'verse-' + Date.now(), kind: 'verse', title: 'Quran verse', snippet: text.slice(0, 280) });
+      alert('Saved to bookmarks');
+    }
+    function bookmarkCurrentLesson() {
+      const el = document.getElementById('lesson');
+      if (!el) return;
+      const text = el.innerText || '';
+      if (!text || text.indexOf('Loading') !== -1) return alert('Load a lesson first.');
+      addBookmark({ id: 'hadith-' + Date.now(), kind: 'hadith', title: 'Character lesson', snippet: text.slice(0, 280) });
+      alert('Saved to bookmarks');
+    }
+
+    if (typeof switchTab === 'function') {
+      const _st = switchTab;
+      switchTab = function (name) {
+        _st(name);
+        document.querySelectorAll('.mb-tab').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('data-tab') === name);
+        });
+      };
+    }
+
+    window.addEventListener('scroll', function () {
+      const btn = document.getElementById('scroll-top-btn');
+      if (!btn) return;
+      btn.classList.toggle('show', window.scrollY > 420);
+    }, { passive: true });
+
+    updateProgressPills();
+    renderBookmarks();
+
   </script>
+
+  <!-- Mobile bottom navigation -->
+  <nav class="mobile-bottom-nav" aria-label="Primary">
+    <div class="mobile-bottom-nav-inner">
+      <button type="button" class="mb-tab active" data-tab="journey" onclick="switchTab('journey')"><span class="mb-icon">🧭</span>Journey</button>
+      <button type="button" class="mb-tab" data-tab="commands" onclick="switchTab('commands')"><span class="mb-icon">📜</span>Commands</button>
+      <button type="button" class="mb-tab" data-tab="grave" onclick="switchTab('grave')"><span class="mb-icon">🌙</span>Hifz</button>
+      <button type="button" class="mb-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="mb-icon">📖</span>Seerah</button>
+      <button type="button" class="mb-tab" data-tab="search" onclick="switchTab('search')"><span class="mb-icon">🔍</span>Search</button>
+    </div>
+  </nav>
+  <button type="button" class="scroll-top-btn" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
 </body>
 </html>
