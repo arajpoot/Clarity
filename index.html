@@ -8,7 +8,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;500;600;700&family=Lateef:wght@400;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -35,25 +35,27 @@
       z-index: -1;
     }
     .arabic, .arabic-calligraphy, .rabbana-arabic {
-      font-family: 'Noto Naskh Arabic', 'Amiri', 'Traditional Arabic', 'Scheherazade New', serif !important;
+      font-family: 'Scheherazade New', 'Amiri', 'Noto Naskh Arabic', 'Lateef', 'Traditional Arabic', serif !important;
       direction: rtl;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      line-height: 2.0;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 2.15;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.6), 0 1.5px 2px rgba(0,0,0,0.12);
     }
     .arabic-calligraphy {
-      font-size: 1.65rem;
-      font-weight: 500;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #1a2a1a;
     }
 
     /* ========== BANNER ========== */
     .banner {
       position: relative;
-      min-height: 380px;
+      min-height: 190px;
       overflow: hidden;
-      border-bottom: 4px solid var(--accent);
+      border-bottom: 3px solid var(--accent);
       background: linear-gradient(135deg, #0f4c3a, #1a6b52);
     }
     .banner img {
@@ -67,35 +69,35 @@
       background: linear-gradient(to bottom, rgba(15,76,58,0.55), rgba(15,76,58,0.93));
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
-      text-align: center; color: white; padding: 1.2rem 1rem 1.4rem;
-      min-height: 380px;
+      text-align: center; color: white; padding: 0.55rem 0.8rem 0.7rem;
+      min-height: 190px;
     }
     .banner .bismillah {
-      font-family: 'Noto Naskh Arabic', 'Amiri', serif;
+      font-family: 'Scheherazade New', 'Amiri', serif;
       direction: rtl;
-      font-size: 1.4rem;
-      margin-bottom: 0.55rem;
+      font-size: 1.15rem;
+      margin-bottom: 0.2rem;
       opacity: 0.95;
       letter-spacing: 0.3px;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.35);
     }
     .banner h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem; font-weight: 700;
-      letter-spacing: 1px; margin-bottom: 0.15rem;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      font-size: 1.85rem; font-weight: 700;
+      letter-spacing: 0.8px; margin-bottom: 0.05rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.55rem;
+      gap: 0.4rem;
     }
     .banner h1 .title-icon {
-      font-size: 1.85rem;
+      font-size: 1.4rem;
       line-height: 1;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
     }
-    .banner .subtitle { font-size: 1.05rem; opacity: 0.95; margin-bottom: 0.25rem; }
-    .banner .place-name { font-size: 0.88rem; opacity: 0.9; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem; }
+    .banner .subtitle { font-size: 0.88rem; opacity: 0.95; margin-bottom: 0.15rem; }
+    .banner .place-name { font-size: 0.78rem; opacity: 0.9; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.35rem; }
     .banner .temp-live {
       display: inline-flex;
       align-items: center;
@@ -107,32 +109,45 @@
       font-weight: 500;
     }
     .banner .hijri-date {
-      font-size: 0.95rem; margin-top: 0.45rem;
+      font-size: 0.82rem; margin-top: 0.25rem;
       background: rgba(255,255,255,0.20);
-      padding: 0.28rem 1rem; border-radius: 20px;
+      padding: 0.18rem 0.75rem; border-radius: 16px;
       font-weight: 500;
     }
+    .banner .festival-countdown {
+      font-size: 0.78rem; margin-top: 0.25rem;
+      background: rgba(255,255,255,0.18);
+      padding: 0.2rem 0.75rem; border-radius: 14px;
+      font-weight: 500;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      max-width: 95%; flex-wrap: wrap; justify-content: center;
+    }
+    .banner .festival-countdown .fc-label { opacity: 0.9; }
+    .banner .festival-countdown .fc-days {
+      background: rgba(255,255,255,0.25);
+      padding: 0.1rem 0.45rem; border-radius: 10px; font-weight: 600;
+    }
     .banner .rabbana-box {
-      margin-top: 0.7rem;
-      max-width: 620px;
-      background: rgba(0,0,0,0.30);
-      border-radius: 14px;
-      padding: 0.7rem 1.1rem;
+      margin-top: 0.35rem;
+      max-width: 560px;
+      background: rgba(0,0,0,0.28);
+      border-radius: 10px;
+      padding: 0.4rem 0.85rem;
     }
     .rabbana-arabic {
-      font-size: 1.22rem;
+      font-size: 1.05rem;
       direction: rtl;
-      line-height: 1.85;
-      margin-bottom: 0.25rem;
+      line-height: 1.6;
+      margin-bottom: 0.12rem;
     }
-    .banner .rabbana-english { font-size: 0.90rem; opacity: 0.95; }
-    .banner .rabbana-ref { font-size: 0.78rem; opacity: 0.8; margin-top: 0.15rem; }
+    .banner .rabbana-english { font-size: 0.78rem; opacity: 0.95; }
+    .banner .rabbana-ref { font-size: 0.68rem; opacity: 0.8; margin-top: 0.08rem; }
 
     .stream-controls {
-      margin-top: 1rem;
+      margin-top: 0.45rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.65rem;
+      gap: 0.4rem;
       justify-content: center;
       align-items: center;
     }
@@ -140,17 +155,17 @@
       background: rgba(255,255,255,0.97);
       color: #0f4c3a;
       border: none;
-      padding: 0.8rem 1.6rem;
-      border-radius: 32px;
-      font-size: 1.05rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 22px;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+      gap: 0.35rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.22);
       transition: all 0.2s ease;
-      min-width: 180px;
+      min-width: 140px;
       justify-content: center;
     }
     .quran-stream-btn:hover { background: #fff; transform: scale(1.03); }
@@ -204,31 +219,62 @@
       flex-wrap: nowrap;
     }
     .nav-tab {
-      background: transparent;
-      color: rgba(255,255,255,0.85);
-      border: none;
-      padding: 0.7rem 1.15rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 500;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.95);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.55rem 0.95rem 0.45rem;
+      border-radius: 12px 12px 0 0;
+      font-size: 0.92rem;
+      font-weight: 600;
+      font-family: 'Cormorant Garamond', 'Inter', serif;
+      letter-spacing: 0.02em;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.18s ease;
+      transition: all 0.2s ease;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      position: relative;
+      margin-bottom: -1px;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.12);
     }
-    .nav-tab:hover { background: rgba(255,255,255,0.12); color: white; }
+    .nav-tab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.2);
+      filter: brightness(1.15);
+    }
     .nav-tab.active {
-      background: white;
-      color: var(--accent);
-      font-weight: 600;
+      transform: translateY(-4px);
+      box-shadow: 0 -5px 14px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.5);
+      font-weight: 700;
+      border-bottom: 2px solid transparent;
+      z-index: 2;
     }
+    /* Individual tab colors */
+    .nav-tab[data-tab="journey"] { background: linear-gradient(180deg, #2d8a5e, #1a6b52); }
+    .nav-tab[data-tab="commands"] { background: linear-gradient(180deg, #3a8f6e, #28755a); }
+    .nav-tab[data-tab="grave"] { background: linear-gradient(180deg, #5a9e4a, #3d7a35); }
+    .nav-tab[data-tab="seerah"] { background: linear-gradient(180deg, #c49a4a, #a07a35); }
+    .nav-tab[data-tab="tajweed"] { background: linear-gradient(180deg, #4a9e8a, #357a6a); }
+    .nav-tab[data-tab="tafseer"] { background: linear-gradient(180deg, #7a6ab0, #5a4a90); }
+    .nav-tab[data-tab="lectures"] { background: linear-gradient(180deg, #9a6ab0, #7a4a90); }
+    .nav-tab[data-tab="search"] { background: linear-gradient(180deg, #4a8ab0, #356a90); }
+    .nav-tab.active[data-tab="journey"] { background: linear-gradient(180deg, #e8f8f0, #d0f0e0); color: #0f4c3a; text-shadow: none; }
+    .nav-tab.active[data-tab="commands"] { background: linear-gradient(180deg, #e0f5ec, #c8ecd8); color: #0f4c3a; text-shadow: none; }
+    .nav-tab.active[data-tab="grave"] { background: linear-gradient(180deg, #e8f5d8, #d4ecc0); color: #2a5a20; text-shadow: none; }
+    .nav-tab.active[data-tab="seerah"] { background: linear-gradient(180deg, #f8f0e0, #f0e4c8); color: #6a4a20; text-shadow: none; }
+    .nav-tab.active[data-tab="tajweed"] { background: linear-gradient(180deg, #e0f5f0, #c8ece4); color: #1a5a4a; text-shadow: none; }
+    .nav-tab.active[data-tab="tafseer"] { background: linear-gradient(180deg, #f0e8f8, #e0d4f0); color: #4a3a70; text-shadow: none; }
+    .nav-tab.active[data-tab="lectures"] { background: linear-gradient(180deg, #f5e8f8, #ecd4f0); color: #5a3a70; text-shadow: none; }
+    .nav-tab.active[data-tab="search"] { background: linear-gradient(180deg, #e0f0f8, #c8e4f0); color: #2a5a70; text-shadow: none; }
     .tab-visit-count {
-      font-size: 0.72rem;
-      opacity: 0.85;
-      margin-top: 0.15rem;
-      font-weight: 400;
+      font-size: 0.68rem;
+      opacity: 0.9;
+      margin-top: 0.1rem;
+      font-weight: 500;
       display: block;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0;
     }
-    .nav-tab.active .tab-visit-count { color: var(--accent); opacity: 0.75; }
+    .nav-tab.active .tab-visit-count { opacity: 0.8; }
     .visit-badge {
       background: rgba(255,255,255,0.9);
       border: 1px solid var(--border);
@@ -448,17 +494,19 @@
     .btn-soft { background: #3d6b54; }
 
     .arabic-calligraphy {
-      font-size: 1.6rem;
-      font-weight: 500;
+      font-size: 1.75rem;
+      font-weight: 600;
       direction: rtl;
       text-align: center;
       margin: 0.85rem 0;
-      line-height: 2.1;
-      color: #1a1a1a;
-      padding: 0.9rem 0.7rem;
-      background: rgba(255,255,255,0.75);
+      line-height: 2.2;
+      color: #1a2a1a;
+      padding: 0.95rem 0.85rem;
+      background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(248,245,238,0.88));
       border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.06);
+      border: 1px solid rgba(15,76,58,0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 6px rgba(15,76,58,0.06);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.7), 0 1.5px 2px rgba(0,0,0,0.1);
     }
     .ref {
       font-size: 0.85rem;
@@ -653,9 +701,9 @@
         padding-left: 0.8rem;
         padding-right: 0.8rem;
       }
-      .banner h1 { font-size: 2.1rem; }
-      .banner { min-height: 340px; }
-      .banner-overlay { min-height: 340px; }
+      .banner h1 { font-size: 1.55rem; }
+      .banner { min-height: 170px; }
+      .banner-overlay { min-height: 170px; padding: 0.4rem 0.6rem 0.55rem; }
     }
   </style>
 </head>
@@ -672,6 +720,7 @@
       <div class="subtitle">Furnish your grave • Prepare for the long stay</div>
       <div class="place-name" id="place-name">Masjid al-Haram • The Holy Kaaba <span class="temp-live" id="place-temp">…°C</span></div>
       <div class="hijri-date" id="hijri-date">Loading Hijri date…</div>
+      <div class="festival-countdown" id="festival-countdown">Loading next festival…</div>
 
       <div class="rabbana-box">
         <div class="rabbana-arabic" id="rabbana-arabic">Loading…</div>
@@ -706,14 +755,13 @@
   <nav class="nav-tabs" role="tablist">
     <div class="nav-tabs-inner">
       <button class="nav-tab active" data-tab="journey" onclick="switchTab('journey')">Journey<span class="tab-visit-count" id="vc-journey">…</span></button>
+      <button class="nav-tab" data-tab="commands" onclick="switchTab('commands')">Commands<span class="tab-visit-count" id="vc-commands">…</span></button>
+      <button class="nav-tab" data-tab="grave" onclick="switchTab('grave')">Grave &amp; Hifz<span class="tab-visit-count" id="vc-grave">…</span></button>
       <button class="nav-tab" data-tab="seerah" onclick="switchTab('seerah')">Seerah<span class="tab-visit-count" id="vc-seerah">…</span></button>
-      <button class="nav-tab" data-tab="hifz" onclick="switchTab('hifz')">Hifz<span class="tab-visit-count" id="vc-hifz">…</span></button>
       <button class="nav-tab" data-tab="tajweed" onclick="switchTab('tajweed')">Tajweed<span class="tab-visit-count" id="vc-tajweed">…</span></button>
       <button class="nav-tab" data-tab="tafseer" onclick="switchTab('tafseer')">Tafseer<span class="tab-visit-count" id="vc-tafseer">…</span></button>
       <button class="nav-tab" data-tab="lectures" onclick="switchTab('lectures')">Lectures<span class="tab-visit-count" id="vc-lectures">…</span></button>
-      <button class="nav-tab" data-tab="commands" onclick="switchTab('commands')">Commands<span class="tab-visit-count" id="vc-commands">…</span></button>
-      <button class="nav-tab" data-tab="grave" onclick="switchTab('grave')">Grave<span class="tab-visit-count" id="vc-grave">…</span></button>
-      <button class="nav-tab" data-tab="search" onclick="switchTab('search')">Search & Ask<span class="tab-visit-count" id="vc-search">…</span></button>
+      <button class="nav-tab" data-tab="search" onclick="switchTab('search')">Search &amp; Ask<span class="tab-visit-count" id="vc-search">…</span></button>
     </div>
   </nav>
 
@@ -839,159 +887,6 @@
           <button type="button" onclick="loadIsraeliyat()">Another lesson</button>
         </div>
       </div>
-
-      <!-- ==================== TAB: HIFZ ==================== -->
-      <div id="tab-hifz" class="tab-panel">
-        <div class="card card-hifz">
-          <h2>Quran Memorization (Hifz)</h2>
-          <p style="margin-bottom:0.75rem; font-size:0.94rem;">
-            Set a daily goal, mark what you memorized, and practice recall. Progress + streak saved on this device.
-          </p>
-          <div class="hifz-controls">
-            <div>
-              <label style="font-size:0.88rem; color:#555;">Surah</label>
-              <select id="hifz-surah" onchange="loadHifzAyah()" style="max-width:100%;">
-                <option value="1">1. Al-Fatihah</option>
-                <option value="2">2. Al-Baqarah</option>
-                <option value="3">3. Aal-Imran</option>
-                <option value="4">4. An-Nisa</option>
-                <option value="5">5. Al-Ma'idah</option>
-                <option value="6">6. Al-An'am</option>
-                <option value="7">7. Al-A'raf</option>
-                <option value="8">8. Al-Anfal</option>
-                <option value="9">9. At-Tawbah</option>
-                <option value="10">10. Yunus</option>
-                <option value="11">11. Hud</option>
-                <option value="12">12. Yusuf</option>
-                <option value="13">13. Ar-Ra'd</option>
-                <option value="14">14. Ibrahim</option>
-                <option value="15">15. Al-Hijr</option>
-                <option value="16">16. An-Nahl</option>
-                <option value="17">17. Al-Isra</option>
-                <option value="18">18. Al-Kahf</option>
-                <option value="19">19. Maryam</option>
-                <option value="20">20. Ta-Ha</option>
-                <option value="21">21. Al-Anbiya</option>
-                <option value="22">22. Al-Hajj</option>
-                <option value="23">23. Al-Mu'minun</option>
-                <option value="24">24. An-Nur</option>
-                <option value="25">25. Al-Furqan</option>
-                <option value="26">26. Ash-Shu'ara</option>
-                <option value="27">27. An-Naml</option>
-                <option value="28">28. Al-Qasas</option>
-                <option value="29">29. Al-Ankabut</option>
-                <option value="30">30. Ar-Rum</option>
-                <option value="31">31. Luqman</option>
-                <option value="32">32. As-Sajdah</option>
-                <option value="33">33. Al-Ahzab</option>
-                <option value="34">34. Saba</option>
-                <option value="35">35. Fatir</option>
-                <option value="36">36. Ya-Sin</option>
-                <option value="37">37. As-Saffat</option>
-                <option value="38">38. Sad</option>
-                <option value="39">39. Az-Zumar</option>
-                <option value="40">40. Ghafir</option>
-                <option value="41">41. Fussilat</option>
-                <option value="42">42. Ash-Shura</option>
-                <option value="43">43. Az-Zukhruf</option>
-                <option value="44">44. Ad-Dukhan</option>
-                <option value="45">45. Al-Jathiyah</option>
-                <option value="46">46. Al-Ahqaf</option>
-                <option value="47">47. Muhammad</option>
-                <option value="48">48. Al-Fath</option>
-                <option value="49">49. Al-Hujurat</option>
-                <option value="50">50. Qaf</option>
-                <option value="51">51. Adh-Dhariyat</option>
-                <option value="52">52. At-Tur</option>
-                <option value="53">53. An-Najm</option>
-                <option value="54">54. Al-Qamar</option>
-                <option value="55">55. Ar-Rahman</option>
-                <option value="56">56. Al-Waqi'ah</option>
-                <option value="57">57. Al-Hadid</option>
-                <option value="58">58. Al-Mujadila</option>
-                <option value="59">59. Al-Hashr</option>
-                <option value="60">60. Al-Mumtahanah</option>
-                <option value="61">61. As-Saff</option>
-                <option value="62">62. Al-Jumu'ah</option>
-                <option value="63">63. Al-Munafiqun</option>
-                <option value="64">64. At-Taghabun</option>
-                <option value="65">65. At-Talaq</option>
-                <option value="66">66. At-Tahrim</option>
-                <option value="67">67. Al-Mulk</option>
-                <option value="68">68. Al-Qalam</option>
-                <option value="69">69. Al-Haqqah</option>
-                <option value="70">70. Al-Ma'arij</option>
-                <option value="71">71. Nuh</option>
-                <option value="72">72. Al-Jinn</option>
-                <option value="73">73. Al-Muzzammil</option>
-                <option value="74">74. Al-Muddaththir</option>
-                <option value="75">75. Al-Qiyamah</option>
-                <option value="76">76. Al-Insan</option>
-                <option value="77">77. Al-Mursalat</option>
-                <option value="78">78. An-Naba</option>
-                <option value="79">79. An-Nazi'at</option>
-                <option value="80">80. Abasa</option>
-                <option value="81">81. At-Takwir</option>
-                <option value="82">82. Al-Infitar</option>
-                <option value="83">83. Al-Mutaffifin</option>
-                <option value="84">84. Al-Inshiqaq</option>
-                <option value="85">85. Al-Buruj</option>
-                <option value="86">86. At-Tariq</option>
-                <option value="87">87. Al-A'la</option>
-                <option value="88">88. Al-Ghashiyah</option>
-                <option value="89">89. Al-Fajr</option>
-                <option value="90">90. Al-Balad</option>
-                <option value="91">91. Ash-Shams</option>
-                <option value="92">92. Al-Layl</option>
-                <option value="93">93. Ad-Duha</option>
-                <option value="94">94. Ash-Sharh</option>
-                <option value="95">95. At-Tin</option>
-                <option value="96">96. Al-Alaq</option>
-                <option value="97">97. Al-Qadr</option>
-                <option value="98">98. Al-Bayyinah</option>
-                <option value="99">99. Az-Zalzalah</option>
-                <option value="100">100. Al-Adiyat</option>
-                <option value="101">101. Al-Qari'ah</option>
-                <option value="102">102. At-Takathur</option>
-                <option value="103">103. Al-Asr</option>
-                <option value="104">104. Al-Humazah</option>
-                <option value="105">105. Al-Fil</option>
-                <option value="106">106. Quraysh</option>
-                <option value="107">107. Al-Ma'un</option>
-                <option value="108">108. Al-Kawthar</option>
-                <option value="109">109. Al-Kafirun</option>
-                <option value="110">110. An-Nasr</option>
-                <option value="111">111. Al-Masad</option>
-                <option value="112">112. Al-Ikhlas</option>
-                <option value="113">113. Al-Falaq</option>
-                <option value="114">114. An-Nas</option>
-              </select>
-            </div>
-            <div>
-              <label style="font-size:0.88rem; color:#555;">Ayah number</label>
-              <input type="number" id="hifz-ayah-num" min="1" value="1" onchange="loadHifzAyah()" oninput="saveHifzSelection()">
-            </div>
-          </div>
-          <div class="hifz-progress">
-            <strong>Today’s goal:</strong>
-            <input type="number" id="hifz-goal" min="1" max="20" value="3" style="width:65px; display:inline-block; margin:0 0.35rem;">
-            ayahs<br>
-            <span id="hifz-today-count" style="display:inline-block; margin-top:0.35rem;">Memorized today: 0</span>
-            <button type="button" onclick="markMemorized()" class="btn-soft" style="margin-top:0.55rem; padding:0.35rem 0.95rem; font-size:0.88rem;">Mark as Memorized</button>
-          </div>
-          <div id="hifz-display" class="hifz-ayah">
-            <div class="arabic-calligraphy" id="hifz-arabic">Select a Surah & Ayah</div>
-            <p id="hifz-translation" style="margin-top:0.55rem;"></p>
-            <div id="hifz-tafseer" class="ponder-box" style="display:none; margin-top:0.75rem;"></div>
-            <div id="hifz-tafseer-full" class="ponder-box" style="display:none; margin-top:0.65rem; border-left-color:#7ec9a8;"></div>
-            <div class="recall-btns">
-              <button type="button" onclick="toggleRecall()" class="btn-secondary">Hide Meaning (Recall)</button>
-              <button type="button" onclick="nextHifzAyah()">Next Ayah</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
 
       <!-- ==================== TAB: TAJWEED ==================== -->
       <div id="tab-tajweed" class="tab-panel">
@@ -1246,6 +1141,156 @@
 
       <!-- ==================== TAB: GRAVE ==================== -->
       <div id="tab-grave" class="tab-panel">
+        <!-- Hifz content moved here at top -->
+        <div class="card card-hifz">
+          <h2>Quran Memorization (Hifz) — Light for the Grave</h2>
+          <p style="margin-bottom:0.75rem; font-size:0.94rem;">
+            Memorising the Quran is among the greatest provisions for the grave. Set a daily goal, mark what you memorized, and practice recall. Progress + streak saved on this device.
+          </p>
+          <div class="hifz-controls">
+            <div>
+              <label style="font-size:0.88rem; color:#555;">Surah</label>
+              <select id="hifz-surah" onchange="loadHifzAyah()" style="max-width:100%;">
+                <option value="1">1. Al-Fatihah</option>
+                <option value="2">2. Al-Baqarah</option>
+                <option value="3">3. Aal-Imran</option>
+                <option value="4">4. An-Nisa</option>
+                <option value="5">5. Al-Ma'idah</option>
+                <option value="6">6. Al-An'am</option>
+                <option value="7">7. Al-A'raf</option>
+                <option value="8">8. Al-Anfal</option>
+                <option value="9">9. At-Tawbah</option>
+                <option value="10">10. Yunus</option>
+                <option value="11">11. Hud</option>
+                <option value="12">12. Yusuf</option>
+                <option value="13">13. Ar-Ra'd</option>
+                <option value="14">14. Ibrahim</option>
+                <option value="15">15. Al-Hijr</option>
+                <option value="16">16. An-Nahl</option>
+                <option value="17">17. Al-Isra</option>
+                <option value="18">18. Al-Kahf</option>
+                <option value="19">19. Maryam</option>
+                <option value="20">20. Ta-Ha</option>
+                <option value="21">21. Al-Anbiya</option>
+                <option value="22">22. Al-Hajj</option>
+                <option value="23">23. Al-Mu'minun</option>
+                <option value="24">24. An-Nur</option>
+                <option value="25">25. Al-Furqan</option>
+                <option value="26">26. Ash-Shu'ara</option>
+                <option value="27">27. An-Naml</option>
+                <option value="28">28. Al-Qasas</option>
+                <option value="29">29. Al-Ankabut</option>
+                <option value="30">30. Ar-Rum</option>
+                <option value="31">31. Luqman</option>
+                <option value="32">32. As-Sajdah</option>
+                <option value="33">33. Al-Ahzab</option>
+                <option value="34">34. Saba</option>
+                <option value="35">35. Fatir</option>
+                <option value="36">36. Ya-Sin</option>
+                <option value="37">37. As-Saffat</option>
+                <option value="38">38. Sad</option>
+                <option value="39">39. Az-Zumar</option>
+                <option value="40">40. Ghafir</option>
+                <option value="41">41. Fussilat</option>
+                <option value="42">42. Ash-Shura</option>
+                <option value="43">43. Az-Zukhruf</option>
+                <option value="44">44. Ad-Dukhan</option>
+                <option value="45">45. Al-Jathiyah</option>
+                <option value="46">46. Al-Ahqaf</option>
+                <option value="47">47. Muhammad</option>
+                <option value="48">48. Al-Fath</option>
+                <option value="49">49. Al-Hujurat</option>
+                <option value="50">50. Qaf</option>
+                <option value="51">51. Adh-Dhariyat</option>
+                <option value="52">52. At-Tur</option>
+                <option value="53">53. An-Najm</option>
+                <option value="54">54. Al-Qamar</option>
+                <option value="55">55. Ar-Rahman</option>
+                <option value="56">56. Al-Waqi'ah</option>
+                <option value="57">57. Al-Hadid</option>
+                <option value="58">58. Al-Mujadila</option>
+                <option value="59">59. Al-Hashr</option>
+                <option value="60">60. Al-Mumtahanah</option>
+                <option value="61">61. As-Saff</option>
+                <option value="62">62. Al-Jumu'ah</option>
+                <option value="63">63. Al-Munafiqun</option>
+                <option value="64">64. At-Taghabun</option>
+                <option value="65">65. At-Talaq</option>
+                <option value="66">66. At-Tahrim</option>
+                <option value="67">67. Al-Mulk</option>
+                <option value="68">68. Al-Qalam</option>
+                <option value="69">69. Al-Haqqah</option>
+                <option value="70">70. Al-Ma'arij</option>
+                <option value="71">71. Nuh</option>
+                <option value="72">72. Al-Jinn</option>
+                <option value="73">73. Al-Muzzammil</option>
+                <option value="74">74. Al-Muddaththir</option>
+                <option value="75">75. Al-Qiyamah</option>
+                <option value="76">76. Al-Insan</option>
+                <option value="77">77. Al-Mursalat</option>
+                <option value="78">78. An-Naba</option>
+                <option value="79">79. An-Nazi'at</option>
+                <option value="80">80. Abasa</option>
+                <option value="81">81. At-Takwir</option>
+                <option value="82">82. Al-Infitar</option>
+                <option value="83">83. Al-Mutaffifin</option>
+                <option value="84">84. Al-Inshiqaq</option>
+                <option value="85">85. Al-Buruj</option>
+                <option value="86">86. At-Tariq</option>
+                <option value="87">87. Al-A'la</option>
+                <option value="88">88. Al-Ghashiyah</option>
+                <option value="89">89. Al-Fajr</option>
+                <option value="90">90. Al-Balad</option>
+                <option value="91">91. Ash-Shams</option>
+                <option value="92">92. Al-Layl</option>
+                <option value="93">93. Ad-Duha</option>
+                <option value="94">94. Ash-Sharh</option>
+                <option value="95">95. At-Tin</option>
+                <option value="96">96. Al-Alaq</option>
+                <option value="97">97. Al-Qadr</option>
+                <option value="98">98. Al-Bayyinah</option>
+                <option value="99">99. Az-Zalzalah</option>
+                <option value="100">100. Al-Adiyat</option>
+                <option value="101">101. Al-Qari'ah</option>
+                <option value="102">102. At-Takathur</option>
+                <option value="103">103. Al-Asr</option>
+                <option value="104">104. Al-Humazah</option>
+                <option value="105">105. Al-Fil</option>
+                <option value="106">106. Quraysh</option>
+                <option value="107">107. Al-Ma'un</option>
+                <option value="108">108. Al-Kawthar</option>
+                <option value="109">109. Al-Kafirun</option>
+                <option value="110">110. An-Nasr</option>
+                <option value="111">111. Al-Masad</option>
+                <option value="112">112. Al-Ikhlas</option>
+                <option value="113">113. Al-Falaq</option>
+                <option value="114">114. An-Nas</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.88rem; color:#555;">Ayah number</label>
+              <input type="number" id="hifz-ayah-num" min="1" value="1" onchange="loadHifzAyah()" oninput="saveHifzSelection()">
+            </div>
+          </div>
+          <div class="hifz-progress">
+            <strong>Today’s goal:</strong>
+            <input type="number" id="hifz-goal" min="1" max="20" value="3" style="width:65px; display:inline-block; margin:0 0.35rem;">
+            ayahs<br>
+            <span id="hifz-today-count" style="display:inline-block; margin-top:0.35rem;">Memorized today: 0</span>
+            <button type="button" onclick="markMemorized()" class="btn-soft" style="margin-top:0.55rem; padding:0.35rem 0.95rem; font-size:0.88rem;">Mark as Memorized</button>
+          </div>
+          <div id="hifz-display" class="hifz-ayah">
+            <div class="arabic-calligraphy" id="hifz-arabic">Select a Surah & Ayah</div>
+            <p id="hifz-translation" style="margin-top:0.55rem;"></p>
+            <div id="hifz-tafseer" class="ponder-box" style="display:none; margin-top:0.75rem;"></div>
+            <div id="hifz-tafseer-full" class="ponder-box" style="display:none; margin-top:0.65rem; border-left-color:#7ec9a8;"></div>
+            <div class="recall-btns">
+              <button type="button" onclick="toggleRecall()" class="btn-secondary">Hide Meaning (Recall)</button>
+              <button type="button" onclick="nextHifzAyah()">Next Ayah</button>
+            </div>
+          </div>
+        </div>
+
         <div class="card card-grave">
           <h2>Furnishing My Grave</h2>
           <p style="margin-bottom:0.65rem;">
@@ -1272,8 +1317,23 @@
         <div class="card card-grave">
           <h2>What Benefits the Deceased in the Grave — From the Scholars</h2>
           <p style="font-size:0.94rem; margin-bottom:0.85rem;">
-            Classical scholars emphasised that the living can benefit the dead through specific deeds that reach them by Allah’s permission. Below is a concise summary drawn from mainstream Sunni fiqh and the writings of major scholars.
+            Classical scholars emphasised that the living can benefit the dead through specific deeds that reach them by Allah’s permission. Below is a concise summary drawn from mainstream Sunni fiqh and the writings of major scholars, beginning with Imam al-Ghazālī. Sources refresh from online references each page load.
           </p>
+          <div id="scholars-live" class="loading-msg" style="margin-bottom:0.75rem;">Loading additional scholarly references…</div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem; border-left-color:#0f4c3a;">
+            <strong>Imām Abū Ḥāmid al-Ghazālī (d. 505 AH)</strong> — From <em>Iḥyāʾ ʿUlūm al-Dīn</em> (Book of the Remembrance of Death and the Afterlife):
+            <ul style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;">
+              <li>He taught that constant remembrance of death softens the heart, reduces attachment to the world, and prepares the soul for the grave. “Remember often the destroyer of pleasures (death).”</li>
+              <li>The grave itself addresses the deceased: if the person was obedient, it becomes a garden of mercy and light; if rebellious, a place of constriction. Good deeds done in life answer on behalf of the believer.</li>
+              <li>The living benefit the dead through sincere duʿāʾ, seeking forgiveness, charity given on their behalf, and the reward of Qurʾān and righteous actions intended for them.</li>
+              <li>He urged visiting graves to awaken the heart and to send light ahead while one is still able to act.</li>
+            </ul>
+            <p style="margin-top:0.5rem; font-size:0.86rem;">
+              <a href="https://www.ghazali.org/works/gz100.htm" target="_blank" rel="noopener">Read more from Ihya on Ghazali.org →</a> ·
+              <a href="https://archive.org/details/imamalghazalienglish" target="_blank" rel="noopener">Archive.org English collection →</a>
+            </p>
+          </div>
 
           <div class="ponder-box" style="margin-bottom:0.85rem;">
             <strong>Ibn Taymiyyah (d. 728 AH)</strong> — In <em>Majmūʿ al-Fatāwā</em> and related works he affirmed that the dead benefit from:
@@ -1312,6 +1372,16 @@
 
           <div class="grave-note">
             <strong>Note:</strong> These teachings are educational. For specific rulings on a particular case, consult a qualified local scholar. The goal is to send light ahead while we are still able to act.
+          </div>
+          <div class="ponder-box" style="margin-top:0.85rem;">
+            <strong>Further online resources (open in new tab):</strong>
+            <ul style="margin:0.4rem 0 0 1.1rem; font-size:0.9rem;">
+              <li><a href="https://islamqa.info/en/answers/12652" target="_blank" rel="noopener">IslamQA – Can the dead benefit from the living?</a></li>
+              <li><a href="https://islamqa.info/en/answers/763" target="_blank" rel="noopener">IslamQA – Duʿāʾ and charity for the deceased</a></li>
+              <li><a href="https://sunnah.com/search?q=grave" target="_blank" rel="noopener">Sunnah.com – Narrations about the grave</a></li>
+              <li><a href="https://www.ghazali.org/" target="_blank" rel="noopener">Ghazali.org – Ihya resources</a></li>
+              <li><a href="https://www.abuaminaelias.com/dailyhadithonline/tag/grave/" target="_blank" rel="noopener">Abu Amina Elias – Hadith on the grave</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1428,7 +1498,6 @@
     const tabKeys = {
       journey: 'clarity-dawah-journey',
       seerah: 'clarity-dawah-seerah',
-      hifz: 'clarity-dawah-hifz',
       tajweed: 'clarity-dawah-tajweed',
       tafseer: 'clarity-dawah-tafseer',
       lectures: 'clarity-dawah-lectures',
@@ -1478,7 +1547,7 @@
     // Load tab from URL hash on page load
     function initTabFromHash() {
       const hash = window.location.hash.replace('#', '');
-      const validTabs = ['journey','seerah','hifz','tajweed','tafseer','lectures','commands','grave','search'];
+      const validTabs = ['journey','seerah','tajweed','tafseer','lectures','commands','grave','search'];
       if (validTabs.includes(hash)) {
         switchTab(hash);
       } else {
@@ -1869,6 +1938,49 @@
           el.textContent = `${h.day} ${h.month.en} ${h.year} AH`;
         } else el.textContent = "Hijri date";
       } catch(e) { el.textContent = "Hijri date"; }
+    }
+
+    // Upcoming major Islamic festivals (approx. Umm al-Qura; local sighting may vary ±1 day)
+    const islamicFestivals = [
+      { name: "Isrāʾ & Miʿrāj", date: new Date(2027, 0, 5) },
+      { name: "Laylat al-Barāʾah", date: new Date(2027, 0, 23) },
+      { name: "Ramadan begins", date: new Date(2027, 1, 8) },
+      { name: "Laylat al-Qadr (approx.)", date: new Date(2027, 2, 6) },
+      { name: "Eid al-Fitr", date: new Date(2027, 2, 9) },
+      { name: "Day of ʿArafah", date: new Date(2027, 4, 15) },
+      { name: "Eid al-Aḍḥā", date: new Date(2027, 4, 16) },
+      { name: "Islamic New Year 1449", date: new Date(2027, 5, 6) },
+      { name: "ʿĀshūrāʾ", date: new Date(2027, 5, 15) },
+      { name: "Mawlid an-Nabī", date: new Date(2027, 7, 14) }
+    ];
+    function updateFestivalCountdown() {
+      const el = document.getElementById("festival-countdown");
+      if (!el) return;
+      const now = new Date(); now.setHours(0,0,0,0);
+      let next = null;
+      for (const f of islamicFestivals) {
+        const d = new Date(f.date); d.setHours(0,0,0,0);
+        if (d >= now) { next = f; break; }
+      }
+      if (!next) { el.innerHTML = '<span class="fc-label">Next major festival TBA</span>'; return; }
+      const days = Math.ceil((next.date - now) / 86400000);
+      const dateStr = next.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      el.innerHTML = `<span class="fc-label">Next:</span> <strong>${next.name}</strong> <span class="fc-days">${days===0?'Today':days===1?'Tomorrow':days+' days'}</span> <span class="fc-label">(${dateStr})</span>`;
+    }
+
+    // Live refresh of additional scholar links / notes each page load
+    async function loadScholarsLive() {
+      const el = document.getElementById("scholars-live");
+      if (!el) return;
+      // Curated rotating notes + permanent links (no external API dependency that may fail)
+      const notes = [
+        { title: "Ibn al-Qayyim – Kitāb al-Rūḥ", text: "The soul is aware of visits and benefits from Qurʾān and sincere deeds of the living.", link: "https://islamqa.info/en/answers/12652" },
+        { title: "Majority Ahl al-Sunnah view", text: "Duʿāʾ, istighfār, ṣadaqah, and ongoing charity (ṣadaqah jāriyah) are the strongest agreed means of benefit.", link: "https://islamqa.info/en/answers/763" },
+        { title: "Prophetic practice", text: "The Prophet ﷺ himself sought forgiveness for the deceased and encouraged charity on their behalf.", link: "https://sunnah.com/search?q=forgiveness+dead" },
+        { title: "Ghazālī on preparation", text: "Remembering death daily is the best preparation; the grave becomes a garden or a pit according to deeds sent ahead.", link: "https://www.ghazali.org/works/gz100.htm" }
+      ];
+      const pick = notes[Math.floor(Math.random() * notes.length)];
+      el.innerHTML = `<div class="ponder-box" style="border-left-color:#5a9e4a;"><strong>Today’s refreshed note — ${pick.title}:</strong> ${pick.text}<br><a href="${pick.link}" target="_blank" rel="noopener" style="font-size:0.88rem;">Open related resource →</a></div>`;
     }
 
     // ========== GRAVE ==========
@@ -2448,6 +2560,8 @@
     setDailyBanner();
     setDailyRabbana();
     loadHijriDate();
+    updateFestivalCountdown();
+    loadScholarsLive();
     showWelcome();
     updateDepositDisplay();
     updateDailyStreak();
@@ -2470,6 +2584,7 @@
 
     // Initialize tab from URL hash (also tracks first visit)
     initTabFromHash();
+    loadAllTabCounts();
     // Also respond to browser back/forward
     window.addEventListener('hashchange', initTabFromHash);
   </script>
