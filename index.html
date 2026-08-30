@@ -8,7 +8,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Gulzar&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -35,15 +35,17 @@
       z-index: -1;
     }
     .arabic, .arabic-calligraphy, .rabbana-arabic {
-      font-family: 'Noto Nastaliq Urdu', 'Gulzar', 'Noto Nastaliq Urdu', serif !important;
+      font-family: 'Noto Naskh Arabic', 'Amiri', 'Traditional Arabic', 'Scheherazade New', serif !important;
       direction: rtl;
       font-weight: 500;
-      letter-spacing: 0.02em;
-      line-height: 2.15;
+      letter-spacing: 0.01em;
+      line-height: 2.0;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     .arabic-calligraphy {
-      font-size: 1.55rem;
+      font-size: 1.65rem;
+      font-weight: 500;
     }
 
     /* ========== BANNER ========== */
@@ -69,12 +71,12 @@
       min-height: 380px;
     }
     .banner .bismillah {
-      font-family: 'Noto Nastaliq Urdu', serif;
+      font-family: 'Noto Naskh Arabic', 'Amiri', serif;
       direction: rtl;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       margin-bottom: 0.55rem;
       opacity: 0.95;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       text-shadow: 0 1px 8px rgba(0,0,0,0.35);
     }
     .banner h1 {
@@ -205,9 +207,9 @@
       background: transparent;
       color: rgba(255,255,255,0.85);
       border: none;
-      padding: 0.55rem 0.95rem;
+      padding: 0.7rem 1.15rem;
       border-radius: 10px;
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 500;
       cursor: pointer;
       white-space: nowrap;
@@ -446,14 +448,15 @@
     .btn-soft { background: #3d6b54; }
 
     .arabic-calligraphy {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      font-weight: 500;
       direction: rtl;
       text-align: center;
       margin: 0.85rem 0;
-      line-height: 2.05;
+      line-height: 2.1;
       color: #1a1a1a;
-      padding: 0.85rem 0.55rem;
-      background: rgba(255,255,255,0.70);
+      padding: 0.9rem 0.7rem;
+      background: rgba(255,255,255,0.75);
       border-radius: 12px;
       border: 1px solid rgba(0,0,0,0.06);
     }
@@ -703,12 +706,12 @@
   <nav class="nav-tabs" role="tablist">
     <div class="nav-tabs-inner">
       <button class="nav-tab active" data-tab="journey" onclick="switchTab('journey')">Journey<span class="tab-visit-count" id="vc-journey">…</span></button>
+      <button class="nav-tab" data-tab="seerah" onclick="switchTab('seerah')">Seerah<span class="tab-visit-count" id="vc-seerah">…</span></button>
       <button class="nav-tab" data-tab="hifz" onclick="switchTab('hifz')">Hifz<span class="tab-visit-count" id="vc-hifz">…</span></button>
       <button class="nav-tab" data-tab="tajweed" onclick="switchTab('tajweed')">Tajweed<span class="tab-visit-count" id="vc-tajweed">…</span></button>
       <button class="nav-tab" data-tab="tafseer" onclick="switchTab('tafseer')">Tafseer<span class="tab-visit-count" id="vc-tafseer">…</span></button>
       <button class="nav-tab" data-tab="lectures" onclick="switchTab('lectures')">Lectures<span class="tab-visit-count" id="vc-lectures">…</span></button>
       <button class="nav-tab" data-tab="commands" onclick="switchTab('commands')">Commands<span class="tab-visit-count" id="vc-commands">…</span></button>
-      <button class="nav-tab" data-tab="stories" onclick="switchTab('stories')">Stories<span class="tab-visit-count" id="vc-stories">…</span></button>
       <button class="nav-tab" data-tab="grave" onclick="switchTab('grave')">Grave<span class="tab-visit-count" id="vc-grave">…</span></button>
       <button class="nav-tab" data-tab="search" onclick="switchTab('search')">Search & Ask<span class="tab-visit-count" id="vc-search">…</span></button>
     </div>
@@ -769,6 +772,47 @@
           <button type="button" onclick="loadVerse()">Another verse</button>
         </div>
 
+        <div class="card card-life">
+          <h2>Life Events Guidance</h2>
+          <div id="life-event"><div class="loading-msg">Loading…</div></div>
+          <button type="button" onclick="loadLifeEvent()">Another life event</button>
+        </div>
+      </div>
+
+      <!-- ==================== TAB: SEERAH ==================== -->
+      <div id="tab-seerah" class="tab-panel">
+        <div class="card card-seerah">
+          <h2>Seerah &amp; Hadith</h2>
+          <p style="margin-bottom:0.9rem; font-size:0.95rem;">
+            Study the life of the Prophet ﷺ, authentic hadith, and the stories of the Prophets. Begin with the complete series below.
+          </p>
+
+          <div class="lecture-box" style="margin-top:0.4rem;">
+            <h3>📖 Tajalliyat-e-Nabuwat – Dr. Farhat Hashmi</h3>
+            <p style="font-size:0.92rem; margin-bottom:0.55rem; color:#444;">
+              A comprehensive 50-part series on the manifestations of Prophethood — the life, character and teachings of Rasulullah ﷺ.
+            </p>
+            <div class="spotify-player-wrap" style="background:#0f0f0f;">
+              <iframe id="tajalliyat-player"
+                src="https://www.youtube.com/embed/s17YH8xrCS8?rel=0"
+                width="100%" height="315" frameborder="0" allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy">
+              </iframe>
+            </div>
+            <p class="lecture-note">
+              Start with Part 01 (Introduction). Full 50-part series:
+              <a href="https://www.youtube.com/watch?v=s17YH8xrCS8" target="_blank" rel="noopener">Tajalliyat-e-Nabuwat – Dr. Farhat Hashmi</a>
+              · Search “Tajalliyat-e-Nabuwat Farhat Hashmi” on YouTube for all parts.
+            </p>
+          </div>
+        </div>
+
+        <div class="card card-seerah">
+          <h2>Daily Seerah Moment</h2>
+          <div id="seerah-content"><div class="loading-msg">Loading…</div></div>
+          <button type="button" onclick="loadSeerah()">Another moment</button>
+        </div>
+
         <div class="card card-hadith">
           <h2>A Saying of the Prophet ﷺ</h2>
           <div id="hadith"><div class="loading-msg">Loading…</div></div>
@@ -781,16 +825,18 @@
           <button type="button" onclick="loadZikr()">New zikr</button>
         </div>
 
-        <div class="card card-seerah">
-          <h2>Daily Seerah Moment</h2>
-          <div id="seerah-content"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadSeerah()">Another moment</button>
+        <div class="card card-stories">
+          <h2>Stories of the Prophets</h2>
+          <div id="prophet-story"><div class="loading-msg">Loading…</div></div>
+          <div style="margin-top:0.75rem;">
+            <button type="button" onclick="loadProphetStory()" class="btn-secondary">Next Story</button>
+          </div>
         </div>
 
-        <div class="card card-life">
-          <h2>Life Events Guidance</h2>
-          <div id="life-event"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadLifeEvent()">Another life event</button>
+        <div class="card card-israeliyat">
+          <h2>Lessons from Previous Nations</h2>
+          <div id="israeliyat-content"><div class="loading-msg">Loading…</div></div>
+          <button type="button" onclick="loadIsraeliyat()">Another lesson</button>
         </div>
       </div>
 
@@ -956,6 +1002,26 @@
             Complete one level before moving to the next. Free resources are linked inside each module.
             Pair with a teacher when possible for live correction and eventual <em>ijāzah</em>.
           </p>
+
+          <div class="lecture-box" style="margin-bottom:1.2rem;">
+            <h3>▶️ Learn Tajweed – the Easy Way (English)</h3>
+            <p style="font-size:0.92rem; margin-bottom:0.5rem; color:#444;">
+              Start with Lesson 1a – Introduction by Understand Al-Quran Academy (Dr. Abdulazeez Abdulraheem). Clear, short lessons for adults.
+            </p>
+            <div class="spotify-player-wrap" style="background:#0f0f0f;">
+              <iframe id="tajweed-player"
+                src="https://www.youtube.com/embed/videoseries?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg"
+                width="100%" height="315" frameborder="0" allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy">
+              </iframe>
+            </div>
+            <p class="lecture-note">
+              Full English playlist:
+              <a href="https://www.youtube.com/playlist?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" target="_blank" rel="noopener">Learn Tajweed – the Easy Way (English)</a>
+              · First lesson:
+              <a href="https://www.youtube.com/watch?v=dyliFOsUPkU" target="_blank" rel="noopener">Lesson 1a | Introduction</a>
+            </p>
+          </div>
 
           <div class="tajweed-level">
             <h3>🌱 Module 1 – Beginner Foundations</h3>
@@ -1178,23 +1244,6 @@
         </div>
       </div>
 
-      <!-- ==================== TAB: STORIES ==================== -->
-      <div id="tab-stories" class="tab-panel">
-        <div class="card card-stories">
-          <h2>Stories of the Prophets</h2>
-          <div id="prophet-story"><div class="loading-msg">Loading…</div></div>
-          <div style="margin-top:0.75rem;">
-            <button type="button" onclick="loadProphetStory()" class="btn-secondary">Next Story</button>
-          </div>
-        </div>
-
-        <div class="card card-israeliyat">
-          <h2>Lessons from Previous Nations</h2>
-          <div id="israeliyat-content"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadIsraeliyat()">Another lesson</button>
-        </div>
-      </div>
-
       <!-- ==================== TAB: GRAVE ==================== -->
       <div id="tab-grave" class="tab-panel">
         <div class="card card-grave">
@@ -1218,6 +1267,52 @@
             <strong>Today’s intention:</strong> I am sending these deeds to my grave as companions and light.
           </div>
           <button type="button" onclick="resetDeposits()" class="btn-secondary" style="margin-top:0.85rem; font-size:0.86rem;">Reset today’s counts</button>
+        </div>
+
+        <div class="card card-grave">
+          <h2>What Benefits the Deceased in the Grave — From the Scholars</h2>
+          <p style="font-size:0.94rem; margin-bottom:0.85rem;">
+            Classical scholars emphasised that the living can benefit the dead through specific deeds that reach them by Allah’s permission. Below is a concise summary drawn from mainstream Sunni fiqh and the writings of major scholars.
+          </p>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem;">
+            <strong>Ibn Taymiyyah (d. 728 AH)</strong> — In <em>Majmūʿ al-Fatāwā</em> and related works he affirmed that the dead benefit from:
+            <ul style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;">
+              <li>Duʿāʾ and istighfār made for them</li>
+              <li>Ṣadaqah given on their behalf</li>
+              <li>Hajj and ʿUmrah performed on their behalf (when conditions are met)</li>
+              <li>The reward of righteous deeds that the deceased themselves had set in motion (ongoing charity, knowledge that is benefited from, righteous children who pray for them)</li>
+            </ul>
+            He stressed that these reach the deceased by the will of Allah and that the best gift is continuous duʿāʾ and ṣadaqah.
+          </div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem;">
+            <strong>Ibn al-Qayyim (d. 751 AH)</strong> — In <em>Kitāb al-Rūḥ</em> he collected authentic reports showing that the soul in the barzakh is aware of visits, benefits from the recitation of Qurʾān and from the good deeds of the living when done with sincerity for Allah and intended for the deceased. He warned against innovations while affirming the established benefits of duʿāʾ, charity and seeking forgiveness.
+          </div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem;">
+            <strong>Imam al-Nawawi (d. 676 AH)</strong> and the Shāfiʿī school — Encouraged seeking forgiveness for the dead, giving charity on their behalf, and making duʿāʾ. He noted that the Prophet ﷺ himself sought forgiveness for the believers who had passed away.
+          </div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem;">
+            <strong>Ibn ʿArabī (d. 638 AH)</strong> — While his metaphysical writings are specialised, he also emphasised the living connection of the believer’s heart with the Prophet ﷺ and the importance of constant remembrance and salutations (ṣalawāt). Many later scholars who drew from his spiritual insights stressed that the light of ṣalawāt and sincere dhikr becomes companionship for the soul after death.
+          </div>
+
+          <div class="ponder-box" style="margin-bottom:0.85rem;">
+            <strong>Practical summary (majority view of Ahl al-Sunnah):</strong>
+            <ul style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;">
+              <li><strong>Duʿāʾ &amp; Istighfār</strong> — the most agreed-upon and powerful gift</li>
+              <li><strong>Ṣadaqah</strong> (including ongoing charity / waqf) on behalf of the deceased</li>
+              <li><strong>Qurʾān recitation</strong> with the intention that its reward reaches them (widely accepted)</li>
+              <li><strong>Ḥajj / ʿUmrah</strong> and fasting on their behalf when appropriate</li>
+              <li><strong>Righteous offspring</strong> who continue to pray and do good</li>
+              <li><strong>Ṣalawāt</strong> upon the Prophet ﷺ — a light that accompanies the believer</li>
+            </ul>
+          </div>
+
+          <div class="grave-note">
+            <strong>Note:</strong> These teachings are educational. For specific rulings on a particular case, consult a qualified local scholar. The goal is to send light ahead while we are still able to act.
+          </div>
         </div>
       </div>
 
@@ -1332,12 +1427,12 @@
     // ========== TAB VISITOR COUNTERS (free public API) ==========
     const tabKeys = {
       journey: 'clarity-dawah-journey',
+      seerah: 'clarity-dawah-seerah',
       hifz: 'clarity-dawah-hifz',
       tajweed: 'clarity-dawah-tajweed',
       tafseer: 'clarity-dawah-tafseer',
       lectures: 'clarity-dawah-lectures',
       commands: 'clarity-dawah-commands',
-      stories: 'clarity-dawah-stories',
       grave: 'clarity-dawah-grave',
       search: 'clarity-dawah-search'
     };
@@ -1383,7 +1478,7 @@
     // Load tab from URL hash on page load
     function initTabFromHash() {
       const hash = window.location.hash.replace('#', '');
-      const validTabs = ['journey','hifz','tajweed','tafseer','lectures','commands','stories','grave','search'];
+      const validTabs = ['journey','seerah','hifz','tajweed','tafseer','lectures','commands','grave','search'];
       if (validTabs.includes(hash)) {
         switchTab(hash);
       } else {
