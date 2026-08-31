@@ -125,9 +125,10 @@
       gap: 0.3rem;
     }
     .banner h1 .title-icon {
-      font-size: 1.2rem;
+      font-size: 0.95rem;
       line-height: 1;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.3));
+      opacity: 0.92;
     }
     .banner .subtitle { font-size: 0.76rem; opacity: 0.95; margin-bottom: 0.08rem; }
     .banner .place-name { font-size: 0.7rem; opacity: 0.9; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.25rem; }
@@ -189,21 +190,31 @@
       opacity: 0.9;
     }
     .hijri-local-time {
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      margin-top: 0.18rem;
+      margin-top: 0.08rem;
+      margin-bottom: 0.02rem;
       letter-spacing: 0.02em;
       font-variant-numeric: tabular-nums;
     }
     .hijri-local-loc {
       font-size: 0.58rem;
       opacity: 0.85;
-      margin-top: 0.06rem;
+      margin-top: 0.02rem;
+      margin-bottom: 0.2rem;
       line-height: 1.2;
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    .salah-times-section .hijri-local-time {
+      margin-top: 0.05rem;
+    }
+    .salah-times-section .hijri-local-loc {
+      margin-bottom: 0.18rem;
+      padding-bottom: 0.12rem;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
     }
     .salah-times-list {
       list-style: none;
@@ -324,18 +335,22 @@
       background: rgba(255,255,255,0.97);
       color: #0f4c3a;
       border: none;
-      padding: 0.45rem 1.1rem;
-      border-radius: 22px;
-      font-size: 0.88rem;
+      padding: 0.32rem 0.85rem;
+      border-radius: 18px;
+      font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.22);
+      gap: 0.28rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
       transition: all 0.2s ease;
-      min-width: 140px;
+      min-width: 118px;
       justify-content: center;
+    }
+    .quran-stream-btn #stream-icon {
+      font-size: 0.72rem;
+      line-height: 1;
     }
     .quran-stream-btn:hover { background: #fff; transform: scale(1.03); }
     .quran-stream-btn.playing { background: #0f4c3a; color: white; }
@@ -345,10 +360,10 @@
       background: rgba(255,255,255,0.18);
       color: white;
       border: 1px solid rgba(255,255,255,0.45);
-      padding: 0.6rem 0.85rem;
-      border-radius: 22px;
-      font-size: 0.9rem;
-      max-width: 240px;
+      padding: 0.38rem 0.65rem;
+      border-radius: 18px;
+      font-size: 0.78rem;
+      max-width: 200px;
       cursor: pointer;
     }
     .stream-select option { color: #222; background: #fff; }
@@ -356,15 +371,15 @@
     .volume-control {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.3rem;
       background: rgba(255,255,255,0.22);
-      padding: 0.4rem 0.85rem;
-      border-radius: 22px;
+      padding: 0.28rem 0.65rem;
+      border-radius: 18px;
     }
-    .volume-control input[type="range"] { width: 75px; accent-color: #fff; }
+    .volume-control input[type="range"] { width: 58px; accent-color: #fff; }
     .mute-btn {
       background: none; border: none; color: white;
-      font-size: 1.15rem; cursor: pointer; padding: 0.2rem;
+      font-size: 0.88rem; cursor: pointer; padding: 0.12rem; line-height: 1;
     }
 
     /* ========== NAV TABS ========== */
@@ -1189,6 +1204,235 @@
     .bm-item .bm-snip { font-size: 0.88rem; margin-top: 0.25rem; color: var(--text); }
     .bm-item .bm-ref { font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 0.2rem; }
 
+
+    /* ===== NOTES TAB ===== */
+    .nav-tab[data-tab="notes"] { background: linear-gradient(180deg, #6a8a5a, #4a6a3a); }
+    .nav-tab.active[data-tab="notes"] { background: linear-gradient(180deg, #e8f5e0, #d4ecc8); color: #2a4a20; text-shadow: none; }
+    .card-notes { background: linear-gradient(145deg, #e8f0e0, #f2f7ec); border: 1px solid #a8c890; }
+    .notes-shell {
+      display: grid;
+      grid-template-columns: minmax(200px, 240px) 1fr;
+      gap: 0.85rem;
+      min-height: 520px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 700px) {
+      .notes-shell { grid-template-columns: 1fr; min-height: 0; }
+      .notes-list-pane.collapsed-mobile { display: none; }
+      .notes-editor-pane.hidden-mobile { display: none; }
+    }
+    .notes-list-pane {
+      border-right: 1px solid var(--border);
+      background: var(--bg-elevated);
+      display: flex; flex-direction: column;
+      max-height: 640px;
+    }
+    .notes-list-toolbar {
+      padding: 0.7rem 0.75rem 0.5rem;
+      display: flex; flex-direction: column; gap: 0.45rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .notes-search {
+      width: 100%; margin: 0; padding: 0.5rem 0.7rem;
+      font-size: 0.88rem; border-radius: 10px;
+    }
+    .notes-toolbar-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .notes-toolbar-row button {
+      margin: 0; padding: 0.4rem 0.65rem; font-size: 0.8rem;
+      border-radius: 8px; flex: 1; min-width: 0;
+    }
+    .notes-tag-filter {
+      display: flex; flex-wrap: wrap; gap: 0.25rem; padding: 0.35rem 0.65rem 0.55rem;
+    }
+    .notes-tag-chip {
+      font-size: 0.68rem; padding: 0.18rem 0.5rem; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--card-bg);
+      color: var(--text-muted); cursor: pointer; font-weight: 600;
+    }
+    .notes-tag-chip.active {
+      background: var(--accent); color: var(--accent-fg); border-color: var(--accent);
+    }
+    .notes-list {
+      overflow-y: auto; flex: 1; padding: 0.35rem;
+    }
+    .note-item {
+      padding: 0.65rem 0.7rem; border-radius: 10px; cursor: pointer;
+      border: 1px solid transparent; margin-bottom: 0.25rem;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .note-item:hover { background: rgba(15,76,58,0.06); }
+    .note-item.active {
+      background: var(--accent-soft);
+      border-color: rgba(15,76,58,0.25);
+    }
+    html[data-theme="dark"] .note-item:hover { background: rgba(61,155,114,0.12); }
+    .note-item .ni-title {
+      font-weight: 600; font-size: 0.9rem; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .note-item .ni-meta {
+      display: flex; justify-content: space-between; gap: 0.4rem;
+      font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;
+    }
+    .note-item .ni-tag {
+      background: rgba(15,76,58,0.1); color: var(--accent);
+      padding: 0.05rem 0.4rem; border-radius: 6px; font-weight: 600;
+    }
+    .notes-editor-pane {
+      display: flex; flex-direction: column; min-height: 480px; max-height: 640px;
+      padding: 0.75rem 0.9rem 0.9rem;
+    }
+    .notes-editor-toolbar {
+      display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center;
+      margin-bottom: 0.55rem;
+    }
+    .notes-editor-toolbar button, .notes-editor-toolbar select {
+      margin: 0; padding: 0.35rem 0.65rem; font-size: 0.8rem; border-radius: 8px;
+    }
+    .notes-editor-toolbar select {
+      width: auto; max-width: 130px; margin: 0; padding: 0.35rem 0.5rem;
+    }
+    .notes-view-toggle {
+      display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    }
+    .notes-view-toggle button {
+      background: transparent; color: var(--text-muted); border: none;
+      border-radius: 0; padding: 0.35rem 0.55rem; margin: 0;
+    }
+    .notes-view-toggle button.active {
+      background: var(--accent); color: var(--accent-fg);
+    }
+    .notes-title-input {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600;
+      border: none; background: transparent; color: var(--text);
+      padding: 0.25rem 0; margin: 0 0 0.35rem; width: 100%;
+      border-bottom: 1px solid transparent;
+    }
+    .notes-title-input:focus { outline: none; border-bottom-color: var(--accent); }
+    .notes-body-area {
+      flex: 1; display: grid; grid-template-columns: 1fr; gap: 0.65rem; min-height: 0;
+    }
+    .notes-body-area.split { grid-template-columns: 1fr 1fr; }
+    .notes-body-area.preview-only .notes-body-input { display: none; }
+    .notes-body-area.edit-only .notes-md-preview { display: none; }
+    .notes-body-input {
+      width: 100%; height: 100%; min-height: 280px; resize: none;
+      font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.88rem; line-height: 1.55; padding: 0.75rem;
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--bg-elevated); color: var(--text);
+    }
+    .notes-md-preview {
+      overflow-y: auto; padding: 0.85rem 1rem; border-radius: 12px;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.55);
+      font-size: 0.94rem; line-height: 1.65;
+    }
+    html[data-theme="dark"] .notes-md-preview { background: rgba(30,40,34,0.75); }
+    .notes-md-preview h1, .notes-md-preview h2, .notes-md-preview h3 {
+      font-family: 'Cormorant Garamond', serif; color: var(--accent); margin: 0.85rem 0 0.4rem;
+    }
+    .notes-md-preview h1 { font-size: 1.35rem; }
+    .notes-md-preview h2 { font-size: 1.18rem; }
+    .notes-md-preview h3 { font-size: 1.05rem; }
+    .notes-md-preview p { margin: 0.45rem 0; }
+    .notes-md-preview ul, .notes-md-preview ol { margin: 0.4rem 0 0.4rem 1.2rem; }
+    .notes-md-preview blockquote {
+      border-left: 3px solid var(--accent); margin: 0.6rem 0; padding: 0.35rem 0.75rem;
+      color: var(--text-muted); background: var(--accent-soft); border-radius: 0 8px 8px 0;
+    }
+    .notes-md-preview code {
+      font-size: 0.85em; background: var(--accent-soft); padding: 0.1rem 0.35rem; border-radius: 4px;
+    }
+    .notes-md-preview table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; font-size: 0.88rem; }
+    .notes-md-preview th, .notes-md-preview td {
+      border: 1px solid var(--border); padding: 0.35rem 0.5rem; text-align: left;
+    }
+    .notes-md-preview th { background: var(--accent-soft); }
+    .notes-empty {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--text-muted); text-align: center; padding: 2rem 1rem; gap: 0.75rem;
+    }
+    .notes-status {
+      font-size: 0.72rem; color: var(--text-muted); margin-top: 0.4rem;
+      display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .notes-grave-badge {
+      display: inline-flex; align-items: center; gap: 0.25rem;
+      background: linear-gradient(135deg, #e4f0d4, #d0e8b8);
+      color: #2a5a20; font-size: 0.72rem; font-weight: 600;
+      padding: 0.2rem 0.55rem; border-radius: 999px; border: 1px solid #a8c878;
+    }
+    html[data-theme="dark"] .notes-grave-badge {
+      background: #1e3329; color: #8fd4a0; border-color: #2a4838;
+    }
+    .quick-note-btn {
+      background: var(--accent-soft) !important; color: var(--accent) !important;
+      border: 1px solid var(--border); font-size: 0.82rem;
+      padding: 0.4rem 0.85rem !important; margin-top: 0.55rem;
+    }
+    .notes-hint {
+      font-size: 0.82rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.45;
+    }
+
+
+    /* Tajweed LMS */
+    .tj-progress-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .tj-progress-bar .row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.88rem; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.35rem;
+    }
+    .tj-progress-bar .track {
+      height: 0.55rem; border-radius: 999px;
+      background: var(--accent-soft); overflow: hidden;
+    }
+    .tj-progress-bar .fill {
+      height: 100%; border-radius: 999px;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .tj-lesson {
+      display: flex; align-items: flex-start; gap: 0.55rem;
+      padding: 0.45rem 0.35rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.92rem;
+    }
+    .tj-lesson:last-child { border-bottom: none; }
+    .tj-lesson input[type="checkbox"] {
+      width: 1.05rem; height: 1.05rem; margin-top: 0.15rem;
+      accent-color: var(--accent); flex-shrink: 0; cursor: pointer;
+    }
+    .tj-lesson.done label { text-decoration: line-through; opacity: 0.72; }
+    .tj-lesson label { cursor: pointer; flex: 1; line-height: 1.4; }
+    .tj-lesson .tj-res {
+      font-size: 0.8rem; margin-top: 0.2rem;
+    }
+    .tj-lesson .tj-res a { color: var(--accent); }
+    .tj-level-meta {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0.75rem;
+      font-size: 0.78rem;
+    }
+    .tj-badge {
+      background: var(--accent-soft); color: var(--accent);
+      padding: 0.15rem 0.55rem; border-radius: 999px; font-weight: 600;
+      border: 1px solid var(--border);
+    }
+    .tj-badge.complete { background: #d0ecd8; color: #0f4c3a; }
+    html[data-theme="dark"] .tj-badge.complete { background: #1e3329; color: #8fd4a0; }
+    .tj-level-actions { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tj-level-actions button { margin: 0; padding: 0.4rem 0.75rem; font-size: 0.82rem; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1216,8 +1460,6 @@
             <span class="dow">S</span><span class="dow">M</span><span class="dow">T</span><span class="dow">W</span><span class="dow">T</span><span class="dow">F</span><span class="dow">S</span>
           </div>
           <div class="hijri-cal-meta" id="hijri-cal-meta">Loading…</div>
-          <div class="hijri-local-time" id="hijri-local-time">—:—</div>
-          <div class="hijri-local-loc" id="hijri-local-loc">Detecting location…</div>
         </div>
       </div>
 
@@ -1272,6 +1514,8 @@
       <div class="banner-side right">
         <div class="salah-times-section">
           <div class="salah-title" id="salah-title">Salah · Today</div>
+          <div class="hijri-local-time" id="hijri-local-time">—:—</div>
+          <div class="hijri-local-loc" id="hijri-local-loc">Detecting location…</div>
           <ul class="salah-times-list" id="salah-times-list">
             <li><span class="salah-name">Loading…</span><span class="salah-time">…</span></li>
           </ul>
@@ -1292,6 +1536,7 @@
       <button class="nav-tab" data-tab="lectures" onclick="switchTab('lectures')"><span class="tab-label-row"><span class="tab-bubble">🎧</span>Lectures</span><span class="tab-visit-count" id="vc-lectures">…</span></button>
       <button class="nav-tab" data-tab="grave" onclick="switchTab('grave')"><span class="tab-label-row"><span class="tab-bubble">🌙</span>Grave</span><span class="tab-visit-count" id="vc-grave">…</span></button>
       <button class="nav-tab" data-tab="search" onclick="switchTab('search')"><span class="tab-label-row"><span class="tab-bubble">🔍</span>Search &amp; Ask</span><span class="tab-visit-count" id="vc-search">…</span></button>
+      <button class="nav-tab" data-tab="notes" onclick="switchTab('notes')"><span class="tab-label-row"><span class="tab-bubble">📝</span>Notes</span><span class="tab-visit-count" id="vc-notes">…</span></button>
     </div>
   </nav>
 
@@ -1365,6 +1610,7 @@
 
         <div class="card card-life">
           <h2>Life Events Guidance</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.65rem">Real situations — job loss, illness, parents, marriage, birth, death, anger, prayer under pressure — with Sunnah, scholarly notes, and one action for today.</p>
           <div id="life-event"><div class="loading-msg">Loading…</div></div>
           <button type="button" onclick="loadLifeEvent()">Another life event</button>
         </div>
@@ -1374,11 +1620,23 @@
           <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.5rem">Saved on this device.</p>
           <div class="bookmarks-list" id="bookmarks-list"></div>
         </div>
-      </div>
 
-      <!-- ==================== TAB: SEERAH ==================== -->
+        <div class="card card-journey">
+          <h2>📓 Quick reflection</h2>
+          <p style="font-size:0.92rem;">Capture one thought from today’s journey. It opens in Notes, tagged Journey.</p>
+          <button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Journey','Reflection from Journey')">＋ Note from Journey</button>
+        </div>
+      </div><!-- /#tab-journey -->
+
+<!-- ==================== TAB: SEERAH ==================== -->
       <div id="tab-seerah" class="tab-panel">
+        
         <div class="card card-seerah">
+          <h2>📖 Capture a seerah lesson</h2>
+          <p style="font-size:0.92rem;">After reading a moment from the Prophet’s life ﷺ, write one lesson and one action.</p>
+          <button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Seerah','Seerah lesson')">＋ Note from Seerah</button>
+        </div>
+<div class="card card-seerah">
           <h2>Seerah &amp; Hadith</h2>
           <p style="margin-bottom:0.9rem; font-size:0.95rem;">
             Study the life of the Prophet ﷺ, authentic hadith, and the stories of the Prophets. Begin with the complete series below.
@@ -1440,114 +1698,51 @@
       <!-- ==================== TAB: TAJWEED ==================== -->
       <div id="tab-tajweed" class="tab-panel">
         <div class="card card-tajweed">
-          <h2>Tajweed Learning Modules (Hafs ʿan ʿĀṣim)</h2>
-          <p style="margin-bottom:0.9rem; font-size:0.95rem;">
-            Structured self-paced modules for the most widely used narration — <strong>Ḥafṣ ʿan ʿĀṣim</strong>.
-            Complete one level before moving to the next. Free resources are linked inside each module.
-            Pair with a teacher when possible for live correction and eventual <em>ijāzah</em>.
+          <h2>🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2>
+          <p style="margin-bottom:0.85rem; font-size:0.94rem;">
+            Structured path from beginner to advanced, based on common free curricula
+            (makhārij → ṣifāt → nūn/mīm sākinah → madd → waqf).
+            Check off lessons as you complete them — progress is saved on this device.
+            Pair with a teacher when you can for live correction and eventual <em>ijāzah</em>.
           </p>
 
-          <div class="lecture-box" style="margin-bottom:1.2rem;">
+          <div class="tj-progress-bar" id="tj-overall-progress">
+            <div class="row">
+              <span><strong>Overall progress</strong></span>
+              <span id="tj-overall-label">0 / 0 lessons</span>
+            </div>
+            <div class="track"><div class="fill" id="tj-overall-fill"></div></div>
+          </div>
+
+          <div class="lecture-box" style="margin-bottom:1.1rem;">
             <h3>▶️ Learn Tajweed – the Easy Way (English)</h3>
-            <p style="font-size:0.92rem; margin-bottom:0.5rem; color:#444;">
-              Start with Lesson 1a – Introduction by Understand Al-Quran Academy (Dr. Abdulazeez Abdulraheem). Clear, short lessons for adults.
+            <p style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--text-muted);">
+              Understand Al-Quran Academy playlist — clear short lessons for adults.
             </p>
             <div class="spotify-player-wrap" style="background:#0f0f0f;">
               <iframe id="tajweed-player"
                 src="https://www.youtube.com/embed/videoseries?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg"
-                width="100%" height="315" frameborder="0" allowfullscreen
+                width="100%" height="280" frameborder="0" allowfullscreen
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy">
               </iframe>
             </div>
             <p class="lecture-note">
-              Full English playlist:
-              <a href="https://www.youtube.com/playlist?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" target="_blank" rel="noopener">Learn Tajweed – the Easy Way (English)</a>
-              · First lesson:
-              <a href="https://www.youtube.com/watch?v=dyliFOsUPkU" target="_blank" rel="noopener">Lesson 1a | Introduction</a>
+              <a href="https://www.youtube.com/playlist?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" target="_blank" rel="noopener">Full English playlist</a>
+              · <a href="https://www.youtube.com/watch?v=dyliFOsUPkU" target="_blank" rel="noopener">Lesson 1a · Introduction</a>
             </p>
           </div>
 
-          <div class="tajweed-level">
-            <h3>🌱 Module 1 – Beginner Foundations</h3>
-            <p class="level-goal"><strong>Goal:</strong> Correctly pronounce all Arabic letters from their articulation points and apply the most basic Tajweed rules while reading short surahs.</p>
-            <h4>Learning Objectives</h4>
-            <ul>
-              <li>Recognise and pronounce all 28 Arabic letters with correct makhārij</li>
-              <li>Master short vowels (fatḥah, kasrah, ḍammah) and long vowels (madd aṣlī)</li>
-              <li>Understand sukūn, shaddah, and tanwīn</li>
-              <li>Apply the simplest rules of Qalqalah and basic Ghunnah</li>
-              <li>Read Al-Fātiḥah and the short surahs (Al-Ikhlāṣ, Al-Falaq, An-Nās) with basic accuracy</li>
-            </ul>
-            <h4>Recommended Sequence (4–6 weeks)</h4>
-            <ol>
-              <li><strong>Week 1–2:</strong> Arabic alphabet + makhārij (throat, tongue, lips, nasal cavity)</li>
-              <li><strong>Week 2–3:</strong> Short &amp; long vowels, tanwīn, sukūn, shaddah</li>
-              <li><strong>Week 3–4:</strong> Introduction to Qalqalah (echo letters) and basic Ghunnah</li>
-              <li><strong>Week 4–6:</strong> Practice reading Al-Fātiḥah and Juzʾ ʿAmma short surahs while applying the above</li>
-            </ol>
-            <h4>Free Resources for this Module</h4>
-            <ul>
-              <li><a href="https://equrancoaching.com/tajweed-guide" target="_blank" rel="noopener">E-Quran Coaching – Free Tajweed Guide</a> (Level 1 Fundamentals)</li>
-              <li><a href="https://tabarakacademy.com/free-courses/" target="_blank" rel="noopener">Tabarak Academy – Free Tajweed Course</a></li>
-              <li><a href="https://sufaraacenter.org/free-online-tajweed-classes-for-all-ages/" target="_blank" rel="noopener">Sufaraa Center – Free Lessons 1–33</a></li>
-              <li><a href="https://www.alqasaslearning.com/free-tajweed-resources" target="_blank" rel="noopener">Al Qasas – Free Alphabet &amp; Makharij Packs</a></li>
-              <li><a href="https://tajwid.learn-quran.co/" target="_blank" rel="noopener">Learn Quran Tajwid App</a></li>
-              <li>YouTube: “Noorani Qaida with Tajweed”, “Learn Tajweed the Easy Way”</li>
-            </ul>
-            <p class="tajweed-note">Do not rush. Correct makhārij are the foundation. Record yourself and compare with Al-Husary.</p>
-          </div>
+          <div id="tj-levels-root"></div>
 
-          <div class="tajweed-level">
-            <h3>🌿 Module 2 – Intermediate Application</h3>
-            <p class="level-goal"><strong>Goal:</strong> Fluently apply the core Tajweed rules (Noon &amp; Meem Sākinah, all common Madd types, heavy/light letters, Qalqalah) while reading longer passages.</p>
-            <h4>Learning Objectives</h4>
-            <ul>
-              <li>Master the four rules of Noon Sākinah &amp; Tanwīn (Iẓhār, Idghām, Iqlāb, Ikhfāʾ)</li>
-              <li>Master the rules of Meem Sākinah</li>
-              <li>Apply all major types of Madd</li>
-              <li>Distinguish heavy (tafkhīm) and light (tarqīq) letters</li>
-              <li>Read fluently from Al-Mulk, Yā-Sīn, Ar-Raḥmān, Al-Kahf while applying rules</li>
-            </ul>
-            <h4>Recommended Sequence (6–10 weeks)</h4>
-            <ol>
-              <li><strong>Weeks 1–3:</strong> Noon Sākinah &amp; Tanwīn rules</li>
-              <li><strong>Weeks 3–5:</strong> Meem Sākinah + Ghunnah</li>
-              <li><strong>Weeks 5–7:</strong> All types of Madd</li>
-              <li><strong>Weeks 7–9:</strong> Heavy &amp; light letters + Qalqalah</li>
-              <li><strong>Weeks 9–10+:</strong> Continuous reading of medium-length surahs</li>
-            </ol>
-            <h4>Free Resources</h4>
-            <ul>
-              <li><a href="https://equrancoaching.com/tajweed-guide" target="_blank" rel="noopener">E-Quran Coaching Guide</a> – Intermediate</li>
-              <li><a href="https://www.youtube.com/results?search_query=Sheikh+Ayman+Swayd+Tajweed" target="_blank" rel="noopener">Sheikh Ayman Swayd full series</a></li>
-              <li><a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> – Colour-coded Tajweed + audio</li>
-              <li><a href="https://tajweedmate.com/" target="_blank" rel="noopener">TajweedMate App</a> – AI feedback</li>
-            </ul>
-            <p class="tajweed-note">A teacher’s ear becomes very valuable at this stage.</p>
+          <div class="ponder-box" style="margin-top:1rem;">
+            <strong>Tip:</strong> Consistency beats intensity. 15–25 focused minutes daily is better than long irregular sessions. Record yourself and compare with a master qāriʾ (e.g. Al-Ḥuṣarī).
           </div>
-
-          <div class="tajweed-level">
-            <h3>🌳 Module 3 – Advanced Refinement &amp; Path to Ijāzah</h3>
-            <p class="level-goal"><strong>Goal:</strong> Fluent, beautiful, rule-perfect recitation (tartīl) with correct waqf/ibtidāʾ and readiness for formal authorisation.</p>
-            <h4>Learning Objectives</h4>
-            <ul>
-              <li>Master Waqf and Ibtidāʾ</li>
-              <li>Apply advanced Madd and Hafs-specific features</li>
-              <li>Recite with proper rhythm and beauty</li>
-              <li>Prepare for reading the entire Quran to a qualified teacher for ijāzah</li>
-            </ul>
-            <h4>Resources</h4>
-            <ul>
-              <li><a href="https://fountaintajweed.com/hafs-an-asim-from-tareeq-ash-shaatibiyyah/" target="_blank" rel="noopener">Fountain Tajweed Institute – Hafs ʿan ʿĀṣim</a></li>
-              <li>Sheikh Ayman Swayd advanced lessons</li>
-              <li>Seek a teacher who holds an authentic ijāzah in Hafs ʿan ʿĀṣim</li>
-            </ul>
-            <p class="tajweed-note">True excellence is transmitted orally. Free materials give knowledge; a living teacher gives the chain and precision.</p>
-          </div>
-
-          <div class="ponder-box" style="margin-top:1.1rem;">
-            <strong>General Tip:</strong> Consistency beats intensity. Even 15–25 focused minutes daily is better than long irregular sessions.
-          </div>
+          <p class="tajweed-note" style="margin-top:0.75rem;">
+            Free study references (no subscription required):
+            <a href="https://www.youtube.com/playlist?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" target="_blank" rel="noopener">Learn Tajweed the Easy Way (English)</a> ·
+            <a href="https://www.youtube.com/playlist?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT" target="_blank" rel="noopener">Golden Tajweed Series</a> ·
+            <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>
+          </p>
         </div>
       </div>
 
@@ -1680,12 +1875,6 @@
           </div>
         </div>
 
-        <!-- Daily verse also shown here -->
-        <div class="card card-verse">
-          <h2>A Verse from the Quran</h2>
-          <div id="verse-commands"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadVerseCommands()">Another verse</button>
-        </div>
 
         <!-- Quran Memorization (moved from Grave) -->
         <div class="card card-hifz">
@@ -1840,7 +2029,14 @@
 
       <!-- ==================== TAB: GRAVE ==================== -->
       <div id="tab-grave" class="tab-panel">
+        
         <div class="card card-grave">
+          <h2>🌙 Note for the grave</h2>
+          <p style="font-size:0.92rem;">Write a deed, istighfar intention, or duʿāʾ you want to send ahead. Tagged Grave and marked as light.</p>
+          <button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Grave','Light for the grave', true)">＋ Send a note ahead</button>
+        </div>
+
+<div class="card card-grave">
           <h2>Furnishing My Grave</h2>
           <p style="margin-bottom:0.65rem;">
             The grave is a long stay. Every istighfar and salawat can be sent ahead as light and companionship.
@@ -2073,6 +2269,72 @@
         Sources: Quran, Sahih collections, AlQuran.cloud, UmmahAPI, Qurango, ArRahmah Islamic Institute.<br>
         Made for sincere preparation for the Hereafter.
       </footer>
+
+      <!-- ==================== TAB: NOTES ==================== -->
+      <div id="tab-notes" class="tab-panel">
+        <div class="card card-notes">
+          <h2>📝 Clarity Notes</h2>
+          <p style="font-size:0.94rem; margin-bottom:0.75rem;">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p>
+          <div class="notes-shell" id="notes-shell">
+            <div class="notes-list-pane" id="notes-list-pane">
+              <div class="notes-list-toolbar">
+                <input type="text" class="notes-search" id="notes-search" placeholder="Search notes…  (/ )" autocomplete="off" oninput="notesSetQuery(this.value)">
+                <div class="notes-toolbar-row">
+                  <button type="button" onclick="notesCreate()">＋ New</button>
+                  <button type="button" class="btn-secondary" onclick="notesRestoreSeed()" title="Restore starter library">↺ Seed</button>
+                </div>
+              </div>
+              <div class="notes-tag-filter" id="notes-tag-filter"></div>
+              <div class="notes-list" id="notes-list" role="listbox" aria-label="Notes"></div>
+            </div>
+            <div class="notes-editor-pane" id="notes-editor-pane">
+              <div id="notes-editor-empty" class="notes-empty" style="display:none">
+                <div style="font-size:2rem">✒️</div>
+                <p><strong>No note selected</strong></p>
+                <p>Create a new note or pick one from the list.<br>Tip: press <kbd>Ctrl</kbd>+<kbd>N</kbd> for a blank page.</p>
+                <button type="button" onclick="notesCreate()">New note</button>
+              </div>
+              <div id="notes-editor-active" style="display:none; flex-direction:column; flex:1; min-height:0;">
+                <div class="notes-editor-toolbar">
+                  <div class="notes-view-toggle" role="group" aria-label="View mode">
+                    <button type="button" id="nv-edit" onclick="notesSetView('edit')">Edit</button>
+                    <button type="button" id="nv-split" onclick="notesSetView('split')">Split</button>
+                    <button type="button" id="nv-preview" onclick="notesSetView('preview')">Preview</button>
+                  </div>
+                  <select id="notes-tag-select" onchange="notesUpdateField('tag', this.value)" title="Section tag">
+                    <option value="">Tag…</option>
+                    <option value="Guide">Guide</option>
+                    <option value="Journey">Journey</option>
+                    <option value="Commands">Commands</option>
+                    <option value="Quran">Quran</option>
+                    <option value="Tafseer">Tafseer</option>
+                    <option value="Tajweed">Tajweed</option>
+                    <option value="Seerah">Seerah</option>
+                    <option value="Lectures">Lectures</option>
+                    <option value="Grave">Grave</option>
+                    <option value="Practice">Practice</option>
+                    <option value="Guidance">Guidance</option>
+                    <option value="Reflection">Reflection</option>
+                  </select>
+                  <button type="button" class="btn-soft" onclick="notesToggleGrave()" id="notes-grave-btn" title="Mark as light for the grave">🌙 Grave</button>
+                  <button type="button" class="btn-secondary" onclick="notesRequestDelete()" title="Delete note">🗑</button>
+                </div>
+                <input type="text" class="notes-title-input" id="notes-title" placeholder="Title" oninput="notesUpdateField('title', this.value)">
+                <div class="notes-body-area edit-only" id="notes-body-area">
+                  <textarea class="notes-body-input" id="notes-body" placeholder="Write in Markdown… reflections, ayat, goals for the day." oninput="notesUpdateField('body', this.value)"></textarea>
+                  <div class="notes-md-preview" id="notes-preview" aria-live="polite"></div>
+                </div>
+                <div class="notes-status">
+                  <span id="notes-save-status">Saved locally</span>
+                  <span id="notes-grave-status"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device.</p>
+        </div>
+      </div>
+
     </main>
 
     <!-- Right sidebar -->
@@ -2097,7 +2359,7 @@
   <script>
     // ========== TAB NAVIGATION ==========
     function switchTab(tabId) {
-      const valid = ['journey','commands','tafseer','grave','seerah','tajweed','lectures','search'];
+      const valid = ['journey','commands','tafseer','grave','seerah','tajweed','lectures','search','notes'];
       if (!valid.includes(tabId)) tabId = 'journey';
       // Hide all panels
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -2137,7 +2399,8 @@
       lectures: 'clarity-dawah-lectures',
       commands: 'clarity-dawah-commands',
       grave: 'clarity-dawah-grave',
-      search: 'clarity-dawah-search'
+      search: 'clarity-dawah-search',
+      notes: 'clarity-dawah-notes'
     };
     function formatCount(n) {
       if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
@@ -2181,7 +2444,7 @@
     // Load tab from URL hash on page load
     function initTabFromHash() {
       const hash = window.location.hash.replace('#', '');
-      const validTabs = ['journey','seerah','tajweed','tafseer','lectures','commands','grave','search'];
+      const validTabs = ['journey','seerah','tajweed','tafseer','lectures','commands','grave','search','notes'];
       if (validTabs.includes(hash)) {
         switchTab(hash);
       } else {
@@ -2954,31 +3217,50 @@
     // ========== EXPANDED REFLECTION (live feed style, no modern-context title) ==========
     function ponder(text) {
       const t = (text || "").toLowerCase();
-      if (t.includes("patient") || t.includes("patience") || t.includes("sabr")) {
-        return "Patience (sabr) is not passive waiting — it is active trust while continuing rightful action. In daily life this means staying calm in traffic, at work under pressure, or with family disagreements. Scholars note that sabr in hardship is half of faith. When irritation rises, pause, make wudu if possible, and say “Hasbiyallahu wa ni‘mal wakeel.” Every restrained moment becomes light in the grave and softens the heart for the long stay ahead.";
+      if (t.includes("patient") || t.includes("patience") || t.includes("sabr") || t.includes("endure")) {
+        return "<strong>Pondering:</strong> Allah loves the patient (Qur’an 3:146) and promises them reward without measure (39:10). The Prophet ﷺ said: “How wonderful is the affair of the believer… if harm befalls him he is patient and that is good for him” (Sahih Muslim 2999). Ibn al-Qayyim notes that the past is not healed by sadness but by contentment, gratitude, patience, and firm belief in qadar. <em>Practice:</em> when hardship hits (job loss, illness, family strain), continue rightful action, say “Hasbiyallāhu wa niʿmal-wakīl,” and avoid words of dissatisfaction with the decree.";
       }
-      if (t.includes("pray") || t.includes("prayer") || t.includes("salah") || t.includes("salat")) {
-        return "The five daily prayers structure the heart around Allah throughout a busy day. Protecting them — even during travel, work meetings or fatigue — is among the greatest investments for the grave. Set reminders a few minutes before each prayer and treat the prayer as a non-negotiable appointment with Allah. Missing prayer weakens the soul more than missing food; guarding it builds a fortress of light that accompanies the believer after death.";
+      if (t.includes("pray") || t.includes("prayer") || t.includes("salah") || t.includes("salat") || t.includes("ṣalāh")) {
+        return "<strong>Pondering:</strong> Prayer is a pillar of Islam and a direct appointment with Allah. Guarding the five daily prayers — even in travel, meetings, or fatigue — is among the greatest investments for the grave. Classical guidance stresses praying on time, with khushūʿ, and making up what was missed without delay. <em>Practice:</em> set reminders a few minutes early, prepare a clean space, and treat each ṣalāh as non-negotiable. Missing prayer weakens the soul more than missing a meal.";
       }
-      if (t.includes("charity") || t.includes("spend") || t.includes("give") || t.includes("sadaqah")) {
-        return "Wealth given purely for Allah never decreases. It travels ahead as shade, intercession and coolness in the grave. Even a kind word, a smile, or sharing knowledge is sadaqah. Automate a small monthly sadaqah or give something every time you receive good news. The Prophet ﷺ taught that charity extinguishes sin as water extinguishes fire — and it furnishes the grave with lasting companionship.";
+      if (t.includes("charity") || t.includes("spend") || t.includes("give") || t.includes("sadaqah") || t.includes("zakāt") || t.includes("zakat")) {
+        return "<strong>Pondering:</strong> Wealth spent for Allah never decreases. The Prophet ﷺ taught that charity extinguishes sin as water extinguishes fire, and that every day two angels pray for the one who gives and against the miser (Bukhari). Ongoing charity (ṣadaqah jāriyah), beneficial knowledge, and a righteous child who prays for you continue after death (Muslim). <em>Practice:</em> automate a small monthly gift; give when you receive good news; ask before non-essentials whether the purchase will accompany you in the grave.";
       }
-      if (t.includes("anger") || t.includes("angry") || t.includes("rage")) {
-        return "True strength is self-control when anger rises. The Prophet ﷺ advised: if standing, sit; if sitting, lie down; make wudu; change place. In online arguments, traffic or family stress the same principles apply. When anger flares, leave the screen or room for a minute and recite “A‘udhu billahi min ash-shaytan ir-rajim.” Controlling anger softens the heart and lightens the scales on the Day when only pure deeds remain.";
+      if (t.includes("anger") || t.includes("angry") || t.includes("rage") || t.includes("wrath")) {
+        return "<strong>Pondering:</strong> True strength is self-control when anger rises. The Prophet ﷺ advised: if standing, sit; if sitting, lie down; make wuḍūʾ; change place; and seek refuge from Shayṭān. Qur’an 42:37 praises those who, when angry, forgive. Uncontrolled anger leads to regretful speech and actions one is accountable for. <em>Practice:</em> in traffic, online arguments, or family tension — leave the screen or room, recite the istiʿādhah, and respond only after the heat cools.";
       }
-      if (t.includes("parent") || t.includes("mother") || t.includes("father") || t.includes("parents")) {
-        return "After the rights of Allah, the rights of parents rank highest. A gentle word, regular du‘a, phone calls, or simply being present can open doors of mercy. Even if parents are difficult, lower the wing of humility. Make a weekly habit of asking about their needs and making du‘a for them by name. Serving parents is a form of worship that continues to benefit after their death through ongoing du‘a and becomes light for the one who served them.";
+      if (t.includes("parent") || t.includes("mother") || t.includes("father") || t.includes("parents") || t.includes("filial")) {
+        return "<strong>Pondering:</strong> After the rights of Allah, kindness to parents ranks highest (Qur’an 17:23–24). Even saying “uff” of irritation is forbidden; speak to them with respect, especially in old age. The Prophet ﷺ linked longevity and increase in provision to honouring parents, and taught that a righteous child who prays for the deceased benefits them after death. <em>Practice:</em> regular contact, practical help, and duʿāʾ by name each night — even when the relationship is difficult.";
       }
-      if (t.includes("death") || t.includes("grave") || t.includes("die") || t.includes("hereafter")) {
-        return "Remembering death is not meant to cause despair but to awaken us to what truly matters. Every night of sleep is a small death; every morning is a new chance to send light to the grave. Once a day, ask “If I die tonight, what have I sent ahead?” Then do one small good deed immediately. The Prophet ﷺ said: “Remember often the destroyer of pleasures (death).” This remembrance keeps the heart soft and the deeds purposeful.";
+      if (t.includes("death") || t.includes("grave") || t.includes("die") || t.includes("hereafter") || t.includes("barzakh")) {
+        return "<strong>Pondering:</strong> The Prophet ﷺ said: “Remember often the destroyer of pleasures (death)” (Tirmidhi, hasan). Remembrance is meant to awaken, not to despair. Sleep is a small death; each morning is a new chance to send light ahead. Deeds that continue after death include ongoing charity, beneficial knowledge, and a righteous child’s duʿāʾ (Muslim). <em>Practice:</em> once a day ask, “If I die tonight, what have I sent ahead?” then do one small good deed immediately.";
       }
-      if (t.includes("forgiv") || t.includes("repent") || t.includes("istighfar") || t.includes("mercy")) {
-        return "The door of tawbah remains open until the soul reaches the throat. No sin is too great for Allah’s mercy when repentance is sincere. After every mistake, immediately say “Astaghfirullah,” repair any harm done to others, and resolve not to return. Consistent istighfar polishes the heart and prepares the grave with the fragrance of forgiveness and hope in the Most Merciful.";
+      if (t.includes("forgiv") || t.includes("repent") || t.includes("istighfar") || t.includes("mercy") || t.includes("tawbah")) {
+        return "<strong>Pondering:</strong> The door of tawbah remains open until the soul reaches the throat. No sin is too great for Allah’s mercy when repentance is sincere: stop the sin, regret it, resolve not to return, and repair harm done to others. The Prophet ﷺ sought forgiveness more than seventy times a day (Bukhari 6307). Regular istighfār opens ways out of difficulty (Abu Dawud, hasan). <em>Practice:</em> end each day with a short heart-review and sincere “Astaghfirullāh.”";
       }
-      if (t.includes("truth") || t.includes("honest") || t.includes("lie") || t.includes("trust")) {
-        return "Honesty and keeping trusts are foundations of character. In work, business and online life, truthfulness builds barakah while deceit destroys it. When tempted to exaggerate or hide, choose the harder truth. The Prophet ﷺ said that truthfulness leads to righteousness and righteousness leads to Paradise — and a truthful tongue is a companion of light in the darkness of the grave.";
+      if (t.includes("truth") || t.includes("honest") || t.includes("lie") || t.includes("trust") || t.includes("amānah") || t.includes("amanah")) {
+        return "<strong>Pondering:</strong> Truthfulness leads to righteousness and righteousness leads to Paradise; lying leads to wickedness and the Fire (Bukhari & Muslim). Keeping trusts (amānah) is a mark of faith; betrayal is a mark of hypocrisy. In business, work, and online life, barakah follows honesty and is lost through deceit. <em>Practice:</em> when tempted to exaggerate or hide, choose the harder truth and seek Allah’s pleasure over people’s praise.";
       }
-      return "Let this teaching settle in the heart. Ask: What one concrete action can I take today because of these words? That small, sincere change — done for Allah alone — is what will accompany you when all other company is left behind. Start with one step before the day ends, and send it ahead as light for the long stay in the grave.";
+      if (t.includes("marriage") || t.includes("spouse") || t.includes("wife") || t.includes("husband") || t.includes("wedding")) {
+        return "<strong>Pondering:</strong> Marriage is a religious and social covenant, not merely a private arrangement. Islam encourages marriage, forbids unlawful relationships outside it, and places mutual rights and kind treatment at the centre of the home. Spending on one’s family is a legal duty of the husband and is counted among the best spending. <em>Practice:</em> speak gently, fulfil known rights, and make the home a place of dhikr and mercy rather than score-keeping.";
+      }
+      if (t.includes("knowledge") || t.includes("learn") || t.includes("teach") || t.includes("scholar")) {
+        return "<strong>Pondering:</strong> Seeking beneficial knowledge is a path to Paradise. Knowledge that continues to benefit others is among the deeds that remain after death (Muslim). Teaching with sincerity, acting on what one knows, and avoiding argument for ego protect the blessing of ʿilm. <em>Practice:</em> learn a little with understanding each day, share one useful point without showing off, and ask Allah for beneficial knowledge and a heart that acts on it.";
+      }
+      if (t.includes("gold") || t.includes("silver") || t.includes("exchange") || t.includes("riba") || t.includes("usury") || t.includes("interest") || t.includes("sale") || t.includes("sell") || t.includes("buy") || t.includes("trade") || t.includes("business") || t.includes("weight") || t.includes("measure")) {
+        return "<strong>Pondering:</strong> Classical fiqh (and the hadith of the six ribawi items) requires like-for-like, hand-to-hand exchange when trading gold for gold or silver for silver; any excess is ribā. Scholars (including discussions in Sahih Muslim on currency exchange) stress consulting those more knowledgeable and avoiding delayed unequal trades. <em>Practice:</em> in business and online sales, be transparent on price and quality, avoid hidden interest structures, and prefer clear spot deals when exchanging similar wealth.";
+      }
+      if (t.includes("character") || t.includes("manners") || t.includes("akhlak") || t.includes("akhlāq") || t.includes("neighbour") || t.includes("neighbor") || t.includes("smile") || t.includes("gentle")) {
+        return "<strong>Pondering:</strong> The Prophet ﷺ said he was sent to perfect good character. Good character is weighed heavily on the Day of Judgement; a gentle word, honouring neighbours, and restraining harm are repeatedly emphasised in the Sunnah. Imam al-Nawawī and later scholars treated husn al-khuluq as a path that softens the heart and lights the grave. <em>Practice:</em> choose one trait today — gentleness in speech, keeping a promise, or checking on a neighbour — and do it for Allah alone.";
+      }
+      if (t.includes("knowledge") || t.includes("know more") || t.includes("scholar") || t.includes("ask") || t.includes("fatwa") || t.includes("learned")) {
+        return "<strong>Pondering:</strong> The companions deferred to those with greater knowledge (as in referring questions to Zaid or al-Barāʾ). Seeking clarification from qualified people protects from error. Beneficial knowledge that is acted upon continues after death (Muslim). <em>Practice:</em> before a doubtful transaction or ruling, ask a trustworthy scholar; learn one issue properly rather than guessing.";
+      }
+      if (t.includes("modesty") || t.includes("haya") || t.includes("ḥayā") || t.includes("shame") || t.includes("modest")) {
+        return "<strong>Pondering:</strong> Ḥayāʾ is a branch of faith. It restrains the limbs from what displeases Allah and beautifies character. Scholars link modesty in dress, speech, and online behaviour to protecting the heart. <em>Practice:</em> review one public post or conversation and ask whether it reflects modesty before Allah.";
+      }
+
+      return "<strong>Pondering:</strong> Let this teaching settle in the heart. Ask: What one concrete action can I take today because of these words? That small, sincere change — done for Allah alone — is what will accompany you when all other company is left behind. Start with one step before the day ends.";
     }
 
     // ========== HADITH & VERSE ==========
@@ -3023,32 +3305,104 @@
         resultsEl.innerHTML = `<p>Search unavailable. <a href="https://sunnah.com/search?q=${encodeURIComponent(query)}" target="_blank">Try Sunnah.com</a></p>`;
       }
     }
+    // Curated ayahs with rich English tafseer available (Ibn Kathir abridged via Quran.com)
+    const VERSE_POOL = [
+      { s: 2, a: 255 }, { s: 2, a: 286 }, { s: 2, a: 152 }, { s: 2, a: 153 },
+      { s: 2, a: 183 }, { s: 2, a: 186 }, { s: 2, a: 201 }, { s: 3, a: 8 },
+      { s: 3, a: 102 }, { s: 3, a: 159 }, { s: 4, a: 36 }, { s: 4, a: 103 },
+      { s: 5, a: 2 }, { s: 6, a: 162 }, { s: 7, a: 199 }, { s: 9, a: 51 },
+      { s: 13, a: 28 }, { s: 14, a: 7 }, { s: 16, a: 97 }, { s: 17, a: 23 },
+      { s: 17, a: 24 }, { s: 18, a: 10 }, { s: 18, a: 46 }, { s: 20, a: 25 },
+      { s: 21, a: 87 }, { s: 23, a: 1 }, { s: 24, a: 35 }, { s: 25, a: 74 },
+      { s: 29, a: 69 }, { s: 31, a: 14 }, { s: 33, a: 21 }, { s: 33, a: 56 },
+      { s: 39, a: 53 }, { s: 49, a: 10 }, { s: 49, a: 12 }, { s: 51, a: 56 },
+      { s: 55, a: 1 }, { s: 57, a: 20 }, { s: 59, a: 18 }, { s: 64, a: 11 },
+      { s: 65, a: 2 }, { s: 65, a: 3 }, { s: 67, a: 2 }, { s: 94, a: 5 },
+      { s: 94, a: 6 }, { s: 103, a: 1 }, { s: 103, a: 2 }, { s: 103, a: 3 },
+      { s: 112, a: 1 }, { s: 112, a: 2 }, { s: 112, a: 3 }, { s: 112, a: 4 }
+    ];
+    let versePoolIdx = Math.floor(Math.random() * VERSE_POOL.length);
+
+    function stripHtmlTafseer(htmlStr) {
+      if (!htmlStr) return "";
+      let s = String(htmlStr);
+      s = s.replace(/<br\s*\/?>/gi, "\n");
+      s = s.replace(/<\/p>/gi, "\n");
+      s = s.replace(/<\/h[1-6]>/gi, "\n");
+      s = s.replace(/<li>/gi, "• ");
+      s = s.replace(/<\/li>/gi, "\n");
+      s = s.replace(/<[^>]+>/g, "");
+      s = s.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+      s = s.replace(/\n{3,}/g, "\n\n").trim();
+      // Keep a readable length for mobile
+      if (s.length > 1200) {
+        const cut = s.slice(0, 1200);
+        const last = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf(".\n"));
+        s = (last > 400 ? cut.slice(0, last + 1) : cut) + "…";
+      }
+      return s;
+    }
+
     async function loadVerseInto(elId) {
       const el = document.getElementById(elId);
       if (!el) return;
-      el.innerHTML = '<div class="loading-msg">Loading beautiful verse…</div>';
+      el.innerHTML = '<div class="loading-msg">Loading verse &amp; tafseer…</div>';
       try {
-        const surah = Math.floor(Math.random() * 114) + 1;
-        const [enRes, arRes] = await Promise.all([
-          fetch(`https://api.alquran.cloud/v1/surah/${surah}/en.sahih`),
-          fetch(`https://api.alquran.cloud/v1/surah/${surah}/quran-uthmani`)
+        const pick = VERSE_POOL[versePoolIdx % VERSE_POOL.length];
+        versePoolIdx++;
+        const key = pick.s + ":" + pick.a;
+
+        const [vRes, tRes] = await Promise.all([
+          fetch(`https://api.quran.com/api/v4/verses/by_key/${key}?language=en&translations=20&fields=text_uthmani`),
+          fetch(`https://api.quran.com/api/v4/tafsirs/en-tafisr-ibn-kathir/by_ayah/${key}`)
         ]);
-        const enData = await enRes.json();
-        const arData = await arRes.json();
-        if (enData.data?.ayahs && arData.data?.ayahs) {
-          const idx = Math.floor(Math.random() * enData.data.ayahs.length);
-          const enAyah = enData.data.ayahs[idx];
-          const arAyah = arData.data.ayahs[idx];
-          el.innerHTML = `
-            <div class="arabic-calligraphy">${arAyah.text}</div>
-            <p style="margin-top:0.55rem; font-size:1.02rem">${enAyah.text}</p>
-            <div class="ref">${enData.data.englishName} ${enAyah.numberInSurah} • Sahih International</div>
-            <div class="ponder-box">${ponder(enAyah.text)}</div>`;
-        } else el.innerHTML = "Could not load verse.";
-      } catch(e) { el.innerHTML = "Unable to load verse."; }
+        const vData = await vRes.json();
+        const tData = await tRes.json();
+
+        const verse = vData.verse || {};
+        const arabic = verse.text_uthmani || "";
+        const en = (verse.translations && verse.translations[0] && verse.translations[0].text)
+          ? verse.translations[0].text.replace(/<[^>]+>/g, "")
+          : "";
+        // Surah name from static map fallback
+        const surahNames = {1:"Al-Fatihah",2:"Al-Baqarah",3:"Aal-Imran",4:"An-Nisa",5:"Al-Ma'idah",6:"Al-An'am",7:"Al-A'raf",9:"At-Tawbah",13:"Ar-Ra'd",14:"Ibrahim",16:"An-Nahl",17:"Al-Isra",18:"Al-Kahf",20:"Ta-Ha",21:"Al-Anbiya",23:"Al-Mu'minun",24:"An-Nur",25:"Al-Furqan",29:"Al-Ankabut",31:"Luqman",33:"Al-Ahzab",39:"Az-Zumar",49:"Al-Hujurat",51:"Adh-Dhariyat",55:"Ar-Rahman",57:"Al-Hadid",59:"Al-Hashr",64:"At-Taghabun",65:"At-Talaq",67:"Al-Mulk",94:"Ash-Sharh",103:"Al-Asr",112:"Al-Ikhlas"};
+        const surahName = surahNames[pick.s] || ("Surah " + pick.s);
+
+        let tafseerText = "";
+        if (tData.tafsir && tData.tafsir.text) {
+          tafseerText = stripHtmlTafseer(tData.tafsir.text);
+        }
+        // Prefer passage that mentions context; if empty, try Ma'arif
+        if (!tafseerText || tafseerText.length < 40) {
+          try {
+            const mRes = await fetch(`https://api.quran.com/api/v4/tafsirs/en-tafsir-maarif-ul-quran/by_ayah/${key}`);
+            const mData = await mRes.json();
+            if (mData.tafsir && mData.tafsir.text) {
+              tafseerText = stripHtmlTafseer(mData.tafsir.text);
+            }
+          } catch (e2) {}
+        }
+
+        let ponderBlock = "";
+        if (tafseerText) {
+          const safe = tafseerText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          ponderBlock = `<div class="ponder-box"><strong>Pondering:</strong> ${safe.replace(/\n/g, "<br>")}<div class="ref" style="margin-top:0.45rem">Ibn Kathīr (abridged) · ${surahName} ${pick.a} · via Quran.com</div></div>`;
+        } else {
+          ponderBlock = `<div class="ponder-box">${ponder(en)}</div>`;
+        }
+
+        el.innerHTML = `
+          <div class="arabic-calligraphy">${arabic}</div>
+          <p style="margin-top:0.55rem; font-size:1.02rem">${en}</p>
+          <div class="ref">${surahName} ${pick.a} • Sahih International</div>
+          ${ponderBlock}`;
+      } catch (e) {
+        el.innerHTML = "Unable to load verse. <a href='https://quran.com' target='_blank' rel='noopener'>Open Quran.com</a>";
+      }
     }
     function loadVerse() { loadVerseInto("verse"); }
-    function loadVerseCommands() { loadVerseInto("verse-commands"); }
+    function loadVerse() { loadVerseInto("verse"); }
+    function loadVerseCommands() { /* removed duplicate; no-op */ }
     async function searchQuran() {
       const query = document.getElementById("quran-search").value.trim();
       const resultsEl = document.getElementById("quran-results");
@@ -3283,18 +3637,108 @@
 
     // ========== LIFE EVENTS ==========
     const lifeTopics = [
-      { title: "Patience in Hardship", q: "patience", modern: "In times of job loss, illness, family strain or online hostility, sabr means continuing good deeds while trusting Allah’s wisdom. Journal one hardship daily and write “Hasbiyallah” next to it. Each moment of restrained complaint becomes light that travels ahead to the grave." },
-      { title: "Family & Parents", q: "parents", modern: "Even when parents are difficult or distant, lower the wing of humility. Keep regular contact, offer practical help when needed, and make sincere du‘a for them by name every night before sleep. Serving parents is worship that continues after their death and becomes companionship in the grave." },
-      { title: "Charity & Wealth", q: "charity", modern: "Automate a small monthly sadaqah; give when you receive a raise or good news. Wealth is a trust. Before buying non-essentials, ask “Will this accompany me in the grave?” What is spent for Allah never decreases and becomes shade and intercession after death." },
-      { title: "Controlling Anger", q: "anger", modern: "Online arguments, traffic and workplace stress still call for the Prophetic remedies: sit down, make wudu, leave the place. When anger rises, count to ten and recite the isti‘adhah before speaking. Restraining anger softens the heart and lightens the scales for the Day of Reckoning." },
-      { title: "Prayer & Remembrance", q: "prayer", modern: "Protect the five daily prayers even during travel, meetings or fatigue. Treat each salah as a non-negotiable appointment with Allah; set reminders and prepare a clean space. Guarding the prayer builds a fortress of light that accompanies the believer in the grave." },
-      { title: "Honesty & Trusts", q: "truth", modern: "In business, work and social media, truthfulness builds barakah while deceit destroys it. When tempted to exaggerate or hide, choose the harder truth and seek Allah’s pleasure over people’s praise. A truthful tongue becomes a companion of light in the darkness of the grave." },
-      { title: "Repentance & Mercy", q: "forgiveness", modern: "No sin is too great when tawbah is sincere. After any mistake: stop, regret, resolve, and repair harm done to others. End each day with istighfar and a short review of the heart. Consistent repentance polishes the heart and prepares the grave with the fragrance of hope in Allah’s mercy." }
+      {
+        title: "Job loss, debt, or financial strain",
+        q: "patience",
+        event: "Losing work, facing unpaid bills, or sudden expense",
+        modern: "Scholars frame livelihood tests as part of qadar: the believer responds with gratitude in ease and patience in hardship (Sahih Muslim 2999). Ibn al-Qayyim taught that the past is not fixed by sorrow but by contentment, gratitude, patience, and trust in Allah’s decree. IslamQA and classical manuals urge lawful effort (seeking work, cutting waste, asking qualified help) without despair or unlawful shortcuts.",
+        action: "Today: update one application or budget line, give a small ṣadaqah if you can, and say “Hasbiyallāhu wa niʿmal-wakīl” after each setback. Avoid complaining that questions Allah’s wisdom.",
+        sources: "Qur’an 94:5–6; Muslim 2999; path of sabr in worldly difficulties (classical summaries)"
+      },
+      {
+        title: "Illness in the family or oneself",
+        q: "patience",
+        event: "Chronic illness, hospital visits, or caring for a sick relative",
+        modern: "Calamity can expiate sins and raise ranks when met with sabr. The Prophet ﷺ visited the sick, made duʿāʾ for them, and reminded them of the reward of patience. Wailing, tearing clothes, or words of dissatisfaction with the decree are prohibited; quiet endurance and lawful treatment are the Prophetic path.",
+        action: "Today: one sincere visit or message, one duʿāʾ by name, and one act of service (medicine, errand, or simply sitting with the person). Journal the hardship and write “ḥasbunā Allāh” beside it.",
+        sources: "Bukhari (visiting the sick); Muslim on sabr; rulings on response to calamity"
+      },
+      {
+        title: "Ageing or difficult parents",
+        q: "parents",
+        event: "Elderly care, repeated requests, or a strained parent relationship",
+        modern: "Qur’an 17:23–24 forbids even “uff” of irritation and commands kind speech, especially in old age. Filial duty remains after the rights of Allah; some scholars note the verse addresses the irritation of helping with personal care. A righteous child’s duʿāʾ continues to benefit parents after death (Muslim).",
+        action: "Today: call or visit, ask about one practical need, and make duʿāʾ for them by name before sleep — even if the relationship is hard. Lower the wing of humility (Qur’an 17:24).",
+        sources: "Qur’an 17:23–24; 31:14; Muslim (three ongoing deeds); family-life guidance in fiqh literature"
+      },
+      {
+        title: "Marriage, conflict, or building a home",
+        q: "marriage",
+        event: "Wedding planning, spouse disagreement, or neglect of household rights",
+        modern: "Marriage is a covenant of mercy and mutual rights, not a scoreboard. Islam encourages marriage, forbids unlawful relationships outside it, and counts spending on one’s family among the best spending. Kind speech, fulfilling known rights, and avoiding public shaming of a spouse are repeatedly stressed in the Sunnah and fiqh of the family.",
+        action: "Today: one concrete kindness (help at home, a calm conversation, or a private apology). If conflict is serious, seek a trustworthy mediator rather than social-media venting.",
+        sources: "Qur’an 30:21; 4:19; Sunnah on kind treatment; family-life manuals"
+      },
+      {
+        title: "Birth, naming, and early parenting",
+        q: "children",
+        event: "Newborn, naming, ʿaqīqah, or early tarbiyah stress",
+        modern: "Welcoming a child with gratitude, a good name, and the Prophetic rites (including ʿaqīqah when affordable) is part of the Sunnah. The best gift a parent can give is good education and character training. Daughters raised with kindness are a path to Paradise in authentic reports. Maintenance of children is a legal duty.",
+        action: "Today: make duʿāʾ for the child’s faith and character, learn one Sunnah related to newborns if relevant, and prioritise calm presence over perfect routines.",
+        sources: "Sunnah on ʿaqīqah and naming; reports on raising daughters; fiqh of nafaqah"
+      },
+      {
+        title: "Death of a loved one",
+        q: "death",
+        event: "Funeral, grief, or how to benefit the deceased",
+        modern: "Grief is human; the forbidden is excess that challenges the decree (wailing, self-harm, or despair of Allah’s mercy). The living benefit the dead — by Allah’s permission — through duʿāʾ, istighfār, ṣadaqah on their behalf, and (when conditions are met) ḥajj/ʿumrah. Ongoing charity, beneficial knowledge, and a righteous child’s prayer continue after death (Muslim).",
+        action: "Today: one sincere duʿāʾ for the deceased by name, a small charity on their behalf if you can, and patience with the stages of grief without isolating from ṣalāh and community.",
+        sources: "Muslim (three ongoing deeds); Ghazālī, Ibn Taymiyyah, Ibn al-Qayyim, Nawawī on benefiting the dead"
+      },
+      {
+        title: "Anger at work, online, or at home",
+        q: "anger",
+        event: "Traffic, workplace insult, viral argument, or family flare-up",
+        modern: "The strong person is the one who controls himself in anger. Prophetic remedies: sit if standing, lie down if sitting, make wuḍūʾ, leave the place, and seek refuge from Shayṭān. Qur’an 42:37 praises those who forgive when angry. Uncontrolled anger often produces words one must answer for on the Day of Judgement.",
+        action: "Today: when heat rises, physically leave the chat or room for two minutes, recite the istiʿādhah, and only reply after the pulse settles. If you already spoke harshly, apologise the same day.",
+        sources: "Bukhari & Muslim on anger; Qur’an 42:37; 3:134"
+      },
+      {
+        title: "Guarding prayer in a busy schedule",
+        q: "prayer",
+        event: "Meetings, travel, exams, or shift work competing with ṣalāh times",
+        modern: "The five prayers structure the day around Allah. Protecting them on time — with whatever ease the sharīʿah allows for travel or fear — is prioritised over optional work polish. Scholars stress not delaying until the time exits without a valid excuse, and making up what was missed promptly.",
+        action: "Today: set a reminder 5–10 minutes before each prayer, identify a clean quiet spot at work or school, and treat the prayer slot as a fixed appointment you do not casually move.",
+        sources: "Qur’an 2:238; 4:103; fiqh of prayer times and travel"
+      },
+      {
+        title: "Wealth, spending, and charity",
+        q: "charity",
+        event: "Salary increase, impulse shopping, or hesitation to give",
+        modern: "Wealth is a trust. Charity does not decrease wealth; angels daily invoke blessing on the giver and loss on the miser (Bukhari). Zakāt is an obligation on qualifying wealth; ṣadaqah beyond that is a path of purification and shade on the Day of Judgement. Ongoing charity continues after death.",
+        action: "Today: automate a small monthly ṣadaqah or give something when good news arrives. Before a non-essential purchase, ask whether it will accompany you in the grave.",
+        sources: "Bukhari (angels’ duʿāʾ); Muslim (ongoing deeds); zakāt fiqh summaries"
+      },
+      {
+        title: "Repentance after a fall",
+        q: "forgiveness",
+        event: "A sin, a broken promise, or harm done to another person",
+        modern: "Tawbah remains open until the soul reaches the throat. Conditions emphasised by scholars: stop the sin, regret it, resolve not to return, and restore rights or seek forgiveness from anyone wronged. The Prophet ﷺ sought forgiveness frequently despite being forgiven (Bukhari 6307). Regular istighfār is linked to relief from distress (Abu Dawud, hasan).",
+        action: "Today: name the mistake privately before Allah, repair any human right involved, and replace the slot of the sin with a small fixed good deed for the next week.",
+        sources: "Bukhari 6307; Abu Dawud 1518; classical chapters on tawbah"
+      },
+      {
+        title: "Honesty in business and online life",
+        q: "truth",
+        event: "Sales pitch, résumé, social media image, or a entrusted secret",
+        modern: "Truthfulness leads to righteousness and Paradise; lying leads to wickedness and the Fire (Bukhari & Muslim). Amānah (trust) is part of faith; its betrayal is a sign of hypocrisy. Barakah follows clear dealing; deceit may bring short gain and long loss.",
+        action: "Today: correct one exaggeration you have been repeating, return or clarify one trust, and prefer the harder truthful sentence in your next negotiation or post.",
+        sources: "Bukhari & Muslim (truthfulness); hadith on signs of hypocrisy"
+      }
     ];
     async function loadLifeEvent() {
       const el = document.getElementById("life-event");
       el.innerHTML = '<div class="loading-msg">Loading guidance…</div>';
       const topic = lifeTopics[Math.floor(Math.random() * lifeTopics.length)];
+      const eventLine = topic.event
+        ? `<p style="font-size:0.92rem;color:var(--text-muted);margin:0.25rem 0 0.65rem"><strong>Real-life situation:</strong> ${topic.event}</p>`
+        : "";
+      const actionBox = topic.action
+        ? `<div class="ponder-box" style="border-left-color:#0f4c3a"><strong>Action today:</strong> ${topic.action}</div>`
+        : "";
+      const sourceLine = topic.sources
+        ? `<div class="ref">Grounded in: ${topic.sources}</div>`
+        : "";
       try {
         const res = await fetch("https://ummahapi.com/api/hadith/search?q=" + encodeURIComponent(topic.q));
         const data = await res.json();
@@ -3304,15 +3748,21 @@
           const text = h.hadith_english || h.english || h.text || "";
           el.innerHTML = `
             <div class="story-title">${topic.title}</div>
+            ${eventLine}
             <p><strong>From the Sunnah:</strong> “${text}”</p>
-            <div class="ponder-box">${topic.modern}</div>
+            <div class="ponder-box"><strong>Pondering:</strong> ${topic.modern}</div>
+            ${actionBox}
             <div class="ponder-box">${ponder(text)}</div>
-            <div class="ref">${[h.collection, h.hadithNumber].filter(Boolean).join(" ")}</div>`;
+            <div class="ref">${[h.collection, h.hadithNumber].filter(Boolean).join(" ")}</div>
+            ${sourceLine}`;
         } else throw new Error("empty");
       } catch(e) {
         el.innerHTML = `
           <div class="story-title">${topic.title}</div>
-          <div class="ponder-box">${topic.modern}</div>
+          ${eventLine}
+          <div class="ponder-box"><strong>Pondering:</strong> ${topic.modern}</div>
+          ${actionBox}
+          ${sourceLine}
           <p style="margin-top:0.55rem;">Search “${topic.q}” on <a href="https://sunnah.com/search?q=${encodeURIComponent(topic.q)}" target="_blank" rel="noopener">sunnah.com</a> for authentic narrations.</p>`;
       }
     }
@@ -3450,7 +3900,6 @@
     loadLesson(false);
     loadLifeEvent();
     loadVerse();
-    loadVerseCommands();
     loadHadith();
     loadSeerah();
     loadProphetStory();
@@ -3621,6 +4070,603 @@
       btn.classList.toggle('show', window.scrollY > 420);
     }, { passive: true });
 
+
+
+    // ========== TAJWEED LMS ==========
+    const TJ_KEY = 'clarity_tajweed_progress_v1';
+    const TJ_LEVELS = [
+      {
+        id: 'L1',
+        icon: '🌱',
+        title: 'Level 1 — Beginner Foundations',
+        goal: 'Correct makhārij for all letters; short/long vowels; basic qalqalah & ghunnah; read Al-Fātiḥah and short surahs accurately.',
+        weeks: '4–8 weeks',
+        lessons: [
+          { id: 'L1-1', title: 'Introduction — what Tajweed is', res: 'https://www.youtube.com/watch?v=dyliFOsUPkU', resLabel: 'Free · Easy Way L1a (English)' },
+          { id: 'L1-2', title: 'Makhārij of م and ب', res: 'https://www.youtube.com/watch?v=zJ8pEHHTFJM', resLabel: 'Free · Easy Way L2a' },
+          { id: 'L1-3', title: 'Throat letters & general makhārij', res: 'https://www.youtube.com/watch?v=exbOt_P6sRU', resLabel: 'Free · Makhaarij & Sifaat overview' },
+          { id: 'L1-4', title: 'Articulation points (detailed)', res: 'https://www.youtube.com/watch?v=KW_tMiNQ7UA', resLabel: 'Free · General makhārij' },
+          { id: 'L1-5', title: 'Ṣifāt — letter qualities', res: 'https://www.youtube.com/watch?v=9BkGqaU3I2g', resLabel: 'Free · The Sifaat' },
+          { id: 'L1-6', title: 'Heavy letters (tafkhīm)', res: 'https://www.youtube.com/watch?v=r4sFQ1-1GWE', resLabel: 'Free · 7 full-mouth letters' },
+          { id: 'L1-7', title: 'Qalqalah & ghunnah intro', res: 'https://www.youtube.com/playlist?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT', resLabel: 'Free · Golden Tajweed series' },
+          { id: 'L1-8', title: 'Long vowels / madd aṣlī', res: 'https://www.youtube.com/watch?v=BEtV5xMXsPY', resLabel: 'Free · Long vowels lesson' },
+          { id: 'L1-9', title: 'Practice Al-Fātiḥah', res: 'https://quran.com/1', resLabel: 'Free · Quran.com Al-Fātiḥah' },
+          { id: 'L1-10', title: 'Short surahs Al-Ikhlāṣ–An-Nās', res: 'https://quran.com/112', resLabel: 'Free · Quran.com practice' }
+        ]
+      },
+      {
+        id: 'L2',
+        icon: '🌿',
+        title: 'Level 2 — Intermediate Rules',
+        goal: 'Apply nūn sākinah & tanwīn, mīm sākinah, major madd types, tafkhīm/tarqīq while reading longer passages.',
+        weeks: '6–10 weeks',
+        lessons: [
+          { id: 'L2-1', title: 'Noon sākinah — Iẓhār (clear)', res: 'https://www.youtube.com/watch?v=fBMn9kNDRpo', resLabel: 'Free · Easy Way · Izhar' },
+          { id: 'L2-2', title: 'Noon sākinah — Idghām', res: 'https://www.youtube.com/watch?v=VP_cm3eypJ8', resLabel: 'Free · Idghaam lesson' },
+          { id: 'L2-3', title: 'Noon sākinah — Iqlāb', res: 'https://www.youtube.com/watch?v=bEVXY6_nCYc', resLabel: 'Free · Iqlab lesson' },
+          { id: 'L2-4', title: 'Noon sākinah — Ikhfāʾ', res: 'https://www.youtube.com/watch?v=sR1RAWHCHrs', resLabel: 'Free · Four noon rules overview' },
+          { id: 'L2-5', title: 'All four noon rules (full class)', res: 'https://www.youtube.com/watch?v=gbwEvXiDqtM', resLabel: 'Free · Complete noon rules' },
+          { id: 'L2-6', title: 'Meem sākinah rules', res: 'https://www.youtube.com/watch?v=Otfs6eqCdwI', resLabel: 'Free · Easy Way · Meem sakinah' },
+          { id: 'L2-7', title: 'Types of Madd with examples', res: 'https://www.youtube.com/watch?v=y8l910i9FqA', resLabel: 'Free · Types of Madd' },
+          { id: 'L2-8', title: 'Madd muttaṣil & munfaṣil', res: 'https://www.youtube.com/watch?v=Kb86WcyOEH0', resLabel: 'Free · Separated & attached madd' },
+          { id: 'L2-9', title: 'Tafkhīm & tarqīq of Rāʾ', res: 'https://www.youtube.com/watch?v=Ji_PoySPBnM', resLabel: 'Free · Raa heavy/light' },
+          { id: 'L2-10', title: 'Practice Al-Mulk with rules', res: 'https://quran.com/67', resLabel: 'Free · Quran.com Al-Mulk' }
+        ]
+      },
+      {
+        id: 'L3',
+        icon: '🌳',
+        title: 'Level 3 — Advanced Refinement',
+        goal: 'Waqf & ibtidāʾ, deeper madd, laḥn awareness, sustained tartīl with free advanced playlists.',
+        weeks: 'Ongoing · ideally with a teacher',
+        lessons: [
+          { id: 'L3-1', title: 'Stop & pause signs (waqf)', res: 'https://www.youtube.com/watch?v=u4gyqlxDRa0', resLabel: 'Free · Stop and pause signs' },
+          { id: 'L3-2', title: 'Madd lāzim & advanced madd', res: 'https://www.youtube.com/watch?v=gE_3yONepVI', resLabel: 'Free · Madd al-Laazim' },
+          { id: 'L3-3', title: 'Full Golden series review (Azhar teacher)', res: 'https://www.youtube.com/playlist?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT', resLabel: 'Free · Zero to Hero playlist' },
+          { id: 'L3-4', title: 'Tajweed Made Easy — theory track', res: 'https://www.youtube.com/playlist?list=PLXdFLUVkmsvHoiasdup0mQYeYfWso_M1r', resLabel: 'Free · 52-lesson playlist' },
+          { id: 'L3-5', title: 'English structured lessons (Quran University)', res: 'https://www.youtube.com/playlist?list=PLnQLAsLR_hgX5f9QHGDDn9fel5t7lmQBD', resLabel: 'Free · 25 English lessons' },
+          { id: 'L3-6', title: 'Common mistakes to avoid', res: 'https://www.youtube.com/watch?v=WGKIFZ73GX0', resLabel: 'Free · Easy rules overview' },
+          { id: 'L3-7', title: 'Practice Al-Kahf (long application)', res: 'https://quran.com/18', resLabel: 'Free · Quran.com Al-Kahf' },
+          { id: 'L3-8', title: 'Daily tartīl on Quran.com (any juzʾ)', res: 'https://quran.com', resLabel: 'Free · Quran.com reader + audio' }
+        ]
+      }
+    ];
+
+    function tjLoadProgress() {
+      try {
+        return JSON.parse(localStorage.getItem(TJ_KEY) || '{}');
+      } catch (e) { return {}; }
+    }
+    function tjSaveProgress(map) {
+      try { localStorage.setItem(TJ_KEY, JSON.stringify(map)); } catch (e) {}
+    }
+    function tjIsDone(map, id) { return !!map[id]; }
+    function tjToggle(lessonId) {
+      const map = tjLoadProgress();
+      map[lessonId] = !map[lessonId];
+      if (!map[lessonId]) delete map[lessonId];
+      tjSaveProgress(map);
+      tjRender();
+    }
+    function tjResetLevel(levelId) {
+      if (!confirm('Reset progress for this level?')) return;
+      const map = tjLoadProgress();
+      const level = TJ_LEVELS.find(l => l.id === levelId);
+      if (!level) return;
+      level.lessons.forEach(ls => { delete map[ls.id]; });
+      tjSaveProgress(map);
+      tjRender();
+    }
+    function tjMarkLevelComplete(levelId) {
+      const map = tjLoadProgress();
+      const level = TJ_LEVELS.find(l => l.id === levelId);
+      if (!level) return;
+      level.lessons.forEach(ls => { map[ls.id] = true; });
+      tjSaveProgress(map);
+      tjRender();
+    }
+    function tjRender() {
+      const root = document.getElementById('tj-levels-root');
+      if (!root) return;
+      const map = tjLoadProgress();
+      let total = 0, done = 0;
+      TJ_LEVELS.forEach(l => {
+        total += l.lessons.length;
+        l.lessons.forEach(ls => { if (tjIsDone(map, ls.id)) done++; });
+      });
+      const overallLabel = document.getElementById('tj-overall-label');
+      const overallFill = document.getElementById('tj-overall-fill');
+      if (overallLabel) overallLabel.textContent = done + ' / ' + total + ' lessons';
+      if (overallFill) overallFill.style.width = (total ? Math.round(done / total * 100) : 0) + '%';
+
+      root.innerHTML = TJ_LEVELS.map(level => {
+        const levelDone = level.lessons.filter(ls => tjIsDone(map, ls.id)).length;
+        const complete = levelDone === level.lessons.length;
+        const pct = Math.round(levelDone / level.lessons.length * 100);
+        const lessonsHtml = level.lessons.map(ls => {
+          const isDone = tjIsDone(map, ls.id);
+          return `<div class="tj-lesson${isDone ? ' done' : ''}">
+            <input type="checkbox" id="tj-${ls.id}" ${isDone ? 'checked' : ''} onchange="tjToggle('${ls.id}')">
+            <div>
+              <label for="tj-${ls.id}">${ls.title}</label>
+              <div class="tj-res"><a href="${ls.res}" target="_blank" rel="noopener">${ls.resLabel} →</a></div>
+            </div>
+          </div>`;
+        }).join('');
+        return `<div class="tajweed-level" id="tj-level-${level.id}">
+          <h3>${level.icon} ${level.title}</h3>
+          <p class="level-goal"><strong>Goal:</strong> ${level.goal}</p>
+          <div class="tj-level-meta">
+            <span class="tj-badge${complete ? ' complete' : ''}">${levelDone}/${level.lessons.length} · ${pct}%</span>
+            <span class="tj-badge">⏱ ${level.weeks}</span>
+            ${complete ? '<span class="tj-badge complete">✓ Level complete</span>' : ''}
+          </div>
+          <div class="track" style="height:0.4rem;border-radius:999px;background:var(--accent-soft);overflow:hidden;margin-bottom:0.65rem">
+            <div class="fill" style="height:100%;width:${pct}%;background:var(--accent);border-radius:999px"></div>
+          </div>
+          ${lessonsHtml}
+          <div class="tj-level-actions">
+            <button type="button" class="btn-soft" onclick="tjMarkLevelComplete('${level.id}')">Mark all done</button>
+            <button type="button" class="btn-secondary" onclick="tjResetLevel('${level.id}')">Reset level</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+
+    // ========== CLARITY NOTES (local library) ==========
+    const NOTES_KEY = 'clarity-notes-v1';
+    const NOTES_VIEW_KEY = 'clarity-notes-view';
+    let notesState = {
+      notes: [],
+      selectedId: null,
+      query: '',
+      tagFilter: '',
+      viewMode: 'edit',
+      saveTimer: null
+    };
+
+    function notesNewId() {
+      return 'n-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+    }
+    function notesDisplayTitle(n) {
+      const t = (n.title || '').trim();
+      if (t) return t;
+      const first = (n.body || '').split('\n').map(l => l.replace(/^#+\s*/, '').trim()).find(Boolean);
+      return first || 'Untitled';
+    }
+    function notesEmpty(partial) {
+      const now = Date.now();
+      return Object.assign({
+        id: notesNewId(), title: '', body: '', tag: '', grave: false,
+        createdAt: now, updatedAt: now
+      }, partial || {});
+    }
+    function notesSort(list) {
+      return list.slice().sort((a, b) => b.updatedAt - a.updatedAt);
+    }
+    function notesMatch(n, q) {
+      const needle = (q || '').trim().toLowerCase();
+      if (!needle) return true;
+      return (n.title || '').toLowerCase().includes(needle)
+        || (n.body || '').toLowerCase().includes(needle)
+        || (n.tag || '').toLowerCase().includes(needle);
+    }
+    function notesPersist() {
+      try {
+        localStorage.setItem(NOTES_KEY, JSON.stringify({
+          notes: notesState.notes,
+          selectedId: notesState.selectedId
+        }));
+      } catch (e) { /* quota */ }
+      const el = document.getElementById('notes-save-status');
+      if (el) el.textContent = 'Saved locally · ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    }
+    function notesSeedLibrary() {
+      const t = (iso) => Date.parse(iso);
+      return [
+        {
+          id: 'seed-welcome', title: 'Welcome to Clarity Notes', tag: 'Guide', grave: false,
+          createdAt: t('2026-08-01T08:00:00Z'), updatedAt: t('2026-08-30T09:00:00Z'),
+          body: `A quiet place to write, remember, and send light ahead.
+
+This library is seeded from **Clarity — Furnish Your Grave**. Everything lives on this device. Nothing is uploaded.
+
+## Writing
+- Title appears in the sidebar.
+- Body is **Markdown** — use Preview or Split.
+- Notes save as you type.
+
+## Keys
+| Key | Action |
+| --- | --- |
+| Ctrl/⌘ N | New note |
+| / | Focus search |
+| Ctrl/⌘ E | Cycle edit / split / preview |
+| Esc | Clear search |
+
+> Furnish your grave. Prepare for the long stay.`
+        },
+        {
+          id: 'seed-grave', title: 'Furnishing the Grave', tag: 'Grave', grave: true,
+          createdAt: t('2026-08-02T08:00:00Z'), updatedAt: t('2026-08-29T18:20:00Z'),
+          body: `The grave is a long stay. Every istighfar and salawat can be sent ahead as light.
+
+**Today’s intention:** I am sending these deeds to my grave as companions and light.
+
+## A daily practice
+1. Begin with *Astaghfirullah*.
+2. Send *salawat* upon the Prophet ﷺ (Muslim 408).
+3. Ask once: *If I die tonight, what have I sent ahead?* Then do one small good deed.
+
+The Prophet ﷺ said: “Remember often the destroyer of pleasures (death).” Remembrance keeps the heart soft and the deeds purposeful.`
+        },
+        {
+          id: 'seed-deceased', title: 'What Benefits the Deceased', tag: 'Grave', grave: true,
+          createdAt: t('2026-08-02T09:00:00Z'), updatedAt: t('2026-08-28T16:10:00Z'),
+          body: `Educational notes from mainstream Sunni scholarship — for a particular case, consult a local scholar.
+
+## Practical summary
+- **Duʿāʾ & istighfār** — the most agreed-upon gift
+- **Ṣadaqah** (including ongoing charity)
+- **Qurʾān** with the intention that its reward reaches them
+- **Hajj / ʿUmrah** on their behalf when conditions are met
+- Righteous children who pray for them
+
+Imām al-Ghazālī, Ibn Taymiyyah, Ibn al-Qayyim, and al-Nawawī all affirmed that the living can benefit the dead through these doors by Allah’s permission.`
+        },
+        {
+          id: 'seed-commands', title: 'Allah’s Commands to the Believers', tag: 'Quran', grave: false,
+          createdAt: t('2026-08-03T08:00:00Z'), updatedAt: t('2026-08-27T12:00:00Z'),
+          body: `Use the **Commands** tab to surface a verse of instruction, then write one concrete action here.
+
+Example reflection template:
+
+> Verse: …
+> My action today: …
+> Status: working on it / done
+
+Small, sincere obedience is what travels with you when company is left behind.`
+        },
+        {
+          id: 'seed-zikr', title: 'Daily Zikr and Their Virtues', tag: 'Practice', grave: false,
+          createdAt: t('2026-08-03T09:00:00Z'), updatedAt: t('2026-08-26T10:00:00Z'),
+          body: `Track a simple daily set:
+
+- Subḥānallāhi wa biḥamdihi (100×) — forgiveness like the foam of the sea (Muslim)
+- Tasbīḥ Fāṭimī after each ṣalāh
+- Salawāt upon the Prophet ﷺ
+- Astaghfirullāh throughout the day
+
+Write counts or intentions below so the habit stays visible.`
+        },
+        {
+          id: 'seed-seerah', title: 'Seerah Moments', tag: 'Seerah', grave: false,
+          createdAt: t('2026-08-04T08:00:00Z'), updatedAt: t('2026-08-25T14:00:00Z'),
+          body: `After reading a seerah card, capture the lesson in one sentence and one action.
+
+Examples from the library:
+- Mercy with children → shorten what burdens others
+- Forgiving Makkah → power paired with mercy
+- Serving his family → greatness includes humility at home
+
+**My note:**`
+        },
+        {
+          id: 'seed-hifz', title: 'Hifz — Light for the Grave', tag: 'Practice', grave: true,
+          createdAt: t('2026-08-05T08:00:00Z'), updatedAt: t('2026-08-24T09:00:00Z'),
+          body: `Memorisation is light that can accompany the believer.
+
+Daily goal idea: a few ayahs with meaning, not speed alone.
+
+- Surah / ayah range:
+- Reviewed today:
+- Weak spots to return to:
+
+Ask Allah for firmness and sincerity.`
+        },
+        {
+          id: 'seed-character', title: 'Character and Life Guidance', tag: 'Guidance', grave: false,
+          createdAt: t('2026-08-06T08:00:00Z'), updatedAt: t('2026-08-23T11:00:00Z'),
+          body: `Pick one trait this week: patience, honesty, gentleness, or restraint of anger.
+
+**Situation I faced:**
+**What the Sunnah called for:**
+**What I will try next time:**`
+        }
+      ];
+    }
+    function notesLoad() {
+      let loaded = null;
+      try {
+        const raw = localStorage.getItem(NOTES_KEY);
+        if (raw) loaded = JSON.parse(raw);
+      } catch (e) {}
+      if (loaded && Array.isArray(loaded.notes) && loaded.notes.length) {
+        notesState.notes = loaded.notes.map(n => ({
+          id: String(n.id || notesNewId()),
+          title: String(n.title || ''),
+          body: String(n.body || ''),
+          tag: String(n.tag || ''),
+          grave: !!n.grave,
+          createdAt: n.createdAt || Date.now(),
+          updatedAt: n.updatedAt || Date.now()
+        }));
+        notesState.selectedId = loaded.selectedId && notesState.notes.some(n => n.id === loaded.selectedId)
+          ? loaded.selectedId
+          : (notesState.notes[0] && notesState.notes[0].id) || null;
+      } else {
+        notesState.notes = notesSeedLibrary();
+        notesState.selectedId = notesState.notes[0].id;
+        notesPersist();
+      }
+      try {
+        const v = localStorage.getItem(NOTES_VIEW_KEY);
+        if (v === 'edit' || v === 'split' || v === 'preview') notesState.viewMode = v;
+      } catch (e) {}
+      notesRender();
+    }
+    function notesFiltered() {
+      return notesSort(notesState.notes.filter(n => {
+        if (notesState.tagFilter && (n.tag || '') !== notesState.tagFilter) return false;
+        return notesMatch(n, notesState.query);
+      }));
+    }
+    function notesRenderList() {
+      const box = document.getElementById('notes-list');
+      if (!box) return;
+      const list = notesFiltered();
+      if (!list.length) {
+        box.innerHTML = '<p style="padding:0.75rem;font-size:0.85rem;color:var(--text-muted)">No notes match.</p>';
+        return;
+      }
+      box.innerHTML = list.map(n => {
+        const active = n.id === notesState.selectedId ? ' active' : '';
+        const tag = n.tag ? `<span class="ni-tag">${escapeHtmlNotes(n.tag)}</span>` : '<span></span>';
+        const grave = n.grave ? ' 🌙' : '';
+        const when = new Date(n.updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        return `<div class="note-item${active}" role="option" aria-selected="${!!active}" onclick="notesSelect('${n.id}')">
+          <div class="ni-title">${escapeHtmlNotes(notesDisplayTitle(n))}${grave}</div>
+          <div class="ni-meta">${tag}<span>${when}</span></div>
+        </div>`;
+      }).join('');
+    }
+    function notesRenderTags() {
+      const el = document.getElementById('notes-tag-filter');
+      if (!el) return;
+      const tags = Array.from(new Set(notesState.notes.map(n => n.tag).filter(Boolean))).sort();
+      const all = ['', ...tags];
+      el.innerHTML = all.map(t => {
+        const label = t || 'All';
+        const active = notesState.tagFilter === t ? ' active' : '';
+        return `<button type="button" class="notes-tag-chip${active}" onclick="notesSetTagFilter('${escapeHtmlNotes(t).replace(/'/g, '')}')">${escapeHtmlNotes(label)}</button>`;
+      }).join('');
+    }
+    function notesRenderEditor() {
+      const empty = document.getElementById('notes-editor-empty');
+      const active = document.getElementById('notes-editor-active');
+      const n = notesState.notes.find(x => x.id === notesState.selectedId);
+      if (!n) {
+        if (empty) empty.style.display = 'flex';
+        if (active) active.style.display = 'none';
+        return;
+      }
+      if (empty) empty.style.display = 'none';
+      if (active) active.style.display = 'flex';
+      const title = document.getElementById('notes-title');
+      const body = document.getElementById('notes-body');
+      const tagSel = document.getElementById('notes-tag-select');
+      if (title && document.activeElement !== title) title.value = n.title || '';
+      if (body && document.activeElement !== body) body.value = n.body || '';
+      if (tagSel) tagSel.value = n.tag || '';
+      const gBtn = document.getElementById('notes-grave-btn');
+      if (gBtn) gBtn.textContent = n.grave ? '🌙 Marked for grave' : '🌙 Grave';
+      const gStat = document.getElementById('notes-grave-status');
+      if (gStat) gStat.innerHTML = n.grave ? '<span class="notes-grave-badge">🌙 Light for the grave</span>' : '';
+      notesApplyView();
+      notesRenderPreview();
+    }
+    function notesRender() {
+      notesRenderTags();
+      notesRenderList();
+      notesRenderEditor();
+    }
+    function notesSelect(id) {
+      notesState.selectedId = id;
+      notesPersist();
+      notesRender();
+      // mobile: show editor
+      const listPane = document.getElementById('notes-list-pane');
+      const edPane = document.getElementById('notes-editor-pane');
+      if (window.innerWidth <= 700 && listPane && edPane) {
+        listPane.classList.add('collapsed-mobile');
+        edPane.classList.remove('hidden-mobile');
+      }
+    }
+    function notesSetQuery(q) {
+      notesState.query = q;
+      notesRenderList();
+    }
+    function notesSetTagFilter(t) {
+      notesState.tagFilter = t;
+      notesRender();
+    }
+    function notesCreate(prefill) {
+      const note = notesEmpty(prefill || {});
+      notesState.notes = [note, ...notesState.notes];
+      notesState.selectedId = note.id;
+      notesState.query = '';
+      notesState.tagFilter = '';
+      notesState.viewMode = 'edit';
+      notesPersist();
+      notesRender();
+      setTimeout(() => {
+        const t = document.getElementById('notes-title');
+        if (t) t.focus();
+      }, 50);
+      return note.id;
+    }
+    function notesUpdateField(field, value) {
+      const id = notesState.selectedId;
+      if (!id) return;
+      notesState.notes = notesState.notes.map(n => {
+        if (n.id !== id) return n;
+        const next = Object.assign({}, n, { updatedAt: Date.now() });
+        next[field] = value;
+        return next;
+      });
+      if (notesState.saveTimer) clearTimeout(notesState.saveTimer);
+      notesState.saveTimer = setTimeout(() => {
+        notesPersist();
+        notesRenderList();
+        notesRenderTags();
+        if (field === 'body') notesRenderPreview();
+      }, 280);
+      if (field === 'body') notesRenderPreview();
+      if (field === 'tag') notesRenderList();
+    }
+    function notesToggleGrave() {
+      const id = notesState.selectedId;
+      if (!id) return;
+      notesState.notes = notesState.notes.map(n => n.id === id ? Object.assign({}, n, { grave: !n.grave, updatedAt: Date.now() }) : n);
+      notesPersist();
+      notesRender();
+    }
+    function notesRequestDelete() {
+      const id = notesState.selectedId;
+      if (!id) return;
+      const n = notesState.notes.find(x => x.id === id);
+      if (!n) return;
+      if (!confirm('Delete note “' + notesDisplayTitle(n) + '”? This cannot be undone.')) return;
+      notesState.notes = notesState.notes.filter(x => x.id !== id);
+      notesState.selectedId = notesState.notes[0] ? notesState.notes[0].id : null;
+      notesPersist();
+      notesRender();
+    }
+    function notesRestoreSeed() {
+      if (!confirm('Restore the starter library? Your current notes will be replaced.')) return;
+      notesState.notes = notesSeedLibrary();
+      notesState.selectedId = notesState.notes[0].id;
+      notesPersist();
+      notesRender();
+    }
+    function notesSetView(mode) {
+      notesState.viewMode = mode;
+      try { localStorage.setItem(NOTES_VIEW_KEY, mode); } catch (e) {}
+      notesApplyView();
+    }
+    function notesCycleView() {
+      const order = ['edit', 'split', 'preview'];
+      const i = order.indexOf(notesState.viewMode);
+      notesSetView(order[(i + 1) % order.length]);
+    }
+    function notesApplyView() {
+      const area = document.getElementById('notes-body-area');
+      if (!area) return;
+      area.classList.remove('split', 'edit-only', 'preview-only');
+      if (notesState.viewMode === 'split') area.classList.add('split');
+      else if (notesState.viewMode === 'preview') area.classList.add('preview-only');
+      else area.classList.add('edit-only');
+      ['edit','split','preview'].forEach(m => {
+        const b = document.getElementById('nv-' + m);
+        if (b) b.classList.toggle('active', notesState.viewMode === m);
+      });
+      if (notesState.viewMode !== 'edit') notesRenderPreview();
+    }
+    function escapeHtmlNotes(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function notesSimpleMarkdown(src) {
+      let s = escapeHtmlNotes(src || '');
+      // code blocks
+      s = s.replace(/```([\s\S]*?)```/g, (_, code) => '<pre><code>' + code.trim() + '</code></pre>');
+      // tables (simple)
+      s = s.replace(/(?:^|\n)((?:\|.+\|(?:\n|$))+)/g, (block) => {
+        const rows = block.trim().split('\n').filter(Boolean);
+        if (rows.length < 2) return block;
+        const parseRow = r => r.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+        const head = parseRow(rows[0]);
+        const bodyRows = rows.slice(1).filter(r => !/^\|?\s*:?-+:?\s*\|/.test(r));
+        let html = '<table><thead><tr>' + head.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody>';
+        bodyRows.forEach(r => {
+          html += '<tr>' + parseRow(r).map(c => '<td>' + c + '</td>').join('') + '</tr>';
+        });
+        return html + '</tbody></table>';
+      });
+      s = s.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      s = s.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      s = s.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      s = s.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+      s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+      s = s.replace(/^\- (.+)$/gm, '<li>$1</li>');
+      s = s.replace(/(?:<li>.*<\/li>\n?)+/g, m => '<ul>' + m + '</ul>');
+      s = s.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      // paragraphs
+      s = s.split(/\n{2,}/).map(p => {
+        if (/^<(h[123]|ul|ol|table|blockquote|pre)/.test(p.trim())) return p;
+        return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+      }).join('\n');
+      return s;
+    }
+    function notesRenderPreview() {
+      const prev = document.getElementById('notes-preview');
+      const body = document.getElementById('notes-body');
+      if (!prev) return;
+      const text = body ? body.value : ((notesState.notes.find(n => n.id === notesState.selectedId) || {}).body || '');
+      prev.innerHTML = notesSimpleMarkdown(text);
+    }
+    function notesQuickFromSection(tag, title, grave) {
+      notesCreate({
+        title: title || ('Note · ' + tag),
+        tag: tag || 'Reflection',
+        grave: !!grave,
+        body: grave
+          ? '**Intention for the grave**\n\n'
+          : '**Reflection**\n\n'
+      });
+      switchTab('notes');
+    }
+    // Keyboard shortcuts when Notes tab is active
+    document.addEventListener('keydown', function (e) {
+      const panel = document.getElementById('tab-notes');
+      if (!panel || !panel.classList.contains('active')) return;
+      const mod = e.metaKey || e.ctrlKey;
+      const t = e.target;
+      const typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+      if (e.key === 'Escape') {
+        const search = document.getElementById('notes-search');
+        if (search && notesState.query) {
+          search.value = '';
+          notesSetQuery('');
+          e.preventDefault();
+        }
+        return;
+      }
+      if (e.key === '/' && !typing) {
+        e.preventDefault();
+        const search = document.getElementById('notes-search');
+        if (search) { search.focus(); search.select(); }
+        return;
+      }
+      if (mod && e.key.toLowerCase() === 'n') {
+        e.preventDefault();
+        notesCreate();
+        return;
+      }
+      if (mod && e.key.toLowerCase() === 'e') {
+        e.preventDefault();
+        notesCycleView();
+      }
+    });
+
+    // Init notes on load
+    notesLoad();
+
+
+    tjRender();
+    if (typeof tjRender === "function") tjRender();
     updateProgressPills();
     renderBookmarks();
 
@@ -3633,6 +4679,7 @@
       <button type="button" class="mb-tab" data-tab="commands" onclick="switchTab('commands')"><span class="mb-icon">📜</span>Commands</button>
       <button type="button" class="mb-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="mb-icon">📖</span>Seerah</button>
       <button type="button" class="mb-tab" data-tab="grave" onclick="switchTab('grave')"><span class="mb-icon">🌙</span>Grave</button>
+      <button type="button" class="mb-tab" data-tab="notes" onclick="switchTab('notes')"><span class="mb-icon">📝</span>Notes</button>
       <button type="button" class="mb-tab" data-tab="search" onclick="switchTab('search')"><span class="mb-icon">🔍</span>Search</button>
     </div>
   </nav>
