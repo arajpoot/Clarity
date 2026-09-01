@@ -1528,12 +1528,96 @@
       gap: 0.45rem;
     }
     .meme-actions button { margin: 0; }
+    .meme-urdu-section {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px dashed var(--border);
+    }
+    .meme-urdu-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+    .meme-urdu-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+      line-height: 1.45;
+    }
+    .meme-urdu-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.65rem;
+    }
+    .meme-urdu-toolbar button { margin: 0; padding: 0.45rem 0.85rem; font-size: 0.86rem; }
+    .meme-urdu-preview {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.65rem;
+      min-height: 4.5rem;
+    }
+    .meme-urdu-empty { color: var(--text-muted); font-size: 0.9rem; font-style: italic; }
+    .meme-urdu-preview .mu-arabic {
+      font-family: 'Scheherazade New', Amiri, 'Noto Naskh Arabic', serif;
+      direction: rtl;
+      font-size: 1.35rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      text-align: center;
+    }
+    .meme-urdu-preview .mu-urdu {
+      font-family: 'Noto Naskh Arabic', 'Scheherazade New', serif;
+      direction: rtl;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+    .meme-urdu-preview .mu-en {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 0.25rem;
+    }
+    .meme-urdu-preview .mu-ref {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-top: 0.35rem;
+    }
+    .meme-urdu-url-row {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .meme-urdu-url-row input {
+      flex: 1;
+      min-width: 160px;
+      margin: 0;
+      font-size: 0.88rem;
+    }
+    .meme-urdu-url-row button {
+      margin: 0;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
     @media (max-width: 560px) {
       .meme-toolbar { flex-direction: column; align-items: stretch; }
       .meme-toolbar select, .meme-upload-btn { width: 100%; justify-content: center; }
       .meme-text-box textarea { font-size: 0.95rem; }
       .meme-actions { justify-content: stretch; }
       .meme-actions button { flex: 1; }
+      .meme-urdu-toolbar { flex-direction: column; }
+      .meme-urdu-toolbar button { width: 100%; }
     }
 
     /* Tajweed LMS */
@@ -2538,11 +2622,11 @@
             <div class="meme-controls">
               <div class="meme-ctrl-row" style="flex-direction:column;align-items:stretch;gap:0.35rem">
                 <label for="meme-top-input">Top text</label>
-                <textarea id="meme-top-input" rows="2" maxlength="120" placeholder="TOP TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black',sans-serif;font-weight:700;text-transform:uppercase;text-align:center"></textarea>
+                <textarea id="meme-top-input" rows="3" maxlength="280" placeholder="TOP TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black','Scheherazade New',serif;font-weight:700;text-align:center"></textarea>
               </div>
               <div class="meme-ctrl-row" style="flex-direction:column;align-items:stretch;gap:0.35rem">
                 <label for="meme-bottom-input">Bottom text</label>
-                <textarea id="meme-bottom-input" rows="2" maxlength="120" placeholder="BOTTOM TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black',sans-serif;font-weight:700;text-transform:uppercase;text-align:center"></textarea>
+                <textarea id="meme-bottom-input" rows="3" maxlength="280" placeholder="BOTTOM TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black','Noto Naskh Arabic',serif;font-weight:700;text-align:center"></textarea>
               </div>
               <div class="meme-ctrl-row">
                 <label>Font size <span id="meme-size-val">42</span>px</label>
@@ -2557,6 +2641,26 @@
                 <button type="button" onclick="memeDownload()">⬇ Download PNG</button>
               </div>
             </div>
+
+            <!-- Urdu dua memes (bottom of generator) -->
+            <div class="meme-urdu-section" id="meme-urdu-section">
+              <h3 class="meme-urdu-title">🌙 Urdu Duʿā Memes</h3>
+              <p class="meme-urdu-desc">Fetch a short authentic duʿā with Urdu meaning, place it on the canvas as a reminder graphic, or load any public image URL (e.g. a dua poster you found online).</p>
+              <div class="meme-urdu-toolbar">
+                <button type="button" class="btn-soft" id="meme-urdu-fetch-btn" onclick="memeFetchUrduDua()">✨ Next Urdu duʿā</button>
+                <button type="button" class="btn-secondary" onclick="memeApplyUrduDua()">Apply to canvas</button>
+                <button type="button" class="btn-secondary" onclick="memeApplyUrduDua(true)">Apply + nature bg</button>
+              </div>
+              <div class="meme-urdu-preview" id="meme-urdu-preview">
+                <div class="meme-urdu-empty">Tap “Next Urdu duʿā” to load one.</div>
+              </div>
+              <div class="meme-urdu-url-row">
+                <input type="url" id="meme-urdu-img-url" placeholder="Paste image URL of an Urdu dua meme / poster…" autocomplete="off">
+                <button type="button" onclick="memeLoadUrduImageUrl()">Load image</button>
+              </div>
+              <p class="notes-hint" style="margin-top:0.45rem;">Duʿās are for remembrance and sharing gently. Prefer authentic wording; verify longer texts with a scholar if unsure. External images must allow hotlinking (CORS) to export.</p>
+            </div>
+
             <p class="notes-hint" style="margin-top:0.65rem;">Tip: on phones, drag the ⋮⋮ handle. Keep wording short for impact. Use for gentle reminders — not mockery of sacred things.</p>
           </div>
         </div>
@@ -5277,6 +5381,184 @@ Ask Allah for firmness and sincerity.`
           btn.textContent = '📜 Command (AR + EN)';
         }
       }
+    }
+
+    // ========== URDU DUA MEMES ==========
+    // Short authentic / widely known duʿās with Urdu meaning for reminder graphics.
+    // Online fetch tries free dua APIs first; falls back to this local library.
+    const MEME_URDU_DUAS = [
+      {
+        arabic: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+        urdu: "اے ہمارے رب! ہمیں دنیا میں بھلائی دے اور آخرت میں بھلائی دے اور ہمیں آگ کے عذاب سے بچا۔",
+        en: "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.",
+        ref: "Qur'an 2:201"
+      },
+      {
+        arabic: "رَبِّ زِدْنِي عِلْمًا",
+        urdu: "اے میرے رب! میرے علم میں اضافہ فرما۔",
+        en: "My Lord, increase me in knowledge.",
+        ref: "Qur'an 20:114"
+      },
+      {
+        arabic: "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+        urdu: "اللہ ہمیں کافی ہے اور وہ بہترین کارساز ہے۔",
+        en: "Allah is sufficient for us, and He is the best Disposer of affairs.",
+        ref: "Qur'an 3:173"
+      },
+      {
+        arabic: "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي",
+        urdu: "اے میرے رب! میرا سینہ کھول دے اور میرا کام آسان فرما دے۔",
+        en: "My Lord, expand for me my breast and ease for me my task.",
+        ref: "Qur'an 20:25–26"
+      },
+      {
+        arabic: "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى",
+        urdu: "اے اللہ! میں تجھ سے ہدایت، تقویٰ، پاکدامنی اور بے نیازی مانگتا ہوں۔",
+        en: "O Allah, I ask You for guidance, piety, chastity and self-sufficiency.",
+        ref: "Muslim 2721"
+      },
+      {
+        arabic: "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",
+        urdu: "میں اللہ سے معافی مانگتا ہوں اور اس کی طرف توبہ کرتا ہوں۔",
+        en: "I seek forgiveness from Allah and repent to Him.",
+        ref: "Bukhari 6307"
+      },
+      {
+        arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+        urdu: "اے اللہ! محمد ﷺ پر اور آلِ محمد پر درود بھیج۔",
+        en: "O Allah, send blessings upon Muhammad and upon the family of Muhammad.",
+        ref: "Muslim 408"
+      },
+      {
+        arabic: "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً",
+        urdu: "اے ہمارے رب! ہدایت دینے کے بعد ہمارے دلوں کو ٹیڑھا نہ کر اور ہمیں اپنی طرف سے رحمت عطا فرما۔",
+        en: "Our Lord, let not our hearts deviate after You have guided us, and grant us from Yourself mercy.",
+        ref: "Qur'an 3:8"
+      },
+      {
+        arabic: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ",
+        urdu: "اے اللہ! میں فکر اور غم سے تیری پناہ مانگتا ہوں۔",
+        en: "O Allah, I seek refuge in You from anxiety and sorrow.",
+        ref: "Bukhari 6369"
+      },
+      {
+        arabic: "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ",
+        urdu: "اے دلوں کو پھیرنے والے! میرے دل کو اپنے دین پر ثابت رکھ۔",
+        en: "O Turner of hearts, keep my heart firm upon Your religion.",
+        ref: "Tirmidhi 2140"
+      },
+      {
+        arabic: "رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ",
+        urdu: "اے میرے رب! مجھے اور میرے والدین کو بخش دے۔",
+        en: "My Lord, forgive me and my parents.",
+        ref: "Qur'an 14:41"
+      },
+      {
+        arabic: "اللَّهُمَّ بَارِكْ لَنَا فِيمَا رَزَقْتَنَا",
+        urdu: "اے اللہ! جو کچھ تو نے ہمیں دیا ہے اس میں برکت عطا فرما۔",
+        en: "O Allah, bless us in what You have provided us.",
+        ref: "Abu Dawud 3767"
+      }
+    ];
+    let memeUrduIdx = 0;
+    let memeCurrentUrduDua = null;
+
+    function memeRenderUrduPreview(d) {
+      const el = document.getElementById('meme-urdu-preview');
+      if (!el || !d) return;
+      el.innerHTML =
+        '<div class="mu-arabic">' + escapeHtmlNotes(d.arabic || '') + '</div>' +
+        (d.urdu ? '<div class="mu-urdu">' + escapeHtmlNotes(d.urdu) + '</div>' : '') +
+        (d.en ? '<div class="mu-en">' + escapeHtmlNotes(d.en) + '</div>' : '') +
+        (d.ref ? '<div class="mu-ref">' + escapeHtmlNotes(d.ref) + '</div>' : '');
+    }
+
+    function memePickLocalUrduDua() {
+      const d = MEME_URDU_DUAS[memeUrduIdx % MEME_URDU_DUAS.length];
+      memeUrduIdx++;
+      memeCurrentUrduDua = d;
+      memeRenderUrduPreview(d);
+      return d;
+    }
+
+    async function memeFetchUrduDua() {
+      const btn = document.getElementById('meme-urdu-fetch-btn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Fetching…';
+      }
+      try {
+        // Try free online dua API (Arabic + English); pair with local Urdu when title matches
+        let online = null;
+        try {
+          const res = await fetch('https://dua-data-api.vercel.app/api/usefulDuas', { signal: AbortSignal.timeout(5000) });
+          if (res.ok) {
+            const list = await res.json();
+            if (Array.isArray(list) && list.length) {
+              online = list[Math.floor(Math.random() * list.length)];
+            }
+          }
+        } catch (e) { /* offline / CORS / timeout — use local */ }
+
+        if (online && (online.arabic || online.translation)) {
+          // Prefer a local entry that shares Arabic snippet; else build hybrid card
+          const ar = String(online.arabic || '').trim();
+          const localMatch = MEME_URDU_DUAS.find(x => ar && x.arabic.indexOf(ar.slice(0, 12)) !== -1);
+          if (localMatch) {
+            memeCurrentUrduDua = localMatch;
+          } else {
+            memeCurrentUrduDua = {
+              arabic: ar || localMatch?.arabic || MEME_URDU_DUAS[0].arabic,
+              urdu: localMatch ? localMatch.urdu : (online.title ? ('موضوع: ' + online.title) : ''),
+              en: online.translation || online.transliteration || '',
+              ref: online.category ? (online.category + (online.title ? ' · ' + online.title : '')) : (online.title || 'Masnoon duʿā')
+            };
+          }
+          memeRenderUrduPreview(memeCurrentUrduDua);
+        } else {
+          memePickLocalUrduDua();
+        }
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '✨ Next Urdu duʿā';
+        }
+      }
+    }
+
+    function memeApplyUrduDua(withNature) {
+      if (!memeCurrentUrduDua) {
+        memePickLocalUrduDua();
+      }
+      const d = memeCurrentUrduDua;
+      if (!d) return;
+      const topEl = document.getElementById('meme-top-input');
+      const botEl = document.getElementById('meme-bottom-input');
+      // Top: Arabic; Bottom: Urdu (meme-friendly length)
+      if (topEl) topEl.value = d.arabic || '';
+      if (botEl) botEl.value = memeClipForCaption(d.urdu || d.en || '', 160);
+      // Raise maxlength temporarily by allowing longer bottom — already clipped
+      const sizeEl = document.getElementById('meme-size');
+      if (sizeEl) {
+        const suggested = (d.arabic || '').length > 70 ? 30 : 36;
+        sizeEl.value = suggested;
+        memeOnSize(suggested);
+      }
+      memeState.topY = 0.16;
+      memeState.bottomY = 0.84;
+      memePositionBoxes();
+      memeSyncFromInputs();
+      if (withNature) memeFetchNature();
+    }
+
+    function memeLoadUrduImageUrl() {
+      const input = document.getElementById('meme-urdu-img-url');
+      const url = input && input.value.trim();
+      if (!url) {
+        alert('Paste a direct image URL (ending in .jpg, .png, .webp, etc.).');
+        return;
+      }
+      memeLoadImageFromUrl(url, 'Could not load that image. The host may block embedding (CORS). Try uploading the file instead, or use another URL.');
     }
 
     function memeApplyPreset(name) {
