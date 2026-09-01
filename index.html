@@ -1922,6 +1922,135 @@
     }
     html.lang-ur .oa-label { letter-spacing: 0; }
 
+    /* Family tree */
+    .family-tree {
+      text-align: center;
+      padding: 0.5rem 0.25rem 0.25rem;
+    }
+    .ft-node {
+      display: inline-block;
+      background: var(--bg-elevated, #fff);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.55rem 0.85rem;
+      margin: 0.2rem auto;
+      font-weight: 600;
+      font-size: 0.95rem;
+      max-width: 100%;
+    }
+    .ft-root { border-color: var(--accent); color: var(--accent); }
+    .ft-prophet {
+      background: linear-gradient(135deg, var(--accent-soft), rgba(15,76,58,0.08));
+      border-color: var(--accent);
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+    .ft-as { font-weight: 500; font-size: 0.85rem; opacity: 0.85; }
+    .ft-note {
+      display: block;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      line-height: 1.35;
+    }
+    .ft-line {
+      width: 2px;
+      height: 0.85rem;
+      background: var(--accent);
+      margin: 0 auto;
+      opacity: 0.45;
+    }
+    .ft-branch {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      justify-content: center;
+      margin: 0.15rem 0;
+    }
+    .ft-branch .ft-node { font-size: 0.88rem; }
+
+    /* Expandable seerah timeline */
+    .seerah-tl-item {
+      cursor: pointer;
+    }
+    .seerah-tl-item .tl-more {
+      display: none;
+      margin-top: 0.45rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text);
+      padding: 0.55rem 0.65rem;
+      background: rgba(15,76,58,0.06);
+      border-radius: 10px;
+    }
+    .seerah-tl-item.open .tl-more { display: block; }
+    .seerah-tl-item .tl-toggle {
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-top: 0.25rem;
+      font-weight: 600;
+    }
+    .seerah-tl-item .tl-online {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    /* Asma ul Husna daily */
+    .asma-box {
+      background: var(--bg-elevated, #faf8f4);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+    }
+    .asma-arabic {
+      font-family: 'Scheherazade New', Amiri, 'Noto Naskh Arabic', serif;
+      font-size: 2rem;
+      text-align: center;
+      direction: rtl;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+    }
+    .asma-translit { text-align: center; font-weight: 700; font-size: 1.15rem; margin-bottom: 0.2rem; }
+    .asma-meaning { text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .asma-virtue { font-size: 0.94rem; line-height: 1.5; margin-bottom: 0.5rem; }
+    .asma-ref { font-size: 0.8rem; color: var(--text-muted); font-style: italic; }
+
+    .meme-palette {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      margin: 0.35rem 0 0.55rem;
+      padding: 0.45rem 0.55rem;
+      background: var(--bg-elevated, #faf8f4);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .meme-swatch {
+      width: 1.55rem;
+      height: 1.55rem;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.8);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+    .meme-swatch:hover { transform: scale(1.12); }
+    .ayah-audio-btn {
+      background: var(--accent-soft) !important;
+      color: var(--accent) !important;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      padding: 0.35rem 0.75rem !important;
+      margin: 0.35rem 0.25rem 0.35rem 0;
+    }
+
   </style>
   <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D">
   <meta name="mobile-web-app-capable" content="yes">
@@ -2203,21 +2332,49 @@
         </div>
 
         <div class="card card-seerah">
+          <h2>🌳 Family tree — from Ismāʿīl عليه السلام to the Prophet ﷺ</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.65rem;">A simplified lineage for orientation (not every generation is listed). Classical nasab runs through ʿAdnān to ʿAbd al-Muṭṭalib.</p>
+          <div class="family-tree" id="family-tree">
+            <div class="ft-node ft-root">Ismāʿīl <span class="ft-as">عليه السلام</span><div class="ft-note">Son of Ibrāhīm عليه السلام · ancestor of the Arabs of Ḥijāz</div></div>
+            <div class="ft-line"></div>
+            <div class="ft-node">… generations of his descendants in Arabia …</div>
+            <div class="ft-line"></div>
+            <div class="ft-node">ʿAdnān <div class="ft-note">Agreed early ancestor in the Prophet’s nasab</div></div>
+            <div class="ft-line"></div>
+            <div class="ft-node">… including Niẓār, Muḍar, Fihr (Quraysh) …</div>
+            <div class="ft-line"></div>
+            <div class="ft-node">Quṣayy b. Kilāb <div class="ft-note">United Quraysh around the Kaʿbah</div></div>
+            <div class="ft-line"></div>
+            <div class="ft-node">ʿAbd Manāf → Hāshim → ʿAbd al-Muṭṭalib</div>
+            <div class="ft-line"></div>
+            <div class="ft-branch">
+              <div class="ft-node">ʿAbdullāh <div class="ft-note">Father of the Prophet ﷺ</div></div>
+              <div class="ft-node">Abū Ṭālib <div class="ft-note">Uncle &amp; protector</div></div>
+              <div class="ft-node">Other sons of ʿAbd al-Muṭṭalib</div>
+            </div>
+            <div class="ft-line"></div>
+            <div class="ft-node ft-prophet">Muḥammad ﷺ <div class="ft-note">Born to Āminah bint Wahb · Quraysh, Banū Hāshim</div></div>
+            <div class="ft-line"></div>
+            <div class="ft-branch ft-children">
+              <div class="ft-node">Al-Qāsim · ʿAbdullāh · Ibrāhīm <div class="ft-note">Sons (died young)</div></div>
+              <div class="ft-node">Zaynab · Ruqayyah · Umm Kulthūm · Fāṭimah <div class="ft-note">Daughters · Fāṭimah رضي الله عنها mother of al-Ḥasan &amp; al-Ḥusayn</div></div>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.65rem;">For detailed nasab charts see classical works (e.g. Ibn Hishām) and reputable educational sites. This tree is a learning aid only.</p>
+        </div>
+
+        <div class="card card-seerah">
           <h2 data-i18n="seerah_tl">📜 Seerah timeline (key milestones)</h2>
-          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;" data-i18n="seerah_tl_desc">A simple chronological map of the Prophet’s life ﷺ — for orientation, not a full biography.</p>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;" data-i18n="seerah_tl_desc">Expand each phase for a fuller summary. “Refresh online” pulls a short encyclopedia abstract when available.</p>
           <div class="seerah-timeline" id="seerah-timeline"></div>
+          <button type="button" class="btn-secondary" style="margin-top:0.5rem;" onclick="expandAllSeerahTl()">Expand all</button>
+          <button type="button" class="btn-soft" style="margin-top:0.5rem;" onclick="fetchSeerahOnlineSummaries()">↻ Refresh online abstracts</button>
         </div>
 
         <div class="card card-hadith">
           <h2 data-i18n="hadith_title">A Saying of the Prophet ﷺ</h2>
           <div id="hadith"><div class="loading-msg">Loading…</div></div>
           <button type="button" onclick="loadHadith()">Another hadith</button>
-        </div>
-
-        <div class="card card-zikr">
-          <h2 data-i18n="daily_zikr">Daily Zikr</h2>
-          <div id="zikr"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadZikr()">New zikr</button>
         </div>
 
         <div class="card card-stories">
@@ -2404,6 +2561,16 @@
       <!-- ==================== TAB: COMMANDS ==================== -->
       <div id="tab-commands" class="tab-panel">
         <div class="card card-commands">
+          <h2>✨ Daily Name of Allah</h2>
+          <p style="margin-bottom:0.65rem; font-size:0.92rem; color:var(--text-muted);">One of the Beautiful Names each day — with meaning and reported virtues from hadith and classical notes. Educational; verify longer claims with a scholar.</p>
+          <div class="asma-box" id="asma-box"><div class="loading-msg">Loading…</div></div>
+          <div style="margin-top:0.65rem;">
+            <button type="button" class="btn-secondary" onclick="loadAsma(true)">Another Name</button>
+            <button type="button" class="btn-soft" onclick="loadAsma(false)">Today’s Name</button>
+          </div>
+        </div>
+
+        <div class="card card-commands">
           <h2 data-i18n="commands_title">Allah’s Commands to the Believers</h2>
           <p style="margin-bottom:0.75rem; font-size:0.94rem;">
             Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
@@ -2556,6 +2723,7 @@
           </div>
           <div id="hifz-display" class="hifz-ayah">
             <div class="arabic-calligraphy" id="hifz-arabic">Select a Surah & Ayah</div>
+            <button type="button" class="ayah-audio-btn" id="hifz-audio-btn" onclick="playHifzAudio()">🔊 Listen</button>
             <p id="hifz-translation" style="margin-top:0.55rem;"></p>
             <div id="hifz-tafseer" class="ponder-box" style="display:none; margin-top:0.75rem;"></div>
             <div id="hifz-tafseer-full" class="ponder-box" style="display:none; margin-top:0.65rem; border-left-color:#7ec9a8;"></div>
@@ -2597,6 +2765,13 @@
             <strong>Today’s intention:</strong> I am sending these deeds to my grave as companions and light.
           </div>
           <button type="button" onclick="resetDeposits()" class="btn-secondary" style="margin-top:0.85rem; font-size:0.86rem;" data-i18n="reset_counts">Reset today’s counts</button>
+        </div>
+
+        <div class="card card-zikr">
+          <h2 data-i18n="daily_zikr">Daily Zikr</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.5rem;">Send these remembrances ahead as light for the grave.</p>
+          <div id="zikr"><div class="loading-msg">Loading…</div></div>
+          <button type="button" onclick="loadZikr()">New zikr</button>
         </div>
 
         <!-- Supplications for the deceased -->
@@ -2958,10 +3133,14 @@
         <div class="card card-notes" id="meme-card">
           <h2 data-i18n="meme_title">🖼️ Meme Studio</h2>
           <p style="font-size:0.92rem; margin-bottom:0.75rem; color:var(--text-muted);">
-            Create a reminder graphic from live online backgrounds. Pick nature, flowers, or holy places — each use is counted. Drag text, tweak size &amp; outline, then download. Nothing is uploaded from your device.
+            Create a reminder graphic. Upload your own image or pick live backgrounds (nature, flowers, holy places — each use is counted). Drag text, tweak size &amp; outline, then download. Your upload stays on this device.
           </p>
           <div class="meme-studio">
             <div class="meme-toolbar">
+              <label class="meme-upload-btn">
+                📁 Upload image
+                <input type="file" id="meme-file" accept="image/*" hidden onchange="memeOnUpload(event)">
+              </label>
               <select id="meme-preset" onchange="memeApplyPreset(this.value)" title="Classic layout">
                 <option value="">Layout preset…</option>
                 <option value="classic">Classic top / bottom</option>
@@ -2972,9 +3151,21 @@
               <button type="button" class="btn-secondary" id="meme-nature-btn" onclick="memeFetchBg('nature')" title="Live nature backgrounds">🌿 Nature <span class="meme-use-count" id="meme-cnt-nature">0</span></button>
               <button type="button" class="btn-secondary" id="meme-flowers-btn" onclick="memeFetchBg('flowers')" title="Live flower / bouquet backgrounds">🌸 Flowers <span class="meme-use-count" id="meme-cnt-flowers">0</span></button>
               <button type="button" class="btn-secondary" id="meme-holy-btn" onclick="memeFetchBg('holy')" title="Live holy places backgrounds">🕌 Holy places <span class="meme-use-count" id="meme-cnt-holy">0</span></button>
-              <button type="button" class="btn-soft" onclick="memeFetchBg('blank')" title="Soft blank">⬜ Blank</button>
+              <button type="button" class="btn-soft" onclick="memeShowBlankPalette()" title="Blank with color">⬜ Blank</button>
               <button type="button" class="btn-soft" id="meme-fill-verse-btn" onclick="memeFillFromJourneyVerse()" title="Journey: verse + tafseer">📖 Journey verse</button>
               <button type="button" class="btn-soft" id="meme-fill-command-btn" onclick="memeFillFromCommand()" title="Commands: Arabic + translation">📜 Command (AR + EN)</button>
+            </div>
+            <div class="meme-palette" id="meme-palette" style="display:none;">
+              <span class="notes-hint" style="margin-right:0.35rem;">Blank color:</span>
+              <button type="button" class="meme-swatch" style="background:#0f4c3a" onclick="memeSetBlankColor('#0f4c3a','#1a2a22')" title="Deep green"></button>
+              <button type="button" class="meme-swatch" style="background:#1a365d" onclick="memeSetBlankColor('#1a365d','#0f172a')" title="Navy"></button>
+              <button type="button" class="meme-swatch" style="background:#4a1942" onclick="memeSetBlankColor('#4a1942','#2d1028')" title="Plum"></button>
+              <button type="button" class="meme-swatch" style="background:#7c2d12" onclick="memeSetBlankColor('#7c2d12','#431407')" title="Earth"></button>
+              <button type="button" class="meme-swatch" style="background:#0e7490" onclick="memeSetBlankColor('#0e7490','#164e63')" title="Teal"></button>
+              <button type="button" class="meme-swatch" style="background:#365314" onclick="memeSetBlankColor('#365314','#1a2e05')" title="Olive"></button>
+              <button type="button" class="meme-swatch" style="background:#44403c" onclick="memeSetBlankColor('#44403c','#1c1917')" title="Charcoal"></button>
+              <button type="button" class="meme-swatch" style="background:#f5f0e6;border:1px solid #ccc" onclick="memeSetBlankColor('#f5f0e6','#e7e0d4')" title="Parchment"></button>
+              <input type="color" id="meme-blank-custom" value="#0f4c3a" title="Custom" onchange="memeSetBlankColor(this.value, this.value)" style="width:1.6rem;height:1.6rem;padding:0;border:none;cursor:pointer;vertical-align:middle;">
             </div>
             <p class="notes-hint" style="margin:0.35rem 0 0.5rem;font-size:0.82rem;">Uses — Nature: <strong id="meme-use-nature">0</strong> · Flowers: <strong id="meme-use-flowers">0</strong> · Holy places: <strong id="meme-use-holy">0</strong></p>
             <div class="meme-stage-wrap">
@@ -3978,6 +4169,7 @@
         }
         box.innerHTML = `
           <div class="arabic-calligraphy">${arabic}</div>
+          <button type="button" class="ayah-audio-btn" onclick="playAyahAudio('${ref}', this)">🔊 Listen</button>
           ${transBlock}
           <div class="ponder-box"><strong>Recommended follow-up steps (fiqh & modern practice):</strong><br>${followUp}</div>
           <div class="command-status">
@@ -5567,7 +5759,9 @@ Ask Allah for firmness and sincerity.`
       // relative positions 0–1 for vertical center of each box
       topY: 0.08,
       bottomY: 0.88,
-      dragging: null
+      dragging: null,
+      blankColor1: '#0f4c3a',
+      blankColor2: '#1a2a22'
     };
 
     function memeGetCanvas() {
@@ -5594,14 +5788,18 @@ Ask Allah for firmness and sincerity.`
         ctx.drawImage(memeState.img, dx, dy, dw, dh);
       } else {
         const g = ctx.createLinearGradient(0, 0, w, h);
-        g.addColorStop(0, '#0f4c3a');
-        g.addColorStop(1, '#1a2a22');
+        g.addColorStop(0, memeState.blankColor1 || '#0f4c3a');
+        g.addColorStop(1, memeState.blankColor2 || '#1a2a22');
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, w, h);
-        ctx.fillStyle = 'rgba(255,255,255,0.12)';
-        ctx.font = '600 22px Inter, system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Upload or pick a sample background', w / 2, h / 2);
+        // Hint only when no text yet
+        if (!(memeState.top || memeState.bottom || (document.getElementById('meme-top-input') || {}).value)) {
+          const light = /^#([fFeE]|[a-fA-F0-9][fFeE])/.test(memeState.blankColor1 || '');
+          ctx.fillStyle = light ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.18)';
+          ctx.font = '600 20px Inter, system-ui, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('Blank background — pick a color or add text', w / 2, h / 2);
+        }
       }
 
       function drawCaption(text, yRatio) {
@@ -5835,12 +6033,27 @@ Ask Allah for firmness and sincerity.`
       img.src = url;
     }
 
+    function memeShowBlankPalette() {
+      const pal = document.getElementById('meme-palette');
+      if (pal) pal.style.display = pal.style.display === 'none' ? 'flex' : 'none';
+      memeState.img = null;
+      memeDraw();
+    }
+    function memeSetBlankColor(c1, c2) {
+      memeState.blankColor1 = c1 || '#0f4c3a';
+      memeState.blankColor2 = c2 || c1 || '#1a2a22';
+      memeState.img = null;
+      const pal = document.getElementById('meme-palette');
+      if (pal) pal.style.display = 'flex';
+      memeDraw();
+    }
     function memeFetchBg(kind) {
       if (kind === 'blank') {
-        memeState.img = null;
-        memeDraw();
+        memeShowBlankPalette();
         return;
       }
+      const pal = document.getElementById('meme-palette');
+      if (pal) pal.style.display = 'none';
       const pool = MEME_BG_POOLS[kind];
       if (!pool || !pool.length) return;
       const btnId = kind === 'nature' ? 'meme-nature-btn' : kind === 'flowers' ? 'meme-flowers-btn' : 'meme-holy-btn';
@@ -6371,49 +6584,288 @@ Ask Allah for firmness and sincerity.`
     }
     nightBreathRefresh();
 
-    // Seerah timeline
+    // Seerah timeline — expanded phases + optional online abstracts
     const SEERAH_TIMELINE = [
-      { year: 'c. 570 CE', title: 'Birth in Makkah', body: 'Orphaned young; known later as al-Amīn — the trustworthy.' },
-      { year: '610 CE', title: 'First revelation', body: 'Cave of Ḥirāʾ; “Iqraʾ” — the beginning of prophethood at age forty.' },
-      { year: '613 CE', title: 'Public call', body: 'Open invitation to Tawḥīd in Makkah amid rising persecution.' },
-      { year: '622 CE', title: 'Hijrah to Madinah', body: 'Migration that begins the Islamic calendar; foundation of a just community.' },
-      { year: '624–627', title: 'Badr, Uḥud, Khandaq', body: 'Trials of war and patience; lessons in reliance and discipline.' },
-      { year: '628 CE', title: 'Hudaybiyyah', body: 'A treaty that looked like setback and became a clear opening.' },
-      { year: '630 CE', title: 'Conquest of Makkah', body: 'Mercy over revenge: “Go, for you are free.”' },
-      { year: '632 CE', title: 'Farewell & return to Allah', body: 'Religion completed; the ummah left with Quran and Sunnah.' }
+      {
+        year: 'c. 570 CE', title: 'Birth in Makkah',
+        body: 'Orphaned young; known later as al-Amīn — the trustworthy.',
+        more: 'Born in the Year of the Elephant to Āminah bint Wahb; father ʿAbdullāh had died before his birth. Cared for by Ḥalīmah al-Saʿdiyyah in the desert, then by his mother, then by grandfather ʿAbd al-Muṭṭalib, then by uncle Abū Ṭālib. Even before revelation he was known for honesty and for helping resolve disputes (e.g. the Black Stone).',
+        wiki: 'Muhammad'
+      },
+      {
+        year: '595 CE', title: 'Marriage to Khadījah رضي الله عنها',
+        body: 'Partnership in trade, faith, and the first years of revelation.',
+        more: 'Khadījah employed him in trade to Syria; impressed by his character, she proposed marriage. She was the first to believe in him, supported him with wealth and comfort, and remained his only wife until her death. Their home was the first shelter of the message.',
+        wiki: 'Khadija_bint_Khuwaylid'
+      },
+      {
+        year: '610 CE', title: 'First revelation',
+        body: 'Cave of Ḥirāʾ; “Iqraʾ” — prophethood at age forty.',
+        more: 'While in spiritual retreat in the Cave of Ḥirāʾ, Angel Jibrīl brought the first verses of Sūrat al-ʿAlaq. The Prophet ﷺ returned shaken; Khadījah reassured him and took him to Waraqah b. Nawfal, who affirmed the continuity of prophecy. A pause in revelation followed, then continuous wahy.',
+        wiki: 'Muhammad%27s_first_revelation'
+      },
+      {
+        year: '613 CE', title: 'Public call in Makkah',
+        body: 'Open invitation to Tawḥīd amid rising persecution.',
+        more: 'After a private phase, the call became public: “Warn your nearest kindred.” The early Muslims faced mockery, economic boycott, and violence. Bilāl, the family of Yāsir, and others were tortured. Some migrated to Abyssinia seeking a just Christian king’s protection.',
+        wiki: 'Meccan_surah'
+      },
+      {
+        year: '619 CE', title: 'Year of Sorrow',
+        body: 'Death of Khadījah and Abū Ṭālib; journey to Ṭāʾif.',
+        more: 'Loss of his wife and uncle removed major worldly support. The people of Ṭāʾif rejected him harshly; he responded with a famous duʿāʾ of dependence on Allah. Soon after came the gift of al-Isrāʾ wa-l-Miʿrāj.',
+        wiki: 'Year_of_Sorrow'
+      },
+      {
+        year: '620–621', title: 'Isrāʾ & Miʿrāj · First pledges of ʿAqabah',
+        body: 'Night journey and ascent; Madinan support begins.',
+        more: 'The night journey to Jerusalem and ascent to the heavens established the five daily prayers. Meetings with seekers from Yathrib (Madinah) at ʿAqabah laid the ground for Hijrah — a community ready to protect the message.',
+        wiki: 'Isra_and_Mi%27raj'
+      },
+      {
+        year: '622 CE', title: 'Hijrah to Madinah',
+        body: 'Migration that begins the Islamic calendar; a just community.',
+        more: 'Permission to migrate came after plots in Makkah. With Abū Bakr he reached Qubāʾ then Madinah. The Constitution of Madinah organised relations among Muslims, Jews, and others. Brotherhood (muʾākhāh) paired Muhājirūn and Anṣār.',
+        wiki: 'Hijrah'
+      },
+      {
+        year: '624–627', title: 'Badr, Uḥud, Khandaq',
+        body: 'Trials of war and patience; reliance and discipline.',
+        more: 'Badr (2 AH): a small force aided by Allah against a larger army. Uḥud (3 AH): a hard lesson when archers left their post. Khandaq (5 AH): trench defence against a confederate siege; trust and strategy under pressure.',
+        wiki: 'Battle_of_Badr'
+      },
+      {
+        year: '628 CE', title: 'Hudaybiyyah',
+        body: 'A treaty that looked like setback and became a clear opening.',
+        more: 'Prevented from ʿumrah, the Muslims accepted terms that seemed unfavourable. The Qurʾān called it a clear victory (fatḥ mubīn). The truce allowed peaceful dawah; numbers of Muslims grew rapidly. The Treaty was later broken by Quraysh’s allies.',
+        wiki: 'Treaty_of_Hudaybiyyah'
+      },
+      {
+        year: '630 CE', title: 'Conquest of Makkah',
+        body: 'Mercy over revenge: “Go, for you are free.”',
+        more: 'After Quraysh’s side violated the treaty, the Prophet ﷺ entered Makkah with overwhelming force but minimal bloodshed. Idols in the Kaʿbah were removed. General amnesty taught that power is for justice and mercy, not vengeance.',
+        wiki: 'Conquest_of_Mecca'
+      },
+      {
+        year: '631–632', title: 'Year of Delegations · Farewell Hajj',
+        body: 'Tribes enter Islam; the final sermon.',
+        more: 'Delegations from across Arabia accepted Islam. In the Farewell Hajj the Prophet ﷺ taught equality, the sanctity of life and property, and completion of the religion. “I leave among you the Book of Allah…”',
+        wiki: 'Farewell_Pilgrimage'
+      },
+      {
+        year: '632 CE', title: 'Return to Allah',
+        body: 'Religion completed; the ummah left with Quran and Sunnah.',
+        more: 'After a brief illness he ﷺ passed away in Madinah in the room of ʿĀʾishah رضي الله عنها. He was buried where he died. The companions preserved the Qurʾān and his Sunnah — the lasting legacy of guidance.',
+        wiki: 'Death_of_Muhammad'
+      }
     ];
-    (function renderSeerahTimeline() {
+
+    function renderSeerahTimeline() {
       const root = document.getElementById('seerah-timeline');
       if (!root) return;
-      root.innerHTML = SEERAH_TIMELINE.map(item =>
-        `<div class="seerah-tl-item"><div class="tl-year">${item.year}</div><div class="tl-title">${item.title}</div><div class="tl-body">${item.body}</div></div>`
+      root.innerHTML = SEERAH_TIMELINE.map((item, i) =>
+        `<div class="seerah-tl-item" data-idx="${i}" onclick="toggleSeerahTl(${i})">
+          <div class="tl-year">${item.year}</div>
+          <div class="tl-title">${item.title}</div>
+          <div class="tl-body">${item.body}</div>
+          <div class="tl-toggle" id="tl-tog-${i}">Show more ▾</div>
+          <div class="tl-more" id="tl-more-${i}">
+            <p>${item.more || ''}</p>
+            <div class="tl-online" id="tl-online-${i}"></div>
+          </div>
+        </div>`
       ).join('');
-    })();
+    }
+    function toggleSeerahTl(i) {
+      const item = document.querySelector('.seerah-tl-item[data-idx="' + i + '"]');
+      const tog = document.getElementById('tl-tog-' + i);
+      if (!item) return;
+      item.classList.toggle('open');
+      if (tog) tog.textContent = item.classList.contains('open') ? 'Show less ▴' : 'Show more ▾';
+    }
+    function expandAllSeerahTl() {
+      document.querySelectorAll('.seerah-tl-item').forEach((el, i) => {
+        el.classList.add('open');
+        const tog = document.getElementById('tl-tog-' + i);
+        if (tog) tog.textContent = 'Show less ▴';
+      });
+    }
+    async function fetchSeerahOnlineSummaries() {
+      const btn = event && event.target;
+      if (btn) { btn.disabled = true; btn.textContent = 'Fetching…'; }
+      for (let i = 0; i < SEERAH_TIMELINE.length; i++) {
+        const item = SEERAH_TIMELINE[i];
+        const slot = document.getElementById('tl-online-' + i);
+        if (!slot || !item.wiki) continue;
+        slot.textContent = 'Loading online abstract…';
+        try {
+          const url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + item.wiki;
+          const res = await fetch(url);
+          if (!res.ok) throw new Error('no');
+          const data = await res.json();
+          const extract = (data.extract || '').slice(0, 420);
+          slot.innerHTML = extract
+            ? ('<strong>Online abstract:</strong> ' + extract + (data.extract && data.extract.length > 420 ? '…' : '') +
+               (data.content_urls && data.content_urls.desktop
+                 ? ' <a href="' + data.content_urls.desktop.page + '" target="_blank" rel="noopener">Read more →</a>'
+                 : ''))
+            : 'No abstract available.';
+        } catch (e) {
+          slot.textContent = 'Could not fetch abstract (network or blocked). Local text above remains.';
+        }
+      }
+      expandAllSeerahTl();
+      if (btn) { btn.disabled = false; btn.textContent = '↻ Refresh online abstracts'; }
+    }
+    renderSeerahTimeline();
 
-    // Verse audio (Quran.com CDN style)
-    async function playCurrentVerseAudio() {
-      const v = currentJourneyVerse;
-      const btn = document.getElementById('verse-audio-btn');
+    // ========== Daily Name of Allah (Asma ul Husna) ==========
+    // Curated subset with widely cited virtues (hadith / classical notes). Not exhaustive fiqh.
+    const ASMA_UL_HUSNA = [
+      { ar: 'الرَّحْمَٰنُ', tr: 'Ar-Raḥmān', en: 'The Most Merciful', virtue: 'Allah’s mercy encompasses all things. The Prophet ﷺ taught that Allah is more merciful to His servants than a mother to her child.', ref: 'Bukhari 5999 · Muslim 2753' },
+      { ar: 'الرَّحِيمُ', tr: 'Ar-Raḥīm', en: 'The Especially Merciful', virtue: 'Special mercy for the believers. Begin actions with Bismillah seeking this mercy.', ref: 'Qur’an 1:1–3 · classical tafsīr' },
+      { ar: 'الْمَلِكُ', tr: 'Al-Malik', en: 'The King', virtue: 'True sovereignty belongs only to Allah. Remembering Al-Malik humbles kings and comforts the oppressed.', ref: 'Qur’an 59:23' },
+      { ar: 'الْقُدُّوسُ', tr: 'Al-Quddūs', en: 'The Most Holy', virtue: 'Free of every imperfection. Reciting subḥānallāh affirms His purity from all defects.', ref: 'Qur’an 59:23 · Muslim 595' },
+      { ar: 'السَّلَامُ', tr: 'As-Salām', en: 'The Source of Peace', virtue: 'Safety and peace come from Him. The greeting as-salāmu ʿalaykum is a prayer for this peace.', ref: 'Qur’an 59:23' },
+      { ar: 'الْمُؤْمِنُ', tr: 'Al-Muʾmin', en: 'The Giver of Faith / Security', virtue: 'He grants security and confirms the truth of His messengers. Seek safety of heart through trust in Him.', ref: 'Qur’an 59:23' },
+      { ar: 'الْعَزِيزُ', tr: 'Al-ʿAzīz', en: 'The Almighty', virtue: 'Invincible might with wisdom. Believers draw dignity from belonging to Al-ʿAzīz, not from ego.', ref: 'Qur’an 59:23' },
+      { ar: 'الْغَفَّارُ', tr: 'Al-Ghaffār', en: 'The Most Forgiving', virtue: 'He forgives again and again. The Prophet ﷺ sought forgiveness seventy or more times a day.', ref: 'Bukhari 6307 · Qur’an 71:10' },
+      { ar: 'الْوَهَّابُ', tr: 'Al-Wahhāb', en: 'The Bestower', virtue: 'Gives freely without being asked in full measure. Ask Al-Wahhāb for good that does not leave debt on the soul.', ref: 'Qur’an 3:8' },
+      { ar: 'الرَّزَّاقُ', tr: 'Ar-Razzāq', en: 'The Provider', virtue: 'Provision is from Allah alone. Trust in Ar-Razzāq while tying the camel — work with tawakkul.', ref: 'Qur’an 51:58 · Tirmidhi 2344' },
+      { ar: 'الْعَلِيمُ', tr: 'Al-ʿAlīm', en: 'The All-Knowing', virtue: 'Nothing is hidden from Him — public or private. This Name trains sincerity (ikhlāṣ).', ref: 'Qur’an 2:29' },
+      { ar: 'السَّمِيعُ', tr: 'As-Samīʿ', en: 'The All-Hearing', virtue: 'He hears every duʿāʾ and whisper. Speak to Him with certainty that you are heard.', ref: 'Qur’an 2:127 · Bukhari 7386' },
+      { ar: 'الْبَصِيرُ', tr: 'Al-Baṣīr', en: 'The All-Seeing', virtue: 'He sees every deed and state. Awareness of Al-Baṣīr is the root of iḥsān — worship as though you see Him.', ref: 'Qur’an 17:1 · Muslim 8' },
+      { ar: 'الْحَكَمُ', tr: 'Al-Ḥakam', en: 'The Judge', virtue: 'Ultimate judgement is His. Leave injustice to Al-Ḥakam and uphold justice where you are able.', ref: 'Abu Dawud 4955' },
+      { ar: 'الْعَدْلُ', tr: 'Al-ʿAdl', en: 'The Just', virtue: 'No soul is wronged by Him. Reflecting on Al-ʿAdl pushes the believer to fairness in family and trade.', ref: 'Qur’an 4:40' },
+      { ar: 'اللَّطِيفُ', tr: 'Al-Laṭīf', en: 'The Subtle & Kind', virtue: 'Delivers kindness in ways we may not perceive. Call on Al-Laṭīf in confusion and tight places.', ref: 'Qur’an 67:14' },
+      { ar: 'الْخَبِيرُ', tr: 'Al-Khabīr', en: 'The All-Aware', virtue: 'Fully aware of innermost realities. Pair knowledge of Al-Khabīr with honest self-accounting (muḥāsabah).', ref: 'Qur’an 6:18' },
+      { ar: 'الْحَلِيمُ', tr: 'Al-Ḥalīm', en: 'The Forbearing', virtue: 'Does not hasten punishment though able. Learn ḥilm — controlled strength — from this Name.', ref: 'Qur’an 2:225' },
+      { ar: 'الْعَظِيمُ', tr: 'Al-ʿAẓīm', en: 'The Magnificent', virtue: 'Said in rukūʿ: Subḥāna Rabbiyal-ʿAẓīm. Magnify Him above every worldly greatness.', ref: 'Muslim 772' },
+      { ar: 'الْغَفُورُ', tr: 'Al-Ghafūr', en: 'The Forgiving', virtue: 'Forgives the repentant. Never despair of the mercy of Al-Ghafūr.', ref: 'Qur’an 39:53' },
+      { ar: 'الشَّكُورُ', tr: 'Ash-Shakūr', en: 'The Appreciative', virtue: 'Multiplies small deeds. Gratitude to Ash-Shakūr increases blessing.', ref: 'Qur’an 35:30 · Muslim 2999' },
+      { ar: 'الْعَلِيُّ', tr: 'Al-ʿAliyy', en: 'The Most High', virtue: 'Above all creation. Raise your concern from people to Al-ʿAliyy when hurt or praised.', ref: 'Qur’an 2:255' },
+      { ar: 'الْكَبِيرُ', tr: 'Al-Kabīr', en: 'The Greatest', virtue: 'Allāhu akbar declares nothing is greater than Him. Use it to shrink anxiety and pride.', ref: 'Qur’an 34:23' },
+      { ar: 'الْحَفِيظُ', tr: 'Al-Ḥafīẓ', en: 'The Guardian', virtue: 'Preserves His servants and the Book. Entrust your family and faith to Al-Ḥafīẓ.', ref: 'Qur’an 11:57' },
+      { ar: 'الْكَرِيمُ', tr: 'Al-Karīm', en: 'The Generous', virtue: 'Gives beyond measure. Emulate generosity without waste; ask Al-Karīm with good opinion.', ref: 'Qur’an 82:6' },
+      { ar: 'الْمُجِيبُ', tr: 'Al-Mujīb', en: 'The Responsive', virtue: 'Answers the caller. “Call upon Me; I will respond to you.” Combine duʿāʾ with lawful means.', ref: 'Qur’an 40:60 · 2:186' },
+      { ar: 'الْحَكِيمُ', tr: 'Al-Ḥakīm', en: 'The Wise', virtue: 'Every decree has wisdom, even when hidden. Trust Al-Ḥakīm in delay and in gift.', ref: 'Qur’an 2:32' },
+      { ar: 'الْوَدُودُ', tr: 'Al-Wadūd', en: 'The Loving', virtue: 'Loves the righteous and is loved. Draw near through obedience; love of Allah is the heart’s life.', ref: 'Qur’an 11:90 · Bukhari 13' },
+      { ar: 'الْمَجِيدُ', tr: 'Al-Majīd', en: 'The Glorious', virtue: 'Perfect glory and honour. The Qur’ān is described as majīd — approach it with reverence.', ref: 'Qur’an 85:15' },
+      { ar: 'الْحَقُّ', tr: 'Al-Ḥaqq', en: 'The Truth', virtue: 'Truth stands; falsehood vanishes. Align speech and belief with Al-Ḥaqq.', ref: 'Qur’an 22:6' },
+      { ar: 'الْوَكِيلُ', tr: 'Al-Wakīl', en: 'The Disposer of Affairs', virtue: '“Allah is sufficient for us, and He is the best Disposer of affairs.” Tawakkul without laziness.', ref: 'Qur’an 3:173 · Bukhari 4563' },
+      { ar: 'الْقَوِيُّ', tr: 'Al-Qawiyy', en: 'The Strong', virtue: 'Strength belongs to Him. Seek spiritual and lawful strength through Al-Qawiyy, not tyranny.', ref: 'Qur’an 22:40' },
+      { ar: 'الْمَتِينُ', tr: 'Al-Matīn', en: 'The Firm', virtue: 'Unshakeable. When your resolve weakens, ask Al-Matīn to firm your heart on the truth.', ref: 'Qur’an 51:58' },
+      { ar: 'الْوَلِيُّ', tr: 'Al-Waliyy', en: 'The Protecting Friend', virtue: 'Ally of the believers. Friendship with Al-Waliyy is through taqwā and following the Prophet ﷺ.', ref: 'Qur’an 2:257' },
+      { ar: 'الْحَمِيدُ', tr: 'Al-Ḥamīd', en: 'The Praiseworthy', virtue: 'Deserves all praise. Al-ḥamdu lillāh fills the scales when said with presence.', ref: 'Qur’an 14:1 · Muslim 223' },
+      { ar: 'الْحَيُّ', tr: 'Al-Ḥayy', en: 'The Ever-Living', virtue: 'Never dies. Depend on Al-Ḥayy when people and means pass away.', ref: 'Qur’an 2:255' },
+      { ar: 'الْقَيُّومُ', tr: 'Al-Qayyūm', en: 'The Self-Sustaining', virtue: 'Sustains all existence. Pair with Al-Ḥayy in the greatest āyah (Āyat al-Kursī).', ref: 'Qur’an 2:255 · Bukhari 2311' },
+      { ar: 'الْوَاحِدُ', tr: 'Al-Wāḥid', en: 'The One', virtue: 'One without partner. Tawḥīd is the foundation of every act of worship.', ref: 'Qur’an 39:4' },
+      { ar: 'الصَّمَدُ', tr: 'Aṣ-Ṣamad', en: 'The Eternal Refuge', virtue: 'All turn to Him; He needs none. Sūrat al-Ikhlāṣ centres this Name.', ref: 'Qur’an 112:2' },
+      { ar: 'الْقَادِرُ', tr: 'Al-Qādir', en: 'The Able', virtue: 'Able over all things. Ask big of Al-Qādir with humility and lawful seeking.', ref: 'Qur’an 2:20' },
+      { ar: 'الْأَوَّلُ', tr: 'Al-Awwal', en: 'The First', virtue: 'Before all things. Begin journeys and projects with His name.', ref: 'Qur’an 57:3 · Muslim 2713' },
+      { ar: 'الْآخِرُ', tr: 'Al-Ākhir', en: 'The Last', virtue: 'After all things end. Orient life toward the meeting with Al-Ākhir.', ref: 'Qur’an 57:3' },
+      { ar: 'الظَّاهِرُ', tr: 'Aẓ-Ẓāhir', en: 'The Manifest', virtue: 'Evident through signs in creation. Reflect to strengthen faith.', ref: 'Qur’an 57:3' },
+      { ar: 'الْبَاطِنُ', tr: 'Al-Bāṭin', en: 'The Hidden', virtue: 'Knows the inward. Purify the secret self; He is closer than the jugular vein in knowledge.', ref: 'Qur’an 57:3 · 50:16' },
+      { ar: 'التَّوَّابُ', tr: 'At-Tawwāb', en: 'The Accepter of Repentance', virtue: 'Accepts those who turn back. Never close the door of tawbah.', ref: 'Qur’an 2:222 · Bukhari 6308' },
+      { ar: 'الْعَفُوُّ', tr: 'Al-ʿAfuww', en: 'The Pardoner', virtue: 'Effaces sins. In Laylat al-Qadr the Prophet ﷺ taught to ask Al-ʿAfuww for pardon.', ref: 'Tirmidhi 3513' },
+      { ar: 'الرَّءُوفُ', tr: 'Ar-Raʾūf', en: 'The Kind', virtue: 'Gentle compassion. Be raʾūf to creation as a servant of Ar-Raʾūf.', ref: 'Qur’an 9:117' },
+      { ar: 'مَالِكُ الْمُلْكِ', tr: 'Mālik-ul-Mulk', en: 'Owner of Dominion', virtue: 'Gives kingdom to whom He wills. Worldly power is a trust, not a right.', ref: 'Qur’an 3:26' },
+      { ar: 'ذُو الْجَلَالِ وَالْإِكْرَامِ', tr: 'Dhūl-Jalāli wal-Ikrām', en: 'Lord of Majesty and Honour', virtue: 'Often recited after ṣalāh. Combine awe (jalāl) with hope in His honour (ikrām).', ref: 'Qur’an 55:27 · Tirmidhi 3524' },
+      { ar: 'الصَّبُورُ', tr: 'Aṣ-Ṣabūr', en: 'The Patient', virtue: 'Does not rush to punish. Learn ṣabr from Aṣ-Ṣabūr in hardship and in obedience.', ref: 'Classical listings of the 99 Names · Qur’an 2:153' }
+    ];
+
+    function loadAsma(random) {
+      const box = document.getElementById('asma-box');
+      if (!box) return;
+      let idx;
+      if (random) {
+        idx = Math.floor(Math.random() * ASMA_UL_HUSNA.length);
+      } else {
+        // Stable "today" pick from calendar day
+        const day = Math.floor(Date.now() / 86400000);
+        idx = day % ASMA_UL_HUSNA.length;
+      }
+      const n = ASMA_UL_HUSNA[idx];
+      box.innerHTML =
+        '<div class="asma-arabic">' + n.ar + '</div>' +
+        '<div class="asma-translit">' + n.tr + '</div>' +
+        '<div class="asma-meaning">' + n.en + '</div>' +
+        '<div class="asma-virtue"><strong>Reflection &amp; reported virtue:</strong> ' + n.virtue + '</div>' +
+        '<div class="asma-ref">' + n.ref + ' · Educational summary — not a fatwa</div>';
+      // Optional enrichment from free API (if available)
+      enrichAsmaOnline(n.tr, box);
+    }
+
+    async function enrichAsmaOnline(translit, box) {
+      try {
+        // Islamic Network / community mirrors occasionally expose names; try a lightweight public list
+        const res = await fetch('https://api.aladhan.com/v1/asmaAlHusna', { signal: AbortSignal.timeout(4000) });
+        if (!res.ok) return;
+        const data = await res.json();
+        const list = data.data || data || [];
+        if (!Array.isArray(list) || !list.length) return;
+        const needle = (translit || '').toLowerCase().replace(/[^a-z]/g, '');
+        const hit = list.find(x => {
+          const en = ((x.transliteration || x.en || x.name || '') + '').toLowerCase().replace(/[^a-z]/g, '');
+          return en && needle && (en.indexOf(needle.slice(0, 5)) !== -1 || needle.indexOf(en.slice(0, 5)) !== -1);
+        });
+        if (hit && (hit.en || hit.meaning)) {
+          const extra = document.createElement('div');
+          extra.className = 'asma-ref';
+          extra.style.marginTop = '0.45rem';
+          extra.textContent = 'Online note: ' + (hit.en || hit.meaning || hit.transliteration || '');
+          box.appendChild(extra);
+        }
+      } catch (e) { /* offline or API shape changed — local content remains */ }
+    }
+
+    loadAsma(false);
+
+    // Shared ayah audio (everyayah / Alafasy)
+    async function playAyahAudio(ref, btnEl) {
       const audio = document.getElementById('verse-audio');
       if (!audio) return;
-      if (!v || !v.surah) {
-        await loadVerse();
+      let surah = 1, ayah = 1;
+      if (typeof ref === 'string' && ref.indexOf(':') !== -1) {
+        const parts = ref.replace(/^Quran\s+/i, '').split(':');
+        surah = parseInt(parts[0], 10) || 1;
+        ayah = parseInt(parts[1], 10) || 1;
+      } else if (typeof ref === 'object' && ref) {
+        surah = ref.surah || ref.s || 1;
+        ayah = ref.ayah || ref.a || 1;
       }
-      const surah = (currentJourneyVerse && currentJourneyVerse.surah) || 1;
-      const ayah = (currentJourneyVerse && currentJourneyVerse.ayah) || 1;
-      // everyayah.com style numbering: padded surah+ayah
       const file = String(surah).padStart(3, '0') + String(ayah).padStart(3, '0') + '.mp3';
       const url = 'https://everyayah.com/data/Alafasy_128kbps/' + file;
+      const btn = btnEl || null;
+      const prev = btn ? btn.textContent : '';
       if (btn) btn.textContent = '…';
       try {
         audio.src = url;
         await audio.play();
         if (btn) btn.textContent = '🔊 Playing…';
-        audio.onended = () => { if (btn) btn.textContent = '🔊 Listen'; };
+        audio.onended = () => { if (btn) btn.textContent = prev || '🔊 Listen'; };
       } catch (e) {
-        if (btn) btn.textContent = '🔊 Listen';
+        if (btn) btn.textContent = prev || '🔊 Listen';
         window.open('https://quran.com/' + surah + '/' + ayah, '_blank');
       }
+    }
+    async function playCurrentVerseAudio() {
+      const v = currentJourneyVerse;
+      const btn = document.getElementById('verse-audio-btn');
+      if (!v || !v.surah) {
+        await loadVerse();
+      }
+      const surah = (currentJourneyVerse && currentJourneyVerse.surah) || 1;
+      const ayah = (currentJourneyVerse && currentJourneyVerse.ayah) || 1;
+      return playAyahAudio({ surah: surah, ayah: ayah }, btn);
+    }
+    function playHifzAudio() {
+      const s = document.getElementById('hifz-surah');
+      const a = document.getElementById('hifz-ayah-num');
+      const btn = document.getElementById('hifz-audio-btn');
+      const surah = s ? parseInt(s.value, 10) : 1;
+      const ayah = a ? parseInt(a.value, 10) : 1;
+      return playAyahAudio({ surah: surah, ayah: ayah }, btn);
     }
 
     // Notes export / import
