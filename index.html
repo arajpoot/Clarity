@@ -1053,24 +1053,39 @@
     }
     button:active, .btn:active { transform: scale(0.98); }
 
-    /* Theme toggle */
-    .theme-toggle {
+    /* Theme + language toolbar (top-right, never stretches full width) */
+    .banner-tools {
       position: absolute;
-      top: 0.65rem;
-      right: 0.75rem;
-      z-index: 5;
+      top: 0.55rem;
+      right: 0.55rem;
+      z-index: 6;
       display: inline-flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
       align-items: center;
       gap: 0.35rem;
+      width: auto;
+      max-width: none;
+      direction: ltr; /* always LTR so Urdu mode doesn't stretch/flip the bar */
+    }
+    .theme-toggle {
+      position: static;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
       background: rgba(255,255,255,0.18);
       color: #fff;
       border: 1px solid rgba(255,255,255,0.35);
-      padding: 0.4rem 0.75rem;
+      padding: 0.35rem 0.65rem;
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
       backdrop-filter: blur(6px);
+      white-space: nowrap;
+      margin: 0;
+      width: auto;
+      flex: 0 0 auto;
     }
     .theme-toggle:hover { background: rgba(255,255,255,0.28); }
 
@@ -1681,11 +1696,229 @@
       }
     }
 
+    /* ===== v9 upgrades: action strip, weekly, about, a11y, i18n ===== */
+    .one-action-strip {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--accent-fg);
+      padding: 0.55rem 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      font-size: 0.9rem;
+    }
+    .one-action-strip .oa-label {
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.9;
+    }
+    .one-action-strip .oa-text { flex: 1; min-width: 140px; font-weight: 500; }
+    .one-action-strip button {
+      margin: 0;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.95);
+      color: var(--accent);
+      border-radius: 999px;
+    }
+    html[data-theme="dark"] .one-action-strip button { background: var(--bg-elevated); color: var(--accent); }
+    .scholar-disclaimer {
+      font-size: 0.82rem;
+      line-height: 1.45;
+      padding: 0.65rem 0.85rem;
+      border-radius: 10px;
+      background: rgba(15,76,58,0.08);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+    html[data-theme="dark"] .scholar-disclaimer { background: rgba(61,155,114,0.12); }
+    .weekly-review-card .wr-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.55rem;
+      margin: 0.75rem 0;
+    }
+    @media (min-width: 520px) {
+      .weekly-review-card .wr-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .wr-item {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.65rem;
+      text-align: center;
+    }
+    html[data-theme="dark"] .wr-item { background: rgba(30,40,34,0.85); }
+    .wr-item .wr-val { font-size: 1.35rem; font-weight: 700; color: var(--accent); display: block; }
+    .wr-item .wr-lab { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .seerah-timeline {
+      border-left: 3px solid var(--accent);
+      margin: 0.75rem 0 0.5rem 0.35rem;
+      padding-left: 1rem;
+    }
+    .seerah-tl-item {
+      position: relative;
+      margin-bottom: 0.95rem;
+      padding-bottom: 0.55rem;
+    }
+    .seerah-tl-item::before {
+      content: '';
+      position: absolute;
+      left: -1.28rem;
+      top: 0.35rem;
+      width: 0.55rem; height: 0.55rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .seerah-tl-item .tl-year {
+      font-size: 0.78rem; font-weight: 700; color: var(--accent);
+      margin-bottom: 0.15rem;
+    }
+    .seerah-tl-item .tl-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .seerah-tl-item .tl-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; }
+    .a11y-bar {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      gap: 0.3rem;
+      align-items: center;
+      justify-content: flex-end;
+      margin: 0;
+      width: auto;
+      flex: 0 0 auto;
+      direction: ltr;
+    }
+    .a11y-bar button {
+      margin: 0;
+      padding: 0.28rem 0.5rem;
+      font-size: 0.72rem;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      border-radius: 999px;
+      width: auto;
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+    html.large-text { font-size: 112%; }
+    html.xlarge-text { font-size: 124%; }
+    .lang-select {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 999px;
+      padding: 0.28rem 0.45rem;
+      font-size: 0.72rem;
+      cursor: pointer;
+      width: auto;
+      max-width: 5.5rem;
+      flex: 0 0 auto;
+      direction: ltr;
+    }
+    .lang-select option { color: #222; }
+    .night-breath-card {
+      background: linear-gradient(145deg, #1a2a22, #0f1a14);
+      color: #e8efe8;
+      border-radius: 16px;
+      padding: 1.2rem 1.15rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #2a3830;
+    }
+    .night-breath-card h2 { color: #8fd4a0 !important; }
+    .night-breath-card .nb-q {
+      font-size: 1.15rem;
+      font-family: 'Cormorant Garamond', serif;
+      margin: 0.65rem 0;
+      line-height: 1.4;
+    }
+    .share-light-box {
+      background: var(--accent-soft);
+      border-radius: 12px;
+      padding: 0.85rem;
+      margin-top: 0.65rem;
+      font-size: 0.9rem;
+    }
+    .share-light-box textarea {
+      min-height: 70px;
+      margin: 0.45rem 0;
+      font-size: 0.88rem;
+    }
+    .hadith-grade {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.12rem 0.45rem;
+      border-radius: 6px;
+      background: #d0ecd8;
+      color: #0f4c3a;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+    }
+    html[data-theme="dark"] .hadith-grade { background: #1e3329; color: #8fd4a0; }
+    .verse-audio-btn {
+      background: var(--accent-soft) !important;
+      color: var(--accent) !important;
+      border: 1px solid var(--border);
+      font-size: 0.86rem;
+      padding: 0.45rem 0.9rem !important;
+    }
+    .card-about { background: linear-gradient(145deg, #e8f0e8, #f4f8f4); border: 1px solid #a8c8b0; }
+    html[data-theme="dark"] .card-about { background: linear-gradient(145deg, #1a2820, #152018); }
+    .sources-list { margin: 0.5rem 0 0.75rem 1.1rem; font-size: 0.92rem; }
+    .sources-list li { margin-bottom: 0.35rem; }
+    .nav-tab[data-tab="about"] { background: linear-gradient(180deg, #5a7a6a, #3a5a4a); }
+    .nav-tab.active[data-tab="notes"] { background: linear-gradient(180deg, #e8f5e0, #d4ecc8); color: #2a4a20; text-shadow: none; }
+    .nav-tab.active[data-tab="about"] { background: linear-gradient(180deg, #e0f0e8, #d0e8dc); color: #1a4a3a; text-shadow: none; }
+    .offline-badge {
+      display: none;
+      font-size: 0.68rem;
+      background: rgba(180,100,40,0.9);
+      color: #fff;
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      margin-left: 0.35rem;
+    }
+    .offline-badge.show { display: inline-block; }
+    .install-pwa-btn {
+      display: none;
+      margin: 0.5rem 0 0;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.9rem;
+    }
+    .install-pwa-btn.show { display: inline-block; }
+
+    /* Urdu mode: keep page layout LTR; only Urdu/Arabic text runs RTL */
+    html.lang-ur .verse-urdu,
+    html.lang-ur .arabic-calligraphy,
+    .verse-urdu {
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: isolate;
+    }
+    html.lang-ur [data-i18n],
+    html.lang-ur [data-i18n-html] {
+      /* Urdu labels stay readable; do not flip whole cards */
+      unicode-bidi: isolate;
+    }
+    html.lang-ur .oa-label { letter-spacing: 0; }
+
   </style>
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Clarity">
 </head>
 <body>
 
   <audio id="quran-audio" preload="none" crossorigin="anonymous"></audio>
+  <audio id="verse-audio" preload="none" crossorigin="anonymous"></audio>
 
   <!-- ========== BANNER (always visible) ========== -->
   <div class="banner">
@@ -1694,7 +1927,16 @@
       <iframe id="banner-live" class="banner-live" title="Live from the Holy Places" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
     <div class="banner-overlay">
-      <button type="button" class="theme-toggle" id="theme-toggle" onclick="cycleTheme()" aria-label="Toggle theme">🌓 System</button>
+      <div class="banner-tools" id="banner-tools">
+        <div class="a11y-bar">
+          <select class="lang-select" id="lang-select" onchange="setUILang(this.value)" title="Language" aria-label="Language">
+            <option value="en">EN</option>
+            <option value="ur">اردو</option>
+          </select>
+          <button type="button" onclick="cycleTextSize()" id="text-size-btn" title="Text size">A</button>
+        </div>
+        <button type="button" class="theme-toggle" id="theme-toggle" onclick="cycleTheme()" aria-label="Toggle theme">🌓 System</button>
+      </div>
 
       <!-- Left: portrait Hijri calendar + local time (IP-based) -->
       <div class="banner-side left">
@@ -1711,7 +1953,7 @@
       <div class="banner-center">
         <div class="bismillah arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
         <h1><span class="title-icon" title="Inkpot &amp; quill">✒️</span> Clarity</h1>
-        <div class="subtitle">Furnish your grave • Prepare for the long stay</div>
+        <div class="subtitle" data-i18n="subtitle">Furnish your grave • Prepare for the long stay</div>
         <div class="place-name" id="place-name">Masjid al-Haram • The Holy Kaaba <span class="temp-live" id="place-temp">…°C</span></div>
 
         <!-- Always-visible one-liner: next Islamic event -->
@@ -1772,17 +2014,27 @@
   <!-- ========== STICKY TAB NAVIGATION ========== -->
   <nav class="nav-tabs" role="tablist">
     <div class="nav-tabs-inner">
-      <button class="nav-tab active" data-tab="journey" onclick="switchTab('journey')"><span class="tab-label-row"><span class="tab-bubble">🧭</span>Journey</span><span class="tab-visit-count" id="vc-journey">…</span></button>
-      <button class="nav-tab" data-tab="commands" onclick="switchTab('commands')"><span class="tab-label-row"><span class="tab-bubble">📜</span>Commands</span><span class="tab-visit-count" id="vc-commands">…</span></button>
-      <button class="nav-tab" data-tab="tafseer" onclick="switchTab('tafseer')"><span class="tab-label-row"><span class="tab-bubble">📚</span>Tafseer</span><span class="tab-visit-count" id="vc-tafseer">…</span></button>
-      <button class="nav-tab" data-tab="tajweed" onclick="switchTab('tajweed')"><span class="tab-label-row"><span class="tab-bubble">🔤</span>Tajweed</span><span class="tab-visit-count" id="vc-tajweed">…</span></button>
-      <button class="nav-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="tab-label-row"><span class="tab-bubble">📖</span>Seerah</span><span class="tab-visit-count" id="vc-seerah">…</span></button>
-      <button class="nav-tab" data-tab="lectures" onclick="switchTab('lectures')"><span class="tab-label-row"><span class="tab-bubble">🎧</span>Lectures</span><span class="tab-visit-count" id="vc-lectures">…</span></button>
-      <button class="nav-tab" data-tab="grave" onclick="switchTab('grave')"><span class="tab-label-row"><span class="tab-bubble">🌙</span>Grave</span><span class="tab-visit-count" id="vc-grave">…</span></button>
-      <button class="nav-tab" data-tab="search" onclick="switchTab('search')"><span class="tab-label-row"><span class="tab-bubble">🔍</span>Search &amp; Ask</span><span class="tab-visit-count" id="vc-search">…</span></button>
-      <button class="nav-tab" data-tab="notes" onclick="switchTab('notes')"><span class="tab-label-row"><span class="tab-bubble">📝</span>Notes</span><span class="tab-visit-count" id="vc-notes">…</span></button>
+      <button class="nav-tab active" data-tab="journey" onclick="switchTab('journey')"><span class="tab-label-row"><span class="tab-bubble">🧭</span><span data-i18n="tab_journey">Journey</span></span><span class="tab-visit-count" id="vc-journey">…</span></button>
+      <button class="nav-tab" data-tab="commands" onclick="switchTab('commands')"><span class="tab-label-row"><span class="tab-bubble">📜</span><span data-i18n="tab_commands">Commands</span></span><span class="tab-visit-count" id="vc-commands">…</span></button>
+      <button class="nav-tab" data-tab="tafseer" onclick="switchTab('tafseer')"><span class="tab-label-row"><span class="tab-bubble">📚</span><span data-i18n="tab_tafseer">Tafseer</span></span><span class="tab-visit-count" id="vc-tafseer">…</span></button>
+      <button class="nav-tab" data-tab="tajweed" onclick="switchTab('tajweed')"><span class="tab-label-row"><span class="tab-bubble">🔤</span><span data-i18n="tab_tajweed">Tajweed</span></span><span class="tab-visit-count" id="vc-tajweed">…</span></button>
+      <button class="nav-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="tab-label-row"><span class="tab-bubble">📖</span><span data-i18n="tab_seerah">Seerah</span></span><span class="tab-visit-count" id="vc-seerah">…</span></button>
+      <button class="nav-tab" data-tab="lectures" onclick="switchTab('lectures')"><span class="tab-label-row"><span class="tab-bubble">🎧</span><span data-i18n="tab_lectures">Lectures</span></span><span class="tab-visit-count" id="vc-lectures">…</span></button>
+      <button class="nav-tab" data-tab="grave" onclick="switchTab('grave')"><span class="tab-label-row"><span class="tab-bubble">🌙</span><span data-i18n="tab_grave">Grave</span></span><span class="tab-visit-count" id="vc-grave">…</span></button>
+      <button class="nav-tab" data-tab="search" onclick="switchTab('search')"><span class="tab-label-row"><span class="tab-bubble">🔍</span><span data-i18n="tab_search">Search &amp; Ask</span></span><span class="tab-visit-count" id="vc-search">…</span></button>
+      <button class="nav-tab" data-tab="notes" onclick="switchTab('notes')"><span class="tab-label-row"><span class="tab-bubble">📝</span><span data-i18n="tab_notes">Notes</span></span><span class="tab-visit-count" id="vc-notes">…</span></button>
+      <button class="nav-tab" data-tab="about" onclick="switchTab('about')"><span class="tab-label-row"><span class="tab-bubble">ℹ️</span><span data-i18n="tab_about">About</span></span><span class="tab-visit-count" id="vc-about">…</span></button>
     </div>
   </nav>
+
+  <!-- One action today (sticky) -->
+  <div class="one-action-strip" id="one-action-strip" role="status">
+    <span class="oa-label" data-i18n="one_action">One action today</span>
+    <span class="oa-text" id="one-action-text">Loading your next step…</span>
+    <span class="offline-badge" id="offline-badge" data-i18n="offline_pack">Offline pack</span>
+    <button type="button" onclick="refreshOneAction()" title="New suggestion">↻</button>
+    <button type="button" onclick="doOneAction()" id="one-action-go" data-i18n="do_it">Do it</button>
+  </div>
 
   <div class="page-wrapper">
     <!-- Left sidebar -->
@@ -1808,15 +2060,39 @@
           <div class="stat-pill"><div class="icon">💚</div><div><div class="label">Salawat</div><div class="value" id="pill-salawat">0</div></div></div>
         </div>
         <div class="hifz-goal-bar">
-          <div class="row"><span>Hifz goal today</span><span id="hifz-goal-label">0/3 ayahs</span></div>
+          <div class="row"><span data-i18n="hifz_goal">Hifz goal today</span><span id="hifz-goal-label">0/3 ayahs</span></div>
           <div class="track"><div class="fill" id="hifz-goal-fill"></div></div>
         </div>
+
+        <!-- Weekly review -->
+        <div class="card card-journey weekly-review-card" id="weekly-review-card">
+          <h2 data-i18n="weekly_title">📊 This week’s light</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.35rem" data-i18n="weekly_desc">A quiet accounting — what you sent ahead (this device only).</p>
+          <div class="wr-grid">
+            <div class="wr-item"><span class="wr-val" id="wr-streak">0</span><span class="wr-lab">Streak days</span></div>
+            <div class="wr-item"><span class="wr-val" id="wr-lessons">0</span><span class="wr-lab">Lessons</span></div>
+            <div class="wr-item"><span class="wr-val" id="wr-istighfar">0</span><span class="wr-lab">Istighfar (today)</span></div>
+            <div class="wr-item"><span class="wr-val" id="wr-hifz">0</span><span class="wr-lab">Hifz today</span></div>
+          </div>
+          <p id="wr-summary" style="font-size:0.9rem;margin-top:0.35rem;"></p>
+          <button type="button" class="btn-soft" onclick="switchTab('grave')" style="margin-top:0.35rem;">Send more light →</button>
+        </div>
+
+        <!-- Surprise: If I die tonight -->
+        <div class="night-breath-card" id="night-breath-card">
+          <h2 data-i18n="night_title">🕯️ If I die tonight…</h2>
+          <p class="nb-q" id="night-breath-q">What one deed would I want to have sent ahead?</p>
+          <p style="font-size:0.88rem;opacity:0.9;margin-bottom:0.55rem;" data-i18n="night_hint">The Prophet ﷺ said: “Remember often the destroyer of pleasures (death).” Let the question soften the heart — then act once.</p>
+          <button type="button" class="btn-soft" onclick="nightBreathAct()" data-i18n="night_act">I will do one deed now</button>
+          <button type="button" class="btn-secondary" onclick="nightBreathRefresh()" style="background:#3d5a4a;" data-i18n="night_another">Another question</button>
+        </div>
+
 <div class="card card-journey">
-          <h2>My Journey</h2>
+          <h2 data-i18n="my_journey">My Journey</h2>
           <div id="profile-input">
-            <p>Enter your name to personalize (saved only on this device).</p>
-            <input type="text" id="username" placeholder="Your name" maxlength="30" />
-            <button type="button" onclick="saveProfile()">Save Name</button>
+            <p data-i18n="enter_name">Enter your name to personalize (saved only on this device).</p>
+            <input type="text" id="username" placeholder="Your name" maxlength="30" data-i18n-placeholder="name_ph" />
+            <button type="button" onclick="saveProfile()" data-i18n="save_name">Save Name</button>
           </div>
           <div id="welcome-area" style="display:none;">
             <div class="welcome-box">
@@ -1828,7 +2104,7 @@
               <div class="notify-row">
                 <label class="notify-toggle">
                   <input type="checkbox" id="notify-toggle" onchange="toggleDailyReminder()">
-                  <span>Daily reminder to return & furnish the grave</span>
+                  <span data-i18n="daily_reminder">Daily reminder to return & furnish the grave</span>
                 </label>
                 <span id="notify-status" style="font-size:0.82rem; color:#666;"></span>
               </div>
@@ -1839,36 +2115,37 @@
 
         <!-- Daily content now lives inside Journey -->
         <div class="card card-lesson">
-          <h2>Today’s Character Lesson</h2>
+          <h2 data-i18n="lesson_title">Today’s Character Lesson</h2>
           <div id="lesson"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadLesson(true)">New lesson</button>
-          <button type="button" class="bm-btn" onclick="bookmarkCurrentLesson()">🔖 Save</button>
+          <button type="button" onclick="loadLesson(true)" data-i18n="new_lesson">New lesson</button>
+          <button type="button" class="bm-btn" onclick="bookmarkCurrentLesson()" data-i18n="save_bm">🔖 Save</button>
         </div>
 
         <div class="card card-verse">
-          <h2>A Verse from the Quran</h2>
+          <h2 data-i18n="verse_title">A Verse from the Quran</h2>
           <div id="verse"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadVerse()">Another verse</button>
-          <button type="button" class="bm-btn" onclick="bookmarkCurrentVerse()">🔖 Save</button>
+          <button type="button" onclick="loadVerse()" data-i18n="another_verse">Another verse</button>
+          <button type="button" class="verse-audio-btn" id="verse-audio-btn" onclick="playCurrentVerseAudio()" data-i18n="listen">🔊 Listen</button>
+          <button type="button" class="bm-btn" onclick="bookmarkCurrentVerse()" data-i18n="save_bm">🔖 Save</button>
         </div>
 
         <div class="card card-life">
-          <h2>Life Events Guidance</h2>
+          <h2 data-i18n="life_title">Life Events Guidance</h2>
           <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.65rem">Real situations — job loss, illness, parents, marriage, birth, death, anger, prayer under pressure — with Sunnah, scholarly notes, and one action for today.</p>
           <div id="life-event"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadLifeEvent()">Another life event</button>
+          <button type="button" onclick="loadLifeEvent()" data-i18n="another_life">Another life event</button>
         </div>
 
         <div class="card card-journey" id="bookmarks-card" style="display:none">
-          <h2>Your Bookmarks</h2>
-          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.5rem">Saved on this device.</p>
+          <h2 data-i18n="bookmarks">Your Bookmarks</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.5rem" data-i18n="saved_device">Saved on this device.</p>
           <div class="bookmarks-list" id="bookmarks-list"></div>
         </div>
 
         <div class="card card-journey">
-          <h2>📓 Quick reflection</h2>
-          <p style="font-size:0.92rem;">Capture one thought from today’s journey. It opens in Notes, tagged Journey.</p>
-          <button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Journey','Reflection from Journey')">＋ Note from Journey</button>
+          <h2 data-i18n="quick_reflect">📓 Quick reflection</h2>
+          <p style="font-size:0.92rem;" data-i18n="quick_reflect_desc">Capture one thought from today’s journey. It opens in Notes, tagged Journey.</p>
+          <button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Journey','Reflection from Journey')" data-i18n="note_journey">＋ Note from Journey</button>
         </div>
       </div><!-- /#tab-journey -->
 
@@ -1876,12 +2153,12 @@
       <div id="tab-seerah" class="tab-panel">
         
         <div class="card card-seerah">
-          <h2>📖 Capture a seerah lesson</h2>
-          <p style="font-size:0.92rem;">After reading a moment from the Prophet’s life ﷺ, write one lesson and one action.</p>
+          <h2 data-i18n="capture_seerah">📖 Capture a seerah lesson</h2>
+          <p style="font-size:0.92rem;" data-i18n="capture_seerah_desc">After reading a moment from the Prophet’s life ﷺ, write one lesson and one action.</p>
           <button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Seerah','Seerah lesson')">＋ Note from Seerah</button>
         </div>
 <div class="card card-seerah">
-          <h2>Seerah &amp; Hadith</h2>
+          <h2 data-i18n="seerah_hadith">Seerah &amp; Hadith</h2>
           <p style="margin-bottom:0.9rem; font-size:0.95rem;">
             Study the life of the Prophet ﷺ, authentic hadith, and the stories of the Prophets. Begin with the complete series below.
           </p>
@@ -1907,25 +2184,31 @@
         </div>
 
         <div class="card card-seerah">
-          <h2>Daily Seerah Moment</h2>
+          <h2 data-i18n="seerah_moment">Daily Seerah Moment</h2>
           <div id="seerah-content"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadSeerah()">Another moment</button>
+          <button type="button" onclick="loadSeerah()" data-i18n="another_moment">Another moment</button>
+        </div>
+
+        <div class="card card-seerah">
+          <h2 data-i18n="seerah_tl">📜 Seerah timeline (key milestones)</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;" data-i18n="seerah_tl_desc">A simple chronological map of the Prophet’s life ﷺ — for orientation, not a full biography.</p>
+          <div class="seerah-timeline" id="seerah-timeline"></div>
         </div>
 
         <div class="card card-hadith">
-          <h2>A Saying of the Prophet ﷺ</h2>
+          <h2 data-i18n="hadith_title">A Saying of the Prophet ﷺ</h2>
           <div id="hadith"><div class="loading-msg">Loading…</div></div>
           <button type="button" onclick="loadHadith()">Another hadith</button>
         </div>
 
         <div class="card card-zikr">
-          <h2>Daily Zikr</h2>
+          <h2 data-i18n="daily_zikr">Daily Zikr</h2>
           <div id="zikr"><div class="loading-msg">Loading…</div></div>
           <button type="button" onclick="loadZikr()">New zikr</button>
         </div>
 
         <div class="card card-stories">
-          <h2>Stories of the Prophets</h2>
+          <h2 data-i18n="prophet_stories">Stories of the Prophets</h2>
           <div id="prophet-story"><div class="loading-msg">Loading…</div></div>
           <div style="margin-top:0.75rem;">
             <button type="button" onclick="loadProphetStory()" class="btn-secondary">Next Story</button>
@@ -1933,7 +2216,7 @@
         </div>
 
         <div class="card card-israeliyat">
-          <h2>Lessons from Previous Nations</h2>
+          <h2 data-i18n="prev_nations">Lessons from Previous Nations</h2>
           <div id="israeliyat-content"><div class="loading-msg">Loading…</div></div>
           <button type="button" onclick="loadIsraeliyat()">Another lesson</button>
         </div>
@@ -1942,7 +2225,7 @@
       <!-- ==================== TAB: TAJWEED ==================== -->
       <div id="tab-tajweed" class="tab-panel">
         <div class="card card-tajweed">
-          <h2>🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2>
+          <h2 data-i18n="tajweed_title">🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2>
           <p style="margin-bottom:0.85rem; font-size:0.94rem;">
             Structured path from beginner to advanced, based on common free curricula
             (makhārij → ṣifāt → nūn/mīm sākinah → madd → waqf).
@@ -1993,7 +2276,7 @@
       <!-- ==================== TAB: LECTURES ==================== -->
       <div id="tab-lectures" class="tab-panel">
         <div class="card card-lectures">
-          <h2>Lectures &amp; Series</h2>
+          <h2 data-i18n="lectures_title">Lectures &amp; Series</h2>
           <p style="margin-bottom:0.9rem; font-size:0.95rem;">
             Select a series or playlist and play it directly on this page.
           </p>
@@ -2060,7 +2343,7 @@
       <!-- ==================== TAB: TAFSEER ==================== -->
       <div id="tab-tafseer" class="tab-panel">
         <div class="card card-tafseer">
-          <h2>Tafseer Resources</h2>
+          <h2 data-i18n="tafseer_res">Tafseer Resources</h2>
 
           <div class="lecture-box" style="margin-top:0.5rem;">
             <h3>📖 Dr. Israr Ahmed – Bayan-ul-Quran &amp; Lectures</h3>
@@ -2108,7 +2391,7 @@
       <!-- ==================== TAB: COMMANDS ==================== -->
       <div id="tab-commands" class="tab-panel">
         <div class="card card-commands">
-          <h2>Allah’s Commands to the Believers</h2>
+          <h2 data-i18n="commands_title">Allah’s Commands to the Believers</h2>
           <p style="margin-bottom:0.75rem; font-size:0.94rem;">
             Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
           </p>
@@ -2122,7 +2405,7 @@
 
         <!-- Quran Memorization (moved from Grave) -->
         <div class="card card-hifz">
-          <h2>Quran Memorization (Hifz) — Light for the Grave</h2>
+          <h2 data-i18n="hifz_title">Quran Memorization (Hifz) — Light for the Grave</h2>
           <p style="margin-bottom:0.75rem; font-size:0.94rem;">
             Memorising the Quran is among the greatest provisions for the grave. Set a daily goal, mark what you memorized, and practice recall. Progress + streak saved on this device.
           </p>
@@ -2275,36 +2558,39 @@
       <div id="tab-grave" class="tab-panel">
         
         <div class="card card-grave">
-          <h2>🌙 Note for the grave</h2>
-          <p style="font-size:0.92rem;">Write a deed, istighfar intention, or duʿāʾ you want to send ahead. Tagged Grave and marked as light.</p>
-          <button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Grave','Light for the grave', true)">＋ Send a note ahead</button>
+          <h2 data-i18n="note_grave">🌙 Note for the grave</h2>
+          <p style="font-size:0.92rem;" data-i18n="note_grave_desc">Write a deed, istighfar intention, or duʿāʾ you want to send ahead. Tagged Grave and marked as light.</p>
+          <button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Grave','Light for the grave', true)" data-i18n="send_note">＋ Send a note ahead</button>
         </div>
 
 <div class="card card-grave">
-          <h2>Furnishing My Grave</h2>
-          <p style="margin-bottom:0.65rem;">
+          <h2 data-i18n="furnish_grave">Furnishing My Grave</h2>
+          <p style="margin-bottom:0.65rem;" data-i18n="furnish_desc">
             The grave is a long stay. Every istighfar and salawat can be sent ahead as light and companionship.
           </p>
           <div class="deposit-grid">
             <div class="deposit-item">
-              <div>Istighfar today</div>
+              <div data-i18n="istighfar_today">Istighfar today</div>
               <span class="count" id="istighfar-count">0</span>
               <button type="button" onclick="addDeposit('istighfar')">+1 Astaghfirullah</button>
             </div>
             <div class="deposit-item">
-              <div>Salawat today</div>
+              <div data-i18n="salawat_today">Salawat today</div>
               <span class="count" id="salawat-count">0</span>
               <button type="button" onclick="addDeposit('salawat')">+1 Allahumma salli…</button>
             </div>
           </div>
-          <div class="grave-note">
+          <div class="grave-note" data-i18n-html="grave_intention">
             <strong>Today’s intention:</strong> I am sending these deeds to my grave as companions and light.
           </div>
-          <button type="button" onclick="resetDeposits()" class="btn-secondary" style="margin-top:0.85rem; font-size:0.86rem;">Reset today’s counts</button>
+          <button type="button" onclick="resetDeposits()" class="btn-secondary" style="margin-top:0.85rem; font-size:0.86rem;" data-i18n="reset_counts">Reset today’s counts</button>
         </div>
 
         <div class="card card-grave">
-          <h2>What Benefits the Deceased in the Grave — From the Scholars</h2>
+          <h2 data-i18n="benefits_title">What Benefits the Deceased in the Grave — From the Scholars</h2>
+          <div class="scholar-disclaimer" role="note" data-i18n-html="disclaimer">
+            <strong>Educational only — not a fatwa.</strong> Summaries below reflect mainstream Sunni discussions. For a particular case (inheritance, vows, disputes), consult a qualified local scholar. Clarity does not issue rulings.
+          </div>
           <p style="font-size:0.94rem; margin-bottom:0.85rem;">
             Classical scholars emphasised that the living can benefit the dead through specific deeds that reach them by Allah’s permission. Below is a concise summary drawn from mainstream Sunni fiqh and the writings of major scholars, beginning with Imam al-Ghazālī. Sources refresh from online references each page load.
           </p>
@@ -2375,7 +2661,7 @@
         </div>
 
         <div class="card card-grave">
-          <h2>Preparing the Deceased &amp; Islamic Burial — Process &amp; Resources</h2>
+          <h2 data-i18n="burial_title">Preparing the Deceased &amp; Islamic Burial — Process &amp; Resources</h2>
           <p style="font-size:0.94rem; margin-bottom:0.85rem;">
             When a Muslim dies, the community has a collective duty (farḍ kifāyah) to wash, shroud, pray over, and bury the body with dignity and without unnecessary delay. Below is a concise overview and trusted online resources for Muslim-majority and non-Muslim countries.
           </p>
@@ -2449,7 +2735,7 @@
       <!-- ==================== TAB: SEARCH & ASK ==================== -->
       <div id="tab-search" class="tab-panel">
         <div class="card card-search">
-          <h2>Search the Quran</h2>
+          <h2 data-i18n="search_quran">Search the Quran</h2>
           <div class="search-row">
             <input type="text" id="quran-search" placeholder="patience, prayer, forgiveness..." />
             <button type="button" onclick="searchQuran()">Search</button>
@@ -2458,7 +2744,7 @@
         </div>
 
         <div class="card card-search">
-          <h2>Search Authentic Hadith</h2>
+          <h2 data-i18n="search_hadith">Search Authentic Hadith</h2>
           <div class="search-row">
             <input type="text" id="hadith-search" placeholder="mercy, anger, charity..." />
             <button type="button" onclick="searchHadith()">Search</button>
@@ -2470,7 +2756,7 @@
         </div>
 
         <div class="card card-search">
-          <h2>Search Life Events / Hadith</h2>
+          <h2 data-i18n="search_life">Search Life Events / Hadith</h2>
           <div class="search-row">
             <input type="text" id="life-search" placeholder="patience, anger, charity, parents..." />
             <button type="button" onclick="searchLifeOrHadith()">Search</button>
@@ -2479,7 +2765,7 @@
         </div>
 
         <div class="card card-questions">
-          <h2>Common Questions</h2>
+          <h2 data-i18n="common_q">Common Questions</h2>
           <p style="font-size:0.9rem; color:#555; margin-bottom:0.65rem;">
             Brief answers with links to detailed fatwas on <a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA.info</a>.
           </p>
@@ -2487,7 +2773,7 @@
         </div>
 
         <div class="card card-grok">
-          <h2>Ask Grok</h2>
+          <h2 data-i18n="ask_grok">Ask Grok</h2>
           <p>Ask about life events, previous nations, or any sincere question.</p>
           <div class="grok-box">
             <textarea id="grok-question" placeholder="Example: What is the Islamic guidance when a child is born?"></textarea>
@@ -2497,7 +2783,7 @@
         </div>
 
         <div class="card card-questions">
-          <h2>Suggest an Improvement</h2>
+          <h2 data-i18n="suggest_title">Suggest an Improvement</h2>
           <p style="font-size:0.94rem; margin-bottom:0.55rem;">
             Have an idea, correction, or request for Clarity? Write it below. Your suggestion will be copied so you can paste it into an email or message.
           </p>
@@ -2512,19 +2798,51 @@
         Inspired by the reminder to furnish the grave with good deeds.<br>
         Sources: Quran, Sahih collections, AlQuran.cloud, UmmahAPI, Qurango, ArRahmah Islamic Institute.<br>
         Made for sincere preparation for the Hereafter.
+        <br><button type="button" class="install-pwa-btn" id="install-pwa-btn" onclick="installPWA()">📲 Install Clarity</button>
       </footer>
+
+      <!-- ==================== TAB: ABOUT ==================== -->
+      <div id="tab-about" class="tab-panel">
+        <div class="card card-about">
+          <h2 data-i18n="about_title">About Clarity</h2>
+          <p style="margin-bottom:0.75rem;" data-i18n-html="about_intro">Clarity is a local-first companion to help you <strong>prepare the heart and the grave</strong> — with Quran, authentic Hadith, character lessons, and small daily deeds. It is not a full Quran library, prayer engine, or fatwa service.</p>
+          <div class="scholar-disclaimer" data-i18n-html="about_disc"><strong>Educational only.</strong> For personal rulings, consult a qualified scholar.</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;color:var(--accent);margin:0.85rem 0 0.4rem;">How content is chosen</h3>
+          <ul class="sources-list">
+            <li><strong>Quran</strong> — live via Quran.com / AlQuran.cloud APIs (Uthmani + Sahih International).</li>
+            <li><strong>Tafsir snippets</strong> — Ibn Kathīr / Maʿārif (abridged) via Quran.com when available.</li>
+            <li><strong>Hadith</strong> — random/search via UmmahAPI; always prefer linking to <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a> for verification.</li>
+            <li><strong>Commands</strong> — curated “Yā ayyuhā alladhīna āmanū” verses with practical follow-ups.</li>
+            <li><strong>Scholar notes (Grave)</strong> — summaries from classical works (Ghazālī, Ibn Taymiyyah, Ibn al-Qayyim, Nawawī) with outbound links.</li>
+            <li><strong>Live Haramain</strong> — official Saudi Quran TV &amp; Sunnah TV channel embeds (stable channel IDs).</li>
+            <li><strong>Notes, streaks, deposits, hifz, tajweed progress</strong> — stored only on this device (localStorage).</li>
+          </ul>
+          <h3 style="font-family:'Cormorant Garamond',serif;color:var(--accent);margin:0.85rem 0 0.4rem;">Privacy</h3>
+          <p style="font-size:0.94rem;">No account. No upload of your notes. APIs are called only for public religious content (verses, hadith, weather, location-based prayer times).</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;color:var(--accent);margin:0.85rem 0 0.4rem;">Recommended companions</h3>
+          <p style="font-size:0.94rem;"><a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> · <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a> · a dedicated prayer-times app · a local scholar for fatwa.</p>
+          <div class="share-light-box">
+            <strong>Share a gentle reminder</strong>
+            <textarea id="share-light-text" readonly></textarea>
+            <button type="button" onclick="copyShareLight()">Copy message</button>
+          </div>
+        </div>
+      </div>
 
       <!-- ==================== TAB: NOTES ==================== -->
       <div id="tab-notes" class="tab-panel">
         <div class="card card-notes">
-          <h2>📝 Clarity Notes</h2>
-          <p style="font-size:0.94rem; margin-bottom:0.75rem;">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p>
+          <h2 data-i18n="notes_title">📝 Clarity Notes</h2>
+          <p style="font-size:0.94rem; margin-bottom:0.75rem;" data-i18n="notes_desc">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p>
           <div class="notes-shell" id="notes-shell">
             <div class="notes-list-pane" id="notes-list-pane">
               <div class="notes-list-toolbar">
                 <input type="text" class="notes-search" id="notes-search" placeholder="Search notes…  (/ )" autocomplete="off" oninput="notesSetQuery(this.value)">
                 <div class="notes-toolbar-row">
                   <button type="button" onclick="notesCreate()">＋ New</button>
+                  <button type="button" class="btn-secondary" onclick="notesExport()" title="Download notes JSON">⬇ Export</button>
+                  <button type="button" class="btn-secondary" onclick="document.getElementById('notes-import-file').click()" title="Import notes JSON">⬆ Import</button>
+                  <input type="file" id="notes-import-file" accept="application/json,.json" hidden onchange="notesImport(event)">
                   <button type="button" class="btn-secondary" onclick="notesRestoreSeed()" title="Restore starter library">↺ Seed</button>
                 </div>
               </div>
@@ -2580,7 +2898,7 @@
 
         <!-- Meme generator (local-only; for dawah / reminder graphics) -->
         <div class="card card-notes" id="meme-card">
-          <h2>🖼️ Meme Studio</h2>
+          <h2 data-i18n="meme_title">🖼️ Meme Studio</h2>
           <p style="font-size:0.92rem; margin-bottom:0.75rem; color:var(--text-muted);">
             Create a simple reminder graphic. Upload your own photo or pick a preset. Drag the text boxes, tweak size &amp; outline, then download. Everything stays on this device — nothing is uploaded.
           </p>
@@ -2690,7 +3008,7 @@
   <script>
     // ========== TAB NAVIGATION ==========
     function switchTab(tabId) {
-      const valid = ['journey','commands','tafseer','grave','seerah','tajweed','lectures','search','notes'];
+      const valid = ['journey','commands','tafseer','grave','seerah','tajweed','lectures','search','notes','about'];
       if (!valid.includes(tabId)) tabId = 'journey';
       // Hide all panels
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -3525,21 +3843,46 @@
     }
 
     // ========== COMMANDS ==========
-    const commandRefs = ["2:153","2:183","3:102","4:59","4:135","5:35","33:41","33:70","47:7","49:12","59:18","66:6"];
+    const commandRefs = [
+      "2:153","2:183","2:208","2:254","2:278","3:102","3:200","4:1","4:36","4:59","4:135",
+      "5:1","5:8","5:35","8:29","9:119","22:77","24:21","33:41","33:56","33:70",
+      "47:7","49:1","49:6","49:11","49:12","57:28","58:9","59:18","61:10","61:14","66:6","66:8"
+    ];
     // Recommended practical follow-up steps (drawn from classical fiqh principles & modern application)
     const commandFollowUps = {
       "2:153": "1. When hardship hits, immediately turn to salah and sabr. 2. Make a list of past difficulties Allah already helped you through. 3. Teach family members the same response: prayer + patience instead of complaint.",
       "2:183": "1. Plan Ramadan early: fix sleep, meal and Quran schedule. 2. Outside Ramadan, fast Mondays/Thursdays or the white days if able. 3. Use hunger to remember the poor and increase charity.",
+      "2:208": "1. Enter into Islam fully — not selectively. 2. Review one area of life still on ‘half measure’ and correct it. 3. Seek company that encourages complete submission.",
+      "2:254": "1. Spend from what you love before the day when trade and friendship end. 2. Give something today, even small. 3. Automate a monthly sadaqah if able.",
+      "2:278": "1. Leave residual interest/riba structures where you can. 2. Ask a scholar about complex contracts. 3. Prefer clear, halal earnings over doubtful gain.",
       "3:102": "1. Daily self-check: “Am I conscious of Allah in this action?” 2. Keep a small notebook of private sins to seek forgiveness for. 3. End each day with istighfar and a short heart review.",
+      "3:200": "1. Persevere in obedience when motivation fades. 2. Guard the boundaries of the deen in public and private. 3. Stay patient with people and with Allah’s decree.",
+      "4:1": "1. Honour family ties; call a relative you have neglected. 2. Fear Allah in how you speak about kinship. 3. Teach children the sanctity of the womb and lineage.",
+      "4:36": "1. Worship Allah alone; review shirk of the heart (showing off). 2. Be good to parents, relatives, orphans, the needy, and neighbours. 3. One concrete kindness to a neighbour this week.",
       "4:59": "1. Obey those in legitimate authority unless it involves clear disobedience to Allah. 2. In family and work, fulfil contracts and instructions with ihsan. 3. When leaders err, advise privately with wisdom, not public humiliation.",
       "4:135": "1. Speak truth even if it costs money, status or relationships. 2. In business and online, refuse to favour relatives or friends over justice. 3. Practice: when tempted to hide a fault or exaggerate, choose the harder truth.",
+      "5:1": "1. Fulfil contracts and promises. 2. Review outstanding commitments and close one today. 3. Avoid casual promises you cannot keep.",
+      "5:8": "1. Stand for justice even against yourself or your group. 2. Do not let hatred of a people make you unjust. 3. In an argument online, pause before posting.",
       "5:35": "1. Increase means of nearness: extra salah, Quran, dhikr, charity. 2. Strive against the lower self (jihad an-nafs) daily. 3. Make du‘a with His beautiful names and seek the means He loves.",
+      "8:29": "1. Have taqwa so Allah grants criterion (furqan) between truth and falsehood. 2. Ask Allah for clarity before major decisions. 3. Reduce sin that clouds the heart’s sight.",
+      "9:119": "1. Be with the truthful in speech and company. 2. Correct one habitual half-truth. 3. Seek friends who remind you of Allah.",
+      "22:77": "1. Bow and prostrate with presence, not haste. 2. Do good that benefits others. 3. Hope in Allah’s response after worship.",
+      "24:21": "1. Do not follow the footsteps of Shaytan — cut one path of temptation. 2. Guard eyes and screen time. 3. Replace a sinful habit slot with dhikr.",
       "33:41": "1. Set a daily dhikr target (e.g. 100 Subhanallah, 100 Alhamdulillah, 100 Allahu Akbar). 2. After every salah, do the Sunnah tasbih. 3. Keep tongue moist with dhikr while walking, driving or waiting.",
+      "33:56": "1. Send salawat upon the Prophet ﷺ daily. 2. Teach children a short salawat. 3. Increase salawat on Fridays.",
       "33:70": "1. Before speaking, pause and ask: “Is this true, necessary and kind?” 2. Avoid idle talk, mockery and backbiting online and offline. 3. Make a habit of beginning important conversations with Bismillah and ending with good words.",
       "47:7": "1. Support the religion with time, wealth, knowledge or character. 2. Defend the honour of Islam with good manners, not harshness. 3. Ask: “What one practical help can I give the deen this week?”",
+      "49:1": "1. Do not put yourself forward ahead of Allah and His Messenger in speech or fatwa. 2. Pause before sharing religious claims. 3. Verify before you forward.",
+      "49:6": "1. Verify news before sharing — especially online. 2. Refuse to spread unconfirmed accusations. 3. When in doubt, remain silent.",
+      "49:11": "1. Do not mock or insult others; stop one nickname that hurts. 2. Avoid group chat pile-ons. 3. Apologise if you belittled someone.",
       "49:12": "1. Stop yourself from suspicion and negative assumptions about others. 2. Avoid spying, gossip and sharing private faults. 3. When a thought of suspicion arises, replace it with a good assumption (husn az-zann) and istighfar.",
+      "57:28": "1. Have taqwa and believe in the Messenger; ask Allah for a double portion of mercy. 2. Walk toward light with consistent small deeds. 3. Forgive and seek forgiveness.",
+      "58:9": "1. When you converse privately, do not plot sin or aggression. 2. Make private talk about righteousness and taqwa. 3. End private chats with dhikr, not gossip.",
       "59:18": "1. Nightly self-accounting (muhasabah): What did I send ahead today? 2. Write one good deed and one shortcoming each evening. 3. Plan tomorrow’s priority act of worship before sleeping.",
-      "66:6": "1. Protect yourself and family from the Fire by teaching prayer, Quran and good character. 2. Make your home a place of dhikr and learning. 3. Correct family members gently and consistently, starting with yourself."
+      "61:10": "1. Trade this world for a bargain that saves from the Fire: faith and struggle in His path. 2. Give time or wealth to a beneficial cause. 3. Renew intention that your work is for Allah.",
+      "61:14": "1. Be among the helpers of Allah with character and clarity. 2. Support truth without arrogance. 3. Stand with the believers in hardship.",
+      "66:6": "1. Protect yourself and family from the Fire by teaching prayer, Quran and good character. 2. Make your home a place of dhikr and learning. 3. Correct family members gently and consistently, starting with yourself.",
+      "66:8": "1. Turn to Allah with sincere tawbah. 2. Repair a right you owe someone. 3. Ask Allah to perfect your light and forgive you."
     };
     let currentCommand = 0;
     // Cached Commands verse for Meme Studio (Arabic + English)
@@ -3551,22 +3894,40 @@
       const ref = commandRefs[currentCommand];
       const saved = JSON.parse(localStorage.getItem(getCommandKey(currentCommand)) || "{}");
       try {
-        const [arRes, enRes] = await Promise.all([
+        const [arRes, enRes, urRes] = await Promise.all([
           fetch(`https://api.alquran.cloud/v1/ayah/${ref}/quran-uthmani`),
-          fetch(`https://api.alquran.cloud/v1/ayah/${ref}/en.sahih`)
+          fetch(`https://api.alquran.cloud/v1/ayah/${ref}/en.sahih`),
+          fetch(`https://api.alquran.cloud/v1/ayah/${ref}/ur.jalandhry`)
         ]);
         const ar = await arRes.json();
         const en = await enRes.json();
+        let urdu = "";
+        try {
+          const ur = await urRes.json();
+          urdu = ur.data?.text || "";
+        } catch (eU) {}
         const arabic = ar.data?.text || "";
         const english = en.data?.text || "";
-        currentCommandVerse = { arabic: arabic, english: english, ref: "Quran " + ref };
+        currentCommandVerse = { arabic: arabic, english: english, urdu: urdu, ref: "Quran " + ref };
         const isWorking = saved.working || false;
         const note = saved.note || "";
         const followUp = commandFollowUps[ref] || "Reflect on the command and choose one concrete action you can take this week.";
+        const lang = getUILang();
+        let transBlock;
+        if (lang === 'ur') {
+          transBlock = `
+            ${urdu ? `<p class="verse-urdu" dir="rtl" style="font-size:1.12rem;line-height:1.85;margin:0.55rem 0;font-family:'Noto Naskh Arabic','Scheherazade New',serif;">${urdu}</p>` : ''}
+            <p style="font-size:0.95rem; margin:0.35rem 0; color:var(--text-muted);">${english}</p>
+            <div class="ref">Quran ${ref} • اردو (جالندھری) · Sahih International</div>`;
+        } else {
+          transBlock = `
+            <p style="font-size:1.02rem; margin:0.55rem 0;">${english}</p>
+            ${urdu ? `<p class="verse-urdu" dir="rtl" style="font-size:1.08rem;line-height:1.8;margin:0.4rem 0;font-family:'Noto Naskh Arabic','Scheherazade New',serif;color:var(--accent);">${urdu}</p>` : ''}
+            <div class="ref">Quran ${ref} • Sahih International${urdu ? ' · اردو (جالندھری)' : ''}</div>`;
+        }
         box.innerHTML = `
           <div class="arabic-calligraphy">${arabic}</div>
-          <p style="font-size:1.02rem; margin:0.55rem 0;">${english}</p>
-          <div class="ref">Quran ${ref} • Sahih International</div>
+          ${transBlock}
           <div class="ponder-box"><strong>Recommended follow-up steps (fiqh & modern practice):</strong><br>${followUp}</div>
           <div class="command-status">
             <span class="status-badge ${isWorking ? 'status-working' : 'status-not'}">${isWorking ? '✓ I am working on this' : 'Not yet tracking'}</span>
@@ -3653,13 +4014,39 @@
         const data = await res.json();
         const h = data.data || data;
         const text = h.hadith_english || h.english || h.text || "Hadith";
-        const ref = [h.collection, h.hadithNumber || h.number].filter(Boolean).join(" ");
+        const collection = (h.collection || "").toString();
+        const num = h.hadithNumber || h.number || "";
+        const ref = [collection, num].filter(Boolean).join(" ");
+        const gradeRaw = (h.grade || h.status || "").toString();
+        let gradeLabel = "";
+        const g = gradeRaw.toLowerCase();
+        if (g.includes("sahih") || collection.toLowerCase().includes("bukhari") || collection.toLowerCase().includes("muslim")) {
+          gradeLabel = '<span class="hadith-grade">Ṣaḥīḥ / canonical</span>';
+        } else if (g.includes("hasan")) {
+          gradeLabel = '<span class="hadith-grade">Hasan</span>';
+        } else if (gradeRaw) {
+          gradeLabel = '<span class="hadith-grade">' + gradeRaw.replace(/</g,"") + '</span>';
+        } else if (collection) {
+          gradeLabel = '<span class="hadith-grade">Verify grade</span>';
+        }
+        const sunnahQ = encodeURIComponent((text || "").slice(0, 80));
         el.innerHTML = `
           <p style="font-size:1.05rem; font-weight:500; margin-bottom:0.55rem">“${text}”</p>
           <div class="ponder-box">${ponder(text)}</div>
-          <div class="ref">${ref || "Authentic collection"}</div>`;
+          <div class="ref">${ref || "Collection"}${gradeLabel}<br>
+            <a href="https://sunnah.com/search?q=${sunnahQ}" target="_blank" rel="noopener" style="color:var(--accent)">Verify on Sunnah.com →</a>
+          </div>`;
+        try { offlineCacheSet('hadith', { text, ref, at: Date.now() }); } catch (e) {}
       } catch(e) {
-        el.innerHTML = `Unable to load. <a href="https://sunnah.com" target="_blank">Visit sunnah.com</a>`;
+        const cached = offlineCacheGet('hadith');
+        if (cached && cached.text) {
+          el.innerHTML = `<p style="font-size:1.05rem; font-weight:500">“${cached.text}”</p>
+            <div class="ref">${cached.ref || ""} · offline cache</div>
+            <p style="font-size:0.88rem;margin-top:0.5rem"><a href="https://sunnah.com" target="_blank" rel="noopener">Open Sunnah.com</a></p>`;
+          showOfflineBadge(true);
+        } else {
+          el.innerHTML = `Unable to load. <a href="https://sunnah.com" target="_blank" rel="noopener">Visit sunnah.com</a>`;
+        }
       }
     }
     async function searchHadith() {
@@ -3725,7 +4112,49 @@
     }
 
     // Cached Journey verse for Meme Studio (English + short tafseer)
-    let currentJourneyVerse = { en: "", tafseer: "", ref: "", arabic: "" };
+    let currentJourneyVerse = { en: "", ur: "", tafseer: "", ref: "", arabic: "" };
+
+    function getUILang() {
+      return (localStorage.getItem('clarity_lang') || 'en') === 'ur' ? 'ur' : 'en';
+    }
+
+    function renderVerseHtml(arabic, en, ur, surahName, ayah, tafseerText) {
+      const lang = getUILang();
+      const primary = (lang === 'ur' && ur) ? ur : en;
+      const secondary = (lang === 'ur' && ur && en)
+        ? `<p class="verse-secondary" style="margin-top:0.4rem;font-size:0.92rem;color:var(--text-muted)">${en}</p>`
+        : (lang === 'en' && ur
+          ? `<p class="verse-secondary verse-urdu" dir="rtl" style="margin-top:0.4rem;font-size:1.05rem;font-family:'Noto Naskh Arabic','Scheherazade New',serif;color:var(--accent)">${ur}</p>`
+          : '');
+      // When UI is Urdu: show Urdu as main + English smaller underneath (if available)
+      // When UI is English: show English main + Urdu underneath if we have it
+      let mainBlock;
+      if (lang === 'ur') {
+        mainBlock = `
+          <p class="verse-primary verse-urdu" dir="rtl" style="margin-top:0.55rem;font-size:1.12rem;line-height:1.85;font-family:'Noto Naskh Arabic','Scheherazade New',serif">${ur || en}</p>
+          ${en && ur ? `<p class="verse-secondary" style="margin-top:0.4rem;font-size:0.92rem;color:var(--text-muted)">${en}</p>` : ''}`;
+      } else {
+        mainBlock = `
+          <p class="verse-primary" style="margin-top:0.55rem;font-size:1.02rem">${en}</p>
+          ${ur ? `<p class="verse-secondary verse-urdu" dir="rtl" style="margin-top:0.45rem;font-size:1.08rem;line-height:1.8;font-family:'Noto Naskh Arabic','Scheherazade New',serif;color:var(--accent)">${ur}</p>` : ''}`;
+      }
+      const transLabel = lang === 'ur'
+        ? (ur ? 'اردو ترجمہ (جالندھری) · Sahih International' : 'Sahih International')
+        : (ur ? 'Sahih International · اردو (جالندھری)' : 'Sahih International');
+      let ponderBlock = "";
+      if (tafseerText) {
+        const safe = tafseerText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const ponderLabel = lang === 'ur' ? 'غور و فکر:' : 'Pondering:';
+        ponderBlock = `<div class="ponder-box"><strong>${ponderLabel}</strong> ${safe.replace(/\n/g, "<br>")}<div class="ref" style="margin-top:0.45rem">Ibn Kathīr (abridged) · ${surahName} ${ayah} · via Quran.com</div></div>`;
+      } else if (en) {
+        ponderBlock = `<div class="ponder-box">${ponder(en)}</div>`;
+      }
+      return `
+        <div class="arabic-calligraphy">${arabic}</div>
+        ${mainBlock}
+        <div class="ref">${surahName} ${ayah} • ${transLabel}</div>
+        ${ponderBlock}`;
+    }
 
     async function loadVerseInto(elId) {
       const el = document.getElementById(elId);
@@ -3736,19 +4165,24 @@
         versePoolIdx++;
         const key = pick.s + ":" + pick.a;
 
-        const [vRes, tRes] = await Promise.all([
+        const [vRes, tRes, urRes] = await Promise.all([
           fetch(`https://api.quran.com/api/v4/verses/by_key/${key}?language=en&translations=20&fields=text_uthmani`),
-          fetch(`https://api.quran.com/api/v4/tafsirs/en-tafisr-ibn-kathir/by_ayah/${key}`)
+          fetch(`https://api.quran.com/api/v4/tafsirs/en-tafisr-ibn-kathir/by_ayah/${key}`),
+          fetch(`https://api.alquran.cloud/v1/ayah/${key}/ur.jalandhry`)
         ]);
         const vData = await vRes.json();
         const tData = await tRes.json();
+        let ur = "";
+        try {
+          const urData = await urRes.json();
+          ur = (urData.data && urData.data.text) ? urData.data.text : "";
+        } catch (eUr) {}
 
         const verse = vData.verse || {};
         const arabic = verse.text_uthmani || "";
         const en = (verse.translations && verse.translations[0] && verse.translations[0].text)
           ? verse.translations[0].text.replace(/<[^>]+>/g, "")
           : "";
-        // Surah name from static map fallback
         const surahNames = {1:"Al-Fatihah",2:"Al-Baqarah",3:"Aal-Imran",4:"An-Nisa",5:"Al-Ma'idah",6:"Al-An'am",7:"Al-A'raf",9:"At-Tawbah",13:"Ar-Ra'd",14:"Ibrahim",16:"An-Nahl",17:"Al-Isra",18:"Al-Kahf",20:"Ta-Ha",21:"Al-Anbiya",23:"Al-Mu'minun",24:"An-Nur",25:"Al-Furqan",29:"Al-Ankabut",31:"Luqman",33:"Al-Ahzab",39:"Az-Zumar",49:"Al-Hujurat",51:"Adh-Dhariyat",55:"Ar-Rahman",57:"Al-Hadid",59:"Al-Hashr",64:"At-Taghabun",65:"At-Talaq",67:"Al-Mulk",94:"Ash-Sharh",103:"Al-Asr",112:"Al-Ikhlas"};
         const surahName = surahNames[pick.s] || ("Surah " + pick.s);
 
@@ -3756,7 +4190,6 @@
         if (tData.tafsir && tData.tafsir.text) {
           tafseerText = stripHtmlTafseer(tData.tafsir.text);
         }
-        // Prefer passage that mentions context; if empty, try Ma'arif
         if (!tafseerText || tafseerText.length < 40) {
           try {
             const mRes = await fetch(`https://api.quran.com/api/v4/tafsirs/en-tafsir-maarif-ul-quran/by_ayah/${key}`);
@@ -3767,34 +4200,43 @@
           } catch (e2) {}
         }
 
-        // Cache for meme studio (Journey verse only when loading into main verse panel)
         if (elId === "verse") {
           currentJourneyVerse = {
             en: en,
+            ur: ur,
             tafseer: tafseerText || "",
             ref: surahName + " " + pick.a,
-            arabic: arabic
+            arabic: arabic,
+            surah: pick.s,
+            ayah: pick.a,
+            key: key
           };
+          try { offlineCacheSet('verse', currentJourneyVerse); } catch (e2) {}
         }
 
-        let ponderBlock = "";
-        if (tafseerText) {
-          const safe = tafseerText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-          ponderBlock = `<div class="ponder-box"><strong>Pondering:</strong> ${safe.replace(/\n/g, "<br>")}<div class="ref" style="margin-top:0.45rem">Ibn Kathīr (abridged) · ${surahName} ${pick.a} · via Quran.com</div></div>`;
-        } else {
-          ponderBlock = `<div class="ponder-box">${ponder(en)}</div>`;
-        }
-
-        el.innerHTML = `
-          <div class="arabic-calligraphy">${arabic}</div>
-          <p style="margin-top:0.55rem; font-size:1.02rem">${en}</p>
-          <div class="ref">${surahName} ${pick.a} • Sahih International</div>
-          ${ponderBlock}`;
+        el.innerHTML = renderVerseHtml(arabic, en, ur, surahName, pick.a, tafseerText);
       } catch (e) {
-        el.innerHTML = "Unable to load verse. <a href='https://quran.com' target='_blank' rel='noopener'>Open Quran.com</a>";
+        const cached = offlineCacheGet('verse');
+        if (cached && cached.arabic) {
+          currentJourneyVerse = cached;
+          el.innerHTML = renderVerseHtml(cached.arabic, cached.en || "", cached.ur || "", cached.ref || "", "", cached.tafseer || "");
+          showOfflineBadge(true);
+        } else {
+          el.innerHTML = "Unable to load verse. <a href='https://quran.com' target='_blank' rel='noopener'>Open Quran.com</a>";
+        }
       }
     }
     function loadVerse() { loadVerseInto("verse"); }
+
+    // Re-render cached verse when language toggles
+    function refreshVerseLanguage() {
+      const el = document.getElementById('verse');
+      const v = currentJourneyVerse;
+      if (!el || !v || !v.arabic) return;
+      const surahName = (v.ref || '').replace(/\s+\d+$/, '') || '';
+      const ayah = v.ayah || '';
+      el.innerHTML = renderVerseHtml(v.arabic, v.en || '', v.ur || '', surahName || v.ref || '', ayah, v.tafseer || '');
+    }
     function loadVerseCommands() { /* removed duplicate; no-op */ }
     async function searchQuran() {
       const query = document.getElementById("quran-search").value.trim();
@@ -5725,17 +6167,428 @@ Ask Allah for firmness and sincerity.`
     updateProgressPills();
     renderBookmarks();
 
+    // ========== v9 UPGRADES ==========
+    const OFFLINE_KEY = 'clarity_offline_pack_v1';
+    function offlineCacheGet(k) {
+      try {
+        const pack = JSON.parse(localStorage.getItem(OFFLINE_KEY) || '{}');
+        return pack[k] || null;
+      } catch (e) { return null; }
+    }
+    function offlineCacheSet(k, val) {
+      try {
+        const pack = JSON.parse(localStorage.getItem(OFFLINE_KEY) || '{}');
+        pack[k] = val;
+        pack.updatedAt = Date.now();
+        localStorage.setItem(OFFLINE_KEY, JSON.stringify(pack));
+      } catch (e) {}
+    }
+    function showOfflineBadge(on) {
+      const b = document.getElementById('offline-badge');
+      if (b) b.classList.toggle('show', !!on);
+    }
+    window.addEventListener('online', () => showOfflineBadge(false));
+    window.addEventListener('offline', () => showOfflineBadge(true));
+    if (!navigator.onLine) showOfflineBadge(true);
+
+    // One action today
+    const ONE_ACTIONS = [
+      { id: 'istighfar', text: 'Say Astaghfirullāh 10 times and send it to your grave.', go: () => { for (let i=0;i<10;i++) addDeposit('istighfar'); switchTab('grave'); } },
+      { id: 'salawat', text: 'Send salawāt upon the Prophet ﷺ ten times.', go: () => { for (let i=0;i<10;i++) addDeposit('salawat'); switchTab('grave'); } },
+      { id: 'command', text: 'Open Commands and mark one verse you will work on.', go: () => switchTab('commands') },
+      { id: 'verse', text: 'Read today’s verse slowly, then do one deed it calls for.', go: () => { switchTab('journey'); loadVerse(); } },
+      { id: 'hifz', text: 'Memorise or review one ayah with meaning.', go: () => switchTab('commands') },
+      { id: 'note', text: 'Write one line in Notes for the grave.', go: () => { notesQuickFromSection('Grave','Light for the grave', true); } },
+      { id: 'parent', text: 'Call or message a parent (or make duʿāʾ for them by name).', go: () => switchTab('journey') },
+      { id: 'sadaqah', text: 'Give a small ṣadaqah — even a smile or a message of ease.', go: () => switchTab('grave') },
+      { id: 'night', text: 'Ask: if I die tonight, what have I sent ahead? Then act once.', go: () => { switchTab('journey'); document.getElementById('night-breath-card')?.scrollIntoView({behavior:'smooth'}); } }
+    ];
+    let currentOneAction = ONE_ACTIONS[0];
+    function refreshOneAction() {
+      currentOneAction = ONE_ACTIONS[Math.floor(Math.random() * ONE_ACTIONS.length)];
+      const el = document.getElementById('one-action-text');
+      if (el) el.textContent = currentOneAction.text;
+      try { localStorage.setItem('clarity_one_action', JSON.stringify({ id: currentOneAction.id, day: new Date().toDateString() })); } catch (e) {}
+    }
+    function doOneAction() {
+      if (currentOneAction && typeof currentOneAction.go === 'function') currentOneAction.go();
+    }
+    (function initOneAction() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('clarity_one_action') || 'null');
+        if (saved && saved.day === new Date().toDateString()) {
+          const found = ONE_ACTIONS.find(a => a.id === saved.id);
+          if (found) currentOneAction = found;
+        }
+      } catch (e) {}
+      const el = document.getElementById('one-action-text');
+      if (el) el.textContent = currentOneAction.text;
+    })();
+
+    // Weekly review
+    function updateWeeklyReview() {
+      const set = (id, v) => { const n = document.getElementById(id); if (n) n.textContent = v; };
+      const streak = localStorage.getItem('clarity_streak') || '0';
+      const lessons = localStorage.getItem('clarity_lessons') || '0';
+      set('wr-streak', streak);
+      set('wr-lessons', lessons);
+      set('wr-istighfar', String(typeof getDepositCount === 'function' ? getDepositCount('istighfar') : 0));
+      set('wr-hifz', String(typeof getHifzTodayCountNum === 'function' ? getHifzTodayCountNum() : 0));
+      const sum = document.getElementById('wr-summary');
+      if (sum) {
+        const s = parseInt(streak, 10) || 0;
+        sum.textContent = s >= 7
+          ? 'A full week of returning — may Allah accept what you sent ahead.'
+          : s >= 3
+            ? 'Consistency is forming. Guard the streak with one small deed today.'
+            : 'Every long journey begins with a single return. Come back tomorrow.';
+      }
+    }
+    updateWeeklyReview();
+    if (typeof updateProgressPills === 'function') {
+      const _up = updateProgressPills;
+      updateProgressPills = function () { _up(); updateWeeklyReview(); };
+    }
+
+    // Night breath (surprise)
+    const NIGHT_QS = [
+      'What one deed would I want to have sent ahead?',
+      'Whose right have I delayed that I can repair before sleep?',
+      'If the grave asked me tonight, what light could I point to?',
+      'What screen time could become istighfār instead?',
+      'Have I prayed on time today — or do I owe a makeup?',
+      'Who needs my duʿāʾ by name before I sleep?',
+      'What am I clinging to that will not enter the grave with me?'
+    ];
+    let nightQi = Math.floor(Math.random() * NIGHT_QS.length);
+    function nightBreathRefresh() {
+      nightQi = (nightQi + 1) % NIGHT_QS.length;
+      const q = document.getElementById('night-breath-q');
+      if (q) q.textContent = NIGHT_QS[nightQi];
+    }
+    function nightBreathAct() {
+      refreshOneAction();
+      doOneAction();
+    }
+    nightBreathRefresh();
+
+    // Seerah timeline
+    const SEERAH_TIMELINE = [
+      { year: 'c. 570 CE', title: 'Birth in Makkah', body: 'Orphaned young; known later as al-Amīn — the trustworthy.' },
+      { year: '610 CE', title: 'First revelation', body: 'Cave of Ḥirāʾ; “Iqraʾ” — the beginning of prophethood at age forty.' },
+      { year: '613 CE', title: 'Public call', body: 'Open invitation to Tawḥīd in Makkah amid rising persecution.' },
+      { year: '622 CE', title: 'Hijrah to Madinah', body: 'Migration that begins the Islamic calendar; foundation of a just community.' },
+      { year: '624–627', title: 'Badr, Uḥud, Khandaq', body: 'Trials of war and patience; lessons in reliance and discipline.' },
+      { year: '628 CE', title: 'Hudaybiyyah', body: 'A treaty that looked like setback and became a clear opening.' },
+      { year: '630 CE', title: 'Conquest of Makkah', body: 'Mercy over revenge: “Go, for you are free.”' },
+      { year: '632 CE', title: 'Farewell & return to Allah', body: 'Religion completed; the ummah left with Quran and Sunnah.' }
+    ];
+    (function renderSeerahTimeline() {
+      const root = document.getElementById('seerah-timeline');
+      if (!root) return;
+      root.innerHTML = SEERAH_TIMELINE.map(item =>
+        `<div class="seerah-tl-item"><div class="tl-year">${item.year}</div><div class="tl-title">${item.title}</div><div class="tl-body">${item.body}</div></div>`
+      ).join('');
+    })();
+
+    // Verse audio (Quran.com CDN style)
+    async function playCurrentVerseAudio() {
+      const v = currentJourneyVerse;
+      const btn = document.getElementById('verse-audio-btn');
+      const audio = document.getElementById('verse-audio');
+      if (!audio) return;
+      if (!v || !v.surah) {
+        await loadVerse();
+      }
+      const surah = (currentJourneyVerse && currentJourneyVerse.surah) || 1;
+      const ayah = (currentJourneyVerse && currentJourneyVerse.ayah) || 1;
+      // everyayah.com style numbering: padded surah+ayah
+      const file = String(surah).padStart(3, '0') + String(ayah).padStart(3, '0') + '.mp3';
+      const url = 'https://everyayah.com/data/Alafasy_128kbps/' + file;
+      if (btn) btn.textContent = '…';
+      try {
+        audio.src = url;
+        await audio.play();
+        if (btn) btn.textContent = '🔊 Playing…';
+        audio.onended = () => { if (btn) btn.textContent = '🔊 Listen'; };
+      } catch (e) {
+        if (btn) btn.textContent = '🔊 Listen';
+        window.open('https://quran.com/' + surah + '/' + ayah, '_blank');
+      }
+    }
+
+    // Notes export / import
+    function notesExport() {
+      try {
+        const raw = localStorage.getItem(NOTES_KEY) || '{"notes":[]}';
+        const blob = new Blob([raw], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'clarity-notes-' + new Date().toISOString().slice(0, 10) + '.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      } catch (e) { alert('Could not export notes.'); }
+    }
+    function notesImport(ev) {
+      const file = ev.target && ev.target.files && ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (!data || !Array.isArray(data.notes)) throw new Error('Invalid file');
+          if (!confirm('Replace current notes with imported library (' + data.notes.length + ' notes)?')) return;
+          localStorage.setItem(NOTES_KEY, JSON.stringify(data));
+          notesLoad();
+          alert('Notes imported.');
+        } catch (err) {
+          alert('Invalid notes file.');
+        }
+      };
+      reader.readAsText(file);
+      ev.target.value = '';
+    }
+
+    // Accessibility: text size
+    function cycleTextSize() {
+      const html = document.documentElement;
+      const order = ['', 'large-text', 'xlarge-text'];
+      let cur = '';
+      if (html.classList.contains('xlarge-text')) cur = 'xlarge-text';
+      else if (html.classList.contains('large-text')) cur = 'large-text';
+      const next = order[(order.indexOf(cur) + 1) % order.length];
+      html.classList.remove('large-text', 'xlarge-text');
+      if (next) html.classList.add(next);
+      localStorage.setItem('clarity_text_size', next);
+      const btn = document.getElementById('text-size-btn');
+      if (btn) btn.textContent = next === 'xlarge-text' ? 'A++' : next === 'large-text' ? 'A+' : 'A';
+    }
+    (function restoreTextSize() {
+      const s = localStorage.getItem('clarity_text_size') || '';
+      if (s) document.documentElement.classList.add(s);
+      const btn = document.getElementById('text-size-btn');
+      if (btn) btn.textContent = s === 'xlarge-text' ? 'A++' : s === 'large-text' ? 'A+' : 'A';
+    })();
+
+    // UI language (EN / UR) — chrome, nav, key cards. Quran Arabic stays Arabic; live API text stays EN unless offline Urdu packs are added later.
+    const UI_STRINGS = {
+      en: {
+        tab_journey: 'Journey', tab_commands: 'Commands', tab_tafseer: 'Tafseer', tab_tajweed: 'Tajweed',
+        tab_seerah: 'Seerah', tab_lectures: 'Lectures', tab_grave: 'Grave', tab_search: 'Search & Ask',
+        tab_search_short: 'Search', tab_notes: 'Notes', tab_about: 'About',
+        one_action: 'One action today', do_it: 'Do it', offline_pack: 'Offline pack',
+        subtitle: 'Furnish your grave • Prepare for the long stay',
+        weekly_title: '📊 This week’s light', weekly_desc: 'A quiet accounting — what you sent ahead (this device only).',
+        night_title: '🕯️ If I die tonight…', night_hint: 'The Prophet ﷺ said: “Remember often the destroyer of pleasures (death).” Let the question soften the heart — then act once.',
+        night_act: 'I will do one deed now', night_another: 'Another question',
+        my_journey: 'My Journey', enter_name: 'Enter your name to personalize (saved only on this device).',
+        name_ph: 'Your name', save_name: 'Save Name',
+        lesson_title: 'Today’s Character Lesson', new_lesson: 'New lesson', save_bm: '🔖 Save',
+        verse_title: 'A Verse from the Quran', another_verse: 'Another verse', listen: '🔊 Listen',
+        life_title: 'Life Events Guidance', seerah_moment: 'Daily Seerah Moment',
+        furnish_grave: 'Furnishing My Grave',
+        furnish_desc: 'The grave is a long stay. Every istighfar and salawat can be sent ahead as light and companionship.',
+        benefits_title: 'What Benefits the Deceased in the Grave — From the Scholars',
+        about_title: 'About Clarity', notes_title: '📝 Clarity Notes',
+        notes_desc: 'A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.',
+        disclaimer: '<strong>Educational only — not a fatwa.</strong> Summaries below reflect mainstream Sunni discussions. For a particular case (inheritance, vows, disputes), consult a qualified local scholar. Clarity does not issue rulings.',
+        about_intro: 'Clarity is a local-first companion to help you <strong>prepare the heart and the grave</strong> — with Quran, authentic Hadith, character lessons, and small daily deeds. It is not a full Quran library, prayer engine, or fatwa service.',
+        about_disc: '<strong>Educational only.</strong> For personal rulings, consult a qualified scholar.',
+        hifz_goal: 'Hifz goal today', daily_reminder: 'Daily reminder to return & furnish the grave',
+        another_life: 'Another life event', bookmarks: 'Your Bookmarks', saved_device: 'Saved on this device.',
+        quick_reflect: '📓 Quick reflection', quick_reflect_desc: 'Capture one thought from today’s journey. It opens in Notes, tagged Journey.',
+        note_journey: '＋ Note from Journey', capture_seerah: '📖 Capture a seerah lesson',
+        capture_seerah_desc: 'After reading a moment from the Prophet’s life ﷺ, write one lesson and one action.',
+        seerah_hadith: 'Seerah & Hadith', another_moment: 'Another moment',
+        seerah_tl: '📜 Seerah timeline (key milestones)',
+        seerah_tl_desc: 'A simple chronological map of the Prophet’s life ﷺ — for orientation, not a full biography.',
+        hadith_title: 'A Saying of the Prophet ﷺ', daily_zikr: 'Daily Zikr',
+        prophet_stories: 'Stories of the Prophets', prev_nations: 'Lessons from Previous Nations',
+        tajweed_title: '🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)', lectures_title: 'Lectures & Series',
+        tafseer_res: 'Tafseer Resources', commands_title: 'Allah’s Commands to the Believers',
+        hifz_title: 'Quran Memorization (Hifz) — Light for the Grave',
+        note_grave: '🌙 Note for the grave',
+        note_grave_desc: 'Write a deed, istighfar intention, or duʿāʾ you want to send ahead. Tagged Grave and marked as light.',
+        send_note: '＋ Send a note ahead', istighfar_today: 'Istighfar today', salawat_today: 'Salawat today',
+        grave_intention: '<strong>Today’s intention:</strong> I am sending these deeds to my grave as companions and light.',
+        reset_counts: 'Reset today’s counts', burial_title: 'Preparing the Deceased & Islamic Burial — Process & Resources',
+        search_quran: 'Search the Quran', search_hadith: 'Search Authentic Hadith',
+        search_life: 'Search Life Events / Hadith', common_q: 'Common Questions', ask_grok: 'Ask Grok',
+        suggest_title: 'Suggest an Improvement', meme_title: '🖼️ Meme Studio'
+      },
+      ur: {
+        tab_journey: 'سفر', tab_commands: 'احکامات', tab_tafseer: 'تفسیر', tab_tajweed: 'تجوید',
+        tab_seerah: 'سیرت', tab_lectures: 'لیکچرز', tab_grave: 'قبر', tab_search: 'تلاش و سوال',
+        tab_search_short: 'تلاش', tab_notes: 'نوٹس', tab_about: 'تعارف',
+        one_action: 'آج کا ایک عمل', do_it: 'ابھی کریں', offline_pack: 'آف لائن پیک',
+        subtitle: 'اپنی قبر سجاؤ • لمبے قیام کی تیاری',
+        weekly_title: '📊 اس ہفتے کی روشنی', weekly_desc: 'خاموش حساب — جو آپ نے آگے بھیجا (صرف اسی آلہ پر)۔',
+        night_title: '🕯️ اگر آج رات میری وفات ہو جائے…', night_hint: 'نبی ﷺ نے فرمایا: ”لذتوں کو ختم کرنے والی (موت) کو کثرت سے یاد کرو۔“ سوال دل نرم کرے — پھر ایک عمل کریں۔',
+        night_act: 'میں اب ایک عمل کروں گا', night_another: 'دوسرا سوال',
+        my_journey: 'میرا سفر', enter_name: 'اپنا نام لکھیں (صرف اسی آلہ پر محفوظ)۔',
+        name_ph: 'آپ کا نام', save_name: 'نام محفوظ کریں',
+        lesson_title: 'آج کا کردار سبق', new_lesson: 'نیا سبق', save_bm: '🔖 محفوظ',
+        verse_title: 'قرآن مجید کی ایک آیت', another_verse: 'دوسری آیت', listen: '🔊 سنیں',
+        life_title: 'زندگی کے واقعات کی رہنمائی', seerah_moment: 'روزانہ سیرت لمحہ',
+        furnish_grave: 'میری قبر کی تیاری',
+        furnish_desc: 'قبر لمبا قیام ہے۔ ہر استغفار اور درود آگے روشنی اور رفاقت بن کر جا سکتا ہے۔',
+        benefits_title: 'قبر میں میت کو کیا فائدہ پہنچتا ہے — علماء کی روشنی میں',
+        about_title: 'کلیئرٹی کا تعارف', notes_title: '📝 کلیئرٹی نوٹس',
+        notes_desc: 'لکھنے، یاد رکھنے اور آگے روشنی بھیجنے کی خاموش جگہ۔ نوٹس اسی آلہ پر رہتے ہیں — کچھ اپ لوڈ نہیں ہوتا۔',
+        disclaimer: '<strong>صرف تعلیمی — فتویٰ نہیں۔</strong> نیچے کا خلاصہ سنی مکتب فکر کی عام بحث پر مبنی ہے۔ مخصوص معاملے میں مقامی مستند عالم سے رجوع کریں۔ کلیئرٹی فتویٰ نہیں دیتی۔',
+        about_intro: 'کلیئرٹی ایک مقامی ساتھی ہے جو <strong>دل اور قبر کی تیاری</strong> میں مدد کرتا ہے — قرآن، صحیح احادیث، کردار کے اسباق اور روزمرہ چھوٹے اعمال کے ساتھ۔ یہ مکمل قرآن لائبریری، نماز ایپ یا فتویٰ سروس نہیں۔',
+        about_disc: '<strong>صرف تعلیمی۔</strong> ذاتی احکام کے لیے مستند عالم سے رجوع کریں۔',
+        hifz_goal: 'آج کا حفظ ہدف', daily_reminder: 'روزانہ یاد دہانی — واپس آؤ اور قبر سجاؤ',
+        another_life: 'دوسرا واقعہ', bookmarks: 'آپ کی محفوظ چیزیں', saved_device: 'صرف اسی آلہ پر محفوظ۔',
+        quick_reflect: '📓 فوری غور', quick_reflect_desc: 'آج کے سفر سے ایک خیال لکھیں۔ نوٹس میں ٹیگ: سفر۔',
+        note_journey: '＋ سفر سے نوٹ', capture_seerah: '📖 سیرت کا سبق محفوظ کریں',
+        capture_seerah_desc: 'نبی ﷺ کی زندگی کا ایک لمحہ پڑھنے کے بعد ایک سبق اور ایک عمل لکھیں۔',
+        seerah_hadith: 'سیرت و حدیث', another_moment: 'دوسرا لمحہ',
+        seerah_tl: '📜 سیرت کی ٹائم لائن (اہم سنگ میل)',
+        seerah_tl_desc: 'نبی ﷺ کی زندگی کا سادہ زمانی نقشہ — مکمل سیرت نہیں، صرف رخ دکھانے کے لیے۔',
+        hadith_title: 'نبی ﷺ کا ایک فرمان', daily_zikr: 'روزانہ ذکر',
+        prophet_stories: 'انبیاء کے قصے', prev_nations: 'پچھلی امتوں سے سبق',
+        tajweed_title: '🔤 تجوید سیکھنے کا راستہ (حفص عن عاصم)', lectures_title: 'لیکچرز اور سلسلے',
+        tafseer_res: 'تفسیر کے وسائل', commands_title: 'ایمان والوں کو اللہ کے احکام',
+        hifz_title: 'قرآن حفظ — قبر کے لیے روشنی',
+        note_grave: '🌙 قبر کے لیے نوٹ',
+        note_grave_desc: 'ایک عمل، استغفار یا دعا لکھیں جو آپ آگے بھیجنا چاہتے ہیں۔ ٹیگ: قبر۔',
+        send_note: '＋ آگے نوٹ بھیجیں', istighfar_today: 'آج کا استغفار', salawat_today: 'آج کا درود',
+        grave_intention: '<strong>آج کی نیت:</strong> میں یہ اعمال اپنی قبر کی طرف رفاقت اور روشنی کے طور پر بھیج رہا/رہی ہوں۔',
+        reset_counts: 'آج کے شمار دوبارہ صفر کریں', burial_title: 'میت کی تیاری اور اسلامی تدفین — عمل اور وسائل',
+        search_quran: 'قرآن تلاش کریں', search_hadith: 'مستند حدیث تلاش کریں',
+        search_life: 'زندگی کے واقعات / حدیث تلاش', common_q: 'عام سوالات', ask_grok: 'گروک سے پوچھیں',
+        suggest_title: 'بہتری کی تجویز', meme_title: '🖼️ میم اسٹوڈیو'
+      }
+    };
+    const ONE_ACTIONS_UR = [
+      { id: 'istighfar', text: 'دس بار استغفراللہ کہیں اور اسے اپنی قبر کی طرف بھیجیں۔' },
+      { id: 'salawat', text: 'نبی ﷺ پر دس بار درود بھیجیں۔' },
+      { id: 'command', text: 'احکامات کھولیں اور ایک آیت پر عمل کا ارادہ کریں۔' },
+      { id: 'verse', text: 'آج کی آیت غور سے پڑھیں، پھر اس کا ایک عمل کریں۔' },
+      { id: 'hifz', text: 'ایک آیت معنی کے ساتھ یاد کریں یا دہرائیں۔' },
+      { id: 'note', text: 'نوٹس میں قبر کے لیے ایک سطر لکھیں۔' },
+      { id: 'parent', text: 'والدین کو فون/میسج کریں یا ان کے لیے دعا کریں۔' },
+      { id: 'sadaqah', text: 'چھوٹا صدقہ دیں — مسکراہٹ بھی صدقہ ہے۔' },
+      { id: 'night', text: 'پوچھیں: اگر آج رات وفات ہو جائے تو کیا آگے بھیجا؟ پھر ایک عمل۔' }
+    ];
+    function setUILang(lang) {
+      lang = lang === 'ur' ? 'ur' : 'en';
+      localStorage.setItem('clarity_lang', lang);
+      document.documentElement.lang = lang === 'ur' ? 'ur' : 'en';
+      // Keep layout LTR always so English content and banner tools stay left/stable
+      document.documentElement.dir = 'ltr';
+      document.documentElement.classList.toggle('lang-ur', lang === 'ur');
+      const pack = UI_STRINGS[lang] || UI_STRINGS.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (pack[k] != null) el.textContent = pack[k];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const k = el.getAttribute('data-i18n-html');
+        if (pack[k] != null) el.innerHTML = pack[k];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const k = el.getAttribute('data-i18n-placeholder');
+        if (pack[k] != null) el.setAttribute('placeholder', pack[k]);
+      });
+      const sel = document.getElementById('lang-select');
+      if (sel) sel.value = lang;
+      // Refresh one-action text in current language
+      try {
+        if (typeof currentOneAction !== 'undefined' && currentOneAction) {
+          if (lang === 'ur') {
+            const u = ONE_ACTIONS_UR.find(a => a.id === currentOneAction.id);
+            const el = document.getElementById('one-action-text');
+            if (el && u) el.textContent = u.text;
+          } else {
+            const el = document.getElementById('one-action-text');
+            if (el && currentOneAction.text) el.textContent = currentOneAction.text;
+          }
+        }
+      } catch (e) {}
+      // Re-order verse / command translations for current language
+      try { if (typeof refreshVerseLanguage === 'function') refreshVerseLanguage(); } catch (e) {}
+      try {
+        if (typeof currentCommandVerse !== 'undefined' && currentCommandVerse && currentCommandVerse.arabic && typeof loadCommand === 'function') {
+          loadCommand();
+        }
+      } catch (e) {}
+    }
+    // Keep English ONE_ACTIONS text; Urdu overlays via ONE_ACTIONS_UR when lang=ur
+    const _refreshOneAction = refreshOneAction;
+    refreshOneAction = function () {
+      _refreshOneAction();
+      if ((localStorage.getItem('clarity_lang') || 'en') === 'ur') {
+        const u = ONE_ACTIONS_UR.find(a => a.id === currentOneAction.id);
+        const el = document.getElementById('one-action-text');
+        if (el && u) el.textContent = u.text;
+      }
+    };
+    setUILang(localStorage.getItem('clarity_lang') || 'en');
+
+    // Share light message
+    function buildShareLight() {
+      const name = localStorage.getItem('clarity_name') || 'a friend';
+      const ist = typeof getDepositCount === 'function' ? getDepositCount('istighfar') : 0;
+      const text = `Assalamu alaikum — a gentle reminder from Clarity:\n\nThe grave is a long stay. Today I am trying to send light ahead (istighfār: ${ist}).\n\n“Remember often the destroyer of pleasures (death).”\n\nMay Allah make our ending good. Āmīn.\n\n— ${name}`;
+      const ta = document.getElementById('share-light-text');
+      if (ta) ta.value = text;
+    }
+    function copyShareLight() {
+      buildShareLight();
+      const ta = document.getElementById('share-light-text');
+      if (!ta) return;
+      ta.select();
+      navigator.clipboard.writeText(ta.value).then(() => alert('Copied — share with adab.')).catch(() => {});
+    }
+    buildShareLight();
+
+    // PWA install prompt
+    let deferredInstall = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstall = e;
+      const btn = document.getElementById('install-pwa-btn');
+      if (btn) btn.classList.add('show');
+    });
+    function installPWA() {
+      if (!deferredInstall) {
+        alert('Use your browser menu: “Add to Home Screen” / Install app.');
+        return;
+      }
+      deferredInstall.prompt();
+      deferredInstall.userChoice.finally(() => { deferredInstall = null; });
+    }
+
+    // Cache command when loaded
+    if (typeof loadCommand === 'function') {
+      const _lc = loadCommand;
+      loadCommand = async function () {
+        await _lc();
+        if (currentCommandVerse && currentCommandVerse.arabic) {
+          try { offlineCacheSet('command', currentCommandVerse); } catch (e) {}
+        }
+      };
+    }
+
+    // Tab visit count for about
+    try {
+      if (typeof loadAllTabCounts === 'function') loadAllTabCounts();
+    } catch (e) {}
+
   </script>
 
   <!-- Mobile bottom navigation -->
   <nav class="mobile-bottom-nav" aria-label="Primary">
     <div class="mobile-bottom-nav-inner">
-      <button type="button" class="mb-tab active" data-tab="journey" onclick="switchTab('journey')"><span class="mb-icon">🧭</span>Journey</button>
-      <button type="button" class="mb-tab" data-tab="commands" onclick="switchTab('commands')"><span class="mb-icon">📜</span>Commands</button>
-      <button type="button" class="mb-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="mb-icon">📖</span>Seerah</button>
-      <button type="button" class="mb-tab" data-tab="grave" onclick="switchTab('grave')"><span class="mb-icon">🌙</span>Grave</button>
-      <button type="button" class="mb-tab" data-tab="notes" onclick="switchTab('notes')"><span class="mb-icon">📝</span>Notes</button>
-      <button type="button" class="mb-tab" data-tab="search" onclick="switchTab('search')"><span class="mb-icon">🔍</span>Search</button>
+      <button type="button" class="mb-tab active" data-tab="journey" onclick="switchTab('journey')"><span class="mb-icon">🧭</span><span data-i18n="tab_journey">Journey</span></button>
+      <button type="button" class="mb-tab" data-tab="commands" onclick="switchTab('commands')"><span class="mb-icon">📜</span><span data-i18n="tab_commands">Commands</span></button>
+      <button type="button" class="mb-tab" data-tab="seerah" onclick="switchTab('seerah')"><span class="mb-icon">📖</span><span data-i18n="tab_seerah">Seerah</span></button>
+      <button type="button" class="mb-tab" data-tab="grave" onclick="switchTab('grave')"><span class="mb-icon">🌙</span><span data-i18n="tab_grave">Grave</span></button>
+      <button type="button" class="mb-tab" data-tab="notes" onclick="switchTab('notes')"><span class="mb-icon">📝</span><span data-i18n="tab_notes">Notes</span></button>
+      <button type="button" class="mb-tab" data-tab="search" onclick="switchTab('search')"><span class="mb-icon">🔍</span><span data-i18n="tab_search_short">Search</span></button>
+      <button type="button" class="mb-tab" data-tab="about" onclick="switchTab('about')"><span class="mb-icon">ℹ️</span><span data-i18n="tab_about">About</span></button>
     </div>
   </nav>
   <button type="button" class="scroll-top-btn" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
