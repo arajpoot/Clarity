@@ -422,10 +422,10 @@
     }
     .nav-tabs-inner {
       display: flex;
-      gap: 0.15rem;
+      gap: 0.1rem;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0.45rem 0.6rem;
+      padding: 0.28rem 0.45rem;
       justify-content: center;
       flex-wrap: nowrap;
     }
@@ -433,12 +433,12 @@
       background: rgba(255,255,255,0.12);
       color: rgba(255,255,255,0.95);
       border: 1px solid rgba(255,255,255,0.18);
-      padding: 0.45rem 0.75rem 0.35rem;
-      border-radius: 12px 12px 0 0;
-      font-size: 0.9rem;
+      padding: 0.28rem 0.5rem 0.22rem;
+      border-radius: 10px 10px 0 0;
+      font-size: 0.78rem;
       font-weight: 600;
       font-family: 'Cormorant Garamond', 'Inter', serif;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.2s ease;
@@ -450,8 +450,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.12rem;
-      line-height: 1.2;
+      gap: 0.06rem;
+      line-height: 1.15;
     }
     .nav-tab .tab-label-row {
       display: inline-flex;
@@ -474,8 +474,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 1.35rem;
-      height: 1.35rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      font-size: 0.72rem;
       border-radius: 50%;
       background: rgba(255,255,255,0.28);
       font-size: 0.78rem;
@@ -506,8 +507,8 @@
     .nav-tab.active[data-tab="lectures"] { background: linear-gradient(180deg, #f5e8f8, #ecd4f0); color: #5a3a70; text-shadow: none; }
     .nav-tab.active[data-tab="search"] { background: linear-gradient(180deg, #e0f0f8, #c8e4f0); color: #2a5a70; text-shadow: none; }
     .tab-visit-count {
-      font-size: 0.58rem;
-      opacity: 0.88;
+      font-size: 0.5rem;
+      opacity: 0.8;
       margin: 0;
       font-weight: 500;
       display: block;
@@ -515,7 +516,19 @@
       text-align: center;
       font-family: 'Inter', sans-serif;
       letter-spacing: 0.01em;
-      line-height: 1.1;
+      line-height: 1;
+    }
+    .meme-use-count {
+      display: inline-block;
+      min-width: 1.1rem;
+      padding: 0.05rem 0.35rem;
+      margin-left: 0.2rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border-radius: 999px;
+      background: rgba(15,76,58,0.12);
+      color: var(--accent);
+      vertical-align: middle;
     }
     .nav-tab.active .tab-visit-count { opacity: 0.8; }
     .visit-badge {
@@ -2586,6 +2599,51 @@
           <button type="button" onclick="resetDeposits()" class="btn-secondary" style="margin-top:0.85rem; font-size:0.86rem;" data-i18n="reset_counts">Reset today’s counts</button>
         </div>
 
+        <!-- Supplications for the deceased -->
+        <div class="card card-grave">
+          <h2>🤲 Supplications for the deceased</h2>
+          <div class="scholar-disclaimer" role="note">Educational summary of well-known duʿās. Wording may vary slightly by madhhab; follow a trusted local scholar for exact practice.</div>
+          <div class="ponder-box" style="margin-bottom:0.75rem;">
+            <strong>After burial / at the grave</strong>
+            <p class="arabic-calligraphy" style="font-size:1.25rem;margin:0.5rem 0;">اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ</p>
+            <p style="font-size:0.94rem;">O Allah, forgive him/her, have mercy on him/her, grant him/her well-being, and pardon him/her. <em>(Muslim — duʿāʾ of the funeral prayer, adapted for visit)</em></p>
+          </div>
+          <div class="ponder-box" style="margin-bottom:0.75rem;">
+            <strong>General forgiveness</strong>
+            <p class="arabic-calligraphy" style="font-size:1.25rem;margin:0.5rem 0;">اللَّهُمَّ اغْفِرْ لِحَيِّنَا وَمَيِّتِنَا وَشَاهِدِنَا وَغَائِبِنَا وَصَغِيرِنَا وَكَبِيرِنَا وَذَكَرِنَا وَأُنْثَانَا</p>
+            <p style="font-size:0.94rem;">O Allah, forgive our living and our dead, those present and those absent, our young and our old, our males and our females. <em>(Abu Dawud, Tirmidhi)</em></p>
+          </div>
+          <div class="ponder-box" style="margin-bottom:0.75rem;">
+            <strong>For parents</strong>
+            <p class="arabic-calligraphy" style="font-size:1.25rem;margin:0.5rem 0;">رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</p>
+            <p style="font-size:0.94rem;">My Lord, forgive me and my parents and the believers on the Day the account is established. <em>(Qur’an 14:41)</em></p>
+          </div>
+          <div class="ponder-box">
+            <strong>Asking for light and expanse in the grave</strong>
+            <p class="arabic-calligraphy" style="font-size:1.2rem;margin:0.5rem 0;">اللَّهُمَّ نَوِّرْ قَبْرَهُ وَوَسِّعْ مَدْخَلَهُ</p>
+            <p style="font-size:0.94rem;">O Allah, illuminate his/her grave and make his/her entry spacious.</p>
+          </div>
+        </div>
+
+        <!-- Janazah prayer -->
+        <div class="card card-grave">
+          <h2>⚰️ Ṣalāt al-Janāzah (funeral prayer)</h2>
+          <div class="scholar-disclaimer" role="note">Outline of the common Hanafi / widespread practice for teaching. Stand if able; no rukūʿ or sujūd. Confirm details with your imam or local scholar.</div>
+          <ol style="margin:0.5rem 0 0.85rem 1.2rem; font-size:0.94rem; line-height:1.55;">
+            <li><strong>Intention</strong> in the heart for the funeral prayer for this deceased, following the imam if in congregation.</li>
+            <li><strong>First takbīr</strong> — then recite <em>Sūrat al-Fātiḥah</em> (many also recite a short sūrah; schools differ).</li>
+            <li><strong>Second takbīr</strong> — send <em>ṣalawāt</em> upon the Prophet ﷺ (as in the final tashahhud of the daily prayer).</li>
+            <li><strong>Third takbīr</strong> — make duʿāʾ for the deceased (and often for all Muslims). Example: the long duʿāʾ beginning with <em>Allāhumma ighfir li-ḥayyinā wa mayyitinā…</em></li>
+            <li><strong>Fourth takbīr</strong> — brief pause / short duʿāʾ, then <em>salām</em> to the right (and left, according to the school).</li>
+          </ol>
+          <div class="ponder-box" style="margin-bottom:0.75rem;">
+            <strong>Core duʿāʾ after the third takbīr (widely taught)</strong>
+            <p class="arabic-calligraphy" style="font-size:1.15rem;margin:0.5rem 0;line-height:1.9;">اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ وَأَكْرِمْ نُزُلَهُ وَوَسِّعْ مُدْخَلَهُ وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ وَنَقِّهِ مِنَ الْخَطَايَا كَمَا يُنَقَّى الثَّوْبُ الْأَبْيَضُ مِنَ الدَّنَسِ وَأَبْدِلْهُ دَارًا خَيْرًا مِنْ دَارِهِ وَأَهْلًا خَيْرًا مِنْ أَهْلِهِ وَزَوْجًا خَيْرًا مِنْ زَوْجِهِ وَأَدْخِلْهُ الْجَنَّةَ وَأَعِذْهُ مِنْ عَذَابِ الْقَبْرِ وَمِنْ عَذَابِ النَّارِ</p>
+            <p style="font-size:0.9rem;color:var(--text-muted);">O Allah, forgive him/her, have mercy on him/her, give him/her peace and pardon him/her. Make his/her rest honourable and his/her entry spacious. Wash him/her with water, snow and hail, and cleanse him/her of sins as a white garment is cleansed of dirt. Exchange his/her home for a better home, family for a better family, and spouse for a better spouse. Admit him/her to Paradise and protect him/her from the punishment of the grave and of the Fire. <em>(Muslim)</em></p>
+          </div>
+          <p style="font-size:0.88rem;color:var(--text-muted);">After the prayer: bury without delay when possible, make duʿāʾ at the grave, and continue ṣadaqah, Qurʾān, and istighfār on their behalf. <a href="https://islamqa.info/en/answers/10463" target="_blank" rel="noopener">Further reading (IslamQA overview) →</a></p>
+        </div>
+
         <div class="card card-grave">
           <h2 data-i18n="benefits_title">What Benefits the Deceased in the Grave — From the Scholars</h2>
           <div class="scholar-disclaimer" role="note" data-i18n-html="disclaimer">
@@ -2900,14 +2958,10 @@
         <div class="card card-notes" id="meme-card">
           <h2 data-i18n="meme_title">🖼️ Meme Studio</h2>
           <p style="font-size:0.92rem; margin-bottom:0.75rem; color:var(--text-muted);">
-            Create a simple reminder graphic. Upload your own photo or pick a preset. Drag the text boxes, tweak size &amp; outline, then download. Everything stays on this device — nothing is uploaded.
+            Create a reminder graphic from live online backgrounds. Pick nature, flowers, or holy places — each use is counted. Drag text, tweak size &amp; outline, then download. Nothing is uploaded from your device.
           </p>
           <div class="meme-studio">
             <div class="meme-toolbar">
-              <label class="meme-upload-btn">
-                📁 Upload image
-                <input type="file" id="meme-file" accept="image/*" hidden onchange="memeOnUpload(event)">
-              </label>
               <select id="meme-preset" onchange="memeApplyPreset(this.value)" title="Classic layout">
                 <option value="">Layout preset…</option>
                 <option value="classic">Classic top / bottom</option>
@@ -2915,17 +2969,14 @@
                 <option value="bottom-heavy">Bottom heavy</option>
                 <option value="center">Centered pair</option>
               </select>
-              <select id="meme-sample" onchange="memeLoadSample(this.value)" title="Sample background">
-                <option value="">Sample background…</option>
-                <option value="kaaba">Kaaba still</option>
-                <option value="madinah">Madinah still</option>
-                <option value="nature">Nature (random · signs of Allah)</option>
-                <option value="blank">Soft blank</option>
-              </select>
-              <button type="button" class="btn-secondary" id="meme-nature-btn" onclick="memeFetchNature()" title="Fetch a new nature image to ponder">🌿 New nature</button>
-              <button type="button" class="btn-soft" id="meme-fill-verse-btn" onclick="memeFillFromJourneyVerse()" title="Journey: English verse + tafseer">📖 Journey verse</button>
-              <button type="button" class="btn-soft" id="meme-fill-command-btn" onclick="memeFillFromCommand()" title="Commands: Arabic on top, English translation below">📜 Command (AR + EN)</button>
+              <button type="button" class="btn-secondary" id="meme-nature-btn" onclick="memeFetchBg('nature')" title="Live nature backgrounds">🌿 Nature <span class="meme-use-count" id="meme-cnt-nature">0</span></button>
+              <button type="button" class="btn-secondary" id="meme-flowers-btn" onclick="memeFetchBg('flowers')" title="Live flower / bouquet backgrounds">🌸 Flowers <span class="meme-use-count" id="meme-cnt-flowers">0</span></button>
+              <button type="button" class="btn-secondary" id="meme-holy-btn" onclick="memeFetchBg('holy')" title="Live holy places backgrounds">🕌 Holy places <span class="meme-use-count" id="meme-cnt-holy">0</span></button>
+              <button type="button" class="btn-soft" onclick="memeFetchBg('blank')" title="Soft blank">⬜ Blank</button>
+              <button type="button" class="btn-soft" id="meme-fill-verse-btn" onclick="memeFillFromJourneyVerse()" title="Journey: verse + tafseer">📖 Journey verse</button>
+              <button type="button" class="btn-soft" id="meme-fill-command-btn" onclick="memeFillFromCommand()" title="Commands: Arabic + translation">📜 Command (AR + EN)</button>
             </div>
+            <p class="notes-hint" style="margin:0.35rem 0 0.5rem;font-size:0.82rem;">Uses — Nature: <strong id="meme-use-nature">0</strong> · Flowers: <strong id="meme-use-flowers">0</strong> · Holy places: <strong id="meme-use-holy">0</strong></p>
             <div class="meme-stage-wrap">
               <div class="meme-stage" id="meme-stage">
                 <canvas id="meme-canvas" width="800" height="600" aria-label="Meme canvas"></canvas>
@@ -4037,16 +4088,20 @@
             <a href="https://sunnah.com/search?q=${sunnahQ}" target="_blank" rel="noopener" style="color:var(--accent)">Verify on Sunnah.com →</a>
           </div>`;
         try { offlineCacheSet('hadith', { text, ref, at: Date.now() }); } catch (e) {}
+        showOfflineBadge(false);
       } catch(e) {
-        const cached = offlineCacheGet('hadith');
-        if (cached && cached.text) {
-          el.innerHTML = `<p style="font-size:1.05rem; font-weight:500">“${cached.text}”</p>
-            <div class="ref">${cached.ref || ""} · offline cache</div>
-            <p style="font-size:0.88rem;margin-top:0.5rem"><a href="https://sunnah.com" target="_blank" rel="noopener">Open Sunnah.com</a></p>`;
-          showOfflineBadge(true);
-        } else {
-          el.innerHTML = `Unable to load. <a href="https://sunnah.com" target="_blank" rel="noopener">Visit sunnah.com</a>`;
+        // Live feed preferred; only show last live snapshot if fully offline
+        if (!navigator.onLine) {
+          const cached = offlineCacheGet('hadith');
+          if (cached && cached.text) {
+            el.innerHTML = `<p style="font-size:1.05rem; font-weight:500">“${cached.text}”</p>
+              <div class="ref">${cached.ref || ""} · last live snapshot</div>
+              <p style="font-size:0.88rem;margin-top:0.5rem"><a href="https://sunnah.com" target="_blank" rel="noopener">Open Sunnah.com</a></p>`;
+            showOfflineBadge(true);
+            return;
+          }
         }
+        el.innerHTML = `Unable to load live hadith. <a href="https://sunnah.com" target="_blank" rel="noopener">Visit sunnah.com</a>`;
       }
     }
     async function searchHadith() {
@@ -4216,14 +4271,17 @@
 
         el.innerHTML = renderVerseHtml(arabic, en, ur, surahName, pick.a, tafseerText);
       } catch (e) {
-        const cached = offlineCacheGet('verse');
-        if (cached && cached.arabic) {
-          currentJourneyVerse = cached;
-          el.innerHTML = renderVerseHtml(cached.arabic, cached.en || "", cached.ur || "", cached.ref || "", "", cached.tafseer || "");
-          showOfflineBadge(true);
-        } else {
-          el.innerHTML = "Unable to load verse. <a href='https://quran.com' target='_blank' rel='noopener'>Open Quran.com</a>";
+        // Prefer live online content; only use last snapshot when offline
+        if (!navigator.onLine) {
+          const cached = offlineCacheGet('verse');
+          if (cached && cached.arabic) {
+            currentJourneyVerse = cached;
+            el.innerHTML = renderVerseHtml(cached.arabic, cached.en || "", cached.ur || "", cached.ref || "", "", cached.tafseer || "");
+            showOfflineBadge(true);
+            return;
+          }
         }
+        el.innerHTML = "Unable to load live verse. <a href='https://quran.com' target='_blank' rel='noopener'>Open Quran.com</a>";
       }
     }
     function loadVerse() { loadVerseInto("verse"); }
@@ -5700,26 +5758,63 @@ Ask Allah for firmness and sincerity.`
       ev.target.value = '';
     }
 
-    // Nature / signs of creation — curated Unsplash stills (mountains, sky, sea, desert, forest, stars)
-    // Random pick on each fetch so the background invites reflection (ayat of creation).
-    const MEME_NATURE_POOL = [
-      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1280&q=80',
-      'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1280&q=80'
-    ];
-    let memeNatureIdx = Math.floor(Math.random() * MEME_NATURE_POOL.length);
+    // Live online background pools (Unsplash / Wikimedia) — nature, flowers, holy places
+    const MEME_BG_POOLS = {
+      nature: [
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1280&q=80'
+      ],
+      flowers: [
+        'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1455659817273-f968077415a9?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1499002238440-d219ceb90176?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1487530811176-3780da811eaf?auto=format&fit=crop&w=1280&q=80'
+      ],
+      holy: [
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg',
+        'https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1580418827493-f2b22c0dc151?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1519817650390-64a5db1d0498?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=1280&q=80'
+      ]
+    };
+    const memeBgIdx = { nature: 0, flowers: 0, holy: 0 };
+    const MEME_USE_KEY = 'clarity_meme_bg_uses';
+    function memeGetUses() {
+      try { return JSON.parse(localStorage.getItem(MEME_USE_KEY) || '{"nature":0,"flowers":0,"holy":0}'); }
+      catch (e) { return { nature: 0, flowers: 0, holy: 0 }; }
+    }
+    function memeBumpUse(kind) {
+      const u = memeGetUses();
+      if (u[kind] == null) u[kind] = 0;
+      u[kind]++;
+      try { localStorage.setItem(MEME_USE_KEY, JSON.stringify(u)); } catch (e) {}
+      memeRenderUseCounts();
+    }
+    function memeRenderUseCounts() {
+      const u = memeGetUses();
+      ['nature', 'flowers', 'holy'].forEach(k => {
+        const a = document.getElementById('meme-cnt-' + k);
+        const b = document.getElementById('meme-use-' + k);
+        if (a) a.textContent = String(u[k] || 0);
+        if (b) b.textContent = String(u[k] || 0);
+      });
+    }
+    memeRenderUseCounts();
 
     function memeLoadImageFromUrl(url, onFailMsg) {
       if (!url) {
@@ -5735,55 +5830,59 @@ Ask Allah for firmness and sincerity.`
       };
       img.onerror = function () {
         if (onFailMsg) alert(onFailMsg);
-        else alert('Could not load image. Try “New nature” again or upload your own.');
+        else alert('Could not load image. Try another background option.');
       };
       img.src = url;
     }
 
-    function memeFetchNature() {
-      const btn = document.getElementById('meme-nature-btn');
+    function memeFetchBg(kind) {
+      if (kind === 'blank') {
+        memeState.img = null;
+        memeDraw();
+        return;
+      }
+      const pool = MEME_BG_POOLS[kind];
+      if (!pool || !pool.length) return;
+      const btnId = kind === 'nature' ? 'meme-nature-btn' : kind === 'flowers' ? 'meme-flowers-btn' : 'meme-holy-btn';
+      const btn = document.getElementById(btnId);
+      const labels = { nature: '🌿 Nature', flowers: '🌸 Flowers', holy: '🕌 Holy places' };
       if (btn) {
         btn.disabled = true;
         btn.textContent = 'Fetching…';
       }
-      // Rotate through pool; add cache-buster so browsers refresh when possible
-      memeNatureIdx = (memeNatureIdx + 1) % MEME_NATURE_POOL.length;
-      const base = MEME_NATURE_POOL[memeNatureIdx];
+      memeBgIdx[kind] = (memeBgIdx[kind] + 1) % pool.length;
+      const base = pool[memeBgIdx[kind]];
       const url = base + (base.indexOf('?') >= 0 ? '&' : '?') + 'cb=' + Date.now();
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = function () {
         memeState.img = img;
         memeDraw();
-        if (btn) { btn.disabled = false; btn.textContent = '🌿 New nature'; }
+        memeBumpUse(kind);
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = labels[kind] + ' <span class="meme-use-count" id="meme-cnt-' + kind + '">' + (memeGetUses()[kind] || 0) + '</span>';
+        }
       };
       img.onerror = function () {
-        // Fallback without cache-buster
-        memeLoadImageFromUrl(base, 'Could not fetch nature image. Try again or upload your own.');
-        if (btn) { btn.disabled = false; btn.textContent = '🌿 New nature'; }
+        memeLoadImageFromUrl(base, 'Could not fetch image. Try again or pick another category.');
+        memeBumpUse(kind);
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = labels[kind] + ' <span class="meme-use-count" id="meme-cnt-' + kind + '">' + (memeGetUses()[kind] || 0) + '</span>';
+        }
       };
       img.src = url;
     }
 
+    // Back-compat aliases
+    function memeFetchNature() { memeFetchBg('nature'); }
     function memeLoadSample(key) {
       if (!key) return;
-      const samples = {
-        kaaba: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg',
-        madinah: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg',
-        blank: null
-      };
-      if (key === 'blank') {
-        memeState.img = null;
-        memeDraw();
-        return;
-      }
-      if (key === 'nature') {
-        memeFetchNature();
-        return;
-      }
-      const url = samples[key];
-      if (!url) return;
-      memeLoadImageFromUrl(url, 'Could not load sample image. Try uploading your own.');
+      if (key === 'blank') return memeFetchBg('blank');
+      if (key === 'nature') return memeFetchBg('nature');
+      if (key === 'flowers') return memeFetchBg('flowers');
+      if (key === 'holy' || key === 'kaaba' || key === 'madinah') return memeFetchBg('holy');
     }
 
     async function memeFillFromCommand() {
@@ -5990,7 +6089,7 @@ Ask Allah for firmness and sincerity.`
       memeState.bottomY = 0.84;
       memePositionBoxes();
       memeSyncFromInputs();
-      if (withNature) memeFetchNature();
+      if (withNature) memeFetchBg('nature');
     }
 
     function memeLoadUrduImageUrl() {
