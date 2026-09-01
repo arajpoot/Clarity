@@ -65,14 +65,39 @@
       border-bottom: 3px solid var(--accent);
       background: linear-gradient(135deg, #0f4c3a, #1a6b52);
     }
-    .banner img {
+    .banner-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .banner img, .banner-media img {
       width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0.65;
+      opacity: 0.72;
       position: absolute; inset: 0;
+      transition: opacity 0.6s ease;
+    }
+    .banner-live {
+      position: absolute;
+      inset: -12% -8%;
+      width: 116%;
+      height: 124%;
+      border: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+    .banner-media.live-active .banner-live {
+      opacity: 0.88;
+    }
+    .banner-media.live-active img {
+      opacity: 0.15;
     }
     .banner-overlay {
       position: relative;
+      z-index: 1;
       background: linear-gradient(to bottom, rgba(15,76,58,0.55), rgba(15,76,58,0.93));
       display: flex;
       flex-direction: row;
@@ -192,7 +217,7 @@
     .hijri-local-time {
       font-size: 0.78rem;
       font-weight: 700;
-      margin-top: 0.08rem;
+      margin-top: 0.18rem;
       margin-bottom: 0.02rem;
       letter-spacing: 0.02em;
       font-variant-numeric: tabular-nums;
@@ -201,7 +226,7 @@
       font-size: 0.58rem;
       opacity: 0.85;
       margin-top: 0.02rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0;
       line-height: 1.2;
       max-width: 100%;
       overflow: hidden;
@@ -209,12 +234,14 @@
       white-space: nowrap;
     }
     .salah-times-section .hijri-local-time {
-      margin-top: 0.05rem;
+      margin-top: 0.2rem;
+      padding-top: 0.14rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
     }
     .salah-times-section .hijri-local-loc {
-      margin-bottom: 0.18rem;
-      padding-bottom: 0.12rem;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
     }
     .salah-times-list {
       list-style: none;
@@ -1378,6 +1405,136 @@
       font-size: 0.82rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.45;
     }
 
+    /* ===== MEME STUDIO ===== */
+    .meme-studio {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.85rem;
+      box-shadow: var(--shadow);
+    }
+    .meme-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.75rem;
+      align-items: center;
+    }
+    .meme-upload-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--accent);
+      color: var(--accent-fg);
+      padding: 0.5rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 0;
+    }
+    .meme-upload-btn:hover { background: var(--accent-light); }
+    .meme-toolbar select {
+      width: auto;
+      min-width: 140px;
+      max-width: 100%;
+      margin: 0;
+      padding: 0.45rem 0.65rem;
+      font-size: 0.86rem;
+    }
+    .meme-stage-wrap {
+      width: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px;
+      background: #111;
+      border: 1px solid var(--border);
+    }
+    .meme-stage {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      aspect-ratio: 4 / 3;
+      background: #1a1a1a;
+      touch-action: none;
+      user-select: none;
+    }
+    .meme-stage canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
+    }
+    .meme-text-box {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      min-width: 5.5rem;
+      z-index: 3;
+      pointer-events: auto;
+    }
+    .meme-text-box.top { top: 4%; }
+    .meme-text-box.bottom { bottom: 4%; top: auto; }
+    .meme-text-box .meme-drag-handle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 1.5rem;
+      padding: 0 0.75rem;
+      background: rgba(15,76,58,0.88);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border-radius: 999px;
+      cursor: grab;
+      touch-action: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      white-space: nowrap;
+      user-select: none;
+    }
+    .meme-text-box.dragging .meme-drag-handle {
+      cursor: grabbing;
+      background: rgba(15,76,58,1);
+      transform: scale(1.05);
+    }
+    .meme-controls {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .meme-ctrl-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+    }
+    .meme-ctrl-row label {
+      min-width: 7.5rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .meme-ctrl-row input[type="range"] {
+      flex: 1;
+      min-width: 120px;
+      accent-color: var(--accent);
+    }
+    .meme-actions {
+      justify-content: flex-end;
+      gap: 0.45rem;
+    }
+    .meme-actions button { margin: 0; }
+    @media (max-width: 560px) {
+      .meme-toolbar { flex-direction: column; align-items: stretch; }
+      .meme-toolbar select, .meme-upload-btn { width: 100%; justify-content: center; }
+      .meme-text-box textarea { font-size: 0.95rem; }
+      .meme-actions { justify-content: stretch; }
+      .meme-actions button { flex: 1; }
+    }
 
     /* Tajweed LMS */
     .tj-progress-bar {
@@ -1448,7 +1605,10 @@
 
   <!-- ========== BANNER (always visible) ========== -->
   <div class="banner">
-    <img id="banner-img" src="" alt="Islamic holy place" onerror="this.style.display='none'">
+    <div class="banner-media" id="banner-media" aria-hidden="true">
+      <img id="banner-img" src="" alt="Islamic holy place" onerror="this.style.display='none'">
+      <iframe id="banner-live" class="banner-live" title="Live from the Holy Places" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
     <div class="banner-overlay">
       <button type="button" class="theme-toggle" id="theme-toggle" onclick="cycleTheme()" aria-label="Toggle theme">🌓 System</button>
 
@@ -1514,12 +1674,12 @@
       <div class="banner-side right">
         <div class="salah-times-section">
           <div class="salah-title" id="salah-title">Salah · Today</div>
-          <div class="hijri-local-time" id="hijri-local-time">—:—</div>
-          <div class="hijri-local-loc" id="hijri-local-loc">Detecting location…</div>
           <ul class="salah-times-list" id="salah-times-list">
             <li><span class="salah-name">Loading…</span><span class="salah-time">…</span></li>
           </ul>
           <div class="salah-meta" id="salah-meta"></div>
+          <div class="hijri-local-time" id="hijri-local-time">—:—</div>
+          <div class="hijri-local-loc" id="hijri-local-loc">Detecting location…</div>
         </div>
       </div>
     </div><!-- /.banner-overlay -->
@@ -2333,6 +2493,73 @@
           </div>
           <p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device.</p>
         </div>
+
+        <!-- Meme generator (local-only; for dawah / reminder graphics) -->
+        <div class="card card-notes" id="meme-card">
+          <h2>🖼️ Meme Studio</h2>
+          <p style="font-size:0.92rem; margin-bottom:0.75rem; color:var(--text-muted);">
+            Create a simple reminder graphic. Upload your own photo or pick a preset. Drag the text boxes, tweak size &amp; outline, then download. Everything stays on this device — nothing is uploaded.
+          </p>
+          <div class="meme-studio">
+            <div class="meme-toolbar">
+              <label class="meme-upload-btn">
+                📁 Upload image
+                <input type="file" id="meme-file" accept="image/*" hidden onchange="memeOnUpload(event)">
+              </label>
+              <select id="meme-preset" onchange="memeApplyPreset(this.value)" title="Classic layout">
+                <option value="">Layout preset…</option>
+                <option value="classic">Classic top / bottom</option>
+                <option value="top-heavy">Top heavy</option>
+                <option value="bottom-heavy">Bottom heavy</option>
+                <option value="center">Centered pair</option>
+              </select>
+              <select id="meme-sample" onchange="memeLoadSample(this.value)" title="Sample background">
+                <option value="">Sample background…</option>
+                <option value="kaaba">Kaaba still</option>
+                <option value="madinah">Madinah still</option>
+                <option value="nature">Nature (random · signs of Allah)</option>
+                <option value="blank">Soft blank</option>
+              </select>
+              <button type="button" class="btn-secondary" id="meme-nature-btn" onclick="memeFetchNature()" title="Fetch a new nature image to ponder">🌿 New nature</button>
+              <button type="button" class="btn-soft" id="meme-fill-verse-btn" onclick="memeFillFromJourneyVerse()" title="Journey: English verse + tafseer">📖 Journey verse</button>
+              <button type="button" class="btn-soft" id="meme-fill-command-btn" onclick="memeFillFromCommand()" title="Commands: Arabic on top, English translation below">📜 Command (AR + EN)</button>
+            </div>
+            <div class="meme-stage-wrap">
+              <div class="meme-stage" id="meme-stage">
+                <canvas id="meme-canvas" width="800" height="600" aria-label="Meme canvas"></canvas>
+                <div class="meme-text-box top" id="meme-box-top" data-which="top">
+                  <div class="meme-drag-handle" title="Drag top text">⋮⋮ Top</div>
+                </div>
+                <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom">
+                  <div class="meme-drag-handle" title="Drag bottom text">⋮⋮ Bottom</div>
+                </div>
+              </div>
+            </div>
+            <div class="meme-controls">
+              <div class="meme-ctrl-row" style="flex-direction:column;align-items:stretch;gap:0.35rem">
+                <label for="meme-top-input">Top text</label>
+                <textarea id="meme-top-input" rows="2" maxlength="120" placeholder="TOP TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black',sans-serif;font-weight:700;text-transform:uppercase;text-align:center"></textarea>
+              </div>
+              <div class="meme-ctrl-row" style="flex-direction:column;align-items:stretch;gap:0.35rem">
+                <label for="meme-bottom-input">Bottom text</label>
+                <textarea id="meme-bottom-input" rows="2" maxlength="120" placeholder="BOTTOM TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black',sans-serif;font-weight:700;text-transform:uppercase;text-align:center"></textarea>
+              </div>
+              <div class="meme-ctrl-row">
+                <label>Font size <span id="meme-size-val">42</span>px</label>
+                <input type="range" id="meme-size" min="18" max="96" value="42" oninput="memeOnSize(this.value)">
+              </div>
+              <div class="meme-ctrl-row">
+                <label>Outline <span id="meme-outline-val">4</span>px</label>
+                <input type="range" id="meme-outline" min="0" max="12" value="4" oninput="memeOnOutline(this.value)">
+              </div>
+              <div class="meme-ctrl-row meme-actions">
+                <button type="button" class="btn-secondary" onclick="memeReset()">Reset</button>
+                <button type="button" onclick="memeDownload()">⬇ Download PNG</button>
+              </div>
+            </div>
+            <p class="notes-hint" style="margin-top:0.65rem;">Tip: on phones, drag the ⋮⋮ handle. Keep wording short for impact. Use for gentle reminders — not mockery of sacred things.</p>
+          </div>
+        </div>
       </div>
 
     </main>
@@ -2793,16 +3020,63 @@
       document.getElementById("rabbana-english").textContent = dua.english;
       document.getElementById("rabbana-ref").textContent = dua.ref;
     }
+    // Official Saudi Broadcasting Authority channels (stable channel IDs — not rotating video IDs)
+    // Quran TV (Makkah / Masjid al-Haram): https://www.youtube.com/@SaudiQuranTv
+    // Sunnah TV (Madinah / Masjid an-Nabawi): https://www.youtube.com/@SaudiSunnahTv
+    const OFFICIAL_HARAMAIN = {
+      makkah: {
+        channelId: "UCos52azQNBgW63_9uDJoPDA",
+        watchUrl: "https://www.youtube.com/@SaudiQuranTv/live",
+        label: "Quran TV · Makkah"
+      },
+      madinah: {
+        channelId: "UCROKYPep-UuODNwyipe6JMw",
+        watchUrl: "https://www.youtube.com/@SaudiSunnahTv/live",
+        label: "Sunnah TV · Madinah"
+      }
+    };
+    function officialLiveEmbedUrl(channelId) {
+      // live_stream?channel= always resolves to that channel’s current official live feed
+      return "https://www.youtube-nocookie.com/embed/live_stream?channel=" + encodeURIComponent(channelId)
+        + "&autoplay=1&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0";
+    }
     const bannerImages = [
-      { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg", caption: "Masjid al-Haram • The Holy Kaaba, Makkah", lat: 21.4225, lon: 39.8262 },
-      { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg", caption: "Masjid an-Nabawi • The Prophet’s Mosque, Madinah", lat: 24.4672, lon: 39.6117 }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
+        caption: "Masjid al-Haram • The Holy Kaaba, Makkah",
+        lat: 21.4225, lon: 39.8262,
+        placeKey: "makkah"
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg",
+        caption: "Masjid an-Nabawi • The Prophet’s Mosque, Madinah",
+        lat: 24.4672, lon: 39.6117,
+        placeKey: "madinah"
+      }
     ];
     function setDailyBanner() {
       const dayNumber = Math.floor(Date.now() / 86400000);
       const img = bannerImages[dayNumber % bannerImages.length];
-      document.getElementById("banner-img").src = img.url;
+      const official = OFFICIAL_HARAMAIN[img.placeKey] || OFFICIAL_HARAMAIN.makkah;
+      const imgEl = document.getElementById("banner-img");
+      const liveEl = document.getElementById("banner-live");
+      const media = document.getElementById("banner-media");
+      if (imgEl) {
+        imgEl.style.display = "";
+        imgEl.src = img.url;
+      }
+      if (liveEl && official.channelId) {
+        // Pinned to official government channel live endpoint (IDs do not rotate)
+        liveEl.src = officialLiveEmbedUrl(official.channelId);
+        liveEl.setAttribute("title", "Official live · " + official.label);
+        if (media) media.classList.add("live-active");
+      }
       const placeEl = document.getElementById("place-name");
-      placeEl.innerHTML = img.caption + ' <span class="temp-live" id="place-temp">…°C</span>';
+      if (placeEl) {
+        placeEl.innerHTML = img.caption
+          + ' <span class="temp-live" id="place-temp">…°C</span>'
+          + ' <a class="temp-live" href="' + official.watchUrl + '" target="_blank" rel="noopener" title="Open official live stream" style="color:inherit;text-decoration:none;">🔴 Live · ' + official.label + '</a>';
+      }
       loadPlaceTemperature(img.lat, img.lon);
     }
     async function loadPlaceTemperature(lat, lon) {
@@ -3164,6 +3438,8 @@
       "66:6": "1. Protect yourself and family from the Fire by teaching prayer, Quran and good character. 2. Make your home a place of dhikr and learning. 3. Correct family members gently and consistently, starting with yourself."
     };
     let currentCommand = 0;
+    // Cached Commands verse for Meme Studio (Arabic + English)
+    let currentCommandVerse = { arabic: "", english: "", ref: "" };
     function getCommandKey(idx) { return "clarity_command_" + idx; }
     async function loadCommand() {
       const box = document.getElementById("command-box");
@@ -3179,6 +3455,7 @@
         const en = await enRes.json();
         const arabic = ar.data?.text || "";
         const english = en.data?.text || "";
+        currentCommandVerse = { arabic: arabic, english: english, ref: "Quran " + ref };
         const isWorking = saved.working || false;
         const note = saved.note || "";
         const followUp = commandFollowUps[ref] || "Reflect on the command and choose one concrete action you can take this week.";
@@ -3343,6 +3620,9 @@
       return s;
     }
 
+    // Cached Journey verse for Meme Studio (English + short tafseer)
+    let currentJourneyVerse = { en: "", tafseer: "", ref: "", arabic: "" };
+
     async function loadVerseInto(elId) {
       const el = document.getElementById(elId);
       if (!el) return;
@@ -3383,6 +3663,16 @@
           } catch (e2) {}
         }
 
+        // Cache for meme studio (Journey verse only when loading into main verse panel)
+        if (elId === "verse") {
+          currentJourneyVerse = {
+            en: en,
+            tafseer: tafseerText || "",
+            ref: surahName + " " + pick.a,
+            arabic: arabic
+          };
+        }
+
         let ponderBlock = "";
         if (tafseerText) {
           const safe = tafseerText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -3400,7 +3690,6 @@
         el.innerHTML = "Unable to load verse. <a href='https://quran.com' target='_blank' rel='noopener'>Open Quran.com</a>";
       }
     }
-    function loadVerse() { loadVerseInto("verse"); }
     function loadVerse() { loadVerseInto("verse"); }
     function loadVerseCommands() { /* removed duplicate; no-op */ }
     async function searchQuran() {
@@ -4664,6 +4953,490 @@ Ask Allah for firmness and sincerity.`
     // Init notes on load
     notesLoad();
 
+    // ========== MEME STUDIO ==========
+    const memeState = {
+      img: null,
+      top: '',
+      bottom: '',
+      fontSize: 42,
+      outline: 4,
+      // relative positions 0–1 for vertical center of each box
+      topY: 0.08,
+      bottomY: 0.88,
+      dragging: null
+    };
+
+    function memeGetCanvas() {
+      return document.getElementById('meme-canvas');
+    }
+
+    function memeDraw() {
+      const canvas = memeGetCanvas();
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // Background
+      if (memeState.img) {
+        const iw = memeState.img.width;
+        const ih = memeState.img.height;
+        const scale = Math.max(w / iw, h / ih);
+        const dw = iw * scale;
+        const dh = ih * scale;
+        const dx = (w - dw) / 2;
+        const dy = (h - dh) / 2;
+        ctx.drawImage(memeState.img, dx, dy, dw, dh);
+      } else {
+        const g = ctx.createLinearGradient(0, 0, w, h);
+        g.addColorStop(0, '#0f4c3a');
+        g.addColorStop(1, '#1a2a22');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = 'rgba(255,255,255,0.12)';
+        ctx.font = '600 22px Inter, system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Upload or pick a sample background', w / 2, h / 2);
+      }
+
+      function drawCaption(text, yRatio) {
+        const raw = (text || '').trim();
+        if (!raw) return;
+        // Detect Arabic / RTL script — keep original case for Arabic; uppercase Latin meme style
+        const isArabic = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(raw);
+        const t = isArabic ? raw : raw.toUpperCase();
+        const maxWidth = w * 0.9;
+        const fontSize = isArabic ? Math.max(memeState.fontSize, 36) : memeState.fontSize;
+        const outline = memeState.outline;
+        if (isArabic) {
+          ctx.font = '700 ' + fontSize + 'px "Scheherazade New", Amiri, "Noto Naskh Arabic", "Traditional Arabic", serif';
+          ctx.direction = 'rtl';
+        } else {
+          ctx.font = 'bold ' + fontSize + 'px Impact, Haettenschweiler, "Arial Black", sans-serif';
+          ctx.direction = 'ltr';
+        }
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.lineJoin = 'round';
+        ctx.miterLimit = 2;
+
+        // Word wrap (works for both scripts)
+        const words = t.split(/\s+/);
+        const lines = [];
+        let line = '';
+        words.forEach(word => {
+          const test = line ? line + ' ' + word : word;
+          if (ctx.measureText(test).width > maxWidth && line) {
+            lines.push(line);
+            line = word;
+          } else {
+            line = test;
+          }
+        });
+        if (line) lines.push(line);
+
+        const lineHeight = fontSize * 1.15;
+        const blockH = lines.length * lineHeight;
+        let y = yRatio * h - blockH / 2 + lineHeight / 2;
+        lines.forEach(ln => {
+          if (outline > 0) {
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = outline * 2;
+            ctx.strokeText(ln, w / 2, y);
+          }
+          ctx.fillStyle = '#fff';
+          ctx.fillText(ln, w / 2, y);
+          y += lineHeight;
+        });
+      }
+
+      drawCaption(memeState.top, memeState.topY);
+      drawCaption(memeState.bottom, memeState.bottomY);
+    }
+
+    function memeSyncFromInputs() {
+      const topEl = document.getElementById('meme-top-input');
+      const botEl = document.getElementById('meme-bottom-input');
+      memeState.top = topEl ? topEl.value : '';
+      memeState.bottom = botEl ? botEl.value : '';
+      memeDraw();
+    }
+
+    function memeClipForCaption(text, maxChars) {
+      let s = String(text || '').replace(/\s+/g, ' ').trim();
+      if (!s) return '';
+      if (s.length <= maxChars) return s;
+      const cut = s.slice(0, maxChars);
+      const lastSpace = cut.lastIndexOf(' ');
+      const lastPeriod = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+      const at = lastPeriod > maxChars * 0.4 ? lastPeriod + 1 : (lastSpace > maxChars * 0.5 ? lastSpace : maxChars);
+      return cut.slice(0, at).trim() + '…';
+    }
+
+    async function memeFillFromJourneyVerse() {
+      const topEl = document.getElementById('meme-top-input');
+      const botEl = document.getElementById('meme-bottom-input');
+      const btn = document.getElementById('meme-fill-verse-btn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Loading…';
+      }
+      try {
+        // Ensure we have a current Journey verse (load if cache empty)
+        if (!currentJourneyVerse.en) {
+          await loadVerseInto('verse');
+        }
+        const v = currentJourneyVerse;
+        if (!v.en) {
+          alert('Could not load a verse yet. Open the Journey tab once, then try again.');
+          return;
+        }
+        // Top: English translation (meme-friendly length)
+        const topText = memeClipForCaption(v.en, 110);
+        // Bottom: short tafseer snippet, or ref if no tafseer
+        let bottomText = '';
+        if (v.tafseer) {
+          bottomText = memeClipForCaption(v.tafseer, 140);
+        } else {
+          bottomText = v.ref || '';
+        }
+        // Soften all-caps for longer prose (Impact still works)
+        if (topEl) topEl.value = topText;
+        if (botEl) botEl.value = bottomText;
+        // Slightly smaller type for longer verse text
+        const sizeEl = document.getElementById('meme-size');
+        if (sizeEl) {
+          const suggested = topText.length > 80 ? 28 : (topText.length > 50 ? 34 : 42);
+          sizeEl.value = suggested;
+          memeOnSize(suggested);
+        }
+        memeState.topY = 0.12;
+        memeState.bottomY = 0.86;
+        memePositionBoxes();
+        memeSyncFromInputs();
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '📖 Verse + Tafseer';
+        }
+      }
+    }
+
+    function memeOnSize(v) {
+      memeState.fontSize = parseInt(v, 10) || 42;
+      const lab = document.getElementById('meme-size-val');
+      if (lab) lab.textContent = String(memeState.fontSize);
+      memeDraw();
+    }
+
+    function memeOnOutline(v) {
+      memeState.outline = parseInt(v, 10) || 0;
+      const lab = document.getElementById('meme-outline-val');
+      if (lab) lab.textContent = String(memeState.outline);
+      memeDraw();
+    }
+
+    function memeOnUpload(ev) {
+      const file = ev.target && ev.target.files && ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+          memeState.img = img;
+          memeDraw();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+      // allow re-selecting same file
+      ev.target.value = '';
+    }
+
+    // Nature / signs of creation — curated Unsplash stills (mountains, sky, sea, desert, forest, stars)
+    // Random pick on each fetch so the background invites reflection (ayat of creation).
+    const MEME_NATURE_POOL = [
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1280&q=80',
+      'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1280&q=80'
+    ];
+    let memeNatureIdx = Math.floor(Math.random() * MEME_NATURE_POOL.length);
+
+    function memeLoadImageFromUrl(url, onFailMsg) {
+      if (!url) {
+        memeState.img = null;
+        memeDraw();
+        return;
+      }
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function () {
+        memeState.img = img;
+        memeDraw();
+      };
+      img.onerror = function () {
+        if (onFailMsg) alert(onFailMsg);
+        else alert('Could not load image. Try “New nature” again or upload your own.');
+      };
+      img.src = url;
+    }
+
+    function memeFetchNature() {
+      const btn = document.getElementById('meme-nature-btn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Fetching…';
+      }
+      // Rotate through pool; add cache-buster so browsers refresh when possible
+      memeNatureIdx = (memeNatureIdx + 1) % MEME_NATURE_POOL.length;
+      const base = MEME_NATURE_POOL[memeNatureIdx];
+      const url = base + (base.indexOf('?') >= 0 ? '&' : '?') + 'cb=' + Date.now();
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function () {
+        memeState.img = img;
+        memeDraw();
+        if (btn) { btn.disabled = false; btn.textContent = '🌿 New nature'; }
+      };
+      img.onerror = function () {
+        // Fallback without cache-buster
+        memeLoadImageFromUrl(base, 'Could not fetch nature image. Try again or upload your own.');
+        if (btn) { btn.disabled = false; btn.textContent = '🌿 New nature'; }
+      };
+      img.src = url;
+    }
+
+    function memeLoadSample(key) {
+      if (!key) return;
+      const samples = {
+        kaaba: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg',
+        madinah: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg',
+        blank: null
+      };
+      if (key === 'blank') {
+        memeState.img = null;
+        memeDraw();
+        return;
+      }
+      if (key === 'nature') {
+        memeFetchNature();
+        return;
+      }
+      const url = samples[key];
+      if (!url) return;
+      memeLoadImageFromUrl(url, 'Could not load sample image. Try uploading your own.');
+    }
+
+    async function memeFillFromCommand() {
+      const topEl = document.getElementById('meme-top-input');
+      const botEl = document.getElementById('meme-bottom-input');
+      const btn = document.getElementById('meme-fill-command-btn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Loading…';
+      }
+      try {
+        if (!currentCommandVerse.arabic) {
+          await loadCommand();
+        }
+        const c = currentCommandVerse;
+        if (!c.arabic) {
+          alert('Could not load a Commands verse yet. Open the Commands tab once, then try again.');
+          return;
+        }
+        // Top: Arabic (Uthmani), Bottom: English translation
+        if (topEl) topEl.value = c.arabic;
+        if (botEl) botEl.value = memeClipForCaption(c.english, 140) || (c.ref || '');
+        const sizeEl = document.getElementById('meme-size');
+        if (sizeEl) {
+          // Arabic needs generous size; English below stays readable
+          const suggested = c.arabic.length > 80 ? 32 : 40;
+          sizeEl.value = suggested;
+          memeOnSize(suggested);
+        }
+        memeState.topY = 0.14;
+        memeState.bottomY = 0.86;
+        memePositionBoxes();
+        memeSyncFromInputs();
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '📜 Command (AR + EN)';
+        }
+      }
+    }
+
+    function memeApplyPreset(name) {
+      if (!name) return;
+      const topEl = document.getElementById('meme-top-input');
+      const botEl = document.getElementById('meme-bottom-input');
+      const boxTop = document.getElementById('meme-box-top');
+      const boxBot = document.getElementById('meme-box-bottom');
+      if (name === 'classic') {
+        memeState.topY = 0.1;
+        memeState.bottomY = 0.9;
+        memeState.fontSize = 48;
+        if (topEl && !topEl.value) topEl.value = 'REMEMBER DEATH';
+        if (botEl && !botEl.value) botEl.value = 'FURNISH YOUR GRAVE';
+      } else if (name === 'top-heavy') {
+        memeState.topY = 0.14;
+        memeState.bottomY = 0.82;
+        memeState.fontSize = 52;
+        if (topEl && !topEl.value) topEl.value = 'ONE GOOD DEED TODAY';
+        if (botEl && !botEl.value) botEl.value = 'LIGHT FOR THE GRAVE';
+      } else if (name === 'bottom-heavy') {
+        memeState.topY = 0.12;
+        memeState.bottomY = 0.86;
+        memeState.fontSize = 44;
+        if (topEl && !topEl.value) topEl.value = 'ASTAGHFIRULLAH';
+        if (botEl && !botEl.value) botEl.value = 'SEND IT AHEAD';
+      } else if (name === 'center') {
+        memeState.topY = 0.38;
+        memeState.bottomY = 0.62;
+        memeState.fontSize = 40;
+        if (topEl && !topEl.value) topEl.value = 'SABR';
+        if (botEl && !botEl.value) botEl.value = 'SHUKR';
+      }
+      const sizeEl = document.getElementById('meme-size');
+      if (sizeEl) { sizeEl.value = memeState.fontSize; memeOnSize(memeState.fontSize); }
+      memePositionBoxes();
+      memeSyncFromInputs();
+      // reset select after applying
+      const sel = document.getElementById('meme-preset');
+      if (sel) sel.value = '';
+    }
+
+    function memePositionBoxes() {
+      const boxTop = document.getElementById('meme-box-top');
+      const boxBot = document.getElementById('meme-box-bottom');
+      if (!boxTop || !boxBot) return;
+      // Center handles on the caption baseline
+      boxTop.style.top = (memeState.topY * 100) + '%';
+      boxTop.style.bottom = 'auto';
+      boxTop.style.transform = 'translate(-50%, -50%)';
+      boxBot.style.top = (memeState.bottomY * 100) + '%';
+      boxBot.style.bottom = 'auto';
+      boxBot.style.transform = 'translate(-50%, -50%)';
+    }
+
+    function memeReset() {
+      memeState.img = null;
+      memeState.top = '';
+      memeState.bottom = '';
+      memeState.fontSize = 42;
+      memeState.outline = 4;
+      memeState.topY = 0.08;
+      memeState.bottomY = 0.88;
+      const topEl = document.getElementById('meme-top-input');
+      const botEl = document.getElementById('meme-bottom-input');
+      if (topEl) topEl.value = '';
+      if (botEl) botEl.value = '';
+      const sizeEl = document.getElementById('meme-size');
+      const outEl = document.getElementById('meme-outline');
+      if (sizeEl) { sizeEl.value = 42; memeOnSize(42); }
+      if (outEl) { outEl.value = 4; memeOnOutline(4); }
+      const sample = document.getElementById('meme-sample');
+      if (sample) sample.value = '';
+      memePositionBoxes();
+      memeDraw();
+    }
+
+    function memeDownload() {
+      const canvas = memeGetCanvas();
+      if (!canvas) return;
+      memeDraw();
+      try {
+        const link = document.createElement('a');
+        link.download = 'clarity-meme-' + Date.now() + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (e) {
+        alert('Could not export. If you used a sample image, try uploading your own photo (CORS may block some external images).');
+      }
+    }
+
+    function memeInitDrag() {
+      const stage = document.getElementById('meme-stage');
+      if (!stage) return;
+
+      function startDrag(which, clientY) {
+        memeState.dragging = which;
+        const box = document.getElementById(which === 'top' ? 'meme-box-top' : 'meme-box-bottom');
+        if (box) box.classList.add('dragging');
+        moveDrag(clientY);
+      }
+      function moveDrag(clientY) {
+        if (!memeState.dragging) return;
+        const rect = stage.getBoundingClientRect();
+        let y = (clientY - rect.top) / rect.height;
+        y = Math.max(0.06, Math.min(0.94, y));
+        if (memeState.dragging === 'top') memeState.topY = y;
+        else memeState.bottomY = y;
+        memePositionBoxes();
+        memeDraw();
+      }
+      function endDrag() {
+        if (!memeState.dragging) return;
+        const box = document.getElementById(memeState.dragging === 'top' ? 'meme-box-top' : 'meme-box-bottom');
+        if (box) box.classList.remove('dragging');
+        memeState.dragging = null;
+      }
+
+      ['top', 'bottom'].forEach(which => {
+        const box = document.getElementById(which === 'top' ? 'meme-box-top' : 'meme-box-bottom');
+        if (!box) return;
+        const handle = box.querySelector('.meme-drag-handle');
+        if (!handle) return;
+        handle.addEventListener('pointerdown', (e) => {
+          e.preventDefault();
+          handle.setPointerCapture(e.pointerId);
+          startDrag(which, e.clientY);
+        });
+        handle.addEventListener('pointermove', (e) => {
+          if (memeState.dragging === which) moveDrag(e.clientY);
+        });
+        handle.addEventListener('pointerup', endDrag);
+        handle.addEventListener('pointercancel', endDrag);
+      });
+    }
+
+    function memeFitCanvasToStage() {
+      const canvas = memeGetCanvas();
+      const stage = document.getElementById('meme-stage');
+      if (!canvas || !stage) return;
+      // Keep internal resolution sharp
+      const targetW = 800;
+      const targetH = 600;
+      if (canvas.width !== targetW || canvas.height !== targetH) {
+        canvas.width = targetW;
+        canvas.height = targetH;
+      }
+      memePositionBoxes();
+      memeDraw();
+    }
+
+    // Init meme studio
+    try {
+      memeFitCanvasToStage();
+      memeInitDrag();
+      memeDraw();
+      window.addEventListener('resize', function () {
+        memePositionBoxes();
+      });
+    } catch (e) { console.warn('Meme studio init', e); }
 
     tjRender();
     if (typeof tjRender === "function") tjRender();
