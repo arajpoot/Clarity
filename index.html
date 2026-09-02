@@ -71,12 +71,25 @@
       z-index: 0;
       overflow: hidden;
       pointer-events: none;
+      /* Always-visible base so banner is never empty if images fail */
+      background:
+        linear-gradient(135deg, rgba(15,76,58,0.35), rgba(10,40,30,0.55)),
+        radial-gradient(ellipse at 50% 40%, #2a6b4f 0%, #0f4c3a 45%, #0a2e22 100%);
+    }
+    .banner-still-fallback {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.85;
+      z-index: 0;
     }
     .banner img, .banner-media img {
       width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0.72;
+      opacity: 0.85;
       position: absolute; inset: 0;
+      z-index: 1;
       transition: opacity 0.6s ease;
     }
     .banner-live {
@@ -90,10 +103,22 @@
       transition: opacity 0.8s ease;
     }
     .banner-media.live-active .banner-live {
-      opacity: 0.88;
+      opacity: 0.82;
     }
     .banner-media.live-active img {
-      opacity: 0.15;
+      opacity: 0.35; /* keep holy-site still visible under live */
+    }
+    .banner-media.live-fallback .banner-live {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    .banner-media.live-fallback img {
+      opacity: 1 !important;
+    }
+    .banner-live-status {
+      font-size: 0.72rem;
+      opacity: 0.95;
+      margin-left: 0.35rem;
     }
     .banner-overlay {
       position: relative;
@@ -1504,7 +1529,35 @@
       pointer-events: auto;
     }
     .meme-text-box.top { top: 4%; }
+    .meme-text-box.middle { top: 50%; }
     .meme-text-box.bottom { bottom: 4%; top: auto; }
+    .search-result {
+      margin-bottom: 0.85rem;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-elevated, #faf8f4);
+    }
+    .search-result .sr-ar {
+      font-family: 'Scheherazade New', Amiri, 'Noto Naskh Arabic', serif;
+      font-size: 1.35rem;
+      direction: rtl;
+      text-align: right;
+      line-height: 1.85;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .search-result .sr-en { font-size: 0.95rem; margin: 0.25rem 0; }
+    .search-result .sr-ur {
+      font-family: 'Noto Naskh Arabic', 'Scheherazade New', serif;
+      direction: rtl;
+      text-align: right;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--accent);
+      margin: 0.35rem 0;
+    }
+    .search-result .sr-actions { margin-top: 0.45rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
     .meme-text-box .meme-drag-handle {
       display: flex;
       justify-content: center;
@@ -2018,6 +2071,12 @@
     .asma-meaning { text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.75rem; }
     .asma-virtue { font-size: 0.94rem; line-height: 1.5; margin-bottom: 0.5rem; }
     .asma-ref { font-size: 0.8rem; color: var(--text-muted); font-style: italic; }
+    .prophet-names-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.65rem;
+    }
+    .prophet-name-card { margin-bottom: 0; }
 
     .meme-palette {
       display: flex;
@@ -2065,7 +2124,8 @@
   <!-- ========== BANNER (always visible) ========== -->
   <div class="banner">
     <div class="banner-media" id="banner-media" aria-hidden="true">
-      <img id="banner-img" src="" alt="Islamic holy place" onerror="this.style.display='none'">
+      <div class="banner-still-fallback" id="banner-still-fallback" aria-hidden="true"></div>
+      <img id="banner-img" src="" alt="Islamic holy place">
       <iframe id="banner-live" class="banner-live" title="Live from the Holy Places" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
     <div class="banner-overlay">
@@ -2278,6 +2338,13 @@
           <button type="button" onclick="loadLifeEvent()" data-i18n="another_life">Another life event</button>
         </div>
 
+        <div class="card card-israeliyat">
+          <h2 data-i18n="prev_nations">Lessons from Previous Nations</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">Stories and lessons from nations before us — for reflection on the path.</p>
+          <div id="israeliyat-content"><div class="loading-msg">Loading…</div></div>
+          <button type="button" onclick="loadIsraeliyat()">Another lesson</button>
+        </div>
+
         <div class="card card-journey" id="bookmarks-card" style="display:none">
           <h2 data-i18n="bookmarks">Your Bookmarks</h2>
           <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.5rem" data-i18n="saved_device">Saved on this device.</p>
@@ -2364,11 +2431,16 @@
         </div>
 
         <div class="card card-seerah">
-          <h2 data-i18n="seerah_tl">📜 Seerah timeline (key milestones)</h2>
-          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;" data-i18n="seerah_tl_desc">Expand each phase for a fuller summary. “Refresh online” pulls a short encyclopedia abstract when available.</p>
-          <div class="seerah-timeline" id="seerah-timeline"></div>
-          <button type="button" class="btn-secondary" style="margin-top:0.5rem;" onclick="expandAllSeerahTl()">Expand all</button>
-          <button type="button" class="btn-soft" style="margin-top:0.5rem;" onclick="fetchSeerahOnlineSummaries()">↻ Refresh online abstracts</button>
+          <h2>🕊️ Daily Name of the Prophet ﷺ</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">One name each day from the Qurʾān and authentic hadith — with meaning and blessing. Educational; not a fixed “99” in every narration.</p>
+          <div class="asma-box" id="prophet-name-box"><div class="loading-msg">Loading…</div></div>
+          <div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;">
+            <button type="button" class="btn-secondary" onclick="loadProphetName(true)">Another Name</button>
+            <button type="button" class="btn-soft" onclick="loadProphetName(false)">Today’s Name</button>
+            <button type="button" class="btn-soft" onclick="showAllProphetNames()">Show all names</button>
+            <input type="search" id="prophet-names-search" placeholder="Search a name…" oninput="filterProphetNames(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);">
+          </div>
+          <div id="prophet-names-list" class="prophet-names-grid" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div>
         </div>
 
         <div class="card card-hadith">
@@ -2377,18 +2449,20 @@
           <button type="button" onclick="loadHadith()">Another hadith</button>
         </div>
 
+        <div class="card card-seerah">
+          <h2 data-i18n="seerah_tl">📜 Seerah timeline (key milestones)</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;" data-i18n="seerah_tl_desc">Expand each phase for a fuller summary. “Refresh online” pulls a short encyclopedia abstract when available.</p>
+          <div class="seerah-timeline" id="seerah-timeline"></div>
+          <button type="button" class="btn-secondary" style="margin-top:0.5rem;" onclick="expandAllSeerahTl()">Expand all</button>
+          <button type="button" class="btn-soft" style="margin-top:0.5rem;" onclick="fetchSeerahOnlineSummaries()">↻ Refresh online abstracts</button>
+        </div>
+
         <div class="card card-stories">
           <h2 data-i18n="prophet_stories">Stories of the Prophets</h2>
           <div id="prophet-story"><div class="loading-msg">Loading…</div></div>
           <div style="margin-top:0.75rem;">
             <button type="button" onclick="loadProphetStory()" class="btn-secondary">Next Story</button>
           </div>
-        </div>
-
-        <div class="card card-israeliyat">
-          <h2 data-i18n="prev_nations">Lessons from Previous Nations</h2>
-          <div id="israeliyat-content"><div class="loading-msg">Loading…</div></div>
-          <button type="button" onclick="loadIsraeliyat()">Another lesson</button>
         </div>
       </div>
 
@@ -2561,16 +2635,6 @@
       <!-- ==================== TAB: COMMANDS ==================== -->
       <div id="tab-commands" class="tab-panel">
         <div class="card card-commands">
-          <h2>✨ Daily Name of Allah</h2>
-          <p style="margin-bottom:0.65rem; font-size:0.92rem; color:var(--text-muted);">One of the Beautiful Names each day — with meaning and reported virtues from hadith and classical notes. Educational; verify longer claims with a scholar.</p>
-          <div class="asma-box" id="asma-box"><div class="loading-msg">Loading…</div></div>
-          <div style="margin-top:0.65rem;">
-            <button type="button" class="btn-secondary" onclick="loadAsma(true)">Another Name</button>
-            <button type="button" class="btn-soft" onclick="loadAsma(false)">Today’s Name</button>
-          </div>
-        </div>
-
-        <div class="card card-commands">
           <h2 data-i18n="commands_title">Allah’s Commands to the Believers</h2>
           <p style="margin-bottom:0.75rem; font-size:0.94rem;">
             Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
@@ -2579,6 +2643,28 @@
           <div style="margin-top:0.75rem;">
             <button type="button" onclick="prevCommand()" class="btn-secondary">← Previous</button>
             <button type="button" onclick="nextCommand()">Next Command →</button>
+          </div>
+        </div>
+
+        <div class="card card-commands">
+          <h2>✨ The 99 Beautiful Names of Allah (Asmāʾ Allāh al-Ḥusnā)</h2>
+          <p style="margin-bottom:0.65rem; font-size:0.92rem; color:var(--text-muted);">Full classical list widely taught for education (cf. discussions on the Tirmidhī narration). Meanings and reflections are summaries — not exhaustive tafsīr. Call upon Allah by His Names; verify detailed claims with a scholar.</p>
+          <div class="asma-box" id="asma-box"><div class="loading-msg">Loading…</div></div>
+          <div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;">
+            <button type="button" class="btn-secondary" onclick="loadAsma(true)">Another Name</button>
+            <button type="button" class="btn-soft" onclick="loadAsma(false)">Today’s Name</button>
+            <button type="button" class="btn-soft" onclick="showAllAsma()">Show all 99</button>
+            <input type="search" id="asma-search" placeholder="Search a Name…" oninput="filterAsmaList(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);">
+          </div>
+          <div id="asma-all-list" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div>
+          <div class="asma-audio" style="margin-top:1rem;">
+            <h3 style="font-size:1rem;margin-bottom:0.45rem;">🎧 Listen — Names of Allah (Spotify)</h3>
+            <p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:0.45rem;">Embedded player (requires network). If blocked offline, open Spotify directly.</p>
+            <iframe id="asma-spotify" style="border-radius:12px;width:100%;min-height:152px;border:0;" src="https://open.spotify.com/embed/track/6jy0lafVq7EIAy243fxuv8?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Asma Allah Alhusna — Spotify"></iframe>
+            <p style="font-size:0.8rem;margin-top:0.35rem;">
+              <a href="https://open.spotify.com/track/6jy0lafVq7EIAy243fxuv8" target="_blank" rel="noopener">Open track</a>
+              · <a href="https://open.spotify.com/playlist/0eFhrgxFJQRjbYZnO1BQdc" target="_blank" rel="noopener">Playlist: Asma Ul Husna</a>
+            </p>
           </div>
         </div>
 
@@ -2968,6 +3054,16 @@
       <!-- ==================== TAB: SEARCH & ASK ==================== -->
       <div id="tab-search" class="tab-panel">
         <div class="card card-search">
+          <h2>🤲 Search Masnūn Supplications</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">Authentic / widely taught duʿās from Qurʾān and Sunnah — Arabic, English, and Urdu. Educational wording; schools may differ slightly.</p>
+          <div class="search-row">
+            <input type="text" id="dua-search" placeholder="forgiveness, morning, anxiety, parents, travel…" onkeydown="if(event.key==='Enter')searchMasnoonDua()" />
+            <button type="button" onclick="searchMasnoonDua()">Search</button>
+          </div>
+          <div id="dua-results"></div>
+        </div>
+
+        <div class="card card-search">
           <h2 data-i18n="search_quran">Search the Quran</h2>
           <div class="search-row">
             <input type="text" id="quran-search" placeholder="patience, prayer, forgiveness..." />
@@ -3141,19 +3237,39 @@
                 📁 Upload image
                 <input type="file" id="meme-file" accept="image/*" hidden onchange="memeOnUpload(event)">
               </label>
-              <select id="meme-preset" onchange="memeApplyPreset(this.value)" title="Classic layout">
-                <option value="">Layout preset…</option>
-                <option value="classic">Classic top / bottom</option>
+              <select id="meme-preset" onchange="memeApplyPreset(this.value)" title="Layout template">
+                <option value="">Layout template…</option>
+                <option value="classic">Classic 3-line</option>
                 <option value="top-heavy">Top heavy</option>
                 <option value="bottom-heavy">Bottom heavy</option>
-                <option value="center">Centered pair</option>
+                <option value="center">Centered trio</option>
+                <option value="minimal">Minimal soft</option>
+                <option value="poster">Poster bold</option>
+              </select>
+              <select id="meme-font" onchange="memeSetFont(this.value)" title="Font style">
+                <option value="impact">Impact (meme)</option>
+                <option value="serif">Serif (elegant)</option>
+                <option value="arabic">Arabic / Naskh</option>
+                <option value="sans">Clean sans</option>
+                <option value="mono">Mono (modern)</option>
+              </select>
+              <select id="meme-style" onchange="memeSetStyle(this.value)" title="Text style">
+                <option value="outline">White + black outline</option>
+                <option value="soft">Soft shadow</option>
+                <option value="gold">Gold on dark</option>
+                <option value="ink">Dark ink (light bg)</option>
+                <option value="none">Fill only</option>
               </select>
               <button type="button" class="btn-secondary" id="meme-nature-btn" onclick="memeFetchBg('nature')" title="Live nature backgrounds">🌿 Nature <span class="meme-use-count" id="meme-cnt-nature">0</span></button>
               <button type="button" class="btn-secondary" id="meme-flowers-btn" onclick="memeFetchBg('flowers')" title="Live flower / bouquet backgrounds">🌸 Flowers <span class="meme-use-count" id="meme-cnt-flowers">0</span></button>
               <button type="button" class="btn-secondary" id="meme-holy-btn" onclick="memeFetchBg('holy')" title="Live holy places backgrounds">🕌 Holy places <span class="meme-use-count" id="meme-cnt-holy">0</span></button>
+              <button type="button" class="btn-secondary" id="meme-spirit-btn" onclick="memeFetchBg('spirit')" title="Spiritually inspiring scenes">✨ Spiritual <span class="meme-use-count" id="meme-cnt-spirit">0</span></button>
               <button type="button" class="btn-soft" onclick="memeShowBlankPalette()" title="Blank with color">⬜ Blank</button>
+              <button type="button" class="btn-soft" id="meme-dynamic-btn" onclick="memeToggleDynamic()" title="Animate text &amp; soft glow on canvas">▶ Dynamic</button>
               <button type="button" class="btn-soft" id="meme-fill-verse-btn" onclick="memeFillFromJourneyVerse()" title="Journey: verse + tafseer">📖 Journey verse</button>
               <button type="button" class="btn-soft" id="meme-fill-command-btn" onclick="memeFillFromCommand()" title="Commands: Arabic + translation">📜 Command (AR + EN)</button>
+              <button type="button" class="btn-soft" id="meme-fill-search-btn" onclick="memeFillFromSearch()" title="Last verse from Search tab">🔍 Search verse</button>
+              <button type="button" class="btn-soft" id="meme-fill-dua-btn" onclick="memeFillFromDua()" title="Last masnūn duʿā from Search">🤲 Search duʿā</button>
             </div>
             <div class="meme-palette" id="meme-palette" style="display:none;">
               <span class="notes-hint" style="margin-right:0.35rem;">Blank color:</span>
@@ -3167,12 +3283,15 @@
               <button type="button" class="meme-swatch" style="background:#f5f0e6;border:1px solid #ccc" onclick="memeSetBlankColor('#f5f0e6','#e7e0d4')" title="Parchment"></button>
               <input type="color" id="meme-blank-custom" value="#0f4c3a" title="Custom" onchange="memeSetBlankColor(this.value, this.value)" style="width:1.6rem;height:1.6rem;padding:0;border:none;cursor:pointer;vertical-align:middle;">
             </div>
-            <p class="notes-hint" style="margin:0.35rem 0 0.5rem;font-size:0.82rem;">Uses — Nature: <strong id="meme-use-nature">0</strong> · Flowers: <strong id="meme-use-flowers">0</strong> · Holy places: <strong id="meme-use-holy">0</strong></p>
+            <p class="notes-hint" style="margin:0.35rem 0 0.5rem;font-size:0.82rem;">Uses — Nature: <strong id="meme-use-nature">0</strong> · Flowers: <strong id="meme-use-flowers">0</strong> · Holy: <strong id="meme-use-holy">0</strong> · Spiritual: <strong id="meme-use-spirit">0</strong></p>
             <div class="meme-stage-wrap">
               <div class="meme-stage" id="meme-stage">
                 <canvas id="meme-canvas" width="800" height="600" aria-label="Meme canvas"></canvas>
                 <div class="meme-text-box top" id="meme-box-top" data-which="top">
                   <div class="meme-drag-handle" title="Drag top text">⋮⋮ Top</div>
+                </div>
+                <div class="meme-text-box middle" id="meme-box-mid" data-which="mid">
+                  <div class="meme-drag-handle" title="Drag middle text">⋮⋮ Middle</div>
                 </div>
                 <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom">
                   <div class="meme-drag-handle" title="Drag bottom text">⋮⋮ Bottom</div>
@@ -3182,11 +3301,15 @@
             <div class="meme-controls">
               <div class="meme-ctrl-row" style="flex-direction:column;align-items:stretch;gap:0.35rem">
                 <label for="meme-top-input">Top text</label>
-                <textarea id="meme-top-input" rows="3" maxlength="280" placeholder="TOP TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black','Scheherazade New',serif;font-weight:700;text-align:center"></textarea>
+                <textarea id="meme-top-input" rows="2" maxlength="280" placeholder="TOP TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black','Scheherazade New',serif;font-weight:700;text-align:center"></textarea>
+              </div>
+              <div class="meme-ctrl-row" style="flex-direction:column;align-items:stretch;gap:0.35rem">
+                <label for="meme-mid-input">Middle text</label>
+                <textarea id="meme-mid-input" rows="2" maxlength="280" placeholder="MIDDLE TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black','Scheherazade New',serif;font-weight:700;text-align:center"></textarea>
               </div>
               <div class="meme-ctrl-row" style="flex-direction:column;align-items:stretch;gap:0.35rem">
                 <label for="meme-bottom-input">Bottom text</label>
-                <textarea id="meme-bottom-input" rows="3" maxlength="280" placeholder="BOTTOM TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black','Noto Naskh Arabic',serif;font-weight:700;text-align:center"></textarea>
+                <textarea id="meme-bottom-input" rows="2" maxlength="280" placeholder="BOTTOM TEXT" oninput="memeSyncFromInputs()" style="margin:0;font-family:Impact,Haettenschweiler,'Arial Black','Noto Naskh Arabic',serif;font-weight:700;text-align:center"></textarea>
               </div>
               <div class="meme-ctrl-row">
                 <label>Font size <span id="meme-size-val">42</span>px</label>
@@ -3684,9 +3807,9 @@
       document.getElementById("rabbana-english").textContent = dua.english;
       document.getElementById("rabbana-ref").textContent = dua.ref;
     }
-    // Official Saudi Broadcasting Authority channels (stable channel IDs — not rotating video IDs)
-    // Quran TV (Makkah / Masjid al-Haram): https://www.youtube.com/@SaudiQuranTv
-    // Sunnah TV (Madinah / Masjid an-Nabawi): https://www.youtube.com/@SaudiSunnahTv
+    // Official Saudi channels + still fallbacks (live embeds often blocked in file:// or by autoplay policy)
+    // Quran TV (Makkah): https://www.youtube.com/@SaudiQuranTv
+    // Sunnah TV (Madinah): https://www.youtube.com/@SaudiSunnahTv
     const OFFICIAL_HARAMAIN = {
       makkah: {
         channelId: "UCos52azQNBgW63_9uDJoPDA",
@@ -3700,24 +3823,83 @@
       }
     };
     function officialLiveEmbedUrl(channelId) {
-      // live_stream?channel= always resolves to that channel’s current official live feed
-      return "https://www.youtube-nocookie.com/embed/live_stream?channel=" + encodeURIComponent(channelId)
-        + "&autoplay=1&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0";
+      // Prefer standard youtube.com embed (more reliable than nocookie for live_stream)
+      return "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(channelId)
+        + "&autoplay=1&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1";
     }
+    // Multiple still sources per place — chain onerror so something always shows
     const bannerImages = [
       {
-        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
+        urls: [
+          "https://picsum.photos/seed/makkah-kaaba/1600/900",
+          "https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1600&q=80&auto=format&fit=crop",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg"
+        ],
         caption: "Masjid al-Haram • The Holy Kaaba, Makkah",
         lat: 21.4225, lon: 39.8262,
-        placeKey: "makkah"
+        placeKey: "makkah",
+        cssBg: "linear-gradient(160deg,#1a5c45 0%,#0f4c3a 40%,#0a2e22 100%)"
       },
       {
-        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg",
+        urls: [
+          "https://picsum.photos/seed/madinah-nabawi/1600/900",
+          "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1600&q=80&auto=format&fit=crop",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg"
+        ],
         caption: "Masjid an-Nabawi • The Prophet’s Mosque, Madinah",
         lat: 24.4672, lon: 39.6117,
-        placeKey: "madinah"
+        placeKey: "madinah",
+        cssBg: "linear-gradient(160deg,#1e3a5f 0%,#0f2a44 40%,#0a1a28 100%)"
+      },
+      {
+        urls: [
+          "https://picsum.photos/seed/haram-night/1600/900",
+          "https://images.unsplash.com/photo-1519817650390-64a5db1d0498?w=1600&q=80&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=1600&q=80&auto=format&fit=crop"
+        ],
+        caption: "The Two Holy Mosques • Haramain",
+        lat: 21.4225, lon: 39.8262,
+        placeKey: "makkah",
+        cssBg: "linear-gradient(160deg,#2a4a3a 0%,#0f4c3a 50%,#0a2e22 100%)"
       }
     ];
+    let bannerLiveTimer = null;
+    let bannerUrlIdx = 0;
+
+    function setBannerFallbackStill() {
+      const media = document.getElementById("banner-media");
+      const liveEl = document.getElementById("banner-live");
+      if (media) {
+        media.classList.remove("live-active");
+        media.classList.add("live-fallback");
+      }
+      if (liveEl) {
+        try { liveEl.removeAttribute("src"); } catch (e) {}
+      }
+      const st = document.getElementById("banner-live-status");
+      if (st) st.textContent = "Still view · open 🔴 Live for stream";
+    }
+
+    function tryBannerImage(urls, idx) {
+      const imgEl = document.getElementById("banner-img");
+      if (!imgEl || !urls || !urls.length) return;
+      bannerUrlIdx = idx || 0;
+      if (bannerUrlIdx >= urls.length) {
+        // All remote images failed — CSS gradient still shows
+        imgEl.style.opacity = "0";
+        return;
+      }
+      imgEl.style.display = "block";
+      imgEl.style.opacity = "0.85";
+      imgEl.onerror = function () {
+        tryBannerImage(urls, bannerUrlIdx + 1);
+      };
+      imgEl.onload = function () {
+        imgEl.style.opacity = "0.85";
+      };
+      imgEl.src = urls[bannerUrlIdx];
+    }
+
     function setDailyBanner() {
       const dayNumber = Math.floor(Date.now() / 86400000);
       const img = bannerImages[dayNumber % bannerImages.length];
@@ -3725,24 +3907,46 @@
       const imgEl = document.getElementById("banner-img");
       const liveEl = document.getElementById("banner-live");
       const media = document.getElementById("banner-media");
-      if (imgEl) {
-        imgEl.style.display = "";
-        imgEl.src = img.url;
-      }
-      if (liveEl && official.channelId) {
-        // Pinned to official government channel live endpoint (IDs do not rotate)
-        liveEl.src = officialLiveEmbedUrl(official.channelId);
+      const stillFb = document.getElementById("banner-still-fallback");
+
+      if (media) media.classList.remove("live-fallback");
+      if (stillFb) stillFb.style.background = img.cssBg || "";
+
+      // 1) Always try still images with chain fallback (never hide banner)
+      tryBannerImage(img.urls, 0);
+
+      // 2) Live is optional — often blocked on file:// and by autoplay policy
+      if (liveEl && official.channelId && navigator.onLine) {
         liveEl.setAttribute("title", "Official live · " + official.label);
-        if (media) media.classList.add("live-active");
+        liveEl.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+        // Do not force live-active until user can open YouTube; keep still primary
+        if (bannerLiveTimer) clearTimeout(bannerLiveTimer);
+        try {
+          liveEl.src = officialLiveEmbedUrl(official.channelId);
+          if (media) media.classList.add("live-active");
+          bannerLiveTimer = setTimeout(function () {
+            // Prefer still if embed is blocked (file protocol / privacy)
+            if (location.protocol === "file:" || !navigator.onLine) {
+              setBannerFallbackStill();
+            }
+          }, 4000);
+        } catch (e) {
+          setBannerFallbackStill();
+        }
+      } else {
+        setBannerFallbackStill();
       }
+
       const placeEl = document.getElementById("place-name");
       if (placeEl) {
         placeEl.innerHTML = img.caption
           + ' <span class="temp-live" id="place-temp">…°C</span>'
-          + ' <a class="temp-live" href="' + official.watchUrl + '" target="_blank" rel="noopener" title="Open official live stream" style="color:inherit;text-decoration:none;">🔴 Live · ' + official.label + '</a>';
+          + ' <a class="temp-live" href="' + official.watchUrl + '" target="_blank" rel="noopener" title="Open official live stream in YouTube" style="color:inherit;text-decoration:underline;">🔴 Live · ' + official.label + '</a>'
+          + ' <span class="banner-live-status" id="banner-live-status"></span>';
       }
       loadPlaceTemperature(img.lat, img.lon);
     }
+    window.addEventListener("offline", setBannerFallbackStill);
     async function loadPlaceTemperature(lat, lon) {
       const el = document.getElementById("place-temp");
       if (!el) return;
@@ -4150,7 +4354,7 @@
         } catch (eU) {}
         const arabic = ar.data?.text || "";
         const english = en.data?.text || "";
-        currentCommandVerse = { arabic: arabic, english: english, urdu: urdu, ref: "Quran " + ref };
+        currentCommandVerse = { arabic: arabic, english: english, urdu: urdu, ref: "Qur’an " + ref };
         const isWorking = saved.working || false;
         const note = saved.note || "";
         const followUp = commandFollowUps[ref] || "Reflect on the command and choose one concrete action you can take this week.";
@@ -4160,12 +4364,14 @@
           transBlock = `
             ${urdu ? `<p class="verse-urdu" dir="rtl" style="font-size:1.12rem;line-height:1.85;margin:0.55rem 0;font-family:'Noto Naskh Arabic','Scheherazade New',serif;">${urdu}</p>` : ''}
             <p style="font-size:0.95rem; margin:0.35rem 0; color:var(--text-muted);">${english}</p>
-            <div class="ref">Quran ${ref} • اردو (جالندھری) · Sahih International</div>`;
+            <div class="ref" style="font-weight:600;">Qur’an ${ref}</div>
+            <div class="ref">اردو (جالندھری) · Sahih International</div>`;
         } else {
           transBlock = `
             <p style="font-size:1.02rem; margin:0.55rem 0;">${english}</p>
             ${urdu ? `<p class="verse-urdu" dir="rtl" style="font-size:1.08rem;line-height:1.8;margin:0.4rem 0;font-family:'Noto Naskh Arabic','Scheherazade New',serif;color:var(--accent);">${urdu}</p>` : ''}
-            <div class="ref">Quran ${ref} • Sahih International${urdu ? ' · اردو (جالندھری)' : ''}</div>`;
+            <div class="ref" style="font-weight:600;">Qur’an ${ref}</div>
+            <div class="ref">Sahih International${urdu ? ' · اردو (جالندھری)' : ''}</div>`;
         }
         box.innerHTML = `
           <div class="arabic-calligraphy">${arabic}</div>
@@ -4396,10 +4602,20 @@
       } else if (en) {
         ponderBlock = `<div class="ponder-box">${ponder(en)}</div>`;
       }
+      const ayahStr = (ayah === 0 || ayah === '0' || ayah === '') ? '' : String(ayah);
+      // Prefer "Qur’an 2:153 · Al-Baqarah" style when we have a numeric ref in surahName
+      let refLine = '';
+      if (typeof surahName === 'string' && /^\d+:\d+/.test(surahName.trim())) {
+        refLine = 'Qur’an ' + surahName.trim() + ' • ' + transLabel;
+      } else if (ayahStr && surahName) {
+        refLine = surahName + ' ' + ayahStr + ' • ' + transLabel;
+      } else {
+        refLine = (surahName || 'Qur’an') + (ayahStr ? ' ' + ayahStr : '') + ' • ' + transLabel;
+      }
       return `
         <div class="arabic-calligraphy">${arabic}</div>
         ${mainBlock}
-        <div class="ref">${surahName} ${ayah} • ${transLabel}</div>
+        <div class="ref" style="font-weight:600;margin-top:0.45rem;">${refLine}</div>
         ${ponderBlock}`;
     }
 
@@ -4447,12 +4663,13 @@
           } catch (e2) {}
         }
 
+        const refLabel = "Qur’an " + key + " · " + surahName;
         if (elId === "verse") {
           currentJourneyVerse = {
             en: en,
             ur: ur,
             tafseer: tafseerText || "",
-            ref: surahName + " " + pick.a,
+            ref: refLabel,
             arabic: arabic,
             surah: pick.s,
             ayah: pick.a,
@@ -4461,7 +4678,7 @@
           try { offlineCacheSet('verse', currentJourneyVerse); } catch (e2) {}
         }
 
-        el.innerHTML = renderVerseHtml(arabic, en, ur, surahName, pick.a, tafseerText);
+        el.innerHTML = renderVerseHtml(arabic, en, ur, key + " · " + surahName, "", tafseerText);
       } catch (e) {
         // Prefer live online content; only use last snapshot when offline
         if (!navigator.onLine) {
@@ -4488,6 +4705,10 @@
       el.innerHTML = renderVerseHtml(v.arabic, v.en || '', v.ur || '', surahName || v.ref || '', ayah, v.tafseer || '');
     }
     function loadVerseCommands() { /* removed duplicate; no-op */ }
+    // Last verse chosen from Search (for Meme Studio)
+    let lastSearchVerse = { arabic: "", en: "", ur: "", ref: "", surah: 0, ayah: 0 };
+    let searchVerseCache = [];
+
     async function searchQuran() {
       const query = document.getElementById("quran-search").value.trim();
       const resultsEl = document.getElementById("quran-results");
@@ -4496,14 +4717,112 @@
       try {
         const res = await fetch(`https://api.alquran.cloud/v1/search/${encodeURIComponent(query)}/all/en`);
         const data = await res.json();
-        if (data.data?.matches?.length) {
-          let html = `<p><strong>${data.data.count}</strong> results:</p>`;
-          data.data.matches.slice(0, 5).forEach(m => {
-            html += `<div class="search-result"><p>${m.text}</p><div class="ref">${m.surah.englishName} ${m.numberInSurah}</div></div>`;
-          });
-          resultsEl.innerHTML = html;
-        } else resultsEl.innerHTML = "<p>No results found.</p>";
-      } catch(e) { resultsEl.innerHTML = "<p>Search temporarily unavailable.</p>"; }
+        if (!data.data?.matches?.length) {
+          resultsEl.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+        const matches = data.data.matches.slice(0, 5);
+        searchVerseCache = [];
+        resultsEl.innerHTML = `<p><strong>${data.data.count}</strong> results (showing ${matches.length}):</p><div id="quran-results-list"></div>`;
+        const list = document.getElementById("quran-results-list");
+        for (let i = 0; i < matches.length; i++) {
+          const m = matches[i];
+          const surahNum = m.surah && m.surah.number ? m.surah.number : 0;
+          const ayahNum = m.numberInSurah || 0;
+          const surahName = (m.surah && (m.surah.englishName || m.surah.name)) || ("Surah " + surahNum);
+          const card = document.createElement("div");
+          card.className = "search-result";
+          card.id = "sr-" + i;
+          card.innerHTML = `<div class="loading-msg">Loading Arabic &amp; Urdu…</div><div class="ref">${surahName} ${ayahNum}</div>`;
+          list.appendChild(card);
+          (async function (idx, s, a, name, host) {
+            let arabic = "", en = m.text || "", ur = "";
+            try {
+              const [arRes, enRes, urRes] = await Promise.all([
+                fetch(`https://api.alquran.cloud/v1/ayah/${s}:${a}/quran-uthmani`),
+                fetch(`https://api.alquran.cloud/v1/ayah/${s}:${a}/en.sahih`),
+                fetch(`https://api.alquran.cloud/v1/ayah/${s}:${a}/ur.jalandhry`)
+              ]);
+              const arJ = await arRes.json();
+              const enJ = await enRes.json();
+              const urJ = await urRes.json();
+              arabic = (arJ.data && arJ.data.text) || "";
+              en = (enJ.data && enJ.data.text) || en || "";
+              ur = (urJ.data && urJ.data.text) || "";
+            } catch (e2) {
+              en = m.text || en;
+            }
+            const ref = "Qur’an " + s + ":" + a + " · " + name;
+            const payload = { arabic: arabic, en: en, ur: ur, ref: ref, surah: s, ayah: a };
+            searchVerseCache[idx] = payload;
+            if (idx === 0) lastSearchVerse = payload;
+            const arHtml = arabic ? `<div class="sr-ar">${arabic}</div>` : "";
+            const enHtml = en ? `<p class="sr-en">${en}</p>` : "";
+            const urHtml = ur ? `<p class="sr-ur">${ur}</p>` : "";
+            host.innerHTML =
+              arHtml + enHtml + urHtml +
+              `<div class="ref" style="font-weight:600;">${ref}</div>
+               <div class="ref">Sahih International · اردو (جالندھری)</div>` +
+              `<div class="sr-actions">
+                <button type="button" class="ayah-audio-btn" onclick="playAyahAudio('${s}:${a}', this)">🔊 Listen</button>
+                <button type="button" class="btn-soft" onclick="memeUseSearchVerseIndex(${idx})">🖼️ Use in Meme</button>
+              </div>`;
+          })(i, surahNum, ayahNum, surahName, card);
+        }
+      } catch (e) {
+        resultsEl.innerHTML = "<p>Search temporarily unavailable.</p>";
+      }
+    }
+
+    function memeUseSearchVerseIndex(idx) {
+      const payload = searchVerseCache[idx];
+      if (!payload) return;
+      lastSearchVerse = payload;
+      switchTab('notes');
+      setTimeout(function () {
+        const card = document.getElementById('meme-card');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        memeFillFromSearch();
+      }, 200);
+    }
+    function memeUseSearchVerse(payload) {
+      if (!payload) return;
+      lastSearchVerse = payload;
+      memeFillFromSearch();
+    }
+
+    function memeFormatRef(v) {
+      if (!v) return '';
+      if (v.ref) return v.ref;
+      if (v.surah && v.ayah) return 'Qur’an ' + v.surah + ':' + v.ayah;
+      if (v.key) return 'Qur’an ' + v.key;
+      return '';
+    }
+    function memeFillFromSearch() {
+      const v = lastSearchVerse;
+      if (!v || (!v.arabic && !v.en)) {
+        alert('Search for a verse in the Search tab first, then tap “Use in Meme” or this button.');
+        return;
+      }
+      const topEl = document.getElementById('meme-top-input');
+      const midEl = document.getElementById('meme-mid-input');
+      const botEl = document.getElementById('meme-bottom-input');
+      const ref = memeFormatRef(v);
+      // Top: Arabic · Middle: English · Bottom: Urdu + reference
+      if (topEl) topEl.value = v.arabic || '';
+      if (midEl) midEl.value = memeClipForCaption(v.en || '', 120);
+      const ur = v.ur ? memeClipForCaption(v.ur, 90) : '';
+      if (botEl) botEl.value = [ur, ref].filter(Boolean).join('\n');
+      memeState.topY = 0.12;
+      memeState.midY = 0.48;
+      memeState.bottomY = 0.88;
+      const sizeEl = document.getElementById('meme-size');
+      if (sizeEl) {
+        sizeEl.value = 30;
+        memeOnSize(30);
+      }
+      memePositionBoxes();
+      memeSyncFromInputs();
     }
 
     // ========== LESSON / SEERAH / ZIKR ==========
@@ -5753,16 +6072,43 @@ Ask Allah for firmness and sincerity.`
     const memeState = {
       img: null,
       top: '',
+      mid: '',
       bottom: '',
       fontSize: 42,
       outline: 4,
+      font: 'impact',
+      style: 'outline',
       // relative positions 0–1 for vertical center of each box
       topY: 0.08,
+      midY: 0.48,
       bottomY: 0.88,
       dragging: null,
       blankColor1: '#0f4c3a',
       blankColor2: '#1a2a22'
     };
+    function memeFontStack(kind, isArabic) {
+      if (isArabic || kind === 'arabic') {
+        return '"Scheherazade New", Amiri, "Noto Naskh Arabic", "Traditional Arabic", serif';
+      }
+      if (kind === 'serif') return 'Georgia, "Times New Roman", "Cormorant Garamond", serif';
+      if (kind === 'sans') return 'Inter, system-ui, "Segoe UI", sans-serif';
+      if (kind === 'mono') return '"Courier New", ui-monospace, monospace';
+      return 'Impact, Haettenschweiler, "Arial Black", sans-serif';
+    }
+    function memeSetFont(v) {
+      memeState.font = v || 'impact';
+      memeDraw();
+    }
+    function memeSetStyle(v) {
+      memeState.style = v || 'outline';
+      if (v === 'none') memeState.outline = 0;
+      else if (v === 'outline' && memeState.outline < 2) memeState.outline = 4;
+      const outEl = document.getElementById('meme-outline');
+      if (outEl) outEl.value = memeState.outline;
+      const lab = document.getElementById('meme-outline-val');
+      if (lab) lab.textContent = String(memeState.outline);
+      memeDraw();
+    }
 
     function memeGetCanvas() {
       return document.getElementById('meme-canvas');
@@ -5793,7 +6139,7 @@ Ask Allah for firmness and sincerity.`
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, w, h);
         // Hint only when no text yet
-        if (!(memeState.top || memeState.bottom || (document.getElementById('meme-top-input') || {}).value)) {
+        if (!(memeState.top || memeState.mid || memeState.bottom || (document.getElementById('meme-top-input') || {}).value)) {
           const light = /^#([fFeE]|[a-fA-F0-9][fFeE])/.test(memeState.blankColor1 || '');
           ctx.fillStyle = light ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.18)';
           ctx.font = '600 20px Inter, system-ui, sans-serif';
@@ -5805,63 +6151,87 @@ Ask Allah for firmness and sincerity.`
       function drawCaption(text, yRatio) {
         const raw = (text || '').trim();
         if (!raw) return;
-        // Detect Arabic / RTL script — keep original case for Arabic; uppercase Latin meme style
-        const isArabic = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(raw);
-        const t = isArabic ? raw : raw.toUpperCase();
+        const style = memeState.style || 'outline';
+        const outline = style === 'none' ? 0 : (style === 'soft' ? Math.max(1, memeState.outline * 0.5) : memeState.outline);
         const maxWidth = w * 0.9;
-        const fontSize = isArabic ? Math.max(memeState.fontSize, 36) : memeState.fontSize;
-        const outline = memeState.outline;
-        if (isArabic) {
-          ctx.font = '700 ' + fontSize + 'px "Scheherazade New", Amiri, "Noto Naskh Arabic", "Traditional Arabic", serif';
-          ctx.direction = 'rtl';
-        } else {
-          ctx.font = 'bold ' + fontSize + 'px Impact, Haettenschweiler, "Arial Black", sans-serif';
-          ctx.direction = 'ltr';
-        }
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.lineJoin = 'round';
-        ctx.miterLimit = 2;
-
-        // Word wrap (works for both scripts)
-        const words = t.split(/\s+/);
+        const paragraphs = raw.split(/\n+/).map(p => p.trim()).filter(Boolean);
         const lines = [];
-        let line = '';
-        words.forEach(word => {
-          const test = line ? line + ' ' + word : word;
-          if (ctx.measureText(test).width > maxWidth && line) {
-            lines.push(line);
-            line = word;
-          } else {
-            line = test;
-          }
+        paragraphs.forEach(para => {
+          const isArabic = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(para);
+          const isRef = /^Qur[’']an\s+\d+/i.test(para) || /^\d+:\d+/.test(para) || /Bukhari|Muslim|Tirmidhi|Abu Dawud|Qur’an/i.test(para);
+          const upper = !(isArabic || isRef || memeState.font === 'serif' || memeState.font === 'sans');
+          const t = upper ? para.toUpperCase() : para;
+          const fontSize = isRef
+            ? Math.max(15, Math.round(memeState.fontSize * 0.52))
+            : (isArabic ? Math.max(memeState.fontSize, 30) : memeState.fontSize);
+          const stack = memeFontStack(memeState.font, isArabic);
+          ctx.font = (isRef ? '600 ' : '700 ') + fontSize + 'px ' + stack;
+          const words = t.split(/\s+/);
+          let line = '';
+          words.forEach(word => {
+            const test = line ? line + ' ' + word : word;
+            if (ctx.measureText(test).width > maxWidth && line) {
+              lines.push({ text: line, fontSize: fontSize, arabic: isArabic, ref: isRef, stack: stack });
+              line = word;
+            } else {
+              line = test;
+            }
+          });
+          if (line) lines.push({ text: line, fontSize: fontSize, arabic: isArabic, ref: isRef, stack: stack });
         });
-        if (line) lines.push(line);
 
-        const lineHeight = fontSize * 1.15;
-        const blockH = lines.length * lineHeight;
-        let y = yRatio * h - blockH / 2 + lineHeight / 2;
+        let blockH = 0;
+        lines.forEach(ln => { blockH += ln.fontSize * 1.18; });
+        let y = yRatio * h - blockH / 2;
         lines.forEach(ln => {
-          if (outline > 0) {
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = outline * 2;
-            ctx.strokeText(ln, w / 2, y);
+          const lh = ln.fontSize * 1.18;
+          y += lh / 2;
+          ctx.font = (ln.ref ? '600 ' : '700 ') + ln.fontSize + 'px ' + ln.stack;
+          ctx.direction = ln.arabic ? 'rtl' : 'ltr';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.lineJoin = 'round';
+          let fill = '#fff';
+          let stroke = '#000';
+          if (style === 'gold') { fill = '#f5e6a8'; stroke = '#3d2a0a'; }
+          else if (style === 'ink') { fill = '#1a1a1a'; stroke = 'rgba(255,255,255,0.35)'; }
+          else if (style === 'soft') { fill = '#fff'; stroke = 'rgba(0,0,0,0.45)'; }
+          if (ln.ref && style !== 'ink') fill = 'rgba(255,255,220,0.95)';
+          if (outline > 0 || style === 'soft') {
+            ctx.strokeStyle = stroke;
+            ctx.lineWidth = Math.max(1.5, outline * (ln.ref ? 1.1 : 2));
+            if (style === 'soft') {
+              ctx.shadowColor = 'rgba(0,0,0,0.55)';
+              ctx.shadowBlur = 8;
+              ctx.shadowOffsetY = 3;
+            }
+            ctx.strokeText(ln.text, w / 2, y);
           }
-          ctx.fillStyle = '#fff';
-          ctx.fillText(ln, w / 2, y);
-          y += lineHeight;
+          ctx.shadowColor = 'transparent';
+          ctx.shadowBlur = 0;
+          ctx.shadowOffsetY = 0;
+          ctx.fillStyle = fill;
+          ctx.fillText(ln.text, w / 2, y);
+          y += lh / 2;
         });
       }
 
       drawCaption(memeState.top, memeState.topY);
+      drawCaption(memeState.mid, memeState.midY);
       drawCaption(memeState.bottom, memeState.bottomY);
     }
 
     function memeSyncFromInputs() {
       const topEl = document.getElementById('meme-top-input');
+      const midEl = document.getElementById('meme-mid-input');
       const botEl = document.getElementById('meme-bottom-input');
       memeState.top = topEl ? topEl.value : '';
+      memeState.mid = midEl ? midEl.value : '';
       memeState.bottom = botEl ? botEl.value : '';
+      // Refresh dynamic baseline so animation follows current layout
+      memeState._baseTopY = memeState.topY;
+      memeState._baseMidY = memeState.midY;
+      memeState._baseBotY = memeState.bottomY;
       memeDraw();
     }
 
@@ -5894,33 +6264,31 @@ Ask Allah for firmness and sincerity.`
           alert('Could not load a verse yet. Open the Journey tab once, then try again.');
           return;
         }
-        // Top: English translation (meme-friendly length)
-        const topText = memeClipForCaption(v.en, 110);
-        // Bottom: short tafseer snippet, or ref if no tafseer
-        let bottomText = '';
-        if (v.tafseer) {
-          bottomText = memeClipForCaption(v.tafseer, 140);
-        } else {
-          bottomText = v.ref || '';
+        const midEl = document.getElementById('meme-mid-input');
+        const ref = memeFormatRef(v) || (v.surah && v.ayah ? ('Qur’an ' + v.surah + ':' + v.ayah) : '');
+        // Top: Arabic · Middle: English · Bottom: Urdu (or tafseer) + reference
+        if (topEl) topEl.value = v.arabic || memeClipForCaption(v.en, 110);
+        if (midEl) midEl.value = memeClipForCaption(v.en || '', 120);
+        if (botEl) {
+          const line1 = v.ur
+            ? memeClipForCaption(v.ur, 90)
+            : (v.tafseer ? memeClipForCaption(v.tafseer, 90) : '');
+          botEl.value = [line1, ref].filter(Boolean).join('\n');
         }
-        // Soften all-caps for longer prose (Impact still works)
-        if (topEl) topEl.value = topText;
-        if (botEl) botEl.value = bottomText;
-        // Slightly smaller type for longer verse text
         const sizeEl = document.getElementById('meme-size');
         if (sizeEl) {
-          const suggested = topText.length > 80 ? 28 : (topText.length > 50 ? 34 : 42);
-          sizeEl.value = suggested;
-          memeOnSize(suggested);
+          sizeEl.value = 28;
+          memeOnSize(28);
         }
         memeState.topY = 0.12;
-        memeState.bottomY = 0.86;
+        memeState.midY = 0.48;
+        memeState.bottomY = 0.88;
         memePositionBoxes();
         memeSyncFromInputs();
       } finally {
         if (btn) {
           btn.disabled = false;
-          btn.textContent = '📖 Verse + Tafseer';
+          btn.textContent = '📖 Journey verse';
         }
       }
     }
@@ -5988,13 +6356,24 @@ Ask Allah for firmness and sincerity.`
         'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1280&q=80',
         'https://images.unsplash.com/photo-1519817650390-64a5db1d0498?auto=format&fit=crop&w=1280&q=80',
         'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=1280&q=80'
+      ],
+      spirit: [
+        'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1507400492013-162706c8c05e?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1280&q=80',
+        'https://images.unsplash.com/photo-1519817650390-64a5db1d0498?auto=format&fit=crop&w=1280&q=80'
       ]
     };
-    const memeBgIdx = { nature: 0, flowers: 0, holy: 0 };
+    const memeBgIdx = { nature: 0, flowers: 0, holy: 0, spirit: 0 };
     const MEME_USE_KEY = 'clarity_meme_bg_uses';
     function memeGetUses() {
-      try { return JSON.parse(localStorage.getItem(MEME_USE_KEY) || '{"nature":0,"flowers":0,"holy":0}'); }
-      catch (e) { return { nature: 0, flowers: 0, holy: 0 }; }
+      try { return JSON.parse(localStorage.getItem(MEME_USE_KEY) || '{"nature":0,"flowers":0,"holy":0,"spirit":0}'); }
+      catch (e) { return { nature: 0, flowers: 0, holy: 0, spirit: 0 }; }
     }
     function memeBumpUse(kind) {
       const u = memeGetUses();
@@ -6005,7 +6384,7 @@ Ask Allah for firmness and sincerity.`
     }
     function memeRenderUseCounts() {
       const u = memeGetUses();
-      ['nature', 'flowers', 'holy'].forEach(k => {
+      ['nature', 'flowers', 'holy', 'spirit'].forEach(k => {
         const a = document.getElementById('meme-cnt-' + k);
         const b = document.getElementById('meme-use-' + k);
         if (a) a.textContent = String(u[k] || 0);
@@ -6056,9 +6435,9 @@ Ask Allah for firmness and sincerity.`
       if (pal) pal.style.display = 'none';
       const pool = MEME_BG_POOLS[kind];
       if (!pool || !pool.length) return;
-      const btnId = kind === 'nature' ? 'meme-nature-btn' : kind === 'flowers' ? 'meme-flowers-btn' : 'meme-holy-btn';
+      const btnId = kind === 'nature' ? 'meme-nature-btn' : kind === 'flowers' ? 'meme-flowers-btn' : kind === 'spirit' ? 'meme-spirit-btn' : 'meme-holy-btn';
       const btn = document.getElementById(btnId);
-      const labels = { nature: '🌿 Nature', flowers: '🌸 Flowers', holy: '🕌 Holy places' };
+      const labels = { nature: '🌿 Nature', flowers: '🌸 Flowers', holy: '🕌 Holy places', spirit: '✨ Spiritual' };
       if (btn) {
         btn.disabled = true;
         btn.textContent = 'Fetching…';
@@ -6095,7 +6474,42 @@ Ask Allah for firmness and sincerity.`
       if (key === 'blank') return memeFetchBg('blank');
       if (key === 'nature') return memeFetchBg('nature');
       if (key === 'flowers') return memeFetchBg('flowers');
+      if (key === 'spirit') return memeFetchBg('spirit');
       if (key === 'holy' || key === 'kaaba' || key === 'madinah') return memeFetchBg('holy');
+    }
+
+    // Dynamic meme: soft pulse / drift of text for contemplative preview
+    let memeDynamicTimer = null;
+    let memeDynamicPhase = 0;
+    function memeToggleDynamic() {
+      const btn = document.getElementById('meme-dynamic-btn');
+      if (memeDynamicTimer) {
+        clearInterval(memeDynamicTimer);
+        memeDynamicTimer = null;
+        memeDynamicPhase = 0;
+        if (btn) btn.textContent = '▶ Dynamic';
+        memeDraw();
+        return;
+      }
+      if (btn) btn.textContent = '⏸ Dynamic';
+      memeDynamicTimer = setInterval(function () {
+        memeDynamicPhase = (memeDynamicPhase + 1) % 120;
+        const t = memeDynamicPhase / 120;
+        const wave = Math.sin(t * Math.PI * 2) * 0.012;
+        // Gentle vertical drift of middle line + redraw
+        const baseMid = memeState._baseMidY != null ? memeState._baseMidY : memeState.midY;
+        if (memeState._baseMidY == null) {
+          memeState._baseTopY = memeState.topY;
+          memeState._baseMidY = memeState.midY;
+          memeState._baseBotY = memeState.bottomY;
+        }
+        memeState.topY = memeState._baseTopY + wave * 0.4;
+        memeState.midY = baseMid + wave;
+        memeState.bottomY = memeState._baseBotY - wave * 0.4;
+        memePositionBoxes();
+        memeDraw();
+        // Soft glow overlay via canvas alpha pulse on last frame is enough via redraw
+      }, 50);
     }
 
     async function memeFillFromCommand() {
@@ -6115,18 +6529,24 @@ Ask Allah for firmness and sincerity.`
           alert('Could not load a Commands verse yet. Open the Commands tab once, then try again.');
           return;
         }
-        // Top: Arabic (Uthmani), Bottom: English translation
+        const midEl = document.getElementById('meme-mid-input');
+        const ref = c.ref || '';
+        // Top: Arabic · Middle: English · Bottom: Urdu (if any) + reference
         if (topEl) topEl.value = c.arabic;
-        if (botEl) botEl.value = memeClipForCaption(c.english, 140) || (c.ref || '');
+        if (midEl) midEl.value = memeClipForCaption(c.english || '', 120);
+        if (botEl) {
+          const ur = c.urdu ? memeClipForCaption(c.urdu, 90) : '';
+          botEl.value = [ur, ref].filter(Boolean).join('\n') || ref;
+        }
         const sizeEl = document.getElementById('meme-size');
         if (sizeEl) {
-          // Arabic needs generous size; English below stays readable
-          const suggested = c.arabic.length > 80 ? 32 : 40;
+          const suggested = c.arabic.length > 80 ? 28 : 34;
           sizeEl.value = suggested;
           memeOnSize(suggested);
         }
-        memeState.topY = 0.14;
-        memeState.bottomY = 0.86;
+        memeState.topY = 0.12;
+        memeState.midY = 0.48;
+        memeState.bottomY = 0.88;
         memePositionBoxes();
         memeSyncFromInputs();
       } finally {
@@ -6318,67 +6738,103 @@ Ask Allah for firmness and sincerity.`
     function memeApplyPreset(name) {
       if (!name) return;
       const topEl = document.getElementById('meme-top-input');
+      const midEl = document.getElementById('meme-mid-input');
       const botEl = document.getElementById('meme-bottom-input');
-      const boxTop = document.getElementById('meme-box-top');
-      const boxBot = document.getElementById('meme-box-bottom');
       if (name === 'classic') {
         memeState.topY = 0.1;
+        memeState.midY = 0.48;
         memeState.bottomY = 0.9;
-        memeState.fontSize = 48;
+        memeState.fontSize = 42;
         if (topEl && !topEl.value) topEl.value = 'REMEMBER DEATH';
+        if (midEl && !midEl.value) midEl.value = 'SEND LIGHT AHEAD';
         if (botEl && !botEl.value) botEl.value = 'FURNISH YOUR GRAVE';
       } else if (name === 'top-heavy') {
-        memeState.topY = 0.14;
+        memeState.topY = 0.12;
+        memeState.midY = 0.42;
         memeState.bottomY = 0.82;
-        memeState.fontSize = 52;
+        memeState.fontSize = 44;
         if (topEl && !topEl.value) topEl.value = 'ONE GOOD DEED TODAY';
+        if (midEl && !midEl.value) midEl.value = 'ISTIGHFAR · SALAWAT';
         if (botEl && !botEl.value) botEl.value = 'LIGHT FOR THE GRAVE';
       } else if (name === 'bottom-heavy') {
         memeState.topY = 0.12;
+        memeState.midY = 0.5;
         memeState.bottomY = 0.86;
-        memeState.fontSize = 44;
+        memeState.fontSize = 40;
         if (topEl && !topEl.value) topEl.value = 'ASTAGHFIRULLAH';
+        if (midEl && !midEl.value) midEl.value = 'EVERY DAY';
         if (botEl && !botEl.value) botEl.value = 'SEND IT AHEAD';
       } else if (name === 'center') {
-        memeState.topY = 0.38;
-        memeState.bottomY = 0.62;
-        memeState.fontSize = 40;
+        memeState.topY = 0.28;
+        memeState.midY = 0.5;
+        memeState.bottomY = 0.72;
+        memeState.fontSize = 38;
         if (topEl && !topEl.value) topEl.value = 'SABR';
-        if (botEl && !botEl.value) botEl.value = 'SHUKR';
+        if (midEl && !midEl.value) midEl.value = 'SHUKR';
+        if (botEl && !botEl.value) botEl.value = 'TAQWA';
+      } else if (name === 'minimal') {
+        memeState.topY = 0.18;
+        memeState.midY = 0.5;
+        memeState.bottomY = 0.82;
+        memeState.fontSize = 34;
+        memeState.font = 'serif';
+        memeState.style = 'soft';
+        if (topEl && !topEl.value) topEl.value = 'Remember death';
+        if (midEl && !midEl.value) midEl.value = 'Furnish your grave';
+        if (botEl && !botEl.value) botEl.value = 'with light';
+      } else if (name === 'poster') {
+        memeState.topY = 0.14;
+        memeState.midY = 0.48;
+        memeState.bottomY = 0.86;
+        memeState.fontSize = 48;
+        memeState.font = 'impact';
+        memeState.style = 'outline';
+        if (topEl && !topEl.value) topEl.value = 'ASTAGHFIRULLAH';
+        if (midEl && !midEl.value) midEl.value = 'SEND IT AHEAD';
+        if (botEl && !botEl.value) botEl.value = 'LIGHT FOR THE GRAVE';
       }
       const sizeEl = document.getElementById('meme-size');
       if (sizeEl) { sizeEl.value = memeState.fontSize; memeOnSize(memeState.fontSize); }
+      const fontEl = document.getElementById('meme-font');
+      if (fontEl) fontEl.value = memeState.font;
+      const styleEl = document.getElementById('meme-style');
+      if (styleEl) styleEl.value = memeState.style;
       memePositionBoxes();
       memeSyncFromInputs();
-      // reset select after applying
       const sel = document.getElementById('meme-preset');
       if (sel) sel.value = '';
     }
 
     function memePositionBoxes() {
-      const boxTop = document.getElementById('meme-box-top');
-      const boxBot = document.getElementById('meme-box-bottom');
-      if (!boxTop || !boxBot) return;
-      // Center handles on the caption baseline
-      boxTop.style.top = (memeState.topY * 100) + '%';
-      boxTop.style.bottom = 'auto';
-      boxTop.style.transform = 'translate(-50%, -50%)';
-      boxBot.style.top = (memeState.bottomY * 100) + '%';
-      boxBot.style.bottom = 'auto';
-      boxBot.style.transform = 'translate(-50%, -50%)';
+      const map = [
+        ['meme-box-top', memeState.topY],
+        ['meme-box-mid', memeState.midY],
+        ['meme-box-bottom', memeState.bottomY]
+      ];
+      map.forEach(function (pair) {
+        const box = document.getElementById(pair[0]);
+        if (!box) return;
+        box.style.top = (pair[1] * 100) + '%';
+        box.style.bottom = 'auto';
+        box.style.transform = 'translate(-50%, -50%)';
+      });
     }
 
     function memeReset() {
       memeState.img = null;
       memeState.top = '';
+      memeState.mid = '';
       memeState.bottom = '';
       memeState.fontSize = 42;
       memeState.outline = 4;
       memeState.topY = 0.08;
+      memeState.midY = 0.48;
       memeState.bottomY = 0.88;
       const topEl = document.getElementById('meme-top-input');
+      const midEl = document.getElementById('meme-mid-input');
       const botEl = document.getElementById('meme-bottom-input');
       if (topEl) topEl.value = '';
+      if (midEl) midEl.value = '';
       if (botEl) botEl.value = '';
       const sizeEl = document.getElementById('meme-size');
       const outEl = document.getElementById('meme-outline');
@@ -6407,10 +6863,11 @@ Ask Allah for firmness and sincerity.`
     function memeInitDrag() {
       const stage = document.getElementById('meme-stage');
       if (!stage) return;
+      const idMap = { top: 'meme-box-top', mid: 'meme-box-mid', bottom: 'meme-box-bottom' };
 
       function startDrag(which, clientY) {
         memeState.dragging = which;
-        const box = document.getElementById(which === 'top' ? 'meme-box-top' : 'meme-box-bottom');
+        const box = document.getElementById(idMap[which]);
         if (box) box.classList.add('dragging');
         moveDrag(clientY);
       }
@@ -6420,19 +6877,20 @@ Ask Allah for firmness and sincerity.`
         let y = (clientY - rect.top) / rect.height;
         y = Math.max(0.06, Math.min(0.94, y));
         if (memeState.dragging === 'top') memeState.topY = y;
+        else if (memeState.dragging === 'mid') memeState.midY = y;
         else memeState.bottomY = y;
         memePositionBoxes();
         memeDraw();
       }
       function endDrag() {
         if (!memeState.dragging) return;
-        const box = document.getElementById(memeState.dragging === 'top' ? 'meme-box-top' : 'meme-box-bottom');
+        const box = document.getElementById(idMap[memeState.dragging]);
         if (box) box.classList.remove('dragging');
         memeState.dragging = null;
       }
 
-      ['top', 'bottom'].forEach(which => {
-        const box = document.getElementById(which === 'top' ? 'meme-box-top' : 'meme-box-bottom');
+      ['top', 'mid', 'bottom'].forEach(which => {
+        const box = document.getElementById(idMap[which]);
         if (!box) return;
         const handle = box.querySelector('.meme-drag-handle');
         if (!handle) return;
@@ -6719,59 +7177,108 @@ Ask Allah for firmness and sincerity.`
     }
     renderSeerahTimeline();
 
-    // ========== Daily Name of Allah (Asma ul Husna) ==========
-    // Curated subset with widely cited virtues (hadith / classical notes). Not exhaustive fiqh.
+    // ========== 99 Names of Allah (classical educational list) ==========
+    // Based on the well-known listing associated with Tirmidhī (scholars differ on the exact isnād of the “99 list” hadith; the Names themselves are from Qurʾān & Sunnah).
     const ASMA_UL_HUSNA = [
-      { ar: 'الرَّحْمَٰنُ', tr: 'Ar-Raḥmān', en: 'The Most Merciful', virtue: 'Allah’s mercy encompasses all things. The Prophet ﷺ taught that Allah is more merciful to His servants than a mother to her child.', ref: 'Bukhari 5999 · Muslim 2753' },
-      { ar: 'الرَّحِيمُ', tr: 'Ar-Raḥīm', en: 'The Especially Merciful', virtue: 'Special mercy for the believers. Begin actions with Bismillah seeking this mercy.', ref: 'Qur’an 1:1–3 · classical tafsīr' },
-      { ar: 'الْمَلِكُ', tr: 'Al-Malik', en: 'The King', virtue: 'True sovereignty belongs only to Allah. Remembering Al-Malik humbles kings and comforts the oppressed.', ref: 'Qur’an 59:23' },
-      { ar: 'الْقُدُّوسُ', tr: 'Al-Quddūs', en: 'The Most Holy', virtue: 'Free of every imperfection. Reciting subḥānallāh affirms His purity from all defects.', ref: 'Qur’an 59:23 · Muslim 595' },
-      { ar: 'السَّلَامُ', tr: 'As-Salām', en: 'The Source of Peace', virtue: 'Safety and peace come from Him. The greeting as-salāmu ʿalaykum is a prayer for this peace.', ref: 'Qur’an 59:23' },
-      { ar: 'الْمُؤْمِنُ', tr: 'Al-Muʾmin', en: 'The Giver of Faith / Security', virtue: 'He grants security and confirms the truth of His messengers. Seek safety of heart through trust in Him.', ref: 'Qur’an 59:23' },
-      { ar: 'الْعَزِيزُ', tr: 'Al-ʿAzīz', en: 'The Almighty', virtue: 'Invincible might with wisdom. Believers draw dignity from belonging to Al-ʿAzīz, not from ego.', ref: 'Qur’an 59:23' },
-      { ar: 'الْغَفَّارُ', tr: 'Al-Ghaffār', en: 'The Most Forgiving', virtue: 'He forgives again and again. The Prophet ﷺ sought forgiveness seventy or more times a day.', ref: 'Bukhari 6307 · Qur’an 71:10' },
-      { ar: 'الْوَهَّابُ', tr: 'Al-Wahhāb', en: 'The Bestower', virtue: 'Gives freely without being asked in full measure. Ask Al-Wahhāb for good that does not leave debt on the soul.', ref: 'Qur’an 3:8' },
-      { ar: 'الرَّزَّاقُ', tr: 'Ar-Razzāq', en: 'The Provider', virtue: 'Provision is from Allah alone. Trust in Ar-Razzāq while tying the camel — work with tawakkul.', ref: 'Qur’an 51:58 · Tirmidhi 2344' },
-      { ar: 'الْعَلِيمُ', tr: 'Al-ʿAlīm', en: 'The All-Knowing', virtue: 'Nothing is hidden from Him — public or private. This Name trains sincerity (ikhlāṣ).', ref: 'Qur’an 2:29' },
-      { ar: 'السَّمِيعُ', tr: 'As-Samīʿ', en: 'The All-Hearing', virtue: 'He hears every duʿāʾ and whisper. Speak to Him with certainty that you are heard.', ref: 'Qur’an 2:127 · Bukhari 7386' },
-      { ar: 'الْبَصِيرُ', tr: 'Al-Baṣīr', en: 'The All-Seeing', virtue: 'He sees every deed and state. Awareness of Al-Baṣīr is the root of iḥsān — worship as though you see Him.', ref: 'Qur’an 17:1 · Muslim 8' },
-      { ar: 'الْحَكَمُ', tr: 'Al-Ḥakam', en: 'The Judge', virtue: 'Ultimate judgement is His. Leave injustice to Al-Ḥakam and uphold justice where you are able.', ref: 'Abu Dawud 4955' },
-      { ar: 'الْعَدْلُ', tr: 'Al-ʿAdl', en: 'The Just', virtue: 'No soul is wronged by Him. Reflecting on Al-ʿAdl pushes the believer to fairness in family and trade.', ref: 'Qur’an 4:40' },
-      { ar: 'اللَّطِيفُ', tr: 'Al-Laṭīf', en: 'The Subtle & Kind', virtue: 'Delivers kindness in ways we may not perceive. Call on Al-Laṭīf in confusion and tight places.', ref: 'Qur’an 67:14' },
-      { ar: 'الْخَبِيرُ', tr: 'Al-Khabīr', en: 'The All-Aware', virtue: 'Fully aware of innermost realities. Pair knowledge of Al-Khabīr with honest self-accounting (muḥāsabah).', ref: 'Qur’an 6:18' },
-      { ar: 'الْحَلِيمُ', tr: 'Al-Ḥalīm', en: 'The Forbearing', virtue: 'Does not hasten punishment though able. Learn ḥilm — controlled strength — from this Name.', ref: 'Qur’an 2:225' },
-      { ar: 'الْعَظِيمُ', tr: 'Al-ʿAẓīm', en: 'The Magnificent', virtue: 'Said in rukūʿ: Subḥāna Rabbiyal-ʿAẓīm. Magnify Him above every worldly greatness.', ref: 'Muslim 772' },
-      { ar: 'الْغَفُورُ', tr: 'Al-Ghafūr', en: 'The Forgiving', virtue: 'Forgives the repentant. Never despair of the mercy of Al-Ghafūr.', ref: 'Qur’an 39:53' },
-      { ar: 'الشَّكُورُ', tr: 'Ash-Shakūr', en: 'The Appreciative', virtue: 'Multiplies small deeds. Gratitude to Ash-Shakūr increases blessing.', ref: 'Qur’an 35:30 · Muslim 2999' },
-      { ar: 'الْعَلِيُّ', tr: 'Al-ʿAliyy', en: 'The Most High', virtue: 'Above all creation. Raise your concern from people to Al-ʿAliyy when hurt or praised.', ref: 'Qur’an 2:255' },
-      { ar: 'الْكَبِيرُ', tr: 'Al-Kabīr', en: 'The Greatest', virtue: 'Allāhu akbar declares nothing is greater than Him. Use it to shrink anxiety and pride.', ref: 'Qur’an 34:23' },
-      { ar: 'الْحَفِيظُ', tr: 'Al-Ḥafīẓ', en: 'The Guardian', virtue: 'Preserves His servants and the Book. Entrust your family and faith to Al-Ḥafīẓ.', ref: 'Qur’an 11:57' },
-      { ar: 'الْكَرِيمُ', tr: 'Al-Karīm', en: 'The Generous', virtue: 'Gives beyond measure. Emulate generosity without waste; ask Al-Karīm with good opinion.', ref: 'Qur’an 82:6' },
-      { ar: 'الْمُجِيبُ', tr: 'Al-Mujīb', en: 'The Responsive', virtue: 'Answers the caller. “Call upon Me; I will respond to you.” Combine duʿāʾ with lawful means.', ref: 'Qur’an 40:60 · 2:186' },
-      { ar: 'الْحَكِيمُ', tr: 'Al-Ḥakīm', en: 'The Wise', virtue: 'Every decree has wisdom, even when hidden. Trust Al-Ḥakīm in delay and in gift.', ref: 'Qur’an 2:32' },
-      { ar: 'الْوَدُودُ', tr: 'Al-Wadūd', en: 'The Loving', virtue: 'Loves the righteous and is loved. Draw near through obedience; love of Allah is the heart’s life.', ref: 'Qur’an 11:90 · Bukhari 13' },
-      { ar: 'الْمَجِيدُ', tr: 'Al-Majīd', en: 'The Glorious', virtue: 'Perfect glory and honour. The Qur’ān is described as majīd — approach it with reverence.', ref: 'Qur’an 85:15' },
-      { ar: 'الْحَقُّ', tr: 'Al-Ḥaqq', en: 'The Truth', virtue: 'Truth stands; falsehood vanishes. Align speech and belief with Al-Ḥaqq.', ref: 'Qur’an 22:6' },
-      { ar: 'الْوَكِيلُ', tr: 'Al-Wakīl', en: 'The Disposer of Affairs', virtue: '“Allah is sufficient for us, and He is the best Disposer of affairs.” Tawakkul without laziness.', ref: 'Qur’an 3:173 · Bukhari 4563' },
-      { ar: 'الْقَوِيُّ', tr: 'Al-Qawiyy', en: 'The Strong', virtue: 'Strength belongs to Him. Seek spiritual and lawful strength through Al-Qawiyy, not tyranny.', ref: 'Qur’an 22:40' },
-      { ar: 'الْمَتِينُ', tr: 'Al-Matīn', en: 'The Firm', virtue: 'Unshakeable. When your resolve weakens, ask Al-Matīn to firm your heart on the truth.', ref: 'Qur’an 51:58' },
-      { ar: 'الْوَلِيُّ', tr: 'Al-Waliyy', en: 'The Protecting Friend', virtue: 'Ally of the believers. Friendship with Al-Waliyy is through taqwā and following the Prophet ﷺ.', ref: 'Qur’an 2:257' },
-      { ar: 'الْحَمِيدُ', tr: 'Al-Ḥamīd', en: 'The Praiseworthy', virtue: 'Deserves all praise. Al-ḥamdu lillāh fills the scales when said with presence.', ref: 'Qur’an 14:1 · Muslim 223' },
-      { ar: 'الْحَيُّ', tr: 'Al-Ḥayy', en: 'The Ever-Living', virtue: 'Never dies. Depend on Al-Ḥayy when people and means pass away.', ref: 'Qur’an 2:255' },
-      { ar: 'الْقَيُّومُ', tr: 'Al-Qayyūm', en: 'The Self-Sustaining', virtue: 'Sustains all existence. Pair with Al-Ḥayy in the greatest āyah (Āyat al-Kursī).', ref: 'Qur’an 2:255 · Bukhari 2311' },
-      { ar: 'الْوَاحِدُ', tr: 'Al-Wāḥid', en: 'The One', virtue: 'One without partner. Tawḥīd is the foundation of every act of worship.', ref: 'Qur’an 39:4' },
-      { ar: 'الصَّمَدُ', tr: 'Aṣ-Ṣamad', en: 'The Eternal Refuge', virtue: 'All turn to Him; He needs none. Sūrat al-Ikhlāṣ centres this Name.', ref: 'Qur’an 112:2' },
-      { ar: 'الْقَادِرُ', tr: 'Al-Qādir', en: 'The Able', virtue: 'Able over all things. Ask big of Al-Qādir with humility and lawful seeking.', ref: 'Qur’an 2:20' },
-      { ar: 'الْأَوَّلُ', tr: 'Al-Awwal', en: 'The First', virtue: 'Before all things. Begin journeys and projects with His name.', ref: 'Qur’an 57:3 · Muslim 2713' },
-      { ar: 'الْآخِرُ', tr: 'Al-Ākhir', en: 'The Last', virtue: 'After all things end. Orient life toward the meeting with Al-Ākhir.', ref: 'Qur’an 57:3' },
-      { ar: 'الظَّاهِرُ', tr: 'Aẓ-Ẓāhir', en: 'The Manifest', virtue: 'Evident through signs in creation. Reflect to strengthen faith.', ref: 'Qur’an 57:3' },
-      { ar: 'الْبَاطِنُ', tr: 'Al-Bāṭin', en: 'The Hidden', virtue: 'Knows the inward. Purify the secret self; He is closer than the jugular vein in knowledge.', ref: 'Qur’an 57:3 · 50:16' },
-      { ar: 'التَّوَّابُ', tr: 'At-Tawwāb', en: 'The Accepter of Repentance', virtue: 'Accepts those who turn back. Never close the door of tawbah.', ref: 'Qur’an 2:222 · Bukhari 6308' },
-      { ar: 'الْعَفُوُّ', tr: 'Al-ʿAfuww', en: 'The Pardoner', virtue: 'Effaces sins. In Laylat al-Qadr the Prophet ﷺ taught to ask Al-ʿAfuww for pardon.', ref: 'Tirmidhi 3513' },
-      { ar: 'الرَّءُوفُ', tr: 'Ar-Raʾūf', en: 'The Kind', virtue: 'Gentle compassion. Be raʾūf to creation as a servant of Ar-Raʾūf.', ref: 'Qur’an 9:117' },
-      { ar: 'مَالِكُ الْمُلْكِ', tr: 'Mālik-ul-Mulk', en: 'Owner of Dominion', virtue: 'Gives kingdom to whom He wills. Worldly power is a trust, not a right.', ref: 'Qur’an 3:26' },
-      { ar: 'ذُو الْجَلَالِ وَالْإِكْرَامِ', tr: 'Dhūl-Jalāli wal-Ikrām', en: 'Lord of Majesty and Honour', virtue: 'Often recited after ṣalāh. Combine awe (jalāl) with hope in His honour (ikrām).', ref: 'Qur’an 55:27 · Tirmidhi 3524' },
-      { ar: 'الصَّبُورُ', tr: 'Aṣ-Ṣabūr', en: 'The Patient', virtue: 'Does not rush to punish. Learn ṣabr from Aṣ-Ṣabūr in hardship and in obedience.', ref: 'Classical listings of the 99 Names · Qur’an 2:153' }
+      { ar:'الرَّحْمَٰنُ', tr:'Ar-Raḥmān', en:'The Most Merciful', virtue:'Mercy that encompasses all. Allah is more merciful to His servants than a mother to her child.', ref:'Qur’an 1:1 · Bukhari 5999' },
+      { ar:'الرَّحِيمُ', tr:'Ar-Raḥīm', en:'The Especially Merciful', virtue:'Special mercy for the believers. Begin with Bismillah seeking this mercy.', ref:'Qur’an 1:3' },
+      { ar:'الْمَلِكُ', tr:'Al-Malik', en:'The King / Sovereign', virtue:'True sovereignty is His alone. Humbles the proud and comforts the oppressed.', ref:'Qur’an 59:23' },
+      { ar:'الْقُدُّوسُ', tr:'Al-Quddūs', en:'The Most Holy', virtue:'Free of every defect. Subḥānallāh affirms His purity.', ref:'Qur’an 59:23' },
+      { ar:'السَّلَامُ', tr:'As-Salām', en:'The Source of Peace', virtue:'Safety and peace come from Him. The greeting is a prayer for this peace.', ref:'Qur’an 59:23' },
+      { ar:'الْمُؤْمِنُ', tr:'Al-Muʾmin', en:'The Giver of Faith & Security', virtue:'Grants security and confirms the truth of His messengers.', ref:'Qur’an 59:23' },
+      { ar:'الْمُهَيْمِنُ', tr:'Al-Muhaymin', en:'The Guardian / Watcher', virtue:'Watches over and protects. Entrust affairs to Al-Muhaymin.', ref:'Qur’an 59:23' },
+      { ar:'الْعَزِيزُ', tr:'Al-ʿAzīz', en:'The Almighty', virtue:'Might with wisdom. Dignity is from belonging to Him, not ego.', ref:'Qur’an 59:23' },
+      { ar:'الْجَبَّارُ', tr:'Al-Jabbār', en:'The Compeller / Restorer', virtue:'Mends the broken and compels what He wills with justice.', ref:'Qur’an 59:23' },
+      { ar:'الْمُتَكَبِّرُ', tr:'Al-Mutakabbir', en:'The Supreme', virtue:'Greatness belongs only to Him. Pride is for Allah alone.', ref:'Qur’an 59:23' },
+      { ar:'الْخَالِقُ', tr:'Al-Khāliq', en:'The Creator', virtue:'Creates from nothing. Reflect on creation to know the Creator.', ref:'Qur’an 59:24' },
+      { ar:'الْبَارِئُ', tr:'Al-Bāriʾ', en:'The Originator', virtue:'Brings into being with perfect form and proportion.', ref:'Qur’an 59:24' },
+      { ar:'الْمُصَوِّرُ', tr:'Al-Muṣawwir', en:'The Fashioner', virtue:'Gives each creation its form. Beauty and diversity are from Him.', ref:'Qur’an 59:24' },
+      { ar:'الْغَفَّارُ', tr:'Al-Ghaffār', en:'The Most Forgiving', virtue:'Forgives again and again. The Prophet ﷺ sought forgiveness often daily.', ref:'Qur’an 71:10 · Bukhari 6307' },
+      { ar:'الْقَهَّارُ', tr:'Al-Qahhār', en:'The Subduer', virtue:'Overcomes all forces. Nothing escapes His will.', ref:'Qur’an 12:39' },
+      { ar:'الْوَهَّابُ', tr:'Al-Wahhāb', en:'The Bestower', virtue:'Gives freely. Ask for good that does not burden the soul.', ref:'Qur’an 3:8' },
+      { ar:'الرَّزَّاقُ', tr:'Ar-Razzāq', en:'The Provider', virtue:'Provision is from Him. Work with tawakkul.', ref:'Qur’an 51:58' },
+      { ar:'الْفَتَّاحُ', tr:'Al-Fattāḥ', en:'The Opener', virtue:'Opens doors of mercy, knowledge, and relief.', ref:'Qur’an 34:26' },
+      { ar:'الْعَلِيمُ', tr:'Al-ʿAlīm', en:'The All-Knowing', virtue:'Nothing is hidden — public or private. Trains ikhlāṣ.', ref:'Qur’an 2:29' },
+      { ar:'الْقَابِضُ', tr:'Al-Qābiḍ', en:'The Withholder', virtue:'Withholds with wisdom. Constraint can be mercy.', ref:'Classical lists · Qur’an 2:245' },
+      { ar:'الْبَاسِطُ', tr:'Al-Bāsiṭ', en:'The Expander', virtue:'Expands provision and hearts. Ask for expanse in faith.', ref:'Classical lists · Qur’an 2:245' },
+      { ar:'الْخَافِضُ', tr:'Al-Khāfiḍ', en:'The Abaser', virtue:'Lowers whom He wills with justice. Humility before Him is honour.', ref:'Classical lists' },
+      { ar:'الرَّافِعُ', tr:'Ar-Rāfiʿ', en:'The Exalter', virtue:'Raises ranks by faith and good deeds.', ref:'Classical lists · Qur’an 58:11' },
+      { ar:'الْمُعِزُّ', tr:'Al-Muʿizz', en:'The Honourer', virtue:'True ʿizzah is from Allah for the believers.', ref:'Qur’an 3:26' },
+      { ar:'الْمُذِلُّ', tr:'Al-Mudhill', en:'The Dishonourer', virtue:'Humiliates arrogance. Seek protection from disgrace in dunyā and ākhirah.', ref:'Qur’an 3:26' },
+      { ar:'السَّمِيعُ', tr:'As-Samīʿ', en:'The All-Hearing', virtue:'Hears every duʿāʾ and whisper.', ref:'Qur’an 2:127 · Bukhari 7386' },
+      { ar:'الْبَصِيرُ', tr:'Al-Baṣīr', en:'The All-Seeing', virtue:'Sees every deed. Root of iḥsān.', ref:'Qur’an 17:1 · Muslim 8' },
+      { ar:'الْحَكَمُ', tr:'Al-Ḥakam', en:'The Judge', virtue:'Ultimate judgement is His. Uphold justice where you can.', ref:'Abu Dawud 4955' },
+      { ar:'الْعَدْلُ', tr:'Al-ʿAdl', en:'The Just', virtue:'No soul is wronged by Him.', ref:'Qur’an 4:40' },
+      { ar:'اللَّطِيفُ', tr:'Al-Laṭīf', en:'The Subtle & Kind', virtue:'Kindness in ways we may not see. Call on Him in tight places.', ref:'Qur’an 67:14' },
+      { ar:'الْخَبِيرُ', tr:'Al-Khabīr', en:'The All-Aware', virtue:'Aware of the innermost. Pair with muḥāsabah.', ref:'Qur’an 6:18' },
+      { ar:'الْحَلِيمُ', tr:'Al-Ḥalīm', en:'The Forbearing', virtue:'Does not rush to punish. Learn ḥilm.', ref:'Qur’an 2:225' },
+      { ar:'الْعَظِيمُ', tr:'Al-ʿAẓīm', en:'The Magnificent', virtue:'Said in rukūʿ: Subḥāna Rabbiyal-ʿAẓīm.', ref:'Muslim 772' },
+      { ar:'الْغَفُورُ', tr:'Al-Ghafūr', en:'The Forgiving', virtue:'Never despair of His mercy.', ref:'Qur’an 39:53' },
+      { ar:'الشَّكُورُ', tr:'Ash-Shakūr', en:'The Appreciative', virtue:'Multiplies small deeds. Gratitude increases blessing.', ref:'Qur’an 35:30' },
+      { ar:'الْعَلِيُّ', tr:'Al-ʿAliyy', en:'The Most High', virtue:'Above all creation. Raise concerns to Him.', ref:'Qur’an 2:255' },
+      { ar:'الْكَبِيرُ', tr:'Al-Kabīr', en:'The Greatest', virtue:'Allāhu akbar shrinks anxiety and pride.', ref:'Qur’an 34:23' },
+      { ar:'الْحَفِيظُ', tr:'Al-Ḥafīẓ', en:'The Preserver', virtue:'Guards His servants and the Book.', ref:'Qur’an 11:57' },
+      { ar:'الْمُقِيتُ', tr:'Al-Muqīt', en:'The Sustainer', virtue:'Provides the measure each needs.', ref:'Qur’an 4:85' },
+      { ar:'الْحَسِيبُ', tr:'Al-Ḥasīb', en:'The Reckoner', virtue:'Sufficient as a reckoner. Ḥasbunallāh.', ref:'Qur’an 4:86' },
+      { ar:'الْجَلِيلُ', tr:'Al-Jalīl', en:'The Majestic', virtue:'Majesty that inspires awe and love.', ref:'Classical lists' },
+      { ar:'الْكَرِيمُ', tr:'Al-Karīm', en:'The Generous', virtue:'Gives beyond measure. Ask with good opinion.', ref:'Qur’an 82:6' },
+      { ar:'الرَّقِيبُ', tr:'Ar-Raqīb', en:'The Watchful', virtue:'Watches over every deed and intention.', ref:'Qur’an 4:1' },
+      { ar:'الْمُجِيبُ', tr:'Al-Mujīb', en:'The Responsive', virtue:'“Call upon Me; I will respond to you.”', ref:'Qur’an 40:60 · 2:186' },
+      { ar:'الْوَاسِعُ', tr:'Al-Wāsiʿ', en:'The Vast', virtue:'Mercy and knowledge vast beyond measure.', ref:'Qur’an 2:115' },
+      { ar:'الْحَكِيمُ', tr:'Al-Ḥakīm', en:'The Wise', virtue:'Every decree has wisdom, even when hidden.', ref:'Qur’an 2:32' },
+      { ar:'الْوَدُودُ', tr:'Al-Wadūd', en:'The Loving', virtue:'Loves the righteous; love of Allah is the heart’s life.', ref:'Qur’an 11:90' },
+      { ar:'الْمَجِيدُ', tr:'Al-Majīd', en:'The Glorious', virtue:'The Qurʾān is majīd — approach with reverence.', ref:'Qur’an 85:15' },
+      { ar:'الْبَاعِثُ', tr:'Al-Bāʿith', en:'The Resurrector', virtue:'Raises the dead and renews hearts.', ref:'Qur’an 22:7' },
+      { ar:'الشَّهِيدُ', tr:'Ash-Shahīd', en:'The Witness', virtue:'Witness over all things — nothing is missed.', ref:'Qur’an 3:98' },
+      { ar:'الْحَقُّ', tr:'Al-Ḥaqq', en:'The Truth', virtue:'Truth stands; falsehood vanishes.', ref:'Qur’an 22:6' },
+      { ar:'الْوَكِيلُ', tr:'Al-Wakīl', en:'The Disposer of Affairs', virtue:'Allah is sufficient; best Disposer of affairs.', ref:'Qur’an 3:173' },
+      { ar:'الْقَوِيُّ', tr:'Al-Qawiyy', en:'The Strong', virtue:'Strength belongs to Him. Seek strength for obedience.', ref:'Qur’an 22:40' },
+      { ar:'الْمَتِينُ', tr:'Al-Matīn', en:'The Firm', virtue:'Unshakeable. Ask Him to firm the heart.', ref:'Qur’an 51:58' },
+      { ar:'الْوَلِيُّ', tr:'Al-Waliyy', en:'The Protecting Friend', virtue:'Ally of the believers through taqwā.', ref:'Qur’an 2:257' },
+      { ar:'الْحَمِيدُ', tr:'Al-Ḥamīd', en:'The Praiseworthy', virtue:'All praise is His. Al-ḥamdu lillāh fills the scales.', ref:'Qur’an 14:1 · Muslim 223' },
+      { ar:'الْمُحْصِي', tr:'Al-Muḥṣī', en:'The Counter', virtue:'Counts every deed and leaf.', ref:'Qur’an 19:94' },
+      { ar:'الْمُبْدِئُ', tr:'Al-Mubdiʾ', en:'The Originator', virtue:'Begins creation; none preceded Him in bringing things into being.', ref:'Qur’an 10:34' },
+      { ar:'الْمُعِيدُ', tr:'Al-Muʿīd', en:'The Restorer', virtue:'Restores life and returns creation as He began it.', ref:'Qur’an 10:34' },
+      { ar:'الْمُحْيِي', tr:'Al-Muḥyī', en:'The Giver of Life', virtue:'Gives life to bodies and to dead hearts.', ref:'Qur’an 30:50' },
+      { ar:'الْمُمِيتُ', tr:'Al-Mumīt', en:'The Taker of Life', virtue:'Death is by His permission — a reminder to prepare.', ref:'Qur’an 40:68' },
+      { ar:'الْحَيُّ', tr:'Al-Ḥayy', en:'The Ever-Living', virtue:'Never dies. Depend on Him when means pass away.', ref:'Qur’an 2:255' },
+      { ar:'الْقَيُّومُ', tr:'Al-Qayyūm', en:'The Self-Sustaining', virtue:'Sustains all. With Al-Ḥayy in Āyat al-Kursī.', ref:'Qur’an 2:255' },
+      { ar:'الْوَاجِدُ', tr:'Al-Wājid', en:'The Finder / Resourceful', virtue:'Finds and provides; nothing escapes Him.', ref:'Classical lists' },
+      { ar:'الْمَاجِدُ', tr:'Al-Mājid', en:'The Noble', virtue:'Perfect nobility and glory.', ref:'Classical lists' },
+      { ar:'الْوَاحِدُ', tr:'Al-Wāḥid', en:'The One', virtue:'One without partner. Foundation of tawḥīd.', ref:'Qur’an 39:4' },
+      { ar:'الْأَحَدُ', tr:'Al-Aḥad', en:'The Unique', virtue:'Absolutely unique — Sūrat al-Ikhlāṣ.', ref:'Qur’an 112:1' },
+      { ar:'الصَّمَدُ', tr:'Aṣ-Ṣamad', en:'The Eternal Refuge', virtue:'All turn to Him; He needs none.', ref:'Qur’an 112:2' },
+      { ar:'الْقَادِرُ', tr:'Al-Qādir', en:'The Able', virtue:'Able over all things. Ask with humility.', ref:'Qur’an 2:20' },
+      { ar:'الْمُقْتَدِرُ', tr:'Al-Muqtadir', en:'The Powerful', virtue:'Perfect power over every outcome.', ref:'Qur’an 18:45' },
+      { ar:'الْمُقَدِّمُ', tr:'Al-Muqaddim', en:'The Advancer', virtue:'Brings forward whom He wills.', ref:'Classical lists · Muslim 2713' },
+      { ar:'الْمُؤَخِّرُ', tr:'Al-Muʾakhkhir', en:'The Delayer', virtue:'Delays with wisdom. Trust His timing.', ref:'Classical lists · Muslim 2713' },
+      { ar:'الْأَوَّلُ', tr:'Al-Awwal', en:'The First', virtue:'Before all things. Begin with His name.', ref:'Qur’an 57:3' },
+      { ar:'الْآخِرُ', tr:'Al-Ākhir', en:'The Last', virtue:'After all ends. Orient life to meeting Him.', ref:'Qur’an 57:3' },
+      { ar:'الظَّاهِرُ', tr:'Aẓ-Ẓāhir', en:'The Manifest', virtue:'Evident through signs in creation.', ref:'Qur’an 57:3' },
+      { ar:'الْبَاطِنُ', tr:'Al-Bāṭin', en:'The Hidden', virtue:'Knows the inward. Purify the secret self.', ref:'Qur’an 57:3 · 50:16' },
+      { ar:'الْوَالِي', tr:'Al-Wālī', en:'The Governor', virtue:'Directs all affairs with wisdom.', ref:'Classical lists' },
+      { ar:'الْمُتَعَالِي', tr:'Al-Mutaʿālī', en:'The Most Exalted', virtue:'Exalted above every limitation.', ref:'Qur’an 13:9' },
+      { ar:'الْبَرُّ', tr:'Al-Barr', en:'The Source of Goodness', virtue:'Kind and generous to creation. Be barr to parents and people.', ref:'Qur’an 52:28' },
+      { ar:'التَّوَّابُ', tr:'At-Tawwāb', en:'The Accepter of Repentance', virtue:'Accepts those who turn back. Never close the door of tawbah.', ref:'Qur’an 2:222 · Bukhari 6308' },
+      { ar:'الْمُنْتَقِمُ', tr:'Al-Muntaqim', en:'The Avenger', virtue:'Takes just retribution. Leave injustice to Him.', ref:'Qur’an 32:22' },
+      { ar:'الْعَفُوُّ', tr:'Al-ʿAfuww', en:'The Pardoner', virtue:'Effaces sins. In Laylat al-Qadr: ask Al-ʿAfuww for pardon.', ref:'Tirmidhi 3513' },
+      { ar:'الرَّءُوفُ', tr:'Ar-Raʾūf', en:'The Compassionate', virtue:'Gentle compassion. Be raʾūf to creation.', ref:'Qur’an 9:117' },
+      { ar:'مَالِكُ الْمُلْكِ', tr:'Mālik-ul-Mulk', en:'Owner of Dominion', virtue:'Gives kingdom to whom He wills. Power is a trust.', ref:'Qur’an 3:26' },
+      { ar:'ذُو الْجَلَالِ وَالْإِكْرَامِ', tr:'Dhūl-Jalāli wal-Ikrām', en:'Lord of Majesty and Honour', virtue:'Recited after ṣalāh. Awe with hope.', ref:'Qur’an 55:27 · Tirmidhi 3524' },
+      { ar:'الْمُقْسِطُ', tr:'Al-Muqsiṭ', en:'The Equitable', virtue:'Establishes perfect equity.', ref:'Qur’an 3:18' },
+      { ar:'الْجَامِعُ', tr:'Al-Jāmiʿ', en:'The Gatherer', virtue:'Gathers creation for the Day of Judgement.', ref:'Qur’an 3:9' },
+      { ar:'الْغَنِيُّ', tr:'Al-Ghaniyy', en:'The Self-Sufficient', virtue:'Needs nothing; all need Him.', ref:'Qur’an 35:15' },
+      { ar:'الْمُغْنِي', tr:'Al-Mughnī', en:'The Enricher', virtue:'Enriches hearts and hands as He wills.', ref:'Classical lists' },
+      { ar:'الْمَانِعُ', tr:'Al-Māniʿ', en:'The Preventer', virtue:'Prevents harm and withholds what is not good for us.', ref:'Classical lists' },
+      { ar:'الضَّارُّ', tr:'Aḍ-Ḍārr', en:'The Distresser', virtue:'Harm and benefit are by His decree — seek refuge in Him.', ref:'Classical lists' },
+      { ar:'النَّافِعُ', tr:'An-Nāfiʿ', en:'The Benefactor', virtue:'All benefit is from Him. Ask for beneficial knowledge and provision.', ref:'Classical lists' },
+      { ar:'النُّورُ', tr:'An-Nūr', en:'The Light', virtue:'Light of the heavens and earth. Ask for light in the heart and grave.', ref:'Qur’an 24:35' },
+      { ar:'الْهَادِي', tr:'Al-Hādī', en:'The Guide', virtue:'Guides whom He wills. Ask for firmness on the straight path.', ref:'Qur’an 22:54' },
+      { ar:'الْبَدِيعُ', tr:'Al-Badīʿ', en:'The Incomparable Originator', virtue:'Originates without precedent.', ref:'Qur’an 2:117' },
+      { ar:'الْبَاقِي', tr:'Al-Bāqī', en:'The Everlasting', virtue:'Remains when all else perishes.', ref:'Qur’an 55:27' },
+      { ar:'الْوَارِثُ', tr:'Al-Wārith', en:'The Inheritor', virtue:'Inherits the earth and all upon it.', ref:'Qur’an 15:23' },
+      { ar:'الرَّشِيدُ', tr:'Ar-Rashīd', en:'The Guide to the Right Path', virtue:'Guides to mature, right conduct.', ref:'Classical lists' },
+      { ar:'الصَّبُورُ', tr:'Aṣ-Ṣabūr', en:'The Patient', virtue:'Does not rush to punish. Learn ṣabr from Him.', ref:'Qur’an 2:153 · classical lists' }
     ];
 
     function loadAsma(random) {
@@ -6781,19 +7288,55 @@ Ask Allah for firmness and sincerity.`
       if (random) {
         idx = Math.floor(Math.random() * ASMA_UL_HUSNA.length);
       } else {
-        // Stable "today" pick from calendar day
         const day = Math.floor(Date.now() / 86400000);
         idx = day % ASMA_UL_HUSNA.length;
       }
       const n = ASMA_UL_HUSNA[idx];
       box.innerHTML =
         '<div class="asma-arabic">' + n.ar + '</div>' +
-        '<div class="asma-translit">' + n.tr + '</div>' +
+        '<div class="asma-translit">' + n.tr + ' <span style="font-weight:500;opacity:0.75;font-size:0.9rem;">(' + (idx + 1) + '/99)</span></div>' +
         '<div class="asma-meaning">' + n.en + '</div>' +
-        '<div class="asma-virtue"><strong>Reflection &amp; reported virtue:</strong> ' + n.virtue + '</div>' +
+        '<div class="asma-virtue"><strong>Reflection:</strong> ' + n.virtue + '</div>' +
         '<div class="asma-ref">' + n.ref + ' · Educational summary — not a fatwa</div>';
-      // Optional enrichment from free API (if available)
       enrichAsmaOnline(n.tr, box);
+    }
+
+    function showAllAsma() {
+      const list = document.getElementById('asma-all-list');
+      if (!list) return;
+      if (list.style.display !== 'none' && list.innerHTML) {
+        list.style.display = list.style.display === 'none' ? 'block' : 'none';
+        if (list.style.display === 'none') return;
+      }
+      list.style.display = 'block';
+      filterAsmaList((document.getElementById('asma-search') || {}).value || '');
+    }
+    function filterAsmaList(q) {
+      const list = document.getElementById('asma-all-list');
+      if (!list) return;
+      list.style.display = 'block';
+      const needle = (q || '').toLowerCase().trim();
+      const items = ASMA_UL_HUSNA.map(function (n, i) {
+        const hay = (n.ar + ' ' + n.tr + ' ' + n.en).toLowerCase();
+        if (needle && hay.indexOf(needle) === -1) return '';
+        return '<div class="search-result" style="cursor:pointer;margin-bottom:0.45rem;" onclick="loadAsmaAt(' + i + ')">' +
+          '<span class="asma-arabic" style="font-size:1.25rem;display:inline-block;margin-left:0.35rem;">' + n.ar + '</span> ' +
+          '<strong>' + n.tr + '</strong> — ' + n.en +
+          '</div>';
+      }).filter(Boolean);
+      list.innerHTML = items.length ? items.join('') : '<p class="notes-hint">No matching Name.</p>';
+    }
+    function loadAsmaAt(i) {
+      const box = document.getElementById('asma-box');
+      if (!box || !ASMA_UL_HUSNA[i]) return;
+      const n = ASMA_UL_HUSNA[i];
+      box.innerHTML =
+        '<div class="asma-arabic">' + n.ar + '</div>' +
+        '<div class="asma-translit">' + n.tr + ' <span style="font-weight:500;opacity:0.75;font-size:0.9rem;">(' + (i + 1) + '/99)</span></div>' +
+        '<div class="asma-meaning">' + n.en + '</div>' +
+        '<div class="asma-virtue"><strong>Reflection:</strong> ' + n.virtue + '</div>' +
+        '<div class="asma-ref">' + n.ref + ' · Educational summary — not a fatwa</div>';
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     async function enrichAsmaOnline(translit, box) {
@@ -6820,6 +7363,204 @@ Ask Allah for firmness and sincerity.`
     }
 
     loadAsma(false);
+
+    // ========== Names of the Prophet ﷺ ==========
+    const PROPHET_NAMES = [
+      { ar: 'مُحَمَّد', tr: 'Muḥammad', en: 'The Praised One', blessing: 'The name given by his family and by which he is most known. Allah combined praise for him on earth and in the heavens.', ref: 'Qur’an 48:29 · Bukhari 3532' },
+      { ar: 'أَحْمَد', tr: 'Aḥmad', en: 'The Most Praiseworthy', blessing: 'Mentioned in the glad tidings of ʿĪsā عليه السلام. The one who praises Allah most.', ref: 'Qur’an 61:6 · Muslim 2354' },
+      { ar: 'الْمَاحِي', tr: 'Al-Māḥī', en: 'The Eraser', blessing: 'Allah erases disbelief through him.', ref: 'Muslim 2355' },
+      { ar: 'الْحَاشِر', tr: 'Al-Ḥāshir', en: 'The Gatherer', blessing: 'People will be gathered at his feet on the Day of Resurrection.', ref: 'Muslim 2354' },
+      { ar: 'الْعَاقِب', tr: 'Al-ʿĀqib', en: 'The Last', blessing: 'There is no prophet after him.', ref: 'Muslim 2354' },
+      { ar: 'نَبِيُّ الرَّحْمَة', tr: 'Nabiyy ar-Raḥmah', en: 'Prophet of Mercy', blessing: 'Sent as a mercy to the worlds.', ref: 'Qur’an 21:107 · Muslim 2355' },
+      { ar: 'نَبِيُّ التَّوْبَة', tr: 'Nabiyy at-Tawbah', en: 'Prophet of Repentance', blessing: 'Through him the door of repentance was opened wide for this ummah.', ref: 'Muslim 2355' },
+      { ar: 'الْمُصْطَفَى', tr: 'Al-Muṣṭafā', en: 'The Chosen', blessing: 'Chosen above all creation for the final message.', ref: 'Qur’an 22:75 · classical usage' },
+      { ar: 'الرَّسُول', tr: 'Ar-Rasūl', en: 'The Messenger', blessing: 'Conveyed the message fully; obedience to him is obedience to Allah.', ref: 'Qur’an 4:80' },
+      { ar: 'النَّبِيّ', tr: 'An-Nabī', en: 'The Prophet', blessing: 'Receives revelation; final of the prophets.', ref: 'Qur’an 33:40' },
+      { ar: 'الشَّاهِد', tr: 'Ash-Shāhid', en: 'The Witness', blessing: 'Witness over his ummah on the Day of Judgement.', ref: 'Qur’an 33:45' },
+      { ar: 'الْمُبَشِّر', tr: 'Al-Mubashshir', en: 'The Bearer of Good News', blessing: 'Gives glad tidings of Paradise to the believers.', ref: 'Qur’an 33:45' },
+      { ar: 'النَّذِير', tr: 'An-Nadhīr', en: 'The Warner', blessing: 'Warns against the Fire and disbelief.', ref: 'Qur’an 33:45' },
+      { ar: 'الدَّاعِي إِلَى اللَّهِ', tr: 'Ad-Dāʿī ilā Allāh', en: 'The Caller to Allah', blessing: 'Invites to Allah by His permission.', ref: 'Qur’an 33:46' },
+      { ar: 'السِّرَاجُ الْمُنِير', tr: 'As-Sirāj al-Munīr', en: 'The Illuminating Lamp', blessing: 'A light by which people are guided.', ref: 'Qur’an 33:46' },
+      { ar: 'خَاتَمُ النَّبِيِّين', tr: 'Khātam an-Nabiyyīn', en: 'Seal of the Prophets', blessing: 'No prophet after him; the message is complete.', ref: 'Qur’an 33:40 · Bukhari 3535' },
+      { ar: 'عَبْدُ اللَّهِ', tr: 'ʿAbdullāh', en: 'Servant of Allah', blessing: 'His highest rank is servitude to Allah.', ref: 'Qur’an 17:1 · 72:19' },
+      { ar: 'الْأُمِّيّ', tr: 'Al-Ummī', en: 'The Unlettered Prophet', blessing: 'Did not read or write — a sign the Qurʾān is pure revelation.', ref: 'Qur’an 7:157' },
+      { ar: 'طٰهٰ', tr: 'Ṭā-Hā', en: 'Ṭā-Hā', blessing: 'Addressed in the Qurʾān; among names of affection in tafsīr.', ref: 'Qur’an 20:1' },
+      { ar: 'يٰس', tr: 'Yā-Sīn', en: 'Yā-Sīn', blessing: 'Addressed at the opening of Sūrat Yā-Sīn.', ref: 'Qur’an 36:1' },
+      { ar: 'الْمُزَّمِّل', tr: 'Al-Muzzammil', en: 'The Enwrapped', blessing: 'Addressed in the night of early revelation.', ref: 'Qur’an 73:1' },
+      { ar: 'الْمُدَّثِّر', tr: 'Al-Muddaththir', en: 'The Cloaked', blessing: 'Commanded: Arise and warn.', ref: 'Qur’an 74:1–2' },
+      { ar: 'الصَّادِق', tr: 'Aṣ-Ṣādiq', en: 'The Truthful', blessing: 'Known as truthful before and after prophethood.', ref: 'Seerah · Bukhari' },
+      { ar: 'الْأَمِين', tr: 'Al-Amīn', en: 'The Trustworthy', blessing: 'Trusted by Quraysh even when they opposed the message.', ref: 'Seerah Ibn Hishām' },
+      { ar: 'الْحَبِيب', tr: 'Al-Ḥabīb', en: 'The Beloved', blessing: 'Beloved of Allah; loving him is part of faith.', ref: 'Bukhari 15 · Muslim 44' },
+      { ar: 'الشَّفِيع', tr: 'Ash-Shafīʿ', en: 'The Intercessor', blessing: 'Granted the greatest intercession on the Day of Judgement.', ref: 'Bukhari 4712 · Muslim 193' }
+    ];
+
+    function loadProphetName(random) {
+      const box = document.getElementById('prophet-name-box');
+      if (!box || !PROPHET_NAMES.length) return;
+      let idx;
+      if (random) {
+        idx = Math.floor(Math.random() * PROPHET_NAMES.length);
+      } else {
+        const day = Math.floor(Date.now() / 86400000);
+        idx = day % PROPHET_NAMES.length;
+      }
+      const n = PROPHET_NAMES[idx];
+      box.innerHTML =
+        '<div class="asma-arabic">' + n.ar + '</div>' +
+        '<div class="asma-translit">' + n.tr + ' <span style="font-weight:500;opacity:0.75;font-size:0.9rem;">(' + (idx + 1) + '/' + PROPHET_NAMES.length + ')</span></div>' +
+        '<div class="asma-meaning">' + n.en + '</div>' +
+        '<div class="asma-virtue"><strong>Blessing / meaning:</strong> ' + n.blessing + '</div>' +
+        '<div class="asma-ref">' + n.ref + ' · Educational summary</div>';
+    }
+    function showAllProphetNames() {
+      const list = document.getElementById('prophet-names-list');
+      if (!list) return;
+      list.style.display = list.style.display === 'none' ? 'grid' : 'none';
+      if (list.style.display !== 'none') filterProphetNames((document.getElementById('prophet-names-search') || {}).value || '');
+    }
+    function filterProphetNames(q) {
+      const root = document.getElementById('prophet-names-list');
+      if (!root) return;
+      root.style.display = 'grid';
+      const needle = (q || '').toLowerCase().trim();
+      const items = PROPHET_NAMES.filter(function (n) {
+        if (!needle) return true;
+        return (n.ar + ' ' + n.tr + ' ' + n.en + ' ' + n.blessing).toLowerCase().indexOf(needle) !== -1;
+      });
+      root.innerHTML = items.map(function (n, i) {
+        const realIdx = PROPHET_NAMES.indexOf(n);
+        return '<div class="search-result prophet-name-card" style="cursor:pointer" onclick="loadProphetNameAt(' + realIdx + ')">' +
+          '<div class="asma-arabic" style="font-size:1.25rem;margin-bottom:0.15rem;">' + n.ar + '</div>' +
+          '<div><strong>' + n.tr + '</strong> — ' + n.en + '</div>' +
+          '<p style="font-size:0.88rem;margin:0.3rem 0;">' + n.blessing + '</p>' +
+          '<div class="ref">' + n.ref + '</div></div>';
+      }).join('') || '<p class="notes-hint">No matching name.</p>';
+    }
+    function loadProphetNameAt(i) {
+      if (!PROPHET_NAMES[i]) return;
+      const n = PROPHET_NAMES[i];
+      const box = document.getElementById('prophet-name-box');
+      if (!box) return;
+      box.innerHTML =
+        '<div class="asma-arabic">' + n.ar + '</div>' +
+        '<div class="asma-translit">' + n.tr + ' <span style="font-weight:500;opacity:0.75;font-size:0.9rem;">(' + (i + 1) + '/' + PROPHET_NAMES.length + ')</span></div>' +
+        '<div class="asma-meaning">' + n.en + '</div>' +
+        '<div class="asma-virtue"><strong>Blessing / meaning:</strong> ' + n.blessing + '</div>' +
+        '<div class="asma-ref">' + n.ref + ' · Educational summary</div>';
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    loadProphetName(false);
+
+    const MASNOON_DUAS = [
+      { tags: 'opening prayer salah', ar: 'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَىٰ جَدُّكَ وَلَا إِلَٰهَ غَيْرُكَ', en: 'Glory be to You, O Allah, and praise. Blessed is Your Name, exalted is Your majesty, and there is no god but You.', ur: 'اے اللہ! تو پاک ہے اور تیری حمد کے ساتھ۔ تیرا نام بابرکت ہے، تیری عظمت بلند ہے، اور تیرے سوا کوئی معبود نہیں۔', ref: 'Abu Dawud 775 · Tirmidhi 243', benefit: 'Opening of ṣalāh that glorifies Allah and affirms tawḥīd before recitation.' },
+      { tags: 'forgiveness istighfar repentance sayyid', ar: 'أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ', en: 'I seek forgiveness from Allah, other than whom there is no god, the Ever-Living, the Self-Sustaining, and I repent to Him.', ur: 'میں اس اللہ سے بخشش مانگتا ہوں جس کے سوا کوئی معبود نہیں، جو زندہ اور قائم ہے، اور میں اسی کی طرف توبہ کرتا ہوں۔', ref: 'Abu Dawud 1517 · Tirmidhi 3577', benefit: 'Called a master form of istighfār; reported that Allah forgives even one who says it while sins are like the foam of the sea (when said with sincerity).' },
+      { tags: 'morning evening adhkar', ar: 'اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ', en: 'O Allah, by You we enter the morning and by You the evening, by You we live and die, and to You is the resurrection.', ur: 'اے اللہ! تیرے ساتھ ہم نے صبح کی اور تیرے ساتھ شام، تیرے ساتھ جیتے اور مرتے ہیں، اور تیری طرف ہی اٹھنا ہے۔', ref: 'Tirmidhi 3391', benefit: 'Morning adhkār that renews reliance on Allah for life, death, and the final rising.' },
+      { tags: 'anxiety distress worry sadness', ar: 'لَا إِلَٰهَ إِلَّا اللَّهُ الْعَظِيمُ الْحَلِيمُ لَا إِلَٰهَ إِلَّا اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ', en: 'There is no god but Allah, the Magnificent, the Forbearing. There is no god but Allah, Lord of the Tremendous Throne.', ur: 'اللہ کے سوا کوئی معبود نہیں، جو عظیم اور بردبار ہے۔ اللہ کے سوا کوئی معبود نہیں، عرش عظیم کا رب۔', ref: 'Bukhari 6346 · Muslim 2730', benefit: 'Prophetic words of relief in distress; turns the heart from the problem to the Lord of the Throne.' },
+      { tags: 'parents mother father', ar: 'رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ', en: 'My Lord, forgive me and my parents and the believers on the Day the account is established.', ur: 'اے میرے رب! مجھے، میرے والدین کو اور اہل ایمان کو اس دن بخش دے جب حساب قائم ہوگا۔', ref: 'Qur’an 14:41', benefit: 'Qurʾānic duʿāʾ for self, parents, and all believers — continuous charity of the tongue.' },
+      { tags: 'travel journey', ar: 'سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَٰذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَىٰ رَبِّنَا لَمُنقَلِبُونَ', en: 'Glory be to Him who has subjected this to us, and we could not have done it by ourselves. And to our Lord we will surely return.', ur: 'پاک ہے وہ ذات جس نے اس سواری کو ہمارے لیے مسخر کیا اور ہم اسے قابو میں نہ لا سکتے تھے، اور ہم اپنے رب کی طرف لوٹنے والے ہیں۔', ref: 'Qur’an 43:13–14 · Muslim 1342', benefit: 'Travel duʿāʾ: gratitude for means of transport and reminder of the return to Allah.' },
+      { tags: 'leaving home go out', ar: 'بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ', en: 'In the name of Allah, I place my trust in Allah; there is no power nor strength except with Allah.', ur: 'اللہ کے نام سے، میں نے اللہ پر بھروسہ کیا، اور طاقت و قوت صرف اللہ ہی سے ہے۔', ref: 'Abu Dawud 5095 · Tirmidhi 3426', benefit: 'When said on leaving home, it is reported one is guided, sufficed, and protected.' },
+      { tags: 'after food meal', ar: 'الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَٰذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ', en: 'All praise is for Allah who fed me this and provided it without any power or might from myself.', ur: 'تمام تعریف اس اللہ کے لیے ہے جس نے مجھے یہ کھلایا اور میری طاقت کے بغیر مجھے عطا کیا۔', ref: 'Abu Dawud 4023 · Tirmidhi 3458', benefit: 'Whoever says this after eating, his past sins are forgiven (as reported).' },
+      { tags: 'sleep night bedtime', ar: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', en: 'In Your name, O Allah, I die and I live.', ur: 'اے اللہ! تیرے نام سے میں مرتا اور جیتا ہوں۔', ref: 'Bukhari 6314', benefit: 'Places sleep and waking under Allah’s name — a nightly renewal of tawḥīd.' },
+      { tags: 'waking up morning', ar: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ', en: 'All praise is for Allah who gave us life after causing us to die, and to Him is the resurrection.', ur: 'تمام تعریف اس اللہ کے لیے ہے جس نے ہمیں موت کے بعد زندگی دی اور اسی کی طرف اٹھنا ہے۔', ref: 'Bukhari 6312', benefit: 'First words on waking: praise for another day and reminder of the final rising.' },
+      { tags: 'anger control', ar: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ', en: 'I seek refuge in Allah from the accursed Shayṭān.', ur: 'میں شیطان مردود سے اللہ کی پناہ مانگتا ہوں۔', ref: 'Bukhari 6115 · Muslim 2610', benefit: 'The Prophet ﷺ taught this when anger rises — seeks refuge and cools the heart.' },
+      { tags: 'knowledge study', ar: 'رَبِّ زِدْنِي عِلْمًا', en: 'My Lord, increase me in knowledge.', ur: 'اے میرے رب! میرے علم میں اضافہ فرما۔', ref: 'Qur’an 20:114', benefit: 'The only worldly increase the Prophet ﷺ was commanded to seek in the Qurʾān.' },
+      { tags: 'world hereafter hasanah', ar: 'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', en: 'Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.', ur: 'اے ہمارے رب! ہمیں دنیا میں بھلائی دے اور آخرت میں بھلائی دے اور آگ کے عذاب سے بچا۔', ref: 'Qur’an 2:201 · Bukhari 4522', benefit: 'Among the most frequent duʿās of the Prophet ﷺ — balance of dunyā and ākhirah.' },
+      { tags: 'deceased dead funeral grave', ar: 'اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ', en: 'O Allah, forgive him, have mercy on him, grant him well-being, and pardon him.', ur: 'اے اللہ! اسے بخش، اس پر رحم فرما، اسے عافیت دے اور اسے معاف فرما۔', ref: 'Muslim 963', benefit: 'Core of the funeral prayer duʿāʾ — mercy for the deceased reaches by Allah’s permission.' },
+      { tags: 'guidance istiqamah heart', ar: 'يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَىٰ دِينِكَ', en: 'O Turner of hearts, make my heart firm upon Your religion.', ur: 'اے دلوں کو پھیرنے والے! میرے دل کو اپنے دین پر ثابت رکھ۔', ref: 'Tirmidhi 2140', benefit: 'The Prophet ﷺ often asked for a firm heart — the greatest provision for the grave.' },
+      { tags: 'protection evil harm', ar: 'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ', en: 'I seek refuge in the perfect words of Allah from the evil of what He has created.', ur: 'میں اللہ کے کامل کلمات کی پناہ لیتا ہوں اس کی مخلوق کے شر سے۔', ref: 'Muslim 2708', benefit: 'Whoever says it in the evening is protected from harm until morning (as reported).' },
+      { tags: 'mosque masjid enter', ar: 'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ', en: 'O Allah, open for me the gates of Your mercy.', ur: 'اے اللہ! میرے لیے اپنی رحمت کے دروازے کھول دے۔', ref: 'Muslim 713', benefit: 'Entering the mosque with a request for Allah’s mercy.' },
+      { tags: 'salawat prophet durood', ar: 'اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ', en: 'O Allah, send ṣalāh upon Muḥammad and his family as You sent ṣalāh upon Ibrāhīm and his family. You are Praiseworthy, Glorious.', ur: 'اے اللہ! محمد اور آل محمد پر رحمت بھیج جیسے تو نے ابراہیم اور آل ابراہیم پر بھیجی۔ بیشک تو حمید و مجید ہے۔', ref: 'Bukhari 3370 · Muslim 406', benefit: 'Whoever sends ṣalāh upon the Prophet ﷺ once, Allah sends ṣalāh upon him tenfold.' },
+      { tags: 'bukhari muslim after salah tasbih', ar: 'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ', en: 'Glory be to Allah, all praise is for Allah, there is no god but Allah, and Allah is the Greatest.', ur: 'اللہ پاک ہے، تمام تعریف اللہ کے لیے ہے، اللہ کے سوا کوئی معبود نہیں، اور اللہ سب سے بڑا ہے۔', ref: 'Muslim 597 · Bukhari 6403', benefit: 'More beloved to the Prophet ﷺ than all that the sun rises upon; heavy on the scales.' },
+      { tags: 'bukhari debt worry provision', ar: 'اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ', en: 'O Allah, suffice me with what You have made lawful against what You have forbidden, and make me independent by Your bounty of all others.', ur: 'اے اللہ! اپنے حلال سے مجھے حرام سے بے نیاز کر دے، اور اپنے فضل سے مجھے تیرے سوا سب سے بے نیاز کر دے۔', ref: 'Tirmidhi 3563', benefit: 'Taught for relief from debt and worry — asks for ḥalāl sufficiency and independence through Allah.' },
+      { tags: 'muslim evening morning three times', ar: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ', en: 'In the name of Allah, with whose name nothing on earth or in the heaven can cause harm, and He is the All-Hearing, the All-Knowing.', ur: 'اللہ کے نام سے جس کے نام کے ساتھ زمین و آسمان میں کوئی چیز نقصان نہیں پہنچا سکتی، اور وہ سننے والا جاننے والا ہے۔', ref: 'Abu Dawud 5088 · Tirmidhi 3388', benefit: 'Said three times morning and evening — nothing harms the one who says it (as reported).' },
+      { tags: 'bukhari enter market', ar: 'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لَا يَمُوتُ بِيَدِهِ الْخَيْرُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ', en: 'There is no god but Allah alone, without partner. His is the dominion and His is the praise. He gives life and causes death, and He is Ever-Living and does not die. In His hand is all good, and He is over all things competent.', ur: 'اللہ کے سوا کوئی معبود نہیں، اکیلا، اس کا کوئی شریک نہیں۔ بادشاہی اور تعریف اسی کی ہے۔ وہ جلاتا اور مارتا ہے، زندہ ہے جو نہیں مرتا۔ بھلائی اسی کے ہاتھ میں ہے اور وہ ہر چیز پر قادر ہے۔', ref: 'Tirmidhi 3428', benefit: 'When entering the marketplace — great reward reported for affirming tawḥīd amid worldly distraction.' },
+      { tags: 'muslim after adhan', ar: 'اللَّهُمَّ رَبَّ هَٰذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ', en: 'O Allah, Lord of this perfect call and the prayer to be established, grant Muḥammad the wasīlah and excellence, and raise him to the praised station You promised him.', ur: 'اے اللہ! اس کامل پکار اور قائم ہونے والی نماز کے رب، محمد ﷺ کو وسیلہ اور فضیلت عطا فرما، اور انہیں اس مقام محمود پر فائز فرما جس کا تو نے وعدہ کیا۔', ref: 'Bukhari 614', benefit: 'Whoever says this after the adhān, the Prophet’s ﷺ intercession becomes permissible for him on the Day of Judgement.' }
+    ];
+
+    let lastMasnoonDua = null;
+    let masnoonDuaCache = [];
+
+    function searchMasnoonDua() {
+      const q = ((document.getElementById('dua-search') || {}).value || '').trim().toLowerCase();
+      const el = document.getElementById('dua-results');
+      if (!el) return;
+      const hits = MASNOON_DUAS.filter(function (d) {
+        if (!q) return true;
+        return (d.tags + ' ' + d.en + ' ' + d.ur + ' ' + d.ar + ' ' + d.ref).toLowerCase().indexOf(q) !== -1;
+      }).slice(0, 12);
+      masnoonDuaCache = hits;
+      if (!hits.length) {
+        el.innerHTML = '<p>No matching masnūn duʿāʾ. Try another keyword or see <a href="https://sunnah.com" target="_blank" rel="noopener">sunnah.com</a>.</p>';
+        return;
+      }
+      if (hits[0]) lastMasnoonDua = hits[0];
+      el.innerHTML = '<p><strong>' + hits.length + '</strong> result(s):</p>' + hits.map(function (d, i) {
+        const ben = d.benefit
+          ? '<div class="ponder-box" style="margin-top:0.45rem;font-size:0.9rem;"><strong>Benefit / blessing:</strong> ' + d.benefit + '</div>'
+          : '';
+        return '<div class="search-result" id="dua-hit-' + i + '">' +
+          '<div class="sr-ar">' + d.ar + '</div>' +
+          '<p class="sr-en">' + d.en + '</p>' +
+          '<p class="sr-ur">' + d.ur + '</p>' +
+          '<div class="ref" style="font-weight:600;">' + d.ref + '</div>' +
+          ben +
+          '<div class="sr-actions"><button type="button" class="btn-soft" onclick="memeUseDuaIndex(' + i + ')">🖼️ Use in Meme</button></div></div>';
+      }).join('');
+      // Optional online note (Wikipedia / open sources are limited for duʿāʾ; keep local benefit primary)
+      hits.forEach(function (d, i) {
+        enrichDuaBenefitOnline(d, i);
+      });
+    }
+
+    async function enrichDuaBenefitOnline(d, i) {
+      // Light touch: if network available, append a short generic Sunnah.com pointer — benefits stay local (authenticated summaries)
+      try {
+        if (!navigator.onLine || !d || !d.ref) return;
+        const slot = document.getElementById('dua-hit-' + i);
+        if (!slot || slot.querySelector('.dua-online-note')) return;
+        const note = document.createElement('p');
+        note.className = 'dua-online-note notes-hint';
+        note.style.marginTop = '0.35rem';
+        note.innerHTML = 'Further reading: <a href="https://sunnah.com/search?q=' + encodeURIComponent((d.en || '').split(' ').slice(0, 6).join(' ')) + '" target="_blank" rel="noopener">Search related reports on Sunnah.com</a>';
+        slot.appendChild(note);
+      } catch (e) { /* ignore */ }
+    }
+
+    function memeUseDuaIndex(i) {
+      const d = masnoonDuaCache[i];
+      if (!d) return;
+      lastMasnoonDua = d;
+      switchTab('notes');
+      setTimeout(function () {
+        const card = document.getElementById('meme-card');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        memeFillFromDua();
+      }, 200);
+    }
+
+    function memeFillFromDua() {
+      const d = lastMasnoonDua;
+      if (!d || !d.ar) {
+        alert('Search a masnūn duʿāʾ in the Search tab first, then tap “Use in Meme” or this button.');
+        return;
+      }
+      const topEl = document.getElementById('meme-top-input');
+      const midEl = document.getElementById('meme-mid-input');
+      const botEl = document.getElementById('meme-bottom-input');
+      if (topEl) topEl.value = d.ar;
+      if (midEl) midEl.value = memeClipForCaption(d.en || '', 120);
+      if (botEl) botEl.value = [d.ur ? memeClipForCaption(d.ur, 90) : '', d.ref || ''].filter(Boolean).join('\n');
+      memeState.topY = 0.12;
+      memeState.midY = 0.48;
+      memeState.bottomY = 0.88;
+      memeState.font = 'arabic';
+      const fontEl = document.getElementById('meme-font');
+      if (fontEl) fontEl.value = 'arabic';
+      const sizeEl = document.getElementById('meme-size');
+      if (sizeEl) { sizeEl.value = 28; memeOnSize(28); }
+      memePositionBoxes();
+      memeSyncFromInputs();
+    }
 
     // Shared ayah audio (everyayah / Alafasy)
     async function playAyahAudio(ref, btnEl) {
