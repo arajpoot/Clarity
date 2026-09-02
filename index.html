@@ -2007,6 +2007,27 @@
       margin-top: 0.2rem;
       line-height: 1.35;
     }
+    .uft-wrap { margin-top: 0.35rem; }
+    .uft-form { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem 0.65rem; margin-bottom: 0.65rem; }
+    @media (max-width: 640px) { .uft-form { grid-template-columns: 1fr; } }
+    .uft-form label { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.8rem; color: var(--text-muted); }
+    .uft-form input, .uft-form select, .uft-form textarea {
+      font: inherit; padding: 0.4rem 0.55rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg-elevated, #fff); color: inherit;
+    }
+    .uft-form textarea { min-height: 3.2rem; resize: vertical; grid-column: 1 / -1; }
+    .uft-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.35rem 0 0.75rem; }
+    .uft-tree { display: flex; flex-direction: column; gap: 0.55rem; }
+    .uft-card {
+      border: 1px solid var(--border); border-radius: 12px; padding: 0.65rem 0.75rem;
+      background: var(--bg-elevated, #fff);
+    }
+    .uft-card.uft-self { border-color: var(--accent); }
+    .uft-name { font-weight: 700; }
+    .uft-meta { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .uft-kids { margin-top: 0.4rem; padding-left: 0.75rem; border-left: 2px solid var(--accent-soft, #cfe8dc); }
+    .uft-empty { font-size: 0.9rem; color: var(--text-muted); }
+
     .ft-line {
       width: 2px;
       height: 0.85rem;
@@ -3225,6 +3246,38 @@
           <p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device.</p>
         </div>
 
+        <div class="card card-notes" id="user-family-tree-card">
+          <h2>🌳 Your family tree</h2>
+          <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.55rem;">
+            A private template to map parents, spouse, and children. Saved only in this browser’s local storage — nothing is uploaded.
+          </p>
+          <div class="uft-wrap">
+            <div class="uft-form">
+              <label>Your name<input type="text" id="uft-self" placeholder="Your name"></label>
+              <label>Relation / note<input type="text" id="uft-self-note" placeholder="e.g. household head"></label>
+              <label>Father<input type="text" id="uft-father" placeholder="Father’s name"></label>
+              <label>Mother<input type="text" id="uft-mother" placeholder="Mother’s name"></label>
+              <label>Spouse<input type="text" id="uft-spouse" placeholder="Spouse’s name"></label>
+              <label>Paternal grandfather<input type="text" id="uft-pgf" placeholder="Father’s father"></label>
+              <label>Paternal grandmother<input type="text" id="uft-pgm" placeholder="Father’s mother"></label>
+              <label>Maternal grandfather<input type="text" id="uft-mgf" placeholder="Mother’s father"></label>
+              <label>Maternal grandmother<input type="text" id="uft-mgm" placeholder="Mother’s mother"></label>
+              <label>Children (one per line)
+                <textarea id="uft-children" placeholder="Child 1&#10;Child 2"></textarea>
+              </label>
+              <label>Siblings (one per line)
+                <textarea id="uft-siblings" placeholder="Brother / sister names"></textarea>
+              </label>
+            </div>
+            <div class="uft-actions">
+              <button type="button" onclick="uftSave()">Save locally</button>
+              <button type="button" class="btn-secondary" onclick="uftRender()">Refresh view</button>
+              <button type="button" class="btn-soft" onclick="uftClear()">Clear tree</button>
+            </div>
+            <div id="uft-preview" class="uft-tree"></div>
+          </div>
+        </div>
+
         <!-- Meme generator (local-only; for dawah / reminder graphics) -->
         <div class="card card-notes" id="meme-card">
           <h2 data-i18n="meme_title">🖼️ Meme Studio</h2>
@@ -3831,9 +3884,10 @@
     const bannerImages = [
       {
         urls: [
-          "https://picsum.photos/seed/makkah-kaaba/1600/900",
-          "https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1600&q=80&auto=format&fit=crop",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/The_Kaaba_during_Hajj.jpg/1280px-The_Kaaba_during_Hajj.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Great_Mosque_of_Mecca_at_night.jpg/1280px-Great_Mosque_of_Mecca_at_night.jpg",
+          "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1600&q=80"
         ],
         caption: "Masjid al-Haram • The Holy Kaaba, Makkah",
         lat: 21.4225, lon: 39.8262,
@@ -3842,9 +3896,10 @@
       },
       {
         urls: [
-          "https://picsum.photos/seed/madinah-nabawi/1600/900",
-          "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1600&q=80&auto=format&fit=crop",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg/1280px-Masjid_Nabawi_The_Prophet%27s_Mosque%2C_Madina.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Al-Masjid_an-Nabawi_%28The_Prophet%27s_Mosque%29.jpg/1280px-Al-Masjid_an-Nabawi_%28The_Prophet%27s_Mosque%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_Dome_and_Prophet%27s_Mosque.jpg/1280px-Green_Dome_and_Prophet%27s_Mosque.jpg",
+          "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1600&q=80"
         ],
         caption: "Masjid an-Nabawi • The Prophet’s Mosque, Madinah",
         lat: 24.4672, lon: 39.6117,
@@ -3853,9 +3908,10 @@
       },
       {
         urls: [
-          "https://picsum.photos/seed/haram-night/1600/900",
-          "https://images.unsplash.com/photo-1519817650390-64a5db1d0498?w=1600&q=80&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=1600&q=80&auto=format&fit=crop"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Masjid_al-Haram_in_Makkah.jpg/1280px-Masjid_al-Haram_in_Makkah.jpg",
+          "https://images.unsplash.com/photo-1519817650390-64a5db1d0498?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1580418827493-f2b22c0dc151?auto=format&fit=crop&w=1600&q=80"
         ],
         caption: "The Two Holy Mosques • Haramain",
         lat: 21.4225, lon: 39.8262,
@@ -3900,51 +3956,80 @@
       imgEl.src = urls[bannerUrlIdx];
     }
 
-    function setDailyBanner() {
-      const dayNumber = Math.floor(Date.now() / 86400000);
-      const img = bannerImages[dayNumber % bannerImages.length];
+    let bannerPlaceIdx = 0;
+    function currentBannerPlace() {
+      return bannerImages[bannerPlaceIdx % bannerImages.length];
+    }
+    function setDailyBanner(forceIdx) {
+      if (typeof forceIdx === "number") bannerPlaceIdx = forceIdx;
+      else bannerPlaceIdx = Math.floor(Date.now() / 3600000) % bannerImages.length; // rotate hourly
+      const img = currentBannerPlace();
       const official = OFFICIAL_HARAMAIN[img.placeKey] || OFFICIAL_HARAMAIN.makkah;
-      const imgEl = document.getElementById("banner-img");
       const liveEl = document.getElementById("banner-live");
       const media = document.getElementById("banner-media");
       const stillFb = document.getElementById("banner-still-fallback");
 
-      if (media) media.classList.remove("live-fallback");
+      if (media) {
+        media.classList.remove("live-active");
+        media.classList.add("live-fallback");
+      }
       if (stillFb) stillFb.style.background = img.cssBg || "";
 
-      // 1) Always try still images with chain fallback (never hide banner)
-      tryBannerImage(img.urls, 0);
+      const bust = img.urls.map(function (u) {
+        const sep = u.indexOf("?") >= 0 ? "&" : "?";
+        return u + sep + "cb=" + Math.floor(Date.now() / 3600000);
+      });
+      tryBannerImage(bust, 0);
 
-      // 2) Live is optional — often blocked on file:// and by autoplay policy
-      if (liveEl && official.channelId && navigator.onLine) {
+      if (liveEl) {
+        try { liveEl.removeAttribute("src"); } catch (e) {}
         liveEl.setAttribute("title", "Official live · " + official.label);
-        liveEl.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
-        // Do not force live-active until user can open YouTube; keep still primary
-        if (bannerLiveTimer) clearTimeout(bannerLiveTimer);
-        try {
-          liveEl.src = officialLiveEmbedUrl(official.channelId);
-          if (media) media.classList.add("live-active");
-          bannerLiveTimer = setTimeout(function () {
-            // Prefer still if embed is blocked (file protocol / privacy)
-            if (location.protocol === "file:" || !navigator.onLine) {
-              setBannerFallbackStill();
-            }
-          }, 4000);
-        } catch (e) {
-          setBannerFallbackStill();
-        }
-      } else {
-        setBannerFallbackStill();
       }
 
       const placeEl = document.getElementById("place-name");
       if (placeEl) {
         placeEl.innerHTML = img.caption
           + ' <span class="temp-live" id="place-temp">…°C</span>'
+          + ' <button type="button" class="temp-live" onclick="cycleBannerStill()" style="background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit;">↻ Next still</button>'
           + ' <a class="temp-live" href="' + official.watchUrl + '" target="_blank" rel="noopener" title="Open official live stream in YouTube" style="color:inherit;text-decoration:underline;">🔴 Live · ' + official.label + '</a>'
-          + ' <span class="banner-live-status" id="banner-live-status"></span>';
+          + ' <button type="button" class="temp-live" onclick="tryBannerLiveEmbed()" style="background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit;">▶ Try embed</button>'
+          + ' <span class="banner-live-status" id="banner-live-status">Still · live opens on YouTube</span>';
       }
       loadPlaceTemperature(img.lat, img.lon);
+    }
+    function cycleBannerStill() {
+      bannerPlaceIdx = (bannerPlaceIdx + 1) % bannerImages.length;
+      setDailyBanner(bannerPlaceIdx);
+    }
+    function tryBannerLiveEmbed() {
+      const img = currentBannerPlace();
+      const official = OFFICIAL_HARAMAIN[img.placeKey] || OFFICIAL_HARAMAIN.makkah;
+      const liveEl = document.getElementById("banner-live");
+      const media = document.getElementById("banner-media");
+      const st = document.getElementById("banner-live-status");
+      if (!liveEl || !official.channelId) {
+        window.open(official.watchUrl, "_blank", "noopener");
+        return;
+      }
+      if (location.protocol === "file:") {
+        if (st) st.textContent = "Embed blocked on local file — opening YouTube";
+        window.open(official.watchUrl, "_blank", "noopener");
+        return;
+      }
+      try {
+        liveEl.src = officialLiveEmbedUrl(official.channelId);
+        if (media) {
+          media.classList.remove("live-fallback");
+          media.classList.add("live-active");
+        }
+        if (st) st.textContent = "Trying official embed…";
+        if (bannerLiveTimer) clearTimeout(bannerLiveTimer);
+        bannerLiveTimer = setTimeout(function () {
+          if (st) st.textContent = "If the frame is blank, use 🔴 Live on YouTube";
+        }, 5000);
+      } catch (e) {
+        window.open(official.watchUrl, "_blank", "noopener");
+      }
     }
     window.addEventListener("offline", setBannerFallbackStill);
     async function loadPlaceTemperature(lat, lon) {
@@ -5895,6 +5980,79 @@ Ask Allah for firmness and sincerity.`
       notesState.tagFilter = t;
       notesRender();
     }
+    const UFT_KEY = 'clarity_user_family_tree_v1';
+    function uftRead() {
+      try { return JSON.parse(localStorage.getItem(UFT_KEY) || '{}'); }
+      catch (e) { return {}; }
+    }
+    function uftFields() {
+      return {
+        self: document.getElementById('uft-self'),
+        selfNote: document.getElementById('uft-self-note'),
+        father: document.getElementById('uft-father'),
+        mother: document.getElementById('uft-mother'),
+        spouse: document.getElementById('uft-spouse'),
+        pgf: document.getElementById('uft-pgf'),
+        pgm: document.getElementById('uft-pgm'),
+        mgf: document.getElementById('uft-mgf'),
+        mgm: document.getElementById('uft-mgm'),
+        children: document.getElementById('uft-children'),
+        siblings: document.getElementById('uft-siblings')
+      };
+    }
+    function uftLoad() {
+      const d = uftRead();
+      const f = uftFields();
+      if (!f.self) return;
+      Object.keys(f).forEach(function (k) {
+        if (f[k] && d[k] != null) f[k].value = d[k];
+      });
+      uftRender();
+    }
+    function uftCollect() {
+      const f = uftFields();
+      const d = {};
+      Object.keys(f).forEach(function (k) { d[k] = f[k] ? f[k].value : ''; });
+      return d;
+    }
+    function uftSave() {
+      try { localStorage.setItem(UFT_KEY, JSON.stringify(uftCollect())); } catch (e) {}
+      uftRender();
+    }
+    function uftClear() {
+      if (!confirm('Clear your private family tree on this device?')) return;
+      try { localStorage.removeItem(UFT_KEY); } catch (e) {}
+      const f = uftFields();
+      Object.keys(f).forEach(function (k) { if (f[k]) f[k].value = ''; });
+      uftRender();
+    }
+    function uftLines(s) {
+      return String(s || '').split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean);
+    }
+    function uftCard(name, meta, extraClass) {
+      if (!name) return '';
+      return '<div class="uft-card ' + (extraClass || '') + '"><div class="uft-name">' + String(name).replace(/</g, '&lt;') + '</div>' +
+        (meta ? '<div class="uft-meta">' + String(meta).replace(/</g, '&lt;') + '</div>' : '') + '</div>';
+    }
+    function uftRender() {
+      const root = document.getElementById('uft-preview');
+      if (!root) return;
+      const d = uftCollect();
+      const kids = uftLines(d.children);
+      const sibs = uftLines(d.siblings);
+      let html = '';
+      const gp = [d.pgf && ('PGF: ' + d.pgf), d.pgm && ('PGM: ' + d.pgm), d.mgf && ('MGF: ' + d.mgf), d.mgm && ('MGM: ' + d.mgm)].filter(Boolean);
+      if (gp.length) html += '<div class="uft-meta">Grandparents</div>' + gp.map(function (g) { return uftCard(g, ''); }).join('');
+      html += uftCard(d.father, 'Father') + uftCard(d.mother, 'Mother');
+      html += uftCard(d.self || 'You', d.selfNote || 'Self', 'uft-self');
+      html += uftCard(d.spouse, 'Spouse');
+      if (sibs.length) html += '<div class="uft-meta">Siblings</div>' + sibs.map(function (s) { return uftCard(s, 'Sibling'); }).join('');
+      if (kids.length) html += '<div class="uft-meta">Children</div><div class="uft-kids">' + kids.map(function (s) { return uftCard(s, 'Child'); }).join('') + '</div>';
+      root.innerHTML = html || '<p class="uft-empty">Add names above and tap Save locally. The tree stays on this device only.</p>';
+    }
+    document.addEventListener('DOMContentLoaded', uftLoad);
+    setTimeout(uftLoad, 400);
+
     function notesCreate(prefill) {
       const note = notesEmpty(prefill || {});
       notesState.notes = [note, ...notesState.notes];
