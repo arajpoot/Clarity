@@ -3312,6 +3312,82 @@ html[data-ia-mode="today"] #path-board:not([hidden]) {
 .affairs-day-hub .aff-day-row { margin: 0.55rem 0; line-height: 1.5; }
 </style>
 
+
+<style id="nuros-banner-restore-css">
+/* Banner must remain the hero on Today — never collapse with rail */
+html[data-ia-mode="today"] .banner,
+html:not([data-ia-mode]) .banner,
+html.door-rail-on[data-ia-mode="today"] .banner {
+  display: block !important;
+  visibility: visible !important;
+  min-height: 148px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 4 !important;
+}
+html[data-ia-mode="today"] .banner-overlay,
+html:not([data-ia-mode]) .banner-overlay {
+  display: flex !important;
+  visibility: visible !important;
+  min-height: 148px !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+html[data-ia-mode="today"] .banner-media,
+html:not([data-ia-mode]) .banner-media {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+html[data-ia-mode="today"] .stream-controls,
+html:not([data-ia-mode]) .stream-controls {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  justify-content: center !important;
+  align-items: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  margin-top: 0.35rem !important;
+  position: relative !important;
+  z-index: 6 !important;
+}
+html[data-ia-mode="today"] .live-haramain-btn,
+html[data-ia-mode="today"] .quran-stream-btn,
+html[data-ia-mode="today"] .volume-control,
+html[data-ia-mode="today"] .stream-select,
+html[data-ia-mode="today"] .live-place-select {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+html[data-ia-mode="today"] .banner-center {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+/* Live iframe when active */
+.banner-media.live-active .banner-live {
+  opacity: 1 !important;
+  z-index: 4 !important;
+  pointer-events: none !important;
+}
+.banner-media.live-active img,
+.banner-media.live-active .banner-still-fallback {
+  opacity: 0 !important;
+}
+/* Do not hide banner on today when other modes CSS race */
+html[data-ia-mode="today"] .banner[style*="display: none"] {
+  display: block !important;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <!-- ===== THREE PRIMARY DOORS — default first screen ===== -->
@@ -4567,6 +4643,39 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </p>
 </div>
 
+
+<div class="card card-search" id="guidance-conversation-card" data-scroll-id="guidance-conversation">
+  <div class="cred-stamp">Educational only — not a fatwa · Last reviewed Sep 2026</div>
+  <h2>💬 Guidance conversation lab</h2>
+  <p style="font-size:.88rem;color:var(--text-muted);margin:0 0 .55rem">
+    Practice a short, calm exchange — English and Arabic lines you might use when someone asks about faith.
+    Local only. Pair with the Voice Translator above if you want to hear your own wording.
+  </p>
+  <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.55rem">
+    <label style="font-size:.82rem">Scene
+      <select id="gconv-scene" style="margin-left:.25rem;padding:.3rem .5rem;border-radius:8px">
+        <option value="greeting">Greeting a seeker</option>
+        <option value="what_is_islam">What is Islam?</option>
+        <option value="why_pray">Why do you pray?</option>
+        <option value="quran">About the Qur’an</option>
+        <option value="kindness">Invite with kindness</option>
+      </select>
+    </label>
+    <button type="button" class="btn-soft" onclick="gconvLoadScene()">Load lines</button>
+    <button type="button" class="btn-soft" onclick="gconvShuffle()">Shuffle</button>
+  </div>
+  <div id="gconv-thread" style="display:flex;flex-direction:column;gap:.45rem;margin:.5rem 0"></div>
+  <div style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-top:.55rem">
+    <button type="button" class="btn" onclick="gconvSpeakAll()">🔊 Hear both sides</button>
+    <button type="button" class="btn-soft" onclick="gconvCopy()">Copy exchange</button>
+    <span id="gconv-status" style="font-size:.78rem;color:var(--text-muted)"></span>
+  </div>
+  <p style="font-size:.78rem;color:var(--text-muted);margin-top:.65rem">
+    Surprise: each scene ends with a <strong>soft exit line</strong> — “No pressure — may Allah guide us both” —
+    so practice stays invitation, not argument. Not a script for debate clubs.
+  </p>
+  <p class="clarity-review-footer" style="font-size:.72rem;color:var(--text-muted);margin-top:.5rem">Last reviewed Sep 2026 · Quran.com / Sunnah.com · not a fatwa</p>
+</div>
 <div class="card card-questions"><h2>💬 Common Questions</h2>
 <p style="font-size:.88rem;margin-bottom:.5rem;color:var(--text)">Everyday worship, life matters, and Hajj &amp; ʿUmrah. Educational only — not a fatwa.</p>
 <div class="hajj-type-row" style="margin:.35rem 0 .45rem">
@@ -13438,7 +13547,189 @@ async function memeDownloadWithAudio(){
     +'u.onend=function(){speakNext(i+1)};u.onerror=function(){speakNext(i+1)};try{speechSynthesis.speak(u)}catch(e){speakNext(i+1)}}'
     +'document.getElementById("play").onclick=function(){if(active){stop();return}if(!window.speechSynthesis){alert("Speech not available in this browser.");return}'
     +'active=true;this.classList.add("playing");this.textContent="⏹ Stop";try{speechSynthesis.getVoices()}catch(e){}speakNext(0)};'
-        +'</scr'+'ipt></body></html>';
+        +'</scr'+'ipt></body>
+<script id="nuros-banner-restore-js">
+(function(){
+  "use strict";
+  if (window.__NUROS_BANNER_RESTORE__) return;
+  window.__NUROS_BANNER_RESTORE__ = true;
+
+  function restoreBannerChrome(){
+    var b = document.querySelector(".banner");
+    if (b) {
+      b.style.display = "block";
+      b.style.visibility = "visible";
+      b.style.minHeight = "148px";
+      b.style.opacity = "1";
+    }
+    var ov = document.querySelector(".banner-overlay");
+    if (ov) {
+      ov.style.display = "flex";
+      ov.style.visibility = "visible";
+    }
+    var sc = document.querySelector(".stream-controls");
+    if (sc) {
+      sc.style.display = "flex";
+      sc.style.visibility = "visible";
+      sc.style.opacity = "1";
+      sc.style.pointerEvents = "auto";
+    }
+    ["live-haramain-btn","stream-btn","stream-select","live-place-select","mute-btn","volume-slider"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.style.visibility = "visible";
+      el.style.opacity = "1";
+      el.style.pointerEvents = "auto";
+    });
+  }
+
+  function tryLive(){
+    try {
+      if (typeof tryBannerLiveEmbed === "function") {
+        var pref = "";
+        try { pref = localStorage.getItem("clarity_haramain_live") || "on"; } catch(e){}
+        if (pref !== "off") tryBannerLiveEmbed();
+      }
+      if (typeof syncHaramainLiveUI === "function") syncHaramainLiveUI();
+    } catch(e){}
+  }
+
+  /* Wrap GoToday so banner always returns with rail solid */
+  function wrapGoToday(){
+    if (typeof window.clarityGoToday !== "function") return;
+    if (window.clarityGoToday._bannerWrap) return;
+    var prev = window.clarityGoToday;
+    window.clarityGoToday = function(){
+      var r = prev.apply(this, arguments);
+      try { document.documentElement.setAttribute("data-ia-mode", "today"); } catch(e){}
+      restoreBannerChrome();
+      setTimeout(restoreBannerChrome, 50);
+      setTimeout(tryLive, 120);
+      setTimeout(tryLive, 600);
+      return r;
+    };
+    window.clarityGoToday._bannerWrap = true;
+  }
+
+  function boot(){
+    wrapGoToday();
+    restoreBannerChrome();
+    setTimeout(tryLive, 400);
+    setTimeout(tryLive, 1200);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 80); });
+  else setTimeout(boot, 80);
+  window.addEventListener("load", function(){ setTimeout(boot, 300); wrapGoToday(); });
+})();
+</script>
+
+
+<script id="nuros-guidance-conversation-js">
+(function(){
+  "use strict";
+  if (window.__NUROS_GCONV__) return;
+  window.__NUROS_GCONV__ = true;
+
+  var SCENES = {
+    greeting: [
+      { who: "Seeker", en: "Hi — I noticed you praying. What was that?", ar: "مرحباً، رأيتك تصلّي. ما هذا؟" },
+      { who: "You", en: "Peace be upon you. That was prayer — connecting the heart to God five times a day.", ar: "وعليكم السلام. كانت صلاة — صلة القلب بالله خمس مرات في اليوم." },
+      { who: "Soft exit", en: "No pressure — may Allah guide us both.", ar: "لا حرج — هدانا الله جميعاً." }
+    ],
+    what_is_islam: [
+      { who: "Seeker", en: "What is Islam in one sentence?", ar: "ما الإسلام بجملة واحدة؟" },
+      { who: "You", en: "Islam is willing surrender to the One God, in the way taught by the prophets — completed with Muhammad ﷺ.", ar: "الإسلام استسلامٌ لله الواحد على منهج الأنبياء، وكماله مع محمد ﷺ." },
+      { who: "Soft exit", en: "If you ever want a short book or a verse, I’m happy to share — no debate needed.", ar: "إن أحببت كتاباً قصيراً أو آية، يسعدني أن أشارك — بلا جدال." }
+    ],
+    why_pray: [
+      { who: "Seeker", en: "Why interrupt the day to pray?", ar: "لماذا تقطع يومك للصلاة؟" },
+      { who: "You", en: "It resets the heart — gratitude, humility, and a pause from the noise. Like a meeting with the One who gave the day.", ar: "تُجدّد القلب: شكراً وتواضعاً ووقفة عن الضجيج. كموعد مع من وهب اليوم." },
+      { who: "Soft exit", en: "You’re welcome to watch sometime; questions are always okay.", ar: "يمكنك أن تشاهد يوماً؛ والأسئلة مرحّب بها." }
+    ],
+    quran: [
+      { who: "Seeker", en: "Is the Qur’an only for Arabs?", ar: "هل القرآن للعرب فقط؟" },
+      { who: "You", en: "The message is for all people. Arabic is the revealed wording; translation helps the meaning reach every tongue.", ar: "الرسالة للناس كافة. العربية لفظ الوحي، والترجمة تُقرّب المعنى لكل لسان." },
+      { who: "Soft exit", en: "I can show one short chapter if you like — Al-Fātiḥah is a beautiful door.", ar: "يمكنني أن أعرض سورة قصيرة إن شئت — الفاتحة بابٌ جميل." }
+    ],
+    kindness: [
+      { who: "Seeker", en: "Religious people sometimes sound angry.", ar: "أحياناً يبدو المتديّنون غاضبين." },
+      { who: "You", en: "I’m sorry if that’s been your experience. Our Prophet ﷺ was sent as a mercy — invitation should feel like mercy too.", ar: "آسف إن كانت تلك تجربتك. نبيّنا ﷺ أُرسل رحمة — والدعوة ينبغي أن تُشبه الرحمة." },
+      { who: "Soft exit", en: "May Allah guide us both. The door stays open.", ar: "هدانا الله جميعاً. الباب مفتوح." }
+    ]
+  };
+
+  function $(id){ return document.getElementById(id); }
+
+  function render(lines){
+    var host = $("gconv-thread");
+    if (!host) return;
+    host.innerHTML = lines.map(function(L){
+      var bg = L.who === "You" ? "rgba(13,79,60,0.1)" : (L.who === "Soft exit" ? "rgba(184,146,42,0.12)" : "rgba(0,0,0,0.04)");
+      return '<div style="padding:.55rem .7rem;border-radius:12px;background:'+bg+';border:1px solid rgba(0,0,0,0.06)">' +
+        '<div style="font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.75">'+L.who+'</div>' +
+        '<div style="margin:.2rem 0;font-size:.92rem">'+L.en+'</div>' +
+        '<div class="arabic" style="font-size:1.05rem;direction:rtl;text-align:right">'+L.ar+'</div>' +
+        '<button type="button" class="btn-soft" style="margin-top:.3rem;font-size:.78rem" data-say="1">🔊</button></div>';
+    }).join("");
+    host.querySelectorAll("[data-say]").forEach(function(btn, idx){
+      btn.addEventListener("click", function(){
+        var L = lines[idx];
+        if (!L || !window.speechSynthesis) return;
+        window.speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(L.en);
+        u.rate = 0.95;
+        window.speechSynthesis.speak(u);
+      });
+    });
+  }
+
+  window.gconvLoadScene = function(){
+    var sel = $("gconv-scene");
+    var key = (sel && sel.value) || "greeting";
+    var lines = SCENES[key] || SCENES.greeting;
+    render(lines);
+    var st = $("gconv-status");
+    if (st) st.textContent = "Scene: " + key.replace(/_/g, " ");
+  };
+  window.gconvShuffle = function(){
+    var keys = Object.keys(SCENES);
+    var k = keys[Math.floor(Math.random() * keys.length)];
+    var sel = $("gconv-scene");
+    if (sel) sel.value = k;
+    gconvLoadScene();
+  };
+  window.gconvSpeakAll = function(){
+    if (!window.speechSynthesis) return;
+    var sel = $("gconv-scene");
+    var key = (sel && sel.value) || "greeting";
+    var lines = SCENES[key] || [];
+    window.speechSynthesis.cancel();
+    lines.forEach(function(L, i){
+      var u = new SpeechSynthesisUtterance(L.who + ". " + L.en);
+      u.rate = 0.92;
+      u.pitch = L.who === "You" ? 1 : 0.95;
+      window.speechSynthesis.speak(u);
+    });
+  };
+  window.gconvCopy = function(){
+    var sel = $("gconv-scene");
+    var key = (sel && sel.value) || "greeting";
+    var lines = SCENES[key] || [];
+    var text = lines.map(function(L){ return L.who + ":\n" + L.en + "\n" + L.ar; }).join("\n\n");
+    try {
+      navigator.clipboard.writeText(text);
+      var st = $("gconv-status");
+      if (st) st.textContent = "Copied.";
+    } catch(e){}
+  };
+
+  function boot(){ if ($("gconv-thread")) gconvLoadScene(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 200); });
+  else setTimeout(boot, 200);
+})();
+</script>
+
+</html>';
   var blob = new Blob([htmlCard], {type:'text/html;charset=utf-8'});
   var url = URL.createObjectURL(blob);
   memeForceAnchorDownload(url, 'clarity-meme-audio-'+ts+'.html');
