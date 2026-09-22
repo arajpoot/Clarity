@@ -1,15 +1,31 @@
-# Clarity static site
+# Clarity — GitHub → Cloudflare Pages
 
-The full single-file app stays at `index.html`.
-SEO pages live in folders (`/islamic-will/index.html`, …).
+## Upload ONLY these files to the repo root
 
-## Cloudflare Pages + GitHub
+| File | Role |
+|------|------|
+| **index.html** | Main app (served at `/`) — Learn, Today, Affairs, tools |
+| **clarity.html** | Same app (alias at `/clarity`) |
+| debts-and-trusts.html | Google indexing card |
+| sadaqah-jariyah.html | Google indexing card |
+| islamic-will.html | Google indexing card |
+| prepare-for-death.html | Google indexing card |
+| hajj-checklist.html | Google indexing card |
+| _redirects | Cloudflare clean URLs |
+| sitemap.xml | Search Console |
+| robots.txt | Crawlers |
 
-1. Push this folder as the repo root (or set root to `clarity-site`).
-2. Cloudflare Dashboard → Pages → Create project → Connect GitHub.
-3. Build command: *(leave empty)*
-4. Output directory: `/`
-5. Custom domain: `clarity-dawah.fyi`
+Do **not** upload: NurOS-Clarity-*.html, Clarity-*-package.zip, old Vercel builds, or duplicate “final” copies.
 
-Pretty URLs work because each path is a folder with `index.html`.
-The PWA/app hash routes (`/#grave`, `/#notes`) still work on `index.html`.
+## Cloudflare Pages settings
+
+- Framework: None
+- Build command: (empty)
+- Output directory: `/` (repo root)
+- Production branch: main
+
+## After push
+
+1. Open https://your-domain/ → should load app at #today
+2. Learn → One letter → Calligraphy pad
+3. Submit sitemap.xml in Google Search Console
