@@ -1,79 +1,30 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Debts and trusts · Day 3 · Clarity</title>
-<meta name="description" content="Write what you owe and what you hold in trust. Rights of people come before optional bequests. Educational only — not a fatwa.">
+<title>Day 3 — Debts and trusts · Clarity</title>
+<meta name="description" content="Write what you owe and hold in trust. Educational worksheet — not a fatwa.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://clarity-dawah.fyi/debts-and-trusts">
-<style>body{font-family:system-ui,sans-serif;max-width:42rem;margin:1.5rem auto;padding:0 1rem;line-height:1.55;color:#1c2a22;background:#f6f1e7}
-h1,h2{color:#0d4f3c;font-family:Georgia,serif}a{color:#0d4f3c;font-weight:600}
-.nav{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}
-.nav a{padding:.4rem .7rem;border-radius:999px;background:#0d4f3c;color:#fff;text-decoration:none;font-size:.8rem;font-weight:500}
-.hub{list-style:none;padding:0;margin:1rem 0}
-.hub li{margin:.65rem 0;padding:.55rem .75rem;background:#fff;border:1px solid #e0d5c4;border-radius:10px}
-.hub .n{font-weight:700;color:#0d4f3c;margin-right:.35rem}
+<style>
+body{font-family:system-ui,sans-serif;max-width:40rem;margin:1.5rem auto;padding:0 1rem;line-height:1.55;color:#1c2a22;background:#f6f1e7}
+h1{color:#0d4f3c;font-family:Georgia,serif}a{color:#0d4f3c}
+.nav{display:flex;flex-wrap:wrap;gap:.45rem;margin:1rem 0}
+.nav a{padding:.4rem .7rem;border-radius:999px;background:#0d4f3c;color:#fff;text-decoration:none;font-size:.82rem}
 .foot{font-size:.78rem;color:#5c6b62;margin-top:2rem;border-top:1px solid #e0d5c4;padding-top:.75rem}
-label{display:block;font-weight:600;margin-top:.75rem;font-size:.88rem}
-textarea,input[type=text]{width:100%;margin:.35rem 0;padding:.5rem;border:1px solid #c5bba8;border-radius:8px;font:inherit}
-.btn{display:inline-block;margin-top:.5rem;padding:.5rem 1rem;background:#0d4f3c;color:#fff;border-radius:8px;text-decoration:none;border:0;font:inherit;cursor:pointer}
-.note{border:1px solid #c9a06a;background:#fff8e8;padding:.65rem;border-radius:10px;font-size:.9rem;margin:1rem 0}
 </style>
 </head><body>
 <nav class="nav" aria-label="Primary">
   <a href="/">Today</a>
   <a href="/#learn">Learn</a>
   <a href="/#affairs">Affairs</a>
-  <a href="/debts-and-trusts">Debts and trusts</a>
-  <a href="/islamic-will">Wasiyyah</a>
-  <a href="/janazah-prayer">Janāzah</a>
-  <a href="/sadaqah-jariyah">Ṣadaqah jāriyah</a>
+  <a href="/debts-and-trusts">Day 3 · Debts</a>
+  <a href="/islamic-will">Will</a>
+  <a href="/janazah-prayer">Day 6 · Janāzah</a>
+  <a href="/sadaqah-jariyah">Day 7 · Ṣadaqah</a>
 </nav>
-<h1>Debts and trusts</h1>
-<p><strong>Educational only — not a fatwa.</strong> Before farāʾiḍ and wasiyyah, clear what you <em>owe</em> and protect what you <em>hold in trust</em> (amānah).</p>
-<div class="note"><strong>One action today:</strong> notify or begin to clear <em>one</em> item this week.</div>
-<h2>What belongs on this list</h2>
-<ul>
-  <li>Loans, unpaid wages, borrowed items</li>
-  <li>Apologies and rights between people still unsettled</li>
-  <li>Keys, documents, money, or secrets held for others</li>
-</ul>
-<form id="debts-form" onsubmit="return saveDebts(event)">
-  <label for="owe">What I owe</label>
-  <textarea id="owe" name="owe" rows="5" placeholder="Name · amount or right · plan to clear…"></textarea>
-  <label for="hold">What I hold in trust (amānah)</label>
-  <textarea id="hold" name="hold" rows="4" placeholder="What · for whom · where kept…"></textarea>
-  <button type="submit" class="btn">Save on this device</button>
-  <p id="save-msg" style="font-size:.85rem;color:#5c6b62"></p>
-</form>
-<p style="margin-top:1.25rem">
-  Next: <a href="/islamic-will">Wasiyyah</a> ·
-  <a href="/janazah-prayer">Janāzah</a> ·
-  <a href="/#affairs">Affairs in app</a> ·
-  <a href="/#fiqh-tools">Print Emergency Legacy Pack</a>
-</p>
-<p class="foot">Last reviewed Sep 2026 · Quran.com / Sunnah.com · not a fatwa. Data stays in your browser only.</p>
-<script>
-function saveDebts(e){
-  e.preventDefault();
-  try {
-    localStorage.setItem('clarity_debts_day3', JSON.stringify({
-      owe: document.getElementById('owe').value || '',
-      hold: document.getElementById('hold').value || '',
-      ts: Date.now()
-    }));
-    document.getElementById('save-msg').textContent = 'Saved on this device only.';
-  } catch (err) {
-    document.getElementById('save-msg').textContent = 'Could not save (private mode?).';
-  }
-  return false;
-}
-try {
-  var raw = localStorage.getItem('clarity_debts_day3');
-  if (raw) {
-    var d = JSON.parse(raw);
-    if (d.owe) document.getElementById('owe').value = d.owe;
-    if (d.hold) document.getElementById('hold').value = d.hold;
-  }
-} catch (e) {}
-</script>
+<h1>Day 3 — Debts and trusts</h1>
+<p><strong>Educational only — not a fatwa.</strong> List what you owe and hold in trust before inheritance study and wasiyyah.</p>
+<p><strong>One action:</strong> clear or notify one item this week.</p>
+<p><a href="/#affairs">Open worksheet in the app →</a></p>
+<p class="foot">Last reviewed Sep 2026 · Quran.com / Sunnah.com · not a fatwa</p>
 </body></html>
