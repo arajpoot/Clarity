@@ -3269,6 +3269,49 @@ body[data-active-tab="about"] #fiqh-quiz-card[hidden] {
 }
 </style>
 
+
+<style id="nuros-home-tighten-css">
+/* Today home: only surface + path strip — not the full workshop dump */
+html[data-ia-mode="today"] #tab-journey .card-tajweed,
+html[data-ia-mode="today"] #tab-journey #callig-lab-card,
+html[data-ia-mode="today"] #tab-journey #tj-deep-studio,
+html[data-ia-mode="today"] #tab-journey #tj-today-drill,
+html[data-ia-mode="today"] #tab-journey .card-lectures,
+html[data-ia-mode="today"] #tab-journey #meme-card,
+html[data-ia-mode="today"] #tab-journey #fiqh-quiz-card,
+html[data-ia-mode="today"] #tab-journey #seerah-mirror-card,
+html:not([data-ia-mode]) body[data-active-tab="journey"] #tab-journey .card-tajweed,
+html:not([data-ia-mode]) body[data-active-tab="journey"] #callig-lab-card,
+html:not([data-ia-mode]) body[data-active-tab="journey"] #fiqh-quiz-card,
+html:not([data-ia-mode]) body[data-active-tab="journey"] #meme-card {
+  display: none !important;
+}
+/* When journey is active as Today home, hide sibling tool tabs' leakage */
+html[data-ia-mode="today"] #tab-tajweed:not(.active),
+html[data-ia-mode="today"] #tab-commands:not(.active),
+html[data-ia-mode="today"] #tab-seerah:not(.active),
+html[data-ia-mode="today"] #tab-tafseer:not(.active),
+html[data-ia-mode="today"] #tab-lectures:not(.active),
+html[data-ia-mode="today"] #tab-about:not(.active),
+html[data-ia-mode="today"] #tab-notes:not(.active) {
+  display: none !important;
+}
+/* Tighten: hide long journey body cards beyond today surface */
+html[data-ia-mode="today"] #tab-journey > .card:not(.card-today):not(.today-panel),
+html[data-ia-mode="today"] #clarity-learn-os:not(.hidden) {
+  /* keep learn-os hidden on today */
+}
+html[data-ia-mode="today"] #clarity-learn-os {
+  display: none !important;
+}
+html[data-ia-mode="today"] #path-board:not([hidden]) {
+  max-height: none;
+}
+/* Aff hub links */
+.affairs-day-hub a { color: var(--accent, #0d4f3c); font-weight: 600; }
+.affairs-day-hub .aff-day-row { margin: 0.55rem 0; line-height: 1.5; }
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <!-- ===== THREE PRIMARY DOORS — default first screen ===== -->
@@ -3412,8 +3455,23 @@ body[data-active-tab="about"] #fiqh-quiz-card[hidden] {
     <div class="cred-stamp">Educational only — not a fatwa · Last reviewed Sep 2026 · Quran.com / Sunnah.com</div>
     <h2>🕊️ Affairs · Prepare for death</h2>
     <p style="font-size:0.9rem;color:var(--text-muted);margin:0 0 0.75rem">Legacy hub — not peers of Today’s one deed.</p>
-    <div class="affairs-day-hub">
-      <div class="aff-day-row"><span class="aff-n">1.</span> <strong>Remember</strong> — <button type="button" class="btn-soft" onclick="clarityIndexGo('legacy7')">Death with hope</button></div>
+    <div class="affairs-day-hub" id="affairs-exact-hub">
+      <div class="aff-day-row"><span class="aff-n">1.</span> Remember death</div>
+      <div class="aff-day-row"><span class="aff-n">2.</span> What reaches the dead</div>
+      <div class="aff-day-row"><span class="aff-n">3.</span> <a href="/debts-and-trusts">Debts and trusts</a>
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('debts')">Open worksheet</button></div>
+      <div class="aff-day-row"><span class="aff-n">4.</span> Heirs
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('tree')">Family tree</button>
+        <button type="button" class="btn-soft" onclick="clarityIndexGo('faraid')">Farāʾiḍ</button></div>
+      <div class="aff-day-row"><span class="aff-n">5.</span> Wasiyyah
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('wasiyyah')">Will + pack</button>
+        <a class="btn-soft" href="/islamic-will" style="margin-left:.25rem;display:inline-block;padding:.35rem .65rem;text-decoration:none">/islamic-will</a></div>
+      <div class="aff-day-row"><span class="aff-n">6.</span> <a href="/janazah-prayer">Janāzah</a>
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('janazah')">In app</button></div>
+      <div class="aff-day-row"><span class="aff-n">7.</span> Ṣadaqah jāriyah
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('sadaqah')">Open</button>
+        <a class="btn-soft" href="/sadaqah-jariyah" style="margin-left:.25rem;display:inline-block;padding:.35rem .65rem;text-decoration:none">/sadaqah-jariyah</a></div>
+    </div>
       <div class="aff-day-row"><span class="aff-n">2.</span> <strong>Benefits</strong> — <button type="button" class="btn-soft" onclick="clarityIndexGo('legacy7')">What reaches the deceased</button></div>
       <div class="aff-day-row"><span class="aff-n">3.</span> <strong>Debts</strong> — <button type="button" class="btn-soft" onclick="clarityIndexGo('debts')">Debts &amp; trusts worksheet</button></div>
       <div class="aff-day-row"><span class="aff-n">4.</span> <strong>Inheritance</strong> — <button type="button" class="btn-soft" onclick="clarityIndexGo('faraid')">Farāʾiḍ outline</button> · <button type="button" class="btn-soft" onclick="clarityIndexGo('tree')">Family tree</button></div>
@@ -20323,13 +20381,13 @@ var CLARITY_PRIMARY_PATHS = {
     id: 'legacy7', label: 'Prepare for death — 7 days', days: 7, door: 'prepare',
     blurb: 'Debts, tree, farāʾiḍ, wasiyyah, janazah, ṣadaqah jāriyah',
     list: [
-      'Day 1: Remember death — write what you want people to forgive you for',
-      'Day 2: What benefits the deceased — duʿāʾ, ongoing charity, knowledge (Muslim 1631)',
-      'Day 3: Debts and trusts — write what you owe and what you hold',
-      'Day 4: Study farāʾiḍ outline on Quran.com — not a fatwa for your case',
-      'Day 5: Draft wasiyyah notes (≤⅓ optional bequest; executor ideas)',
-      'Day 6: Janāzah / ghusl awareness — who to call, local masjid',
-      'Day 7: Ṣadaqah jāriyah idea + Print Emergency Legacy Pack'
+      'Day 1: Remember death',
+      'Day 2: What reaches the dead',
+      'Day 3: Debts and trusts — /debts-and-trusts',
+      'Day 4: Heirs — family tree + farāʾiḍ outline',
+      'Day 5: Wasiyyah — will + Emergency Legacy Pack',
+      'Day 6: Janāzah — /janazah-prayer',
+      'Day 7: Ṣadaqah jāriyah'
     ]
   }
 };
@@ -25529,6 +25587,46 @@ html[data-theme="dark"] .tj-lmr-step { background: rgba(255,255,255,0.06) !impor
   document.documentElement.appendChild(st);
 
   console.info("[Clarity] solid Learn router ready");
+})();
+</script>
+
+
+<script id="nuros-home-tighten-js">
+(function(){
+  if (window.__NUROS_HOME_TIGHTEN__) return;
+  window.__NUROS_HOME_TIGHTEN__ = true;
+  var prev = window.clarityGoToday;
+  window.clarityGoToday = function(){
+    try { document.documentElement.setAttribute("data-ia-mode", "today"); } catch(e){}
+    try { document.body.setAttribute("data-ia-mode", "today"); } catch(e){}
+    ["clarity-learn-index","clarity-affairs-index","clarity-alltools-index"].forEach(function(id){
+      var n = document.getElementById(id);
+      if (n) { n.classList.add("hidden"); n.hidden = true; n.style.display = "none"; }
+    });
+    var today = document.getElementById("clarity-today-surface");
+    if (today) { today.classList.remove("hidden"); today.style.display = ""; }
+    var strip = document.getElementById("one-action-strip");
+    if (strip) strip.style.display = "";
+    /* Hide workshop tab panels */
+    document.querySelectorAll(".tab-panel").forEach(function(p){
+      if (p.id === "tab-journey") {
+        p.classList.add("active","is-active");
+        p.removeAttribute("hidden");
+        p.style.display = "block";
+      } else {
+        p.classList.remove("active","is-active");
+        p.setAttribute("hidden","");
+        p.style.display = "none";
+      }
+    });
+    try { document.body.setAttribute("data-active-tab", "journey"); } catch(e){}
+    try { history.replaceState(null, "", "#today"); } catch(e){}
+    if (typeof prev === "function") {
+      try { prev.apply(this, arguments); } catch(e){}
+    }
+    /* Second pass: keep mode today after prev */
+    try { document.documentElement.setAttribute("data-ia-mode", "today"); } catch(e){}
+  };
 })();
 </script>
 
