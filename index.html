@@ -3269,6 +3269,49 @@ body[data-active-tab="about"] #fiqh-quiz-card[hidden] {
 }
 </style>
 
+
+<style id="nuros-home-tighten-css">
+/* Today home: only surface + path strip — not the full workshop dump */
+html[data-ia-mode="today"] #tab-journey .card-tajweed,
+html[data-ia-mode="today"] #tab-journey #callig-lab-card,
+html[data-ia-mode="today"] #tab-journey #tj-deep-studio,
+html[data-ia-mode="today"] #tab-journey #tj-today-drill,
+html[data-ia-mode="today"] #tab-journey .card-lectures,
+html[data-ia-mode="today"] #tab-journey #meme-card,
+html[data-ia-mode="today"] #tab-journey #fiqh-quiz-card,
+html[data-ia-mode="today"] #tab-journey #seerah-mirror-card,
+html:not([data-ia-mode]) body[data-active-tab="journey"] #tab-journey .card-tajweed,
+html:not([data-ia-mode]) body[data-active-tab="journey"] #callig-lab-card,
+html:not([data-ia-mode]) body[data-active-tab="journey"] #fiqh-quiz-card,
+html:not([data-ia-mode]) body[data-active-tab="journey"] #meme-card {
+  display: none !important;
+}
+/* When journey is active as Today home, hide sibling tool tabs' leakage */
+html[data-ia-mode="today"] #tab-tajweed:not(.active),
+html[data-ia-mode="today"] #tab-commands:not(.active),
+html[data-ia-mode="today"] #tab-seerah:not(.active),
+html[data-ia-mode="today"] #tab-tafseer:not(.active),
+html[data-ia-mode="today"] #tab-lectures:not(.active),
+html[data-ia-mode="today"] #tab-about:not(.active),
+html[data-ia-mode="today"] #tab-notes:not(.active) {
+  display: none !important;
+}
+/* Tighten: hide long journey body cards beyond today surface */
+html[data-ia-mode="today"] #tab-journey > .card:not(.card-today):not(.today-panel),
+html[data-ia-mode="today"] #clarity-learn-os:not(.hidden) {
+  /* keep learn-os hidden on today */
+}
+html[data-ia-mode="today"] #clarity-learn-os {
+  display: none !important;
+}
+html[data-ia-mode="today"] #path-board:not([hidden]) {
+  max-height: none;
+}
+/* Aff hub links */
+.affairs-day-hub a { color: var(--accent, #0d4f3c); font-weight: 600; }
+.affairs-day-hub .aff-day-row { margin: 0.55rem 0; line-height: 1.5; }
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <!-- ===== THREE PRIMARY DOORS — default first screen ===== -->
@@ -3412,8 +3455,23 @@ body[data-active-tab="about"] #fiqh-quiz-card[hidden] {
     <div class="cred-stamp">Educational only — not a fatwa · Last reviewed Sep 2026 · Quran.com / Sunnah.com</div>
     <h2>🕊️ Affairs · Prepare for death</h2>
     <p style="font-size:0.9rem;color:var(--text-muted);margin:0 0 0.75rem">Legacy hub — not peers of Today’s one deed.</p>
-    <div class="affairs-day-hub">
-      <div class="aff-day-row"><span class="aff-n">1.</span> <strong>Remember</strong> — <button type="button" class="btn-soft" onclick="clarityIndexGo('legacy7')">Death with hope</button></div>
+    <div class="affairs-day-hub" id="affairs-exact-hub">
+      <div class="aff-day-row"><span class="aff-n">1.</span> Remember death</div>
+      <div class="aff-day-row"><span class="aff-n">2.</span> What reaches the dead</div>
+      <div class="aff-day-row"><span class="aff-n">3.</span> <a href="/debts-and-trusts">Debts and trusts</a>
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('debts')">Open worksheet</button></div>
+      <div class="aff-day-row"><span class="aff-n">4.</span> Heirs
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('tree')">Family tree</button>
+        <button type="button" class="btn-soft" onclick="clarityIndexGo('faraid')">Farāʾiḍ</button></div>
+      <div class="aff-day-row"><span class="aff-n">5.</span> Wasiyyah
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('wasiyyah')">Will + pack</button>
+        <a class="btn-soft" href="/islamic-will" style="margin-left:.25rem;display:inline-block;padding:.35rem .65rem;text-decoration:none">/islamic-will</a></div>
+      <div class="aff-day-row"><span class="aff-n">6.</span> <a href="/janazah-prayer">Janāzah</a>
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('janazah')">In app</button></div>
+      <div class="aff-day-row"><span class="aff-n">7.</span> Ṣadaqah jāriyah
+        <button type="button" class="btn-soft" style="margin-left:.35rem" onclick="clarityIndexGo('sadaqah')">Open</button>
+        <a class="btn-soft" href="/sadaqah-jariyah" style="margin-left:.25rem;display:inline-block;padding:.35rem .65rem;text-decoration:none">/sadaqah-jariyah</a></div>
+    </div>
       <div class="aff-day-row"><span class="aff-n">2.</span> <strong>Benefits</strong> — <button type="button" class="btn-soft" onclick="clarityIndexGo('legacy7')">What reaches the deceased</button></div>
       <div class="aff-day-row"><span class="aff-n">3.</span> <strong>Debts</strong> — <button type="button" class="btn-soft" onclick="clarityIndexGo('debts')">Debts &amp; trusts worksheet</button></div>
       <div class="aff-day-row"><span class="aff-n">4.</span> <strong>Inheritance</strong> — <button type="button" class="btn-soft" onclick="clarityIndexGo('faraid')">Farāʾiḍ outline</button> · <button type="button" class="btn-soft" onclick="clarityIndexGo('tree')">Family tree</button></div>
@@ -20323,13 +20381,13 @@ var CLARITY_PRIMARY_PATHS = {
     id: 'legacy7', label: 'Prepare for death — 7 days', days: 7, door: 'prepare',
     blurb: 'Debts, tree, farāʾiḍ, wasiyyah, janazah, ṣadaqah jāriyah',
     list: [
-      'Day 1: Remember death — write what you want people to forgive you for',
-      'Day 2: What benefits the deceased — duʿāʾ, ongoing charity, knowledge (Muslim 1631)',
-      'Day 3: Debts and trusts — write what you owe and what you hold',
-      'Day 4: Study farāʾiḍ outline on Quran.com — not a fatwa for your case',
-      'Day 5: Draft wasiyyah notes (≤⅓ optional bequest; executor ideas)',
-      'Day 6: Janāzah / ghusl awareness — who to call, local masjid',
-      'Day 7: Ṣadaqah jāriyah idea + Print Emergency Legacy Pack'
+      'Day 1: Remember death',
+      'Day 2: What reaches the dead',
+      'Day 3: Debts and trusts — /debts-and-trusts',
+      'Day 4: Heirs — family tree + farāʾiḍ outline',
+      'Day 5: Wasiyyah — will + Emergency Legacy Pack',
+      'Day 6: Janāzah — /janazah-prayer',
+      'Day 7: Ṣadaqah jāriyah'
     ]
   }
 };
@@ -24699,189 +24757,8 @@ html[data-theme="dark"] .tj-lmr-step { background: rgba(255,255,255,0.06) !impor
 <script src="/nuro-av.js?v=path2" defer></script>
 <link rel="stylesheet" href="/nuro-journey.css?v=path2">
 <script src="/nuro-journey.js?v=path2" defer></script>
+<!-- removed conflicting nuros-ia-v2-js -->
 
-<script id="nuros-ia-v2-js">
-(function(){
-  "use strict";
-  if (window.__NUROS_IA_V2__) return;
-  window.__NUROS_IA_V2__ = true;
-  function $(id){ try { return document.getElementById(id); } catch(e){ return null; } }
-  function setMode(mode){
-    mode = mode || "today";
-    try { document.documentElement.setAttribute("data-ia-mode", mode); } catch(e){}
-    try { document.body.setAttribute("data-ia-mode", mode); } catch(e){}
-    document.querySelectorAll("#clarity-door-rail .door-rail-btn").forEach(function(b){
-      var d = b.getAttribute("data-rail-door") || "";
-      var isHome = b.id === "door-rail-main-view";
-      b.classList.toggle("active", mode === "today" ? isHome : d === mode);
-    });
-  }
-  function hideIndexes(){
-    ["clarity-learn-index","clarity-affairs-index","clarity-alltools-index"].forEach(function(id){
-      var el = $(id); if (!el) return;
-      el.classList.add("hidden"); el.hidden = true;
-    });
-  }
-  function showIndex(id){
-    hideIndexes();
-    var el = $(id); if (!el) return;
-    el.classList.remove("hidden"); el.hidden = false;
-    var host = $("clarity-index-host");
-    var workspace = $("main-application-workspace") || document.querySelector(".page-wrapper");
-    if (host && workspace) {
-      try { workspace.insertBefore(host, workspace.firstChild); } catch(e){}
-    }
-    try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch(e){}
-  }
-  function hideMainHome(hide){
-    var today = $("clarity-today-surface");
-    var strip = $("one-action-strip");
-    if (hide) {
-      if (today) today.classList.add("hidden");
-      if (strip) strip.style.display = "none";
-    } else {
-      if (today) today.classList.remove("hidden");
-      if (strip) strip.style.display = "";
-    }
-  }
-  window.clarityGoToday = function(){
-    setMode("today");
-    hideIndexes();
-    hideMainHome(false);
-    if (typeof clarityShowToday === "function") try { clarityShowToday(true); } catch(e){}
-    if (typeof clarityShowDoorRail === "function") try { clarityShowDoorRail(true); } catch(e){}
-    if (typeof switchTab === "function") try { switchTab("journey"); } catch(e){}
-    try { history.replaceState(null, "", "#today"); } catch(e){}
-    try { document.documentElement.setAttribute("data-section-mode", "0"); } catch(e){}
-  };
-  window.clarityCollapseToPathDoor = function(){ clarityGoToday(); };
-  window.clarityOpenLearnIndex = function(){
-    setMode("learn"); hideMainHome(true);
-    if (typeof clarityShowToday === "function") try { clarityShowToday(false); } catch(e){}
-    if (typeof clarityShowDoorRail === "function") try { clarityShowDoorRail(true); } catch(e){}
-    showIndex("clarity-learn-index");
-    try { history.replaceState(null, "", "#learn"); } catch(e){}
-  };
-  window.clarityOpenAffairsIndex = function(){
-    setMode("affairs"); hideMainHome(true);
-    if (typeof clarityShowToday === "function") try { clarityShowToday(false); } catch(e){}
-    if (typeof clarityShowDoorRail === "function") try { clarityShowDoorRail(true); } catch(e){}
-    showIndex("clarity-affairs-index");
-    try { history.replaceState(null, "", "#affairs"); } catch(e){}
-  };
-  window.clarityOpenAllTools = function(){
-    setMode("alltools"); hideMainHome(true);
-    if (typeof clarityShowToday === "function") try { clarityShowToday(false); } catch(e){}
-    if (typeof clarityShowDoorRail === "function") try { clarityShowDoorRail(true); } catch(e){}
-    showIndex("clarity-alltools-index");
-    try { history.replaceState(null, "", "#all-tools"); } catch(e){}
-  };
-  if (typeof window.clarityPickPrimaryDoor === "function" && !window.clarityPickPrimaryDoor._ia2) {
-    var prev = window.clarityPickPrimaryDoor;
-    window.clarityPickPrimaryDoor = function(door){
-      var td = $("clarity-three-doors");
-      if (td) { td.classList.add("hidden"); td.style.display = "none"; }
-      if (door === "learn") { try { localStorage.setItem("clarity_primary_door","learn"); } catch(e){} clarityOpenLearnIndex(); return; }
-      if (door === "prepare") { try { localStorage.setItem("clarity_primary_door","prepare"); localStorage.setItem("clarity_path_override","legacy7"); } catch(e){} clarityOpenAffairsIndex(); return; }
-      if (door === "today") { try { localStorage.setItem("clarity_primary_door","today"); } catch(e){} clarityGoToday(); return; }
-      return prev.apply(this, arguments);
-    };
-    window.clarityPickPrimaryDoor._ia2 = true;
-  }
-  window.clarityIndexGo = function(key){
-    hideIndexes();
-    setMode(key === "tajweed" || key === "quiz" || key === "calligraphy" || key === "commands" || key === "seerah" || key === "tafseer" ? "learn" : "affairs");
-    hideMainHome(true);
-    var go = {
-      tajweed: function(){ if (typeof switchTab==="function") switchTab("tajweed"); setTimeout(function(){ var d=$("tj-today-drill")||$("tab-tajweed"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      quiz: function(){ if (typeof switchTab==="function") switchTab("about"); setTimeout(function(){ var d=$("fiqh-quiz-card"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      calligraphy: function(){ if (typeof switchTab==="function") switchTab("tajweed"); setTimeout(function(){ var d=$("callig-lab-card")||$("callig-lab-stage"); if(d)d.scrollIntoView({behavior:"smooth",block:"start"}); }, 220); },
-      commands: function(){ if (typeof switchTab==="function") switchTab("commands"); },
-      seerah: function(){ if (typeof switchTab==="function") switchTab("seerah"); },
-      tafseer: function(){ if (typeof switchTab==="function") switchTab("tafseer"); },
-      lectures: function(){ if (typeof switchTab==="function") switchTab("lectures"); },
-      meme: function(){ if (typeof openMemeStudio==="function") openMemeStudio(); else if (typeof switchTab==="function") switchTab("about"); setTimeout(function(){ var d=$("meme-card"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      notes: function(){ if (typeof switchTab==="function") switchTab("about"); },
-      search: function(){ if (typeof switchTab==="function") switchTab("search"); },
-      debts: function(){ if (typeof switchTab==="function") switchTab("notes"); setTimeout(function(){ var d=$("debts-day3-card"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      tree: function(){ if (typeof switchTab==="function") switchTab("notes"); setTimeout(function(){ var d=$("user-family-tree-card"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      faraid: function(){ if (typeof switchTab==="function") switchTab("notes"); setTimeout(function(){ var d=$("faraid-card"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      wasiyyah: function(){ if (typeof switchTab==="function") switchTab("notes"); setTimeout(function(){ var d=$("wasiyyah-card"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      sadaqah: function(){ if (typeof switchTab==="function") switchTab("notes"); setTimeout(function(){ var d=$("sadaqah-jariyah-card"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      janazah: function(){ if (typeof switchTab==="function") switchTab("grave"); setTimeout(function(){
-        document.querySelectorAll("#tab-grave h2,#tab-grave h3").forEach(function(el){
-          if (/Janāzah|Janazah/i.test(el.textContent||"")) el.scrollIntoView({behavior:"smooth"});
-        });
-      }, 200); },
-      hajj: function(){ if (typeof switchTab==="function") switchTab("search"); setTimeout(function(){ var d=$("hajj-guide-card"); if(d)d.scrollIntoView({behavior:"smooth"}); }, 200); },
-      legacy7: function(){
-        setMode("affairs");
-        if (typeof clarityRenderPrimaryPathDays==="function") clarityRenderPrimaryPathDays("legacy7");
-        var board = $("path-board");
-        if (board) { board.hidden = false; board.scrollIntoView({behavior:"smooth"}); }
-      }
-    };
-    if (go[key]) go[key]();
-  };
-  window.claritySaveDebtsDay3 = function(){
-    try {
-      localStorage.setItem("clarity_debts_day3", JSON.stringify({
-        owe: ($("debts-owe-box")||{}).value||"",
-        hold: ($("debts-hold-box")||{}).value||"",
-        ts: Date.now()
-      }));
-      alert("Saved on this device only.");
-    } catch(e){ alert("Could not save."); }
-  };
-  window.claritySaveSadaqahIdea = function(){
-    try {
-      localStorage.setItem("clarity_sadaqah_idea", ($("sadaqah-idea-box")||{}).value||"");
-      alert("Saved on this device only.");
-    } catch(e){ alert("Could not save."); }
-  };
-  window.clarityOfflinePackExport = function(){
-    if (typeof clarityPrintLegacyPack === "function") clarityPrintLegacyPack();
-  };
-  function boot(){
-    try {
-      var raw = localStorage.getItem("clarity_debts_day3");
-      if (raw) {
-        var d = JSON.parse(raw);
-        if ($("debts-owe-box") && d.owe) $("debts-owe-box").value = d.owe;
-        if ($("debts-hold-box") && d.hold) $("debts-hold-box").value = d.hold;
-      }
-      var sj = localStorage.getItem("clarity_sadaqah_idea");
-      if (sj && $("sadaqah-idea-box")) $("sadaqah-idea-box").value = sj;
-    } catch(e){}
-    try {
-      var h = (location.hash||"").replace(/^#/,"");
-      if (!h || h === "journey" || h === "index.html") {
-        history.replaceState(null, "", "#today");
-        h = "today";
-      }
-      if (h === "learn" || h === "learn-index") clarityOpenLearnIndex();
-      else if (h === "affairs" || h === "affairs-index") clarityOpenAffairsIndex();
-      else if (h === "all-tools" || h === "alltools") clarityOpenAllTools();
-      else if (h === "fiqh-tools") { if (typeof switchTab==="function") switchTab("notes"); }
-      else if (h === "debts-and-trusts") { clarityIndexGo("debts"); }
-      else if (h === "sadaqah-jariyah") { clarityIndexGo("sadaqah"); }
-      else if (h === "islamic-will") { clarityIndexGo("wasiyyah"); }
-      else clarityGoToday();
-      if (typeof clarityShowDoorRail === "function") clarityShowDoorRail(true);
-    } catch(e){ try { clarityGoToday(); } catch(e2){} }
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 120); });
-  else setTimeout(boot, 120);
-  window.addEventListener("load", function(){ setTimeout(boot, 400); });
-  window.addEventListener("hashchange", function(){
-    var h = (location.hash||"").replace(/^#/,"");
-    if (h === "today" || h === "" || h === "journey") clarityGoToday();
-    else if (h === "learn") clarityOpenLearnIndex();
-    else if (h === "affairs") clarityOpenAffairsIndex();
-    else if (h === "all-tools" || h === "alltools") clarityOpenAllTools();
-  });
-})();
-</script>
 
 
 <script id="nuros-path-advance-fix">
@@ -25076,460 +24953,392 @@ html[data-theme="dark"] .tj-lmr-step { background: rgba(255,255,255,0.06) !impor
   window.addEventListener("load", function(){ setTimeout(boot, 500); });
 })();
 </script>
+<!-- removed conflicting nuros-learn-audit-js -->
+<!-- removed conflicting nuros-learn-solid-router -->
+<!-- removed conflicting nuros-home-tighten-js -->
 
 
-<script id="nuros-learn-audit-js">
-(function(){
+
+<script id="nuros-rail-solid-v3">
+/**
+ * Single rail + Learn + Today controller.
+ * Last script wins. No competing GoToday/IndexGo patches.
+ */
+(function () {
   "use strict";
-  if (window.__NUROS_LEARN_AUDIT__) return;
-  window.__NUROS_LEARN_AUDIT__ = true;
+  if (window.__NUROS_RAIL_SOLID_V3__) return;
+  window.__NUROS_RAIL_SOLID_V3__ = true;
 
-  function $(id){ try { return document.getElementById(id); } catch(e){ return null; } }
-
-  /* --- Tajweed 5-min drill (same streak) --- */
-  var DRILLS = [
-    "Recite Al-Fātiḥah slowly; hold ghunnah on ن/م (2 counts).",
-    "Qalqalah letters ق ط ب ج د — bounce gently on sukūn.",
-    "Iẓhār: nūn before ء ه ع ح غ خ — keep the nūn clear.",
-    "Ikhfāʾ before ت ث ج د ذ ز س ش ص ض ط ظ ف ق ك — light nasal.",
-    "Madd ṭabīʿī in Al-Ikhlāṣ — stretch two counts only.",
-    "Waqf in Al-ʿAṣr — calm release, no rush.",
-    "Basmalah once with calm makhārij — then one āyah of choice.",
-    "Idghām with ghunnah in An-Nās — merge smoothly.",
-    "One line of Yāsin focusing on ر (tafkhīm vs tarqīq)."
-  ];
-  function drillKey(){ return "clarity_tj_drill_" + new Date().toDateString(); }
-  function loadDrill(){
-    var task = $("tj-drill-task"); if (!task) return;
-    var text = DRILLS[new Date().getDate() % DRILLS.length];
-    try {
-      var sv = localStorage.getItem(drillKey() + "_text");
-      if (sv) text = sv; else localStorage.setItem(drillKey() + "_text", text);
-    } catch(e){}
-    task.textContent = text;
-    try {
-      if (localStorage.getItem(drillKey()) === "1") {
-        var st = $("tj-drill-status"); if (st) st.textContent = "Done today · counted on the same streak as Today.";
-        var btn = $("tj-drill-done-btn"); if (btn) btn.disabled = true;
-      }
-    } catch(e){}
-  }
-  window.clarityRerollTajweedDrill = function(){
-    var t = DRILLS[Math.floor(Math.random() * DRILLS.length)];
-    try { localStorage.setItem(drillKey() + "_text", t); } catch(e){}
-    var task = $("tj-drill-task"); if (task) task.textContent = t;
-  };
-  window.clarityCompleteTajweedDrill = function(){
-    try {
-      if (localStorage.getItem(drillKey()) === "1") {
-        alert("Already counted today on the same streak.");
-        return;
-      }
-      localStorage.setItem(drillKey(), "1");
-      var today = new Date().toISOString().slice(0,10);
-      var last = localStorage.getItem("clarity_daily_last") || "";
-      var st = parseInt(localStorage.getItem("clarity_daily_streak") || "0", 10) || 0;
-      if (last !== today) {
-        var y = new Date(Date.now() - 864e5).toISOString().slice(0,10);
-        st = (last === y) ? st + 1 : 1;
-        localStorage.setItem("clarity_daily_last", today);
-        localStorage.setItem("clarity_daily_streak", String(st));
-      }
-      if (typeof updateDailyStreak === "function") try { updateDailyStreak(); } catch(e){}
-      if (typeof clarityRefreshTodaySurface === "function") try { clarityRefreshTodaySurface(); } catch(e){}
-      var stEl = $("tj-drill-status"); if (stEl) stEl.textContent = "Counted on the same streak as Today (" + st + ").";
-      var btn = $("tj-drill-done-btn"); if (btn) btn.disabled = true;
-    } catch(e){ alert("Could not save drill."); }
-  };
-
-  /* --- Learn quiz: max 3, path-tagged --- */
-  function pathTagForQuiz(){
-    try {
-      var k = localStorage.getItem("clarity_active_primary_path") || localStorage.getItem("clarity_primary_door") || "legacy7";
-      if (k === "prepare" || k === "practicing") k = "legacy7";
-      return k;
-    } catch(e){ return "general"; }
-  }
-  window.clarityStartLearnQuiz = function(){
-    /* Open about/quiz, force deck of 3, show banner */
-    if (typeof switchTab === "function") switchTab("about");
-    setTimeout(function(){
-      var card = $("fiqh-quiz-card");
-      if (card) {
-        card.removeAttribute("hidden");
-        card.style.display = "block";
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
-        var existing = $("learn-quiz-banner");
-        if (!existing) {
-          var ban = document.createElement("div");
-          ban.id = "learn-quiz-banner";
-          ban.innerHTML = "<span class=\"learn-quiz-badge\">Learn · max 3</span> Path-tagged to <strong>" + pathTagForQuiz() + "</strong>. Misses can be saved for review. Educational only — not a fatwa.";
-          card.insertBefore(ban, card.firstChild);
-        }
-      }
-      /* Patch siqBuildDeck once for 3-question learn mode */
-      if (typeof siqBuildDeck === "function" && !siqBuildDeck._learn3) {
-        var prev = siqBuildDeck;
-        window.siqBuildDeck = function(){
-          if (window.__LEARN_QUIZ_MODE__) {
-            var full = prev.apply(this, arguments) || [];
-            return full.slice(0, 3);
-          }
-          return prev.apply(this, arguments);
-        };
-        window.siqBuildDeck._learn3 = true;
-      }
-      window.__LEARN_QUIZ_MODE__ = true;
-      if (typeof siqShow === "function") {
-        try { siqShow("iq"); } catch(e){}
-      }
-      if (typeof siqStart === "function") {
-        setTimeout(function(){ try { siqStart(); } catch(e){} }, 100);
-      }
-      /* clear learn mode after finish */
-      if (typeof siqFinish === "function" && !siqFinish._learnWrap) {
-        var pf = siqFinish;
-        window.siqFinish = function(){
-          window.__LEARN_QUIZ_MODE__ = false;
-          return pf.apply(this, arguments);
-        };
-        window.siqFinish._learnWrap = true;
-      }
-    }, 250);
-  };
-
-  /* Save miss for spaced review */
-  window.claritySaveQuizMiss = function(qText){
-    try {
-      var key = "clarity_quiz_misses";
-      var arr = JSON.parse(localStorage.getItem(key) || "[]");
-      arr.push({ q: qText, path: pathTagForQuiz(), ts: Date.now() });
-      if (arr.length > 40) arr = arr.slice(-40);
-      localStorage.setItem(key, JSON.stringify(arr));
-    } catch(e){}
-  };
-  if (typeof siqAnswer === "function" && !siqAnswer._missHook) {
-    var pa = siqAnswer;
-    window.siqAnswer = function(idx){
-      try {
-        if (window.__LEARN_QUIZ_MODE__ && siqState && siqState.deck) {
-          var q = siqState.deck[siqState.i];
-          if (q && idx !== q.a) claritySaveQuizMiss(q.q || "");
-        }
-      } catch(e){}
-      return pa.apply(this, arguments);
-    };
-    window.siqAnswer._missHook = true;
+  function $(id) {
+    try { return document.getElementById(id); } catch (e) { return null; }
   }
 
-  /* --- Stronger IndexGo for Learn modules --- */
-  function showPanel(tabId, scrollId){
-    if (typeof switchTab === "function") switchTab(tabId);
-    setTimeout(function(){
-      var panel = $("tab-" + tabId);
-      if (panel) {
-        panel.classList.add("active");
-        panel.removeAttribute("hidden");
-        panel.style.display = "block";
-      }
-      if (scrollId) {
-        var el = $(scrollId);
-        if (el) {
-          el.removeAttribute("hidden");
-          el.style.display = "";
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    }, 180);
-  }
-
-  var prevGo = window.clarityIndexGo;
-  window.clarityIndexGo = function(key){
-    /* Keep index host closed */
+  function setMode(mode) {
+    mode = mode || "today";
     try {
-      ["clarity-learn-index","clarity-affairs-index","clarity-alltools-index"].forEach(function(id){
-        var el = $(id); if (el) { el.classList.add("hidden"); el.hidden = true; }
-      });
-    } catch(e){}
-    try { document.documentElement.setAttribute("data-ia-mode",
-      (key === "tajweed" || key === "quiz" || key === "calligraphy" || key === "commands" || key === "seerah" || key === "tafseer" || key === "lectures") ? "learn" : "affairs"); } catch(e){}
-
-    if (key === "tajweed") { showPanel("tajweed", "tj-today-drill"); loadDrill(); return; }
-    if (key === "calligraphy") {
-      showPanel("tajweed", "callig-lab-card");
-      setTimeout(function(){
-        var c = $("callig-lab-card");
-        if (c) { c.removeAttribute("hidden"); c.style.display = "block"; c.scrollIntoView({ behavior: "smooth", block: "start" }); }
-      }, 220);
-      return;
-    }
-    if (key === "quiz") { clarityStartLearnQuiz(); return; }
-    if (key === "commands") { showPanel("commands", null); return; }
-    if (key === "seerah") { showPanel("seerah", "seerah-mirror-card"); return; }
-    if (key === "tafseer") { showPanel("tafseer", null); return; }
-    if (key === "lectures") { showPanel("lectures", null); return; }
-    if (typeof prevGo === "function") return prevGo.apply(this, arguments);
-  };
-
-  /* Unhide calligraphy whenever tajweed activates */
-  var prevSwitch = window.switchTab;
-  if (typeof prevSwitch === "function" && !prevSwitch._learnAudit) {
-    window.switchTab = function(tabId, opts){
-      var r = prevSwitch.apply(this, arguments);
-      if (tabId === "tajweed") {
-        setTimeout(function(){
-          var c = $("callig-lab-card");
-          if (c) { c.removeAttribute("hidden"); c.removeAttribute("aria-hidden"); c.style.display = ""; }
-          loadDrill();
-        }, 50);
-      }
-      if (tabId === "about") {
-        setTimeout(function(){
-          var q = $("fiqh-quiz-card");
-          if (q) { q.removeAttribute("hidden"); q.style.display = ""; }
-        }, 50);
-      }
-      return r;
-    };
-    window.switchTab._learnAudit = true;
+      document.documentElement.setAttribute("data-ia-mode", mode);
+      document.body.setAttribute("data-ia-mode", mode);
+      document.documentElement.setAttribute("data-section-mode", mode === "today" ? "0" : "1");
+    } catch (e) {}
+    document.querySelectorAll("#clarity-door-rail .door-rail-btn").forEach(function (b) {
+      var door = b.getAttribute("data-rail-door") || "";
+      var isHome = b.id === "door-rail-main-view";
+      b.classList.toggle("active", mode === "today" ? isHome : door === mode);
+    });
   }
 
-  function boot(){ loadDrill(); }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 150); });
-  else setTimeout(boot, 150);
-  window.addEventListener("load", function(){ setTimeout(boot, 400); });
-})();
-</script>
-
-
-<script id="nuros-learn-solid-router">
-(function(){
-  "use strict";
-  /* Solid Learn router — last wins; opens real modules not Today */
-  if (window.__NUROS_LEARN_SOLID__) return;
-  window.__NUROS_LEARN_SOLID__ = true;
-
-  function el(id){ return document.getElementById(id); }
-
-  function hideLearnIndexes(){
-    ["clarity-learn-index","clarity-affairs-index","clarity-alltools-index"].forEach(function(id){
-      var n = el(id);
+  function hideIndexes() {
+    ["clarity-learn-index", "clarity-affairs-index", "clarity-alltools-index"].forEach(function (id) {
+      var n = $(id);
       if (!n) return;
       n.classList.add("hidden");
       n.hidden = true;
-      n.style.display = "none";
+      try { n.style.display = "none"; } catch (e) {}
     });
   }
 
-  function setLearnMode(){
-    try {
-      document.documentElement.setAttribute("data-ia-mode", "learn");
-      document.body.setAttribute("data-ia-mode", "learn");
-      document.documentElement.setAttribute("data-section-mode", "1");
-    } catch(e){}
-    var today = el("clarity-today-surface");
-    if (today) { today.classList.add("hidden"); today.style.display = "none"; }
-    var strip = el("one-action-strip");
-    if (strip) strip.style.display = "none";
-    /* rail highlight */
-    document.querySelectorAll("#clarity-door-rail .door-rail-btn").forEach(function(b){
-      var d = b.getAttribute("data-rail-door") || "";
-      b.classList.toggle("active", d === "learn" || (b.id === "door-rail-main-view" && false));
-    });
-    var learnBtn = document.querySelector('#clarity-door-rail [data-rail-door="learn"]');
-    if (learnBtn) learnBtn.classList.add("active");
-    var home = el("door-rail-main-view");
-    if (home) home.classList.remove("active");
+  function showIndex(id) {
+    hideIndexes();
+    var n = $(id);
+    if (!n) return;
+    n.classList.remove("hidden");
+    n.hidden = false;
+    try { n.style.display = "block"; } catch (e) {}
+    var host = $("clarity-index-host");
+    var workspace = $("main-application-workspace") || document.querySelector(".page-wrapper");
+    if (host && workspace) {
+      try { workspace.insertBefore(host, workspace.firstChild); } catch (e) {}
+    }
+    try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) {}
   }
 
-  function forceTab(tabId){
-    /* Quarantine all panels */
-    document.querySelectorAll(".tab-panel").forEach(function(p){
+  function showTodayChrome(show) {
+    var today = $("clarity-today-surface");
+    var strip = $("one-action-strip");
+    var los = $("clarity-learn-os");
+    if (show) {
+      if (today) { today.classList.remove("hidden"); try { today.style.display = ""; } catch (e) {} }
+      if (strip) try { strip.style.display = ""; } catch (e) {}
+      if (los) { los.classList.add("hidden"); try { los.style.display = "none"; } catch (e) {} }
+    } else {
+      if (today) { today.classList.add("hidden"); try { today.style.display = "none"; } catch (e) {} }
+      if (strip) try { strip.style.display = "none"; } catch (e) {}
+    }
+  }
+
+  function quarantinePanels(exceptId) {
+    document.querySelectorAll(".tab-panel").forEach(function (p) {
+      if (exceptId && p.id === exceptId) return;
       p.classList.remove("active", "is-active");
       p.setAttribute("hidden", "");
       p.setAttribute("aria-hidden", "true");
-      p.style.display = "none";
+      try {
+        p.style.display = "none";
+      } catch (e) {}
     });
-    var panel = el("tab-" + tabId);
+  }
+
+  function forceTab(tabId) {
+    quarantinePanels("tab-" + tabId);
+    var panel = $("tab-" + tabId);
     if (!panel) {
-      console.warn("[Clarity] missing tab-" + tabId);
+      console.warn("[Clarity rail] missing tab-" + tabId);
       return null;
     }
     panel.classList.add("active", "is-active");
     panel.removeAttribute("hidden");
     panel.setAttribute("aria-hidden", "false");
-    panel.style.cssText = "display:block !important;visibility:visible !important;height:auto !important;overflow:visible !important;opacity:1 !important;position:relative !important;";
-    try { document.body.setAttribute("data-active-tab", tabId); } catch(e){}
-    /* Prefer not to use empty hash (empty → Today boot) */
     try {
-      history.replaceState({ clarityTab: tabId }, "", (location.pathname || "/") + (location.search || "") + "#" + tabId);
-    } catch(e){}
+      panel.style.cssText =
+        "display:block!important;visibility:visible!important;height:auto!important;overflow:visible!important;opacity:1!important;";
+    } catch (e) {}
+    try { document.body.setAttribute("data-active-tab", tabId); } catch (e) {}
     return panel;
   }
 
-  function reveal(id){
-    var n = el(id);
-    if (!n) return null;
-    n.removeAttribute("hidden");
-    n.removeAttribute("aria-hidden");
-    n.style.display = "block";
-    n.style.visibility = "visible";
-    return n;
+  function safeHash(h) {
+    try {
+      history.replaceState({ clarityRail: h }, "", (location.pathname || "/") + (location.search || "") + h);
+    } catch (e) {}
   }
 
-  function scrollToEl(n){
+  function scrollToId(id) {
+    var n = $(id);
     if (!n) return;
     try {
+      n.removeAttribute("hidden");
+      n.style.display = "block";
+      n.style.visibility = "visible";
       n.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.scrollBy(0, -8);
-    } catch(e){
-      try { n.scrollIntoView(true); } catch(e2){}
+    } catch (e) {
+      try { n.scrollIntoView(true); } catch (e2) {}
     }
   }
 
-  /* ---- Public openers ---- */
-  window.openCalligraphyPad = function(){
-    hideLearnIndexes();
-    setLearnMode();
+  /* ---------- Rail chips ---------- */
+  window.clarityGoToday = function () {
+    setMode("today");
+    hideIndexes();
+    showTodayChrome(true);
+    forceTab("journey");
+    safeHash("#today");
+    try {
+      if (typeof clarityShowToday === "function") clarityShowToday(true);
+    } catch (e) {}
+    try {
+      if (typeof clarityShowDoorRail === "function") clarityShowDoorRail(true);
+    } catch (e) {}
+    try {
+      if (typeof clarityRefreshTodaySurface === "function") clarityRefreshTodaySurface();
+    } catch (e) {}
+    try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) {}
+  };
+
+  window.clarityCollapseToPathDoor = function () {
+    clarityGoToday();
+  };
+
+  window.clarityOpenLearnIndex = function () {
+    setMode("learn");
+    showTodayChrome(false);
+    quarantinePanels(null);
+    showIndex("clarity-learn-index");
+    safeHash("#learn");
+    try {
+      if (typeof clarityShowDoorRail === "function") clarityShowDoorRail(true);
+    } catch (e) {}
+  };
+
+  window.clarityOpenAffairsIndex = function () {
+    setMode("affairs");
+    showTodayChrome(false);
+    quarantinePanels(null);
+    showIndex("clarity-affairs-index");
+    safeHash("#affairs");
+    try {
+      if (typeof clarityShowDoorRail === "function") clarityShowDoorRail(true);
+    } catch (e) {}
+  };
+
+  window.clarityOpenAllTools = function () {
+    setMode("alltools");
+    showTodayChrome(false);
+    quarantinePanels(null);
+    showIndex("clarity-alltools-index");
+    safeHash("#all-tools");
+    try {
+      if (typeof clarityShowDoorRail === "function") clarityShowDoorRail(true);
+    } catch (e) {}
+  };
+
+  /* ---------- Learn openers ---------- */
+  window.openCalligraphyPad = function () {
+    setMode("learn");
+    hideIndexes();
+    showTodayChrome(false);
     forceTab("tajweed");
-    /* Calligraphy is inside tajweed — unhide and scroll after paint */
+    safeHash("#tajweed");
     var tries = 0;
-    function go(){
+    (function go() {
       tries++;
-      var c = el("callig-lab-card") || el("callig-lab-stage") || el("callig-pad-control-bar") || document.querySelector("[id*='callig-lab']");
+      var c = $("callig-lab-card") || document.querySelector("[id*='callig-lab']");
       if (c) {
-        reveal("callig-lab-card");
         c.removeAttribute("hidden");
         c.style.display = "block";
         c.style.visibility = "visible";
-        scrollToEl(c);
+        try { c.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
         return;
       }
-      if (tries < 8) setTimeout(go, 80);
-      else {
-        /* fallback: scroll to tajweed panel top */
-        var p = el("tab-tajweed");
-        scrollToEl(p);
-        console.warn("[Clarity] calligraphy pad not found in DOM");
-      }
-    }
-    setTimeout(go, 60);
-    setTimeout(go, 200);
-    setTimeout(go, 450);
+      if (tries < 10) setTimeout(go, 70);
+    })();
   };
 
-  window.openTajweedDrill = function(){
-    hideLearnIndexes();
-    setLearnMode();
+  window.openTajweedDrill = function () {
+    setMode("learn");
+    hideIndexes();
+    showTodayChrome(false);
     forceTab("tajweed");
-    setTimeout(function(){
-      var d = el("tj-today-drill") || el("tab-tajweed");
-      scrollToEl(d);
-      if (typeof clarityRerollTajweedDrill === "function" && el("tj-drill-task") && !el("tj-drill-task").textContent) {
-        try { clarityRerollTajweedDrill(); } catch(e){}
-      }
+    safeHash("#tajweed");
+    setTimeout(function () {
+      scrollToId("tj-today-drill");
+      if (!$("tj-today-drill")) scrollToId("tab-tajweed");
     }, 80);
   };
 
-  window.openLearnQuiz = function(){
-    hideLearnIndexes();
-    setLearnMode();
+  window.openLearnQuiz = function () {
+    setMode("learn");
+    hideIndexes();
+    showTodayChrome(false);
     forceTab("about");
-    setTimeout(function(){
-      var q = el("fiqh-quiz-card");
+    safeHash("#about");
+    setTimeout(function () {
+      var q = $("fiqh-quiz-card");
       if (q) {
         q.removeAttribute("hidden");
         q.style.display = "block";
-        scrollToEl(q);
+        try { q.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
       }
       window.__LEARN_QUIZ_MODE__ = true;
-      if (typeof siqShow === "function") try { siqShow("iq"); } catch(e){}
-      if (typeof siqStart === "function") setTimeout(function(){ try { siqStart(); } catch(e){} }, 120);
+      try {
+        if (typeof siqShow === "function") siqShow("iq");
+        if (typeof siqStart === "function") setTimeout(function () { siqStart(); }, 100);
+      } catch (e) {}
     }, 100);
   };
 
-  window.openCommandsTab = function(){
-    hideLearnIndexes(); setLearnMode(); forceTab("commands");
-    setTimeout(function(){ scrollToEl(el("tab-commands")); }, 60);
+  window.openCommandsTab = function () {
+    setMode("learn"); hideIndexes(); showTodayChrome(false);
+    forceTab("commands"); safeHash("#commands");
   };
-  window.openSeerahMirror = function(){
-    hideLearnIndexes(); setLearnMode(); forceTab("seerah");
-    setTimeout(function(){
-      var m = el("seerah-mirror-card") || el("tab-seerah");
-      scrollToEl(m);
-    }, 80);
+  window.openSeerahMirror = function () {
+    setMode("learn"); hideIndexes(); showTodayChrome(false);
+    forceTab("seerah"); safeHash("#seerah");
+    setTimeout(function () { scrollToId("seerah-mirror-card"); }, 80);
   };
-  window.openTafsirTab = function(){
-    hideLearnIndexes(); setLearnMode(); forceTab("tafseer");
-    setTimeout(function(){ scrollToEl(el("tab-tafseer")); }, 60);
+  window.openTafsirTab = function () {
+    setMode("learn"); hideIndexes(); showTodayChrome(false);
+    forceTab("tafseer"); safeHash("#tafseer");
   };
-  window.openLecturesTab = function(){
-    hideLearnIndexes(); setLearnMode(); forceTab("lectures");
-    setTimeout(function(){ scrollToEl(el("tab-lectures")); }, 60);
+  window.openLecturesTab = function () {
+    setMode("learn"); hideIndexes(); showTodayChrome(false);
+    forceTab("lectures"); safeHash("#lectures");
   };
 
-  /* Master dispatcher — replaces prior IndexGo for Learn keys */
-  window.clarityIndexGo = function(key){
+  window.clarityIndexGo = function (key) {
     key = String(key || "").toLowerCase();
-    if (key === "calligraphy" || key === "callig" || key === "letter" || key === "one letter") {
-      openCalligraphyPad(); return;
-    }
-    if (key === "tajweed" || key === "drill") { openTajweedDrill(); return; }
-    if (key === "quiz" || key === "daily quiz") { openLearnQuiz(); return; }
-    if (key === "commands" || key === "command") { openCommandsTab(); return; }
-    if (key === "seerah" || key === "mirror") { openSeerahMirror(); return; }
-    if (key === "tafseer" || key === "tafsir") { openTafsirTab(); return; }
-    if (key === "lectures") { openLecturesTab(); return; }
+    var learn = {
+      calligraphy: openCalligraphyPad,
+      callig: openCalligraphyPad,
+      tajweed: openTajweedDrill,
+      drill: openTajweedDrill,
+      quiz: openLearnQuiz,
+      commands: openCommandsTab,
+      seerah: openSeerahMirror,
+      tafseer: openTafsirTab,
+      tafsir: openTafsirTab,
+      lectures: openLecturesTab
+    };
+    if (learn[key]) { learn[key](); return; }
 
-    /* Affairs / tools — best effort without Today bounce */
-    hideLearnIndexes();
-    try { document.documentElement.setAttribute("data-ia-mode", "affairs"); } catch(e){}
+    setMode("affairs");
+    hideIndexes();
+    showTodayChrome(false);
     var map = {
-      debts: function(){ forceTab("notes"); setTimeout(function(){ scrollToEl(el("debts-day3-card")); }, 100); },
-      tree: function(){ forceTab("notes"); setTimeout(function(){ scrollToEl(el("user-family-tree-card")); }, 100); },
-      faraid: function(){ forceTab("notes"); setTimeout(function(){ scrollToEl(el("faraid-card")); }, 100); },
-      wasiyyah: function(){ forceTab("notes"); setTimeout(function(){ scrollToEl(el("wasiyyah-card")); }, 100); },
-      sadaqah: function(){ forceTab("notes"); setTimeout(function(){ scrollToEl(el("sadaqah-jariyah-card")); }, 100); },
-      janazah: function(){ forceTab("grave"); },
-      hajj: function(){ forceTab("search"); setTimeout(function(){ scrollToEl(el("hajj-guide-card")); }, 100); },
-      meme: function(){ forceTab("about"); setTimeout(function(){ scrollToEl(el("meme-card")); }, 100); },
-      notes: function(){ forceTab("about"); },
-      search: function(){ forceTab("search"); },
-      legacy7: function(){
-        try { if (typeof clarityRenderPrimaryPathDays === "function") clarityRenderPrimaryPathDays("legacy7"); } catch(e){}
+      debts: function () { forceTab("notes"); setTimeout(function () { scrollToId("debts-day3-card"); }, 100); },
+      tree: function () { forceTab("notes"); setTimeout(function () { scrollToId("user-family-tree-card"); }, 100); },
+      faraid: function () { forceTab("notes"); setTimeout(function () { scrollToId("faraid-card"); }, 100); },
+      wasiyyah: function () { forceTab("notes"); setTimeout(function () { scrollToId("wasiyyah-card"); }, 100); },
+      sadaqah: function () { forceTab("notes"); setTimeout(function () { scrollToId("sadaqah-jariyah-card"); }, 100); },
+      janazah: function () { forceTab("grave"); safeHash("#grave"); },
+      hajj: function () { forceTab("search"); setTimeout(function () { scrollToId("hajj-guide-card"); }, 100); },
+      meme: function () { forceTab("about"); setTimeout(function () { scrollToId("meme-card"); }, 100); },
+      notes: function () { forceTab("about"); },
+      search: function () { forceTab("search"); },
+      legacy7: function () {
+        try {
+          if (typeof clarityRenderPrimaryPathDays === "function") clarityRenderPrimaryPathDays("legacy7");
+        } catch (e) {}
+        var board = $("path-board");
+        if (board) { board.hidden = false; try { board.scrollIntoView({ behavior: "smooth" }); } catch (e) {} }
       }
     };
     if (map[key]) map[key]();
   };
 
-  /* Direct onclick safety for Learn tiles (event delegation) */
-  document.addEventListener("click", function(ev){
-    var t = ev.target;
-    if (!t || !t.closest) return;
-    var btn = t.closest("[data-learn-open], [onclick*='calligraphy'], [onclick*=\"calligraphy\"]");
-    if (!btn) return;
-    var oc = btn.getAttribute("onclick") || "";
-    if (/calligraphy|One letter|one letter/i.test(oc) || btn.getAttribute("data-learn-open") === "calligraphy") {
-      /* Let inline run too; solid open after */
-      setTimeout(function(){ openCalligraphyPad(); }, 0);
+  /* Three-doors → rail */
+  if (typeof window.clarityPickPrimaryDoor === "function" && !window.clarityPickPrimaryDoor._v3) {
+    var prevPick = window.clarityPickPrimaryDoor;
+    window.clarityPickPrimaryDoor = function (door) {
+      var td = $("clarity-three-doors");
+      if (td) { td.classList.add("hidden"); td.style.display = "none"; }
+      if (door === "learn") { clarityOpenLearnIndex(); return; }
+      if (door === "prepare") { clarityOpenAffairsIndex(); return; }
+      if (door === "today") { clarityGoToday(); return; }
+      return prevPick.apply(this, arguments);
+    };
+    window.clarityPickPrimaryDoor._v3 = true;
+  }
+
+  /* Hash router — single place */
+  function routeHash() {
+    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
+    if (!h || h === "today" || h === "journey" || h === "index.html") {
+      clarityGoToday();
+      return;
     }
-  }, true);
+    if (h === "learn" || h === "learn-index") { clarityOpenLearnIndex(); return; }
+    if (h === "affairs" || h === "affairs-index") { clarityOpenAffairsIndex(); return; }
+    if (h === "all-tools" || h === "alltools") { clarityOpenAllTools(); return; }
+    if (h === "tajweed") { openTajweedDrill(); return; }
+    if (h === "commands") { openCommandsTab(); return; }
+    if (h === "seerah") { openSeerahMirror(); return; }
+    if (h === "tafseer" || h === "tafsir") { openTafsirTab(); return; }
+    if (h === "lectures") { openLecturesTab(); return; }
+    if (h === "fiqh-tools" || h === "notes") {
+      setMode("affairs"); hideIndexes(); showTodayChrome(false);
+      forceTab("notes"); return;
+    }
+    if (h === "grave") {
+      setMode("affairs"); hideIndexes(); showTodayChrome(false);
+      forceTab("grave"); return;
+    }
+    /* unknown: stay calm on Today */
+    clarityGoToday();
+  }
 
-  /* CSS kill-switch: when tajweed active, pad must show */
-  var st = document.createElement("style");
-  st.id = "nuros-callig-force-css";
-  st.textContent = [
-    'body[data-active-tab="tajweed"] #tab-tajweed { display:block !important; visibility:visible !important; height:auto !important; overflow:visible !important; }',
-    'body[data-active-tab="tajweed"] #callig-lab-card { display:block !important; visibility:visible !important; height:auto !important; max-height:none !important; overflow:visible !important; }',
-    'body[data-active-tab="tajweed"] #callig-lab-card[hidden] { display:block !important; }',
-    'html[data-ia-mode="learn"] #clarity-today-surface { display:none !important; }',
-    'html[data-ia-mode="learn"] #one-action-strip { display:none !important; }',
-    'html[data-ia-mode="learn"] .banner { display:none !important; }'
-  ].join("\n");
-  document.documentElement.appendChild(st);
+  function boot() {
+    try {
+      if (typeof clarityShowDoorRail === "function") clarityShowDoorRail(true);
+    } catch (e) {}
+    routeHash();
+  }
 
-  console.info("[Clarity] solid Learn router ready");
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 100); });
+  } else {
+    setTimeout(boot, 100);
+  }
+  window.addEventListener("load", function () { setTimeout(boot, 350); });
+  window.addEventListener("hashchange", function () { routeHash(); });
+
+  console.info("[Clarity] rail solid v3 ready");
 })();
 </script>
+<style id="nuros-rail-solid-v3-css">
+html[data-ia-mode="learn"] .banner,
+html[data-ia-mode="affairs"] .banner,
+html[data-ia-mode="alltools"] .banner { display: none !important; }
+html[data-ia-mode="today"] .banner { display: block !important; }
+html[data-ia-mode="today"] #clarity-learn-os { display: none !important; }
+html[data-ia-mode="today"] #tab-tajweed,
+html[data-ia-mode="today"] #tab-commands,
+html[data-ia-mode="today"] #tab-seerah,
+html[data-ia-mode="today"] #tab-tafseer,
+html[data-ia-mode="today"] #tab-lectures,
+html[data-ia-mode="today"] #tab-about,
+html[data-ia-mode="today"] #tab-notes,
+html[data-ia-mode="today"] #tab-grave,
+html[data-ia-mode="today"] #tab-search {
+  display: none !important;
+}
+html[data-ia-mode="today"] #tab-journey.active,
+html[data-ia-mode="today"] #tab-journey.is-active {
+  display: block !important;
+}
+html[data-ia-mode="learn"] #clarity-today-surface,
+html[data-ia-mode="affairs"] #clarity-today-surface,
+html[data-ia-mode="alltools"] #clarity-today-surface {
+  display: none !important;
+}
+body[data-active-tab="tajweed"] #callig-lab-card {
+  display: block !important;
+  visibility: visible !important;
+}
+.clarity-index-panel.hidden { display: none !important; }
+#clarity-door-rail .door-rail-btn.active {
+  background: rgba(255,255,255,0.22) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+}
+</style>
 
 </html>
