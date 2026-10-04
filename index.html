@@ -4982,6 +4982,132 @@ html[data-theme="light"] .gps-btn.gps-dai {
 }
 </style>
 
+
+<style id="clarity-track-banner-polish-v2">
+/* Track rail matches path card colors */
+.clarity-gate-switcher.rrra-sitewide {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem;
+  margin: 0.5rem 0 0.75rem; padding: 0.35rem 0;
+}
+.clarity-gate-switcher .cgs-label {
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
+  text-transform: uppercase; opacity: 0.85; margin-right: 0.2rem;
+}
+.clarity-gate-switcher .cgs-btn {
+  border-radius: 999px !important; border: 1.5px solid transparent !important;
+  padding: 0.35rem 0.7rem !important; font-weight: 700 !important;
+  font-size: 0.78rem !important; cursor: pointer;
+  transition: box-shadow .15s, transform .12s;
+}
+.clarity-gate-switcher .cgs-btn.cgs-seeker,
+.clarity-gate-switcher .cgs-btn[data-gate="seeker"] {
+  background: linear-gradient(145deg, #3d3420, #2a2416) !important;
+  border-color: rgba(212,180,90,0.55) !important; color: #f5e6b8 !important;
+}
+.clarity-gate-switcher .cgs-btn.cgs-new,
+.clarity-gate-switcher .cgs-btn[data-gate="new_muslim"] {
+  background: linear-gradient(145deg, #0f3d30, #0a2a22) !important;
+  border-color: rgba(31,166,122,0.55) !important; color: #d4f0e4 !important;
+}
+.clarity-gate-switcher .cgs-btn.cgs-daily,
+.clarity-gate-switcher .cgs-btn[data-gate="practicing"] {
+  background: linear-gradient(145deg, #0c3340, #0a242e) !important;
+  border-color: rgba(61,168,196,0.5) !important; color: #d0eaf2 !important;
+}
+.clarity-gate-switcher .cgs-btn.cgs-dai,
+.clarity-gate-switcher .cgs-btn[data-gate="dai"] {
+  background: linear-gradient(145deg, #2a2a4a, #1a1a32) !important;
+  border-color: rgba(140,140,200,0.5) !important; color: #e0e0f5 !important;
+}
+.clarity-gate-switcher .cgs-btn.is-active,
+.clarity-gate-switcher .cgs-btn.active {
+  box-shadow: 0 0 0 2px rgba(212,180,90,0.75) !important;
+  transform: translateY(-1px);
+}
+html[data-theme="day"] .clarity-gate-switcher .cgs-btn.cgs-seeker,
+html[data-theme="light"] .clarity-gate-switcher .cgs-btn.cgs-seeker {
+  background: linear-gradient(145deg, #f8f0d8, #f0e6c0) !important; color: #3d3010 !important;
+}
+html[data-theme="day"] .clarity-gate-switcher .cgs-btn.cgs-new,
+html[data-theme="light"] .clarity-gate-switcher .cgs-btn.cgs-new {
+  background: linear-gradient(145deg, #e6f5ee, #d4efe3) !important; color: #0a3d2e !important;
+}
+html[data-theme="day"] .clarity-gate-switcher .cgs-btn.cgs-daily,
+html[data-theme="light"] .clarity-gate-switcher .cgs-btn.cgs-daily {
+  background: linear-gradient(145deg, #e4f3f7, #d0eaf2) !important; color: #0c3340 !important;
+}
+html[data-theme="day"] .clarity-gate-switcher .cgs-btn.cgs-dai,
+html[data-theme="light"] .clarity-gate-switcher .cgs-btn.cgs-dai {
+  background: linear-gradient(145deg, #ececf6, #e0e0f0) !important; color: #2a2a4a !important;
+}
+
+/* Banner AV controls — single line, wider plaque */
+#clarity-top-duo .banner-center {
+  max-width: min(640px, 100%) !important;
+  width: 100% !important;
+}
+#clarity-top-duo .stream-controls {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.28rem !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100% !important;
+  padding: 0.2rem 0.15rem !important;
+  margin-top: 0.35rem !important;
+}
+#clarity-top-duo .stream-controls > * {
+  flex: 0 0 auto !important;
+  min-width: 0 !important;
+}
+#clarity-top-duo .stream-controls .stream-select,
+#clarity-top-duo .stream-controls select {
+  max-width: 6.5rem !important;
+  font-size: 0.68rem !important;
+  padding: 0.28rem 0.35rem !important;
+}
+#clarity-top-duo .stream-controls .live-haramain-btn,
+#clarity-top-duo .stream-controls .quran-stream-btn {
+  min-width: 0 !important;
+  padding: 0.28rem 0.55rem !important;
+  font-size: 0.7rem !important;
+  white-space: nowrap !important;
+}
+#clarity-top-duo .stream-controls .volume-control {
+  min-width: 4rem !important;
+  padding: 0.2rem 0.4rem !important;
+}
+#clarity-top-duo .stream-controls .volume-control input[type="range"] {
+  width: 42px !important;
+}
+@media (max-width: 420px) {
+  #clarity-top-duo .stream-controls .stream-select { max-width: 5.2rem !important; }
+}
+
+/* Haramain dual temps visible */
+.ht-item, #temp-makkah, #temp-madinah {
+  visibility: visible !important;
+  font-variant-numeric: tabular-nums;
+}
+.ht-item strong { font-weight: 800; }
+
+/* Section manager chip */
+#clarity-section-manager {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem;
+  margin: 0.35rem 0 0.65rem; padding: 0.4rem 0.55rem;
+  border-radius: 12px; border: 1px solid rgba(212,180,90,0.28);
+  background: rgba(0,0,0,0.2); font-size: 0.78rem;
+}
+#clarity-section-manager strong { color: #d4b45a; }
+#clarity-section-manager button {
+  font: inherit; font-size: 0.72rem; font-weight: 700;
+  padding: 0.28rem 0.55rem; border-radius: 999px; cursor: pointer;
+  border: 1px solid rgba(212,180,90,0.35); background: rgba(15,40,32,0.85); color: #f5e6b8;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
