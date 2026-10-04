@@ -120,6 +120,42 @@ function showEl(el){
 /** Additive path filter — overrides exclusive filter */
 
 function applyAdditiveFilter(gate){ return applyExclusiveFilter(gate); }
+
+function installExclusiveLock(gate){
+  gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
+  var allow = ALLOW[gate] || ALLOW.seeker || {};
+  var hideIds = [];
+  document.querySelectorAll(".card[id], [id$='-card']").forEach(function(node){
+    var id = node.id;
+    if (!id) return;
+    if (VAULT[id]) return;
+    if (allow[id] === 1) return;
+    if (id === "cw-card" || id === "about-clarity-card") return;
+    hideIds.push("#" + id.replace(/([^\w-])/g, "\\$1"));
+  });
+  var el = document.getElementById("clarity-path-lock");
+  if (!el) {
+    el = document.createElement("style");
+    el.id = "clarity-path-lock";
+    document.head.appendChild(el);
+  }
+  var css = hideIds.length
+    ? (hideIds.join(",") + "{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;pointer-events:none!important;}")
+    : "";
+  el.textContent = css;
+  /* also class-based */
+  document.querySelectorAll(".card, [id$='-card']").forEach(function(node){
+    var id = node.id || "";
+    if (!id || VAULT[id] || allow[id] === 1 || id === "about-clarity-card" || id === "cw-card") {
+      node.classList.remove("gate-hidden");
+      node.removeAttribute("data-gate-hidden");
+      return;
+    }
+    node.classList.add("gate-hidden");
+    node.setAttribute("data-gate-hidden", "1");
+  });
+}
+
 function applyExclusiveFilter(gate){
   gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
   try {
@@ -150,32 +186,22 @@ function applyExclusiveFilter(gate){
 }
 
 
-function installAdditiveLock(gate, allow){
-  var el = document.getElementById("clarity-path-lock");
-  if (!el) { el = document.createElement("style"); el.id = "clarity-path-lock"; }
-  var hideIds = [];
-  document.querySelectorAll(".card[id], [id$='-card']").forEach(function(node){
-    var id = node.id;
-    if (!id || VAULT[id] || allow[id]) return;
-    hideIds.push(id);
-  });
-  /* also known advanced cards not in union */
-  ["meme-card","tweet-desk-card","callig-lab-card","tajweed-live-card","israeliyat-card","najiha-tafseer-card"].forEach(function(id){
-    if (!allow[id] && hideIds.indexOf(id) < 0) hideIds.push(id);
-  });
-  if (gate === "dai") {
-    el.textContent = "/* dai: all sections open */";
-    try { document.documentElement.appendChild(el); } catch(e){}
-    return;
-  }
-  var css = hideIds.map(function(id){
-    return 'html[data-clarity-path="'+gate+'"] #'+id+
-      ',html[data-clarity-path="'+gate+'"] #tab-reminder.is-active #'+id;
-  }).join(',') + (hideIds.length
-    ? '{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;}'
-    : '/* all open */');
-  el.textContent = css;
-  try { document.documentElement.appendChild(el); } catch(e){}
+function installAdditiveLock(gate, allow){ try { installExclusiveLock(gate); } catch(e){} }
+
+
+function watchExclusiveLock(){
+  var n = 0;
+  var iv = setInterval(function(){
+    try {
+      var g = document.documentElement.getAttribute("data-clarity-path")
+        || localStorage.getItem("clarity_path_focus")
+        || "seeker";
+      installExclusiveLock(g);
+      applyExclusiveFilter(g);
+    } catch(e){}
+    n++;
+    if (n > 30) clearInterval(iv);
+  }, 500);
 }
 
 function applyContent(gate){
@@ -191,6 +217,7 @@ function applyContent(gate){
     try { raw(gate); } finally { window.__clarityPathBypass = false; }
   }
   applyExclusiveFilter(gate);
+  try { watchExclusiveLock(); } catch(e){}
   /* Bring user to the natural hub for this path so sections are visible */
   try {
     var hub = (gate === "practicing") ? "action" : (gate === "dai") ? "reminder" : "reminder";
@@ -302,7 +329,7 @@ function paintQuiz(){
     var ok = Q.correct >= Q.qs.length;
     inner.innerHTML = "<h3>"+(ok?"Door unlocked":"Not yet")+"</h3>"+
       "<p class=\"cpq-sub\">"+(ok
-        ? ("Welcome to <strong>"+LABELS[Q.target]+"</strong>. Earlier modules stay available; new ones are added.")
+        ? ("Welcome to <strong>"+LABELS[Q.target]+"</strong>. This door is now open. Use the track rail to move — higher doors still need a short quiz.")
         : ("Score "+Q.correct+"/"+Q.qs.length+". Stay on <strong>"+LABELS[Q.from]+"</strong> and try again."))+"</p>"+
       "<div class=\"cpq-actions\">"+
       (ok?"<button type=\"button\" class=\"cpq-primary\" id=\"cpq-go\">Enter path</button>":
@@ -378,39 +405,23 @@ window.clarityWelcomePickTrack = function(gate){
     localStorage.setItem("clarity_committed_path", gate);
     localStorage.setItem("clarity_path_override", gate);
     localStorage.setItem("clarity_path_focus", gate);
-    /* unlock through selected door so request path does not block */
     localStorage.setItem("clarity_path_unlocked_max", String(ORDER.indexOf(gate)));
   } catch(e){}
   try {
-    if (typeof window.clarityFinishWelcome === "function") {
-      window.clarityFinishWelcome(false);
-    } else {
+    if (typeof window.clarityFinishWelcome === "function") window.clarityFinishWelcome(false);
+    else {
       var el = document.getElementById("clarity-welcome");
-      if (el) {
-        el.classList.remove("show");
-        el.setAttribute("aria-hidden", "true");
-      }
-      try {
-        document.documentElement.style.removeProperty("overflow-y");
-        document.body.style.removeProperty("overflow-y");
-      } catch(e2){}
-    }
-  } catch(e){}
-  try {
-    if (typeof window.clarityRequestPath === "function") {
-      window.__clarityPathBypass = true;
-      try { window.clarityRequestPath(gate); }
-      finally { window.__clarityPathBypass = false; }
-    } else if (typeof applyExclusiveFilter === "function") {
-      applyExclusiveFilter(gate);
+      if (el) { el.classList.remove("show"); el.setAttribute("aria-hidden", "true"); }
     }
   } catch(e){}
   try {
     var td = document.getElementById("clarity-three-doors");
-    if (td) {
-      td.classList.add("hidden");
-      td.style.setProperty("display", "none", "important");
-    }
+    if (td) { td.classList.add("hidden"); td.style.setProperty("display", "none", "important"); }
+  } catch(e){}
+  try {
+    if (typeof applyExclusiveFilter === "function") applyExclusiveFilter(gate);
+    if (typeof markUI === "function") markUI(gate);
+    if (typeof installExclusiveLock === "function") installExclusiveLock(gate);
   } catch(e){}
   try { if (window.clarityUnlockScroll) window.clarityUnlockScroll(); } catch(e){}
   return { ok: true, path: gate };

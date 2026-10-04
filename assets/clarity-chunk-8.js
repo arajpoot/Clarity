@@ -8574,7 +8574,7 @@ function clarityCommitGate(gateType) {
 }
 
 function selectAppGate(gateType) { clarityCommitGate(gateType); }
-function applyGateConfiguration(gate) { clarityCommitGate(gate); }
+function applyGateConfiguration(gate) { if (typeof clarityRequestPath === "function") clarityRequestPath(gate); else if (typeof clarityCommitGate === "function") clarityCommitGate(gate); }
 
 function resetToGateView() {
   try {
