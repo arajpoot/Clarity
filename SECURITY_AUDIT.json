@@ -1,0 +1,24 @@
+{
+  "eval": 0,
+  "new_Function": 0,
+  "document_write": 4,
+  "http_mixed_content_hints": 6,
+  "crypto_subtle_vault": true,
+  "vault": {
+    "pbkdf2_iterations": 120000,
+    "aes": true,
+    "session_key_memory_only": true,
+    "storage": "localStorage encrypted blob clarity_amana_vault_blob_v1",
+    "password_strength_meter": true,
+    "notes": [
+      "Vault uses Web Crypto PBKDF2 + AES (see amana gate module)",
+      "Session unlock flag is in-memory only",
+      "No password sent to network by vault module design",
+      "XSS residual risk: many innerHTML sites \u2014 keep content trusted/static",
+      "Recommend: never put secrets in URL hash; clear session on hide"
+    ]
+  },
+  "issues": [
+    "none critical"
+  ]
+}
