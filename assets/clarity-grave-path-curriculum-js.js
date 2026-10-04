@@ -170,6 +170,12 @@
 
   function ensureStrip(){
     var g = pathNow();
+    try {
+      if (localStorage.getItem("clarity_welcome_seen_v2") || localStorage.getItem("clarity_committed_path")) {
+        var _s = document.getElementById("clarity-grave-path-strip");
+        if (_s) { _s.style.setProperty("display","none","important"); return; }
+      }
+    } catch(e){}
     var strip = document.getElementById("clarity-grave-path-strip");
     if (!strip) {
       strip = document.createElement("div");

@@ -341,6 +341,99 @@ function paintQuiz(){
   if (stay) stay.onclick = function(){ closeQuiz(false); };
 }
 
+
+window.clarityPathResetToSeeker = function(){
+  try {
+    localStorage.setItem("clarity_path_unlocked_max", "0");
+    localStorage.setItem("clarity_committed_path", "seeker");
+    localStorage.setItem("clarity_path_override", "seeker");
+    localStorage.setItem("clarity_path_focus", "seeker");
+    localStorage.removeItem("clarity_path_quiz_done");
+  } catch(e){}
+  try {
+    document.documentElement.setAttribute("data-clarity-path", "seeker");
+    document.body.setAttribute("data-clarity-path", "seeker");
+  } catch(e){}
+  try {
+    if (typeof applyExclusiveFilter === "function") applyExclusiveFilter("seeker");
+    else if (typeof applyAdditiveFilter === "function") applyAdditiveFilter("seeker");
+  } catch(e){}
+  try { if (typeof markUI === "function") markUI("seeker"); } catch(e){}
+  try {
+    if (typeof switchTab === "function") switchTab("reminder");
+  } catch(e){}
+  try {
+    if (typeof clarityGravePathSync === "function") clarityGravePathSync();
+  } catch(e){}
+  return { ok: true, path: "seeker" };
+};
+
+window.clarityWelcomePickTrack = function(gate){
+  gate = String(gate || "seeker");
+  var ORDER = ["seeker","new_muslim","practicing","dai"];
+  if (ORDER.indexOf(gate) < 0) gate = "seeker";
+  try {
+    localStorage.setItem("clarity_welcome_seen_v2", "1");
+    localStorage.setItem("clarity_welcome_seen", "1");
+    localStorage.setItem("clarity_committed_path", gate);
+    localStorage.setItem("clarity_path_override", gate);
+    localStorage.setItem("clarity_path_focus", gate);
+    /* unlock through selected door so request path does not block */
+    localStorage.setItem("clarity_path_unlocked_max", String(ORDER.indexOf(gate)));
+  } catch(e){}
+  try {
+    if (typeof window.clarityFinishWelcome === "function") {
+      window.clarityFinishWelcome(false);
+    } else {
+      var el = document.getElementById("clarity-welcome");
+      if (el) {
+        el.classList.remove("show");
+        el.setAttribute("aria-hidden", "true");
+      }
+      try {
+        document.documentElement.style.removeProperty("overflow-y");
+        document.body.style.removeProperty("overflow-y");
+      } catch(e2){}
+    }
+  } catch(e){}
+  try {
+    if (typeof window.clarityRequestPath === "function") {
+      window.__clarityPathBypass = true;
+      try { window.clarityRequestPath(gate); }
+      finally { window.__clarityPathBypass = false; }
+    } else if (typeof applyExclusiveFilter === "function") {
+      applyExclusiveFilter(gate);
+    }
+  } catch(e){}
+  try {
+    var td = document.getElementById("clarity-three-doors");
+    if (td) {
+      td.classList.add("hidden");
+      td.style.setProperty("display", "none", "important");
+    }
+  } catch(e){}
+  try { if (window.clarityUnlockScroll) window.clarityUnlockScroll(); } catch(e){}
+  return { ok: true, path: gate };
+};
+
+window.clarityWelcomeSkipToName = function(){
+  return window.clarityWelcomePickTrack("seeker");
+};
+
+window.clarityCommitGate = function(gate){
+  return window.clarityWelcomePickTrack(gate);
+};
+
+window.clarityPickPrimaryDoor = function(door){
+  /* map old doors to paths or tabs */
+  var map = { today: "seeker", learn: "practicing", prepare: "dai" };
+  if (map[door]) return window.clarityWelcomePickTrack(map[door]);
+  try {
+    var td = document.getElementById("clarity-three-doors");
+    if (td) { td.classList.add("hidden"); td.style.display = "none"; }
+  } catch(e){}
+};
+
 window.clarityRequestPath = function(gate){
   gate = String(gate||"seeker");
   if (ORDER.indexOf(gate)<0) gate = "seeker";
