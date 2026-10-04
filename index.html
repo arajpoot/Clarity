@@ -4654,22 +4654,33 @@ iframe{max-width:100%}
 
 
 <style id="clarity-banner-height-fix">
-/* Banner was collapsing: media is position:absolute and min-height was 0 */
-#clarity-top-duo { display: block !important; visibility: visible !important; }
+/* Phase: banner permanence — never collapse after paint */
+#clarity-top-duo {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 40 !important;
+  width: 100% !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
 #clarity-top-duo .banner {
   position: relative !important;
   display: block !important;
-  min-height: 158px !important;
+  min-height: 220px !important;
   height: auto !important;
-  overflow: hidden !important;
+  max-height: none !important;
+  overflow: visible !important;
   visibility: visible !important;
   opacity: 1 !important;
 }
 #clarity-top-duo .banner-media {
   position: absolute !important;
   inset: 0 !important;
-  min-height: 158px !important;
+  min-height: 100% !important;
   z-index: 0 !important;
+  overflow: hidden !important;
 }
 #clarity-top-duo .banner-still-img,
 #clarity-top-duo #banner-img {
@@ -4684,16 +4695,117 @@ iframe{max-width:100%}
 #clarity-top-duo .banner-overlay {
   position: relative !important;
   z-index: 2 !important;
-  min-height: 150px !important;
+  min-height: 210px !important;
+  height: auto !important;
+  max-height: none !important;
   display: flex !important;
+  flex-wrap: wrap !important;
   visibility: visible !important;
+  overflow: visible !important;
+  padding: 0.45rem 0.5rem 0.55rem !important;
 }
-@media (max-width: 720px) {
-  #clarity-top-duo .banner,
-  #clarity-top-duo .banner-media { min-height: 120px !important; }
-  #clarity-top-duo .banner-overlay { min-height: 112px !important; flex-direction: column !important; }
+#clarity-top-duo .banner-center {
+  display: flex !important;
+  flex-direction: column !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  order: 2 !important;
+}
+#clarity-top-duo .banner-center .bismillah,
+#clarity-top-duo .banner-center h1,
+#clarity-top-duo .banner-center .subtitle,
+#clarity-top-duo .banner-center .rabbana-box,
+#clarity-top-duo .banner-center .stream-controls {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#clarity-top-duo .banner-center .stream-controls {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+/* Mobile: sides optional, center always full */
+@media (max-width: 900px) {
+  #clarity-top-duo .banner { min-height: 260px !important; }
+  #clarity-top-duo .banner-overlay {
+    min-height: 250px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  #clarity-top-duo .banner-side {
+    display: none !important; /* intentional on narrow screens */
+  }
+  #clarity-top-duo .banner-center {
+    max-width: 100% !important;
+    padding: 0.2rem 0.15rem !important;
+  }
+  #clarity-top-duo .rabbana-box { max-width: 100% !important; }
+  #clarity-top-duo .rabbana-arabic { font-size: 0.95rem !important; line-height: 1.5 !important; }
+  #clarity-top-duo .banner h1 { font-size: 1.35rem !important; }
+}
+@media (min-width: 901px) {
+  #clarity-top-duo .banner { min-height: 180px !important; }
+  #clarity-top-duo .banner-overlay { min-height: 170px !important; flex-direction: row !important; }
+  #clarity-top-duo .banner-side { display: flex !important; }
+  #clarity-top-duo .banner-center { max-width: 520px !important; width: auto !important; }
+}
+/* Visit pill should not cover banner */
+#clarity-visit-pill-bar.cv-stitched-banner {
+  position: relative !important;
+  z-index: 5 !important;
 }
 </style>
+<script id="clarity-banner-lock-js">
+(function(){
+  "use strict";
+  if (window.__CLARITY_BANNER_LOCK__) return;
+  window.__CLARITY_BANNER_LOCK__ = true;
+  var armed = Date.now();
+  function ensure(){
+    var duo = document.getElementById("clarity-top-duo");
+    var ban = duo && duo.querySelector(".banner");
+    var ov = duo && duo.querySelector(".banner-overlay");
+    if (duo) {
+      duo.style.setProperty("display", "block", "important");
+      duo.style.setProperty("visibility", "visible", "important");
+      duo.style.setProperty("opacity", "1", "important");
+    }
+    if (ban) {
+      ban.style.setProperty("display", "block", "important");
+      ban.style.setProperty("min-height", (window.innerWidth <= 900 ? "260px" : "180px"), "important");
+      ban.style.setProperty("overflow", "visible", "important");
+    }
+    if (ov) {
+      ov.style.setProperty("display", "flex", "important");
+      ov.style.setProperty("visibility", "visible", "important");
+    }
+  }
+  function boot(){
+    ensure();
+    /* Soft-block accidental jump past banner for first 1.5s after load */
+    var _siv = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = function(){
+      if (Date.now() - armed < 1500) {
+        var top = document.getElementById("clarity-top-duo");
+        if (top && this !== top && !top.contains(this)) {
+          /* allow user clicks later; skip auto-jumps during boot */
+          return;
+        }
+      }
+      return _siv.apply(this, arguments);
+    };
+    setTimeout(function(){ try { Element.prototype.scrollIntoView = _siv; } catch(e){} }, 1600);
+    try { window.scrollTo(0, 0); } catch(e){}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  window.addEventListener("load", function(){ ensure(); try { if (Date.now()-armed < 1200) window.scrollTo(0,0); } catch(e){} });
+})();
+</script>
+
 
 </head><body data-active-tab="journey" data-section-fortress="1">
 
