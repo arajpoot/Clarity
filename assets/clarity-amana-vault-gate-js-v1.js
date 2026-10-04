@@ -464,3 +464,12 @@
     isOpen: function(){ return SESSION_UNLOCKED; }
   };
 })();
+/* security: lock vault when tab hidden */
+document.addEventListener("visibilitychange", function(){
+  if (document.visibilityState === "hidden") {
+    try {
+      if (typeof SESSION_UNLOCKED !== "undefined") SESSION_UNLOCKED = false;
+      if (typeof sessionKey !== "undefined") sessionKey = null;
+    } catch(e){}
+  }
+});

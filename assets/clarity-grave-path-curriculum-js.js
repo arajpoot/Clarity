@@ -192,8 +192,9 @@
     ORDER.forEach(function(key){
       var p = PHASES[key];
       if (!p) return;
-      html += '<button type="button" class="gps-phase'+(key===g?' active':'')+'" data-gate="'+key+'" onclick="typeof clarityRequestPath===\'function\'&&clarityRequestPath(\''+key+'\')">'
-        + '<strong>'+p.title+'</strong>'+p.goal
+      html += '<button type="button" class="gps-btn gps-phase gps-'+key+(key===g?' active':'')+'" data-gate="'+key+'" onclick="typeof clarityRequestPath===\'function\'&&clarityRequestPath(\''+key+'\')">'
+        + '<span class="gps-title">'+p.title+'</span>'
+        + '<span class="gps-goal">'+p.goal+'</span>'
         + '<span class="gps-tag">'+p.focus+'</span></button>';
     });
     html += '</div>';
