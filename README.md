@@ -1,31 +1,25 @@
-# Clarity — GitHub → Cloudflare Pages
+# Clarity – Furnish Your Grave
 
-## Upload ONLY these files to the repo root
+Local-first Islamic **educational** companion (NurOS).
 
-| File | Role |
-|------|------|
-| **index.html** | Main app (served at `/`) — Learn, Today, Affairs, tools |
-| **clarity.html** | Same app (alias at `/clarity`) |
-| debts-and-trusts.html | Google indexing card |
-| sadaqah-jariyah.html | Google indexing card |
-| islamic-will.html | Google indexing card |
-| prepare-for-death.html | Google indexing card |
-| hajj-checklist.html | Google indexing card |
-| _redirects | Cloudflare clean URLs |
-| sitemap.xml | Search Console |
-| robots.txt | Crawlers |
+Path: **Seeker → New Muslim → Daily → Da'i**
 
-Do **not** upload: NurOS-Clarity-*.html, Clarity-*-package.zip, old Vercel builds, or duplicate “final” copies.
+> Not a fatwa service. Verify with Qur'an, Sunnah, and a local scholar.
 
-## Cloudflare Pages settings
+## Live
 
-- Framework: None
-- Build command: (empty)
-- Output directory: `/` (repo root)
-- Production branch: main
+https://clarity-dawah.fyi/
 
-## After push
+## Section paths (SEO)
 
-1. Open https://your-domain/ → should load app at #today
-2. Learn → One letter → Calligraphy pad
-3. Submit sitemap.xml in Google Search Console
+- `/journey` `/seerah` `/grave` `/janazah-prayer`
+- `/tafseer` `/tajweed` `/lectures`
+- `/fiqh-tools` `/meme` `/notes` `/commands` `/about`
+
+## Deploy
+
+See `PUBLISH_STEPS.md`. Upload `index.html`, `robots.txt`, `sitemap.xml`.
+
+## Privacy
+
+Vault & notes stay on-device (localStorage). Educational tools only.
