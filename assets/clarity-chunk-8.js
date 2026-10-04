@@ -3187,7 +3187,7 @@ function memeSurpriseMe(){
     if(!el) return;
     el.classList.add('show');
     el.setAttribute('aria-hidden','false');
-    document.documentElement.style.overflowY = 'hidden';
+    try{document.documentElement.style.overflowY='hidden';document.body.style.overflowY='hidden';}catch(e){}
     var chip = document.getElementById('clarity-start-chip');
     if(chip) chip.classList.remove('show');
   }
@@ -3196,10 +3196,10 @@ function memeSurpriseMe(){
     if(!el) return;
     el.classList.remove('show');
     el.setAttribute('aria-hidden','true');
-    document.documentElement.style.overflowY = 'scroll';
+    try{document.documentElement.style.overflowY='';document.documentElement.style.removeProperty('overflow-y');document.body.style.overflowY='';document.body.style.removeProperty('overflow-y');if(window.clarityUnlockScroll)window.clarityUnlockScroll();}catch(e){}
   }
   window.clarityShowWelcome = function(){ show(); };
-  window.clarityFinishWelcome = function(goJourney){
+  window.clarityFinishWelcome = function(goJourney){ try{if(window.clarityUnlockScroll)window.clarityUnlockScroll();}catch(e){}
     try{ clarityLS.setItem(KEY, '1'); }catch(e){}
     hide();
     var chip = document.getElementById('clarity-start-chip');
@@ -3232,7 +3232,7 @@ function memeSurpriseMe(){
   }
   window.clarityMarkWelcomeSeen = markWelcomeSeen;
   var _finish = window.clarityFinishWelcome;
-  window.clarityFinishWelcome = function(goJourney){
+  window.clarityFinishWelcome = function(goJourney){ try{if(window.clarityUnlockScroll)window.clarityUnlockScroll();}catch(e){}
     markWelcomeSeen();
     if (typeof _finish === 'function') {
       try { _finish(goJourney); } catch(e){}
