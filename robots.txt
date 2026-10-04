@@ -1,10 +1,17 @@
 User-agent: *
 Allow: /
 
-# Main app
 Allow: /index.html
-
-# Educational legacy pages (keep indexed)
+Allow: /today
+Allow: /today.html
+Allow: /charter.html
+Allow: /rooms.html
+Allow: /tools.html
+Allow: /amana-vault.html
+Allow: /family-legacy-tree.html
+Allow: /meme-studio.html
+Allow: /clarity-notes.html
+Allow: /faraid-study.html
 Allow: /prepare-for-death
 Allow: /prepare-for-death.html
 Allow: /janazah-prayer
@@ -17,10 +24,6 @@ Allow: /sadaqah-jariyah
 Allow: /sadaqah-jariyah.html
 Allow: /debts-and-trusts
 Allow: /debts-and-trusts.html
-
-# Optional archives — still allow; low priority via sitemap
-Allow: /clarity.html
-Allow: /index-10tabs.html
 
 Disallow: /sw.js
 Disallow: /*.json$

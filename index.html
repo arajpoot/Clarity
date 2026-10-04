@@ -5028,6 +5028,9 @@ window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot
   <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="claritySwitchGate('new_muslim')" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
   <button type="button" class="cgs-btn cgs-daily" data-gate="practicing" onclick="claritySwitchGate('practicing')" title="Daily Muslim — streaks, tajweed, light legacy"><span class="cgs-ico" aria-hidden="true">📿</span><span class="cgs-txt"><span class="cgs-num">3</span> Daily</span></button>
   <button type="button" class="cgs-btn cgs-dai" data-gate="dai" onclick="claritySwitchGate('dai')" title="Aspiring Da’i — sincerity, sources, calm dawah"><span class="cgs-ico" aria-hidden="true">🕊️</span><span class="cgs-txt"><span class="cgs-num">4</span> Da’i</span></button>
+  <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn" title="Reset progress to Seeker level (optional)" onclick="clarityPathResetToSeeker()">
+    <span class="cgs-ico" aria-hidden="true">↺</span><span class="cgs-txt">Reset</span>
+  </button>
 </div>
 <div class="rrra-hub-body" id="rrra-hub-body-reminder"><div data-rrra="reminder" class="card card-commands" id="commands-card"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
  <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
@@ -5761,7 +5764,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <p id="tajweed-live-src" class="td-src"> <button type="button" class="btn-soft" style="font-size:.72rem;padding:.2rem .5rem;margin-left:.35rem" onclick="clarityRefreshSection('tajweed')">☁ Online</button></p>
   <button type="button" class="btn-soft" onclick="clarityLiveTajweed(true)">↻ New module</button>
 </div>
-<div data-rrra="action" class="card card-tajweed"><h2 data-i18n="tajweed_title">🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2><div class="deep-learn"><strong>Tajweed practice:</strong><a href="https://www.abouttajweed.com" target="_blank" rel="noopener">AboutTajweed</a> ·
+<div data-rrra="action" class="card card-tajweed" id="tajweed-path-card"><h2 data-i18n="tajweed_title">🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2><div class="deep-learn"><strong>Tajweed practice:</strong><a href="https://www.abouttajweed.com" target="_blank" rel="noopener">AboutTajweed</a> ·
  <a href="https://www.youtube.com/@ayahs" target="_blank" rel="noopener">slow recitation</a> ·
  <a href="https://quran.com" target="_blank" rel="noopener">listen &amp; repeat on Quran.com</a>.</div><p style="margin-bottom:0.85rem; font-size:0.94rem;">
  Structured path from beginner to advanced, based on common free curricula
@@ -32027,77 +32030,6 @@ window.uftPrintPedigreeView = window.uftPrintPedigreeView;
   pointer-events: none !important;
 }
 </style>
-<script id="clarity-uft-viewport-smooth-v1-js">
-(function(){
-"use strict";
-if (window.__CLARITY_UFT_VIEWPORT_SMOOTH_V1__) return;
-window.__CLARITY_UFT_VIEWPORT_SMOOTH_V1__ = true;
-
-function bindPan(preview){
-  if (!preview || preview.dataset.smoothPan === "1") return;
-  preview.dataset.smoothPan = "1";
-  var drag = null;
-  var raf = 0;
-  var nextSL = 0, nextST = 0;
-
-  function applyScroll(){
-    raf = 0;
-    if (!drag) return;
-    preview.scrollLeft = nextSL;
-    preview.scrollTop = nextST;
-  }
-
-  preview.addEventListener("pointerdown", function(ev){
-    if (ev.pointerType === "touch") return; /* native touch scroll */
-    if (ev.button !== 0) return;
-    if (ev.target && ev.target.closest && ev.target.closest("button,a,input,select,textarea,label")) return;
-    drag = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, sl: preview.scrollLeft, st: preview.scrollTop };
-    try { preview.setPointerCapture(ev.pointerId); } catch(e){}
-    preview.classList.add("uft-panning");
-  }, { passive: true });
-
-  preview.addEventListener("pointermove", function(ev){
-    if (!drag || drag.id !== ev.pointerId) return;
-    nextSL = drag.sl - (ev.clientX - drag.x);
-    nextST = drag.st - (ev.clientY - drag.y);
-    if (!raf) raf = requestAnimationFrame(applyScroll);
-  }, { passive: true });
-
-  function end(ev){
-    if (!drag) return;
-    if (ev && drag.id !== ev.pointerId) return;
-    drag = null;
-    preview.classList.remove("uft-panning");
-    if (raf) { cancelAnimationFrame(raf); raf = 0; }
-  }
-  preview.addEventListener("pointerup", end);
-  preview.addEventListener("pointercancel", end);
-  preview.addEventListener("lostpointercapture", end);
-}
-
-function boot(){
-  ["uft-preview", "uft-stage"].forEach(function(id){
-    var el = document.getElementById(id);
-    if (el) bindPan(el);
-  });
-  document.querySelectorAll("#uft-preview .uft-window").forEach(bindPan);
-}
-if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 300); });
-else setTimeout(boot, 300);
-window.addEventListener("load", function(){ setTimeout(boot, 800); });
-/* Re-bind after tree re-renders */
-try {
-  var obsTarget = document.getElementById("uft-stage") || document.getElementById("tab-notes");
-  if (obsTarget && typeof MutationObserver === "function") {
-    var t = null;
-    new MutationObserver(function(){
-      clearTimeout(t);
-      t = setTimeout(boot, 200);
-    }).observe(obsTarget, { childList: true, subtree: true });
-  }
-} catch(e){}
-})();
-</script>
 
 <script id="clarity-meme-shariah-scan-v1">
 (function(){
@@ -32689,7 +32621,7 @@ window.__CLARITY_GATE_SWITCHER_V1__ = true;
 var ALLOW = {
   seeker: {"commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,"about-clarity-card":1,"soul-compass-card":1,"seerah-live-card":1,"hell-sins-card":1,"night-breath-card":1,"deepen-study-card":1,"asma-names-lecture-card":1,"tafseer-resources-card":1,"creation-tongue-reflection":1},
   new_muslim: {"commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,"about-clarity-card":1,"seerah-live-card":1,"hell-sins-card":1,"soul-compass-card":1,"night-breath-card":1,"hajj-guide-card":1,"hajj-checklist-card":1,"fiqh-quiz-card":1},
-  practicing: {"commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,"meme-card":1,"callig-lab-card":1,"tajweed-live-card":1,"tj-lmr-score-card":1,"weekly-review-card":1,"tibbe-nabwi-card":1,"seerah-live-card":1,"soul-compass-card":1,"hell-sins-card":1,"tafseer-resources-card":1,"deepen-study-card":1,"about-clarity-card":1,"hajj-checklist-card":1,"fiqh-quiz-card":1,"night-breath-card":1,"seerah-mirror-card":1,"najiha-tafseer-card":1,"creation-tongue-reflection":1},
+  practicing: {"commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,"meme-card":1,"callig-lab-card":1,"tajweed-live-card":1,"tajweed-path-card":1,"tj-deep-studio":1,"tj-lmr-score-card":1,"weekly-review-card":1,"tibbe-nabwi-card":1,"seerah-live-card":1,"soul-compass-card":1,"hell-sins-card":1,"tafseer-resources-card":1,"deepen-study-card":1,"about-clarity-card":1,"hajj-checklist-card":1,"fiqh-quiz-card":1,"night-breath-card":1,"seerah-mirror-card":1,"najiha-tafseer-card":1,"creation-tongue-reflection":1},
   dai: {"commands-card":1,"meme-card":1,"tweet-desk-card":1,"about-clarity-card":1,"seerah-live-card":1,"tafseer-resources-card":1,"najiha-tafseer-card":1,"israeliyat-card":1,"deepen-study-card":1,"asma-names-lecture-card":1,"sealed-nectar-card":1,"tajalliyat-lecture-card":1,"soul-compass-card":1,"samina-card":1,"samina-verse-card":1,"tafseer-live-card":1,"authentic-learning-stack":1}
 };
 var VAULT = {"user-family-tree-card":1,"faraid-card":1,"wasiyyah-card":1,"uft-cards-file":1,"uft-build-from-cards":1,"uft-card-search":1,"uft-rel-card-search":1,"uft-rel-cards":1};
@@ -32844,7 +32776,8 @@ function doSwitch(gate){
   });
   return { gate: gate };
 }
-window.claritySwitchGate = doSwitch;
+window.__clarityPathDoSwitchRaw = doSwitch;
+window.claritySwitchGate = function(g){ if (typeof window.clarityRequestPath==='function') return window.clarityRequestPath(g); return doSwitch(g); };
 window.applyGateConfiguration = doSwitch;
 
 document.addEventListener("click", function(ev){
@@ -32862,7 +32795,10 @@ document.addEventListener("click", function(ev){
   if (!g) return;
   ev.preventDefault();
   ev.stopPropagation();
-  doSwitch(g);
+  /* Always go through progression gatekeeper when present */
+  if (typeof window.clarityRequestPath === "function") window.clarityRequestPath(g);
+  else if (typeof window.claritySwitchGate === "function") window.claritySwitchGate(g);
+  else doSwitch(g);
 }, true);
 
 /* Watchdog: if fighters strip attributes, re-lock every 1.5s while page open */
@@ -32955,6 +32891,1777 @@ function boot(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(boot,400);});
 else setTimeout(boot,400);
+})();
+</script>
+
+<style id="clarity-path-progress-css-v1">
+.clarity-path-intro {
+  margin: 0.4rem 0 0.55rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(13,79,60,0.09), rgba(42,95,122,0.08));
+  border: 1px solid rgba(13,79,60,0.15);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text, #1c2a22);
+}
+.clarity-path-intro strong { color: var(--accent, #0d4f3c); }
+html[data-theme="dark"] .clarity-path-intro {
+  background: linear-gradient(135deg, rgba(201,162,39,0.1), rgba(42,95,122,0.12));
+  border-color: rgba(201,162,39,0.22);
+  color: #e8f0ea;
+}
+html[data-theme="dark"] .clarity-path-intro strong { color: #c9a227; }
+.clarity-path-intro .cpi-row {
+  display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.45rem;
+}
+.clarity-path-intro .cpi-pill {
+  font-size: 0.68rem; font-weight: 700; padding: 0.16rem 0.5rem;
+  border-radius: 999px; background: rgba(13,79,60,0.1);
+}
+html[data-theme="dark"] .clarity-path-intro .cpi-pill { background: rgba(201,162,39,0.14); }
+
+/* Smooth quiz — soft sheet, not harsh blackout */
+#clarity-path-quiz-modal {
+  position: fixed; inset: 0; z-index: 100000;
+  display: none; align-items: flex-end; justify-content: center;
+  background: rgba(10, 24, 18, 0.35);
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+#clarity-path-quiz-modal.open {
+  display: flex !important;
+  opacity: 1;
+}
+@media (min-width: 720px) {
+  #clarity-path-quiz-modal { align-items: center; padding: 1rem; }
+}
+#clarity-path-quiz-modal .cpq-card {
+  width: 100%; max-width: 26rem;
+  background: #f8f5ee; color: #1c2a22;
+  border-radius: 18px 18px 0 0;
+  padding: 1.15rem 1.2rem 1.35rem;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.18);
+  border: 1px solid rgba(13,79,60,0.16);
+  max-height: 88vh; overflow-y: auto;
+  transform: translateY(12px);
+  transition: transform 0.22s ease;
+}
+#clarity-path-quiz-modal.open .cpq-card { transform: translateY(0); }
+@media (min-width: 720px) {
+  #clarity-path-quiz-modal .cpq-card {
+    border-radius: 16px;
+    transform: translateY(0) scale(0.98);
+  }
+  #clarity-path-quiz-modal.open .cpq-card { transform: scale(1); }
+}
+html[data-theme="dark"] #clarity-path-quiz-modal .cpq-card {
+  background: #15241d; color: #e8f0ea; border-color: rgba(201,162,39,0.25);
+}
+#clarity-path-quiz-modal h3 { margin: 0 0 0.3rem; font-size: 1.08rem; color: #0d4f3c; }
+html[data-theme="dark"] #clarity-path-quiz-modal h3 { color: #c9a227; }
+#clarity-path-quiz-modal .cpq-sub { font-size: 0.82rem; opacity: 0.85; margin: 0 0 0.75rem; line-height: 1.45; }
+#clarity-path-quiz-modal .cpq-q { font-weight: 650; margin: 0.55rem 0 0.4rem; font-size: 0.94rem; }
+#clarity-path-quiz-modal .cpq-opt {
+  display: block; width: 100%; text-align: left; margin: 0.28rem 0;
+  padding: 0.58rem 0.8rem; border-radius: 11px;
+  border: 1.5px solid rgba(13,79,60,0.2); background: #fff; color: #1c2a22;
+  cursor: pointer; font-size: 0.88rem;
+}
+html[data-theme="dark"] #clarity-path-quiz-modal .cpq-opt {
+  background: rgba(255,255,255,0.06); color: #e8f0ea; border-color: rgba(255,255,255,0.12);
+}
+#clarity-path-quiz-modal .cpq-opt.correct { border-color: #1a7a4a; background: rgba(26,122,74,0.14); }
+#clarity-path-quiz-modal .cpq-opt.wrong { border-color: #a44; background: rgba(160,40,40,0.1); }
+#clarity-path-quiz-modal .cpq-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.85rem; }
+#clarity-path-quiz-modal .cpq-actions button {
+  border-radius: 999px; padding: 0.45rem 0.95rem; font-weight: 700; cursor: pointer;
+  border: 1.5px solid rgba(13,79,60,0.22); background: #fff; color: #0d4f3c; font-size: 0.86rem;
+}
+#clarity-path-quiz-modal .cpq-actions .cpq-primary {
+  background: #0d4f3c; color: #f3faf6; border: none;
+}
+#clarity-path-rail {
+  display: flex; flex-wrap: wrap; gap: 0.28rem; margin: 0.25rem 0 0.4rem; font-size: 0.7rem;
+}
+#clarity-path-rail .cpr-step {
+  padding: 0.18rem 0.5rem; border-radius: 999px;
+  border: 1px solid rgba(13,79,60,0.18); background: rgba(13,79,60,0.06);
+}
+#clarity-path-rail .cpr-step.current { background: #0d4f3c; color: #f5fbf8; border-color: transparent; }
+#clarity-path-rail .cpr-step.locked { opacity: 0.45; }
+.cgs-btn.path-locked { opacity: 0.5; }
+.cgs-btn.path-locked::after { content: " 🔒"; font-size: 0.65rem; }
+</style>
+<script id="clarity-path-progress-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_PATH_PROGRESS_V4__) return;
+window.__CLARITY_PATH_PROGRESS_V4__ = true;
+
+/**
+ * Phased doors + smooth quiz + ADDITIVE sections
+ * As user unlocks higher doors, content from earlier doors remains available
+ * (union of allowlists from seeker … selected path).
+ */
+
+var ORDER = ["seeker", "new_muslim", "practicing", "dai"];
+var LABELS = {
+  seeker: "Seeker",
+  new_muslim: "New Muslim",
+  practicing: "Daily Muslim",
+  dai: "Da’i"
+};
+var UNLOCK_KEY = "clarity_path_unlocked_max";
+
+var ALLOW = {
+  seeker: {
+    "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
+    "about-clarity-card":1,"soul-compass-card":1,"seerah-live-card":1,
+    "hell-sins-card":1,"night-breath-card":1,"deepen-study-card":1,
+    "asma-names-lecture-card":1,"tafseer-resources-card":1,"creation-tongue-reflection":1,"weekly-review-card":1
+  },
+  new_muslim: {
+    "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
+    "about-clarity-card":1,"seerah-live-card":1,"hell-sins-card":1,
+    "soul-compass-card":1,"night-breath-card":1,"hajj-guide-card":1,
+    "hajj-checklist-card":1,"fiqh-quiz-card":1
+  },
+  practicing: {
+    "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
+    "meme-card":1,"callig-lab-card":1,"tajweed-live-card":1,"tj-lmr-score-card":1,
+    "weekly-review-card":1,"tibbe-nabwi-card":1,"seerah-live-card":1,
+    "soul-compass-card":1,"hell-sins-card":1,"tafseer-resources-card":1,
+    "deepen-study-card":1,"about-clarity-card":1,"hajj-checklist-card":1,
+    "fiqh-quiz-card":1,"night-breath-card":1,"seerah-mirror-card":1,
+    "najiha-tafseer-card":1,"creation-tongue-reflection":1
+  },
+  dai: {
+    "commands-card":1,"meme-card":1,"tweet-desk-card":1,"about-clarity-card":1,
+    "seerah-live-card":1,"tafseer-resources-card":1,"najiha-tafseer-card":1,
+    "israeliyat-card":1,"deepen-study-card":1,"asma-names-lecture-card":1,
+    "sealed-nectar-card":1,"tajalliyat-lecture-card":1,"soul-compass-card":1,
+    "samina-card":1,"samina-verse-card":1,"tafseer-live-card":1,"authentic-learning-stack":1
+  }
+};
+var VAULT = {
+  "user-family-tree-card":1,"faraid-card":1,"wasiyyah-card":1,
+  "uft-cards-file":1,"uft-build-from-cards":1,"uft-card-search":1,
+  "uft-rel-card-search":1,"uft-rel-cards":1
+};
+
+var QUIZZES = {
+  1: [
+    { q: "Shahāda affirms belief in:", opts: ["Allah alone and Muhammad ﷺ as His Messenger", "Culture only", "Any idol", "Travel alone"], a: 0 },
+    { q: "Before ṣalāh when required, one performs:", opts: ["Wudu (ablution)", "A social media post", "A payment", "Silence only"], a: 0 },
+    { q: "The five daily prayers are:", opts: ["A core practiced pillar of the religion", "Optional decoration", "Only for imams", "Replaced by intention alone"], a: 0 }
+  ],
+  2: [
+    { q: "Steady growth is best as:", opts: ["Consistent sincere deeds", "Only online debates", "Abandoning prayer when busy", "Never opening the Qur’an"], a: 0 },
+    { q: "Tajweed primarily helps:", opts: ["Correct Qur’an recitation", "Business ads", "Astrology", "Skipping ṣalāh"], a: 0 },
+    { q: "Family legacy notes are:", opts: ["Educational readiness — not a website fatwa", "Final court orders", "Public shaming tools", "A way to hide debts"], a: 0 }
+  ],
+  3: [
+    { q: "Calm dawah prioritises:", opts: ["Sincerity, authentic sources, manners", "Winning by mockery", "Invented rulings", "Hiding references"], a: 0 },
+    { q: "If unsure of a ruling:", opts: ["Ask qualified local scholarship / trusted sources", "Post a confident guess", "Follow the angriest comment", "Ignore harm"], a: 0 },
+    { q: "Sharing scripture publicly needs:", opts: ["Care for authenticity and context", "Editing the text for drama", "No reference", "Guaranteed salvation claims"], a: 0 }
+  ]
+};
+
+function idx(g){ var i = ORDER.indexOf(String(g||"")); return i < 0 ? 0 : i; }
+function getMax(){
+  try {
+    var n = parseInt(localStorage.getItem(UNLOCK_KEY)||"0", 10);
+    if (isNaN(n)||n<0) n = 0;
+    return Math.min(ORDER.length-1, n);
+  } catch(e){ return 0; }
+}
+function setMax(n){
+  n = Math.max(0, Math.min(ORDER.length-1, n|0));
+  try { localStorage.setItem(UNLOCK_KEY, String(n)); } catch(e){}
+  return n;
+}
+
+/** Union of allowlists from seeker through gate (additive progress) */
+function unionAllow(gate){
+  var upto = idx(gate);
+  var u = {};
+  for (var i = 0; i <= upto; i++) {
+    var a = ALLOW[ORDER[i]] || {};
+    Object.keys(a).forEach(function(k){ if (a[k]) u[k] = 1; });
+  }
+  return u;
+}
+
+function hideEl(el){
+  if (!el) return;
+  el.classList.add("gate-hidden");
+  el.setAttribute("data-gate-hidden", "1");
+  el.style.setProperty("display", "none", "important");
+}
+function showEl(el){
+  if (!el) return;
+  el.classList.remove("gate-hidden");
+  el.removeAttribute("data-gate-hidden");
+  el.style.removeProperty("display");
+}
+
+/** Additive path filter — overrides exclusive filter */
+function applyAdditiveFilter(gate){
+  gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
+  try {
+    document.documentElement.setAttribute("data-clarity-path", gate);
+    document.body.setAttribute("data-clarity-path", gate);
+  } catch(e){}
+  var allow = unionAllow(gate);
+  document.querySelectorAll(".card, [id$='-card']").forEach(function(el){
+    var id = el.id || "";
+    if (id && VAULT[id]) { showEl(el); return; }
+    if (el.closest && el.closest("#tab-notes, #amana-vault-interior")) { showEl(el); return; }
+    if (id === "cw-card") { showEl(el); return; }
+    var ok = (id && allow[id] === 1) ||
+      (el.classList && el.classList.contains("card-commands") && allow["commands-card"]);
+    if (!ok && id === "tajweed-path-card" && allow["tajweed-path-card"]) ok = true;
+    if (!ok && id === "tj-deep-studio" && allow["tj-deep-studio"]) ok = true;
+    if (ok) showEl(el);
+    else hideEl(el); /* hide even without id — stop stuck higher-level sections */
+  });
+  /* dynamic CSS lock for additive */
+  installAdditiveLock(gate, allow);
+}
+
+function installAdditiveLock(gate, allow){
+  var el = document.getElementById("clarity-path-lock");
+  if (!el) { el = document.createElement("style"); el.id = "clarity-path-lock"; }
+  var hideIds = [];
+  document.querySelectorAll(".card[id], [id$='-card']").forEach(function(node){
+    var id = node.id;
+    if (!id || VAULT[id] || allow[id]) return;
+    hideIds.push(id);
+  });
+  /* also known advanced cards not in union */
+  ["meme-card","tweet-desk-card","callig-lab-card","tajweed-live-card","israeliyat-card","najiha-tafseer-card"].forEach(function(id){
+    if (!allow[id] && hideIds.indexOf(id) < 0) hideIds.push(id);
+  });
+  var css = hideIds.map(function(id){
+    return 'html[data-clarity-path="'+gate+'"] #'+id+
+      ',html[data-clarity-path="'+gate+'"] #tab-reminder.is-active #'+id;
+  }).join(',') + (hideIds.length
+    ? '{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;}'
+    : '/* all open */');
+  el.textContent = css;
+  try { document.documentElement.appendChild(el); } catch(e){}
+}
+
+function applyContent(gate){
+  gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
+  try {
+    localStorage.setItem("clarity_committed_path", gate);
+    localStorage.setItem("clarity_path_override", gate);
+  } catch(e){}
+  /* Call raw switch for badge/theme, then force additive filter */
+  var raw = window.__clarityPathDoSwitchRaw;
+  if (typeof raw === "function") {
+    window.__clarityPathBypass = true;
+    try { raw(gate); } finally { window.__clarityPathBypass = false; }
+  }
+  applyAdditiveFilter(gate);
+  /* Bring user to the natural hub for this path so sections are visible */
+  try {
+    var hub = (gate === "practicing") ? "action" : (gate === "dai") ? "reminder" : "reminder";
+    if (typeof switchTab === "function") switchTab(hub);
+  } catch(e){}
+  setTimeout(function(){ applyAdditiveFilter(gate); }, 80);
+  setTimeout(function(){ applyAdditiveFilter(gate); }, 400);
+  setTimeout(function(){ applyAdditiveFilter(gate); }, 900);
+  try {
+    var badge = document.getElementById("current-mode-badge");
+    var labels = {seeker:"SEEKER JOURNEY MODE", new_muslim:"NEW MUSLIM TRACK", practicing:"DAILY MUSLIM / LEGACY", dai:"ASPIRING DA’I TRACK"};
+    if (badge) badge.textContent = labels[gate] || badge.textContent;
+  } catch(e){}
+  markUI(gate);
+}
+
+function clamp(){
+  var max = getMax();
+  var cur = "seeker";
+  try {
+    cur = localStorage.getItem("clarity_committed_path") || document.documentElement.getAttribute("data-clarity-path") || "seeker";
+  } catch(e){}
+  if (idx(cur) > max) {
+    cur = ORDER[max];
+    applyContent(cur);
+  }
+  return ORDER.indexOf(cur) >= 0 ? cur : ORDER[max];
+}
+
+function ensureIntro(){
+  if (document.getElementById("clarity-path-intro")) return;
+  var host = document.querySelector(".clarity-gate-switcher");
+  if (!host || !host.parentNode) return;
+  var el = document.createElement("div");
+  el.id = "clarity-path-intro";
+  el.className = "clarity-path-intro";
+  el.innerHTML =
+    "<strong>Phased learning</strong> — start as <em>Seeker</em>. A short quiz unlocks the next door. " +
+    "As you rise, <em>earlier sections stay with you</em> and new modules are added. " +
+    "You may always step back down. Vault stays optional and private." +
+    "<div class=\"cpi-row\">" +
+      "<span class=\"cpi-pill\">1 Seeker</span>" +
+      "<span class=\"cpi-pill\">2 + New Muslim</span>" +
+      "<span class=\"cpi-pill\">3 + Daily</span>" +
+      "<span class=\"cpi-pill\">4 + Da’i</span>" +
+    "</div>";
+  host.parentNode.insertBefore(el, host);
+}
+
+function markUI(current){
+  var max = getMax();
+  current = current || ORDER[Math.min(max, idx(clamp()))];
+  document.querySelectorAll(".cgs-btn, [data-gate]").forEach(function(btn){
+    var g = btn.getAttribute("data-gate");
+    if (!g) return;
+    btn.classList.toggle("path-locked", idx(g) > max);
+    btn.classList.toggle("is-active", g === current);
+  });
+  var host = document.querySelector(".clarity-gate-switcher");
+  if (!host) return;
+  var rail = document.getElementById("clarity-path-rail");
+  if (!rail) {
+    rail = document.createElement("div");
+    rail.id = "clarity-path-rail";
+    host.parentNode.insertBefore(rail, host.nextSibling);
+  }
+  if (rail && rail.parentNode) rail.parentNode.removeChild(rail); /* single track UI only */
+}
+
+/* ---- Smooth quiz ---- */
+var Q = null;
+function ensureModal(){
+  var m = document.getElementById("clarity-path-quiz-modal");
+  if (m) return m;
+  m = document.createElement("div");
+  m.id = "clarity-path-quiz-modal";
+  m.innerHTML = "<div class=\"cpq-card\" id=\"cpq-inner\"></div>";
+  document.body.appendChild(m);
+  m.addEventListener("click", function(e){ if (e.target === m) closeQuiz(false); });
+  return m;
+}
+function closeQuiz(pass){
+  var m = document.getElementById("clarity-path-quiz-modal");
+  if (m) m.classList.remove("open");
+  var target = Q && Q.target;
+  Q = null;
+  if (pass && target) {
+    setMax(Math.max(getMax(), idx(target)));
+    applyContent(target);
+  } else {
+    markUI(clamp());
+  }
+}
+function openQuiz(from, target){
+  var ti = idx(target);
+  var qs = QUIZZES[ti];
+  if (!qs) return;
+  Q = { from: from, target: target, qs: qs, step: 0, correct: 0, busy: false };
+  var m = ensureModal();
+  paintQuiz();
+  /* open next frame for smooth transition */
+  requestAnimationFrame(function(){
+    m.classList.add("open");
+  });
+}
+function paintQuiz(){
+  var inner = document.getElementById("cpq-inner");
+  if (!inner || !Q) return;
+  if (Q.step >= Q.qs.length) {
+    var ok = Q.correct >= Q.qs.length;
+    inner.innerHTML = "<h3>"+(ok?"Door unlocked":"Not yet")+"</h3>"+
+      "<p class=\"cpq-sub\">"+(ok
+        ? ("Welcome to <strong>"+LABELS[Q.target]+"</strong>. Earlier modules stay available; new ones are added.")
+        : ("Score "+Q.correct+"/"+Q.qs.length+". Stay on <strong>"+LABELS[Q.from]+"</strong> and try again."))+"</p>"+
+      "<div class=\"cpq-actions\">"+
+      (ok?"<button type=\"button\" class=\"cpq-primary\" id=\"cpq-go\">Enter path</button>":
+          "<button type=\"button\" class=\"cpq-primary\" id=\"cpq-retry\">Try again</button>")+
+      "<button type=\"button\" id=\"cpq-x\">Close</button></div>";
+    var go = document.getElementById("cpq-go");
+    if (go) go.onclick = function(){ closeQuiz(true); };
+    var retry = document.getElementById("cpq-retry");
+    if (retry) retry.onclick = function(){ openQuiz(Q.from, Q.target); };
+    var x = document.getElementById("cpq-x");
+    if (x) x.onclick = function(){ closeQuiz(false); };
+    return;
+  }
+  var item = Q.qs[Q.step];
+  inner.innerHTML = "<h3>Unlock "+LABELS[Q.target]+"</h3>"+
+    "<p class=\"cpq-sub\">Question "+(Q.step+1)+" of "+Q.qs.length+" · All correct to unlock · Refresh cannot skip</p>"+
+    "<div class=\"cpq-q\">"+item.q+"</div>"+
+    item.opts.map(function(o,i){ return "<button type=\"button\" class=\"cpq-opt\" data-i=\""+i+"\">"+o+"</button>"; }).join("")+
+    "<div class=\"cpq-actions\"><button type=\"button\" id=\"cpq-stay\">Stay on "+LABELS[Q.from]+"</button></div>";
+  inner.querySelectorAll(".cpq-opt").forEach(function(btn){
+    btn.onclick = function(){
+      if (!Q || Q.busy) return;
+      Q.busy = true;
+      var i = parseInt(btn.getAttribute("data-i"),10);
+      var good = i === item.a;
+      if (good) Q.correct++;
+      btn.classList.add(good?"correct":"wrong");
+      inner.querySelectorAll(".cpq-opt").forEach(function(b){
+        if (parseInt(b.getAttribute("data-i"),10)===item.a) b.classList.add("correct");
+        b.disabled = true;
+      });
+      setTimeout(function(){ if(Q){ Q.busy=false; Q.step++; paintQuiz(); } }, 480);
+    };
+  });
+  var stay = document.getElementById("cpq-stay");
+  if (stay) stay.onclick = function(){ closeQuiz(false); };
+}
+
+window.clarityRequestPath = function(gate){
+  gate = String(gate||"seeker");
+  if (ORDER.indexOf(gate)<0) gate = "seeker";
+  if (window.__clarityPathBypass) { applyContent(gate); return {ok:true}; }
+  var max = getMax();
+  var ti = idx(gate);
+  if (ti <= max) {
+    applyContent(gate);
+    return { ok: true };
+  }
+  if (ti > max + 1) {
+    alert("Open doors in order.\nNext: " + LABELS[ORDER[max+1]] + " (short quiz).");
+    markUI(ORDER[max]);
+    return { ok: false, reason: "skip" };
+  }
+  openQuiz(ORDER[max], gate);
+  return { ok: false, reason: "quiz" };
+};
+
+function wire(){
+  if (typeof window.__clarityPathDoSwitchRaw !== "function") {
+    if (typeof window.claritySwitchGate === "function" && !window.claritySwitchGate.__isRequest) {
+      window.__clarityPathDoSwitchRaw = window.claritySwitchGate;
+    } else if (typeof window.applyGateSectionFilter === "function") {
+      window.__clarityPathDoSwitchRaw = function(g){
+        try { window.applyGateSectionFilter(g); } catch(e){}
+      };
+    }
+  }
+  window.claritySwitchGate = function(g){ return window.clarityRequestPath(g); };
+  window.claritySwitchGate.__isRequest = true;
+  window.applyGateConfiguration = window.claritySwitchGate;
+  /* Override exclusive filter with additive */
+  window.applyGateSectionFilter = function(g){ applyAdditiveFilter(g || clamp()); };
+}
+
+function boot(){
+  if (localStorage.getItem(UNLOCK_KEY) == null) setMax(0);
+  wire();
+  ensureIntro();
+  var cur = clamp();
+  applyContent(cur);
+  markUI(cur);
+}
+
+if (document.readyState === "loading")
+  document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 150); });
+else setTimeout(boot, 150);
+window.addEventListener("load", function(){
+  setTimeout(wire, 50);
+  setTimeout(boot, 280);
+});
+
+window.clarityPathProgress = {
+  order: ORDER,
+  getMax: getMax,
+  reset: function(){
+    try {
+      localStorage.setItem(UNLOCK_KEY, "0");
+      localStorage.setItem("clarity_committed_path", "seeker");
+    } catch(e){}
+    applyContent("seeker");
+  }
+};
+})();
+</script>
+
+<script id="clarity-modules-repair-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_MODULES_REPAIR_V1__) return;
+window.__CLARITY_MODULES_REPAIR_V1__ = true;
+
+/**
+ * Repair wiring for: Tajweed, Notes/Notepad, Calligraphy, Meme Studio, Tweet desk
+ */
+
+function safe(fn){ try { return fn(); } catch(e){ return null; } }
+
+/* ---------- Shared stubs (only if missing) ---------- */
+function stub(name, impl){
+  if (typeof window[name] !== "function") window[name] = impl;
+}
+
+/* ---------- Calligraphy ---------- */
+function calligEnsureState(){
+  if (typeof window.calligState !== "object" || !window.calligState) {
+    window.calligState = {
+      drawing:false, ink:"#0d4f3c", size:14, guide:true, script:"naskh", glyph:"ا",
+      strokes:[], cur:null, lastPts:[], audioOn:true, scale:100, offsetX:0, offsetY:0,
+      stylusSim:true, autoEnhance:true, stylusFeel:70, lastVel:0, pointerType:"touch", tip:"finger"
+    };
+  } else {
+    var s = window.calligState;
+    if (s.scale == null) s.scale = 100;
+    if (s.size == null) s.size = 14;
+    if (!Array.isArray(s.strokes)) s.strokes = [];
+  }
+}
+
+function calligResizeCanvas(){
+  var c = document.getElementById("callig-canvas");
+  if (!c) return;
+  var parent = c.parentElement;
+  var w = Math.max(280, Math.min(900, (parent && parent.clientWidth) || 360));
+  var h = Math.max(220, Math.round(w * 0.62));
+  if (c.width !== w || c.height !== h) {
+    c.width = w;
+    c.height = h;
+  }
+  if (typeof window.calligDrawGuide === "function") {
+    try { window.calligDrawGuide(); } catch(e){}
+  }
+}
+
+function calligBoot(){
+  calligEnsureState();
+  calligResizeCanvas();
+  var c = document.getElementById("callig-canvas");
+  if (!c || c.__calligBound) return;
+  c.__calligBound = true;
+  /* Pointer drawing fallback if main binder failed */
+  if (typeof window.calligPointerDown !== "function") {
+    var drawing = false;
+    function pos(ev){
+      var r = c.getBoundingClientRect();
+      var t = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
+      return {
+        x: (t.clientX - r.left) * (c.width / Math.max(1, r.width)),
+        y: (t.clientY - r.top) * (c.height / Math.max(1, r.height))
+      };
+    }
+    c.addEventListener("pointerdown", function(ev){
+      drawing = true;
+      try { c.setPointerCapture(ev.pointerId); } catch(e){}
+      var p = pos(ev);
+      var s = window.calligState;
+      s.cur = { pts: [p] };
+      s.drawing = true;
+    });
+    c.addEventListener("pointermove", function(ev){
+      if (!drawing || !window.calligState.cur) return;
+      var p = pos(ev);
+      window.calligState.cur.pts.push(p);
+      var ctx = c.getContext("2d");
+      var pts = window.calligState.cur.pts;
+      if (pts.length < 2) return;
+      ctx.strokeStyle = window.calligState.ink || "#0d4f3c";
+      ctx.lineWidth = (window.calligState.size || 14) * ((window.calligState.scale||100)/100);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      var a = pts[pts.length-2], b = pts[pts.length-1];
+      ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    });
+    function endDraw(){
+      if (!drawing) return;
+      drawing = false;
+      var s = window.calligState;
+      if (s.cur && s.cur.pts && s.cur.pts.length) s.strokes.push(s.cur);
+      s.cur = null; s.drawing = false;
+    }
+    c.addEventListener("pointerup", endDraw);
+    c.addEventListener("pointercancel", endDraw);
+  }
+}
+
+stub("calligClear", function(){
+  calligEnsureState();
+  window.calligState.strokes = [];
+  window.calligState.cur = null;
+  calligResizeCanvas();
+  if (typeof window.calligDrawGuide === "function") window.calligDrawGuide();
+});
+
+stub("calligSurprise", function(){
+  calligEnsureState();
+  var glyphs = ["ا","ب","ت","ث","ن","م","ل","ك","ه","و","ي","س","ر","ع","ح","ق"];
+  window.calligState.glyph = glyphs[Math.floor(Math.random()*glyphs.length)];
+  if (typeof window.calligDrawGuide === "function") window.calligDrawGuide();
+  else calligResizeCanvas();
+});
+
+/* ---------- Meme Studio ---------- */
+stub("memeSurpriseMe", function(){
+  if (typeof window.memeFetchRrra === "function") return window.memeFetchRrra(null);
+  if (typeof window.memeDailyVerse === "function") return window.memeDailyVerse();
+});
+stub("memeRender", function(){
+  if (typeof window.memeApplyVerseCard === "function") return;
+  var canvas = document.getElementById("meme-canvas");
+  if (!canvas) return;
+  try {
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+  } catch(e){}
+});
+
+function memeEnsureOnline(){
+  /* Prefer existing online engine; ensure memeFetchBg exists */
+  if (typeof window.memeFetchBg !== "function") {
+    window.memeFetchBg = function(kind){
+      if (typeof window.__memeOnlineFetch === "function") return window.__memeOnlineFetch(kind);
+      kind = kind || "nature";
+      var seed = "clarity-" + kind + "-" + (Date.now() % 99999);
+      var url = "https://picsum.photos/seed/" + encodeURIComponent(seed) + "/1200/900.jpg";
+      if (typeof window.memeLoadImageFromUrl === "function") return window.memeLoadImageFromUrl(url);
+    };
+  } else {
+    /* wrap once to fall back online */
+    if (!window.memeFetchBg.__repaired) {
+      var orig = window.memeFetchBg;
+      window.memeFetchBg = function(kind){
+        try {
+          if (typeof window.__memeOnlineFetch === "function") {
+            return window.__memeOnlineFetch(kind);
+          }
+        } catch(e){}
+        return orig.apply(this, arguments);
+      };
+      window.memeFetchBg.__repaired = true;
+    }
+  }
+}
+
+/* ---------- Tweet desk ---------- */
+stub("tdStatus", function(msg){
+  var el = document.getElementById("td-status") || document.querySelector(".td-status");
+  if (el) el.textContent = msg || "";
+});
+stub("tdRemind", function(){
+  if (typeof window.tdDraft === "function") return window.tdDraft("verse");
+});
+stub("tdCopy", function(){
+  var ta = document.getElementById("td-output") || document.getElementById("td-compose") || document.querySelector("#tweet-desk-card textarea");
+  if (!ta) return;
+  try {
+    ta.select();
+    document.execCommand("copy");
+    if (typeof window.tdStatus === "function") window.tdStatus("Copied");
+  } catch(e){}
+});
+
+/* ---------- Tajweed ---------- */
+stub("clarityLiveTajweed", function(force){
+  var host = document.getElementById("tajweed-live-card") || document.getElementById("tj-live-body");
+  var mods = [
+    { t: "Izhār (إظهار)", b: "Nūn sākinah or tanwīn before ء ه ع ح غ خ: keep the nūn clear." },
+    { t: "Ikhfāʾ (إخفاء)", b: "Hide nūn/tanwīn with light ghunnah before ikhfāʾ letters." },
+    { t: "Idghām (إدغام)", b: "Merge nūn/tanwīn into ي ن م و with ghunnah where required." },
+    { t: "Qalqalah (قلقلة)", b: "Bounce on ق ط ب ج د when sākin." }
+  ];
+  var pick = mods[Math.floor(Math.random() * mods.length)];
+  var slot = document.getElementById("tj-daily-module") || document.querySelector("#tajweed-live-card .tj-daily, #tajweed-live-card .td-src");
+  if (slot) {
+    slot.innerHTML = "<strong>"+pick.t+"</strong> — "+pick.b;
+  } else if (host) {
+    var p = host.querySelector("p");
+    if (p) p.textContent = pick.t + " — " + pick.b;
+  }
+  return pick;
+});
+stub("clarityRefreshSection", function(which){
+  if (which === "tajweed" && typeof window.clarityLiveTajweed === "function") {
+    window.clarityLiveTajweed(true);
+  }
+});
+
+/* ---------- Notes / notepad ---------- */
+function notesEnsure(){
+  if (typeof window.notesState !== "object" || !window.notesState) {
+    window.notesState = { notes: [], selectedId: null, query: "", tagFilter: "", viewMode: "edit", saveTimer: null };
+  }
+  if (typeof window.notesLoad !== "function") {
+    window.notesLoad = function(){
+      try {
+        var key = window.NOTES_KEY || "clarity_notes_v1";
+        var raw = localStorage.getItem(key);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed && Array.isArray(parsed.notes)) window.notesState = parsed;
+          else if (Array.isArray(parsed)) window.notesState.notes = parsed;
+        }
+      } catch(e){}
+      if (typeof window.notesRenderEditor === "function") window.notesRenderEditor();
+      if (typeof window.notesRenderList === "function") window.notesRenderList();
+      return window.notesState;
+    };
+  }
+}
+
+/* ---------- Boot ---------- */
+function repairAll(){
+  calligBoot();
+  memeEnsureOnline();
+  notesEnsure();
+  /* Soft-boot tajweed label once */
+  try {
+    if (document.getElementById("tajweed-live-card") && typeof window.clarityLiveTajweed === "function") {
+      /* don't force rewrite every time — only if empty slot */
+      var slot = document.getElementById("tj-daily-module");
+      if (slot && !slot.textContent.trim()) window.clarityLiveTajweed(false);
+    }
+  } catch(e){}
+}
+
+if (document.readyState === "loading")
+  document.addEventListener("DOMContentLoaded", function(){ setTimeout(repairAll, 300); });
+else setTimeout(repairAll, 300);
+window.addEventListener("load", function(){
+  setTimeout(repairAll, 600);
+  setTimeout(calligResizeCanvas, 1000);
+});
+window.addEventListener("resize", function(){
+  clearTimeout(window.__calligResizeT);
+  window.__calligResizeT = setTimeout(calligResizeCanvas, 150);
+});
+
+/* After tab switch, re-bind canvases */
+var _sw = window.switchTab;
+if (typeof _sw === "function" && !_sw.__modulesRepair) {
+  window.switchTab = function(){
+    var r = _sw.apply(this, arguments);
+    setTimeout(repairAll, 200);
+    return r;
+  };
+  window.switchTab.__modulesRepair = true;
+}
+
+window.clarityModulesRepair = { run: repairAll, calligBoot: calligBoot };
+})();
+</script>
+
+<style id="clarity-uft-anti-jitter-css-v1">
+/* Stable pedigree viewport — one scroll surface, less layout thrash */
+#tab-notes.active.amana-unlocked #user-family-tree-card {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  contain: layout style;
+}
+#tab-notes.active.amana-unlocked #uft-stage.uft-stage,
+#tab-notes.active.amana-unlocked #uft-stage {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: min(42vh, 22rem) !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-padding: 1.25rem;
+  touch-action: pan-x pan-y;
+  position: relative;
+  border-radius: 14px;
+}
+/* Preview is content width; stage is the scroller — avoid double scroll */
+#tab-notes.active.amana-unlocked #uft-preview {
+  display: block !important;
+  width: max-content !important;
+  min-width: 100% !important;
+  min-height: 11rem !important;
+  overflow: visible !important;
+  scroll-behavior: auto !important;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+#tab-notes.active.amana-unlocked #uft-preview.uft-panning {
+  cursor: grabbing !important;
+  user-select: none !important;
+  pointer-events: auto !important;
+}
+#tab-notes.active.amana-unlocked #uft-stage.uft-panning {
+  cursor: grabbing !important;
+  user-select: none !important;
+  scroll-behavior: auto !important;
+}
+#tab-notes.active.amana-unlocked #uft-preview.uft-panning button,
+#tab-notes.active.amana-unlocked #uft-stage.uft-panning button {
+  pointer-events: none !important;
+}
+#tab-notes.active.amana-unlocked .uft-zoom-layer,
+#tab-notes.active.amana-unlocked .uft-zoom-sizer {
+  transform-origin: 0 0;
+  will-change: auto;
+}
+@media (max-width: 700px) {
+  #tab-notes.active.amana-unlocked #uft-stage {
+    min-height: min(38vh, 16rem) !important;
+    scroll-padding: 1rem;
+  }
+}
+</style>
+
+
+<script id="clarity-uft-viewport-smooth-v1-js">
+(function(){
+"use strict";
+if (window.__CLARITY_UFT_VIEWPORT_SMOOTH_V2__) return;
+window.__CLARITY_UFT_VIEWPORT_SMOOTH_V2__ = true;
+window.__CLARITY_UFT_VIEWPORT_SMOOTH_V1__ = true;
+
+/**
+ * Anti-jitter pedigree pan/scroll
+ * - Single binder per element
+ * - Stage is primary scroller; preview is wide content
+ * - rAF-coalesced scroll updates
+ * - Touch uses native scrolling (no hijack)
+ */
+
+function bindScroller(scroller, content){
+  if (!scroller || scroller.__uftPanBoundV2) return;
+  scroller.__uftPanBoundV2 = true;
+
+  var drag = null;
+  var raf = 0;
+  var nextSL = 0, nextST = 0;
+
+  function applyScroll(){
+    raf = 0;
+    if (!drag) return;
+    scroller.scrollLeft = nextSL;
+    scroller.scrollTop = nextST;
+  }
+
+  scroller.addEventListener("pointerdown", function(ev){
+    if (ev.pointerType === "touch") return; /* native touch */
+    if (ev.button !== 0) return;
+    if (ev.target && ev.target.closest &&
+        ev.target.closest("button, a, input, select, textarea, label, .uft-node-actions")) {
+      return;
+    }
+    drag = {
+      id: ev.pointerId,
+      x: ev.clientX,
+      y: ev.clientY,
+      sl: scroller.scrollLeft,
+      st: scroller.scrollTop
+    };
+    try { scroller.setPointerCapture(ev.pointerId); } catch(e){}
+    scroller.classList.add("uft-panning");
+    if (content) content.classList.add("uft-panning");
+  }, { passive: true });
+
+  scroller.addEventListener("pointermove", function(ev){
+    if (!drag || drag.id !== ev.pointerId) return;
+    nextSL = drag.sl - (ev.clientX - drag.x);
+    nextST = drag.st - (ev.clientY - drag.y);
+    if (!raf) raf = requestAnimationFrame(applyScroll);
+  }, { passive: true });
+
+  function end(ev){
+    if (!drag) return;
+    if (ev && ev.pointerId != null && drag.id !== ev.pointerId) return;
+    drag = null;
+    scroller.classList.remove("uft-panning");
+    if (content) content.classList.remove("uft-panning");
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+  }
+  scroller.addEventListener("pointerup", end);
+  scroller.addEventListener("pointercancel", end);
+  scroller.addEventListener("lostpointercapture", end);
+}
+
+function stabilizeTree(){
+  var stage = document.getElementById("uft-stage");
+  var preview = document.getElementById("uft-preview");
+  var card = document.getElementById("user-family-tree-card");
+  if (card) {
+    card.style.removeProperty("height");
+    card.style.removeProperty("max-height");
+  }
+  if (stage && preview) {
+    /* Prefer stage as scroller */
+    bindScroller(stage, preview);
+  } else if (preview) {
+    bindScroller(preview, null);
+  } else if (stage) {
+    bindScroller(stage, null);
+  }
+}
+
+function boot(){
+  stabilizeTree();
+  /* After render */
+  setTimeout(stabilizeTree, 400);
+  setTimeout(stabilizeTree, 1200);
+}
+
+if (document.readyState === "loading")
+  document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 300); });
+else setTimeout(boot, 300);
+window.addEventListener("load", function(){ setTimeout(boot, 700); });
+
+/* Re-bind after UFT render */
+var _ur = window.uftRender;
+if (typeof _ur === "function" && !_ur.__antiJitter) {
+  window.uftRender = function(){
+    var r = _ur.apply(this, arguments);
+    setTimeout(stabilizeTree, 50);
+    setTimeout(stabilizeTree, 250);
+    return r;
+  };
+  window.uftRender.__antiJitter = true;
+}
+
+window.clarityUftStabilize = stabilizeTree;
+})();
+</script>
+
+
+<script id="clarity-vault-tree-security-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_VAULT_TREE_SECURITY_V1__) return;
+window.__CLARITY_VAULT_TREE_SECURITY_V1__ = true;
+
+window.clarityVaultTreeAudit = function(){
+  var report = {
+    ok: true,
+    ts: Date.now(),
+    notes: [],
+    vault: {
+      gate: !!document.getElementById("amana-vault-gate"),
+      interior: !!document.getElementById("amana-vault-interior"),
+      treeCard: !!document.getElementById("user-family-tree-card"),
+      stage: !!document.getElementById("uft-stage"),
+      preview: !!document.getElementById("uft-preview"),
+      uftRead: typeof window.uftRead === "function",
+      uftRender: typeof window.uftRender === "function",
+      uftCollect: typeof window.uftCollect === "function",
+      uftKey: window.UFT_KEY || null,
+      cryptoSubtle: !!(window.crypto && window.crypto.subtle),
+      unlocked: !!(document.getElementById("tab-notes") &&
+        document.getElementById("tab-notes").classList.contains("amana-unlocked"))
+    },
+    storage: { keys: 0, suspicious: [] }
+  };
+
+  try {
+    if (!report.vault.uftKey) report.vault.uftKey = "clarity_user_family_tree_v1";
+    if (report.vault.uftKey !== "clarity_user_family_tree_v1") {
+      report.ok = false;
+      report.notes.push("unexpected UFT_KEY");
+    }
+  } catch(e){}
+
+  try {
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i) || "";
+      report.storage.keys++;
+      if (/passphrase|plaintext.?key|(^|_)password$/i.test(k)) {
+        report.storage.suspicious.push(k);
+        report.ok = false;
+        report.notes.push("suspicious key: " + k);
+      }
+    }
+  } catch(e){ report.notes.push(String(e)); }
+
+  try {
+    document.querySelectorAll("#amana-vault-gate input[type='password']").forEach(function(inp){
+      inp.setAttribute("autocomplete", "current-password");
+      inp.setAttribute("spellcheck", "false");
+    });
+  } catch(e){}
+
+  /* Ensure tree data stays local — soft check */
+  try {
+    if (typeof window.uftSave === "function") {
+      var src = Function.prototype.toString.call(window.uftSave);
+      if (/fetch\s*\(\s*['\"]https?:/i.test(src)) {
+        report.ok = false;
+        report.notes.push("uftSave may post remotely");
+      }
+    }
+  } catch(e){}
+
+  window.__CLARITY_VAULT_TREE_REPORT__ = report;
+  return report;
+};
+
+setTimeout(function(){
+  try { window.clarityVaultTreeAudit(); } catch(e){}
+}, 900);
+})();
+</script>
+
+<style id="clarity-night-contrast-v1">
+/* Night mode — reduce washout, stronger contrast */
+html[data-theme="dark"] {
+  --bg: #070d0a !important;
+  --bg-elevated: #101a14 !important;
+  --text: #eef6f0 !important;
+  --text-muted: #a8b9ae !important;
+  --border: #2a3d32 !important;
+  --accent: #5ec492 !important;
+  color: #eef6f0 !important;
+  background-color: #070d0a !important;
+}
+html[data-theme="dark"] body {
+  background-color: #070d0a !important;
+  color: #eef6f0 !important;
+}
+html[data-theme="dark"] .card,
+html[data-theme="dark"] [class*="card"] {
+  background: linear-gradient(165deg, #121c16 0%, #0c1410 100%) !important;
+  border-color: #2f4538 !important;
+  color: #eef6f0 !important;
+}
+html[data-theme="dark"] .card p,
+html[data-theme="dark"] .card li,
+html[data-theme="dark"] .card .td-src {
+  color: #d5e3da !important;
+}
+html[data-theme="dark"] .card h2,
+html[data-theme="dark"] .card h3 {
+  color: #f0e6c8 !important;
+}
+html[data-theme="dark"] .btn-soft,
+html[data-theme="dark"] button.btn-soft {
+  background: #1a2a22 !important;
+  color: #e8f5ee !important;
+  border-color: #3d5a4a !important;
+}
+/* Tawbah / step chips that were washed light gray */
+html[data-theme="dark"] .card div[style*="background"],
+html[data-theme="dark"] .tawbah-step,
+html[data-theme="dark"] .step-chip,
+html[data-theme="dark"] .card > div > div[style*="#f"],
+html[data-theme="dark"] .card div[style*="rgb(245"],
+html[data-theme="dark"] .card div[style*="#eef"],
+html[data-theme="dark"] .card div[style*="#f7f"] {
+  /* cannot reliably override inline; target common classes */
+}
+html[data-theme="dark"] .hell-step,
+html[data-theme="dark"] .tawbah-box,
+html[data-theme="dark"] .repent-step {
+  background: #1a2820 !important;
+  color: #e8f0ea !important;
+  border-color: #3d5a4a !important;
+}
+/* Generic light boxes inside dark cards */
+html[data-theme="dark"] .card [style*="background:#f"],
+html[data-theme="dark"] .card [style*="background: #f"],
+html[data-theme="dark"] .card [style*="background:#e"],
+html[data-theme="dark"] .card [style*="background: #e"],
+html[data-theme="dark"] .card [style*="background:#fff"],
+html[data-theme="dark"] .card [style*="background: #fff"],
+html[data-theme="dark"] .card [style*="background:#F"] {
+  background: #1a2820 !important;
+  color: #e8f0ea !important;
+}
+html[data-theme="dark"] .global-nav,
+html[data-theme="dark"] #clarity-global-nav {
+  background: #0c1611 !important;
+  border-color: #2a3d32 !important;
+  color: #eef6f0 !important;
+}
+html[data-theme="dark"] .nav-tabs button,
+html[data-theme="dark"] .tab-btn {
+  color: #c5d4cb !important;
+}
+html[data-theme="dark"] .nav-tabs button.is-active,
+html[data-theme="dark"] .nav-tabs button.active,
+html[data-theme="dark"] .tab-btn.active {
+  color: #f5fbf8 !important;
+}
+html[data-theme="dark"] .clarity-path-intro {
+  background: linear-gradient(135deg, rgba(30,50,40,0.95), rgba(20,36,28,0.95)) !important;
+  color: #e8f0ea !important;
+  border-color: #3d5a4a !important;
+}
+html[data-theme="dark"] #clarity-visit-pill-bar,
+html[data-theme="dark"] .banner #clarity-visit-pill-bar {
+  background: #0c1611 !important;
+  border-color: #2a3d32 !important;
+}
+html[data-theme="dark"] #clarity-visit-pill-bar .cv-pill {
+  background: #1a2a22 !important;
+  color: #e6d090 !important;
+  border-color: #4a6040 !important;
+}
+html[data-theme="dark"] .rrra-hub-body,
+html[data-theme="dark"] .rrra-hub-hero {
+  color: #e8f0ea !important;
+}
+html[data-theme="dark"] a {
+  color: #8fd4b0 !important;
+}
+html[data-theme="dark"] .cgs-btn {
+  background: #152019 !important;
+  color: #e8f0ea !important;
+  border-color: #3d5a4a !important;
+}
+html[data-theme="dark"] .cgs-btn.is-active {
+  color: #fff !important;
+}
+</style>
+
+
+<script id="clarity-path-night-fix-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_PATH_NIGHT_FIX_V1__) return;
+window.__CLARITY_PATH_NIGHT_FIX_V1__ = true;
+
+function nightPolish(){
+  if (document.documentElement.getAttribute("data-theme") !== "dark") return;
+  document.querySelectorAll(".card div, .card section, .card li").forEach(function(el){
+    try {
+      var bg = (window.getComputedStyle(el).backgroundColor || "").replace(/\s/g,"");
+      /* light grays/whites → deepen */
+      if (/^rgb\((24[0-9]|25[0-5]),(24[0-9]|25[0-5]),(24[0-9]|25[0-5])\)/.test(bg) ||
+          /^rgb\((2[0-3][0-9]),(2[0-3][0-9]),(2[0-3][0-9])\)/.test(bg) ||
+          bg === "rgb(255,255,255)" || bg === "rgba(0,0,0,0)") {
+        /* skip fully transparent */
+        if (bg === "rgba(0,0,0,0)") return;
+        var lum = 0;
+        var m = bg.match(/rgb\((\d+),(\d+),(\d+)/);
+        if (m) lum = (+m[1]+ +m[2]+ +m[3]) / 3;
+        if (lum > 200) {
+          el.style.setProperty("background", "#1a2820", "important");
+          el.style.setProperty("color", "#e8f0ea", "important");
+        }
+      }
+    } catch(e){}
+  });
+}
+
+function forcePathFilter(){
+  try {
+    var g = localStorage.getItem("clarity_committed_path")
+      || document.documentElement.getAttribute("data-clarity-path")
+      || "seeker";
+    if (typeof window.applyAdditiveFilter === "function") window.applyAdditiveFilter(g);
+    else if (typeof window.applyGateSectionFilter === "function") window.applyGateSectionFilter(g);
+  } catch(e){}
+}
+
+/* When track Seeker clicked — already via requestPath; reinforce after any badge update */
+document.addEventListener("click", function(ev){
+  var btn = ev.target && ev.target.closest && ev.target.closest("[data-gate], .cgs-btn");
+  if (!btn) return;
+  setTimeout(forcePathFilter, 120);
+  setTimeout(forcePathFilter, 500);
+  setTimeout(nightPolish, 200);
+}, true);
+
+if (document.readyState === "loading")
+  document.addEventListener("DOMContentLoaded", function(){ setTimeout(nightPolish, 400); setTimeout(forcePathFilter, 500); });
+else { setTimeout(nightPolish, 400); setTimeout(forcePathFilter, 500); }
+window.addEventListener("load", function(){ setTimeout(nightPolish, 800); });
+
+/* Theme toggle */
+var obs = new MutationObserver(function(){
+  if (document.documentElement.getAttribute("data-theme") === "dark") setTimeout(nightPolish, 50);
+});
+try { obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] }); } catch(e){}
+})();
+</script>
+
+<style id="clarity-path-reset-css-v1">
+.cgs-btn.cgs-reset {
+  border-style: dashed;
+  opacity: 0.9;
+  font-weight: 650;
+}
+.cgs-btn.cgs-reset:hover {
+  border-color: #a44;
+  color: #a44;
+}
+html[data-theme="dark"] .cgs-btn.cgs-reset:hover {
+  border-color: #e88;
+  color: #f0c0c0;
+}
+.cgs-btn.cgs-reset.is-active {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+</style>
+
+
+<script id="clarity-path-reset-js-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_PATH_RESET_V1__) return;
+window.__CLARITY_PATH_RESET_V1__ = true;
+
+/**
+ * Optional reset to Seeker level — clears unlock max and path progress.
+ * User confirms before wipe.
+ */
+window.clarityPathResetToSeeker = function(){
+  var ok = false;
+  try {
+    ok = window.confirm(
+      "Reset learning path to Seeker?\n\n" +
+      "• Unlocks higher doors again (quizzes return)\n" +
+      "• Does not delete Vault / family tree / notes\n" +
+      "• You choose this freely — it is optional"
+    );
+  } catch(e){ ok = true; }
+  if (!ok) return { cancelled: true };
+
+  try {
+    localStorage.setItem("clarity_path_unlocked_max", "0");
+    localStorage.setItem("clarity_path_quiz_passes", "{}");
+    localStorage.setItem("clarity_committed_path", "seeker");
+    localStorage.setItem("clarity_path_override", "seeker");
+    localStorage.setItem("clarity_active_gate", "seeker");
+    /* checklist key if present */
+    try { localStorage.removeItem("clarity_path_checklist_v1"); } catch(e2){}
+  } catch(e){}
+
+  try {
+    document.documentElement.setAttribute("data-clarity-path", "seeker");
+    document.body.setAttribute("data-clarity-path", "seeker");
+  } catch(e){}
+
+  if (typeof window.clarityRequestPath === "function") {
+    window.__clarityPathBypass = true;
+    try { window.clarityRequestPath("seeker"); }
+    finally { window.__clarityPathBypass = false; }
+  } else if (typeof window.applyAdditiveFilter === "function") {
+    window.applyAdditiveFilter("seeker");
+  } else if (typeof window.applyGateSectionFilter === "function") {
+    window.applyGateSectionFilter("seeker");
+  }
+
+  if (typeof window.switchTab === "function") {
+    try { window.switchTab("reminder"); } catch(e){}
+  }
+
+  try {
+    var badge = document.getElementById("current-mode-badge");
+    if (badge) badge.textContent = "SEEKER JOURNEY MODE";
+  } catch(e){}
+
+  document.querySelectorAll(".cgs-btn[data-gate]").forEach(function(btn){
+    var g = btn.getAttribute("data-gate");
+    btn.classList.toggle("is-active", g === "seeker");
+    btn.classList.toggle("path-locked", g !== "seeker");
+  });
+
+  return { ok: true, path: "seeker" };
+};
+
+/* Also expose on progress helper */
+if (!window.clarityPathProgress) window.clarityPathProgress = {};
+window.clarityPathProgress.reset = window.clarityPathResetToSeeker;
+})();
+</script>
+
+
+<script id="clarity-build-security-audit-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_BUILD_SECURITY_AUDIT_V1__) return;
+window.__CLARITY_BUILD_SECURITY_AUDIT_V1__ = true;
+
+window.claritySecurityAudit = function(){
+  var report = {
+    ok: true,
+    ts: Date.now(),
+    build: "path-reset+additive+vault",
+    vault: {
+      gate: !!document.getElementById("amana-vault-gate"),
+      tree: !!document.getElementById("user-family-tree-card"),
+      uftRead: typeof window.uftRead === "function",
+      uftKey: window.UFT_KEY || "clarity_user_family_tree_v1",
+      cryptoSubtle: !!(window.crypto && window.crypto.subtle)
+    },
+    path: {
+      request: typeof window.clarityRequestPath === "function",
+      reset: typeof window.clarityPathResetToSeeker === "function",
+      attr: document.documentElement.getAttribute("data-clarity-path")
+    },
+    storage: { keys: 0, suspicious: [] },
+    notes: []
+  };
+  try {
+    if (report.vault.uftKey !== "clarity_user_family_tree_v1") {
+      report.ok = false;
+      report.notes.push("unexpected UFT_KEY");
+    }
+  } catch(e){}
+  try {
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i) || "";
+      report.storage.keys++;
+      if (/passphrase|plaintext.?key|(^|_)password$/i.test(k)) {
+        report.storage.suspicious.push(k);
+        report.ok = false;
+        report.notes.push("suspicious key:"+k);
+      }
+    }
+  } catch(e){}
+  try {
+    document.querySelectorAll("#amana-vault-gate input[type='password']").forEach(function(inp){
+      inp.setAttribute("autocomplete","current-password");
+    });
+  } catch(e){}
+  window.__CLARITY_SECURITY_REPORT__ = report;
+  return report;
+};
+setTimeout(function(){ try { claritySecurityAudit(); } catch(e){} }, 1000);
+})();
+</script>
+
+<style id="clarity-meme-hide-until-unlock-css-v1">
+/* Hide ALL meme UI until path unlocks studio (Daily / Da’i) */
+html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) #meme-card,
+html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) #meme-card *,
+body:not([data-meme-studio-open="1"]) #meme-card,
+body:not([data-meme-studio-open="1"]) #meme-card * {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+/* Meme pills / buttons outside the studio */
+html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) .clarity-meme-push-pill,
+html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) button.meme-push,
+html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) .meme-push-pill,
+body:not([data-meme-studio-open="1"]) .clarity-meme-push-pill,
+body:not([data-meme-studio-open="1"]) button.meme-push,
+body:not([data-meme-studio-open="1"]) .meme-push-pill {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Buttons whose label or handler is Meme — via class we stamp */
+.clarity-meme-ui-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+</style>
+
+
+<script id="clarity-meme-hide-until-unlock-js-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_MEME_HIDE_UNTIL_UNLOCK_V1__) return;
+window.__CLARITY_MEME_HIDE_UNTIL_UNLOCK_V1__ = true;
+
+function pathOk(){
+  try {
+    var p = document.documentElement.getAttribute("data-clarity-path")
+      || localStorage.getItem("clarity_committed_path")
+      || "seeker";
+    return p === "practicing" || p === "dai";
+  } catch(e){ return false; }
+}
+
+function setFlag(open){
+  try { document.body.setAttribute("data-meme-studio-open", open ? "1" : "0"); } catch(e){}
+}
+
+function isMemeControl(el){
+  if (!el || el.closest && el.closest("#meme-card")) return false; /* studio internals when open */
+  var oc = (el.getAttribute && (el.getAttribute("onclick") || "")) || "";
+  var tx = (el.textContent || "").replace(/\s+/g, " ").trim();
+  if (/meme/i.test(oc) && !/meme-studio-open|meme-hide|data-meme/i.test(oc)) return true;
+  if (/^🎨?\s*Meme\s*$/i.test(tx) || /^🎨?\s*To Meme Studio\s*$/i.test(tx)) return true;
+  if (/\bMeme\b/i.test(tx) && tx.length < 28 && el.tagName === "BUTTON") return true;
+  if (el.classList && (el.classList.contains("meme-push") || el.classList.contains("clarity-meme-push-pill"))) return true;
+  return false;
+}
+
+function stampMemeControls(){
+  var open = pathOk();
+  setFlag(open);
+
+  var card = document.getElementById("meme-card");
+  if (card) {
+    if (!open) {
+      card.classList.add("gate-hidden");
+      card.setAttribute("data-gate-hidden", "1");
+      card.style.setProperty("display", "none", "important");
+    } else {
+      card.classList.remove("gate-hidden");
+      card.removeAttribute("data-gate-hidden");
+      card.style.removeProperty("display");
+    }
+  }
+
+  document.querySelectorAll("button, a.btn-soft, .btn-soft, .btn-secondary").forEach(function(el){
+    if (isMemeControl(el)) {
+      if (!open) el.classList.add("clarity-meme-ui-hidden");
+      else el.classList.remove("clarity-meme-ui-hidden");
+    }
+  });
+}
+
+function boot(){ stampMemeControls(); }
+
+if (document.readyState === "loading")
+  document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 200); });
+else setTimeout(boot, 200);
+window.addEventListener("load", function(){ setTimeout(boot, 600); setTimeout(boot, 1400); });
+
+/* Path changes */
+var _rp = window.clarityRequestPath;
+if (typeof _rp === "function" && !_rp.__memeHide) {
+  window.clarityRequestPath = function(){
+    var r = _rp.apply(this, arguments);
+    setTimeout(boot, 80);
+    setTimeout(boot, 400);
+    return r;
+  };
+  window.clarityRequestPath.__memeHide = true;
+}
+var _af = window.applyGateSectionFilter;
+if (typeof _af === "function" && !_af.__memeHide) {
+  window.applyGateSectionFilter = function(){
+    var r = _af.apply(this, arguments);
+    setTimeout(boot, 50);
+    return r;
+  };
+  window.applyGateSectionFilter.__memeHide = true;
+}
+
+document.addEventListener("click", function(ev){
+  if (ev.target && ev.target.closest && ev.target.closest("[data-gate], .cgs-btn")) {
+    setTimeout(boot, 100);
+    setTimeout(boot, 450);
+  }
+}, true);
+
+/* Periodic soft pass while on Seeker */
+setInterval(function(){
+  if (!pathOk()) stampMemeControls();
+}, 2500);
+
+window.clarityMemeUiSync = stampMemeControls;
+})();
+</script>
+
+<style id="clarity-tajweed-force-show-css-v1">
+html[data-clarity-path="practicing"] #tajweed-live-card,
+html[data-clarity-path="practicing"] #tajweed-path-card,
+html[data-clarity-path="practicing"] #tj-deep-studio,
+html[data-clarity-path="dai"] #tajweed-live-card,
+html[data-clarity-path="dai"] #tajweed-path-card,
+html[data-clarity-path="dai"] #tj-deep-studio {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+}
+#clarity-path-rail { display: none !important; }
+</style>
+
+<style id="clarity-track-always-visible-css-v1">
+.clarity-gate-switcher .cgs-btn.cgs-daily,
+.clarity-gate-switcher .cgs-btn[data-gate="practicing"],
+.clarity-gate-switcher .cgs-btn.cgs-seeker,
+.clarity-gate-switcher .cgs-btn.cgs-new,
+.clarity-gate-switcher .cgs-btn.cgs-dai,
+.clarity-gate-switcher .cgs-btn.cgs-reset {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1;
+}
+.clarity-gate-switcher .cgs-btn.path-locked {
+  opacity: 0.55 !important;
+}
+</style>
+
+
+<style id="clarity-uft-zoom-revamp-css-v1">
+#uft-zoom-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem;
+  margin: 0.4rem 0 0.55rem; padding: 0.4rem 0.5rem;
+  border-radius: 12px;
+  background: rgba(13,79,60,0.07);
+  border: 1px solid rgba(13,79,60,0.14);
+  font-size: 0.78rem;
+}
+html[data-theme="dark"] #uft-zoom-bar {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.12);
+}
+#uft-zoom-bar .uz-label { font-weight: 700; margin-right: 0.15rem; opacity: 0.85; }
+#uft-zoom-bar button {
+  border-radius: 999px; padding: 0.28rem 0.55rem;
+  border: 1.5px solid rgba(13,79,60,0.25);
+  background: #fff; color: #0d4f3c; font-weight: 700; cursor: pointer;
+  font-size: 0.75rem; min-width: 2.2rem;
+}
+html[data-theme="dark"] #uft-zoom-bar button {
+  background: #1a2a22; color: #e8f0ea; border-color: #3d5a4a;
+}
+#uft-zoom-bar button.uz-active {
+  background: #0d4f3c; color: #f3faf6; border-color: transparent;
+}
+html[data-theme="dark"] #uft-zoom-bar button.uz-active {
+  background: #2d6b4f; color: #fff;
+}
+#uft-zoom-bar #uft-zoom-pct {
+  font-variant-numeric: tabular-nums; font-weight: 800; min-width: 3rem;
+  text-align: center;
+}
+#uft-zoom-bar input[type="range"] {
+  width: 7rem; max-width: 40vw; accent-color: #0d4f3c; vertical-align: middle;
+}
+#tab-notes.active.amana-unlocked #uft-stage {
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-padding: 1.5rem;
+  min-height: min(48vh, 24rem) !important;
+  touch-action: pan-x pan-y;
+}
+#tab-notes.active.amana-unlocked #uft-preview {
+  overflow: visible !important;
+  width: max-content !important;
+  min-width: 100%;
+  transform-origin: 0 0;
+}
+#tab-notes.active.amana-unlocked #uft-zoom-layer {
+  transform-origin: 0 0;
+  transition: transform 0.14s ease-out;
+  will-change: transform;
+  display: inline-block;
+  width: max-content;
+}
+/* Track row: keep all phase pills + Reset visible */
+.clarity-gate-switcher {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  align-items: center !important;
+}
+.clarity-gate-switcher .cgs-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+}
+</style>
+<script id="clarity-uft-zoom-revamp-js-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_UFT_ZOOM_REVAMP_V1__) return;
+window.__CLARITY_UFT_ZOOM_REVAMP_V1__ = true;
+
+var PRESETS = [50, 75, 100, 125, 150, 200];
+var KEY = "clarity_uft_zoom_pct";
+
+function getPct(){
+  try {
+    var n = parseInt(localStorage.getItem(KEY) || "100", 10);
+    if (isNaN(n) || n < 40) n = 100;
+    if (n > 250) n = 250;
+    return n;
+  } catch(e){ return 100; }
+}
+function setPct(n){
+  n = Math.max(40, Math.min(250, Math.round(n)));
+  try { localStorage.setItem(KEY, String(n)); } catch(e){}
+  return n;
+}
+
+function layer(){
+  return document.getElementById("uft-zoom-layer")
+    || document.querySelector("#uft-preview .uft-zoom-layer")
+    || document.getElementById("uft-preview");
+}
+
+function applyZoom(pct, announce){
+  pct = setPct(pct);
+  var el = layer();
+  if (el) {
+    el.style.transform = "scale(" + (pct / 100) + ")";
+    el.style.transformOrigin = "0 0";
+    /* Expand layout space so scaled content remains scrollable */
+    var sizer = document.getElementById("uft-zoom-sizer");
+    if (sizer && el !== sizer) {
+      try {
+        var w = el.scrollWidth || el.offsetWidth;
+        var h = el.scrollHeight || el.offsetHeight;
+        if (w && h) {
+          sizer.style.width = Math.ceil(w * pct / 100) + "px";
+          sizer.style.height = Math.ceil(h * pct / 100) + "px";
+        }
+      } catch(e){}
+    }
+  }
+  var lab = document.getElementById("uft-zoom-pct");
+  if (lab) lab.textContent = pct + "%";
+  var range = document.getElementById("uft-zoom-range");
+  if (range && String(range.value) !== String(pct)) range.value = String(pct);
+  document.querySelectorAll("#uft-zoom-bar [data-zoom]").forEach(function(btn){
+    btn.classList.toggle("uz-active", parseInt(btn.getAttribute("data-zoom"), 10) === pct);
+  });
+  if (announce && typeof window.uftStatus === "function") {
+    try { window.uftStatus("Tree scale " + pct + "%"); } catch(e){}
+  }
+  return pct;
+}
+
+function ensureBar(){
+  var card = document.getElementById("user-family-tree-card");
+  if (!card) return null;
+  var bar = document.getElementById("uft-zoom-bar");
+  if (bar) return bar;
+  bar = document.createElement("div");
+  bar.id = "uft-zoom-bar";
+  bar.setAttribute("role", "toolbar");
+  bar.setAttribute("aria-label", "Family tree scale");
+  var presetBtns = PRESETS.map(function(p){
+    return "<button type=\"button\" data-zoom=\""+p+"\">"+p+"%</button>";
+  }).join("");
+  bar.innerHTML =
+    "<span class=\"uz-label\">Scale</span>" +
+    "<button type=\"button\" data-act=\"minus\" title=\"Zoom out\">−</button>" +
+    "<span id=\"uft-zoom-pct\">100%</span>" +
+    "<button type=\"button\" data-act=\"plus\" title=\"Zoom in\">+</button>" +
+    "<input type=\"range\" id=\"uft-zoom-range\" min=\"40\" max=\"250\" step=\"5\" value=\"100\" aria-label=\"Tree scale\"/>" +
+    presetBtns +
+    "<button type=\"button\" data-act=\"fit\" title=\"Fit width\">Fit</button>" +
+    "<button type=\"button\" data-act=\"reset\" title=\"Reset 100%\">↺</button>";
+  /* Place above stage */
+  var stage = document.getElementById("uft-stage");
+  if (stage && stage.parentNode) stage.parentNode.insertBefore(bar, stage);
+  else card.insertBefore(bar, card.firstChild);
+
+  bar.addEventListener("click", function(ev){
+    var t = ev.target;
+    if (!t || t.tagName !== "BUTTON") return;
+    var pct = getPct();
+    if (t.getAttribute("data-zoom")) {
+      applyZoom(parseInt(t.getAttribute("data-zoom"), 10), true);
+      return;
+    }
+    var act = t.getAttribute("data-act");
+    if (act === "minus") applyZoom(pct - 10, true);
+    else if (act === "plus") applyZoom(pct + 10, true);
+    else if (act === "reset") applyZoom(100, true);
+    else if (act === "fit") {
+      try {
+        var st = document.getElementById("uft-stage");
+        var ly = layer();
+        if (st && ly) {
+          var sw = st.clientWidth || 320;
+          var lw = ly.scrollWidth || ly.offsetWidth || 640;
+          var fit = Math.max(40, Math.min(150, Math.floor(sw / Math.max(1, lw) * 100)));
+          applyZoom(fit, true);
+        } else applyZoom(100, true);
+      } catch(e){ applyZoom(100, true); }
+    }
+  });
+  var range = document.getElementById("uft-zoom-range");
+  if (range) {
+    range.addEventListener("input", function(){
+      applyZoom(parseInt(range.value, 10) || 100, false);
+    });
+  }
+  return bar;
+}
+
+function bindWheel(){
+  var stage = document.getElementById("uft-stage");
+  if (!stage || stage.__uftWheelZoom) return;
+  stage.__uftWheelZoom = true;
+  stage.addEventListener("wheel", function(ev){
+    if (!ev.ctrlKey && !ev.metaKey) return; /* pinch-zoom style */
+    ev.preventDefault();
+    var delta = ev.deltaY > 0 ? -8 : 8;
+    applyZoom(getPct() + delta, false);
+  }, { passive: false });
+}
+
+function boot(){
+  ensureBar();
+  bindWheel();
+  applyZoom(getPct(), false);
+  setTimeout(function(){ applyZoom(getPct(), false); }, 400);
+}
+
+if (document.readyState === "loading")
+  document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 400); });
+else setTimeout(boot, 400);
+window.addEventListener("load", function(){ setTimeout(boot, 900); });
+
+var _ur = window.uftRender;
+if (typeof _ur === "function" && !_ur.__zoomRevamp) {
+  window.uftRender = function(){
+    var r = _ur.apply(this, arguments);
+    setTimeout(boot, 80);
+    setTimeout(function(){ applyZoom(getPct(), false); }, 200);
+    return r;
+  };
+  window.uftRender.__zoomRevamp = true;
+}
+
+window.clarityUftZoom = { apply: applyZoom, get: getPct };
+})();
+</script>
+
+
+<script id="clarity-polish-security-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_POLISH_SECURITY_V1__) return;
+window.__CLARITY_POLISH_SECURITY_V1__ = true;
+window.claritySecurityAudit = function(){
+  var r = {ok:true,ts:Date.now(),vault:{uftKey:window.UFT_KEY||"clarity_user_family_tree_v1",
+    tree:!!document.getElementById("user-family-tree-card"),
+    uftRead:typeof window.uftRead==="function"},
+    path:{reset:typeof window.clarityPathResetToSeeker==="function",
+      request:typeof window.clarityRequestPath==="function"},
+    zoom:typeof window.clarityUftZoom==="object",
+    storage:{suspicious:[]},notes:[]};
+  try{
+    if(r.vault.uftKey!=="clarity_user_family_tree_v1"){r.ok=false;r.notes.push("UFT_KEY");}
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i)||"";
+      if(/passphrase|plaintext.?key|(^|_)password$/i.test(k)){r.storage.suspicious.push(k);r.ok=false;}
+    }
+  }catch(e){}
+  window.__CLARITY_SECURITY_REPORT__=r;
+  return r;
+};
+setTimeout(function(){try{claritySecurityAudit();}catch(e){}},1000);
 })();
 </script>
 
