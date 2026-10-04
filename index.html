@@ -4940,6 +4940,31 @@ html[data-theme="light"] .gps-btn.gps-dai {
 }
 </style>
 
+
+<style id="clarity-live-temp-fix">
+#banner-media.live-active #banner-live,
+#banner-media.live-active .banner-live {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  z-index: 4 !important;
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+#banner-media.live-active img,
+#banner-media.live-active .banner-still-img {
+  opacity: 0 !important;
+}
+.temp-live, #place-temp-alt {
+  display: inline-flex !important;
+  visibility: visible !important;
+  font-weight: 600;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
@@ -5034,7 +5059,7 @@ html[data-theme="light"] .gps-btn.gps-dai {
     </div>
 </nav>
 
-<div id="clarity-top-duo">
+<div id="clarity-top-duo"><span id="place-temp" class="temp-live" style="position:absolute;left:-9999px" aria-live="polite">—°C</span>
 <div class="banner">
     <div class="banner-media" id="banner-media" aria-hidden="true">
       <iframe loading="lazy" id="banner-live" class="banner-live-iframe" title="Haramain live" hidden
