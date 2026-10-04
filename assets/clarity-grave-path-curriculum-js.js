@@ -169,6 +169,7 @@
   }
 
   function ensureStrip(){
+    var g = pathNow();
     var strip = document.getElementById("clarity-grave-path-strip");
     if (!strip) {
       strip = document.createElement("div");
@@ -198,6 +199,8 @@
         + '<span class="gps-tag">'+p.focus+'</span></button>';
     });
     html += '</div>';
+    if (strip.getAttribute("data-path") === g && strip.querySelector(".gps-btn")) return;
+    strip.setAttribute("data-path", g);
     strip.innerHTML = html;
   }
 
@@ -217,7 +220,7 @@
     ["grave-path-card","new-muslim-foundations-card","salah-starter-card","daily-deed-ledger-card","dai-transmit-card"].forEach(function(id){
       var el = document.getElementById(id);
       if (!el) return;
-      var show = (map[g] || []).indexOf(id) >= 0 || g === "dai";
+      var show = (map[g] || []).indexOf(id) >= 0;
       if (show) {
         el.classList.remove("gate-hidden");
         el.removeAttribute("data-gate-hidden");

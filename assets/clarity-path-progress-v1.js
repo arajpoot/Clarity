@@ -118,37 +118,37 @@ function showEl(el){
 }
 
 /** Additive path filter — overrides exclusive filter */
-function applyAdditiveFilter(gate){
+
+function applyAdditiveFilter(gate){ return applyExclusiveFilter(gate); }
+function applyExclusiveFilter(gate){
   gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
   try {
     document.documentElement.setAttribute("data-clarity-path", gate);
     document.body.setAttribute("data-clarity-path", gate);
+    localStorage.setItem("clarity_committed_path", gate);
+    localStorage.setItem("clarity_path_override", gate);
+    localStorage.setItem("clarity_path_focus", gate);
   } catch(e){}
-  var allow = unionAllow(gate);
-  var openAll = (gate === "dai");
+  var allow = ALLOW[gate] || ALLOW.seeker || {};
   document.querySelectorAll(".card, [id$='-card']").forEach(function(el){
     var id = el.id || "";
-    if (openAll) { showEl(el); return; }
     if (id && VAULT[id]) { showEl(el); return; }
-    if (el.closest && el.closest("#tab-notes, #amana-vault-interior")) { showEl(el); return; }
-    if (id === "cw-card") { showEl(el); return; }
-    var ok = (id && allow[id] === 1) ||
-      (el.classList && el.classList.contains("card-commands") && allow["commands-card"]);
-    if (!ok && id === "tajweed-path-card" && allow["tajweed-path-card"]) ok = true;
-    if (!ok && id === "tj-deep-studio" && allow["tj-deep-studio"]) ok = true;
-    if (ok) showEl(el);
-    else hideEl(el);
+    if (el.closest && el.closest("#tab-notes, #amana-vault-interior, #clarity-top-duo")) { showEl(el); return; }
+    if (id === "cw-card" || id === "about-clarity-card") { showEl(el); return; }
+    var ok = !!(id && allow[id] === 1);
+    if (!ok && el.classList && el.classList.contains("card-commands") && allow["commands-card"]) ok = true;
+    if (ok) showEl(el); else hideEl(el);
   });
-  /* dynamic CSS lock for additive */
-  installAdditiveLock(gate, allow);
-  /* Ensure Daily/Da’i modules actually appear after filter */
-  if (gate === "practicing" || gate === "dai") {
-    ["meme-card","callig-lab-card","tweet-desk-card","tajweed-live-card","tajweed-path-card","tj-deep-studio"].forEach(function(id){
-      if (allow[id]) showEl(document.getElementById(id));
+  try {
+    document.querySelectorAll(".gps-btn, .gps-phase, [data-gate]").forEach(function(btn){
+      var g = btn.getAttribute("data-gate");
+      if (!g) return;
+      btn.classList.toggle("active", g === gate);
+      btn.classList.toggle("is-active", g === gate);
     });
-  }
-  try { if (typeof window.clarityMemeUiSync === "function") window.clarityMemeUiSync(); } catch(e){}
+  } catch(e){}
 }
+
 
 function installAdditiveLock(gate, allow){
   var el = document.getElementById("clarity-path-lock");
@@ -184,21 +184,20 @@ function applyContent(gate){
     localStorage.setItem("clarity_committed_path", gate);
     localStorage.setItem("clarity_path_override", gate);
   } catch(e){}
-  /* Call raw switch for badge/theme, then force additive filter */
+  /* Call raw switch for badge/theme, then exclusive path filter */
   var raw = window.__clarityPathDoSwitchRaw;
   if (typeof raw === "function") {
     window.__clarityPathBypass = true;
     try { raw(gate); } finally { window.__clarityPathBypass = false; }
   }
-  applyAdditiveFilter(gate);
+  applyExclusiveFilter(gate);
   /* Bring user to the natural hub for this path so sections are visible */
   try {
     var hub = (gate === "practicing") ? "action" : (gate === "dai") ? "reminder" : "reminder";
     if (typeof switchTab === "function") switchTab(hub);
   } catch(e){}
-  setTimeout(function(){ applyAdditiveFilter(gate); }, 80);
-  setTimeout(function(){ applyAdditiveFilter(gate); }, 400);
-  setTimeout(function(){ applyAdditiveFilter(gate); }, 900);
+  setTimeout(function(){ applyExclusiveFilter(gate); }, 100);
+  setTimeout(function(){ applyExclusiveFilter(gate); }, 900);
   try {
     var badge = document.getElementById("current-mode-badge");
     var labels = {seeker:"SEEKER JOURNEY MODE", new_muslim:"NEW MUSLIM TRACK", practicing:"DAILY MUSLIM / LEGACY", dai:"ASPIRING DA’I TRACK"};
@@ -375,7 +374,7 @@ function wire(){
   window.claritySwitchGate.__isRequest = true;
   window.applyGateConfiguration = window.claritySwitchGate;
   /* Override exclusive filter with additive */
-  window.applyGateSectionFilter = function(g){ applyAdditiveFilter(g || clamp()); };
+  window.applyGateSectionFilter = function(g){ applyExclusiveFilter(g || clamp()); };
 }
 
 function boot(){
