@@ -4965,6 +4965,23 @@ html[data-theme="light"] .gps-btn.gps-dai {
 }
 </style>
 
+
+<style id="clarity-doors-path-css">
+.td-wrap-paths { width: min(440px, 94vw) !important; }
+.td-path-grid { display: flex; flex-direction: column; gap: 0.55rem; }
+.td-path.gps-btn {
+  width: 100%; cursor: pointer; text-align: left;
+  border-radius: 16px; padding: 0.85rem 1rem;
+}
+#clarity-three-doors:not(.hidden) {
+  display: flex !important;
+}
+/* Keep inline strip hidden — paths live in first-visit doors */
+#clarity-grave-path-strip[data-first-visit-moved="1"] {
+  display: none !important;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
@@ -5352,38 +5369,40 @@ html[data-theme="dark"] .workspace-safe-frame{border-color:rgba(212,180,90,.28)}
 </script>
 
 <div id="clarity-three-doors" class="hidden" style="display:none!important" role="dialog" aria-modal="true" aria-labelledby="td-title">
-  <div class="td-wrap">
+  <div class="td-wrap td-wrap-paths">
     <div class="td-brand">
       <div class="td-logo">✒ CLARITY</div>
-      <h1 id="td-title">Choose your door</h1>
-      <p>Private companion — not a fatwa site.</p>
-      <p class="td-sub">Educational only. For personal rulings, consult a qualified local scholar.</p>
+      <h1 id="td-title">Choose your path</h1>
+      <p>Four doors. One aim: send light ahead — not a fatwa path.</p>
+      <p class="td-sub">Educational only. Stored on this device. You can change path later.</p>
     </div>
-    <div class="td-grid">
-      <div class="td-card" onclick="clarityPickPrimaryDoor('today')">
-        <div class="td-ico">☀️</div>
-        <h2>Today</h2>
-        <p>Next prayer, one deed, path card, streak.</p>
-        <span class="td-go">Open Today →</span>
-      </div>
-      <div class="td-card" onclick="clarityPickPrimaryDoor('learn')">
-        <div class="td-ico">📚</div>
-        <h2>Learn</h2>
-        <p>Heart &amp; grave · Seerah · seeker tracks.</p>
-        <span class="td-go">Choose a path →</span>
-      </div>
-      <div class="td-card" onclick="clarityPickPrimaryDoor('prepare')">
-        <div class="td-ico">🕊️</div>
-        <h2>Prepare my affairs</h2>
-        <p>7-day legacy · wasiyyah · print pack.</p>
-        <span class="td-go">7-day legacy path →</span>
-      </div>
+    <div class="td-grid td-path-grid">
+      <button type="button" class="td-path gps-btn gps-seeker" data-gate="seeker" onclick="clarityWelcomePickTrack('seeker')">
+        <span class="gps-title">Seeker · Wake the heart</span>
+        <span class="gps-goal">Remember death. Send small light ahead. No overwhelm.</span>
+        <span class="gps-tag">Soul audit · short reminders · seerah spark</span>
+      </button>
+      <button type="button" class="td-path gps-btn gps-new_muslim" data-gate="new_muslim" onclick="clarityWelcomePickTrack('new_muslim')">
+        <span class="gps-title">New Muslim · Establish pillars</span>
+        <span class="gps-goal">Wudu, salah, short surahs, clear belief — stability first.</span>
+        <span class="gps-tag">Prayer · purification · basic fiqh · gentle path</span>
+      </button>
+      <button type="button" class="td-path gps-btn gps-practicing" data-gate="practicing" onclick="clarityWelcomePickTrack('practicing')">
+        <span class="gps-title">Daily Muslim · Craft &amp; consistency</span>
+        <span class="gps-goal">Habits that outlive you: Qur’an craft, character, weekly review.</span>
+        <span class="gps-tag">Tajweed · calligraphy · deed ledger · seerah mirror</span>
+      </button>
+      <button type="button" class="td-path gps-btn gps-dai" data-gate="dai" onclick="clarityWelcomePickTrack('dai')">
+        <span class="gps-title">Aspiring Da’i · Transmit light</span>
+        <span class="gps-goal">Teach with adab. Guard sources. Leave beneficial knowledge.</span>
+        <span class="gps-tag">Dawah tools · critical study · family legacy</span>
+      </button>
     </div>
-    <p class="td-foot">Your choice is stored only on this device. You can change doors anytime from Your path.</p>
+    <p class="td-foot">Your choice is stored only on this device. Not a fatwa service.</p>
   </div>
 </div>
 
-<div id="landing-gate-screen" class="gate-overlay hidden" style="display:none!important">
+<div id="landing-gate-screen"<div id="landing-gate-screen" class="gate-overlay hidden" style="display:none!important">
     <div class="gate-container">
         <header class="gate-header">
             <span class="gate-logo">✒ CLARITY</span>
@@ -5455,19 +5474,19 @@ html[data-theme="dark"] .workspace-safe-frame{border-color:rgba(212,180,90,.28)}
     <div class="cw-steps" role="list" id="cw-track-steps">
       <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('seeker')">
         <span class="cw-step-num">1</span>
-        <div><strong>Curious Seeker</strong> — purpose, prophecy, Qur’an, next life</div>
+        <div><strong>Seeker · Wake the heart</strong> — death-awareness, small light, seerah spark</div>
       </button>
       <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('new_muslim')">
         <span class="cw-step-num">2</span>
-        <div><strong>New Muslim</strong> — shahada, prayer, character starter</div>
+        <div><strong>New Muslim · Establish pillars</strong> — wudu, salah, clear belief</div>
       </button>
       <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('practicing')">
         <span class="cw-step-num">3</span>
-        <div><strong>Daily Muslim</strong> — streaks, tajweed, light legacy</div>
+        <div><strong>Daily Muslim · Craft &amp; consistency</strong> — Qur’an craft, character, deeds</div>
       </button>
       <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('dai')">
         <span class="cw-step-num">4</span>
-        <div><strong>Aspiring Da’i</strong> — sincerity, sources, calm dawah</div>
+        <div><strong>Aspiring Da’i · Transmit light</strong> — adab, sources, family legacy</div>
       </button>
     </div>
     <div class="cw-actions">
