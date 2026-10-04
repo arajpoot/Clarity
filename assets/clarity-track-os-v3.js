@@ -1,3 +1,5 @@
+try{window.__CLARITY_BOOT_TS=window.__CLARITY_BOOT_TS||Date.now();}catch(e){}
+/* __TRACK_SCROLL_GUARD__ */
 /*! Clarity Track OS v3 — one active track expanded; others collapse to switch bar;
     routines wire to in-app sections + authentic external sources. Educational only. */
 (function(){
@@ -116,7 +118,7 @@
     /* Soft scroll after tab switch */
     setTimeout(function(){
       var panel = document.getElementById("tab-"+section) || document.getElementById("main-content");
-      if (panel && panel.scrollIntoView) try { panel.scrollIntoView({behavior:"smooth",block:"start"}); } catch(e3){}
+      if (panel && panel.scrollIntoView) try { Date.now()<(window.__CLARITY_BOOT_TS||0)+1800?0:panel.scrollIntoView({behavior:"smooth",block:"start"}); } catch(e3){}
     }, 220);
   };
 
