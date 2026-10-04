@@ -5108,6 +5108,52 @@ html[data-theme="light"] .clarity-gate-switcher .cgs-btn.cgs-dai {
 }
 </style>
 
+
+<style id="clarity-path-quiz-css">
+#clarity-path-quiz-modal {
+  position: fixed; inset: 0; z-index: 20000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem; background: rgba(6,18,14,0.72);
+  backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none; transition: opacity .2s ease;
+}
+#clarity-path-quiz-modal.open {
+  opacity: 1; pointer-events: auto;
+}
+#clarity-path-quiz-modal .cpq-card {
+  width: min(420px, 94vw); max-height: min(88vh, 640px); overflow-y: auto;
+  background: #0f2a22; color: #e8f0ea; border-radius: 18px;
+  border: 1.5px solid rgba(212,180,90,0.45);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  padding: 1.15rem 1.1rem 1.2rem;
+}
+html[data-theme="day"] #clarity-path-quiz-modal .cpq-card,
+html[data-theme="light"] #clarity-path-quiz-modal .cpq-card {
+  background: #fffdf8; color: #1c2a22; border-color: #c4a035;
+}
+#clarity-path-quiz-modal h3 { margin: 0 0 0.5rem; color: #d4b45a; font-size: 1.15rem; }
+#clarity-path-quiz-modal .cpq-sub { font-size: 0.9rem; line-height: 1.45; margin: 0 0 0.75rem; opacity: 0.95; }
+#clarity-path-quiz-modal .cpq-q { font-size: 1rem; font-weight: 600; margin: 0.5rem 0 0.65rem; }
+#clarity-path-quiz-modal .cpq-opts { display: flex; flex-direction: column; gap: 0.4rem; }
+#clarity-path-quiz-modal .cpq-opts button {
+  text-align: left; font: inherit; padding: 0.65rem 0.75rem; border-radius: 12px;
+  border: 1px solid rgba(212,180,90,0.35); background: rgba(0,0,0,0.25); color: inherit; cursor: pointer;
+}
+html[data-theme="day"] #clarity-path-quiz-modal .cpq-opts button,
+html[data-theme="light"] #clarity-path-quiz-modal .cpq-opts button {
+  background: #f5f0e6; border-color: #d4c4a0;
+}
+#clarity-path-quiz-modal .cpq-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.85rem; }
+#clarity-path-quiz-modal .cpq-primary {
+  font: inherit; font-weight: 700; padding: 0.55rem 1rem; border-radius: 999px;
+  border: none; background: linear-gradient(135deg, #1fa67a, #0f4c3a); color: #fff; cursor: pointer;
+}
+#clarity-path-quiz-modal #cpq-x {
+  font: inherit; padding: 0.55rem 0.9rem; border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.4); background: transparent; color: inherit; cursor: pointer;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
