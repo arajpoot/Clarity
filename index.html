@@ -4654,157 +4654,130 @@ iframe{max-width:100%}
 
 
 <style id="clarity-banner-height-fix">
-/* Phase: banner permanence — never collapse after paint */
-#clarity-top-duo {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 40 !important;
-  width: 100% !important;
-  max-height: none !important;
-  overflow: visible !important;
-}
-#clarity-top-duo .banner {
-  position: relative !important;
-  display: block !important;
-  min-height: 220px !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-#clarity-top-duo .banner-media {
-  position: absolute !important;
-  inset: 0 !important;
-  min-height: 100% !important;
-  z-index: 0 !important;
-  overflow: hidden !important;
-}
-#clarity-top-duo .banner-still-img,
-#clarity-top-duo #banner-img {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  opacity: 0.85 !important;
-  z-index: 1 !important;
-}
-#clarity-top-duo .banner-overlay {
-  position: relative !important;
-  z-index: 2 !important;
-  min-height: 210px !important;
-  height: auto !important;
-  max-height: none !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  visibility: visible !important;
-  overflow: visible !important;
-  padding: 0.45rem 0.5rem 0.55rem !important;
-}
-#clarity-top-duo .banner-center {
-  display: flex !important;
-  flex-direction: column !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  min-height: 0 !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  order: 2 !important;
-}
+/* Banner visible + page must scroll */
+#clarity-top-duo { display:block!important; visibility:visible!important; opacity:1!important; position:relative!important; z-index:40!important; overflow:visible!important; }
+#clarity-top-duo .banner { display:block!important; position:relative!important; min-height:200px!important; height:auto!important; overflow:visible!important; }
+#clarity-top-duo .banner-media { position:absolute!important; inset:0!important; z-index:0!important; overflow:hidden!important; pointer-events:none!important; }
+#clarity-top-duo .banner-overlay { position:relative!important; z-index:2!important; display:flex!important; flex-wrap:wrap!important; min-height:190px!important; height:auto!important; overflow:visible!important; }
+#clarity-top-duo .banner-center { display:flex!important; flex-direction:column!important; visibility:visible!important; width:100%!important; max-width:100%!important; }
 #clarity-top-duo .banner-center .bismillah,
 #clarity-top-duo .banner-center h1,
 #clarity-top-duo .banner-center .subtitle,
-#clarity-top-duo .banner-center .rabbana-box,
-#clarity-top-duo .banner-center .stream-controls {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+#clarity-top-duo .banner-center .rabbana-box { display:block!important; visibility:visible!important; }
+#clarity-top-duo .banner-center .stream-controls { display:flex!important; flex-wrap:wrap!important; }
+@media (max-width:900px){
+  #clarity-top-duo .banner { min-height:240px!important; }
+  #clarity-top-duo .banner-overlay { min-height:230px!important; flex-direction:column!important; }
+  #clarity-top-duo .banner-side { display:none!important; }
 }
-#clarity-top-duo .banner-center .stream-controls {
-  display: flex !important;
-  flex-wrap: wrap !important;
+@media (min-width:901px){
+  #clarity-top-duo .banner-side { display:flex!important; }
+  #clarity-top-duo .banner-center { max-width:520px!important; width:auto!important; }
 }
-/* Mobile: sides optional, center always full */
-@media (max-width: 900px) {
-  #clarity-top-duo .banner { min-height: 260px !important; }
-  #clarity-top-duo .banner-overlay {
-    min-height: 250px !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-  }
-  #clarity-top-duo .banner-side {
-    display: none !important; /* intentional on narrow screens */
-  }
-  #clarity-top-duo .banner-center {
-    max-width: 100% !important;
-    padding: 0.2rem 0.15rem !important;
-  }
-  #clarity-top-duo .rabbana-box { max-width: 100% !important; }
-  #clarity-top-duo .rabbana-arabic { font-size: 0.95rem !important; line-height: 1.5 !important; }
-  #clarity-top-duo .banner h1 { font-size: 1.35rem !important; }
+/* CRITICAL: never freeze page scroll */
+html, body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  position: static !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
 }
-@media (min-width: 901px) {
-  #clarity-top-duo .banner { min-height: 180px !important; }
-  #clarity-top-duo .banner-overlay { min-height: 170px !important; flex-direction: row !important; }
-  #clarity-top-duo .banner-side { display: flex !important; }
-  #clarity-top-duo .banner-center { max-width: 520px !important; width: auto !important; }
+html { height: auto !important; min-height: 100% !important; }
+body { min-height: 100% !important; min-height: 100dvh !important; }
+/* Overlays must not trap scroll when hidden */
+#clarity-welcome:not(.show),
+#clarity-three-doors.hidden,
+#clarity-three-doors[style*="display:none"],
+.gate-overlay.hidden,
+.clarity-welcome-overlay:not(.show) {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
-/* Visit pill should not cover banner */
-#clarity-visit-pill-bar.cv-stitched-banner {
-  position: relative !important;
-  z-index: 5 !important;
+#main-content, .page-wrapper, .main-content, #main-application-workspace {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  pointer-events: auto !important;
 }
 </style>
 <script id="clarity-banner-lock-js">
 (function(){
   "use strict";
-  if (window.__CLARITY_BANNER_LOCK__) return;
-  window.__CLARITY_BANNER_LOCK__ = true;
-  var armed = Date.now();
-  function ensure(){
-    var duo = document.getElementById("clarity-top-duo");
-    var ban = duo && duo.querySelector(".banner");
-    var ov = duo && duo.querySelector(".banner-overlay");
-    if (duo) {
-      duo.style.setProperty("display", "block", "important");
-      duo.style.setProperty("visibility", "visible", "important");
-      duo.style.setProperty("opacity", "1", "important");
-    }
-    if (ban) {
-      ban.style.setProperty("display", "block", "important");
-      ban.style.setProperty("min-height", (window.innerWidth <= 900 ? "260px" : "180px"), "important");
-      ban.style.setProperty("overflow", "visible", "important");
-    }
-    if (ov) {
-      ov.style.setProperty("display", "flex", "important");
-      ov.style.setProperty("visibility", "visible", "important");
-    }
-  }
-  function boot(){
-    ensure();
-    /* Soft-block accidental jump past banner for first 1.5s after load */
-    var _siv = Element.prototype.scrollIntoView;
-    Element.prototype.scrollIntoView = function(){
-      if (Date.now() - armed < 1500) {
-        var top = document.getElementById("clarity-top-duo");
-        if (top && this !== top && !top.contains(this)) {
-          /* allow user clicks later; skip auto-jumps during boot */
-          return;
-        }
+  if (window.__CLARITY_SCROLL_UNLOCK__) return;
+  window.__CLARITY_SCROLL_UNLOCK__ = true;
+  window.__CLARITY_BOOT_TS = Date.now();
+
+  function unlockScroll(){
+    try {
+      var de = document.documentElement;
+      var b = document.body;
+      if (de) {
+        de.style.setProperty("overflow-y", "auto", "important");
+        de.style.setProperty("overflow-x", "hidden", "important");
+        de.style.setProperty("height", "auto", "important");
+        de.style.setProperty("position", "static", "important");
+        de.style.removeProperty("overflow");
       }
-      return _siv.apply(this, arguments);
-    };
-    setTimeout(function(){ try { Element.prototype.scrollIntoView = _siv; } catch(e){} }, 1600);
-    try { window.scrollTo(0, 0); } catch(e){}
+      if (b) {
+        b.style.setProperty("overflow-y", "auto", "important");
+        b.style.setProperty("overflow-x", "hidden", "important");
+        b.style.setProperty("height", "auto", "important");
+        b.style.setProperty("position", "static", "important");
+        b.classList.remove("no-scroll", "modal-open", "scroll-lock");
+      }
+      /* close stuck welcome if marked seen */
+      var w = document.getElementById("clarity-welcome");
+      if (w && w.classList.contains("show")) {
+        try {
+          var seen = localStorage.getItem("clarity_welcome_seen_v2") || localStorage.getItem("clarity_welcome_seen");
+          if (seen) {
+            w.classList.remove("show");
+            w.setAttribute("aria-hidden", "true");
+          }
+        } catch (e) {}
+      }
+      var td = document.getElementById("clarity-three-doors");
+      if (td) {
+        td.classList.add("hidden");
+        td.style.setProperty("display", "none", "important");
+      }
+    } catch (e) {}
+  }
+
+  function ensureBanner(){
+    var duo = document.getElementById("clarity-top-duo");
+    if (!duo) return;
+    duo.style.setProperty("display", "block", "important");
+    duo.style.setProperty("visibility", "visible", "important");
+  }
+
+  function boot(){
+    unlockScroll();
+    ensureBanner();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  window.addEventListener("load", function(){ ensure(); try { if (Date.now()-armed < 1200) window.scrollTo(0,0); } catch(e){} });
+  window.addEventListener("load", function(){
+    unlockScroll();
+    ensureBanner();
+    try { window.scrollTo(0, 0); } catch (e) {}
+  });
+  /* Keep unlocking briefly in case deferred chunk sets overflowY hidden then fails to clear */
+  var n = 0;
+  var iv = setInterval(function(){
+    unlockScroll();
+    n++;
+    if (n > 20) clearInterval(iv);
+  }, 250);
+  /* Public API */
+  window.clarityUnlockScroll = unlockScroll;
 })();
 </script>
+
 
 
 </head><body data-active-tab="journey" data-section-fortress="1">
