@@ -33020,29 +33020,37 @@ var ALLOW = {
     "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
     "about-clarity-card":1,"soul-compass-card":1,"seerah-live-card":1,
     "hell-sins-card":1,"night-breath-card":1,"deepen-study-card":1,
-    "asma-names-lecture-card":1,"tafseer-resources-card":1,"creation-tongue-reflection":1,"weekly-review-card":1
+    "asma-names-lecture-card":1,"tafseer-resources-card":1,"creation-tongue-reflection":1,
+    "weekly-review-card":1
   },
   new_muslim: {
     "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
     "about-clarity-card":1,"seerah-live-card":1,"hell-sins-card":1,
     "soul-compass-card":1,"night-breath-card":1,"hajj-guide-card":1,
-    "hajj-checklist-card":1,"fiqh-quiz-card":1
+    "hajj-checklist-card":1,"fiqh-quiz-card":1,"deepen-study-card":1,
+    "tafseer-resources-card":1,"weekly-review-card":1
   },
   practicing: {
     "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
-    "meme-card":1,"callig-lab-card":1,"tajweed-live-card":1,"tj-lmr-score-card":1,
-    "weekly-review-card":1,"tibbe-nabwi-card":1,"seerah-live-card":1,
-    "soul-compass-card":1,"hell-sins-card":1,"tafseer-resources-card":1,
-    "deepen-study-card":1,"about-clarity-card":1,"hajj-checklist-card":1,
+    "meme-card":1,"callig-lab-card":1,"tajweed-live-card":1,"tajweed-path-card":1,
+    "tj-deep-studio":1,"tj-lmr-score-card":1,"weekly-review-card":1,"tibbe-nabwi-card":1,
+    "seerah-live-card":1,"soul-compass-card":1,"hell-sins-card":1,"tafseer-resources-card":1,
+    "deepen-study-card":1,"about-clarity-card":1,"hajj-checklist-card":1,"hajj-guide-card":1,
     "fiqh-quiz-card":1,"night-breath-card":1,"seerah-mirror-card":1,
-    "najiha-tafseer-card":1,"creation-tongue-reflection":1
+    "najiha-tafseer-card":1,"creation-tongue-reflection":1,"asma-names-lecture-card":1,
+    "tweet-desk-card":1
   },
   dai: {
-    "commands-card":1,"meme-card":1,"tweet-desk-card":1,"about-clarity-card":1,
+    "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
+    "meme-card":1,"callig-lab-card":1,"tweet-desk-card":1,"about-clarity-card":1,
     "seerah-live-card":1,"tafseer-resources-card":1,"najiha-tafseer-card":1,
     "israeliyat-card":1,"deepen-study-card":1,"asma-names-lecture-card":1,
     "sealed-nectar-card":1,"tajalliyat-lecture-card":1,"soul-compass-card":1,
-    "samina-card":1,"samina-verse-card":1,"tafseer-live-card":1,"authentic-learning-stack":1
+    "tafseer-live-card":1,"authentic-learning-stack":1,"tajweed-live-card":1,
+    "tajweed-path-card":1,"tj-deep-studio":1,"tj-lmr-score-card":1,
+    "hell-sins-card":1,"night-breath-card":1,"hajj-checklist-card":1,"hajj-guide-card":1,
+    "fiqh-quiz-card":1,"weekly-review-card":1,"tibbe-nabwi-card":1,"seerah-mirror-card":1,
+    "creation-tongue-reflection":1
   }
 };
 var VAULT = {
@@ -33129,6 +33137,13 @@ function applyAdditiveFilter(gate){
   });
   /* dynamic CSS lock for additive */
   installAdditiveLock(gate, allow);
+  /* Ensure Daily/Da’i modules actually appear after filter */
+  if (gate === "practicing" || gate === "dai") {
+    ["meme-card","callig-lab-card","tweet-desk-card","tajweed-live-card","tajweed-path-card","tj-deep-studio"].forEach(function(id){
+      if (allow[id]) showEl(document.getElementById(id));
+    });
+  }
+  try { if (typeof window.clarityMemeUiSync === "function") window.clarityMemeUiSync(); } catch(e){}
 }
 
 function installAdditiveLock(gate, allow){
@@ -34230,150 +34245,6 @@ setTimeout(function(){ try { claritySecurityAudit(); } catch(e){} }, 1000);
 })();
 </script>
 
-<style id="clarity-meme-hide-until-unlock-css-v1">
-/* Hide ALL meme UI until path unlocks studio (Daily / Da’i) */
-html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) #meme-card,
-html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) #meme-card *,
-body:not([data-meme-studio-open="1"]) #meme-card,
-body:not([data-meme-studio-open="1"]) #meme-card * {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  max-height: 0 !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-}
-
-/* Meme pills / buttons outside the studio */
-html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) .clarity-meme-push-pill,
-html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) button.meme-push,
-html:not([data-clarity-path="practicing"]):not([data-clarity-path="dai"]) .meme-push-pill,
-body:not([data-meme-studio-open="1"]) .clarity-meme-push-pill,
-body:not([data-meme-studio-open="1"]) button.meme-push,
-body:not([data-meme-studio-open="1"]) .meme-push-pill {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-/* Buttons whose label or handler is Meme — via class we stamp */
-.clarity-meme-ui-hidden {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-}
-</style>
-
-
-<script id="clarity-meme-hide-until-unlock-js-v1">
-(function(){
-"use strict";
-if (window.__CLARITY_MEME_HIDE_UNTIL_UNLOCK_V1__) return;
-window.__CLARITY_MEME_HIDE_UNTIL_UNLOCK_V1__ = true;
-
-function pathOk(){
-  try {
-    var p = document.documentElement.getAttribute("data-clarity-path")
-      || localStorage.getItem("clarity_committed_path")
-      || "seeker";
-    return p === "practicing" || p === "dai";
-  } catch(e){ return false; }
-}
-
-function setFlag(open){
-  try { document.body.setAttribute("data-meme-studio-open", open ? "1" : "0"); } catch(e){}
-}
-
-function isMemeControl(el){
-  if (!el || el.closest && el.closest("#meme-card")) return false; /* studio internals when open */
-  var oc = (el.getAttribute && (el.getAttribute("onclick") || "")) || "";
-  var tx = (el.textContent || "").replace(/\s+/g, " ").trim();
-  if (/meme/i.test(oc) && !/meme-studio-open|meme-hide|data-meme/i.test(oc)) return true;
-  if (/^🎨?\s*Meme\s*$/i.test(tx) || /^🎨?\s*To Meme Studio\s*$/i.test(tx)) return true;
-  if (/\bMeme\b/i.test(tx) && tx.length < 28 && el.tagName === "BUTTON") return true;
-  if (el.classList && (el.classList.contains("meme-push") || el.classList.contains("clarity-meme-push-pill"))) return true;
-  return false;
-}
-
-function stampMemeControls(){
-  var open = pathOk();
-  setFlag(open);
-
-  var card = document.getElementById("meme-card");
-  if (card) {
-    if (!open) {
-      card.classList.add("gate-hidden");
-      card.setAttribute("data-gate-hidden", "1");
-      card.style.setProperty("display", "none", "important");
-    } else {
-      card.classList.remove("gate-hidden");
-      card.removeAttribute("data-gate-hidden");
-      card.style.removeProperty("display");
-    }
-  }
-
-  document.querySelectorAll("button, a.btn-soft, .btn-soft, .btn-secondary").forEach(function(el){
-    if (isMemeControl(el)) {
-      if (!open) el.classList.add("clarity-meme-ui-hidden");
-      else el.classList.remove("clarity-meme-ui-hidden");
-    }
-  });
-}
-
-function boot(){ stampMemeControls(); }
-
-if (document.readyState === "loading")
-  document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 200); });
-else setTimeout(boot, 200);
-window.addEventListener("load", function(){ setTimeout(boot, 600); setTimeout(boot, 1400); });
-
-/* Path changes */
-var _rp = window.clarityRequestPath;
-if (typeof _rp === "function" && !_rp.__memeHide) {
-  window.clarityRequestPath = function(){
-    var r = _rp.apply(this, arguments);
-    setTimeout(boot, 80);
-    setTimeout(boot, 400);
-    return r;
-  };
-  window.clarityRequestPath.__memeHide = true;
-}
-var _af = window.applyGateSectionFilter;
-if (typeof _af === "function" && !_af.__memeHide) {
-  window.applyGateSectionFilter = function(){
-    var r = _af.apply(this, arguments);
-    setTimeout(boot, 50);
-    return r;
-  };
-  window.applyGateSectionFilter.__memeHide = true;
-}
-
-document.addEventListener("click", function(ev){
-  if (ev.target && ev.target.closest && ev.target.closest("[data-gate], .cgs-btn")) {
-    setTimeout(boot, 100);
-    setTimeout(boot, 450);
-  }
-}, true);
-
-/* Periodic soft pass while on Seeker */
-setInterval(function(){
-  if (!pathOk()) stampMemeControls();
-}, 2500);
-
-window.clarityMemeUiSync = stampMemeControls;
-})();
-</script>
-
 <style id="clarity-tajweed-force-show-css-v1">
 html[data-clarity-path="practicing"] #tajweed-live-card,
 html[data-clarity-path="practicing"] #tajweed-path-card,
@@ -34662,6 +34533,150 @@ window.claritySecurityAudit = function(){
   return r;
 };
 setTimeout(function(){try{claritySecurityAudit();}catch(e){}},1000);
+})();
+</script>
+
+<style id="clarity-meme-hide-until-unlock-css-v1">
+/* Hide meme UI on Seeker / New Muslim only */
+html[data-clarity-path="seeker"] #meme-card,
+html[data-clarity-path="new_muslim"] #meme-card,
+html[data-clarity-path="seeker"] .clarity-meme-push-pill,
+html[data-clarity-path="new_muslim"] .clarity-meme-push-pill,
+html[data-clarity-path="seeker"] .clarity-meme-ui-hidden,
+html[data-clarity-path="new_muslim"] .clarity-meme-ui-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+/* Explicitly SHOW studio + push UI on Daily + Da’i */
+html[data-clarity-path="practicing"] #meme-card,
+html[data-clarity-path="dai"] #meme-card {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+html[data-clarity-path="practicing"] #meme-card.gate-hidden,
+html[data-clarity-path="dai"] #meme-card.gate-hidden {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+html[data-clarity-path="practicing"] .clarity-meme-ui-hidden,
+html[data-clarity-path="dai"] .clarity-meme-ui-hidden {
+  display: inline-flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  margin: revert !important;
+  padding: revert !important;
+  border: revert !important;
+  opacity: 1 !important;
+}
+</style>
+<script id="clarity-meme-hide-until-unlock-js-v1">
+(function(){
+"use strict";
+if (window.__CLARITY_MEME_UNLOCK_V2__) return;
+window.__CLARITY_MEME_UNLOCK_V2__ = true;
+
+function pathNow(){
+  try {
+    return document.documentElement.getAttribute("data-clarity-path")
+      || localStorage.getItem("clarity_committed_path")
+      || "seeker";
+  } catch(e){ return "seeker"; }
+}
+function unlocked(){
+  var p = pathNow();
+  return p === "practicing" || p === "dai";
+}
+function isMemeControl(el){
+  if (!el) return false;
+  if (el.closest && el.closest("#meme-card")) return false;
+  var oc = (el.getAttribute && el.getAttribute("onclick")) || "";
+  var tx = (el.textContent || "").replace(/\s+/g," ").trim();
+  if (/meme/i.test(oc)) return true;
+  if (/^🎨?\s*Meme\s*$/i.test(tx) || /To Meme Studio/i.test(tx)) return true;
+  if (/\bMeme\b/i.test(tx) && tx.length < 28 && el.tagName === "BUTTON") return true;
+  if (el.classList && (el.classList.contains("meme-push") || el.classList.contains("clarity-meme-push-pill"))) return true;
+  return false;
+}
+function syncMemeUi(){
+  var open = unlocked();
+  try { document.body.setAttribute("data-meme-studio-open", open ? "1" : "0"); } catch(e){}
+  var card = document.getElementById("meme-card");
+  if (card) {
+    if (open) {
+      card.classList.remove("gate-hidden");
+      card.removeAttribute("data-gate-hidden");
+      card.hidden = false;
+      card.style.removeProperty("display");
+      card.style.removeProperty("visibility");
+      card.style.removeProperty("height");
+      card.style.removeProperty("opacity");
+    } else {
+      card.classList.add("gate-hidden");
+      card.setAttribute("data-gate-hidden", "1");
+      card.style.setProperty("display", "none", "important");
+    }
+  }
+  document.querySelectorAll("button, a.btn-soft, .btn-soft, .btn-secondary").forEach(function(el){
+    if (!isMemeControl(el)) return;
+    if (open) el.classList.remove("clarity-meme-ui-hidden");
+    else el.classList.add("clarity-meme-ui-hidden");
+  });
+  /* also show calligraphy / tweet when unlocked */
+  if (open) {
+    ["callig-lab-card","tweet-desk-card","tajweed-path-card","tj-deep-studio","tajweed-live-card"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove("gate-hidden");
+      el.removeAttribute("data-gate-hidden");
+      el.style.removeProperty("display");
+    });
+  }
+}
+function boot(){ syncMemeUi(); }
+if (document.readyState === "loading")
+  document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 250); });
+else setTimeout(boot, 250);
+window.addEventListener("load", function(){ setTimeout(boot, 700); setTimeout(boot, 1500); });
+
+var _rp = window.clarityRequestPath;
+if (typeof _rp === "function" && !_rp.__memeUnlockV2) {
+  window.clarityRequestPath = function(){
+    var r = _rp.apply(this, arguments);
+    setTimeout(boot, 60);
+    setTimeout(boot, 350);
+    setTimeout(boot, 900);
+    return r;
+  };
+  window.clarityRequestPath.__memeUnlockV2 = true;
+}
+var _af = window.applyGateSectionFilter;
+if (typeof _af === "function" && !_af.__memeUnlockV2) {
+  window.applyGateSectionFilter = function(){
+    var r = _af.apply(this, arguments);
+    setTimeout(boot, 40);
+    setTimeout(boot, 300);
+    return r;
+  };
+  window.applyGateSectionFilter.__memeUnlockV2 = true;
+}
+document.addEventListener("click", function(ev){
+  if (ev.target && ev.target.closest && ev.target.closest("[data-gate], .cgs-btn")) {
+    setTimeout(boot, 100);
+    setTimeout(boot, 500);
+  }
+}, true);
+
+window.clarityMemeUiSync = syncMemeUi;
 })();
 </script>
 

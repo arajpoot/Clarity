@@ -1,4 +1,7 @@
-/today /today.html 200
+# Cloudflare Pages — avoid 307 loops
+# Folder /today/ is preferred (today/index.html). No redirect required.
+# Optional pretty aliases only (200 rewrite, not 301/302):
+/today /today/index.html 200
 /charter /charter.html 200
 /rooms /rooms.html 200
 /tools /tools.html 200
@@ -7,4 +10,6 @@
 /meme-studio /meme-studio.html 200
 /clarity-notes /clarity-notes.html 200
 /faraid-study /faraid-study.html 200
-/clarity /clarity.html 200
+/clarity /index.html 200
+
+# Do NOT add rules that map /today.html → /today if /today maps back to /today.html
