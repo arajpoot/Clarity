@@ -80,6 +80,10 @@ body.section-open .page-wrapper {
     var lock = document.getElementById("clarity-path-lock");
     if (lock) lock.textContent = "/* dai: all open */";
     document.body.setAttribute("data-meme-studio-open", "1");
+    try {
+      document.documentElement.setAttribute("data-clarity-meme-ok", "1");
+      document.body.setAttribute("data-clarity-meme-ok", "1");
+    } catch(eOk){}
     try { if (typeof window.clarityMemeUiSync === "function") window.clarityMemeUiSync(); } catch(e){}
   }
 

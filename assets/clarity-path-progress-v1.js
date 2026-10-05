@@ -203,13 +203,28 @@ function applyPathFilter(focusGate){
     ? (hideIds.join(",") + "{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;pointer-events:none!important;}")
     : "/* path open */";
 
-  /* meme: available from Daily (practicing) upward once unlocked */
+  /* meme: available from Daily (practicing) upward once unlocked — drive CSS via data attr */
   try {
     var memeOk = max >= idx("practicing");
+    try {
+      document.documentElement.setAttribute("data-clarity-meme-ok", memeOk ? "1" : "0");
+      document.body.setAttribute("data-clarity-meme-ok", memeOk ? "1" : "0");
+      document.documentElement.setAttribute("data-clarity-unlocked-max", String(max));
+    } catch(eAttr){}
     ["meme-card","meme-studio-root","meme"].forEach(function(id){
       var node = document.getElementById(id);
       if (!node) return;
       if (memeOk) showEl(node); else hideEl(node);
+    });
+    /* site-wide meme pills */
+    document.querySelectorAll(".clarity-to-meme-pill, .clarity-meme-pill-row").forEach(function(p){
+      if (memeOk) {
+        p.style.removeProperty("display");
+        p.style.removeProperty("visibility");
+        p.removeAttribute("data-gate-hidden");
+      } else {
+        p.style.setProperty("display", "none", "important");
+      }
     });
   } catch(e){}
 
