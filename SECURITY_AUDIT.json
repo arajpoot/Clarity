@@ -1,24 +1,66 @@
 {
-  "eval": 0,
-  "new_Function": 0,
-  "document_write": 4,
-  "http_mixed_content_hints": 6,
-  "crypto_subtle_vault": true,
+  "build": "20261005h",
+  "html_bytes": 248585,
+  "html_was": 509906,
+  "offloaded": [
+    "clarity-critical-css-v1.css",
+    "nuros-catchall-v16.js",
+    "clarity-banner-lock-js.js",
+    "nuros-null-guard-js.js",
+    "nuros-master-shield-v1.js",
+    "nuros5-shariah-js-v2.js"
+  ],
   "vault": {
-    "pbkdf2_iterations": 120000,
-    "aes": true,
-    "session_key_memory_only": true,
-    "storage": "localStorage encrypted blob clarity_amana_vault_blob_v1",
-    "password_strength_meter": true,
-    "notes": [
-      "Vault uses Web Crypto PBKDF2 + AES (see amana gate module)",
-      "Session unlock flag is in-memory only",
-      "No password sent to network by vault module design",
-      "XSS residual risk: many innerHTML sites \u2014 keep content trusted/static",
-      "Recommend: never put secrets in URL hash; clear session on hide"
+    "algo": "AES-GCM-256",
+    "kdf": "PBKDF2-SHA-256",
+    "iterations": 210000,
+    "min_pass_len": 10,
+    "session_key": "memory-only (not in sessionStorage)",
+    "blob_keys": [
+      "clarity_amana_vault_meta_v1",
+      "clarity_amana_vault_blob_v1"
     ]
   },
-  "issues": [
-    "none critical"
+  "findings": [
+    {
+      "level": "PASS",
+      "msg": "Vault session key not stored as raw bytes in sessionStorage"
+    },
+    {
+      "level": "PASS",
+      "msg": "PBKDF2 iterations 210000"
+    },
+    {
+      "level": "PASS",
+      "msg": "AES-GCM + PBKDF2-SHA-256"
+    },
+    {
+      "level": "PASS",
+      "msg": "Minimum passphrase length 10"
+    },
+    {
+      "level": "PASS",
+      "msg": "Security shield wired"
+    },
+    {
+      "level": "PASS",
+      "msg": "Referrer-Policy meta"
+    },
+    {
+      "level": "PASS",
+      "msg": "External links hardened noopener"
+    },
+    {
+      "level": "INFO",
+      "msg": "Vault key is RAM-only: refresh requires re-unlock (by design)"
+    },
+    {
+      "level": "INFO",
+      "msg": "Full CSP not forced \u2014 external Quran/radio + fonts need allowlist; use CF headers if available"
+    },
+    {
+      "level": "INFO",
+      "msg": "XSS still could read unlocked vault DOM while session open \u2014 lock when idle"
+    }
   ]
 }
