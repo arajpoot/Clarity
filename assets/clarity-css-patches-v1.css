@@ -2506,3 +2506,106 @@ hr, .divider { border-color: var(--border) !important; }
   background: var(--accent) !important;
   color: var(--accent-fg) !important;
 }
+
+
+/* ===== Path phase: meme never on Seeker / New Muslim focus ===== */
+html[data-clarity-path="seeker"] #meme-card,
+html[data-clarity-path="seeker"] #meme-studio-root,
+html[data-clarity-path="seeker"] #tweet-desk-card,
+html[data-clarity-path="new_muslim"] #meme-card,
+html[data-clarity-path="new_muslim"] #meme-studio-root,
+html[data-clarity-path="new_muslim"] #tweet-desk-card,
+html:not([data-clarity-meme-ok="1"]) #meme-card,
+html:not([data-clarity-meme-ok="1"]) #meme-studio-root,
+html:not([data-clarity-meme-ok="1"]) #tweet-desk-card {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* theme hard night shell — day washes never in dark */
+html[data-theme="dark"] body {
+  background-color: var(--bg, #0c1410) !important;
+  color: var(--text, #e7efe9) !important;
+}
+html[data-theme="dark"] body::before {
+  opacity: 0 !important;
+  content: none !important;
+  background: transparent !important;
+}
+html[data-theme="light"] body {
+  background-color: var(--bg, #f6f1e7) !important;
+  color: var(--text, #1c2a22) !important;
+}
+
+
+/* ===== Banner name plaques (Allah · Masjid) — Naskh, own plaque ===== */
+#clarity-top-duo .banner-name-plaque {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.2rem !important;
+  margin: 0 auto 0.55rem !important;
+  padding: 0.55rem 0.85rem 0.45rem !important;
+  min-width: 5.5rem !important;
+  max-width: 100% !important;
+  border-radius: 14px !important;
+  background: linear-gradient(165deg, rgba(255,253,248,0.95), rgba(245,237,214,0.9)) !important;
+  border: 1px solid rgba(184,146,42,0.45) !important;
+  box-shadow: 0 4px 14px rgba(13,50,40,0.12), inset 0 1px 0 rgba(255,255,255,0.7) !important;
+  text-align: center !important;
+}
+html[data-theme="dark"] #clarity-top-duo .banner-name-plaque {
+  background: linear-gradient(165deg, rgba(26,40,32,0.95), rgba(18,28,22,0.92)) !important;
+  border-color: rgba(212,180,90,0.35) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35) !important;
+}
+#clarity-top-duo .plaque-naskh {
+  font-family: "Scheherazade New", "Noto Naskh Arabic", "Amiri", "Traditional Arabic", serif !important;
+  font-size: clamp(1.85rem, 4.2vw, 2.55rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  color: #0d4f3c !important;
+  letter-spacing: 0.02em !important;
+}
+html[data-theme="dark"] #clarity-top-duo .plaque-naskh {
+  color: #d4b45a !important;
+}
+#clarity-top-duo .plaque-naskh-sm {
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem) !important;
+}
+#clarity-top-duo .masjid-plaque .plaque-icon {
+  font-size: 1.35rem !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+}
+#clarity-top-duo .plaque-caption {
+  font-size: 0.62rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: #5c6b62 !important;
+  opacity: 0.9 !important;
+}
+html[data-theme="dark"] #clarity-top-duo .plaque-caption {
+  color: #9aab9f !important;
+}
+/* Stock photo first load — img visible, live iframe off until user taps Live */
+#clarity-top-duo .banner-media:not(.live-active) #banner-img {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+#clarity-top-duo .banner-media:not(.live-active) #banner-live {
+  display: none !important;
+}
+#clarity-top-duo .banner-media.live-active #banner-img {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

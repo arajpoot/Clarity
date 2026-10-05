@@ -211,19 +211,25 @@ function applyPathFilter(focusGate){
     ? (hideIds.join(",") + "{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;pointer-events:none!important;}")
     : "/* path open */";
 
-  /* meme: available from Daily (practicing) upward once unlocked — drive CSS via data attr */
+  /* meme: only when *focus* is Daily/Da'i AND that door is unlocked — never on Seeker */
   try {
-    var memeOk = max >= idx("practicing");
+    var memeOk = fi >= idx("practicing") && max >= idx("practicing");
     try {
       document.documentElement.setAttribute("data-clarity-meme-ok", memeOk ? "1" : "0");
       document.body.setAttribute("data-clarity-meme-ok", memeOk ? "1" : "0");
       document.documentElement.setAttribute("data-clarity-unlocked-max", String(max));
     } catch(eAttr){}
-    ["meme-card","meme-studio-root","meme"].forEach(function(id){
+    ["meme-card","meme-studio-root","meme","tweet-desk-card"].forEach(function(id){
       var node = document.getElementById(id);
       if (!node) return;
       if (memeOk) showEl(node); else hideEl(node);
     });
+    if (!memeOk) {
+      try {
+        document.documentElement.setAttribute("data-clarity-meme-ok", "0");
+        document.body.setAttribute("data-clarity-meme-ok", "0");
+      } catch(eM){}
+    }
     /* site-wide meme pills */
     document.querySelectorAll(".clarity-to-meme-pill, .clarity-meme-pill-row").forEach(function(p){
       if (memeOk) {
@@ -568,8 +574,7 @@ window.clarityPathProgress = {
   }
   function boot() {
     reapply();
-    setTimeout(reapply, 400);
-    setTimeout(reapply, 1200);
+    setTimeout(reapply, 500);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();

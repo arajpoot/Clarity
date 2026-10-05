@@ -579,8 +579,14 @@ html[data-theme="dark"] .cgs-reset {
 }
 
 /* ===== Meme card never fully gate-hidden when practicing/dai ===== */
-#meme-card:not([data-gate-hidden="1"]) {
+/* Meme only when path allows — never force on Seeker */
+html[data-clarity-meme-ok="1"] #meme-card:not([data-gate-hidden="1"]) {
   display: block !important;
+}
+html:not([data-clarity-meme-ok="1"]) #meme-card,
+html:not([data-clarity-meme-ok="1"]) #tweet-desk-card {
+  display: none !important;
+  visibility: hidden !important;
 }
 .clarity-to-meme-pill {
   display: inline-flex !important;
