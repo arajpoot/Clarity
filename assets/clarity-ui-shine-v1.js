@@ -424,6 +424,88 @@ html[data-theme="dark"] .cgs-reset {
   z-index: 0 !important;
 }
 
+
+/* ===== Desktop: snug content to viewport edges ===== */
+@media (min-width: 901px) {
+  .page-wrapper,
+  #main-content,
+  .main-content,
+  #main-application-workspace {
+    max-width: none !important;
+    width: 100% !important;
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .tab-panel.active,
+  .rrra-hub-body,
+  #tab-reminder, #tab-reality, #tab-reflection, #tab-action, #tab-notes {
+    max-width: none !important;
+    width: 100% !important;
+  }
+  .card, .rrra-hub-hero, .rrra-hub-summary, .cgp-track-plaque {
+    max-width: none !important;
+  }
+  /* slight side padding only so text isn't glued to chrome */
+  #main-application-workspace > .tab-panel {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+}
+@media (min-width: 1200px) {
+  .page-wrapper,
+  #main-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* ===== Snappy phase transitions (less baggy) ===== */
+.tab-panel {
+  transition: opacity 0.18s ease, transform 0.18s ease !important;
+}
+.tab-panel:not(.active) {
+  display: none !important;
+}
+.tab-panel.active {
+  display: block !important;
+  animation: clarityTabIn 0.2s ease both;
+}
+@keyframes clarityTabIn {
+  from { opacity: 0.55; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.gate-hidden {
+  transition: none !important;
+}
+.cgs-btn, .gps-btn {
+  transition: box-shadow 0.12s ease, transform 0.1s ease, filter 0.12s ease !important;
+}
+#clarity-path-quiz-modal {
+  transition: opacity 0.15s ease !important;
+}
+#clarity-path-quiz-modal .cpq-card {
+  transition: transform 0.15s ease !important;
+}
+.card {
+  transition: opacity 0.15s ease !important;
+}
+
+/* meme accent chip */
+.mv-chip.mv-accent {
+  background: linear-gradient(180deg, #1a6b52, #0d4f3c) !important;
+  color: #f0faf4 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+.clarity-to-meme-pill {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  padding: 0.28rem 0.6rem !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
+}
+
 /* Live button */
 .live-haramain-btn.on { background: #0f4c3a !important; }
 .live-haramain-btn.on .live-dot { background: #7dff9a !important; }

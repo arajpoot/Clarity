@@ -255,8 +255,8 @@ function applyContent(gate){
   try {
     if (typeof switchTab === "function") switchTab("reminder");
   } catch(e){}
-  setTimeout(function(){ applyPathFilter(gate); }, 120);
-  setTimeout(function(){ applyPathFilter(gate); }, 600);
+  setTimeout(function(){ applyPathFilter(gate); }, 40);
+  setTimeout(function(){ applyPathFilter(gate); }, 180);
 }
 
 /* ---- Quiz (once per door; majority pass) ---- */

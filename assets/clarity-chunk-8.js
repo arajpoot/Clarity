@@ -9677,3 +9677,171 @@ window.clarityGoSectionChip = clarityGoSectionChip;
   else wireBtn();
   window.addEventListener("load", wireBtn);
 })();
+
+
+/* ---- memeFetchRrra restore (was lost in asset split) ---- */
+(function(){
+  if (typeof window.memeFetchRrra === 'function') return;
+
+  var RRRA_KEYS = {
+    reminder: [
+      [2,153],[2,286],[3,102],[4,36],[16,90],[17,23],[24,35],[33,41],[49,10],[55,1],
+      [57,16],[59,18],[64,16],[73,8],[94,5]
+    ],
+    reality: [
+      [3,185],[6,32],[21,35],[23,115],[29,57],[39,30],[40,39],[57,20],[67,2],[89,21],
+      [99,1],[102,1],[102,8],[18,7],[36,12]
+    ],
+    reflection: [
+      [3,190],[3,191],[10,24],[13,3],[16,11],[30,21],[39,21],[45,13],[51,20],[51,21],
+      [88,17],[2,164],[6,99],[16,65],[41,53]
+    ],
+    action: [
+      [2,43],[2,45],[2,110],[2,177],[4,103],[9,105],[11,114],[17,78],[22,77],[29,45],
+      [33,70],[62,10],[73,20],[76,24],[103,3]
+    ]
+  };
+
+  function pickKey(cat){
+    var keys = RRRA_KEYS[cat] || RRRA_KEYS.reminder;
+    return keys[Math.floor(Math.random() * keys.length)];
+  }
+
+  function setStatus(msg){
+    try {
+      if (typeof memeFetchStatus === 'function') memeFetchStatus(msg);
+      var el = document.getElementById('meme-rrra-status');
+      if (el) el.textContent = msg;
+    } catch(e){}
+  }
+
+  async function fetchAyah(s, a){
+    var ar = '', en = '', ur = '', ref = 'Qurʾān ' + s + ':' + a;
+    try {
+      var res = await fetch('https://api.alquran.cloud/v1/ayah/' + s + ':' + a + '/editions/quran-uthmani,en.sahih,ur.jalandhry');
+      var data = await res.json();
+      var eds = (data && data.data) || [];
+      if (eds[0]) ar = eds[0].text || '';
+      if (eds[1]) en = eds[1].text || '';
+      if (eds[2]) ur = eds[2].text || '';
+    } catch(e1) {
+      try {
+        var r2 = await fetch('https://api.quran.com/api/v4/verses/by_key/' + s + ':' + a + '?language=en&translations=20&fields=text_uthmani');
+        var d2 = await r2.json();
+        var v = d2 && d2.verse;
+        if (v) {
+          ar = v.text_uthmani || '';
+          if (v.translations && v.translations[0]) en = v.translations[0].text || '';
+        }
+      } catch(e2){}
+    }
+    return { arabic: ar, en: en, ur: ur, ref: ref, surah: s, ayah: a };
+  }
+
+  window.memeFetchRrra = async function(cat){
+    try {
+      var cats = ['reminder','reality','reflection','action'];
+      if (!cat || cats.indexOf(cat) < 0) {
+        cat = cats[Math.floor(Math.random() * cats.length)];
+      }
+      setStatus('Loading ' + cat + ' verse…');
+      var pair = pickKey(cat);
+      var v = await fetchAyah(pair[0], pair[1]);
+      if (!v.arabic && !v.en) {
+        setStatus('Could not reach verse API — try again online.');
+        return;
+      }
+      if (typeof memeApplyVerseCard === 'function') {
+        memeApplyVerseCard(v.arabic, v.en, v.ur, v.ref);
+      } else {
+        var top = document.getElementById('meme-top-input');
+        var mid = document.getElementById('meme-mid-input');
+        var bot = document.getElementById('meme-bottom-input');
+        if (top) top.value = v.arabic || '';
+        if (mid) mid.value = v.en || '';
+        if (bot) bot.value = v.ref || '';
+        try {
+          if (window.memeState) {
+            memeState.top = v.arabic || '';
+            memeState.mid = v.en || '';
+            memeState.bottom = v.ref || '';
+          }
+          if (typeof memeDraw === 'function') memeDraw();
+        } catch(e){}
+      }
+      try {
+        document.querySelectorAll('#meme-rrra-fetch-bar .mv-chip[data-rrra]').forEach(function(btn){
+          btn.classList.toggle('mv-accent', btn.getAttribute('data-rrra') === cat);
+        });
+      } catch(e){}
+      setStatus(cat.charAt(0).toUpperCase() + cat.slice(1) + ' · ' + v.ref + ' — educational only');
+    } catch(err) {
+      console.warn('memeFetchRrra', err);
+      setStatus('Fetch failed — check connection');
+    }
+  };
+
+  /** Push current section content into meme desk */
+  window.clarityPushToMemeDesk = function(payload){
+    try {
+      payload = payload || {};
+      var ar = String(payload.arabic || payload.ar || '').trim();
+      var en = String(payload.en || payload.english || '').trim();
+      var ur = String(payload.ur || '').trim();
+      var ref = String(payload.ref || '').trim();
+      if (typeof switchTab === 'function') switchTab('reminder');
+      else if (typeof clarityOpenSectionDoor === 'function') clarityOpenSectionDoor('reminder');
+      setTimeout(function(){
+        var card = document.getElementById('meme-card');
+        if (card) {
+          try { card.classList.remove('gate-hidden'); card.style.removeProperty('display'); } catch(e){}
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        if (typeof memeApplyVerseCard === 'function') {
+          memeApplyVerseCard(ar, en, ur, ref);
+        } else if (typeof memeFillFromSearch === 'function') {
+          try {
+            window.lastSearchVerse = { arabic: ar, en: en, ur: ur, ref: ref };
+            memeFillFromSearch();
+          } catch(e2){}
+        }
+        if (typeof memeFetchStatus === 'function') memeFetchStatus('Pushed to Meme Desk · ' + (ref || 'verse'));
+      }, 180);
+    } catch(e){ console.warn('clarityPushToMemeDesk', e); }
+  };
+
+  /** Section-level "to meme" pills if missing */
+  function ensureSectionMemePills(){
+    try {
+      document.querySelectorAll('.card[id], [id$="-card"]').forEach(function(card){
+        if (card.querySelector('.clarity-to-meme-pill')) return;
+        if (card.id === 'meme-card') return;
+        var arEl = card.querySelector('.arabic, .rabbana-arabic, [lang="ar"], .cmd-ar, .sr-ar');
+        var enEl = card.querySelector('.cmd-en, .sr-en, .verse-en, .translation');
+        if (!arEl && !enEl) return;
+        var row = card.querySelector('.sr-actions, .card-actions, .gpc-links');
+        if (!row) {
+          row = document.createElement('div');
+          row.className = 'clarity-meme-pill-row';
+          row.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.55rem';
+          card.appendChild(row);
+        }
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn-soft clarity-to-meme-pill';
+        btn.textContent = '🖼️ Use in Meme';
+        btn.addEventListener('click', function(){
+          var ar = arEl ? (arEl.textContent || '').trim() : '';
+          var en = enEl ? (enEl.textContent || '').trim() : '';
+          var refEl = card.querySelector('.ref, .verse-ref');
+          var ref = refEl ? (refEl.textContent || '').trim() : '';
+          window.clarityPushToMemeDesk({ arabic: ar, en: en, ref: ref });
+        });
+        row.appendChild(btn);
+      });
+    } catch(e){}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(ensureSectionMemePills, 800); });
+  else setTimeout(ensureSectionMemePills, 800);
+  window.addEventListener('load', function(){ setTimeout(ensureSectionMemePills, 1500); });
+})();
