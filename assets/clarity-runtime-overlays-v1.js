@@ -1281,3 +1281,222 @@ window.memeBgIdx = g.memeBgIdx;
   else { setTimeout(sync, 0); setTimeout(sync, 400); }
   g.addEventListener("load", function(){ setTimeout(sync, 200); });
 })(typeof window !== "undefined" ? window : this);
+
+/**
+ * Clarity Meme Push Complete v1
+ * - Broad "Use in Meme" pills on verse / hadith / command cards
+ * - Push fills HQ text + fetches thematic background (Unsplash/LoremFlickr)
+ */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_MEME_PUSH_COMPLETE_V1__) return;
+  g.__CLARITY_MEME_PUSH_COMPLETE_V1__ = true;
+
+  var BG_KEYWORDS = [
+    { re: /grave|death|akhirah|hereafter|qabr/i, q: "islamic,mosque,night,peaceful" },
+    { re: /salah|prayer|sujud|ruku/i, q: "mosque,prayer,islamic,architecture" },
+    { re: /rahman|mercy|forgiv|istighfar|tawba/i, q: "sunrise,nature,peaceful,light" },
+    { re: /jannah|paradise|garden/i, q: "garden,green,nature,peaceful" },
+    { re: /fire|hell|jahannam|punish/i, q: "desert,dusk,dramatic,sky" },
+    { re: /parent|mother|father|womb/i, q: "family,warm,light,home" },
+    { re: /kaaba|makkah|haram|hajj|umrah/i, q: "kaaba,makkah,mosque" },
+    { re: /madinah|nabawi|prophet|muhammad/i, q: "madinah,mosque,islamic" },
+    { re: /quran|ayah|surah|kitab/i, q: "quran,book,islamic,calligraphy" },
+    { re: /night|qiyam|tahajjud/i, q: "night,stars,mosque,moon" },
+    { re: /water|rain|sea/i, q: "water,calm,nature" },
+    { re: /heart|soul|iman|faith/i, q: "light,nature,peaceful,green" }
+  ];
+
+  function pickQuery(ar, en, ref) {
+    var blob = [ar, en, ref].join(" ");
+    for (var i = 0; i < BG_KEYWORDS.length; i++) {
+      if (BG_KEYWORDS[i].re.test(blob)) return BG_KEYWORDS[i].q;
+    }
+    return "islamic,mosque,architecture,peaceful";
+  }
+
+  function bgCandidates(q) {
+    var seed = Math.abs((q + Date.now()).split("").reduce(function (a, c) {
+      return ((a << 5) - a) + c.charCodeAt(0) | 0;
+    }, 0));
+    var tags = q.replace(/,/g, ",");
+    return [
+      "https://loremflickr.com/1600/900/" + encodeURIComponent(tags.split(",")[0] || "mosque") + "?lock=" + (seed % 10000),
+      "https://picsum.photos/seed/clarity" + (seed % 9999) + "/1600/900",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg"
+    ];
+  }
+
+  function loadBgChain(urls, i) {
+    i = i || 0;
+    if (i >= urls.length) return;
+    var url = urls[i];
+    var img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = function () {
+      try {
+        if (typeof g.memeState !== "object" || !g.memeState) g.memeState = {};
+        g.memeState.img = img;
+        g.memeState.blank = false;
+        if (typeof g.memeDraw === "function") g.memeDraw();
+        if (typeof g.memeFetchStatus === "function")
+          g.memeFetchStatus("Background ready · HQ");
+      } catch (e) {}
+    };
+    img.onerror = function () { loadBgChain(urls, i + 1); };
+    img.src = url;
+  }
+
+  function extractFromCard(card) {
+    if (!card) return { ar: "", en: "", ref: "" };
+    var arEl = card.querySelector(
+      '.arabic, .rabbana-arabic, [lang="ar"], .cmd-ar, .sr-ar, .verse-ar, .ayah-ar, .hadith-ar, .ht-ar, .najiha-ar'
+    );
+    var enEl = card.querySelector(
+      '.cmd-en, .sr-en, .verse-en, .translation, .ayah-en, .english, .hadith-en, .ht-en, .najiha-en, p.muted'
+    );
+    var refEl = card.querySelector('.ref, .verse-ref, .sr-ref, .citation, [data-ref], .hadith-ref, .source');
+    var ar = arEl ? (arEl.textContent || "").trim() : "";
+    var en = enEl ? (enEl.textContent || "").trim() : "";
+    var ref = refEl ? (refEl.textContent || refEl.getAttribute("data-ref") || "").trim() : "";
+    if (!ar && !en) {
+      var paras = card.querySelectorAll("p, blockquote, li");
+      for (var i = 0; i < paras.length && (!ar || !en); i++) {
+        var t = (paras[i].textContent || "").trim();
+        if (!t || t.length < 12) continue;
+        if (/[\u0600-\u06FF]/.test(t) && !ar) ar = t;
+        else if (!en && !/[\u0600-\u06FF]/.test(t)) en = t.slice(0, 320);
+      }
+    }
+    if (!ref) {
+      var h = ((card.querySelector("h2, h3, .card-title") || {}).textContent || "");
+      var m = h.match(/(\d+\s*:\s*\d+)/);
+      if (m) ref = "Qur\u2019an " + m[1].replace(/\s/g, "");
+      else if (/bukhari|muslim|tirmidh|dawud|nasai|majah|hadith/i.test(h + " " + (card.textContent || "").slice(0, 200)))
+        ref = h.slice(0, 80) || "Hadith";
+    }
+    return { ar: ar, en: en, ref: ref };
+  }
+
+  function pushToStudio(payload, withBg) {
+    payload = payload || {};
+    var ar = String(payload.arabic || payload.ar || "").trim();
+    var en = String(payload.en || payload.english || "").trim();
+    var ref = String(payload.ref || "").trim();
+    try {
+      document.documentElement.setAttribute("data-clarity-meme-ok", "1");
+    } catch (e) {}
+    if (typeof g.memeApplyVerseCard === "function") {
+      g.memeApplyVerseCard(ar, en, "", ref);
+    } else if (g.memeState) {
+      g.memeState.top = ar;
+      g.memeState.mid = en;
+      g.memeState.bottom = ref;
+      g.memeState.ref = ref;
+      g.memeState._lastRef = ref;
+      if (typeof g.memeDraw === "function") g.memeDraw();
+    }
+    /* HQ text defaults */
+    try {
+      if (g.memeState) {
+        g.memeState.fontSize = Math.max(g.memeState.fontSize || 0, 42);
+        g.memeState.topSize = Math.max(g.memeState.topSize || 0, 40);
+        g.memeState.midSize = Math.max(g.memeState.midSize || 0, 28);
+        g.memeState.bottomSize = Math.max(g.memeState.bottomSize || 0, 20);
+        g.memeState.outline = Math.max(g.memeState.outline || 0, 4);
+        if (typeof g.memeAutoFitSizes === "function") g.memeAutoFitSizes();
+      }
+    } catch (e2) {}
+    if (withBg !== false) {
+      var q = pickQuery(ar, en, ref);
+      loadBgChain(bgCandidates(q), 0);
+      if (typeof g.memeFetchStatus === "function")
+        g.memeFetchStatus("Fetching scene · " + q.split(",")[0] + "…");
+    }
+    try {
+      if (typeof g.switchTab === "function") g.switchTab("reminder");
+    } catch (e3) {}
+    setTimeout(function () {
+      var card = document.getElementById("meme-card");
+      if (card) {
+        card.classList.remove("gate-hidden");
+        card.style.removeProperty("display");
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+  }
+
+  function ensurePills() {
+    var memeOk = true;
+    try {
+      memeOk = document.documentElement.getAttribute("data-clarity-meme-ok") !== "0";
+    } catch (e) {}
+    var sel = [
+      ".card[id]",
+      "[id$='-card']",
+      ".search-result",
+      ".question",
+      ".cmd-card",
+      ".verse-card",
+      ".hadith-card",
+      ".rabbana-box",
+      "[data-rrra] .card",
+      ".gpc-item",
+      "blockquote",
+      ".deep-learn"
+    ].join(",");
+    document.querySelectorAll(sel).forEach(function (card) {
+      if (!card || card.id === "meme-card" || card.id === "tweet-desk-card") return;
+      if (card.querySelector(".clarity-to-meme-pill")) return;
+      var sample = extractFromCard(card);
+      if (!sample.ar && !sample.en) return;
+      if ((sample.ar + sample.en).length < 20) return;
+      var row = card.querySelector(".sr-actions, .card-actions, .gpc-links, .clarity-meme-pill-row");
+      if (!row) {
+        row = document.createElement("div");
+        row.className = "clarity-meme-pill-row";
+        row.style.cssText = "display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.5rem;align-items:center";
+        card.appendChild(row);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn-soft clarity-to-meme-pill";
+      btn.innerHTML = "🖼️ Meme";
+      btn.title = "Push to Meme Studio with matching background";
+      btn.style.display = memeOk ? "inline-flex" : "none";
+      btn.addEventListener("click", function (ev) {
+        try { ev.preventDefault(); ev.stopPropagation(); } catch (e0) {}
+        var p = extractFromCard(card);
+        pushToStudio({ arabic: p.ar, en: p.en, ref: p.ref }, true);
+      });
+      row.appendChild(btn);
+    });
+  }
+
+  function boot() {
+    ensurePills();
+    /* Override global push */
+    g.clarityPushToMemeDesk = function (payload) {
+      pushToStudio(payload, true);
+    };
+    g.clarityMemePushComplete = { ensure: ensurePills, push: pushToStudio };
+    setTimeout(ensurePills, 700);
+    setTimeout(ensurePills, 2500);
+    g.addEventListener("clarity-path-changed", function () {
+      setTimeout(ensurePills, 350);
+    });
+    /* Re-scan when cards mutate */
+    try {
+      var mo = new MutationObserver(function () {
+        clearTimeout(g.__memePillScanT);
+        g.__memePillScanT = setTimeout(ensurePills, 400);
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    } catch (e) {}
+  }
+
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  g.addEventListener("load", function () { setTimeout(ensurePills, 500); });
+})(typeof window !== "undefined" ? window : this);
