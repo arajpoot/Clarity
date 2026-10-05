@@ -9845,3 +9845,189 @@ window.clarityGoSectionChip = clarityGoSectionChip;
   else setTimeout(ensureSectionMemePills, 800);
   window.addEventListener('load', function(){ setTimeout(ensureSectionMemePills, 1500); });
 })();
+
+
+/* Clarity Surah + Reciter continuous play (restored) */
+(function(){
+  if (window.__CLARITY_SURAH_PLAY_V1__) return;
+  window.__CLARITY_SURAH_PLAY_V1__ = true;
+
+  var SURAH_NAMES = [
+    "Al-Fātiḥah","Al-Baqarah","Āl ʿImrān","An-Nisāʾ","Al-Māʾidah","Al-Anʿām","Al-Aʿrāf","Al-Anfāl","At-Tawbah","Yūnus",
+    "Hūd","Yūsuf","Ar-Raʿd","Ibrāhīm","Al-Ḥijr","An-Naḥl","Al-Isrāʾ","Al-Kahf","Maryam","Ṭā-Hā",
+    "Al-Anbiyāʾ","Al-Ḥajj","Al-Muʾminūn","An-Nūr","Al-Furqān","Ash-Shuʿarāʾ","An-Naml","Al-Qaṣaṣ","Al-ʿAnkabūt","Ar-Rūm",
+    "Luqmān","As-Sajdah","Al-Aḥzāb","Sabaʾ","Fāṭir","Yā-Sīn","Aṣ-Ṣāffāt","Ṣād","Az-Zumar","Ghāfir",
+    "Fuṣṣilat","Ash-Shūrā","Az-Zukhruf","Ad-Dukhān","Al-Jāthiyah","Al-Aḥqāf","Muḥammad","Al-Fatḥ","Al-Ḥujurāt","Qāf",
+    "Adh-Dhāriyāt","Aṭ-Ṭūr","An-Najm","Al-Qamar","Ar-Raḥmān","Al-Wāqiʿah","Al-Ḥadīd","Al-Mujādilah","Al-Ḥashr","Al-Mumtaḥanah",
+    "Aṣ-Ṣaff","Al-Jumuʿah","Al-Munāfiqūn","At-Taghābun","Aṭ-Ṭalāq","At-Taḥrīm","Al-Mulk","Al-Qalam","Al-Ḥāqqah","Al-Maʿārij",
+    "Nūḥ","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyāmah","Al-Insān","Al-Mursalāt","An-Nabaʾ","An-Nāziʿāt","ʿAbasa",
+    "At-Takwīr","Al-Infiṭār","Al-Muṭaffifīn","Al-Inshiqāq","Al-Burūj","Aṭ-Ṭāriq","Al-Aʿlā","Al-Ghāshiyah","Al-Fajr","Al-Balad",
+    "Ash-Shams","Al-Layl","Aḍ-Ḍuḥā","Ash-Sharḥ","At-Tīn","Al-ʿAlaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-ʿĀdiyāt",
+    "Al-Qāriʿah","At-Takāthur","Al-ʿAṣr","Al-Humazah","Al-Fīl","Quraysh","Al-Māʿūn","Al-Kawthar","Al-Kāfirūn","An-Naṣr",
+    "Al-Masad","Al-Ikhlāṣ","Al-Falaq","An-Nās"
+  ];
+
+  var AYAH_COUNTS = [7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,4,3,6,3,2,4,4];
+
+  /* everyayah.com folder codes */
+  var RECITERS = {
+    afs:   { folder: "Alafasy_128kbps", label: "Alafasy" },
+    basit: { folder: "Abdul_Basit_Murattal_192kbps", label: "Abdul Basit" },
+    sds:   { folder: "Sudais_128kbps", label: "As-Sudais" },
+    maher: { folder: "MaherAlMuaiqly128kbps", label: "Maher" },
+    ajm:   { folder: "Ahmed_ibn_Ali_al-Ajamy_128kbps_watroq", label: "Al-Ajmy" },
+    ghamdi:{ folder: "Ghamadi_40kbps", label: "Al-Ghamdi" },
+    husary:{ folder: "Husary_128kbps", label: "Al-Husary" }
+  };
+
+  var state = {
+    reciter: "afs",
+    surah: 0,
+    ayah: 0,
+    playing: false,
+    continuous: true
+  };
+
+  function pad3(n){ n = n|0; return n < 10 ? "00"+n : (n < 100 ? "0"+n : String(n)); }
+  function ayahUrl(surah, ayah){
+    var rec = RECITERS[state.reciter] || RECITERS.afs;
+    var file = pad3(surah) + pad3(ayah) + ".mp3";
+    return "https://everyayah.com/data/" + rec.folder + "/" + file;
+  }
+
+  function ensureAudio(){
+    var a = document.getElementById("quran-audio");
+    if (!a) {
+      a = document.createElement("audio");
+      a.id = "quran-audio";
+      a.preload = "none";
+      a.hidden = true;
+      document.body.appendChild(a);
+    }
+    return a;
+  }
+
+  function populateSurahList(){
+    var sel = document.getElementById("surah-list-pill");
+    if (!sel) return;
+    if (sel.options.length > 5) return; /* already filled */
+    var keep = sel.querySelector('option[value=""]');
+    sel.innerHTML = "";
+    var ph = document.createElement("option");
+    ph.value = "";
+    ph.textContent = "📖 Surahs…";
+    sel.appendChild(ph);
+    for (var i = 0; i < 114; i++) {
+      var opt = document.createElement("option");
+      opt.value = String(i + 1);
+      opt.textContent = (i + 1) + ". " + SURAH_NAMES[i];
+      sel.appendChild(opt);
+    }
+  }
+
+  function updateStreamUI(mode){
+    try {
+      var btn = document.getElementById("stream-btn");
+      var icon = document.getElementById("stream-icon");
+      var text = document.getElementById("stream-text");
+      if (btn) btn.classList.toggle("playing", mode === "playing");
+      if (btn) btn.classList.toggle("loading", mode === "loading");
+      if (icon) icon.textContent = mode === "playing" ? "⏸" : (mode === "loading" ? "⏳" : "▶");
+      if (text) text.textContent = mode === "playing" ? "Pause Surah" : (mode === "loading" ? "Loading…" : "Listen");
+    } catch(e){}
+  }
+
+  function playCurrent(){
+    if (!state.surah || state.ayah < 1) return;
+    var a = ensureAudio();
+    var url = ayahUrl(state.surah, state.ayah);
+    updateStreamUI("loading");
+    try { a.pause(); } catch(e){}
+    a.src = url;
+    a.load();
+    var p = a.play();
+    if (p && p.then) {
+      p.then(function(){ state.playing = true; updateStreamUI("playing"); })
+       .catch(function(){ state.playing = false; updateStreamUI("stopped"); });
+    } else {
+      state.playing = true;
+      updateStreamUI("playing");
+    }
+  }
+
+  function onEnded(){
+    if (!state.continuous || !state.surah) {
+      state.playing = false;
+      updateStreamUI("stopped");
+      return;
+    }
+    var max = AYAH_COUNTS[state.surah - 1] || 1;
+    if (state.ayah < max) {
+      state.ayah++;
+      playCurrent();
+    } else {
+      /* next surah */
+      if (state.surah < 114) {
+        state.surah++;
+        state.ayah = 1;
+        try {
+          var sel = document.getElementById("surah-list-pill");
+          if (sel) sel.value = String(state.surah);
+        } catch(e){}
+        playCurrent();
+      } else {
+        state.playing = false;
+        updateStreamUI("stopped");
+      }
+    }
+  }
+
+  window.claritySetReciter = function(code){
+    code = String(code || "afs");
+    if (!RECITERS[code]) code = "afs";
+    state.reciter = code;
+    try { localStorage.setItem("clarity_reciter", code); } catch(e){}
+    if (state.playing && state.surah) playCurrent();
+  };
+
+  window.clarityPlaySurahFromSelect = function(sel){
+    try {
+      var v = sel && sel.value ? parseInt(sel.value, 10) : 0;
+      if (!v || v < 1 || v > 114) return;
+      state.surah = v;
+      state.ayah = 1;
+      state.continuous = true;
+      playCurrent();
+    } catch(e){ console.warn("clarityPlaySurahFromSelect", e); }
+  };
+
+  window.clarityPlaySurah = function(num){
+    state.surah = Math.max(1, Math.min(114, num|0));
+    state.ayah = 1;
+    state.continuous = true;
+    playCurrent();
+  };
+
+  function wireAudio(){
+    var a = ensureAudio();
+    a.removeEventListener("ended", onEnded);
+    a.addEventListener("ended", onEnded);
+  }
+
+  function boot(){
+    populateSurahList();
+    wireAudio();
+    try {
+      var saved = localStorage.getItem("clarity_reciter");
+      if (saved && RECITERS[saved]) {
+        state.reciter = saved;
+        var rp = document.getElementById("surah-reciter-pill");
+        if (rp) rp.value = saved;
+      }
+    } catch(e){}
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 100); });
+  else setTimeout(boot, 100);
+  window.addEventListener("load", function(){ setTimeout(boot, 300); });
+})();

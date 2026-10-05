@@ -506,6 +506,106 @@ html[data-theme="dark"] .cgs-reset {
   cursor: pointer !important;
 }
 
+
+/* ===== Brand font restore ===== */
+.banner-center h1,
+.banner-title,
+.clarity-brand,
+#clarity-top-duo .banner-center .brand-name,
+#clarity-top-duo h1,
+.logo-text, .site-title {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+}
+.rrra-hub-hero h2,
+.card h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+}
+
+/* ===== Live: lighten overlay so stream is visible ===== */
+#banner-media.live-active ~ .banner-overlay,
+.banner:has(.live-active) .banner-overlay,
+#clarity-top-duo .banner:has(.live-active) .banner-overlay {
+  background: linear-gradient(to bottom, rgba(8,28,22,0.08), rgba(8,28,22,0.18)) !important;
+}
+#banner-media.live-active #banner-live,
+#banner-media.live-active .banner-live {
+  opacity: 1 !important;
+  z-index: 4 !important;
+}
+/* Keep center controls readable without blacking out video */
+#clarity-top-duo .banner-center {
+  background: transparent !important;
+}
+#clarity-top-duo .banner-center .rabbana-box,
+#clarity-top-duo .banner-center .verse-box {
+  background: rgba(8,28,22,0.45) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* ===== Calendar + Salah: circular plaque icons ===== */
+.hijri-cal-section .cal-title,
+.salah-times-section .salah-title {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.25rem !important;
+}
+.hijri-cal-section,
+.salah-times-section {
+  border-radius: 16px !important;
+  background: rgba(0,0,0,0.28) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12) !important;
+}
+/* circular icon badges at top of side plaques */
+.banner-side .cal-title::before,
+.banner-side .salah-title::before {
+  content: none;
+}
+.banner-side .hijri-cal-section .cal-title,
+.banner-side .salah-times-section .salah-title {
+  width: auto !important;
+  margin: 0 auto 0.2rem !important;
+  padding: 0.2rem 0.45rem !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.14) !important;
+  font-size: 0.65rem !important;
+}
+/* circular day cells for today */
+.hijri-cal-grid .day.today {
+  border-radius: 50% !important;
+  background: rgba(255,255,255,0.4) !important;
+}
+
+/* ===== Meme card never fully gate-hidden when practicing/dai ===== */
+#meme-card:not([data-gate-hidden="1"]) {
+  display: block !important;
+}
+.clarity-to-meme-pill {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: linear-gradient(180deg, #e8f5ee, #d4ecd8) !important;
+  color: #0a3d2e !important;
+  border: 1px solid #8fd4b0 !important;
+}
+html[data-theme="dark"] .clarity-to-meme-pill {
+  background: rgba(212,180,90,0.15) !important;
+  color: #e8d48a !important;
+  border-color: rgba(212,180,90,0.35) !important;
+}
+
+/* Surah dropdown readable */
+#surah-list-pill, #surah-reciter-pill {
+  max-width: 9.5rem !important;
+  color: #fff !important;
+}
+#surah-list-pill option, #surah-reciter-pill option {
+  color: #1a2a22 !important;
+  background: #fff !important;
+}
+
 /* Live button */
 .live-haramain-btn.on { background: #0f4c3a !important; }
 .live-haramain-btn.on .live-dot { background: #7dff9a !important; }
@@ -755,12 +855,28 @@ function wireResetPill(){
   } catch(e){}
 }
 
+
+function ensureMemeVisible(){
+  try {
+    var max = 0;
+    try { max = parseInt(localStorage.getItem("clarity_path_unlocked_max")||"0",10)||0; } catch(e){}
+    if (max < 2) return; /* practicing = index 2 */
+    var card = document.getElementById("meme-card");
+    if (!card) return;
+    card.classList.remove("gate-hidden");
+    card.removeAttribute("data-gate-hidden");
+    card.style.removeProperty("display");
+    card.style.removeProperty("visibility");
+  } catch(e){}
+}
+
 function boot(){
   injectCss();
   layoutTrackPlaque();
   declutterBanner();
   wireLive();
   wireResetPill();
+  ensureMemeVisible();
   unstickVisitStrip();
   nuclearStripLock();
 }
