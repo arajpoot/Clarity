@@ -476,6 +476,34 @@ function wireLive(){
 
 
 /** Ensure visit strip is not inside .banner (overlap source) */
+
+/** Nuclear: keep visit strip below duo; defeat fighting scripts */
+function nuclearStripLock(){
+  try {
+    var bar = document.getElementById("clarity-visit-pill-bar");
+    var duo = document.getElementById("clarity-top-duo");
+    if (!bar || !duo || !duo.parentNode) return;
+    /* Always re-parent after duo */
+    if (bar.previousElementSibling !== duo) {
+      if (duo.nextSibling) duo.parentNode.insertBefore(bar, duo.nextSibling);
+      else duo.parentNode.appendChild(bar);
+    }
+    bar.style.setProperty("position", "relative", "important");
+    bar.style.setProperty("top", "auto", "important");
+    bar.style.setProperty("bottom", "auto", "important");
+    bar.style.setProperty("left", "auto", "important");
+    bar.style.setProperty("right", "auto", "important");
+    bar.style.setProperty("transform", "none", "important");
+    bar.style.setProperty("margin-top", "0", "important");
+    bar.style.setProperty("z-index", "12", "important");
+    /* Banner: no max-height crush */
+    var banner = duo.querySelector(".banner");
+    if (banner) {
+      banner.style.setProperty("max-height", "none", "important");
+    }
+  } catch(e){}
+}
+
 function unstickVisitStrip(){
   try {
     var bar = document.getElementById("clarity-visit-pill-bar");
@@ -498,6 +526,7 @@ function boot(){
   declutterBanner();
   wireLive();
   unstickVisitStrip();
+  nuclearStripLock();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 60); });
 else setTimeout(boot, 60);
@@ -508,5 +537,11 @@ window.addEventListener("load", function(){
   setTimeout(declutterBanner, 2500);
   setTimeout(unstickVisitStrip, 100);
   setTimeout(unstickVisitStrip, 600);
+  var n = 0;
+  var iv = setInterval(function(){
+    nuclearStripLock();
+    n++;
+    if (n > 24) clearInterval(iv);
+  }, 500);
 });
 })();

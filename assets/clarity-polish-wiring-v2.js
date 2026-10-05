@@ -489,9 +489,19 @@ html[data-theme="day"] #clarity-visit-pill-bar .cv-pill {
   color: #0c1a14 !important;
   border-color: #a8c9b6 !important;
 }
-/* Banner must not cover the strip */
+/* Banner may grow for stream/volume row; strip stays below in flow */
 #clarity-top-duo .banner {
-  max-height: min(34vh, 16.5rem) !important;
+  max-height: none !important;
+  overflow: hidden !important;
+}
+#clarity-visit-pill-bar,
+.cv-stitched-banner {
+  position: relative !important;
+  z-index: 12 !important;
+  top: auto !important;
+  bottom: auto !important;
+  margin-top: 0 !important;
+  clear: both !important;
 }
 `);
 injectStyle('clarity-tj-meme-tweet-revamp-css', `
