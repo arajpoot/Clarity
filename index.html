@@ -7412,17 +7412,15 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="./assets/clarity-notes-recovery-v1.js" defer></script>
 <script src="./assets/clarity-path-progress-v1.js" defer></script>
 <script src="./assets/clarity-grave-path-curriculum-js.js" defer></script>
+<script src="./assets/clarity-polish-wiring-v2.js" defer></script>
 
 <script id="clarity-temp-live-force">
 (function(){
   function temps(){ try { if (window.loadHaramainCityTemps) window.loadHaramainCityTemps(); } catch(e){} }
-  function killStrip(){
-    try {
-      var s = document.getElementById("clarity-grave-path-strip");
-      if (s && s.parentNode) s.parentNode.removeChild(s);
-    } catch(e){}
-  }
-  [500,1500,3000,6000,10000].forEach(function(ms){ setTimeout(function(){ temps(); killStrip(); }, ms); });
-  window.addEventListener("load", function(){ temps(); killStrip(); });
+  /* curriculum strip is owned by clarity-grave-path-curriculum-js — do not remove */
+  [500,1500,3000,6000,10000].forEach(function(ms){ setTimeout(temps, ms); });
+  window.addEventListener("load", temps);
 })();
 </script>
+</body>
+</html>

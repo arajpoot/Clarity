@@ -1,14 +1,21 @@
 {
-  "phase1_error": "clarityPathResetToSeeker was onclick but never defined \u2014 FIXED",
+  "phase1_error": "clarityPathResetToSeeker was onclick but never defined — FIXED (path-progress-v1)",
   "phase2_missing_handlers": [
-    "clarityWelcomePickTrack",
-    "clarityWelcomeSkipToName",
-    "clarityCommitGate",
-    "clarityPathResetToSeeker",
-    "stubs for seerah/tibbe/amana print"
+    "clarityWelcomePickTrack — defined in clarity-path-progress-v1.js",
+    "clarityWelcomeSkipToName — defined in clarity-path-progress-v1.js",
+    "clarityCommitGate — defined in path-progress + chunk-8",
+    "clarityPathResetToSeeker — defined in clarity-path-progress-v1.js",
+    "clarityOpenSectionDoor — defined in clarity-chunk-8.js"
   ],
-  "phase3_first_visit": "Three-doors popup is now 4 color-coded paths; inline strip hidden after choice",
+  "phase3_first_visit": "Three-doors popup is 4 color-coded paths; curriculum strip preserved (killStrip removed)",
   "phase4_syntax": [
-    "all checked OK or brace-balanced"
-  ]
+    "clarity-chunk-8.js: Missing catch/finally after try in claritySectionSentinel — FIXED (extra }); and empty braces removed)",
+    "all assets node --check OK"
+  ],
+  "phase5_structure": [
+    "Missing </body></html> on index.html — FIXED",
+    "Ported banner nuclear, doors flow, visit strip, tajweed meter + Indo-Pak meme + tweet app from banner2 reference into assets/clarity-polish-wiring-v2.js",
+    "Grave path curriculum strip no longer force-removed on boot"
+  ],
+  "phase6_wiring": "Deferred modules: chunk-8, track-os, tj-lmr, nuros-bridge, amana-vault-gate, uft-full-restore, notes-recovery, path-progress, grave-path-curriculum, polish-wiring-v2"
 }
