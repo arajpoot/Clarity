@@ -1,6 +1,8 @@
 {
-  "build": "20261005j",
+  "build": "20261005M",
+  "perf": "ClarityPerf in runtime-overlays",
   "files": [
+    "FACTOR_MAP.md",
     "README.md",
     "index.html",
     "robots.txt",
@@ -19,7 +21,5 @@
     "assets/clarity-ui-shine-v1.js",
     "assets/nuros-bridge-enrich-js.js",
     "assets/nx-tj-lmr-js-v1.js"
-  ],
-  "file_count": 18,
-  "note": "Lean publish \u2014 no FIX_*.md, overlays merged into clarity-runtime-overlays-v1.js"
+  ]
 }
