@@ -7410,7 +7410,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261005b" defer></script>
 <script src="./assets/clarity-uft-full-restore-v1.js?v=20261005b" defer></script>
 <script src="./assets/clarity-notes-recovery-v1.js?v=20261005b" defer></script>
-<script src="./assets/clarity-path-progress-v1.js?v=20261005b" defer></script>
+<script src="./assets/clarity-path-progress-v1.js?v=20261005c" defer></script>
 <script src="./assets/clarity-grave-path-curriculum-js.js?v=20261005b" defer></script>
 <script src="./assets/clarity-polish-wiring-v2.js?v=20261005b" defer></script>
 
@@ -7420,21 +7420,6 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   /* curriculum strip is owned by clarity-grave-path-curriculum-js — do not remove */
   [500,1500,3000,6000,10000].forEach(function(ms){ setTimeout(temps, ms); });
   window.addEventListener("load", temps);
-})();
-</script>
-
-<script id="clarity-entry-tab-boot">
-(function(){
-  try {
-    var q = new URLSearchParams(location.search || "");
-    var t = (q.get("tab") || sessionStorage.getItem("clarity_entry_tab") || "").toLowerCase();
-    if (!t) return;
-    sessionStorage.removeItem("clarity_entry_tab");
-    /* Prefer hash the router already understands */
-    if (!location.hash || location.hash === "#") {
-      history.replaceState(null, "", location.pathname + location.search + "#" + t);
-    }
-  } catch(e){}
 })();
 </script>
 </body>
