@@ -299,6 +299,131 @@ html[data-theme="dark"] .cgp-track-row .cgs-label { color: #d4b45a !important; }
   z-index: 2 !important;
 }
 
+
+/* ===== Night: intro plaques + track strip match dark chrome ===== */
+html[data-theme="dark"] .rrra-hub-hero,
+html[data-theme="dark"] #tab-reminder .rrra-hub-hero {
+  background: linear-gradient(145deg, #0e2820, #0a1c16) !important;
+  border: 1px solid rgba(212,180,90,0.22) !important;
+  color: #e8f0ea !important;
+}
+html[data-theme="dark"] #tab-reminder .rrra-hub-hero h2 { color: #7dcea0 !important; }
+html[data-theme="dark"] #tab-reminder .rrra-hub-sub,
+html[data-theme="dark"] #tab-reminder .rrra-hub-meta { color: #c8ddd0 !important; }
+html[data-theme="dark"] #tab-reminder .rrra-hub-summary {
+  background: rgba(20,36,28,0.95) !important;
+  border: 1px solid rgba(212,180,90,0.15) !important;
+  color: #d0e4d8 !important;
+}
+html[data-theme="dark"] #tab-reality .rrra-hub-hero {
+  background: linear-gradient(145deg, #2a2210, #1a160c) !important;
+  border-color: rgba(212,180,90,0.35) !important;
+  color: #f5edd6 !important;
+}
+html[data-theme="dark"] #tab-reality .rrra-hub-hero h2 { color: #e8d48a !important; }
+html[data-theme="dark"] #tab-reality .rrra-hub-summary {
+  background: rgba(40,32,16,0.95) !important;
+  border-color: rgba(212,180,90,0.2) !important;
+  color: #e8dcc0 !important;
+}
+html[data-theme="dark"] #tab-reflection .rrra-hub-hero {
+  background: linear-gradient(145deg, #142414, #0c180c) !important;
+  border-color: rgba(120,180,100,0.3) !important;
+  color: #e4f0d4 !important;
+}
+html[data-theme="dark"] #tab-reflection .rrra-hub-hero h2 { color: #a8d48a !important; }
+html[data-theme="dark"] #tab-reflection .rrra-hub-summary {
+  background: rgba(20,32,18,0.95) !important;
+  color: #d4e8c8 !important;
+}
+html[data-theme="dark"] #tab-action .rrra-hub-hero {
+  background: linear-gradient(145deg, #0c2428, #0a1a1c) !important;
+  border-color: rgba(80,140,180,0.35) !important;
+  color: #e0f0f5 !important;
+}
+html[data-theme="dark"] #tab-action .rrra-hub-hero h2 { color: #7ec8e0 !important; }
+html[data-theme="dark"] #tab-action .rrra-hub-summary {
+  background: rgba(12,28,32,0.95) !important;
+  color: #c8e4ec !important;
+}
+
+html[data-theme="dark"] .clarity-gate-switcher,
+html[data-theme="dark"] .cgp-track-plaque {
+  background: linear-gradient(145deg, rgba(18,28,24,0.98), rgba(12,20,16,0.96)) !important;
+  border: 1px solid rgba(212,180,90,0.28) !important;
+  color: #e8f0ea !important;
+}
+html[data-theme="dark"] .cgp-intro,
+html[data-theme="dark"] p.cgp-intro {
+  color: #c8ddd0 !important;
+  opacity: 1 !important;
+}
+html[data-theme="dark"] .cgp-track-row .cgs-label { color: #d4b45a !important; }
+html[data-theme="dark"] .cgs-reset {
+  background: rgba(212,180,90,0.12) !important;
+  color: #e8d48a !important;
+  border-color: rgba(212,180,90,0.35) !important;
+}
+
+/* Reset pill always tappable */
+.cgs-reset, #clarity-path-reset-btn {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  flex-shrink: 0 !important;
+}
+
+/* Bottom nav fonts — readable desktop + mobile */
+#clarity-door-rail.door-rail-bottom .door-rail-btn,
+#clarity-door-rail .door-rail-btn {
+  font-size: 0.78rem !important;
+  min-height: 2.75rem !important;
+  padding: 0.4rem 0.55rem !important;
+}
+#clarity-door-rail .dr-label {
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+}
+#clarity-door-rail .dr-ico {
+  font-size: 1rem !important;
+}
+@media (min-width: 901px) {
+  #clarity-door-rail.door-rail-bottom .door-rail-btn,
+  #clarity-door-rail .door-rail-btn {
+    font-size: 0.88rem !important;
+    min-height: 3rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+  #clarity-door-rail .dr-label { font-size: 0.88rem !important; }
+  #clarity-door-rail .dr-ico { font-size: 1.1rem !important; }
+}
+.mobile-bottom-nav .mb-tab {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+}
+.mobile-bottom-nav .mb-tab .mb-icon { font-size: 1.2rem !important; }
+@media (min-width: 901px) {
+  .mobile-bottom-nav .mb-tab { font-size: 0.82rem !important; }
+}
+
+/* Live iframe must paint above stills */
+#banner-media.live-active #banner-live,
+#banner-media.live-active .banner-live {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+#banner-media.live-active img,
+#banner-media.live-active .banner-still-fallback {
+  opacity: 0 !important;
+  z-index: 0 !important;
+}
+
 /* Live button */
 .live-haramain-btn.on { background: #0f4c3a !important; }
 .live-haramain-btn.on .live-dot { background: #7dff9a !important; }
@@ -447,6 +572,7 @@ function wireLive(){
     var p = place();
     var url = STREAMS[p] || STREAMS.makkah;
     frame.removeAttribute("hidden");
+    frame.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0;opacity:1;z-index:5;";
     frame.src = url;
     media.classList.add("live-active");
     media.classList.remove("live-fallback");
@@ -520,11 +646,39 @@ function unstickVisitStrip(){
   } catch(e){}
 }
 
+
+function wireResetPill(){
+  try {
+    var btn = document.getElementById("clarity-path-reset-btn")
+      || document.querySelector(".cgs-reset");
+    if (!btn || btn.__resetWired) return;
+    btn.addEventListener("click", function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      try {
+        if (typeof window.clarityPathResetToSeeker === "function") {
+          window.clarityPathResetToSeeker();
+        } else if (window.clarityPathProgress && typeof window.clarityPathProgress.reset === "function") {
+          window.clarityPathProgress.reset();
+        } else {
+          localStorage.setItem("clarity_path_unlocked_max", "0");
+          localStorage.setItem("clarity_committed_path", "seeker");
+          localStorage.removeItem("clarity_quiz_passed_v1");
+          if (typeof window.clarityRequestPath === "function") window.clarityRequestPath("seeker");
+        }
+      } catch(e){ console.warn("reset", e); }
+      try { if (typeof layoutTrackPlaque === "function") layoutTrackPlaque(); } catch(e2){}
+    }, true);
+    btn.__resetWired = true;
+  } catch(e){}
+}
+
 function boot(){
   injectCss();
   layoutTrackPlaque();
   declutterBanner();
   wireLive();
+  wireResetPill();
   unstickVisitStrip();
   nuclearStripLock();
 }
