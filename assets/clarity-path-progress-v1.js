@@ -190,7 +190,7 @@ function installAdditiveLock(gate, allow){
   /* nuke common leakers without proper gate id */
   var leakSel = [
     "#commands-card",".card-commands","#commands-section","[data-section='commands']",
-    "#samina-verse-card","#samina-card","#hell-sins-card","#meme-card","#callig-lab-card",
+    "#samina-verse-card","#samina-card","#hell-sins-card","#meme-card","#meme-studio-root","#meme","#callig-lab-card","#fiqh-quiz-card",
     "#tweet-desk-card","#tajweed-live-card","#israeliyat-card","#seerah-mirror-card"
   ];
   leakSel.forEach(function(sel){
@@ -202,6 +202,18 @@ function installAdditiveLock(gate, allow){
       });
     } catch(e){}
   });
+
+  
+  /* DOUBLE NUKE meme outside practicing/dai */
+  try {
+    var memeOk = (gate === "practicing" || gate === "dai");
+    ["meme-card","meme-studio-root","meme"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (memeOk && allow[id]) showEl(el);
+      else hideEl(el);
+    });
+  } catch(e){}
 
   try { installExclusiveLock(gate); } catch(e){} }
 
@@ -215,6 +227,9 @@ function watchExclusiveLock(){
         || "seeker";
       installExclusiveLock(g);
       applyExclusiveFilter(g);
+      if (g !== "practicing" && g !== "dai") {
+        ["meme-card","meme-studio-root"].forEach(function(id){ var el=document.getElementById(id); if(el){ el.classList.add("gate-hidden"); el.setAttribute("data-gate-hidden","1"); el.style.setProperty("display","none","important"); } });
+      }
     } catch(e){}
     n++;
     if (n > 30) clearInterval(iv);

@@ -44,13 +44,10 @@ function switchTab(tabId, opts){
   });
 
   /* 2) RRRA5: tools live in hubs — never quarantine meme/about chrome by old "about" gate */
-  var hubTools = ['about-clarity-card','meme-card','meme-studio-root','callig-lab-card','fiqh-quiz-card','palette-mgr-card','traffic-stats-card','notes-shell'];
+  var hubTools = ['about-clarity-card','notes-shell']; /* meme NUKED from force-show */
   hubTools.forEach(function(id){
     var el = document.getElementById(id);
     if(!el) return;
-    el.removeAttribute('hidden');
-    el.removeAttribute('aria-hidden');
-    if (el.style && el.style.display === 'none') el.style.display = '';
   });
 
   /* 3) Notes / Fiqh tools — only on Amana Vault door */
@@ -182,31 +179,15 @@ function claritySectionSentinel(){
     });
     /* RRRA5: NEVER quarantine meme / tools / notes cards by old "about" gate.
        Cards live inside hubs; panel show/hide is enough. */
-    ['#meme-card','#meme-studio-root','#fiqh-quiz-card','#callig-lab-card','#palette-mgr-card',
-     '#about-clarity-card','#notes-shell','.card-notes','.card-about'].forEach(function(sel){
+    ['#about-clarity-card','#notes-shell','.card-notes'].forEach(function(sel){
       document.querySelectorAll(sel).forEach(function(el){
         if (!el) return;
-        el.removeAttribute('hidden');
-        if (el.style && el.style.getPropertyValue('display') === 'none') {
-          el.style.removeProperty('display');
-        }
-        if (el.style && el.style.getPropertyValue('visibility') === 'hidden') {
-          el.style.removeProperty('visibility');
-        }
       });
     });
-    /* Force meme visible when Reminder is active */
-    if (active === 'reminder') {
-      var mc = document.getElementById('meme-card');
-      if (mc) {
-        mc.removeAttribute('hidden');
-        mc.style.setProperty('display','block','important');
-        mc.style.setProperty('visibility','visible','important');
-        mc.style.setProperty('opacity','1','important');
-        mc.style.setProperty('height','auto','important');
-        mc.style.setProperty('max-height','none','important');
-        mc.style.setProperty('pointer-events','auto','important');
-      }
+    });
+    /* NUKED: Force meme visible on Reminder */
+    if (false && active === 'reminder') {
+    }
     }
   }catch(e){}
 }
