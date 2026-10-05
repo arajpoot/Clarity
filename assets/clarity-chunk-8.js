@@ -1531,8 +1531,17 @@ function memePaintWatermark(ctx,w,h){
     var s=window.memeState||(typeof memeState!=="undefined"?memeState:null);
     if(s){
       ref=String(s._lastRef||s.ref||"").trim();
-      /* never treat Urdu bottom caption as reference */
+      /* Prefer explicit ref; else last line of bottom if it looks like a citation */
+      if(!ref && s.bottom){
+        var lines=String(s.bottom).split(/\n/).map(function(x){return x.trim();}).filter(Boolean);
+        var last=lines.length?lines[lines.length-1]:"";
+        if(/^Qur[\u2019'`]?an\s+\d+/i.test(last) || /^\d+:\d+/.test(last) || /Bukhari|Muslim|Tirmidh|Abu Dawud|Qur/i.test(last))
+          ref=last;
+      }
+      /* never treat long Arabic/Urdu as reference */
       if(ref && /[\u0600-\u06FF]/.test(ref) && ref.length>40) ref="";
+      /* keep state coherent */
+      if(ref){ s.ref=ref; s._lastRef=ref; }
     }
   }catch(e){}
   var mark="clarity-dawah.fyi";
@@ -1637,7 +1646,7 @@ function memeAutoFitSizes(){
     var sizeEl=document.getElementById('meme-size'); if(sizeEl)sizeEl.value=ms;
   }catch(e){}
 }
-async function memeFillFromJourneyVerse(quiet){const topEl=document.getElementById('meme-top-input');const botEl=document.getElementById('meme-bottom-input');const btn=document.getElementById('meme-fill-verse-btn');if(btn){btn.disabled=true;btn.textContent='Loading…';}try{if(!currentJourneyVerse.en){try{await loadVerseInto('verse');}catch(e){}}const v=currentJourneyVerse;if(!v||!v.en){if(!quiet)alert('Could not load a verse yet. Open the Journey tab once, then try again.');return;}const midEl=document.getElementById('meme-mid-input');const ref=memeFormatRef(v)||(v.surah&&v.ayah?('Qur’an '+v.surah+':'+v.ayah):'');if(topEl)topEl.value=(v.arabic||'').trim()||(v.en||'');if(midEl)midEl.value=String(v.en||'').trim();if(botEl){const line1=String(v.ur||v.tafseer||'').trim();botEl.value=[line1,ref].filter(Boolean).join('\n');}memeState.topY=0.11;memeState.midY=0.46;memeState.bottomY=0.82;memePositionBoxes();memeSyncFromInputs();try{memeAutoFitSizes();memeDraw();}catch(e){}}finally{if(btn){btn.disabled=false;btn.textContent='📖 Journey verse';}}}function memeOnSize(v){
+async function memeFillFromJourneyVerse(quiet){const topEl=document.getElementById('meme-top-input');const botEl=document.getElementById('meme-bottom-input');const btn=document.getElementById('meme-fill-verse-btn');if(btn){btn.disabled=true;btn.textContent='Loading…';}try{if(!currentJourneyVerse.en){try{await loadVerseInto('verse');}catch(e){}}const v=currentJourneyVerse;if(!v||!v.en){if(!quiet)alert('Could not load a verse yet. Open the Journey tab once, then try again.');return;}const midEl=document.getElementById('meme-mid-input');const ref=memeFormatRef(v)||(v.surah&&v.ayah?('Qur’an '+v.surah+':'+v.ayah):'');if(topEl)topEl.value=(v.arabic||'').trim()||(v.en||'');if(midEl)midEl.value=String(v.en||'').trim();if(botEl){const line1=String(v.ur||v.tafseer||'').trim();botEl.value=[line1,ref].filter(Boolean).join('\n');}memeState.ref=ref;memeState._lastRef=ref;memeState.topY=0.11;memeState.midY=0.46;memeState.bottomY=0.82;memePositionBoxes();memeSyncFromInputs();try{memeAutoFitSizes();memeDraw();}catch(e){}}finally{if(btn){btn.disabled=false;btn.textContent='📖 Journey verse';}}}function memeOnSize(v){
   try{
     var n=parseInt(v,10)||42; n=Math.max(14,Math.min(96,n));
     memeState.fontSize=n; memeState.topSize=n; memeState.midSize=n; memeState.bottomSize=n;
@@ -1868,7 +1877,7 @@ function memeLoadUrduImageUrl(){const input=document.getElementById('meme-urdu-i
     if(typeof memeSetRatio==='function')memeSetRatio('9:16');
     memePositionBoxes&&memePositionBoxes();memeDraw();return;
   }
-if(!name)return;const topEl=document.getElementById('meme-top-input');const midEl=document.getElementById('meme-mid-input');const botEl=document.getElementById('meme-bottom-input');if(name==='classic'){memeState.topY=0.1;memeState.midY=0.48;memeState.bottomY=0.9;memeState.fontSize=42;if(topEl&&!topEl.value)topEl.value='REMEMBER DEATH';if(midEl&&!midEl.value)midEl.value='SEND LIGHT AHEAD';if(botEl&&!botEl.value)botEl.value='FURNISH YOUR GRAVE';}else if(name==='top-heavy'){memeState.topY=0.12;memeState.midY=0.42;memeState.bottomY=0.82;memeState.fontSize=44;if(topEl&&!topEl.value)topEl.value='ONE GOOD DEED TODAY';if(midEl&&!midEl.value)midEl.value='ISTIGHFAR · SALAWAT';if(botEl&&!botEl.value)botEl.value='LIGHT FOR THE GRAVE';}else if(name==='bottom-heavy'){memeState.topY=0.12;memeState.midY=0.5;memeState.bottomY=0.86;memeState.fontSize=40;if(topEl&&!topEl.value)topEl.value='ASTAGHFIRULLAH';if(midEl&&!midEl.value)midEl.value='EVERY DAY';if(botEl&&!botEl.value)botEl.value='SEND IT AHEAD';}else if(name==='center'){memeState.topY=0.28;memeState.midY=0.5;memeState.bottomY=0.72;memeState.fontSize=38;if(topEl&&!topEl.value)topEl.value='SABR';if(midEl&&!midEl.value)midEl.value='SHUKR';if(botEl&&!botEl.value)botEl.value='TAQWA';}else if(name==='minimal'){memeState.topY=0.18;memeState.midY=0.5;memeState.bottomY=0.82;memeState.fontSize=34;memeState.font='serif';memeState.style='soft';if(topEl&&!topEl.value)topEl.value='Remember death';if(midEl&&!midEl.value)midEl.value='Furnish your grave';if(botEl&&!botEl.value)botEl.value='with light';}else if(name==='poster'){memeState.topY=0.14;memeState.midY=0.48;memeState.bottomY=0.86;memeState.fontSize=48;memeState.font='impact';memeState.style='outline';if(topEl&&!topEl.value)topEl.value='ASTAGHFIRULLAH';if(midEl&&!midEl.value)midEl.value='SEND IT AHEAD';if(botEl&&!botEl.value)botEl.value='LIGHT FOR THE GRAVE';}const sizeEl=document.getElementById('meme-size');if(sizeEl){sizeEl.value=memeState.fontSize;memeOnSize(memeState.fontSize);}const fontEl=document.getElementById('meme-font');if(fontEl)fontEl.value=memeState.font;const styleEl=document.getElementById('meme-style');if(styleEl)styleEl.value=memeState.style;memePositionBoxes();memeSyncFromInputs();const sel=document.getElementById('meme-preset');if(sel)sel.value='';}function memePositionBoxes(){const map=[['meme-box-top',memeState.topY],['meme-box-mid',memeState.midY],['meme-box-bottom',memeState.bottomY]];map.forEach(function(pair){const box=document.getElementById(pair[0]);if(!box)return;box.style.top=(pair[1]*100)+'%';box.style.bottom='auto';box.style.transform='translate(-50%, -50%)';});}function memeReset(){memeState.img=null;memeState.top='';memeState.mid='';memeState.bottom='';memeState.fontSize=42;memeState.topSize=42;memeState.midSize=42;memeState.bottomSize=36;memeState.outline=4;memeState.topY=0.12;memeState.midY=0.42;memeState.bottomY=0.91;const topEl=document.getElementById('meme-top-input');const midEl=document.getElementById('meme-mid-input');const botEl=document.getElementById('meme-bottom-input');if(topEl)topEl.value='';if(midEl)midEl.value='';if(botEl)botEl.value='';const sizeEl=document.getElementById('meme-size');const outEl=document.getElementById('meme-outline');if(sizeEl){sizeEl.value=42;memeOnSize(42);}else{memeOnSize(42);}if(outEl){outEl.value=4;memeOnOutline(4);}const sample=document.getElementById('meme-sample');if(sample)sample.value='';memePositionBoxes();memeDraw();}function memeIsInAppBrowser(){
+if(!name)return;const topEl=document.getElementById('meme-top-input');const midEl=document.getElementById('meme-mid-input');const botEl=document.getElementById('meme-bottom-input');if(name==='classic'){memeState.topY=0.1;memeState.midY=0.48;memeState.bottomY=0.9;memeState.fontSize=42;if(topEl&&!topEl.value)topEl.value='REMEMBER DEATH';if(midEl&&!midEl.value)midEl.value='SEND LIGHT AHEAD';if(botEl&&!botEl.value)botEl.value='FURNISH YOUR GRAVE';}else if(name==='top-heavy'){memeState.topY=0.12;memeState.midY=0.42;memeState.bottomY=0.82;memeState.fontSize=44;if(topEl&&!topEl.value)topEl.value='ONE GOOD DEED TODAY';if(midEl&&!midEl.value)midEl.value='ISTIGHFAR · SALAWAT';if(botEl&&!botEl.value)botEl.value='LIGHT FOR THE GRAVE';}else if(name==='bottom-heavy'){memeState.topY=0.12;memeState.midY=0.5;memeState.bottomY=0.86;memeState.fontSize=40;if(topEl&&!topEl.value)topEl.value='ASTAGHFIRULLAH';if(midEl&&!midEl.value)midEl.value='EVERY DAY';if(botEl&&!botEl.value)botEl.value='SEND IT AHEAD';}else if(name==='center'){memeState.topY=0.28;memeState.midY=0.5;memeState.bottomY=0.72;memeState.fontSize=38;if(topEl&&!topEl.value)topEl.value='SABR';if(midEl&&!midEl.value)midEl.value='SHUKR';if(botEl&&!botEl.value)botEl.value='TAQWA';}else if(name==='minimal'){memeState.topY=0.18;memeState.midY=0.5;memeState.bottomY=0.82;memeState.fontSize=34;memeState.font='serif';memeState.style='soft';if(topEl&&!topEl.value)topEl.value='Remember death';if(midEl&&!midEl.value)midEl.value='Furnish your grave';if(botEl&&!botEl.value)botEl.value='with light';}else if(name==='poster'){memeState.topY=0.14;memeState.midY=0.48;memeState.bottomY=0.86;memeState.fontSize=48;memeState.font='impact';memeState.style='outline';if(topEl&&!topEl.value)topEl.value='ASTAGHFIRULLAH';if(midEl&&!midEl.value)midEl.value='SEND IT AHEAD';if(botEl&&!botEl.value)botEl.value='LIGHT FOR THE GRAVE';}const sizeEl=document.getElementById('meme-size');if(sizeEl){sizeEl.value=memeState.fontSize;memeOnSize(memeState.fontSize);}const fontEl=document.getElementById('meme-font');if(fontEl)fontEl.value=memeState.font;const styleEl=document.getElementById('meme-style');if(styleEl)styleEl.value=memeState.style;memePositionBoxes();memeSyncFromInputs();const sel=document.getElementById('meme-preset');if(sel)sel.value='';}function memePositionBoxes(){const map=[['meme-box-top',memeState.topY],['meme-box-mid',memeState.midY],['meme-box-bottom',memeState.bottomY]];map.forEach(function(pair){const box=document.getElementById(pair[0]);if(!box)return;box.style.top=(pair[1]*100)+'%';box.style.bottom='auto';box.style.transform='translate(-50%, -50%)';});}function memeReset(){memeState.img=null;memeState.top='';memeState.mid='';memeState.bottom='';memeState.ref='';memeState._lastRef='';memeState.fontSize=42;memeState.topSize=42;memeState.midSize=42;memeState.bottomSize=36;memeState.outline=4;memeState.topY=0.12;memeState.midY=0.42;memeState.bottomY=0.91;const topEl=document.getElementById('meme-top-input');const midEl=document.getElementById('meme-mid-input');const botEl=document.getElementById('meme-bottom-input');if(topEl)topEl.value='';if(midEl)midEl.value='';if(botEl)botEl.value='';const sizeEl=document.getElementById('meme-size');const outEl=document.getElementById('meme-outline');if(sizeEl){sizeEl.value=42;memeOnSize(42);}else{memeOnSize(42);}if(outEl){outEl.value=4;memeOnOutline(4);}const sample=document.getElementById('meme-sample');if(sample)sample.value='';memePositionBoxes();memeDraw();}function memeIsInAppBrowser(){
   var ua=(navigator.userAgent||'').toLowerCase();
   return /twitter|x\.com|fbav|fban|instagram|line\//i.test(ua) ||
     (/iphone|ipad|ipod|android/i.test(ua) && !/safari/i.test(ua) && /applewebkit/i.test(ua) && /crios|fxios|edgios|opios|linkedin|tiktok/i.test(ua));
@@ -2923,18 +2932,34 @@ function memeFetchStatus(msg){
   try{ var el=document.getElementById('meme-fetch-status'); if(el) el.textContent=msg||''; }catch(e){}
 }
 function memeApplyVerseCard(ar, en, ur, ref){
-  /* Clean baseline — full push logic lives in clarity-meme-rebuild-v1 */
   try {
+    ar = String(ar||"").trim();
+    en = String(en||"").trim();
+    ur = String(ur||"").trim();
+    ref = String(ref||"").trim();
+    /* Single source of truth for citation — watermark + bottom stay in sync */
+    if (typeof memeState !== "object" || !memeState) window.memeState = {};
+    memeState.top = ar;
+    memeState.mid = en;
+    var botParts = [];
+    if (ur) botParts.push(ur);
+    if (ref) botParts.push(ref);
+    memeState.bottom = botParts.join("\n");
+    memeState.ref = ref;
+    memeState._lastRef = ref;
+    try {
+      var t = document.getElementById("meme-top-input");
+      var m = document.getElementById("meme-mid-input");
+      var b = document.getElementById("meme-bottom-input");
+      if (t) t.value = ar;
+      if (m) m.value = en;
+      if (b) b.value = memeState.bottom;
+    } catch(eIn){}
     if (typeof window.clarityMemeFill === "function") {
-      window.clarityMemeFill(ar, en, ref);
-      return;
+      try { window.clarityMemeFill(ar, en, ref); } catch(e2){}
     }
-    if (typeof memeState === "object" && memeState) {
-      memeState.top = String(ar||"").trim();
-      memeState.mid = String(en||"").trim();
-      memeState.bottom = String(ref||"").trim();
-      if (typeof memeDraw === "function") memeDraw();
-    }
+    if (typeof memeDraw === "function") memeDraw();
+    if (typeof memeFetchStatus === "function" && ref) memeFetchStatus("Applied · " + ref);
   } catch(e){}
 }
 
@@ -9813,29 +9838,42 @@ window.clarityGoSectionChip = clarityGoSectionChip;
   /** Section-level "to meme" pills if missing */
   function ensureSectionMemePills(){
     try {
-      document.querySelectorAll('.card[id], [id$="-card"]').forEach(function(card){
+      var memeOk = true;
+      try {
+        memeOk = document.documentElement.getAttribute("data-clarity-meme-ok") !== "0";
+      } catch(eOk){}
+      document.querySelectorAll('.card[id], [id$="-card"], .search-result, .question, .cmd-card, .verse-card').forEach(function(card){
         if (card.querySelector('.clarity-to-meme-pill')) return;
-        if (card.id === 'meme-card') return;
-        var arEl = card.querySelector('.arabic, .rabbana-arabic, [lang="ar"], .cmd-ar, .sr-ar');
-        var enEl = card.querySelector('.cmd-en, .sr-en, .verse-en, .translation');
+        if (card.id === 'meme-card' || card.id === 'tweet-desk-card') return;
+        var arEl = card.querySelector('.arabic, .rabbana-arabic, [lang="ar"], .cmd-ar, .sr-ar, .verse-ar, .ayah-ar');
+        var enEl = card.querySelector('.cmd-en, .sr-en, .verse-en, .translation, .ayah-en, .english');
         if (!arEl && !enEl) return;
-        var row = card.querySelector('.sr-actions, .card-actions, .gpc-links');
+        var row = card.querySelector('.sr-actions, .card-actions, .gpc-links, .clarity-meme-pill-row');
         if (!row) {
           row = document.createElement('div');
           row.className = 'clarity-meme-pill-row';
-          row.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.55rem';
+          row.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.55rem;align-items:center';
           card.appendChild(row);
         }
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'btn-soft clarity-to-meme-pill';
         btn.textContent = '🖼️ Use in Meme';
-        btn.addEventListener('click', function(){
+        btn.style.display = memeOk ? 'inline-flex' : 'none';
+        btn.addEventListener('click', function(ev){
+          try { ev.preventDefault(); ev.stopPropagation(); } catch(e0){}
           var ar = arEl ? (arEl.textContent || '').trim() : '';
           var en = enEl ? (enEl.textContent || '').trim() : '';
-          var refEl = card.querySelector('.ref, .verse-ref');
-          var ref = refEl ? (refEl.textContent || '').trim() : '';
-          window.clarityPushToMemeDesk({ arabic: ar, en: en, ref: ref });
+          var refEl = card.querySelector('.ref, .verse-ref, .sr-ref, .citation, [data-ref]');
+          var ref = refEl ? (refEl.textContent || refEl.getAttribute('data-ref') || '').trim() : '';
+          if (!ref) {
+            var h = (card.querySelector('h2,h3,.card-title') || {}).textContent || '';
+            var m = h.match(/(\d+\s*:\s*\d+)/);
+            if (m) ref = 'Qur\u2019an ' + m[1].replace(/\s/g,'');
+          }
+          if (typeof window.clarityPushToMemeDesk === 'function') {
+            window.clarityPushToMemeDesk({ arabic: ar, en: en, ref: ref });
+          }
         });
         row.appendChild(btn);
       });
