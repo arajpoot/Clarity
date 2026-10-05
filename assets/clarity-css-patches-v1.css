@@ -2363,3 +2363,146 @@ html[data-theme="dark"] .workspace-safe-frame{border-color:rgba(212,180,90,.28)}
     width: 100% !important;
   }
 }
+
+
+/* ============================================================
+   clarity-theme-harmony-v1 — single day/night source of truth
+   Wins late in cascade. Surfaces bind to CSS variables only.
+   ============================================================ */
+
+/* --- Canonical tokens (light) --- */
+:root,
+html[data-theme="light"] {
+  --bg: #f6f1e7;
+  --bg-elevated: #fffdf8;
+  --text: #1c2a22;
+  --text-muted: #5c6b62;
+  --accent: #0d4f3c;
+  --accent-light: #1a6b52;
+  --accent-fg: #f7f3eb;
+  --accent-soft: #e6f2ec;
+  --border: #e0d5c4;
+  --card-bg: rgba(255, 253, 248, 0.96);
+  --banner: #0d4f3c;
+  --gold: #b8922a;
+  --gold-soft: #f5edd6;
+  --sky: #2a5f7a;
+  --sky-soft: #e8f1f6;
+  --grave: #2c4a3a;
+  --shadow: 0 4px 18px rgba(13, 50, 40, 0.08);
+  --surface-1: #fffdf8;
+  --surface-2: #f6f1e7;
+  --hub-reminder: #e8f5ee;
+  --hub-reality: #f5edd6;
+  --hub-reflection: #e8f0ea;
+  --hub-action: #e8f1f6;
+  color-scheme: light;
+}
+
+/* --- Canonical tokens (dark / night) --- */
+html[data-theme="dark"] {
+  --bg: #0c1410;
+  --bg-elevated: #152019;
+  --text: #e7efe9;
+  --text-muted: #9aab9f;
+  --accent: #3d9b78;
+  --accent-light: #6bc49a;
+  --accent-fg: #0a120e;
+  --accent-soft: #1a2e26;
+  --border: #2a3830;
+  --card-bg: rgba(20, 30, 25, 0.96);
+  --banner: #0a1812;
+  --gold: #d4b45a;
+  --gold-soft: #3a3420;
+  --sky: #6a9fb5;
+  --sky-soft: #1a2830;
+  --grave: #1e3329;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --surface-1: #152019;
+  --surface-2: #0c1410;
+  --hub-reminder: #12241c;
+  --hub-reality: #1a2214;
+  --hub-reflection: #142018;
+  --hub-action: #121c22;
+  color-scheme: dark;
+}
+
+/* --- Body / page shell: always vars (nuke hardcoded fighters) --- */
+html,
+body {
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] {
+  background-color: var(--bg) !important;
+  background-image: none !important;
+}
+html[data-theme="light"] body,
+html[data-theme="light"] {
+  background-color: var(--bg) !important;
+}
+/* Soft day wash only in light — never fight night */
+html[data-theme="light"] body::before {
+  background: rgba(248, 245, 238, 0.45) !important;
+  opacity: 1 !important;
+}
+html[data-theme="dark"] body::before {
+  background: transparent !important;
+  opacity: 0 !important;
+  content: none !important;
+}
+
+/* --- Cards / panels --- */
+.card,
+[id$="-card"],
+.tab-panel,
+.meme-studio,
+.clarity-gate-switcher,
+.cgp-track-plaque {
+  background: var(--card-bg) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+/* Inputs */
+input, textarea, select,
+.btn-soft, .btn-secondary,
+.mv-chip, .theme-chip {
+  background: var(--bg-elevated) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+.btn-soft:hover, .mv-chip:hover, .theme-chip:hover {
+  border-color: var(--accent) !important;
+}
+.theme-chip.active,
+.mv-chip.mv-accent {
+  background: var(--accent) !important;
+  color: var(--accent-fg) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Hub heroes — gentle tint from tokens */
+#tab-reminder .rrra-hub-hero { background: var(--hub-reminder) !important; }
+#tab-reality .rrra-hub-hero { background: var(--hub-reality) !important; }
+#tab-reflection .rrra-hub-hero { background: var(--hub-reflection) !important; }
+#tab-action .rrra-hub-hero { background: var(--hub-action) !important; }
+.rrra-hub-hero h2 { color: var(--accent) !important; }
+.rrra-hub-sub, .rrra-hub-meta, .rrra-hub-summary { color: var(--text-muted) !important; }
+
+/* Muted text / borders sitewide */
+.muted, .text-muted, [class*="text-muted"] { color: var(--text-muted) !important; }
+hr, .divider { border-color: var(--border) !important; }
+
+/* Gold accents stay gold */
+.rrra-badge, .gold, [class*="gold"]:not(button) {
+  color: var(--gold);
+}
+
+/* Path pills */
+.cgs-btn.active, .cgs-btn.is-active {
+  background: var(--accent) !important;
+  color: var(--accent-fg) !important;
+}
