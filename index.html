@@ -5154,6 +5154,48 @@ html[data-theme="light"] #clarity-path-quiz-modal .cpq-opts button {
 }
 </style>
 
+
+<style id="clarity-path-strip-offload">
+/* Delete / hide the 4 path card rows — track rail + first-visit doors only */
+#clarity-grave-path-strip,
+.grave-path-strip,
+.gps-strip,
+#clarity-grave-path-strip * {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+/* Fonts: limit to loaded families, avoid FOIT on missing Cormorant */
+.banner h1, .banner-brand, .td-brand h1 {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+}
+.arabic, .bismillah, .rabbana-arabic, [lang="ar"] {
+  font-family: "Scheherazade New", "Noto Naskh Arabic", serif !important;
+}
+body, .page-wrapper, .card, button, input, select {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+}
+</style>
+
+
+<style id="clarity-gate-hidden-nuclear">
+[data-gate-hidden="1"], .gate-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+</style>
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
@@ -7328,3 +7370,17 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="./assets/clarity-notes-recovery-v1.js" defer></script>
 <script src="./assets/clarity-path-progress-v1.js" defer></script>
 <script src="./assets/clarity-grave-path-curriculum-js.js" defer></script>
+
+<script id="clarity-temp-live-force">
+(function(){
+  function temps(){ try { if (window.loadHaramainCityTemps) window.loadHaramainCityTemps(); } catch(e){} }
+  function killStrip(){
+    try {
+      var s = document.getElementById("clarity-grave-path-strip");
+      if (s && s.parentNode) s.parentNode.removeChild(s);
+    } catch(e){}
+  }
+  [500,1500,3000,6000,10000].forEach(function(ms){ setTimeout(function(){ temps(); killStrip(); }, ms); });
+  window.addEventListener("load", function(){ temps(); killStrip(); });
+})();
+</script>
