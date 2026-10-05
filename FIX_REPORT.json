@@ -1,21 +1,10 @@
 {
-  "phase1_error": "clarityPathResetToSeeker was onclick but never defined — FIXED (path-progress-v1)",
-  "phase2_missing_handlers": [
-    "clarityWelcomePickTrack — defined in clarity-path-progress-v1.js",
-    "clarityWelcomeSkipToName — defined in clarity-path-progress-v1.js",
-    "clarityCommitGate — defined in path-progress + chunk-8",
-    "clarityPathResetToSeeker — defined in clarity-path-progress-v1.js",
-    "clarityOpenSectionDoor — defined in clarity-chunk-8.js"
-  ],
-  "phase3_first_visit": "Three-doors popup is 4 color-coded paths; curriculum strip preserved (killStrip removed)",
-  "phase4_syntax": [
-    "clarity-chunk-8.js: Missing catch/finally after try in claritySectionSentinel — FIXED (extra }); and empty braces removed)",
-    "all assets node --check OK"
-  ],
-  "phase5_structure": [
-    "Missing </body></html> on index.html — FIXED",
-    "Ported banner nuclear, doors flow, visit strip, tajweed meter + Indo-Pak meme + tweet app from banner2 reference into assets/clarity-polish-wiring-v2.js",
-    "Grave path curriculum strip no longer force-removed on boot"
-  ],
-  "phase6_wiring": "Deferred modules: chunk-8, track-os, tj-lmr, nuros-bridge, amana-vault-gate, uft-full-restore, notes-recovery, path-progress, grave-path-curriculum, polish-wiring-v2"
+  "live_error": "Uncaught SyntaxError: Missing catch or finally after try @187 in clarity-chunk-8.js",
+  "root_cause": "claritySectionSentinel had extra }); and empty if-braces after a forEach — invalid try block",
+  "fix": "Removed orphaned }); and dead NUKED block; function now closes try/catch cleanly",
+  "cache": "All deferred asset script tags cache-busted with ?v=20261005b so browsers drop old broken chunk",
+  "gpc_links": "Injected .gpc-links flex/gap CSS into curriculum module (links were visually concatenated)",
+  "document": "index.html has proper </body></html>",
+  "syntax": "All assets + inline scripts node --check OK",
+  "deploy": "Upload FULL package including assets/clarity-chunk-8.js and index.html; purge Cloudflare cache; hard-refresh mobile"
 }
