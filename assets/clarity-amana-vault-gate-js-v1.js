@@ -7,7 +7,8 @@
   var DATA_KEY = "clarity_amana_vault_blob_v1";
   var SESSION_UNLOCKED = false;
   var sessionKey = null; // CryptoKey in memory only
-  var ITERATIONS = 120000;
+  var ITERATIONS = 210000;
+  var MIN_PASS_LEN = 10;
 
   function $(id){ return document.getElementById(id); }
   function status(msg, err){
@@ -83,23 +84,19 @@
 
   var SESSION_KEY_STORE = "clarity_amana_session_key_v1";
 
+  /* Session key stays in RAM only — never written to storage (XSS-resistant). */
   async function saveSessionKey(key){
-    try {
-      var raw = await crypto.subtle.exportKey("raw", key);
-      sessionStorage.setItem(SESSION_KEY_STORE, bufToB64(raw));
-    } catch(e){ console.warn("session key save", e); }
+    sessionKey = key;
+    try { sessionStorage.setItem(SESSION_KEY_STORE, "1"); } catch(e){} /* flag only, not the key */
   }
   async function loadSessionKey(){
-    try {
-      var b64 = sessionStorage.getItem(SESSION_KEY_STORE);
-      if (!b64) return null;
-      var raw = b64ToBuf(b64);
-      return await crypto.subtle.importKey(
-        "raw", raw, { name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]
-      );
-    } catch(e){ return null; }
+    /* Cannot restore CryptoKey after refresh without passphrase — by design */
+    if (sessionKey) return sessionKey;
+    try { sessionStorage.removeItem(SESSION_KEY_STORE); } catch(e){}
+    return null;
   }
   function clearSessionKey(){
+    sessionKey = null;
     try { sessionStorage.removeItem(SESSION_KEY_STORE); } catch(e){}
   }
 
@@ -239,7 +236,7 @@
     var pw = ($("amana-pass-new") || {}).value || "";
     var conf = ($("amana-pass-confirm") || {}).value || "";
     var hint = ""; /* hints disabled */
-    if (pw.length < 8) {
+    if (pw.length < MIN_PASS_LEN) {
       status("Use at least 8 characters (12+ recommended).", true);
       return;
     }

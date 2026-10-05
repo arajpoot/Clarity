@@ -21,7 +21,7 @@
   if (g.__CLARITY_BOOT_ORCH_V1__) return;
   g.__CLARITY_BOOT_ORCH_V1__ = true;
 
-  var VERSION = "20261005g";
+  var VERSION = "20261005h";
   var ASSETS = [
     { id: "chunk-8",          src: "./assets/clarity-chunk-8.js",                 layer: 1 },
     { id: "track-os",         src: "./assets/clarity-track-os-v3.js",             layer: 2 },
@@ -35,7 +35,8 @@
     { id: "polish-wiring",    src: "./assets/clarity-polish-wiring-v2.js",        layer: 4 },
     { id: "ui-shine",         src: "./assets/clarity-ui-shine-v1.js",             layer: 4 },
     { id: "smooth-flow",      src: "./assets/clarity-smooth-flow-v1.js",          layer: 4 },
-    { id: "theme-harmony",    src: "./assets/clarity-theme-harmony-v1.js",        layer: 4 }
+    { id: "theme-harmony",    src: "./assets/clarity-theme-harmony-v1.js",        layer: 4 },
+    { id: "security-shield",  src: "./assets/clarity-security-shield-v1.js",      layer: 4 }
   ];
 
   var health = {
