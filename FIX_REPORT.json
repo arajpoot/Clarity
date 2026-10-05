@@ -1,0 +1,18 @@
+{
+  "build": "20261005d",
+  "errors_found": [
+    "CSS hard-hide meme by data-clarity-path focus (not unlock max) — meme stayed hidden after Daily/Da'i unlock when focus was lower",
+    "Conflicting flex order on .meme-bar-scale (order 5 vs 3)",
+    "Site-wide clarity-to-meme-pill still gated by path CSS in allowed sections",
+    "Fetch bar sat above Scale in .meme-below HTML"
+  ],
+  "repairs": [
+    "data-clarity-meme-ok attribute + CSS rules for card/studio/pills",
+    "path-progress sets meme-ok from max unlocked; polish-wiring dai openAllSections sets meme-ok=1",
+    "clarity-meme-strip-order-v2: bg=1, canvas=2, below=3 with scale first under canvas",
+    "HTML reorder: scale before fetch inside meme-below",
+    "cache-bust ?v=20261005d"
+  ],
+  "syntax": "node --check OK on path-progress, polish-wiring, chunk-8, ui-shine",
+  "dead_junk": "No large dead blocks removed this pass; order duplicates consolidated rather than leaving dual style ids fighting"
+}
