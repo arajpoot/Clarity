@@ -1,10 +1,18 @@
 {
-  "live_error": "Uncaught SyntaxError: Missing catch or finally after try @187 in clarity-chunk-8.js",
-  "root_cause": "claritySectionSentinel had extra }); and empty if-braces after a forEach — invalid try block",
-  "fix": "Removed orphaned }); and dead NUKED block; function now closes try/catch cleanly",
-  "cache": "All deferred asset script tags cache-busted with ?v=20261005b so browsers drop old broken chunk",
-  "gpc_links": "Injected .gpc-links flex/gap CSS into curriculum module (links were visually concatenated)",
-  "document": "index.html has proper </body></html>",
-  "syntax": "All assets + inline scripts node --check OK",
-  "deploy": "Upload FULL package including assets/clarity-chunk-8.js and index.html; purge Cloudflare cache; hard-refresh mobile"
+  "build": "20261005d",
+  "errors_found": [
+    "CSS hard-hide meme by data-clarity-path focus (not unlock max) — meme stayed hidden after Daily/Da'i unlock when focus was lower",
+    "Conflicting flex order on .meme-bar-scale (order 5 vs 3)",
+    "Site-wide clarity-to-meme-pill still gated by path CSS in allowed sections",
+    "Fetch bar sat above Scale in .meme-below HTML"
+  ],
+  "repairs": [
+    "data-clarity-meme-ok attribute + CSS rules for card/studio/pills",
+    "path-progress sets meme-ok from max unlocked; polish-wiring dai openAllSections sets meme-ok=1",
+    "clarity-meme-strip-order-v2: bg=1, canvas=2, below=3 with scale first under canvas",
+    "HTML reorder: scale before fetch inside meme-below",
+    "cache-bust ?v=20261005d"
+  ],
+  "syntax": "node --check OK on path-progress, polish-wiring, chunk-8, ui-shine",
+  "dead_junk": "No large dead blocks removed this pass; order duplicates consolidated rather than leaving dual style ids fighting"
 }
