@@ -4,16 +4,22 @@ if (window.__CLARITY_UI_SHINE_V2__) return;
 window.__CLARITY_UI_SHINE_V2__ = true;
 
 var CSS = `
-/* ===== Zoom: allow pinch-zoom (override stiff touch-action) ===== */
+/* ===== Pan/scroll restored — do not lock touch-action on document ===== */
 html, body {
-  touch-action: manipulation pan-x pan-y pinch-zoom !important;
-  -ms-touch-action: manipulation pan-x pan-y pinch-zoom !important;
+  touch-action: auto !important;
+  -ms-touch-action: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100% !important;
+  overscroll-behavior-y: auto !important;
 }
-.page-wrapper, .main-content, .tab-panel, .card {
-  touch-action: pan-x pan-y pinch-zoom !important;
+.page-wrapper, .main-content, .tab-panel, #main-application-workspace {
+  touch-action: auto !important;
+  overflow: visible !important;
 }
-/* Do not block pinch on scroll containers */
-.nav-tabs, #clarity-door-rail, .mobile-bottom-nav {
+/* Only nav chrome uses manipulation (faster taps, no double-zoom) */
+.nav-tabs, #clarity-door-rail, .mobile-bottom-nav, .stream-controls, .cgs-btn {
   touch-action: manipulation !important;
 }
 
@@ -219,6 +225,80 @@ html[data-theme="dark"] .cgp-track-row .cgs-label { color: #d4b45a !important; }
   white-space: nowrap !important;
 }
 
+
+/* ===== Banner vs visit strip — no overlap with volume/stream row ===== */
+#clarity-top-duo {
+  position: relative !important;
+  z-index: 20 !important;
+  overflow: visible !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+#clarity-top-duo .banner {
+  overflow: hidden !important;
+  /* room for stream row inside overlay */
+  padding-bottom: 0 !important;
+}
+#clarity-top-duo .banner-overlay {
+  padding-bottom: 0.45rem !important;
+}
+#clarity-top-duo .banner-center {
+  padding-bottom: 0.15rem !important;
+}
+#clarity-top-duo .stream-controls {
+  position: relative !important;
+  z-index: 6 !important;
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.15rem !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 0.3rem !important;
+  max-width: 100% !important;
+}
+#clarity-top-duo .volume-control {
+  display: inline-flex !important;
+  align-items: center !important;
+  position: relative !important;
+  z-index: 7 !important;
+  flex-shrink: 0 !important;
+  background: rgba(255,255,255,0.22) !important;
+  border-radius: 18px !important;
+  padding: 0.22rem 0.55rem !important;
+}
+#clarity-top-duo .volume-control input[type="range"] {
+  width: 52px !important;
+  min-width: 44px !important;
+}
+
+/* Visit / LAST strip sits fully BELOW banner — never over stream controls */
+#clarity-visit-pill-bar,
+.cv-stitched-banner {
+  position: relative !important;
+  z-index: 15 !important;
+  clear: both !important;
+  display: flex !important;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  transform: none !important;
+  top: auto !important;
+  /* pull out of any negative overlap */
+  border-top: 1px solid rgba(13,79,60,0.12) !important;
+}
+/* If strip was absolutely positioned over banner, kill that */
+#clarity-top-duo #clarity-visit-pill-bar,
+.banner #clarity-visit-pill-bar {
+  position: relative !important;
+  inset: auto !important;
+}
+
+/* Ensure main content starts cleanly under strip */
+#clarity-visit-pill-bar + *,
+#main-application-workspace,
+.page-wrapper {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
 /* Live button */
 .live-haramain-btn.on { background: #0f4c3a !important; }
 .live-haramain-btn.on .live-dot { background: #7dff9a !important; }
@@ -394,11 +474,30 @@ function wireLive(){
   }
 }
 
+
+/** Ensure visit strip is not inside .banner (overlap source) */
+function unstickVisitStrip(){
+  try {
+    var bar = document.getElementById("clarity-visit-pill-bar");
+    if (!bar) return;
+    var banner = document.querySelector("#clarity-top-duo .banner, .banner");
+    var duo = document.getElementById("clarity-top-duo");
+    if (banner && banner.contains(bar) && duo) {
+      /* place immediately after duo */
+      if (duo.nextSibling) duo.parentNode.insertBefore(bar, duo.nextSibling);
+      else duo.parentNode.appendChild(bar);
+    } else if (duo && bar.previousElementSibling !== duo && !duo.contains(bar)) {
+      /* already outside — ok */
+    }
+  } catch(e){}
+}
+
 function boot(){
   injectCss();
   layoutTrackPlaque();
   declutterBanner();
   wireLive();
+  unstickVisitStrip();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 60); });
 else setTimeout(boot, 60);
@@ -407,5 +506,7 @@ window.addEventListener("load", function(){
   setTimeout(layoutTrackPlaque, 500);
   setTimeout(declutterBanner, 800);
   setTimeout(declutterBanner, 2500);
+  setTimeout(unstickVisitStrip, 100);
+  setTimeout(unstickVisitStrip, 600);
 });
 })();
