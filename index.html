@@ -7422,5 +7422,20 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   window.addEventListener("load", temps);
 })();
 </script>
+
+<script id="clarity-entry-tab-boot">
+(function(){
+  try {
+    var q = new URLSearchParams(location.search || "");
+    var t = (q.get("tab") || sessionStorage.getItem("clarity_entry_tab") || "").toLowerCase();
+    if (!t) return;
+    sessionStorage.removeItem("clarity_entry_tab");
+    /* Prefer hash the router already understands */
+    if (!location.hash || location.hash === "#") {
+      history.replaceState(null, "", location.pathname + location.search + "#" + t);
+    }
+  } catch(e){}
+})();
+</script>
 </body>
 </html>
