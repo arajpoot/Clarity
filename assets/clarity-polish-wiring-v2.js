@@ -161,14 +161,20 @@ body.section-open .page-wrapper {
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 300); });
   else setTimeout(boot, 300);
-  window.addEventListener("load", function(){ setTimeout(boot, 600); setTimeout(boot, 1500); });
+  window.addEventListener("load", function(){ setTimeout(boot, 500); });
 
-  /* Interval heal: if path is dai but cards still hidden, reopen */
-  setInterval(function(){
+  /* Soft heal: only once after settle, not every 2s (was fighting path-progress) */
+  var __doorsHealDone = false;
+  function softDoorsHeal(){
+    if (__doorsHealDone) return;
     if (pathNow() !== "dai") return;
     var hidden = document.querySelectorAll(".card.gate-hidden, [id$='-card'][data-gate-hidden='1']");
     if (hidden.length) openAllSections();
-  }, 2000);
+    __doorsHealDone = true;
+  }
+  setTimeout(softDoorsHeal, 800);
+  setTimeout(softDoorsHeal, 2200);
+  window.addEventListener("clarity-path-changed", function(){ __doorsHealDone = false; setTimeout(softDoorsHeal, 400); });
 
   window.clarityDoorsFlow = { openAll: openAllSections, onPath: onPath };
 })();

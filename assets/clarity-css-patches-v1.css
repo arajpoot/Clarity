@@ -2235,3 +2235,131 @@ html[data-theme="dark"] .workspace-safe-frame{border-color:rgba(212,180,90,.28)}
 #callig-bridge-hint{font-size:.75rem;color:var(--text-muted);margin-top:.3rem}
 #tj-lmr-random{font-size:1.05rem;min-width:2.4rem}
 .banner-media.live-active .banner-live{pointer-events:auto!important;opacity:1!important;z-index:5!important}
+
+
+/* ============================================================
+   clarity-banner-desktop-plaques-v1 — smooth desktop flex
+   Calendar (left) + Salah (right) plaques expand with viewport
+   ============================================================ */
+#clarity-top-duo {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+#clarity-top-duo .banner,
+.banner {
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: none !important; /* was 18rem — crushed plaques */
+  min-height: 10.5rem !important;
+}
+#clarity-top-duo .banner-overlay,
+.banner-overlay {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  gap: 0.55rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0.45rem 0.55rem 0.5rem !important;
+  box-sizing: border-box !important;
+}
+/* Plaque sides: grow with desktop width, stay readable */
+#clarity-top-duo .banner-side {
+  flex: 1 1 160px !important;
+  width: auto !important;
+  min-width: 140px !important;
+  max-width: 220px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: stretch !important;
+  align-self: stretch !important;
+}
+#clarity-top-duo .banner-side.left { order: 1 !important; }
+#clarity-top-duo .banner-side.right { order: 3 !important; }
+#clarity-top-duo .banner-center {
+  flex: 2 1 280px !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  order: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+/* Restored plaque chrome */
+#clarity-top-duo .hijri-cal-section,
+#clarity-top-duo .salah-times-section {
+  flex: 1 1 auto !important;
+  height: 100% !important;
+  min-height: 9.5rem !important;
+  background: linear-gradient(165deg, rgba(22,62,50,0.96), rgba(6,26,20,0.98)) !important;
+  border-radius: 14px !important;
+  box-shadow:
+    inset 0 0 0 1.5px rgba(212,180,90,0.55),
+    0 8px 22px rgba(0,0,0,0.45) !important;
+  padding: 0.45rem 0.5rem !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+#clarity-top-duo .hijri-cal-section *,
+#clarity-top-duo .salah-times-section * {
+  color: #e8f0ea !important;
+}
+#clarity-top-duo .cal-title,
+#clarity-top-duo .salah-title {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  color: #e8d48b !important;
+}
+#clarity-top-duo .hijri-cal-grid {
+  font-size: 0.62rem !important;
+  line-height: 1.35 !important;
+}
+#clarity-top-duo .salah-times-list {
+  font-size: 0.7rem !important;
+  line-height: 1.45 !important;
+}
+/* Wide desktop: give plaques more room */
+@media (min-width: 1100px) {
+  #clarity-top-duo .banner-side {
+    flex: 1 1 180px !important;
+    max-width: 260px !important;
+  }
+  #clarity-top-duo .banner-center {
+    flex: 3 1 360px !important;
+  }
+  #clarity-top-duo .hijri-cal-grid { font-size: 0.68rem !important; }
+  #clarity-top-duo .salah-times-list { font-size: 0.76rem !important; }
+}
+@media (min-width: 1400px) {
+  #clarity-top-duo .banner-side {
+    max-width: 300px !important;
+  }
+}
+/* Tablet / narrow: stack, keep plaques usable */
+@media (max-width: 900px) {
+  #clarity-top-duo .banner-overlay {
+    flex-direction: column !important;
+    gap: 0.4rem !important;
+  }
+  #clarity-top-duo .banner-side {
+    display: flex !important; /* do NOT hide — restore plaques */
+    flex: 1 1 auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex-direction: row !important;
+    gap: 0.4rem !important;
+  }
+  #clarity-top-duo .hijri-cal-section,
+  #clarity-top-duo .salah-times-section {
+    min-height: 0 !important;
+    flex: 1 1 50% !important;
+  }
+  #clarity-top-duo .banner-center {
+    order: -1 !important;
+    width: 100% !important;
+  }
+}

@@ -229,6 +229,7 @@ function applyPathFilter(focusGate){
   } catch(e){}
 
   markUI(focusGate);
+  try { window.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { gate: focusGate } })); } catch(eEv){}
 }
 
 function markUI(focusGate){
@@ -270,8 +271,7 @@ function applyContent(gate){
   try {
     if (typeof switchTab === "function") switchTab("reminder");
   } catch(e){}
-  setTimeout(function(){ applyPathFilter(gate); }, 40);
-  setTimeout(function(){ applyPathFilter(gate); }, 180);
+  setTimeout(function(){ applyPathFilter(gate); }, 60);
 }
 
 /* ---- Quiz (once per door; majority pass) ---- */
