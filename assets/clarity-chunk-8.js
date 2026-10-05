@@ -891,10 +891,14 @@ function stopBannerLiveEmbed(){
 
 function syncHaramainLiveUI(){
   try {
+    var media = document.getElementById("banner-media");
+    var liveOn = !!(media && media.classList.contains("live-active"));
     var btn = document.getElementById("live-haramain-btn");
     var lab = document.getElementById("live-haramain-label");
-    if (btn) btn.classList.remove("on");
-    if (lab) lab.textContent = "Stills";
+    if (btn) btn.classList.toggle("on", liveOn);
+    if (lab) lab.textContent = liveOn ? "Live" : "Stills";
+    try { localStorage.setItem("clarity_banner_live", liveOn ? "1" : "0"); } catch(e2){}
+    try { localStorage.setItem("clarity_haramain_live", liveOn ? "on" : "off"); } catch(e3){}
   } catch (e) {}
 }
 function toggleHaramainLive(){
@@ -9535,3 +9539,141 @@ function clarityGoSectionChip(kind) {
 }
 
 window.clarityGoSectionChip = clarityGoSectionChip;
+
+/* Clarity live/stills repair v1 */
+(function(){
+  if (window.__CLARITY_LIVE_STILLS_REPAIR__) return;
+  window.__CLARITY_LIVE_STILLS_REPAIR__ = true;
+
+  var STREAMS = {
+    makkah: [
+      "https://www.youtube-nocookie.com/embed/Rs7St51oDDc?autoplay=1&mute=1&playsinline=1&rel=0",
+      "https://www.youtube.com/embed/Rs7St51oDDc?autoplay=1&mute=1&playsinline=1&rel=0"
+    ],
+    madinah: [
+      "https://www.youtube-nocookie.com/embed/27cln-IxOGo?autoplay=1&mute=1&playsinline=1&rel=0",
+      "https://www.youtube.com/embed/27cln-IxOGo?autoplay=1&mute=1&playsinline=1&rel=0"
+    ]
+  };
+
+  function place(){
+    try {
+      return (document.getElementById("live-place-select") || {}).value
+        || localStorage.getItem("clarity_haramain_place")
+        || "makkah";
+    } catch(e){ return "makkah"; }
+  }
+
+  function ensureFrame(){
+    var media = document.getElementById("banner-media");
+    if (!media) return null;
+    var frame = document.getElementById("banner-live");
+    if (!frame) {
+      frame = document.createElement("iframe");
+      frame.id = "banner-live";
+      frame.className = "banner-live banner-live-iframe";
+      frame.title = "Haramain live";
+      frame.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen");
+      frame.setAttribute("allowfullscreen", "");
+      frame.setAttribute("playsinline", "");
+      media.appendChild(frame);
+    }
+    return frame;
+  }
+
+  function setStillMode(){
+    var media = document.getElementById("banner-media");
+    var frame = document.getElementById("banner-live");
+    if (media) {
+      media.classList.remove("live-active");
+      media.classList.add("live-fallback");
+    }
+    if (frame) {
+      try { frame.removeAttribute("src"); frame.src = "about:blank"; } catch(e){}
+      frame.setAttribute("hidden", "");
+    }
+    if (typeof syncHaramainLiveUI === "function") syncHaramainLiveUI();
+    else {
+      var lab = document.getElementById("live-haramain-label");
+      var btn = document.getElementById("live-haramain-btn");
+      if (lab) lab.textContent = "Stills";
+      if (btn) btn.classList.remove("on");
+    }
+  }
+
+  function setLiveMode(){
+    if (location.protocol === "file:") {
+      setStillMode();
+      return;
+    }
+    var media = document.getElementById("banner-media");
+    var frame = ensureFrame();
+    if (!media || !frame) return;
+    var p = place();
+    var urls = STREAMS[p] || STREAMS.makkah;
+    frame.removeAttribute("hidden");
+    frame.src = urls[0];
+    media.classList.add("live-active");
+    media.classList.remove("live-fallback");
+    if (typeof syncHaramainLiveUI === "function") syncHaramainLiveUI();
+    else {
+      var lab = document.getElementById("live-haramain-label");
+      var btn = document.getElementById("live-haramain-btn");
+      if (lab) lab.textContent = "Live";
+      if (btn) btn.classList.add("on");
+    }
+  }
+
+  window.toggleHaramainLive = function(){
+    try {
+      var media = document.getElementById("banner-media");
+      var liveOn = media && media.classList.contains("live-active");
+      if (liveOn) {
+        setStillMode();
+        if (typeof setDailyBanner === "function") {
+          try { setDailyBanner(typeof bannerPlaceIdx === "number" ? bannerPlaceIdx : 0); } catch(e){}
+        }
+      } else {
+        setLiveMode();
+      }
+    } catch (e) { console.warn("toggleHaramainLive", e); }
+  };
+
+  window.changeHaramainPlace = function(){
+    try {
+      var p = place();
+      try { localStorage.setItem("clarity_haramain_place", p); } catch(e){}
+      var media = document.getElementById("banner-media");
+      if (media && media.classList.contains("live-active")) setLiveMode();
+      else if (typeof setDailyBanner === "function") {
+        try {
+          if (typeof bannerImages !== "undefined") {
+            var idx = bannerImages.findIndex(function(b){ return b.placeKey === p || (b.caption||"").toLowerCase().indexOf(p) >= 0; });
+            if (idx >= 0) setDailyBanner(idx);
+          }
+        } catch(e2){}
+      }
+      if (typeof loadHaramainCityTemps === "function") loadHaramainCityTemps();
+    } catch(e){}
+  };
+
+  /* Wire button if onclick missing */
+  function wireBtn(){
+    var btn = document.getElementById("live-haramain-btn");
+    if (btn && !btn.__liveWired) {
+      btn.addEventListener("click", function(ev){
+        ev.preventDefault();
+        window.toggleHaramainLive();
+      });
+      btn.__liveWired = true;
+    }
+    var sel = document.getElementById("live-place-select");
+    if (sel && !sel.__placeWired) {
+      sel.addEventListener("change", function(){ window.changeHaramainPlace(); });
+      sel.__placeWired = true;
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wireBtn);
+  else wireBtn();
+  window.addEventListener("load", wireBtn);
+})();
