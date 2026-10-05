@@ -247,14 +247,14 @@
 <meta name="apple-mobile-web-app-title" content="Clarity" />
 <meta name="application-name" content="Clarity" />
 <meta name="msapplication-TileColor" content="#0f4c3a" />
-<title>Clarity · NurOS — Furnish Your Grave</title><style id="clarity-fouc-shield">html,body{background:#f6f1e7;color:#1c2a22}html[data-theme=dark],html[data-theme=dark] body{background:#0c1410;color:#e7efe9}</style><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261005L" id="clarity-critical-css-link">
+<title>Clarity · NurOS — Furnish Your Grave</title><style id="clarity-fouc-shield">html,body{background:#f6f1e7;color:#1c2a22}html[data-theme=dark],html[data-theme=dark] body{background:#0c1410;color:#e7efe9}</style><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261005P" id="clarity-critical-css-link">
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 <!-- offloaded clarity-banner-lock-js -->
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261005L" id="clarity-css-patches-link">
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261005P" id="clarity-css-patches-link">
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
      assets/clarity-css-patches-v1.css. Deferred JS graph is owned by
      assets/clarity-boot-orchestrator-v1.js (ClarityBoot.report() in console). -->
@@ -296,7 +296,10 @@
       <!-- Calendar plaque -->
       <div class="banner-side left">
         <div class="hijri-cal-section">
-          <div class="allah-circular-seal" title="Allah"><span class="arabic seal-ar">الله</span></div>
+          <div class="banner-name-plaque allah-plaque" title="Allah">
+            <span class="arabic plaque-naskh" lang="ar">الله</span>
+            <span class="plaque-caption">Hijri calendar</span>
+          </div>
           <div class="cal-title" id="hijri-cal-title">Hijri · تقويم</div>
           <div class="hijri-cal-grid" id="hijri-cal-grid"></div>
           <div class="hijri-cal-meta" id="hijri-cal-meta">…</div>
@@ -327,8 +330,8 @@
             <span class="live-dot" aria-hidden="true"></span><span id="live-haramain-label">Live</span>
           </button>
           <select id="live-place-select" class="live-place-select stream-select" onchange="changeHaramainPlace()" aria-label="Live source">
-            <option value="madinah" selected>Madinah</option>
-            <option value="makkah">Makkah</option>
+            <option value="makkah" selected>Makkah</option>
+            <option value="madinah">Madinah</option>
           </select>
           <select id="stream-select" class="stream-select" onchange="changeStream()" title="Qurʾān radio">
             <option value="https://qurango.net/radio/tarateel">Tarateel (Arabic)</option>
@@ -372,7 +375,11 @@
       <!-- Salah plaque -->
       <div class="banner-side right">
         <div class="salah-times-section">
-          <div class="masjid-circular-seal" title="Masjid an-Nabawi"><span class="seal-icon" aria-hidden="true">🕌</span></div>
+          <div class="banner-name-plaque masjid-plaque" title="Masjid">
+            <span class="plaque-icon" aria-hidden="true">🕌</span>
+            <span class="arabic plaque-naskh plaque-naskh-sm" lang="ar">مسجد</span>
+            <span class="plaque-caption">Prayer times</span>
+          </div>
           <div class="salah-title" id="salah-title">Ṣalāh</div>
           <ul class="salah-times-list" id="salah-times-list">
             <li><span class="salah-name">Loading…</span><span class="salah-time">…</span></li>
@@ -2200,22 +2207,22 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <!-- ========== Clarity script layers (defer = order preserved) ========== -->
 <!-- L1 Runtime: boot · shields · smooth · theme · security · meme -->
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261005M" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261005P" defer></script>
 <!-- L2 Core SPA shell + UI -->
-<script src="./assets/clarity-chunk-8.js?v=20261005L" defer></script>
+<script src="./assets/clarity-chunk-8.js?v=20261005P" defer></script>
 <!-- L3 Feature modules -->
-<script src="./assets/clarity-track-os-v3.js?v=20261005L" defer></script>
-<script src="./assets/nx-tj-lmr-js-v1.js?v=20261005L" defer></script>
-<script src="./assets/nuros-bridge-enrich-js.js?v=20261005L" defer></script>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261005L" defer></script>
-<script src="./assets/clarity-uft-full-restore-v1.js?v=20261005L" defer></script>
-<script src="./assets/clarity-notes-recovery-v1.js?v=20261005L" defer></script>
-<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261005L" defer></script>
+<script src="./assets/clarity-track-os-v3.js?v=20261005P" defer></script>
+<script src="./assets/nx-tj-lmr-js-v1.js?v=20261005P" defer></script>
+<script src="./assets/nuros-bridge-enrich-js.js?v=20261005P" defer></script>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261005P" defer></script>
+<script src="./assets/clarity-uft-full-restore-v1.js?v=20261005P" defer></script>
+<script src="./assets/clarity-notes-recovery-v1.js?v=20261005P" defer></script>
+<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261005P" defer></script>
 <!-- L4 Path curriculum (confine modules by educational phase) -->
-<script src="./assets/clarity-path-progress-v1.js?v=20261005L" defer></script>
+<script src="./assets/clarity-path-progress-v1.js?v=20261005P" defer></script>
 <!-- L5 Polish + shine (after path so they cannot open-all over seeker) -->
-<script src="./assets/clarity-polish-wiring-v2.js?v=20261005L" defer></script>
-<script src="./assets/clarity-ui-shine-v1.js?v=20261005L" defer></script>
+<script src="./assets/clarity-polish-wiring-v2.js?v=20261005P" defer></script>
+<script src="./assets/clarity-ui-shine-v1.js?v=20261005P" defer></script>
 
 </body>
 </html>
