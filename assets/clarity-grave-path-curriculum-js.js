@@ -3,6 +3,17 @@
   if (window.__CLARITY_GRAVE_PATH_CURRICULUM__) return;
   window.__CLARITY_GRAVE_PATH_CURRICULUM__ = true;
 
+  /* inject curriculum card + link styles (missing when factored out of monolith) */
+  (function injectCurriculumCss(){
+    try {
+      if (document.getElementById("clarity-grave-path-curriculum-css-inject")) return;
+      var s = document.createElement("style");
+      s.id = "clarity-grave-path-curriculum-css-inject";
+      s.textContent = '\n.gpc-links{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.55rem}\n.gpc-links a{font-size:0.72rem;font-weight:600;padding:0.28rem 0.55rem;border-radius:999px;background:rgba(13,79,60,0.1);color:var(--accent,#0a3d2e);text-decoration:none;border:1px solid rgba(13,79,60,0.18);white-space:normal;line-height:1.35}\n.gpc-links a:hover{background:rgba(13,79,60,0.18)}\n.gpc-note{font-size:0.72rem;margin-top:0.55rem;padding:0.4rem 0.55rem;border-radius:10px;background:#f3f0e4;color:#2a3228;border:1px solid #d0c6a4}\n#grave-path-card,#new-muslim-foundations-card,#salah-starter-card,#daily-deed-ledger-card,#dai-transmit-card{border-radius:16px;padding:1rem 1.1rem;margin-bottom:1rem;background:var(--card-bg,#f7fcf9);border:1px solid var(--border,#a8c9b6)}\nhtml[data-theme="dark"] #grave-path-card,html[data-theme="dark"] #new-muslim-foundations-card,html[data-theme="dark"] #salah-starter-card,html[data-theme="dark"] #daily-deed-ledger-card,html[data-theme="dark"] #dai-transmit-card{background:rgba(15,30,24,0.95);border-color:rgba(212,180,90,0.25);color:#e8f0ea}\nhtml[data-theme="dark"] .gpc-note{background:rgba(40,36,24,0.9);color:#e8e0d0;border-color:rgba(212,180,90,0.3)}\nhtml[data-theme="dark"] .gpc-links a{background:rgba(212,180,90,0.12);color:#e8d48a;border-color:rgba(212,180,90,0.3)}\n';
+      (document.head || document.documentElement).appendChild(s);
+    } catch(e){}
+  })();
+
   var PHASES = {
     seeker: {
       title: "Seeker · Wake the heart",
