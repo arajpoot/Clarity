@@ -184,11 +184,6 @@ function claritySectionSentinel(){
         if (!el) return;
       });
     });
-    });
-    /* NUKED: Force meme visible on Reminder */
-    if (false && active === 'reminder') {
-    }
-    }
   }catch(e){}
 }
 window.claritySectionSentinel = claritySectionSentinel;
