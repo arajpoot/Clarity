@@ -186,7 +186,24 @@ function applyExclusiveFilter(gate){
 }
 
 
-function installAdditiveLock(gate, allow){ try { installExclusiveLock(gate); } catch(e){} }
+function installAdditiveLock(gate, allow){ 
+  /* nuke common leakers without proper gate id */
+  var leakSel = [
+    "#commands-card",".card-commands","#commands-section","[data-section='commands']",
+    "#samina-verse-card","#samina-card","#hell-sins-card","#meme-card","#callig-lab-card",
+    "#tweet-desk-card","#tajweed-live-card","#israeliyat-card","#seerah-mirror-card"
+  ];
+  leakSel.forEach(function(sel){
+    try {
+      document.querySelectorAll(sel).forEach(function(el){
+        var id = el.id || "";
+        var ok = (id && allow[id] === 1) || (el.classList.contains("card-commands") && allow["commands-card"]);
+        if (!ok) hideEl(el);
+      });
+    } catch(e){}
+  });
+
+  try { installExclusiveLock(gate); } catch(e){} }
 
 
 function watchExclusiveLock(){
@@ -456,9 +473,11 @@ window.clarityRequestPath = function(gate){
     return { ok: true };
   }
   if (ti > max + 1) {
-    alert("Open doors in order.\nNext: " + LABELS[ORDER[max+1]] + " (short quiz).");
+    /* Open the next sequential door quiz (Daily/Da'i no longer dead-end alerts) */
+    var nextGate = ORDER[max + 1];
+    openQuiz(ORDER[max], nextGate);
     markUI(ORDER[max]);
-    return { ok: false, reason: "skip" };
+    return { ok: false, reason: "quiz-next" };
   }
   openQuiz(ORDER[max], gate);
   return { ok: false, reason: "quiz" };

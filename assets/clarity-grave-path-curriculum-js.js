@@ -169,45 +169,12 @@
   }
 
   function ensureStrip(){
-    var g = pathNow();
+    /* OFFLOADED: path cards live only in first-visit doors + track rail */
     try {
-      if (localStorage.getItem("clarity_welcome_seen_v2") || localStorage.getItem("clarity_committed_path")) {
-        var _s = document.getElementById("clarity-grave-path-strip");
-        if (_s) { _s.style.setProperty("display","none","important"); return; }
-      }
+      var strip = document.getElementById("clarity-grave-path-strip");
+      if (strip && strip.parentNode) strip.parentNode.removeChild(strip);
     } catch(e){}
-    var strip = document.getElementById("clarity-grave-path-strip");
-    if (!strip) {
-      strip = document.createElement("div");
-      strip.id = "clarity-grave-path-strip";
-      strip.className = "grave-path-strip";
-      var anchor = document.getElementById("clarity-visit-pill-bar")
-        || document.getElementById("clarity-top-duo")
-        || document.querySelector(".page-wrapper");
-      if (anchor && anchor.parentNode) {
-        if (anchor.id === "clarity-visit-pill-bar" || anchor.id === "clarity-top-duo")
-          anchor.parentNode.insertBefore(strip, anchor.nextSibling);
-        else anchor.insertBefore(strip, anchor.firstChild);
-      } else {
-        document.body.insertBefore(strip, document.body.firstChild);
-      }
-    }
-    var g = pathNow();
-    var html = '<h3>Path to furnish the grave</h3>'
-      + '<p class="gps-goal">Four doors. One aim: send light ahead — not a fatwa path.</p>'
-      + '<div class="gps-phases">';
-    ORDER.forEach(function(key){
-      var p = PHASES[key];
-      if (!p) return;
-      html += '<button type="button" class="gps-btn gps-phase gps-'+key+(key===g?' active':'')+'" data-gate="'+key+'" onclick="typeof clarityRequestPath===\'function\'&&clarityRequestPath(\''+key+'\')">'
-        + '<span class="gps-title">'+p.title+'</span>'
-        + '<span class="gps-goal">'+p.goal+'</span>'
-        + '<span class="gps-tag">'+p.focus+'</span></button>';
-    });
-    html += '</div>';
-    if (strip.getAttribute("data-path") === g && strip.querySelector(".gps-btn")) return;
-    strip.setAttribute("data-path", g);
-    strip.innerHTML = html;
+    return;
   }
 
   var ORDER = ["seeker","new_muslim","practicing","dai"];
