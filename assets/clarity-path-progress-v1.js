@@ -1,12 +1,14 @@
 (function(){
 "use strict";
-if (window.__CLARITY_PATH_PROGRESS_V4__) return;
-window.__CLARITY_PATH_PROGRESS_V4__ = true;
+if (window.__CLARITY_PATH_PROGRESS_V5__) return;
+window.__CLARITY_PATH_PROGRESS_V5__ = true;
 
 /**
- * Phased doors + smooth quiz + ADDITIVE sections
- * As user unlocks higher doors, content from earlier doors remains available
- * (union of allowlists from seeker … selected path).
+ * Progressive doors (Seeker → New Muslim → Daily → Da'i)
+ * - Quiz unlocks are PERMANENT (localStorage)
+ * - Content is ADDITIVE: unlocking a door keeps earlier + new modules
+ * - Switching focus among unlocked doors never re-asks the quiz
+ * Educational only — not a fatwa path
  */
 
 var ORDER = ["seeker", "new_muslim", "practicing", "dai"];
@@ -14,21 +16,25 @@ var LABELS = {
   seeker: "Seeker",
   new_muslim: "New Muslim",
   practicing: "Daily Muslim",
-  dai: "Da’i"
+  dai: "Da'i"
 };
 var UNLOCK_KEY = "clarity_path_unlocked_max";
+var PASSED_KEY = "clarity_quiz_passed_v1";
 
+/** Rich allowlists — each phase adds modules; filter uses UNION through unlocked max */
 var ALLOW = {
   seeker: {
     "commands-card":1,"samina-verse-card":1,"samina-card":1,"about-clarity-card":1,
     "soul-compass-card":1,"hell-sins-card":1,"night-breath-card":1,
-    "seerah-live-card":1,"creation-tongue-reflection":1,"grave-path-card":1
+    "seerah-live-card":1,"creation-tongue-reflection":1,"grave-path-card":1,
+    "cw-card":1,"ilm-pathway-card":1
   },
   new_muslim: {
     "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
     "about-clarity-card":1,"soul-compass-card":1,"seerah-live-card":1,
     "night-breath-card":1,"hajj-guide-card":1,"fiqh-quiz-card":1,
-    "grave-path-card":1,"new-muslim-foundations-card":1,"salah-starter-card":1
+    "grave-path-card":1,"new-muslim-foundations-card":1,"salah-starter-card":1,
+    "hell-sins-card":1,"cw-card":1,"tibbe-nabwi-card":1
   },
   practicing: {
     "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
@@ -38,9 +44,12 @@ var ALLOW = {
     "callig-lab-card":1,"meme-card":1,"tibbe-nabwi-card":1,"seerah-mirror-card":1,
     "najiha-tafseer-card":1,"tafseer-resources-card":1,"deepen-study-card":1,
     "asma-names-lecture-card":1,"creation-tongue-reflection":1,"hajj-checklist-card":1,
-    "grave-path-card":1,"daily-deed-ledger-card":1
+    "grave-path-card":1,"daily-deed-ledger-card":1,"hajj-guide-card":1,
+    "new-muslim-foundations-card":1,"salah-starter-card":1,"cw-card":1,
+    "tafseer-live-card":1,"tweet-desk-card":1
   },
   dai: {
+    /* nearly full library */
     "commands-card":1,"samina-verse-card":1,"samina-card":1,"ilm-pathway-card":1,
     "about-clarity-card":1,"soul-compass-card":1,"seerah-live-card":1,
     "hell-sins-card":1,"night-breath-card":1,"deepen-study-card":1,
@@ -50,15 +59,16 @@ var ALLOW = {
     "tajweed-live-card":1,"tajweed-path-card":1,"tj-deep-studio":1,"tj-lmr-score-card":1,
     "weekly-review-card":1,"tibbe-nabwi-card":1,"seerah-mirror-card":1,
     "najiha-tafseer-card":1,"israeliyat-card":1,"sealed-nectar-card":1,
-    "tajalliyat-lecture-card":1,"tafseer-live-card":1,"authentic-learning-stack":1,
-    "voice-translator-card":1,"grave-path-card":1,"daily-deed-ledger-card":1,
-    "dai-transmit-card":1,"new-muslim-foundations-card":1,"salah-starter-card":1
+    "tajalliyat-lecture-card":1,"tafseer-live-card":1,"voice-translator-card":1,
+    "grave-path-card":1,"daily-deed-ledger-card":1,"dai-transmit-card":1,
+    "new-muslim-foundations-card":1,"salah-starter-card":1,"cw-card":1
   }
 };
-var VAULT = {
+
+/** Always available (private vault / shell) */
+var ALWAYS = {
   "user-family-tree-card":1,"faraid-card":1,"wasiyyah-card":1,
-  "uft-cards-file":1,"uft-build-from-cards":1,"uft-card-search":1,
-  "uft-rel-card-search":1,"uft-rel-cards":1
+  "about-clarity-card":1,"cw-card":1,"notes-shell":1
 };
 
 var QUIZZES = {
@@ -68,8 +78,8 @@ var QUIZZES = {
     { q: "The five daily prayers are:", opts: ["A core practiced pillar of the religion", "Optional decoration", "Only for imams", "Replaced by intention alone"], a: 0 }
   ],
   2: [
-    { q: "Steady growth is best as:", opts: ["Consistent sincere deeds", "Only online debates", "Abandoning prayer when busy", "Never opening the Qur’an"], a: 0 },
-    { q: "Tajweed primarily helps:", opts: ["Correct Qur’an recitation", "Business ads", "Astrology", "Skipping ṣalāh"], a: 0 },
+    { q: "Steady growth is best as:", opts: ["Consistent sincere deeds", "Only online debates", "Abandoning prayer when busy", "Never opening the Qur'an"], a: 0 },
+    { q: "Tajweed primarily helps:", opts: ["Correct Qur'an recitation", "Business ads", "Astrology", "Skipping ṣalāh"], a: 0 },
     { q: "Family legacy notes are:", opts: ["Educational readiness — not a website fatwa", "Final court orders", "Public shaming tools", "A way to hide debts"], a: 0 }
   ],
   3: [
@@ -79,24 +89,62 @@ var QUIZZES = {
   ]
 };
 
-function idx(g){ var i = ORDER.indexOf(String(g||"")); return i < 0 ? 0 : i; }
+function idx(g){
+  var i = ORDER.indexOf(String(g || ""));
+  return i < 0 ? 0 : i;
+}
+
+function getPassed(){
+  try {
+    var raw = localStorage.getItem(PASSED_KEY);
+    if (!raw) return {};
+    var o = JSON.parse(raw);
+    return o && typeof o === "object" ? o : {};
+  } catch(e){ return {}; }
+}
+
+function setPassed(gate){
+  try {
+    var o = getPassed();
+    o[gate] = true;
+    localStorage.setItem(PASSED_KEY, JSON.stringify(o));
+  } catch(e){}
+}
+
+function doorCleared(gate){
+  var i = idx(gate);
+  if (i <= 0) return true; /* seeker always open */
+  if (getMax() >= i) return true;
+  var p = getPassed();
+  return !!p[gate];
+}
+
 function getMax(){
   try {
-    var n = parseInt(localStorage.getItem(UNLOCK_KEY)||"0", 10);
-    if (isNaN(n)||n<0) n = 0;
-    return Math.min(ORDER.length-1, n);
+    var n = parseInt(localStorage.getItem(UNLOCK_KEY) || "0", 10);
+    if (isNaN(n) || n < 0) n = 0;
+    /* reconcile with per-door passes */
+    var p = getPassed();
+    ORDER.forEach(function(g, i){
+      if (p[g] && i > n) n = i;
+    });
+    n = Math.min(ORDER.length - 1, n);
+    return n;
   } catch(e){ return 0; }
 }
+
 function setMax(n){
-  n = Math.max(0, Math.min(ORDER.length-1, n|0));
+  n = Math.max(0, Math.min(ORDER.length - 1, n | 0));
   try { localStorage.setItem(UNLOCK_KEY, String(n)); } catch(e){}
   return n;
 }
 
-/** Union of allowlists from seeker through gate (additive progress) */
-function unionAllow(gate){
-  var upto = idx(gate);
+/** Union of allowlists from seeker through unlocked max (not merely focus path) */
+function unionAllow(uptoGate){
+  var upto = typeof uptoGate === "number" ? uptoGate : idx(uptoGate);
+  upto = Math.max(upto, getMax());
   var u = {};
+  Object.keys(ALWAYS).forEach(function(k){ u[k] = 1; });
   for (var i = 0; i <= upto; i++) {
     var a = ALLOW[ORDER[i]] || {};
     Object.keys(a).forEach(function(k){ if (a[k]) u[k] = 1; });
@@ -115,23 +163,35 @@ function showEl(el){
   el.classList.remove("gate-hidden");
   el.removeAttribute("data-gate-hidden");
   el.style.removeProperty("display");
+  el.style.removeProperty("visibility");
+  el.style.removeProperty("height");
 }
 
-/** Additive path filter — overrides exclusive filter */
+function applyPathFilter(focusGate){
+  focusGate = ORDER.indexOf(focusGate) >= 0 ? focusGate : "seeker";
+  var max = getMax();
+  /* never show less than unlocked */
+  var allow = unionAllow(max);
 
-function applyAdditiveFilter(gate){ return applyExclusiveFilter(gate); }
+  try {
+    document.documentElement.setAttribute("data-clarity-path", focusGate);
+    document.body.setAttribute("data-clarity-path", focusGate);
+    localStorage.setItem("clarity_committed_path", focusGate);
+    localStorage.setItem("clarity_path_override", focusGate);
+    localStorage.setItem("clarity_path_focus", focusGate);
+  } catch(e){}
 
-function installExclusiveLock(gate){
-  gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
-  var allow = ALLOW[gate] || ALLOW.seeker || {};
+  /* CSS lock stylesheet from union */
   var hideIds = [];
   document.querySelectorAll(".card[id], [id$='-card']").forEach(function(node){
     var id = node.id;
     if (!id) return;
-    if (VAULT[id]) return;
-    if (allow[id] === 1) return;
-    if (id === "cw-card" || id === "about-clarity-card") return;
+    if (allow[id] === 1 || ALWAYS[id]) {
+      showEl(node);
+      return;
+    }
     hideIds.push("#" + id.replace(/([^\w-])/g, "\\$1"));
+    hideEl(node);
   });
   var el = document.getElementById("clarity-path-lock");
   if (!el) {
@@ -139,187 +199,69 @@ function installExclusiveLock(gate){
     el.id = "clarity-path-lock";
     document.head.appendChild(el);
   }
-  var css = hideIds.length
+  el.textContent = hideIds.length
     ? (hideIds.join(",") + "{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;pointer-events:none!important;}")
-    : "";
-  el.textContent = css;
-  /* also class-based */
-  document.querySelectorAll(".card, [id$='-card']").forEach(function(node){
-    var id = node.id || "";
-    if (!id || VAULT[id] || allow[id] === 1 || id === "about-clarity-card" || id === "cw-card") {
-      node.classList.remove("gate-hidden");
-      node.removeAttribute("data-gate-hidden");
-      return;
-    }
-    node.classList.add("gate-hidden");
-    node.setAttribute("data-gate-hidden", "1");
-  });
-}
+    : "/* path open */";
 
-function applyExclusiveFilter(gate){
-  gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
+  /* meme: available from Daily (practicing) upward once unlocked */
   try {
-    document.documentElement.setAttribute("data-clarity-path", gate);
-    document.body.setAttribute("data-clarity-path", gate);
-    localStorage.setItem("clarity_committed_path", gate);
-    localStorage.setItem("clarity_path_override", gate);
-    localStorage.setItem("clarity_path_focus", gate);
-  } catch(e){}
-  var allow = ALLOW[gate] || ALLOW.seeker || {};
-  document.querySelectorAll(".card, [id$='-card']").forEach(function(el){
-    var id = el.id || "";
-    if (id && VAULT[id]) { showEl(el); return; }
-    if (el.closest && el.closest("#tab-notes, #amana-vault-interior, #clarity-top-duo")) { showEl(el); return; }
-    if (id === "cw-card" || id === "about-clarity-card") { showEl(el); return; }
-    var ok = !!(id && allow[id] === 1);
-    if (!ok && el.classList && el.classList.contains("card-commands") && allow["commands-card"]) ok = true;
-    if (ok) showEl(el); else hideEl(el);
-  });
-  try {
-    document.querySelectorAll(".gps-btn, .gps-phase, [data-gate]").forEach(function(btn){
-      var g = btn.getAttribute("data-gate");
-      if (!g) return;
-      btn.classList.toggle("active", g === gate);
-      btn.classList.toggle("is-active", g === gate);
-    });
-  } catch(e){}
-}
-
-
-function installAdditiveLock(gate, allow){ 
-  /* nuke common leakers without proper gate id */
-  var leakSel = [
-    "#commands-card",".card-commands","#commands-section","[data-section='commands']",
-    "#samina-verse-card","#samina-card","#hell-sins-card","#meme-card","#meme-studio-root","#meme","#callig-lab-card","#fiqh-quiz-card",
-    "#tweet-desk-card","#tajweed-live-card","#israeliyat-card","#seerah-mirror-card"
-  ];
-  leakSel.forEach(function(sel){
-    try {
-      document.querySelectorAll(sel).forEach(function(el){
-        var id = el.id || "";
-        var ok = (id && allow[id] === 1) || (el.classList.contains("card-commands") && allow["commands-card"]);
-        if (!ok) hideEl(el);
-      });
-    } catch(e){}
-  });
-
-  
-  /* DOUBLE NUKE meme outside practicing/dai */
-  try {
-    var memeOk = (gate === "practicing" || gate === "dai");
+    var memeOk = max >= idx("practicing");
     ["meme-card","meme-studio-root","meme"].forEach(function(id){
-      var el = document.getElementById(id);
-      if (!el) return;
-      if (memeOk && allow[id]) showEl(el);
-      else hideEl(el);
+      var node = document.getElementById(id);
+      if (!node) return;
+      if (memeOk) showEl(node); else hideEl(node);
     });
   } catch(e){}
 
-  try { installExclusiveLock(gate); } catch(e){} }
+  markUI(focusGate);
+}
 
-
-function watchExclusiveLock(){
-  var n = 0;
-  var iv = setInterval(function(){
-    try {
-      var g = document.documentElement.getAttribute("data-clarity-path")
-        || localStorage.getItem("clarity_path_focus")
-        || "seeker";
-      installExclusiveLock(g);
-      applyExclusiveFilter(g);
-      if (g !== "practicing" && g !== "dai") {
-        ["meme-card","meme-studio-root"].forEach(function(id){ var el=document.getElementById(id); if(el){ el.classList.add("gate-hidden"); el.setAttribute("data-gate-hidden","1"); el.style.setProperty("display","none","important"); } });
-      }
-    } catch(e){}
-    n++;
-    if (n > 30) clearInterval(iv);
-  }, 500);
+function markUI(focusGate){
+  var max = getMax();
+  focusGate = ORDER.indexOf(focusGate) >= 0 ? focusGate : ORDER[Math.min(max, ORDER.length - 1)];
+  document.querySelectorAll(".gps-btn, .gps-phase, .cgs-btn, [data-gate]").forEach(function(btn){
+    var g = btn.getAttribute("data-gate");
+    if (!g || ORDER.indexOf(g) < 0) return;
+    var i = idx(g);
+    var unlocked = i <= max || doorCleared(g);
+    btn.classList.toggle("active", g === focusGate);
+    btn.classList.toggle("is-active", g === focusGate);
+    btn.classList.toggle("path-locked", !unlocked);
+    btn.setAttribute("aria-disabled", unlocked ? "false" : "true");
+    if (unlocked) btn.removeAttribute("disabled");
+  });
+  try {
+    var labels = {
+      seeker: "SEEKER JOURNEY MODE",
+      new_muslim: "NEW MUSLIM TRACK",
+      practicing: "DAILY MUSLIM / LEGACY",
+      dai: "ASPIRING DA'I TRACK"
+    };
+    var badge = document.getElementById("clarity-mode-badge") || document.querySelector(".seeker-mode-pill, .path-mode-badge");
+    if (badge) badge.textContent = labels[focusGate] || badge.textContent;
+  } catch(e){}
 }
 
 function applyContent(gate){
   gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
+  applyPathFilter(gate);
   try {
-    localStorage.setItem("clarity_committed_path", gate);
-    localStorage.setItem("clarity_path_override", gate);
+    var raw = window.__clarityPathDoSwitchRaw;
+    if (typeof raw === "function") {
+      window.__clarityPathBypass = true;
+      try { raw(gate); } finally { window.__clarityPathBypass = false; }
+    }
   } catch(e){}
-  /* Call raw switch for badge/theme, then exclusive path filter */
-  var raw = window.__clarityPathDoSwitchRaw;
-  if (typeof raw === "function") {
-    window.__clarityPathBypass = true;
-    try { raw(gate); } finally { window.__clarityPathBypass = false; }
-  }
-  applyExclusiveFilter(gate);
-  try { watchExclusiveLock(); } catch(e){}
-  /* Bring user to the natural hub for this path so sections are visible */
   try {
-    var hub = (gate === "practicing") ? "action" : (gate === "dai") ? "reminder" : "reminder";
-    if (typeof switchTab === "function") switchTab(hub);
+    if (typeof switchTab === "function") switchTab("reminder");
   } catch(e){}
-  setTimeout(function(){ applyExclusiveFilter(gate); }, 100);
-  setTimeout(function(){ applyExclusiveFilter(gate); }, 900);
-  try {
-    var badge = document.getElementById("current-mode-badge");
-    var labels = {seeker:"SEEKER JOURNEY MODE", new_muslim:"NEW MUSLIM TRACK", practicing:"DAILY MUSLIM / LEGACY", dai:"ASPIRING DA’I TRACK"};
-    if (badge) badge.textContent = labels[gate] || badge.textContent;
-  } catch(e){}
-  markUI(gate);
+  setTimeout(function(){ applyPathFilter(gate); }, 120);
+  setTimeout(function(){ applyPathFilter(gate); }, 600);
 }
 
-function clamp(){
-  var max = getMax();
-  var cur = "seeker";
-  try {
-    cur = localStorage.getItem("clarity_committed_path") || document.documentElement.getAttribute("data-clarity-path") || "seeker";
-  } catch(e){}
-  if (idx(cur) > max) {
-    cur = ORDER[max];
-    applyContent(cur);
-  }
-  return ORDER.indexOf(cur) >= 0 ? cur : ORDER[max];
-}
-
-function ensureIntro(){
-  if (document.getElementById("clarity-path-intro")) return;
-  var host = document.querySelector(".clarity-gate-switcher");
-  if (!host || !host.parentNode) return;
-  var el = document.createElement("div");
-  el.id = "clarity-path-intro";
-  el.className = "clarity-path-intro";
-  el.innerHTML =
-    "<strong>Phased learning</strong> — start as <em>Seeker</em>. A short quiz unlocks the next door. " +
-    "As you rise, <em>earlier sections stay with you</em> and new modules are added. " +
-    "You may always step back down. Vault stays optional and private." +
-    "<div class=\"cpi-row\">" +
-      "<span class=\"cpi-pill\">1 Seeker</span>" +
-      "<span class=\"cpi-pill\">2 + New Muslim</span>" +
-      "<span class=\"cpi-pill\">3 + Daily</span>" +
-      "<span class=\"cpi-pill\">4 + Da’i</span>" +
-    "</div>";
-  host.parentNode.insertBefore(el, host);
-}
-
-function markUI(current){
-  var max = getMax();
-  current = current || ORDER[Math.min(max, idx(clamp()))];
-  document.querySelectorAll(".cgs-btn, [data-gate]").forEach(function(btn){
-    var g = btn.getAttribute("data-gate");
-    if (!g) return;
-    btn.classList.toggle("path-locked", idx(g) > max);
-    btn.classList.toggle("is-active", g === current);
-  });
-  var host = document.querySelector(".clarity-gate-switcher");
-  if (!host) return;
-  var rail = document.getElementById("clarity-path-rail");
-  if (!rail) {
-    rail = document.createElement("div");
-    rail.id = "clarity-path-rail";
-    host.parentNode.insertBefore(rail, host.nextSibling);
-  }
-  if (rail && rail.parentNode) rail.parentNode.removeChild(rail); /* single track UI only */
-}
-
-/* ---- Smooth quiz ---- */
+/* ---- Quiz (once per door; majority pass) ---- */
 var Q = null;
+
 function ensureModal(){
   var m = document.getElementById("clarity-path-quiz-modal");
   if (m) return m;
@@ -330,106 +272,142 @@ function ensureModal(){
   m.addEventListener("click", function(e){ if (e.target === m) closeQuiz(false); });
   return m;
 }
+
 function closeQuiz(pass){
   var m = document.getElementById("clarity-path-quiz-modal");
   if (m) m.classList.remove("open");
   var target = Q && Q.target;
   Q = null;
   if (pass && target) {
+    setPassed(target);
     setMax(Math.max(getMax(), idx(target)));
     applyContent(target);
   } else {
     markUI(clamp());
   }
 }
+
 function openQuiz(from, target){
+  /* never open if already cleared */
+  if (doorCleared(target)) {
+    setMax(Math.max(getMax(), idx(target)));
+    applyContent(target);
+    return;
+  }
   var ti = idx(target);
   var qs = QUIZZES[ti];
-  if (!qs) return;
+  if (!qs || !qs.length) {
+    setPassed(target);
+    setMax(Math.max(getMax(), ti));
+    applyContent(target);
+    return;
+  }
   Q = { from: from, target: target, qs: qs, step: 0, correct: 0, busy: false };
   var m = ensureModal();
   paintQuiz();
-  /* open next frame for smooth transition */
-  requestAnimationFrame(function(){
-    m.classList.add("open");
-  });
+  requestAnimationFrame(function(){ m.classList.add("open"); });
 }
+
 function paintQuiz(){
   var inner = document.getElementById("cpq-inner");
   if (!inner || !Q) return;
   if (Q.step >= Q.qs.length) {
-    var ok = Q.correct >= Q.qs.length;
-    inner.innerHTML = "<h3>"+(ok?"Door unlocked":"Not yet")+"</h3>"+
-      "<p class=\"cpq-sub\">"+(ok
-        ? ("Welcome to <strong>"+LABELS[Q.target]+"</strong>. This door is now open. Use the track rail to move — higher doors still need a short quiz.")
-        : ("Score "+Q.correct+"/"+Q.qs.length+". Stay on <strong>"+LABELS[Q.from]+"</strong> and try again."))+"</p>"+
-      "<div class=\"cpq-actions\">"+
-      (ok?"<button type=\"button\" class=\"cpq-primary\" id=\"cpq-go\">Enter path</button>":
-          "<button type=\"button\" class=\"cpq-primary\" id=\"cpq-retry\">Try again</button>")+
+    /* majority pass: at least 2 of 3 (or all if shorter) */
+    var need = Math.max(1, Math.ceil(Q.qs.length * 2 / 3));
+    var ok = Q.correct >= need;
+    inner.innerHTML = "<h3>" + (ok ? "Door unlocked" : "Not yet") + "</h3>" +
+      "<p class=\"cpq-sub\">" + (ok
+        ? ("Welcome to <strong>" + LABELS[Q.target] + "</strong>. This door stays open — you will not be quizzed again for it.")
+        : ("Score " + Q.correct + "/" + Q.qs.length + " (need " + need + "). Stay on <strong>" + LABELS[Q.from] + "</strong> and try again.")) + "</p>" +
+      "<div class=\"cpq-actions\">" +
+      (ok
+        ? "<button type=\"button\" class=\"cpq-primary\" id=\"cpq-go\">Enter path</button>"
+        : "<button type=\"button\" class=\"cpq-primary\" id=\"cpq-retry\">Try again</button>") +
       "<button type=\"button\" id=\"cpq-x\">Close</button></div>";
     var go = document.getElementById("cpq-go");
     if (go) go.onclick = function(){ closeQuiz(true); };
     var retry = document.getElementById("cpq-retry");
-    if (retry) retry.onclick = function(){ openQuiz(Q.from, Q.target); };
+    if (retry) retry.onclick = function(){
+      var f = Q.from, t = Q.target;
+      Q = null;
+      openQuiz(f, t);
+    };
     var x = document.getElementById("cpq-x");
     if (x) x.onclick = function(){ closeQuiz(false); };
     return;
   }
   var item = Q.qs[Q.step];
-  inner.innerHTML = "<h3>Unlock "+LABELS[Q.target]+"</h3>"+
-    "<p class=\"cpq-sub\">Question "+(Q.step+1)+" of "+Q.qs.length+" · All correct to unlock · Refresh cannot skip</p>"+
-    "<div class=\"cpq-q\">"+item.q+"</div>"+
-    item.opts.map(function(o,i){ return "<button type=\"button\" class=\"cpq-opt\" data-i=\""+i+"\">"+o+"</button>"; }).join("")+
-    "<div class=\"cpq-actions\"><button type=\"button\" id=\"cpq-stay\">Stay on "+LABELS[Q.from]+"</button></div>";
+  inner.innerHTML = "<h3>Unlock " + LABELS[Q.target] + "</h3>" +
+    "<p class=\"cpq-sub\">Question " + (Q.step + 1) + " of " + Q.qs.length +
+    " · Need most correct · Cleared doors are never re-asked</p>" +
+    "<div class=\"cpq-q\">" + item.q + "</div>" +
+    item.opts.map(function(o, i){
+      return "<button type=\"button\" class=\"cpq-opt\" data-i=\"" + i + "\">" + o + "</button>";
+    }).join("") +
+    "<div class=\"cpq-actions\"><button type=\"button\" id=\"cpq-stay\">Stay on " + LABELS[Q.from] + "</button></div>";
   inner.querySelectorAll(".cpq-opt").forEach(function(btn){
     btn.onclick = function(){
       if (!Q || Q.busy) return;
       Q.busy = true;
-      var i = parseInt(btn.getAttribute("data-i"),10);
+      var i = parseInt(btn.getAttribute("data-i"), 10);
       var good = i === item.a;
       if (good) Q.correct++;
-      btn.classList.add(good?"correct":"wrong");
+      btn.classList.add(good ? "correct" : "wrong");
       inner.querySelectorAll(".cpq-opt").forEach(function(b){
-        if (parseInt(b.getAttribute("data-i"),10)===item.a) b.classList.add("correct");
+        if (parseInt(b.getAttribute("data-i"), 10) === item.a) b.classList.add("correct");
         b.disabled = true;
       });
-      setTimeout(function(){ if(Q){ Q.busy=false; Q.step++; paintQuiz(); } }, 480);
+      setTimeout(function(){ if (Q) { Q.busy = false; Q.step++; paintQuiz(); } }, 420);
     };
   });
   var stay = document.getElementById("cpq-stay");
   if (stay) stay.onclick = function(){ closeQuiz(false); };
 }
 
+function clamp(){
+  var cur = "seeker";
+  try {
+    cur = localStorage.getItem("clarity_committed_path")
+      || document.documentElement.getAttribute("data-clarity-path")
+      || "seeker";
+  } catch(e){}
+  if (ORDER.indexOf(cur) < 0) cur = "seeker";
+  var max = getMax();
+  if (idx(cur) > max) cur = ORDER[max];
+  return cur;
+}
+
+function ensureIntro(){
+  try {
+    var host = document.querySelector(".clarity-gate-switcher, #clarity-path-strip, .gps-strip");
+    if (!host || host.querySelector(".cgp-intro")) return;
+    var p = document.createElement("p");
+    p.className = "cgp-intro";
+    p.style.cssText = "font-size:0.82rem;opacity:0.9;margin:0.35rem 0 0.5rem;line-height:1.45";
+    p.innerHTML = "<strong>Phased learning</strong> — start as Seeker. A short quiz unlocks the next door once; earlier sections stay with you.";
+    host.insertBefore(p, host.firstChild);
+  } catch(e){}
+}
 
 window.clarityPathResetToSeeker = function(){
   try {
-    localStorage.setItem("clarity_path_unlocked_max", "0");
+    localStorage.setItem(UNLOCK_KEY, "0");
     localStorage.setItem("clarity_committed_path", "seeker");
     localStorage.setItem("clarity_path_override", "seeker");
     localStorage.setItem("clarity_path_focus", "seeker");
+    localStorage.removeItem(PASSED_KEY);
     localStorage.removeItem("clarity_path_quiz_done");
   } catch(e){}
   try {
     document.documentElement.setAttribute("data-clarity-path", "seeker");
     document.body.setAttribute("data-clarity-path", "seeker");
   } catch(e){}
-  try {
-    if (typeof applyExclusiveFilter === "function") applyExclusiveFilter("seeker");
-    else if (typeof applyAdditiveFilter === "function") applyAdditiveFilter("seeker");
-  } catch(e){}
-  try { if (typeof markUI === "function") markUI("seeker"); } catch(e){}
-  try {
-    if (typeof switchTab === "function") switchTab("reminder");
-  } catch(e){}
-  try {
-    if (typeof clarityGravePathSync === "function") clarityGravePathSync();
-  } catch(e){}
+  applyContent("seeker");
   return { ok: true, path: "seeker" };
 };
 
 window.clarityWelcomePickTrack = function(gate){
   gate = String(gate || "seeker");
-  var ORDER = ["seeker","new_muslim","practicing","dai"];
   if (ORDER.indexOf(gate) < 0) gate = "seeker";
   try {
     localStorage.setItem("clarity_welcome_seen_v2", "1");
@@ -437,7 +415,9 @@ window.clarityWelcomePickTrack = function(gate){
     localStorage.setItem("clarity_committed_path", gate);
     localStorage.setItem("clarity_path_override", gate);
     localStorage.setItem("clarity_path_focus", gate);
-    localStorage.setItem("clarity_path_unlocked_max", String(ORDER.indexOf(gate)));
+    /* First-visit choice grants that door and all below — no quiz for prior steps */
+    setMax(idx(gate));
+    for (var i = 0; i <= idx(gate); i++) setPassed(ORDER[i]);
   } catch(e){}
   try {
     if (typeof window.clarityFinishWelcome === "function") window.clarityFinishWelcome(false);
@@ -450,11 +430,7 @@ window.clarityWelcomePickTrack = function(gate){
     var td = document.getElementById("clarity-three-doors");
     if (td) { td.classList.add("hidden"); td.style.setProperty("display", "none", "important"); }
   } catch(e){}
-  try {
-    if (typeof applyExclusiveFilter === "function") applyExclusiveFilter(gate);
-    if (typeof markUI === "function") markUI(gate);
-    if (typeof installExclusiveLock === "function") installExclusiveLock(gate);
-  } catch(e){}
+  applyContent(gate);
   try { if (window.clarityUnlockScroll) window.clarityUnlockScroll(); } catch(e){}
   return { ok: true, path: gate };
 };
@@ -468,7 +444,6 @@ window.clarityCommitGate = function(gate){
 };
 
 window.clarityPickPrimaryDoor = function(door){
-  /* map old doors to paths or tabs */
   var map = { today: "seeker", learn: "practicing", prepare: "dai" };
   if (map[door]) return window.clarityWelcomePickTrack(map[door]);
   try {
@@ -477,22 +452,32 @@ window.clarityPickPrimaryDoor = function(door){
   } catch(e){}
 };
 
+/**
+ * Request a path:
+ * - Already unlocked → switch focus, never quiz
+ * - Next sequential door → quiz once
+ * - Skip ahead → quiz for the next sequential door only
+ */
 window.clarityRequestPath = function(gate){
-  gate = String(gate||"seeker");
-  if (ORDER.indexOf(gate)<0) gate = "seeker";
-  if (window.__clarityPathBypass) { applyContent(gate); return {ok:true}; }
-  var max = getMax();
+  gate = String(gate || "seeker");
+  if (ORDER.indexOf(gate) < 0) gate = "seeker";
+  if (window.__clarityPathBypass) { applyContent(gate); return { ok: true }; }
+
   var ti = idx(gate);
-  if (ti <= max) {
+  var max = getMax();
+
+  if (doorCleared(gate) || ti <= max) {
+    setMax(Math.max(max, ti));
     applyContent(gate);
-    return { ok: true };
+    return { ok: true, reason: "unlocked" };
   }
+
+  /* Only quiz the next door in sequence */
+  var nextGate = ORDER[Math.min(max + 1, ORDER.length - 1)];
   if (ti > max + 1) {
-    /* Open the next sequential door quiz (Daily/Da'i no longer dead-end alerts) */
-    var nextGate = ORDER[max + 1];
     openQuiz(ORDER[max], nextGate);
     markUI(ORDER[max]);
-    return { ok: false, reason: "quiz-next" };
+    return { ok: false, reason: "quiz-next", next: nextGate };
   }
   openQuiz(ORDER[max], gate);
   return { ok: false, reason: "quiz" };
@@ -511,12 +496,15 @@ function wire(){
   window.claritySwitchGate = function(g){ return window.clarityRequestPath(g); };
   window.claritySwitchGate.__isRequest = true;
   window.applyGateConfiguration = window.claritySwitchGate;
-  /* Override exclusive filter with additive */
-  window.applyGateSectionFilter = function(g){ applyExclusiveFilter(g || clamp()); };
+  window.applyGateSectionFilter = function(g){ applyPathFilter(g || clamp()); };
+  window.applyAdditiveFilter = window.applyGateSectionFilter;
+  window.applyExclusiveFilter = window.applyGateSectionFilter;
 }
 
 function boot(){
-  if (localStorage.getItem(UNLOCK_KEY) == null) setMax(0);
+  try {
+    if (localStorage.getItem(UNLOCK_KEY) == null) setMax(0);
+  } catch(e){}
   wire();
   ensureIntro();
   var cur = clamp();
@@ -535,12 +523,7 @@ window.addEventListener("load", function(){
 window.clarityPathProgress = {
   order: ORDER,
   getMax: getMax,
-  reset: function(){
-    try {
-      localStorage.setItem(UNLOCK_KEY, "0");
-      localStorage.setItem("clarity_committed_path", "seeker");
-    } catch(e){}
-    applyContent("seeker");
-  }
+  doorCleared: doorCleared,
+  reset: function(){ return window.clarityPathResetToSeeker(); }
 };
 })();
