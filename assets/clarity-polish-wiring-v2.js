@@ -75,8 +75,16 @@ body.section-open .page-wrapper {
   }
 
   function openAllSections(){
+    /* Only Dai may force-open the full library. Other paths stay curriculum-confined. */
+    var gate = pathNow();
+    if (gate !== "dai") {
+      try {
+        if (window.clarityPathProgress && typeof window.clarityPathProgress.reapply === "function")
+          window.clarityPathProgress.reapply();
+      } catch(eR){}
+      return;
+    }
     document.querySelectorAll(".card, [id$='-card']").forEach(showEl);
-    /* kill path-lock CSS that hides modules */
     var lock = document.getElementById("clarity-path-lock");
     if (lock) lock.textContent = "/* dai: all open */";
     document.body.setAttribute("data-meme-studio-open", "1");
@@ -158,6 +166,12 @@ body.section-open .page-wrapper {
   function boot(){
     onPath(pathNow());
     if (pathNow() === "dai") openAllSections();
+    else {
+      try {
+        if (window.clarityPathProgress && typeof window.clarityPathProgress.reapply === "function")
+          window.clarityPathProgress.reapply();
+      } catch(e){}
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 300); });
   else setTimeout(boot, 300);

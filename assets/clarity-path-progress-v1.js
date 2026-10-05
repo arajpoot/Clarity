@@ -141,8 +141,11 @@ function setMax(n){
 
 /** Union of allowlists from seeker through unlocked max (not merely focus path) */
 function unionAllow(uptoGate){
+  /* Curriculum view = modules for this focus only (0..focus), never forced up to max.
+     Unlocked max still gates which doors you may *select*; focus confines what you *see*. */
   var upto = typeof uptoGate === "number" ? uptoGate : idx(uptoGate);
-  upto = Math.max(upto, getMax());
+  if (isNaN(upto) || upto < 0) upto = 0;
+  upto = Math.min(upto, getMax(), ORDER.length - 1);
   var u = {};
   Object.keys(ALWAYS).forEach(function(k){ u[k] = 1; });
   for (var i = 0; i <= upto; i++) {
@@ -170,8 +173,13 @@ function showEl(el){
 function applyPathFilter(focusGate){
   focusGate = ORDER.indexOf(focusGate) >= 0 ? focusGate : "seeker";
   var max = getMax();
-  /* never show less than unlocked */
-  var allow = unionAllow(max);
+  var fi = idx(focusGate);
+  if (fi > max) {
+    focusGate = ORDER[max];
+    fi = max;
+  }
+  /* Show curriculum for *focus* phase (additive 0..focus), clamped by unlock */
+  var allow = unionAllow(fi);
 
   try {
     document.documentElement.setAttribute("data-clarity-path", focusGate);
@@ -539,6 +547,32 @@ window.clarityPathProgress = {
   order: ORDER,
   getMax: getMax,
   doorCleared: doorCleared,
+  apply: applyPathFilter,
+  reapply: function(){ var g = clamp(); applyPathFilter(g); markUI(g); },
   reset: function(){ return window.clarityPathResetToSeeker(); }
 };
 })();
+
+/* ---- clarity-path-discipline (appended) ---- */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_PATH_DISCIPLINE_V1__) return;
+  g.__CLARITY_PATH_DISCIPLINE_V1__ = true;
+  function reapply() {
+    try {
+      if (g.clarityPathProgress && typeof g.clarityPathProgress.reapply === "function") {
+        g.clarityPathProgress.reapply();
+        return;
+      }
+    } catch (e) {}
+  }
+  function boot() {
+    reapply();
+    setTimeout(reapply, 400);
+    setTimeout(reapply, 1200);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  g.addEventListener("load", function () { setTimeout(reapply, 300); });
+  g.addEventListener("clarity-path-changed", function () { setTimeout(reapply, 80); });
+})(typeof window !== "undefined" ? window : this);

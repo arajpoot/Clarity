@@ -1,26 +1,19 @@
-/* clarity-runtime-overlays-v1.js — merged boot + shields + polish overlays */
-/* Generated for lean publish. Do not edit piecemeal; regenerate from packager. */
-
-
-/* ---- clarity-boot-orchestrator-v1.js (7137 bytes) ---- */
 /**
- * Clarity Boot Orchestrator v1
- * ---------------------------------------------------------------
- * Single control plane for deferred asset modules.
- * Goal: smooth in/out of ./assets — one version, one load graph,
- * no competing cache-busts, health report in console.
+ * Clarity runtime overlays (L1)
+ * Single bundle — load BEFORE chunk-8.
  *
- * Dependency layers (conceptual):
- *   L0  path-boot / null-guard (inline, already ran)
- *   L1  chunk-8          — core UI, meme, search, doors
- *   L2  track-os, tj-lmr, bridge, amana, uft, notes
- *   L3  path-progress, grave-curriculum
- *   L4  polish-wiring, ui-shine   — final paint / path gates
+ * Contains (in order):
+ *   1. boot-orchestrator   — inventory / health
+ *   2. nuros shields       — null-guard, catchall, master, shariah
+ *   3. banner-lock         — top banner geometry
+ *   4. smooth-flow         — rAF meme + soft section calm
+ *   5. theme-harmony       — day/night tokens
+ *   6. security-shield     — noopener, pass wipe
+ *   7. meme-confidence     — single citation + pills
  *
- * This file does NOT re-fetch modules already in the page with defer.
- * It: unifies version, dedupes DOM junk, wires health, exposes
- * window.ClarityBoot for diagnostics and future soft-reload.
+ * Do not load the old split files; they are absorbed here.
  */
+
 (function (g) {
   "use strict";
   if (g.__CLARITY_BOOT_ORCH_V1__) return;
@@ -1029,4 +1022,232 @@ window.memeBgIdx = g.memeBgIdx;
     setTimeout(ensurePills, 1500);
   });
   g.ClarityMemeConfidence = { ensurePills: ensurePills, setRef: setRef, push: pushPayload };
+})(typeof window !== "undefined" ? window : this);
+
+/* ---- clarity-perf-monitor-v1.js ---- */
+/**
+ * Clarity Performance Monitor v1
+ * Lightweight — samples paint, load, long tasks, path/meme hooks.
+ * Enable: localStorage.clarity_perf = "1"  OR  ?perf=1
+ * Report: window.ClarityPerf.report()
+ */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_PERF_MONITOR_V1__) return;
+  g.__CLARITY_PERF_MONITOR_V1__ = true;
+
+  function enabled() {
+    try {
+      if (/[?&]perf=1(?:&|$)/.test(g.location.search)) return true;
+      if (localStorage.getItem("clarity_perf") === "1") return true;
+    } catch (e) {}
+    return false;
+  }
+
+  var marks = [];
+  var longTasks = [];
+  var paints = {};
+  var nav = null;
+  var started = performance.now();
+
+  function mark(name, detail) {
+    var t = performance.now();
+    marks.push({ name: name, t: Math.round(t), d: detail || null });
+    try {
+      if (performance.mark) performance.mark("clarity:" + name);
+    } catch (e) {}
+    return t;
+  }
+
+  function sampleNavigation() {
+    try {
+      var list = performance.getEntriesByType("navigation");
+      if (list && list[0]) {
+        var n = list[0];
+        nav = {
+          dns: Math.round(n.domainLookupEnd - n.domainLookupStart),
+          tcp: Math.round(n.connectEnd - n.connectStart),
+          ttfb: Math.round(n.responseStart - n.requestStart),
+          response: Math.round(n.responseEnd - n.responseStart),
+          domInteractive: Math.round(n.domInteractive),
+          domComplete: Math.round(n.domComplete),
+          loadEvent: Math.round(n.loadEventEnd - n.startTime),
+          transferSize: n.transferSize || 0,
+          encoded: n.encodedBodySize || 0
+        };
+      }
+    } catch (e) {}
+  }
+
+  function samplePaints() {
+    try {
+      performance.getEntriesByType("paint").forEach(function (p) {
+        paints[p.name] = Math.round(p.startTime);
+      });
+    } catch (e) {}
+  }
+
+  function observeLongTasks() {
+    try {
+      if (typeof PerformanceObserver === "undefined") return;
+      var po = new PerformanceObserver(function (list) {
+        list.getEntries().forEach(function (e) {
+          if (e.duration >= 50) {
+            longTasks.push({
+              t: Math.round(e.startTime),
+              ms: Math.round(e.duration)
+            });
+            if (longTasks.length > 40) longTasks.shift();
+          }
+        });
+      });
+      po.observe({ entryTypes: ["longtask"] });
+    } catch (e) {}
+  }
+
+  function observeResources() {
+    var slow = [];
+    try {
+      performance.getEntriesByType("resource").forEach(function (r) {
+        if (r.duration >= 200) {
+          slow.push({
+            name: (r.name || "").split("/").pop().split("?")[0],
+            ms: Math.round(r.duration),
+            size: r.transferSize || 0
+          });
+        }
+      });
+    } catch (e) {}
+    return slow.sort(function (a, b) { return b.ms - a.ms; }).slice(0, 12);
+  }
+
+  function report() {
+    sampleNavigation();
+    samplePaints();
+    var slow = observeResources();
+    var out = {
+      enabled: true,
+      uptimeMs: Math.round(performance.now() - started),
+      paints: paints,
+      navigation: nav,
+      marks: marks.slice(-30),
+      longTasks: longTasks.slice(-15),
+      longTaskCount: longTasks.length,
+      slowResources: slow,
+      path: null,
+      meme: null
+    };
+    try {
+      out.path = {
+        gate: document.documentElement.getAttribute("data-clarity-path"),
+        max: document.documentElement.getAttribute("data-clarity-unlocked-max"),
+        memeOk: document.documentElement.getAttribute("data-clarity-meme-ok")
+      };
+    } catch (e) {}
+    try {
+      if (g.memeState) {
+        out.meme = {
+          hasImg: !!g.memeState.img,
+          ref: g.memeState._lastRef || g.memeState.ref || "",
+          topLen: (g.memeState.top || "").length,
+          midLen: (g.memeState.mid || "").length
+        };
+      }
+    } catch (e2) {}
+    return out;
+  }
+
+  function logReport() {
+    var r = report();
+    try {
+      console.groupCollapsed(
+        "%cClarityPerf%c " +
+          (r.paints["first-contentful-paint"] || "?") +
+          "ms FCP · " +
+          r.longTaskCount +
+          " long tasks",
+        "background:#0d4f3c;color:#fff;padding:2px 6px;border-radius:4px",
+        "color:#6b7280"
+      );
+      console.table(r.paints);
+      if (r.navigation) console.table(r.navigation);
+      if (r.slowResources.length) console.table(r.slowResources);
+      if (r.longTasks.length) console.table(r.longTasks);
+      console.log("marks", r.marks);
+      console.log("path", r.path, "meme", r.meme);
+      console.groupEnd();
+    } catch (e) {
+      console.log("[ClarityPerf]", r);
+    }
+    return r;
+  }
+
+  /* Public API always available (cheap); sampling only when enabled */
+  g.ClarityPerf = {
+    mark: mark,
+    report: report,
+    log: logReport,
+    enable: function () {
+      try { localStorage.setItem("clarity_perf", "1"); } catch (e) {}
+      boot(true);
+    },
+    disable: function () {
+      try { localStorage.removeItem("clarity_perf"); } catch (e) {}
+    }
+  };
+
+  function boot(force) {
+    if (!force && !enabled()) return;
+    mark("perf-boot");
+    observeLongTasks();
+    samplePaints();
+    if (document.readyState === "complete") {
+      sampleNavigation();
+      mark("load-complete");
+      setTimeout(logReport, 100);
+    } else {
+      g.addEventListener("load", function () {
+        sampleNavigation();
+        mark("load-complete");
+        setTimeout(logReport, 150);
+      });
+    }
+    /* Hook path + meme if present */
+    setTimeout(function () {
+      try {
+        if (g.clarityPathProgress && g.clarityPathProgress.apply && !g.clarityPathProgress.apply.__perf) {
+          var prev = g.clarityPathProgress.apply;
+          g.clarityPathProgress.apply = function () {
+            var t0 = performance.now();
+            var r = prev.apply(this, arguments);
+            mark("path-apply", Math.round(performance.now() - t0) + "ms");
+            return r;
+          };
+          g.clarityPathProgress.apply.__perf = true;
+        }
+      } catch (e) {}
+      try {
+        if (typeof g.memeDraw === "function" && !g.memeDraw.__perfMark) {
+          var md = g.memeDraw;
+          g.memeDraw = function () {
+            var t0 = performance.now();
+            var r = md.apply(this, arguments);
+            mark("meme-draw", Math.round(performance.now() - t0) + "ms");
+            return r;
+          };
+          g.memeDraw.__perfMark = true;
+        }
+      } catch (e2) {}
+    }, 800);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      mark("dom-ready");
+      boot(false);
+    });
+  } else {
+    mark("dom-ready");
+    boot(false);
+  }
 })(typeof window !== "undefined" ? window : this);
