@@ -1,22 +1,16 @@
-# PageSpeed notes (20261005AH)
+# PageSpeed + sticky chrome (20261005AM)
 
-Desktop report ~50 Performance was driven mainly by:
+## Sticky top
+- `#clarity-global-nav` sticky at `top: 0`
+- `#clarity-top-duo` sticky at `top: var(--clarity-nav-h)` (measured live)
+- Mobile: compact overlay padding; banner stays afloat while scrolling content
 
-| Metric | Issue | Mitigation in package |
-|--------|--------|------------------------|
-| **TBT 440ms** | Large JS (chunk-8 ~720KB, UFT ~310KB) | Already `defer` + UFT idle; avoid extra boot work |
-| **CLS 0.54** | Banner / rail / fonts | aspect-ratio on banner, min-heights, font display=swap |
-| **Cache 505KiB** | Short cache on static assets | `_headers` for Netlify/CF Pages (GitHub Pages ignores) |
-| **Images 444KiB** | Wikimedia hero | Prefer 640w, sizes attr; host WebP locally later |
+## Speed hygiene already in tree
+- Deferred JS; UFT idle load
+- Hero srcset 320/480/640
+- Patches CSS `media=print`→all
+- `_headers` / `netlify.toml` long cache for assets
+- Banner media absolute (no CLS gap)
 
-## Host-specific cache
-
-- **Netlify / Cloudflare Pages**: commit `_headers` (included).
-- **GitHub Pages**: use a CDN in front or Cloudflare proxy for cache headers.
-- Query `?v=20261005AH` already cache-busts on deploy.
-
-## Next gains (manual)
-
-1. Host Makkah hero as local `assets/hero-makkah.webp` (~40–80KB).
-2. Split `clarity-chunk-8.js` further (already partially deferred modules).
-3. Ensure fonts use `display=swap` only (already in Google Fonts URL).
+## Host tip
+GitHub Pages ignores `_headers`. Cloudflare proxy or Netlify/CF Pages for cache audit wins.

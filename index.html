@@ -13,7 +13,7 @@ html[data-theme=dark] .nav-brand{color:#6bc49a}
 .rrra-hub-hero h2{margin:0;font-size:1.15rem;color:#0d4f3c}
 @media(max-width:640px){#clarity-top-duo .banner{min-height:140px}#banner-img{max-height:28vh}}
 </style>
-<link rel="preload" as="image" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/480px-Kaaba_Masjid_Haraam_Makkah.jpg" fetchpriority="high" imagesrcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/320px-Kaaba_Masjid_Haraam_Makkah.jpg 320w, https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/480px-Kaaba_Masjid_Haraam_Makkah.jpg 480w, https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg 640w" imagesizes="(max-width:600px) 100vw, 640px">
 
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -120,8 +120,8 @@ html[data-theme=dark] .nav-brand{color:#6bc49a}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Inter:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Inter:wght@400;600&display=swap"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Inter:wght@400;600&display=swap&text=" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Inter:wght@400;600&display=swap&text="></noscript>
 
 <link rel="dns-prefetch" href="https://api.alquran.cloud">
 <link rel="dns-prefetch" href="https://everyayah.com">
@@ -264,16 +264,56 @@ html[data-theme=dark] .nav-brand{color:#6bc49a}
 <meta name="apple-mobile-web-app-title" content="Clarity" />
 <meta name="application-name" content="Clarity" />
 <meta name="msapplication-TileColor" content="#0f4c3a" />
-<title>Clarity · NurOS — Furnish Your Grave</title><style id="clarity-fouc-shield">html,body{background:#f6f1e7;color:#1c2a22}html[data-theme=dark],html[data-theme=dark] body{background:#0c1410;color:#e7efe9}</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261005AH" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261005AH"></noscript>
+<title>Clarity · NurOS — Furnish Your Grave</title><style id="clarity-fouc-shield">
+html,body{background:#f6f1e7;color:#1c2a22;margin:0}
+html[data-theme=dark],html[data-theme=dark] body{background:#0c1410;color:#e7efe9}
+#clarity-top-duo .banner{position:relative;overflow:hidden;background:#0d4f3c}
+#banner-media,.banner-media{position:absolute;inset:0;z-index:0;overflow:hidden;background:#0d3d2e}
+#banner-media img,#banner-img{width:100%;height:100%;object-fit:cover;display:block}
+.banner-overlay{position:relative;z-index:1}
+#clarity-door-rail{min-height:56px}
+#main-application-workspace{min-height:40vh}
+img[width][height]{height:auto;max-width:100%}
+
+/* Sticky top chrome — nav + banner float together */
+:root{--clarity-nav-h:48px}
+#clarity-global-nav.global-nav{
+  position:sticky;top:0;z-index:60;
+  backdrop-filter:saturate(1.1) blur(8px);
+  -webkit-backdrop-filter:saturate(1.1) blur(8px);
+  box-shadow:0 1px 0 rgba(0,0,0,.06);
+}
+#clarity-top-duo{
+  position:sticky;top:var(--clarity-nav-h);z-index:55;
+  margin:0;padding:0;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+#clarity-top-duo .banner{
+  position:relative;overflow:hidden;margin:0;padding:0;
+  min-height:0!important;max-height:none!important;
+}
+@media(max-width:700px){
+  :root{--clarity-nav-h:44px}
+  #clarity-top-duo .banner-overlay{padding:.35rem .45rem!important;gap:.35rem!important}
+  #clarity-top-duo .banner{max-height:min(42vh,320px)}
+  #clarity-top-duo .banner-overlay{max-height:min(42vh,320px);overflow:auto}
+}
+html[data-theme=dark] #clarity-global-nav.global-nav{
+  background:rgba(21,32,25,.92);
+}
+html:not([data-theme=dark]) #clarity-global-nav.global-nav{
+  background:rgba(255,253,248,.94);
+}
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261005AM" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261005AM"></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 <!-- offloaded clarity-banner-lock-js -->
 
-<link rel="preload" href="./assets/clarity-css-patches-v1.css?v=20261005AH" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261005AH"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261005AM" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261005AM"></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
      assets/clarity-css-patches-v1.css. Deferred JS graph is owned by
      assets/clarity-boot-orchestrator-v1.js (ClarityBoot.report() in console). -->
@@ -306,15 +346,14 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 
 <div id="clarity-top-duo"><span id="place-temp" class="temp-live" style="position:absolute;left:-9999px" aria-live="polite">—°C</span>
 <div class="banner">
-    <div class="banner-media" id="banner-media" style="aspect-ratio:16/9;min-height:180px;position:relative;overflow:hidden" aria-hidden="true">
-      <iframe loading="lazy" id="banner-live" class="banner-live-iframe" title="Haramain live" hidden
-        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-        allowfullscreen playsinline></iframe>
+    <div class="banner-media" id="banner-media" aria-hidden="true">
       <img id="banner-img" class="banner-still-img"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg"
-        alt="Masjid al-Haram"
-        decoding="async"
-        onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/800px-Kaaba_Masjid_Haraam_Makkah.jpg';" width="640" height="360" fetchpriority="high" loading="eager" sizes="(max-width:700px) 100vw, 640px">
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/480px-Kaaba_Masjid_Haraam_Makkah.jpg"
+        srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/320px-Kaaba_Masjid_Haraam_Makkah.jpg 320w, https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/480px-Kaaba_Masjid_Haraam_Makkah.jpg 480w, https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg 640w"
+        sizes="(max-width:600px) 100vw, 640px"
+        decoding="async" width="640" height="360" fetchpriority="high" loading="eager" alt="">
+      <iframe id="banner-live" class="banner-live-iframe" title="Haramain live" hidden
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
     </div>
     <div class="banner-overlay">
       <!-- Calendar plaque -->
@@ -560,7 +599,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 var clarityLS=(function(){var m={},f={getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}},key:function(i){return Object.keys(m)[i]||null}};try{var ls=window["localStorage"],t="__c_t__";ls.setItem(t,"1");if(ls.getItem(t)!=="1")throw 0;ls.removeItem(t);return ls}catch(e){return f}})();
 var claritySession=(function(){var m={},f={getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}},key:function(i){return Object.keys(m)[i]||null}};try{var ss=window["sessionStorage"],t="__c_s__";ss.setItem(t,"1");ss.removeItem(t);return ss}catch(e){return f}})();
 window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot-err");if(!d){d=document.createElement("div");d.id="clarity-boot-err";d.style.cssText="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#7f1d1d;color:#fff;padding:8px;font:13px system-ui";(document.body||document.documentElement).appendChild(d)}d.textContent=String(msg)+(l?" @"+l:"")}catch(e){}};
-</script><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="" style="min-height:50vh">
+</script><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
 
 <div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
 <div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
@@ -2228,21 +2267,21 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <!-- ========== Clarity script layers (defer = order preserved) ========== -->
 <!-- L1 Runtime: boot · shields · smooth · theme · security · meme -->
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261005AH" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261005AM" defer></script>
 <!-- L2 Core SPA shell + UI -->
-<script src="./assets/clarity-chunk-8.js?v=20261005AH" defer></script>
+<script src="./assets/clarity-chunk-8.js?v=20261005AM" defer></script>
 <!-- L3 Feature modules -->
-<script src="./assets/clarity-track-os-v3.js?v=20261005AH" defer></script>
-<script src="./assets/nx-tj-lmr-js-v1.js?v=20261005AH" defer></script>
-<script src="./assets/nuros-bridge-enrich-js.js?v=20261005AH" defer></script>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261005AH" defer></script>
+<script src="./assets/clarity-track-os-v3.js?v=20261005AM" defer></script>
+<script src="./assets/nx-tj-lmr-js-v1.js?v=20261005AM" defer></script>
+<script src="./assets/nuros-bridge-enrich-js.js?v=20261005AM" defer></script>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261005AM" defer></script>
 <script>
 (function(){
   function loadUft(){
     if (window.__CLARITY_UFT_FULL_RESTORE_V1__) return;
     if (document.querySelector('script[data-clarity-uft]')) return;
     var s=document.createElement('script');
-    s.src='./assets/clarity-uft-full-restore-v1.js?v=20261005AH';
+    s.src='./assets/clarity-uft-full-restore-v1.js?v=20261005AM';
     s.defer=true;
     s.setAttribute('data-clarity-uft','1');
     document.body.appendChild(s);
@@ -2251,13 +2290,30 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   else setTimeout(loadUft, 2500);
 })();
 </script>
-<script src="./assets/clarity-notes-recovery-v1.js?v=20261005AH" defer></script>
-<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261005AH" defer></script>
+<script src="./assets/clarity-notes-recovery-v1.js?v=20261005AM" defer></script>
+<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261005AM" defer></script>
 <!-- L4 Path curriculum (confine modules by educational phase) -->
-<script src="./assets/clarity-path-progress-v1.js?v=20261005AH" defer></script>
+<script src="./assets/clarity-path-progress-v1.js?v=20261005AM" defer></script>
 <!-- L5 Polish + shine (after path so they cannot open-all over seeker) -->
-<script src="./assets/clarity-polish-wiring-v2.js?v=20261005AH" defer></script>
-<script src="./assets/clarity-ui-shine-v1.js?v=20261005AH" defer></script>
+<script src="./assets/clarity-polish-wiring-v2.js?v=20261005AM" defer data-clarity-prio="low"></script>
+<script src="./assets/clarity-ui-shine-v1.js?v=20261005AM" defer data-clarity-prio="low"></script>
 
+
+<script>
+(function(){
+  function syncNavH(){
+    try{
+      var n=document.getElementById("clarity-global-nav");
+      if(!n)return;
+      var h=Math.ceil(n.getBoundingClientRect().height)||48;
+      document.documentElement.style.setProperty("--clarity-nav-h", h+"px");
+    }catch(e){}
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",syncNavH);
+  else syncNavH();
+  window.addEventListener("resize",syncNavH,{passive:true});
+  window.addEventListener("load",function(){setTimeout(syncNavH,50);});
+})();
+</script>
 </body>
 </html>
