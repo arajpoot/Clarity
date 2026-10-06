@@ -432,10 +432,8 @@ window.memeBgIdx = g.memeBgIdx;
     var frame = document.createElement("div");
     frame.className = "workspace-safe-frame";
     frame.setAttribute("data-frame-label", label || "Workspace");
-    if (el.parentNode && !el.contains(frame)) {
-      el.parentNode.insertBefore(frame, el);
-      try { if (!frame.contains(el)) frame.appendChild(el); } catch (eF) {}
-    }
+    el.parentNode.insertBefore(frame, el);
+    frame.appendChild(el);
     var hint = document.createElement("p");
     hint.className = "workspace-scroll-hint";
     hint.textContent = "Scroll outside this frame to leave the workspace safely.";

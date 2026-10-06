@@ -2793,15 +2793,3 @@ img[fetchpriority="high"] {
 .tab-panel.active {
   contain: layout style;
 }
-
-/* PageSpeed AI: stable chrome */
-#clarity-top-duo { contain: layout; }
-#clarity-top-duo .banner { min-height: 160px; }
-#clarity-door-rail.door-rail-bottom {
-  min-height: 56px;
-  contain: layout;
-}
-/* Avoid font swap layout jump for arabic blocks */
-.arabic, [lang="ar"], [dir="rtl"] {
-  font-family: "Scheherazade New", "Noto Naskh Arabic", serif;
-}
