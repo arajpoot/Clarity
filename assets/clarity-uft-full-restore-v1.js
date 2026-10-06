@@ -12,8 +12,8 @@ if (typeof window.clarityLS === "undefined" || !window.clarityLS) {
   };
 }
 window.UFT_KEY = "clarity_user_family_tree_v1";
-const UFT_KEY = 'clarity_user_family_tree_v1';
-    let uftView = 'pedigree';
+var UFT_KEY = window.UFT_KEY || 'clarity_user_family_tree_v1';
+    var uftView = 'pedigree';
     function uftRead() {
       try { return JSON.parse(clarityLS.getItem(UFT_KEY) || '{}'); }
       catch (e) { return {}; }

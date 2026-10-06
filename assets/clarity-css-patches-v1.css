@@ -2647,21 +2647,27 @@ html[data-theme="dark"] #clarity-top-duo .plaque-naskh {
 }
 #clarity-top-duo .plaque-caption { display: none !important; }
 
-/* ===== Phased learning v6 — CSS-first gate (no per-card JS thrash) ===== */
-html[data-path-i="0"] [data-min-i="1"]:not([data-always="1"]),
-html[data-path-i="0"] [data-min-i="2"]:not([data-always="1"]),
-html[data-path-i="0"] [data-min-i="3"]:not([data-always="1"]) {
+/* ===== Phased learning v6 — CSS-first gate (cards only; never blank shell) ===== */
+html[data-path-i="0"] .card[data-min-i="1"]:not([data-always="1"]),
+html[data-path-i="0"] [id$="-card"][data-min-i="1"]:not([data-always="1"]),
+html[data-path-i="0"] .card[data-min-i="2"]:not([data-always="1"]),
+html[data-path-i="0"] [id$="-card"][data-min-i="2"]:not([data-always="1"]),
+html[data-path-i="0"] .card[data-min-i="3"]:not([data-always="1"]),
+html[data-path-i="0"] [id$="-card"][data-min-i="3"]:not([data-always="1"]) {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
 }
-html[data-path-i="1"] [data-min-i="2"]:not([data-always="1"]),
-html[data-path-i="1"] [data-min-i="3"]:not([data-always="1"]) {
+html[data-path-i="1"] .card[data-min-i="2"]:not([data-always="1"]),
+html[data-path-i="1"] [id$="-card"][data-min-i="2"]:not([data-always="1"]),
+html[data-path-i="1"] .card[data-min-i="3"]:not([data-always="1"]),
+html[data-path-i="1"] [id$="-card"][data-min-i="3"]:not([data-always="1"]) {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
 }
-html[data-path-i="2"] [data-min-i="3"]:not([data-always="1"]) {
+html[data-path-i="2"] .card[data-min-i="3"]:not([data-always="1"]),
+html[data-path-i="2"] [id$="-card"][data-min-i="3"]:not([data-always="1"]) {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
