@@ -196,11 +196,25 @@
     ["amana-pass-new","amana-pass-confirm","amana-pass-unlock"].forEach(function(id){
       var el = $(id);
       if (!el) return;
-      /* Do not wipe the field the user is currently typing into (mobile keyboard flicker) */
       if (!force && active === el) return;
       el.value = "";
+      try {
+        el.setAttribute("autocomplete", "off");
+        el.setAttribute("readonly", "readonly");
+      } catch(e){}
     });
     updateStrength();
+  }
+  function enablePassTyping(el){
+    if (!el) return;
+    try { el.removeAttribute("readonly"); } catch(e){}
+  }
+  function scrubAutofill(){
+    /* Browser password managers re-fill after load — scrub several times */
+    clearPassFields(true);
+    [0, 50, 150, 400, 900].forEach(function(ms){
+      setTimeout(function(){ clearPassFields(true); }, ms);
+    });
   }
 
   function readinessScore(data){
@@ -451,10 +465,16 @@
     if (!tab) return;
     if (!$("amana-vault-gate")) return;
 
-    /* Security: full page load / bfcache restore never keeps passphrase in DOM */
-    try { clearPassFields(true); } catch(eClr){}
+    /* Security: full page load never keeps passphrase in DOM (incl. autofill) */
+    try { scrubAutofill(); } catch(eClr){}
 
     wireEyes();
+    ["amana-pass-new","amana-pass-confirm","amana-pass-unlock"].forEach(function(id){
+      var el = $(id);
+      if (!el) return;
+      el.addEventListener("focus", function(){ enablePassTyping(el); });
+      el.addEventListener("touchstart", function(){ enablePassTyping(el); }, { passive: true });
+    });
     var pn = $("amana-pass-new");
     if (pn) pn.addEventListener("input", updateStrength);
 
@@ -562,15 +582,12 @@
 
   window.addEventListener("pageshow", function(ev){
     try {
-      clearPassFields(true);
-      if (ev && ev.persisted) {
-        /* Back-forward cache: force locked UI */
-        sessionKey = null;
-        SESSION_UNLOCKED = false;
-        setLockedUI(true);
-        if (hasVault()) showUnlockMode(true);
-        else showUnlockMode(false);
-      }
+      scrubAutofill();
+      sessionKey = null;
+      SESSION_UNLOCKED = false;
+      setLockedUI(true);
+      if (hasVault()) showUnlockMode(true);
+      else showUnlockMode(false);
     } catch(e){}
   });
   window.clarityAmanaPrintPack = printPack;

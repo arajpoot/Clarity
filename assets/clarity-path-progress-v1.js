@@ -177,7 +177,9 @@
   function clamp() {
     var cur = "seeker";
     try {
-      cur = localStorage.getItem("clarity_committed_path")
+      cur = localStorage.getItem("clarity_path_focus")
+        || localStorage.getItem("clarity_committed_path")
+        || localStorage.getItem("clarity_path_override")
         || document.documentElement.getAttribute("data-clarity-path")
         || "seeker";
     } catch (e) {}
@@ -498,7 +500,7 @@
   var __booted = false;
   function boot() {
     if (__booted) {
-      wire();
+      /* Second call: only re-stamp + re-apply filter for same focus — never seeker reset */
       stampCards();
       applyPathFilter(clamp());
       return;
@@ -510,15 +512,18 @@
     wire();
     ensureIntro();
     stampCards();
+    /* Restore last phase — no goReminder (does not steal hub tab) */
     applyContent(clamp());
   }
 
   if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 80); });
-  else setTimeout(boot, 80);
+    document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 60); });
+  else setTimeout(boot, 60);
   window.addEventListener("load", function () {
-    setTimeout(wire, 40);
-    setTimeout(boot, 160);
+    setTimeout(function () {
+      if (!__booted) boot();
+      else { stampCards(); applyPathFilter(clamp()); }
+    }, 200);
   });
 
   window.clarityPathProgress = {
