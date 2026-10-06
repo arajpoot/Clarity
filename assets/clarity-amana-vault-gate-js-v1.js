@@ -422,11 +422,25 @@
 
   function wireEyes(){
     document.querySelectorAll(".amana-vault-gate .av-eye").forEach(function(btn){
-      btn.addEventListener("click", function(){
+      if (btn.__amanaEyeWired) return;
+      btn.__amanaEyeWired = true;
+      btn.setAttribute("type", "button");
+      btn.setAttribute("aria-label", "Show passphrase");
+      btn.setAttribute("aria-pressed", "false");
+      btn.addEventListener("click", function(ev){
+        try { ev.preventDefault(); ev.stopPropagation(); } catch(e){}
         var id = btn.getAttribute("data-for");
         var input = $(id);
         if (!input) return;
-        input.type = input.type === "password" ? "text" : "password";
+        var show = input.type === "password";
+        input.type = show ? "text" : "password";
+        btn.classList.toggle("is-open", show);
+        btn.setAttribute("aria-pressed", show ? "true" : "false");
+        btn.setAttribute("aria-label", show ? "Hide passphrase" : "Show passphrase");
+        btn.title = show ? "Hide" : "Show";
+        /* Icon: open eye vs crossed */
+        btn.textContent = show ? "🙈" : "👁";
+        try { input.focus(); } catch(eF){}
       });
     });
   }
@@ -435,6 +449,9 @@
     var tab = $("tab-notes");
     if (!tab) return;
     if (!$("amana-vault-gate")) return;
+
+    /* Security: full page load / bfcache restore never keeps passphrase in DOM */
+    try { clearPassFields(true); } catch(eClr){}
 
     wireEyes();
     var pn = $("amana-pass-new");
@@ -539,5 +556,19 @@
   window.lockNow = lockNow;
   window.clarityAmanaLock = lockNow;
   window.lockVault = lockNow;
+
+  window.addEventListener("pageshow", function(ev){
+    try {
+      clearPassFields(true);
+      if (ev && ev.persisted) {
+        /* Back-forward cache: force locked UI */
+        sessionKey = null;
+        SESSION_UNLOCKED = false;
+        setLockedUI(true);
+        if (hasVault()) showUnlockMode(true);
+        else showUnlockMode(false);
+      }
+    } catch(e){}
+  });
   window.clarityAmanaPrintPack = printPack;
 })();

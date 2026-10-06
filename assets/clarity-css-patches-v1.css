@@ -2725,3 +2725,46 @@ html[data-clarity-meme-ok="0"] .clarity-meme-pill-row {
   -webkit-user-select: text !important;
   user-select: text !important;
 }
+
+
+/* Amana eye toggle — aligned inside field, clear open state */
+.amana-vault-gate .av-field {
+  position: relative !important;
+  display: block !important;
+}
+.amana-vault-gate .av-eye,
+#tab-notes .amana-vault-gate .av-eye {
+  position: absolute !important;
+  right: 0.4rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 8 !important;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  background: rgba(255,255,255,0.1) !important;
+  color: #e8f0ea !important;
+  font-size: 1.05rem !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+.amana-vault-gate .av-eye.is-open,
+#tab-notes .amana-vault-gate .av-eye.is-open {
+  background: rgba(13, 79, 60, 0.55) !important;
+  border-color: rgba(212, 180, 90, 0.55) !important;
+}
+.amana-vault-gate .av-field input[type="password"],
+.amana-vault-gate .av-field input[type="text"],
+#tab-notes .amana-vault-gate .av-field input {
+  padding-right: 3rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
