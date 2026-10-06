@@ -8233,13 +8233,7 @@ function resetShariaQuiz() {
     var feedback = document.getElementById("lbl-quiz-feedback");
     if (feedback) feedback.innerHTML = "";
 }
-try {
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initClarityOnboarding);
-    } else {
-        setTimeout(initClarityOnboarding, 100);
-    }
-} catch (eBoot) {}
+/* early initClarityOnboarding registration REMOVED — fortress owns a single boot */
 /* window.selectAppGate deferred to fortress */
 /* window.resetToGateView deferred to fortress */
 window.toggleMasterDirectory = toggleMasterDirectory;
@@ -8687,25 +8681,8 @@ function claritySwitchTrack(key) {
 }
 
 function initClarityOnboarding() {
-  var cached = null;
-  try {
-    cached = localStorage.getItem("clarity_path_focus")
-      || localStorage.getItem("clarity_committed_path")
-      || localStorage.getItem("clarity_path_override")
-      || localStorage.getItem("clarity_active_gate");
-  } catch (e) {}
-  if (cached) {
-    /* Restore path quietly — prefer path API (no tab steal / no seeker collapse) */
-    try {
-      if (typeof window.clarityRequestPath === "function") {
-        window.clarityRequestPath(cached);
-      } else {
-        clarityCommitGate(cached);
-      }
-    } catch (eR) {
-      try { clarityCommitGate(cached); } catch (e2) {}
-    }
-  }
+  /* Path restore is owned by clarity-path-progress boot (clamp).
+     Do not re-request path here — that raced and could collapse focus. */
   try { if (typeof initializeShariaQuiz === "function") initializeShariaQuiz(); } catch (e2) {}
 }
 
@@ -9365,23 +9342,21 @@ function clarityOpenWelcomePortal() {
     var door = null, seen = null, path = null, name = null;
     try { door = localStorage.getItem("clarity_primary_door"); } catch (e) {}
     try { seen = localStorage.getItem("clarity_welcome_seen") || localStorage.getItem("clarity_welcome_seen_v2"); } catch (e2) {}
-    try { path = localStorage.getItem("clarity_path_override") || localStorage.getItem("clarity_committed_path"); } catch (e2b) {}
+    try { path = localStorage.getItem("clarity_path_focus") || localStorage.getItem("clarity_path_override") || localStorage.getItem("clarity_committed_path"); } catch (e2b) {}
     try { name = localStorage.getItem("clarity_name"); } catch (e2c) {}
     var returning = !!(door || seen || path || name);
     var w = document.getElementById("clarity-welcome");
     if (returning) {
       if (w) { w.classList.remove("show"); w.setAttribute("aria-hidden", "true"); }
       try { if (typeof clarityMarkWelcomeSeen === "function") clarityMarkWelcomeSeen(); } catch (eM) {}
-      if (door && typeof clarityPickPrimaryDoor === "function") {
-        try { clarityPickPrimaryDoor(door); } catch (e3) {}
-      }
+      /* SLEEPER NUKED: do NOT re-call clarityPickPrimaryDoor(door) on every refresh —
+         that forced CommitGate('seeker') when primary door was "learn". */
     } else {
-      /* first visit: First-visit IIFE / Landing OS will show once — do not double-open */
       if (w) { w.classList.remove("show"); w.setAttribute("aria-hidden", "true"); }
     }
     var mode = "system";
     try { mode = localStorage.getItem("clarity_theme_mode") || "system"; } catch (e4) {}
-    claritySetThemeMode(mode);
+    try { if (typeof claritySetThemeMode === "function") claritySetThemeMode(mode); } catch (eT) {}
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(bootPortal, 40); });
   else setTimeout(bootPortal, 40);

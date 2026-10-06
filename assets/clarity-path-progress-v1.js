@@ -529,6 +529,14 @@
       if (!__booted) boot();
       else { stampCards(); applyPathFilter(clamp()); }
     }, 200);
+    /* Final authority after bootPortal / onboarding sleepers */
+    setTimeout(function () {
+      try {
+        var g = clamp();
+        applyPathFilter(g);
+        markUI(g);
+      } catch (eF) {}
+    }, 600);
   });
 
   window.clarityPathProgress = {
