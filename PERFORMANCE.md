@@ -1,22 +1,22 @@
-# PageSpeed notes (20261005AH)
+# PageSpeed fixes applied (build 20261005AI)
 
-Desktop report ~50 Performance was driven mainly by:
+## Applied in repo
 
-| Metric | Issue | Mitigation in package |
-|--------|--------|------------------------|
-| **TBT 440ms** | Large JS (chunk-8 ~720KB, UFT ~310KB) | Already `defer` + UFT idle; avoid extra boot work |
-| **CLS 0.54** | Banner / rail / fonts | aspect-ratio on banner, min-heights, font display=swap |
-| **Cache 505KiB** | Short cache on static assets | `_headers` for Netlify/CF Pages (GitHub Pages ignores) |
-| **Images 444KiB** | Wikimedia hero | Prefer 640w, sizes attr; host WebP locally later |
+| Issue | Fix |
+|--------|-----|
+| CLS (layout shift) | Inline critical layout CSS; banner 16:9; rail/workspace min-heights |
+| LCP image weight | Hero `srcset` 320/480/640; preload 480w |
+| Render-blocking CSS | Patches loaded via `media="print"` → `all` |
+| Cache lifetimes | `_headers` + `netlify.toml` for Netlify/CF Pages |
+| JS TBT | Scripts remain `defer`; UFT idle-loaded; low-prio polish/shine marked |
 
-## Host-specific cache
+## Host notes
 
-- **Netlify / Cloudflare Pages**: commit `_headers` (included).
-- **GitHub Pages**: use a CDN in front or Cloudflare proxy for cache headers.
-- Query `?v=20261005AH` already cache-busts on deploy.
+- **GitHub Pages**: does not read `_headers`. Put **Cloudflare** proxy in front for cache, or deploy same files to Netlify/CF Pages.
+- After deploy, hard-refresh and re-run PageSpeed (desktop + mobile).
 
-## Next gains (manual)
+## Optional next steps
 
-1. Host Makkah hero as local `assets/hero-makkah.webp` (~40–80KB).
-2. Split `clarity-chunk-8.js` further (already partially deferred modules).
-3. Ensure fonts use `display=swap` only (already in Google Fonts URL).
+1. Host a local `assets/media/hero-makkah.webp` (~50KB) and point `src` there.
+2. Split `clarity-chunk-8.js` further if TBT stays high.
+3. Self-host Inter/Scheherazade subset fonts to drop Google Fonts RTT.
