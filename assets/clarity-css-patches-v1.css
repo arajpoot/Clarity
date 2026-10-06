@@ -2770,38 +2770,96 @@ html[data-clarity-meme-ok="0"] .clarity-meme-pill-row {
 }
 
 
-/* PageSpeed: layout stability */
-#clarity-top-duo .banner,
-#banner-media {
-  aspect-ratio: 16 / 9;
-  min-height: 160px;
-  max-height: 42vh;
+
+
+
+/* Banner restore AL — height from overlay only, no empty pad under duo */
+#clarity-top-duo {
+  margin: 0 !important;
+  padding: 0 !important;
 }
-#clarity-door-rail.door-rail-bottom {
-  min-height: 56px;
+#clarity-top-duo .banner {
+  position: relative !important;
+  overflow: hidden !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
-.cgp-track-plaque, .clarity-gate-switcher {
-  min-height: 2.75rem;
+#clarity-top-duo .banner-media,
+#banner-media,
+.banner-media {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  z-index: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none;
 }
-img[fetchpriority="high"] {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
+#banner-img,
+.banner-media img,
+#banner-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  max-height: none !important;
+  min-height: 0 !important;
 }
-/* Prefer compositor for tab panels */
-.tab-panel.active {
-  contain: layout style;
+#clarity-top-duo .banner-overlay {
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+}
+#clarity-visit-pill-bar,
+.cv-stitched-banner {
+  margin-top: 0 !important;
+  padding-top: 0.25rem !important;
+}
+#main-application-workspace {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+/* Kill accidental spacer under banner */
+#clarity-top-duo + *,
+#clarity-top-duo + #clarity-visit-pill-bar {
+  margin-top: 0 !important;
 }
 
-/* PageSpeed AI: stable chrome */
-#clarity-top-duo { contain: layout; }
-#clarity-top-duo .banner { min-height: 160px; }
-#clarity-door-rail.door-rail-bottom {
-  min-height: 56px;
-  contain: layout;
+/* Sticky chrome AM */
+:root { --clarity-nav-h: 48px; }
+#clarity-global-nav.global-nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 60 !important;
 }
-/* Avoid font swap layout jump for arabic blocks */
-.arabic, [lang="ar"], [dir="rtl"] {
-  font-family: "Scheherazade New", "Noto Naskh Arabic", serif;
+#clarity-top-duo {
+  position: sticky !important;
+  top: var(--clarity-nav-h) !important;
+  z-index: 55 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#clarity-top-duo .banner {
+  min-height: 0 !important;
+  margin: 0 !important;
+}
+#clarity-visit-pill-bar {
+  margin-top: 0 !important;
+  position: relative;
+  z-index: 10;
+}
+@media (max-width: 700px) {
+  #clarity-top-duo {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  }
+  #clarity-top-duo .banner-overlay {
+    padding: 0.35rem 0.4rem !important;
+  }
 }

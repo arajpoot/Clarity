@@ -656,9 +656,13 @@ function layoutTrackPlaque(){
     /* Collect label + buttons into row in order */
     var label = sw.querySelector(".cgs-label");
     var buttons = Array.prototype.slice.call(sw.querySelectorAll(".cgs-btn"));
-    if (label && label.parentNode !== row) row.appendChild(label);
+    if (label && label.parentNode !== row && !label.contains(row)) {
+      try { row.appendChild(label); } catch (eL) {}
+    }
     buttons.forEach(function(btn){
-      if (btn.parentNode !== row) row.appendChild(btn);
+      if (btn.parentNode !== row && !btn.contains(row)) {
+        try { row.appendChild(btn); } catch (eB) {}
+      }
     });
 
     /* Ensure seeker exists */
@@ -672,8 +676,8 @@ function layoutTrackPlaque(){
       row.insertBefore(b, row.querySelector('[data-gate="new_muslim"]') || row.firstChild);
     }
 
-    if (intro && intro.parentNode === sw) {
-      sw.insertBefore(intro, row);
+    if (intro && intro.parentNode === sw && row && !intro.contains(row)) {
+      try { sw.insertBefore(intro, row); } catch (eI) {}
     }
   } catch(e){}
 }
