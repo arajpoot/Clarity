@@ -222,16 +222,8 @@
   else setTimeout(boot, 400);
   window.addEventListener("load", function(){ setTimeout(boot, 900); });
 
-  ["clarityRequestPath","applyAdditiveFilter","applyGateSectionFilter"].forEach(function(name){
-    var fn = window[name];
-    if (typeof fn === "function" && !fn.__gravePath) {
-      window[name] = function(){
-        var r = fn.apply(this, arguments);
-        setTimeout(syncVisibility, 100);
-        return r;
-      };
-      window[name].__gravePath = true;
-    }
+  window.addEventListener("clarity-path-changed", function () {
+    setTimeout(syncVisibility, 50);
   });
 
   window.clarityGravePathSync = syncVisibility;

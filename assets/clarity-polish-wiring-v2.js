@@ -139,18 +139,11 @@ body.section-open .page-wrapper {
     window.clarityOpenSectionDoor.__flowV1 = true;
   }
 
-  /* Hook path changes — single deferred onPath (was 3× timeouts fighting path-progress) */
-  function wrapPath(name){
-    var fn = window[name];
-    if (typeof fn !== "function" || fn.__doorsFlow) return;
-    window[name] = function(g){
-      var r = fn.apply(this, arguments);
-      setTimeout(function(){ onPath(g || pathNow()); }, 80);
-      return r;
-    };
-    window[name].__doorsFlow = true;
-  }
-  ["clarityRequestPath","applyAdditiveFilter","applyGateSectionFilter","claritySwitchGate"].forEach(wrapPath);
+  /* Listen once — do not wrap path APIs (wrapping caused lag on every switch) */
+  window.addEventListener("clarity-path-changed", function (ev) {
+    var g = (ev && ev.detail && ev.detail.gate) || pathNow();
+    onPath(g);
+  });
 
   /* Force max unlock so dai is reachable without stuck quiz gate (user asked highest phase open) */
   try {

@@ -2646,3 +2646,54 @@ html[data-theme="dark"] #clarity-top-duo .plaque-naskh {
   line-height: 1 !important;
 }
 #clarity-top-duo .plaque-caption { display: none !important; }
+
+/* ===== Phased learning v6 — CSS-first gate (no per-card JS thrash) ===== */
+html[data-path-i="0"] [data-min-i="1"]:not([data-always="1"]),
+html[data-path-i="0"] [data-min-i="2"]:not([data-always="1"]),
+html[data-path-i="0"] [data-min-i="3"]:not([data-always="1"]) {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+html[data-path-i="1"] [data-min-i="2"]:not([data-always="1"]),
+html[data-path-i="1"] [data-min-i="3"]:not([data-always="1"]) {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+html[data-path-i="2"] [data-min-i="3"]:not([data-always="1"]) {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+/* Dai (3): all path-stamped cards visible; meme gated by data-clarity-meme-ok */
+html[data-clarity-meme-ok="0"] #meme-card,
+html[data-clarity-meme-ok="0"] #meme-studio-root,
+html[data-clarity-meme-ok="0"] #tweet-desk-card,
+html[data-clarity-meme-ok="0"] .clarity-to-meme-pill,
+html[data-clarity-meme-ok="0"] .clarity-meme-pill-row {
+  display: none !important;
+}
+
+/* Smooth track switcher feedback */
+.clarity-gate-switcher .cgs-btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+  will-change: transform;
+}
+.clarity-gate-switcher .cgs-btn.active,
+.clarity-gate-switcher .cgs-btn.is-active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(13, 79, 60, 0.18);
+}
+.clarity-gate-switcher .cgs-btn.path-locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.clarity-gate-switcher .cgs-btn:not(.path-locked):active {
+  transform: scale(0.97);
+}
+
+/* Cards ease in when path reveals them */
+[data-min-i] {
+  transition: opacity 0.18s ease;
+}
