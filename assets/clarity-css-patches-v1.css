@@ -2703,3 +2703,25 @@ html[data-clarity-meme-ok="0"] .clarity-meme-pill-row {
 [data-min-i] {
   transition: opacity 0.18s ease;
 }
+
+/* Amana vault login — stable gate (no flash hide during entry) */
+#tab-notes.amana-locked #amana-vault-gate,
+#amana-vault-gate:not([hidden]) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+#tab-notes.amana-locked #amana-vault-interior[hidden],
+#tab-notes.amana-locked #amana-vault-interior[data-amana-sealed="1"] {
+  display: none !important;
+}
+#amana-vault-gate input[type="password"],
+#amana-vault-gate input[type="text"] {
+  pointer-events: auto !important;
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}

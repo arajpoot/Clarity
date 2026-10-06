@@ -850,9 +850,13 @@ window.memeBgIdx = g.memeBgIdx;
 
   /* Clear passphrase fields from DOM */
   function wipePassFields() {
+    var active = document.activeElement;
     ["amana-pass-new", "amana-pass-confirm", "amana-pass-unlock"].forEach(function (id) {
       var el = document.getElementById(id);
-      if (el && "value" in el) el.value = "";
+      if (!el || !("value" in el)) return;
+      /* Mobile: keyboard/visibility flicker must not erase in-progress entry */
+      if (active === el) return;
+      el.value = "";
     });
   }
 
@@ -861,11 +865,12 @@ window.memeBgIdx = g.memeBgIdx;
     scrubDangerous();
     /* Auto-lock vault when tab hidden long or page unload — key is RAM-only */
     document.addEventListener("visibilitychange", function () {
-      if (document.visibilityState === "hidden") {
-        wipePassFields();
-        /* Full lock when tab hides — passphrase must be re-entered */
-        vaultAutoLock();
-      }
+      if (document.visibilityState !== "hidden") return;
+      var typing = document.activeElement && document.activeElement.id &&
+        /^amana-pass-/.test(document.activeElement.id);
+      if (typing) return; /* never interrupt password entry */
+      wipePassFields();
+      vaultAutoLock();
     });
     g.addEventListener("pagehide", function () {
       wipePassFields();

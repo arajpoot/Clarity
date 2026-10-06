@@ -130,8 +130,25 @@
     if (locked) {
       tab.classList.add("amana-locked");
       tab.classList.remove("amana-unlocked");
-      if (gate) gate.hidden = false;
-      if (interior) interior.hidden = true;
+      if (gate) {
+        gate.hidden = false;
+        try {
+          gate.removeAttribute("hidden");
+          gate.style.removeProperty("display");
+          gate.style.removeProperty("visibility");
+          gate.style.removeProperty("height");
+          gate.setAttribute("aria-hidden", "false");
+        } catch(eGate){}
+      }
+      if (interior) {
+        interior.hidden = true;
+        try {
+          interior.setAttribute("hidden", "");
+          interior.setAttribute("inert", "");
+          interior.setAttribute("aria-hidden", "true");
+          interior.setAttribute("data-amana-sealed", "1");
+        } catch(eInt){}
+      }
       SESSION_UNLOCKED = false;
       sessionKey = null;
     } else {
@@ -174,9 +191,14 @@
     }
   }
 
-  function clearPassFields(){
+  function clearPassFields(force){
+    var active = document.activeElement;
     ["amana-pass-new","amana-pass-confirm","amana-pass-unlock"].forEach(function(id){
-      var el = $(id); if (el) el.value = "";
+      var el = $(id);
+      if (!el) return;
+      /* Do not wipe the field the user is currently typing into (mobile keyboard flicker) */
+      if (!force && active === el) return;
+      el.value = "";
     });
     updateStrength();
   }
@@ -339,14 +361,23 @@
   function lockNow(){
     sessionKey = null;
     clearSessionKey();
-    try { if (typeof clearPassFields === "function") clearPassFields(); } catch(e){}
+    try { clearPassFields(true); } catch(e){}
     ["amana-pass-new","amana-pass-confirm","amana-pass-unlock"].forEach(function(id){
       var el = document.getElementById(id);
-      if (el) { el.value = ""; el.blur(); }
+      if (el) { el.value = ""; try { el.blur(); } catch(eB){} }
     });
     setLockedUI(true);
     if (hasVault()) showUnlockMode(true);
     else showUnlockMode(false);
+    /* Keep gate visible and usable */
+    try {
+      var gate = $("amana-vault-gate");
+      if (gate) {
+        gate.hidden = false;
+        gate.removeAttribute("hidden");
+        gate.style.removeProperty("display");
+      }
+    } catch(eG){}
     status("Vault locked · passphrase cleared.");
   }
   window.lockNow = lockNow;
@@ -475,13 +506,25 @@
   else boot();
   window.addEventListener("load", function(){ setTimeout(boot, 200); });
 
-  /* Auto-lock inside closure so sessionKey / SESSION_UNLOCKED are the real ones */
+  /* Auto-lock only when vault was open. Never fight password entry on mobile
+     (visibility often flickers when the on-screen keyboard opens). */
+  function shouldProtectLock(){
+    try {
+      var a = document.activeElement;
+      if (a && a.id && /^amana-pass-/.test(a.id)) return false;
+      var gate = $("amana-vault-gate");
+      if (gate && !gate.hidden && !SESSION_UNLOCKED) return false; /* login form visible */
+    } catch(e){}
+    return true;
+  }
   document.addEventListener("visibilitychange", function(){
-    if (document.visibilityState === "hidden" && SESSION_UNLOCKED) {
-      try { lockNow(); } catch(e){}
-    }
+    if (document.visibilityState !== "hidden") return;
+    if (!SESSION_UNLOCKED) return; /* already locked — do not clear login fields */
+    if (!shouldProtectLock()) return;
+    try { lockNow(); } catch(e){}
   });
   window.addEventListener("pagehide", function(){
+    if (!SESSION_UNLOCKED) return;
     try { lockNow(); } catch(e){}
   });
 
