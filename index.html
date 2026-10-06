@@ -264,16 +264,16 @@ html[data-theme=dark] .nav-brand{color:#6bc49a}
 <meta name="apple-mobile-web-app-title" content="Clarity" />
 <meta name="application-name" content="Clarity" />
 <meta name="msapplication-TileColor" content="#0f4c3a" />
-<title>Clarity · NurOS — Furnish Your Grave</title><style id="clarity-fouc-shield">html,body{background:#f6f1e7;color:#1c2a22}html[data-theme=dark],html[data-theme=dark] body{background:#0c1410;color:#e7efe9}</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261005AC" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261005AC"></noscript>
+<title>Clarity · NurOS — Furnish Your Grave</title><style id="clarity-fouc-shield">html,body{background:#f6f1e7;color:#1c2a22}html[data-theme=dark],html[data-theme=dark] body{background:#0c1410;color:#e7efe9}</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261005AD" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261005AD"></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 <!-- offloaded clarity-banner-lock-js -->
 
-<link rel="preload" href="./assets/clarity-css-patches-v1.css?v=20261005AC" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261005AC"></noscript>
+<link rel="preload" href="./assets/clarity-css-patches-v1.css?v=20261005AD" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261005AD"></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
      assets/clarity-css-patches-v1.css. Deferred JS graph is owned by
      assets/clarity-boot-orchestrator-v1.js (ClarityBoot.report() in console). -->
@@ -1933,7 +1933,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <div id="amana-gate-create">
     <label for="amana-pass-new">New vault passphrase</label>
     <div class="av-field">
-      <input type="password" id="amana-pass-new" autocomplete="new-password" data-lpignore="true" data-form-type="other" minlength="10" placeholder="••••••••••••" />
+      <input type="password" id="amana-pass-new" name="clarity-amana-new" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other" readonly minlength="10" placeholder="••••••••••••" />
       <button type="button" class="av-eye" data-for="amana-pass-new" title="Show/hide">👁</button>
     </div>
     <div class="av-strength" aria-hidden="true"><i id="amana-strength-bar"></i></div>
@@ -1941,7 +1941,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
     <label for="amana-pass-confirm">Confirm</label>
     <div class="av-field">
-      <input type="password" id="amana-pass-confirm" autocomplete="new-password" data-lpignore="true" data-form-type="other" placeholder="••••••••••••" />
+      <input type="password" id="amana-pass-confirm" name="clarity-amana-confirm" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other" readonly placeholder="••••••••••••" />
       <button type="button" class="av-eye" data-for="amana-pass-confirm" title="Show/hide">👁</button>
     </div>
 
@@ -1954,7 +1954,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <div id="amana-gate-unlock" hidden>
     <label for="amana-pass-unlock">Vault passphrase</label>
     <div class="av-field">
-      <input type="password" id="amana-pass-unlock" autocomplete="current-password" data-lpignore="true" data-form-type="other" placeholder="••••••••••••" />
+      <input type="password" id="amana-pass-unlock" name="clarity-amana-unlock" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other" readonly placeholder="••••••••••••" />
       <button type="button" class="av-eye" data-for="amana-pass-unlock" title="Show/hide">👁</button>
     </div>
     <div class="av-actions">
@@ -2228,21 +2228,21 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <!-- ========== Clarity script layers (defer = order preserved) ========== -->
 <!-- L1 Runtime: boot · shields · smooth · theme · security · meme -->
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261005AC" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261005AD" defer></script>
 <!-- L2 Core SPA shell + UI -->
-<script src="./assets/clarity-chunk-8.js?v=20261005AC" defer></script>
+<script src="./assets/clarity-chunk-8.js?v=20261005AD" defer></script>
 <!-- L3 Feature modules -->
-<script src="./assets/clarity-track-os-v3.js?v=20261005AC" defer></script>
-<script src="./assets/nx-tj-lmr-js-v1.js?v=20261005AC" defer></script>
-<script src="./assets/nuros-bridge-enrich-js.js?v=20261005AC" defer></script>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261005AC" defer></script>
+<script src="./assets/clarity-track-os-v3.js?v=20261005AD" defer></script>
+<script src="./assets/nx-tj-lmr-js-v1.js?v=20261005AD" defer></script>
+<script src="./assets/nuros-bridge-enrich-js.js?v=20261005AD" defer></script>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261005AD" defer></script>
 <script>
 (function(){
   function loadUft(){
     if (window.__CLARITY_UFT_FULL_RESTORE_V1__) return;
     if (document.querySelector('script[data-clarity-uft]')) return;
     var s=document.createElement('script');
-    s.src='./assets/clarity-uft-full-restore-v1.js?v=20261005AC';
+    s.src='./assets/clarity-uft-full-restore-v1.js?v=20261005AD';
     s.defer=true;
     s.setAttribute('data-clarity-uft','1');
     document.body.appendChild(s);
@@ -2251,13 +2251,13 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   else setTimeout(loadUft, 2500);
 })();
 </script>
-<script src="./assets/clarity-notes-recovery-v1.js?v=20261005AC" defer></script>
-<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261005AC" defer></script>
+<script src="./assets/clarity-notes-recovery-v1.js?v=20261005AD" defer></script>
+<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261005AD" defer></script>
 <!-- L4 Path curriculum (confine modules by educational phase) -->
-<script src="./assets/clarity-path-progress-v1.js?v=20261005AC" defer></script>
+<script src="./assets/clarity-path-progress-v1.js?v=20261005AD" defer></script>
 <!-- L5 Polish + shine (after path so they cannot open-all over seeker) -->
-<script src="./assets/clarity-polish-wiring-v2.js?v=20261005AC" defer></script>
-<script src="./assets/clarity-ui-shine-v1.js?v=20261005AC" defer></script>
+<script src="./assets/clarity-polish-wiring-v2.js?v=20261005AD" defer></script>
+<script src="./assets/clarity-ui-shine-v1.js?v=20261005AD" defer></script>
 
 </body>
 </html>
