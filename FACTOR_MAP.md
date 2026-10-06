@@ -46,6 +46,10 @@ Do not add root-level scripts. Publish only the lean allow-list.
 - Console: `ClarityPerf.log()` or `ClarityPerf.report()`
 - Tracks: FCP/paint, navigation, long tasks (>50ms), slow resources, path-apply, meme-draw
 
+## Path Progress v6 (CSS-first)
+`clarity-path-progress-v1.js` stamps `data-min-i` once, then switches only `html[data-path-i]`.
+Visibility is pure CSS in `clarity-css-patches-v1.css`. No per-card style thrash on switch.
+
 ## Freeze guard (learning doors)
 `clarity-path-progress-v1.js` owns `applyPathFilter` + `clarity-path-changed`.
 - Reentrancy flag + dispatch only when gate changes
