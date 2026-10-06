@@ -46,6 +46,10 @@ Do not add root-level scripts. Publish only the lean allow-list.
 - Console: `ClarityPerf.log()` or `ClarityPerf.report()`
 - Tracks: FCP/paint, navigation, long tasks (>50ms), slow resources, path-apply, meme-draw
 
+## Curriculum folders (authoring)
+`assets/curriculum/{shared,seeker,new-muslim,daily,dai}/` + `card-map.json`  
+Stamp: `node assets/curriculum/stamp-cli.js --write` → `data-min-i` / `data-always` on cards in `index.html`.
+
 ## Path Progress v6 (CSS-first)
 `clarity-path-progress-v1.js` stamps `data-min-i` once, then switches only `html[data-path-i]`.
 Visibility is pure CSS in `clarity-css-patches-v1.css`. No per-card style thrash on switch.
@@ -55,3 +59,9 @@ Visibility is pure CSS in `clarity-css-patches-v1.css`. No per-card style thrash
 - Reentrancy flag + dispatch only when gate changes
 - Discipline block must **not** listen to `clarity-path-changed` (that loop froze tab switches)
 - Polish/grave wrappers: single deferred sync; no reapply cascade from non-dai `openAll`
+
+## Release 20261005AC
+- Vault eye toggle + align; pass wipe on boot/pageshow
+- Tab restore on refresh (hash + last hub)
+- Path v6 CSS-first; UFT const→var; CSP no unsafe-eval
+- Amana: PBKDF2 210k, AES-GCM, RAM session key only
