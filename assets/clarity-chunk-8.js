@@ -691,9 +691,11 @@ var CLARITY_ROUTES = {
   'search': { tab: 'search', title: 'Search & guidance · Clarity' },
   'guidance': { tab: 'search', scroll: 'hajj', title: 'Hajj guidance · Clarity' },
   'hajj': { tab: 'search', scroll: 'hajj', title: 'Hajj guidance · Clarity' },
-  'notes': { tab: 'about', scroll: 'notes-editor', title: 'Notes · Clarity' },
-  'journal': { tab: 'about', scroll: 'notes-editor', title: 'Notes · Clarity' },
-  'about': { tab: 'about', title: 'About & notes · Clarity' },
+  'notes': { tab: 'notes', scroll: 'notes-editor', title: 'Amana Vault · Clarity' },
+  'journal': { tab: 'notes', scroll: 'notes-editor', title: 'Notes · Clarity' },
+  'amana': { tab: 'notes', title: 'Amana Vault · Clarity' },
+  'vault': { tab: 'notes', title: 'Amana Vault · Clarity' },
+  'about': { tab: 'reality', title: 'About · Clarity' },
   'fiqh': { tab: 'notes', scroll: 'fiqh', title: 'Fiqh tools · Clarity' },
   'fiqh-tools': { tab: 'notes', scroll: 'fiqh', title: 'Fiqh tools · Clarity', desc: 'Family tree, farāʾiḍ study aid, wasiyyah draft. Educational — not a fatwa.' },
   'family-tree': { tab: 'notes', scroll: 'tree', title: 'Family tree · Clarity' },
@@ -788,6 +790,13 @@ function initTabFromHash(){
   var key = clarityPathKey();
   var route = CLARITY_ROUTES[key];
   if(route){
+    var hub = route.tab || 'reminder';
+    /* RRRA5: about is legacy — live hub is reality; notes stays notes (Amana) */
+    if (hub === 'about') hub = 'reality';
+    if (hub === 'notes' || hub === 'reminder' || hub === 'reality' || hub === 'reflection' || hub === 'action') {
+      try { if (typeof switchTab === 'function') switchTab(hub, { fromRouter: true }); } catch(eN){}
+      return;
+    }
     clarityNavigate(key, { replace: true, skipHistory: true });
     return;
   }
@@ -1422,7 +1431,7 @@ function askGrok(){const _gq=document.getElementById("grok-question");const ques
       notesState.selectedId = note.id;
       notesPersist();
       try { if (typeof clarityOpenNotesEditor === 'function') clarityOpenNotesEditor();
-      else if (typeof switchTab === 'function') switchTab('about', { fromRouter: true }); } catch(e){}
+      else if (typeof switchTab === 'function') switchTab('notes', { fromRouter: true }); } catch(e){}
       notesRender();
       setTimeout(function(){
         const body = document.getElementById('notes-body');
