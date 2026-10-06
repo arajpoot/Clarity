@@ -288,64 +288,32 @@ body > .banner-media,
   if (window.__CLARITY_BANNER_NUCLEAR__) return;
   window.__CLARITY_BANNER_NUCLEAR__ = true;
 
-  function safeAppend(parent, child) {
-    if (!parent || !child || parent === child) return;
-    try {
-      /* HierarchyRequestError if child contains parent */
-      if (typeof child.contains === "function" && child.contains(parent)) return;
-      if (child.parentNode === parent) return;
-      parent.appendChild(child);
-    } catch (e) { /* ignore hierarchy thrash */ }
-  }
-  function safeInsertFirst(parent, child) {
-    if (!parent || !child || parent === child) return;
-    try {
-      if (typeof child.contains === "function" && child.contains(parent)) return;
-      if (child.parentNode === parent) return;
-      parent.insertBefore(child, parent.firstChild);
-    } catch (e) {}
-  }
   function nuclear() {
+    /* No DOM re-parenting — HierarchyRequestError was caused by moving
+       banner-media/img/live when the tree was already correct or cyclic. */
     var banner = document.querySelector("#clarity-top-duo .banner") || document.querySelector(".banner");
     if (!banner) return;
+    try { banner.style.overflow = "hidden"; } catch (e0) {}
 
-    var overlay = banner.querySelector(".banner-overlay");
     var media = document.getElementById("banner-media") || banner.querySelector(".banner-media");
-    var ifr = document.getElementById("banner-live");
-    var img = document.getElementById("banner-img");
-
-    /* Re-parent only when it cannot create a cyclic tree */
     if (media) {
-      safeInsertFirst(banner, media);
       try { media.setAttribute("aria-hidden", "true"); } catch (eA) {}
     }
-    if (img && media) safeAppend(media, img);
-    if (ifr && media) safeAppend(media, ifr);
-
-    /* Size banner from overlay only */
-    if (overlay) {
-      var h = overlay.offsetHeight;
-      if (h > 80) {
-        banner.style.height = h + "px";
-        banner.style.maxHeight = Math.min(h, 280) + "px";
-      }
-    }
-    banner.style.overflow = "hidden";
-
-    /* Live off by default unless media has live-active */
+    var ifr = document.getElementById("banner-live");
     if (ifr && media && !media.classList.contains("live-active")) {
-      ifr.setAttribute("hidden", "");
       try {
-        if (ifr.src) { ifr.src = ""; ifr.removeAttribute("src"); }
-      } catch(e){}
+        ifr.setAttribute("hidden", "");
+        if (ifr.getAttribute("src") && ifr.getAttribute("src") !== "about:blank") {
+          ifr.src = "about:blank";
+        }
+      } catch (eI) {}
     }
-
-    /* Destroy escaped clones */
-    document.querySelectorAll("#banner-live, #banner-img, .banner-media").forEach(function(node){
-      if (!banner.contains(node)) {
-        try { node.remove(); } catch(e) { node.style.display = "none"; }
-      }
-    });
+    /* Hide escaped clones without re-parenting */
+    try {
+      document.querySelectorAll("body > #banner-live, body > #banner-img, body > .banner-media").forEach(function(node){
+        try { node.style.display = "none"; } catch (eN) {}
+      });
+    } catch (e2) {}
   }
 
   /* When user enables Live, allow src then re-clip */
