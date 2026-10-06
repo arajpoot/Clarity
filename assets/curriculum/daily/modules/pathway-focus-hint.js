@@ -1,44 +1,30 @@
-/**
- * Example curriculum module — Daily pathway focus hint
- * Loaded only when Daily is active + flag on.
- * Demonstrates the hydrator live-wire.
- */
-(function () {
-  "use strict";
-  if (window.__CLARITY_DAILY_FOCUS_HINT__) return;
-  window.__CLARITY_DAILY_FOCUS_HINT__ = true;
-
-  function showHint() {
-    if (document.getElementById("clarity-pathway-focus-hint")) return;
-    var el = document.createElement("div");
-    el.id = "clarity-pathway-focus-hint";
-    el.setAttribute("role", "status");
-    el.style.cssText = "position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);z-index:9998;background:var(--clarity-card-bg,#1a2e24);color:var(--clarity-ink,#e7efe9);padding:.55rem 1rem;border-radius:999px;font:600 13px/1.3 system-ui,sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.25);opacity:0;transition:opacity .4s;pointer-events:none;max-width:90vw;text-align:center";
-    el.textContent = "Daily pathway active · consistent small deeds";
-    document.body.appendChild(el);
-    requestAnimationFrame(function () { el.style.opacity = "1"; });
-    setTimeout(function () {
-      el.style.opacity = "0";
-      setTimeout(function () { el.remove(); }, 500);
-    }, 3200);
-  }
-
-  // Only show once per session when Daily becomes active
-  if (!sessionStorage.getItem("clarity_daily_hint_shown")) {
-    sessionStorage.setItem("clarity_daily_hint_shown", "1");
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", function () { setTimeout(showHint, 900); });
-    } else {
-      setTimeout(showHint, 900);
-    }
-  }
-
-  window.addEventListener("clarity-pathway-hydrated", function (e) {
-    if (e.detail && e.detail.phase === "daily") {
-      // Module confirmed live
-      if (window.localStorage && window.localStorage.getItem("clarity_perf") === "1") {
-        console.log("[Daily module] focus-hint live");
-      }
-    }
+(function(w){"use strict";if(w.__CLARITY_PATHWAY_FOCUS_HINT__)return;w.__CLARITY_PATHWAY_FOCUS_HINT__=!0;
+function pathI(){try{var n=parseInt(document.documentElement.getAttribute("data-path-i")||"0",10);return isNaN(n)?0:n}catch(e){return 0}}
+function show(){
+  if(pathI()<2)return;
+  if(document.getElementById("clarity-daily-focus-bar"))return;
+  var bar=document.createElement("div");
+  bar.id="clarity-daily-focus-bar";
+  bar.setAttribute("role","region");
+  bar.setAttribute("aria-label","Daily study focus");
+  bar.style.cssText="position:sticky;top:0;z-index:40;background:linear-gradient(90deg,rgba(26,46,36,.96),rgba(40,60,48,.94));color:#e7efe9;padding:.45rem .75rem;font:600 12.5px/1.35 system-ui,sans-serif;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.2)";
+  bar.innerHTML='<span style="opacity:.8">Daily path · use the tools</span>'
+    +'<button type="button" data-go="tajweed-path-card" style="border:0;background:#c9a227;color:#1a2e24;font:700 11px system-ui;padding:.3rem .55rem;border-radius:999px;cursor:pointer">Tajweed</button>'
+    +'<button type="button" data-go="callig-lab-card" style="border:0;background:rgba(255,255,255,.12);color:#e7efe9;font:600 11px system-ui;padding:.3rem .55rem;border-radius:999px;cursor:pointer;border:1px solid rgba(255,255,255,.2)">Calligraphy</button>'
+    +'<button type="button" data-go="notes-shell" style="border:0;background:rgba(255,255,255,.12);color:#e7efe9;font:600 11px system-ui;padding:.3rem .55rem;border-radius:999px;cursor:pointer;border:1px solid rgba(255,255,255,.2)">Notes</button>'
+    +'<button type="button" data-go="meme-card" style="border:0;background:rgba(255,255,255,.12);color:#e7efe9;font:600 11px system-ui;padding:.3rem .55rem;border-radius:999px;cursor:pointer;border:1px solid rgba(255,255,255,.2)">Meme</button>';
+  bar.addEventListener("click",function(ev){
+    var b=ev.target.closest("[data-go]");
+    if(!b)return;
+    var id=b.getAttribute("data-go");
+    var el=document.getElementById(id);
+    if(el){el.classList.remove("gate-hidden");el.scrollIntoView({behavior:"smooth",block:"start"});}
+    if(id==="notes-shell"&&w.ClarityCurriculumTools)w.ClarityCurriculumTools.ensureNotes();
+    if((id==="tajweed-path-card"||id==="tj-lmr-score-card")&&w.ClarityCurriculumTools)w.ClarityCurriculumTools.ensureTajweed();
   });
-})();
+  var host=document.querySelector("main")||document.body;
+  host.insertBefore(bar,host.firstChild);
+}
+function boot(){setTimeout(show,800);w.addEventListener("clarity-path-changed",function(){setTimeout(show,300)});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
+})(typeof window!=="undefined"?window:this);
