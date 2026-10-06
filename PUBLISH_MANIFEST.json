@@ -1,4 +1,19 @@
 {
-  "build": "20261005AM",
-  "notes": "Sticky nav+banner; banner restore; speed hygiene"
+  "build": "20261006PH",
+  "title": "Clarity – Furnish Your Grave",
+  "status": "final-polished-secured",
+  "path": "Seeker → New Muslim → Daily → Da'i",
+  "live": "https://clarity-dawah.fyi/",
+  "upgrades": [
+    "terser-minified JS + esbuild CSS",
+    "ClarityLazy on-demand vault/notes",
+    "pathway-hydrator progressive modules",
+    "non-blocking critical CSS + font-display optional",
+    "seeker-first service worker",
+    "dead boot modules nuked",
+    "CSP frame-ancestors + no unsafe-eval",
+    "vault PBKDF2 210k / AES-GCM / RAM key / auto-lock"
+  ],
+  "security": "SECURITY_AUDIT.md",
+  "core": ["index.html", "sw.js", "robots.txt", "sitemap.xml", "netlify.toml", "_headers"]
 }
