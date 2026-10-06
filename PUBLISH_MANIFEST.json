@@ -1,8 +1,10 @@
 {
-  "build": "20261005R",
+  "build": "20261005V",
   "mobile_paint": true,
+  "notes": "Security: vault auto-lock in-closure, print XSS-safe, clarityAmanaLock aliases, pass min 10",
   "files": [
     "FACTOR_MAP.md",
+    "PUBLISH_MANIFEST.json",
     "README.md",
     "index.html",
     "robots.txt",

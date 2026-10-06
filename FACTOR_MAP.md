@@ -45,3 +45,9 @@ Do not add root-level scripts. Publish only the lean allow-list.
 - Enable: `localStorage.setItem('clarity_perf','1')` then reload, or `?perf=1`
 - Console: `ClarityPerf.log()` or `ClarityPerf.report()`
 - Tracks: FCP/paint, navigation, long tasks (>50ms), slow resources, path-apply, meme-draw
+
+## Freeze guard (learning doors)
+`clarity-path-progress-v1.js` owns `applyPathFilter` + `clarity-path-changed`.
+- Reentrancy flag + dispatch only when gate changes
+- Discipline block must **not** listen to `clarity-path-changed` (that loop froze tab switches)
+- Polish/grave wrappers: single deferred sync; no reapply cascade from non-dai `openAll`
