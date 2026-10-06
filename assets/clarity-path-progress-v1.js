@@ -466,6 +466,11 @@
     var max = getMax();
     if (doorCleared(gate) || ti <= max) {
       setMax(Math.max(max, ti));
+      try {
+        localStorage.setItem("clarity_path_focus", gate);
+        localStorage.setItem("clarity_committed_path", gate);
+        localStorage.setItem("clarity_path_override", gate);
+      } catch (eP) {}
       applyContent(gate);
       return { ok: true, reason: "unlocked" };
     }

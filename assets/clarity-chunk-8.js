@@ -8551,17 +8551,30 @@ window.clarityRefreshDashboard = clarityRefreshDashboard;
 function clarityCommitGate(gateType) {
   gateType = String(gateType || "seeker").trim();
   var allowed = { seeker:1, new_muslim:1, practicing:1, dai:1 };
-  if (!allowed[gateType]) gateType = "seeker";
+  /* legacy7 / heart_grave are primary-path labels — map, do NOT collapse to seeker */
+  if (gateType === "legacy7" || gateType === "prepare") gateType = "practicing";
+  if (gateType === "heart_grave" || gateType === "learn" || gateType === "today") gateType = gateType === "today" ? "practicing" : "seeker";
+  if (!allowed[gateType]) {
+    try {
+      var kept = localStorage.getItem("clarity_path_focus") || localStorage.getItem("clarity_committed_path") || "seeker";
+      if (allowed[kept]) gateType = kept;
+      else gateType = "seeker";
+    } catch (eMap) { gateType = "seeker"; }
+  }
   var pathKey = gateType;
 
   try {
-    localStorage.setItem("clarity_active_gate", gateType === "dai" ? "practicing" : gateType);
+    localStorage.setItem("clarity_active_gate", pathKey);
     localStorage.setItem("clarity_path_override", pathKey);
     localStorage.setItem("clarity_committed_path", pathKey);
+    localStorage.setItem("clarity_path_focus", pathKey);
     localStorage.setItem("clarity_last_gate_ts", String(Date.now()));
   } catch (e) {}
 
-  try { document.documentElement.setAttribute("data-clarity-path", pathKey); } catch (e0) {}
+  try {
+    document.documentElement.setAttribute("data-clarity-path", pathKey);
+    document.documentElement.setAttribute("data-path-i", String({seeker:0,new_muslim:1,practicing:2,dai:3}[pathKey] || 0));
+  } catch (e0) {}
 
   var overlay = document.getElementById("landing-gate-screen");
   var topNav = document.getElementById("clarity-global-nav");
@@ -8650,12 +8663,15 @@ function resetToGateView() {
 
 function clarityActiveTrack() {
   try {
-    var committed = localStorage.getItem("clarity_committed_path");
-    if (committed && typeof CLARITY_PATHS !== "undefined" && CLARITY_PATHS[committed]) return committed;
-    var o = localStorage.getItem("clarity_path_override");
-    if (o && typeof CLARITY_PATHS !== "undefined" && CLARITY_PATHS[o]) return o;
-    var g = localStorage.getItem("clarity_active_gate") || "seeker";
-    if (typeof CLARITY_PATHS !== "undefined" && CLARITY_PATHS[g]) return g;
+    var keys = ["clarity_path_focus","clarity_committed_path","clarity_path_override","clarity_active_gate"];
+    var allowed = { seeker:1, new_muslim:1, practicing:1, dai:1 };
+    for (var i = 0; i < keys.length; i++) {
+      var v = localStorage.getItem(keys[i]);
+      if (!v) continue;
+      if (v === "legacy7") v = "practicing";
+      if (allowed[v]) return v;
+      if (typeof CLARITY_PATHS !== "undefined" && CLARITY_PATHS[v]) return v;
+    }
   } catch (e) {}
   return "seeker";
 }
@@ -8672,8 +8688,24 @@ function claritySwitchTrack(key) {
 
 function initClarityOnboarding() {
   var cached = null;
-  try { cached = localStorage.getItem("clarity_committed_path") || localStorage.getItem("clarity_active_gate"); } catch (e) {}
-  if (cached) clarityCommitGate(cached);
+  try {
+    cached = localStorage.getItem("clarity_path_focus")
+      || localStorage.getItem("clarity_committed_path")
+      || localStorage.getItem("clarity_path_override")
+      || localStorage.getItem("clarity_active_gate");
+  } catch (e) {}
+  if (cached) {
+    /* Restore path quietly — prefer path API (no tab steal / no seeker collapse) */
+    try {
+      if (typeof window.clarityRequestPath === "function") {
+        window.clarityRequestPath(cached);
+      } else {
+        clarityCommitGate(cached);
+      }
+    } catch (eR) {
+      try { clarityCommitGate(cached); } catch (e2) {}
+    }
+  }
   try { if (typeof initializeShariaQuiz === "function") initializeShariaQuiz(); } catch (e2) {}
 }
 
@@ -8881,19 +8913,22 @@ window.clarityCollapseToPathDoor = clarityCollapseToPathDoor;
 /* When gate commits, show rail; start in path-door mode (no section forced) */
 (function() {
   var prevCommit = window.clarityCommitGate;
-  window.clarityCommitGate = function(gateType) {
+  window.clarityCommitGate = function(gateType, opts) {
+    opts = opts || {};
     if (typeof prevCommit === "function") prevCommit(gateType);
     try { document.documentElement.setAttribute("data-section-mode", "0"); } catch (e) {}
     try { document.body.classList.remove("section-open"); } catch (e2) {}
-    clarityShowDoorRail(true);
-    /* panels closed until a door is chosen */
-    document.querySelectorAll(".tab-panel").forEach(function(p) {
-      p.classList.remove("active");
-    });
+    try { clarityShowDoorRail(true); } catch (eR) {}
+    /* Do NOT strip tab-panel.active on restore/refresh — that threw users to first hub */
+    if (opts.closePanels) {
+      document.querySelectorAll(".tab-panel").forEach(function(p) {
+        p.classList.remove("active");
+      });
+    }
     try {
-      if (typeof clarityRenderPaths === "function") clarityRenderPaths();
+      if (typeof clarityRenderPaths === "function") clarityRenderPaths(gateType);
       var board = document.getElementById("path-board");
-      if (board) board.hidden = false;
+      if (board && opts.showBoard) board.hidden = false;
     } catch (e3) {}
   };
   var prevReset = window.resetToGateView;
@@ -8984,7 +9019,12 @@ function clarityPickPrimaryDoor(door) {
   }
   if (door === 'prepare') {
     clarityCommitGate('practicing');
-    try { localStorage.setItem('clarity_path_override', 'legacy7'); localStorage.setItem('clarity_committed_path', 'legacy7'); } catch (e4) {}
+    try {
+      localStorage.setItem('clarity_path_override', 'practicing');
+      localStorage.setItem('clarity_committed_path', 'practicing');
+      localStorage.setItem('clarity_path_focus', 'practicing');
+      localStorage.setItem('clarity_primary_path', 'legacy7');
+    } catch (e4) {}
     clarityShowToday(false);
     clarityShowDoorRail(true);
     clarityRenderPrimaryPathDays('legacy7');
