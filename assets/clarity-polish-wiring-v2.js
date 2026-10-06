@@ -288,6 +288,23 @@ body > .banner-media,
   if (window.__CLARITY_BANNER_NUCLEAR__) return;
   window.__CLARITY_BANNER_NUCLEAR__ = true;
 
+  function safeAppend(parent, child) {
+    if (!parent || !child || parent === child) return;
+    try {
+      /* HierarchyRequestError if child contains parent */
+      if (typeof child.contains === "function" && child.contains(parent)) return;
+      if (child.parentNode === parent) return;
+      parent.appendChild(child);
+    } catch (e) { /* ignore hierarchy thrash */ }
+  }
+  function safeInsertFirst(parent, child) {
+    if (!parent || !child || parent === child) return;
+    try {
+      if (typeof child.contains === "function" && child.contains(parent)) return;
+      if (child.parentNode === parent) return;
+      parent.insertBefore(child, parent.firstChild);
+    } catch (e) {}
+  }
   function nuclear() {
     var banner = document.querySelector("#clarity-top-duo .banner") || document.querySelector(".banner");
     if (!banner) return;
@@ -297,13 +314,13 @@ body > .banner-media,
     var ifr = document.getElementById("banner-live");
     var img = document.getElementById("banner-img");
 
-    /* Always re-parent media as first child of banner */
+    /* Re-parent only when it cannot create a cyclic tree */
     if (media) {
-      if (media.parentNode !== banner) banner.insertBefore(media, banner.firstChild);
-      media.setAttribute("aria-hidden", "true");
+      safeInsertFirst(banner, media);
+      try { media.setAttribute("aria-hidden", "true"); } catch (eA) {}
     }
-    if (img && media && img.parentNode !== media) media.appendChild(img);
-    if (ifr && media && ifr.parentNode !== media) media.appendChild(ifr);
+    if (img && media) safeAppend(media, img);
+    if (ifr && media) safeAppend(media, ifr);
 
     /* Size banner from overlay only */
     if (overlay) {
