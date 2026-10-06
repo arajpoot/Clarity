@@ -421,6 +421,18 @@
   }
 
   function wireEyes(){
+    function toggleEye(btn){
+      var id = btn.getAttribute("data-for");
+      var input = $(id);
+      if (!input) return;
+      var show = input.type === "password";
+      input.type = show ? "text" : "password";
+      btn.classList.toggle("is-open", show);
+      btn.setAttribute("aria-pressed", show ? "true" : "false");
+      btn.setAttribute("aria-label", show ? "Hide passphrase" : "Show passphrase");
+      btn.title = show ? "Hide" : "Show";
+      btn.textContent = show ? "🙈" : "👁";
+    }
     document.querySelectorAll(".amana-vault-gate .av-eye").forEach(function(btn){
       if (btn.__amanaEyeWired) return;
       btn.__amanaEyeWired = true;
@@ -429,18 +441,7 @@
       btn.setAttribute("aria-pressed", "false");
       btn.addEventListener("click", function(ev){
         try { ev.preventDefault(); ev.stopPropagation(); } catch(e){}
-        var id = btn.getAttribute("data-for");
-        var input = $(id);
-        if (!input) return;
-        var show = input.type === "password";
-        input.type = show ? "text" : "password";
-        btn.classList.toggle("is-open", show);
-        btn.setAttribute("aria-pressed", show ? "true" : "false");
-        btn.setAttribute("aria-label", show ? "Hide passphrase" : "Show passphrase");
-        btn.title = show ? "Hide" : "Show";
-        /* Icon: open eye vs crossed */
-        btn.textContent = show ? "🙈" : "👁";
-        try { input.focus(); } catch(eF){}
+        toggleEye(btn);
       });
     });
   }
@@ -511,7 +512,9 @@
     document.addEventListener("keydown", function(ev){
       if (ev.key !== "Enter") return;
       var tab = $("tab-notes");
-      if (!tab || !tab.classList.contains("active") && tab.style.display === "none") return;
+      if (!tab) return;
+      var notesOpen = tab.classList.contains("active") || tab.classList.contains("is-active") || document.body.getAttribute("data-active-tab") === "notes";
+      if (!notesOpen) return;
       if (!SESSION_UNLOCKED) {
         if ($("amana-gate-unlock") && !$("amana-gate-unlock").hidden) unlockVault();
         else createVault();
