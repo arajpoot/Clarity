@@ -841,11 +841,10 @@ window.memeBgIdx = g.memeBgIdx;
 
   function vaultAutoLock() {
     try {
-      if (typeof g.clarityAmanaLock === "function") {
-        g.clarityAmanaLock();
-      } else if (typeof g.lockVault === "function") {
-        g.lockVault();
-      }
+      if (typeof g.clarityAmanaLock === "function") g.clarityAmanaLock();
+      else if (typeof g.lockVault === "function") g.lockVault();
+      else if (g.AmanaVault && typeof g.AmanaVault.lock === "function") g.AmanaVault.lock();
+      else if (typeof g.lockNow === "function") g.lockNow();
     } catch (e) {}
   }
 
@@ -863,12 +862,14 @@ window.memeBgIdx = g.memeBgIdx;
     /* Auto-lock vault when tab hidden long or page unload — key is RAM-only */
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "hidden") {
-        /* soft: wipe fields only; full lock on pagehide */
         wipePassFields();
+        /* Full lock when tab hides — passphrase must be re-entered */
+        vaultAutoLock();
       }
     });
     g.addEventListener("pagehide", function () {
       wipePassFields();
+      vaultAutoLock();
     });
     /* Mutation: new target=_blank links */
     try {
@@ -1008,7 +1009,7 @@ window.memeBgIdx = g.memeBgIdx;
     setTimeout(ensurePills, 600);
     setTimeout(ensurePills, 2000);
     g.addEventListener("clarity-path-changed", function () {
-      setTimeout(ensurePills, 300);
+      setTimeout(ensurePills, 500);
     });
   }
 
@@ -1483,13 +1484,13 @@ window.memeBgIdx = g.memeBgIdx;
     setTimeout(ensurePills, 700);
     setTimeout(ensurePills, 2500);
     g.addEventListener("clarity-path-changed", function () {
-      setTimeout(ensurePills, 350);
+      setTimeout(ensurePills, 500);
     });
-    /* Re-scan when cards mutate */
+    /* Re-scan when cards mutate — long debounce so path filter hide/show doesn't thrash */
     try {
       var mo = new MutationObserver(function () {
         clearTimeout(g.__memePillScanT);
-        g.__memePillScanT = setTimeout(ensurePills, 400);
+        g.__memePillScanT = setTimeout(ensurePills, 900);
       });
       mo.observe(document.body, { childList: true, subtree: true });
     } catch (e) {}

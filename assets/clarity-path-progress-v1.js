@@ -170,7 +170,11 @@ function showEl(el){
   el.style.removeProperty("height");
 }
 
+var __pathFilterBusy = false;
+var __lastPathGate = null;
+
 function applyPathFilter(focusGate){
+  if (__pathFilterBusy) return;
   focusGate = ORDER.indexOf(focusGate) >= 0 ? focusGate : "seeker";
   var max = getMax();
   var fi = idx(focusGate);
@@ -178,72 +182,84 @@ function applyPathFilter(focusGate){
     focusGate = ORDER[max];
     fi = max;
   }
-  /* Show curriculum for *focus* phase (additive 0..focus), clamped by unlock */
-  var allow = unionAllow(fi);
-
+  /* Skip heavy DOM work when focus is unchanged and lock stylesheet already exists */
+  var sameGate = (__lastPathGate === focusGate);
+  __pathFilterBusy = true;
   try {
-    document.documentElement.setAttribute("data-clarity-path", focusGate);
-    document.body.setAttribute("data-clarity-path", focusGate);
-    localStorage.setItem("clarity_committed_path", focusGate);
-    localStorage.setItem("clarity_path_override", focusGate);
-    localStorage.setItem("clarity_path_focus", focusGate);
-  } catch(e){}
+    /* Show curriculum for *focus* phase (additive 0..focus), clamped by unlock */
+    var allow = unionAllow(fi);
 
-  /* CSS lock stylesheet from union */
-  var hideIds = [];
-  document.querySelectorAll(".card[id], [id$='-card']").forEach(function(node){
-    var id = node.id;
-    if (!id) return;
-    if (allow[id] === 1 || ALWAYS[id]) {
-      showEl(node);
-      return;
-    }
-    hideIds.push("#" + id.replace(/([^\w-])/g, "\\$1"));
-    hideEl(node);
-  });
-  var el = document.getElementById("clarity-path-lock");
-  if (!el) {
-    el = document.createElement("style");
-    el.id = "clarity-path-lock";
-    document.head.appendChild(el);
-  }
-  el.textContent = hideIds.length
-    ? (hideIds.join(",") + "{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;pointer-events:none!important;}")
-    : "/* path open */";
-
-  /* meme: only when *focus* is Daily/Da'i AND that door is unlocked — never on Seeker */
-  try {
-    var memeOk = fi >= idx("practicing") && max >= idx("practicing");
     try {
-      document.documentElement.setAttribute("data-clarity-meme-ok", memeOk ? "1" : "0");
-      document.body.setAttribute("data-clarity-meme-ok", memeOk ? "1" : "0");
-      document.documentElement.setAttribute("data-clarity-unlocked-max", String(max));
-    } catch(eAttr){}
-    ["meme-card","meme-studio-root","meme","tweet-desk-card"].forEach(function(id){
-      var node = document.getElementById(id);
-      if (!node) return;
-      if (memeOk) showEl(node); else hideEl(node);
-    });
-    if (!memeOk) {
-      try {
-        document.documentElement.setAttribute("data-clarity-meme-ok", "0");
-        document.body.setAttribute("data-clarity-meme-ok", "0");
-      } catch(eM){}
-    }
-    /* site-wide meme pills */
-    document.querySelectorAll(".clarity-to-meme-pill, .clarity-meme-pill-row").forEach(function(p){
-      if (memeOk) {
-        p.style.removeProperty("display");
-        p.style.removeProperty("visibility");
-        p.removeAttribute("data-gate-hidden");
-      } else {
-        p.style.setProperty("display", "none", "important");
-      }
-    });
-  } catch(e){}
+      document.documentElement.setAttribute("data-clarity-path", focusGate);
+      document.body.setAttribute("data-clarity-path", focusGate);
+      localStorage.setItem("clarity_committed_path", focusGate);
+      localStorage.setItem("clarity_path_override", focusGate);
+      localStorage.setItem("clarity_path_focus", focusGate);
+    } catch(e){}
 
-  markUI(focusGate);
-  try { window.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { gate: focusGate } })); } catch(eEv){}
+    /* CSS lock stylesheet from union */
+    var hideIds = [];
+    document.querySelectorAll(".card[id], [id$='-card']").forEach(function(node){
+      var id = node.id;
+      if (!id) return;
+      if (allow[id] === 1 || ALWAYS[id]) {
+        showEl(node);
+        return;
+      }
+      hideIds.push("#" + id.replace(/([^\w-])/g, "\\$1"));
+      hideEl(node);
+    });
+    var el = document.getElementById("clarity-path-lock");
+    if (!el) {
+      el = document.createElement("style");
+      el.id = "clarity-path-lock";
+      document.head.appendChild(el);
+    }
+    el.textContent = hideIds.length
+      ? (hideIds.join(",") + "{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;pointer-events:none!important;}")
+      : "/* path open */";
+
+    /* meme: only when *focus* is Daily/Da'i AND that door is unlocked — never on Seeker */
+    try {
+      var memeOk = fi >= idx("practicing") && max >= idx("practicing");
+      try {
+        document.documentElement.setAttribute("data-clarity-meme-ok", memeOk ? "1" : "0");
+        document.body.setAttribute("data-clarity-meme-ok", memeOk ? "1" : "0");
+        document.documentElement.setAttribute("data-clarity-unlocked-max", String(max));
+      } catch(eAttr){}
+      ["meme-card","meme-studio-root","meme","tweet-desk-card"].forEach(function(id){
+        var node = document.getElementById(id);
+        if (!node) return;
+        if (memeOk) showEl(node); else hideEl(node);
+      });
+      if (!memeOk) {
+        try {
+          document.documentElement.setAttribute("data-clarity-meme-ok", "0");
+          document.body.setAttribute("data-clarity-meme-ok", "0");
+        } catch(eM){}
+      }
+      /* site-wide meme pills */
+      document.querySelectorAll(".clarity-to-meme-pill, .clarity-meme-pill-row").forEach(function(p){
+        if (memeOk) {
+          p.style.removeProperty("display");
+          p.style.removeProperty("visibility");
+          p.removeAttribute("data-gate-hidden");
+        } else {
+          p.style.setProperty("display", "none", "important");
+        }
+      });
+    } catch(e){}
+
+    markUI(focusGate);
+    var gateChanged = (__lastPathGate !== focusGate);
+    __lastPathGate = focusGate;
+    /* Dispatch only when the gate actually changes — prevents infinite reapply loops */
+    if (gateChanged) {
+      try { window.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { gate: focusGate } })); } catch(eEv){}
+    }
+  } finally {
+    __pathFilterBusy = false;
+  }
 }
 
 function markUI(focusGate){
@@ -272,8 +288,9 @@ function markUI(focusGate){
   } catch(e){}
 }
 
-function applyContent(gate){
+function applyContent(gate, opts){
   gate = ORDER.indexOf(gate) >= 0 ? gate : "seeker";
+  opts = opts || {};
   applyPathFilter(gate);
   try {
     var raw = window.__clarityPathDoSwitchRaw;
@@ -282,10 +299,19 @@ function applyContent(gate){
       try { raw(gate); } finally { window.__clarityPathBypass = false; }
     }
   } catch(e){}
-  try {
-    if (typeof switchTab === "function") switchTab("reminder");
-  } catch(e){}
-  setTimeout(function(){ applyPathFilter(gate); }, 60);
+  /* Only force-navigate to reminder on first unlock / welcome — not on every learning-tab click */
+  if (opts.goReminder) {
+    try {
+      if (typeof switchTab === "function") switchTab("reminder");
+    } catch(e){}
+  }
+  /* Single deferred re-sync if another layer rewrote visibility */
+  setTimeout(function(){
+    if (__lastPathGate === gate && !__pathFilterBusy) {
+      __lastPathGate = null;
+      applyPathFilter(gate);
+    }
+  }, 120);
 }
 
 /* ---- Quiz (once per door; majority pass) ---- */
@@ -310,7 +336,7 @@ function closeQuiz(pass){
   if (pass && target) {
     setPassed(target);
     setMax(Math.max(getMax(), idx(target)));
-    applyContent(target);
+    applyContent(target, { goReminder: true });
   } else {
     markUI(clamp());
   }
@@ -328,7 +354,7 @@ function openQuiz(from, target){
   if (!qs || !qs.length) {
     setPassed(target);
     setMax(Math.max(getMax(), ti));
-    applyContent(target);
+    applyContent(target, { goReminder: true });
     return;
   }
   Q = { from: from, target: target, qs: qs, step: 0, correct: 0, busy: false };
@@ -431,7 +457,7 @@ window.clarityPathResetToSeeker = function(){
     document.documentElement.setAttribute("data-clarity-path", "seeker");
     document.body.setAttribute("data-clarity-path", "seeker");
   } catch(e){}
-  applyContent("seeker");
+  applyContent("seeker", { goReminder: true });
   return { ok: true, path: "seeker" };
 };
 
@@ -459,7 +485,7 @@ window.clarityWelcomePickTrack = function(gate){
     var td = document.getElementById("clarity-three-doors");
     if (td) { td.classList.add("hidden"); td.style.setProperty("display", "none", "important"); }
   } catch(e){}
-  applyContent(gate);
+  applyContent(gate, { goReminder: true });
   try { if (window.clarityUnlockScroll) window.clarityUnlockScroll(); } catch(e){}
   return { ok: true, path: gate };
 };
@@ -530,7 +556,19 @@ function wire(){
   window.applyExclusiveFilter = window.applyGateSectionFilter;
 }
 
+var __pathBooted = false;
 function boot(){
+  if (__pathBooted) {
+    /* late load pass: re-wire + soft filter only — avoid second applyContent cascade */
+    wire();
+    try {
+      var g = clamp();
+      applyPathFilter(g);
+      markUI(g);
+    } catch(e){}
+    return;
+  }
+  __pathBooted = true;
   try {
     if (localStorage.getItem(UNLOCK_KEY) == null) setMax(0);
   } catch(e){}
@@ -560,10 +598,13 @@ window.clarityPathProgress = {
 })();
 
 /* ---- clarity-path-discipline (appended) ---- */
+/* NOTE: Must NOT reapply on clarity-path-changed — applyPathFilter already owns the filter
+   and dispatches that event. Re-listening caused infinite freeze when switching learning tabs. */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_PATH_DISCIPLINE_V1__) return;
-  g.__CLARITY_PATH_DISCIPLINE_V1__ = true;
+  if (g.__CLARITY_PATH_DISCIPLINE_V2__) return;
+  g.__CLARITY_PATH_DISCIPLINE_V2__ = true;
+  var __discOnce = false;
   function reapply() {
     try {
       if (g.clarityPathProgress && typeof g.clarityPathProgress.reapply === "function") {
@@ -573,11 +614,13 @@ window.clarityPathProgress = {
     } catch (e) {}
   }
   function boot() {
+    if (__discOnce) return;
+    __discOnce = true;
     reapply();
     setTimeout(reapply, 500);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
   g.addEventListener("load", function () { setTimeout(reapply, 300); });
-  g.addEventListener("clarity-path-changed", function () { setTimeout(reapply, 80); });
+  /* Intentionally no clarity-path-changed listener — that loop froze the SPA on tab switch */
 })(typeof window !== "undefined" ? window : this);

@@ -78,10 +78,8 @@ body.section-open .page-wrapper {
     /* Only Dai may force-open the full library. Other paths stay curriculum-confined. */
     var gate = pathNow();
     if (gate !== "dai") {
-      try {
-        if (window.clarityPathProgress && typeof window.clarityPathProgress.reapply === "function")
-          window.clarityPathProgress.reapply();
-      } catch(eR){}
+      /* Do not call reapply here — path-progress already applied on switch; calling it
+         from every openAll/heal path caused extra cascades and freezes. */
       return;
     }
     document.querySelectorAll(".card, [id$='-card']").forEach(showEl);
@@ -141,15 +139,13 @@ body.section-open .page-wrapper {
     window.clarityOpenSectionDoor.__flowV1 = true;
   }
 
-  /* Hook path changes */
+  /* Hook path changes — single deferred onPath (was 3× timeouts fighting path-progress) */
   function wrapPath(name){
     var fn = window[name];
     if (typeof fn !== "function" || fn.__doorsFlow) return;
     window[name] = function(g){
       var r = fn.apply(this, arguments);
-      setTimeout(function(){ onPath(g || pathNow()); }, 30);
-      setTimeout(function(){ onPath(g || pathNow()); }, 250);
-      setTimeout(function(){ onPath(g || pathNow()); }, 700);
+      setTimeout(function(){ onPath(g || pathNow()); }, 80);
       return r;
     };
     window[name].__doorsFlow = true;
@@ -166,18 +162,13 @@ body.section-open .page-wrapper {
   function boot(){
     onPath(pathNow());
     if (pathNow() === "dai") openAllSections();
-    else {
-      try {
-        if (window.clarityPathProgress && typeof window.clarityPathProgress.reapply === "function")
-          window.clarityPathProgress.reapply();
-      } catch(e){}
-    }
+    /* path-progress owns filter for non-dai; no extra reapply from polish */
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 300); });
   else setTimeout(boot, 300);
   window.addEventListener("load", function(){ setTimeout(boot, 500); });
 
-  /* Soft heal: only once after settle, not every 2s (was fighting path-progress) */
+  /* Soft heal: dai only, once after settle — never re-enter path filter */
   var __doorsHealDone = false;
   function softDoorsHeal(){
     if (__doorsHealDone) return;
@@ -188,7 +179,10 @@ body.section-open .page-wrapper {
   }
   setTimeout(softDoorsHeal, 800);
   setTimeout(softDoorsHeal, 2200);
-  window.addEventListener("clarity-path-changed", function(){ __doorsHealDone = false; setTimeout(softDoorsHeal, 400); });
+  window.addEventListener("clarity-path-changed", function(){
+    __doorsHealDone = false;
+    if (pathNow() === "dai") setTimeout(softDoorsHeal, 400);
+  });
 
   window.clarityDoorsFlow = { openAll: openAllSections, onPath: onPath };
 })();
@@ -357,7 +351,11 @@ body > .banner-media,
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 50); });
   else setTimeout(boot, 50);
   window.addEventListener("load", function(){ setTimeout(nuclear, 200); setTimeout(nuclear, 800); });
-  window.addEventListener("resize", function(){ setTimeout(nuclear, 50); });
+  var __nuclearResizeT = 0;
+  window.addEventListener("resize", function(){
+    clearTimeout(__nuclearResizeT);
+    __nuclearResizeT = setTimeout(nuclear, 120);
+  });
 })();
 
 

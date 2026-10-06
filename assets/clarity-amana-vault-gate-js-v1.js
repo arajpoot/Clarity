@@ -8,7 +8,7 @@
   var SESSION_UNLOCKED = false;
   var sessionKey = null; // CryptoKey in memory only
   var ITERATIONS = 210000;
-  var MIN_PASS_LEN = 10;
+  var MIN_PASS_LEN = 10; /* enforced in createVault; HTML minlength is advisory */
 
   function $(id){ return document.getElementById(id); }
   function status(msg, err){
@@ -237,7 +237,7 @@
     var conf = ($("amana-pass-confirm") || {}).value || "";
     var hint = ""; /* hints disabled */
     if (pw.length < MIN_PASS_LEN) {
-      status("Use at least 8 characters (12+ recommended).", true);
+      status("Use at least " + MIN_PASS_LEN + " characters (12+ recommended).", true);
       return;
     }
     if (pw !== conf) {
@@ -351,22 +351,41 @@
   }
   window.lockNow = lockNow;
 
-  function amanaEsc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function amanaEsc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
   function printPack(){
+    if (!SESSION_UNLOCKED || !sessionKey) {
+      status("Unlock the vault before printing.", true);
+      return;
+    }
     var d = readHeirForm();
-    var w = window.open("", "_blank");
+    var w = window.open("", "_blank", "noopener,noreferrer");
     if (!w) return;
-    w.document.write("<pre style='font-family:system-ui;padding:1.5rem;white-space:pre-wrap'>" +
+    try { w.opener = null; } catch(e){}
+    var body =
       "Amana Vault · Heir readiness (educational — not a fatwa)\n\n" +
-      "Full name: " + (d.fullname||"—") + "\n" +
-      "Next of kin: " + (d.kin||"—") + "\n" +
-      "Wasī / guardian: " + (d.wasi||"—") + "\n" +
-      "Missed obligations:\n" + (d.missed||"—") + "\n\n" +
-      "Debts / trusts:\n" + (d.debts||"—") + "\n\n" +
-      "Documents:\n" + (d.docs||"—") + "\n\n" +
-      "Letter:\n" + (d.letter||"—") + "\n\n" +
-      "Printed from on-device Clarity · confirm with scholar & local counsel\n</pre>");
+      "Full name: " + (d.fullname || "—") + "\n" +
+      "Next of kin: " + (d.kin || "—") + "\n" +
+      "Wasī / guardian: " + (d.wasi || "—") + "\n" +
+      "Missed obligations:\n" + (d.missed || "—") + "\n\n" +
+      "Debts / trusts:\n" + (d.debts || "—") + "\n\n" +
+      "Documents:\n" + (d.docs || "—") + "\n\n" +
+      "Letter:\n" + (d.letter || "—") + "\n\n" +
+      "Printed from on-device Clarity · confirm with scholar & local counsel\n";
+    /* textContent path — no HTML injection from vault fields */
+    w.document.open();
+    w.document.write("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>Amana pack</title></head><body></body></html>");
     w.document.close();
+    var pre = w.document.createElement("pre");
+    pre.style.cssText = "font-family:system-ui,sans-serif;padding:1.5rem;white-space:pre-wrap;word-break:break-word";
+    pre.textContent = body;
+    w.document.body.appendChild(pre);
     w.print();
   }
 
@@ -456,17 +475,26 @@
   else boot();
   window.addEventListener("load", function(){ setTimeout(boot, 200); });
 
+  /* Auto-lock inside closure so sessionKey / SESSION_UNLOCKED are the real ones */
+  document.addEventListener("visibilitychange", function(){
+    if (document.visibilityState === "hidden" && SESSION_UNLOCKED) {
+      try { lockNow(); } catch(e){}
+    }
+  });
+  window.addEventListener("pagehide", function(){
+    try { lockNow(); } catch(e){}
+  });
+
   window.AmanaVault = {
     lock: lockNow,
-    isOpen: function(){ return SESSION_UNLOCKED; }
+    unlock: unlockVault,
+    create: createVault,
+    isOpen: function(){ return !!SESSION_UNLOCKED && !!sessionKey; },
+    hasVault: hasVault
   };
+  /* Aliases for security shield + UI */
+  window.lockNow = lockNow;
+  window.clarityAmanaLock = lockNow;
+  window.lockVault = lockNow;
+  window.clarityAmanaPrintPack = printPack;
 })();
-/* security: lock vault when tab hidden */
-document.addEventListener("visibilitychange", function(){
-  if (document.visibilityState === "hidden") {
-    try {
-      if (typeof SESSION_UNLOCKED !== "undefined") SESSION_UNLOCKED = false;
-      if (typeof sessionKey !== "undefined") sessionKey = null;
-    } catch(e){}
-  }
-});

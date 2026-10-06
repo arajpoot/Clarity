@@ -248,14 +248,16 @@ try{window.__CLARITY_BOOT_TS=window.__CLARITY_BOOT_TS||Date.now();}catch(e){}
   var _prevSwitch = window.claritySwitchTrack;
   window.claritySwitchTrack = function(key){
     if (!key || !CLARITY_PATHS[key]) return;
+    /* Track keys align with path gates: seeker | new_muslim | practicing | dai */
     try { localStorage.setItem("clarity_path_override", key); } catch(e){}
     try { localStorage.setItem("clarity_committed_path", key); } catch(e2){}
-    var gate = (key === "dai") ? "practicing" : key;
-    try { localStorage.setItem("clarity_active_gate", gate); } catch(e3){}
-    if (typeof applyGateConfiguration === "function") {
-      try { applyGateConfiguration(gate); } catch(e4){}
-    }
-    if (typeof _prevSwitch === "function") {
+    try { localStorage.setItem("clarity_active_gate", key); } catch(e3){}
+    /* Prefer progressive path API so quiz/unlock rules stay consistent */
+    try {
+      if (typeof window.clarityRequestPath === "function") window.clarityRequestPath(key);
+      else if (typeof applyGateConfiguration === "function") applyGateConfiguration(key);
+    } catch(e4){}
+    if (typeof _prevSwitch === "function" && _prevSwitch !== window.claritySwitchTrack) {
       try { _prevSwitch(key); } catch(e5){}
     }
     renderTrackOS(key);

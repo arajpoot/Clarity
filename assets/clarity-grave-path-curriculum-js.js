@@ -227,8 +227,7 @@
     if (typeof fn === "function" && !fn.__gravePath) {
       window[name] = function(){
         var r = fn.apply(this, arguments);
-        setTimeout(syncVisibility, 80);
-        setTimeout(syncVisibility, 400);
+        setTimeout(syncVisibility, 100);
         return r;
       };
       window[name].__gravePath = true;
