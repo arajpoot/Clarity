@@ -1,21 +1,10 @@
 {
-  "vault": {
-    "kdf": "PBKDF2-SHA-256",
-    "iterations": 210000,
-    "cipher": "AES-GCM-256",
-    "keyExtractable": false,
-    "keyStorage": "RAM only (variable n); sessionStorage holds unlock flag '1' only",
-    "blobStorage": "localStorage encrypted blob",
-    "autoLock": "visibility hidden + pagehide",
-    "risks_residual": [
-      "XSS in page could still access RAM key while unlocked \u2014 CSP + no third-party scripts reduces risk",
-      "PBKDF2 210k is strong but Argon2 not available in WebCrypto"
-    ]
-  },
-  "csp": "object-src none; frame-ancestors self; upgrade-insecure-requests",
-  "indexing": {
-    "sitemap_urls": 21,
-    "robots": "Allow / + sitemap",
-    "seo_paths": "sr-only crawlable links"
-  }
+  "vault": "PBKDF2-210k AES-GCM non-extractable RAM key",
+  "csp": "object-src none; frame-ancestors self",
+  "removed": "quiet-boot, site-audit, dual layout fighters",
+  "packs": [
+    "feature-pack",
+    "path-pack",
+    "aux-pack"
+  ]
 }

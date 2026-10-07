@@ -1,19 +1,10 @@
 {
-  "build": "20261007FINAL",
-  "phases": [
-    "deep-scan",
-    "perf-css",
-    "indexing",
-    "github-parity",
-    "sandbox",
-    "package"
+  "build": "20261007LEAN2",
+  "fixes": [
+    "boot-orch-packs",
+    "load-order",
+    "no-deleted-srcs"
   ],
-  "live": "https://clarity-dawah.fyi/",
-  "repo": "https://github.com/arajpoot/Clarity",
-  "ai_modules": [
-    "meme-enhance-pollinations",
-    "shariah-sanitize",
-    "grid-toggles"
-  ],
-  "swap": "overwrite index.html assets/ sw.js robots.txt sitemap.xml _headers _redirects .nojekyll 404.html"
+  "js_assets": 9,
+  "total_files": 27
 }
