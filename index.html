@@ -290,7 +290,7 @@ html,body{overflow-x:hidden!important;width:100%!important;max-width:100%!import
 
 <meta name="referrer" content="no-referrer" />
 <meta name="color-scheme" content="light dark" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' blob: data:; script-src 'self' 'unsafe-inline' https://www.flickr.com https://api.flickr.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' blob: https: http:; connect-src 'self' https: http:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://open.spotify.com https:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; frame-ancestors 'self'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' blob: data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.flickr.com https://api.flickr.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' blob: https: http:; connect-src 'self' https: http:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://open.spotify.com https:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; frame-ancestors 'self'" />
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(self), geolocation=(self), payment=(), usb=()" />
 
 
@@ -366,17 +366,17 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261006AR" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261006AR" media="print" onload="this.media='all'" id="clarity-critical-css-link">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261006AR"></noscript></noscript>
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261006D" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261006D" media="print" onload="this.media='all'" id="clarity-critical-css-link">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261006D"></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 <!-- offloaded clarity-banner-lock-js -->
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261006AR" media="print" onload="this.media='all'" fetchpriority="low">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261006AR"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261006D" media="print" onload="this.media='all'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261006D"></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
      assets/clarity-css-patches-v1.css. Deferred JS graph is owned by
      ClarityBoot.report() in console (merged into runtime-overlays). -->
@@ -387,6 +387,25 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 })();
 </script>
 </head><body data-active-tab="journey" data-section-fortress="1">
+
+<nav id="clarity-seo-paths" class="clarity-seo-paths" aria-label="Educational paths">
+  <h2 class="seo-paths-title">Educational paths</h2>
+  <p class="seo-paths-lead">Prepare the heart and the paperwork — educational only, not a fatwa.</p>
+  <ul class="seo-paths-list">
+    <li><a href="/prepare-for-death/">Prepare for death — 7-day legacy hub</a></li>
+    <li><a href="/remember-death/">Remember death</a></li>
+    <li><a href="/what-benefits-the-deceased/">What benefits the deceased</a></li>
+    <li><a href="/dua-for-the-deceased/">Duʿāʾ for the deceased</a></li>
+    <li><a href="/janazah-prayer/">Janazah prayer</a></li>
+    <li><a href="/ghusl-kafan-burial/">Ghusl, kafan &amp; burial</a></li>
+    <li><a href="/wasiyyah/">Wasiyyah</a></li>
+    <li><a href="/islamic-will/">Islamic will</a></li>
+    <li><a href="/islamic-inheritance-calculator/">Inheritance study</a></li>
+    <li><a href="/hajj-checklist/">Hajj checklist</a></li>
+    <li><a href="/about">About Clarity</a></li>
+  </ul>
+</nav>
+
 
 <!-- offloaded nuros-null-guard-js -->
 
@@ -2330,22 +2349,25 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <!-- ========== Clarity script layers (defer = order preserved) ========== -->
 <!-- L1 Runtime: boot · shields · smooth · theme · security · meme -->
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261006AR"></script>
-<script src="./assets/curriculum/pathway-hydrator-v1.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-seeker-ease-v1.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-layout-fix-v1.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-dhikr-rail-v1.js?v=20261006AR" defer></script>
-<script src="./assets/curriculum/shared/modules/curriculum-tools-bridge-v1.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-chunk-8.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-track-os-v3.js?v=20261006AR" defer></script>
-<script src="./assets/nuros-bridge-enrich-js.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-path-progress-v1.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261006AR" defer></script>
-<script src="./assets/clarity-polish-wiring-v2.js?v=20261006AR" defer data-clarity-prio="low"></script>
-<script src="./assets/clarity-ui-shine-v1.js?v=20261006AR" defer data-clarity-prio="low"></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261006D"></script>
+<script src="./assets/curriculum/pathway-hydrator-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-seeker-ease-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-layout-fix-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-dhikr-rail-v1.js?v=20261006D" defer></script>
+<script src="./assets/curriculum/shared/modules/curriculum-tools-bridge-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-chunk-8.js?v=20261006D" defer></script>
+<script src="./assets/clarity-track-os-v3.js?v=20261006D" defer></script>
+<script src="./assets/nuros-bridge-enrich-js.js?v=20261006D" defer></script>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-path-progress-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-notes-bridge-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-tj-whisper-restore-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-meme-enhance-v1.js?v=20261006D" defer></script>
+<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261006D" defer></script>
+<script src="./assets/clarity-polish-wiring-v2.js?v=20261006D" defer data-clarity-prio="low"></script>
+<script src="./assets/clarity-ui-shine-v1.js?v=20261006D" defer data-clarity-prio="low"></script>
 <script id="clarity-audit-boot">
-(function(){try{var q=new URLSearchParams(location.search);if(q.get("audit")==="1"||(localStorage&&localStorage.getItem("clarity_audit")==="1")){var s=document.createElement("script");s.src="./assets/clarity-site-audit-v1.js?v=20261006AR";s.defer=true;document.head.appendChild(s);}}catch(e){}})();
+(function(){try{var q=new URLSearchParams(location.search);if(q.get("audit")==="1"||(localStorage&&localStorage.getItem("clarity_audit")==="1")){var s=document.createElement("script");s.src="./assets/clarity-site-audit-v1.js?v=20261006D";s.defer=true;document.head.appendChild(s);}}catch(e){}})();
 </script>
 
 <!-- L2 Core SPA shell + UI -->
@@ -2383,7 +2405,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   "use strict";
   if (window.__CLARITY_LAZY_V1__) return;
   window.__CLARITY_LAZY_V1__ = true;
-  var VER = "20261006AR";
+  var VER = "20261006D";
   var loaded = {};
   function loadOnce(id, src) {
     if (loaded[id]) return loaded[id];
@@ -2568,5 +2590,11 @@ if ("serviceWorker" in navigator) {
 })();
 </script>
 
+<script>
+(function(){function ready(){try{document.documentElement.classList.add("clarity-app-ready")}catch(e){}}
+if(document.readyState==="complete")setTimeout(ready,900);
+else window.addEventListener("load",function(){setTimeout(ready,900)});
+})();
+</script>
 </body>
 </html>
