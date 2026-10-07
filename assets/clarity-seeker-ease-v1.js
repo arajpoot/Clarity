@@ -85,5 +85,5 @@
     firstVisitTip();
   }
 
-  w.ClaritySeekerEase = { showDeed: ensureChip, version: "20261006CT" };
+  w.ClaritySeekerEase = { showDeed: ensureChip, version: "20261006LF" };
 })(typeof window !== "undefined" ? window : this);
