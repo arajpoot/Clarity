@@ -1,39 +1,27 @@
 /**
- * Clarity Layout Fix v2 — sticky chrome sync, no gap, orientation-safe
- * Safe with dual-load boot path.
+ * Clarity Layout Fix v3 — measure nav, sync --clarity-nav-h, orientation/resize
+ * Does NOT force position; CSS L3 owns sticky stack. Banner stays relative inside duo.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_LAYOUT_FIX_V2__) return;
-  w.__CLARITY_LAYOUT_FIX_V2__ = true;
-  var VER = "20261006L2";
-
-  function q(id) { return document.getElementById(id); }
+  if (w.__CLARITY_LAYOUT_FIX_V3__) return;
+  w.__CLARITY_LAYOUT_FIX_V3__ = true;
+  var VER = "20261006L3";
 
   function measure() {
     try {
-      var nav = q("clarity-global-nav");
-      var duo = q("clarity-top-duo");
+      var nav = document.getElementById("clarity-global-nav");
+      var duo = document.getElementById("clarity-top-duo");
       var h = 48;
       if (nav) {
-        var r = nav.getBoundingClientRect();
-        h = Math.max(36, Math.round(r.height)) || 48;
-        nav.style.marginBottom = "0";
-        nav.style.borderBottom = "none";
-        nav.style.boxShadow = "none";
+        h = Math.max(40, Math.round(nav.getBoundingClientRect().height)) || 48;
       }
       document.documentElement.style.setProperty("--clarity-nav-h", h + "px");
-      if (duo) {
-        duo.style.top = h + "px";
-        duo.style.marginTop = "0";
-        duo.style.paddingTop = "0";
-        duo.style.borderTop = "none";
-        // Match banner fill so no black shows through
-        var dark = document.documentElement.getAttribute("data-theme") === "dark";
-        duo.style.background = dark ? "#0c1410" : "#0d4f3c";
-      }
       var stack = h;
-      if (duo) stack += Math.round(duo.getBoundingClientRect().height) || 0;
+      if (duo) {
+        // only set top via CSS var — do not fight position
+        stack += Math.round(duo.getBoundingClientRect().height) || 0;
+      }
       document.documentElement.style.setProperty("--clarity-chrome-h", stack + "px");
     } catch (e) {}
   }
@@ -41,7 +29,7 @@
   var t = null;
   function schedule() {
     if (t) clearTimeout(t);
-    t = setTimeout(function () { t = null; measure(); }, 50);
+    t = setTimeout(function () { t = null; measure(); }, 40);
   }
 
   function bind() {
@@ -49,14 +37,13 @@
     w.addEventListener("resize", schedule, { passive: true });
     w.addEventListener("orientationchange", function () {
       measure();
-      setTimeout(measure, 100);
-      setTimeout(measure, 350);
-      setTimeout(measure, 700);
+      setTimeout(measure, 80);
+      setTimeout(measure, 300);
+      setTimeout(measure, 600);
     });
     if (w.visualViewport) {
       w.visualViewport.addEventListener("resize", schedule, { passive: true });
     }
-    // matchMedia desktop/mobile breakpoint flips without full reload
     try {
       var mq = w.matchMedia("(max-width: 700px)");
       if (mq.addEventListener) mq.addEventListener("change", schedule);
@@ -65,12 +52,11 @@
     try {
       new MutationObserver(schedule).observe(document.documentElement, {
         attributes: true,
-        attributeFilter: ["data-theme", "data-path-i", "class", "style"]
+        attributeFilter: ["data-theme", "class"]
       });
     } catch (e) {}
-    setTimeout(measure, 200);
-    setTimeout(measure, 800);
-    setTimeout(measure, 2000);
+    setTimeout(measure, 150);
+    setTimeout(measure, 700);
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(schedule).catch(function () {});
     }
