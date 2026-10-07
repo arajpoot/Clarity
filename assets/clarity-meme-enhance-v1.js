@@ -222,13 +222,19 @@
     }
   }
 
+  function bannedCard(card) {
+    if (!card) return true;
+    if (card.closest("#clarity-top-duo, #clarity-global-nav, .global-nav, .banner")) return true;
+    if (card.id === "meme-card" || card.id === "tweet-desk-card" || card.id === "notes-shell") return true;
+    return false;
+  }
   function ensurePills() {
     var memeOk = true;
     try {
       memeOk = document.documentElement.getAttribute("data-clarity-meme-ok") !== "0";
     } catch (e) {}
     document.querySelectorAll(".card[id], [id$='-card'], .search-result, .cmd-card, .verse-card, .hadith-card").forEach(function (card) {
-      if (!card || card.id === "meme-card" || card.id === "tweet-desk-card") return;
+      if (bannedCard(card)) return;
       if (card.querySelector(".clarity-to-meme-pill")) return;
       var sample = extract(card);
       if (!sample.ar && !sample.en) return;
@@ -236,14 +242,13 @@
       var row = card.querySelector(".sr-actions, .card-actions, .clarity-meme-pill-row, .clarity-notes-pill-row");
       if (!row) {
         row = document.createElement("div");
-        row.className = "clarity-meme-pill-row";
-        row.style.cssText = "display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.45rem";
+        row.className = "clarity-action-row";
         card.appendChild(row);
       }
       var btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "btn-soft clarity-to-meme-pill";
-      btn.textContent = "🖼️ Meme";
+      btn.className = "clarity-to-meme-pill clarity-action-chip";
+      btn.textContent = "Meme";
       btn.style.display = memeOk ? "inline-flex" : "none";
       btn.addEventListener("click", function (ev) {
         try { ev.preventDefault(); ev.stopPropagation(); } catch (e0) {}

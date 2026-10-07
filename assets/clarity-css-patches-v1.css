@@ -113,3 +113,108 @@ html[data-clarity-pin-banner="0"] #clarity-top-duo {
   position: relative !important;
   top: auto !important;
 }
+
+
+/* ========== ULTIMATE chrome pin (wins all prior fighters) ========== */
+@media (min-width: 901px) {
+  html #clarity-global-nav.global-nav,
+  html nav#clarity-global-nav {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1300 !important;
+  }
+  html #clarity-top-duo {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: var(--clarity-nav-h, 52px) !important;
+    z-index: 1290 !important;
+    margin: 0 !important;
+  }
+}
+@media (min-width: 600px) and (orientation: landscape) {
+  html #clarity-global-nav.global-nav,
+  html nav#clarity-global-nav {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1300 !important;
+  }
+  html #clarity-top-duo {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: var(--clarity-nav-h, 52px) !important;
+    z-index: 1290 !important;
+  }
+}
+@media (max-width: 900px) and (orientation: portrait) {
+  html #clarity-global-nav.global-nav,
+  html nav#clarity-global-nav,
+  html #clarity-top-duo {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+/* JS pin flag overrides (resize desktop↔mobile) */
+html[data-chrome-pin="1"] #clarity-global-nav.global-nav,
+html[data-chrome-pin="1"] nav#clarity-global-nav {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1300 !important;
+}
+html[data-chrome-pin="1"] #clarity-top-duo {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: var(--clarity-nav-h, 52px) !important;
+  z-index: 1290 !important;
+}
+html[data-chrome-pin="0"] #clarity-global-nav.global-nav,
+html[data-chrome-pin="0"] nav#clarity-global-nav,
+html[data-chrome-pin="0"] #clarity-top-duo {
+  position: relative !important;
+  top: auto !important;
+}
+/* Banner: no action pills clutter */
+#clarity-top-duo .clarity-to-notes-pill,
+#clarity-top-duo .clarity-to-meme-pill,
+#clarity-top-duo .clarity-notes-pill-row,
+#clarity-top-duo .clarity-meme-pill-row,
+#clarity-global-nav .clarity-to-notes-pill,
+#clarity-global-nav .clarity-to-meme-pill {
+  display: none !important;
+}
+/* Sleek section action chips — not sore thumbs */
+.clarity-action-chip,
+button.clarity-to-notes-pill,
+button.clarity-to-meme-pill {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0.15rem 0.2rem 0 0 !important;
+  padding: 0.22rem 0.55rem !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--border, #d5cbb8) !important;
+  background: transparent !important;
+  color: var(--text-muted, #5c6b62) !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  opacity: 0.92;
+}
+button.clarity-to-notes-pill:hover,
+button.clarity-to-meme-pill:hover,
+.clarity-action-chip:hover {
+  color: var(--accent, #0d4f3c) !important;
+  border-color: var(--accent, #0d4f3c) !important;
+  opacity: 1;
+}
+.clarity-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.4rem;
+  align-items: center;
+}
