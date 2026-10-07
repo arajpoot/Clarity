@@ -1114,7 +1114,7 @@
     var bar = document.createElement("div");
     bar.className = "clarity-meme-toolbar clarity-meme-ai-bar";
     bar.style.cssText =
-      "display:flex;flex-wrap:wrap;gap:0.35rem;align-items:center;margin:0.45rem 0 0.55rem;padding:0.25rem 0;";
+      "display:flex;flex-wrap:wrap;gap:0.35rem;align-items:center;margin:0.45rem 0 0.55rem;padding:0.25rem 0;max-width:100%;";
 
     function chip(label, title, fn) {
       var b = document.createElement("button");
@@ -1186,10 +1186,9 @@
     );
 
     var note = document.createElement("div");
-    note.style.cssText =
-      "flex:1 1 100%;font-size:0.7rem;opacity:0.82;line-height:1.3";
+    note.className = "meme-toolbar-note";
     note.textContent =
-      "Scenery only · ref on watermark · discard images that resemble prophets or use Quran as decoration.";
+      "Scenery only — discard images that resemble prophets or use Quran as decoration.";
     bar.appendChild(note);
 
     var stage =
@@ -1468,8 +1467,9 @@
     bar.appendChild(chip("grid4x4", "4×4 collage", "Collage mode: scene split into 4×4 cells"));
 
     var tip = document.createElement("span");
-    tip.style.cssText = "font-size:0.7rem;opacity:0.8;margin-left:0.25rem";
-    tip.textContent = "Grid = lines · 4×4 = collage layout";
+    tip.className = "meme-toolbar-note";
+    tip.style.cssText = "font-size:0.7rem;opacity:0.8;margin-left:0.15rem;white-space:nowrap";
+    tip.textContent = "Grid = lines · 4×4 = collage";
     bar.appendChild(tip);
 
     var stage =
