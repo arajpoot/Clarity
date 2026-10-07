@@ -11,22 +11,40 @@
 
   function extract(card) {
     if (!card) return { ar: "", en: "", ref: "" };
-    var arEl = card.querySelector('.arabic,[lang="ar"],.cmd-ar,.sr-ar,.verse-ar,.ayah-ar,.hadith-ar,.rabbana-arabic');
-    var enEl = card.querySelector('.cmd-en,.sr-en,.verse-en,.translation,.ayah-en,.english,.hadith-en');
-    var refEl = card.querySelector('.ref,.verse-ref,.sr-ref,.citation,[data-ref],.hadith-ref,.source');
-    var ar = arEl ? (arEl.textContent || "").trim() : "";
-    var en = enEl ? (enEl.textContent || "").trim() : "";
-    var ref = refEl ? (refEl.textContent || refEl.getAttribute("data-ref") || "").trim() : "";
+    var ar = "", en = "", ref = "";
+    function textOf(el) {
+      if (!el) return "";
+      var t = "";
+      try {
+        var body = el.querySelector(".tts-body, .verse-text, .ayah-text");
+        t = (body || el).textContent || "";
+      } catch (e) { t = el.textContent || ""; }
+      return String(t).replace(/\s+/g, " ").replace(/🔊/g, "").trim();
+    }
+    try {
+      if (card.id === "commands-card" && g.currentCommandVerse) {
+        ar = g.currentCommandVerse.arabic || "";
+        en = g.currentCommandVerse.english || g.currentCommandVerse.en || "";
+        ref = g.currentCommandVerse.ref || "";
+      }
+      if ((!ar || !en) && g.currentJourneyVerse) {
+        ar = ar || g.currentJourneyVerse.arabic || "";
+        en = en || g.currentJourneyVerse.en || g.currentJourneyVerse.english || "";
+        ref = ref || g.currentJourneyVerse.ref || "";
+      }
+    } catch (e0) {}
+    var arEl = card.querySelector("#cmd-ar-text, #cmd-arabic, .arabic, [lang='ar'], .cmd-ar, .sr-ar, .verse-ar, .ayah-ar, .hadith-ar, .rabbana-arabic");
+    var enEl = card.querySelector("#cmd-en-text, .cmd-en, .sr-en, .verse-en, .translation, .ayah-en, .english, .hadith-en");
+    var refEl = card.querySelector(".ref, .verse-ref, .sr-ref, .citation, [data-ref], .hadith-ref, .source");
+    if (!ar) ar = textOf(arEl);
+    if (!en) en = textOf(enEl);
+    if (!ref && refEl) ref = textOf(refEl) || (refEl.getAttribute("data-ref") || "").trim();
     if (!ref) {
       var h = ((card.querySelector("h2,h3,.card-title") || {}).textContent || "");
-      var m = h.match(/(\d+\s*:\s*\d+)/);
-      if (m) ref = "Qur\u2019an " + m[1].replace(/\s/g, "");
+      var mm = h.match(/(\d+\s*:\s*\d+)/);
+      if (mm) ref = "Qur\u2019an " + mm[1].replace(/\s/g, "");
     }
-    if (!ar && g.currentCommandVerse && card.id === "commands-card") {
-      ar = g.currentCommandVerse.arabic || "";
-      en = en || g.currentCommandVerse.english || "";
-      ref = ref || g.currentCommandVerse.ref || "";
-    }
+    en = en.replace(/Sahih International.*/i, "").replace(/Recommended follow-up.*/i, "").trim();
     return { ar: ar, en: en, ref: ref };
   }
 
@@ -135,21 +153,42 @@
     var en = String(payload.en || payload.english || "").trim();
     var ref = String(payload.ref || "").trim();
     try {
+      if (typeof g.memeState !== "object" || !g.memeState) g.memeState = {};
+      g.memeState.top = ar;
+      g.memeState.mid = en;
+      g.memeState.bottom = ref;
+      g.memeState.ref = ref;
+      g.memeState._lastRef = ref;
+      g.memeState.outline = Math.max(g.memeState.outline || 0, 4);
+      try {
+        var i = document.getElementById("meme-top-input");
+        var o = document.getElementById("meme-mid-input");
+        var s = document.getElementById("meme-bottom-input");
+        if (i) i.value = ar;
+        if (o) o.value = en;
+        if (s) s.value = ref;
+      } catch (e1) {}
       if (typeof g.memeApplyVerseCard === "function") {
-        g.memeApplyVerseCard(ar, en, "", ref);
-      } else if (g.memeState) {
-        g.memeState.top = ar;
-        g.memeState.mid = en;
-        g.memeState.bottom = ref;
-        g.memeState.ref = ref;
-        g.memeState._lastRef = ref;
-        if (typeof g.memeDraw === "function") g.memeDraw();
+        try { g.memeApplyVerseCard(ar, en, "", ref); } catch (e2) {}
       }
-      if (g.memeState) {
-        g.memeState.outline = Math.max(g.memeState.outline || 0, 4);
-        if (typeof g.memeAutoFitSizes === "function") g.memeAutoFitSizes();
+      if (typeof g.clarityMemeFill === "function") {
+        try { g.clarityMemeFill(ar, en, ref); } catch (e3) {}
       }
-    } catch (e) {}
+      if (typeof g.memeAutoFitSizes === "function") try { g.memeAutoFitSizes(); } catch (e4) {}
+      if (typeof g.memeDraw === "function") {
+        g.memeDraw();
+        setTimeout(function () {
+          try {
+            if (g.memeState) {
+              if (ar) g.memeState.top = ar;
+              if (en) g.memeState.mid = en;
+              if (ref) { g.memeState.bottom = ref; g.memeState.ref = ref; }
+            }
+            g.memeDraw();
+          } catch (e5) {}
+        }, 120);
+      }
+    } catch (e) { console.warn("meme applyText", e); }
   }
 
   function push(payload, mode) {
