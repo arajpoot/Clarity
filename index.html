@@ -331,17 +331,17 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261006LF" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261006LF" media="print" onload="this.media='all'" id="clarity-critical-css-link">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261006LF"></noscript></noscript>
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261006DP" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261006DP" media="print" onload="this.media='all'" id="clarity-critical-css-link">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261006DP"></noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 <!-- offloaded clarity-banner-lock-js -->
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261006LF" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261006LF"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261006DP" media="print" onload="this.media='all'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261006DP"></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
      assets/clarity-css-patches-v1.css. Deferred JS graph is owned by
      ClarityBoot.report() in console (merged into runtime-overlays). -->
@@ -2295,20 +2295,16 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <!-- ========== Clarity script layers (defer = order preserved) ========== -->
 <!-- L1 Runtime: boot · shields · smooth · theme · security · meme -->
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261006LF"></script>
-<script src="./assets/curriculum/pathway-hydrator-v1.js?v=20261006LF" defer></script>
-<script src="./assets/clarity-seeker-ease-v1.js?v=20261006LF" defer></script>
-<script src="./assets/clarity-layout-fix-v1.js?v=20261006LF" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261006DP"></script>
+<script src="./assets/curriculum/pathway-hydrator-v1.js?v=20261006DP" defer></script>
+<script src="./assets/clarity-seeker-ease-v1.js?v=20261006DP" defer></script>
+<script src="./assets/clarity-layout-fix-v1.js?v=20261006DP" defer></script>
 <script id="clarity-audit-boot">
-(function(){try{var q=new URLSearchParams(location.search);if(q.get("audit")==="1"||(localStorage&&localStorage.getItem("clarity_audit")==="1")){var s=document.createElement("script");s.src="./assets/clarity-site-audit-v1.js?v=20261006LF";s.defer=true;document.head.appendChild(s);}}catch(e){}})();
+(function(){try{var q=new URLSearchParams(location.search);if(q.get("audit")==="1"||(localStorage&&localStorage.getItem("clarity_audit")==="1")){var s=document.createElement("script");s.src="./assets/clarity-site-audit-v1.js?v=20261006DP";s.defer=true;document.head.appendChild(s);}}catch(e){}})();
 </script>
 
 <!-- L2 Core SPA shell + UI -->
-<script src="./assets/clarity-chunk-8.js?v=20261006LF" defer></script>
 <!-- L3 Feature modules -->
-<script src="./assets/clarity-track-os-v3.js?v=20261006LF" defer></script>
-<script src="./assets/nuros-bridge-enrich-js.js?v=20261006LF" defer></script>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261006LF" defer></script>
 <script>
 (function(){
   function loadUft(){ /* superseded by ClarityLazy */ if(window.ClarityLazy) window.ClarityLazy.uft(); }
@@ -2316,12 +2312,8 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   else setTimeout(loadUft, 2500);
 })();
 </script>
-<script src="./assets/clarity-grave-path-curriculum-js.js?v=20261006LF" defer></script>
 <!-- L4 Path curriculum (confine modules by educational phase) -->
-<script src="./assets/clarity-path-progress-v1.js?v=20261006LF" defer></script>
 <!-- L5 Polish + shine (after path so they cannot open-all over seeker) -->
-<script src="./assets/clarity-polish-wiring-v2.js?v=20261006LF" defer data-clarity-prio="low"></script>
-<script src="./assets/clarity-ui-shine-v1.js?v=20261006LF" defer data-clarity-prio="low"></script>
 
 
 <script>
@@ -2346,7 +2338,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   "use strict";
   if (window.__CLARITY_LAZY_V1__) return;
   window.__CLARITY_LAZY_V1__ = true;
-  var VER = "20261006LF";
+  var VER = "20261006DP";
   var loaded = {};
   function loadOnce(id, src) {
     if (loaded[id]) return loaded[id];
