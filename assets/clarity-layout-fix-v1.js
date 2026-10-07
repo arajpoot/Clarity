@@ -6,7 +6,7 @@
   "use strict";
   if (w.__CLARITY_LAYOUT_FIX_V1__) return;
   w.__CLARITY_LAYOUT_FIX_V1__ = true;
-  var VER = "20261006DP";
+  var VER = "20261006QF";
 
   function navEl() { return document.getElementById("clarity-global-nav"); }
   function duoEl() { return document.getElementById("clarity-top-duo"); }
