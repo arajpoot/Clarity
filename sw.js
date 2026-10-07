@@ -1,15 +1,15 @@
-/* Clarity Service Worker — Seeker-first offline shell 20261006L2 */
-const CACHE = "clarity-seeker-v20261006L2";
+/* Clarity Service Worker — Seeker-first offline shell 20261006L3 */
+const CACHE = "clarity-seeker-v20261006L3";
 const PRECACHE = [
   "/",
   "/index.html",
-  "/assets/clarity-critical-css-v1.css?v=20261006L2",
-  "/assets/clarity-css-patches-v1.css?v=20261006L2",
-  "/assets/clarity-runtime-overlays-v1.js?v=20261006L2",
-  "/assets/curriculum/pathway-hydrator-v1.js?v=20261006L2",
-  "/assets/clarity-path-progress-v1.js?v=20261006L2",
-  "/assets/clarity-chunk-8.js?v=20261006L2",
-  "/assets/clarity-track-os-v3.js?v=20261006L2",
+  "/assets/clarity-critical-css-v1.css?v=20261006L3",
+  "/assets/clarity-css-patches-v1.css?v=20261006L3",
+  "/assets/clarity-runtime-overlays-v1.js?v=20261006L3",
+  "/assets/curriculum/pathway-hydrator-v1.js?v=20261006L3",
+  "/assets/clarity-path-progress-v1.js?v=20261006L3",
+  "/assets/clarity-chunk-8.js?v=20261006L3",
+  "/assets/clarity-track-os-v3.js?v=20261006L3",
   "/robots.txt"
 ];
 
