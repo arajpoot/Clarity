@@ -1,10 +1,18 @@
 {
+  "build": "20261007LEAN3",
+  "scan": "final-final-20261007",
+  "js_syntax": "all OK",
+  "asset_refs": "all present",
+  "meme_toolbar": "horizontal row + mobile overflow-x",
+  "banner": "valid structure",
   "vault": "PBKDF2-210k AES-GCM non-extractable RAM key",
-  "csp": "object-src none; frame-ancestors self",
-  "removed": "quiet-boot, site-audit, dual layout fighters",
-  "packs": [
-    "feature-pack",
-    "path-pack",
-    "aux-pack"
-  ]
+  "csp": "object-src none; frame-ancestors self; unsafe-inline/eval still present for legacy",
+  "fighters": "bootPortal no PickPrimaryDoor on refresh",
+  "sandbox": {
+    "LEAN3": true,
+    "toolbar_chips": 10,
+    "flexDir": "row",
+    "legacy_bg_hidden": true
+  },
+  "safe_to_publish": true
 }
