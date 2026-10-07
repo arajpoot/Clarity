@@ -595,3 +595,132 @@ html body::before {
   font-size: 0.68rem !important;
   opacity: 0.7 !important;
 }
+
+
+/* =================================================================
+   ANTI DOUBLE-PAINT v10 — sticky only, opaque chrome, no fixed stack
+   ================================================================= */
+html, body {
+  overflow-x: clip !important;
+}
+
+/* Kill ALL fixed positioning on chrome (fixed = out of flow = ghost paint) */
+html body #clarity-global-nav.global-nav,
+html body nav#clarity-global-nav,
+html body #clarity-top-duo,
+html body #clarity-visit-pill-bar,
+html body #clarity-path-module-strip,
+html[data-chrome-pin] body #clarity-global-nav.global-nav,
+html[data-chrome-pin] body #clarity-top-duo,
+html[data-chrome-pin] body #clarity-visit-pill-bar,
+html[data-chrome-pin] body #clarity-path-module-strip,
+body.clarity-chrome-pinned #clarity-global-nav.global-nav,
+body.clarity-chrome-pinned #clarity-top-duo,
+body.clarity-chrome-pinned #clarity-visit-pill-bar,
+body.clarity-chrome-pinned #clarity-path-module-strip {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+/* Desktop sticky stack — stays in flow, no double paint */
+@media (min-width: 1024px) {
+  html[data-chrome-pin="1"] body #clarity-global-nav.global-nav,
+  html[data-chrome-pin="1"] body nav#clarity-global-nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2100 !important;
+    background: #0f1a14 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  html[data-theme="light"][data-chrome-pin="1"] body #clarity-global-nav.global-nav,
+  html[data-theme="day"][data-chrome-pin="1"] body #clarity-global-nav.global-nav {
+    background: #fffdf8 !important;
+  }
+  html[data-chrome-pin="1"] body #clarity-top-duo {
+    position: sticky !important;
+    top: var(--clarity-nav-h, 52px) !important;
+    z-index: 2090 !important;
+    background: #0d4f3c !important;
+  }
+  /* Visit + path strips stick under banner, opaque */
+  html[data-chrome-pin="1"] body #clarity-visit-pill-bar {
+    position: sticky !important;
+    top: calc(var(--clarity-nav-h, 52px) + min(40vh, 220px)) !important;
+    z-index: 2080 !important;
+    background: #0f1a14 !important;
+    opacity: 1 !important;
+  }
+  html[data-theme="light"][data-chrome-pin="1"] body #clarity-visit-pill-bar,
+  html[data-theme="day"][data-chrome-pin="1"] body #clarity-visit-pill-bar {
+    background: #f3efe6 !important;
+  }
+  html[data-chrome-pin="1"] body #clarity-path-module-strip {
+    position: sticky !important;
+    top: calc(var(--clarity-nav-h, 52px) + min(40vh, 220px) + 2.2rem) !important;
+    z-index: 2075 !important;
+    background: #12261c !important;
+    opacity: 1 !important;
+  }
+  html[data-theme="light"][data-chrome-pin="1"] body #clarity-path-module-strip,
+  html[data-theme="day"][data-chrome-pin="1"] body #clarity-path-module-strip {
+    background: #e8f0eb !important;
+  }
+}
+
+/* Mobile / narrow: never sticky chrome */
+@media (max-width: 1023px) {
+  html body #clarity-global-nav.global-nav,
+  html body nav#clarity-global-nav,
+  html body #clarity-top-duo,
+  html body #clarity-visit-pill-bar,
+  html body #clarity-path-module-strip {
+    position: relative !important;
+    top: auto !important;
+  }
+  html body {
+    padding-top: 0 !important;
+  }
+}
+
+/* Opaque strip surfaces — no see-through ghost text */
+#clarity-visit-pill-bar,
+.cv-stitched-banner {
+  opacity: 1 !important;
+  background: #0f1a14 !important;
+}
+html[data-theme="light"] #clarity-visit-pill-bar,
+html[data-theme="day"] #clarity-visit-pill-bar {
+  background: #f3efe6 !important;
+}
+#clarity-path-module-strip {
+  opacity: 1 !important;
+  background: #12261c !important;
+}
+html[data-theme="light"] #clarity-path-module-strip,
+html[data-theme="day"] #clarity-path-module-strip {
+  background: #e8f0eb !important;
+}
+
+/* Main content never transparent under chrome */
+#main-application-workspace,
+.main-content,
+#main-content {
+  position: relative !important;
+  z-index: 1 !important;
+  opacity: 1 !important;
+  background: transparent !important;
+  isolation: isolate !important;
+}
+
+/* Disable leftover body::before spacers */
+html body::before {
+  content: none !important;
+  display: none !important;
+  height: 0 !important;
+}
