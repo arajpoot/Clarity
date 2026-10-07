@@ -1,1 +1,6314 @@
-window.__CLARITY_UFT_FULL_RESTORE_V1__||(window.__CLARITY_UFT_FULL_RESTORE_V1__=!0),void 0!==window.clarityLS&&window.clarityLS||(window.clarityLS={getItem:function(e){try{return localStorage.getItem(e)}catch(e){return null}},setItem:function(e,t){try{localStorage.setItem(e,t)}catch(e){}},removeItem:function(e){try{localStorage.removeItem(e)}catch(e){}}}),window.UFT_KEY="clarity_user_family_tree_v1";var UFT_KEY=window.UFT_KEY||"clarity_user_family_tree_v1",uftView="pedigree";function uftRead(){try{return JSON.parse(clarityLS.getItem(UFT_KEY)||"{}")}catch(e){return{}}}function uftFields(){return{g1:document.getElementById("uft-g1"),g2:document.getElementById("uft-g2"),g3:document.getElementById("uft-g3"),self:document.getElementById("uft-self"),selfNote:document.getElementById("uft-self-note"),father:document.getElementById("uft-father"),fatherY:document.getElementById("uft-father-y"),mother:document.getElementById("uft-mother"),motherY:document.getElementById("uft-mother-y"),spouse:document.getElementById("uft-spouse"),pgf:document.getElementById("uft-pgf"),pgm:document.getElementById("uft-pgm"),mgf:document.getElementById("uft-mgf"),mgm:document.getElementById("uft-mgm"),children:document.getElementById("uft-children"),grandchildren:document.getElementById("uft-grandchildren"),siblings:document.getElementById("uft-siblings")}}function uftLoad(){const e=uftRead(),t=uftFields();if(!t.self)return;Object.keys(t).forEach(function(n){t[n]&&null!=e[n]&&"object"!=typeof e[n]&&(t[n].value=e[n])});const n=document.getElementById("uft-stage");n&&n.setAttribute("data-skin",e.skin||"green"),uftView="pedigree",uftRender(),uftRenderRelList(),uftRefreshLibrary(),uftSetStatus(e.savedAt?"Restored from this device · "+uftWhen(e.savedAt):"Private on this device — not uploaded.")}function uftRegId(){return"m_"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}function uftRegNormRow(e){return{id:e.id||uftRegId(),name:String(e.name||"").trim(),role:String(e.role||"").trim(),phone:String(e.phone||"").trim(),email:String(e.email||"").trim(),city:String(e.city||"").trim(),note:String(e.note||"").trim()}}function uftRegFind(e,t,n){const r=uftNorm(t),a=e&&e.registry||[];if(n){const e=a.find(function(e){return uftNorm(e.name)===r&&String(e.role||"")===String(n)});if(e)return e}return a.find(function(e){return uftNorm(e.name)===r&&!e.role})||a.find(function(e){return uftNorm(e.name)===r})||null}function uftContactOf(e,t){try{const n=uftRegFind(uftCollect(),e,t);if(!n)return"";const r=[];return n.phone&&r.push(n.phone),n.email&&r.push(n.email),n.city&&r.push(n.city),r.join(" · ")}catch(e){return""}}function uftRegFillHostSelect(){const e=document.getElementById("uft-reg-link-host");if(!e)return;const t=e.value,n="function"==typeof uftCollect?uftCollect():{},r=[],a={};function o(e,t){if(!e)return;const o="function"==typeof uftNorm?uftNorm(e):String(e).toLowerCase();if(!o||a[o])return;a[o]=!0;let i="function"==typeof uftNameKey?uftNameKey(e):"n:"+o;try{if("function"==typeof uftCoreIdOf){const t=uftCoreIdOf(n,e);t&&(i=t)}}catch(e){}r.push({name:e,slot:t||"",id:i})}["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(e){o(n[e],e)}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(e){("function"==typeof uftLines?uftLines(n[e]):[]).forEach(function(t){o(t,e)})}),(n.relatives||[]).forEach(function(e){e&&e.name&&o(e.name,e.anchor||"")}),e.innerHTML='<option value="">No link (registry only)</option>'+r.map(function(e){return'<option value="'+uftEsc(e.id)+'">'+uftEsc(e.name)+(e.slot?" · "+uftEsc(e.slot):"")+"</option>"}).join(""),t&&(e.value=t)}function uftRegClearForm(){["uft-reg-name","uft-reg-phone","uft-reg-email","uft-reg-city","uft-reg-note","uft-reg-role","uft-reg-edit-id"].forEach(function(e){const t=document.getElementById(e);t&&(t.value="")});const e=document.getElementById("uft-reg-link-host");e&&(e.value="");const t=document.getElementById("uft-reg-link-rel");t&&(t.value="child")}function uftRegPlaceOnTree(e,t,n){if(!e||!t)return!1;n=n||"child";const r=uftCollect();if(r.relatives=Array.isArray(r.relatives)?r.relatives.slice():[],"self"!==t||"father"!==n||r.father)if("self"!==t||"mother"!==n||r.mother)if("self"!==t||"spouse"!==n||r.spouse)if("child"===n&&"self"===t){const t=uftLines(r.children);t.some(function(t){return uftSame(t,e)})||(t.push(e),r.children=t.join("\n"))}else if("sibling"===n&&"self"===t){const t=uftLines(r.siblings);t.some(function(t){return uftSame(t,e)})||(t.push(e),r.siblings=t.join("\n"))}else r.relatives.some(function(r){return r&&uftSame(r.name,e)&&String(r.anchor)===String(t)&&String(r.relation)===String(n)})||r.relatives.push({anchor:t,relation:n,name:e});else r.spouse=e;else r.mother=e;else r.father=e;"function"==typeof uftDedupeRels&&(r.relatives=uftDedupeRels(r.relatives,r));try{clarityLS.setItem(UFT_KEY,JSON.stringify(r))}catch(e){}const a=uftFields();return Object.keys(a).forEach(function(e){a[e]&&null!=r[e]&&"object"!=typeof r[e]&&(a[e].value=r[e])}),!0}function uftRegAdd(){return uftRegAddNew()}function uftRegAddNew(){const e=((document.getElementById("uft-reg-name")||{}).value||"").trim();if(!e)return void("function"==typeof uftSetStatus&&uftSetStatus("Enter a name for the new member."));const t=uftCollect();t.registry=Array.isArray(t.registry)?t.registry:[];const n=((document.getElementById("uft-reg-edit-id")||{}).value||"").trim(),r=(document.getElementById("uft-reg-link-host")||{}).value||"",a=(document.getElementById("uft-reg-link-rel")||{}).value||"child",o=r?a:(document.getElementById("uft-reg-role")||{}).value||"",i=uftRegNormRow({id:n,name:e,role:o,phone:(document.getElementById("uft-reg-phone")||{}).value||"",email:(document.getElementById("uft-reg-email")||{}).value||"",city:(document.getElementById("uft-reg-city")||{}).value||"",note:(document.getElementById("uft-reg-note")||{}).value||""});let f=null;n&&(f=t.registry.find(function(e){return e&&e.id===n})),f||(f=uftRegFind(t,i.name,i.role)),f?(f.name=i.name,f.role=i.role||f.role,f.phone=i.phone,f.email=i.email,f.city=i.city,f.note=i.note):t.registry.push(i);try{clarityLS.setItem(UFT_KEY,JSON.stringify(t))}catch(e){}let u=!1;r&&(u=uftRegPlaceOnTree(e,r,a)),uftRegClearForm(),uftRegRender(),u&&"function"==typeof uftRender&&uftRender({keepScroll:!0}),"function"==typeof uftRefreshAnchorOptions&&uftRefreshAnchorOptions();try{"function"==typeof uftIntegrityRefresh&&uftIntegrityRefresh()}catch(e){}"function"==typeof uftSetStatus&&uftSetStatus(u?e+" saved · linked on tree as "+a+" — set gender/status on their card":e+" saved in registry (not on tree yet)")}function uftRegUseLoadedCard(e){const t=("function"==typeof uftGetStoredCards?uftGetStoredCards():[])[e];if(!t||!t.name)return;const n=function(e,t){const n=document.getElementById(e);n&&(n.value=t||"")};n("uft-reg-name",t.name),n("uft-reg-phone",t.phone),n("uft-reg-email",t.email),n("uft-reg-city",t.city);const r=document.getElementById("uft-registry-box");r&&(r.open=!0);const a=document.getElementById("uft-reg-name");if(a)try{a.focus()}catch(e){}"function"==typeof uftSetStatus&&uftSetStatus("Loaded card in form — choose link on tree, then Save member")}function uftRegRenderLoaded(){const e=document.getElementById("uft-reg-loaded-list"),t=document.getElementById("uft-reg-loaded-count"),n=document.getElementById("uft-reg-loaded-section"),r="function"==typeof uftGetStoredCards?uftGetStoredCards():[];if(t&&(t.textContent=r.length?"("+r.length+")":"(none)"),e)if(r.length){e.innerHTML=r.map(function(e,t){const n=[e.generationHint||e.slot,e.gender,e.vital,e.phone].filter(Boolean).join(" · ");return'<div class="uft-reg-loaded-row" data-search="'+uftEsc([e.name,e.generationHint,e.slot,e.gender,e.vital,e.phone,e.city].filter(Boolean).join(" "))+'"><div><strong>'+uftEsc(e.name||"—")+"</strong>"+(n?'<div class="uft-contact">'+uftEsc(n)+"</div>":"")+'</div><button type="button" class="btn-secondary" onclick="uftRegUseLoadedCard('+t+')">Use in form</button></div>'}).join("");try{const e=document.getElementById("uft-loaded-search");e&&e.value&&uftFilterLoadedList(e.value)}catch(e){}n&&(n.dataset.userTouched||(n.open=!1),n.open&&!n.dataset.userTouched&&(n.open=!1))}else e.innerHTML='<span class="uft-hint">No uploaded member cards. Use Upload → Member cards CSV/JSON.</span>'}function uftRegRemove(e){const t=uftCollect();t.registry=(t.registry||[]).filter(function(t){return t.id!==e});try{clarityLS.setItem(UFT_KEY,JSON.stringify(t))}catch(e){}uftRegRender(),uftRender({keepScroll:!0})}function uftRegFill(e){const t=(uftCollect().registry||[]).find(function(t){return t&&t.id===e});if(!t)return;const n=function(e,t){const n=document.getElementById(e);n&&(n.value=t||"")};n("uft-reg-name",t.name),n("uft-reg-role",t.role),n("uft-reg-phone",t.phone),n("uft-reg-email",t.email),n("uft-reg-city",t.city),n("uft-reg-note",t.note),n("uft-reg-edit-id",t.id);const r=document.getElementById("uft-registry-box");r&&(r.open=!0);try{uftRegFillHostSelect()}catch(e){}}function uftRegImportTree(){const e=uftCollect();e.registry=Array.isArray(e.registry)?e.registry:[];const t={};function n(n,r){if(!n)return;const a=uftVitalKey(n,r||"");t[a]||(t[a]=!0,e.registry.push(uftRegNormRow({name:n,role:r||""})))}e.registry.forEach(function(e){t[uftVitalKey(e.name,e.role)]=!0}),n(e.self,"self"),n(e.spouse,"spouse"),n(e.father,"father"),n(e.mother,"mother"),n(e.pgf,"pgf"),n(e.pgm,"pgm"),n(e.mgf,"mgf"),n(e.mgm,"mgm"),uftLines(e.g3).forEach(function(e){n(e,"g3")}),uftLines(e.g2).forEach(function(e){n(e,"g2")}),uftLines(e.g1).forEach(function(e){n(e,"g1")}),uftLines(e.siblings).forEach(function(e){n(e,"sibling")}),uftLines(e.children).forEach(function(e){n(e,"child")}),(e.relatives||[]).forEach(function(e){e&&e.name&&n(e.name,e.relation||e.anchor||"other")});try{clarityLS.setItem(UFT_KEY,JSON.stringify(e))}catch(e){}uftRegRender(),"function"==typeof uftSetStatus&&uftSetStatus("Tree names copied into the registry. Add contacts there.")}function uftRegRender(){const e=document.getElementById("uft-reg-list");if(!e)return;const t=uftCollect().registry||[],n=document.getElementById("uft-reg-saved-count");n&&(n.textContent=t.length?"("+t.length+")":""),e.innerHTML=t.length?t.map(function(e){const t=[e.role,e.phone,e.email,e.city].filter(Boolean).join(" · ");return'<div class="uft-reg-row"><div><strong>'+uftEsc(e.name)+"</strong>"+(t?'<div class="uft-contact">'+uftEsc(t)+"</div>":"")+(e.note?'<div class="uft-contact">'+uftEsc(e.note)+"</div>":"")+'</div><div><button type="button" class="btn-secondary" onclick="uftRegFill(\''+e.id+'\')">Edit</button> <button type="button" class="btn-secondary" onclick="uftRegRemove(\''+e.id+"')\">Remove</button></div></div>"}).join(""):'<span class="uft-hint">No registry contacts yet. Add a new member above, or pull names from the tree.</span>';try{uftRegFillHostSelect()}catch(e){}try{uftRegRenderLoaded()}catch(e){}}function uftCollect(){const e=uftFields(),t=uftRead(),n={};return Object.keys(e).forEach(function(t){n[t]=e[t]?e[t].value:""}),n.relatives=Array.isArray(t.relatives)?t.relatives:[],n.vital=t.vital&&"object"==typeof t.vital?t.vital:{},n.registry=Array.isArray(t.registry)?t.registry:[],n.gender=t.gender&&"object"==typeof t.gender?t.gender:{},n.born=t.born&&"object"==typeof t.born?t.born:{},uftAutoLinkSiblings(uftDedupeData(n))}function uftRelLabel(e){return{sibling:"Sibling",child:"Offspring",spouse:"Spouse",grandchild:"Grandchild",uncle:"Uncle",aunt:"Aunt",nephew:"Nephew",niece:"Niece",cousin:"Cousin"}[e]||e}function uftAnchorLabel(e){const t={self:"You",spouse:"Spouse",father:"Father",mother:"Mother",pgf:"Father's father",pgm:"Father's mother",mgf:"Mother's father",mgm:"Mother's mother"};return t[e]?t[e]:e&&0===String(e).indexOf("n:")?String(e).slice(2):e||""}function uftRenderRelList(){const e=document.getElementById("uft-rel-list");if(!e)return;const t=uftRead(),n=t.relatives||[];uftRefreshAnchorOptions(),e.innerHTML=n.length?n.map(function(e,n){const r=uftAnchorLabel(e.anchor)||String(e.anchor||"").replace(/^n:/,""),a=uftRoleToYou(t,e.name,uftRelLabel(e.relation));return'<div class="uft-rel-chip"><span>'+uftEsc(r)+" → "+uftEsc(uftRelLabel(e.relation))+": <strong>"+uftEsc(e.name)+'</strong> <em class="uft-auto-tag">'+uftEsc(a)+'</em></span><button type="button" onclick="uftRemoveRel('+n+')">✕</button></div>'}).join(""):'<p class="uft-hint">No extra relations yet. Attach a sibling or child to any person already on the tree — uncles, aunts and cousins are linked automatically.</p>'}function uftPickExistingName(e){const t=((e||document.getElementById("uft-rel-pick")||{}).value||"").trim(),n=document.getElementById("uft-rel-name");t&&n&&(n.value=t,e.value="")}function uftFillNameChoices(){const e=uftRead(),t=[],n={};function r(e){const r=uftNorm(e=String(e||"").trim());r&&!n[r]&&(n[r]=!0,t.push(e))}try{uftAllMembers(e).forEach(function(e){e&&e.name&&r(e.name)}),(e.relatives||[]).forEach(function(e){e&&e.name&&r(e.name)})}catch(e){}const a=document.getElementById("uft-rel-name-list");a&&(a.innerHTML=t.map(function(e){return'<option value="'+uftEsc(e)+'"></option>'}).join(""));const o=document.getElementById("uft-rel-pick");if(o){const e=o.value;o.innerHTML='<option value="">Or choose someone already on the tree…</option>'+t.map(function(e){return'<option value="'+uftEsc(e)+'">'+uftEsc(e)+"</option>"}).join(""),o.value=e}}function uftAddRel(){const e=document.getElementById("uft-rel-pick"),t=((document.getElementById("uft-rel-name")||{}).value||"").trim()||((e||{}).value||"").trim();if(!t)return"function"==typeof uftSetStatus&&uftSetStatus("Type a name or pick someone already on the tree, then Add."),!1;const n=(document.getElementById("uft-rel-anchor")||{}).value||"self",r=(document.getElementById("uft-rel-type")||{}).value||"sibling",a=uftCollect();a.relatives=a.relatives||[];const o=uftHasPerson(a,t);if(a.relatives.some(function(e){return uftSame(e.name,t)&&String(e.anchor)===String(n)&&String(e.relation)===String(r)}))return void("function"==typeof uftSetStatus&&uftSetStatus(t+" is already linked that way — duplicate skipped."));if(o&&"core"===o.kind&&uftSame(o.name,t)){if(uftIsRestatedCore(a,{name:t,anchor:n,relation:r}))return void("function"==typeof uftSetStatus&&uftSetStatus(t+" is already on the tree as "+o.role+". Extra copy skipped."));"function"==typeof uftSetStatus&&uftSetStatus(t+" is already "+o.role+". Linked across both family lines (cousin marriage allowed).")}const i=((document.getElementById("uft-rel-vital")||{}).value||"").trim();a.relatives.push({anchor:n,relation:r,name:t}),a.relatives=uftDedupeRels(a.relatives,a),i&&(a.vital=a.vital||{},a.vital[uftVitalKey(t,n)]=i);const f=((document.getElementById("uft-rel-gender")||{}).value||"").trim();f&&(a.gender=a.gender||{},a.gender[uftGenderKey(t,n)]=f);const u=((document.getElementById("uft-rel-born")||{}).value||"").replace(/[^0-9]/g,"").slice(0,4);u&&(a.born=a.born||{},a.born[uftVitalKey(t,n)]=u),"sibling"===r&&uftAutoLinkSiblings(a);const s=document.getElementById("uft-stage");s&&(a.skin=s.getAttribute("data-skin")||"green"),a.view=uftView;try{clarityLS.setItem(UFT_KEY,JSON.stringify(a))}catch(e){}const c=document.getElementById("uft-rel-name");return c&&(c.value="",c.focus()),e&&(e.value=""),uftRenderRelList(),uftRefreshAnchorOptions(),uftFillNameChoices(),uftRender({keepScroll:!0}),"function"==typeof uftSetStatus&&uftSetStatus(uftLinkMessage(n,r,t,a)+" Add another name the same way."),!0}function uftRemoveRel(e){const t=uftCollect();t.relatives=(t.relatives||[]).filter(function(t,n){return n!==e});try{clarityLS.setItem(UFT_KEY,JSON.stringify(t))}catch(e){}uftRenderRelList(),uftRender({keepScroll:!0})}function uftDeletePerson(e,t,n){if(!(e=String(e||"").trim()))return;if(t=String(t||"").trim(),n=String(n||"").trim(),!confirm("Remove "+e+" from this place only?\n\nOther places that use the same name stay. Gender / status / year stay with the person."))return;const r=uftCollect();r.relatives=Array.isArray(r.relatives)?r.relatives.slice():[];const a=["self","spouse","father","mother","pgf","pgm","mgf","mgm"],o=["g1","g2","g3","siblings","children","grandchildren"],i="function"==typeof uftNameKey?uftNameKey(e):"n:"+uftNorm(e);let f=!1;function u(e,t){return!(!e||!t)&&("function"==typeof uftSame?uftSame(e,t):String(e).trim().toLowerCase()===String(t).trim().toLowerCase())}function s(e){if(!e)return[];const t=[],n=function(e){if(!e)return;const n=String(e);t.indexOf(n)<0&&t.push(n)};n(e),n(String(e).replace(/^n:/i,"")),"function"==typeof uftNameKey&&(n(uftNameKey(e)),n(uftNameKey(String(e).replace(/^n:/i,""))));try{const t="function"==typeof uftCoreName?uftCoreName(r,e):"";t&&(n(t),"function"==typeof uftNameKey&&n(uftNameKey(t)))}catch(e){}return a.indexOf(String(e))>=0&&r[e]&&(n(r[e]),"function"==typeof uftNameKey&&n(uftNameKey(r[e]))),t}function c(e,t){if(!e||!t||!t.length)return!1;for(let n=0;n<t.length;n++){if(u(e,t[n]))return!0;if(String(e)===String(t[n]))return!0;if(String(e).replace(/^n:/i,"")===String(t[n]).replace(/^n:/i,""))return!0}return!1}const l=s(n).concat(s(t));if(t&&a.indexOf(t)>=0&&u(r[t],e)&&(r[t]="",f=!0),t&&o.indexOf(t)>=0){const n=uftLines(r[t]),a=n.filter(function(t){return!u(t,e)});a.length!==n.length&&(r[t]=a.join("\n"),f=!0)}const d=r.relatives.length;if(r.relatives=r.relatives.filter(function(t){if(!t)return!1;const n=u(t.name,e),r=c(t.anchor,[e,i].concat(s(e))),a=!!l.length&&c(t.anchor,l),o=!!l.length&&c(t.name,l);return!(n&&a||o&&r||n&&"spouse"===t.relation&&a)}),r.relatives.length!==d&&(f=!0),!f&&l.length){const t=r.relatives.length;r.relatives=r.relatives.filter(function(t){return!t||!u(t.name,e)||!c(t.anchor,l)}),r.relatives.length!==t&&(f=!0)}if(!f){let t=!1;r.relatives=r.relatives.filter(function(n){return!(!t&&n&&u(n.name,e)&&(t=!0,f=!0,1))})}if(!f)for(let t=0;t<o.length;t++){const n=o[t],a=uftLines(r[n]),i=a.findIndex(function(t){return u(t,e)});if(i>=0){a.splice(i,1),r[n]=a.join("\n"),f=!0;break}}if(!f)for(let t=0;t<a.length;t++)if(u(r[a[t]],e)){r[a[t]]="",f=!0;break}try{clarityLS.setItem(UFT_KEY,JSON.stringify(r))}catch(e){}const m=uftFields();Object.keys(m).forEach(function(e){m[e]&&null!=r[e]&&"object"!=typeof r[e]&&(m[e].value=r[e])}),"function"==typeof uftRenderRelList&&uftRenderRelList(),"function"==typeof uftRefreshAnchorOptions&&uftRefreshAnchorOptions(),"function"==typeof uftFillNameChoices&&uftFillNameChoices(),uftRender({keepScroll:!0});try{"function"==typeof uftRenderOwnTreePanel&&uftRenderOwnTreePanel()}catch(e){}try{"function"==typeof uftIntegrityRefresh&&uftIntegrityRefresh()}catch(e){}"function"==typeof uftSetStatus&&uftSetStatus(f?e+" removed from this place":e+" — could not find a link to remove (try Edit names → relations list)")}function uftNorm(e){return String(e||"").trim().toLowerCase().replace(/\s+/g," ")}function uftSame(e,t){const n=uftNorm(e),r=uftNorm(t);return!(!n||!r||n!==r&&n.replace(/\s+/g,"")!==r.replace(/\s+/g,""))}function uftCoreIdOf(e,t){if(!t)return null;const n=[["self",e.self],["spouse",e.spouse],["father",e.father],["mother",e.mother],["pgf",e.pgf],["pgm",e.pgm],["mgf",e.mgf],["mgm",e.mgm]];for(let e=0;e<n.length;e++)if(uftSame(n[e][1],t))return n[e][0];return null}function uftIsCorePerson(e,t){return!!uftCoreIdOf(e,t)}function uftRolesOf(e,t){const n=[];if(!t)return n;uftSame(t,e.self)&&n.push("You"),uftSame(t,e.spouse)&&n.push("Spouse"),uftSame(t,e.father)&&n.push("Father"),uftSame(t,e.mother)&&n.push("Mother"),uftSame(t,e.pgf)&&n.push("Father's father"),uftSame(t,e.pgm)&&n.push("Father's mother"),uftSame(t,e.mgf)&&n.push("Mother's father"),uftSame(t,e.mgm)&&n.push("Mother's mother"),(e.relatives||[]).forEach(function(r){if(!uftSame(r.name,t))return;const a=uftCoreIdOf(e,uftCoreName(e,r.anchor))||r.anchor;"sibling"!==r.relation||"pgf"!==a&&"pgm"!==a||n.push("Paternal great-uncle/aunt"),"sibling"!==r.relation||"mgf"!==a&&"mgm"!==a||n.push("Maternal great-uncle/aunt"),"sibling"===r.relation&&"father"===a&&n.push("Paternal uncle/aunt"),"sibling"===r.relation&&"mother"===a&&n.push("Maternal uncle/aunt"),"spouse"!==r.relation||"pgf"!==a&&"pgm"!==a&&"mgf"!==a&&"mgm"!==a||n.push("Grandparent by marriage")});const r={};return n.filter(function(e){return!r[e]&&(r[e]=!0,!0)})}function uftCrossMarriageNote(e,t){const n=uftRolesOf(e,t),r=n.some(function(e){return/father|paternal/i.test(e)}),a=n.some(function(e){return/mother|maternal/i.test(e)});return r&&a?"Same person on paternal and maternal lines (cousin-marriage link).":""}function uftNotCorePeople(e,t){return(t||[]).filter(function(t){return t&&t.name&&!uftIsCorePerson(e,t.name)})}function uftParentsOf(e,t){const n=uftCoreName(e,t)||(0===String(t||"").indexOf("n:")?String(t).slice(2):""),r=[];function a(t,n){const a=n||uftCoreName(e,t)||"";(a||t)&&r.push({id:t||uftNameKey(a),name:a})}return("self"===t||uftSame(n,e.self))&&(a("father",e.father),a("mother",e.mother)),("father"===t||uftSame(n,e.father))&&(a("pgf",e.pgf),a("pgm",e.pgm)),("mother"===t||uftSame(n,e.mother))&&(a("mgf",e.mgf),a("mgm",e.mgm)),(e.relatives||[]).forEach(function(t){"child"===t.relation&&n&&uftSame(t.name,n)&&a(t.anchor,uftCoreName(e,t.anchor)||String(t.anchor||"").replace(/^n:/,""))}),uftUniquePeople(r)}function uftUnclesOf(e,t){const n=uftCoreName(e,t)||"",r=[];return uftParentsOf(e,t).forEach(function(t){uftSiblingsOf(e,t.id).forEach(function(t){uftSame(t.name,n)||uftIsCorePerson(e,t.name)||r.push(t)})}),uftUniquePeople(r)}function uftUncleOwners(e,t){const n=[];return["pgf","pgm","mgf","mgm"].forEach(function(r){uftUnclesOf(e,r).some(function(e){return uftSame(e.name,t)})&&n.push(r)}),n}function uftRoleLabel(e,t,n){const r=uftRolesOf(e,t);return r.length?r.join(" · "):n||""}function uftCoreName(e,t){return e?"self"===t?e.self||"":"spouse"===t?e.spouse||"":"father"===t?e.father||"":"mother"===t?e.mother||"":"pgf"===t?e.pgf||"":"pgm"===t?e.pgm||"":"mgf"===t?e.mgf||"":"mgm"===t?e.mgm||"":t&&0===String(t).indexOf("n:")?String(t).slice(2):"":""}function uftNameKey(e){const t=uftNorm(e);return t?"n:"+t:""}function uftAnchorMatches(e,t,n,r){return!!t&&(t===n||(0===String(t).indexOf("n:")?uftSame(String(t).slice(2),r)||uftSame(String(t).slice(2),uftCoreName(e,n)):uftSame(uftCoreName(e,t),r)))}function uftPeersOf(e,t){const n=[],r={};function a(e){const a=uftNorm(e);!a||uftSame(e,t)||r[a]||(r[a]=!0,n.push({name:e}))}return(e.relatives||[]).forEach(function(n){if(!n||"sibling"!==n.relation)return;const r=(uftCoreName(e,n.anchor)||String(n.anchor||"").replace(/^n:/,"")).trim();uftSame(r,t)&&a(n.name),uftSame(n.name,t)&&r&&a(r)}),uftSiblingsOf(e,uftNameKey(t)).forEach(function(e){a(e.name)}),uftSiblingsOf(e,t).forEach(function(e){a(e.name)}),n}function uftUniquePeople(e){const t=[],n={};return(e||[]).forEach(function(e){const r=uftNorm(e&&e.name);r&&!n[r]&&(n[r]=!0,t.push(e))}),t}function uftRelsFor(e,t){const n=uftCoreName(e,t)||(0===String(t||"").indexOf("n:")?String(t).slice(2):"");return(e.relatives||[]).filter(function(r){return r&&r.name&&uftAnchorMatches(e,r.anchor,t,n)})}function uftKidsOf(e,t){const n=[];return uftRelsFor(e,t).forEach(function(e){"child"!==e.relation&&"grandchild"!==e.relation&&"offspring"!==e.relation||n.push({name:e.name,relation:"grandchild"===e.relation?"grandchild":"child",anchor:e.anchor})}),"self"===t&&uftLines(e.children).forEach(function(e){n.push({name:e,relation:"child",anchor:"self"})}),uftUniquePeople(n)}function uftIsBloodUncle(e,t){return!!t&&uftSiblingsOf(e,"father").concat(uftSiblingsOf(e,"mother")).some(function(e){return uftSame(e.name,t)})}function uftBloodSiblings(e){return uftSiblingsOf(e,"self").filter(function(t){return!(!t||!t.name||uftIsCorePerson(e,t.name)||uftSame(t.name,e.spouse)||uftIsBloodUncle(e,t.name))})}function uftInLawPeople(e){if(!e.spouse)return[];const t=[];return uftRelsFor(e,"spouse").concat(uftRelsFor(e,uftNameKey(e.spouse))).forEach(function(n){n&&n.name&&(uftSame(n.name,e.self)||uftSame(n.name,e.spouse)||uftIsBloodUncle(e,n.name)||uftBloodSiblings(e).some(function(e){return uftSame(e.name,n.name)})||t.push({name:n.name,relation:n.relation,anchor:n.anchor}))}),uftUniquePeople(t)}function uftSiblingsOf(e,t){const n=[];return uftRelsFor(e,t).forEach(function(e){"sibling"===e.relation&&n.push({name:e.name,relation:"sibling",anchor:e.anchor})}),"self"===t&&(uftLines(e.siblings).forEach(function(e){n.push({name:e,relation:"sibling",anchor:"self"})}),uftKidsOf(e,"father").concat(uftKidsOf(e,"mother")).forEach(function(t){uftSame(t.name,e.self)||n.push({name:t.name,relation:"sibling",anchor:"self"})})),"father"===t&&uftKidsOf(e,"pgf").concat(uftKidsOf(e,"pgm")).forEach(function(t){uftSame(t.name,e.father)||n.push({name:t.name,relation:"sibling",anchor:"father"})}),"mother"===t&&uftKidsOf(e,"mgf").concat(uftKidsOf(e,"mgm")).forEach(function(t){uftSame(t.name,e.mother)||n.push({name:t.name,relation:"sibling",anchor:"mother"})}),uftUniquePeople(n)}function uftSpouseOf(e,t){const n=[];return"self"===t&&e.spouse&&n.push({name:e.spouse,relation:"spouse",anchor:"self"}),uftRelsFor(e,t).forEach(function(e){"spouse"===e.relation&&n.push({name:e.name,relation:"spouse",anchor:e.anchor})}),uftUniquePeople(n)}function uftRoleToYou(e,t,n){if(!t)return n||"";const r=uftRolesOf(e,t);if(r.length)return uftCrossMarriageNote(e,t)?r.join(" · ")+" · linked both lines":r.join(" · ");if(uftSiblingsOf(e,"self").some(function(e){return uftSame(e.name,t)}))return"Sibling";if(uftKidsOf(e,"self").some(function(e){return uftSame(e.name,t)}))return"Child";if(uftSiblingsOf(e,"father").some(function(e){return uftSame(e.name,t)}))return"Paternal uncle/aunt";if(uftSiblingsOf(e,"mother").some(function(e){return uftSame(e.name,t)}))return"Maternal uncle/aunt";let a=!1;return uftSiblingsOf(e,"father").concat(uftSiblingsOf(e,"mother")).forEach(function(n){uftKidsOf(e,uftNameKey(n.name)).forEach(function(e){uftSame(e.name,t)&&(a=!0)})}),a?"Cousin":uftLines(e.grandchildren).some(function(e){return uftSame(e,t)})?"Grandchild":n||"Relative"}function uftOffshoot(e,t){const n=uftRelsFor(e,t);return n.length?'<div class="uft-offshoot">'+n.map(function(t){return uftPerson(t.name,uftRoleToYou(e,t.name,uftRelLabel(t.relation)),"","rel")}).join("")+"</div>":""}function uftRefreshAnchorOptions(){const e=document.getElementById("uft-rel-anchor");if(!e)return;const t=e.value,n=uftCollect(),r=[],a={};function o(e,t){e&&!a[e]&&(a[e]=!0,r.push([e,t]))}o("self",(n.self||"You")+" — you"),o("spouse",(n.spouse||"Spouse")+" — spouse"),o("father",(n.father||"Father")+" — father"),o("mother",(n.mother||"Mother")+" — mother"),o("pgf",(n.pgf||"Father's father")+" — father's father"),o("pgm",(n.pgm||"Father's mother")+" — father's mother"),o("mgf",(n.mgf||"Mother's father")+" — mother's father"),o("mgm",(n.mgm||"Mother's mother")+" — mother's mother"),uftLines(n.g3).forEach(function(e){o(uftNameKey(e),e+" — great-grandparent")}),uftLines(n.g2).forEach(function(e){o(uftNameKey(e),e+" — 2nd-great-grandparent")}),uftLines(n.g1).forEach(function(e){o(uftNameKey(e),e+" — 3rd-great-grandparent")}),uftLines(n.siblings).forEach(function(e){o(uftNameKey(e),e+" — sibling")}),uftLines(n.children).forEach(function(e){o(uftNameKey(e),e+" — child")}),(n.relatives||[]).forEach(function(e){e&&e.name&&o(uftNameKey(e.name),e.name+" — "+uftRelLabel(e.relation))}),e.innerHTML=r.map(function(e){return'<option value="'+uftEsc(e[0])+'">'+uftEsc(e[1])+"</option>"}).join(""),t&&a[t]&&(e.value=t)}function uftLinkMessage(e,t,n,r){return"Linked "+n+" as "+uftRoleToYou(r,n,uftRelLabel(t))+" (attached to "+(uftCoreName(r,e)||String(e).replace(/^n:/,"")||"this person")+"). Their children nest under them."}function uftUniqueLines(e){const t={};return uftLines(e).filter(function(e){const n=uftNorm(e);return!(!n||t[n]||(t[n]=!0,0))}).join("\n")}function uftCoreList(e){return[{id:"self",name:e.self,role:"You"},{id:"spouse",name:e.spouse,role:"Spouse"},{id:"father",name:e.father,role:"Father"},{id:"mother",name:e.mother,role:"Mother"},{id:"pgf",name:e.pgf,role:"Father's father"},{id:"pgm",name:e.pgm,role:"Father's mother"},{id:"mgf",name:e.mgf,role:"Mother's father"},{id:"mgm",name:e.mgm,role:"Mother's mother"}].filter(function(e){return e.name&&uftNorm(e.name)})}function uftIsRestatedCore(e,t){return!(t&&t.name&&("child"!==t.relation||"father"!==t.anchor&&"mother"!==t.anchor||!uftSame(t.name,e.self))&&("child"!==t.relation||"pgf"!==t.anchor&&"pgm"!==t.anchor||!uftSame(t.name,e.father))&&("child"!==t.relation||"mgf"!==t.anchor&&"mgm"!==t.anchor||!uftSame(t.name,e.mother))&&("spouse"!==t.relation||"self"!==t.anchor||!uftSame(t.name,e.spouse))&&("sibling"!==t.relation||"self"!==t.anchor||!uftSame(t.name,e.self)))}function uftDedupeRels(e,t){const n=[],r={};return(e||[]).forEach(function(e){if(!e||!String(e.name||"").trim())return;if(uftIsRestatedCore(t,e))return;const a=uftNorm(uftCoreName(t,e.anchor)||String(e.anchor||"").replace(/^n:/,"")),o=uftNorm(e.name)+"|"+a+"|"+String(e.relation||"");r[o]||(r[o]=!0,n.push({anchor:e.anchor,relation:e.relation||"relative",name:String(e.name).trim()}))}),n}function uftDedupeData(e){const t=e||{};["g1","g2","g3","siblings","children","grandchildren"].forEach(function(e){t[e]=uftUniqueLines(t[e]||"")});const n={};["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(e){t[e]&&(n[uftNorm(t[e])]=e)}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(e){const r=[];uftLines(t[e]).forEach(function(e){const t=uftNorm(e);t&&(n[t]||r.some(function(e){return uftNorm(e)===t})||r.push(e))}),t[e]=r.join("\n")});const r={};return["g1","g2","g3"].forEach(function(e){const n=[];uftLines(t[e]).forEach(function(t){const a=uftNorm(t);a&&!r[a]&&(r[a]=e,n.push(t))}),t[e]=n.join("\n")}),t.relatives=uftDedupeRels(t.relatives||[],t),t.relatives=(t.relatives||[]).filter(function(e){return!(!e||!e.name)}),t.vital=t.vital&&"object"==typeof t.vital?t.vital:{},t.gender=t.gender&&"object"==typeof t.gender?t.gender:{},t.born=t.born&&"object"==typeof t.born?t.born:{},t}function uftHasPerson(e,t){const n=uftNorm(t);if(!n)return null;const r=uftCoreList(e);for(let e=0;e<r.length;e++)if(uftNorm(r[e].name)===n)return{kind:"core",id:r[e].id,role:r[e].role,name:r[e].name};const a=[["siblings","Sibling"],["children","Child"],["grandchildren","Grandchild"],["g3","Great-grandparent"],["g2","2nd-great-grandparent"],["g1","3rd-great-grandparent"]];for(let r=0;r<a.length;r++)if(uftLines(e[a[r][0]]).some(function(e){return uftNorm(e)===n}))return{kind:"list",id:a[r][0],role:a[r][1],name:t};const o=(e.relatives||[]).find(function(e){return uftNorm(e.name)===n});return o?{kind:"rel",id:o.anchor,role:uftRelLabel(o.relation),name:o.name}:null}function uftAllMembers(e){const t=[];return uftCoreList(e).forEach(function(e){t.push({name:e.name,relation:e.role,anchor:e.id})}),uftLines(e.siblings).forEach(function(e){t.push({name:e,relation:"Sibling",anchor:"self"})}),uftLines(e.children).forEach(function(e){t.push({name:e,relation:"Child",anchor:"self"})}),uftLines(e.grandchildren).forEach(function(e){t.push({name:e,relation:"Grandchild",anchor:"self"})}),uftLines(e.g3).forEach(function(e){t.push({name:e,relation:"Great-grandparent",anchor:"g3"})}),uftLines(e.g2).forEach(function(e){t.push({name:e,relation:"2nd-great-grandparent",anchor:"g2"})}),uftLines(e.g1).forEach(function(e){t.push({name:e,relation:"3rd-great-grandparent",anchor:"g1"})}),(e.relatives||[]).forEach(function(e){t.push({name:e.name,relation:uftRelLabel(e.relation),anchor:e.anchor})}),uftUniquePeople(t)}function uftSetSkin(e){const t=document.getElementById("uft-stage");if(t){t.setAttribute("data-skin",e||"green");try{const t=Object.assign(uftRead(),uftCollect());t.skin=e||"green",clarityLS.setItem(UFT_KEY,JSON.stringify(t))}catch(e){}}}function uftSetView(e){uftView="pedigree";try{clarityLS.setItem("clarity_uft_view","pedigree")}catch(e){}uftRender()}function uftEditorEl(){return document.getElementById("uft-editor")}function uftDockStepHighlight(e){try{document.querySelectorAll(".uft-dock-steps .uft-step").forEach(function(t){t.classList.toggle("active-step",String(t.getAttribute("data-step"))===String(e))})}catch(e){}}function uftDockOpenSection(e){if(e)try{"DETAILS"===e.tagName&&(e.open=!0),e.classList.add("uft-step-flash"),setTimeout(function(){try{e.classList.remove("uft-step-flash")}catch(e){}},950),e.scrollIntoView({behavior:"smooth",block:"nearest"})}catch(e){}}function uftDockStep(e){e=parseInt(e,10)||1;try{"function"==typeof uftExpandEditor&&uftExpandEditor()}catch(e){}uftDockStepHighlight(e);var t=document.getElementById("uft-registry-box"),n=document.getElementById("uft-reg-loaded-section"),r=document.getElementById("uft-build-section"),a=document.getElementById("uft-reg-new-section"),o=document.querySelector(".uft-vital-row")||document.getElementById("uft-vital-who");if(1!==e)if(2!==e)if(3!==e)if(4!==e)if(5!==e);else{try{"function"==typeof uftSetView&&uftSetView("pedigree"),"function"==typeof uftRender&&uftRender({keepScroll:!0})}catch(e){}if(o&&o.closest){uftDockOpenSection(o.closest("label")||o.closest(".uft-reg-section")||o);try{var i=document.getElementById("uft-vital-who");i&&i.focus()}catch(e){}}else try{"function"==typeof uftCollapseEditor&&uftCollapseEditor();var f=document.getElementById("uft-preview");f&&f.scrollIntoView({behavior:"smooth",block:"nearest"})}catch(e){}try{"function"==typeof uftSetStatus&&uftSetStatus("Step 5 · Vitals — set Alive/Deceased, gender & year on each tree card")}catch(e){}}else{r&&(r.open=!0),t&&(t.open=!0),uftDockOpenSection(r);try{var u=document.getElementById("uft-build-from-cards");u&&(u.hidden=!1),"function"==typeof uftRefreshCardPicker&&uftRefreshCardPicker();var s=document.getElementById("uft-bc-self");s&&s.focus()}catch(e){}try{"function"==typeof uftSetStatus&&uftSetStatus("Step 4 · Build tree — map focus person & generations, then Apply")}catch(e){}}else{n&&(n.open=!0),uftDockOpenSection(n);try{"function"==typeof uftRegRenderLoaded&&uftRegRenderLoaded();var c=document.getElementById("uft-loaded-search");c&&c.focus()}catch(e){}try{"function"==typeof uftSetStatus&&uftSetStatus("Step 3 · Loaded cards — upload, scan, or pick a name to link")}catch(e){}}else{t&&(t.open=!0),uftDockOpenSection(a||t);try{"function"==typeof uftRegFillHostSelect&&uftRegFillHostSelect();var l=document.getElementById("uft-reg-link-host");l&&(l.focus(),l.scrollIntoView({behavior:"smooth",block:"nearest"}))}catch(e){}try{"function"==typeof uftSetStatus&&uftSetStatus("Step 2 · Link — choose host member and relation, then Save & link")}catch(e){}}else{t&&(t.open=!0),uftDockOpenSection(a||t);try{var d=document.getElementById("uft-reg-name");d&&(d.focus(),d.scrollIntoView({behavior:"smooth",block:"nearest"}))}catch(e){}try{"function"==typeof uftSetStatus&&uftSetStatus("Step 1 · Registry — add a member or edit contacts")}catch(e){}}}try{window.uftDockStep=uftDockStep}catch(e){}function uftToggleEditor(){const e=uftEditorEl();if(!e)return;e.classList.toggle("collapsed");const t=document.getElementById("uft-editor-toggle");t&&(t.textContent=e.classList.contains("collapsed")?"✎ Names & registry":"✕ Close");try{if(!e.classList.contains("collapsed")){const t=e.querySelector(".uft-dock-body");t&&t.scrollIntoView({behavior:"smooth",block:"nearest"})}}catch(e){}}function uftCollapseEditor(){const e=uftEditorEl();if(!e)return;e.classList.add("collapsed");const t=document.getElementById("uft-editor-toggle");t&&(t.textContent="✎ Names & registry")}function uftExpandEditor(){const e=uftEditorEl();if(!e)return;e.classList.remove("collapsed");const t=document.getElementById("uft-editor-toggle");t&&(t.textContent="✕ Close");try{const e=document.getElementById("uft-file-ops-section");e&&(e.open=!1)}catch(e){}}const UFT_LIB_KEY="clarity_uft_library_v1";let uftSaveTimer=null;function uftWhen(e){try{const t=new Date(e);return isNaN(t.getTime())?"":t.toLocaleString()}catch(e){return""}}function uftSetStatus(e){const t=document.getElementById("uft-status");t&&(t.textContent=e||"")}function uftPersist(e,t){const n=document.getElementById("uft-stage");n&&(e.skin=n.getAttribute("data-skin")||"green"),e.view=uftView,e.savedAt=(new Date).toISOString();try{clarityLS.setItem(UFT_KEY,JSON.stringify(e))}catch(e){}return t||uftSetStatus("Saved on this device · "+uftWhen(e.savedAt)),e}function uftReadLib(){try{return JSON.parse(clarityLS.getItem(UFT_LIB_KEY)||"[]")}catch(e){return[]}}function uftWriteLib(e){try{clarityLS.setItem(UFT_LIB_KEY,JSON.stringify(e.slice(0,12)))}catch(e){}}function uftRefreshLibrary(){const e=document.getElementById("uft-library");if(!e)return;const t=uftReadLib(),n=e.value;e.innerHTML='<option value="">Saved copies…</option>'+t.map(function(e){return'<option value="'+uftEsc(e.id)+'">'+uftEsc((e.name||"Copy")+" · "+uftWhen(e.savedAt))+"</option>"}).join(""),n&&(e.value=n)}function uftSnapshot(){const e=uftPersist(uftCollect()),t=prompt("Name this saved copy",(e.self||"Family tree").trim()||"Family tree");if(null===t)return;const n=uftReadLib();n.unshift({id:"uft_"+Date.now(),name:String(t||"Family tree").slice(0,60),savedAt:e.savedAt,data:e}),uftWriteLib(n),uftRefreshLibrary(),uftSetStatus("Named copy saved on this device · "+uftWhen(e.savedAt))}function uftLoadSnapshot(e){if(!e)return;const t=uftReadLib().find(function(t){return t.id===e});if(t&&t.data){uftApplyData(t.data);try{uftCollapseEditor()}catch(e){}uftSetStatus("Loaded copy “"+(t.name||"Family tree")+"”")}}function uftSave(){(((document.getElementById("uft-rel-name")||{}).value||"").trim()||((document.getElementById("uft-rel-pick")||{}).value||"").trim())&&uftAddRel();const e=uftPersist(uftCollect());uftRenderRelList(),uftRefreshAnchorOptions(),uftFillNameChoices();try{"function"==typeof uftSetView&&uftSetView("pedigree")}catch(e){}uftRender({keepScroll:!1});try{"function"==typeof uftCollapseEditor&&uftCollapseEditor()}catch(e){}try{const e=document.getElementById("uft-preview");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})}catch(e){}try{uftSetStatus("Pedigree saved · showing tree in workspace")}catch(e){}return e}function uftScheduleSave(){uftSaveTimer&&clearTimeout(uftSaveTimer),uftSaveTimer=setTimeout(function(){uftPersist(uftCollect(),!0),uftSetStatus("Auto-saved on this device · "+(new Date).toLocaleTimeString())},450)}function uftDownload(){uftSave();const e=uftRead();if("function"==typeof uftEnsurePeople)try{e.people=uftEnsurePeople(Object.assign({},e)).people}catch(e){}e.exportedAt=(new Date).toISOString(),e.exportType="clarity-family-members";const t=new Blob([JSON.stringify(e,null,2)],{type:"application/json"}),n=document.createElement("a"),r=(e.self||"family-tree").replace(/[^\w\-]+/g,"_").slice(0,40),a=(new Date).toISOString().slice(0,10);n.href=URL.createObjectURL(t),n.download="clarity-family-members-"+r+"-"+a+".json",document.body.appendChild(n),n.click(),setTimeout(function(){URL.revokeObjectURL(n.href),n.remove()},400),"function"==typeof uftSetStatus&&uftSetStatus("Members downloaded · keep this file to upload later")}var UFT_CARDS_KEY="clarity_uft_member_cards_v1";function uftGetStoredCards(){try{return JSON.parse(clarityLS.getItem(UFT_CARDS_KEY)||"[]")}catch(e){return[]}}function uftSetStoredCards(e){try{clarityLS.setItem(UFT_CARDS_KEY,JSON.stringify(e||[]))}catch(e){}uftRefreshCardPicker();try{"function"==typeof uftRegRenderLoaded&&uftRegRenderLoaded()}catch(e){}}function uftCardDedupeKey(e){return"function"==typeof uftNorm?uftNorm(e&&e.name):String(e&&e.name||"").trim().toLowerCase()}function uftCardRichness(e){if(!e)return 0;let t=0;return e.phone&&(t+=2),e.email&&(t+=2),e.city&&(t+=1),e.gender&&(t+=1),e.vital&&(t+=1),(e.born||e.year)&&(t+=1),(e.generationHint||e.slot)&&(t+=1),e.note&&(t+=1),t}function uftScanLoadedDuplicates(){const e=uftGetStoredCards();if(!e.length)return void("function"==typeof uftSetStatus&&uftSetStatus("No loaded cards to scan."));const t={},n=[];e.forEach(function(e,r){const a=uftCardDedupeKey(e);a&&(t[a]?uftCardRichness(e)>uftCardRichness(t[a].card)&&(t[a]={card:e,idx:r}):(t[a]={card:e,idx:r},n.push(a)))});const r=n.map(function(e){return t[e].card}),a=e.length-r.length;a?confirm("Scan & delete duplicates\n\nFound "+a+" duplicate name(s) among "+e.length+" loaded cards.\n\nOK = keep the fullest record for each name and permanently delete "+a+" duplicate(s) from this device.\nCancel = leave cards unchanged.")&&(uftSetStoredCards(r),"function"==typeof uftRegRenderLoaded&&uftRegRenderLoaded(),"function"==typeof uftSetStatus&&uftSetStatus("Removed "+a+" duplicate(s) · "+r.length+" unique loaded cards kept.")):"function"==typeof uftSetStatus&&uftSetStatus("Scan complete · no duplicate names found ("+e.length+" cards).")}function uftOffloadLoadedCards(){const e="function"==typeof uftGetStoredCards?uftGetStoredCards():[];if(!e.length)return void("function"==typeof uftSetStatus&&uftSetStatus("No loaded cards to offload."));const t=e.length;if(confirm("Offload "+t+" loaded member card(s)?\n\nOK = download a JSON backup, then remove them from this device.\nCancel = keep the list.\n\nThe pedigree tree and registry contacts are not deleted.")){try{const n={type:"clarity-member-cards",version:1,exportedAt:(new Date).toISOString(),count:t,cards:e},r=new Blob([JSON.stringify(n,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(r),a.download="clarity-loaded-members-offload-"+(new Date).toISOString().slice(0,10)+".json",document.body.appendChild(a),a.click(),a.remove(),setTimeout(function(){try{URL.revokeObjectURL(a.href)}catch(e){}},1500)}catch(e){return void alert("Could not download offload file.")}if(uftSetStoredCards([]),"function"==typeof uftRegRenderLoaded&&uftRegRenderLoaded(),"function"==typeof uftFillBuildCardSelects)try{uftFillBuildCardSelects()}catch(e){}"function"==typeof uftSetStatus&&uftSetStatus("Offloaded "+t+" card(s) · loaded list cleared on this device.")}}function uftClearLoadedCards(){const e=uftGetStoredCards();e.length?confirm("Clear all "+e.length+" loaded member cards from this device?\n\nThe family tree and registry contacts are not deleted.")&&(uftSetStoredCards([]),"function"==typeof uftRegRenderLoaded&&uftRegRenderLoaded(),"function"==typeof uftSetStatus&&uftSetStatus("Loaded member cards cleared.")):"function"==typeof uftSetStatus&&uftSetStatus("Loaded list is already empty.")}var uftPickCtx=null;function uftOpenPersonPicker(e,t,n){uftPickCtx={hostName:e,hostSlot:t||"",relation:n||"child"};try{window.uftPickCtx=uftPickCtx}catch(e){}const r=document.getElementById("uft-pick-modal"),a=document.getElementById("uft-pick-title"),o=document.getElementById("uft-pick-sub"),i=document.getElementById("uft-pick-search"),f=document.getElementById("uft-pick-typed");if(a&&(a.textContent="Add "+n+" of "+e),o&&(o.textContent="Pick from loaded members, or type a new name below"),i&&(i.value=""),f&&(f.value=""),uftRenderPickList(""),r){r.hidden=!1,r.removeAttribute("hidden"),r.style.display="flex",r.setAttribute("aria-hidden","false");try{r.scrollIntoView({block:"nearest"})}catch(e){}setTimeout(function(){try{i&&i.focus()}catch(e){}},60)}else console.warn("uft-pick-modal missing")}try{window.uftOpenPersonPicker=uftOpenPersonPicker}catch(e){}function uftClosePersonPicker(){uftPickCtx=null;const e=document.getElementById("uft-pick-modal");e&&(e.hidden=!0,e.setAttribute("hidden",""),e.style.display="none",e.setAttribute("aria-hidden","true"));const t=document.getElementById("uft-rel-menu");t&&(t.hidden=!0)}document.addEventListener("keydown",function(e){if("Escape"===e.key){const e=document.getElementById("uft-pick-modal");e&&!e.hidden&&uftClosePersonPicker()}});try{window.uftClosePersonPicker=uftClosePersonPicker}catch(e){}function uftRenderPickList(e){const t=document.getElementById("uft-pick-list");if(!t)return;e=String(e||"").trim().toLowerCase();let n=("function"==typeof uftGetStoredCards?uftGetStoredCards():[]).filter(function(t){return!(!t||!t.name)&&(!e||[t.name,t.generationHint,t.slot,t.city,t.phone].join(" ").toLowerCase().indexOf(e)>=0)});try{const a="function"==typeof uftCollect?uftCollect():{};function r(t,r){t&&(n.some(function(e){return"function"==typeof uftSame&&uftSame(e.name,t)})||e&&String(t).toLowerCase().indexOf(e)<0&&String(r||"").toLowerCase().indexOf(e)<0||n.push({name:t,generationHint:r||"tree",_fromTree:!0}))}(a.registry||[]).forEach(function(e){e&&e.name&&r(e.name,e.role||"registry")}),["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(e){r(a[e],e)}),[].forEach(function(){}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(e){("function"==typeof uftLines?uftLines(a[e]):[]).forEach(function(t){r(t,e)})}),(a.relatives||[]).forEach(function(e){e&&e.name&&r(e.name,e.relation||"relative")})}catch(o){}n.length?(t.innerHTML=n.slice(0,80).map(function(e,t){var n=[e.generationHint||e.slot,e.gender,e.vital,e.phone,e._fromReg?"registry":""].filter(Boolean).join(" · "),r=String(e.name||"");return'<button type="button" class="uft-pick-item" data-pick-name="'+uftEsc(r).replace(/"/g,"&quot;")+'"><strong>'+uftEsc(r)+"</strong>"+(n?"<small>"+uftEsc(n)+"</small>":"")+"</button>"}).join(""),t.dataset.pickBound||(t.dataset.pickBound="1",t.addEventListener("click",function(e){var t=e.target&&e.target.closest&&e.target.closest("[data-pick-name]");if(t){e.preventDefault();var n=t.getAttribute("data-pick-name")||"",r=window.uftConfirmPickName||("function"==typeof uftConfirmPickName?uftConfirmPickName:null);r&&r(n)}}))):t.innerHTML='<p class="uft-hint" style="padding:0.5rem;">No matches. Type a new name below, or upload member cards first.</p>'}var uftZoomLevel=1;function uftEnsureZoomLayer(e){var t=document.getElementById("uft-preview");if(t){var n=document.getElementById("uft-zoom-layer");if(n)n.parentNode!==t&&t.appendChild(n);else{for((n=document.createElement("div")).id="uft-zoom-layer",n.className="uft-zoom-layer";t.firstChild;)n.appendChild(t.firstChild);t.appendChild(n)}"string"==typeof e&&(n.innerHTML=e);try{uftZoomApply()}catch(e){}}}function uftEnsureZoomSizer(e){if(!e)return null;var t=document.getElementById("uft-zoom-sizer");if(t)e.parentNode!==t&&t.appendChild(e);else{(t=document.createElement("div")).id="uft-zoom-sizer",t.className="uft-zoom-sizer";var n=e.parentNode;if(!n)return null;n.insertBefore(t,e),t.appendChild(e)}return t}function uftZoomApply(e){e=e||{};var t=document.getElementById("uft-zoom-layer"),n=document.getElementById("uft-zoom-label");if(document.getElementById("uft-preview"),t){var r=uftEnsureZoomSizer(t);t.style.willChange="transform",t.style.transformOrigin="0 0",t.style.transform="scale("+uftZoomLevel+")";var a=function(){if(t){var e=Math.max(t.scrollWidth||0,t.offsetWidth||0,1),n=Math.max(t.scrollHeight||0,t.offsetHeight||0,1);r&&(r.style.width=e*uftZoomLevel+"px",r.style.minWidth=e*uftZoomLevel+"px",r.style.height=n*uftZoomLevel+"px",r.style.minHeight=n*uftZoomLevel+"px")}};e.immediate?a():(window._uftZoomSizeRaf&&cancelAnimationFrame(window._uftZoomSizeRaf),window._uftZoomSizeRaf=requestAnimationFrame(function(){a(),window._uftZoomSizeRaf=requestAnimationFrame(a)}))}n&&(n.textContent=Math.round(100*uftZoomLevel)+"%");try{clarityLS.setItem("uft_zoom_level",String(uftZoomLevel))}catch(e){}}function uftZoomSet(e,t){uftZoomLevel=Math.max(.55,Math.min(2.2,Math.round(100*e)/100)),uftZoomApply(t)}function uftZoomBy(e,t){uftZoomSet(uftZoomLevel+e,t)}function uftZoomReset(){uftZoomLevel=1,uftZoomApply({immediate:!0});var e=document.getElementById("uft-preview");if(e)try{e.scrollTo({left:0,top:0,behavior:"smooth"})}catch(t){e.scrollLeft=0,e.scrollTop=0}}function uftZoomInit(){try{var e=parseFloat(clarityLS.getItem("uft_zoom_level")||"1");isFinite(e)&&e>=.55&&e<=2.2&&(uftZoomLevel=e)}catch(e){}try{uftZoomApply({immediate:!0})}catch(e){}var t=document.getElementById("uft-preview");if(t)if("1"!==t.dataset.zoomBound){t.dataset.zoomBound="1",t.style.scrollBehavior="auto",t.style.overscrollBehavior="contain",t.style.touchAction="pan-x pan-y pinch-zoom",t.addEventListener("wheel",function(e){if(e.ctrlKey||e.metaKey){e.preventDefault();var n=t.getBoundingClientRect(),r=e.clientX-n.left+t.scrollLeft,a=e.clientY-n.top+t.scrollTop,o=uftZoomLevel;uftZoomBy(e.deltaY>0?-.08:.08,{immediate:!0});var i=uftZoomLevel/(o||1);t.scrollLeft=r*i-(e.clientX-n.left),t.scrollTop=a*i-(e.clientY-n.top)}},{passive:!1});var n=0,r=1,a=0,o=0;t.addEventListener("touchstart",function(e){if(2===e.touches.length){n=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)||1,r=uftZoomLevel;var i=t.getBoundingClientRect();a=(e.touches[0].clientX+e.touches[1].clientX)/2-i.left+t.scrollLeft,o=(e.touches[0].clientY+e.touches[1].clientY)/2-i.top+t.scrollTop}},{passive:!0}),t.addEventListener("touchmove",function(e){if(2===e.touches.length&&n){e.preventDefault();var i=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)||1;uftZoomSet(r*(i/n),{immediate:!0});var f=t.getBoundingClientRect(),u=(e.touches[0].clientY+e.touches[1].clientY)/2-f.top;t.scrollLeft=a*(uftZoomLevel/(r||1))-((e.touches[0].clientX+e.touches[1].clientX)/2-f.left),t.scrollTop=o*(uftZoomLevel/(r||1))-u}},{passive:!1}),t.addEventListener("touchend",function(){n=0},{passive:!0}),t.addEventListener("touchcancel",function(){n=0},{passive:!0});var i=0,f=0,u=0;t.addEventListener("touchend",function(e){if(!(e.touches&&e.touches.length||n)){var t=e.changedTouches&&e.changedTouches[0]?e.changedTouches[0]:null;t&&function(e,t,n){var r=Date.now(),a=r-i,o=Math.hypot((e||0)-f,(t||0)-u);if(a>0&&a<450&&o<40){n&&n.preventDefault&&n.preventDefault(),i=0;try{uftZoomReset()}catch(e){}try{"function"==typeof uftSetStatus&&uftSetStatus("Zoom reset · 100%")}catch(e){}return!0}i=r,f=e||0,u=t||0}(t.clientX,t.clientY,e)}},{passive:!1}),t.addEventListener("dblclick",function(e){e.preventDefault();try{uftZoomReset()}catch(e){}});var s=null;t.addEventListener("pointerdown",function(e){if("touch"!==e.pointerType&&0===e.button&&!(e.target&&e.target.closest&&e.target.closest("button, a, input, select, textarea"))){s={id:e.pointerId,x:e.clientX,y:e.clientY,sl:t.scrollLeft,st:t.scrollTop};try{t.setPointerCapture(e.pointerId)}catch(e){}t.style.cursor="grabbing"}}),t.addEventListener("pointermove",function(e){s&&s.id===e.pointerId&&(t.scrollLeft=s.sl-(e.clientX-s.x),t.scrollTop=s.st-(e.clientY-s.y))}),t.addEventListener("pointerup",l),t.addEventListener("pointercancel",l),t.addEventListener("lostpointercapture",l);var c=document.getElementById("uft-stage");c&&"1"!==c.dataset.zoomWheelBound&&(c.dataset.zoomWheelBound="1",c.addEventListener("wheel",function(e){(e.ctrlKey||e.metaKey)&&(e.target&&e.target.closest&&e.target.closest("#uft-preview")||(e.preventDefault(),uftZoomBy(e.deltaY>0?-.08:.08,{immediate:!0})))},{passive:!1}))}else try{uftZoomApply({immediate:!0})}catch(e){}function l(e){s&&(e&&s.id!==e.pointerId||(s=null,t.style.cursor=""))}}try{window.uftZoomInit=uftZoomInit,window.uftZoomReset=uftZoomReset,window.uftZoomBy=uftZoomBy,window.uftZoomApply=uftZoomApply,window.uftDownloadPng=uftDownloadPng,window.uftOffloadLoadedCards=uftOffloadLoadedCards,window.uftScanLoadedDuplicates=uftScanLoadedDuplicates,window.uftClearLoadedCards=uftClearLoadedCards}catch(e){}function uftFilterLoadedList(e){e=String(e||"").trim().toLowerCase();var t=document.getElementById("uft-reg-loaded-list");if(t){var n=t.querySelectorAll(".uft-reg-loaded-row"),r=0;n.forEach(function(t){var n=(t.getAttribute("data-search")||t.textContent||"").toLowerCase(),a=!e||n.indexOf(e)>=0;t.hidden=!a,a&&r++});var a=t.querySelector(".uft-loaded-empty");if(a&&a.remove(),e&&0===r&&n.length){var o=document.createElement("p");o.className="uft-hint uft-loaded-empty",o.textContent="No loaded members match “"+e+"”.",t.appendChild(o)}}}function uftFilterPickList(e){uftRenderPickList(e)}function uftConfirmPickTyped(){const e=document.getElementById("uft-pick-typed"),t=e?String(e.value||"").trim():"";t?uftConfirmPickName(t):"function"==typeof uftSetStatus&&uftSetStatus("Type a name or pick from the list.")}function uftConfirmPickName(e){try{var t=uftPickCtx||window.uftPickCtx;if(!t||!e)return;var n=t.hostName,r=t.hostSlot,a=t.relation;"function"==typeof uftClosePersonPicker?uftClosePersonPicker():window.uftClosePersonPicker&&window.uftClosePersonPicker();var o="function"==typeof uftApplyRelativeLink?uftApplyRelativeLink:window.uftApplyRelativeLink;"function"==typeof o&&o(n,r,a,String(e).trim())}catch(e){console.error("uftConfirmPickName",e)}}try{window.uftConfirmPickName=uftConfirmPickName,window.uftConfirmPickTyped=uftConfirmPickTyped,window.uftFilterPickList=uftFilterPickList,window.uftRenderPickList=uftRenderPickList,window.uftOpenPersonPicker=uftOpenPersonPicker,window.uftClosePersonPicker=uftClosePersonPicker}catch(e){}function uftCardOptionLabel(e){return(e.name||"")+(e.generationHint?" · "+e.generationHint:"")+("deceased"===e.vital?" †":"")+(e.gender?" · "+e.gender:"")}function uftFillCardSelect(e,t,n){if(!e)return;const r=n?Array.prototype.map.call(e.selectedOptions||[],function(e){return e.value}):e.value;e.innerHTML=(n?"":'<option value="">Select…</option>')+t.map(function(e,t){return'<option value="'+t+'">'+String(uftCardOptionLabel(e)).replace(/</g,"")+"</option>"}).join(""),n&&r&&r.length?Array.prototype.forEach.call(e.options,function(e){r.indexOf(e.value)>=0&&(e.selected=!0)}):!n&&r&&(e.value=r)}function uftRefreshCardPicker(){const e=uftGetStoredCards(),t=document.getElementById("uft-build-from-cards");t&&(t.hidden=!e.length);const n=document.getElementById("uft-rel-cards");if(n){const t=n.value;n.innerHTML='<option value="">1. Pick from loaded member cards…</option>'+e.map(function(e,t){return'<option value="'+t+'">'+String(uftCardOptionLabel(e)).replace(/</g,"")+"</option>"}).join(""),t&&(n.value=t)}["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(t){uftFillCardSelect(document.getElementById("uft-bc-"+t),e,!1)}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(t){uftFillCardSelect(document.getElementById("uft-bc-"+t),e,!0)});const r=document.getElementById("uft-rel-name-list");if(r){const t={};Array.prototype.forEach.call(r.querySelectorAll("option"),function(e){t[e.value]=!0}),e.forEach(function(e){if(e.name&&!t[e.name]){const t=document.createElement("option");t.value=e.name,r.appendChild(t)}})}}function uftSelectedCardNames(e){const t=document.getElementById(e),n=uftGetStoredCards();if(!t)return[];const r=t.multiple?Array.prototype.map.call(t.selectedOptions||[],function(e){return parseInt(e.value,10)}):""===t.value?[]:[parseInt(t.value,10)],a=[];return r.forEach(function(e){!isNaN(e)&&n[e]&&n[e].name&&a.push(String(n[e].name).trim())}),a}function uftApplyBuildFromCards(){const e=uftGetStoredCards();if(!e.length)return void alert("Upload member cards first (Upload → Member cards → picker list).");const t=uftSelectedCardNames("uft-bc-self");if(!t.length)return void alert("Select the focus person from the member cards list.");function n(e){return uftSelectedCardNames(e)[0]||""}function r(e){return uftSelectedCardNames(e)}const a=uftFields();function o(t,n){if(!t)return;const r=e.find(function(e){return e&&("function"==typeof uftSame?uftSame(e.name,t):e.name===t)});if(r)try{r.gender&&"function"==typeof uftSetGenderFor&&uftSetGenderFor(t,r.gender,n||r.slot||""),r.vital&&"function"==typeof uftSetVitalFor&&uftSetVitalFor(t,r.vital,n||r.slot||""),r.born&&"function"==typeof uftSetBornFor&&uftSetBornFor(t,r.born,n||r.slot||"")}catch(e){}}a.self&&(a.self.value=t[0]),a.spouse&&(a.spouse.value=n("uft-bc-spouse")),a.father&&(a.father.value=n("uft-bc-father")),a.mother&&(a.mother.value=n("uft-bc-mother")),a.pgf&&(a.pgf.value=n("uft-bc-pgf")),a.pgm&&(a.pgm.value=n("uft-bc-pgm")),a.mgf&&(a.mgf.value=n("uft-bc-mgf")),a.mgm&&(a.mgm.value=n("uft-bc-mgm")),a.g1&&(a.g1.value=r("uft-bc-g1").join("\n")),a.g2&&(a.g2.value=r("uft-bc-g2").join("\n")),a.g3&&(a.g3.value=r("uft-bc-g3").join("\n")),a.siblings&&(a.siblings.value=r("uft-bc-siblings").join("\n")),a.children&&(a.children.value=r("uft-bc-children").join("\n")),a.grandchildren&&(a.grandchildren.value=r("uft-bc-grandchildren").join("\n")),o(t[0],"self"),o(n("uft-bc-spouse"),"spouse"),o(n("uft-bc-father"),"father"),o(n("uft-bc-mother"),"mother"),o(n("uft-bc-pgf"),"pgf"),o(n("uft-bc-pgm"),"pgm"),o(n("uft-bc-mgf"),"mgf"),o(n("uft-bc-mgm"),"mgm"),r("uft-bc-g1").forEach(function(e){o(e,"g1")}),r("uft-bc-g2").forEach(function(e){o(e,"g2")}),r("uft-bc-g3").forEach(function(e){o(e,"g3")}),r("uft-bc-siblings").forEach(function(e){o(e,"")}),r("uft-bc-children").forEach(function(e){o(e,"")}),"function"==typeof uftSave?uftSave():"function"==typeof uftRender&&uftRender(),"function"==typeof uftSetStatus&&uftSetStatus("Pedigree built from member cards · focus: "+t[0])}function uftSuggestBuildFromCards(){const e=uftGetStoredCards();function t(t,n){const r=document.getElementById(t);if(r)for(let t=0;t<e.length;t++)if(n(e[t],t))return void(r.value=String(t))}function n(t,n){const r=document.getElementById(t);r&&Array.prototype.forEach.call(r.options,function(t){const r=parseInt(t.value,10);t.selected=!(isNaN(r)||!e[r]||!n(e[r],r))})}function r(e,t){const n=((e.generationHint||"")+" "+(e.slot||"")+" "+(e.role||"")).toLowerCase();return t.test(n)}e.length?(t("uft-bc-self",function(e){return r(e,/\byou\b|focus|self/)||"self"===e.slot}),t("uft-bc-spouse",function(e){return r(e,/spouse|wife|husband/)||"spouse"===e.slot}),t("uft-bc-father",function(e){return r(e,/\bfather\b/)&&!/grandfather|father.s father|pgf/i.test((e.generationHint||"")+(e.slot||""))}),t("uft-bc-mother",function(e){return r(e,/\bmother\b/)&&!/grandmother|mother.s mother|mgm/i.test((e.generationHint||"")+(e.slot||""))}),t("uft-bc-pgf",function(e){return r(e,/pgf|father.?s father|paternal.*grand.*father/)}),t("uft-bc-pgm",function(e){return r(e,/pgm|father.?s mother|paternal.*grand.*mother/)}),t("uft-bc-mgf",function(e){return r(e,/mgf|mother.?s father|maternal.*grand.*father/)}),t("uft-bc-mgm",function(e){return r(e,/mgm|mother.?s mother|maternal.*grand.*mother/)}),n("uft-bc-g1",function(e){return r(e,/\bg1\b|3rd.?great|oldest/)}),n("uft-bc-g2",function(e){return r(e,/\bg2\b|2nd.?great/)}),n("uft-bc-g3",function(e){return r(e,/\bg3\b|great-grandparent|great.grand/)}),n("uft-bc-siblings",function(e){return r(e,/sibling|brother|sister/)&&!r(e,/grand|uncle|aunt/)}),n("uft-bc-children",function(e){return r(e,/\bchild|offspring|son|daughter/)&&!r(e,/grand/)}),n("uft-bc-grandchildren",function(e){return r(e,/grandchild/)}),"function"==typeof uftSetStatus&&uftSetStatus("Suggestions filled from generation hints — review, then Apply")):alert("Upload member cards first.")}function uftClearBuildFromCards(){["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(e){const t=document.getElementById("uft-bc-"+e);t&&(t.value="")}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(e){const t=document.getElementById("uft-bc-"+e);t&&Array.prototype.forEach.call(t.options,function(e){e.selected=!1})})}function uftFilterCardSelects(e){const t=String(e||"").trim().toLowerCase(),n=document.getElementById("uft-card-search"),r=document.getElementById("uft-rel-card-search");n&&n.value.toLowerCase()!==t&&(n.value=e||""),r&&r.value.toLowerCase()!==t&&(r.value=e||"");const a=uftGetStoredCards(),o=[],i=[];function f(e,t,n){if(!e)return;const r=t?Array.prototype.map.call(e.selectedOptions||[],function(e){return e.value}):e.value;let a=t?"":'<option value="">'+(n||"Select…")+"</option>";o.forEach(function(e,t){a+='<option value="'+i[t]+'">'+String(uftCardOptionLabel(e)).replace(/</g,"")+"</option>"}),e.innerHTML=a,t&&r?Array.prototype.forEach.call(e.options,function(e){r.indexOf(e.value)>=0&&(e.selected=!0)}):!t&&r&&(e.value=r)}a.forEach(function(e,n){(function(e){if(!t)return!0;const n=String(e.name||"").toLowerCase(),r=String(e.generationHint||"").toLowerCase();return 0===n.indexOf(t)||!!n.split(/\s+/).some(function(e){return 0===e.indexOf(t)})||n.indexOf(t)>=0||r.indexOf(t)>=0})(e)&&(o.push(e),i.push(n))}),f(document.getElementById("uft-rel-cards"),!1,"1. Pick from loaded member cards…"),["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(e){f(document.getElementById("uft-bc-"+e),!1,"Select…")}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(e){f(document.getElementById("uft-bc-"+e),!0,"")}),"function"==typeof uftSetStatus&&t&&uftSetStatus(o.length+" card(s) match “"+e+"”")}function uftPickMemberCard(e){const t=uftGetStoredCards(),n=parseInt(e&&e.value,10);if(isNaN(n)||!t[n])return;const r=t[n],a=document.getElementById("uft-rel-name");a&&(a.value=r.name||"");const o=document.getElementById("uft-rel-gender");o&&r.gender&&(o.value=r.gender);const i=document.getElementById("uft-rel-vital");i&&r.vital&&(i.value=r.vital);const f=document.getElementById("uft-rel-born");if(f&&r.born&&(f.value=r.born),document.getElementById("uft-rel-anchor")&&r.slot){const e=String(r.slot).toLowerCase();["self","spouse","father","mother","pgf","pgm","mgf","mgm","g1","g2","g3"].indexOf(e)}"function"==typeof uftSetStatus&&uftSetStatus("Selected card: "+(r.name||"")+(r.generationHint?" ("+r.generationHint+")":"")+" — choose Attach to + relation, then Add to tree")}function uftRunDownloadMenu(e){const t=e&&e.value;t&&("cards"===t?uftDownloadMemberCards():"csv"===t?uftDownloadMemberCardsCsv():"tree"===t?uftDownload():"png"===t?uftDownloadPng():"text"===t||"txt"===t?uftDownloadTextTree():"pack"===t&&"function"==typeof clarityExportPack&&clarityExportPack(),e.value="")}function uftRunUploadMenu(e){const t=e&&e.value;t&&("cards"===t?document.getElementById("uft-cards-file").click():"tree"===t?document.getElementById("uft-load-file").click():"pack"===t&&document.getElementById("uft-pack-file").click(),e.value="")}function uftCollectMemberCards(){const e="function"==typeof uftCollect?uftCollect():{},t=[],n={};function r(e,t){const n=String(e||t||"").toLowerCase();return"g1"===n?{rank:1,label:"G1 · oldest / 3rd-great"}:"g2"===n?{rank:2,label:"G2 · 2nd-great"}:"g3"===n?{rank:3,label:"G3 · great-grandparent"}:"pgf"===n||"pgm"===n||"mgf"===n||"mgm"===n?{rank:4,label:"Grandparent · "+n}:"father"===n||"mother"===n?{rank:5,label:"Parent · "+n}:"self"===n?{rank:6,label:"Focus person"}:"spouse"===n?{rank:6,label:"Spouse"}:"sibling"===n?{rank:6,label:"Your generation · sibling"}:"child"===n||"children"===n||"offspring"===n?{rank:7,label:"Child / offspring"}:"grandchild"===n||"grandchildren"===n?{rank:8,label:"Grandchild"}:"registry"===n?{rank:9,label:"Registry only"}:{rank:9,label:t||e||"Unplaced"}}function a(a,o,i){const f=String(a||"").trim();if(!f)return;const u=("function"==typeof uftNorm?uftNorm(f):f.toLowerCase())+"||"+String(o||i||"");if(n[u])return;n[u]=!0;const s=r(o,i);let c="",l="",d="";try{"function"==typeof uftGenderOf&&(c=uftGenderOf(f,o)||uftGenderOf(f,"")||""),"function"==typeof uftVitalOf&&(l=uftVitalOf(f,o)||uftVitalOf(f,"")||""),"function"==typeof uftBornOf&&(d=uftBornOf(f,o)||uftBornOf(f,"")||"")}catch(e){}let m="",h="",g="",p="";(e.registry||[]).forEach(function(e){if(e&&e.name&&("function"==typeof uftSame?uftSame(e.name,f):e.name===f)&&(e.phone&&(m=e.phone),e.email&&(h=e.email),e.city&&(g=e.city),e.note&&(p=e.note),e.role&&9===s.rank)){const t=r(e.role,e.role);t.rank<s.rank&&(s.rank=t.rank,s.label=t.label)}}),t.push({name:f,generationHint:s.label,generationRank:s.rank,slot:o||"",role:i||"",gender:c||"",vital:l||"",born:d||"",phone:m,email:h,city:g,note:p})}return["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(t){e[t]&&a(e[t],t,t)}),("function"==typeof uftLines?uftLines(e.g1):[]).forEach(function(e){a(e,"g1","g1")}),("function"==typeof uftLines?uftLines(e.g2):[]).forEach(function(e){a(e,"g2","g2")}),("function"==typeof uftLines?uftLines(e.g3):[]).forEach(function(e){a(e,"g3","g3")}),("function"==typeof uftLines?uftLines(e.siblings):[]).forEach(function(e){a(e,"sibling","sibling")}),("function"==typeof uftLines?uftLines(e.children):[]).forEach(function(e){a(e,"child","child")}),("function"==typeof uftLines?uftLines(e.grandchildren):[]).forEach(function(e){a(e,"grandchild","grandchild")}),(e.relatives||[]).forEach(function(e){e&&e.name&&a(e.name,e.anchor||"",e.relation||"")}),(e.registry||[]).forEach(function(e){e&&e.name&&a(e.name,e.role||"registry",e.role||"registry")}),t.sort(function(e,t){return e.generationRank!==t.generationRank?e.generationRank-t.generationRank:String(e.name).localeCompare(String(t.name))}),t}function uftDownloadMemberCards(){"function"==typeof uftSave&&uftSave();const e=uftCollectMemberCards(),t={app:"Clarity",exportType:"clarity-member-cards",note:"Flat member cards only. No parent/child/spouse links. Use generationHint / generationRank to rebuild the pedigree in order (1 = oldest).",exportedAt:(new Date).toISOString(),count:e.length,cards:e},n=new Blob([JSON.stringify(t,null,2)],{type:"application/json"}),r=document.createElement("a");r.href=URL.createObjectURL(n),r.download="clarity-member-cards-"+(new Date).toISOString().slice(0,10)+".json",document.body.appendChild(r),r.click(),setTimeout(function(){URL.revokeObjectURL(r.href),r.remove()},400),"function"==typeof uftSetStatus&&uftSetStatus(e.length+" member cards downloaded (no tree links)")}function uftDownloadMemberCardsCsv(){const e=uftCollectMemberCards();function t(e){const t=String(null==e?"":e);return/[",\n\r]/.test(t)?'"'+t.replace(/"/g,'""')+'"':t}const n=[["generationRank","generationHint","name","gender","vital","born","slot","role","phone","email","city","note"].join(",")];e.forEach(function(e){n.push([e.generationRank,e.generationHint,e.name,e.gender,e.vital,e.born,e.slot,e.role,e.phone,e.email,e.city,e.note].map(t).join(","))});const r=new Blob(["\ufeff"+n.join("\r\n")],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(r),a.download="clarity-member-cards-"+(new Date).toISOString().slice(0,10)+".csv",document.body.appendChild(a),a.click(),setTimeout(function(){URL.revokeObjectURL(a.href),a.remove()},400),"function"==typeof uftSetStatus&&uftSetStatus(e.length+" member cards CSV downloaded — open in Excel, edit, then Upload cards")}function uftLoadMemberCards(e){const t=e&&e.target&&e.target.files&&e.target.files[0];if(!t)return;const n=new FileReader;n.onload=function(){try{const o=String(n.result||"");let i=[],f=!1;function r(e){if(!e||"object"!=typeof e)return;const t=String(e.name||e.fullName||e.full_name||e.personName||e.self||"").trim();t&&"Unknown"!==t&&i.push({name:t,generationRank:e.generationRank||e.gen||e.generation||"",generationHint:e.generationHint||e.role||e.slot||"",slot:e.slot||e.role||"",phone:e.phone||e.whatsapp||"",email:e.email||"",city:e.city||e.country||"",note:e.note||""})}if(t.name&&/\.csv$/i.test(t.name)||0===o.trim().indexOf("generationRank")||/^name\s*,/i.test(o.trim())){const s=o.split(/\r?\n/).filter(Boolean);if(s.length<2)throw new Error("empty csv");const c=s[0].split(",").map(function(e){return e.trim().replace(/^"|"$/g,"")});for(let l=1;l<s.length;l++){const d=[];let m="",h=!1;const g=s[l];for(let y=0;y<g.length;y++){const S=g[y];'"'!==S?","!==S||h?m+=S:(d.push(m),m=""):h=!h}d.push(m);const p={};c.forEach(function(e,t){p[e]=(d[t]||"").trim()}),r(p)}}else{const v=JSON.parse(o);if(v&&Array.isArray(v.cards))v.cards.forEach(r);else if(Array.isArray(v))v.forEach(r);else{if(!v||"object"!=typeof v)throw new Error("format");{const b=v.familyTree&&"object"==typeof v.familyTree?v.familyTree:v;b.self||b.father||b.relatives||b.g1||b.registry||b.children||b.people||b.members?confirm("This looks like a full family-tree / members export.\n\nOK = load into the pedigree tree (replace current tree on this device)\nCancel = only import names into the member-cards picker list")&&"function"==typeof uftApplyData?(uftApplyData(b),"function"==typeof uftCollapseEditor&&uftCollapseEditor(),"function"==typeof uftRender&&uftRender(),"function"==typeof uftSetStatus&&uftSetStatus("Tree loaded · "+(t.name||"JSON")),f=!0):(a=b)&&"object"==typeof a&&(["self","father","mother","spouse","paternalGrandfather","paternalGrandmother","maternalGrandfather","maternalGrandmother"].forEach(function(e){"string"==typeof a[e]&&a[e].trim()?r({name:a[e],slot:e}):a[e]&&"object"==typeof a[e]&&r(Object.assign({slot:e},a[e]))}),(a.relatives||a.children||a.siblings||[]).forEach(function(e){r(e)}),(a.registry||a.members||a.people||a.cards||[]).forEach(function(e){r(e)}),["g1","g2","g3","g4","g5","g6","g7","g8"].forEach(function(e){"string"==typeof a[e]?a[e].split(/[\n,;|]+/).forEach(function(t){t.trim()&&r({name:t.trim(),generationHint:e})}):Array.isArray(a[e])&&a[e].forEach(function(t){r("string"==typeof t?{name:t,generationHint:e}:Object.assign({generationHint:e},t))})})):Array.isArray(v.members)||Array.isArray(v.registry)||Array.isArray(v.people)?(v.members||v.registry||v.people||[]).forEach(r):r(v)}}}if(f)return void(e.target.value="");const u={};if(i=i.filter(function(e){const t=String(e.name||"").toLowerCase();return!(!t||u[t]||(u[t]=!0,0))}),!i.length)throw new Error("no cards");if(i.sort(function(e,t){const n=parseInt(e.generationRank,10),r=parseInt(t.generationRank,10);return isNaN(n)||isNaN(r)||n===r?String(e.name||"").localeCompare(String(t.name||"")):n-r}),!confirm("Load "+i.length+" member cards into the picker list?\n\nChoose a card, set Attach to + relation, then Add to tree."))return void(e.target.value="");uftSetStoredCards(i);try{const w="function"==typeof uftCollect?uftCollect():{};w.registry=Array.isArray(w.registry)?w.registry:[],i.forEach(function(e){const t=String(e.name||"").trim();t&&(w.registry.find(function(e){return e&&("function"==typeof uftSame?uftSame(e.name,t):e.name===t)})||w.registry.push({id:"function"==typeof uftNewPersonId?uftNewPersonId():"p_"+Math.random().toString(36).slice(2),name:t,role:e.slot||e.role||"",phone:e.phone||"",email:e.email||"",city:e.city||"",note:e.note||e.generationHint||""}))});try{clarityLS.setItem(UFT_KEY,JSON.stringify(w))}catch(E){}"function"==typeof uftRenderRegList&&uftRenderRegList(),"function"==typeof uftRender&&uftRender()}catch(L){}"function"==typeof uftExpandEditor&&uftExpandEditor(),"function"==typeof uftSetStatus&&uftSetStatus(i.length+" cards ready — pick a card, then Add to tree"),alert(i.length+" member cards loaded into the picker list.")}catch(C){console.warn("uftLoadMemberCards",C),alert("Could not read that file.\n\nAccepted:\n• Member cards JSON/CSV export\n• Full tree / members JSON (clarity-family-members-*.json)\n• Amānah pack with familyTree\n• Array of {name, …} objects")}var a;e.target.value=""},n.readAsText(t)}function uftStartFresh(){if(uftRead()&&(uftRead().self||uftRead().father||(uftRead().relatives||[]).length||uftLines(uftRead().g1||"").length)){if(!confirm("Start tree?\n\nOK = download member cards (no links) first so you can rebuild generations cleanly, then clear the tree.\nCancel = abort."))return;"function"==typeof uftDownloadMemberCardsCsv?uftDownloadMemberCardsCsv():"function"==typeof uftDownloadMemberCards?uftDownloadMemberCards():uftDownload(),setTimeout(function(){confirm("Member cards downloaded. Clear the tree now and rebuild the pedigree in generation order?")&&uftClear(!0)},350)}else uftClear(!0)}function uftApplyData(e){if(!e||"object"!=typeof e)return;Array.isArray(e.relatives)||(e.relatives=[]);try{clarityLS.setItem(UFT_KEY,JSON.stringify(e))}catch(e){}const t=uftFields();Object.keys(t).forEach(function(n){t[n]&&null!=e[n]&&"object"!=typeof e[n]&&(t[n].value=e[n])});const n=document.getElementById("uft-stage");n&&n.setAttribute("data-skin",e.skin||"green"),uftView="pedigree",uftRenderRelList(),uftRender(),uftRefreshLibrary(),uftSetStatus("Loaded · "+(uftWhen(e.savedAt)||"this device"))}function uftLoadFile(e){const t=e&&e.target&&e.target.files&&e.target.files[0];if(!t)return;const n=new FileReader;n.onload=function(){try{let r=JSON.parse(String(n.result||"{}"));if(!r||"object"!=typeof r)throw new Error("bad");if(r.familyTree&&"object"==typeof r.familyTree&&(r=r.familyTree),!(r.self||r.father||r.relatives||r.g1||r.registry||r.children))throw new Error("empty");if(!confirm("Replace the tree on this device with members from “"+(t.name||"file")+"”?"))return void(e.target.value="");uftApplyData(r),uftCollapseEditor();try{uftShowIntegrity()}catch(e){}uftSetStatus("Members uploaded · "+(t.name||"JSON"))}catch(e){alert("Could not read that file. Use “Download members” JSON or an Amānah pack export from Clarity.")}e.target.value=""},n.readAsText(t)}function uftClear(e){if(!e&&!confirm("Clear your private family tree on this device?\n\nTip: use “Download members” first if you may need this tree again.\nNamed library copies are kept until you remove them."))return;try{clarityLS.removeItem(UFT_KEY)}catch(e){}const t=uftFields();Object.keys(t).forEach(function(e){t[e]&&(t[e].value="")});try{const e=document.getElementById("uft-stage");e&&e.setAttribute("data-skin","green")}catch(e){}if(uftRenderRelList(),"function"==typeof uftRenderRegList)try{uftRenderRegList()}catch(e){}uftRender(),uftExpandEditor(),uftSetStatus("Tree cleared — upload a members JSON anytime to restore.");try{uftShowIntegrity()}catch(e){}}function uftDownloadPng(){try{"function"==typeof uftSave&&uftSave()}catch(e){}var e="function"==typeof uftCollect?uftCollect():{};function t(e){return"function"==typeof uftLines?uftLines(e):String(e||"").split(/\n+/).map(function(e){return e.trim()}).filter(Boolean)}var n="clarity-pedigree-"+(e.self||"family").replace(/[^\w\-]+/g,"_").slice(0,40)+".png";function r(e,t,n){return(e=String(e||"").trim())?{name:e,role:t||"",vital:n||""}:null}var a=[],o=[],i=[],f=[];t(e.g1).forEach(function(e){o.push(r(e,"G1 · 3rd-great",""))}),t(e.g2).forEach(function(e){i.push(r(e,"G2 · 2nd-great",""))}),t(e.g3).forEach(function(e){f.push(r(e,"G3 · great-grand",""))}),o.length&&a.push({title:"Generation 1 (oldest)",people:o}),i.length&&a.push({title:"Generation 2",people:i}),f.length&&a.push({title:"Generation 3 · Great-grandparents",people:f});var u=[];e.pgf&&u.push(r(e.pgf,"Father's father","")),e.pgm&&u.push(r(e.pgm,"Father's mother","")),e.mgf&&u.push(r(e.mgf,"Mother's father","")),e.mgm&&u.push(r(e.mgm,"Mother's mother","")),u.length&&a.push({title:"Grandparents",people:u});var s=[];e.father&&s.push(r(e.father,"Father","")),e.mother&&s.push(r(e.mother,"Mother","")),s.length&&a.push({title:"Parents",people:s});var c=[];e.self&&c.push(r(e.self,"You","")),e.spouse&&c.push(r(e.spouse,"Spouse","")),t(e.siblings).forEach(function(e){c.push(r(e,"Sibling",""))}),c.length&&a.push({title:"Your generation",people:c});var l=[];t(e.children).forEach(function(e){l.push(r(e,"Child",""))}),l.length&&a.push({title:"Children",people:l});var d=[];t(e.grandchildren).forEach(function(e){d.push(r(e,"Grandchild",""))}),d.length&&a.push({title:"Grandchildren",people:d});var m={};a.forEach(function(e){e.people.forEach(function(e){m[e.name.toLowerCase()]=!0})});var h=[];(e.relatives||[]).forEach(function(e){e&&e.name&&(m[String(e.name).toLowerCase()]||h.push(r(e.name,e.relation||"Relative",e.vital||"")))}),h.length&&a.push({title:"Other relatives",people:h});var g=a.reduce(function(e,t){return e+t.people.length},0);if(g){var p=[];a.forEach(function(e){p.push({kind:"title",text:e.title});var t=[],n=0;e.people.forEach(function(e){var r=k(e.name);t.length&&n+12+r>1544&&(p.push({kind:"people",people:t.slice(),widths:t.map(function(e){return k(e.name)})}),t=[],n=0),t.push(e),n+=(t.length>1?12:0)+r}),t.length&&p.push({kind:"people",people:t.slice(),widths:t.map(function(e){return k(e.name)})})});var y=0;p.forEach(function(e){if("people"===e.kind){var t=e.widths.reduce(function(e,t){return e+t},0)+12*Math.max(0,e.people.length-1);y=Math.max(y,t)}}),y=Math.max(y,480);var S=100;p.forEach(function(e){S+="title"===e.kind?30:90});var v=Math.ceil(y+56),b=Math.ceil(S+28),w=document.createElement("canvas");w.width=v,w.height=b;var E=w.getContext("2d");E.fillStyle="#0f2f24",E.fillRect(0,0,v,b),E.fillStyle="#d4af37",E.font='700 22px Georgia, "Times New Roman", serif',E.fillText("Clarity · Pedigree view",28,48),E.fillStyle="#cfe8dc",E.font="13px Inter, system-ui, sans-serif";var L=(e.self||"Family")+" · "+(new Date).toLocaleDateString()+" · "+g+" people · clean layout";E.fillText(L,28,70),S=100;var C,N,I,O=null;p.forEach(function(e){if("title"===e.kind)return E.fillStyle="#8fd4a0",E.font="600 13px Inter, system-ui, sans-serif",E.fillText(e.text,28,S+14),void(S+=30);var t=e.widths.reduce(function(e,t){return e+t},0)+12*Math.max(0,e.people.length-1),n=28+Math.max(0,(y-t)/2);null!=O&&(E.strokeStyle="rgba(201,162,39,0.45)",E.lineWidth=1.5,E.beginPath(),E.moveTo(v/2,O),E.lineTo(v/2,S),E.stroke()),e.people.forEach(function(t,r){var a=e.widths[r];E.fillStyle="rgba(26,107,82,0.92)",E.strokeStyle="#c9a227",E.lineWidth=1.5;var o=10;E.beginPath(),E.roundRect?E.roundRect(n,S,a,54,o):(E.moveTo(n+o,S),E.arcTo(n+a,S,n+a,S+54,o),E.arcTo(n+a,S+54,n,S+54,o),E.arcTo(n,S+54,n,S,o),E.arcTo(n,S,n+a,S,o),E.closePath()),E.fill(),E.stroke(),E.fillStyle="#f7f4ee",E.font='600 14px Georgia, "Times New Roman", serif';var i=t.name.length>26?t.name.slice(0,24)+"…":t.name;E.fillText(i,n+10,S+22),E.fillStyle="#9fd0b8",E.font="11px Inter, system-ui, sans-serif";var f=t.role.length>28?t.role.slice(0,26)+"…":t.role;E.fillText(f,n+10,S+40),n+=a+12}),O=S+54,S+=90}),C=w.toDataURL("image/png"),N=n,(I=document.createElement("a")).href=C,I.download=N,document.body.appendChild(I),I.click(),I.remove(),"function"==typeof uftSetStatus&&uftSetStatus("Clean pedigree PNG downloaded ("+g+" people).")}else alert("Add people to the pedigree before downloading an image.");function k(e){var t=24+7.2*Math.min(String(e).length,28);return Math.max(140,Math.min(200,t))}}function uftDownloadTextTree(){try{"function"==typeof uftSave&&uftSave()}catch(e){}var e="function"==typeof uftCollect?uftCollect():{};function t(e){return"function"==typeof uftLines?uftLines(e):String(e||"").split(/\n+/).map(function(e){return e.trim()}).filter(Boolean)}var n=[];function r(e,t){t.length&&(n.push(e),t.forEach(function(e){n.push("  • "+e)}),n.push(""))}n.push("Clarity · Family tree"),n.push((e.self||"Family")+" · "+(new Date).toLocaleDateString()),n.push("");var a=t(e.g1),o=t(e.g2),i=t(e.g3);r("Generation 1 (oldest)",a),r("Generation 2",o),r("Generation 3 · Great-grandparents",i);var f=[];e.pgf&&f.push(e.pgf+" — Father's father"),e.pgm&&f.push(e.pgm+" — Father's mother"),e.mgf&&f.push(e.mgf+" — Mother's father"),e.mgm&&f.push(e.mgm+" — Mother's mother"),r("Grandparents",f);var u=[];e.father&&u.push(e.father+" — Father"),e.mother&&u.push(e.mother+" — Mother"),r("Parents",u);var s=[];e.self&&s.push(e.self+" — You"),e.spouse&&s.push(e.spouse+" — Spouse"),t(e.siblings).forEach(function(e){s.push(e+" — Sibling")}),r("Your generation",s),r("Children",t(e.children).map(function(e){return e+" — Child"})),r("Grandchildren",t(e.grandchildren).map(function(e){return e+" — Grandchild"})),r("Other relatives",(e.relatives||[]).map(function(e){return e&&e.name?e.name+(e.relation?" — "+e.relation:""):""}).filter(Boolean)),n.push("—— Links (parent → child) ——"),e.pgf&&e.father&&n.push(e.pgf+" → "+e.father),e.pgm&&e.father&&n.push(e.pgm+" → "+e.father),e.mgf&&e.mother&&n.push(e.mgf+" → "+e.mother),e.mgm&&e.mother&&n.push(e.mgm+" → "+e.mother),e.father&&e.self&&n.push(e.father+" → "+e.self),e.mother&&e.self&&n.push(e.mother+" → "+e.self),e.self&&e.spouse&&n.push(e.self+" ↔ "+e.spouse+" (spouses)"),t(e.children).forEach(function(t){e.self&&n.push(e.self+" → "+t),e.spouse&&n.push(e.spouse+" → "+t)}),t(e.grandchildren).forEach(function(r){t(e.children).forEach(function(e){}),n.push("(grandchild) "+r)}),n.push(""),n.push("Educational family record — verify with family and local custom.");var c=new Blob([n.join("\n")],{type:"text/plain;charset=utf-8"}),l=document.createElement("a");l.href=URL.createObjectURL(c),l.download="clarity-family-tree-"+(e.self||"family").replace(/[^\w\-]+/g,"_").slice(0,40)+".txt",document.body.appendChild(l),l.click(),l.remove(),setTimeout(function(){try{URL.revokeObjectURL(l.href)}catch(e){}},1500),"function"==typeof uftSetStatus&&uftSetStatus("Family tree text downloaded.")}function uftLines(e){return String(e||"").split(/\n+/).map(function(e){return e.trim()}).filter(Boolean)}function uftEsc(e){return String(e||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}function uftInitials(e){const t=String(e||"").trim().split(/\s+/).filter(Boolean);return t.length?1===t.length?t[0].slice(0,2).toUpperCase():(t[0][0]+t[t.length-1][0]).toUpperCase():"·"}let uftVitalMap={};function uftVitalKey(e,t){const n=uftNorm(e);if(!n)return"";const r=String(t||"").trim();return r?r+"|"+n:n}function uftVitalOf(e,t){const n=uftNorm(e),r=[];t&&r.push(uftVitalKey(e,t)),r.push(uftVitalKey(e,"")),r.push(n);let a=uftVitalMap||{};try{a=Object.assign({},uftRead().vital||{},a)}catch(e){}for(let e=0;e<r.length;e++){const t=r[e];if(t&&a[t])return a[t]}const o=Object.keys(a);for(let e=0;e<o.length;e++){const t=o[e];if((t.indexOf("|")>=0?t.slice(t.lastIndexOf("|")+1):t.replace(/^n:/i,""))===n&&a[t])return a[t]}return""}function uftGenderKey(e,t){return uftVitalKey(e,t)}function uftGenderOf(e,t){const n=uftNorm(e);let r=void 0!==uftGenderMap&&uftGenderMap?uftGenderMap:{};try{r=Object.assign({},uftRead().gender||{},r)}catch(e){}const a=uftGenderKey(e,t);if(a&&r[a])return r[a];if(n&&r[n])return r[n];const o=Object.keys(r);for(let e=0;e<o.length;e++){const t=o[e];if((t.indexOf("|")>=0?t.slice(t.lastIndexOf("|")+1):t.replace(/^n:/i,""))===n&&r[t])return r[t]}return""}function uftSetGenderFor(e,t,n){const r=uftCollect();if(r.gender=r.gender||{},!e)return;uftSyncPersonMeta(r.gender,e,t||"");const a=uftGenderKey(e,n||"");a&&t&&(r.gender[a]=t);try{clarityLS.setItem(UFT_KEY,JSON.stringify(r))}catch(e){}try{uftGenderMap=r.gender}catch(e){}uftRender({keepScroll:!0});try{uftIntegrityRefresh()}catch(e){}}function uftCycleGender(e,t){const n=uftGenderOf(e,t);uftSetGenderFor(e,"male"===n?"female":"female"===n?"":"male",t)}function uftAutoLinkSiblings(e){if(!e)return e;function t(t,n,r){t&&r&&n&&(e.relatives.some(function(e){return e&&e.relation===n&&uftSame(e.name,r)&&String(e.anchor)===String(t)})||e.relatives.push({anchor:t,relation:n,name:r}))}return e.relatives=Array.isArray(e.relatives)?e.relatives:[],uftLines(e.siblings).forEach(function(n){t("self","sibling",n),e.father&&t("father","child",n),e.mother&&t("mother","child",n)}),uftLines(e.g2).forEach(function(n){uftLines(e.g1).forEach(function(e){t(uftNameKey(e),"child",n)})}),uftLines(e.g3).forEach(function(n){uftLines(e.g2).forEach(function(e){t(uftNameKey(e),"child",n)})}),e.pgf&&uftLines(e.g3).forEach(function(n){t(uftNameKey(n),"child",e.pgf)}),e.father&&e.pgf&&t("pgf","child",e.father),e.self&&e.father&&t("father","child",e.self),e.relatives.slice().forEach(function(n){if(!n||"sibling"!==n.relation||!n.name)return;let r=[];try{r=uftParentsOf(e,n.anchor)||[]}catch(e){r=[]}r&&r.length||"self"!==n.anchor&&!uftSame(n.anchor,e.self)||(e.father&&r.push({id:"father"}),e.mother&&r.push({id:"mother"})),r&&r.length||"father"!==n.anchor&&!uftSame(n.anchor,e.father)||(e.pgf&&r.push({id:"pgf"}),e.pgm&&r.push({id:"pgm"})),r&&r.length||"mother"!==n.anchor&&!uftSame(n.anchor,e.mother)||(e.mgf&&r.push({id:"mgf"}),e.mgm&&r.push({id:"mgm"})),(r||[]).forEach(function(e){const r=e.id||(e.name?uftNameKey(e.name):"");r&&t(r,"child",n.name)})}),e}let uftGenderMap={},uftBornMap={};function uftBornOf(e,t){const n=uftVitalKey(e,t),r=uftBornMap||{};if(n&&r[n])return r[n];const a=uftNorm(e);if(a&&r[a])return r[a];try{const e=uftRead().born||{};if(n&&e[n])return e[n];if(a&&e[a])return e[a]}catch(e){}return""}function uftSetBornFor(e,t,n){const r=uftCollect();if(r.born=r.born||{},t=String(t||"").replace(/[^0-9]/g,"").slice(0,4),!e)return;uftSyncPersonMeta(r.born,e,t||"");const a=uftVitalKey(e,n||"");a&&t&&(r.born[a]=t);try{clarityLS.setItem(UFT_KEY,JSON.stringify(r))}catch(e){}try{uftBornMap=r.born}catch(e){}uftRender({keepScroll:!0})}function uftAskBorn(e,t){const n=uftBornOf(e,t)||"",r=prompt("Year of birth for "+e+" (leave blank to clear)",n);null!==r&&uftSetBornFor(e,r,t)}function uftCycleVital(e,t){if(!e)return;const n=uftVitalOf(e,t);uftSetVitalFor(e,"alive"===n?"deceased":"deceased"===n?"":"alive",t)}function uftSyncPersonMeta(e,t,n){const r=uftNorm(t);if(!r||!e)return;const a=Object.keys(e);for(let t=0;t<a.length;t++){const o=a[t];(o.indexOf("|")>=0?o.slice(o.lastIndexOf("|")+1):o.replace(/^n:/i,""))===r&&(n?e[o]=n:delete e[o])}n?e[r]=n:delete e[r]}function uftSetVitalFor(e,t,n){const r=uftCollect();if(r.vital=r.vital||{},!e)return;uftSyncPersonMeta(r.vital,e,t||"");const a=uftVitalKey(e,n||"");a&&t&&(r.vital[a]=t);try{clarityLS.setItem(UFT_KEY,JSON.stringify(r))}catch(e){}try{uftVitalMap=r.vital}catch(e){}uftRender({keepScroll:!0}),"function"==typeof uftRefreshVitalWho&&uftRefreshVitalWho();try{"function"==typeof uftIntegrityRefresh&&uftIntegrityRefresh()}catch(e){}}function uftApplyVital(){const e=((document.getElementById("uft-vital-who")||{}).value||"").trim(),t=((document.getElementById("uft-vital-status")||{}).value||"").trim();if(!e)return;const n=e.split("::"),r=n.length>1?n[0]:"";uftSetVitalFor(n.length>1?n.slice(1).join("::"):e,t,r),"function"==typeof uftSetStatus&&uftSetStatus(e+" marked "+(t||"unspecified")+".")}function uftRefreshVitalWho(){const e=document.getElementById("uft-vital-who");if(!e)return;const t=e.value,n=uftAllMembers(uftCollect()).filter(function(e){return e&&e.name});e.innerHTML='<option value="">Person on the tree…</option>'+n.map(function(e){const t=e.anchor||e.relation||"",n=uftVitalOf(e.name,t),r=e.name+(e.relation?" · "+e.relation:"");return'<option value="'+uftEsc(t)+"::"+uftEsc(e.name)+'">'+uftEsc(r)+(n?" ("+n+")":"")+"</option>"}).join(""),t&&(e.value=t)}function uftPerson(e,t,n,r,a,o){const i=!e,f=i?"":uftGenderOf(e,a);f&&(n=f);const u=i?"":uftVitalOf(e,a),s=["uft-person","uft-card-sleek",n||"",r||"",i?"empty":"",u].filter(Boolean).join(" "),c=i?t||"Unknown":e,l=i?"":uftBornOf(e,a),d=i?"":(t||"")+(l?(t?" · ":"")+"b. "+l:""),m="male"===f?" g-male":"female"===f?" g-female":" g-unset",h="deceased"===u?"†":"alive"===u?"●":"○",g="deceased"===u?"Deceased":"alive"===u?"Alive":"Set status",p="male"===f?"♂":"female"===f?"♀":"⚥",y="male"===f?"Male":"female"===f?"Female":"Gender",S=i?"":'<div class="uft-chip-stack" role="group" aria-label="Member actions"><div class="uft-chip-row"><button type="button" class="uft-chip uft-vital-btn '+(u||"unset")+("deceased"===u?" dead":"alive"===u?" live":"")+'" data-vital-name="'+uftEsc(e)+'" data-vital-slot="'+uftEsc(a||"")+'" title="'+g+'"><span class="uft-chip-ico">'+h+'</span></button><button type="button" class="uft-chip uft-gender-btn'+m+'" data-gender-name="'+uftEsc(e)+'" data-gender-slot="'+uftEsc(a||"")+'" title="'+y+'"><span class="uft-chip-ico">'+p+'</span></button><button type="button" class="uft-chip uft-born-btn'+(l?" has-year":"")+'" data-born-name="'+uftEsc(e)+'" data-born-slot="'+uftEsc(a||"")+'" title="Year of birth"><span class="uft-chip-ico">'+(l?String(l):"Yr")+'</span></button></div><div class="uft-chip-row"><button type="button" class="uft-chip uft-focus-btn" data-focus-name="'+uftEsc(e)+'" data-focus-slot="'+uftEsc(a||"")+'" title="Family panel"><span class="uft-chip-ico">👪</span></button><button type="button" class="uft-chip uft-own-btn" data-own-name="'+uftEsc(e)+'" data-own-slot="'+uftEsc(a||"")+'" title="Own Family Tree"><span class="uft-chip-ico">🌳</span></button><button type="button" class="uft-chip uft-add-rel-btn" data-add-name="'+uftEsc(e)+'" data-add-slot="'+uftEsc(a||"")+'" title="Add relative"><span class="uft-chip-ico">＋</span></button></div></div>';return'<div class="'+s+'"><button type="button" class="uft-del-btn" data-del-name="'+uftEsc(e||"")+'" data-del-slot="'+uftEsc(a||"")+'" data-del-anchor="'+uftEsc(o||"")+'" title="Remove from this place only">×</button><div class="uft-card-head"><div class="uft-avatar">'+uftEsc(uftInitials(i?"":e))+'</div><div class="uft-card-title"><div class="pn">'+uftEsc(c)+("deceased"===u?" †":"")+"</div>"+(d?'<div class="pd">'+uftEsc(d)+"</div>":"")+"</div></div>"+S+"</div>"}function uftCard(e,t,n){return e?uftPerson(e,t,"uft-self"===n?"focus":"",n):""}function uftGenFilled(e){return[uftLines(e.g1).length>0,uftLines(e.g2).length>0,uftLines(e.g3).length>0,!!(e.pgf||e.pgm||e.mgf||e.mgm),!(!e.father&&!e.mother),!!(e.self||e.spouse||uftLines(e.siblings).length),!(!uftLines(e.children).length&&!uftLines(e.grandchildren).length)]}function uftDrawTree(e){const t=document.getElementById("uft-branches"),n=document.getElementById("uft-leaves");if(!t||!n)return;const r=["M188 238 C150 210 110 168 72 128","M212 238 C250 208 292 168 330 126","M186 260 C130 240 86 228 48 214","M214 258 C270 236 318 220 356 208","M192 220 C160 180 148 140 136 96","M208 220 C248 176 268 138 286 92","M200 200 C200 160 188 120 176 78"],a=[[72,122],[330,120],[48,208],[356,202],[136,92],[286,88],[176,74],[98,148],[302,146],[64,176],[340,170],[158,110],[248,108],[118,168],[278,164],[90,198],[314,192],[200,100],[220,128],[180,132]];t.innerHTML="",n.innerHTML="";const o=Math.max(3,(e||[]).filter(Boolean).length);r.slice(0,Math.min(r.length,o)).forEach(function(e,n){const r=document.createElementNS("http://www.w3.org/2000/svg","path");r.setAttribute("d",e),r.setAttribute("class","uft-branch"),r.style.strokeDasharray="280",t.appendChild(r)}),a.slice(0,Math.min(a.length,6+3*o)).forEach(function(e,t){const r=document.createElementNS("http://www.w3.org/2000/svg","ellipse");r.setAttribute("cx",e[0]),r.setAttribute("cy",e[1]),r.setAttribute("rx",11+t%4),r.setAttribute("ry",7+t%3),r.setAttribute("transform","rotate("+(27*t%80-40)+" "+e[0]+" "+e[1]+")"),r.setAttribute("class","uft-leaf"),r.style.animationDelay=.09*t+"s",n.appendChild(r)})}function uftLineKids(e,t,n){const r=[];function a(e,n,a){e&&(uftSame(e,t)||r.some(function(t){return uftSame(t.name,e)})||r.push({name:e,slot:n||uftNameKey(e),relation:a||"Child"}))}if(!e||!t)return r;try{uftKidsOf(e,n||uftNameKey(t)).forEach(function(e){a(e.name,uftNameKey(e.name),"Child")}),uftKidsOf(e,uftNameKey(t)).forEach(function(e){a(e.name,uftNameKey(e.name),"Child")}),(e.relatives||[]).forEach(function(r){r&&r.name&&("child"!==r.relation&&"grandchild"!==r.relation&&"offspring"!==r.relation||(uftSame((uftCoreName(e,r.anchor)||String(r.anchor||"").replace(/^n:/,"")).trim(),t)||r.anchor===n||r.anchor===uftNameKey(t))&&a(r.name,uftNameKey(r.name),"Child"))}),("g2"===n||uftLines(e.g2).some(function(e){return uftSame(e,t)}))&&(uftLines(e.g3).forEach(function(e){a(e,"g3","Child")}),uftLines(e.g3).forEach(function(t){uftPeersOf(e,t).forEach(function(e){a(e.name,uftNameKey(e.name),"Sibling of "+t)})})),("g3"===n||uftLines(e.g3).some(function(e){return uftSame(e,t)}))&&(e.pgf&&a(e.pgf,"pgf","Child"),uftPeersOf(e,e.pgf).forEach(function(t){a(t.name,uftNameKey(t.name),"Sibling of "+(e.pgf||""))})),("pgf"===n||uftSame(t,e.pgf))&&(e.father&&a(e.father,"father","Child"),uftPeersOf(e,e.father).forEach(function(t){a(t.name,uftNameKey(t.name),"Sibling of "+(e.father||""))})),("father"===n||uftSame(t,e.father))&&(e.self&&a(e.self,"self","Child"),uftLines(e.siblings).forEach(function(e){a(e,uftNameKey(e),"Sibling")}),uftPeersOf(e,e.self).forEach(function(e){a(e.name,uftNameKey(e.name),"Sibling")})),("self"===n||uftSame(t,e.self))&&uftLines(e.children).forEach(function(e){a(e,uftNameKey(e),"Child")}),r.slice().forEach(function(t){uftPeersOf(e,t.name).forEach(function(e){a(e.name,uftNameKey(e.name),"Sibling of "+t.name)})})}catch(e){}return r}function uftHasOffspring(e,t,n){return uftLineKids(e,t,n).length>0}function uftOpenMemberView(e,t){const n=document.getElementById("uft-focus"),r=document.getElementById("uft-focus-body"),a=document.getElementById("uft-focus-title");if(!n||!r)return;a.textContent="Family of "+e,n.hidden=!1;const o=uftCollect();if(!uftLineKids(o,e,t).length)return void(r.innerHTML='<p class="uft-link-note">No offspring linked yet. Attach children to '+uftEsc(e)+".</p>");const i={};i[uftNorm(e)]=!0,r.innerHTML='<ul class="uft-vtree uft-vtree-focus">'+function e(t,n){if(!t||!t.name||n>6)return"";const r=uftNorm(t.name);if(i[r])return"";i[r]=!0;const a=uftLineKids(o,t.name,t.slot).filter(function(e){return!i[uftNorm(e.name)]}),f=a.filter(function(e){return uftHasOffspring(o,e.name,e.slot)}),u=a.filter(function(e){return!uftHasOffspring(o,e.name,e.slot)});let s='<li><div class="uft-focus-card">'+uftEsc(t.name)+(t.relation?"<small> · "+uftEsc(t.relation)+"</small>":"")+"</div>";return u.length&&(s+='<ul class="uft-vline">',u.forEach(function(t){s+=e(t,n+1)}),s+="</ul>"),f.length&&(s+='<ul class="uft-vpeers">',f.forEach(function(t){s+=e(t,n+1)}),s+="</ul>"),s+="</li>",s}({name:e,slot:t,relation:"Focus"},0)+"</ul>"}function uftCloseMemberView(){const e=document.getElementById("uft-focus");e&&(e.hidden=!0)}function uftPedigreeHtml(e){function t(e,t,n,r,a,o){return uftPerson(e,t,n,r,a,o)}function n(n,r,a){const o={};return(n||[]).filter(function(e){if(!e||!e.name)return!1;const t=uftNorm(e.name);return!o[t]&&(o[t]=!0,!0)}).map(function(n){const o=n.relation||r||"",i=/mother|wife|daughter|niece|aunt|female/i.test(o)?"female":/father|husband|son|nephew|uncle|male/i.test(o)?"male":"";return t(n.name,o,uftSame(n.name,e.self)?"focus":i,uftSame(n.name,e.self)?"focus":"rel",n.slot||a||"")}).join("")}function r(e,t,n,r,a){return'<div class="uft-cluster'+(a?" focus-cluster":"")+'">'+(e?'<div class="uft-col-label">'+e+"</div>":"")+'<div class="uft-couple">'+(t||"")+"</div>"+(n?'<div class="uft-kids-row">'+n+"</div>":"")+(r?'<div class="uft-link-note">'+r+"</div>":"")+"</div>"}const a=uftLines((e=uftDedupeData(e)).g3).map(function(e){return{name:e,relation:"Great-grandparent",slot:"g3"}}),o=uftLines(e.g2).map(function(e){return{name:e,relation:"2nd-great-grandparent",slot:"g2"}}),i=uftLines(e.g1).map(function(e){return{name:e,relation:"3rd-great-grandparent",slot:"g1"}}),f=uftNotCorePeople(e,uftSiblingsOf(e,"father")),u=uftNotCorePeople(e,uftSiblingsOf(e,"mother")),s=(uftSiblingsOf(e,"self"),uftKidsOf(e,"self")),c=uftUniquePeople(uftLines(e.grandchildren).map(function(e){return{name:e,relation:"grandchild"}})),l=uftNotCorePeople(e,uftSiblingsOf(e,"pgf").concat(uftSiblingsOf(e,"pgm"))),d=uftNotCorePeople(e,uftSiblingsOf(e,"mgf").concat(uftSiblingsOf(e,"mgm"))),m=uftUniquePeople([{name:e.father||"",relation:"Father"}].concat(f).filter(function(e){return e.name})),h=uftUniquePeople([{name:e.mother||"",relation:"Mother"}].concat(u).filter(function(e){return e.name})),g={};function p(e){return(e||[]).filter(function(e){return!(!e||!e.name)&&("line"!==g[uftNorm(e.name)]||e.relation&&0===String(e.relation).indexOf("Sibling"))})}[e.self,e.spouse,e.father,e.mother,e.pgf,e.pgm,e.mgf,e.mgm].concat(uftLines(e.g1),uftLines(e.g2),uftLines(e.g3)).forEach(function(e){e&&(g[uftNorm(e)]="line")}),p(i).length&&r("3rd great-grandparents (G1) — others",n(p(i),"3rd-great-grandparent"),"","Names already on the descendant line are not repeated here."),p(o).length&&r("2nd great-grandparents (G2) — others",n(p(o),"2nd-great-grandparent"),"","Karam Din stays on the descendant line above; this row is extra people of that generation.");const y=[];a.forEach(function(t){uftPeersOf(e,t.name).forEach(function(e){y.push({name:e.name,relation:"Sibling of "+t.name,slot:uftNameKey(e.name)})})});const S=p(a.concat(y)),v=(S.length&&r("Great-grandparents (G3) — siblings & extras",n(S,"Great-grandparent"),"","Direct line names stay on the backbone; this row is brothers, sisters and others of that generation."),[e.pgf,e.pgm].filter(function(t){return uftCrossMarriageNote(e,t)})),b=[e.mgf,e.mgm].filter(function(t){return uftCrossMarriageNote(e,t)});let w=r("Paternal grandparents",t(e.pgf,"Father's father","male","","pgf")+t(e.pgm,"Father's mother","female","","pgm"),n(m),(v.length?v.map(function(t){return uftCrossMarriageNote(e,t)}).join(" ")+" ":"")+(f.length?"Their children: your father and paternal uncles/aunts.":"Add father’s siblings to extend this house."))+r("Maternal grandparents",t(e.mgf,"Mother's father","male","","mgf")+t(e.mgm,"Mother's mother","female","","mgm"),n(h),(b.length?b.map(function(t){return uftCrossMarriageNote(e,t)}).join(" ")+" ":"")+(u.length?"Their children: your mother and maternal uncles/aunts.":"Add mother’s siblings to extend this house."));l.forEach(function(a){const o=uftKidsOf(e,uftNameKey(a.name));w+=r(a.name+" · paternal great-uncle/aunt",t(a.name,"Paternal great-uncle/aunt")+n(uftSpouseOf(e,uftNameKey(a.name)),"Spouse"),n(o,"1st cousin once removed"))}),d.forEach(function(a){const o=uftKidsOf(e,uftNameKey(a.name));w+=r(a.name+" · maternal great-uncle/aunt",t(a.name,"Maternal great-uncle/aunt")+n(uftSpouseOf(e,uftNameKey(a.name)),"Spouse"),n(o,"1st cousin once removed"))});let E=r("Your parents",t(e.father,e.fatherY||"Father","male","","father")+t(e.mother,e.motherY||"Mother","female","","mother"),n([{name:e.self||"",relation:"You"}].concat(uftBloodSiblings(e))),"You and your brothers/sisters only. Uncles have their own houses next to this couple.",!0);f.forEach(function(a){const o=uftKidsOf(e,uftNameKey(a.name));E+=r(a.name+" · paternal",t(a.name,"Paternal uncle/aunt")+n(uftSpouseOf(e,uftNameKey(a.name)),"Spouse"),n(o,"Cousin")||'<span class="uft-link-note">Add their children — they become your cousins</span>',o.length?"Cousins live in this house.":"")}),u.forEach(function(a){const o=uftKidsOf(e,uftNameKey(a.name));E+=r(a.name+" · maternal",t(a.name,"Maternal uncle/aunt")+n(uftSpouseOf(e,uftNameKey(a.name)),"Spouse"),n(o,"Cousin")||'<span class="uft-link-note">Add their children — they become your cousins</span>',o.length?"Cousins live in this house.":"")});const L=[];f.concat(u).forEach(function(t){uftKidsOf(e,uftNameKey(t.name)).forEach(function(t){uftSame(t.name,e.self)||uftSame(t.name,e.spouse)||uftIsBloodUncle(e,t.name)||L.push(t)})});const C=uftBloodSiblings(e),N=uftInLawPeople(e);let I=r("Your blood generation",t(e.self,e.selfNote||"You · focus","focus","focus"),n(C,"Sibling")+n(L,"Cousin"),C.length||L.length?"Your siblings and cousins only — not your spouse’s household.":"Add your siblings here. Uncles stay under your parents.");I+=r("Spouse's family",t(e.spouse,e.spouse?"Spouse":"Spouse (not entered)",""),n(N,"In-law"),e.spouse?N.length?"Only people attached to your spouse.":"Attach in-laws to your spouse. Your uncles stay on your side.":"Enter a spouse, then attach their relatives to them. Your uncles are not copied here.");let O=r("Your household",t(e.self,"You","focus","focus")+t(e.spouse,"Spouse","","","spouse"),n(s,"Child"),s.length?"Offspring of your line.":"Add children to open the next generation.");const k={};s.forEach(function(a){const o=uftKidsOf(e,uftNameKey(a.name));o.forEach(function(e){k[uftNorm(e.name)]=!0}),O+=r(a.name+" · your child",t(a.name,"Child")+n(uftSpouseOf(e,uftNameKey(a.name)),"Spouse"),n(o,"Grandchild")||"",o.length?"Grandchildren under this child.":"Add this child’s offspring.")});const R=c.filter(function(e){return!k[uftNorm(e.name)]});R.length&&(O+=r("Grandchildren","",n(R,"Grandchild"),s.length?"Attach each grandchild to a child to nest the branch.":""));const A=uftAllMembers(e),B='<div class="uft-window-meta">'+A.length+" unique member"+(1===A.length?"":"s")+" · oldest generation first · tap status on a card</div>",T=[];i.forEach(function(e){e.name&&T.push(e.name)}),o.forEach(function(e){e.name&&T.push(e.name)}),a.forEach(function(e){e.name&&T.push(e.name)}),e.pgf&&T.push(e.pgf),e.father&&T.push(e.father),e.self&&T.push(e.self);const P=T.length?"Descendant line: "+T.join(" → "):"Descendant pedigree — oldest generation first, youngest last",M=o[0]&&o[0].name||i[0]&&i[0].name||a[0]&&a[0].name||e.pgf||e.father||e.self||"";function x(e){const t=parseInt(uftBornOf(e&&e.name,e&&e.slot),10);return isFinite(t)?t:0}const F={};let K="";M&&(K='<ul class="uft-vtree">'+function n(r,a){if(!r||!r.name||a>8)return"";const o=uftNorm(r.name);if(o&&F[o])return"";o&&(F[o]=!0);let i=[];try{i=(uftLineKids(e,r.name,r.slot)||[]||[]).slice().sort(function(e,t){const n=x(e),r=x(t);return n&&r&&n!==r?n-r:n&&!r?-1:!n&&r?1:String(e.name||"").localeCompare(String(t.name||""))})}catch(e){i=[]}i=i.filter(function(e){return e&&e.name&&!F[uftNorm(e.name)]});let f="<li>";return f+=function(n,r){if(!n||!n.name)return"";let a='<div class="uft-dlimb"><div class="uft-dcouple">';a+=t(n.name,n.relation||"","",0===r||uftSame(n.name,e.self)?"focus":"rel",n.slot);try{let r=uftSpouseOf(e,n.slot||uftNameKey(n.name))||[];r=r.concat(uftSpouseOf(e,uftNameKey(n.name))||[]),(e.relatives||[]).forEach(function(t){if(!t||"spouse"!==t.relation)return;const a=(uftCoreName(e,t.anchor)||String(t.anchor||"").replace(/^n:/,"")).trim();uftSame(a,n.name)&&r.push({name:t.name}),uftSame(t.name,n.name)&&a&&r.push({name:a})}),uftUniquePeople(r).forEach(function(e){e&&e.name&&!uftSame(e.name,n.name)&&(a+=t(e.name,"Spouse","","rel",uftNameKey(e.name),n.slot||uftNameKey(n.name)||n.name))})}catch(e){}return a+="</div></div>",a}(r,a),i.length&&(f+='<ul class="uft-vpeers">',i.forEach(function(e){f+=n(e,a+1)}),f+="</ul>"),f+="</li>",f}({name:M,slot:o[0]&&o[0].name?"g2":i[0]&&i[0].name?"g1":a[0]&&a[0].name?"g3":e.pgf?"pgf":e.father?"father":"self",relation:"Root"},0)+"</ul>");const D=M?'<div class="uft-dtree"><div class="uft-dlabel">Family tree from '+uftEsc(M)+" down to "+uftEsc(e.self||"you")+"</div>"+K+"</div>":"",G='<div class="uft-window-meta" style="font-weight:700;">'+uftEsc(P)+'</div><div class="uft-backbone">'+(i.length?'<div class="uft-col"><div class="uft-col-label">Oldest · G1</div>'+n(i,"3rd-great-grandparent")+'</div><div class="uft-connector"></div>':"")+(o.length?'<div class="uft-col"><div class="uft-col-label">G2 · Karam Din gen</div>'+n(o,"2nd-great-grandparent")+'</div><div class="uft-connector"></div>':"")+(a.length?'<div class="uft-col"><div class="uft-col-label">G3 · next</div>'+n(a,"Great-grandparent")+'</div><div class="uft-connector"></div>':"")+'<div class="uft-col"><div class="uft-col-label">Paternal GP</div>'+t(e.pgf,"Father's father","male","","pgf")+t(e.pgm,"Father's mother","female","","pgm")+'</div><div class="uft-connector"></div><div class="uft-col"><div class="uft-col-label">Maternal GP</div>'+t(e.mgf,"Mother's father","male","","mgf")+t(e.mgm,"Mother's mother","female","","mgm")+'</div><div class="uft-connector"></div><div class="uft-col"><div class="uft-col-label">Parents</div>'+t(e.father,e.fatherY||"Father","male","","father")+t(e.mother,e.motherY||"Mother","female","","mother")+'</div><div class="uft-connector"></div><div class="uft-col"><div class="uft-col-label">Youngest · You</div>'+t(e.self,e.selfNote||"You","focus","focus","self")+t(e.spouse,"Spouse","","","spouse")+"</div></div>",_={},q={g1:"",g2:"",g3:"",gp:"",parents:"",you:"",desc:""},j={g1:0,g2:0,g3:0,gp:0,parents:0,you:0,desc:0};function U(t,n){return"self"===t||"spouse"===t||uftSame(n,e.self)||uftSame(n,e.spouse)?"you":"father"===t||"mother"===t||uftSame(n,e.father)||uftSame(n,e.mother)?"parents":"pgf"===t||"pgm"===t||"mgf"===t||"mgm"===t||uftSame(n,e.pgf)||uftSame(n,e.pgm)||uftSame(n,e.mgf)||uftSame(n,e.mgm)?"gp":uftLines(e.children).some(function(e){return uftSame(e,n)})?"desc":uftLines(e.g1).some(function(e){return uftSame(e,n)})?"g1":uftLines(e.g2).some(function(e){return uftSame(e,n)})?"g2":uftLines(e.g3).some(function(e){return uftSame(e,n)})?"g3":"gp"}function H(a,o,i,f,u){const s=uftNorm(a);if(!s||_[s])return;_[s]=!0;const c=uftKidsOf(e,uftNameKey(a)),l=uftSpouseOf(e,uftNameKey(a)),d=u||"gp";q[d]+=r(o,t(a,i,"","rel",u||"rel")+n(l,"Spouse",u||"rel"),n(c,"Their children")||'<span class="uft-link-note">Add their spouse and children</span>',f),j[d]++}function Y(t,n){const r=n||uftCoreName(e,t)||String(t).replace(/^n:/,"");if(!r)return;const a=function(t,n){let r=uftSiblingsOf(e,t);return n&&(r=r.concat(uftSiblingsOf(e,uftNameKey(n)))),uftNotCorePeople(e,uftUniquePeople(r))}(t,n),o=function(t,n){const r=[];return["pgf","pgm","mgf","mgm"].forEach(function(a){const o=uftCoreName(e,a);o&&uftParentsOf(e,a).some(function(e){return e.id===t||uftSame(e.name,n)})&&r.push({id:a,name:o})}),uftUniquePeople(r)}(t,r);a.forEach(function(e){if(o.length){const n=o.map(function(e){return e.name}).join(", ");H(e.name,e.name+" · uncle/aunt of "+n,"Uncle/aunt of "+n,"Sibling of "+r+", so uncle/aunt of "+n+" only.",U(t,r))}else H(e.name,e.name+" · sibling of "+r,"Sibling of "+r,"Family of "+r+".",U(t,r))})}return Y("pgf",e.pgf),Y("pgm",e.pgm),Y("mgf",e.mgf),Y("mgm",e.mgm),uftLines(e.g3).concat(uftLines(e.g2)).concat(uftLines(e.g1)).forEach(function(e){Y(uftNameKey(e),e)}),(e.relatives||[]).forEach(function(t){if(!t||"sibling"!==t.relation)return;const n=uftCoreName(e,t.anchor)||String(t.anchor||"").replace(/^n:/,"");Y(t.anchor,n)}),j.g1+j.g2+j.g3+j.gp+j.parents+j.you+j.desc||(q.gp=r("Uncles of one grandparent","","","Attach an uncle as Sibling of that grandparent or of that grandparent’s parent. Each generation has its own window.")),'<div class="uft-window">'+B+D+G+"</div>"}function uftToggleBand(e){const t="clarity_uft_band_"+e,n=document.querySelector('#uft-preview .uft-band[data-band="'+e+'"]'),r=!(n?!n.classList.contains("collapsed"):"on"===clarityLS.getItem(t));try{clarityLS.setItem(t,r?"on":"off")}catch(e){}if(n){n.classList.toggle("collapsed",!r);const e=n.querySelector(".uft-band-count");if(e){const t=(e.textContent||"").replace(/\s*[·•].*$/,"").trim();e.textContent=t+" · "+(r?"▾":"▸")}return}uftRender({keepScroll:!0})}function uftGroupHtml(e){function t(e,t){return t.length?'<div class="uft-group-block"><h4>'+e+"</h4>"+t.join("")+"</div>":""}return'<div class="uft-group-sheet">'+t("Family group — focus",[uftPerson(e.self||"",e.selfNote||"Focus person","focus","focus"),uftPerson(e.spouse||"","Spouse","")].filter(function(e){return e}))+t("Parents",[uftPerson(e.father||"",e.fatherY||"Father","male"),uftPerson(e.mother||"",e.motherY||"Mother","female")])+t("Paternal grandparents",[uftPerson(e.pgf||"","Father's father","male"),uftPerson(e.pgm||"","Father's mother","female")])+t("Maternal grandparents",[uftPerson(e.mgf||"","Mother's father","male"),uftPerson(e.mgm||"","Mother's mother","female")])+t("Great-grandparents",uftLines(e.g3).map(function(e){return uftPerson(e,"G3")}))+t("2nd-great-grandparents",uftLines(e.g2).map(function(e){return uftPerson(e,"G2")}))+t("3rd-great-grandparents",uftLines(e.g1).map(function(e){return uftPerson(e,"G1")}))+t("Siblings",uftUniquePeople(uftSiblingsOf(e,"self").concat(uftLines(e.siblings).map(function(e){return{name:e}}))).map(function(e){return uftPerson(e.name||e,"Sibling")}))+t("Children",uftUniquePeople(uftKidsOf(e,"self")).map(function(e){return uftPerson(e.name,"Child")}))+t("Grandchildren",uftLines(e.grandchildren).map(function(e){return uftPerson(e,"Grandchild")}))+t("Paternal uncles / aunts",uftSiblingsOf(e,"father").map(function(e){return uftPerson(e.name,"Paternal uncle/aunt","","rel")}))+t("Maternal uncles / aunts",uftSiblingsOf(e,"mother").map(function(e){return uftPerson(e.name,"Maternal uncle/aunt","","rel")}))+t("Uncles/aunts of father's father",uftUnclesOf(e,"pgf").map(function(t){return uftPerson(t.name,"Uncle/aunt of "+(e.pgf||"father's father"),"","rel")}))+t("Uncles/aunts of father's mother",uftUnclesOf(e,"pgm").map(function(t){return uftPerson(t.name,"Uncle/aunt of "+(e.pgm||"father's mother"),"","rel")}))+t("Uncles/aunts of mother's father",uftUnclesOf(e,"mgf").map(function(t){return uftPerson(t.name,"Uncle/aunt of "+(e.mgf||"mother's father"),"","rel")}))+t("Uncles/aunts of mother's mother",uftUnclesOf(e,"mgm").map(function(t){return uftPerson(t.name,"Uncle/aunt of "+(e.mgm||"mother's mother"),"","rel")}))+t("Added relations",(e.relatives||[]).map(function(t){return uftPerson(t.name,uftRoleToYou(e,t.name,uftAnchorLabel(t.anchor)+" → "+uftRelLabel(t.relation)),"","rel")}))+"</div>"}function uftListHtml(e){let t="";function n(e,n,r){n.length&&(t+='<div class="uft-meta">'+e+"</div>"+n.map(function(e){return uftCard(e,r)}).join(""))}n("G1 · 3rd-great-grandparents",uftLines(e.g1)),n("G2 · 2nd-great-grandparents",uftLines(e.g2)),n("G3 · Great-grandparents",uftLines(e.g3));const r=[e.pgf&&"Father's father: "+e.pgf,e.pgm&&"Father's mother: "+e.pgm,e.mgf&&"Mother's father: "+e.mgf,e.mgm&&"Mother's mother: "+e.mgm].filter(Boolean);return r.length&&(t+='<div class="uft-meta">Grandparents</div>'+r.map(function(e){return uftCard(e,"")}).join("")),t+=uftCard(e.father,e.fatherY||"Father")+uftCard(e.mother,e.motherY||"Mother"),t+=uftCard(e.self||"",e.selfNote||"You","uft-self"),t+=uftCard(e.spouse,"Spouse"),n("Siblings",uftLines(e.siblings),"Sibling"),n("Children",uftLines(e.children),"Child"),n("Grandchildren",uftLines(e.grandchildren),"Grandchild"),n("Added relations",(e.relatives||[]).map(function(e){return(e.name||"")+" ("+uftAnchorLabel(e.anchor)+" → "+uftRelLabel(e.relation)+")"}).filter(Boolean)),t}function uftRender(e){const t=document.getElementById("uft-preview");if(!t)return;const n=e&&e.keepScroll,r=window.scrollX||0,a=window.scrollY||window.pageYOffset||0,o=document.querySelector("#uft-preview .uft-window"),i=o?o.scrollLeft:0,f=o?o.scrollTop:0,u={};document.querySelectorAll("#uft-preview .uft-band-scroll, #uft-preview .uft-backbone").forEach(function(e,t){const n=e.closest("[data-band]")?e.closest("[data-band]").getAttribute("data-band"):"x"+t;u[n]={l:e.scrollLeft,t:e.scrollTop}});const s=uftCollect();uftVitalMap=s&&s.vital||{},uftGenderMap=s&&s.gender||{},uftBornMap=s&&s.born||{};try{uftDrawTree(uftGenFilled(s))}catch(e){}["pedigree","group","list"].forEach(function(e){const t=document.getElementById("uft-view-"+e);t&&t.classList.toggle("active",uftView===e)});let c="";try{c=uftPedigreeHtml(s)}catch(e){c='<p class="uft-empty">Pedigree could not draw ('+uftEsc(e&&e.message?e.message:e)+"). Use Family group or List, or tap Refresh.</p>"}uftEnsureZoomLayer(c||'<p class="uft-empty">Pedigree template ready. Fill names above; empty slots stay as Unknown like an Ancestry chart.</p>');try{uftZoomInit()}catch(e){}if("function"==typeof uftRefreshVitalWho&&uftRefreshVitalWho(),"function"==typeof uftRegRender)try{const e=uftRead();e.registry&&e.registry.length?uftRegRender():uftRegImportTree()}catch(e){uftRegRender()}if("function"==typeof uftFillNameChoices&&uftFillNameChoices(),t.dataset.vitalBound||(t.dataset.vitalBound="1",t.addEventListener("click",function(e){const t=e.target&&e.target.closest?e.target.closest("[data-vital-name], [data-gender-name], [data-del-name], [data-born-name], [data-focus-name], [data-own-name]"):null;t&&(e.preventDefault(),e.stopPropagation(),t.hasAttribute("data-del-name")?uftDeletePerson(t.getAttribute("data-del-name"),t.getAttribute("data-del-slot")||"",t.getAttribute("data-del-anchor")||""):t.hasAttribute("data-born-name")?uftAskBorn(t.getAttribute("data-born-name"),t.getAttribute("data-born-slot")||""):t.hasAttribute("data-own-name")?uftStartOwnTree(t.getAttribute("data-own-name"),t.getAttribute("data-own-slot")||""):t.hasAttribute("data-focus-name")?uftOpenMemberView(t.getAttribute("data-focus-name"),t.getAttribute("data-focus-slot")||""):t.hasAttribute("data-gender-name")?uftCycleGender(t.getAttribute("data-gender-name"),t.getAttribute("data-gender-slot")||""):uftCycleVital(t.getAttribute("data-vital-name"),t.getAttribute("data-vital-slot")||""))})),n){window.scrollTo(r,a);const e=document.querySelector("#uft-preview .uft-window");e&&(e.scrollLeft=i,e.scrollTop=f),document.querySelectorAll("#uft-preview .uft-band-scroll, #uft-preview .uft-backbone").forEach(function(e,t){const n=e.closest("[data-band]")?e.closest("[data-band]").getAttribute("data-band"):"x"+t;u[n]&&(e.scrollLeft=u[n].l,e.scrollTop=u[n].t)})}try{"function"==typeof uftRenderOwnTreePanel&&uftRenderOwnTreePanel()}catch(e){}}function faraidAllTreePeople(){const e="function"==typeof uftCollect?uftCollect():{},t=[],n={};function r(r,a,o){const i=String(r||"").trim();if(!i)return;const f="function"==typeof uftNorm?uftNorm(i):i.toLowerCase();if(n[f])return;n[f]=!0;let u=o||"";try{if("function"==typeof uftGenderOf){const e=uftGenderOf(i,a||"");"male"!==e&&"female"!==e||(u=e)}else e.gender&&(u=e.gender[(a?a+"|":"")+f]||e.gender[f]||u)}catch(e){}!u&&/mother|wife|daughter|niece|aunt|female|pgm|mgm/i.test(String(a||""))&&(u="female"),!u&&/father|husband|son|nephew|uncle|male|pgf|mgf/i.test(String(a||""))&&(u="male"),t.push({name:i,role:a||"",gender:u||""})}return r(e.self,"self","male"),r(e.spouse,"spouse","female"),r(e.father,"father","male"),r(e.mother,"mother","female"),r(e.pgf,"pgf","male"),r(e.pgm,"pgm","female"),r(e.mgf,"mgf","male"),r(e.mgm,"mgm","female"),("function"==typeof uftLines?uftLines(e.siblings):String(e.siblings||"").split(/\n/)).forEach(function(e){r(e,"sibling")}),("function"==typeof uftLines?uftLines(e.children):String(e.children||"").split(/\n/)).forEach(function(e){r(e,"child")}),("function"==typeof uftLines?uftLines(e.grandchildren):String(e.grandchildren||"").split(/\n/)).forEach(function(e){r(e,"grandchild")}),("function"==typeof uftLines?uftLines(e.g1):[]).forEach(function(e){r(e,"g1")}),("function"==typeof uftLines?uftLines(e.g2):[]).forEach(function(e){r(e,"g2")}),("function"==typeof uftLines?uftLines(e.g3):[]).forEach(function(e){r(e,"g3")}),(e.relatives||[]).forEach(function(e){e&&e.name&&r(e.name,e.relation||"relative")}),(e.registry||[]).forEach(function(e){e&&e.name&&r(e.name,e.role||"registry")}),t}document.addEventListener("DOMContentLoaded",function(){const e=document.getElementById("uft-pick-modal");e&&!e.dataset.bound&&(e.dataset.bound="1",e.addEventListener("click",function(t){t.target===e&&uftClosePersonPicker()})),uftLoad();try{uftCollapseEditor()}catch(e){}const t=document.getElementById("uft-stage");t&&!t.dataset.bound&&(t.dataset.bound="1",t.addEventListener("input",function(){uftRender(),uftScheduleSave()}))}),setTimeout(uftLoad,400);var WASI_KEY="clarity_wasiyyah_draft_v1",wasiCountryNotes={PK:"Pakistan: Muslim personal law and farāʾiḍ are widely applied for Muslim estates. Register/witness a written will; local counsel helps with property mutation and bank release.",IN:"India: Muslims may follow Muslim personal law for inheritance. A written will should still meet Indian Succession formalities for smooth probate of assets.",BD:"Bangladesh: Muslim family law governs Muslim inheritance. Document wasiyyah clearly; civil procedures still apply for property transfer.",MY:"Malaysia: Muslims use Sharīʿah courts for inheritance. Wasiat may be registered (e.g. Amanah Raya / state channels). Farāʾiḍ applies; wasiat ≤ ⅓ to non-heirs.",ID:"Indonesia: Islamic courts handle Muslim inheritance alongside Kompilasi Hukum Islam. Formal documentation and local notary practice matter for assets.",AE:"UAE: Personal status law for Muslims includes wasiyyah rules; notarise/register through competent judicial channels in the relevant emirate.",SA:"Saudi Arabia: Sharīʿah governs inheritance. Wasiyyah should respect the one-third limit and heir rules; local court procedures apply.",EG:"Egypt: Personal status and inheritance rules for Muslims include wasiyyah limits; official documentation supports enforcement.",TR:"Türkiye: Civil inheritance code applies by default. Muslims often still plan farāʾiḍ-compliant distributions via wills that satisfy Turkish formalities.",NG:"Nigeria: Practice varies by state (customary, Sharīʿah, or common law). Document wasiyyah and use counsel familiar with your state.",ZA:"South Africa: Freedom of testation under civil law — draft a valid civil will that instructs Islamic distribution so farāʾiḍ intent is enforceable.",GB:"United Kingdom: Use a valid English/Scottish will. Without one, intestacy ignores farāʾiḍ. Many Muslims use wills that set out Sharīʿah shares.",US:"United States: State probate law controls. A valid state will (witnesses/notary as required) is needed so distribution can follow farāʾiḍ + wasiyyah intent.",CA:"Canada: Provincial wills formalities apply. Draft a compliant provincial will expressing Islamic distribution.",AU:"Australia: State/territory wills formalities apply. Templates (e.g. community orgs) still need correct witnessing for validity.",OTHER:"Wherever you live: (1) satisfy local will formalities so courts enforce your document; (2) keep wasiyyah within fiqh limits (≤ ⅓, non-heirs); (3) consult a scholar and a local solicitor."};function wasiNum(e){const t=parseFloat((document.getElementById(e)||{}).value||"0");return isFinite(t)&&t>0?t:0}function wasiNet(){const e=wasiNum("wasi-assets"),t=wasiNum("wasi-funeral"),n=wasiNum("wasi-debts"),r=Math.max(0,e-t-n);return{assets:e,funeral:t,debts:n,net:r,maxW:r/3}}function wasiRefreshNet(){const e=wasiNet(),t=((document.getElementById("wasi-currency")||{}).value||"").trim(),n=t?" "+t:"",r=document.getElementById("wasi-net-line");r&&(r.textContent="Net after funeral & debts: "+(e.net?e.net.toLocaleString(void 0,{maximumFractionDigits:2}):"—")+n+" · Max wasiyyah (⅓): "+(e.net?e.maxW.toLocaleString(void 0,{maximumFractionDigits:2}):"—")+n),wasiRefreshBequestStatus()}function wasiOnCountry(){const e=(document.getElementById("wasi-country")||{}).value||"",t=document.getElementById("wasi-jurisdiction-note");t&&(t.textContent=wasiCountryNotes[e]||"Choose a country to see how civil probate interacts with wasiyyah and farāʾiḍ."),wasiScheduleSave()}function wasiTreeNames(){const e=[],t={};function n(n){if(!(n=String(n||"").trim()))return;const r="function"==typeof uftNorm?uftNorm(n):n.toLowerCase();t[r]||(t[r]=!0,e.push(n))}try{const e="function"==typeof uftCollect?uftCollect():{};["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(t){n(e[t])}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(t){("function"==typeof uftLines?uftLines(e[t]):[]).forEach(n)}),(e.relatives||[]).forEach(function(e){e&&e.name&&n(e.name)}),(e.registry||[]).forEach(function(e){e&&e.name&&n(e.name)})}catch(e){}try{("function"==typeof uftGetStoredCards?uftGetStoredCards():[]).forEach(function(e){e&&e.name&&n(e.name)})}catch(e){}return e.sort(function(e,t){return e.localeCompare(t)}),e}function wasiTreeOptionsHtml(e){const t=wasiTreeNames();let n='<option value="">Pick from pedigree / cards…</option>';return t.forEach(function(t){const r=e&&t===e?" selected":"";n+='<option value="'+String(t).replace(/"/g,"&quot;")+'"'+r+">"+String(t).replace(/</g,"")+"</option>"}),n}function wasiApplyTreePick(e,t){if(!t)return;const n=t.value||"",r=document.getElementById(e);r&&n&&(r.value=n),wasiScheduleSave()}function wasiFillTreeSelects(){["wasi-guardian-tree","wasi-guardian2-tree","wasi-executor-tree","wasi-executor2-tree"].forEach(function(e){const t=document.getElementById(e);if(!t)return;const n=t.value;t.innerHTML=wasiTreeOptionsHtml(n),n&&(t.value=n)}),document.querySelectorAll("#wasi-bequest-list .wasi-bq-tree").forEach(function(e){const t=e.value,n=e.closest(".wasi-bq-row")&&e.closest(".wasi-bq-row").querySelector(".wasi-bq-name");e.innerHTML=wasiTreeOptionsHtml(t||n&&n.value||"")}),"function"==typeof uftSetStatus&&uftSetStatus("Family tree names loaded into Wasiyyah pickers.")}function wasiPullFromFaraid(){const e=parseFloat((document.getElementById("faraid-estate")||{}).value||"0")||0,t=parseFloat((document.getElementById("faraid-funeral")||{}).value||"0")||0,n=parseFloat((document.getElementById("faraid-debts")||{}).value||"0")||0,r=parseFloat((document.getElementById("faraid-wasiyyah")||{}).value||"0")||0,a=((document.getElementById("faraid-currency")||{}).value||"").trim(),o=document.getElementById("faraid-net"),i=function(e,t){const n=document.getElementById(e);n&&(t||0===t)&&(n.value=t)};if(e&&i("wasi-assets",e),i("wasi-funeral",t||0),i("wasi-debts",n||0),a&&i("wasi-currency",a),wasiRefreshNet(),r>0){const e=document.getElementById("wasi-bequest-list");if(!e||!Array.prototype.some.call(e.querySelectorAll(".wasi-bq-name"),function(e){return String(e.value||"").trim()})){e&&!e.querySelector(".wasi-bq-row")&&wasiAddBequest();const t=e&&e.querySelector(".wasi-bq-row");if(t){const e=t.querySelector(".wasi-bq-name"),n=t.querySelector(".wasi-bq-amt");e&&!e.value&&(e.value="Charitable causes (from Farāʾiḍ wasiyyah field)"),n&&(n.value=r)}}}wasiRefreshBequestStatus(),wasiScheduleSave(),"function"==typeof uftSetStatus&&uftSetStatus(e?"Pulled Farāʾiḍ estate figures into Wasiyyah"+(o&&o.value?" · net was "+o.value:""):"Farāʾiḍ calculator has no estate amount yet — enter figures there first, then pull.");try{document.getElementById("wasi-assets").scrollIntoView({behavior:"smooth",block:"nearest"})}catch(e){}}function wasiAddBequest(e){const t=document.getElementById("wasi-bequest-list");if(!t)return;const n=document.createElement("div");n.className="wasi-bq-row",n.style.gridTemplateColumns="1fr",n.innerHTML='<label>From family tree / cards<select class="wasi-bq-tree">'+wasiTreeOptionsHtml(e&&e.name)+'</select></label><label>Beneficiary (non-heir)<input type="text" class="wasi-bq-name" placeholder="Name or charity"></label><div style="display:grid;grid-template-columns:1fr 1fr auto;gap:0.35rem;align-items:end;"><label>Amount<input type="number" class="wasi-bq-amt" min="0" step="any" placeholder="0"></label><label>% of net<input type="number" class="wasi-bq-pct" min="0" max="33.33" step="any" placeholder="optional"></label><button type="button" class="btn-secondary" title="Remove">×</button></div>',n.querySelector("button").onclick=function(){n.remove(),wasiRefreshBequestStatus(),wasiScheduleSave()};const r=n.querySelector(".wasi-bq-tree");r.onchange=function(){const e=r.value||"";e&&(n.querySelector(".wasi-bq-name").value=e),wasiRefreshBequestStatus(),wasiScheduleSave()},n.querySelectorAll("input").forEach(function(e){e.addEventListener("input",function(){wasiRefreshBequestStatus(),wasiScheduleSave()})}),e&&(n.querySelector(".wasi-bq-name").value=e.name||"",n.querySelector(".wasi-bq-amt").value=null!=e.amount?e.amount:"",n.querySelector(".wasi-bq-pct").value=null!=e.pct?e.pct:""),t.appendChild(n),wasiRefreshBequestStatus()}function wasiCollectBequests(){const e=document.querySelectorAll("#wasi-bequest-list .wasi-bq-row"),t=wasiNet(),n=[];return e.forEach(function(e){const r=(e.querySelector(".wasi-bq-name")||{}).value||"",a=parseFloat((e.querySelector(".wasi-bq-amt")||{}).value||"0")||0,o=parseFloat((e.querySelector(".wasi-bq-pct")||{}).value||"0")||0;let i=a;!i&&o&&t.net&&(i=t.net*(o/100)),String(r).trim()&&n.push({name:String(r).trim(),amount:a,pct:o,resolved:i})}),n}function wasiRefreshBequestStatus(){const e=wasiNet(),t=wasiCollectBequests().reduce(function(e,t){return e+(t.resolved||0)},0),n=document.getElementById("wasi-bequest-status");if(!n)return;const r=((document.getElementById("wasi-currency")||{}).value||"").trim(),a=r?" "+r:"";if(!e.net)return n.textContent="Enter assets (and costs) to check the one-third cap.",void(n.style.color="");const o=t<=e.maxW+1e-4;n.textContent="Bequests total: "+t.toLocaleString(void 0,{maximumFractionDigits:2})+a+" / max "+e.maxW.toLocaleString(void 0,{maximumFractionDigits:2})+a+(o?" ✓ within one-third":" ✗ exceeds one-third — reduce or note heir consent after death"),n.style.color=o?"":"#b45309"}function wasiCollect(){return{country:(document.getElementById("wasi-country")||{}).value||"",name:((document.getElementById("wasi-name")||{}).value||"").trim(),city:((document.getElementById("wasi-city")||{}).value||"").trim(),assets:wasiNum("wasi-assets"),currency:((document.getElementById("wasi-currency")||{}).value||"").trim(),funeral:wasiNum("wasi-funeral"),debts:wasiNum("wasi-debts"),debtsDetail:((document.getElementById("wasi-debts-detail")||{}).value||"").trim(),bequests:wasiCollectBequests(),guardian:((document.getElementById("wasi-guardian")||{}).value||"").trim(),guardian2:((document.getElementById("wasi-guardian2")||{}).value||"").trim(),executor:((document.getElementById("wasi-executor")||{}).value||"").trim(),executor2:((document.getElementById("wasi-executor2")||{}).value||"").trim(),notes:((document.getElementById("wasi-notes")||{}).value||"").trim(),savedAt:(new Date).toISOString()}}function wasiApply(e){if(!e)return;const t=function(e,t){const n=document.getElementById(e);n&&(n.value=null!=t?t:"")};t("wasi-country",e.country||""),t("wasi-name",e.name||""),t("wasi-city",e.city||""),t("wasi-assets",e.assets||""),t("wasi-currency",e.currency||""),t("wasi-funeral",e.funeral||""),t("wasi-debts",e.debts||""),t("wasi-debts-detail",e.debtsDetail||""),t("wasi-guardian",e.guardian||""),t("wasi-guardian2",e.guardian2||""),t("wasi-executor",e.executor||""),t("wasi-executor2",e.executor2||""),t("wasi-notes",e.notes||"");const n=document.getElementById("wasi-bequest-list");n&&(n.innerHTML=""),(e.bequests||[]).forEach(function(e){wasiAddBequest(e)}),(e.bequests||[]).length||wasiAddBequest(),wasiOnCountry(),wasiRefreshNet()}function wasiSave(){try{clarityLS.setItem(WASI_KEY,JSON.stringify(wasiCollect()))}catch(e){}"function"==typeof uftSetStatus?uftSetStatus("Wasiyyah draft saved on this device."):"function"==typeof showToast&&showToast("Wasiyyah draft saved.")}var wasiSaveTimer=null;function wasiScheduleSave(){wasiRefreshNet(),wasiSaveTimer&&clearTimeout(wasiSaveTimer),wasiSaveTimer=setTimeout(function(){try{clarityLS.setItem(WASI_KEY,JSON.stringify(wasiCollect()))}catch(e){}},400)}function wasiLoad(){try{const e=clarityLS.getItem(WASI_KEY);e?wasiApply(JSON.parse(e)):document.querySelector("#wasi-bequest-list .wasi-bq-row")||wasiAddBequest()}catch(e){document.querySelector("#wasi-bequest-list .wasi-bq-row")||wasiAddBequest()}["wasi-assets","wasi-funeral","wasi-debts","wasi-currency","wasi-name","wasi-city","wasi-debts-detail","wasi-guardian","wasi-guardian2","wasi-executor","wasi-executor2","wasi-notes"].forEach(function(e){const t=document.getElementById(e);t&&!t.dataset.wasiBound&&(t.dataset.wasiBound="1",t.addEventListener("input",wasiScheduleSave))})}function wasiReset(){if(!confirm("Clear the wasiyyah form on this screen?"))return;try{clarityLS.removeItem(WASI_KEY)}catch(e){}wasiApply({bequests:[{}]});const e=document.getElementById("wasi-result");e&&(e.style.display="none",e.innerHTML="")}function wasiGenerate(){const e=wasiCollect(),t=wasiNet(),n=e.currency?" "+e.currency:"",r=(e.bequests||[]).reduce(function(e,t){return e+(t.resolved||0)},0),a=r>t.maxW+1e-4,o=(document.getElementById("wasi-country")||{}).selectedOptions;let i='<div class="faraid-result-body"><h3 style="margin-top:0;">Wasiyyah draft (educational)</h3>';i+='<p class="notes-hint">Not a substitute for legal advice or a formal will under local law. Have it reviewed and properly witnessed/notarised as required in <strong>'+String(o&&o[0]?o[0].textContent:e.country||"—").replace(/</g,"")+"</strong>.</p>",i+="<p>I, <strong>"+(e.name||"[Name]")+"</strong>"+(e.city?", of "+e.city:"")+", being of sound mind, set out this wasiyyah for when Allah takes my soul.</p>",i+="<p><strong>Order of settlement:</strong> (1) funeral and burial costs; (2) debts and trusts; (3) optional wasiyyah up to one-third of what remains; (4) the remainder by farāʾiḍ among my heirs.</p>",i+="<p><strong>Estate figures (estimates):</strong> Assets "+t.assets.toLocaleString()+n+"; funeral "+t.funeral.toLocaleString()+n+"; debts "+t.debts.toLocaleString()+n+"; <strong>net "+t.net.toLocaleString()+n+"</strong>; max wasiyyah ⅓ = <strong>"+t.maxW.toLocaleString()+n+"</strong>.</p>",e.debtsDetail&&(i+="<p><strong>Debts / trusts / rights to clarify:</strong> "+String(e.debtsDetail).replace(/</g,"")+"</p>"),e.bequests&&e.bequests.length?(i+="<p><strong>Optional bequests (non-heirs):</strong></p><ul>",e.bequests.forEach(function(e){i+="<li>"+String(e.name).replace(/</g,"")+" — "+(e.resolved?e.resolved.toLocaleString(void 0,{maximumFractionDigits:2})+n:"amount to confirm")+(e.pct?" ("+e.pct+"% of net)":"")+"</li>"}),i+="</ul>",i+="<p>Total bequests: <strong>"+r.toLocaleString(void 0,{maximumFractionDigits:2})+n+"</strong>"+(a?' — <span style="color:#b45309;">exceeds one-third; reduce or obtain heir consent after death</span>.':" (within one-third, if figures hold).")+"</p>"):i+="<p><strong>Optional bequests:</strong> none specified (entire net after debts follows farāʾiḍ).</p>",(e.guardian||e.guardian2)&&(i+="<p><strong>Guardian for minor children:</strong> "+String(e.guardian||"—").replace(/</g,"")+(e.guardian2?"; alternate: "+String(e.guardian2).replace(/</g,""):"")+".</p>"),(e.executor||e.executor2)&&(i+="<p><strong>Executor (waṣī):</strong> "+String(e.executor||"—").replace(/</g,"")+(e.executor2?"; alternate: "+String(e.executor2).replace(/</g,""):"")+".</p>"),i+="<p><strong>Remainder:</strong> After the above, my estate is to be distributed according to Islamic inheritance (farāʾiḍ). I ask my heirs to fear Allah and settle with justice.</p>",e.notes&&(i+="<p><strong>Other wishes:</strong> "+String(e.notes).replace(/</g,"")+"</p>"),i+='<p class="notes-hint">Jurisdiction note: '+String(wasiCountryNotes[e.country]||wasiCountryNotes.OTHER).replace(/</g,"")+"</p>",i+='<p class="notes-hint">Sources for study: hadith of Saʿd ibn Abī Waqqāṣ (Bukhārī/Muslim) on the one-third limit; “no bequest to an heir”; IslamQA and classical fiqh on wasiyyah. Allah knows best.</p>',i+="</div>";const f=document.getElementById("wasi-result");if(f){f.innerHTML=i,f.style.display="block";try{f.scrollIntoView({behavior:"smooth",block:"nearest"})}catch(e){}}wasiSave()}function wasiPrint(){wasiGenerate();const e=document.getElementById("wasi-result");if(!e||!e.innerHTML)return;document.body.classList.add("printing");const t=document.createElement("div");t.className="print-sheet",t.innerHTML=e.innerHTML,document.body.appendChild(t),window.print(),setTimeout(function(){document.body.classList.remove("printing"),t.remove()},400)}function faraidFillDeceasedSelect(){const e=document.getElementById("faraid-deceased");if(!e)return;const t=faraidAllTreePeople(),n=e.value;e.innerHTML='<option value="">Select deceased…</option>'+t.map(function(e){return'<option value="'+String(e.name).replace(/"/g,"&quot;")+'">'+e.name+(e.role?" ("+e.role+")":"")+"</option>"}).join(""),n&&(e.value=n)}function faraidOnDeceasedChange(){const e=(document.getElementById("faraid-deceased")||{}).value||"",t=faraidAllTreePeople().find(function(t){return t.name===e}),n=document.getElementById("faraid-gender");t&&t.gender&&n&&(n.value=t.gender)}function faraidSameName(e,t){return"function"==typeof uftSame?uftSame(e,t):String(e||"").trim().toLowerCase()===String(t||"").trim().toLowerCase()}function faraidGenderOfName(e,t){let n="";const r=[t||"","g1","g2","g3","self","spouse","father","mother","pgf","pgm","mgf","mgm",""];try{if("function"==typeof uftGenderOf)for(let t=0;t<r.length;t++){const n=uftGenderOf(e,r[t]);if("male"===n||"female"===n)return n}const t="function"==typeof uftCollect?uftCollect():{},n="function"==typeof uftNorm?uftNorm(e):String(e||"").toLowerCase(),a=t&&t.gender||{};if("male"===a[n]||"female"===a[n])return a[n];const o=Object.keys(a);for(let e=0;e<o.length;e++){const t=o[e];if((t.indexOf("|")>=0?t.slice(t.lastIndexOf("|")+1):t.replace(/^n:/,""))===n&&("male"===a[t]||"female"===a[t]))return a[t]}}catch(e){}return/mother|wife|daughter|niece|aunt|sister|female|pgm|mgm/i.test(String(t||""))?n="female":/father|husband|son|nephew|uncle|brother|male|pgf|mgf/i.test(String(t||""))&&(n="male"),n||""}function faraidChildRelation(e,t){const n=faraidGenderOfName(e,t||"child");return"female"===n?"daughter":"male"===n?"son":/\b(bibi|begum|bano|fatima|aisha|ayesha|maryam|zainab|khadija)\b/i.test(e)?"daughter":"son"}function faraidIsDeceased(e,t){try{const n="function"==typeof uftCollect?uftCollect():"function"==typeof uftRead?uftRead():{},r=Object.assign({},n&&n.vital||{},void 0!==uftVitalMap&&uftVitalMap?uftVitalMap:{});try{uftVitalMap=r}catch(e){}const a="function"==typeof uftNorm?uftNorm(e):String(e||"").trim().toLowerCase();if(!a)return!1;const o=String(t||"").trim().toLowerCase(),i=Object.keys(r);let f=!1,u=!1,s=!1,c=!1;for(let t=0;t<i.length;t++){const n=i[t],l=n.indexOf("|")>=0?n.slice(n.lastIndexOf("|")+1):n.replace(/^n:/i,"");if(l!==a&&("function"!=typeof uftSame||!uftSame(l,e)))continue;const d=n.indexOf("|")>=0?n.slice(0,n.lastIndexOf("|")).toLowerCase():"",m=r[n];"deceased"===m&&(s=!0),"alive"===m&&(c=!0),o&&(d!==o&&n.toLowerCase()!==o+"|"+a||("deceased"===m&&(u=!0),"alive"===m&&(f=!0)))}if(o&&u)return!0;if(o&&f)return!1;try{if("function"==typeof uftVitalOf){if(o){const n=uftVitalOf(e,t);if("deceased"===n)return!0;if("alive"===n)return!1}const n=["g1","g2","g3","self","father","mother","pgf","pgm","mgf","mgm",""];for(let t=0;t<n.length;t++){const r=uftVitalOf(e,n[t]);if("deceased"===r&&(s=!0,!o||o===n[t]))return!0;"alive"===r&&(c=!0)}}}catch(e){}try{const t={g1:"function"==typeof uftLines?uftLines(n.g1):[],g2:"function"==typeof uftLines?uftLines(n.g2):[],g3:"function"==typeof uftLines?uftLines(n.g3):[]};["g1","g2","g3"].forEach(function(n){if(!(t[n]||[]).some(function(e){return("function"==typeof uftNorm?uftNorm(e):String(e).toLowerCase())===a}))return;const o=n+"|"+a;if("deceased"===r[o]&&(s=!0),"alive"===r[o]&&(c=!0),"function"==typeof uftVitalOf){const t=uftVitalOf(e,n);"deceased"===t&&(s=!0),"alive"===t&&(c=!0)}})}catch(e){}if(f)return!1;if(c&&s)return!!u||"deceased"===r[a];if(s)return!0;if("deceased"===r[a])return!0}catch(e){}return!1}function faraidIsAlive(e,t){return!faraidIsDeceased(e,t)}function faraidCloseHeirsOf(e){const t="function"==typeof uftCollect?uftCollect():{};try{uftVitalMap=t&&t.vital||{}}catch(e){}const n=[],r={};function a(t,a,o,i){const f=String(t||"").trim();if(!f||faraidSameName(f,e))return;if(faraidIsDeceased(f,i||""))return;if(("g1"===i||"father"===a||"mother"===a)&&"g1"===i&&faraidIsDeceased(f,"g1"))return;const u=a+"|"+("function"==typeof uftNorm?uftNorm(f):f.toLowerCase());if(r[u])return;r[u]=!0;let s=o||faraidGenderOfName(f,i||a);s||(s=faraidGenderOfName(f,a)),s||("mother"===a||"daughter"===a||"sister"===a?s="female":"father"===a||"son"===a||"brother"===a?s="male":"spouse"===a&&(s="male"===((document.getElementById("faraid-gender")||{}).value||"male")?"female":"male")),"female"===s&&"son"===a&&(a="daughter"),"male"===s&&"daughter"===a&&(a="son"),"female"===s&&"grandson"===a&&(a="granddaughter"),"male"===s&&"granddaughter"===a&&(a="grandson"),"female"===s&&"great-grandson"===a&&(a="great-granddaughter"),"male"===s&&"great-granddaughter"===a&&(a="great-grandson"),"female"===s&&"father"===a&&(a="mother"),"male"===s&&"mother"===a&&(a="father"),"female"===s&&"brother"===a&&(a="sister"),"male"===s&&"sister"===a&&(a="brother"),n.push({name:f,relation:a,gender:s||"male",slot:i||""})}function o(e,n){const r=(i||(i=function(){const e={};function n(e){return"function"==typeof uftNorm?uftNorm(e):String(e||"").trim().toLowerCase()}function r(t,r){const a=String(t||"").trim(),o=String(r||"").trim();if(!a||!o||faraidSameName(a,o))return;const i=n(a);e[i]||(e[i]={name:a,kids:[]}),e[i].kids.some(function(e){return faraidSameName(e,o)})||e[i].kids.push(o)}t.father&&(r(t.father,t.self),("function"==typeof uftLines?uftLines(t.siblings):[]).forEach(function(e){r(t.father,e)})),t.mother&&(r(t.mother,t.self),("function"==typeof uftLines?uftLines(t.siblings):[]).forEach(function(e){r(t.mother,e)})),t.self&&(("function"==typeof uftLines?uftLines(t.children):[]).forEach(function(e){r(t.self,e)}),("function"==typeof uftLines?uftLines(t.grandchildren):[]).forEach(function(e){const n="function"==typeof uftLines?uftLines(t.children):[];r(1===n.length?n[0]:t.self,e)})),t.pgf&&r(t.pgf,t.father),t.pgm&&r(t.pgm,t.father),t.mgf&&r(t.mgf,t.mother),t.mgm&&r(t.mgm,t.mother);const a="function"==typeof uftLines?uftLines(t.g1):[],o="function"==typeof uftLines?uftLines(t.g2):[],i="function"==typeof uftLines?uftLines(t.g3):[];if(1===a.length&&o.length&&o.forEach(function(e){r(a[0],e)}),1===o.length&&i.length&&i.forEach(function(e){r(o[0],e)}),1===i.length&&(t.pgf?r(i[0],t.pgf):t.father&&r(i[0],t.father)),i.length>=1){const e=[];t.pgf&&e.push(t.pgf),t.pgm&&e.push(t.pgm),!e.length&&t.father&&e.push(t.father),1===i.length&&e.forEach(function(e){r(i[0],e)})}(t.relatives||[]).forEach(function(a){if(!a||!a.name)return;const o=("function"==typeof uftCoreName?uftCoreName(t,a.anchor):"")||String(a.anchor||"").replace(/^n:/,"");if(o){if("child"!==a.relation&&"offspring"!==a.relation||r(o,a.name),"grandchild"===a.relation){const t=e[n(o)]&&e[n(o)].kids||[];r(1===t.length?t[0]:o,a.name)}"sibling"===a.relation&&(t.father&&(faraidSameName(o,t.self)||faraidSameName(o,t.father))&&r(t.father,a.name),t.mother&&(faraidSameName(o,t.self)||faraidSameName(o,t.mother))&&r(t.mother,a.name))}});const f=[];["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(e){t[e]&&f.push({name:t[e],slot:e})}),a.forEach(function(e){f.push({name:e,slot:"g1"})}),o.forEach(function(e){f.push({name:e,slot:"g2"})}),i.forEach(function(e){f.push({name:e,slot:"g3"})}),("function"==typeof uftLines?uftLines(t.siblings):[]).forEach(function(e){f.push({name:e,slot:""})}),("function"==typeof uftLines?uftLines(t.children):[]).forEach(function(e){f.push({name:e,slot:""})});try{"function"==typeof uftKidsOf&&f.forEach(function(e){["function"==typeof uftNameKey?uftNameKey(e.name):e.name,e.slot,e.name].filter(Boolean).forEach(function(n){try{uftKidsOf(t,n).forEach(function(t){t&&t.name&&r(e.name,t.name)})}catch(e){}})})}catch(e){}return function(){function n(e){return"function"==typeof uftNorm?uftNorm(e):String(e||"").trim().toLowerCase()}const f={};Object.keys(e).forEach(function(t){(e[t].kids||[]).forEach(function(e){f[n(e)]=!0})}),i.forEach(function(e){f[n(e)]||(1===o.length?r(o[0],e):o.forEach(function(t){r(t,e)}))}),o.forEach(function(e){f[n(e)]||(1===a.length?r(a[0],e):a.forEach(function(t){r(t,e)}))}),[t.pgf,t.father].forEach(function(e){e&&!f[n(e)]&&1===i.length&&r(i[0],e)})}(),e}()))["function"==typeof uftNorm?uftNorm(e):String(e||"").trim().toLowerCase()];return r?r.kids.slice():[]}var i=null;function f(n,r,i){if((i=i||1)>8)return;const u=String(n||"").trim();if(u&&!faraidSameName(u,e)){if(!faraidIsDeceased(u,r||"")&&!faraidIsDeceased(u,"")){const e=faraidGenderOfName(u,r||"child"),t=function(e,t){const n="female"===faraidGenderOfName(e,"child");return t<=1?n?"daughter":"son":2===t?n?"granddaughter":"grandson":n?"great-granddaughter":"great-grandson"}(u,i);return void a(u,t,e,r||"")}if(1===i)try{const e="function"==typeof uftNameKey?uftNameKey(u):u,n=[];"function"==typeof uftSpouseOf&&(uftSpouseOf(t,e).forEach(function(e){e&&e.name&&n.push(e.name)}),uftSpouseOf(t,u).forEach(function(e){e&&e.name&&n.push(e.name)})),(t.relatives||[]).forEach(function(r){if(!r||"spouse"!==r.relation||!r.name)return;const a=("function"==typeof uftCoreName?uftCoreName(t,r.anchor):"")||String(r.anchor||"").replace(/^n:/,"");(r.anchor===e||faraidSameName(a,u))&&n.push(r.name)}),n.forEach(function(e){faraidIsDeceased(e,"")||a(e,"son's widow",faraidGenderOfName(e,"spouse")||"female","")})}catch(e){}o(u).forEach(function(e){let n="";try{const r="function"==typeof uftLines?uftLines(t.g1):[],a="function"==typeof uftLines?uftLines(t.g2):[],o="function"==typeof uftLines?uftLines(t.g3):[];r.some(function(t){return faraidSameName(t,e)})?n="g1":a.some(function(t){return faraidSameName(t,e)})?n="g2":o.some(function(t){return faraidSameName(t,e)})?n="g3":faraidSameName(e,t.father)?n="father":faraidSameName(e,t.mother)?n="mother":faraidSameName(e,t.pgf)?n="pgf":faraidSameName(e,t.pgm)?n="pgm":faraidSameName(e,t.self)&&(n="self")}catch(e){}f(e,n,i+1)})}}function u(n,r){const a=[];try{"function"==typeof uftKidsOf&&(uftKidsOf(t,n).forEach(function(e){e&&e.name&&a.push(e.name)}),r&&uftKidsOf(t,"function"==typeof uftNameKey?uftNameKey(r):r).forEach(function(e){e&&e.name&&a.push(e.name)}))}catch(e){}return(t.relatives||[]).forEach(function(o){if(!o||!o.name)return;if("child"!==o.relation&&"offspring"!==o.relation&&"grandchild"!==o.relation)return;const i=("function"==typeof uftCoreName?uftCoreName(t,o.anchor):"")||String(o.anchor||"").replace(/^n:/,"");if(o.anchor===n||faraidSameName(i,r)||faraidSameName(i,e)){if("grandchild"===o.relation)return;a.push(o.name)}}),a}function s(n,r){const a=[];try{"function"==typeof uftSiblingsOf&&(uftSiblingsOf(t,n).forEach(function(e){e&&e.name&&a.push(e.name)}),r&&uftSiblingsOf(t,"function"==typeof uftNameKey?uftNameKey(r):r).forEach(function(e){e&&e.name&&a.push(e.name)}))}catch(e){}return(t.relatives||[]).forEach(function(o){if(!o||"sibling"!==o.relation||!o.name)return;const i=("function"==typeof uftCoreName?uftCoreName(t,o.anchor):"")||String(o.anchor||"").replace(/^n:/,"");(o.anchor===n||faraidSameName(i,r)||faraidSameName(i,e))&&a.push(o.name)}),a}function c(n,r){const a=[];try{"function"==typeof uftSpouseOf&&(uftSpouseOf(t,n).forEach(function(e){e&&e.name&&a.push(e.name)}),r&&uftSpouseOf(t,"function"==typeof uftNameKey?uftNameKey(r):r).forEach(function(e){e&&e.name&&a.push(e.name)}))}catch(e){}return(t.relatives||[]).forEach(function(o){if(!o||"spouse"!==o.relation||!o.name)return;const i=("function"==typeof uftCoreName?uftCoreName(t,o.anchor):"")||String(o.anchor||"").replace(/^n:/,"");(o.anchor===n||faraidSameName(i,r)||faraidSameName(o.name,r)&&!1===faraidSameName(i,e))&&(o.anchor===n||faraidSameName(i,e)||faraidSameName(i,r))&&a.push(o.name)}),a}if(faraidSameName(e,t.self))return a(t.spouse,"spouse","female"),a(t.father,"father","male"),a(t.mother,"mother","female"),u("self",t.self).forEach(function(e){f(e,"self")}),("function"==typeof uftLines?uftLines(t.children):String(t.children||"").split(/\n/)).forEach(function(e){f(e,"")}),s("self",t.self).forEach(function(e){const t=faraidGenderOfName(e,"sibling");a(e,"female"===t?"sister":"brother",t)}),("function"==typeof uftLines?uftLines(t.siblings):String(t.siblings||"").split(/\n/)).forEach(function(e){const t=faraidGenderOfName(e,"sibling");a(e,"female"===t?"sister":"brother",t)}),n;if(faraidSameName(e,t.spouse))return a(t.self,"spouse",faraidGenderOfName(t.self,"self")||"male"),u("self",t.self).forEach(function(e){f(e,"self")}),("function"==typeof uftLines?uftLines(t.children):[]).forEach(function(e){f(e,"")}),u("spouse",t.spouse).forEach(function(e){f(e,"spouse")}),n;if(faraidSameName(e,t.father))return a(t.mother,"spouse","female","mother"),a(t.pgf,"father","male","pgf"),a(t.pgm,"mother","female","pgm"),f(t.self,"self"),s("father",t.father).forEach(function(e){faraidSameName(e,t.self)||f(e,"")}),u("father",t.father).forEach(function(e){faraidSameName(e,t.self)||f(e,"father")}),("function"==typeof uftLines?uftLines(t.siblings):[]).forEach(function(e){f(e,"")}),s("self",t.self).forEach(function(e){f(e,"")}),n;if(faraidSameName(e,t.mother))return a(t.father,"spouse","male","father"),a(t.mgf,"father","male","mgf"),a(t.mgm,"mother","female","mgm"),f(t.self,"self"),u("mother",t.mother).forEach(function(e){faraidSameName(e,t.self)||f(e,"mother")}),("function"==typeof uftLines?uftLines(t.siblings):[]).forEach(function(e){f(e,"")}),s("self",t.self).forEach(function(e){f(e,"")}),n;const l=[];try{u("self",t.self).forEach(function(e){l.push(e)}),("function"==typeof uftLines?uftLines(t.children):[]).forEach(function(e){l.push(e)})}catch(e){}if(l.some(function(t){return faraidSameName(t,e)})){const r=faraidGenderOfName(t.self,"self");return a(t.self,"female"===r?"mother":"father",r||"male","self"),a(t.spouse,"female"===r?"father":"mother","female"===r?"male":"female","spouse"),l.forEach(function(t){if(faraidSameName(t,e))return;if(!faraidIsAlive(t,""))return;const n=faraidGenderOfName(t,"child");a(t,"female"===n?"sister":"brother",n)}),c("function"==typeof uftNameKey?uftNameKey(e):e,e).forEach(function(e){a(e,"spouse")}),u("function"==typeof uftNameKey?uftNameKey(e):e,e).forEach(function(e){f(e,"")}),n}const d=[];try{s("self",t.self).forEach(function(e){d.push(e)}),("function"==typeof uftLines?uftLines(t.siblings):[]).forEach(function(e){d.push(e)})}catch(e){}if(d.some(function(t){return faraidSameName(t,e)}))return a(t.father,"father","male","father"),a(t.mother,"mother","female","mother"),faraidIsAlive(t.self,"self")&&a(t.self,"female"===faraidGenderOfName(t.self,"self")?"sister":"brother",faraidGenderOfName(t.self,"self"),"self"),d.forEach(function(t){if(faraidSameName(t,e))return;if(!faraidIsAlive(t,""))return;const n=faraidGenderOfName(t,"sibling");a(t,"female"===n?"sister":"brother",n)}),c("function"==typeof uftNameKey?uftNameKey(e):e,e).forEach(function(e){a(e,"spouse")}),u("function"==typeof uftNameKey?uftNameKey(e):e,e).forEach(function(e){f(e,"")}),n;if(faraidSameName(e,t.pgf)||faraidSameName(e,t.pgm)){const r=faraidSameName(e,t.pgf)?t.pgm:t.pgf,o=faraidSameName(e,t.pgf)?"pgf":"pgm";return a(r,"spouse",faraidSameName(e,t.pgf)?"female":"male",faraidSameName(e,t.pgf)?"pgm":"pgf"),f(t.father,"father"),s(o,e).forEach(function(e){faraidSameName(e,t.father)||f(e,"")}),u(o,e).forEach(function(e){faraidSameName(e,t.father)||f(e,o)}),n}if(faraidSameName(e,t.mgf)||faraidSameName(e,t.mgm)){const r=faraidSameName(e,t.mgf)?t.mgm:t.mgf,o=faraidSameName(e,t.mgf)?"mgf":"mgm";return a(r,"spouse",faraidSameName(e,t.mgf)?"female":"male",faraidSameName(e,t.mgf)?"mgm":"mgf"),f(t.mother,"mother"),s(o,e).forEach(function(e){faraidSameName(e,t.mother)||f(e,"")}),u(o,e).forEach(function(e){faraidSameName(e,t.mother)||f(e,o)}),n}const m="function"==typeof uftNameKey?uftNameKey(e):e;i=null,c(m,e).forEach(function(e){a(e,"spouse")});const h=[];function g(t){const n=String(t||"").trim();n&&!faraidSameName(n,e)&&(h.some(function(e){return faraidSameName(e,n)})||h.push(n))}return u(m,e).forEach(g),o(e).forEach(g),("function"==typeof uftLines?uftLines(t.g1):[]).forEach(function(n){faraidSameName(n,e)&&("function"==typeof uftLines?uftLines(t.g2):[]).forEach(g)}),("function"==typeof uftLines?uftLines(t.g2):[]).forEach(function(n){faraidSameName(n,e)&&("function"==typeof uftLines?uftLines(t.g3):[]).forEach(g)}),("function"==typeof uftLines?uftLines(t.g3):[]).forEach(function(n){faraidSameName(n,e)&&["pgf","pgm","mgf","mgm","father","mother","self"].forEach(function(e){t[e]&&g(t[e])})}),h.forEach(function(e){let n="";try{("function"==typeof uftLines?uftLines(t.g2):[]).some(function(t){return faraidSameName(t,e)})&&(n="g2"),("function"==typeof uftLines?uftLines(t.g3):[]).some(function(t){return faraidSameName(t,e)})&&(n="g3"),faraidSameName(e,t.father)&&(n="father"),faraidSameName(e,t.mother)&&(n="mother"),faraidSameName(e,t.self)&&(n="self")}catch(e){}f(e,n,1)}),s(m,e).forEach(function(e){if(!faraidIsAlive(e,""))return;const t=faraidGenderOfName(e,"sibling");a(e,"female"===t?"sister":"brother",t)}),(t.relatives||[]).forEach(function(n){if(n&&n.name&&("child"===n.relation||"offspring"===n.relation)&&faraidSameName(n.name,e)){const e=("function"==typeof uftCoreName?uftCoreName(t,n.anchor):"")||String(n.anchor||"").replace(/^n:/,"");if(e&&faraidIsAlive(e,n.anchor)){const t=faraidGenderOfName(e,n.anchor);a(e,"female"===t?"mother":"father",t,n.anchor)}}}),("function"==typeof uftLines?uftLines(t.g2):[]).forEach(function(n){faraidSameName(n,e)&&("function"==typeof uftLines?uftLines(t.g1):[]).forEach(function(e){const n="function"==typeof uftNorm?uftNorm(e):String(e).toLowerCase(),r=t.vital||{};let o=!1,i=!1;Object.keys(r).forEach(function(e){if((e.indexOf("|")>=0?e.slice(e.lastIndexOf("|")+1):e.replace(/^n:/i,""))!==n)return;const t=e.indexOf("|")>=0?e.slice(0,e.lastIndexOf("|")).toLowerCase():"";t&&"g1"!==t||("deceased"===r[e]&&(i=!0),"alive"===r[e]&&(o=!0))});try{if("function"==typeof uftVitalOf){const t=uftVitalOf(e,"g1");"deceased"===t&&(i=!0),"alive"===t&&(o=!0)}}catch(e){}if(i||!o)return;const f=faraidGenderOfName(e,"g1");a(e,"female"===f?"mother":"father",f,"g1")})}),n.filter(function(e){if(!e||!e.name)return!1;if(faraidIsDeceased(e.name,e.slot||""))return!1;if(!("father"!==e.relation&&"mother"!==e.relation||"g1"!==e.slot&&e.slot)){const n="function"==typeof uftNorm?uftNorm(e.name):String(e.name).toLowerCase();if(("function"==typeof uftLines?uftLines(t.g1):[]).some(function(e){return("function"==typeof uftNorm?uftNorm(e):String(e).toLowerCase())===n})){let r=!1,a=!1;const o=t.vital||{};Object.keys(o).forEach(function(e){if((e.indexOf("|")>=0?e.slice(e.lastIndexOf("|")+1):e.replace(/^n:/i,""))!==n)return;const t=e.indexOf("|")>=0?e.slice(0,e.lastIndexOf("|")).toLowerCase():"";t&&"g1"!==t||("alive"===o[e]&&(r=!0),"deceased"===o[e]&&(a=!0))});try{"function"==typeof uftVitalOf&&("alive"===uftVitalOf(e.name,"g1")&&(r=!0),"deceased"===uftVitalOf(e.name,"g1")&&(a=!0))}catch(e){}if(a||!r)return!1}}return!0})}function faraidPullTree(){faraidFillDeceasedSelect();const e=(document.getElementById("faraid-deceased")||{}).value||"";if(!e)return void alert("Select the deceased from the list first (or add names in the family tree).");const t=faraidCloseHeirsOf(e);faraidRenderHeirForm(t);const n=document.getElementById("faraid-result");t.length?n&&(n.style.display="block",n.innerHTML='<p class="notes-hint">Loaded <strong>'+t.length+"</strong> <em>living</em> close heir(s) for "+String(e).replace(/</g,"")+". Deceased relatives are skipped; if a child is deceased, living next-generation offspring are included. Review genders, then Calculate.</p>"):(faraidRenderHeirForm([{name:"",relation:"son",gender:"male"}]),n&&(n.style.display="block",n.innerHTML="<p>No close blood heirs / offspring auto-detected for <strong>"+String(e).replace(/</g,"")+"</strong>. Only spouse, parents, children, and siblings of the deceased are pulled — not uncles, cousins, or other extended family. Add rows manually if needed.</p>"))}function faraidRenderHeirForm(e){const t=document.getElementById("faraid-heirs");t&&(e&&e.length||(e=[{name:"",relation:"son",gender:"male",slot:""}]),t.innerHTML='<div class="uft-col-label" style="margin-bottom:0.35rem;">Heirs (edit or remove, then recalculate)</div>'+e.map(function(e,t){const n=e.slot?' <span class="notes-hint">['+String(e.slot)+"]</span>":"";return'<div class="uft-reg-row" data-faraid-row="'+t+'"><div style="display:grid;grid-template-columns:1.1fr 0.9fr 0.7fr auto;gap:0.35rem;width:100%;align-items:center;"><input type="text" data-f="name" value="'+String(e.name||"").replace(/"/g,"&quot;")+'" placeholder="Name"><select data-f="relation">'+["spouse","father","mother","son","daughter","grandson","granddaughter","great-grandson","great-granddaughter","son's widow","brother","sister","other"].map(function(t){return'<option value="'+t+'"'+(e.relation===t?" selected":"")+">"+t+"</option>"}).join("")+'</select><select data-f="gender"><option value="male"'+("male"===e.gender?" selected":"")+'>Male</option><option value="female"'+("female"===e.gender?" selected":"")+'>Female</option></select><button type="button" class="btn-secondary" title="Remove this heir" onclick="faraidRemoveHeirRow('+t+')">✕</button><input type="hidden" data-f="slot" value="'+String(e.slot||"").replace(/"/g,"&quot;")+'"></div>'+(n?'<div style="font-size:0.72rem;opacity:0.8;margin-top:0.15rem;">Generation/slot'+n+"</div>":"")+"</div>"}).join("")+'<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;"><button type="button" class="btn-secondary" onclick="faraidAddHeirRow()">＋ Add heir row</button><button type="button" onclick="faraidCalculate()">↺ Recalculate shares</button></div>')}function faraidAddHeirRow(){const e=faraidReadHeirRows(!0);e.push({name:"",relation:"son",gender:"male",slot:""}),faraidRenderHeirForm(e)}function faraidRemoveHeirRow(e){const t=faraidReadHeirRows(!0);if(e<0||e>=t.length)return;t.splice(e,1),faraidRenderHeirForm(t);const n=document.getElementById("faraid-result");n&&(n.style.display="block",n.innerHTML='<p class="notes-hint">Removed one heir. Press <strong>Recalculate shares</strong> (or Calculate) to update the result.</p>')}function faraidReadHeirRows(e){const t=document.getElementById("faraid-heirs");if(!t)return[];const n=[];return t.querySelectorAll("[data-faraid-row]").forEach(function(t){const r=(t.querySelector('[data-f="name"]')||{}).value||"",a=(t.querySelector('[data-f="relation"]')||{}).value||"other",o=(t.querySelector('[data-f="gender"]')||{}).value||"male",i=(t.querySelector('[data-f="slot"]')||{}).value||"";(e||String(r).trim())&&n.push({name:String(r).trim(),relation:a,gender:o,slot:i})}),n}function faraidResetHeirs(){faraidRenderHeirForm([]);const e=document.getElementById("faraid-result");e&&(e.style.display="none",e.innerHTML="")}function faraidGcd(e,t){for(e=Math.abs(0|e),t=Math.abs(0|t);t;){const n=t;t=e%t,e=n}return e||1}function faraidFrac(e,t){if(e=Math.round(e),t=Math.round(t)||1,0===e)return{n:0,d:1};const n=faraidGcd(e,t);return{n:e/n,d:t/n}}function faraidAdd(e,t){return faraidFrac(e.n*t.d+t.n*e.d,e.d*t.d)}function faraidMul(e,t){return faraidFrac(e.n*t.n,e.d*t.d)}function faraidDiv(e,t){return faraidFrac(e.n*t.d,e.d*t.n)}function faraidCmp(e,t){return e.n*t.d-t.n*e.d}function faraidToNum(e){return e.d?e.n/e.d:0}function faraidStr(e){return e&&e.d?0===e.n?"0":1===e.d?String(e.n):e.n+"/"+e.d:"0"}function faraidWhy(e,t){return{spouse:"Qurʾān 4:12 — husband 1/2 with no descendants, 1/4 with descendants; wife (or wives sharing) 1/4 with no descendants, 1/8 with descendants. Same in all four Sunni schools.",father:"Qurʾān 4:11 — 1/6 as a Qurʾānic sharer with a descendant; residuary (ʿaṣaba) when there is no descendant; 1/6 + residue when only female descendants remain.",mother:"Qurʾān 4:11 — 1/6 with a child or two-or-more siblings; otherwise 1/3. ʿUmariyyatān (mother takes 1/3 of remainder after spouse when only parents + spouse survive) is applied by the four schools.",son:"Qurʾān 4:11 — sons are primary ʿaṣaba; with daughters the residue is split 2:1 (male = share of two females). A living son blocks brothers and more remote agnates (ḥajb).",daughter:"Qurʾān 4:11 — one daughter 1/2; two or more daughters share 2/3 when no son; with a son they become ʿaṣaba bil-ghayr on the 2:1 ratio.",grandson:"Son’s son inherits as ʿaṣaba when no living son remains (Hanafī order of nearness). Grandfather-with-siblings is a known school difference and is not fully modelled here.",granddaughter:"Son’s daughter may take a Qurʾānic share (1/2 or 1/6 “completing” 2/3 with a higher daughter) in classical tables; this tool uses a simplified path — confirm the exact case.",brother:"Qurʾān 4:176 (kalāla) and ʿaṣaba: full brothers take residue when no son/son’s son and no father. Paternal vs uterine brothers differ (uterine share 1/6 or 1/3 from 4:12).",sister:"Qurʾān 4:176 — one full sister 1/2, two or more 2/3 in kalāla; with a full brother they share residue 2:1. Blocked by a son or father.","son's widow":"A son’s widow is not an heir of her father-in-law in standard farāʾiḍ (no nasab and no nikāḥ with the deceased)."}[e]||t||"Share derived from furūḍ / ʿaṣaba (educational Sunni model)."}function faraidNetEstate(){const e=parseFloat((document.getElementById("faraid-estate")||{}).value||"0")||0,t=parseFloat((document.getElementById("faraid-funeral")||{}).value||"0")||0,n=parseFloat((document.getElementById("faraid-debts")||{}).value||"0")||0;let r=parseFloat((document.getElementById("faraid-wasiyyah")||{}).value||"0")||0;const a=Math.max(0,e-t-n),o=a/3;let i=!1;r>o+1e-9&&(r=o,i=!0);const f=Math.max(0,a-r),u=document.getElementById("faraid-net");return u&&(u.value=f?f.toLocaleString(void 0,{maximumFractionDigits:2}):""),{gross:e,funeral:t,debts:n,wasiyyah:r,wasCapped:i,afterDebts:a,net:f}}function faraidFiqhPanelHtml(){return'<div class="faraid-fiqh" id="faraid-fiqh-refs"><h3 style="margin:0.7rem 0 0.35rem;font-size:1rem;">Fiqh references (educational)</h3><p class="notes-hint">Primary texts are the same across the four Sunni schools. Differences appear in <em>edge cases</em>. This calculator follows a simplified Hanafī-leaning Sunni path (ʿawl + radd to blood sharers, not the spouse).</p><ul class="sources-list"><li><strong>Qurʾān</strong> — an-Nisāʾ 4:11 (children &amp; parents), 4:12 (spouses &amp; uterine siblings), 4:176 (kalāla sisters/brothers).</li><li><strong>Sunnah</strong> — “Give the fixed shares to those entitled, and what remains to the nearest male agnate” (Bukhārī 6732 · Muslim 1615).</li><li><strong>Settlement order</strong> — funeral, then debts, then wasiyyah (max one-third of the post-debt remainder unless heirs consent), then farāʾiḍ.</li><li><strong>ʿAwl</strong> — if fixed shares exceed the estate, every share is reduced in proportion (Companions’ practice; Zayd b. Thābit).</li><li><strong>Radd</strong> — if shares are under the estate and there is no ʿaṣaba, surplus returns to blood sharers. <em>Hanafī / Ḥanbalī:</em> radd to blood relatives, not the spouse. <em>Mālikī / classical Shāfiʿī:</em> surplus to bayt al-māl when it functions; later Shāfiʿī practice often follows radd when there is no treasury. Some modern Mālikī discussions allow radd including a spouse — treat as disputed.</li><li><strong>Grandfather + siblings</strong> — Hanafī: grandfather blocks siblings. Mālikī / Shāfiʿī: muqāsama (share, grandfather not less than 1/3 in many tables). Ḥanbalī: closer to Abū Bakr’s view (grandfather like father in several cases). <em>Not fully modelled here.</em></li><li><strong>Dhawū al-arḥām</strong> (uterine distant kin) — Hanafī and Ḥanbalī may pass the estate to them if no furūḍ/ʿaṣaba remain; classical Mālikī / Shāfiʿī prefer bayt al-māl. Not modelled here.</li><li><strong>Jaʿfarī / Imāmī</strong> — does not use Sunni ʿaṣaba in the same way; class-based nasab. Do not use this tool for that school.</li></ul><p class="notes-hint">Study tools: <a href="https://quran.com/4/11" target="_blank" rel="noopener">Quran 4:11</a> · <a href="https://quran.com/4/12" target="_blank" rel="noopener">4:12</a> · <a href="https://quran.com/4/176" target="_blank" rel="noopener">4:176</a> · <a href="https://sunnah.com/bukhari:6732" target="_blank" rel="noopener">Bukhārī 6732</a> · <a href="https://sunnah.com/muslim:1615" target="_blank" rel="noopener">Muslim 1615</a> · <a href="https://www.islamicity.org/covers/inheritance/" target="_blank" rel="noopener">IslamiCity inheritance overview</a> · <a href="https://islamicinheritance.com/schools_of_thought/" target="_blank" rel="noopener">School differences</a> · <a href="https://getmirath.com/" target="_blank" rel="noopener">Mirath</a> · <a href="https://qurani.io/inheritance-calculator/" target="_blank" rel="noopener">Qurani</a>. <strong>Not a fatwa.</strong></p></div>'}function faraidCalculate(){const e=(document.getElementById("faraid-gender")||{}).value||"male",t=((document.getElementById("faraid-currency")||{}).value||"").trim(),n=faraidNetEstate(),r=n.net;let a=faraidReadHeirRows();a=a.map(function(t){return"spouse"===t.relation&&(t.gender="male"===e?"female":"male"),["son","grandson","great-grandson","brother","father"].indexOf(t.relation)>=0&&(t.gender="male"),["daughter","granddaughter","great-granddaughter","sister","mother"].indexOf(t.relation)>=0&&(t.gender="female"),t});const o=a.filter(function(e){return"son"===e.relation}),i=a.filter(function(e){return"daughter"===e.relation}),f=a.filter(function(e){return"grandson"===e.relation||"great-grandson"===e.relation}),u=a.filter(function(e){return"granddaughter"===e.relation||"great-granddaughter"===e.relation}),s=o.length+i.length>0||f.length+u.length>0,c=a.filter(function(e){return"spouse"===e.relation}),l=a.filter(function(e){return"father"===e.relation}),d=a.filter(function(e){return"mother"===e.relation}),m=a.filter(function(e){return"brother"===e.relation}),h=a.filter(function(e){return"sister"===e.relation}),g=a.filter(function(e){return"son's widow"===e.relation}),p=m.length+h.length>=2,y=[];function S(e,t,n){y.push({name:e.name,relation:e.relation,f:t,note:n||"",why:faraidWhy(e.relation,n)})}function v(e,t){return faraidFrac(e,t)}if(c.forEach(function(t){"male"===e?S(t,faraidDiv(v(1,s?8:4),v(c.length,1)),s?"Wife 1/8 with descendants (4:12)":"Wife 1/4 without descendants (4:12)"):S(t,faraidDiv(v(1,s?4:2),v(c.length,1)),s?"Husband 1/4 with descendants (4:12)":"Husband 1/2 without descendants (4:12)")}),g.forEach(function(e){S(e,v(0,1),"Son’s widow is not an heir of the father-in-law (context only)")}),d.forEach(function(e){s||p?S(e,v(1,6),"Mother 1/6 (4:11)"):S(e,v(1,3),"Mother 1/3 (4:11)")}),l.forEach(function(e){s?S(e,v(1,6),"Father 1/6 with descendants (4:11); may also take residue"):S(e,v(0,1),"Father as residuary (no descendants)")}),!o.length&&i.length){const e=1===i.length?v(1,2):v(2,3);i.forEach(function(t){S(t,faraidDiv(e,v(i.length,1)),1===i.length?"Only daughter 1/2 (4:11)":"Daughters share 2/3 (4:11)")})}if(!s&&!l.length&&!o.length&&!m.length&&h.length){const e=1===h.length?v(1,2):v(2,3);h.forEach(function(t){S(t,faraidDiv(e,v(h.length,1)),1===h.length?"Only sister kalāla 1/2 (4:176)":"Sisters share 2/3 kalāla (4:176)")})}let b=y.reduce(function(e,t){return faraidAdd(e,t.f)},v(0,1)),w=faraidFrac(b.d-b.n,b.d);faraidCmp(w,v(0,1))<0&&(w=v(0,1));const E=[];if(o.length){const e=2*o.length+i.length;o.forEach(function(t){E.push({name:t.name,relation:"son",f:faraidMul(w,v(2,e)),note:"Residuary 2:1 with daughters (4:11)",why:faraidWhy("son")})}),i.forEach(function(t){E.push({name:t.name,relation:"daughter",f:faraidMul(w,v(1,e)),note:"Residuary with sons 1:2 (4:11)",why:faraidWhy("daughter")})})}else if(f.length||u.length){const e=2*f.length+u.length;if(e>0&&faraidCmp(w,v(0,1))>0)f.forEach(function(t){E.push({name:t.name,relation:t.relation,f:faraidMul(w,v(2,e)),note:"Residuary grandson (simplified; no living son)",why:faraidWhy("grandson")})}),u.forEach(function(t){E.push({name:t.name,relation:t.relation,f:faraidMul(w,v(1,e)),note:"Residuary granddaughter (simplified)",why:faraidWhy("granddaughter")})});else if(!f.length&&u.length){const e=1===u.length?v(1,2):v(2,3);u.forEach(function(t){S(t,faraidDiv(e,v(u.length,1)),"Granddaughter educational fixed share (verify)")}),b=y.reduce(function(e,t){return faraidAdd(e,t.f)},v(0,1)),w=faraidFrac(Math.max(0,b.d-b.n),b.d)}}else if(l.length&&!s)l.forEach(function(e){for(let t=y.length-1;t>=0;t--)"father"===y[t].relation&&y[t].name===e.name&&y.splice(t,1);E.push({name:e.name,relation:"father",f:w,note:"Father takes residue",why:faraidWhy("father")})});else if(!s&&!l.length&&m.length){for(let e=y.length-1;e>=0;e--)"sister"===y[e].relation&&y.splice(e,1);b=y.reduce(function(e,t){return faraidAdd(e,t.f)},v(0,1)),w=faraidFrac(Math.max(0,b.d-b.n),b.d);const e=2*m.length+h.length;m.forEach(function(t){E.push({name:t.name,relation:"brother",f:faraidMul(w,v(2,e)),note:"Residuary brother",why:faraidWhy("brother")})}),h.forEach(function(t){E.push({name:t.name,relation:"sister",f:faraidMul(w,v(1,e)),note:"Residuary with brothers 1:2",why:faraidWhy("sister")})})}let L=y.concat(E).filter(function(e){return e.f&&(e.f.n>0||"son's widow"===e.relation)}),C=L.reduce(function(e,t){return faraidAdd(e,t.f)},v(0,1)),N="normal";if(faraidCmp(C,v(1,1))>0)N="awl",L=L.map(function(e){return Object.assign({},e,{f:faraidDiv(e.f,C),note:(e.note||"")+" · ʿawl (proportional reduction)"})}),C=v(1,1);else if(faraidCmp(C,v(1,1))<0&&L.length&&!(o.length||m.length||l.length&&!s||f.length)){N="radd";const e=L.filter(function(e){return"spouse"!==e.relation&&"son's widow"!==e.relation}).reduce(function(e,t){return faraidAdd(e,t.f)},v(0,1)),t=faraidFrac(C.d-C.n,C.d);faraidCmp(e,v(0,1))>0&&faraidCmp(t,v(0,1))>0&&(L=L.map(function(n){if("spouse"===n.relation||"son's widow"===n.relation)return n;const r=faraidMul(t,faraidDiv(n.f,e));return Object.assign({},n,{f:faraidAdd(n.f,r),note:(n.note||"")+" · radd (return of surplus)"})}),C=L.reduce(function(e,t){return faraidAdd(e,t.f)},v(0,1)))}const I={};L.forEach(function(e){const t=e.relation+"|"+e.name;I[t]?(I[t].f=faraidAdd(I[t].f,e.f),e.note&&-1===(I[t].note||"").indexOf(e.note)&&(I[t].note=(I[t].note||"")+"; "+e.note)):I[t]=Object.assign({},e)}),L=Object.keys(I).map(function(e){return I[e]}),L.sort(function(e,t){return faraidToNum(t.f)-faraidToNum(e.f)});const O=document.getElementById("faraid-result");if(!O)return;if(O.style.display="block",!L.length)return void(O.innerHTML="<p>No shares computed. Add living heirs (spouse, parents, children, siblings).</p>");const k=function(e){if(!r)return"";const n=r*faraidToNum(e);return" · "+(t?t+" ":"")+n.toLocaleString(void 0,{maximumFractionDigits:2})};let R='<div id="faraid-print-area" class="faraid-result-body">';R+="<p><strong>Farāʾiḍ result</strong> (educational) · mode: <em>"+N+"</em></p>",R+='<p class="notes-hint">Net estate after funeral, debts, wasiyyah: <strong>'+(t?t+" ":"")+(r?r.toLocaleString(void 0,{maximumFractionDigits:2}):"—")+"</strong>",n.wasCapped&&(R+=" · wasiyyah capped at ⅓ of post-debt remainder"),R+='</p><ul style="margin:0.35rem 0 0.5rem 1.1rem;">',L.forEach(function(e){R+="<li><strong>"+String(e.name).replace(/</g,"")+"</strong> ("+e.relation+"): <strong>"+faraidStr(e.f)+"</strong> ("+(100*faraidToNum(e.f)).toFixed(2)+"%)"+k(e.f)+(e.note?'<br><span class="notes-hint">'+e.note+"</span>":"")+'<div class="faraid-why"><strong>Why:</strong> '+(e.why||faraidWhy(e.relation))+"</div></li>"}),R+="</ul>";const A=L.reduce(function(e,t){return e+faraidToNum(t.f)},0);R+='<p class="notes-hint">Total allocated: '+(100*A).toFixed(2)+"%"+(r?k(v(Math.round(1e4*A),1e4)):"")+".</p>"+faraidFiqhPanelHtml()+"</div>",R+='<p class="no-print"><button type="button" class="btn-secondary" onclick="faraidPrintResult()">🖨️ Print / save as PDF</button></p>',O.innerHTML=R,O.style.display="block",O.hidden=!1;try{claritySession.setItem("clarity_faraid_last",R)}catch(e){}}function faraidRestoreResult(){const e=document.getElementById("faraid-result");if(!(!e||e.innerHTML&&e.innerHTML.trim()))try{const t=claritySession.getItem("clarity_faraid_last");t&&(e.innerHTML=t,e.style.display="block",e.hidden=!1)}catch(e){}}function faraidPrintResult(){const e=document.getElementById("faraid-print-area")||document.getElementById("faraid-result");if(!e)return;document.body.classList.add("printing");const t=document.createElement("div");t.className="print-sheet",t.innerHTML=e.innerHTML,document.body.appendChild(t),window.print(),setTimeout(function(){document.body.classList.remove("printing"),t.remove()},400)}function uftNewPersonId(){return"p_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8)}function uftEnsurePeople(e){(e=e||uftCollect()).people=Array.isArray(e.people)?e.people:[];const t={};function n(n,r,a){if(!n)return null;const o=(r||"")+"|"+uftNorm(n);if(t[o])return t[o];const i={id:uftNewPersonId(),name:n,slot:r||"",role:a||"",gender:uftGenderOf(n,r)||"",vital:uftVitalOf(n,r)||""};return e.people.push(i),t[o]=i,i}return e.people.forEach(function(e){e&&e.name&&(t[(e.slot||"")+"|"+uftNorm(e.name)]=e)}),["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(t){e[t]&&n(e[t],t,t)}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(t){uftLines(e[t]).forEach(function(e){n(e,t,t)})}),(e.relatives||[]).forEach(function(e){e&&e.name&&n(e.name,e.anchor||"",e.relation||"")}),e}function uftQuickAddRelative(e,t,n){try{if(!(e=String(e||"").trim()))return void("function"==typeof uftSetStatus&&uftSetStatus("No host member selected."));n=String(n||"child").toLowerCase();var r="function"==typeof uftOpenPersonPicker?uftOpenPersonPicker:window.uftOpenPersonPicker;if("function"==typeof r)return void r(e,t||"",n);var a=document.getElementById("uft-pick-modal");if(a)try{return window.uftPickCtx={hostName:e,hostSlot:t||"",relation:n},a.hidden=!1,a.removeAttribute("hidden"),a.style.display="flex",void("function"==typeof uftRenderPickList?uftRenderPickList(""):window.uftRenderPickList&&window.uftRenderPickList(""))}catch(e){console.warn("picker modal",e)}var o=prompt("Name of "+("spouse"===n?"spouse":"sibling"===n?"sibling":"parent"===n?"parent":"child")+" of "+e+":");if(null===o)return;var i=String(o||"").trim();if(!i)return;"function"==typeof uftApplyRelativeLink&&uftApplyRelativeLink(e,t,n,i)}catch(e){console.error("uftQuickAddRelative",e);try{alert("Could not open member list: "+(e&&e.message?e.message:e))}catch(e){}}}document.addEventListener("DOMContentLoaded",function(){try{wasiLoad()}catch(e){}try{wasiFillTreeSelects()}catch(e){}try{faraidFillDeceasedSelect()}catch(e){}try{faraidRestoreResult()}catch(e){}}),setTimeout(function(){try{wasiLoad()}catch(e){}try{faraidFillDeceasedSelect()}catch(e){}try{uftShowIntegrity()}catch(e){}try{uftRefreshCardPicker()}catch(e){}},600);try{window.uftQuickAddRelative=uftQuickAddRelative,"function"==typeof uftOpenPersonPicker&&(window.uftOpenPersonPicker=uftOpenPersonPicker),"function"==typeof uftClosePersonPicker&&(window.uftClosePersonPicker=uftClosePersonPicker),"function"==typeof uftRenderPickList&&(window.uftRenderPickList=uftRenderPickList),"function"==typeof uftApplyRelativeLink&&(window.uftApplyRelativeLink=uftApplyRelativeLink)}catch(e){}function uftApplyRelativeLink(e,t,n,r){if(r=String(r||"").trim(),e=String(e||"").trim(),!r||!e)return;n=n||"child";const a="function"==typeof uftEnsurePeople?uftEnsurePeople(uftCollect()):uftCollect();a.relatives=Array.isArray(a.relatives)?a.relatives:[];let o="function"==typeof uftNameKey?uftNameKey(e):"";if(o||(o=t||e),"child"!==n&&"sibling"!==n&&"spouse"!==n||(o=("function"==typeof uftNameKey?uftNameKey(e):e)||o),a.relatives.some(function(t){return t&&t.relation===n&&uftSame(t.name,r)&&(String(t.anchor)===String(o)||"function"==typeof uftAnchorMatches&&uftAnchorMatches(a,t.anchor,o,e))})||a.relatives.push({anchor:o,relation:n,name:r}),"child"===n){a.relatives=a.relatives.map(function(n){return n&&"child"===n.relation&&("function"==typeof uftAnchorMatches?uftAnchorMatches(a,n.anchor,t,e)||uftAnchorMatches(a,n.anchor,o,e):String(n.anchor)===String(t)||String(n.anchor)===String(o))?{anchor:o,relation:"child",name:n.name}:n});const n={};a.relatives=a.relatives.filter(function(t){if(!t||"child"!==t.relation)return!0;if(!("function"==typeof uftAnchorMatches?uftAnchorMatches(a,t.anchor,o,e):String(t.anchor)===String(o)))return!0;const r="function"==typeof uftNorm?uftNorm(t.name):t.name;return!n[r]&&(n[r]=!0,!0)})}if("child"===n&&("self"===t||uftSame(e,a.self))){const e=uftLines(a.children);e.some(function(e){return uftSame(e,r)})||(e.push(r),a.children=e.join("\n"))}if("sibling"===n&&("self"===t||uftSame(e,a.self))){const e=uftLines(a.siblings);e.some(function(e){return uftSame(e,r)})||(e.push(r),a.siblings=e.join("\n"))}"spouse"!==n||"self"!==t&&!uftSame(e,a.self)||a.spouse||(a.spouse=r),a.registry=Array.isArray(a.registry)?a.registry:[],a.registry.some(function(e){return e&&uftSame(e.name,r)})||a.registry.push({id:"function"==typeof uftNewPersonId?uftNewPersonId():"p"+Date.now(),name:r,role:n,phone:"",email:"",city:"",note:""});try{clarityLS.setItem(UFT_KEY,JSON.stringify(a))}catch(e){}try{const e=uftFields();e.children&&null!=a.children&&(e.children.value=a.children),e.siblings&&null!=a.siblings&&(e.siblings.value=a.siblings),e.spouse&&null!=a.spouse&&(e.spouse.value=a.spouse)}catch(e){}uftRender({keepScroll:!0});try{"function"==typeof uftRegRender&&uftRegRender()}catch(e){}try{"function"==typeof uftRenderOwnTreePanel&&uftRenderOwnTreePanel()}catch(e){}"function"==typeof uftSetStatus&&uftSetStatus("Added "+n+": "+r+" under "+e)}let uftOwnTree=null;try{const e=JSON.parse(clarityLS.getItem("clarity_uft_own_tree")||"null");e&&e.name&&(uftOwnTree=e)}catch(e){}function uftStartOwnTree(e,t){if(!e)return;uftOwnTree={name:String(e),slot:String(t||"")};try{clarityLS.setItem("clarity_uft_own_tree",JSON.stringify(uftOwnTree))}catch(e){}uftRenderOwnTreePanel();const n=document.getElementById("uft-branch-wrap");if(n){n.hidden=!1,n.style.display="";try{n.scrollIntoView({behavior:"smooth",block:"nearest"})}catch(e){}}"function"==typeof uftSetStatus&&uftSetStatus("Own Family Tree · "+e)}function uftCloseOwnTree(e){e&&e.preventDefault&&(e.preventDefault(),e.stopPropagation()),uftOwnTree=null;try{clarityLS.removeItem("clarity_uft_own_tree")}catch(e){}const t=document.getElementById("uft-branch-wrap");t&&(t.hidden=!0,t.style.display="none");const n=document.getElementById("uft-branch-body");n&&(n.innerHTML="");const r=document.getElementById("uft-branch-line");r&&(r.textContent="");const a=document.getElementById("uft-branch-title");return a&&(a.textContent="Personal tree"),"function"==typeof uftSetStatus&&uftSetStatus("Own Family Tree closed"),!1}try{window.uftCloseOwnTree=uftCloseOwnTree,window.uftStartOwnTree=uftStartOwnTree}catch(e){}function uftRenderOwnTreePanel(){const e=document.getElementById("uft-branch-wrap"),t=document.getElementById("uft-branch-body"),n=document.getElementById("uft-branch-title"),r=document.getElementById("uft-branch-line");if(!e||!t)return;if(!uftOwnTree||!uftOwnTree.name)return e.hidden=!0,e.style.display="none",void(t.innerHTML="");e.hidden=!1,e.style.display="";const a="function"==typeof uftCollect?uftCollect():{},o=uftOwnTree.name,i=uftOwnTree.slot||"";function f(e){return"function"==typeof uftNorm?uftNorm(e):String(e||"").toLowerCase().trim()}function u(e,t){let n=[];try{n="function"==typeof uftLineKids&&uftLineKids(a,e,t)||[]}catch(e){n=[]}if(!n.length&&"function"==typeof uftKidsOf)try{n=(uftKidsOf(a,t||("function"==typeof uftNameKey?uftNameKey(e):e))||[]).concat(uftKidsOf(a,"function"==typeof uftNameKey?uftNameKey(e):e)||[])}catch(e){}const r={};return(n||[]).filter(function(e){if(!e||!e.name)return!1;const t=f(e.name);return!r[t]&&(r[t]=!0,!0)}).map(function(e){return{name:e.name,slot:e.slot||("function"==typeof uftNameKey?uftNameKey(e.name):""),relation:e.relation||"Child"}})}n&&(n.textContent="Own Family Tree · "+o);const s=[],c={};s.push([{name:o,slot:i,relation:"Branch root",isRoot:!0}]),c[f(o)]=0;const l=function(e,t){const n=[],r={};function o(t,a){if(!t)return;if("function"==typeof uftSame&&uftSame(t,e))return;const o=f(t);r[o]||(r[o]=!0,n.push({name:t,slot:"function"==typeof uftNameKey?uftNameKey(t):t,relation:a||"Sibling"}))}try{"function"==typeof uftSiblingsOf&&((uftSiblingsOf(a,t||("function"==typeof uftNameKey?uftNameKey(e):e))||[]).forEach(function(e){e&&e.name&&o(e.name,e.relation||"Sibling")}),(uftSiblingsOf(a,"function"==typeof uftNameKey?uftNameKey(e):e)||[]).forEach(function(e){e&&e.name&&o(e.name,e.relation||"Sibling")}))}catch(e){}try{const n="function"==typeof uftNameKey?uftNameKey(e):e;(a.relatives||[]).forEach(function(r){r&&r.name&&"sibling"===r.relation&&((String(r.anchor)===String(t)||String(r.anchor)===String(n)||"function"==typeof uftSame&&(uftSame(String(r.anchor),e)||uftSame(String(r.anchor),n)))&&o(r.name,"Sibling"),"function"==typeof uftSame&&uftSame(r.name,e))}),(a.relatives||[]).forEach(function(t){if(t&&"sibling"===t.relation&&t.name&&"function"==typeof uftSame&&uftSame(t.name,e)){var n="function"==typeof uftCoreName&&uftCoreName(a,t.anchor)||"";!n&&t.anchor&&0===String(t.anchor).indexOf("n:")&&(n=String(t.anchor).replace(/^n:/,"")),n&&o(n,"Sibling")}})}catch(e){}return n}(o,i);for(let e=0;e<8;e++){const t=[],n={};if((s[e]||[]).forEach(function(r){u(r.name,r.slot).forEach(function(r){const a=f(r.name);null!=c[a]||n[a]||(n[a]=!0,c[a]=e+1,t.push(r))})}),!t.length)break;s.push(t)}const d=[];function m(e,t){const n=!!e.isRoot||0===t,r="function"==typeof uftPerson?uftPerson(e.name,e.relation||(n?"Branch root":"Child"),"",n?"focus":"rel",e.slot):'<div class="uft-person">'+("function"==typeof uftEsc?uftEsc(e.name):e.name)+"</div>";let o="";return function(e,t){let n=[];try{n="function"==typeof uftSpouseOf&&uftSpouseOf(a,t||("function"==typeof uftNameKey?uftNameKey(e):e))||[],n.length||"function"!=typeof uftSpouseOf||(n=uftSpouseOf(a,"function"==typeof uftNameKey?uftNameKey(e):e)||[])}catch(e){}try{const r="function"==typeof uftNameKey?uftNameKey(e):e;(a.relatives||[]).forEach(function(a){a&&a.name&&"spouse"===a.relation&&(String(a.anchor)===String(t)||String(a.anchor)===String(r)||"function"==typeof uftSame&&uftSame(a.anchor,e))&&n.push({name:a.name})})}catch(e){}const r={};return(n||[]).filter(function(t){if(!t||!t.name)return!1;if("function"==typeof uftSame&&uftSame(t.name,e))return!1;const n=f(t.name);return!r[n]&&(r[n]=!0,!0)})}(e.name,e.slot).forEach(function(e){o+="function"==typeof uftPerson?uftPerson(e.name,"Spouse","","rel","function"==typeof uftNameKey?uftNameKey(e.name):""):""}),'<div class="uft-own-unit">'+r+o+"</div>"}d.push(o),l.length&&d.push("siblings: "+l.map(function(e){return e.name}).join(", ")),s.slice(1).forEach(function(e){d.push(e.map(function(e){return e.name}).join(", "))}),r&&(r.textContent=d.length>1?"Line: "+d.join(" → "):o+" · add children or siblings with + Relative");let h='<div class="uft-own-gens">';h+='<div class="uft-own-gen" data-gen="0">',h+='<div class="uft-living-root-label">Branch root</div>',h+='<div class="uft-own-gen-row">',h+=m({name:o,slot:i,relation:"Branch root",isRoot:!0},0),h+="</div></div>",l.length&&(h+='<div class="uft-own-gen-link" aria-hidden="true"></div>',h+='<div class="uft-own-gen" data-gen="sib">',h+='<div class="uft-own-gen-label">Siblings of '+("function"==typeof uftEsc?uftEsc(o):o)+"</div>",h+='<div class="uft-own-gen-row">',l.forEach(function(e){h+=m({name:e.name,slot:e.slot,relation:"Sibling"},0)}),h+="</div></div>"),s.slice(1).forEach(function(e,t){const n=t+1;h+='<div class="uft-own-gen-link" aria-hidden="true"></div>',h+='<div class="uft-own-gen" data-gen="'+n+'">',h+='<div class="uft-own-gen-label">Generation '+(n+1)+" · descendants</div>",h+='<div class="uft-own-gen-row">',e.forEach(function(e){h+=m(e,n)}),h+="</div></div>"}),h+="</div>",t.innerHTML=h,t.dataset.ownBound||(t.dataset.ownBound="1",t.addEventListener("click",function(e){const t=e.target&&e.target.closest&&e.target.closest("[data-del-name]");if(t){e.preventDefault(),e.stopPropagation();const n=t.getAttribute("data-del-name")||"";return uftOwnTree&&uftOwnTree.name&&("function"==typeof uftSame?uftSame(n,uftOwnTree.name):n===uftOwnTree.name)?void uftCloseOwnTree(e):void("function"==typeof uftDeletePerson&&uftDeletePerson(n,t.getAttribute("data-del-slot")||"",t.getAttribute("data-del-anchor")||""))}const n=e.target&&e.target.closest&&e.target.closest("[data-own-name]");if(n)return e.preventDefault(),void uftStartOwnTree(n.getAttribute("data-own-name"),n.getAttribute("data-own-slot")||"");const r=e.target&&e.target.closest&&e.target.closest("[data-focus-name]");r&&"function"==typeof uftOpenMemberView&&(e.preventDefault(),uftOpenMemberView(r.getAttribute("data-focus-name"),r.getAttribute("data-focus-slot")||""))}))}function uftIntegrityReport(e){const t=uftCollect(),n=[],r=[];function a(e,t){e&&r.push({name:e,slot:t||""})}["self","spouse","father","mother","pgf","pgm","mgf","mgm"].forEach(function(e){a(t[e],e)}),["g1","g2","g3","siblings","children","grandchildren"].forEach(function(e){uftLines(t[e]).forEach(function(t){a(t,e)})}),(t.relatives||[]).forEach(function(e){e&&e.name&&a(e.name,e.anchor||"")});const o={};r.forEach(function(e){const t=uftNorm(e.name)+"|"+(e.slot||"");o[t]||(o[t]=!0,uftGenderOf(e.name,e.slot)||n.push({type:"gender",name:e.name,slot:e.slot||"",message:"Missing gender · "+e.name+(e.slot?" ("+e.slot+")":""),action:"Open card → set ♂/♀"}),uftVitalOf(e.name,e.slot)||n.push({type:"vital",name:e.name,slot:e.slot||"",message:"Missing alive/deceased · "+e.name+(e.slot?" ("+e.slot+")":""),action:"Open card → set Alive or Deceased"}))});const i={},f={};(t.registry||[]).forEach(function(e){if(!e||!e.name)return;const t=uftNorm(e.name);i[t]=!0,f[t]=e});const u={};r.forEach(function(e){const t=uftNorm(e.name);if(!t||u[t])return;u[t]=!0;const r=f[t];!r||r.phone||r.email||r.city||n.push({type:"contact",name:e.name,slot:e.slot||r.role||"",regId:r.id||"",message:"On tree · registry missing phone/email/city · "+e.name,action:"Open registry → add contact for this tree member"}),i[t]||n.push({type:"registry_missing",name:e.name,slot:e.slot||"",message:"On tree but not in registry · "+e.name,action:"Open tree card · or registry → Pull names from tree"})});const s={};if(r.forEach(function(e){const t=uftNorm(e.name);s[t]=s[t]||[],s[t].push(e)}),Object.keys(s).forEach(function(e){const t=[],r={};if(s[e].forEach(function(e){const n=e.slot||"";r[n]||(r[n]=!0,t.push(n||"(no slot)"))}),t.length>1){const r=s[e][0];n.push({type:"duplicate_name",name:r.name,slot:r.slot||"",message:"Same name in slots: "+t.join(", ")+" · “"+r.name+"” (OK if different people)",action:"Review cards — confirm same or different people"})}}),!e){const e=uftReadDismissedAudits();if(e&&e.length)return n.filter(function(t){return e.indexOf(uftAuditDismissKey(t))<0})}return n}function uftIntegrityRefresh(){document.getElementById("uft-integrity")&&uftShowIntegrity()}function uftFlashTreeCard(e,t){if(!e)return null;const n=[],r=document.getElementById("uft-preview"),a=document.getElementById("uft-branch-body"),o=document.getElementById("uft-stage");r&&n.push(r),a&&n.push(a),o&&n.push(o);let i=null,f=null;if(n.forEach(function(n){n&&!i&&n.querySelectorAll(".uft-person").forEach(function(n){if(i)return;const r=n.querySelector("[data-vital-name], [data-gender-name], [data-focus-name], [data-own-name], [data-del-name]"),a=r&&(r.getAttribute("data-vital-name")||r.getAttribute("data-gender-name")||r.getAttribute("data-focus-name")||r.getAttribute("data-own-name")||r.getAttribute("data-del-name"))||"",o=r&&(r.getAttribute("data-vital-slot")||r.getAttribute("data-gender-slot")||r.getAttribute("data-focus-slot")||r.getAttribute("data-own-slot")||r.getAttribute("data-del-slot"))||"",u=n.querySelector(".pn"),s=u?u.textContent.replace(/†/g,"").trim():"";(a?"function"==typeof uftSame?uftSame(a,e):String(a).toLowerCase()===String(e).toLowerCase():s&&("function"==typeof uftSame?uftSame(s,e):s.toLowerCase()===String(e).toLowerCase()))&&(t&&o&&o===t?i=n:f||(f=n))})}),i||(i=f),i){i.classList.add("uft-audit-flash");try{i.scrollIntoView({behavior:"smooth",block:"center"})}catch(e){}setTimeout(function(){try{i.classList.remove("uft-audit-flash")}catch(e){}},2800)}return i}function uftGotoIntegrityIssue(e){const t=uftIntegrityReport()[e];if(!t)return;const n=t.name||"",r=t.slot||"";if("contact"===t.type){const e=document.getElementById("uft-registry-box");e&&(e.open=!0),"function"==typeof uftExpandEditor&&uftExpandEditor();const a=("function"==typeof uftRead?uftRead():{}).registry||[];let o=null;if(t.regId&&(o=a.find(function(e){return e&&e.id===t.regId})),!o&&n&&(o=a.find(function(e){return e&&("function"==typeof uftSame?uftSame(e.name,n):e.name===n)})),o&&"function"==typeof uftRegFill)uftRegFill(o.id);else if(n){const e=document.getElementById("uft-reg-name"),t=document.getElementById("uft-reg-role");e&&(e.value=n),t&&r&&(t.value=r)}return"function"==typeof uftRegRender&&uftRegRender(),setTimeout(function(){const e=document.getElementById("uft-reg-list");e&&e.querySelectorAll(".uft-reg-row").forEach(function(e){const t=e.querySelector("strong");t&&n&&("function"==typeof uftSame?uftSame(t.textContent,n):t.textContent===n)&&(e.classList.add("uft-audit-flash"),e.scrollIntoView({behavior:"smooth",block:"center"}),setTimeout(function(){e.classList.remove("uft-audit-flash")},2800))});const t=document.getElementById("uft-reg-phone")||document.getElementById("uft-reg-name");t&&t.focus()},80),void("function"==typeof uftSetStatus&&uftSetStatus("Audit → registry · "+n))}const a=document.getElementById("uft-stage");if(a)try{a.scrollIntoView({behavior:"smooth",block:"start"})}catch(e){}let o=uftFlashTreeCard(n,r);o||setTimeout(function(){o=uftFlashTreeCard(n,r),o||"function"!=typeof uftStartOwnTree||(uftStartOwnTree(n,r),setTimeout(function(){uftFlashTreeCard(n,r)},120))},120),"function"==typeof uftSetStatus&&uftSetStatus("Audit → "+("gender"===t.type?"set gender":"vital"===t.type?"set vital status":"review")+" · "+n+" (tap Close branch if the lower panel opened)")}document.addEventListener("click",function(e){const t=e.target;t&&t.closest&&(t.closest("#uft-branch-close-btn")||t.closest("#uft-branch-x-btn")||t.closest("[data-uft-close-branch]"))&&(e.preventDefault(),e.stopPropagation(),uftCloseOwnTree(e))},!0);var UFT_AUDIT_DISMISS_KEY="clarity_uft_audit_dismissed";function uftAuditDismissKey(e){return e?[e.type||"","function"==typeof uftNorm?uftNorm(e.name):String(e.name||"").toLowerCase(),e.slot||"",e.regId||""].join("|"):""}function uftReadDismissedAudits(){try{const e=JSON.parse(clarityLS.getItem(UFT_AUDIT_DISMISS_KEY)||"[]");return Array.isArray(e)?e:[]}catch(e){return[]}}function uftWriteDismissedAudits(e){try{clarityLS.setItem(UFT_AUDIT_DISMISS_KEY,JSON.stringify(e||[]))}catch(e){}}function uftDismissAuditIssue(e,t){t&&t.preventDefault&&(t.preventDefault(),t.stopPropagation()),uftIntegrityReport(!0);let n="";if(t&&t.target&&t.target.closest){const e=t.target.closest("[data-audit-key]");e&&(n=e.getAttribute("data-audit-key")||"")}if(n||(n=uftAuditDismissKey(uftIntegrityReport(!0)[e])),!n)return;const r=uftReadDismissedAudits();return r.indexOf(n)<0&&r.push(n),uftWriteDismissedAudits(r),uftShowIntegrity(),"function"==typeof uftSetStatus&&uftSetStatus("Audit item ignored"),!1}function uftClearDismissedAudits(){uftWriteDismissedAudits([]),uftShowIntegrity(),"function"==typeof uftSetStatus&&uftSetStatus("Ignored audit items restored")}function uftDismissAllAuditIssues(){const e=uftIntegrityReport(!0);if(!e.length)return void uftShowIntegrity();if(!confirm("Ignore all "+e.length+" audit item(s)?\n\nThey will hide until you tap “Show ignored” or “Restore ignored”."))return;const t=uftReadDismissedAudits();e.forEach(function(e){const n=uftAuditDismissKey(e);n&&t.indexOf(n)<0&&t.push(n)}),uftWriteDismissedAudits(t),uftShowIntegrity(),"function"==typeof uftSetStatus&&uftSetStatus("All audit items ignored")}try{window.uftDismissAllAuditIssues=uftDismissAllAuditIssues}catch(e){}try{window.uftDismissAuditIssue=uftDismissAuditIssue,window.uftClearDismissedAudits=uftClearDismissedAudits}catch(e){}function uftShowIntegrity(){const e=uftIntegrityReport();let t=document.getElementById("uft-integrity");if(!t){const e=document.getElementById("uft-stage")||document.getElementById("uft-editor");if(!e)return;t=document.createElement("div"),t.id="uft-integrity",t.className="clarity-integrity",e.parentNode.insertBefore(t,e)}if(!e.length)return void(t.innerHTML="<strong>Family data health:</strong> Looking good — genders, vital status, and registry contacts are set where needed.");const n=uftReadDismissedAudits().length;t.innerHTML="<strong>Family data health:</strong> "+e.length+" item(s) — tap a line to open the card. Use × to ignore. Fixed items disappear automatically."+(n?' <button type="button" class="btn-soft" style="display:inline;padding:0.15rem 0.5rem;margin-left:0.35rem;font-size:0.75rem;" onclick="uftClearDismissedAudits()">Show '+n+" ignored</button>":"")+'<div class="uft-audit-list">'+e.map(function(e,t){const n=uftAuditDismissKey(e);return'<div class="uft-audit-line" data-audit-idx="'+t+'" data-audit-key="'+uftEsc(n)+'" role="button" tabindex="0">'+uftEsc(e.message)+'<span class="uft-audit-action">'+uftEsc(e.action||"Fix on card")+' →</span><button type="button" class="uft-audit-dismiss" data-audit-dismiss="'+t+'" data-audit-key="'+uftEsc(n)+'" title="Ignore this item">×</button></div>'}).join("")+'</div><div style="margin-top:0.55rem;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;"><button type="button" class="btn-soft" id="uft-audit-dismiss-all" style="font-size:0.78rem;padding:0.3rem 0.7rem;">Ignore all audit items</button>'+(n?'<button type="button" class="btn-secondary" style="font-size:0.78rem;padding:0.3rem 0.7rem;" onclick="uftClearDismissedAudits()">Restore ignored</button>':"")+"</div>",t.dataset.auditBound||(t.dataset.auditBound="1",t.addEventListener("click",function(e){if(e.target&&e.target.closest&&e.target.closest("#uft-audit-dismiss-all"))return e.preventDefault(),e.stopPropagation(),void("function"==typeof uftDismissAllAuditIssues&&uftDismissAllAuditIssues());const t=e.target&&e.target.closest?e.target.closest("[data-audit-dismiss]"):null;if(t)return e.preventDefault(),e.stopPropagation(),void uftDismissAuditIssue(parseInt(t.getAttribute("data-audit-dismiss"),10),e);const n=e.target&&e.target.closest?e.target.closest("[data-audit-idx]"):null;if(!n)return;if(e.target&&e.target.closest&&e.target.closest(".uft-audit-dismiss"))return;e.preventDefault();const r=parseInt(n.getAttribute("data-audit-idx"),10);isNaN(r)||uftGotoIntegrityIssue(r)}))}function clarityExportPack(){const e={app:"Clarity",version:2,exportedAt:(new Date).toISOString(),disclaimer:"Private family data from this device only. Educational farāʾiḍ is not a fatwa.",familyTree:null,notes:null,meta:{}};try{e.familyTree=JSON.parse(clarityLS.getItem(UFT_KEY)||"{}")}catch(t){e.familyTree={}}try{const t="undefined"!=typeof NOTES_KEY?NOTES_KEY:"clarity_notes_v1";e.notes=JSON.parse(clarityLS.getItem(t)||"null")}catch(e){}try{e.meta.streak=clarityLS.getItem("clarity_streak"),e.meta.name=clarityLS.getItem("clarity_name"),e.meta.theme=clarityLS.getItem("clarity_theme")}catch(e){}const t=new Blob([JSON.stringify(e,null,2)],{type:"application/json"}),n=document.createElement("a");n.href=URL.createObjectURL(t),n.download="clarity-amanah-pack-"+(new Date).toISOString().slice(0,10)+".json",document.body.appendChild(n),n.click(),setTimeout(function(){URL.revokeObjectURL(n.href),n.remove()},400)}function clarityImportPack(e){const t=e&&e.target&&e.target.files&&e.target.files[0];if(!t)return;const n=new FileReader;n.onload=function(){try{const e=JSON.parse(String(n.result||"{}"));if(e.familyTree&&"function"==typeof uftApplyData&&uftApplyData(e.familyTree),e.notes&&Array.isArray(e.notes))try{const t="undefined"!=typeof NOTES_KEY?NOTES_KEY:"clarity_notes_v1";clarityLS.setItem(t,JSON.stringify(e.notes))}catch(e){}alert("Amānah pack restored on this device (family tree"+(e.notes?" + notes":"")+")."),"function"==typeof uftShowIntegrity&&uftShowIntegrity()}catch(e){alert("Could not read that pack. Use a Clarity Amānah JSON export.")}e.target.value=""},n.readAsText(t)}function uftPrintFamilySheet(){const e=uftCollect(),t=[];function n(e,n){n&&t.push("<p><strong>"+e+":</strong> "+String(n).replace(/</g,"")+"</p>")}t.push("<h2>Family group sheet — Clarity</h2>"),t.push('<p class="notes-hint">Private summary from this device · '+(new Date).toLocaleString()+"</p>"),n("You",e.self),n("Spouse",e.spouse),n("Father",e.father),n("Mother",e.mother),n("Children",uftLines(e.children).join(", ")),n("Siblings",uftLines(e.siblings).join(", ")),n("G3",uftLines(e.g3).join(", ")),n("G2",uftLines(e.g2).join(", ")),n("G1",uftLines(e.g1).join(", "));const r=e.registry||[];r.length&&(t.push("<h3>Contacts</h3><ul>"),r.forEach(function(e){e&&e.name&&t.push("<li><strong>"+e.name+"</strong>"+(e.role?" ("+e.role+")":"")+(e.phone?" · "+e.phone:"")+(e.email?" · "+e.email:"")+(e.city?" · "+e.city:"")+"</li>")}),t.push("</ul>")),t.push('<p class="notes-hint">For planning only. Farāʾiḍ calculations are educational and not a fatwa.</p>'),document.body.classList.add("printing");const a=document.createElement("div");a.className="print-sheet",a.innerHTML=t.join("\n"),document.body.appendChild(a),window.print(),setTimeout(function(){document.body.classList.remove("printing"),a.remove()},400)}document.addEventListener("click",function(e){const t=e.target;if(!t||!t.closest)return;const n=t.closest(".uft-add-child-btn");if(n)return e.preventDefault(),void uftQuickAddRelative(n.getAttribute("data-add-name"),n.getAttribute("data-add-slot"),"child");const r=t.closest(".uft-add-spouse-btn");if(r)return e.preventDefault(),void uftQuickAddRelative(r.getAttribute("data-add-name"),r.getAttribute("data-add-slot"),"spouse");const a=t.closest(".uft-add-sib-btn");if(a)return e.preventDefault(),void uftQuickAddRelative(a.getAttribute("data-add-name"),a.getAttribute("data-add-slot"),"sibling");t.closest(".uft-add-rel-select")}),window.__uftChipActionsBound||(window.__uftChipActionsBound=!0,document.addEventListener("click",function(e){try{var t=e.target;if(!t||!t.closest)return;if(!t.closest("#user-family-tree-card, #uft-stage, #uft-preview, #uft-branch-wrap"))return;var n=t.closest("[data-vital-name], [data-gender-name], [data-born-name], [data-focus-name], [data-own-name], [data-del-name]");if(!n)return;if(n.classList&&n.classList.contains("uft-add-rel-btn"))return;if(e.preventDefault(),e.stopPropagation(),n.hasAttribute("data-del-name"))return void("function"==typeof uftDeletePerson&&uftDeletePerson(n.getAttribute("data-del-name"),n.getAttribute("data-del-slot")||"",n.getAttribute("data-del-anchor")||""));if(n.hasAttribute("data-born-name"))return void("function"==typeof uftAskBorn&&uftAskBorn(n.getAttribute("data-born-name"),n.getAttribute("data-born-slot")||""));if(n.hasAttribute("data-own-name"))return void("function"==typeof window.uftStartOwnTree?window.uftStartOwnTree(n.getAttribute("data-own-name"),n.getAttribute("data-own-slot")||""):"function"==typeof uftStartOwnTree&&uftStartOwnTree(n.getAttribute("data-own-name"),n.getAttribute("data-own-slot")||""));if(n.hasAttribute("data-focus-name"))return void("function"==typeof uftOpenMemberView&&uftOpenMemberView(n.getAttribute("data-focus-name"),n.getAttribute("data-focus-slot")||""));if(n.hasAttribute("data-gender-name"))return void("function"==typeof uftCycleGender&&uftCycleGender(n.getAttribute("data-gender-name"),n.getAttribute("data-gender-slot")||""));n.hasAttribute("data-vital-name")&&"function"==typeof uftCycleVital&&uftCycleVital(n.getAttribute("data-vital-name"),n.getAttribute("data-vital-slot")||"")}catch(e){console.error("uft chip",e)}},!0)),function(){function e(){try{"function"!=typeof memeGuardMushafText||memeGuardMushafText()||memeState&&(["top","mid","bottom"].forEach(function(e){"function"==typeof memeLooksLikeJokeOverlay&&memeLooksLikeJokeOverlay(memeState[e])&&(memeState[e]="")}),"function"==typeof memeDraw&&memeDraw())}catch(e){}}window.__memeMushafGuard||(window.__memeMushafGuard=!0,["meme-top","meme-mid","meme-bot","meme-bottom"].forEach(function(t){var n=document.getElementById(t);n&&(n.addEventListener("change",e),n.addEventListener("blur",e))}),document.addEventListener("change",function(t){t.target&&t.target.id&&/^meme-/.test(t.target.id)&&e()},!0))}(),document.addEventListener("click",function(e){try{var t=e.target;if(!t||!t.closest)return;var n=t.closest(".uft-add-rel-btn");if(n){e.preventDefault(),e.stopPropagation();var r=(u=document.getElementById("uft-rel-menu"))||((u=document.createElement("div")).id="uft-rel-menu",u.className="uft-rel-menu",u.setAttribute("hidden",""),u.innerHTML='<div class="uft-rel-menu-title">Add relative</div><button type="button" data-rel="child">+ Child</button><button type="button" data-rel="spouse">+ Spouse</button><button type="button" data-rel="sibling">+ Sibling</button><button type="button" data-rel="parent">+ Parent</button>',document.body.appendChild(u),u.addEventListener("click",function(e){try{var t=e.target&&e.target.closest&&e.target.closest("[data-rel]");if(!t)return;e.preventDefault(),e.stopPropagation();var n=t.getAttribute("data-rel")||"child",r=u.getAttribute("data-host")||"",a=u.getAttribute("data-slot")||"";u.setAttribute("hidden",""),u.style.display="none";var o=window.uftQuickAddRelative;if("function"==typeof o)return void o(r,a,n);var i=window.uftOpenPersonPicker;if("function"==typeof i)return void i(r,a,n);try{alert("Member list is still loading — try again in a moment.")}catch(e){}}catch(e){console.error("rel menu",e);try{alert("Add relative error: "+(e&&e.message?e.message:String(e)))}catch(e){}}}),u);r.setAttribute("data-host",n.getAttribute("data-add-name")||""),r.setAttribute("data-slot",n.getAttribute("data-add-slot")||"");var a=n.getBoundingClientRect(),o=function(){var e=0,t=0,n=360;try{e=null!=window.pageYOffset?window.pageYOffset:document.documentElement&&document.documentElement.scrollTop||0}catch(t){e=0}try{t=null!=window.pageXOffset?window.pageXOffset:document.documentElement&&document.documentElement.scrollLeft||0}catch(e){t=0}try{n=window.innerWidth||document.documentElement&&document.documentElement.clientWidth||360}catch(e){n=360}return{sy:e,sx:t,iw:n}}(),i=a.bottom+6+o.sy,f=Math.min(a.left+o.sx,o.sx+o.iw-220);return r.style.position="absolute",r.style.top=i+"px",r.style.left=Math.max(8+o.sx,f)+"px",r.style.zIndex="100000",r.removeAttribute("hidden"),r.hidden=!1,void(r.style.display="flex")}!(r=document.getElementById("uft-rel-menu"))||r.hidden||t.closest("#uft-rel-menu")||(r.setAttribute("hidden",""),r.hidden=!0,r.style.display="none")}catch(e){console.error("rel menu open",e)}var u},!0),window.UFT_KEY=void 0!==UFT_KEY?UFT_KEY:"clarity_user_family_tree_v1",window.uftView=void 0!==uftView?uftView:"pedigree",function(){function e(){try{"function"==typeof uftLoad?uftLoad():"function"==typeof uftRender&&uftRender()}catch(e){console.warn("uft boot",e)}try{var e=document.getElementById("uft-stage");e&&(e.style.setProperty("display","block","important"),e.style.setProperty("min-height","min(48vh, 26rem)","important"));var t=document.getElementById("uft-preview");t&&t.style.setProperty("display","block","important")}catch(e){}}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",function(){setTimeout(e,400)}):setTimeout(e,400),window.addEventListener("load",function(){setTimeout(e,900)});try{var t=document.getElementById("tab-notes");t&&"function"==typeof MutationObserver&&new MutationObserver(function(){t.classList.contains("amana-unlocked")&&setTimeout(e,250)}).observe(t,{attributes:!0,attributeFilter:["class"]})}catch(e){}}();
+/* clarity-uft-full-restore-v1 */
+/* Full family-tree + farāʾiḍ module restored from working Clarity build */
+(function(){
+if (window.__CLARITY_UFT_FULL_RESTORE_V1__) return;
+window.__CLARITY_UFT_FULL_RESTORE_V1__ = true;
+})();
+if (typeof window.clarityLS === "undefined" || !window.clarityLS) {
+  window.clarityLS = {
+    getItem: function(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+    setItem: function(k,v){ try { localStorage.setItem(k, v); } catch(e){} },
+    removeItem: function(k){ try { localStorage.removeItem(k); } catch(e){} }
+  };
+}
+window.UFT_KEY = "clarity_user_family_tree_v1";
+var UFT_KEY = window.UFT_KEY || 'clarity_user_family_tree_v1';
+    var uftView = 'pedigree';
+    function uftRead() {
+      try { return JSON.parse(clarityLS.getItem(UFT_KEY) || '{}'); }
+      catch (e) { return {}; }
+    }
+    function uftFields() {
+      return {
+        g1: document.getElementById('uft-g1'),
+        g2: document.getElementById('uft-g2'),
+        g3: document.getElementById('uft-g3'),
+        self: document.getElementById('uft-self'),
+        selfNote: document.getElementById('uft-self-note'),
+        father: document.getElementById('uft-father'),
+        fatherY: document.getElementById('uft-father-y'),
+        mother: document.getElementById('uft-mother'),
+        motherY: document.getElementById('uft-mother-y'),
+        spouse: document.getElementById('uft-spouse'),
+        pgf: document.getElementById('uft-pgf'),
+        pgm: document.getElementById('uft-pgm'),
+        mgf: document.getElementById('uft-mgf'),
+        mgm: document.getElementById('uft-mgm'),
+        children: document.getElementById('uft-children'),
+        grandchildren: document.getElementById('uft-grandchildren'),
+        siblings: document.getElementById('uft-siblings')
+      };
+    }
+    function uftLoad() {
+      const d = uftRead();
+      const f = uftFields();
+      if (!f.self) return;
+      Object.keys(f).forEach(function (k) {
+        if (f[k] && d[k] != null && typeof d[k] !== 'object') f[k].value = d[k];
+      });
+      const stage = document.getElementById('uft-stage');
+      if (stage) stage.setAttribute('data-skin', d.skin || 'green');
+      uftView = 'pedigree';
+      uftRender();
+      uftRenderRelList();
+      uftRefreshLibrary();
+      uftSetStatus(d.savedAt ? ('Restored from this device · ' + uftWhen(d.savedAt)) : 'Private on this device — not uploaded.');
+    }
+
+    function uftRegId() {
+      return 'm_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    }
+    function uftRegNormRow(row) {
+      return {
+        id: row.id || uftRegId(),
+        name: String(row.name || '').trim(),
+        role: String(row.role || '').trim(),
+        phone: String(row.phone || '').trim(),
+        email: String(row.email || '').trim(),
+        city: String(row.city || '').trim(),
+        note: String(row.note || '').trim()
+      };
+    }
+    function uftRegFind(d, name, role) {
+      const n = uftNorm(name);
+      const list = (d && d.registry) || [];
+      if (role) {
+        const hit = list.find(function (r) { return uftNorm(r.name) === n && String(r.role || '') === String(role); });
+        if (hit) return hit;
+      }
+      return list.find(function (r) { return uftNorm(r.name) === n && !r.role; }) ||
+        list.find(function (r) { return uftNorm(r.name) === n; }) || null;
+    }
+    function uftContactOf(name, slot) {
+      try {
+        const d = uftCollect();
+        const row = uftRegFind(d, name, slot);
+        if (!row) return '';
+        const bits = [];
+        if (row.phone) bits.push(row.phone);
+        if (row.email) bits.push(row.email);
+        if (row.city) bits.push(row.city);
+        return bits.join(' · ');
+      } catch (e) { return ''; }
+    }
+    function uftRegFillHostSelect() {
+      const sel = document.getElementById('uft-reg-link-host');
+      if (!sel) return;
+      const prev = sel.value;
+      const d = (typeof uftCollect === 'function') ? uftCollect() : {};
+      const people = [];
+      const seen = {};
+      function push(n, slot) {
+        if (!n) return;
+        const k = (typeof uftNorm === 'function') ? uftNorm(n) : String(n).toLowerCase();
+        if (!k || seen[k]) return;
+        seen[k] = true;
+        let id = (typeof uftNameKey === 'function') ? uftNameKey(n) : ('n:' + k);
+        try {
+          if (typeof uftCoreIdOf === 'function') {
+            const c = uftCoreIdOf(d, n);
+            if (c) id = c;
+          }
+        } catch (e) {}
+        people.push({ name: n, slot: slot || '', id: id });
+      }
+      ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (s) { push(d[s], s); });
+      ['g1','g2','g3','siblings','children','grandchildren'].forEach(function (field) {
+        (typeof uftLines === 'function' ? uftLines(d[field]) : []).forEach(function (n) { push(n, field); });
+      });
+      (d.relatives || []).forEach(function (r) { if (r && r.name) push(r.name, r.anchor || ''); });
+      sel.innerHTML = '<option value="">No link (registry only)</option>' + people.map(function (p) {
+        return '<option value="' + uftEsc(p.id) + '">' + uftEsc(p.name) + (p.slot ? ' · ' + uftEsc(p.slot) : '') + '</option>';
+      }).join('');
+      if (prev) sel.value = prev;
+    }
+    function uftRegClearForm() {
+      ['uft-reg-name','uft-reg-phone','uft-reg-email','uft-reg-city','uft-reg-note','uft-reg-role','uft-reg-edit-id'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      const host = document.getElementById('uft-reg-link-host');
+      if (host) host.value = '';
+      const rel = document.getElementById('uft-reg-link-rel');
+      if (rel) rel.value = 'child';
+    }
+    function uftRegPlaceOnTree(name, hostId, relation) {
+      if (!name || !hostId) return false;
+      relation = relation || 'child';
+      const d = uftCollect();
+      d.relatives = Array.isArray(d.relatives) ? d.relatives.slice() : [];
+      if (hostId === 'self' && relation === 'father' && !d.father) d.father = name;
+      else if (hostId === 'self' && relation === 'mother' && !d.mother) d.mother = name;
+      else if (hostId === 'self' && relation === 'spouse' && !d.spouse) d.spouse = name;
+      else if (relation === 'child' && hostId === 'self') {
+        const kids = uftLines(d.children);
+        if (!kids.some(function (k) { return uftSame(k, name); })) {
+          kids.push(name); d.children = kids.join('\n');
+        }
+      } else if (relation === 'sibling' && hostId === 'self') {
+        const sibs = uftLines(d.siblings);
+        if (!sibs.some(function (k) { return uftSame(k, name); })) {
+          sibs.push(name); d.siblings = sibs.join('\n');
+        }
+      } else {
+        const dup = d.relatives.some(function (r) {
+          return r && uftSame(r.name, name) && String(r.anchor) === String(hostId) && String(r.relation) === String(relation);
+        });
+        if (!dup) d.relatives.push({ anchor: hostId, relation: relation, name: name });
+      }
+      if (typeof uftDedupeRels === 'function') d.relatives = uftDedupeRels(d.relatives, d);
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      const f = uftFields();
+      Object.keys(f).forEach(function (k) {
+        if (f[k] && d[k] != null && typeof d[k] !== 'object') f[k].value = d[k];
+      });
+      return true;
+    }
+    function uftRegAdd() { return uftRegAddNew(); }
+    function uftRegAddNew() {
+      const name = ((document.getElementById('uft-reg-name') || {}).value || '').trim();
+      if (!name) {
+        if (typeof uftSetStatus === 'function') uftSetStatus('Enter a name for the new member.');
+        return;
+      }
+      const d = uftCollect();
+      d.registry = Array.isArray(d.registry) ? d.registry : [];
+      const editId = ((document.getElementById('uft-reg-edit-id') || {}).value || '').trim();
+      const hostId = ((document.getElementById('uft-reg-link-host') || {}).value || '');
+      const relation = ((document.getElementById('uft-reg-link-rel') || {}).value || 'child');
+      const roleHint = hostId ? relation : (((document.getElementById('uft-reg-role') || {}).value) || '');
+      const row = uftRegNormRow({
+        id: editId,
+        name: name,
+        role: roleHint,
+        phone: ((document.getElementById('uft-reg-phone') || {}).value || ''),
+        email: ((document.getElementById('uft-reg-email') || {}).value || ''),
+        city: ((document.getElementById('uft-reg-city') || {}).value || ''),
+        note: ((document.getElementById('uft-reg-note') || {}).value || '')
+      });
+      let existing = null;
+      if (editId) existing = d.registry.find(function (r) { return r && r.id === editId; });
+      if (!existing) existing = uftRegFind(d, row.name, row.role);
+      if (existing) {
+        existing.name = row.name;
+        existing.role = row.role || existing.role;
+        existing.phone = row.phone;
+        existing.email = row.email;
+        existing.city = row.city;
+        existing.note = row.note;
+      } else {
+        d.registry.push(row);
+      }
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      let linked = false;
+      if (hostId) linked = uftRegPlaceOnTree(name, hostId, relation);
+      uftRegClearForm();
+      uftRegRender();
+      if (linked && typeof uftRender === 'function') uftRender({ keepScroll: true });
+      if (typeof uftRefreshAnchorOptions === 'function') uftRefreshAnchorOptions();
+      try { if (typeof uftIntegrityRefresh === 'function') uftIntegrityRefresh(); } catch (e) {}
+      if (typeof uftSetStatus === 'function') {
+        uftSetStatus(linked
+          ? (name + ' saved · linked on tree as ' + relation + ' — set gender/status on their card')
+          : (name + ' saved in registry (not on tree yet)'));
+      }
+    }
+    function uftRegUseLoadedCard(idx) {
+      const cards = (typeof uftGetStoredCards === 'function') ? uftGetStoredCards() : [];
+      const c = cards[idx];
+      if (!c || !c.name) return;
+      const set = function (i, v) { const el = document.getElementById(i); if (el) el.value = v || ''; };
+      set('uft-reg-name', c.name);
+      set('uft-reg-phone', c.phone);
+      set('uft-reg-email', c.email);
+      set('uft-reg-city', c.city);
+      const box = document.getElementById('uft-registry-box');
+      if (box) box.open = true;
+      const nameEl = document.getElementById('uft-reg-name');
+      if (nameEl) try { nameEl.focus(); } catch (e) {}
+      if (typeof uftSetStatus === 'function') uftSetStatus('Loaded card in form — choose link on tree, then Save member');
+    }
+    function uftRegRenderLoaded() {
+      const box = document.getElementById('uft-reg-loaded-list');
+      const cnt = document.getElementById('uft-reg-loaded-count');
+      const section = document.getElementById('uft-reg-loaded-section');
+      const cards = (typeof uftGetStoredCards === 'function') ? uftGetStoredCards() : [];
+      if (cnt) cnt.textContent = cards.length ? ('(' + cards.length + ')') : '(none)';
+      if (!box) return;
+      if (!cards.length) {
+        box.innerHTML = '<span class="uft-hint">No uploaded member cards. Use Upload → Member cards CSV/JSON.</span>';
+        return;
+      }
+      box.innerHTML = cards.map(function (c, i) {
+        const bits = [c.generationHint || c.slot, c.gender, c.vital, c.phone].filter(Boolean).join(' · ');
+        const searchBlob = [c.name, c.generationHint, c.slot, c.gender, c.vital, c.phone, c.city].filter(Boolean).join(' ');
+        return '<div class="uft-reg-loaded-row" data-search="' + uftEsc(searchBlob) + '"><div><strong>' + uftEsc(c.name || '—') + '</strong>' +
+          (bits ? '<div class="uft-contact">' + uftEsc(bits) + '</div>' : '') +
+          '</div><button type="button" class="btn-secondary" onclick="uftRegUseLoadedCard(' + i + ')">Use in form</button></div>';
+      }).join('');
+      try {
+        const sq = document.getElementById('uft-loaded-search');
+        if (sq && sq.value) uftFilterLoadedList(sq.value);
+      } catch (e) {}
+      // Always keep collapsed unless the user opened it this session
+      if (section) {
+        if (!section.dataset.userTouched) section.open = false;
+        // Never auto-open when parent registry opens
+        if (section.open && !section.dataset.userTouched) section.open = false;
+      }
+    }
+    function uftRegRemove(id) {
+      const d = uftCollect();
+      d.registry = (d.registry || []).filter(function (r) { return r.id !== id; });
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      uftRegRender();
+      uftRender({ keepScroll: true });
+    }
+    function uftRegFill(id) {
+      const d = uftCollect();
+      const row = (d.registry || []).find(function (r) { return r && r.id === id; });
+      if (!row) return;
+      const set = function (i, v) { const el = document.getElementById(i); if (el) el.value = v || ''; };
+      set('uft-reg-name', row.name);
+      set('uft-reg-role', row.role);
+      set('uft-reg-phone', row.phone);
+      set('uft-reg-email', row.email);
+      set('uft-reg-city', row.city);
+      set('uft-reg-note', row.note);
+      set('uft-reg-edit-id', row.id);
+      const box = document.getElementById('uft-registry-box');
+      if (box) box.open = true;
+      try { uftRegFillHostSelect(); } catch (e) {}
+    }
+    function uftRegImportTree() {
+      const d = uftCollect();
+      d.registry = Array.isArray(d.registry) ? d.registry : [];
+      const seen = {};
+      d.registry.forEach(function (r) { seen[uftVitalKey(r.name, r.role)] = true; });
+      function add(name, role) {
+        if (!name) return;
+        const k = uftVitalKey(name, role || '');
+        if (seen[k]) return;
+        seen[k] = true;
+        d.registry.push(uftRegNormRow({ name: name, role: role || '' }));
+      }
+      add(d.self, 'self'); add(d.spouse, 'spouse');
+      add(d.father, 'father'); add(d.mother, 'mother');
+      add(d.pgf, 'pgf'); add(d.pgm, 'pgm'); add(d.mgf, 'mgf'); add(d.mgm, 'mgm');
+      uftLines(d.g3).forEach(function (n) { add(n, 'g3'); });
+      uftLines(d.g2).forEach(function (n) { add(n, 'g2'); });
+      uftLines(d.g1).forEach(function (n) { add(n, 'g1'); });
+      uftLines(d.siblings).forEach(function (n) { add(n, 'sibling'); });
+      uftLines(d.children).forEach(function (n) { add(n, 'child'); });
+      (d.relatives || []).forEach(function (r) { if (r && r.name) add(r.name, r.relation || r.anchor || 'other'); });
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      uftRegRender();
+      if (typeof uftSetStatus === 'function') uftSetStatus('Tree names copied into the registry. Add contacts there.');
+    }
+    function uftRegRender() {
+      const box = document.getElementById('uft-reg-list');
+      if (!box) return;
+      const d = uftCollect();
+      const list = d.registry || [];
+      const cnt = document.getElementById('uft-reg-saved-count');
+      if (cnt) cnt.textContent = list.length ? ('(' + list.length + ')') : '';
+      if (!list.length) {
+        box.innerHTML = '<span class="uft-hint">No registry contacts yet. Add a new member above, or pull names from the tree.</span>';
+      } else {
+        box.innerHTML = list.map(function (r) {
+          const bits = [r.role, r.phone, r.email, r.city].filter(Boolean).join(' · ');
+          return '<div class="uft-reg-row"><div><strong>' + uftEsc(r.name) + '</strong>' +
+            (bits ? '<div class="uft-contact">' + uftEsc(bits) + '</div>' : '') +
+            (r.note ? '<div class="uft-contact">' + uftEsc(r.note) + '</div>' : '') +
+            '</div><div><button type="button" class="btn-secondary" onclick="uftRegFill(\'' + r.id + '\')">Edit</button> ' +
+            '<button type="button" class="btn-secondary" onclick="uftRegRemove(\'' + r.id + '\')">Remove</button></div></div>';
+        }).join('');
+      }
+      try { uftRegFillHostSelect(); } catch (e) {}
+      try { uftRegRenderLoaded(); } catch (e) {}
+    }
+
+    function uftCollect() {
+      const f = uftFields();
+      const prev = uftRead();
+      const d = {};
+      Object.keys(f).forEach(function (k) { d[k] = f[k] ? f[k].value : ''; });
+      d.relatives = Array.isArray(prev.relatives) ? prev.relatives : [];
+      d.vital = (prev.vital && typeof prev.vital === 'object') ? prev.vital : {};
+      d.registry = Array.isArray(prev.registry) ? prev.registry : [];
+      d.gender = (prev.gender && typeof prev.gender === 'object') ? prev.gender : {};
+      d.born = (prev.born && typeof prev.born === 'object') ? prev.born : {};
+      return uftAutoLinkSiblings(uftDedupeData(d));
+    }
+    function uftRelLabel(rel) {
+      return ({
+        sibling: 'Sibling', child: 'Offspring', spouse: 'Spouse', grandchild: 'Grandchild',
+        uncle: 'Uncle', aunt: 'Aunt', nephew: 'Nephew', niece: 'Niece', cousin: 'Cousin'
+      })[rel] || rel;
+    }
+    function uftAnchorLabel(a) {
+      const map = {
+        self: 'You', spouse: 'Spouse', father: 'Father', mother: 'Mother',
+        pgf: "Father's father", pgm: "Father's mother", mgf: "Mother's father", mgm: "Mother's mother"
+      };
+      if (map[a]) return map[a];
+      if (a && String(a).indexOf('n:') === 0) return String(a).slice(2);
+      return a || '';
+    }
+    function uftRenderRelList() {
+      const box = document.getElementById('uft-rel-list');
+      if (!box) return;
+      const d = uftRead();
+      const rels = (d.relatives || []);
+      uftRefreshAnchorOptions();
+      if (!rels.length) { box.innerHTML = '<p class="uft-hint">No extra relations yet. Attach a sibling or child to any person already on the tree — uncles, aunts and cousins are linked automatically.</p>'; return; }
+      box.innerHTML = rels.map(function (r, i) {
+        const host = uftAnchorLabel(r.anchor) || String(r.anchor || '').replace(/^n:/, '');
+        const role = uftRoleToYou(d, r.name, uftRelLabel(r.relation));
+        return '<div class="uft-rel-chip"><span>' + uftEsc(host) + ' → ' +
+          uftEsc(uftRelLabel(r.relation)) + ': <strong>' + uftEsc(r.name) + '</strong> <em class="uft-auto-tag">' + uftEsc(role) + '</em></span>' +
+          '<button type="button" onclick="uftRemoveRel(' + i + ')">✕</button></div>';
+      }).join('');
+    }
+    function uftPickExistingName(sel) {
+      const v = ((sel || document.getElementById('uft-rel-pick') || {}).value || '').trim();
+      const inp = document.getElementById('uft-rel-name');
+      if (v && inp) { inp.value = v; sel.value = ''; }
+    }
+    function uftFillNameChoices() {
+      const d = uftRead();
+      const names = [];
+      const seen = {};
+      function push(n) {
+        n = String(n || '').trim();
+        const k = uftNorm(n);
+        if (!k || seen[k]) return;
+        seen[k] = true;
+        names.push(n);
+      }
+      try {
+        uftAllMembers(d).forEach(function (p) { if (p && p.name) push(p.name); });
+        (d.relatives || []).forEach(function (r) { if (r && r.name) push(r.name); });
+      } catch (e) {}
+      const dl = document.getElementById('uft-rel-name-list');
+      if (dl) dl.innerHTML = names.map(function (n) { return '<option value="' + uftEsc(n) + '"></option>'; }).join('');
+      const pick = document.getElementById('uft-rel-pick');
+      if (pick) {
+        const cur = pick.value;
+        pick.innerHTML = '<option value="">Or choose someone already on the tree…</option>' +
+          names.map(function (n) { return '<option value="' + uftEsc(n) + '">' + uftEsc(n) + '</option>'; }).join('');
+        pick.value = cur;
+      }
+    }
+    function uftAddRel() {
+      const pick = document.getElementById('uft-rel-pick');
+      const typed = ((document.getElementById('uft-rel-name') || {}).value || '').trim();
+      const name = typed || ((pick || {}).value || '').trim();
+      if (!name) {
+        if (typeof uftSetStatus === 'function') uftSetStatus('Type a name or pick someone already on the tree, then Add.');
+        return false;
+      }
+      const anchor = (document.getElementById('uft-rel-anchor') || {}).value || 'self';
+      const relation = (document.getElementById('uft-rel-type') || {}).value || 'sibling';
+      const d = uftCollect();
+      d.relatives = d.relatives || [];
+      const existing = uftHasPerson(d, name);
+      const dup = d.relatives.some(function (r) {
+        return uftSame(r.name, name) && String(r.anchor) === String(anchor) && String(r.relation) === String(relation);
+      });
+      if (dup) {
+        if (typeof uftSetStatus === 'function') uftSetStatus(name + ' is already linked that way — duplicate skipped.');
+        return;
+      }
+      if (existing && existing.kind === 'core' && uftSame(existing.name, name)) {
+        if (uftIsRestatedCore(d, { name: name, anchor: anchor, relation: relation })) {
+          if (typeof uftSetStatus === 'function') uftSetStatus(name + ' is already on the tree as ' + existing.role + '. Extra copy skipped.');
+          return;
+        }
+        if (typeof uftSetStatus === 'function') {
+          uftSetStatus(name + ' is already ' + existing.role + '. Linked across both family lines (cousin marriage allowed).');
+        }
+      }
+      const vitalNew = ((document.getElementById('uft-rel-vital') || {}).value || '').trim();
+      d.relatives.push({ anchor: anchor, relation: relation, name: name });
+      d.relatives = uftDedupeRels(d.relatives, d);
+      if (vitalNew) {
+        d.vital = d.vital || {};
+        d.vital[uftVitalKey(name, anchor)] = vitalNew;
+      }
+      const genderNew = ((document.getElementById('uft-rel-gender') || {}).value || '').trim();
+      if (genderNew) {
+        d.gender = d.gender || {};
+        d.gender[uftGenderKey(name, anchor)] = genderNew;
+      }
+      const bornNew = ((document.getElementById('uft-rel-born') || {}).value || '').replace(/[^0-9]/g, '').slice(0, 4);
+      if (bornNew) {
+        d.born = d.born || {};
+        d.born[uftVitalKey(name, anchor)] = bornNew;
+      }
+      if (relation === 'sibling') {
+        uftAutoLinkSiblings(d);
+      }
+      const stage = document.getElementById('uft-stage');
+      if (stage) d.skin = stage.getAttribute('data-skin') || 'green';
+      d.view = uftView;
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      const inp = document.getElementById('uft-rel-name');
+      if (inp) { inp.value = ''; inp.focus(); }
+      if (pick) pick.value = '';
+      uftRenderRelList();
+      uftRefreshAnchorOptions();
+      uftFillNameChoices();
+      uftRender({ keepScroll: true });
+      if (typeof uftSetStatus === 'function') uftSetStatus(uftLinkMessage(anchor, relation, name, d) + ' Add another name the same way.');
+      return true;
+    }
+    function uftRemoveRel(i) {
+      const d = uftCollect();
+      d.relatives = (d.relatives || []).filter(function (_, idx) { return idx !== i; });
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      uftRenderRelList();
+      uftRender({ keepScroll: true });
+    }
+    function uftDeletePerson(name, slot, anchor) {
+      name = String(name || '').trim();
+      if (!name) return;
+      slot = String(slot || '').trim();
+      anchor = String(anchor || '').trim();
+      if (!confirm('Remove ' + name + ' from this place only?\n\nOther places that use the same name stay. Gender / status / year stay with the person.')) return;
+
+      const d = uftCollect();
+      d.relatives = Array.isArray(d.relatives) ? d.relatives.slice() : [];
+      const cores = ['self','spouse','father','mother','pgf','pgm','mgf','mgm'];
+      const lists = ['g1','g2','g3','siblings','children','grandchildren'];
+      const nkey = (typeof uftNameKey === 'function') ? uftNameKey(name) : ('n:' + uftNorm(name));
+      let removed = false;
+
+      function samePerson(a, b) {
+        if (!a || !b) return false;
+        if (typeof uftSame === 'function') return uftSame(a, b);
+        return String(a).trim().toLowerCase() === String(b).trim().toLowerCase();
+      }
+      function hostBag(h) {
+        if (!h) return [];
+        const out = [];
+        const push = function (x) {
+          if (!x) return;
+          const s = String(x);
+          if (out.indexOf(s) < 0) out.push(s);
+        };
+        push(h);
+        push(String(h).replace(/^n:/i, ''));
+        if (typeof uftNameKey === 'function') {
+          push(uftNameKey(h));
+          push(uftNameKey(String(h).replace(/^n:/i, '')));
+        }
+        try {
+          const cn = (typeof uftCoreName === 'function') ? uftCoreName(d, h) : '';
+          if (cn) {
+            push(cn);
+            if (typeof uftNameKey === 'function') push(uftNameKey(cn));
+          }
+        } catch (e) {}
+        // If h is a core id, include the person currently in that slot
+        if (cores.indexOf(String(h)) >= 0 && d[h]) {
+          push(d[h]);
+          if (typeof uftNameKey === 'function') push(uftNameKey(d[h]));
+        }
+        return out;
+      }
+      function matchesHost(anch, hostList) {
+        if (!anch || !hostList || !hostList.length) return false;
+        for (let i = 0; i < hostList.length; i++) {
+          if (samePerson(anch, hostList[i])) return true;
+          if (String(anch) === String(hostList[i])) return true;
+          if (String(anch).replace(/^n:/i, '') === String(hostList[i]).replace(/^n:/i, '')) return true;
+        }
+        return false;
+      }
+
+      const hostList = hostBag(anchor).concat(hostBag(slot));
+
+      // A) Core field placement
+      if (slot && cores.indexOf(slot) >= 0 && samePerson(d[slot], name)) {
+        d[slot] = '';
+        removed = true;
+      }
+      // B) List field placement
+      if (slot && lists.indexOf(slot) >= 0) {
+        const before = uftLines(d[slot]);
+        const after = before.filter(function (n) { return !samePerson(n, name); });
+        if (after.length !== before.length) {
+          d[slot] = after.join('\n');
+          removed = true;
+        }
+      }
+
+      // C) Relationship edges at this location (either direction)
+      const beforeRel = d.relatives.length;
+      d.relatives = d.relatives.filter(function (r) {
+        if (!r) return false;
+        const nameIsCard = samePerson(r.name, name);
+        const anchIsCard = matchesHost(r.anchor, [name, nkey].concat(hostBag(name)));
+        const anchIsHost = hostList.length ? matchesHost(r.anchor, hostList) : false;
+        const nameIsHost = hostList.length ? matchesHost(r.name, hostList) : false;
+        // Card is the relative name, host is the anchor
+        if (nameIsCard && anchIsHost) return false;
+        // Reverse spouse/child edge: card is anchor, host is the named person
+        if (nameIsHost && anchIsCard) return false;
+        // Spouse of host when host matched via core name
+        if (nameIsCard && r.relation === 'spouse' && anchIsHost) return false;
+        return true;
+      });
+      if (d.relatives.length !== beforeRel) removed = true;
+
+      // D) Fallbacks — still location-minded
+      if (!removed && hostList.length) {
+        // Any edge naming this person attached to this host family of keys
+        const before2 = d.relatives.length;
+        d.relatives = d.relatives.filter(function (r) {
+          if (!r || !samePerson(r.name, name)) return true;
+          return !matchesHost(r.anchor, hostList);
+        });
+        if (d.relatives.length !== before2) removed = true;
+      }
+      if (!removed) {
+        // One relative edge with this name (single placement when data is ambiguous)
+        let dropped = false;
+        d.relatives = d.relatives.filter(function (r) {
+          if (dropped || !r || !samePerson(r.name, name)) return true;
+          dropped = true;
+          removed = true;
+          return false;
+        });
+      }
+      if (!removed) {
+        // Last resort: remove name once from any list field
+        for (let i = 0; i < lists.length; i++) {
+          const k = lists[i];
+          const lines = uftLines(d[k]);
+          const hit = lines.findIndex(function (n) { return samePerson(n, name); });
+          if (hit >= 0) {
+            lines.splice(hit, 1);
+            d[k] = lines.join('\n');
+            removed = true;
+            break;
+          }
+        }
+      }
+      if (!removed) {
+        for (let i = 0; i < cores.length; i++) {
+          if (samePerson(d[cores[i]], name)) {
+            d[cores[i]] = '';
+            removed = true;
+            break;
+          }
+        }
+      }
+
+      // Identity maps kept intentionally
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      const f = uftFields();
+      Object.keys(f).forEach(function (k) {
+        if (f[k] && d[k] != null && typeof d[k] !== 'object') f[k].value = d[k];
+      });
+      if (typeof uftRenderRelList === 'function') uftRenderRelList();
+      if (typeof uftRefreshAnchorOptions === 'function') uftRefreshAnchorOptions();
+      if (typeof uftFillNameChoices === 'function') uftFillNameChoices();
+      uftRender({ keepScroll: true });
+      try { if (typeof uftRenderOwnTreePanel === 'function') uftRenderOwnTreePanel(); } catch (e) {}
+      try { if (typeof uftIntegrityRefresh === 'function') uftIntegrityRefresh(); } catch (e) {}
+      if (typeof uftSetStatus === 'function') {
+        uftSetStatus(removed
+          ? (name + ' removed from this place')
+          : (name + ' — could not find a link to remove (try Edit names → relations list)'));
+      }
+    }
+    function uftNorm(n) {
+      return String(n || '').trim().toLowerCase().replace(/\s+/g, ' ');
+    }
+    function uftSame(a, b) {
+      const x = uftNorm(a), y = uftNorm(b);
+      if (!x || !y) return false;
+      if (x === y) return true;
+      if (x.replace(/\s+/g,'') === y.replace(/\s+/g,'')) return true;
+      return false;
+    }
+    function uftCoreIdOf(d, name) {
+      if (!name) return null;
+      const slots = [
+        ['self', d.self], ['spouse', d.spouse],
+        ['father', d.father], ['mother', d.mother],
+        ['pgf', d.pgf], ['pgm', d.pgm], ['mgf', d.mgf], ['mgm', d.mgm]
+      ];
+      for (let i = 0; i < slots.length; i++) {
+        if (uftSame(slots[i][1], name)) return slots[i][0];
+      }
+      return null;
+    }
+    function uftIsCorePerson(d, name) {
+      return !!uftCoreIdOf(d, name);
+    }
+    function uftRolesOf(d, name) {
+      const roles = [];
+      if (!name) return roles;
+      if (uftSame(name, d.self)) roles.push('You');
+      if (uftSame(name, d.spouse)) roles.push('Spouse');
+      if (uftSame(name, d.father)) roles.push('Father');
+      if (uftSame(name, d.mother)) roles.push('Mother');
+      if (uftSame(name, d.pgf)) roles.push("Father's father");
+      if (uftSame(name, d.pgm)) roles.push("Father's mother");
+      if (uftSame(name, d.mgf)) roles.push("Mother's father");
+      if (uftSame(name, d.mgm)) roles.push("Mother's mother");
+      const rels = d.relatives || [];
+      rels.forEach(function (r) {
+        if (!uftSame(r.name, name)) return;
+        const host = uftCoreIdOf(d, uftCoreName(d, r.anchor)) || r.anchor;
+        if (r.relation === 'sibling' && (host === 'pgf' || host === 'pgm')) roles.push('Paternal great-uncle/aunt');
+        if (r.relation === 'sibling' && (host === 'mgf' || host === 'mgm')) roles.push('Maternal great-uncle/aunt');
+        if (r.relation === 'sibling' && host === 'father') roles.push('Paternal uncle/aunt');
+        if (r.relation === 'sibling' && host === 'mother') roles.push('Maternal uncle/aunt');
+        if (r.relation === 'spouse' && (host === 'pgf' || host === 'pgm' || host === 'mgf' || host === 'mgm')) roles.push('Grandparent by marriage');
+      });
+      const seen = {};
+      return roles.filter(function (r) {
+        if (seen[r]) return false;
+        seen[r] = true;
+        return true;
+      });
+    }
+    function uftCrossMarriageNote(d, name) {
+      const roles = uftRolesOf(d, name);
+      const pat = roles.some(function (r) { return /father|paternal/i.test(r); });
+      const mat = roles.some(function (r) { return /mother|maternal/i.test(r); });
+      if (pat && mat) return 'Same person on paternal and maternal lines (cousin-marriage link).';
+      return '';
+    }
+    function uftNotCorePeople(d, items) {
+      return (items || []).filter(function (it) { return it && it.name && !uftIsCorePerson(d, it.name); });
+    }
+    function uftParentsOf(d, id) {
+      const name = uftCoreName(d, id) || (String(id || '').indexOf('n:') === 0 ? String(id).slice(2) : '');
+      const out = [];
+      function add(pid, pname) {
+        const nm = pname || uftCoreName(d, pid) || '';
+        if (!nm && !pid) return;
+        out.push({ id: pid || uftNameKey(nm), name: nm });
+      }
+      if (id === 'self' || uftSame(name, d.self)) { add('father', d.father); add('mother', d.mother); }
+      if (id === 'father' || uftSame(name, d.father)) { add('pgf', d.pgf); add('pgm', d.pgm); }
+      if (id === 'mother' || uftSame(name, d.mother)) { add('mgf', d.mgf); add('mgm', d.mgm); }
+      (d.relatives || []).forEach(function (r) {
+        if (r.relation === 'child' && name && uftSame(r.name, name)) {
+          add(r.anchor, uftCoreName(d, r.anchor) || String(r.anchor || '').replace(/^n:/, ''));
+        }
+      });
+      return uftUniquePeople(out);
+    }
+    function uftUnclesOf(d, id) {
+      const selfName = uftCoreName(d, id) || '';
+      const list = [];
+      uftParentsOf(d, id).forEach(function (p) {
+        uftSiblingsOf(d, p.id).forEach(function (s) {
+          if (!uftSame(s.name, selfName) && !uftIsCorePerson(d, s.name)) list.push(s);
+        });
+      });
+      return uftUniquePeople(list);
+    }
+    function uftUncleOwners(d, uncleName) {
+      const owners = [];
+      ['pgf', 'pgm', 'mgf', 'mgm'].forEach(function (gid) {
+        if (uftUnclesOf(d, gid).some(function (u) { return uftSame(u.name, uncleName); })) {
+          owners.push(gid);
+        }
+      });
+      return owners;
+    }
+    function uftRoleLabel(d, name, hint) {
+      const roles = uftRolesOf(d, name);
+      if (!roles.length) return hint || '';
+      return roles.join(' · ');
+    }
+    function uftCoreName(d, id) {
+      if (!d) return '';
+      if (id === 'self') return d.self || '';
+      if (id === 'spouse') return d.spouse || '';
+      if (id === 'father') return d.father || '';
+      if (id === 'mother') return d.mother || '';
+      if (id === 'pgf') return d.pgf || '';
+      if (id === 'pgm') return d.pgm || '';
+      if (id === 'mgf') return d.mgf || '';
+      if (id === 'mgm') return d.mgm || '';
+      if (id && String(id).indexOf('n:') === 0) return String(id).slice(2);
+      return '';
+    }
+    function uftNameKey(name) {
+      const n = uftNorm(name);
+      return n ? ('n:' + n) : '';
+    }
+    function uftAnchorMatches(d, anchor, personId, personName) {
+      if (!anchor) return false;
+      if (anchor === personId) return true;
+      if (String(anchor).indexOf('n:') === 0) {
+        return uftSame(String(anchor).slice(2), personName) || uftSame(String(anchor).slice(2), uftCoreName(d, personId));
+      }
+      return uftSame(uftCoreName(d, anchor), personName);
+    }
+    function uftPeersOf(d, name) {
+      const peers = [];
+      const seen = {};
+      function add(n) {
+        const k = uftNorm(n);
+        if (!k || uftSame(n, name) || seen[k]) return;
+        seen[k] = true;
+        peers.push({ name: n });
+      }
+      (d.relatives || []).forEach(function (r) {
+        if (!r || r.relation !== 'sibling') return;
+        const host = (uftCoreName(d, r.anchor) || String(r.anchor || '').replace(/^n:/, '')).trim();
+        if (uftSame(host, name)) add(r.name);
+        if (uftSame(r.name, name) && host) add(host);
+      });
+      uftSiblingsOf(d, uftNameKey(name)).forEach(function (s) { add(s.name); });
+      uftSiblingsOf(d, name).forEach(function (s) { add(s.name); });
+      return peers;
+    }
+    function uftUniquePeople(items) {
+      const out = [];
+      const seen = {};
+      (items || []).forEach(function (it) {
+        const n = uftNorm(it && it.name);
+        if (!n || seen[n]) return;
+        seen[n] = true;
+        out.push(it);
+      });
+      return out;
+    }
+    function uftRelsFor(d, anchor) {
+      const name = uftCoreName(d, anchor) || (String(anchor || '').indexOf('n:') === 0 ? String(anchor).slice(2) : '');
+      return (d.relatives || []).filter(function (r) {
+        return r && r.name && uftAnchorMatches(d, r.anchor, anchor, name);
+      });
+    }
+    function uftKidsOf(d, anchor) {
+      const kids = [];
+      uftRelsFor(d, anchor).forEach(function (r) {
+        if (r.relation === 'child' || r.relation === 'grandchild' || r.relation === 'offspring') {
+          kids.push({ name: r.name, relation: r.relation === 'grandchild' ? 'grandchild' : 'child', anchor: r.anchor });
+        }
+      });
+      if (anchor === 'self') {
+        uftLines(d.children).forEach(function (n) { kids.push({ name: n, relation: 'child', anchor: 'self' }); });
+      }
+      return uftUniquePeople(kids);
+    }
+    function uftIsBloodUncle(d, name) {
+      if (!name) return false;
+      return uftSiblingsOf(d, 'father').concat(uftSiblingsOf(d, 'mother')).some(function (u) {
+        return uftSame(u.name, name);
+      });
+    }
+    function uftBloodSiblings(d) {
+      return uftSiblingsOf(d, 'self').filter(function (s) {
+        if (!s || !s.name) return false;
+        if (uftIsCorePerson(d, s.name)) return false;
+        if (uftSame(s.name, d.spouse)) return false;
+        if (uftIsBloodUncle(d, s.name)) return false;
+        return true;
+      });
+    }
+    function uftInLawPeople(d) {
+      if (!d.spouse) return [];
+      const list = [];
+      uftRelsFor(d, 'spouse').concat(uftRelsFor(d, uftNameKey(d.spouse))).forEach(function (r) {
+        if (!r || !r.name) return;
+        if (uftSame(r.name, d.self) || uftSame(r.name, d.spouse)) return;
+        if (uftIsBloodUncle(d, r.name)) return;
+        if (uftBloodSiblings(d).some(function (s) { return uftSame(s.name, r.name); })) return;
+        list.push({ name: r.name, relation: r.relation, anchor: r.anchor });
+      });
+      return uftUniquePeople(list);
+    }
+    function uftSiblingsOf(d, anchor) {
+      const sibs = [];
+      uftRelsFor(d, anchor).forEach(function (r) {
+        if (r.relation === 'sibling') sibs.push({ name: r.name, relation: 'sibling', anchor: r.anchor });
+      });
+      if (anchor === 'self') {
+        uftLines(d.siblings).forEach(function (n) { sibs.push({ name: n, relation: 'sibling', anchor: 'self' }); });
+        uftKidsOf(d, 'father').concat(uftKidsOf(d, 'mother')).forEach(function (k) {
+          if (!uftSame(k.name, d.self)) sibs.push({ name: k.name, relation: 'sibling', anchor: 'self' });
+        });
+      }
+      if (anchor === 'father') {
+        uftKidsOf(d, 'pgf').concat(uftKidsOf(d, 'pgm')).forEach(function (k) {
+          if (!uftSame(k.name, d.father)) sibs.push({ name: k.name, relation: 'sibling', anchor: 'father' });
+        });
+      }
+      if (anchor === 'mother') {
+        uftKidsOf(d, 'mgf').concat(uftKidsOf(d, 'mgm')).forEach(function (k) {
+          if (!uftSame(k.name, d.mother)) sibs.push({ name: k.name, relation: 'sibling', anchor: 'mother' });
+        });
+      }
+      return uftUniquePeople(sibs);
+    }
+    function uftSpouseOf(d, anchor) {
+      const named = [];
+      if (anchor === 'self' && d.spouse) named.push({ name: d.spouse, relation: 'spouse', anchor: 'self' });
+      uftRelsFor(d, anchor).forEach(function (r) {
+        if (r.relation === 'spouse') named.push({ name: r.name, relation: 'spouse', anchor: r.anchor });
+      });
+      return uftUniquePeople(named);
+    }
+    function uftRoleToYou(d, name, hint) {
+      if (!name) return hint || '';
+      const coreRoles = uftRolesOf(d, name);
+      if (coreRoles.length) {
+        const extra = uftCrossMarriageNote(d, name);
+        return extra ? (coreRoles.join(' · ') + ' · linked both lines') : coreRoles.join(' · ');
+      }
+      if (uftSiblingsOf(d, 'self').some(function (s) { return uftSame(s.name, name); })) return 'Sibling';
+      if (uftKidsOf(d, 'self').some(function (s) { return uftSame(s.name, name); })) return 'Child';
+      if (uftSiblingsOf(d, 'father').some(function (s) { return uftSame(s.name, name); })) return 'Paternal uncle/aunt';
+      if (uftSiblingsOf(d, 'mother').some(function (s) { return uftSame(s.name, name); })) return 'Maternal uncle/aunt';
+      let cousin = false;
+      uftSiblingsOf(d, 'father').concat(uftSiblingsOf(d, 'mother')).forEach(function (u) {
+        uftKidsOf(d, uftNameKey(u.name)).forEach(function (c) {
+          if (uftSame(c.name, name)) cousin = true;
+        });
+      });
+      if (cousin) return 'Cousin';
+      if (uftLines(d.grandchildren).some(function (g) { return uftSame(g, name); })) return 'Grandchild';
+      return hint || 'Relative';
+    }
+    function uftOffshoot(d, anchor) {
+      const rels = uftRelsFor(d, anchor);
+      if (!rels.length) return '';
+      return '<div class="uft-offshoot">' + rels.map(function (r) {
+        return uftPerson(r.name, uftRoleToYou(d, r.name, uftRelLabel(r.relation)), '', 'rel');
+      }).join('') + '</div>';
+    }
+    function uftRefreshAnchorOptions() {
+      const sel = document.getElementById('uft-rel-anchor');
+      if (!sel) return;
+      const prev = sel.value;
+      const d = uftCollect();
+      const opts = [];
+      const seen = {};
+      function add(id, label) {
+        if (!id || seen[id]) return;
+        seen[id] = true;
+        opts.push([id, label]);
+      }
+      add('self', (d.self || 'You') + ' — you');
+      add('spouse', (d.spouse || 'Spouse') + ' — spouse');
+      add('father', (d.father || 'Father') + ' — father');
+      add('mother', (d.mother || 'Mother') + ' — mother');
+      add('pgf', (d.pgf || "Father's father") + " — father's father");
+      add('pgm', (d.pgm || "Father's mother") + " — father's mother");
+      add('mgf', (d.mgf || "Mother's father") + " — mother's father");
+      add('mgm', (d.mgm || "Mother's mother") + " — mother's mother");
+      uftLines(d.g3).forEach(function (n) { add(uftNameKey(n), n + ' — great-grandparent'); });
+      uftLines(d.g2).forEach(function (n) { add(uftNameKey(n), n + ' — 2nd-great-grandparent'); });
+      uftLines(d.g1).forEach(function (n) { add(uftNameKey(n), n + ' — 3rd-great-grandparent'); });
+      uftLines(d.siblings).forEach(function (n) { add(uftNameKey(n), n + ' — sibling'); });
+      uftLines(d.children).forEach(function (n) { add(uftNameKey(n), n + ' — child'); });
+      (d.relatives || []).forEach(function (r) {
+        if (r && r.name) add(uftNameKey(r.name), r.name + ' — ' + uftRelLabel(r.relation));
+      });
+      sel.innerHTML = opts.map(function (pair) {
+        return '<option value="' + uftEsc(pair[0]) + '">' + uftEsc(pair[1]) + '</option>';
+      }).join('');
+      if (prev && seen[prev]) sel.value = prev;
+    }
+    function uftLinkMessage(anchor, relation, name, d) {
+      const role = uftRoleToYou(d, name, uftRelLabel(relation));
+      const host = uftCoreName(d, anchor) || String(anchor).replace(/^n:/, '') || 'this person';
+      return 'Linked ' + name + ' as ' + role + ' (attached to ' + host + '). Their children nest under them.';
+    }
+    function uftUniqueLines(s) {
+      const seen = {};
+      return uftLines(s).filter(function (n) {
+        const k = uftNorm(n);
+        if (!k || seen[k]) return false;
+        seen[k] = true;
+        return true;
+      }).join('\n');
+    }
+    function uftCoreList(d) {
+      return [
+        { id: 'self', name: d.self, role: 'You' },
+        { id: 'spouse', name: d.spouse, role: 'Spouse' },
+        { id: 'father', name: d.father, role: 'Father' },
+        { id: 'mother', name: d.mother, role: 'Mother' },
+        { id: 'pgf', name: d.pgf, role: "Father's father" },
+        { id: 'pgm', name: d.pgm, role: "Father's mother" },
+        { id: 'mgf', name: d.mgf, role: "Mother's father" },
+        { id: 'mgm', name: d.mgm, role: "Mother's mother" }
+      ].filter(function (p) { return p.name && uftNorm(p.name); });
+    }
+    function uftIsRestatedCore(d, r) {
+      if (!r || !r.name) return true;
+      if (r.relation === 'child' && (r.anchor === 'father' || r.anchor === 'mother') && uftSame(r.name, d.self)) return true;
+      if (r.relation === 'child' && (r.anchor === 'pgf' || r.anchor === 'pgm') && uftSame(r.name, d.father)) return true;
+      if (r.relation === 'child' && (r.anchor === 'mgf' || r.anchor === 'mgm') && uftSame(r.name, d.mother)) return true;
+      if (r.relation === 'spouse' && r.anchor === 'self' && uftSame(r.name, d.spouse)) return true;
+      if (r.relation === 'sibling' && r.anchor === 'self' && uftSame(r.name, d.self)) return true;
+      return false;
+    }
+    function uftDedupeRels(rels, d) {
+      const out = [];
+      const seen = {};
+      (rels || []).forEach(function (r) {
+        if (!r || !String(r.name || '').trim()) return;
+        if (uftIsRestatedCore(d, r)) return;
+        const host = uftNorm(uftCoreName(d, r.anchor) || String(r.anchor || '').replace(/^n:/, ''));
+        const key = uftNorm(r.name) + '|' + host + '|' + String(r.relation || '');
+        if (seen[key]) return;
+        seen[key] = true;
+        out.push({
+          anchor: r.anchor,
+          relation: r.relation || 'relative',
+          name: String(r.name).trim()
+        });
+      });
+      return out;
+    }
+    function uftDedupeData(d) {
+      const next = d || {};
+      ['g1', 'g2', 'g3', 'siblings', 'children', 'grandchildren'].forEach(function (k) {
+        next[k] = uftUniqueLines(next[k] || '');
+      });
+      // Remove list entries that are already core people (avoids duplicate cards)
+      const coreNorms = {};
+      ['self', 'spouse', 'father', 'mother', 'pgf', 'pgm', 'mgf', 'mgm'].forEach(function (k) {
+        if (next[k]) coreNorms[uftNorm(next[k])] = k;
+      });
+      ['g1', 'g2', 'g3', 'siblings', 'children', 'grandchildren'].forEach(function (k) {
+        const kept = [];
+        uftLines(next[k]).forEach(function (n) {
+          const nn = uftNorm(n);
+          if (!nn) return;
+          if (coreNorms[nn]) return; // already on core slot
+          if (kept.some(function (x) { return uftNorm(x) === nn; })) return;
+          kept.push(n);
+        });
+        next[k] = kept.join('\n');
+      });
+      // A name should not appear in more than one of g1/g2/g3 — keep the first generation rank (g1 wins, then g2, then g3)
+      const seenGen = {};
+      ['g1', 'g2', 'g3'].forEach(function (k) {
+        const kept = [];
+        uftLines(next[k]).forEach(function (n) {
+          const nn = uftNorm(n);
+          if (!nn || seenGen[nn]) return;
+          seenGen[nn] = k;
+          kept.push(n);
+        });
+        next[k] = kept.join('\n');
+      });
+      next.relatives = uftDedupeRels(next.relatives || [], next);
+      // Drop relative rows that only restate a core person with no extra info
+      next.relatives = (next.relatives || []).filter(function (r) {
+        if (!r || !r.name) return false;
+        return true;
+      });
+      next.vital = (next.vital && typeof next.vital === 'object') ? next.vital : {};
+      next.gender = (next.gender && typeof next.gender === 'object') ? next.gender : {};
+      next.born = (next.born && typeof next.born === 'object') ? next.born : {};
+      return next;
+    }
+    function uftHasPerson(d, name) {
+      const n = uftNorm(name);
+      if (!n) return null;
+      const cores = uftCoreList(d);
+      for (let i = 0; i < cores.length; i++) {
+        if (uftNorm(cores[i].name) === n) return { kind: 'core', id: cores[i].id, role: cores[i].role, name: cores[i].name };
+      }
+      const lists = [
+        ['siblings', 'Sibling'],
+        ['children', 'Child'],
+        ['grandchildren', 'Grandchild'],
+        ['g3', 'Great-grandparent'],
+        ['g2', '2nd-great-grandparent'],
+        ['g1', '3rd-great-grandparent']
+      ];
+      for (let i = 0; i < lists.length; i++) {
+        if (uftLines(d[lists[i][0]]).some(function (x) { return uftNorm(x) === n; })) {
+          return { kind: 'list', id: lists[i][0], role: lists[i][1], name: name };
+        }
+      }
+      const rel = (d.relatives || []).find(function (r) { return uftNorm(r.name) === n; });
+      if (rel) return { kind: 'rel', id: rel.anchor, role: uftRelLabel(rel.relation), name: rel.name };
+      return null;
+    }
+    function uftAllMembers(d) {
+      const items = [];
+      uftCoreList(d).forEach(function (p) { items.push({ name: p.name, relation: p.role, anchor: p.id }); });
+      uftLines(d.siblings).forEach(function (n) { items.push({ name: n, relation: 'Sibling', anchor: 'self' }); });
+      uftLines(d.children).forEach(function (n) { items.push({ name: n, relation: 'Child', anchor: 'self' }); });
+      uftLines(d.grandchildren).forEach(function (n) { items.push({ name: n, relation: 'Grandchild', anchor: 'self' }); });
+      uftLines(d.g3).forEach(function (n) { items.push({ name: n, relation: 'Great-grandparent', anchor: 'g3' }); });
+      uftLines(d.g2).forEach(function (n) { items.push({ name: n, relation: '2nd-great-grandparent', anchor: 'g2' }); });
+      uftLines(d.g1).forEach(function (n) { items.push({ name: n, relation: '3rd-great-grandparent', anchor: 'g1' }); });
+      (d.relatives || []).forEach(function (r) { items.push({ name: r.name, relation: uftRelLabel(r.relation), anchor: r.anchor }); });
+      return uftUniquePeople(items);
+    }
+
+    function uftSetSkin(name) {
+      const stage = document.getElementById('uft-stage');
+      if (!stage) return;
+      stage.setAttribute('data-skin', name || 'green');
+      try {
+        const d = Object.assign(uftRead(), uftCollect());
+        d.skin = name || 'green';
+        clarityLS.setItem(UFT_KEY, JSON.stringify(d));
+      } catch (e) {}
+    }
+    function uftSetView(name) {
+      uftView = 'pedigree';
+      try { clarityLS.setItem('clarity_uft_view', 'pedigree'); } catch (e) {}
+      uftRender();
+    }
+    function uftEditorEl() { return document.getElementById('uft-editor'); }
+
+    function uftDockStepHighlight(n) {
+      try {
+        document.querySelectorAll('.uft-dock-steps .uft-step').forEach(function (b) {
+          b.classList.toggle('active-step', String(b.getAttribute('data-step')) === String(n));
+        });
+      } catch (e) {}
+    }
+    function uftDockOpenSection(el) {
+      if (!el) return;
+      try {
+        if (el.tagName === 'DETAILS') el.open = true;
+        el.classList.add('uft-step-flash');
+        setTimeout(function () { try { el.classList.remove('uft-step-flash'); } catch (e) {} }, 950);
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (e) {}
+    }
+    /** Workflow chips 1–5 in Names & registry */
+    function uftDockStep(n) {
+      n = parseInt(n, 10) || 1;
+      try { if (typeof uftExpandEditor === 'function') uftExpandEditor(); } catch (e) {}
+      uftDockStepHighlight(n);
+      var reg = document.getElementById('uft-registry-box');
+      var loaded = document.getElementById('uft-reg-loaded-section');
+      var build = document.getElementById('uft-build-section');
+      var newSec = document.getElementById('uft-reg-new-section');
+      var vitals = document.querySelector('.uft-vital-row') || document.getElementById('uft-vital-who');
+      if (n === 1) {
+        // Registry: add member form
+        if (reg) reg.open = true;
+        uftDockOpenSection(newSec || reg);
+        try {
+          var nameIn = document.getElementById('uft-reg-name');
+          if (nameIn) { nameIn.focus(); nameIn.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+        } catch (e) {}
+        try { if (typeof uftSetStatus === 'function') uftSetStatus('Step 1 · Registry — add a member or edit contacts'); } catch (e) {}
+        return;
+      }
+      if (n === 2) {
+        // Link: open registry + focus link host / relation
+        if (reg) reg.open = true;
+        uftDockOpenSection(newSec || reg);
+        try {
+          if (typeof uftRegFillHostSelect === 'function') uftRegFillHostSelect();
+          var host = document.getElementById('uft-reg-link-host');
+          if (host) { host.focus(); host.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+        } catch (e) {}
+        try { if (typeof uftSetStatus === 'function') uftSetStatus('Step 2 · Link — choose host member and relation, then Save & link'); } catch (e) {}
+        return;
+      }
+      if (n === 3) {
+        // Loaded member cards
+        if (loaded) loaded.open = true;
+        uftDockOpenSection(loaded);
+        try {
+          if (typeof uftRegRenderLoaded === 'function') uftRegRenderLoaded();
+          var search = document.getElementById('uft-loaded-search');
+          if (search) search.focus();
+        } catch (e) {}
+        try { if (typeof uftSetStatus === 'function') uftSetStatus('Step 3 · Loaded cards — upload, scan, or pick a name to link'); } catch (e) {}
+        return;
+      }
+      if (n === 4) {
+        // Build tree from list
+        if (build) build.open = true;
+        if (reg) reg.open = true;
+        uftDockOpenSection(build);
+        try {
+          var box = document.getElementById('uft-build-from-cards');
+          if (box) box.hidden = false;
+          if (typeof uftRefreshCardPicker === 'function') uftRefreshCardPicker();
+          var selfSel = document.getElementById('uft-bc-self');
+          if (selfSel) selfSel.focus();
+        } catch (e) {}
+        try { if (typeof uftSetStatus === 'function') uftSetStatus('Step 4 · Build tree — map focus person & generations, then Apply'); } catch (e) {}
+        return;
+      }
+      if (n === 5) {
+        // Vitals on cards — collapse dock so tree cards are usable, or scroll vital controls
+        try {
+          if (typeof uftSetView === 'function') uftSetView('pedigree');
+          if (typeof uftRender === 'function') uftRender({ keepScroll: true });
+        } catch (e) {}
+        if (vitals && vitals.closest) {
+          var wrap = vitals.closest('label') || vitals.closest('.uft-reg-section') || vitals;
+          uftDockOpenSection(wrap);
+          try {
+            var who = document.getElementById('uft-vital-who');
+            if (who) who.focus();
+          } catch (e) {}
+        } else {
+          try {
+            if (typeof uftCollapseEditor === 'function') uftCollapseEditor();
+            var prev = document.getElementById('uft-preview');
+            if (prev) prev.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } catch (e) {}
+        }
+        try { if (typeof uftSetStatus === 'function') uftSetStatus('Step 5 · Vitals — set Alive/Deceased, gender & year on each tree card'); } catch (e) {}
+        return;
+      }
+    }
+    try { window.uftDockStep = uftDockStep; } catch (e) {}
+
+    function uftToggleEditor() {
+      const ed = uftEditorEl();
+      if (!ed) return;
+      ed.classList.toggle('collapsed');
+      const btn = document.getElementById('uft-editor-toggle');
+      if (btn) btn.textContent = ed.classList.contains('collapsed') ? '✎ Names & registry' : '✕ Close';
+      try {
+        if (!ed.classList.contains('collapsed')) {
+          const body = ed.querySelector('.uft-dock-body');
+          if (body) body.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } catch (e) {}
+    }
+    function uftCollapseEditor() {
+      const ed = uftEditorEl();
+      if (!ed) return;
+      ed.classList.add('collapsed');
+      const btn = document.getElementById('uft-editor-toggle');
+      if (btn) btn.textContent = '✎ Names & registry';
+    }
+    function uftExpandEditor() {
+      const ed = uftEditorEl();
+      if (!ed) return;
+      ed.classList.remove('collapsed');
+      const btn = document.getElementById('uft-editor-toggle');
+      if (btn) btn.textContent = '✕ Close';
+      /* Save/download section stays collapsed until user opens it while editing names */
+      try {
+        const ops = document.getElementById('uft-file-ops-section');
+        if (ops) ops.open = false;
+      } catch (e) {}
+    }
+    const UFT_LIB_KEY = 'clarity_uft_library_v1';
+    let uftSaveTimer = null;
+    function uftWhen(iso) {
+      try {
+        const dt = new Date(iso);
+        if (isNaN(dt.getTime())) return '';
+        return dt.toLocaleString();
+      } catch (e) { return ''; }
+    }
+    function uftSetStatus(msg) {
+      const el = document.getElementById('uft-status');
+      if (el) el.textContent = msg || '';
+    }
+    function uftPersist(d, quiet) {
+      const stage = document.getElementById('uft-stage');
+      if (stage) d.skin = stage.getAttribute('data-skin') || 'green';
+      d.view = uftView;
+      d.savedAt = new Date().toISOString();
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      if (!quiet) uftSetStatus('Saved on this device · ' + uftWhen(d.savedAt));
+      return d;
+    }
+    function uftReadLib() {
+      try { return JSON.parse(clarityLS.getItem(UFT_LIB_KEY) || '[]'); }
+      catch (e) { return []; }
+    }
+    function uftWriteLib(list) {
+      try { clarityLS.setItem(UFT_LIB_KEY, JSON.stringify(list.slice(0, 12))); } catch (e) {}
+    }
+    function uftRefreshLibrary() {
+      const sel = document.getElementById('uft-library');
+      if (!sel) return;
+      const list = uftReadLib();
+      const cur = sel.value;
+      sel.innerHTML = '<option value="">Saved copies…</option>' + list.map(function (s) {
+        return '<option value="' + uftEsc(s.id) + '">' + uftEsc((s.name || 'Copy') + ' · ' + uftWhen(s.savedAt)) + '</option>';
+      }).join('');
+      if (cur) sel.value = cur;
+    }
+    function uftSnapshot() {
+      const d = uftPersist(uftCollect());
+      const name = prompt('Name this saved copy', (d.self || 'Family tree').trim() || 'Family tree');
+      if (name === null) return;
+      const list = uftReadLib();
+      list.unshift({ id: 'uft_' + Date.now(), name: String(name || 'Family tree').slice(0, 60), savedAt: d.savedAt, data: d });
+      uftWriteLib(list);
+      uftRefreshLibrary();
+      uftSetStatus('Named copy saved on this device · ' + uftWhen(d.savedAt));
+    }
+    function uftLoadSnapshot(id) {
+      if (!id) return;
+      const hit = uftReadLib().find(function (s) { return s.id === id; });
+      if (!hit || !hit.data) return;
+      uftApplyData(hit.data);
+      try { uftCollapseEditor(); } catch (e) {}
+      uftSetStatus('Loaded copy “' + (hit.name || 'Family tree') + '”');
+    }
+    function uftSave() {
+      const pending = ((document.getElementById('uft-rel-name') || {}).value || '').trim() ||
+        ((document.getElementById('uft-rel-pick') || {}).value || '').trim();
+      if (pending) uftAddRel();
+      const d = uftPersist(uftCollect());
+      uftRenderRelList();
+      uftRefreshAnchorOptions();
+      uftFillNameChoices();
+      try { if (typeof uftSetView === 'function') uftSetView('pedigree'); } catch (eV) {}
+      uftRender({ keepScroll: false });
+      // Collapse registry dock so pedigree fills the workspace (not the member list)
+      try { if (typeof uftCollapseEditor === 'function') uftCollapseEditor(); } catch (eC) {}
+      try {
+        const prev = document.getElementById('uft-preview');
+        if (prev) prev.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (eS) {}
+      try { uftSetStatus('Pedigree saved · showing tree in workspace'); } catch (eSt) {}
+      return d;
+    }
+    function uftScheduleSave() {
+      if (uftSaveTimer) clearTimeout(uftSaveTimer);
+      uftSaveTimer = setTimeout(function () {
+        uftPersist(uftCollect(), true);
+        uftSetStatus('Auto-saved on this device · ' + new Date().toLocaleTimeString());
+      }, 450);
+    }
+    function uftDownload() {
+      uftSave();
+      const d = uftRead();
+      if (typeof uftEnsurePeople === 'function') {
+        try { d.people = uftEnsurePeople(Object.assign({}, d)).people; } catch (e) {}
+      }
+      d.exportedAt = new Date().toISOString();
+      d.exportType = 'clarity-family-members';
+      const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      const who = (d.self || 'family-tree').replace(/[^\w\-]+/g, '_').slice(0, 40);
+      const day = new Date().toISOString().slice(0, 10);
+      a.href = URL.createObjectURL(blob);
+      a.download = 'clarity-family-members-' + who + '-' + day + '.json';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 400);
+      if (typeof uftSetStatus === 'function') uftSetStatus('Members downloaded · keep this file to upload later');
+    }
+
+    var UFT_CARDS_KEY = 'clarity_uft_member_cards_v1';
+    function uftGetStoredCards() {
+      try { return JSON.parse(clarityLS.getItem(UFT_CARDS_KEY) || '[]'); } catch (e) { return []; }
+    }
+    function uftSetStoredCards(cards) {
+      try { clarityLS.setItem(UFT_CARDS_KEY, JSON.stringify(cards || [])); } catch (e) {}
+      uftRefreshCardPicker();
+      try { if (typeof uftRegRenderLoaded === 'function') uftRegRenderLoaded(); } catch (e) {}
+    }
+    function uftCardDedupeKey(c) {
+      const n = (typeof uftNorm === 'function') ? uftNorm(c && c.name) : String((c && c.name) || '').trim().toLowerCase();
+      return n;
+    }
+    function uftCardRichness(c) {
+      if (!c) return 0;
+      let s = 0;
+      if (c.phone) s += 2;
+      if (c.email) s += 2;
+      if (c.city) s += 1;
+      if (c.gender) s += 1;
+      if (c.vital) s += 1;
+      if (c.born || c.year) s += 1;
+      if (c.generationHint || c.slot) s += 1;
+      if (c.note) s += 1;
+      return s;
+    }
+    function uftScanLoadedDuplicates() {
+      const cards = uftGetStoredCards();
+      if (!cards.length) {
+        if (typeof uftSetStatus === 'function') uftSetStatus('No loaded cards to scan.');
+        return;
+      }
+      const best = {};
+      const order = [];
+      cards.forEach(function (c, idx) {
+        const k = uftCardDedupeKey(c);
+        if (!k) return;
+        if (!best[k]) {
+          best[k] = { card: c, idx: idx };
+          order.push(k);
+        } else if (uftCardRichness(c) > uftCardRichness(best[k].card)) {
+          best[k] = { card: c, idx: idx };
+        }
+      });
+      const kept = order.map(function (k) { return best[k].card; });
+      const removed = cards.length - kept.length;
+      if (!removed) {
+        if (typeof uftSetStatus === 'function') uftSetStatus('Scan complete · no duplicate names found (' + cards.length + ' cards).');
+        return;
+      }
+      if (!confirm('Scan & delete duplicates\n\nFound ' + removed + ' duplicate name(s) among ' + cards.length + ' loaded cards.\n\nOK = keep the fullest record for each name and permanently delete ' + removed + ' duplicate(s) from this device.\nCancel = leave cards unchanged.')) return;
+      uftSetStoredCards(kept);
+      if (typeof uftRegRenderLoaded === 'function') uftRegRenderLoaded();
+      if (typeof uftSetStatus === 'function') uftSetStatus('Removed ' + removed + ' duplicate(s) · ' + kept.length + ' unique loaded cards kept.');
+    }
+        function uftOffloadLoadedCards() {
+      const cards = (typeof uftGetStoredCards === 'function') ? uftGetStoredCards() : [];
+      if (!cards.length) {
+        if (typeof uftSetStatus === 'function') uftSetStatus('No loaded cards to offload.');
+        return;
+      }
+      const n = cards.length;
+      if (!confirm('Offload ' + n + ' loaded member card(s)?\n\nOK = download a JSON backup, then remove them from this device.\nCancel = keep the list.\n\nThe pedigree tree and registry contacts are not deleted.')) return;
+      try {
+        const payload = {
+          type: 'clarity-member-cards',
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          count: n,
+          cards: cards
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'clarity-loaded-members-offload-' + new Date().toISOString().slice(0, 10) + '.json';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1500);
+      } catch (e) {
+        alert('Could not download offload file.');
+        return;
+      }
+      uftSetStoredCards([]);
+      if (typeof uftRegRenderLoaded === 'function') uftRegRenderLoaded();
+      if (typeof uftFillBuildCardSelects === 'function') {
+        try { uftFillBuildCardSelects(); } catch (e2) {}
+      }
+      if (typeof uftSetStatus === 'function') uftSetStatus('Offloaded ' + n + ' card(s) · loaded list cleared on this device.');
+    }
+function uftClearLoadedCards() {
+      const cards = uftGetStoredCards();
+      if (!cards.length) {
+        if (typeof uftSetStatus === 'function') uftSetStatus('Loaded list is already empty.');
+        return;
+      }
+      if (!confirm('Clear all ' + cards.length + ' loaded member cards from this device?\n\nThe family tree and registry contacts are not deleted.')) return;
+      uftSetStoredCards([]);
+      if (typeof uftRegRenderLoaded === 'function') uftRegRenderLoaded();
+      if (typeof uftSetStatus === 'function') uftSetStatus('Loaded member cards cleared.');
+    }
+    var uftPickCtx = null;
+    function uftOpenPersonPicker(hostName, hostSlot, relation) {
+      uftPickCtx = { hostName: hostName, hostSlot: hostSlot || '', relation: relation || 'child' }; try { window.uftPickCtx = uftPickCtx; } catch (eCtx) {}
+      const modal = document.getElementById('uft-pick-modal');
+      const title = document.getElementById('uft-pick-title');
+      const sub = document.getElementById('uft-pick-sub');
+      const search = document.getElementById('uft-pick-search');
+      const typed = document.getElementById('uft-pick-typed');
+      if (title) title.textContent = 'Add ' + relation + ' of ' + hostName;
+      if (sub) sub.textContent = 'Pick from loaded members, or type a new name below';
+      if (search) search.value = '';
+      if (typed) typed.value = '';
+      uftRenderPickList('');
+      if (modal) {
+        modal.hidden = false;
+        modal.removeAttribute('hidden');
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+        try { modal.scrollIntoView({ block: 'nearest' }); } catch (e0) {}
+        setTimeout(function () { try { if (search) search.focus(); } catch (e) {} }, 60);
+      } else {
+        console.warn('uft-pick-modal missing');
+      }
+    }
+    try { window.uftOpenPersonPicker = uftOpenPersonPicker; } catch (e) {}
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        const pm = document.getElementById('uft-pick-modal');
+        if (pm && !pm.hidden) uftClosePersonPicker();
+      }
+    });
+    function uftClosePersonPicker() {
+      uftPickCtx = null;
+      const modal = document.getElementById('uft-pick-modal');
+      if (modal) {
+        modal.hidden = true;
+        modal.setAttribute('hidden', '');
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+      const menu = document.getElementById('uft-rel-menu');
+      if (menu) menu.hidden = true;
+    }
+    try { window.uftClosePersonPicker = uftClosePersonPicker; } catch (e) {}
+    function uftRenderPickList(q) {
+      const box = document.getElementById('uft-pick-list');
+      if (!box) return;
+      q = String(q || '').trim().toLowerCase();
+      const cards = (typeof uftGetStoredCards === 'function') ? uftGetStoredCards() : [];
+      let rows = cards.filter(function (c) {
+        if (!c || !c.name) return false;
+        if (!q) return true;
+        const blob = [c.name, c.generationHint, c.slot, c.city, c.phone].join(' ').toLowerCase();
+        return blob.indexOf(q) >= 0;
+      });
+      // also include registry + tree names not in cards (for linking relations)
+      try {
+        const d = typeof uftCollect === 'function' ? uftCollect() : {};
+        function pushName(name, hint) {
+          if (!name) return;
+          if (rows.some(function (c) { return typeof uftSame === 'function' && uftSame(c.name, name); })) return;
+          if (q && String(name).toLowerCase().indexOf(q) < 0 && String(hint || '').toLowerCase().indexOf(q) < 0) return;
+          rows.push({ name: name, generationHint: hint || 'tree', _fromTree: true });
+        }
+        (d.registry || []).forEach(function (r) {
+          if (!r || !r.name) return;
+          pushName(r.name, r.role || 'registry');
+        });
+        ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (s) { pushName(d[s], s); });
+        (typeof uftLines === 'function' ? [] : []).forEach(function () {});
+        ['g1','g2','g3','siblings','children','grandchildren'].forEach(function (f) {
+          (typeof uftLines === 'function' ? uftLines(d[f]) : []).forEach(function (n) { pushName(n, f); });
+        });
+        (d.relatives || []).forEach(function (r) {
+          if (r && r.name) pushName(r.name, r.relation || 'relative');
+        });
+      } catch (e) {}
+      if (!rows.length) {
+        box.innerHTML = '<p class="uft-hint" style="padding:0.5rem;">No matches. Type a new name below, or upload member cards first.</p>';
+        return;
+      }
+      box.innerHTML = rows.slice(0, 80).map(function (c, i) {
+        var bits = [c.generationHint || c.slot, c.gender, c.vital, c.phone, c._fromReg ? 'registry' : ''].filter(Boolean).join(' · ');
+        var nm = String(c.name || '');
+        return '<button type="button" class="uft-pick-item" data-pick-name="' + uftEsc(nm).replace(/"/g, '&quot;') + '">' +
+          '<strong>' + uftEsc(nm) + '</strong>' +
+          (bits ? '<small>' + uftEsc(bits) + '</small>' : '') + '</button>';
+      }).join('');
+      if (!box.dataset.pickBound) {
+        box.dataset.pickBound = '1';
+        box.addEventListener('click', function (ev) {
+          var b = ev.target && ev.target.closest && ev.target.closest('[data-pick-name]');
+          if (!b) return;
+          ev.preventDefault();
+          var nm = b.getAttribute('data-pick-name') || '';
+          var fn = window.uftConfirmPickName || (typeof uftConfirmPickName === 'function' ? uftConfirmPickName : null);
+          if (fn) fn(nm);
+        });
+      }
+    }
+
+    // ----- Pedigree workspace zoom -----
+    var uftZoomLevel = 1;
+
+        function uftEnsureZoomLayer(html) {
+      var preview = document.getElementById('uft-preview');
+      if (!preview) return;
+      var layer = document.getElementById('uft-zoom-layer');
+      if (!layer) {
+        layer = document.createElement('div');
+        layer.id = 'uft-zoom-layer';
+        layer.className = 'uft-zoom-layer';
+        // Move any existing preview children into the layer
+        while (preview.firstChild) layer.appendChild(preview.firstChild);
+        preview.appendChild(layer);
+      } else if (layer.parentNode !== preview) {
+        preview.appendChild(layer);
+      }
+      if (typeof html === 'string') {
+        layer.innerHTML = html;
+      }
+      try { uftZoomApply(); } catch (e) {}
+    }
+
+    function uftEnsureZoomSizer(layer) {
+      if (!layer) return null;
+      var sizer = document.getElementById('uft-zoom-sizer');
+      if (!sizer) {
+        sizer = document.createElement('div');
+        sizer.id = 'uft-zoom-sizer';
+        sizer.className = 'uft-zoom-sizer';
+        var parent = layer.parentNode;
+        if (!parent) return null;
+        parent.insertBefore(sizer, layer);
+        sizer.appendChild(layer);
+      } else if (layer.parentNode !== sizer) {
+        sizer.appendChild(layer);
+      }
+      return sizer;
+    }
+    function uftZoomApply(opts) {
+      opts = opts || {};
+      var layer = document.getElementById('uft-zoom-layer');
+      var lab = document.getElementById('uft-zoom-label');
+      var preview = document.getElementById('uft-preview');
+      if (layer) {
+        var sizer = uftEnsureZoomSizer(layer);
+        layer.style.willChange = 'transform';
+        layer.style.transformOrigin = '0 0';
+        layer.style.transform = 'scale(' + uftZoomLevel + ')';
+        // Size the sizer to scaled content so native scroll pans smoothly (no layout thrash mid-gesture)
+        var applySize = function () {
+          if (!layer) return;
+          var w = Math.max(layer.scrollWidth || 0, layer.offsetWidth || 0, 1);
+          var h = Math.max(layer.scrollHeight || 0, layer.offsetHeight || 0, 1);
+          if (sizer) {
+            sizer.style.width = (w * uftZoomLevel) + 'px';
+            sizer.style.minWidth = (w * uftZoomLevel) + 'px';
+            sizer.style.height = (h * uftZoomLevel) + 'px';
+            sizer.style.minHeight = (h * uftZoomLevel) + 'px';
+          }
+        };
+        if (opts.immediate) {
+          applySize();
+        } else {
+          if (window._uftZoomSizeRaf) cancelAnimationFrame(window._uftZoomSizeRaf);
+          window._uftZoomSizeRaf = requestAnimationFrame(function () {
+            applySize();
+            window._uftZoomSizeRaf = requestAnimationFrame(applySize);
+          });
+        }
+      }
+      if (lab) lab.textContent = Math.round(uftZoomLevel * 100) + '%';
+      try { clarityLS.setItem('uft_zoom_level', String(uftZoomLevel)); } catch (e) {}
+    }
+    function uftZoomSet(level, opts) {
+      uftZoomLevel = Math.max(0.55, Math.min(2.2, Math.round(level * 100) / 100));
+      uftZoomApply(opts);
+    }
+    function uftZoomBy(delta, opts) {
+      uftZoomSet(uftZoomLevel + delta, opts);
+    }
+    function uftZoomReset() {
+      uftZoomLevel = 1;
+      uftZoomApply({ immediate: true });
+      var preview = document.getElementById('uft-preview');
+      if (preview) {
+        try {
+          preview.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+        } catch (e) {
+          preview.scrollLeft = 0;
+          preview.scrollTop = 0;
+        }
+      }
+    }
+
+    function uftZoomInit() {
+      try {
+        var z = parseFloat(clarityLS.getItem('uft_zoom_level') || '1');
+        if (isFinite(z) && z >= 0.55 && z <= 2.2) uftZoomLevel = z;
+      } catch (e) {}
+      try { uftZoomApply({ immediate: true }); } catch (e) {}
+
+      var preview = document.getElementById('uft-preview');
+      if (!preview) return;
+
+      // Re-bind only once per element life, but allow forced refresh via dataset reset
+      if (preview.dataset.zoomBound === '1') {
+        // still refresh label/size
+        try { uftZoomApply({ immediate: true }); } catch (e) {}
+        return;
+      }
+      preview.dataset.zoomBound = '1';
+      preview.style.scrollBehavior = 'auto';
+      preview.style.overscrollBehavior = 'contain';
+      preview.style.touchAction = 'pan-x pan-y pinch-zoom';
+
+      // Ctrl/meta + wheel zoom toward cursor
+      preview.addEventListener('wheel', function (ev) {
+        if (!(ev.ctrlKey || ev.metaKey)) return;
+        ev.preventDefault();
+        var rect = preview.getBoundingClientRect();
+        var mx = ev.clientX - rect.left + preview.scrollLeft;
+        var my = ev.clientY - rect.top + preview.scrollTop;
+        var prev = uftZoomLevel;
+        uftZoomBy(ev.deltaY > 0 ? -0.08 : 0.08, { immediate: true });
+        var ratio = uftZoomLevel / (prev || 1);
+        preview.scrollLeft = mx * ratio - (ev.clientX - rect.left);
+        preview.scrollTop = my * ratio - (ev.clientY - rect.top);
+      }, { passive: false });
+
+      // Continuous pinch zoom
+      var pinchStart = 0, pinchZoom0 = 1, pinchMidX = 0, pinchMidY = 0;
+      preview.addEventListener('touchstart', function (ev) {
+        if (ev.touches.length === 2) {
+          var dx = ev.touches[0].clientX - ev.touches[1].clientX;
+          var dy = ev.touches[0].clientY - ev.touches[1].clientY;
+          pinchStart = Math.hypot(dx, dy) || 1;
+          pinchZoom0 = uftZoomLevel;
+          var rect = preview.getBoundingClientRect();
+          pinchMidX = ((ev.touches[0].clientX + ev.touches[1].clientX) / 2) - rect.left + preview.scrollLeft;
+          pinchMidY = ((ev.touches[0].clientY + ev.touches[1].clientY) / 2) - rect.top + preview.scrollTop;
+        }
+      }, { passive: true });
+      preview.addEventListener('touchmove', function (ev) {
+        if (ev.touches.length !== 2 || !pinchStart) return;
+        ev.preventDefault();
+        var dx = ev.touches[0].clientX - ev.touches[1].clientX;
+        var dy = ev.touches[0].clientY - ev.touches[1].clientY;
+        var dist = Math.hypot(dx, dy) || 1;
+        var prev = uftZoomLevel;
+        uftZoomSet(pinchZoom0 * (dist / pinchStart), { immediate: true });
+        var rect = preview.getBoundingClientRect();
+        var cx = ((ev.touches[0].clientX + ev.touches[1].clientX) / 2) - rect.left;
+        var cy = ((ev.touches[0].clientY + ev.touches[1].clientY) / 2) - rect.top;
+        preview.scrollLeft = pinchMidX * (uftZoomLevel / (pinchZoom0 || 1)) - cx;
+        preview.scrollTop = pinchMidY * (uftZoomLevel / (pinchZoom0 || 1)) - cy;
+      }, { passive: false });
+      preview.addEventListener('touchend', function () { pinchStart = 0; }, { passive: true });
+      preview.addEventListener('touchcancel', function () { pinchStart = 0; }, { passive: true });
+
+      // Double-tap / double-click → reset zoom (works on Edge mobile)
+      var lastTap = 0;
+      var lastTapX = 0, lastTapY = 0;
+      function handlePossibleDoubleTap(clientX, clientY, ev) {
+        var now = Date.now();
+        var dt = now - lastTap;
+        var dist = Math.hypot((clientX || 0) - lastTapX, (clientY || 0) - lastTapY);
+        if (dt > 0 && dt < 450 && dist < 40) {
+          if (ev && ev.preventDefault) ev.preventDefault();
+          lastTap = 0;
+          try { uftZoomReset(); } catch (e) {}
+          try {
+            if (typeof uftSetStatus === 'function') uftSetStatus('Zoom reset · 100%');
+          } catch (e2) {}
+          return true;
+        }
+        lastTap = now;
+        lastTapX = clientX || 0;
+        lastTapY = clientY || 0;
+        return false;
+      }
+      preview.addEventListener('touchend', function (ev) {
+        if (ev.touches && ev.touches.length) return; // still touching
+        if (pinchStart) return;
+        var t = (ev.changedTouches && ev.changedTouches[0]) ? ev.changedTouches[0] : null;
+        if (!t) return;
+        handlePossibleDoubleTap(t.clientX, t.clientY, ev);
+      }, { passive: false });
+      preview.addEventListener('dblclick', function (ev) {
+        ev.preventDefault();
+        try { uftZoomReset(); } catch (e) {}
+      });
+
+      // Drag-to-pan with pointer (mouse / pen)
+      var drag = null;
+      preview.addEventListener('pointerdown', function (ev) {
+        if (ev.pointerType === 'touch') return;
+        if (ev.button !== 0) return;
+        if (ev.target && ev.target.closest && ev.target.closest('button, a, input, select, textarea')) return;
+        drag = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, sl: preview.scrollLeft, st: preview.scrollTop };
+        try { preview.setPointerCapture(ev.pointerId); } catch (e) {}
+        preview.style.cursor = 'grabbing';
+      });
+      preview.addEventListener('pointermove', function (ev) {
+        if (!drag || drag.id !== ev.pointerId) return;
+        preview.scrollLeft = drag.sl - (ev.clientX - drag.x);
+        preview.scrollTop = drag.st - (ev.clientY - drag.y);
+      });
+      function endPanDrag(ev) {
+        if (!drag) return;
+        if (ev && drag.id !== ev.pointerId) return;
+        drag = null;
+        preview.style.cursor = '';
+      }
+      preview.addEventListener('pointerup', endPanDrag);
+      preview.addEventListener('pointercancel', endPanDrag);
+      preview.addEventListener('lostpointercapture', endPanDrag);
+
+      // Stage wheel zoom when not over preview
+      var stage = document.getElementById('uft-stage');
+      if (stage && stage.dataset.zoomWheelBound !== '1') {
+        stage.dataset.zoomWheelBound = '1';
+        stage.addEventListener('wheel', function (ev) {
+          if (!(ev.ctrlKey || ev.metaKey)) return;
+          if (ev.target && ev.target.closest && ev.target.closest('#uft-preview')) return;
+          ev.preventDefault();
+          uftZoomBy(ev.deltaY > 0 ? -0.08 : 0.08, { immediate: true });
+        }, { passive: false });
+      }
+    }
+
+    // Expose zoom helpers globally (inline onclick / mobile webviews)
+    try {
+      window.uftZoomInit = uftZoomInit;
+      window.uftZoomReset = uftZoomReset;
+      window.uftZoomBy = uftZoomBy;
+      window.uftZoomApply = uftZoomApply;
+      window.uftDownloadPng = uftDownloadPng;
+      window.uftOffloadLoadedCards = uftOffloadLoadedCards;
+      window.uftScanLoadedDuplicates = uftScanLoadedDuplicates;
+      window.uftClearLoadedCards = uftClearLoadedCards;
+    } catch (eExp) {}
+
+    function uftFilterLoadedList(q) {
+      q = String(q || '').trim().toLowerCase();
+      var box = document.getElementById('uft-reg-loaded-list');
+      if (!box) return;
+      var rows = box.querySelectorAll('.uft-reg-loaded-row');
+      var shown = 0;
+      rows.forEach(function (row) {
+        var text = (row.getAttribute('data-search') || row.textContent || '').toLowerCase();
+        var ok = !q || text.indexOf(q) >= 0;
+        row.hidden = !ok;
+        if (ok) shown++;
+      });
+      var empty = box.querySelector('.uft-loaded-empty');
+      if (empty) empty.remove();
+      if (q && shown === 0 && rows.length) {
+        var p = document.createElement('p');
+        p.className = 'uft-hint uft-loaded-empty';
+        p.textContent = 'No loaded members match “' + q + '”.';
+        box.appendChild(p);
+      }
+    }
+
+    function uftFilterPickList(q) { uftRenderPickList(q); }
+    function uftConfirmPickTyped() {
+      const el = document.getElementById('uft-pick-typed');
+      const name = el ? String(el.value || '').trim() : '';
+      if (!name) {
+        if (typeof uftSetStatus === 'function') uftSetStatus('Type a name or pick from the list.');
+        return;
+      }
+      uftConfirmPickName(name);
+    }
+    function uftConfirmPickName(name) {
+      try {
+        var ctx = uftPickCtx || window.uftPickCtx;
+        if (!ctx || !name) return;
+        var host = ctx.hostName, slot = ctx.hostSlot, rel = ctx.relation;
+        if (typeof uftClosePersonPicker === 'function') uftClosePersonPicker();
+        else if (window.uftClosePersonPicker) window.uftClosePersonPicker();
+        var apply = (typeof uftApplyRelativeLink === 'function') ? uftApplyRelativeLink : window.uftApplyRelativeLink;
+        if (typeof apply === 'function') apply(host, slot, rel, String(name).trim());
+      } catch (err) {
+        console.error('uftConfirmPickName', err);
+      }
+    }
+    try {
+      window.uftConfirmPickName = uftConfirmPickName;
+      window.uftConfirmPickTyped = uftConfirmPickTyped;
+      window.uftFilterPickList = uftFilterPickList;
+      window.uftRenderPickList = uftRenderPickList;
+      window.uftOpenPersonPicker = uftOpenPersonPicker;
+      window.uftClosePersonPicker = uftClosePersonPicker;
+      /* uftQuickAddRelative is defined later (DOMContentLoaded scope) — bound there */
+    } catch (ePickExp) {}
+
+    function uftCardOptionLabel(c) {
+      return (c.name || '') + (c.generationHint ? ' · ' + c.generationHint : '') +
+        (c.vital === 'deceased' ? ' †' : '') + (c.gender ? ' · ' + c.gender : '');
+    }
+    function uftFillCardSelect(sel, cards, multi) {
+      if (!sel) return;
+      const prev = multi
+        ? Array.prototype.map.call(sel.selectedOptions || [], function (o) { return o.value; })
+        : sel.value;
+      const blank = multi ? '' : '<option value="">Select…</option>';
+      sel.innerHTML = blank + cards.map(function (c, i) {
+        return '<option value="' + i + '">' + String(uftCardOptionLabel(c)).replace(/</g, '') + '</option>';
+      }).join('');
+      if (multi && prev && prev.length) {
+        Array.prototype.forEach.call(sel.options, function (o) {
+          if (prev.indexOf(o.value) >= 0) o.selected = true;
+        });
+      } else if (!multi && prev) {
+        sel.value = prev;
+      }
+    }
+    function uftRefreshCardPicker() {
+      const cards = uftGetStoredCards();
+      const panel = document.getElementById('uft-build-from-cards');
+      if (panel) panel.hidden = !cards.length;
+
+      const sel = document.getElementById('uft-rel-cards');
+      if (sel) {
+        const cur = sel.value;
+        sel.innerHTML = '<option value="">1. Pick from loaded member cards…</option>' +
+          cards.map(function (c, i) {
+            return '<option value="' + i + '">' + String(uftCardOptionLabel(c)).replace(/</g, '') + '</option>';
+          }).join('');
+        if (cur) sel.value = cur;
+      }
+      // Build-from-cards selectors
+      ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (k) {
+        uftFillCardSelect(document.getElementById('uft-bc-' + k), cards, false);
+      });
+      ['g1','g2','g3','siblings','children','grandchildren'].forEach(function (k) {
+        uftFillCardSelect(document.getElementById('uft-bc-' + k), cards, true);
+      });
+      // datalist
+      const dl = document.getElementById('uft-rel-name-list');
+      if (dl) {
+        const existing = {};
+        Array.prototype.forEach.call(dl.querySelectorAll('option'), function (o) { existing[o.value] = true; });
+        cards.forEach(function (c) {
+          if (c.name && !existing[c.name]) {
+            const opt = document.createElement('option');
+            opt.value = c.name;
+            dl.appendChild(opt);
+          }
+        });
+      }
+    }
+    function uftSelectedCardNames(selId) {
+      const sel = document.getElementById(selId);
+      const cards = uftGetStoredCards();
+      if (!sel) return [];
+      const idxs = sel.multiple
+        ? Array.prototype.map.call(sel.selectedOptions || [], function (o) { return parseInt(o.value, 10); })
+        : (sel.value === '' ? [] : [parseInt(sel.value, 10)]);
+      const names = [];
+      idxs.forEach(function (i) {
+        if (!isNaN(i) && cards[i] && cards[i].name) names.push(String(cards[i].name).trim());
+      });
+      return names;
+    }
+    function uftApplyBuildFromCards() {
+      const cards = uftGetStoredCards();
+      if (!cards.length) {
+        alert('Upload member cards first (Upload → Member cards → picker list).');
+        return;
+      }
+      const selfNames = uftSelectedCardNames('uft-bc-self');
+      if (!selfNames.length) {
+        alert('Select the focus person from the member cards list.');
+        return;
+      }
+      function one(id) {
+        const n = uftSelectedCardNames(id);
+        return n[0] || '';
+      }
+      function many(id) {
+        return uftSelectedCardNames(id);
+      }
+      const f = uftFields();
+      if (f.self) f.self.value = selfNames[0];
+      if (f.spouse) f.spouse.value = one('uft-bc-spouse');
+      if (f.father) f.father.value = one('uft-bc-father');
+      if (f.mother) f.mother.value = one('uft-bc-mother');
+      if (f.pgf) f.pgf.value = one('uft-bc-pgf');
+      if (f.pgm) f.pgm.value = one('uft-bc-pgm');
+      if (f.mgf) f.mgf.value = one('uft-bc-mgf');
+      if (f.mgm) f.mgm.value = one('uft-bc-mgm');
+      if (f.g1) f.g1.value = many('uft-bc-g1').join('\n');
+      if (f.g2) f.g2.value = many('uft-bc-g2').join('\n');
+      if (f.g3) f.g3.value = many('uft-bc-g3').join('\n');
+      if (f.siblings) f.siblings.value = many('uft-bc-siblings').join('\n');
+      if (f.children) f.children.value = many('uft-bc-children').join('\n');
+      if (f.grandchildren) f.grandchildren.value = many('uft-bc-grandchildren').join('\n');
+
+      // Apply gender/vital from cards for chosen people
+      function applyMeta(name, preferSlot) {
+        if (!name) return;
+        const c = cards.find(function (x) {
+          return x && (typeof uftSame === 'function' ? uftSame(x.name, name) : x.name === name);
+        });
+        if (!c) return;
+        try {
+          if (c.gender && typeof uftSetGenderFor === 'function') uftSetGenderFor(name, c.gender, preferSlot || c.slot || '');
+          if (c.vital && typeof uftSetVitalFor === 'function') uftSetVitalFor(name, c.vital, preferSlot || c.slot || '');
+          if (c.born && typeof uftSetBornFor === 'function') uftSetBornFor(name, c.born, preferSlot || c.slot || '');
+        } catch (e) {}
+      }
+      applyMeta(selfNames[0], 'self');
+      applyMeta(one('uft-bc-spouse'), 'spouse');
+      applyMeta(one('uft-bc-father'), 'father');
+      applyMeta(one('uft-bc-mother'), 'mother');
+      applyMeta(one('uft-bc-pgf'), 'pgf');
+      applyMeta(one('uft-bc-pgm'), 'pgm');
+      applyMeta(one('uft-bc-mgf'), 'mgf');
+      applyMeta(one('uft-bc-mgm'), 'mgm');
+      many('uft-bc-g1').forEach(function (n) { applyMeta(n, 'g1'); });
+      many('uft-bc-g2').forEach(function (n) { applyMeta(n, 'g2'); });
+      many('uft-bc-g3').forEach(function (n) { applyMeta(n, 'g3'); });
+      many('uft-bc-siblings').forEach(function (n) { applyMeta(n, ''); });
+      many('uft-bc-children').forEach(function (n) { applyMeta(n, ''); });
+
+      if (typeof uftSave === 'function') uftSave();
+      else if (typeof uftRender === 'function') uftRender();
+      if (typeof uftSetStatus === 'function') uftSetStatus('Pedigree built from member cards · focus: ' + selfNames[0]);
+    }
+    function uftSuggestBuildFromCards() {
+      const cards = uftGetStoredCards();
+      if (!cards.length) {
+        alert('Upload member cards first.');
+        return;
+      }
+      function setOne(id, pred) {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        for (let i = 0; i < cards.length; i++) {
+          if (pred(cards[i], i)) { sel.value = String(i); return; }
+        }
+      }
+      function setMany(id, pred) {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        Array.prototype.forEach.call(sel.options, function (o) {
+          const i = parseInt(o.value, 10);
+          if (isNaN(i) || !cards[i]) { o.selected = false; return; }
+          o.selected = !!pred(cards[i], i);
+        });
+      }
+      function hit(c, re) {
+        const s = ((c.generationHint || '') + ' ' + (c.slot || '') + ' ' + (c.role || '')).toLowerCase();
+        return re.test(s);
+      }
+      setOne('uft-bc-self', function (c) { return hit(c, /\byou\b|focus|self/) || c.slot === 'self'; });
+      setOne('uft-bc-spouse', function (c) { return hit(c, /spouse|wife|husband/) || c.slot === 'spouse'; });
+      setOne('uft-bc-father', function (c) { return hit(c, /\bfather\b/) && !/grandfather|father.s father|pgf/i.test((c.generationHint||'')+(c.slot||'')); });
+      setOne('uft-bc-mother', function (c) { return hit(c, /\bmother\b/) && !/grandmother|mother.s mother|mgm/i.test((c.generationHint||'')+(c.slot||'')); });
+      setOne('uft-bc-pgf', function (c) { return hit(c, /pgf|father.?s father|paternal.*grand.*father/); });
+      setOne('uft-bc-pgm', function (c) { return hit(c, /pgm|father.?s mother|paternal.*grand.*mother/); });
+      setOne('uft-bc-mgf', function (c) { return hit(c, /mgf|mother.?s father|maternal.*grand.*father/); });
+      setOne('uft-bc-mgm', function (c) { return hit(c, /mgm|mother.?s mother|maternal.*grand.*mother/); });
+      setMany('uft-bc-g1', function (c) { return hit(c, /\bg1\b|3rd.?great|oldest/); });
+      setMany('uft-bc-g2', function (c) { return hit(c, /\bg2\b|2nd.?great/); });
+      setMany('uft-bc-g3', function (c) { return hit(c, /\bg3\b|great-grandparent|great.grand/); });
+      setMany('uft-bc-siblings', function (c) { return hit(c, /sibling|brother|sister/) && !hit(c, /grand|uncle|aunt/); });
+      setMany('uft-bc-children', function (c) { return hit(c, /\bchild|offspring|son|daughter/) && !hit(c, /grand/); });
+      setMany('uft-bc-grandchildren', function (c) { return hit(c, /grandchild/); });
+      if (typeof uftSetStatus === 'function') uftSetStatus('Suggestions filled from generation hints — review, then Apply');
+    }
+    function uftClearBuildFromCards() {
+      ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (k) {
+        const sel = document.getElementById('uft-bc-' + k);
+        if (sel) sel.value = '';
+      });
+      ['g1','g2','g3','siblings','children','grandchildren'].forEach(function (k) {
+        const sel = document.getElementById('uft-bc-' + k);
+        if (!sel) return;
+        Array.prototype.forEach.call(sel.options, function (o) { o.selected = false; });
+      });
+    }
+
+    function uftFilterCardSelects(query) {
+      const q = String(query || '').trim().toLowerCase();
+      // Keep both search boxes in sync
+      const a = document.getElementById('uft-card-search');
+      const b = document.getElementById('uft-rel-card-search');
+      if (a && a.value.toLowerCase() !== q) a.value = query || '';
+      if (b && b.value.toLowerCase() !== q) b.value = query || '';
+      const cards = uftGetStoredCards();
+      function match(c) {
+        if (!q) return true;
+        const name = String(c.name || '').toLowerCase();
+        const hint = String(c.generationHint || '').toLowerCase();
+        // prefix on any word in the name, or includes
+        if (name.indexOf(q) === 0) return true;
+        if (name.split(/\s+/).some(function (w) { return w.indexOf(q) === 0; })) return true;
+        if (name.indexOf(q) >= 0) return true;
+        if (hint.indexOf(q) >= 0) return true;
+        return false;
+      }
+      const filtered = [];
+      const indexMap = [];
+      cards.forEach(function (c, i) {
+        if (match(c)) { filtered.push(c); indexMap.push(i); }
+      });
+      function refill(sel, multi, placeholder) {
+        if (!sel) return;
+        const prev = multi
+          ? Array.prototype.map.call(sel.selectedOptions || [], function (o) { return o.value; })
+          : sel.value;
+        let html = multi ? '' : ('<option value="">' + (placeholder || 'Select…') + '</option>');
+        filtered.forEach(function (c, fi) {
+          const realIdx = indexMap[fi];
+          html += '<option value="' + realIdx + '">' + String(uftCardOptionLabel(c)).replace(/</g, '') + '</option>';
+        });
+        sel.innerHTML = html;
+        if (multi && prev) {
+          Array.prototype.forEach.call(sel.options, function (o) {
+            if (prev.indexOf(o.value) >= 0) o.selected = true;
+          });
+        } else if (!multi && prev) {
+          sel.value = prev;
+        }
+      }
+      refill(document.getElementById('uft-rel-cards'), false, '1. Pick from loaded member cards…');
+      ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (k) {
+        refill(document.getElementById('uft-bc-' + k), false, 'Select…');
+      });
+      ['g1','g2','g3','siblings','children','grandchildren'].forEach(function (k) {
+        refill(document.getElementById('uft-bc-' + k), true, '');
+      });
+      if (typeof uftSetStatus === 'function' && q) {
+        uftSetStatus(filtered.length + ' card(s) match “' + query + '”');
+      }
+    }
+
+    function uftPickMemberCard(sel) {
+      const cards = uftGetStoredCards();
+      const i = parseInt(sel && sel.value, 10);
+      if (isNaN(i) || !cards[i]) return;
+      const c = cards[i];
+      const nameEl = document.getElementById('uft-rel-name');
+      if (nameEl) nameEl.value = c.name || '';
+      const gEl = document.getElementById('uft-rel-gender');
+      if (gEl && c.gender) gEl.value = c.gender;
+      const vEl = document.getElementById('uft-rel-vital');
+      if (vEl && c.vital) vEl.value = c.vital;
+      const bEl = document.getElementById('uft-rel-born');
+      if (bEl && c.born) bEl.value = c.born;
+      // Suggest attach slot from generation hint
+      const anchor = document.getElementById('uft-rel-anchor');
+      if (anchor && c.slot) {
+        const s = String(c.slot).toLowerCase();
+        if (['self','spouse','father','mother','pgf','pgm','mgf','mgm','g1','g2','g3'].indexOf(s) >= 0) {
+          // Don't force attach-to to be the person themselves; leave user to choose who they attach TO
+        }
+      }
+      if (typeof uftSetStatus === 'function') {
+        uftSetStatus('Selected card: ' + (c.name || '') + (c.generationHint ? ' (' + c.generationHint + ')' : '') + ' — choose Attach to + relation, then Add to tree');
+      }
+    }
+    function uftRunDownloadMenu(sel) {
+      const v = sel && sel.value;
+      if (!v) return;
+      if (v === 'cards') uftDownloadMemberCards();
+      else if (v === 'csv') uftDownloadMemberCardsCsv();
+      else if (v === 'tree') uftDownload();
+      else if (v === 'png') uftDownloadPng();
+      else if (v === 'text' || v === 'txt') uftDownloadTextTree();
+      else if (v === 'pack' && typeof clarityExportPack === 'function') clarityExportPack();
+      sel.value = '';
+    }
+    function uftRunUploadMenu(sel) {
+      const v = sel && sel.value;
+      if (!v) return;
+      if (v === 'cards') document.getElementById('uft-cards-file').click();
+      else if (v === 'tree') document.getElementById('uft-load-file').click();
+      else if (v === 'pack') document.getElementById('uft-pack-file').click();
+      sel.value = '';
+    }
+
+    /** Flat member cards: people only — no parent/child/spouse graph. */
+    function uftCollectMemberCards() {
+      const d = (typeof uftCollect === 'function') ? uftCollect() : {};
+      const cards = [];
+      const seen = {};
+      function genRank(slot, role) {
+        const s = String(slot || role || '').toLowerCase();
+        if (s === 'g1') return { rank: 1, label: 'G1 · oldest / 3rd-great' };
+        if (s === 'g2') return { rank: 2, label: 'G2 · 2nd-great' };
+        if (s === 'g3') return { rank: 3, label: 'G3 · great-grandparent' };
+        if (s === 'pgf' || s === 'pgm' || s === 'mgf' || s === 'mgm') return { rank: 4, label: 'Grandparent · ' + s };
+        if (s === 'father' || s === 'mother') return { rank: 5, label: 'Parent · ' + s };
+        if (s === 'self') return { rank: 6, label: 'Focus person' };
+        if (s === 'spouse') return { rank: 6, label: 'Spouse' };
+        if (s === 'sibling') return { rank: 6, label: 'Your generation · sibling' };
+        if (s === 'child' || s === 'children' || s === 'offspring') return { rank: 7, label: 'Child / offspring' };
+        if (s === 'grandchild' || s === 'grandchildren') return { rank: 8, label: 'Grandchild' };
+        if (s === 'registry') return { rank: 9, label: 'Registry only' };
+        return { rank: 9, label: role || slot || 'Unplaced' };
+      }
+      function push(name, slot, role) {
+        const n = String(name || '').trim();
+        if (!n) return;
+        const norm = (typeof uftNorm === 'function') ? uftNorm(n) : n.toLowerCase();
+        // One card per name+slot so two Nadir Alis in different gens stay separate
+        const key = norm + '||' + String(slot || role || '');
+        if (seen[key]) return;
+        seen[key] = true;
+        const ginfo = genRank(slot, role);
+        let gender = '';
+        let vital = '';
+        let born = '';
+        try {
+          if (typeof uftGenderOf === 'function') gender = uftGenderOf(n, slot) || uftGenderOf(n, '') || '';
+          if (typeof uftVitalOf === 'function') vital = uftVitalOf(n, slot) || uftVitalOf(n, '') || '';
+          if (typeof uftBornOf === 'function') born = uftBornOf(n, slot) || uftBornOf(n, '') || '';
+        } catch (e) {}
+        let phone = '', email = '', city = '', note = '';
+        (d.registry || []).forEach(function (r) {
+          if (!r || !r.name) return;
+          if ((typeof uftSame === 'function' ? uftSame(r.name, n) : r.name === n)) {
+            if (r.phone) phone = r.phone;
+            if (r.email) email = r.email;
+            if (r.city) city = r.city;
+            if (r.note) note = r.note;
+            if (r.role && ginfo.rank === 9) {
+              const g2 = genRank(r.role, r.role);
+              if (g2.rank < ginfo.rank) { ginfo.rank = g2.rank; ginfo.label = g2.label; }
+            }
+          }
+        });
+        cards.push({
+          name: n,
+          generationHint: ginfo.label,
+          generationRank: ginfo.rank,
+          slot: slot || '',
+          role: role || '',
+          gender: gender || '',
+          vital: vital || '',
+          born: born || '',
+          phone: phone,
+          email: email,
+          city: city,
+          note: note
+        });
+      }
+      ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (s) {
+        if (d[s]) push(d[s], s, s);
+      });
+      (typeof uftLines === 'function' ? uftLines(d.g1) : []).forEach(function (n) { push(n, 'g1', 'g1'); });
+      (typeof uftLines === 'function' ? uftLines(d.g2) : []).forEach(function (n) { push(n, 'g2', 'g2'); });
+      (typeof uftLines === 'function' ? uftLines(d.g3) : []).forEach(function (n) { push(n, 'g3', 'g3'); });
+      (typeof uftLines === 'function' ? uftLines(d.siblings) : []).forEach(function (n) { push(n, 'sibling', 'sibling'); });
+      (typeof uftLines === 'function' ? uftLines(d.children) : []).forEach(function (n) { push(n, 'child', 'child'); });
+      (typeof uftLines === 'function' ? uftLines(d.grandchildren) : []).forEach(function (n) { push(n, 'grandchild', 'grandchild'); });
+      (d.relatives || []).forEach(function (r) {
+        if (r && r.name) push(r.name, r.anchor || '', r.relation || '');
+      });
+      (d.registry || []).forEach(function (r) {
+        if (r && r.name) push(r.name, r.role || 'registry', r.role || 'registry');
+      });
+      cards.sort(function (a, b) {
+        if (a.generationRank !== b.generationRank) return a.generationRank - b.generationRank;
+        return String(a.name).localeCompare(String(b.name));
+      });
+      return cards;
+    }
+    function uftDownloadMemberCards() {
+      if (typeof uftSave === 'function') uftSave();
+      const cards = uftCollectMemberCards();
+      const payload = {
+        app: 'Clarity',
+        exportType: 'clarity-member-cards',
+        note: 'Flat member cards only. No parent/child/spouse links. Use generationHint / generationRank to rebuild the pedigree in order (1 = oldest).',
+        exportedAt: new Date().toISOString(),
+        count: cards.length,
+        cards: cards
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'clarity-member-cards-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 400);
+      if (typeof uftSetStatus === 'function') uftSetStatus(cards.length + ' member cards downloaded (no tree links)');
+    }
+    function uftDownloadMemberCardsCsv() {
+      const cards = uftCollectMemberCards();
+      function esc(v) {
+        const s = String(v == null ? '' : v);
+        if (/[",\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+        return s;
+      }
+      // Excel-friendly headers (open directly in Excel / Sheets)
+      const header = [
+        'generationRank',
+        'generationHint',
+        'name',
+        'gender',
+        'vital',
+        'born',
+        'slot',
+        'role',
+        'phone',
+        'email',
+        'city',
+        'note'
+      ];
+      const lines = [header.join(',')];
+      cards.forEach(function (c) {
+        lines.push([
+          c.generationRank,
+          c.generationHint,
+          c.name,
+          c.gender,
+          c.vital,
+          c.born,
+          c.slot,
+          c.role,
+          c.phone,
+          c.email,
+          c.city,
+          c.note
+        ].map(esc).join(','));
+      });
+      // BOM so Excel recognizes UTF-8 (Arabic/Urdu names etc.)
+      const bom = '\uFEFF';
+      const blob = new Blob([bom + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'clarity-member-cards-' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 400);
+      if (typeof uftSetStatus === 'function') {
+        uftSetStatus(cards.length + ' member cards CSV downloaded — open in Excel, edit, then Upload cards');
+      }
+    }
+    function uftLoadMemberCards(ev) {
+      const file = ev && ev.target && ev.target.files && ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function () {
+        try {
+          const raw = String(reader.result || '');
+          let cards = [];
+          let appliedAsTree = false;
+
+          function pushPerson(obj) {
+            if (!obj || typeof obj !== 'object') return;
+            const name = String(obj.name || obj.fullName || obj.full_name || obj.personName || obj.self || '').trim();
+            if (!name || name === 'Unknown') return;
+            cards.push({
+              name: name,
+              generationRank: obj.generationRank || obj.gen || obj.generation || '',
+              generationHint: obj.generationHint || obj.role || obj.slot || '',
+              slot: obj.slot || obj.role || '',
+              phone: obj.phone || obj.whatsapp || '',
+              email: obj.email || '',
+              city: obj.city || obj.country || '',
+              note: obj.note || ''
+            });
+          }
+          function extractFromTree(d) {
+            if (!d || typeof d !== 'object') return;
+            ['self','father','mother','spouse','paternalGrandfather','paternalGrandmother','maternalGrandfather','maternalGrandmother'].forEach(function(k){
+              if (typeof d[k] === 'string' && d[k].trim()) pushPerson({ name: d[k], slot: k });
+              else if (d[k] && typeof d[k] === 'object') pushPerson(Object.assign({ slot: k }, d[k]));
+            });
+            (d.relatives || d.children || d.siblings || []).forEach(function(r){ pushPerson(r); });
+            (d.registry || d.members || d.people || d.cards || []).forEach(function(r){ pushPerson(r); });
+            ['g1','g2','g3','g4','g5','g6','g7','g8'].forEach(function(g){
+              if (typeof d[g] === 'string') {
+                d[g].split(/[\n,;|]+/).forEach(function(n){ if (n.trim()) pushPerson({ name: n.trim(), generationHint: g }); });
+              } else if (Array.isArray(d[g])) d[g].forEach(function(x){ pushPerson(typeof x === 'string' ? { name: x, generationHint: g } : Object.assign({ generationHint: g }, x)); });
+            });
+          }
+
+          if ((file.name && /\.csv$/i.test(file.name)) || raw.trim().indexOf('generationRank') === 0 || /^name\s*,/i.test(raw.trim())) {
+            const rows = raw.split(/\r?\n/).filter(Boolean);
+            if (rows.length < 2) throw new Error('empty csv');
+            const head = rows[0].split(',').map(function (h) { return h.trim().replace(/^"|"$/g, ''); });
+            for (let ri = 1; ri < rows.length; ri++) {
+              const cols = [];
+              let cur = '', q = false;
+              const line = rows[ri];
+              for (let j = 0; j < line.length; j++) {
+                const ch = line[j];
+                if (ch === '"') { q = !q; continue; }
+                if (ch === ',' && !q) { cols.push(cur); cur = ''; continue; }
+                cur += ch;
+              }
+              cols.push(cur);
+              const obj = {};
+              head.forEach(function (h, idx) { obj[h] = (cols[idx] || '').trim(); });
+              pushPerson(obj);
+            }
+          } else {
+            const parsed = JSON.parse(raw);
+            if (parsed && Array.isArray(parsed.cards)) {
+              parsed.cards.forEach(pushPerson);
+            } else if (Array.isArray(parsed)) {
+              parsed.forEach(pushPerson);
+            } else if (parsed && typeof parsed === 'object') {
+              /* Full tree / Amānah pack / members export */
+              const tree = (parsed.familyTree && typeof parsed.familyTree === 'object') ? parsed.familyTree : parsed;
+              const looksLikeTree = !!(tree.self || tree.father || tree.relatives || tree.g1 || tree.registry || tree.children || tree.people || tree.members);
+              if (looksLikeTree) {
+                const asTree = confirm(
+                  'This looks like a full family-tree / members export.\n\nOK = load into the pedigree tree (replace current tree on this device)\nCancel = only import names into the member-cards picker list'
+                );
+                if (asTree) {
+                  if (typeof uftApplyData === 'function') {
+                    uftApplyData(tree);
+                    if (typeof uftCollapseEditor === 'function') uftCollapseEditor();
+                    if (typeof uftRender === 'function') uftRender();
+                    if (typeof uftSetStatus === 'function') uftSetStatus('Tree loaded · ' + (file.name || 'JSON'));
+                    appliedAsTree = true;
+                  } else {
+                    extractFromTree(tree);
+                  }
+                } else {
+                  extractFromTree(tree);
+                }
+              } else if (Array.isArray(parsed.members) || Array.isArray(parsed.registry) || Array.isArray(parsed.people)) {
+                (parsed.members || parsed.registry || parsed.people || []).forEach(pushPerson);
+              } else {
+                /* single person object */
+                pushPerson(parsed);
+              }
+            } else {
+              throw new Error('format');
+            }
+          }
+
+          if (appliedAsTree) {
+            ev.target.value = '';
+            return;
+          }
+
+          /* de-dupe by name */
+          const seen = {};
+          cards = cards.filter(function(c){
+            const k = String(c.name||'').toLowerCase();
+            if (!k || seen[k]) return false;
+            seen[k] = true;
+            return true;
+          });
+          if (!cards.length) throw new Error('no cards');
+          cards.sort(function (a, b) {
+            const ra = parseInt(a.generationRank, 10); const rb = parseInt(b.generationRank, 10);
+            if (!isNaN(ra) && !isNaN(rb) && ra !== rb) return ra - rb;
+            return String(a.name || '').localeCompare(String(b.name || ''));
+          });
+          if (!confirm('Load ' + cards.length + ' member cards into the picker list?\n\nChoose a card, set Attach to + relation, then Add to tree.')) {
+            ev.target.value = '';
+            return;
+          }
+          uftSetStoredCards(cards);
+          try {
+            const d = (typeof uftCollect === 'function') ? uftCollect() : {};
+            d.registry = Array.isArray(d.registry) ? d.registry : [];
+            cards.forEach(function (c) {
+              const name = String(c.name || '').trim();
+              if (!name) return;
+              const existing = d.registry.find(function (r) {
+                return r && (typeof uftSame === 'function' ? uftSame(r.name, name) : r.name === name);
+              });
+              if (!existing) {
+                d.registry.push({
+                  id: (typeof uftNewPersonId === 'function') ? uftNewPersonId() : ('p_' + Math.random().toString(36).slice(2)),
+                  name: name,
+                  role: c.slot || c.role || '',
+                  phone: c.phone || '',
+                  email: c.email || '',
+                  city: c.city || '',
+                  note: c.note || c.generationHint || ''
+                });
+              }
+            });
+            try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+            if (typeof uftRenderRegList === 'function') uftRenderRegList();
+            if (typeof uftRender === 'function') uftRender();
+          } catch (e) {}
+          if (typeof uftExpandEditor === 'function') uftExpandEditor();
+          if (typeof uftSetStatus === 'function') uftSetStatus(cards.length + ' cards ready — pick a card, then Add to tree');
+          alert(cards.length + ' member cards loaded into the picker list.');
+        } catch (e) {
+          console.warn('uftLoadMemberCards', e);
+          alert('Could not read that file.\n\nAccepted:\n• Member cards JSON/CSV export\n• Full tree / members JSON (clarity-family-members-*.json)\n• Amānah pack with familyTree\n• Array of {name, …} objects');
+        }
+        ev.target.value = '';
+      };
+      reader.readAsText(file);
+    }
+
+    function uftStartFresh() {
+      const hasData = !!(uftRead() && (uftRead().self || uftRead().father || (uftRead().relatives || []).length || uftLines(uftRead().g1 || '').length));
+      if (hasData) {
+        const backup = confirm('Start tree?\n\nOK = download member cards (no links) first so you can rebuild generations cleanly, then clear the tree.\nCancel = abort.');
+        if (!backup) return;
+        if (typeof uftDownloadMemberCardsCsv === 'function') uftDownloadMemberCardsCsv();
+        else if (typeof uftDownloadMemberCards === 'function') uftDownloadMemberCards();
+        else uftDownload();
+        setTimeout(function () {
+          if (!confirm('Member cards downloaded. Clear the tree now and rebuild the pedigree in generation order?')) return;
+          uftClear(true);
+        }, 350);
+      } else {
+        uftClear(true);
+      }
+    }
+    function uftApplyData(d) {
+      if (!d || typeof d !== 'object') return;
+      if (!Array.isArray(d.relatives)) d.relatives = [];
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      const f = uftFields();
+      Object.keys(f).forEach(function (k) {
+        if (f[k] && d[k] != null && typeof d[k] !== 'object') f[k].value = d[k];
+      });
+      const stage = document.getElementById('uft-stage');
+      if (stage) stage.setAttribute('data-skin', d.skin || 'green');
+      uftView = 'pedigree';
+      uftRenderRelList();
+      uftRender();
+      uftRefreshLibrary();
+      uftSetStatus('Loaded · ' + (uftWhen(d.savedAt) || 'this device'));
+    }
+    function uftLoadFile(ev) {
+      const file = ev && ev.target && ev.target.files && ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function () {
+        try {
+          let d = JSON.parse(String(reader.result || '{}'));
+          if (!d || typeof d !== 'object') throw new Error('bad');
+          // Accept full Amānah pack or plain family-tree / members export
+          if (d.familyTree && typeof d.familyTree === 'object') d = d.familyTree;
+          if (!d.self && !d.father && !d.relatives && !d.g1 && !d.registry && !d.children) {
+            throw new Error('empty');
+          }
+          if (!confirm('Replace the tree on this device with members from “' + (file.name || 'file') + '”?')) {
+            ev.target.value = '';
+            return;
+          }
+          uftApplyData(d);
+          uftCollapseEditor();
+          try { uftShowIntegrity(); } catch (e2) {}
+          uftSetStatus('Members uploaded · ' + (file.name || 'JSON'));
+        } catch (e) {
+          alert('Could not read that file. Use “Download members” JSON or an Amānah pack export from Clarity.');
+        }
+        ev.target.value = '';
+      };
+      reader.readAsText(file);
+    }
+    function uftClear(skipConfirm) {
+      if (!skipConfirm) {
+        if (!confirm('Clear your private family tree on this device?\n\nTip: use “Download members” first if you may need this tree again.\nNamed library copies are kept until you remove them.')) return;
+      }
+      try { clarityLS.removeItem(UFT_KEY); } catch (e) {}
+      const f = uftFields();
+      Object.keys(f).forEach(function (k) { if (f[k]) f[k].value = ''; });
+      try {
+        const stage = document.getElementById('uft-stage');
+        if (stage) stage.setAttribute('data-skin', 'green');
+      } catch (e) {}
+      uftRenderRelList();
+      if (typeof uftRenderRegList === 'function') {
+        try { uftRenderRegList(); } catch (e) {}
+      }
+      uftRender();
+      uftExpandEditor();
+      uftSetStatus('Tree cleared — upload a members JSON anytime to restore.');
+      try { uftShowIntegrity(); } catch (e) {}
+    }
+
+    function uftDownloadPng() {
+      try { if (typeof uftSave === 'function') uftSave(); } catch (e) {}
+      var d = (typeof uftCollect === 'function') ? uftCollect() : {};
+      function linesOf(s) {
+        if (typeof uftLines === 'function') return uftLines(s);
+        return String(s || '').split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean);
+      }
+      function triggerDownload(dataUrl, name) {
+        var a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+      var fileName = 'clarity-pedigree-' + ((d.self || 'family').replace(/[^\w\-]+/g, '_').slice(0, 40)) + '.png';
+
+      // ---- Build clean generation rows (data model, not DOM positions) ----
+      function person(name, role, vital) {
+        name = String(name || '').trim();
+        if (!name) return null;
+        return { name: name, role: role || '', vital: vital || '' };
+      }
+      var generations = [];
+      // Ancestors (oldest first)
+      var g1 = [], g2 = [], g3 = [];
+      linesOf(d.g1).forEach(function (n) { g1.push(person(n, 'G1 · 3rd-great', '')); });
+      linesOf(d.g2).forEach(function (n) { g2.push(person(n, 'G2 · 2nd-great', '')); });
+      linesOf(d.g3).forEach(function (n) { g3.push(person(n, 'G3 · great-grand', '')); });
+      if (g1.length) generations.push({ title: 'Generation 1 (oldest)', people: g1 });
+      if (g2.length) generations.push({ title: 'Generation 2', people: g2 });
+      if (g3.length) generations.push({ title: 'Generation 3 · Great-grandparents', people: g3 });
+
+      var gps = [];
+      if (d.pgf) gps.push(person(d.pgf, "Father's father", ''));
+      if (d.pgm) gps.push(person(d.pgm, "Father's mother", ''));
+      if (d.mgf) gps.push(person(d.mgf, "Mother's father", ''));
+      if (d.mgm) gps.push(person(d.mgm, "Mother's mother", ''));
+      if (gps.length) generations.push({ title: 'Grandparents', people: gps });
+
+      var parents = [];
+      if (d.father) parents.push(person(d.father, 'Father', ''));
+      if (d.mother) parents.push(person(d.mother, 'Mother', ''));
+      if (parents.length) generations.push({ title: 'Parents', people: parents });
+
+      var focus = [];
+      if (d.self) focus.push(person(d.self, 'You', ''));
+      if (d.spouse) focus.push(person(d.spouse, 'Spouse', ''));
+      linesOf(d.siblings).forEach(function (n) { focus.push(person(n, 'Sibling', '')); });
+      if (focus.length) generations.push({ title: 'Your generation', people: focus });
+
+      var kids = [];
+      linesOf(d.children).forEach(function (n) { kids.push(person(n, 'Child', '')); });
+      if (kids.length) generations.push({ title: 'Children', people: kids });
+
+      var gkids = [];
+      linesOf(d.grandchildren).forEach(function (n) { gkids.push(person(n, 'Grandchild', '')); });
+      if (gkids.length) generations.push({ title: 'Grandchildren', people: gkids });
+
+      // Extra relatives not already listed
+      var known = {};
+      generations.forEach(function (g) {
+        g.people.forEach(function (p) { known[p.name.toLowerCase()] = true; });
+      });
+      var extra = [];
+      (d.relatives || []).forEach(function (r) {
+        if (!r || !r.name) return;
+        if (known[String(r.name).toLowerCase()]) return;
+        extra.push(person(r.name, r.relation || 'Relative', r.vital || ''));
+      });
+      if (extra.length) generations.push({ title: 'Other relatives', people: extra });
+
+      var totalPeople = generations.reduce(function (n, g) { return n + g.people.length; }, 0);
+      if (!totalPeople) {
+        alert('Add people to the pedigree before downloading an image.');
+        return;
+      }
+
+      // ---- Layout algorithm: non-overlapping cards in generation rows ----
+      var pad = 28;
+      var headerH = 72;
+      var rowGap = 36;
+      var cardH = 54;
+      var cardMinW = 140;
+      var cardMaxW = 200;
+      var cardGap = 12;
+      var titleH = 22;
+
+      // Measure name widths approx
+      function estimateCardW(name) {
+        var w = 24 + Math.min(String(name).length, 28) * 7.2;
+        return Math.max(cardMinW, Math.min(cardMaxW, w));
+      }
+
+      // Compute row widths and wrap people into sub-rows if too wide
+      var maxCanvasW = 1600;
+      var layoutRows = []; // {title?, people, widths}
+      generations.forEach(function (g) {
+        layoutRows.push({ kind: 'title', text: g.title });
+        var row = [];
+        var rowW = 0;
+        g.people.forEach(function (p) {
+          var cw = estimateCardW(p.name);
+          if (row.length && rowW + cardGap + cw > maxCanvasW - pad * 2) {
+            layoutRows.push({ kind: 'people', people: row.slice(), widths: row.map(function (x) { return estimateCardW(x.name); }) });
+            row = [];
+            rowW = 0;
+          }
+          row.push(p);
+          rowW += (row.length > 1 ? cardGap : 0) + cw;
+        });
+        if (row.length) {
+          layoutRows.push({ kind: 'people', people: row.slice(), widths: row.map(function (x) { return estimateCardW(x.name); }) });
+        }
+      });
+
+      var contentW = 0;
+      layoutRows.forEach(function (r) {
+        if (r.kind !== 'people') return;
+        var w = r.widths.reduce(function (a, b) { return a + b; }, 0) + cardGap * Math.max(0, r.people.length - 1);
+        contentW = Math.max(contentW, w);
+      });
+      contentW = Math.max(contentW, 480);
+
+      var y = headerH + pad;
+      layoutRows.forEach(function (r) {
+        if (r.kind === 'title') y += titleH + 8;
+        else y += cardH + rowGap;
+      });
+      var canvasW = Math.ceil(contentW + pad * 2);
+      var canvasH = Math.ceil(y + pad);
+
+      var canvas = document.createElement('canvas');
+      canvas.width = canvasW;
+      canvas.height = canvasH;
+      var ctx = canvas.getContext('2d');
+
+      // Background
+      ctx.fillStyle = '#0f2f24';
+      ctx.fillRect(0, 0, canvasW, canvasH);
+
+      // Header
+      ctx.fillStyle = '#d4af37';
+      ctx.font = '700 22px Georgia, "Times New Roman", serif';
+      ctx.fillText('Clarity · Pedigree view', pad, pad + 20);
+      ctx.fillStyle = '#cfe8dc';
+      ctx.font = '13px Inter, system-ui, sans-serif';
+      var sub = (d.self || 'Family') + ' · ' + new Date().toLocaleDateString() + ' · ' + totalPeople + ' people · clean layout';
+      ctx.fillText(sub, pad, pad + 42);
+
+      // Draw rows
+      y = headerH + pad;
+      var prevPeopleY = null;
+      layoutRows.forEach(function (r) {
+        if (r.kind === 'title') {
+          ctx.fillStyle = '#8fd4a0';
+          ctx.font = '600 13px Inter, system-ui, sans-serif';
+          ctx.fillText(r.text, pad, y + 14);
+          y += titleH + 8;
+          return;
+        }
+        var totalW = r.widths.reduce(function (a, b) { return a + b; }, 0) + cardGap * Math.max(0, r.people.length - 1);
+        var x0 = pad + Math.max(0, (contentW - totalW) / 2);
+        var x = x0;
+        // connector from previous row center
+        if (prevPeopleY != null) {
+          ctx.strokeStyle = 'rgba(201,162,39,0.45)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(canvasW / 2, prevPeopleY);
+          ctx.lineTo(canvasW / 2, y);
+          ctx.stroke();
+        }
+        r.people.forEach(function (p, i) {
+          var w = r.widths[i];
+          var h = cardH;
+          // card
+          ctx.fillStyle = 'rgba(26,107,82,0.92)';
+          ctx.strokeStyle = '#c9a227';
+          ctx.lineWidth = 1.5;
+          var rr = 10;
+          ctx.beginPath();
+          if (ctx.roundRect) ctx.roundRect(x, y, w, h, rr);
+          else {
+            ctx.moveTo(x + rr, y);
+            ctx.arcTo(x + w, y, x + w, y + h, rr);
+            ctx.arcTo(x + w, y + h, x, y + h, rr);
+            ctx.arcTo(x, y + h, x, y, rr);
+            ctx.arcTo(x, y, x + w, y, rr);
+            ctx.closePath();
+          }
+          ctx.fill();
+          ctx.stroke();
+          // name
+          ctx.fillStyle = '#f7f4ee';
+          ctx.font = '600 14px Georgia, "Times New Roman", serif';
+          var label = p.name.length > 26 ? p.name.slice(0, 24) + '…' : p.name;
+          ctx.fillText(label, x + 10, y + 22);
+          // role
+          ctx.fillStyle = '#9fd0b8';
+          ctx.font = '11px Inter, system-ui, sans-serif';
+          var role = p.role.length > 28 ? p.role.slice(0, 26) + '…' : p.role;
+          ctx.fillText(role, x + 10, y + 40);
+          x += w + cardGap;
+        });
+        prevPeopleY = y + cardH;
+        y += cardH + rowGap;
+      });
+
+      var url = canvas.toDataURL('image/png');
+      triggerDownload(url, fileName);
+      if (typeof uftSetStatus === 'function') uftSetStatus('Clean pedigree PNG downloaded (' + totalPeople + ' people).');
+    }
+
+    function uftDownloadTextTree() {
+      try { if (typeof uftSave === 'function') uftSave(); } catch (e) {}
+      var d = (typeof uftCollect === 'function') ? uftCollect() : {};
+      function linesOf(s) {
+        if (typeof uftLines === 'function') return uftLines(s);
+        return String(s || '').split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean);
+      }
+      var out = [];
+      out.push('Clarity · Family tree');
+      out.push((d.self || 'Family') + ' · ' + new Date().toLocaleDateString());
+      out.push('');
+      function section(title, items) {
+        if (!items.length) return;
+        out.push(title);
+        items.forEach(function (line) { out.push('  • ' + line); });
+        out.push('');
+      }
+      var g1 = linesOf(d.g1), g2 = linesOf(d.g2), g3 = linesOf(d.g3);
+      section('Generation 1 (oldest)', g1);
+      section('Generation 2', g2);
+      section('Generation 3 · Great-grandparents', g3);
+      var gps = [];
+      if (d.pgf) gps.push(d.pgf + " — Father's father");
+      if (d.pgm) gps.push(d.pgm + " — Father's mother");
+      if (d.mgf) gps.push(d.mgf + " — Mother's father");
+      if (d.mgm) gps.push(d.mgm + " — Mother's mother");
+      section('Grandparents', gps);
+      var parents = [];
+      if (d.father) parents.push(d.father + ' — Father');
+      if (d.mother) parents.push(d.mother + ' — Mother');
+      section('Parents', parents);
+      var focus = [];
+      if (d.self) focus.push(d.self + ' — You');
+      if (d.spouse) focus.push(d.spouse + ' — Spouse');
+      linesOf(d.siblings).forEach(function (n) { focus.push(n + ' — Sibling'); });
+      section('Your generation', focus);
+      section('Children', linesOf(d.children).map(function (n) { return n + ' — Child'; }));
+      section('Grandchildren', linesOf(d.grandchildren).map(function (n) { return n + ' — Grandchild'; }));
+      var rels = (d.relatives || []).map(function (r) {
+        if (!r || !r.name) return '';
+        return r.name + (r.relation ? ' — ' + r.relation : '');
+      }).filter(Boolean);
+      section('Other relatives', rels);
+
+      // Link diagram (ASCII)
+      out.push('—— Links (parent → child) ——');
+      if (d.pgf && d.father) out.push(d.pgf + ' → ' + d.father);
+      if (d.pgm && d.father) out.push(d.pgm + ' → ' + d.father);
+      if (d.mgf && d.mother) out.push(d.mgf + ' → ' + d.mother);
+      if (d.mgm && d.mother) out.push(d.mgm + ' → ' + d.mother);
+      if (d.father && d.self) out.push(d.father + ' → ' + d.self);
+      if (d.mother && d.self) out.push(d.mother + ' → ' + d.self);
+      if (d.self && d.spouse) out.push(d.self + ' ↔ ' + d.spouse + ' (spouses)');
+      linesOf(d.children).forEach(function (c) {
+        if (d.self) out.push(d.self + ' → ' + c);
+        if (d.spouse) out.push(d.spouse + ' → ' + c);
+      });
+      linesOf(d.grandchildren).forEach(function (g) {
+        linesOf(d.children).forEach(function (c) {
+          /* listed without forced parent link */
+        });
+        out.push('(grandchild) ' + g);
+      });
+      out.push('');
+      out.push('Educational family record — verify with family and local custom.');
+
+      var blob = new Blob([out.join('\n')], { type: 'text/plain;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'clarity-family-tree-' + ((d.self || 'family').replace(/[^\w\-]+/g, '_').slice(0, 40)) + '.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1500);
+      if (typeof uftSetStatus === 'function') uftSetStatus('Family tree text downloaded.');
+    }
+
+    function uftLines(s) {
+      return String(s || '').split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean);
+    }
+    function uftEsc(s) {
+      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    function uftInitials(name) {
+      const p = String(name || '').trim().split(/\s+/).filter(Boolean);
+      if (!p.length) return '·';
+      if (p.length === 1) return p[0].slice(0, 2).toUpperCase();
+      return (p[0][0] + p[p.length - 1][0]).toUpperCase();
+    }
+    let uftVitalMap = {};
+    function uftVitalKey(name, slot) {
+      const n = uftNorm(name);
+      if (!n) return '';
+      const s = String(slot || '').trim();
+      return s ? (s + '|' + n) : n;
+    }
+    function uftVitalOf(name, slot) {
+      const n = uftNorm(name);
+      const keys = [];
+      if (slot) keys.push(uftVitalKey(name, slot));
+      keys.push(uftVitalKey(name, ''));
+      keys.push(n);
+      let map = uftVitalMap || {};
+      try { map = Object.assign({}, ((uftRead().vital) || {}), map); } catch (e) {}
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        if (key && map[key]) return map[key];
+      }
+      // Any slot for this same person name
+      const all = Object.keys(map);
+      for (let j = 0; j < all.length; j++) {
+        const k = all[j];
+        const bare = k.indexOf('|') >= 0 ? k.slice(k.lastIndexOf('|') + 1) : k.replace(/^n:/i, '');
+        if (bare === n && map[k]) return map[k];
+      }
+      return '';
+    }
+
+    function uftGenderKey(name, slot) { return uftVitalKey(name, slot); }
+    function uftGenderOf(name, slot) {
+      const bare = uftNorm(name);
+      let map = (typeof uftGenderMap !== 'undefined' && uftGenderMap) ? uftGenderMap : {};
+      try { map = Object.assign({}, ((uftRead().gender) || {}), map); } catch (e) {}
+      const key = uftGenderKey(name, slot);
+      if (key && map[key]) return map[key];
+      if (bare && map[bare]) return map[bare];
+      const all = Object.keys(map);
+      for (let j = 0; j < all.length; j++) {
+        const k = all[j];
+        const b = k.indexOf('|') >= 0 ? k.slice(k.lastIndexOf('|') + 1) : k.replace(/^n:/i, '');
+        if (b === bare && map[k]) return map[k];
+      }
+      return '';
+    }
+    function uftSetGenderFor(name, gender, slot) {
+      const d = uftCollect();
+      d.gender = d.gender || {};
+      if (!name) return;
+      uftSyncPersonMeta(d.gender, name, gender || '');
+      const key = uftGenderKey(name, slot || '');
+      if (key && gender) d.gender[key] = gender;
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      try { uftGenderMap = d.gender; } catch (e) {}
+      uftRender({ keepScroll: true });
+      try { uftIntegrityRefresh(); } catch (e) {}
+    }
+    function uftCycleGender(name, slot) {
+      const cur = uftGenderOf(name, slot);
+      const next = cur === 'male' ? 'female' : cur === 'female' ? '' : 'male';
+      uftSetGenderFor(name, next, slot);
+    }
+    function uftAutoLinkSiblings(d) {
+      if (!d) return d;
+      d.relatives = Array.isArray(d.relatives) ? d.relatives : [];
+      function add(anchor, relation, name) {
+        if (!anchor || !name || !relation) return;
+        const exists = d.relatives.some(function (r) {
+          return r && r.relation === relation && uftSame(r.name, name) && String(r.anchor) === String(anchor);
+        });
+        if (!exists) d.relatives.push({ anchor: anchor, relation: relation, name: name });
+      }
+      uftLines(d.siblings).forEach(function (n) {
+        add('self', 'sibling', n);
+        if (d.father) add('father', 'child', n);
+        if (d.mother) add('mother', 'child', n);
+      });
+      uftLines(d.g2).forEach(function (child) {
+        uftLines(d.g1).forEach(function (par) { add(uftNameKey(par), 'child', child); });
+      });
+      uftLines(d.g3).forEach(function (child) {
+        uftLines(d.g2).forEach(function (par) { add(uftNameKey(par), 'child', child); });
+      });
+      if (d.pgf) uftLines(d.g3).forEach(function (par) { add(uftNameKey(par), 'child', d.pgf); });
+      if (d.father && d.pgf) add('pgf', 'child', d.father);
+      if (d.self && d.father) add('father', 'child', d.self);
+      d.relatives.slice().forEach(function (r) {
+        if (!r || r.relation !== 'sibling' || !r.name) return;
+        let parents = [];
+        try { parents = uftParentsOf(d, r.anchor) || []; } catch (e) { parents = []; }
+        if ((!parents || !parents.length) && (r.anchor === 'self' || uftSame(r.anchor, d.self))) {
+          if (d.father) parents.push({ id: 'father' });
+          if (d.mother) parents.push({ id: 'mother' });
+        }
+        if ((!parents || !parents.length) && (r.anchor === 'father' || uftSame(r.anchor, d.father))) {
+          if (d.pgf) parents.push({ id: 'pgf' });
+          if (d.pgm) parents.push({ id: 'pgm' });
+        }
+        if ((!parents || !parents.length) && (r.anchor === 'mother' || uftSame(r.anchor, d.mother))) {
+          if (d.mgf) parents.push({ id: 'mgf' });
+          if (d.mgm) parents.push({ id: 'mgm' });
+        }
+        (parents || []).forEach(function (p) {
+          const pid = p.id || (p.name ? uftNameKey(p.name) : '');
+          if (pid) add(pid, 'child', r.name);
+        });
+      });
+      return d;
+    }
+    let uftGenderMap = {};
+    let uftBornMap = {};
+    function uftBornOf(name, slot) {
+      const key = uftVitalKey(name, slot);
+      const map = uftBornMap || {};
+      if (key && map[key]) return map[key];
+      const bare = uftNorm(name);
+      if (bare && map[bare]) return map[bare];
+      try {
+        const stored = (uftRead().born) || {};
+        if (key && stored[key]) return stored[key];
+        if (bare && stored[bare]) return stored[bare];
+      } catch (e) {}
+      return '';
+    }
+    function uftSetBornFor(name, year, slot) {
+      const d = uftCollect();
+      d.born = d.born || {};
+      year = String(year || '').replace(/[^0-9]/g, '').slice(0, 4);
+      if (!name) return;
+      uftSyncPersonMeta(d.born, name, year || '');
+      const key = uftVitalKey(name, slot || '');
+      if (key && year) d.born[key] = year;
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      try { uftBornMap = d.born; } catch (e) {}
+      uftRender({ keepScroll: true });
+    }
+    function uftAskBorn(name, slot) {
+      const cur = uftBornOf(name, slot) || '';
+      const year = prompt('Year of birth for ' + name + ' (leave blank to clear)', cur);
+      if (year === null) return;
+      uftSetBornFor(name, year, slot);
+    }
+    function uftCycleVital(name, slot) {
+      if (!name) return;
+      const cur = uftVitalOf(name, slot);
+      const next = cur === 'alive' ? 'deceased' : cur === 'deceased' ? '' : 'alive';
+      uftSetVitalFor(name, next, slot);
+    }
+    function uftSyncPersonMeta(map, name, value) {
+      // One value for this person name across every slot/category key
+      const n = uftNorm(name);
+      if (!n || !map) return;
+      const keys = Object.keys(map);
+      for (let i = 0; i < keys.length; i++) {
+        const k = keys[i];
+        const bare = k.indexOf('|') >= 0 ? k.slice(k.lastIndexOf('|') + 1) : k.replace(/^n:/i, '');
+        if (bare === n) {
+          if (value) map[k] = value;
+          else delete map[k];
+        }
+      }
+      // Always keep bare-name key as the canonical person-level value
+      if (value) map[n] = value;
+      else delete map[n];
+    }
+    function uftSetVitalFor(name, status, slot) {
+      const d = uftCollect();
+      d.vital = d.vital || {};
+      if (!name) return;
+      uftSyncPersonMeta(d.vital, name, status || '');
+      // Also set the explicit slot key for compatibility
+      const key = uftVitalKey(name, slot || '');
+      if (key && status) d.vital[key] = status;
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      try { uftVitalMap = d.vital; } catch (e) {}
+      uftRender({ keepScroll: true });
+      if (typeof uftRefreshVitalWho === 'function') uftRefreshVitalWho();
+      try { if (typeof uftIntegrityRefresh === 'function') uftIntegrityRefresh(); } catch (e) {}
+    }
+    function uftApplyVital() {
+      const who = ((document.getElementById('uft-vital-who') || {}).value || '').trim();
+      const st = ((document.getElementById('uft-vital-status') || {}).value || '').trim();
+      if (!who) return;
+      const parts = who.split('::');
+      const slot = parts.length > 1 ? parts[0] : '';
+      const name = parts.length > 1 ? parts.slice(1).join('::') : who;
+      uftSetVitalFor(name, st, slot);
+      if (typeof uftSetStatus === 'function') uftSetStatus(who + ' marked ' + (st || 'unspecified') + '.');
+    }
+    function uftRefreshVitalWho() {
+      const sel = document.getElementById('uft-vital-who');
+      if (!sel) return;
+      const prev = sel.value;
+      const d = uftCollect();
+      const names = uftAllMembers(d).filter(function (p) { return p && p.name; });
+      sel.innerHTML = '<option value="">Person on the tree…</option>' + names.map(function (p) {
+        const slot = p.anchor || p.relation || '';
+        const st = uftVitalOf(p.name, slot);
+        const label = p.name + (p.relation ? ' · ' + p.relation : '');
+        return '<option value="' + uftEsc(slot) + '::' + uftEsc(p.name) + '">' + uftEsc(label) + (st ? ' (' + st + ')' : '') + '</option>';
+      }).join('');
+      if (prev) sel.value = prev;
+    }
+    function uftPerson(name, meta, gender, extraClass, slot, hostAnchor) {
+      const empty = !name;
+      const storedG = empty ? '' : uftGenderOf(name, slot);
+      if (storedG) gender = storedG;
+      const vital = empty ? '' : uftVitalOf(name, slot);
+      const cls = ['uft-person', 'uft-card-sleek', gender || '', extraClass || '', empty ? 'empty' : '', vital].filter(Boolean).join(' ');
+      const label = empty ? (meta || 'Unknown') : name;
+      const year = empty ? '' : uftBornOf(name, slot);
+      const relLine = empty ? '' : ((meta || '') + (year ? ((meta ? ' · ' : '') + 'b. ' + year) : ''));
+      const gCls = storedG === 'male' ? ' g-male' : storedG === 'female' ? ' g-female' : ' g-unset';
+      const vitalIcon = vital === 'deceased' ? '†' : vital === 'alive' ? '●' : '○';
+      const vitalTitle = vital === 'deceased' ? 'Deceased' : vital === 'alive' ? 'Alive' : 'Set status';
+      const genderIcon = storedG === 'male' ? '♂' : storedG === 'female' ? '♀' : '⚥';
+      const genderTitle = storedG === 'male' ? 'Male' : storedG === 'female' ? 'Female' : 'Gender';
+      const actions = empty ? '' :
+        '<div class="uft-chip-stack" role="group" aria-label="Member actions">' +
+          '<div class="uft-chip-row">' +
+            '<button type="button" class="uft-chip uft-vital-btn ' + (vital || 'unset') + (vital === 'deceased' ? ' dead' : vital === 'alive' ? ' live' : '') +
+              '" data-vital-name="' + uftEsc(name) + '" data-vital-slot="' + uftEsc(slot || '') + '" title="' + vitalTitle + '"><span class="uft-chip-ico">' + vitalIcon + '</span></button>' +
+            '<button type="button" class="uft-chip uft-gender-btn' + gCls + '" data-gender-name="' + uftEsc(name) + '" data-gender-slot="' + uftEsc(slot || '') + '" title="' + genderTitle + '"><span class="uft-chip-ico">' + genderIcon + '</span></button>' +
+            '<button type="button" class="uft-chip uft-born-btn' + (year ? ' has-year' : '') + '" data-born-name="' + uftEsc(name) + '" data-born-slot="' + uftEsc(slot || '') + '" title="Year of birth"><span class="uft-chip-ico">' + (year ? String(year) : 'Yr') + '</span></button>' +
+          '</div>' +
+          '<div class="uft-chip-row">' +
+            '<button type="button" class="uft-chip uft-focus-btn" data-focus-name="' + uftEsc(name) + '" data-focus-slot="' + uftEsc(slot || '') + '" title="Family panel"><span class="uft-chip-ico">👪</span></button>' +
+            '<button type="button" class="uft-chip uft-own-btn" data-own-name="' + uftEsc(name) + '" data-own-slot="' + uftEsc(slot || '') + '" title="Own Family Tree"><span class="uft-chip-ico">🌳</span></button>' +
+            '<button type="button" class="uft-chip uft-add-rel-btn" data-add-name="' + uftEsc(name) + '" data-add-slot="' + uftEsc(slot || '') + '" title="Add relative"><span class="uft-chip-ico">＋</span></button>' +
+          '</div>' +
+        '</div>';
+      return '<div class="' + cls + '">' +
+        '<button type="button" class="uft-del-btn" data-del-name="' + uftEsc(name || '') + '" data-del-slot="' + uftEsc(slot || '') + '" data-del-anchor="' + uftEsc(hostAnchor || '') + '" title="Remove from this place only">×</button>' +
+        '<div class="uft-card-head">' +
+          '<div class="uft-avatar">' + uftEsc(uftInitials(empty ? '' : name)) + '</div>' +
+          '<div class="uft-card-title">' +
+            '<div class="pn">' + uftEsc(label) + (vital === 'deceased' ? ' †' : '') + '</div>' +
+            (relLine ? '<div class="pd">' + uftEsc(relLine) + '</div>' : '') +
+          '</div>' +
+        '</div>' +
+        actions +
+        '</div>';
+    }
+    function uftCard(name, meta, extraClass) {
+      if (!name) return '';
+      return uftPerson(name, meta, extraClass === 'uft-self' ? 'focus' : '', extraClass);
+    }
+    function uftGenFilled(d) {
+      return [
+        uftLines(d.g1).length > 0,
+        uftLines(d.g2).length > 0,
+        uftLines(d.g3).length > 0,
+        !!(d.pgf || d.pgm || d.mgf || d.mgm),
+        !!(d.father || d.mother),
+        !!(d.self || d.spouse || uftLines(d.siblings).length),
+        !!(uftLines(d.children).length || uftLines(d.grandchildren).length)
+      ];
+    }
+    function uftDrawTree(filled) {
+      const br = document.getElementById('uft-branches');
+      const lf = document.getElementById('uft-leaves');
+      if (!br || !lf) return;
+      const paths = [
+        'M188 238 C150 210 110 168 72 128',
+        'M212 238 C250 208 292 168 330 126',
+        'M186 260 C130 240 86 228 48 214',
+        'M214 258 C270 236 318 220 356 208',
+        'M192 220 C160 180 148 140 136 96',
+        'M208 220 C248 176 268 138 286 92',
+        'M200 200 C200 160 188 120 176 78'
+      ];
+      const leafPts = [
+        [72,122],[330,120],[48,208],[356,202],[136,92],[286,88],[176,74],
+        [98,148],[302,146],[64,176],[340,170],[158,110],[248,108],
+        [118,168],[278,164],[90,198],[314,192],[200,100],[220,128],[180,132]
+      ];
+      br.innerHTML = '';
+      lf.innerHTML = '';
+      const nOn = Math.max(3, (filled || []).filter(Boolean).length);
+      paths.slice(0, Math.min(paths.length, nOn)).forEach(function (d, i) {
+        const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        p.setAttribute('d', d);
+        p.setAttribute('class', 'uft-branch');
+        p.style.strokeDasharray = '280';
+        br.appendChild(p);
+      });
+      leafPts.slice(0, Math.min(leafPts.length, 6 + nOn * 3)).forEach(function (pt, i) {
+        const e = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+        e.setAttribute('cx', pt[0]);
+        e.setAttribute('cy', pt[1]);
+        e.setAttribute('rx', 11 + (i % 4));
+        e.setAttribute('ry', 7 + (i % 3));
+        e.setAttribute('transform', 'rotate(' + ((i * 27) % 80 - 40) + ' ' + pt[0] + ' ' + pt[1] + ')');
+        e.setAttribute('class', 'uft-leaf');
+        e.style.animationDelay = (i * 0.09) + 's';
+        lf.appendChild(e);
+      });
+    }
+    function uftLineKids(d, name, slot) {
+      const bag = [];
+      function push(n, sl, rel) {
+        if (!n) return;
+        if (uftSame(n, name)) return;
+        if (bag.some(function (x) { return uftSame(x.name, n); })) return;
+        bag.push({ name: n, slot: sl || uftNameKey(n), relation: rel || 'Child' });
+      }
+      if (!d || !name) return bag;
+      try {
+        uftKidsOf(d, slot || uftNameKey(name)).forEach(function (k) { push(k.name, uftNameKey(k.name), 'Child'); });
+        uftKidsOf(d, uftNameKey(name)).forEach(function (k) { push(k.name, uftNameKey(k.name), 'Child'); });
+        (d.relatives || []).forEach(function (r) {
+          if (!r || !r.name) return;
+          if (r.relation !== 'child' && r.relation !== 'grandchild' && r.relation !== 'offspring') return;
+          const host = (uftCoreName(d, r.anchor) || String(r.anchor || '').replace(/^n:/, '')).trim();
+          if (uftSame(host, name) || r.anchor === slot || r.anchor === uftNameKey(name)) {
+            push(r.name, uftNameKey(r.name), 'Child');
+          }
+        });
+        if (slot === 'g2' || uftLines(d.g2).some(function (n) { return uftSame(n, name); })) {
+          uftLines(d.g3).forEach(function (n) { push(n, 'g3', 'Child'); });
+          uftLines(d.g3).forEach(function (heir) {
+            uftPeersOf(d, heir).forEach(function (s) { push(s.name, uftNameKey(s.name), 'Sibling of ' + heir); });
+          });
+        }
+        if (slot === 'g3' || uftLines(d.g3).some(function (n) { return uftSame(n, name); })) {
+          if (d.pgf) push(d.pgf, 'pgf', 'Child');
+          uftPeersOf(d, d.pgf).forEach(function (s) { push(s.name, uftNameKey(s.name), 'Sibling of ' + (d.pgf || '')); });
+        }
+        if (slot === 'pgf' || uftSame(name, d.pgf)) {
+          if (d.father) push(d.father, 'father', 'Child');
+          uftPeersOf(d, d.father).forEach(function (s) { push(s.name, uftNameKey(s.name), 'Sibling of ' + (d.father || '')); });
+        }
+        if (slot === 'father' || uftSame(name, d.father)) {
+          if (d.self) push(d.self, 'self', 'Child');
+          uftLines(d.siblings).forEach(function (n) { push(n, uftNameKey(n), 'Sibling'); });
+          uftPeersOf(d, d.self).forEach(function (s) { push(s.name, uftNameKey(s.name), 'Sibling'); });
+        }
+        if (slot === 'self' || uftSame(name, d.self)) {
+          uftLines(d.children).forEach(function (n) { push(n, uftNameKey(n), 'Child'); });
+        }
+        bag.slice().forEach(function (child) {
+          uftPeersOf(d, child.name).forEach(function (s) { push(s.name, uftNameKey(s.name), 'Sibling of ' + child.name); });
+        });
+      } catch (e) {}
+      return bag;
+    }
+    function uftHasOffspring(d, name, slot) {
+      return uftLineKids(d, name, slot).length > 0;
+    }
+    function uftOpenMemberView(name, slot) {
+      const box = document.getElementById('uft-focus');
+      const body = document.getElementById('uft-focus-body');
+      const title = document.getElementById('uft-focus-title');
+      if (!box || !body) return;
+      title.textContent = 'Family of ' + name;
+      box.hidden = false;
+      const d = uftCollect();
+      const kids = uftLineKids(d, name, slot);
+      if (!kids.length) {
+        body.innerHTML = '<p class="uft-link-note">No offspring linked yet. Attach children to ' + uftEsc(name) + '.</p>';
+        return;
+      }
+      const seen = {};
+      seen[uftNorm(name)] = true;
+      function node(p, depth) {
+        if (!p || !p.name || depth > 6) return '';
+        const k = uftNorm(p.name);
+        if (seen[k]) return '';
+        seen[k] = true;
+        const children = uftLineKids(d, p.name, p.slot).filter(function (c) { return !seen[uftNorm(c.name)]; });
+        const branch = children.filter(function (c) { return uftHasOffspring(d, c.name, c.slot); });
+        const leaves = children.filter(function (c) { return !uftHasOffspring(d, c.name, c.slot); });
+        let html = '<li><div class="uft-focus-card">' + uftEsc(p.name) + (p.relation ? '<small> · ' + uftEsc(p.relation) + '</small>' : '') + '</div>';
+        if (leaves.length) {
+          html += '<ul class="uft-vline">';
+          leaves.forEach(function (c) { html += node(c, depth + 1); });
+          html += '</ul>';
+        }
+        if (branch.length) {
+          html += '<ul class="uft-vpeers">';
+          branch.forEach(function (c) { html += node(c, depth + 1); });
+          html += '</ul>';
+        }
+        html += '</li>';
+        return html;
+      }
+      body.innerHTML = '<ul class="uft-vtree uft-vtree-focus">' + node({ name: name, slot: slot, relation: 'Focus' }, 0) + '</ul>';
+    }
+    function uftCloseMemberView() {
+      const box = document.getElementById('uft-focus');
+      if (box) box.hidden = true;
+    }
+    function uftPedigreeHtml(d) {
+      d = uftDedupeData(d);
+      function personCard(name, meta, gender, extra, slot, anchor) {
+        return uftPerson(name, meta, gender, extra, slot, anchor);
+      }
+      function peopleHtml(items, fallbackMeta, slot) {
+        const seen = {};
+        return (items || []).filter(function (it) {
+          if (!it || !it.name) return false;
+          const k = uftNorm(it.name);
+          if (seen[k]) return false;
+          seen[k] = true;
+          return true;
+        }).map(function (it) {
+          const meta = it.relation || fallbackMeta || '';
+          const g = /mother|wife|daughter|niece|aunt|female/i.test(meta) ? 'female' : (/father|husband|son|nephew|uncle|male/i.test(meta) ? 'male' : '');
+          return personCard(it.name, meta, uftSame(it.name, d.self) ? 'focus' : g, uftSame(it.name, d.self) ? 'focus' : 'rel', it.slot || slot || '');
+        }).join('');
+      }
+      function cluster(title, coupleHtml, kidsHtml, note, focus) {
+        return '<div class="uft-cluster' + (focus ? ' focus-cluster' : '') + '">' +
+          (title ? '<div class="uft-col-label">' + title + '</div>' : '') +
+          '<div class="uft-couple">' + (coupleHtml || '') + '</div>' +
+          (kidsHtml ? '<div class="uft-kids-row">' + kidsHtml + '</div>' : '') +
+          (note ? '<div class="uft-link-note">' + note + '</div>' : '') +
+          '</div>';
+      }
+      function band(id, title, inner, count) {
+        // Primary pedigree (backbone + descendant tree) stays always open above.
+        // Extra generation / extended bands stay collapsed until the user opens them.
+        const open = clarityLS.getItem('clarity_uft_band_' + id) === 'on';
+        return '<section class="uft-band' + (open ? '' : ' collapsed') + '" data-band="' + id + '">' +
+          '<button type="button" class="uft-band-head" onclick="uftToggleBand(\'' + id + '\')">' +
+          '<span>' + title + '</span><span class="uft-band-count">' + (count || 0) + ' · ' + (open ? '▾' : '▸') + '</span></button>' +
+          '<div class="uft-band-scroll">' + inner + '</div></section>';
+      }
+
+      const g3 = uftLines(d.g3).map(function (n) { return { name: n, relation: 'Great-grandparent', slot: 'g3' }; });
+      const g2 = uftLines(d.g2).map(function (n) { return { name: n, relation: '2nd-great-grandparent', slot: 'g2' }; });
+      const g1 = uftLines(d.g1).map(function (n) { return { name: n, relation: '3rd-great-grandparent', slot: 'g1' }; });
+      const pUncles = uftNotCorePeople(d, uftSiblingsOf(d, 'father'));
+      const mUncles = uftNotCorePeople(d, uftSiblingsOf(d, 'mother'));
+      const mySibs = uftSiblingsOf(d, 'self');
+      const myKids = uftKidsOf(d, 'self');
+      const myGrands = uftUniquePeople(uftLines(d.grandchildren).map(function (n) { return { name: n, relation: 'grandchild' }; }));
+      const gpSibsP = uftNotCorePeople(d, uftSiblingsOf(d, 'pgf').concat(uftSiblingsOf(d, 'pgm')));
+      const gpSibsM = uftNotCorePeople(d, uftSiblingsOf(d, 'mgf').concat(uftSiblingsOf(d, 'mgm')));
+
+      const paternalKids = uftUniquePeople([{ name: d.father || '', relation: 'Father' }].concat(pUncles).filter(function (x) { return x.name; }));
+      const maternalKids = uftUniquePeople([{ name: d.mother || '', relation: 'Mother' }].concat(mUncles).filter(function (x) { return x.name; }));
+
+      const lineSkip = {};
+      [d.self, d.spouse, d.father, d.mother, d.pgf, d.pgm, d.mgf, d.mgm].concat(uftLines(d.g1), uftLines(d.g2), uftLines(d.g3)).forEach(function (n) {
+        if (n) lineSkip[uftNorm(n)] = 'line';
+      });
+      function notOnBackbone(items) {
+        return (items || []).filter(function (it) {
+          if (!it || !it.name) return false;
+          return lineSkip[uftNorm(it.name)] !== 'line' || it.relation && String(it.relation).indexOf('Sibling') === 0;
+        });
+      }
+      const olderG1 = notOnBackbone(g1).length ? cluster('3rd great-grandparents (G1) — others', peopleHtml(notOnBackbone(g1), '3rd-great-grandparent'), '', 'Names already on the descendant line are not repeated here.') : '';
+      const olderG2 = notOnBackbone(g2).length ? cluster('2nd great-grandparents (G2) — others', peopleHtml(notOnBackbone(g2), '2nd-great-grandparent'), '', 'Karam Din stays on the descendant line above; this row is extra people of that generation.') : '';
+            const g3Peers = [];
+      g3.forEach(function (p) {
+        uftPeersOf(d, p.name).forEach(function (s) {
+          g3Peers.push({ name: s.name, relation: 'Sibling of ' + p.name, slot: uftNameKey(s.name) });
+        });
+      });
+      const g3Row = notOnBackbone(g3.concat(g3Peers));
+      const olderG3 = g3Row.length ? cluster('Great-grandparents (G3) — siblings & extras', peopleHtml(g3Row, 'Great-grandparent'), '', 'Direct line names stay on the backbone; this row is brothers, sisters and others of that generation.') : '';
+      const olderCount = g1.length + g2.length + g3.length;
+
+      const sharedPat = [d.pgf, d.pgm].filter(function (n) { return uftCrossMarriageNote(d, n); });
+      const sharedMat = [d.mgf, d.mgm].filter(function (n) { return uftCrossMarriageNote(d, n); });
+      let gpUnits = cluster('Paternal grandparents',
+          personCard(d.pgf, "Father's father", 'male', '', 'pgf') + personCard(d.pgm, "Father's mother", 'female', '', 'pgm'),
+          peopleHtml(paternalKids),
+          (sharedPat.length ? sharedPat.map(function (n) { return uftCrossMarriageNote(d, n); }).join(' ') + ' ' : '') +
+          (pUncles.length ? 'Their children: your father and paternal uncles/aunts.' : 'Add father’s siblings to extend this house.')) +
+        cluster('Maternal grandparents',
+          personCard(d.mgf, "Mother's father", 'male', '', 'mgf') + personCard(d.mgm, "Mother's mother", 'female', '', 'mgm'),
+          peopleHtml(maternalKids),
+          (sharedMat.length ? sharedMat.map(function (n) { return uftCrossMarriageNote(d, n); }).join(' ') + ' ' : '') +
+          (mUncles.length ? 'Their children: your mother and maternal uncles/aunts.' : 'Add mother’s siblings to extend this house.'));
+      gpSibsP.forEach(function (u) {
+        const ck = uftKidsOf(d, uftNameKey(u.name));
+        gpUnits += cluster(u.name + ' · paternal great-uncle/aunt',
+          personCard(u.name, 'Paternal great-uncle/aunt') + peopleHtml(uftSpouseOf(d, uftNameKey(u.name)), 'Spouse'),
+          peopleHtml(ck, '1st cousin once removed'));
+      });
+      gpSibsM.forEach(function (u) {
+        const ck = uftKidsOf(d, uftNameKey(u.name));
+        gpUnits += cluster(u.name + ' · maternal great-uncle/aunt',
+          personCard(u.name, 'Maternal great-uncle/aunt') + peopleHtml(uftSpouseOf(d, uftNameKey(u.name)), 'Spouse'),
+          peopleHtml(ck, '1st cousin once removed'));
+      });
+
+      let parentUnits = cluster('Your parents',
+          personCard(d.father, d.fatherY || 'Father', 'male', '', 'father') + personCard(d.mother, d.motherY || 'Mother', 'female', '', 'mother'),
+          peopleHtml([{ name: d.self || '', relation: 'You' }].concat(uftBloodSiblings(d))),
+          'You and your brothers/sisters only. Uncles have their own houses next to this couple.',
+          true);
+      pUncles.forEach(function (u) {
+        const ck = uftKidsOf(d, uftNameKey(u.name));
+        parentUnits += cluster(u.name + ' · paternal',
+          personCard(u.name, 'Paternal uncle/aunt') + peopleHtml(uftSpouseOf(d, uftNameKey(u.name)), 'Spouse'),
+          peopleHtml(ck, 'Cousin') || '<span class="uft-link-note">Add their children — they become your cousins</span>',
+          ck.length ? 'Cousins live in this house.' : '');
+      });
+      mUncles.forEach(function (u) {
+        const ck = uftKidsOf(d, uftNameKey(u.name));
+        parentUnits += cluster(u.name + ' · maternal',
+          personCard(u.name, 'Maternal uncle/aunt') + peopleHtml(uftSpouseOf(d, uftNameKey(u.name)), 'Spouse'),
+          peopleHtml(ck, 'Cousin') || '<span class="uft-link-note">Add their children — they become your cousins</span>',
+          ck.length ? 'Cousins live in this house.' : '');
+      });
+
+      const cousins = [];
+      pUncles.concat(mUncles).forEach(function (u) {
+        uftKidsOf(d, uftNameKey(u.name)).forEach(function (c) {
+          if (uftSame(c.name, d.self) || uftSame(c.name, d.spouse) || uftIsBloodUncle(d, c.name)) return;
+          cousins.push(c);
+        });
+      });
+      const bloodSibs = uftBloodSiblings(d);
+      const inLaws = uftInLawPeople(d);
+      let youGen = cluster('Your blood generation',
+        personCard(d.self, d.selfNote || 'You · focus', 'focus', 'focus'),
+        peopleHtml(bloodSibs, 'Sibling') + peopleHtml(cousins, 'Cousin'),
+        (bloodSibs.length || cousins.length) ? 'Your siblings and cousins only — not your spouse’s household.' : 'Add your siblings here. Uncles stay under your parents.');
+      youGen += cluster("Spouse's family",
+        personCard(d.spouse, d.spouse ? 'Spouse' : 'Spouse (not entered)', ''),
+        peopleHtml(inLaws, 'In-law'),
+        d.spouse
+          ? (inLaws.length ? 'Only people attached to your spouse.' : 'Attach in-laws to your spouse. Your uncles stay on your side.')
+          : 'Enter a spouse, then attach their relatives to them. Your uncles are not copied here.');
+
+      let descUnits = cluster('Your household',
+        personCard(d.self, 'You', 'focus', 'focus') + personCard(d.spouse, 'Spouse', '', '', 'spouse'),
+        peopleHtml(myKids, 'Child'),
+        myKids.length ? 'Offspring of your line.' : 'Add children to open the next generation.');
+      const usedGrands = {};
+      myKids.forEach(function (c) {
+        const ck = uftKidsOf(d, uftNameKey(c.name));
+        ck.forEach(function (g) { usedGrands[uftNorm(g.name)] = true; });
+        descUnits += cluster(c.name + ' · your child',
+          personCard(c.name, 'Child') + peopleHtml(uftSpouseOf(d, uftNameKey(c.name)), 'Spouse'),
+          peopleHtml(ck, 'Grandchild') || '',
+          ck.length ? 'Grandchildren under this child.' : 'Add this child’s offspring.');
+      });
+      const looseGrands = myGrands.filter(function (g) { return !usedGrands[uftNorm(g.name)]; });
+      if (looseGrands.length) {
+        descUnits += cluster('Grandchildren', '', peopleHtml(looseGrands, 'Grandchild'), myKids.length ? 'Attach each grandchild to a child to nest the branch.' : '');
+      }
+
+      const members = uftAllMembers(d);
+      const summary = '<div class="uft-window-meta">' +
+        members.length + ' unique member' + (members.length === 1 ? '' : 's') +
+        ' · oldest generation first · tap status on a card' +
+        '</div>';
+      const lineNames = [];
+      g1.forEach(function (p) { if (p.name) lineNames.push(p.name); });
+      g2.forEach(function (p) { if (p.name) lineNames.push(p.name); });
+      g3.forEach(function (p) { if (p.name) lineNames.push(p.name); });
+      if (d.pgf) lineNames.push(d.pgf);
+      if (d.father) lineNames.push(d.father);
+      if (d.self) lineNames.push(d.self);
+      const lineTitle = lineNames.length
+        ? ('Descendant line: ' + lineNames.join(' → '))
+        : 'Descendant pedigree — oldest generation first, youngest last';
+
+      function lineKids(name, slot) {
+        const bag = [];
+        function push(n, sl, rel) {
+          if (!n) return;
+          if (bag.some(function (x) { return uftSame(x.name, n); })) return;
+          bag.push({ name: n, slot: sl || uftNameKey(n), relation: rel || 'Child' });
+        }
+        uftKidsOf(d, slot || uftNameKey(name)).forEach(function (k) { push(k.name, uftNameKey(k.name), 'Child'); });
+        if (name) uftKidsOf(d, uftNameKey(name)).forEach(function (k) { push(k.name, uftNameKey(k.name), 'Child'); });
+        (d.relatives || []).forEach(function (r) {
+          if (!r || !r.name) return;
+          if (r.relation !== 'child' && r.relation !== 'grandchild' && r.relation !== 'offspring') return;
+          const host = (uftCoreName(d, r.anchor) || String(r.anchor || '').replace(/^n:/, '')).trim();
+          if (uftSame(host, name) || r.anchor === slot || r.anchor === uftNameKey(name)) {
+            push(r.name, uftNameKey(r.name), r.relation === 'grandchild' ? 'Grandchild' : 'Child');
+          }
+        });
+        uftSiblingsOf(d, slot || uftNameKey(name)).forEach(function (s) { /* siblings are peers, not kids */ });
+        if (slot === 'g2' || uftLines(d.g2).some(function (n) { return uftSame(n, name); })) {
+          uftLines(d.g3).forEach(function (n) { push(n, 'g3', 'Child · next gen'); });
+          uftLines(d.g3).forEach(function (heir) {
+            uftPeersOf(d, heir).forEach(function (s) {
+              push(s.name, uftNameKey(s.name), 'Sibling of ' + heir);
+            });
+          });
+        }
+        if (slot === 'g3' || uftLines(d.g3).some(function (n) { return uftSame(n, name); })) {
+          if (d.pgf) push(d.pgf, 'pgf', 'Child');
+          uftSiblingsOf(d, 'pgf').forEach(function (s) { push(s.name, uftNameKey(s.name), 'Sibling of ' + (d.pgf || 'grandfather')); });
+        }
+        if (slot === 'pgf' || uftSame(name, d.pgf)) {
+          if (d.father) push(d.father, 'father', 'Child');
+          uftSiblingsOf(d, 'father').forEach(function (s) { push(s.name, uftNameKey(s.name), 'Sibling of ' + (d.father || 'father')); });
+        }
+        if (slot === 'father' || uftSame(name, d.father)) {
+          if (d.self) push(d.self, 'self', 'Child');
+          uftLines(d.siblings).forEach(function (n) { push(n, uftNameKey(n), 'Sibling'); });
+          uftSiblingsOf(d, 'self').forEach(function (s) { push(s.name, uftNameKey(s.name), 'Sibling'); });
+        }
+        if (slot === 'self' || uftSame(name, d.self)) {
+          uftLines(d.children).forEach(function (n) { push(n, uftNameKey(n), 'Child'); });
+          uftSiblingsOf(d, 'self').filter(function () { return false; });
+          uftKidsOf(d, 'self').forEach(function (k) { push(k.name, uftNameKey(k.name), 'Child'); });
+        }
+        bag.slice().forEach(function (child) {
+          uftPeersOf(d, child.name).forEach(function (s) {
+            push(s.name, uftNameKey(s.name), 'Sibling of ' + child.name);
+          });
+        });
+        return bag;
+      }
+      function cardWithSpouse(person, depth) {
+        if (!person || !person.name) return '';
+        let html = '<div class="uft-dlimb"><div class="uft-dcouple">';
+        html += personCard(person.name, person.relation || '', '', depth === 0 || uftSame(person.name, d.self) ? 'focus' : 'rel', person.slot);
+        try {
+          let spouses = uftSpouseOf(d, person.slot || uftNameKey(person.name)) || [];
+          spouses = spouses.concat(uftSpouseOf(d, uftNameKey(person.name)) || []);
+          (d.relatives || []).forEach(function (r) {
+            if (!r || r.relation !== 'spouse') return;
+            const host = (uftCoreName(d, r.anchor) || String(r.anchor || '').replace(/^n:/, '')).trim();
+            if (uftSame(host, person.name)) spouses.push({ name: r.name });
+            if (uftSame(r.name, person.name) && host) spouses.push({ name: host });
+          });
+          uftUniquePeople(spouses).forEach(function (sp) {
+            if (sp && sp.name && !uftSame(sp.name, person.name)) {
+              html += personCard(sp.name, 'Spouse', '', 'rel', uftNameKey(sp.name), person.slot || uftNameKey(person.name) || person.name);
+            }
+          });
+        } catch (e) {}
+        html += '</div></div>';
+        return html;
+      }
+      const rootName = (g2[0] && g2[0].name) || (g1[0] && g1[0].name) || (g3[0] && g3[0].name) || d.pgf || d.father || d.self || '';
+      const rootSlot = (g2[0] && g2[0].name) ? 'g2' : (g1[0] && g1[0].name) ? 'g1' : (g3[0] && g3[0].name) ? 'g3' : d.pgf ? 'pgf' : d.father ? 'father' : 'self';
+      function yearOf(p) {
+        const y = parseInt(uftBornOf(p && p.name, p && p.slot), 10);
+        return isFinite(y) ? y : 0;
+      }
+      function sortByYear(list) {
+        return (list || []).slice().sort(function (a, b) {
+          const ya = yearOf(a), yb = yearOf(b);
+          if (ya && yb && ya !== yb) return ya - yb;
+          if (ya && !yb) return -1;
+          if (!ya && yb) return 1;
+          return String(a.name || '').localeCompare(String(b.name || ''));
+        });
+      }
+      const seenTree = {};
+      function drawVNode(person, depth) {
+        if (!person || !person.name || depth > 8) return '';
+        const key = uftNorm(person.name);
+        if (key && seenTree[key]) return '';
+        if (key) seenTree[key] = true;
+        let kids = [];
+        try { kids = sortByYear(uftLineKids(d, person.name, person.slot) || []); } catch (e) { kids = []; }
+        kids = kids.filter(function (k) { return k && k.name && !seenTree[uftNorm(k.name)]; });
+        // Siblings without children: vertical under parent.
+        // Those who have their own offspring: horizontal peer row (with their subtrees).
+        let html = '<li>';
+        html += cardWithSpouse(person, depth);
+        if (kids.length) {
+          // One peer row for all offspring so new children join existing siblings
+          html += '<ul class="uft-vpeers">';
+          kids.forEach(function (k) { html += drawVNode(k, depth + 1); });
+          html += '</ul>';
+        }
+        html += '</li>';
+        return html;
+      }
+      let vtree = '';
+      if (rootName) {
+        vtree = '<ul class="uft-vtree">' + drawVNode({ name: rootName, slot: rootSlot, relation: 'Root' }, 0) + '</ul>';
+      }
+      const dtree = rootName ? ('<div class="uft-dtree"><div class="uft-dlabel">Family tree from ' + uftEsc(rootName) + ' down to ' + uftEsc(d.self || 'you') + '</div>' + vtree + '</div>') : '';
+      const backbone = '<div class="uft-window-meta" style="font-weight:700;">' + uftEsc(lineTitle) + '</div><div class="uft-backbone">' +
+        (g1.length ? '<div class="uft-col"><div class="uft-col-label">Oldest · G1</div>' + peopleHtml(g1, '3rd-great-grandparent') + '</div><div class="uft-connector"></div>' : '') +
+        (g2.length ? '<div class="uft-col"><div class="uft-col-label">G2 · Karam Din gen</div>' + peopleHtml(g2, '2nd-great-grandparent') + '</div><div class="uft-connector"></div>' : '') +
+        (g3.length ? '<div class="uft-col"><div class="uft-col-label">G3 · next</div>' + peopleHtml(g3, 'Great-grandparent') + '</div><div class="uft-connector"></div>' : '') +
+        '<div class="uft-col"><div class="uft-col-label">Paternal GP</div>' + personCard(d.pgf, "Father's father", 'male', '', 'pgf') + personCard(d.pgm, "Father's mother", 'female', '', 'pgm') + '</div>' +
+        '<div class="uft-connector"></div>' +
+        '<div class="uft-col"><div class="uft-col-label">Maternal GP</div>' + personCard(d.mgf, "Mother's father", 'male', '', 'mgf') + personCard(d.mgm, "Mother's mother", 'female', '', 'mgm') + '</div>' +
+        '<div class="uft-connector"></div>' +
+        '<div class="uft-col"><div class="uft-col-label">Parents</div>' + personCard(d.father, d.fatherY || 'Father', 'male', '', 'father') + personCard(d.mother, d.motherY || 'Mother', 'female', '', 'mother') + '</div>' +
+        '<div class="uft-connector"></div>' +
+        '<div class="uft-col"><div class="uft-col-label">Youngest · You</div>' + personCard(d.self, d.selfNote || 'You', 'focus', 'focus', 'self') + personCard(d.spouse, 'Spouse', '', '', 'spouse') + '</div>' +
+        '</div>';
+
+      function gpsWhoHaveParent(hostId, hostName) {
+        const found = [];
+        ['pgf', 'pgm', 'mgf', 'mgm'].forEach(function (gid) {
+          const gname = uftCoreName(d, gid);
+          if (!gname) return;
+          const parents = uftParentsOf(d, gid);
+          if (parents.some(function (p) { return p.id === hostId || uftSame(p.name, hostName); })) {
+            found.push({ id: gid, name: gname });
+          }
+        });
+        return uftUniquePeople(found);
+      }
+      function hostSiblings(hostId, hostName) {
+        let sibs = uftSiblingsOf(d, hostId);
+        if (hostName) sibs = sibs.concat(uftSiblingsOf(d, uftNameKey(hostName)));
+        return uftNotCorePeople(d, uftUniquePeople(sibs));
+      }
+      const placed = {};
+      const extBuckets = { g1: '', g2: '', g3: '', gp: '', parents: '', you: '', desc: '' };
+      const extCounts = { g1: 0, g2: 0, g3: 0, gp: 0, parents: 0, you: 0, desc: 0 };
+      function hostBucket(hostId, hostName) {
+        if (hostId === 'self' || hostId === 'spouse' || uftSame(hostName, d.self) || uftSame(hostName, d.spouse)) return 'you';
+        if (hostId === 'father' || hostId === 'mother' || uftSame(hostName, d.father) || uftSame(hostName, d.mother)) return 'parents';
+        if (hostId === 'pgf' || hostId === 'pgm' || hostId === 'mgf' || hostId === 'mgm') return 'gp';
+        if (uftSame(hostName, d.pgf) || uftSame(hostName, d.pgm) || uftSame(hostName, d.mgf) || uftSame(hostName, d.mgm)) return 'gp';
+        if (uftLines(d.children).some(function (n) { return uftSame(n, hostName); })) return 'desc';
+        if (uftLines(d.g1).some(function (n) { return uftSame(n, hostName); })) return 'g1';
+        if (uftLines(d.g2).some(function (n) { return uftSame(n, hostName); })) return 'g2';
+        if (uftLines(d.g3).some(function (n) { return uftSame(n, hostName); })) return 'g3';
+        return 'gp';
+      }
+      function placeHouse(personName, title, meta, note, bucket) {
+        const key = uftNorm(personName);
+        if (!key || placed[key]) return;
+        placed[key] = true;
+        const ck = uftKidsOf(d, uftNameKey(personName));
+        const sp = uftSpouseOf(d, uftNameKey(personName));
+        const b = bucket || 'gp';
+        extBuckets[b] += cluster(title,
+          personCard(personName, meta, '', 'rel', bucket || 'rel') + peopleHtml(sp, 'Spouse', bucket || 'rel'),
+          peopleHtml(ck, 'Their children') || '<span class="uft-link-note">Add their spouse and children</span>',
+          note);
+        extCounts[b]++;
+      }
+      function considerHost(hostId, hostName) {
+        const label = hostName || uftCoreName(d, hostId) || String(hostId).replace(/^n:/, '');
+        if (!label) return;
+        const sibs = hostSiblings(hostId, hostName);
+        const gpKids = gpsWhoHaveParent(hostId, label);
+        sibs.forEach(function (s) {
+          if (gpKids.length) {
+            const names = gpKids.map(function (g) { return g.name; }).join(', ');
+            placeHouse(s.name, s.name + ' · uncle/aunt of ' + names,
+              'Uncle/aunt of ' + names,
+              'Sibling of ' + label + ', so uncle/aunt of ' + names + ' only.',
+              hostBucket(hostId, label));
+          } else {
+            placeHouse(s.name, s.name + ' · sibling of ' + label,
+              'Sibling of ' + label,
+              'Family of ' + label + '.',
+              hostBucket(hostId, label));
+          }
+        });
+      }
+      considerHost('pgf', d.pgf);
+      considerHost('pgm', d.pgm);
+      considerHost('mgf', d.mgf);
+      considerHost('mgm', d.mgm);
+      uftLines(d.g3).concat(uftLines(d.g2)).concat(uftLines(d.g1)).forEach(function (anc) {
+        considerHost(uftNameKey(anc), anc);
+      });
+      (d.relatives || []).forEach(function (r) {
+        if (!r || r.relation !== 'sibling') return;
+        const hostName = uftCoreName(d, r.anchor) || String(r.anchor || '').replace(/^n:/, '');
+        considerHost(r.anchor, hostName);
+      });
+      const extCount = extCounts.g1 + extCounts.g2 + extCounts.g3 + extCounts.gp + extCounts.parents + extCounts.you + extCounts.desc;
+      if (!extCount) {
+        extBuckets.gp = cluster('Uncles of one grandparent', '', '',
+          'Attach an uncle as Sibling of that grandparent or of that grandparent’s parent. Each generation has its own window.');
+      }
+
+      // Clean view: main pedigree only (descendant tree + backbone). Extended gen-card bands removed.
+      return '<div class="uft-window">' + summary + dtree + backbone + '</div>';
+    }
+    function uftToggleBand(id) {
+      const key = 'clarity_uft_band_' + id;
+      const section = document.querySelector('#uft-preview .uft-band[data-band="' + id + '"]');
+      const currentlyOpen = section ? !section.classList.contains('collapsed') : (clarityLS.getItem(key) === 'on');
+      const nextOpen = !currentlyOpen;
+      try { clarityLS.setItem(key, nextOpen ? 'on' : 'off'); } catch (e) {}
+      if (section) {
+        // Toggle in place — do not re-render the whole pedigree (avoids scroll jump)
+        section.classList.toggle('collapsed', !nextOpen);
+        const cnt = section.querySelector('.uft-band-count');
+        if (cnt) {
+          const n = (cnt.textContent || '').replace(/\s*[·•].*$/, '').trim();
+          cnt.textContent = n + ' · ' + (nextOpen ? '▾' : '▸');
+        }
+        return;
+      }
+      uftRender({ keepScroll: true });
+    }
+    function uftGroupHtml(d) {
+      function rows(title, items) {
+        if (!items.length) return '';
+        return '<div class="uft-group-block"><h4>' + title + '</h4>' + items.join('') + '</div>';
+      }
+      return '<div class="uft-group-sheet">' +
+        rows('Family group — focus', [
+          uftPerson(d.self || '', d.selfNote || 'Focus person', 'focus', 'focus'),
+          uftPerson(d.spouse || '', 'Spouse', '')
+        ].filter(function (x) { return x; })) +
+        rows('Parents', [
+          uftPerson(d.father || '', d.fatherY || 'Father', 'male'),
+          uftPerson(d.mother || '', d.motherY || 'Mother', 'female')
+        ]) +
+        rows('Paternal grandparents', [
+          uftPerson(d.pgf || '', "Father's father", 'male'),
+          uftPerson(d.pgm || '', "Father's mother", 'female')
+        ]) +
+        rows('Maternal grandparents', [
+          uftPerson(d.mgf || '', "Mother's father", 'male'),
+          uftPerson(d.mgm || '', "Mother's mother", 'female')
+        ]) +
+        rows('Great-grandparents', uftLines(d.g3).map(function (n) { return uftPerson(n, 'G3'); })) +
+        rows('2nd-great-grandparents', uftLines(d.g2).map(function (n) { return uftPerson(n, 'G2'); })) +
+        rows('3rd-great-grandparents', uftLines(d.g1).map(function (n) { return uftPerson(n, 'G1'); })) +
+        rows('Siblings', uftUniquePeople(uftSiblingsOf(d, 'self').concat(uftLines(d.siblings).map(function (n) { return { name: n }; }))).map(function (n) { return uftPerson(n.name || n, 'Sibling'); })) +
+        rows('Children', uftUniquePeople(uftKidsOf(d, 'self')).map(function (n) { return uftPerson(n.name, 'Child'); })) +
+        rows('Grandchildren', uftLines(d.grandchildren).map(function (n) { return uftPerson(n, 'Grandchild'); })) +
+        rows('Paternal uncles / aunts', uftSiblingsOf(d, 'father').map(function (r) { return uftPerson(r.name, 'Paternal uncle/aunt', '', 'rel'); })) +
+        rows('Maternal uncles / aunts', uftSiblingsOf(d, 'mother').map(function (r) { return uftPerson(r.name, 'Maternal uncle/aunt', '', 'rel'); })) +
+        rows("Uncles/aunts of father's father", uftUnclesOf(d, 'pgf').map(function (r) { return uftPerson(r.name, 'Uncle/aunt of ' + (d.pgf || "father's father"), '', 'rel'); })) +
+        rows("Uncles/aunts of father's mother", uftUnclesOf(d, 'pgm').map(function (r) { return uftPerson(r.name, 'Uncle/aunt of ' + (d.pgm || "father's mother"), '', 'rel'); })) +
+        rows("Uncles/aunts of mother's father", uftUnclesOf(d, 'mgf').map(function (r) { return uftPerson(r.name, 'Uncle/aunt of ' + (d.mgf || "mother's father"), '', 'rel'); })) +
+        rows("Uncles/aunts of mother's mother", uftUnclesOf(d, 'mgm').map(function (r) { return uftPerson(r.name, 'Uncle/aunt of ' + (d.mgm || "mother's mother"), '', 'rel'); })) +
+        rows('Added relations', (d.relatives || []).map(function (r) {
+          return uftPerson(r.name, uftRoleToYou(d, r.name, uftAnchorLabel(r.anchor) + ' → ' + uftRelLabel(r.relation)), '', 'rel');
+        })) +
+        '</div>';
+    }
+    function uftListHtml(d) {
+      let html = '';
+      function block(title, lines, meta) {
+        if (!lines.length) return;
+        html += '<div class="uft-meta">' + title + '</div>' + lines.map(function (n) { return uftCard(n, meta); }).join('');
+      }
+      block('G1 · 3rd-great-grandparents', uftLines(d.g1));
+      block('G2 · 2nd-great-grandparents', uftLines(d.g2));
+      block('G3 · Great-grandparents', uftLines(d.g3));
+      const gp = [d.pgf && ("Father's father: " + d.pgf), d.pgm && ("Father's mother: " + d.pgm), d.mgf && ("Mother's father: " + d.mgf), d.mgm && ("Mother's mother: " + d.mgm)].filter(Boolean);
+      if (gp.length) html += '<div class="uft-meta">Grandparents</div>' + gp.map(function (g) { return uftCard(g, ''); }).join('');
+      html += uftCard(d.father, d.fatherY || 'Father') + uftCard(d.mother, d.motherY || 'Mother');
+      html += uftCard(d.self || '', d.selfNote || 'You', 'uft-self');
+      html += uftCard(d.spouse, 'Spouse');
+      block('Siblings', uftLines(d.siblings), 'Sibling');
+      block('Children', uftLines(d.children), 'Child');
+      block('Grandchildren', uftLines(d.grandchildren), 'Grandchild');
+      const extra = (d.relatives || []).map(function (r) {
+        return (r.name || '') + ' (' + uftAnchorLabel(r.anchor) + ' → ' + uftRelLabel(r.relation) + ')';
+      }).filter(Boolean);
+      block('Added relations', extra);
+      return html;
+    }
+    function uftRender(opts) {
+      const root = document.getElementById('uft-preview');
+      if (!root) return;
+      const keep = opts && opts.keepScroll;
+      const wx = window.scrollX || 0, wy = window.scrollY || window.pageYOffset || 0;
+      const winEl = document.querySelector('#uft-preview .uft-window');
+      const sl = winEl ? winEl.scrollLeft : 0, st = winEl ? winEl.scrollTop : 0;
+      const bandPos = {};
+      document.querySelectorAll('#uft-preview .uft-band-scroll, #uft-preview .uft-backbone').forEach(function (el, i) {
+        const id = el.closest('[data-band]') ? el.closest('[data-band]').getAttribute('data-band') : ('x' + i);
+        bandPos[id] = { l: el.scrollLeft, t: el.scrollTop };
+      });
+      const d = uftCollect();
+      uftVitalMap = (d && d.vital) || {};
+      uftGenderMap = (d && d.gender) || {};
+      uftBornMap = (d && d.born) || {};
+      try { uftDrawTree(uftGenFilled(d)); } catch (e1) {}
+      ['pedigree','group','list'].forEach(function (v) {
+        const b = document.getElementById('uft-view-' + v);
+        if (b) b.classList.toggle('active', uftView === v);
+      });
+      let html = '';
+      try {
+        // Categories / group / list views removed — single pedigree workspace
+        if (false && uftView === 'group') html = uftGroupHtml(d);
+        else if (false && uftView === 'list') html = uftListHtml(d);
+        else html = uftPedigreeHtml(d);
+      } catch (err) {
+        html = '<p class="uft-empty">Pedigree could not draw (' + uftEsc(err && err.message ? err.message : err) + '). Use Family group or List, or tap Refresh.</p>';
+      }
+      uftEnsureZoomLayer(html || '<p class="uft-empty">Pedigree template ready. Fill names above; empty slots stay as Unknown like an Ancestry chart.</p>');
+      try { uftZoomInit(); } catch (eZ) {}
+      if (typeof uftRefreshVitalWho === 'function') uftRefreshVitalWho();
+      if (typeof uftRegRender === 'function') {
+        try {
+          const _d = uftRead();
+          if (!_d.registry || !_d.registry.length) uftRegImportTree();
+          else uftRegRender();
+        } catch (er) { uftRegRender(); }
+      }
+      if (typeof uftFillNameChoices === 'function') uftFillNameChoices();
+      if (!root.dataset.vitalBound) {
+        root.dataset.vitalBound = '1';
+        root.addEventListener('click', function (ev) {
+          const btn = ev.target && ev.target.closest ? ev.target.closest('[data-vital-name], [data-gender-name], [data-del-name], [data-born-name], [data-focus-name], [data-own-name]') : null;
+          if (!btn) return;
+          ev.preventDefault();
+          ev.stopPropagation();
+          if (btn.hasAttribute('data-del-name')) {
+            uftDeletePerson(btn.getAttribute('data-del-name'), btn.getAttribute('data-del-slot') || '', btn.getAttribute('data-del-anchor') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-born-name')) {
+            uftAskBorn(btn.getAttribute('data-born-name'), btn.getAttribute('data-born-slot') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-own-name')) {
+            uftStartOwnTree(btn.getAttribute('data-own-name'), btn.getAttribute('data-own-slot') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-focus-name')) {
+            uftOpenMemberView(btn.getAttribute('data-focus-name'), btn.getAttribute('data-focus-slot') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-gender-name')) {
+            uftCycleGender(btn.getAttribute('data-gender-name'), btn.getAttribute('data-gender-slot') || '');
+            return;
+          }
+          uftCycleVital(btn.getAttribute('data-vital-name'), btn.getAttribute('data-vital-slot') || '');
+        });
+      }
+      if (keep) {
+        window.scrollTo(wx, wy);
+        const win2 = document.querySelector('#uft-preview .uft-window');
+        if (win2) { win2.scrollLeft = sl; win2.scrollTop = st; }
+        document.querySelectorAll('#uft-preview .uft-band-scroll, #uft-preview .uft-backbone').forEach(function (el, i) {
+          const id = el.closest('[data-band]') ? el.closest('[data-band]').getAttribute('data-band') : ('x' + i);
+          if (bandPos[id]) { el.scrollLeft = bandPos[id].l; el.scrollTop = bandPos[id].t; }
+        });
+      }
+      try { if (typeof uftRenderOwnTreePanel === 'function') uftRenderOwnTreePanel(); } catch (eOwn) {}
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      const pm = document.getElementById('uft-pick-modal');
+      if (pm && !pm.dataset.bound) {
+        pm.dataset.bound = '1';
+        pm.addEventListener('click', function (e) {
+          if (e.target === pm) uftClosePersonPicker();
+        });
+      }
+      uftLoad();
+      try { uftCollapseEditor(); } catch (e) {}
+      const wrap = document.getElementById('uft-stage');
+      if (wrap && !wrap.dataset.bound) {
+        wrap.dataset.bound = '1';
+        wrap.addEventListener('input', function () { uftRender(); uftScheduleSave(); });
+      }
+    });
+    setTimeout(uftLoad, 400);
+
+    // ========== Farāʾiḍ (educational inheritance from family tree) ==========
+    function faraidAllTreePeople() {
+      const d = (typeof uftCollect === 'function') ? uftCollect() : {};
+      const list = [];
+      const seen = {};
+      function add(name, role, genderHint) {
+        const n = String(name || '').trim();
+        if (!n) return;
+        const k = (typeof uftNorm === 'function') ? uftNorm(n) : n.toLowerCase();
+        if (seen[k]) return;
+        seen[k] = true;
+        let g = genderHint || '';
+        try {
+          if (typeof uftGenderOf === 'function') {
+            const gg = uftGenderOf(n, role || '');
+            if (gg === 'male' || gg === 'female') g = gg;
+          } else if (d.gender) {
+            const key = (role ? role + '|' : '') + k;
+            g = d.gender[key] || d.gender[k] || g;
+          }
+        } catch (e) {}
+        if (!g && /mother|wife|daughter|niece|aunt|female|pgm|mgm/i.test(String(role || ''))) g = 'female';
+        if (!g && /father|husband|son|nephew|uncle|male|pgf|mgf/i.test(String(role || ''))) g = 'male';
+        list.push({ name: n, role: role || '', gender: g || '' });
+      }
+      add(d.self, 'self', 'male');
+      add(d.spouse, 'spouse', 'female');
+      add(d.father, 'father', 'male');
+      add(d.mother, 'mother', 'female');
+      add(d.pgf, 'pgf', 'male');
+      add(d.pgm, 'pgm', 'female');
+      add(d.mgf, 'mgf', 'male');
+      add(d.mgm, 'mgm', 'female');
+      (typeof uftLines === 'function' ? uftLines(d.siblings) : String(d.siblings || '').split(/\n/)).forEach(function (n) { add(n, 'sibling'); });
+      (typeof uftLines === 'function' ? uftLines(d.children) : String(d.children || '').split(/\n/)).forEach(function (n) { add(n, 'child'); });
+      (typeof uftLines === 'function' ? uftLines(d.grandchildren) : String(d.grandchildren || '').split(/\n/)).forEach(function (n) { add(n, 'grandchild'); });
+      (typeof uftLines === 'function' ? uftLines(d.g1) : []).forEach(function (n) { add(n, 'g1'); });
+      (typeof uftLines === 'function' ? uftLines(d.g2) : []).forEach(function (n) { add(n, 'g2'); });
+      (typeof uftLines === 'function' ? uftLines(d.g3) : []).forEach(function (n) { add(n, 'g3'); });
+      (d.relatives || []).forEach(function (r) {
+        if (r && r.name) add(r.name, r.relation || 'relative');
+      });
+      (d.registry || []).forEach(function (r) {
+        if (r && r.name) add(r.name, r.role || 'registry');
+      });
+      return list;
+    }
+
+    // ========== Wasiyyah (Islamic will) educational tool ==========
+    var WASI_KEY = 'clarity_wasiyyah_draft_v1';
+    var wasiCountryNotes = {
+      PK: 'Pakistan: Muslim personal law and farāʾiḍ are widely applied for Muslim estates. Register/witness a written will; local counsel helps with property mutation and bank release.',
+      IN: 'India: Muslims may follow Muslim personal law for inheritance. A written will should still meet Indian Succession formalities for smooth probate of assets.',
+      BD: 'Bangladesh: Muslim family law governs Muslim inheritance. Document wasiyyah clearly; civil procedures still apply for property transfer.',
+      MY: 'Malaysia: Muslims use Sharīʿah courts for inheritance. Wasiat may be registered (e.g. Amanah Raya / state channels). Farāʾiḍ applies; wasiat ≤ ⅓ to non-heirs.',
+      ID: 'Indonesia: Islamic courts handle Muslim inheritance alongside Kompilasi Hukum Islam. Formal documentation and local notary practice matter for assets.',
+      AE: 'UAE: Personal status law for Muslims includes wasiyyah rules; notarise/register through competent judicial channels in the relevant emirate.',
+      SA: 'Saudi Arabia: Sharīʿah governs inheritance. Wasiyyah should respect the one-third limit and heir rules; local court procedures apply.',
+      EG: 'Egypt: Personal status and inheritance rules for Muslims include wasiyyah limits; official documentation supports enforcement.',
+      TR: 'Türkiye: Civil inheritance code applies by default. Muslims often still plan farāʾiḍ-compliant distributions via wills that satisfy Turkish formalities.',
+      NG: 'Nigeria: Practice varies by state (customary, Sharīʿah, or common law). Document wasiyyah and use counsel familiar with your state.',
+      ZA: 'South Africa: Freedom of testation under civil law — draft a valid civil will that instructs Islamic distribution so farāʾiḍ intent is enforceable.',
+      GB: 'United Kingdom: Use a valid English/Scottish will. Without one, intestacy ignores farāʾiḍ. Many Muslims use wills that set out Sharīʿah shares.',
+      US: 'United States: State probate law controls. A valid state will (witnesses/notary as required) is needed so distribution can follow farāʾiḍ + wasiyyah intent.',
+      CA: 'Canada: Provincial wills formalities apply. Draft a compliant provincial will expressing Islamic distribution.',
+      AU: 'Australia: State/territory wills formalities apply. Templates (e.g. community orgs) still need correct witnessing for validity.',
+      OTHER: 'Wherever you live: (1) satisfy local will formalities so courts enforce your document; (2) keep wasiyyah within fiqh limits (≤ ⅓, non-heirs); (3) consult a scholar and a local solicitor.'
+    };
+    function wasiNum(id) {
+      const v = parseFloat((document.getElementById(id) || {}).value || '0');
+      return isFinite(v) && v > 0 ? v : 0;
+    }
+    function wasiNet() {
+      const assets = wasiNum('wasi-assets');
+      const funeral = wasiNum('wasi-funeral');
+      const debts = wasiNum('wasi-debts');
+      const net = Math.max(0, assets - funeral - debts);
+      return { assets: assets, funeral: funeral, debts: debts, net: net, maxW: net / 3 };
+    }
+    function wasiRefreshNet() {
+      const n = wasiNet();
+      const cur = ((document.getElementById('wasi-currency') || {}).value || '').trim();
+      const unit = cur ? (' ' + cur) : '';
+      const el = document.getElementById('wasi-net-line');
+      if (el) {
+        el.textContent = 'Net after funeral & debts: ' + (n.net ? n.net.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—') + unit +
+          ' · Max wasiyyah (⅓): ' + (n.net ? n.maxW.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—') + unit;
+      }
+      wasiRefreshBequestStatus();
+    }
+    function wasiOnCountry() {
+      const code = ((document.getElementById('wasi-country') || {}).value || '');
+      const note = document.getElementById('wasi-jurisdiction-note');
+      if (note) note.textContent = wasiCountryNotes[code] || 'Choose a country to see how civil probate interacts with wasiyyah and farāʾiḍ.';
+      wasiScheduleSave();
+    }
+    function wasiTreeNames() {
+      const names = [];
+      const seen = {};
+      function push(n) {
+        n = String(n || '').trim();
+        if (!n) return;
+        const k = (typeof uftNorm === 'function') ? uftNorm(n) : n.toLowerCase();
+        if (seen[k]) return;
+        seen[k] = true;
+        names.push(n);
+      }
+      try {
+        const d = (typeof uftCollect === 'function') ? uftCollect() : {};
+        ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (s) { push(d[s]); });
+        ['g1','g2','g3','siblings','children','grandchildren'].forEach(function (f) {
+          (typeof uftLines === 'function' ? uftLines(d[f]) : []).forEach(push);
+        });
+        (d.relatives || []).forEach(function (r) { if (r && r.name) push(r.name); });
+        (d.registry || []).forEach(function (r) { if (r && r.name) push(r.name); });
+      } catch (e) {}
+      try {
+        ((typeof uftGetStoredCards === 'function') ? uftGetStoredCards() : []).forEach(function (c) {
+          if (c && c.name) push(c.name);
+        });
+      } catch (e) {}
+      names.sort(function (a, b) { return a.localeCompare(b); });
+      return names;
+    }
+    function wasiTreeOptionsHtml(selected) {
+      const names = wasiTreeNames();
+      let h = '<option value="">Pick from pedigree / cards…</option>';
+      names.forEach(function (n) {
+        const sel = selected && n === selected ? ' selected' : '';
+        h += '<option value="' + String(n).replace(/"/g, '&quot;') + '"' + sel + '>' + String(n).replace(/</g, '') + '</option>';
+      });
+      return h;
+    }
+    function wasiApplyTreePick(inputId, sel) {
+      if (!sel) return;
+      const v = sel.value || '';
+      const el = document.getElementById(inputId);
+      if (el && v) el.value = v;
+      wasiScheduleSave();
+    }
+    function wasiFillTreeSelects() {
+      const ids = ['wasi-guardian-tree','wasi-guardian2-tree','wasi-executor-tree','wasi-executor2-tree'];
+      ids.forEach(function (id) {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        const prev = sel.value;
+        sel.innerHTML = wasiTreeOptionsHtml(prev);
+        if (prev) sel.value = prev;
+      });
+      document.querySelectorAll('#wasi-bequest-list .wasi-bq-tree').forEach(function (sel) {
+        const prev = sel.value;
+        const nameInp = sel.closest('.wasi-bq-row') && sel.closest('.wasi-bq-row').querySelector('.wasi-bq-name');
+        sel.innerHTML = wasiTreeOptionsHtml(prev || (nameInp && nameInp.value) || '');
+      });
+      if (typeof uftSetStatus === 'function') uftSetStatus('Family tree names loaded into Wasiyyah pickers.');
+    }
+    function wasiPullFromFaraid() {
+      const estate = parseFloat((document.getElementById('faraid-estate') || {}).value || '0') || 0;
+      const funeral = parseFloat((document.getElementById('faraid-funeral') || {}).value || '0') || 0;
+      const debts = parseFloat((document.getElementById('faraid-debts') || {}).value || '0') || 0;
+      const wasiyyah = parseFloat((document.getElementById('faraid-wasiyyah') || {}).value || '0') || 0;
+      const currency = ((document.getElementById('faraid-currency') || {}).value || '').trim();
+      const netEl = document.getElementById('faraid-net');
+      const set = function (id, v) {
+        const el = document.getElementById(id);
+        if (el && (v || v === 0)) el.value = v;
+      };
+      if (estate) set('wasi-assets', estate);
+      set('wasi-funeral', funeral || 0);
+      set('wasi-debts', debts || 0);
+      if (currency) set('wasi-currency', currency);
+      // If faraid had a wasiyyah amount and no bequest rows filled, seed one charity line
+      wasiRefreshNet();
+      if (wasiyyah > 0) {
+        const box = document.getElementById('wasi-bequest-list');
+        const hasNamed = box && Array.prototype.some.call(box.querySelectorAll('.wasi-bq-name'), function (inp) {
+          return String(inp.value || '').trim();
+        });
+        if (!hasNamed) {
+          if (box && !box.querySelector('.wasi-bq-row')) wasiAddBequest();
+          const row = box && box.querySelector('.wasi-bq-row');
+          if (row) {
+            const nameInp = row.querySelector('.wasi-bq-name');
+            const amtInp = row.querySelector('.wasi-bq-amt');
+            if (nameInp && !nameInp.value) nameInp.value = 'Charitable causes (from Farāʾiḍ wasiyyah field)';
+            if (amtInp) amtInp.value = wasiyyah;
+          }
+        }
+      }
+      wasiRefreshBequestStatus();
+      wasiScheduleSave();
+      const msg = estate
+        ? ('Pulled Farāʾiḍ estate figures into Wasiyyah' + (netEl && netEl.value ? (' · net was ' + netEl.value) : ''))
+        : 'Farāʾiḍ calculator has no estate amount yet — enter figures there first, then pull.';
+      if (typeof uftSetStatus === 'function') uftSetStatus(msg);
+      try {
+        document.getElementById('wasi-assets').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (e) {}
+    }
+    function wasiAddBequest(data) {
+      const box = document.getElementById('wasi-bequest-list');
+      if (!box) return;
+      const row = document.createElement('div');
+      row.className = 'wasi-bq-row';
+      row.style.gridTemplateColumns = '1fr';
+      row.innerHTML =
+        '<label>From family tree / cards<select class="wasi-bq-tree">' + wasiTreeOptionsHtml(data && data.name) + '</select></label>' +
+        '<label>Beneficiary (non-heir)<input type="text" class="wasi-bq-name" placeholder="Name or charity"></label>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr auto;gap:0.35rem;align-items:end;">' +
+        '<label>Amount<input type="number" class="wasi-bq-amt" min="0" step="any" placeholder="0"></label>' +
+        '<label>% of net<input type="number" class="wasi-bq-pct" min="0" max="33.33" step="any" placeholder="optional"></label>' +
+        '<button type="button" class="btn-secondary" title="Remove">×</button></div>';
+      const btn = row.querySelector('button');
+      btn.onclick = function () { row.remove(); wasiRefreshBequestStatus(); wasiScheduleSave(); };
+      const treeSel = row.querySelector('.wasi-bq-tree');
+      treeSel.onchange = function () {
+        const v = treeSel.value || '';
+        if (v) row.querySelector('.wasi-bq-name').value = v;
+        wasiRefreshBequestStatus(); wasiScheduleSave();
+      };
+      row.querySelectorAll('input').forEach(function (inp) {
+        inp.addEventListener('input', function () { wasiRefreshBequestStatus(); wasiScheduleSave(); });
+      });
+      if (data) {
+        row.querySelector('.wasi-bq-name').value = data.name || '';
+        row.querySelector('.wasi-bq-amt').value = data.amount != null ? data.amount : '';
+        row.querySelector('.wasi-bq-pct').value = data.pct != null ? data.pct : '';
+      }
+      box.appendChild(row);
+      wasiRefreshBequestStatus();
+    }
+    function wasiCollectBequests() {
+      const rows = document.querySelectorAll('#wasi-bequest-list .wasi-bq-row');
+      const n = wasiNet();
+      const list = [];
+      rows.forEach(function (row) {
+        const name = (row.querySelector('.wasi-bq-name') || {}).value || '';
+        const amount = parseFloat((row.querySelector('.wasi-bq-amt') || {}).value || '0') || 0;
+        const pct = parseFloat((row.querySelector('.wasi-bq-pct') || {}).value || '0') || 0;
+        let resolved = amount;
+        if (!resolved && pct && n.net) resolved = n.net * (pct / 100);
+        if (String(name).trim()) list.push({ name: String(name).trim(), amount: amount, pct: pct, resolved: resolved });
+      });
+      return list;
+    }
+    function wasiRefreshBequestStatus() {
+      const n = wasiNet();
+      const list = wasiCollectBequests();
+      const sum = list.reduce(function (a, b) { return a + (b.resolved || 0); }, 0);
+      const el = document.getElementById('wasi-bequest-status');
+      if (!el) return;
+      const cur = ((document.getElementById('wasi-currency') || {}).value || '').trim();
+      const unit = cur ? (' ' + cur) : '';
+      if (!n.net) {
+        el.textContent = 'Enter assets (and costs) to check the one-third cap.';
+        el.style.color = '';
+        return;
+      }
+      const ok = sum <= n.maxW + 0.0001;
+      el.textContent = 'Bequests total: ' + sum.toLocaleString(undefined, { maximumFractionDigits: 2 }) + unit +
+        ' / max ' + n.maxW.toLocaleString(undefined, { maximumFractionDigits: 2 }) + unit +
+        (ok ? ' ✓ within one-third' : ' ✗ exceeds one-third — reduce or note heir consent after death');
+      el.style.color = ok ? '' : '#b45309';
+    }
+    function wasiCollect() {
+      return {
+        country: ((document.getElementById('wasi-country') || {}).value || ''),
+        name: ((document.getElementById('wasi-name') || {}).value || '').trim(),
+        city: ((document.getElementById('wasi-city') || {}).value || '').trim(),
+        assets: wasiNum('wasi-assets'),
+        currency: ((document.getElementById('wasi-currency') || {}).value || '').trim(),
+        funeral: wasiNum('wasi-funeral'),
+        debts: wasiNum('wasi-debts'),
+        debtsDetail: ((document.getElementById('wasi-debts-detail') || {}).value || '').trim(),
+        bequests: wasiCollectBequests(),
+        guardian: ((document.getElementById('wasi-guardian') || {}).value || '').trim(),
+        guardian2: ((document.getElementById('wasi-guardian2') || {}).value || '').trim(),
+        executor: ((document.getElementById('wasi-executor') || {}).value || '').trim(),
+        executor2: ((document.getElementById('wasi-executor2') || {}).value || '').trim(),
+        notes: ((document.getElementById('wasi-notes') || {}).value || '').trim(),
+        savedAt: new Date().toISOString()
+      };
+    }
+    function wasiApply(d) {
+      if (!d) return;
+      const set = function (id, v) { const el = document.getElementById(id); if (el) el.value = v != null ? v : ''; };
+      set('wasi-country', d.country || '');
+      set('wasi-name', d.name || '');
+      set('wasi-city', d.city || '');
+      set('wasi-assets', d.assets || '');
+      set('wasi-currency', d.currency || '');
+      set('wasi-funeral', d.funeral || '');
+      set('wasi-debts', d.debts || '');
+      set('wasi-debts-detail', d.debtsDetail || '');
+      set('wasi-guardian', d.guardian || '');
+      set('wasi-guardian2', d.guardian2 || '');
+      set('wasi-executor', d.executor || '');
+      set('wasi-executor2', d.executor2 || '');
+      set('wasi-notes', d.notes || '');
+      const box = document.getElementById('wasi-bequest-list');
+      if (box) box.innerHTML = '';
+      (d.bequests || []).forEach(function (b) { wasiAddBequest(b); });
+      if (!(d.bequests || []).length) wasiAddBequest();
+      wasiOnCountry();
+      wasiRefreshNet();
+    }
+    function wasiSave() {
+      try { clarityLS.setItem(WASI_KEY, JSON.stringify(wasiCollect())); } catch (e) {}
+      if (typeof uftSetStatus === 'function') uftSetStatus('Wasiyyah draft saved on this device.');
+      else if (typeof showToast === 'function') showToast('Wasiyyah draft saved.');
+    }
+    var wasiSaveTimer = null;
+    function wasiScheduleSave() {
+      wasiRefreshNet();
+      if (wasiSaveTimer) clearTimeout(wasiSaveTimer);
+      wasiSaveTimer = setTimeout(function () {
+        try { clarityLS.setItem(WASI_KEY, JSON.stringify(wasiCollect())); } catch (e) {}
+      }, 400);
+    }
+    function wasiLoad() {
+      try {
+        const raw = clarityLS.getItem(WASI_KEY);
+        if (raw) wasiApply(JSON.parse(raw));
+        else if (!document.querySelector('#wasi-bequest-list .wasi-bq-row')) wasiAddBequest();
+      } catch (e) {
+        if (!document.querySelector('#wasi-bequest-list .wasi-bq-row')) wasiAddBequest();
+      }
+      ['wasi-assets','wasi-funeral','wasi-debts','wasi-currency','wasi-name','wasi-city','wasi-debts-detail','wasi-guardian','wasi-guardian2','wasi-executor','wasi-executor2','wasi-notes'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el && !el.dataset.wasiBound) {
+          el.dataset.wasiBound = '1';
+          el.addEventListener('input', wasiScheduleSave);
+        }
+      });
+    }
+    function wasiReset() {
+      if (!confirm('Clear the wasiyyah form on this screen?')) return;
+      try { clarityLS.removeItem(WASI_KEY); } catch (e) {}
+      wasiApply({ bequests: [{}] });
+      const res = document.getElementById('wasi-result');
+      if (res) { res.style.display = 'none'; res.innerHTML = ''; }
+    }
+    function wasiGenerate() {
+      const d = wasiCollect();
+      const n = wasiNet();
+      const cur = d.currency ? (' ' + d.currency) : '';
+      const sumBq = (d.bequests || []).reduce(function (a, b) { return a + (b.resolved || 0); }, 0);
+      const over = sumBq > n.maxW + 0.0001;
+      const countryLabel = (document.getElementById('wasi-country') || {}).selectedOptions;
+      const cName = countryLabel && countryLabel[0] ? countryLabel[0].textContent : (d.country || '—');
+      let html = '<div class="faraid-result-body"><h3 style="margin-top:0;">Wasiyyah draft (educational)</h3>';
+      html += '<p class="notes-hint">Not a substitute for legal advice or a formal will under local law. Have it reviewed and properly witnessed/notarised as required in <strong>' + String(cName).replace(/</g, '') + '</strong>.</p>';
+      html += '<p>I, <strong>' + (d.name || '[Name]') + '</strong>' + (d.city ? (', of ' + d.city) : '') +
+        ', being of sound mind, set out this wasiyyah for when Allah takes my soul.</p>';
+      html += '<p><strong>Order of settlement:</strong> (1) funeral and burial costs; (2) debts and trusts; (3) optional wasiyyah up to one-third of what remains; (4) the remainder by farāʾiḍ among my heirs.</p>';
+      html += '<p><strong>Estate figures (estimates):</strong> Assets ' + n.assets.toLocaleString() + cur +
+        '; funeral ' + n.funeral.toLocaleString() + cur + '; debts ' + n.debts.toLocaleString() + cur +
+        '; <strong>net ' + n.net.toLocaleString() + cur + '</strong>; max wasiyyah ⅓ = <strong>' + n.maxW.toLocaleString() + cur + '</strong>.</p>';
+      if (d.debtsDetail) html += '<p><strong>Debts / trusts / rights to clarify:</strong> ' + String(d.debtsDetail).replace(/</g, '') + '</p>';
+      if (d.bequests && d.bequests.length) {
+        html += '<p><strong>Optional bequests (non-heirs):</strong></p><ul>';
+        d.bequests.forEach(function (b) {
+          html += '<li>' + String(b.name).replace(/</g, '') + ' — ' +
+            (b.resolved ? b.resolved.toLocaleString(undefined, { maximumFractionDigits: 2 }) + cur : 'amount to confirm') +
+            (b.pct ? (' (' + b.pct + '% of net)') : '') + '</li>';
+        });
+        html += '</ul>';
+        html += '<p>Total bequests: <strong>' + sumBq.toLocaleString(undefined, { maximumFractionDigits: 2 }) + cur + '</strong>' +
+          (over ? ' — <span style="color:#b45309;">exceeds one-third; reduce or obtain heir consent after death</span>.' : ' (within one-third, if figures hold).') + '</p>';
+      } else {
+        html += '<p><strong>Optional bequests:</strong> none specified (entire net after debts follows farāʾiḍ).</p>';
+      }
+      if (d.guardian || d.guardian2) {
+        html += '<p><strong>Guardian for minor children:</strong> ' + String(d.guardian || '—').replace(/</g, '') +
+          (d.guardian2 ? ('; alternate: ' + String(d.guardian2).replace(/</g, '')) : '') + '.</p>';
+      }
+      if (d.executor || d.executor2) {
+        html += '<p><strong>Executor (waṣī):</strong> ' + String(d.executor || '—').replace(/</g, '') +
+          (d.executor2 ? ('; alternate: ' + String(d.executor2).replace(/</g, '')) : '') + '.</p>';
+      }
+      html += '<p><strong>Remainder:</strong> After the above, my estate is to be distributed according to Islamic inheritance (farāʾiḍ). I ask my heirs to fear Allah and settle with justice.</p>';
+      if (d.notes) html += '<p><strong>Other wishes:</strong> ' + String(d.notes).replace(/</g, '') + '</p>';
+      html += '<p class="notes-hint">Jurisdiction note: ' + String(wasiCountryNotes[d.country] || wasiCountryNotes.OTHER).replace(/</g, '') + '</p>';
+      html += '<p class="notes-hint">Sources for study: hadith of Saʿd ibn Abī Waqqāṣ (Bukhārī/Muslim) on the one-third limit; “no bequest to an heir”; IslamQA and classical fiqh on wasiyyah. Allah knows best.</p>';
+      html += '</div>';
+      const box = document.getElementById('wasi-result');
+      if (box) {
+        box.innerHTML = html;
+        box.style.display = 'block';
+        try { box.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
+      }
+      wasiSave();
+    }
+    function wasiPrint() {
+      wasiGenerate();
+      const box = document.getElementById('wasi-result');
+      if (!box || !box.innerHTML) return;
+      document.body.classList.add('printing');
+      const sheet = document.createElement('div');
+      sheet.className = 'print-sheet';
+      sheet.innerHTML = box.innerHTML;
+      document.body.appendChild(sheet);
+      window.print();
+      setTimeout(function () {
+        document.body.classList.remove('printing');
+        sheet.remove();
+      }, 400);
+    }
+
+    function faraidFillDeceasedSelect() {
+      const sel = document.getElementById('faraid-deceased');
+      if (!sel) return;
+      const people = faraidAllTreePeople();
+      const prev = sel.value;
+      sel.innerHTML = '<option value="">Select deceased…</option>' + people.map(function (p) {
+        return '<option value="' + String(p.name).replace(/"/g, '&quot;') + '">' + p.name + (p.role ? ' (' + p.role + ')' : '') + '</option>';
+      }).join('');
+      if (prev) sel.value = prev;
+    }
+    function faraidOnDeceasedChange() {
+      const name = (document.getElementById('faraid-deceased') || {}).value || '';
+      const people = faraidAllTreePeople();
+      const hit = people.find(function (p) { return p.name === name; });
+      const gSel = document.getElementById('faraid-gender');
+      if (hit && hit.gender && gSel) gSel.value = hit.gender;
+    }
+    function faraidSameName(a, b) {
+      if (typeof uftSame === 'function') return uftSame(a, b);
+      return String(a || '').trim().toLowerCase() === String(b || '').trim().toLowerCase();
+    }
+    function faraidGenderOfName(name, roleHint) {
+      let g = '';
+      const slots = [roleHint || '', 'g1', 'g2', 'g3', 'self', 'spouse', 'father', 'mother', 'pgf', 'pgm', 'mgf', 'mgm', ''];
+      try {
+        if (typeof uftGenderOf === 'function') {
+          for (let i = 0; i < slots.length; i++) {
+            const gg = uftGenderOf(name, slots[i]);
+            if (gg === 'male' || gg === 'female') return gg;
+          }
+        }
+        const d = (typeof uftCollect === 'function') ? uftCollect() : {};
+        const k = (typeof uftNorm === 'function') ? uftNorm(name) : String(name || '').toLowerCase();
+        const map = (d && d.gender) || {};
+        if (map[k] === 'male' || map[k] === 'female') return map[k];
+        const keys = Object.keys(map);
+        for (let j = 0; j < keys.length; j++) {
+          const key = keys[j];
+          const bare = key.indexOf('|') >= 0 ? key.slice(key.lastIndexOf('|') + 1) : key.replace(/^n:/, '');
+          if (bare === k && (map[key] === 'male' || map[key] === 'female')) return map[key];
+        }
+      } catch (e) {}
+      if (/mother|wife|daughter|niece|aunt|sister|female|pgm|mgm/i.test(String(roleHint || ''))) g = 'female';
+      else if (/father|husband|son|nephew|uncle|brother|male|pgf|mgf/i.test(String(roleHint || ''))) g = 'male';
+      return g || '';
+    }
+    function faraidChildRelation(name, slot) {
+      const g = faraidGenderOfName(name, slot || 'child');
+      if (g === 'female') return 'daughter';
+      if (g === 'male') return 'son';
+      // unknown — leave as son only if no gender; still better to check name cues
+      if (/\b(bibi|begum|bano|fatima|aisha|ayesha|maryam|zainab|khadija)\b/i.test(name)) return 'daughter';
+      return 'son';
+    }
+    /** Close blood + marital heirs of one person only (not the whole extended tree). */
+    function faraidIsDeceased(name, slot) {
+      try {
+        const d = (typeof uftCollect === 'function') ? uftCollect() : ((typeof uftRead === 'function') ? uftRead() : {});
+        const vit = Object.assign({}, (d && d.vital) || {}, (typeof uftVitalMap !== 'undefined' && uftVitalMap) ? uftVitalMap : {});
+        try { uftVitalMap = vit; } catch (e) {}
+        const n = (typeof uftNorm === 'function') ? uftNorm(name) : String(name || '').trim().toLowerCase();
+        if (!n) return false;
+        const slotL = String(slot || '').trim().toLowerCase();
+        const keys = Object.keys(vit);
+        let slotAlive = false, slotDead = false, anyDead = false, anyAlive = false;
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i];
+          const bare = key.indexOf('|') >= 0 ? key.slice(key.lastIndexOf('|') + 1) : key.replace(/^n:/i, '');
+          if (bare !== n && !(typeof uftSame === 'function' && uftSame(bare, name))) continue;
+          const prefix = key.indexOf('|') >= 0 ? key.slice(0, key.lastIndexOf('|')).toLowerCase() : '';
+          const val = vit[key];
+          if (val === 'deceased') anyDead = true;
+          if (val === 'alive') anyAlive = true;
+          if (slotL) {
+            if (prefix === slotL || key.toLowerCase() === (slotL + '|' + n)) {
+              if (val === 'deceased') slotDead = true;
+              if (val === 'alive') slotAlive = true;
+            }
+          }
+        }
+        // Explicit slot wins
+        if (slotL && slotDead) return true;
+        if (slotL && slotAlive) return false;
+        try {
+          if (typeof uftVitalOf === 'function') {
+            if (slotL) {
+              const st = uftVitalOf(name, slot);
+              if (st === 'deceased') return true;
+              if (st === 'alive') return false;
+            }
+            // Try generation slots for this name (card may store g1|name)
+            const gens = ['g1', 'g2', 'g3', 'self', 'father', 'mother', 'pgf', 'pgm', 'mgf', 'mgm', ''];
+            for (let j = 0; j < gens.length; j++) {
+              const st2 = uftVitalOf(name, gens[j]);
+              if (st2 === 'deceased') { anyDead = true; if (!slotL || slotL === gens[j]) return true; }
+              if (st2 === 'alive') anyAlive = true;
+            }
+          }
+        } catch (e) {}
+        // Generation lines: if person is listed on g1/g2/g3 and that generation key is deceased, treat as dead
+        try {
+          const lines = {
+            g1: (typeof uftLines === 'function' ? uftLines(d.g1) : []),
+            g2: (typeof uftLines === 'function' ? uftLines(d.g2) : []),
+            g3: (typeof uftLines === 'function' ? uftLines(d.g3) : [])
+          };
+          ['g1', 'g2', 'g3'].forEach(function (gen) {
+            const onGen = (lines[gen] || []).some(function (x) {
+              return (typeof uftNorm === 'function' ? uftNorm(x) : String(x).toLowerCase()) === n;
+            });
+            if (!onGen) return;
+            const gk = gen + '|' + n;
+            if (vit[gk] === 'deceased') anyDead = true;
+            if (vit[gk] === 'alive') anyAlive = true;
+            if (typeof uftVitalOf === 'function') {
+              const stg = uftVitalOf(name, gen);
+              if (stg === 'deceased') anyDead = true;
+              if (stg === 'alive') anyAlive = true;
+            }
+          });
+        } catch (e) {}
+        // Person-level: bare name or any slot deceased, unless another slot is explicitly alive (two people same name)
+        if (slotAlive) return false;
+        if (anyAlive && anyDead) {
+          // Same name used twice: only treat as dead if requested slot is dead or bare key is dead
+          if (slotDead) return true;
+          if (vit[n] === 'deceased') return true;
+          return false;
+        }
+        if (anyDead) return true;
+        if (vit[n] === 'deceased') return true;
+      } catch (e) {}
+      return false;
+    }
+    function faraidIsAlive(name, slot) {
+      return !faraidIsDeceased(name, slot);
+    }
+    function faraidCloseHeirsOf(deceased) {
+      const d = (typeof uftCollect === 'function') ? uftCollect() : {};
+      try { uftVitalMap = (d && d.vital) || {}; } catch (e) {}
+      const heirs = [];
+      const seen = {};
+      function push(name, relation, genderHint, slot) {
+        const n = String(name || '').trim();
+        if (!n || faraidSameName(n, deceased)) return;
+        // Heirs must be living — skip anyone marked deceased on the tree (slot-specific for same names)
+        if (faraidIsDeceased(n, slot || '')) return;
+        // Extra: G1 parents — if this name is on g1 lines and marked deceased under a g1 key, skip
+        if ((slot === 'g1' || relation === 'father' || relation === 'mother') && slot === 'g1') {
+          if (faraidIsDeceased(n, 'g1')) return;
+        }
+        const key = relation + '|' + ((typeof uftNorm === 'function') ? uftNorm(n) : n.toLowerCase());
+        if (seen[key]) return;
+        seen[key] = true;
+        let g = genderHint || faraidGenderOfName(n, slot || relation);
+        if (!g) g = faraidGenderOfName(n, relation);
+        if (!g) {
+          if (relation === 'mother' || relation === 'daughter' || relation === 'sister') g = 'female';
+          else if (relation === 'father' || relation === 'son' || relation === 'brother') g = 'male';
+          else if (relation === 'spouse') {
+            const dg = (document.getElementById('faraid-gender') || {}).value || 'male';
+            g = dg === 'male' ? 'female' : 'male';
+          }
+        }
+        // Align relation with known gender (avoid "son" + female)
+        if (g === 'female' && relation === 'son') relation = 'daughter';
+        if (g === 'male' && relation === 'daughter') relation = 'son';
+        if (g === 'female' && relation === 'grandson') relation = 'granddaughter';
+        if (g === 'male' && relation === 'granddaughter') relation = 'grandson';
+        if (g === 'female' && relation === 'great-grandson') relation = 'great-granddaughter';
+        if (g === 'male' && relation === 'great-granddaughter') relation = 'great-grandson';
+        if (g === 'female' && relation === 'father') relation = 'mother';
+        if (g === 'male' && relation === 'mother') relation = 'father';
+        if (g === 'female' && relation === 'brother') relation = 'sister';
+        if (g === 'male' && relation === 'sister') relation = 'brother';
+        heirs.push({ name: n, relation: relation, gender: g || 'male', slot: slot || '' });
+      }
+      /** Relation label by generations below the deceased (1=child, 2=grandchild, 3+=great-grandchild). */
+      function faraidDescRelation(name, depth) {
+        const g = faraidGenderOfName(name, 'child');
+        const female = g === 'female';
+        if (depth <= 1) return female ? 'daughter' : 'son';
+        if (depth === 2) return female ? 'granddaughter' : 'grandson';
+        return female ? 'great-granddaughter' : 'great-grandson';
+      }
+      /** Build parent→children map from tree links + generation backbone. */
+      function faraidBuildChildMap() {
+        const map = {};
+        function keyOf(x) {
+          return (typeof uftNorm === 'function') ? uftNorm(x) : String(x || '').trim().toLowerCase();
+        }
+        function add(parent, child) {
+          const p = String(parent || '').trim();
+          const c = String(child || '').trim();
+          if (!p || !c || faraidSameName(p, c)) return;
+          const k = keyOf(p);
+          if (!map[k]) map[k] = { name: p, kids: [] };
+          if (!map[k].kids.some(function (x) { return faraidSameName(x, c); })) map[k].kids.push(c);
+        }
+        // Core family edges
+        if (d.father) {
+          add(d.father, d.self);
+          (typeof uftLines === 'function' ? uftLines(d.siblings) : []).forEach(function (s) { add(d.father, s); });
+        }
+        if (d.mother) {
+          add(d.mother, d.self);
+          (typeof uftLines === 'function' ? uftLines(d.siblings) : []).forEach(function (s) { add(d.mother, s); });
+        }
+        if (d.self) {
+          (typeof uftLines === 'function' ? uftLines(d.children) : []).forEach(function (c) { add(d.self, c); });
+          (typeof uftLines === 'function' ? uftLines(d.grandchildren) : []).forEach(function (c) {
+            // grandchildren of focus — attach under each child if only one child, else keep under self as depth handled later
+            const kids = (typeof uftLines === 'function' ? uftLines(d.children) : []);
+            if (kids.length === 1) add(kids[0], c);
+            else add(d.self, c);
+          });
+        }
+        if (d.pgf) add(d.pgf, d.father);
+        if (d.pgm) add(d.pgm, d.father);
+        if (d.mgf) add(d.mgf, d.mother);
+        if (d.mgm) add(d.mgm, d.mother);
+        // Generation backbone: G1 → G2 → G3 → grandparents → parents → you
+        const g1 = (typeof uftLines === 'function') ? uftLines(d.g1) : [];
+        const g2 = (typeof uftLines === 'function') ? uftLines(d.g2) : [];
+        const g3 = (typeof uftLines === 'function') ? uftLines(d.g3) : [];
+        // If a generation has a single person, connect all next-gen names as their children
+        if (g1.length === 1 && g2.length) g2.forEach(function (c) { add(g1[0], c); });
+        if (g2.length === 1 && g3.length) g3.forEach(function (c) { add(g2[0], c); });
+        // Multi-person gens: still connect via relatives only (below)
+        // When G2 has one name (Karam Din) and G3 many — already handled
+        // G3 single → link to both paternal grandparents if present (blood line uncertainty: only if one GP side)
+        if (g3.length === 1) {
+          if (d.pgf) add(g3[0], d.pgf);
+          else if (d.father) add(g3[0], d.father);
+        }
+        // Multi G2: still attach G3 names that have no parent edge yet under each G2? Only under sole or under all linked.
+        // Attach unparented G3 under every G2 name (user rebuilds links if wrong) — better: under all G2 if only one G2 is deceased walk target handled at seed time
+        // Attach G3 → next backbone person when G3 is single-file line
+        if (g3.length >= 1) {
+          const nextLine = [];
+          if (d.pgf) nextLine.push(d.pgf);
+          if (d.pgm) nextLine.push(d.pgm);
+          if (!nextLine.length && d.father) nextLine.push(d.father);
+          if (g3.length === 1) nextLine.forEach(function (c) { add(g3[0], c); });
+        }
+        // If G2 names exist and G3 names exist but some G3 have zero parents in map, attach them to all G2 (weak heuristic)
+        // Refined at end after relatives
+        // Explicit relative edges
+        (d.relatives || []).forEach(function (r) {
+          if (!r || !r.name) return;
+          const host = (typeof uftCoreName === 'function' ? uftCoreName(d, r.anchor) : '') || String(r.anchor || '').replace(/^n:/, '');
+          if (!host) return;
+          if (r.relation === 'child' || r.relation === 'offspring') add(host, r.name);
+          if (r.relation === 'grandchild') {
+            // grandchild of host — try attach under host's children, else host
+            const hostKids = (map[keyOf(host)] && map[keyOf(host)].kids) || [];
+            if (hostKids.length === 1) add(hostKids[0], r.name);
+            else add(host, r.name);
+          }
+          if (r.relation === 'sibling') {
+            // siblings share parents of host — if parents known, add under parents
+            if (d.father && (faraidSameName(host, d.self) || faraidSameName(host, d.father))) add(d.father, r.name);
+            if (d.mother && (faraidSameName(host, d.self) || faraidSameName(host, d.mother))) add(d.mother, r.name);
+          }
+        });
+        // uftKidsOf for every known person name on the tree
+        const everyone = [];
+        ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (s) { if (d[s]) everyone.push({ name: d[s], slot: s }); });
+        g1.forEach(function (n) { everyone.push({ name: n, slot: 'g1' }); });
+        g2.forEach(function (n) { everyone.push({ name: n, slot: 'g2' }); });
+        g3.forEach(function (n) { everyone.push({ name: n, slot: 'g3' }); });
+        (typeof uftLines === 'function' ? uftLines(d.siblings) : []).forEach(function (n) { everyone.push({ name: n, slot: '' }); });
+        (typeof uftLines === 'function' ? uftLines(d.children) : []).forEach(function (n) { everyone.push({ name: n, slot: '' }); });
+        try {
+          if (typeof uftKidsOf === 'function') {
+            everyone.forEach(function (p) {
+              const anchors = [(typeof uftNameKey === 'function') ? uftNameKey(p.name) : p.name, p.slot, p.name].filter(Boolean);
+              anchors.forEach(function (a) {
+                try {
+                  uftKidsOf(d, a).forEach(function (k) { if (k && k.name) add(p.name, k.name); });
+                } catch (e) {}
+              });
+            });
+          }
+        } catch (e) {}
+        // Unparented G3 → attach under G2 names so deceased Karam Din still reaches next gen
+        (function () {
+          function keyOf(x) {
+            return (typeof uftNorm === 'function') ? uftNorm(x) : String(x || '').trim().toLowerCase();
+          }
+          const parentsOf = {};
+          Object.keys(map).forEach(function (pk) {
+            (map[pk].kids || []).forEach(function (c) {
+              parentsOf[keyOf(c)] = true;
+            });
+          });
+          g3.forEach(function (c) {
+            if (parentsOf[keyOf(c)]) return;
+            if (g2.length === 1) add(g2[0], c);
+            else g2.forEach(function (p) { add(p, c); });
+          });
+          g2.forEach(function (c) {
+            if (parentsOf[keyOf(c)]) return;
+            if (g1.length === 1) add(g1[0], c);
+            else g1.forEach(function (p) { add(p, c); });
+          });
+          // Unparented backbone under G3: father/pgf
+          [d.pgf, d.father].forEach(function (c) {
+            if (!c || parentsOf[keyOf(c)]) return;
+            if (g3.length === 1) add(g3[0], c);
+          });
+        })();
+        return map;
+      }
+      function faraidCollectKids(personName, personSlot) {
+        const map = faraidChildMap || (faraidChildMap = faraidBuildChildMap());
+        const k = (typeof uftNorm === 'function') ? uftNorm(personName) : String(personName || '').trim().toLowerCase();
+        const row = map[k];
+        return row ? row.kids.slice() : [];
+      }
+      var faraidChildMap = null;
+      /**
+       * Walk descendants of the deceased:
+       * - living child → son/daughter
+       * - deceased child → their living descendants (grandson…), never labeled as "son"
+       * - living person blocks their own descendants from inheriting from this deceased
+       */
+      function pushOffspringLine(childName, childSlot, depth) {
+        depth = depth || 1;
+        if (depth > 8) return;
+        const n = String(childName || '').trim();
+        if (!n || faraidSameName(n, deceased)) return;
+        const isDead = faraidIsDeceased(n, childSlot || '') || faraidIsDeceased(n, '');
+        if (!isDead) {
+          const g = faraidGenderOfName(n, childSlot || 'child');
+          const rel = faraidDescRelation(n, depth);
+          push(n, rel, g, childSlot || '');
+          return; // living descendant blocks lower gens from this deceased
+        }
+        // Deceased intermediate → include living widow of first-degree child
+        if (depth === 1) {
+          try {
+            const spAnchor = (typeof uftNameKey === 'function') ? uftNameKey(n) : n;
+            const widows = [];
+            if (typeof uftSpouseOf === 'function') {
+              uftSpouseOf(d, spAnchor).forEach(function (s) { if (s && s.name) widows.push(s.name); });
+              uftSpouseOf(d, n).forEach(function (s) { if (s && s.name) widows.push(s.name); });
+            }
+            (d.relatives || []).forEach(function (r) {
+              if (!r || r.relation !== 'spouse' || !r.name) return;
+              const host = (typeof uftCoreName === 'function' ? uftCoreName(d, r.anchor) : '') || String(r.anchor || '').replace(/^n:/, '');
+              if (r.anchor === spAnchor || faraidSameName(host, n)) widows.push(r.name);
+            });
+            widows.forEach(function (w) {
+              if (faraidIsDeceased(w, '')) return;
+              const wg = faraidGenderOfName(w, 'spouse') || 'female';
+              push(w, "son's widow", wg, '');
+            });
+          } catch (e) {}
+        }
+        // Recurse into children of this deceased intermediate
+        const kids = faraidCollectKids(n, childSlot);
+        kids.forEach(function (gn) {
+          let nextSlot = '';
+          try {
+            const g1 = (typeof uftLines === 'function') ? uftLines(d.g1) : [];
+            const g2 = (typeof uftLines === 'function') ? uftLines(d.g2) : [];
+            const g3 = (typeof uftLines === 'function') ? uftLines(d.g3) : [];
+            if (g1.some(function (x) { return faraidSameName(x, gn); })) nextSlot = 'g1';
+            else if (g2.some(function (x) { return faraidSameName(x, gn); })) nextSlot = 'g2';
+            else if (g3.some(function (x) { return faraidSameName(x, gn); })) nextSlot = 'g3';
+            else if (faraidSameName(gn, d.father)) nextSlot = 'father';
+            else if (faraidSameName(gn, d.mother)) nextSlot = 'mother';
+            else if (faraidSameName(gn, d.pgf)) nextSlot = 'pgf';
+            else if (faraidSameName(gn, d.pgm)) nextSlot = 'pgm';
+            else if (faraidSameName(gn, d.self)) nextSlot = 'self';
+          } catch (e) {}
+          pushOffspringLine(gn, nextSlot, depth + 1);
+        });
+      }
+
+      function kidsOfAnchor(anchor, nameFallback) {
+        const list = [];
+        try {
+          if (typeof uftKidsOf === 'function') {
+            uftKidsOf(d, anchor).forEach(function (k) { if (k && k.name) list.push(k.name); });
+            if (nameFallback) uftKidsOf(d, (typeof uftNameKey === 'function') ? uftNameKey(nameFallback) : nameFallback).forEach(function (k) {
+              if (k && k.name) list.push(k.name);
+            });
+          }
+        } catch (e) {}
+        (d.relatives || []).forEach(function (r) {
+          if (!r || !r.name) return;
+          if (r.relation !== 'child' && r.relation !== 'offspring' && r.relation !== 'grandchild') return;
+          const host = (typeof uftCoreName === 'function' ? uftCoreName(d, r.anchor) : '') || String(r.anchor || '').replace(/^n:/, '');
+          if (r.anchor === anchor || faraidSameName(host, nameFallback) || faraidSameName(host, deceased)) {
+            if (r.relation === 'grandchild') return; // children only for primary heir list
+            list.push(r.name);
+          }
+        });
+        return list;
+      }
+      function sibsOfAnchor(anchor, nameFallback) {
+        const list = [];
+        try {
+          if (typeof uftSiblingsOf === 'function') {
+            uftSiblingsOf(d, anchor).forEach(function (s) { if (s && s.name) list.push(s.name); });
+            if (nameFallback) uftSiblingsOf(d, (typeof uftNameKey === 'function') ? uftNameKey(nameFallback) : nameFallback).forEach(function (s) {
+              if (s && s.name) list.push(s.name);
+            });
+          }
+        } catch (e) {}
+        (d.relatives || []).forEach(function (r) {
+          if (!r || r.relation !== 'sibling' || !r.name) return;
+          const host = (typeof uftCoreName === 'function' ? uftCoreName(d, r.anchor) : '') || String(r.anchor || '').replace(/^n:/, '');
+          if (r.anchor === anchor || faraidSameName(host, nameFallback) || faraidSameName(host, deceased)) list.push(r.name);
+        });
+        return list;
+      }
+      function spouseOfAnchor(anchor, nameFallback) {
+        const list = [];
+        try {
+          if (typeof uftSpouseOf === 'function') {
+            uftSpouseOf(d, anchor).forEach(function (s) { if (s && s.name) list.push(s.name); });
+            if (nameFallback) uftSpouseOf(d, (typeof uftNameKey === 'function') ? uftNameKey(nameFallback) : nameFallback).forEach(function (s) {
+              if (s && s.name) list.push(s.name);
+            });
+          }
+        } catch (e) {}
+        (d.relatives || []).forEach(function (r) {
+          if (!r || r.relation !== 'spouse' || !r.name) return;
+          const host = (typeof uftCoreName === 'function' ? uftCoreName(d, r.anchor) : '') || String(r.anchor || '').replace(/^n:/, '');
+          if (r.anchor === anchor || faraidSameName(host, nameFallback) || faraidSameName(r.name, nameFallback) && faraidSameName(host, deceased) === false) {
+            if (r.anchor === anchor || faraidSameName(host, deceased) || faraidSameName(host, nameFallback)) list.push(r.name);
+          }
+        });
+        return list;
+      }
+
+      // --- Case: deceased is the tree focus (You) ---
+      if (faraidSameName(deceased, d.self)) {
+        push(d.spouse, 'spouse', 'female');
+        push(d.father, 'father', 'male');
+        push(d.mother, 'mother', 'female');
+        kidsOfAnchor('self', d.self).forEach(function (n) { pushOffspringLine(n, 'self'); });
+        (typeof uftLines === 'function' ? uftLines(d.children) : String(d.children || '').split(/\n/)).forEach(function (n) { pushOffspringLine(n, ''); });
+        sibsOfAnchor('self', d.self).forEach(function (n) {
+          const g = faraidGenderOfName(n, 'sibling');
+          push(n, g === 'female' ? 'sister' : 'brother', g);
+        });
+        (typeof uftLines === 'function' ? uftLines(d.siblings) : String(d.siblings || '').split(/\n/)).forEach(function (n) {
+          const g = faraidGenderOfName(n, 'sibling');
+          push(n, g === 'female' ? 'sister' : 'brother', g);
+        });
+        return heirs;
+      }
+
+      // --- Case: deceased is spouse of You ---
+      if (faraidSameName(deceased, d.spouse)) {
+        push(d.self, 'spouse', faraidGenderOfName(d.self, 'self') || 'male');
+        // Shared children with focus
+        kidsOfAnchor('self', d.self).forEach(function (n) { pushOffspringLine(n, 'self'); });
+        (typeof uftLines === 'function' ? uftLines(d.children) : []).forEach(function (n) { pushOffspringLine(n, ''); });
+        kidsOfAnchor('spouse', d.spouse).forEach(function (n) { pushOffspringLine(n, 'spouse'); });
+        // In-laws of spouse are NOT auto-included (their parents are not on this tree as blood of spouse necessarily)
+        return heirs;
+      }
+
+      // --- Case: deceased is father ---
+      if (faraidSameName(deceased, d.father)) {
+        // Only LIVING widow / parents of the deceased father
+        push(d.mother, 'spouse', 'female', 'mother');
+        push(d.pgf, 'father', 'male', 'pgf');
+        push(d.pgm, 'mother', 'female', 'pgm');
+        // Living offspring of father (you + your siblings); if a child is deceased, next gen is pulled
+        pushOffspringLine(d.self, 'self');
+        sibsOfAnchor('father', d.father).forEach(function (n) { if (!faraidSameName(n, d.self)) pushOffspringLine(n, ''); });
+        kidsOfAnchor('father', d.father).forEach(function (n) { if (!faraidSameName(n, d.self)) pushOffspringLine(n, 'father'); });
+        (typeof uftLines === 'function' ? uftLines(d.siblings) : []).forEach(function (n) { pushOffspringLine(n, ''); });
+        sibsOfAnchor('self', d.self).forEach(function (n) { pushOffspringLine(n, ''); });
+        return heirs;
+      }
+
+      // --- Case: deceased is mother ---
+      if (faraidSameName(deceased, d.mother)) {
+        push(d.father, 'spouse', 'male', 'father');
+        push(d.mgf, 'father', 'male', 'mgf');
+        push(d.mgm, 'mother', 'female', 'mgm');
+        pushOffspringLine(d.self, 'self');
+        kidsOfAnchor('mother', d.mother).forEach(function (n) { if (!faraidSameName(n, d.self)) pushOffspringLine(n, 'mother'); });
+        (typeof uftLines === 'function' ? uftLines(d.siblings) : []).forEach(function (n) { pushOffspringLine(n, ''); });
+        sibsOfAnchor('self', d.self).forEach(function (n) { pushOffspringLine(n, ''); });
+        return heirs;
+      }
+
+      // --- Case: deceased is a child of focus ---
+      const myKids = [];
+      try {
+        kidsOfAnchor('self', d.self).forEach(function (n) { myKids.push(n); });
+        (typeof uftLines === 'function' ? uftLines(d.children) : []).forEach(function (n) { myKids.push(n); });
+      } catch (e) {}
+      if (myKids.some(function (n) { return faraidSameName(n, deceased); })) {
+        const sg = faraidGenderOfName(d.self, 'self');
+        push(d.self, sg === 'female' ? 'mother' : 'father', sg || 'male', 'self');
+        push(d.spouse, sg === 'female' ? 'father' : 'mother', sg === 'female' ? 'male' : 'female', 'spouse');
+        myKids.forEach(function (n) {
+          if (faraidSameName(n, deceased)) return;
+          if (!faraidIsAlive(n, '')) return;
+          const g = faraidGenderOfName(n, 'child');
+          push(n, g === 'female' ? 'sister' : 'brother', g);
+        });
+        spouseOfAnchor((typeof uftNameKey === 'function') ? uftNameKey(deceased) : deceased, deceased).forEach(function (n) {
+          push(n, 'spouse');
+        });
+        kidsOfAnchor((typeof uftNameKey === 'function') ? uftNameKey(deceased) : deceased, deceased).forEach(function (n) {
+          pushOffspringLine(n, '');
+        });
+        return heirs;
+      }
+
+      // --- Case: deceased is sibling of focus ---
+      const mySibs = [];
+      try {
+        sibsOfAnchor('self', d.self).forEach(function (n) { mySibs.push(n); });
+        (typeof uftLines === 'function' ? uftLines(d.siblings) : []).forEach(function (n) { mySibs.push(n); });
+      } catch (e) {}
+      if (mySibs.some(function (n) { return faraidSameName(n, deceased); })) {
+        push(d.father, 'father', 'male', 'father');
+        push(d.mother, 'mother', 'female', 'mother');
+        if (faraidIsAlive(d.self, 'self')) {
+          push(d.self, faraidGenderOfName(d.self, 'self') === 'female' ? 'sister' : 'brother', faraidGenderOfName(d.self, 'self'), 'self');
+        }
+        mySibs.forEach(function (n) {
+          if (faraidSameName(n, deceased)) return;
+          if (!faraidIsAlive(n, '')) return;
+          const g = faraidGenderOfName(n, 'sibling');
+          push(n, g === 'female' ? 'sister' : 'brother', g);
+        });
+        spouseOfAnchor((typeof uftNameKey === 'function') ? uftNameKey(deceased) : deceased, deceased).forEach(function (n) { push(n, 'spouse'); });
+        kidsOfAnchor((typeof uftNameKey === 'function') ? uftNameKey(deceased) : deceased, deceased).forEach(function (n) {
+          pushOffspringLine(n, '');
+        });
+        return heirs;
+      }
+
+      // --- Case: paternal / maternal grandparent ---
+      if (faraidSameName(deceased, d.pgf) || faraidSameName(deceased, d.pgm)) {
+        const other = faraidSameName(deceased, d.pgf) ? d.pgm : d.pgf;
+        const slot = faraidSameName(deceased, d.pgf) ? 'pgf' : 'pgm';
+        push(other, 'spouse', faraidSameName(deceased, d.pgf) ? 'female' : 'male', faraidSameName(deceased, d.pgf) ? 'pgm' : 'pgf');
+        // Living children of this grandparent (e.g. Ayyaz if alive); if deceased, next gen
+        pushOffspringLine(d.father, 'father');
+        sibsOfAnchor(slot, deceased).forEach(function (n) { if (!faraidSameName(n, d.father)) pushOffspringLine(n, ''); });
+        kidsOfAnchor(slot, deceased).forEach(function (n) { if (!faraidSameName(n, d.father)) pushOffspringLine(n, slot); });
+        return heirs;
+      }
+      if (faraidSameName(deceased, d.mgf) || faraidSameName(deceased, d.mgm)) {
+        const other = faraidSameName(deceased, d.mgf) ? d.mgm : d.mgf;
+        const slot = faraidSameName(deceased, d.mgf) ? 'mgf' : 'mgm';
+        push(other, 'spouse', faraidSameName(deceased, d.mgf) ? 'female' : 'male', faraidSameName(deceased, d.mgf) ? 'mgm' : 'mgf');
+        pushOffspringLine(d.mother, 'mother');
+        sibsOfAnchor(slot, deceased).forEach(function (n) { if (!faraidSameName(n, d.mother)) pushOffspringLine(n, ''); });
+        kidsOfAnchor(slot, deceased).forEach(function (n) { if (!faraidSameName(n, d.mother)) pushOffspringLine(n, slot); });
+        return heirs;
+      }
+
+      // --- Generic person (e.g. Karam Din on G2): spouse + full descendant tree ---
+      const decKey = (typeof uftNameKey === 'function') ? uftNameKey(deceased) : deceased;
+      faraidChildMap = null; // rebuild for this deceased walk
+      spouseOfAnchor(decKey, deceased).forEach(function (n) { push(n, 'spouse'); });
+      // Seed offspring walk from every discovered child of the deceased
+      const seedKids = [];
+      function seedAdd(x) {
+        const t = String(x || '').trim();
+        if (!t || faraidSameName(t, deceased)) return;
+        if (seedKids.some(function (y) { return faraidSameName(y, t); })) return;
+        seedKids.push(t);
+      }
+      kidsOfAnchor(decKey, deceased).forEach(seedAdd);
+      faraidCollectKids(deceased, '').forEach(seedAdd);
+      // Generation seeds
+      (typeof uftLines === 'function' ? uftLines(d.g1) : []).forEach(function (g1n) {
+        if (faraidSameName(g1n, deceased)) (typeof uftLines === 'function' ? uftLines(d.g2) : []).forEach(seedAdd);
+      });
+      (typeof uftLines === 'function' ? uftLines(d.g2) : []).forEach(function (g2n) {
+        if (faraidSameName(g2n, deceased)) (typeof uftLines === 'function' ? uftLines(d.g3) : []).forEach(seedAdd);
+      });
+      (typeof uftLines === 'function' ? uftLines(d.g3) : []).forEach(function (g3n) {
+        if (!faraidSameName(g3n, deceased)) return;
+        ['pgf','pgm','mgf','mgm','father','mother','self'].forEach(function (slot) {
+          if (d[slot]) seedAdd(d[slot]);
+        });
+      });
+      seedKids.forEach(function (n) {
+        let slot = '';
+        try {
+          if ((typeof uftLines === 'function' ? uftLines(d.g2) : []).some(function (x) { return faraidSameName(x, n); })) slot = 'g2';
+          if ((typeof uftLines === 'function' ? uftLines(d.g3) : []).some(function (x) { return faraidSameName(x, n); })) slot = 'g3';
+          if (faraidSameName(n, d.father)) slot = 'father';
+          if (faraidSameName(n, d.mother)) slot = 'mother';
+          if (faraidSameName(n, d.self)) slot = 'self';
+        } catch (e) {}
+        pushOffspringLine(n, slot, 1);
+      });
+            sibsOfAnchor(decKey, deceased).forEach(function (n) {
+        if (!faraidIsAlive(n, '')) return;
+        const g = faraidGenderOfName(n, 'sibling');
+        push(n, g === 'female' ? 'sister' : 'brother', g);
+      });
+      // Living parents only
+      (d.relatives || []).forEach(function (r) {
+        if (!r || !r.name) return;
+        if ((r.relation === 'child' || r.relation === 'offspring') && faraidSameName(r.name, deceased)) {
+          const host = (typeof uftCoreName === 'function' ? uftCoreName(d, r.anchor) : '') || String(r.anchor || '').replace(/^n:/, '');
+          if (host && faraidIsAlive(host, r.anchor)) {
+            const hg = faraidGenderOfName(host, r.anchor);
+            push(host, hg === 'female' ? 'mother' : 'father', hg, r.anchor);
+          }
+        }
+      });
+      // G1 parent of G2 deceased — ONLY if explicitly ● Alive on generation g1.
+      // Deceased or unmarked G1 ancestors are omitted (e.g. Nadir Ali † at G1).
+      // Younger namesake with the same name is never used as this parent.
+      (typeof uftLines === 'function' ? uftLines(d.g2) : []).forEach(function (g2n) {
+        if (!faraidSameName(g2n, deceased)) return;
+        (typeof uftLines === 'function' ? uftLines(d.g1) : []).forEach(function (g1n) {
+          const nn = (typeof uftNorm === 'function') ? uftNorm(g1n) : String(g1n).toLowerCase();
+          const vit = (d.vital) || {};
+          let g1Alive = false;
+          let g1Dead = false;
+          Object.keys(vit).forEach(function (key) {
+            const bare = key.indexOf('|') >= 0 ? key.slice(key.lastIndexOf('|') + 1) : key.replace(/^n:/i, '');
+            if (bare !== nn) return;
+            const prefix = key.indexOf('|') >= 0 ? key.slice(0, key.lastIndexOf('|')).toLowerCase() : '';
+            // Only generation-1 keys (and bare name tied to g1 line — treat bare deceased as dead)
+            if (prefix && prefix !== 'g1') return;
+            if (vit[key] === 'deceased') g1Dead = true;
+            if (vit[key] === 'alive') g1Alive = true;
+          });
+          try {
+            if (typeof uftVitalOf === 'function') {
+              const st = uftVitalOf(g1n, 'g1');
+              if (st === 'deceased') g1Dead = true;
+              if (st === 'alive') g1Alive = true;
+            }
+          } catch (e) {}
+          if (g1Dead || !g1Alive) return; // must be explicitly alive on g1
+          const hg = faraidGenderOfName(g1n, 'g1');
+          push(g1n, hg === 'female' ? 'mother' : 'father', hg, 'g1');
+        });
+      });
+      // Final sanitize: drop deceased; fix depth labels already set; never keep dead G1 parents
+      return heirs.filter(function (h) {
+        if (!h || !h.name) return false;
+        if (faraidIsDeceased(h.name, h.slot || '')) return false;
+        if ((h.relation === 'father' || h.relation === 'mother') && (h.slot === 'g1' || !h.slot)) {
+          const nn = (typeof uftNorm === 'function') ? uftNorm(h.name) : String(h.name).toLowerCase();
+          const onG1 = (typeof uftLines === 'function' ? uftLines(d.g1) : []).some(function (x) {
+            return (typeof uftNorm === 'function' ? uftNorm(x) : String(x).toLowerCase()) === nn;
+          });
+          if (onG1) {
+            let aliveG1 = false, deadG1 = false;
+            const vit = (d.vital) || {};
+            Object.keys(vit).forEach(function (key) {
+              const bare = key.indexOf('|') >= 0 ? key.slice(key.lastIndexOf('|') + 1) : key.replace(/^n:/i, '');
+              if (bare !== nn) return;
+              const prefix = key.indexOf('|') >= 0 ? key.slice(0, key.lastIndexOf('|')).toLowerCase() : '';
+              if (prefix && prefix !== 'g1') return;
+              if (vit[key] === 'alive') aliveG1 = true;
+              if (vit[key] === 'deceased') deadG1 = true;
+            });
+            try {
+              if (typeof uftVitalOf === 'function') {
+                if (uftVitalOf(h.name, 'g1') === 'alive') aliveG1 = true;
+                if (uftVitalOf(h.name, 'g1') === 'deceased') deadG1 = true;
+              }
+            } catch (e) {}
+            if (deadG1 || !aliveG1) return false;
+          }
+        }
+        return true;
+      });
+    }
+    function faraidPullTree() {
+      faraidFillDeceasedSelect();
+      const deceased = (document.getElementById('faraid-deceased') || {}).value || '';
+      if (!deceased) {
+        alert('Select the deceased from the list first (or add names in the family tree).');
+        return;
+      }
+      const uniq = faraidCloseHeirsOf(deceased);
+      faraidRenderHeirForm(uniq);
+      const box = document.getElementById('faraid-result');
+      if (!uniq.length) {
+        faraidRenderHeirForm([{ name: '', relation: 'son', gender: 'male' }]);
+        if (box) {
+          box.style.display = 'block';
+          box.innerHTML = '<p>No close blood heirs / offspring auto-detected for <strong>' + String(deceased).replace(/</g, '') + '</strong>. Only spouse, parents, children, and siblings of the deceased are pulled — not uncles, cousins, or other extended family. Add rows manually if needed.</p>';
+        }
+      } else if (box) {
+        box.style.display = 'block';
+        box.innerHTML = '<p class="notes-hint">Loaded <strong>' + uniq.length + '</strong> <em>living</em> close heir(s) for ' + String(deceased).replace(/</g, '') + '. Deceased relatives are skipped; if a child is deceased, living next-generation offspring are included. Review genders, then Calculate.</p>';
+      }
+    }
+    function faraidRenderHeirForm(heirs) {
+      const box = document.getElementById('faraid-heirs');
+      if (!box) return;
+      if (!heirs || !heirs.length) heirs = [{ name: '', relation: 'son', gender: 'male', slot: '' }];
+      box.innerHTML = '<div class="uft-col-label" style="margin-bottom:0.35rem;">Heirs (edit or remove, then recalculate)</div>' +
+        heirs.map(function (h, i) {
+          const slotNote = h.slot ? (' <span class="notes-hint">[' + String(h.slot) + ']</span>') : '';
+          return '<div class="uft-reg-row" data-faraid-row="' + i + '">' +
+            '<div style="display:grid;grid-template-columns:1.1fr 0.9fr 0.7fr auto;gap:0.35rem;width:100%;align-items:center;">' +
+            '<input type="text" data-f="name" value="' + String(h.name || '').replace(/"/g, '&quot;') + '" placeholder="Name">' +
+            '<select data-f="relation">' +
+            ['spouse','father','mother','son','daughter','grandson','granddaughter','great-grandson','great-granddaughter',"son's widow",'brother','sister','other'].map(function (r) {
+              return '<option value="' + r + '"' + (h.relation === r ? ' selected' : '') + '>' + r + '</option>';
+            }).join('') +
+            '</select>' +
+            '<select data-f="gender"><option value="male"' + (h.gender === 'male' ? ' selected' : '') + '>Male</option>' +
+            '<option value="female"' + (h.gender === 'female' ? ' selected' : '') + '>Female</option></select>' +
+            '<button type="button" class="btn-secondary" title="Remove this heir" onclick="faraidRemoveHeirRow(' + i + ')">✕</button>' +
+            '<input type="hidden" data-f="slot" value="' + String(h.slot || '').replace(/"/g, '&quot;') + '">' +
+            '</div>' + (slotNote ? ('<div style="font-size:0.72rem;opacity:0.8;margin-top:0.15rem;">Generation/slot' + slotNote + '</div>') : '') +
+            '</div>';
+        }).join('') +
+        '<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">' +
+        '<button type="button" class="btn-secondary" onclick="faraidAddHeirRow()">＋ Add heir row</button>' +
+        '<button type="button" onclick="faraidCalculate()">↺ Recalculate shares</button>' +
+        '</div>';
+    }
+    function faraidAddHeirRow() {
+      const rows = faraidReadHeirRows(true);
+      rows.push({ name: '', relation: 'son', gender: 'male', slot: '' });
+      faraidRenderHeirForm(rows);
+    }
+    function faraidRemoveHeirRow(index) {
+      const rows = faraidReadHeirRows(true);
+      if (index < 0 || index >= rows.length) return;
+      rows.splice(index, 1);
+      faraidRenderHeirForm(rows);
+      const box = document.getElementById('faraid-result');
+      if (box) {
+        box.style.display = 'block';
+        box.innerHTML = '<p class="notes-hint">Removed one heir. Press <strong>Recalculate shares</strong> (or Calculate) to update the result.</p>';
+      }
+    }
+    function faraidReadHeirRows(includeEmpty) {
+      const box = document.getElementById('faraid-heirs');
+      if (!box) return [];
+      const rows = [];
+      box.querySelectorAll('[data-faraid-row]').forEach(function (row) {
+        const name = (row.querySelector('[data-f="name"]') || {}).value || '';
+        const relation = (row.querySelector('[data-f="relation"]') || {}).value || 'other';
+        const gender = (row.querySelector('[data-f="gender"]') || {}).value || 'male';
+        const slot = (row.querySelector('[data-f="slot"]') || {}).value || '';
+        if (includeEmpty || String(name).trim()) {
+          rows.push({ name: String(name).trim(), relation: relation, gender: gender, slot: slot });
+        }
+      });
+      return rows;
+    }
+    function faraidResetHeirs() {
+      faraidRenderHeirForm([]);
+      const box = document.getElementById('faraid-result');
+      if (box) { box.style.display = 'none'; box.innerHTML = ''; }
+    }
+    function faraidGcd(a, b) {
+      a = Math.abs(a|0); b = Math.abs(b|0);
+      while (b) { const t = b; b = a % b; a = t; }
+      return a || 1;
+    }
+    function faraidFrac(n, d) {
+      n = Math.round(n); d = Math.round(d) || 1;
+      if (n === 0) return { n: 0, d: 1 };
+      const g = faraidGcd(n, d);
+      return { n: n / g, d: d / g };
+    }
+    function faraidAdd(a, b) {
+      return faraidFrac(a.n * b.d + b.n * a.d, a.d * b.d);
+    }
+    function faraidMul(a, b) {
+      return faraidFrac(a.n * b.n, a.d * b.d);
+    }
+    function faraidDiv(a, b) {
+      return faraidFrac(a.n * b.d, a.d * b.n);
+    }
+    function faraidCmp(a, b) {
+      return a.n * b.d - b.n * a.d;
+    }
+    function faraidToNum(f) { return f.d ? f.n / f.d : 0; }
+    function faraidStr(f) {
+      if (!f || !f.d) return '0';
+      if (f.n === 0) return '0';
+      if (f.d === 1) return String(f.n);
+      return f.n + '/' + f.d;
+    }
+    function faraidWhy(relation, note) {
+      const map = {
+        spouse: 'Qurʾān 4:12 — husband 1/2 with no descendants, 1/4 with descendants; wife (or wives sharing) 1/4 with no descendants, 1/8 with descendants. Same in all four Sunni schools.',
+        father: 'Qurʾān 4:11 — 1/6 as a Qurʾānic sharer with a descendant; residuary (ʿaṣaba) when there is no descendant; 1/6 + residue when only female descendants remain.',
+        mother: 'Qurʾān 4:11 — 1/6 with a child or two-or-more siblings; otherwise 1/3. ʿUmariyyatān (mother takes 1/3 of remainder after spouse when only parents + spouse survive) is applied by the four schools.',
+        son: 'Qurʾān 4:11 — sons are primary ʿaṣaba; with daughters the residue is split 2:1 (male = share of two females). A living son blocks brothers and more remote agnates (ḥajb).',
+        daughter: 'Qurʾān 4:11 — one daughter 1/2; two or more daughters share 2/3 when no son; with a son they become ʿaṣaba bil-ghayr on the 2:1 ratio.',
+        grandson: 'Son’s son inherits as ʿaṣaba when no living son remains (Hanafī order of nearness). Grandfather-with-siblings is a known school difference and is not fully modelled here.',
+        granddaughter: 'Son’s daughter may take a Qurʾānic share (1/2 or 1/6 “completing” 2/3 with a higher daughter) in classical tables; this tool uses a simplified path — confirm the exact case.',
+        brother: 'Qurʾān 4:176 (kalāla) and ʿaṣaba: full brothers take residue when no son/son’s son and no father. Paternal vs uterine brothers differ (uterine share 1/6 or 1/3 from 4:12).',
+        sister: 'Qurʾān 4:176 — one full sister 1/2, two or more 2/3 in kalāla; with a full brother they share residue 2:1. Blocked by a son or father.',
+        "son's widow": 'A son’s widow is not an heir of her father-in-law in standard farāʾiḍ (no nasab and no nikāḥ with the deceased).'
+      };
+      return map[relation] || note || 'Share derived from furūḍ / ʿaṣaba (educational Sunni model).';
+    }
+    function faraidNetEstate() {
+      const gross = parseFloat((document.getElementById('faraid-estate') || {}).value || '0') || 0;
+      const funeral = parseFloat((document.getElementById('faraid-funeral') || {}).value || '0') || 0;
+      const debts = parseFloat((document.getElementById('faraid-debts') || {}).value || '0') || 0;
+      let wasiyyah = parseFloat((document.getElementById('faraid-wasiyyah') || {}).value || '0') || 0;
+      const afterDebts = Math.max(0, gross - funeral - debts);
+      const maxWas = afterDebts / 3;
+      let wasCapped = false;
+      if (wasiyyah > maxWas + 1e-9) { wasiyyah = maxWas; wasCapped = true; }
+      const net = Math.max(0, afterDebts - wasiyyah);
+      const el = document.getElementById('faraid-net');
+      if (el) el.value = net ? net.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '';
+      return { gross: gross, funeral: funeral, debts: debts, wasiyyah: wasiyyah, wasCapped: wasCapped, afterDebts: afterDebts, net: net };
+    }
+    function faraidFiqhPanelHtml() {
+      return '<div class="faraid-fiqh" id="faraid-fiqh-refs">' +
+        '<h3 style="margin:0.7rem 0 0.35rem;font-size:1rem;">Fiqh references (educational)</h3>' +
+        '<p class="notes-hint">Primary texts are the same across the four Sunni schools. Differences appear in <em>edge cases</em>. This calculator follows a simplified Hanafī-leaning Sunni path (ʿawl + radd to blood sharers, not the spouse).</p>' +
+        '<ul class="sources-list">' +
+        '<li><strong>Qurʾān</strong> — an-Nisāʾ 4:11 (children &amp; parents), 4:12 (spouses &amp; uterine siblings), 4:176 (kalāla sisters/brothers).</li>' +
+        '<li><strong>Sunnah</strong> — “Give the fixed shares to those entitled, and what remains to the nearest male agnate” (Bukhārī 6732 · Muslim 1615).</li>' +
+        '<li><strong>Settlement order</strong> — funeral, then debts, then wasiyyah (max one-third of the post-debt remainder unless heirs consent), then farāʾiḍ.</li>' +
+        '<li><strong>ʿAwl</strong> — if fixed shares exceed the estate, every share is reduced in proportion (Companions’ practice; Zayd b. Thābit).</li>' +
+        '<li><strong>Radd</strong> — if shares are under the estate and there is no ʿaṣaba, surplus returns to blood sharers. <em>Hanafī / Ḥanbalī:</em> radd to blood relatives, not the spouse. <em>Mālikī / classical Shāfiʿī:</em> surplus to bayt al-māl when it functions; later Shāfiʿī practice often follows radd when there is no treasury. Some modern Mālikī discussions allow radd including a spouse — treat as disputed.</li>' +
+        '<li><strong>Grandfather + siblings</strong> — Hanafī: grandfather blocks siblings. Mālikī / Shāfiʿī: muqāsama (share, grandfather not less than 1/3 in many tables). Ḥanbalī: closer to Abū Bakr’s view (grandfather like father in several cases). <em>Not fully modelled here.</em></li>' +
+        '<li><strong>Dhawū al-arḥām</strong> (uterine distant kin) — Hanafī and Ḥanbalī may pass the estate to them if no furūḍ/ʿaṣaba remain; classical Mālikī / Shāfiʿī prefer bayt al-māl. Not modelled here.</li>' +
+        '<li><strong>Jaʿfarī / Imāmī</strong> — does not use Sunni ʿaṣaba in the same way; class-based nasab. Do not use this tool for that school.</li>' +
+        '</ul>' +
+        '<p class="notes-hint">Study tools: <a href="https://quran.com/4/11" target="_blank" rel="noopener">Quran 4:11</a> · ' +
+        '<a href="https://quran.com/4/12" target="_blank" rel="noopener">4:12</a> · ' +
+        '<a href="https://quran.com/4/176" target="_blank" rel="noopener">4:176</a> · ' +
+        '<a href="https://sunnah.com/bukhari:6732" target="_blank" rel="noopener">Bukhārī 6732</a> · ' +
+        '<a href="https://sunnah.com/muslim:1615" target="_blank" rel="noopener">Muslim 1615</a> · ' +
+        '<a href="https://www.islamicity.org/covers/inheritance/" target="_blank" rel="noopener">IslamiCity inheritance overview</a> · ' +
+        '<a href="https://islamicinheritance.com/schools_of_thought/" target="_blank" rel="noopener">School differences</a> · ' +
+        '<a href="https://getmirath.com/" target="_blank" rel="noopener">Mirath</a> · ' +
+        '<a href="https://qurani.io/inheritance-calculator/" target="_blank" rel="noopener">Qurani</a>. <strong>Not a fatwa.</strong></p>' +
+        '</div>';
+    }
+    function faraidCalculate() {
+      const deceasedGender = (document.getElementById('faraid-gender') || {}).value || 'male';
+      const currency = ((document.getElementById('faraid-currency') || {}).value || '').trim();
+      const pipe = faraidNetEstate();
+      const estate = pipe.net;
+      let heirs = faraidReadHeirRows();
+      heirs = heirs.map(function (h) {
+        if (h.relation === 'spouse') h.gender = deceasedGender === 'male' ? 'female' : 'male';
+        if (['son','grandson','great-grandson','brother','father'].indexOf(h.relation) >= 0) h.gender = 'male';
+        if (['daughter','granddaughter','great-granddaughter','sister','mother'].indexOf(h.relation) >= 0) h.gender = 'female';
+        return h;
+      });
+      const sons = heirs.filter(function (h) { return h.relation === 'son'; });
+      const daughters = heirs.filter(function (h) { return h.relation === 'daughter'; });
+      const grandsons = heirs.filter(function (h) { return h.relation === 'grandson' || h.relation === 'great-grandson'; });
+      const granddaughters = heirs.filter(function (h) { return h.relation === 'granddaughter' || h.relation === 'great-granddaughter'; });
+      const hasChild = sons.length + daughters.length > 0;
+      const hasDescendants = hasChild || grandsons.length + granddaughters.length > 0;
+      const spouse = heirs.filter(function (h) { return h.relation === 'spouse'; });
+      const father = heirs.filter(function (h) { return h.relation === 'father'; });
+      const mother = heirs.filter(function (h) { return h.relation === 'mother'; });
+      const brothers = heirs.filter(function (h) { return h.relation === 'brother'; });
+      const sisters = heirs.filter(function (h) { return h.relation === 'sister'; });
+      const sonWidows = heirs.filter(function (h) { return h.relation === "son's widow"; });
+      const hasMultipleSiblings = (brothers.length + sisters.length) >= 2;
+
+      const shares = [];
+      function pushShare(person, fracObj, note) {
+        shares.push({ name: person.name, relation: person.relation, f: fracObj, note: note || '', why: faraidWhy(person.relation, note) });
+      }
+      function F(n, d) { return faraidFrac(n, d); }
+
+      spouse.forEach(function (s) {
+        if (deceasedGender === 'male') {
+          const f = hasDescendants ? F(1, 8) : F(1, 4);
+          const each = faraidDiv(f, F(spouse.length, 1));
+          pushShare(s, each, hasDescendants ? 'Wife 1/8 with descendants (4:12)' : 'Wife 1/4 without descendants (4:12)');
+        } else {
+          const f = hasDescendants ? F(1, 4) : F(1, 2);
+          const each = faraidDiv(f, F(spouse.length, 1));
+          pushShare(s, each, hasDescendants ? 'Husband 1/4 with descendants (4:12)' : 'Husband 1/2 without descendants (4:12)');
+        }
+      });
+      sonWidows.forEach(function (w) {
+        pushShare(w, F(0, 1), "Son’s widow is not an heir of the father-in-law (context only)");
+      });
+      mother.forEach(function (m) {
+        if (hasDescendants || hasMultipleSiblings) pushShare(m, F(1, 6), 'Mother 1/6 (4:11)');
+        else pushShare(m, F(1, 3), 'Mother 1/3 (4:11)');
+      });
+      father.forEach(function (f) {
+        if (hasDescendants) pushShare(f, F(1, 6), 'Father 1/6 with descendants (4:11); may also take residue');
+        else pushShare(f, F(0, 1), 'Father as residuary (no descendants)');
+      });
+      if (!sons.length && daughters.length) {
+        const f = daughters.length === 1 ? F(1, 2) : F(2, 3);
+        daughters.forEach(function (dau) {
+          pushShare(dau, faraidDiv(f, F(daughters.length, 1)), daughters.length === 1 ? 'Only daughter 1/2 (4:11)' : 'Daughters share 2/3 (4:11)');
+        });
+      }
+      if (!hasDescendants && !father.length && !sons.length && !brothers.length && sisters.length) {
+        const f = sisters.length === 1 ? F(1, 2) : F(2, 3);
+        sisters.forEach(function (s) {
+          pushShare(s, faraidDiv(f, F(sisters.length, 1)), sisters.length === 1 ? 'Only sister kalāla 1/2 (4:176)' : 'Sisters share 2/3 kalāla (4:176)');
+        });
+      }
+
+      let fixedSum = shares.reduce(function (a, s) { return faraidAdd(a, s.f); }, F(0, 1));
+      let residue = faraidFrac(fixedSum.d - fixedSum.n, fixedSum.d);
+      if (faraidCmp(residue, F(0, 1)) < 0) residue = F(0, 1);
+      const asaba = [];
+
+      if (sons.length) {
+        const units = sons.length * 2 + daughters.length;
+        sons.forEach(function (s) {
+          asaba.push({ name: s.name, relation: 'son', f: faraidMul(residue, F(2, units)), note: 'Residuary 2:1 with daughters (4:11)', why: faraidWhy('son') });
+        });
+        daughters.forEach(function (dau) {
+          asaba.push({ name: dau.name, relation: 'daughter', f: faraidMul(residue, F(1, units)), note: 'Residuary with sons 1:2 (4:11)', why: faraidWhy('daughter') });
+        });
+      } else if (grandsons.length || granddaughters.length) {
+        const units = grandsons.length * 2 + granddaughters.length;
+        if (units > 0 && faraidCmp(residue, F(0, 1)) > 0) {
+          grandsons.forEach(function (s) {
+            asaba.push({ name: s.name, relation: s.relation, f: faraidMul(residue, F(2, units)), note: 'Residuary grandson (simplified; no living son)', why: faraidWhy('grandson') });
+          });
+          granddaughters.forEach(function (dau) {
+            asaba.push({ name: dau.name, relation: dau.relation, f: faraidMul(residue, F(1, units)), note: 'Residuary granddaughter (simplified)', why: faraidWhy('granddaughter') });
+          });
+        } else if (!grandsons.length && granddaughters.length) {
+          const f = granddaughters.length === 1 ? F(1, 2) : F(2, 3);
+          granddaughters.forEach(function (dau) {
+            pushShare(dau, faraidDiv(f, F(granddaughters.length, 1)), 'Granddaughter educational fixed share (verify)');
+          });
+          fixedSum = shares.reduce(function (a, s) { return faraidAdd(a, s.f); }, F(0, 1));
+          residue = faraidFrac(Math.max(0, fixedSum.d - fixedSum.n), fixedSum.d);
+        }
+      } else if (father.length && !hasDescendants) {
+        father.forEach(function (f) {
+          for (let i = shares.length - 1; i >= 0; i--) {
+            if (shares[i].relation === 'father' && shares[i].name === f.name) shares.splice(i, 1);
+          }
+          asaba.push({ name: f.name, relation: 'father', f: residue, note: 'Father takes residue', why: faraidWhy('father') });
+        });
+      } else if (!hasDescendants && !father.length && brothers.length) {
+        for (let i = shares.length - 1; i >= 0; i--) {
+          if (shares[i].relation === 'sister') shares.splice(i, 1);
+        }
+        fixedSum = shares.reduce(function (a, s) { return faraidAdd(a, s.f); }, F(0, 1));
+        residue = faraidFrac(Math.max(0, fixedSum.d - fixedSum.n), fixedSum.d);
+        const units = brothers.length * 2 + sisters.length;
+        brothers.forEach(function (b) {
+          asaba.push({ name: b.name, relation: 'brother', f: faraidMul(residue, F(2, units)), note: 'Residuary brother', why: faraidWhy('brother') });
+        });
+        sisters.forEach(function (s) {
+          asaba.push({ name: s.name, relation: 'sister', f: faraidMul(residue, F(1, units)), note: 'Residuary with brothers 1:2', why: faraidWhy('sister') });
+        });
+      }
+
+      let all = shares.concat(asaba).filter(function (s) { return s.f && (s.f.n > 0 || s.relation === "son's widow"); });
+      let total = all.reduce(function (a, s) { return faraidAdd(a, s.f); }, F(0, 1));
+      let mode = 'normal';
+      if (faraidCmp(total, F(1, 1)) > 0) {
+        mode = 'awl';
+        all = all.map(function (s) {
+          return Object.assign({}, s, { f: faraidDiv(s.f, total), note: (s.note || '') + ' · ʿawl (proportional reduction)' });
+        });
+        total = F(1, 1);
+      } else if (faraidCmp(total, F(1, 1)) < 0 && all.length) {
+        const canRadd = !sons.length && !brothers.length && !(father.length && !hasDescendants) && !grandsons.length;
+        if (canRadd) {
+          mode = 'radd';
+          const blood = all.filter(function (s) { return s.relation !== 'spouse' && s.relation !== "son's widow"; });
+          const bloodSum = blood.reduce(function (a, s) { return faraidAdd(a, s.f); }, F(0, 1));
+          const surplus = faraidFrac(total.d - total.n, total.d);
+          if (faraidCmp(bloodSum, F(0, 1)) > 0 && faraidCmp(surplus, F(0, 1)) > 0) {
+            all = all.map(function (s) {
+              if (s.relation === 'spouse' || s.relation === "son's widow") return s;
+              const extra = faraidMul(surplus, faraidDiv(s.f, bloodSum));
+              return Object.assign({}, s, { f: faraidAdd(s.f, extra), note: (s.note || '') + ' · radd (return of surplus)' });
+            });
+            total = all.reduce(function (a, s) { return faraidAdd(a, s.f); }, F(0, 1));
+          }
+        }
+      }
+
+      const merged = {};
+      all.forEach(function (s) {
+        const k = s.relation + '|' + s.name;
+        if (!merged[k]) merged[k] = Object.assign({}, s);
+        else {
+          merged[k].f = faraidAdd(merged[k].f, s.f);
+          if (s.note && (merged[k].note || '').indexOf(s.note) === -1) merged[k].note = (merged[k].note || '') + '; ' + s.note;
+        }
+      });
+      all = Object.keys(merged).map(function (k) { return merged[k]; });
+      all.sort(function (a, b) { return faraidToNum(b.f) - faraidToNum(a.f); });
+
+      const box = document.getElementById('faraid-result');
+      if (!box) return;
+      box.style.display = 'block';
+      if (!all.length) {
+        box.innerHTML = '<p>No shares computed. Add living heirs (spouse, parents, children, siblings).</p>';
+        return;
+      }
+      const pct = function (f) { return (faraidToNum(f) * 100).toFixed(2) + '%'; };
+      const amt = function (f) {
+        if (!estate) return '';
+        const v = estate * faraidToNum(f);
+        return ' · ' + (currency ? currency + ' ' : '') + v.toLocaleString(undefined, { maximumFractionDigits: 2 });
+      };
+      let html = '<div id="faraid-print-area" class="faraid-result-body">';
+      html += '<p><strong>Farāʾiḍ result</strong> (educational) · mode: <em>' + mode + '</em></p>';
+      html += '<p class="notes-hint">Net estate after funeral, debts, wasiyyah: <strong>' +
+        (currency ? currency + ' ' : '') + (estate ? estate.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—') + '</strong>';
+      if (pipe.wasCapped) html += ' · wasiyyah capped at ⅓ of post-debt remainder';
+      html += '</p><ul style="margin:0.35rem 0 0.5rem 1.1rem;">';
+      all.forEach(function (s) {
+        html += '<li><strong>' + String(s.name).replace(/</g, '') + '</strong> (' + s.relation + '): <strong>' +
+          faraidStr(s.f) + '</strong> (' + pct(s.f) + ')' + amt(s.f) +
+          (s.note ? '<br><span class="notes-hint">' + s.note + '</span>' : '') +
+          '<div class="faraid-why"><strong>Why:</strong> ' + (s.why || faraidWhy(s.relation)) + '</div></li>';
+      });
+      html += '</ul>';
+      const sumN = all.reduce(function (a, s) { return a + faraidToNum(s.f); }, 0);
+      html += '<p class="notes-hint">Total allocated: ' + (sumN * 100).toFixed(2) + '%' +
+        (estate ? amt(F(Math.round(sumN * 10000), 10000)) : '') +
+        '.</p>' + faraidFiqhPanelHtml() + '</div>';
+      html += '<p class="no-print"><button type="button" class="btn-secondary" onclick="faraidPrintResult()">🖨️ Print / save as PDF</button></p>';
+      box.innerHTML = html;
+      box.style.display = 'block';
+      box.hidden = false;
+      try { claritySession.setItem('clarity_faraid_last', html); } catch (e) {}
+    }
+    function faraidRestoreResult() {
+      const box = document.getElementById('faraid-result');
+      if (!box || (box.innerHTML && box.innerHTML.trim())) return;
+      try {
+        const html = claritySession.getItem('clarity_faraid_last');
+        if (html) { box.innerHTML = html; box.style.display = 'block'; box.hidden = false; }
+      } catch (e) {}
+    }
+    function faraidPrintResult() {
+      const area = document.getElementById('faraid-print-area') || document.getElementById('faraid-result');
+      if (!area) return;
+      document.body.classList.add('printing');
+      const sheet = document.createElement('div');
+      sheet.className = 'print-sheet';
+      sheet.innerHTML = area.innerHTML;
+      document.body.appendChild(sheet);
+      window.print();
+      setTimeout(function () {
+        document.body.classList.remove('printing');
+        sheet.remove();
+      }, 400);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      try { wasiLoad(); } catch (e0) {}
+      try { wasiFillTreeSelects(); } catch (e00) {}
+      try { faraidFillDeceasedSelect(); } catch (e) {}
+      try { faraidRestoreResult(); } catch (e2) {}
+    });
+    setTimeout(function () { try { wasiLoad(); } catch (e0) {} try { faraidFillDeceasedSelect(); } catch (e) {} try { uftShowIntegrity(); } catch (e2) {} try { uftRefreshCardPicker(); } catch (e3) {} }, 600);
+
+    /* ========== Clarity Amānah suite: IDs, quick edit, integrity, backup ========== */
+    function uftNewPersonId() {
+      return 'p_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+    }
+    function uftEnsurePeople(d) {
+      d = d || uftCollect();
+      d.people = Array.isArray(d.people) ? d.people : [];
+      const byKey = {};
+      d.people.forEach(function (p) {
+        if (p && p.name) byKey[(p.slot || '') + '|' + uftNorm(p.name)] = p;
+      });
+      function ensure(name, slot, role) {
+        if (!name) return null;
+        const k = (slot || '') + '|' + uftNorm(name);
+        if (byKey[k]) return byKey[k];
+        const row = { id: uftNewPersonId(), name: name, slot: slot || '', role: role || '', gender: uftGenderOf(name, slot) || '', vital: uftVitalOf(name, slot) || '' };
+        d.people.push(row);
+        byKey[k] = row;
+        return row;
+      }
+      ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (s) {
+        if (d[s]) ensure(d[s], s, s);
+      });
+      ['g1','g2','g3','siblings','children','grandchildren'].forEach(function (field) {
+        uftLines(d[field]).forEach(function (n) { ensure(n, field, field); });
+      });
+      (d.relatives || []).forEach(function (r) {
+        if (r && r.name) ensure(r.name, r.anchor || '', r.relation || '');
+      });
+      return d;
+    }
+    function uftQuickAddRelative(hostName, hostSlot, relation) {
+      try {
+        hostName = String(hostName || '').trim();
+        if (!hostName) {
+          if (typeof uftSetStatus === 'function') uftSetStatus('No host member selected.');
+          return;
+        }
+        relation = String(relation || 'child').toLowerCase();
+        var open = (typeof uftOpenPersonPicker === 'function') ? uftOpenPersonPicker : window.uftOpenPersonPicker;
+        if (typeof open === 'function') {
+          open(hostName, hostSlot || '', relation);
+          return;
+        }
+        var modal = document.getElementById('uft-pick-modal');
+        if (modal) {
+          try {
+            window.uftPickCtx = { hostName: hostName, hostSlot: hostSlot || '', relation: relation };
+            modal.hidden = false;
+            modal.removeAttribute('hidden');
+            modal.style.display = 'flex';
+            if (typeof uftRenderPickList === 'function') uftRenderPickList('');
+            else if (window.uftRenderPickList) window.uftRenderPickList('');
+            return;
+          } catch (eM) { console.warn('picker modal', eM); }
+        }
+        var label = relation === 'spouse' ? 'spouse' : (relation === 'sibling' ? 'sibling' : (relation === 'parent' ? 'parent' : 'child'));
+        var nm = prompt('Name of ' + label + ' of ' + hostName + ':');
+        if (nm === null) return;
+        var name = String(nm || '').trim();
+        if (!name) return;
+        if (typeof uftApplyRelativeLink === 'function') uftApplyRelativeLink(hostName, hostSlot, relation, name);
+      } catch (err) {
+        console.error('uftQuickAddRelative', err);
+        try { alert('Could not open member list: ' + (err && err.message ? err.message : err)); } catch (e2) {}
+      }
+    }
+    try {
+      window.uftQuickAddRelative = uftQuickAddRelative;
+      if (typeof uftOpenPersonPicker === 'function') window.uftOpenPersonPicker = uftOpenPersonPicker;
+      if (typeof uftClosePersonPicker === 'function') window.uftClosePersonPicker = uftClosePersonPicker;
+      if (typeof uftRenderPickList === 'function') window.uftRenderPickList = uftRenderPickList;
+      if (typeof uftApplyRelativeLink === 'function') window.uftApplyRelativeLink = uftApplyRelativeLink;
+    } catch (eExp) {}
+    function uftApplyRelativeLink(hostName, hostSlot, relation, name) {
+      name = String(name || '').trim();
+      hostName = String(hostName || '').trim();
+      if (!name || !hostName) return;
+      relation = relation || 'child';
+      const d = (typeof uftEnsurePeople === 'function') ? uftEnsurePeople(uftCollect()) : uftCollect();
+      d.relatives = Array.isArray(d.relatives) ? d.relatives : [];
+      let anchor = (typeof uftNameKey === 'function' ? uftNameKey(hostName) : '');
+      if (!anchor) anchor = hostSlot || hostName;
+      if (relation === 'child' || relation === 'sibling' || relation === 'spouse') {
+        anchor = (typeof uftNameKey === 'function' ? uftNameKey(hostName) : hostName) || anchor;
+      }
+      const exists = d.relatives.some(function (r) {
+        return r && r.relation === relation && uftSame(r.name, name) && (
+          String(r.anchor) === String(anchor) ||
+          (typeof uftAnchorMatches === 'function' && uftAnchorMatches(d, r.anchor, anchor, hostName))
+        );
+      });
+      if (!exists) d.relatives.push({ anchor: anchor, relation: relation, name: name });
+      if (relation === 'child') {
+        d.relatives = d.relatives.map(function (r) {
+          if (!r || r.relation !== 'child') return r;
+          const hostIs = (typeof uftAnchorMatches === 'function')
+            ? (uftAnchorMatches(d, r.anchor, hostSlot, hostName) || uftAnchorMatches(d, r.anchor, anchor, hostName))
+            : (String(r.anchor) === String(hostSlot) || String(r.anchor) === String(anchor));
+          if (hostIs) return { anchor: anchor, relation: 'child', name: r.name };
+          return r;
+        });
+        const seenC = {};
+        d.relatives = d.relatives.filter(function (r) {
+          if (!r || r.relation !== 'child') return true;
+          if (!(typeof uftAnchorMatches === 'function' ? uftAnchorMatches(d, r.anchor, anchor, hostName) : String(r.anchor) === String(anchor))) return true;
+          const k = (typeof uftNorm === 'function' ? uftNorm(r.name) : r.name);
+          if (seenC[k]) return false;
+          seenC[k] = true;
+          return true;
+        });
+      }
+      if (relation === 'child' && (hostSlot === 'self' || uftSame(hostName, d.self))) {
+        const lines = uftLines(d.children);
+        if (!lines.some(function (x) { return uftSame(x, name); })) {
+          lines.push(name);
+          d.children = lines.join('\n');
+        }
+      }
+      if (relation === 'sibling' && (hostSlot === 'self' || uftSame(hostName, d.self))) {
+        const lines = uftLines(d.siblings);
+        if (!lines.some(function (x) { return uftSame(x, name); })) {
+          lines.push(name);
+          d.siblings = lines.join('\n');
+        }
+      }
+      if (relation === 'spouse' && (hostSlot === 'self' || uftSame(hostName, d.self)) && !d.spouse) {
+        d.spouse = name;
+      }
+      d.registry = Array.isArray(d.registry) ? d.registry : [];
+      if (!d.registry.some(function (r) { return r && uftSame(r.name, name); })) {
+        d.registry.push({
+          id: (typeof uftNewPersonId === 'function') ? uftNewPersonId() : ('p' + Date.now()),
+          name: name, role: relation, phone: '', email: '', city: '', note: ''
+        });
+      }
+      try { clarityLS.setItem(UFT_KEY, JSON.stringify(d)); } catch (e) {}
+      try {
+        const f = uftFields();
+        if (f.children && d.children != null) f.children.value = d.children;
+        if (f.siblings && d.siblings != null) f.siblings.value = d.siblings;
+        if (f.spouse && d.spouse != null) f.spouse.value = d.spouse;
+      } catch (e) {}
+      uftRender({ keepScroll: true });
+      try { if (typeof uftRegRender === 'function') uftRegRender(); } catch (e) {}
+      try { if (typeof uftRenderOwnTreePanel === 'function') uftRenderOwnTreePanel(); } catch (e) {}
+      if (typeof uftSetStatus === 'function') uftSetStatus('Added ' + relation + ': ' + name + ' under ' + hostName);
+    }
+
+    // ----- Own tree (workspace below main pedigree) -----
+    let uftOwnTree = null;
+    try {
+      const _ot = JSON.parse(clarityLS.getItem('clarity_uft_own_tree') || 'null');
+      if (_ot && _ot.name) uftOwnTree = _ot;
+    } catch (e) {}
+    function uftStartOwnTree(name, slot) {
+      if (!name) return;
+      uftOwnTree = { name: String(name), slot: String(slot || '') };
+      try { clarityLS.setItem('clarity_uft_own_tree', JSON.stringify(uftOwnTree)); } catch (e) {}
+      uftRenderOwnTreePanel();
+      const wrap = document.getElementById('uft-branch-wrap');
+      if (wrap) {
+        wrap.hidden = false;
+        wrap.style.display = '';
+        try { wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
+      }
+      if (typeof uftSetStatus === 'function') uftSetStatus('Own Family Tree · ' + name);
+    }
+    function uftCloseOwnTree(ev) {
+      if (ev && ev.preventDefault) { ev.preventDefault(); ev.stopPropagation(); }
+      uftOwnTree = null;
+      try { clarityLS.removeItem('clarity_uft_own_tree'); } catch (e) {}
+      const wrap = document.getElementById('uft-branch-wrap');
+      if (wrap) {
+        wrap.hidden = true;
+        wrap.style.display = 'none';
+      }
+      const body = document.getElementById('uft-branch-body');
+      if (body) body.innerHTML = '';
+      const lineEl = document.getElementById('uft-branch-line');
+      if (lineEl) lineEl.textContent = '';
+      const title = document.getElementById('uft-branch-title');
+      if (title) title.textContent = 'Personal tree';
+      if (typeof uftSetStatus === 'function') uftSetStatus('Own Family Tree closed');
+      return false;
+    }
+    // Ensure always callable from inline onclick / mobile
+    try { window.uftCloseOwnTree = uftCloseOwnTree; window.uftStartOwnTree = uftStartOwnTree; } catch (e) {}
+    document.addEventListener('click', function (ev) {
+      const t = ev.target;
+      if (!t || !t.closest) return;
+      if (t.closest('#uft-branch-close-btn') || t.closest('#uft-branch-x-btn') || t.closest('[data-uft-close-branch]')) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        uftCloseOwnTree(ev);
+      }
+    }, true);
+    function uftRenderOwnTreePanel() {
+      const wrap = document.getElementById('uft-branch-wrap');
+      const body = document.getElementById('uft-branch-body');
+      const title = document.getElementById('uft-branch-title');
+      const lineEl = document.getElementById('uft-branch-line');
+      if (!wrap || !body) return;
+      if (!uftOwnTree || !uftOwnTree.name) {
+        wrap.hidden = true;
+        wrap.style.display = 'none';
+        body.innerHTML = '';
+        return;
+      }
+      wrap.hidden = false;
+      wrap.style.display = '';
+      const d = (typeof uftCollect === 'function') ? uftCollect() : {};
+      const name = uftOwnTree.name;
+      const slot = uftOwnTree.slot || '';
+      if (title) title.textContent = 'Own Family Tree · ' + name;
+
+      function norm(n) {
+        return (typeof uftNorm === 'function') ? uftNorm(n) : String(n || '').toLowerCase().trim();
+      }
+      function kidsOf(n, sl) {
+        let kids = [];
+        try { kids = (typeof uftLineKids === 'function') ? (uftLineKids(d, n, sl) || []) : []; } catch (e) { kids = []; }
+        if (!kids.length && typeof uftKidsOf === 'function') {
+          try {
+            kids = (uftKidsOf(d, sl || (typeof uftNameKey === 'function' ? uftNameKey(n) : n)) || [])
+              .concat(uftKidsOf(d, typeof uftNameKey === 'function' ? uftNameKey(n) : n) || []);
+          } catch (e2) {}
+        }
+        const seen = {};
+        return (kids || []).filter(function (k) {
+          if (!k || !k.name) return false;
+          const key = norm(k.name);
+          if (seen[key]) return false;
+          seen[key] = true;
+          return true;
+        }).map(function (k) {
+          return { name: k.name, slot: k.slot || (typeof uftNameKey === 'function' ? uftNameKey(k.name) : ''), relation: k.relation || 'Child' };
+        });
+      }
+      function spousesOf(n, sl) {
+        let sps = [];
+        try {
+          sps = (typeof uftSpouseOf === 'function') ? (uftSpouseOf(d, sl || (typeof uftNameKey === 'function' ? uftNameKey(n) : n)) || []) : [];
+          if (!sps.length && typeof uftSpouseOf === 'function') {
+            sps = uftSpouseOf(d, typeof uftNameKey === 'function' ? uftNameKey(n) : n) || [];
+          }
+        } catch (e) {}
+        /* also relatives[] spouse */
+        try {
+          const key = (typeof uftNameKey === 'function') ? uftNameKey(n) : n;
+          (d.relatives || []).forEach(function (r) {
+            if (!r || !r.name || r.relation !== 'spouse') return;
+            if (String(r.anchor) === String(sl) || String(r.anchor) === String(key) || (typeof uftSame === 'function' && uftSame(r.anchor, n))) {
+              sps.push({ name: r.name });
+            }
+          });
+        } catch (e2) {}
+        const seen = {};
+        return (sps || []).filter(function (s) {
+          if (!s || !s.name) return false;
+          if (typeof uftSame === 'function' && uftSame(s.name, n)) return false;
+          const key = norm(s.name);
+          if (seen[key]) return false;
+          seen[key] = true;
+          return true;
+        });
+      }
+      function siblingsOf(n, sl) {
+        const bag = [];
+        const seen = {};
+        function push(nm, rel) {
+          if (!nm) return;
+          if (typeof uftSame === 'function' && uftSame(nm, n)) return;
+          const key = norm(nm);
+          if (seen[key]) return;
+          seen[key] = true;
+          bag.push({ name: nm, slot: (typeof uftNameKey === 'function' ? uftNameKey(nm) : nm), relation: rel || 'Sibling' });
+        }
+        try {
+          if (typeof uftSiblingsOf === 'function') {
+            (uftSiblingsOf(d, sl || (typeof uftNameKey === 'function' ? uftNameKey(n) : n)) || []).forEach(function (s) {
+              if (s && s.name) push(s.name, s.relation || 'Sibling');
+            });
+            (uftSiblingsOf(d, typeof uftNameKey === 'function' ? uftNameKey(n) : n) || []).forEach(function (s) {
+              if (s && s.name) push(s.name, s.relation || 'Sibling');
+            });
+          }
+        } catch (e) {}
+        try {
+          const key = (typeof uftNameKey === 'function') ? uftNameKey(n) : n;
+          (d.relatives || []).forEach(function (r) {
+            if (!r || !r.name || r.relation !== 'sibling') return;
+            if (String(r.anchor) === String(sl) || String(r.anchor) === String(key) ||
+                (typeof uftSame === 'function' && (uftSame(String(r.anchor), n) || uftSame(String(r.anchor), key)))) {
+              push(r.name, 'Sibling');
+            }
+            /* reciprocal: if someone listed us as sibling, show them */
+            if (typeof uftSame === 'function' && uftSame(r.name, n) && r.relation === 'sibling') {
+              /* anchor is the other sibling's host — handled when host is root */
+            }
+          });
+          /* if we are listed as sibling under another person, still show them when viewing our tree */
+          (d.relatives || []).forEach(function (r) {
+            if (!r || r.relation !== 'sibling' || !r.name) return;
+            if (typeof uftSame === 'function' && uftSame(r.name, n)) {
+              var hostName = (typeof uftCoreName === 'function') ? (uftCoreName(d, r.anchor) || '') : '';
+              if (!hostName && r.anchor && String(r.anchor).indexOf('n:') === 0) hostName = String(r.anchor).replace(/^n:/, '');
+              if (hostName) push(hostName, 'Sibling');
+            }
+          });
+        } catch (e2) {}
+        return bag;
+      }
+
+      /* Generation rows: gen0 = root + spouses; siblings band; then descendant gens */
+      const gens = [];
+      const placed = {};
+      gens.push([{ name: name, slot: slot, relation: 'Branch root', isRoot: true }]);
+      placed[norm(name)] = 0;
+
+      const rootSibs = siblingsOf(name, slot);
+      for (let g = 0; g < 8; g++) {
+        const cur = gens[g] || [];
+        const next = [];
+        const nextSeen = {};
+        cur.forEach(function (person) {
+          kidsOf(person.name, person.slot).forEach(function (k) {
+            const key = norm(k.name);
+            if (placed[key] != null || nextSeen[key]) return;
+            nextSeen[key] = true;
+            placed[key] = g + 1;
+            next.push(k);
+          });
+        });
+        if (!next.length) break;
+        gens.push(next);
+      }
+
+      const lineParts = [];
+      lineParts.push(name);
+      if (rootSibs.length) lineParts.push('siblings: ' + rootSibs.map(function (s) { return s.name; }).join(', '));
+      gens.slice(1).forEach(function (row) {
+        lineParts.push(row.map(function (p) { return p.name; }).join(', '));
+      });
+      if (lineEl) {
+        lineEl.textContent = lineParts.length > 1
+          ? ('Line: ' + lineParts.join(' → '))
+          : (name + ' · add children or siblings with + Relative');
+      }
+
+      function cardHtml(person, depth) {
+        const isRoot = !!person.isRoot || depth === 0;
+        const htmlPerson = (typeof uftPerson === 'function')
+          ? uftPerson(person.name, person.relation || (isRoot ? 'Branch root' : 'Child'), '', isRoot ? 'focus' : 'rel', person.slot)
+          : ('<div class="uft-person">' + (typeof uftEsc === 'function' ? uftEsc(person.name) : person.name) + '</div>');
+        let sps = '';
+        spousesOf(person.name, person.slot).forEach(function (sp) {
+          sps += (typeof uftPerson === 'function')
+            ? uftPerson(sp.name, 'Spouse', '', 'rel', (typeof uftNameKey === 'function') ? uftNameKey(sp.name) : '')
+            : '';
+        });
+        return '<div class="uft-own-unit">' + htmlPerson + sps + '</div>';
+      }
+
+      let html = '<div class="uft-own-gens">';
+      /* Root generation */
+      html += '<div class="uft-own-gen" data-gen="0">';
+      html += '<div class="uft-living-root-label">Branch root</div>';
+      html += '<div class="uft-own-gen-row">';
+      html += cardHtml({ name: name, slot: slot, relation: 'Branch root', isRoot: true }, 0);
+      html += '</div></div>';
+
+      /* Siblings of root — same generational level, no need for parents first */
+      if (rootSibs.length) {
+        html += '<div class="uft-own-gen-link" aria-hidden="true"></div>';
+        html += '<div class="uft-own-gen" data-gen="sib">';
+        html += '<div class="uft-own-gen-label">Siblings of ' + (typeof uftEsc === 'function' ? uftEsc(name) : name) + '</div>';
+        html += '<div class="uft-own-gen-row">';
+        rootSibs.forEach(function (s) {
+          html += cardHtml({ name: s.name, slot: s.slot, relation: 'Sibling' }, 0);
+        });
+        html += '</div></div>';
+      }
+
+      gens.slice(1).forEach(function (row, i) {
+        const depth = i + 1;
+        html += '<div class="uft-own-gen-link" aria-hidden="true"></div>';
+        html += '<div class="uft-own-gen" data-gen="' + depth + '">';
+        html += '<div class="uft-own-gen-label">Generation ' + (depth + 1) + ' · descendants</div>';
+        html += '<div class="uft-own-gen-row">';
+        row.forEach(function (p) { html += cardHtml(p, depth); });
+        html += '</div></div>';
+      });
+      html += '</div>';
+      body.innerHTML = html;
+
+      if (!body.dataset.ownBound) {
+        body.dataset.ownBound = '1';
+        body.addEventListener('click', function (ev) {
+          const del = ev.target && ev.target.closest && ev.target.closest('[data-del-name]');
+          if (del) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const dn = del.getAttribute('data-del-name') || '';
+            if (uftOwnTree && uftOwnTree.name && (typeof uftSame === 'function' ? uftSame(dn, uftOwnTree.name) : dn === uftOwnTree.name)) {
+              uftCloseOwnTree(ev);
+              return;
+            }
+            if (typeof uftDeletePerson === 'function') uftDeletePerson(dn, del.getAttribute('data-del-slot') || '', del.getAttribute('data-del-anchor') || '');
+            return;
+          }
+          const own = ev.target && ev.target.closest && ev.target.closest('[data-own-name]');
+          if (own) {
+            ev.preventDefault();
+            uftStartOwnTree(own.getAttribute('data-own-name'), own.getAttribute('data-own-slot') || '');
+            return;
+          }
+          const foc = ev.target && ev.target.closest && ev.target.closest('[data-focus-name]');
+          if (foc && typeof uftOpenMemberView === 'function') {
+            ev.preventDefault();
+            uftOpenMemberView(foc.getAttribute('data-focus-name'), foc.getAttribute('data-focus-slot') || '');
+          }
+        });
+      }
+    }
+
+function uftIntegrityReport(includeDismissed) {
+      const d = uftCollect();
+      const issues = [];
+      const names = [];
+      function addName(n, slot) {
+        if (!n) return;
+        names.push({ name: n, slot: slot || '' });
+      }
+      ['self','spouse','father','mother','pgf','pgm','mgf','mgm'].forEach(function (s) { addName(d[s], s); });
+      ['g1','g2','g3','siblings','children','grandchildren'].forEach(function (field) {
+        uftLines(d[field]).forEach(function (n) { addName(n, field); });
+      });
+      (d.relatives || []).forEach(function (r) { if (r && r.name) addName(r.name, r.anchor || ''); });
+      const seen = {};
+      names.forEach(function (p) {
+        const k = uftNorm(p.name) + '|' + (p.slot || '');
+        if (seen[k]) return;
+        seen[k] = true;
+        if (!uftGenderOf(p.name, p.slot)) {
+          issues.push({
+            type: 'gender',
+            name: p.name,
+            slot: p.slot || '',
+            message: 'Missing gender · ' + p.name + (p.slot ? ' (' + p.slot + ')' : ''),
+            action: 'Open card → set ♂/♀'
+          });
+        }
+        if (!uftVitalOf(p.name, p.slot)) {
+          issues.push({
+            type: 'vital',
+            name: p.name,
+            slot: p.slot || '',
+            message: 'Missing alive/deceased · ' + p.name + (p.slot ? ' (' + p.slot + ')' : ''),
+            action: 'Open card → set Alive or Deceased'
+          });
+        }
+      });
+      // Only people ON the pedigree tree are audited (registry-only rows are ignored).
+      const reg = d.registry || [];
+      const regNorms = {};
+      const regByNorm = {};
+      reg.forEach(function (r) {
+        if (!r || !r.name) return;
+        const nn = uftNorm(r.name);
+        regNorms[nn] = true;
+        regByNorm[nn] = r;
+      });
+      const treeSeen = {};
+      names.forEach(function (p) {
+        const n = uftNorm(p.name);
+        if (!n || treeSeen[n]) return;
+        treeSeen[n] = true;
+        // Contact gap only if this tree person exists in registry without contact fields
+        const row = regByNorm[n];
+        if (row && !row.phone && !row.email && !row.city) {
+          issues.push({
+            type: 'contact',
+            name: p.name,
+            slot: p.slot || row.role || '',
+            regId: row.id || '',
+            message: 'On tree · registry missing phone/email/city · ' + p.name,
+            action: 'Open registry → add contact for this tree member'
+          });
+        }
+        if (!regNorms[n]) {
+          issues.push({
+            type: 'registry_missing',
+            name: p.name,
+            slot: p.slot || '',
+            message: 'On tree but not in registry · ' + p.name,
+            action: 'Open tree card · or registry → Pull names from tree'
+          });
+        }
+      });
+      // duplicate names across gens (informational — still clickable to first card)
+      const byNorm = {};
+      names.forEach(function (p) {
+        const n = uftNorm(p.name);
+        byNorm[n] = byNorm[n] || [];
+        byNorm[n].push(p);
+      });
+      Object.keys(byNorm).forEach(function (n) {
+        const slots = [];
+        const seenS = {};
+        byNorm[n].forEach(function (p) {
+          const s = p.slot || '';
+          if (seenS[s]) return;
+          seenS[s] = true;
+          slots.push(s || '(no slot)');
+        });
+        if (slots.length > 1) {
+          const first = byNorm[n][0];
+          issues.push({
+            type: 'duplicate_name',
+            name: first.name,
+            slot: first.slot || '',
+            message: 'Same name in slots: ' + slots.join(', ') + ' · “' + first.name + '” (OK if different people)',
+            action: 'Review cards — confirm same or different people'
+          });
+        }
+      });
+      if (!includeDismissed) {
+        const dismissed = uftReadDismissedAudits();
+        if (dismissed && dismissed.length) {
+          return issues.filter(function (issue) {
+            return dismissed.indexOf(uftAuditDismissKey(issue)) < 0;
+          });
+        }
+      }
+      return issues;
+    }
+    function uftIntegrityRefresh() {
+      const box = document.getElementById('uft-integrity');
+      if (box) uftShowIntegrity();
+    }
+    function uftFlashTreeCard(name, slot) {
+      if (!name) return null;
+      // Prefer main pedigree, then whole stage, then open own-tree body
+      const roots = [];
+      const preview = document.getElementById('uft-preview');
+      const branch = document.getElementById('uft-branch-body');
+      const stage = document.getElementById('uft-stage');
+      if (preview) roots.push(preview);
+      if (branch) roots.push(branch);
+      if (stage) roots.push(stage);
+      let hit = null;
+      let nameOnly = null;
+      function scan(root) {
+        if (!root || hit) return;
+        root.querySelectorAll('.uft-person').forEach(function (el) {
+          if (hit) return;
+          const btn = el.querySelector('[data-vital-name], [data-gender-name], [data-focus-name], [data-own-name], [data-del-name]');
+          const n = btn
+            ? (btn.getAttribute('data-vital-name') || btn.getAttribute('data-gender-name') || btn.getAttribute('data-focus-name') || btn.getAttribute('data-own-name') || btn.getAttribute('data-del-name') || '')
+            : '';
+          const s = btn
+            ? (btn.getAttribute('data-vital-slot') || btn.getAttribute('data-gender-slot') || btn.getAttribute('data-focus-slot') || btn.getAttribute('data-own-slot') || btn.getAttribute('data-del-slot') || '')
+            : '';
+          const pn = el.querySelector('.pn');
+          const label = pn ? pn.textContent.replace(/†/g, '').trim() : '';
+          const nameOk = n
+            ? ((typeof uftSame === 'function') ? uftSame(n, name) : (String(n).toLowerCase() === String(name).toLowerCase()))
+            : (label && ((typeof uftSame === 'function') ? uftSame(label, name) : label.toLowerCase() === String(name).toLowerCase()));
+          if (!nameOk) return;
+          if (slot && s && s === slot) { hit = el; return; }
+          if (!nameOnly) nameOnly = el;
+        });
+      }
+      roots.forEach(scan);
+      if (!hit) hit = nameOnly;
+      if (hit) {
+        hit.classList.add('uft-audit-flash');
+        try { hit.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+        setTimeout(function () { try { hit.classList.remove('uft-audit-flash'); } catch (e) {} }, 2800);
+      }
+      return hit;
+    }
+    function uftGotoIntegrityIssue(idx) {
+      const issues = uftIntegrityReport();
+      const issue = issues[idx];
+      if (!issue) return;
+      const name = issue.name || '';
+      const slot = issue.slot || '';
+      if (issue.type === 'contact') {
+        // Open registry and focus the row / form
+        const box = document.getElementById('uft-registry-box');
+        if (box) box.open = true;
+        if (typeof uftExpandEditor === 'function') uftExpandEditor();
+        const d = (typeof uftRead === 'function') ? uftRead() : {};
+        const reg = d.registry || [];
+        let row = null;
+        if (issue.regId) row = reg.find(function (r) { return r && r.id === issue.regId; });
+        if (!row && name) {
+          row = reg.find(function (r) {
+            return r && ((typeof uftSame === 'function') ? uftSame(r.name, name) : r.name === name);
+          });
+        }
+        if (row && typeof uftRegFill === 'function') {
+          uftRegFill(row.id);
+        } else if (name) {
+          const nameEl = document.getElementById('uft-reg-name');
+          const roleEl = document.getElementById('uft-reg-role');
+          if (nameEl) nameEl.value = name;
+          if (roleEl && slot) roleEl.value = slot;
+        }
+        if (typeof uftRegRender === 'function') uftRegRender();
+        setTimeout(function () {
+          const list = document.getElementById('uft-reg-list');
+          if (list) {
+            list.querySelectorAll('.uft-reg-row').forEach(function (rowEl) {
+              const strong = rowEl.querySelector('strong');
+              if (strong && name && ((typeof uftSame === 'function') ? uftSame(strong.textContent, name) : strong.textContent === name)) {
+                rowEl.classList.add('uft-audit-flash');
+                rowEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(function () { rowEl.classList.remove('uft-audit-flash'); }, 2800);
+              }
+            });
+          }
+          const focusField = document.getElementById('uft-reg-phone') || document.getElementById('uft-reg-name');
+          if (focusField) focusField.focus();
+        }, 80);
+        if (typeof uftSetStatus === 'function') uftSetStatus('Audit → registry · ' + name);
+        return;
+      }
+      // gender / vital / duplicate / on-tree issues → member card on main pedigree first
+      const stage = document.getElementById('uft-stage');
+      if (stage) try { stage.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+      let card = uftFlashTreeCard(name, slot);
+      if (!card) {
+        // Search again after a short wait (layout may still be painting)
+        setTimeout(function () {
+          card = uftFlashTreeCard(name, slot);
+          if (!card && typeof uftStartOwnTree === 'function') {
+            // Last resort: open personal branch so the card is visible
+            uftStartOwnTree(name, slot);
+            setTimeout(function () { uftFlashTreeCard(name, slot); }, 120);
+          }
+        }, 120);
+      }
+      if (typeof uftSetStatus === 'function') {
+        uftSetStatus('Audit → ' + (issue.type === 'gender' ? 'set gender' : issue.type === 'vital' ? 'set vital status' : 'review') + ' · ' + name + ' (tap Close branch if the lower panel opened)');
+      }
+    }
+
+    var UFT_AUDIT_DISMISS_KEY = 'clarity_uft_audit_dismissed';
+    function uftAuditDismissKey(issue) {
+      if (!issue) return '';
+      return [issue.type || '', (typeof uftNorm === 'function' ? uftNorm(issue.name) : String(issue.name || '').toLowerCase()), issue.slot || '', issue.regId || ''].join('|');
+    }
+    function uftReadDismissedAudits() {
+      try {
+        const raw = JSON.parse(clarityLS.getItem(UFT_AUDIT_DISMISS_KEY) || '[]');
+        return Array.isArray(raw) ? raw : [];
+      } catch (e) { return []; }
+    }
+    function uftWriteDismissedAudits(list) {
+      try { clarityLS.setItem(UFT_AUDIT_DISMISS_KEY, JSON.stringify(list || [])); } catch (e) {}
+    }
+    function uftDismissAuditIssue(idx, ev) {
+      if (ev && ev.preventDefault) { ev.preventDefault(); ev.stopPropagation(); }
+      const issues = uftIntegrityReport(true); // unfiltered list for stable idx from UI
+      // Prefer key from button
+      let key = '';
+      if (ev && ev.target && ev.target.closest) {
+        const b = ev.target.closest('[data-audit-key]');
+        if (b) key = b.getAttribute('data-audit-key') || '';
+      }
+      if (!key) {
+        const all = uftIntegrityReport(true);
+        const issue = all[idx];
+        key = uftAuditDismissKey(issue);
+      }
+      if (!key) return;
+      const list = uftReadDismissedAudits();
+      if (list.indexOf(key) < 0) list.push(key);
+      uftWriteDismissedAudits(list);
+      uftShowIntegrity();
+      if (typeof uftSetStatus === 'function') uftSetStatus('Audit item ignored');
+      return false;
+    }
+    function uftClearDismissedAudits() {
+      uftWriteDismissedAudits([]);
+      uftShowIntegrity();
+      if (typeof uftSetStatus === 'function') uftSetStatus('Ignored audit items restored');
+    }
+    function uftDismissAllAuditIssues() {
+      const issues = uftIntegrityReport(true);
+      if (!issues.length) {
+        uftShowIntegrity();
+        return;
+      }
+      if (!confirm('Ignore all ' + issues.length + ' audit item(s)?\n\nThey will hide until you tap “Show ignored” or “Restore ignored”.')) return;
+      const list = uftReadDismissedAudits();
+      issues.forEach(function (issue) {
+        const key = uftAuditDismissKey(issue);
+        if (key && list.indexOf(key) < 0) list.push(key);
+      });
+      uftWriteDismissedAudits(list);
+      uftShowIntegrity();
+      if (typeof uftSetStatus === 'function') uftSetStatus('All audit items ignored');
+    }
+    try { window.uftDismissAllAuditIssues = uftDismissAllAuditIssues; } catch (e) {}
+    try { window.uftDismissAuditIssue = uftDismissAuditIssue; window.uftClearDismissedAudits = uftClearDismissedAudits; } catch (e) {}
+
+    function uftShowIntegrity() {
+      const issues = uftIntegrityReport();
+      let box = document.getElementById('uft-integrity');
+      if (!box) {
+        const stage = document.getElementById('uft-stage') || document.getElementById('uft-editor');
+        if (!stage) return;
+        box = document.createElement('div');
+        box.id = 'uft-integrity';
+        box.className = 'clarity-integrity';
+        stage.parentNode.insertBefore(box, stage);
+      }
+      if (!issues.length) {
+        box.innerHTML = '<strong>Family data health:</strong> Looking good — genders, vital status, and registry contacts are set where needed.';
+        return;
+      }
+      const dismissedCount = uftReadDismissedAudits().length;
+      box.innerHTML = '<strong>Family data health:</strong> ' + issues.length + ' item(s) — tap a line to open the card. Use × to ignore. Fixed items disappear automatically.' +
+        (dismissedCount ? (' <button type="button" class="btn-soft" style="display:inline;padding:0.15rem 0.5rem;margin-left:0.35rem;font-size:0.75rem;" onclick="uftClearDismissedAudits()">Show ' + dismissedCount + ' ignored</button>') : '') +
+        '<div class="uft-audit-list">' +
+        issues.map(function (issue, i) {
+          const key = uftAuditDismissKey(issue);
+          return '<div class="uft-audit-line" data-audit-idx="' + i + '" data-audit-key="' + uftEsc(key) + '" role="button" tabindex="0">' +
+            uftEsc(issue.message) +
+            '<span class="uft-audit-action">' + uftEsc(issue.action || 'Fix on card') + ' →</span>' +
+            '<button type="button" class="uft-audit-dismiss" data-audit-dismiss="' + i + '" data-audit-key="' + uftEsc(key) + '" title="Ignore this item">×</button>' +
+            '</div>';
+        }).join('') +
+        '</div>' +
+        '<div style="margin-top:0.55rem;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;">' +
+        '<button type="button" class="btn-soft" id="uft-audit-dismiss-all" style="font-size:0.78rem;padding:0.3rem 0.7rem;">Ignore all audit items</button>' +
+        (dismissedCount ? '<button type="button" class="btn-secondary" style="font-size:0.78rem;padding:0.3rem 0.7rem;" onclick="uftClearDismissedAudits()">Restore ignored</button>' : '') +
+        '</div>';
+      if (!box.dataset.auditBound) {
+        box.dataset.auditBound = '1';
+        box.addEventListener('click', function (ev) {
+          const allBtn = ev.target && ev.target.closest ? ev.target.closest('#uft-audit-dismiss-all') : null;
+          if (allBtn) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (typeof uftDismissAllAuditIssues === 'function') uftDismissAllAuditIssues();
+            return;
+          }
+          const dis = ev.target && ev.target.closest ? ev.target.closest('[data-audit-dismiss]') : null;
+          if (dis) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const idx = parseInt(dis.getAttribute('data-audit-dismiss'), 10);
+            uftDismissAuditIssue(idx, ev);
+            return;
+          }
+          const btn = ev.target && ev.target.closest ? ev.target.closest('[data-audit-idx]') : null;
+          if (!btn) return;
+          // Don't navigate when clicking the × (handled above)
+          if (ev.target && ev.target.closest && ev.target.closest('.uft-audit-dismiss')) return;
+          ev.preventDefault();
+          const idx = parseInt(btn.getAttribute('data-audit-idx'), 10);
+          if (!isNaN(idx)) uftGotoIntegrityIssue(idx);
+        });
+      }
+    }
+    function clarityExportPack() {
+      const pack = {
+        app: 'Clarity',
+        version: 2,
+        exportedAt: new Date().toISOString(),
+        disclaimer: 'Private family data from this device only. Educational farāʾiḍ is not a fatwa.',
+        familyTree: null,
+        notes: null,
+        meta: {}
+      };
+      try { pack.familyTree = JSON.parse(clarityLS.getItem(UFT_KEY) || '{}'); } catch (e) { pack.familyTree = {}; }
+      try {
+        const nk = (typeof NOTES_KEY !== 'undefined') ? NOTES_KEY : 'clarity_notes_v1';
+        pack.notes = JSON.parse(clarityLS.getItem(nk) || 'null');
+      } catch (e) {}
+      try {
+        pack.meta.streak = clarityLS.getItem('clarity_streak');
+        pack.meta.name = clarityLS.getItem('clarity_name');
+        pack.meta.theme = clarityLS.getItem('clarity_theme');
+      } catch (e) {}
+      const blob = new Blob([JSON.stringify(pack, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'clarity-amanah-pack-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 400);
+    }
+    function clarityImportPack(ev) {
+      const file = ev && ev.target && ev.target.files && ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function () {
+        try {
+          const pack = JSON.parse(String(reader.result || '{}'));
+          if (pack.familyTree && typeof uftApplyData === 'function') uftApplyData(pack.familyTree);
+          if (pack.notes && Array.isArray(pack.notes)) {
+            try {
+              const nk = (typeof NOTES_KEY !== 'undefined') ? NOTES_KEY : 'clarity_notes_v1';
+              clarityLS.setItem(nk, JSON.stringify(pack.notes));
+            } catch (e) {}
+          }
+          alert('Amānah pack restored on this device (family tree' + (pack.notes ? ' + notes' : '') + ').');
+          if (typeof uftShowIntegrity === 'function') uftShowIntegrity();
+        } catch (e) {
+          alert('Could not read that pack. Use a Clarity Amānah JSON export.');
+        }
+        ev.target.value = '';
+      };
+      reader.readAsText(file);
+    }
+    function uftPrintFamilySheet() {
+      const d = uftCollect();
+      const lines = [];
+      lines.push('<h2>Family group sheet — Clarity</h2>');
+      lines.push('<p class="notes-hint">Private summary from this device · ' + new Date().toLocaleString() + '</p>');
+      function row(label, val) {
+        if (!val) return;
+        lines.push('<p><strong>' + label + ':</strong> ' + String(val).replace(/</g, '') + '</p>');
+      }
+      row('You', d.self);
+      row('Spouse', d.spouse);
+      row('Father', d.father);
+      row('Mother', d.mother);
+      row('Children', uftLines(d.children).join(', '));
+      row('Siblings', uftLines(d.siblings).join(', '));
+      row('G3', uftLines(d.g3).join(', '));
+      row('G2', uftLines(d.g2).join(', '));
+      row('G1', uftLines(d.g1).join(', '));
+      const reg = d.registry || [];
+      if (reg.length) {
+        lines.push('<h3>Contacts</h3><ul>');
+        reg.forEach(function (r) {
+          if (!r || !r.name) return;
+          lines.push('<li><strong>' + r.name + '</strong>' +
+            (r.role ? ' (' + r.role + ')' : '') +
+            (r.phone ? ' · ' + r.phone : '') +
+            (r.email ? ' · ' + r.email : '') +
+            (r.city ? ' · ' + r.city : '') + '</li>');
+        });
+        lines.push('</ul>');
+      }
+      lines.push('<p class="notes-hint">For planning only. Farāʾiḍ calculations are educational and not a fatwa.</p>');
+      document.body.classList.add('printing');
+      const sheet = document.createElement('div');
+      sheet.className = 'print-sheet';
+      sheet.innerHTML = lines.join('\n');
+      document.body.appendChild(sheet);
+      window.print();
+      setTimeout(function () { document.body.classList.remove('printing'); sheet.remove(); }, 400);
+    }
+
+    // Delegate card quick-actions
+    document.addEventListener('click', function (ev) {
+      const t = ev.target;
+      if (!t || !t.closest) return;
+      const child = t.closest('.uft-add-child-btn');
+      if (child) {
+        ev.preventDefault();
+        uftQuickAddRelative(child.getAttribute('data-add-name'), child.getAttribute('data-add-slot'), 'child');
+        return;
+      }
+      const sp = t.closest('.uft-add-spouse-btn');
+      if (sp) {
+        ev.preventDefault();
+        uftQuickAddRelative(sp.getAttribute('data-add-name'), sp.getAttribute('data-add-slot'), 'spouse');
+        return;
+      }
+      const sib = t.closest('.uft-add-sib-btn');
+      if (sib) {
+        ev.preventDefault();
+        uftQuickAddRelative(sib.getAttribute('data-add-name'), sib.getAttribute('data-add-slot'), 'sibling');
+        return;
+      }
+      const relSel = t.closest('.uft-add-rel-select');
+      if (relSel && t === relSel) {
+        /* change handled separately */
+      }
+    });
+    /* Compact relative dropdown on member cards */
+
+    (function uftChipActionsBoot(){
+      if (window.__uftChipActionsBound) return;
+      window.__uftChipActionsBound = true;
+      document.addEventListener('click', function (ev) {
+        try {
+          var t = ev.target;
+          if (!t || !t.closest) return;
+          /* only inside family tree card */
+          if (!t.closest('#user-family-tree-card, #uft-stage, #uft-preview, #uft-branch-wrap')) return;
+          var btn = t.closest('[data-vital-name], [data-gender-name], [data-born-name], [data-focus-name], [data-own-name], [data-del-name]');
+          if (!btn) return;
+          /* let + Relative menu handle add-rel separately */
+          if (btn.classList && btn.classList.contains('uft-add-rel-btn')) return;
+          ev.preventDefault();
+          ev.stopPropagation();
+          if (btn.hasAttribute('data-del-name')) {
+            if (typeof uftDeletePerson === 'function') uftDeletePerson(btn.getAttribute('data-del-name'), btn.getAttribute('data-del-slot') || '', btn.getAttribute('data-del-anchor') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-born-name')) {
+            if (typeof uftAskBorn === 'function') uftAskBorn(btn.getAttribute('data-born-name'), btn.getAttribute('data-born-slot') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-own-name')) {
+            if (typeof window.uftStartOwnTree === 'function') window.uftStartOwnTree(btn.getAttribute('data-own-name'), btn.getAttribute('data-own-slot') || '');
+            else if (typeof uftStartOwnTree === 'function') uftStartOwnTree(btn.getAttribute('data-own-name'), btn.getAttribute('data-own-slot') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-focus-name')) {
+            if (typeof uftOpenMemberView === 'function') uftOpenMemberView(btn.getAttribute('data-focus-name'), btn.getAttribute('data-focus-slot') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-gender-name')) {
+            if (typeof uftCycleGender === 'function') uftCycleGender(btn.getAttribute('data-gender-name'), btn.getAttribute('data-gender-slot') || '');
+            return;
+          }
+          if (btn.hasAttribute('data-vital-name')) {
+            if (typeof uftCycleVital === 'function') uftCycleVital(btn.getAttribute('data-vital-name'), btn.getAttribute('data-vital-slot') || '');
+          }
+        } catch (err) { console.error('uft chip', err); }
+      }, true);
+    })();
+
+(function memeMushafGuardBoot(){
+  if(window.__memeMushafGuard) return;
+  window.__memeMushafGuard = true;
+  function scan(){
+    try{
+      if(typeof memeGuardMushafText==='function' && !memeGuardMushafText()){
+        /* strip joke lines only */
+        if(memeState){
+          ['top','mid','bottom'].forEach(function(k){
+            if(typeof memeLooksLikeJokeOverlay==='function' && memeLooksLikeJokeOverlay(memeState[k])){
+              memeState[k] = '';
+            }
+          });
+          if(typeof memeDraw==='function') memeDraw();
+        }
+      }
+    }catch(e){}
+  }
+  ['meme-top','meme-mid','meme-bot','meme-bottom'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el){ el.addEventListener('change', scan); el.addEventListener('blur', scan); }
+  });
+  document.addEventListener('change', function(ev){
+    if(ev.target && ev.target.id && /^meme-/.test(ev.target.id)) scan();
+  }, true);
+})();
+
+(function uftRelMenuBoot(){
+      function scrollXY(){
+        var sy = 0, sx = 0, iw = 360;
+        try { sy = (window.pageYOffset != null ? window.pageYOffset : (document.documentElement && document.documentElement.scrollTop) || 0); } catch (e1) { sy = 0; }
+        try { sx = (window.pageXOffset != null ? window.pageXOffset : (document.documentElement && document.documentElement.scrollLeft) || 0); } catch (e2) { sx = 0; }
+        try { iw = window.innerWidth || (document.documentElement && document.documentElement.clientWidth) || 360; } catch (e3) { iw = 360; }
+        return { sy: sy, sx: sx, iw: iw };
+      }
+      function ensureMenu(){
+        var m = document.getElementById('uft-rel-menu');
+        if (m) return m;
+        m = document.createElement('div');
+        m.id = 'uft-rel-menu';
+        m.className = 'uft-rel-menu';
+        m.setAttribute('hidden', '');
+        m.innerHTML =
+          '<div class="uft-rel-menu-title">Add relative</div>' +
+          '<button type="button" data-rel="child">+ Child</button>' +
+          '<button type="button" data-rel="spouse">+ Spouse</button>' +
+          '<button type="button" data-rel="sibling">+ Sibling</button>' +
+          '<button type="button" data-rel="parent">+ Parent</button>';
+        document.body.appendChild(m);
+        m.addEventListener('click', function(ev){
+          try {
+            var btn = ev.target && ev.target.closest && ev.target.closest('[data-rel]');
+            if (!btn) return;
+            ev.preventDefault();
+            ev.stopPropagation();
+            var rel = btn.getAttribute('data-rel') || 'child';
+            var host = m.getAttribute('data-host') || '';
+            var slot = m.getAttribute('data-slot') || '';
+            m.setAttribute('hidden', '');
+            m.style.display = 'none';
+            var fn = window.uftQuickAddRelative;
+            if (typeof fn === 'function') { fn(host, slot, rel); return; }
+            var open = window.uftOpenPersonPicker;
+            if (typeof open === 'function') { open(host, slot, rel); return; }
+            try { alert('Member list is still loading — try again in a moment.'); } catch (eA) {}
+          } catch (err) {
+            console.error('rel menu', err);
+            try { alert('Add relative error: ' + (err && err.message ? err.message : String(err))); } catch (e2) {}
+          }
+        });
+        return m;
+      }
+      document.addEventListener('click', function(ev){
+        try {
+          var t = ev.target;
+          if (!t || !t.closest) return;
+          var openBtn = t.closest('.uft-add-rel-btn');
+          if (openBtn) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            var menu = ensureMenu();
+            menu.setAttribute('data-host', openBtn.getAttribute('data-add-name') || '');
+            menu.setAttribute('data-slot', openBtn.getAttribute('data-add-slot') || '');
+            var r = openBtn.getBoundingClientRect();
+            var sc = scrollXY();
+            var top = r.bottom + 6 + sc.sy;
+            var left = Math.min(r.left + sc.sx, sc.sx + sc.iw - 220);
+            menu.style.position = 'absolute';
+            menu.style.top = top + 'px';
+            menu.style.left = Math.max(8 + sc.sx, left) + 'px';
+            menu.style.zIndex = '100000';
+            menu.removeAttribute('hidden');
+            menu.hidden = false;
+            menu.style.display = 'flex';
+            return;
+          }
+          var menu = document.getElementById('uft-rel-menu');
+          if (menu && !menu.hidden && !t.closest('#uft-rel-menu')) {
+            menu.setAttribute('hidden', '');
+            menu.hidden = true;
+            menu.style.display = 'none';
+          }
+        } catch (err) {
+          console.error('rel menu open', err);
+        }
+      }, true);
+    })();
+/* Export skipped: classic script function decls are already global on window */
+window.UFT_KEY = (typeof UFT_KEY !== "undefined") ? UFT_KEY : "clarity_user_family_tree_v1";
+window.uftView = (typeof uftView !== "undefined") ? uftView : "pedigree";
+(function(){
+  function boot(){
+    try {
+      if (typeof uftLoad === "function") uftLoad();
+      else if (typeof uftRender === "function") uftRender();
+    } catch(e){ console.warn("uft boot", e); }
+    try {
+      var stage = document.getElementById("uft-stage");
+      if (stage) {
+        stage.style.setProperty("display","block","important");
+        stage.style.setProperty("min-height","min(48vh, 26rem)","important");
+      }
+      var preview = document.getElementById("uft-preview");
+      if (preview) preview.style.setProperty("display","block","important");
+    } catch(e){}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 400); });
+  else setTimeout(boot, 400);
+  window.addEventListener("load", function(){ setTimeout(boot, 900); });
+  try {
+    var tab = document.getElementById("tab-notes");
+    if (tab && typeof MutationObserver === "function") {
+      new MutationObserver(function(){
+        if (tab.classList.contains("amana-unlocked")) setTimeout(boot, 250);
+      }).observe(tab, { attributes: true, attributeFilter: ["class"] });
+    }
+  } catch(e){}
+})();
