@@ -1,9 +1,11 @@
 /**
- * Clarity Meme Enhance v2 — clean mobile UI, full verse push, multi AI scenes
+ * Clarity Meme Enhance v3 — sleek toolbar, no ref on canvas, nature/galaxy HQ
+ * Watermark strip already carries site reference.
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_MEME_ENHANCE_V2__) return;
+  if (g.__CLARITY_MEME_ENHANCE_V3__) return;
+  g.__CLARITY_MEME_ENHANCE_V3__ = true;
   g.__CLARITY_MEME_ENHANCE_V2__ = true;
 
   function hash(s) {
@@ -61,18 +63,11 @@
     );
     if (!ref && refEl)
       ref = textOf(refEl) || (refEl.getAttribute("data-ref") || "").trim();
-    if (!ref) {
-      var h = ((card.querySelector("h2,h3,.card-title") || {}).textContent || "");
-      var m = h.match(/(\d+\s*:\s*\d+)/);
-      if (m) ref = "Qur'an " + m[1].replace(/\s/g, "");
-    }
-    // Clean UI chrome from English
     en = en
       .replace(/Sahih International.*/i, "")
       .replace(/Recommended follow-up[\s\S]*/i, "")
       .replace(/I am working on this.*/i, "")
       .trim();
-    // If en still empty, try first non-arabic paragraph
     if (!en) {
       var ps = card.querySelectorAll("p");
       for (var i = 0; i < ps.length; i++) {
@@ -86,6 +81,7 @@
     return { ar: ar, en: en, ref: ref };
   }
 
+  /** Apply Arabic + English only — no reference on canvas (watermark handles site) */
   function applyText(payload) {
     var ar = String(payload.arabic || payload.ar || "").trim();
     var en = String(payload.en || payload.english || "").trim();
@@ -94,32 +90,30 @@
       if (typeof g.memeState !== "object" || !g.memeState) g.memeState = {};
       g.memeState.top = ar;
       g.memeState.mid = en;
-      g.memeState.bottom = ref;
-      g.memeState.ref = ref;
+      g.memeState.bottom = ""; // ref off canvas
+      g.memeState.ref = ref; // keep for status / AI mood only
       g.memeState._lastRef = ref;
       g.memeState.outline = Math.max(g.memeState.outline || 0, 5);
-      // Readable mobile defaults
       if (!g.memeState.topSize) g.memeState.topSize = 40;
       if (!g.memeState.midSize) g.memeState.midSize = 28;
-      if (!g.memeState.bottomSize) g.memeState.bottomSize = 22;
+      if (!g.memeState.bottomSize) g.memeState.bottomSize = 18;
       try {
         var i = document.getElementById("meme-top-input");
         var o = document.getElementById("meme-mid-input");
         var s = document.getElementById("meme-bottom-input");
         if (i) i.value = ar;
         if (o) o.value = en;
-        if (s) s.value = ref;
+        if (s) s.value = ""; // clear bot ref field
       } catch (e1) {}
       if (typeof g.memeApplyVerseCard === "function") {
         try {
-          g.memeApplyVerseCard(ar, en, "", ref);
+          g.memeApplyVerseCard(ar, en, "", ""); // empty ref on canvas
         } catch (e2) {}
       }
-      // Re-assert after memeApplyVerseCard (may clear mid)
       g.memeState.top = ar || g.memeState.top;
       g.memeState.mid = en || g.memeState.mid;
-      g.memeState.bottom = ref || g.memeState.bottom;
-      g.memeState.ref = ref || g.memeState.ref;
+      g.memeState.bottom = "";
+      g.memeState.ref = ref;
       if (typeof g.memeAutoFitSizes === "function") {
         try {
           g.memeAutoFitSizes();
@@ -130,64 +124,94 @@
           if (g.memeState) {
             if (ar) g.memeState.top = ar;
             if (en) g.memeState.mid = en;
-            if (ref) {
-              g.memeState.bottom = ref;
-              g.memeState.ref = ref;
-            }
+            g.memeState.bottom = "";
           }
           if (typeof g.memeDraw === "function") g.memeDraw();
         } catch (e4) {}
       }
       redraw();
-      setTimeout(redraw, 80);
-      setTimeout(redraw, 250);
-      setTimeout(redraw, 600);
+      setTimeout(redraw, 100);
+      setTimeout(redraw, 300);
     } catch (e) {
       console.warn("meme applyText", e);
     }
   }
 
+  // Broader nature + galaxy styles (still no prophet likeness / no Quran calligraphy)
   var STYLES = [
-    "peaceful coastal cliffs soft dawn light, no people faces, landscape only",
-    "serene mosque courtyard empty at golden hour, architecture only, no calligraphy",
-    "misty mountain path soft light, nature only, educational calm",
-    "desert dunes under clear night stars, no figures, peaceful",
-    "olive grove mediterranean hills soft afternoon light, nature only",
-    "rain over green valley far horizon, atmospheric, no people",
-    "still lake reflecting soft clouds, nature photography, no text",
-    "geometric islamic tile pattern abstract soft colors, no scripture text"
+    "ultra high resolution nature landscape mountains valley soft light, no people",
+    "milky way galaxy stars night sky astrophotography high resolution, no text",
+    "deep space nebula colorful cosmos high resolution astronomy photo, no figures",
+    "ocean waves aerial coastline nature photography high resolution, no people",
+    "forest path misty morning light nature only high resolution",
+    "aurora borealis northern lights night sky high resolution, no people",
+    "desert sand dunes golden hour vast landscape high resolution",
+    "snow peaks alpine lake crystal clear reflection high resolution nature",
+    "tropical waterfall lush greenery nature photography high resolution",
+    "starfield long exposure night photography high resolution, no text"
   ];
 
   var BLOCK = /prophet|muhammad|messenger|sahaba|jesus|isa ibn|idol|crucifix|anime|cartoon god/i;
 
   function sanitizeTheme(text) {
-    text = String(text || "").replace(/[\u0600-\u06FF]+/g, " ").replace(/\s+/g, " ").trim();
-    if (BLOCK.test(text))
-      return "peaceful mosque architecture soft daylight empty courtyard";
-    text = text.replace(/\b(kill|blood|war|torture)\b/gi, "solemn reflection");
-    return text.slice(0, 140) || "peaceful islamic architecture soft light";
+    text = String(text || "")
+      .replace(/[\u0600-\u06FF]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (BLOCK.test(text)) return "peaceful nature landscape soft light high resolution";
+    return text.slice(0, 120) || "serene nature landscape";
   }
 
   function aiPrompt(en, ar, ref, styleIdx) {
-    var base = sanitizeTheme(en || "patience prayer peace");
+    var base = sanitizeTheme(en || "peace patience nature");
     var style = STYLES[(styleIdx || 0) % STYLES.length];
     return (
       "Photorealistic " +
       style +
-      ", educational, respectful, NO human faces of prophets or companions, NO Arabic calligraphy, NO Quran pages as art, high resolution: mood of " +
-      base +
-      (ref ? " (" + String(ref).slice(0, 40) + ")" : "")
+      ", 4k, NO human faces of prophets, NO Arabic calligraphy, NO Quran pages: mood " +
+      base
     );
   }
 
-  function stockFor(payload) {
-    var seed = hash((payload.en || "") + (payload.ref || "") + Date.now());
-    return [
+  function stockFor(kind, payload) {
+    var seed = hash((payload && payload.en) || "" + (kind || "") + Date.now());
+    var s1 = seed % 9000;
+    var s2 = (seed * 7) % 9000;
+    var s3 = (seed * 13) % 9000;
+    // High-res nature / space oriented chains
+    var nature = [
+      "https://picsum.photos/seed/n" + s1 + "/1920/1080",
+      "https://picsum.photos/seed/n" + s2 + "/1920/1080",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Nature_landscape.jpg/1280px-Nature_landscape.jpg"
+    ];
+    var galaxy = [
+      "https://picsum.photos/seed/g" + s1 + "/1920/1080",
+      "https://picsum.photos/seed/g" + s2 + "/1920/1080",
+      "https://picsum.photos/seed/space" + s3 + "/1920/1080"
+    ];
+    var water = [
+      "https://picsum.photos/seed/w" + s1 + "/1920/1080",
+      "https://picsum.photos/seed/ocean" + s2 + "/1920/1080"
+    ];
+    var holy = [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Great_Mosque_of_Kairouan_Panorama.jpg/1280px-Great_Mosque_of_Kairouan_Panorama.jpg",
-      "https://picsum.photos/seed/c" + (seed % 9000) + "/1600/900",
-      "https://picsum.photos/seed/d" + ((seed * 7) % 9000) + "/1600/900"
+      "https://picsum.photos/seed/arch" + s1 + "/1920/1080"
     ];
+    var map = {
+      nature: nature,
+      galaxy: galaxy,
+      space: galaxy,
+      night: galaxy,
+      water: water,
+      flowers: nature,
+      spirit: nature,
+      holy: holy,
+      free: nature.concat(galaxy),
+      dynamic: nature.concat(galaxy),
+      flickr: nature
+    };
+    return map[kind] || nature.concat(galaxy);
   }
 
   function loadBgChain(urls, i) {
@@ -207,7 +231,7 @@
         }
         if (typeof g.memeDraw === "function") g.memeDraw();
         if (typeof g.memeFetchStatus === "function")
-          g.memeFetchStatus("Background ready");
+          g.memeFetchStatus("Background ready · HQ");
       } catch (e) {}
     };
     img.onerror = function () {
@@ -228,32 +252,52 @@
       aiStyleIdx
     );
     var seed = (hash(prompt + aiStyleIdx + Date.now()) % 99999) + 1;
-    var url =
-      "https://image.pollinations.ai/prompt/" +
-      encodeURIComponent(prompt) +
-      "?width=1600&height=900&nologo=true&seed=" +
-      seed;
-    // Offer 3 creative variants in chain
-    var url2 =
-      "https://image.pollinations.ai/prompt/" +
-      encodeURIComponent(aiPrompt(payload.en, payload.ar, payload.ref, aiStyleIdx + 2)) +
-      "?width=1600&height=900&nologo=true&seed=" +
-      ((seed * 3) % 99999);
-    var url3 =
-      "https://image.pollinations.ai/prompt/" +
-      encodeURIComponent(aiPrompt(payload.en, payload.ar, payload.ref, aiStyleIdx + 4)) +
-      "?width=1600&height=900&nologo=true&seed=" +
-      ((seed * 11) % 99999);
+    var urls = [];
+    for (var k = 0; k < 3; k++) {
+      var p = aiPrompt(payload.en, payload.ar, payload.ref, aiStyleIdx + k * 2);
+      var sd = (seed * (k + 3)) % 99999;
+      urls.push(
+        "https://image.pollinations.ai/prompt/" +
+          encodeURIComponent(p) +
+          "?width=1920&height=1080&nologo=true&seed=" +
+          sd
+      );
+    }
+    urls = urls.concat(stockFor("nature", payload));
     if (typeof g.memeFetchStatus === "function")
-      g.memeFetchStatus("Designing AI scene " + (aiStyleIdx + 1) + "/" + STYLES.length + "…");
-    loadBgChain([url, url2, url3].concat(stockFor(payload)), 0);
+      g.memeFetchStatus(
+        "AI scene " + (aiStyleIdx + 1) + "/" + STYLES.length + " · nature/galaxy…"
+      );
+    loadBgChain(urls, 0);
   }
+
+  function fetchKind(kind) {
+    var st = g.memeState || {};
+    loadBgChain(stockFor(kind, { en: st.mid, ref: st.ref }), 0);
+  }
+
+  // Bridge native memeFetchBg if present
+  var _nativeFetch = typeof g.memeFetchBg === "function" ? g.memeFetchBg : null;
+  g.memeFetchBg = function (kind) {
+    kind = kind || "nature";
+    if (kind === "galaxy" || kind === "space" || kind === "nature" || kind === "night") {
+      fetchKind(kind);
+      return;
+    }
+    if (_nativeFetch) {
+      try {
+        _nativeFetch(kind);
+        return;
+      } catch (e) {}
+    }
+    fetchKind(kind);
+  };
 
   function push(payload, mode) {
     payload = payload || {};
     applyText(payload);
     if (mode === "ai") fetchAiBackground(payload);
-    else loadBgChain(stockFor(payload), 0);
+    else loadBgChain(stockFor("nature", payload), 0);
     try {
       if (typeof g.switchTab === "function") g.switchTab("reminder");
     } catch (e) {}
@@ -264,7 +308,6 @@
         card.style.removeProperty("display");
         card.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-      // Re-apply text after scroll (canvas may re-init)
       applyText(payload);
     }, 200);
   }
@@ -273,7 +316,7 @@
     var p = extract(card);
     if (!p.ar && !p.en) {
       if (typeof g.memeFetchStatus === "function")
-        g.memeFetchStatus("No verse text found on this card");
+        g.memeFetchStatus("No verse text found");
       return;
     }
     push(p, mode || "stock");
@@ -281,130 +324,163 @@
 
   function bannedCard(card) {
     if (!card) return true;
-    if (card.closest("#clarity-top-duo, #clarity-global-nav, .global-nav, .banner"))
-      return true;
-    if (
-      card.id === "meme-card" ||
-      card.id === "tweet-desk-card" ||
-      card.id === "notes-shell"
-    )
+    if (card.closest("#clarity-top-duo, #clarity-global-nav, .banner")) return true;
+    if (card.id === "meme-card" || card.id === "tweet-desk-card" || card.id === "notes-shell")
       return true;
     return false;
   }
 
   function ensurePills() {
-    document
-      .querySelectorAll(".card[id$='-card'], .card[id], [id$='-card']")
-      .forEach(function (card) {
-        if (bannedCard(card)) return;
-        if (card.querySelector(".clarity-to-meme-pill")) return;
-        var sample = extract(card);
-        if (!sample.ar && !sample.en) return;
-        if ((sample.ar + sample.en).length < 20) return;
-        var row = card.querySelector(".clarity-action-row");
-        if (!row) {
-          row = document.createElement("div");
-          row.className = "clarity-action-row";
-          card.appendChild(row);
-        }
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "clarity-to-meme-pill clarity-action-chip";
-        btn.textContent = "Meme";
-        btn.title = "Push Arabic + translation + reference to Meme Studio";
-        btn.addEventListener("click", function (ev) {
-          try {
-            ev.preventDefault();
-            ev.stopPropagation();
-          } catch (e0) {}
-          g.clarityMemePushFromCard(card, "stock");
-        });
-        row.appendChild(btn);
+    document.querySelectorAll(".card[id$='-card'], [id$='-card']").forEach(function (card) {
+      if (bannedCard(card)) return;
+      if (card.querySelector(".clarity-to-meme-pill")) return;
+      var sample = extract(card);
+      if (!sample.ar && !sample.en) return;
+      if ((sample.ar + sample.en).length < 20) return;
+      var row = card.querySelector(".clarity-action-row");
+      if (!row) {
+        row = document.createElement("div");
+        row.className = "clarity-action-row";
+        card.appendChild(row);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "clarity-to-meme-pill clarity-action-chip";
+      btn.textContent = "Meme";
+      btn.title = "Push Arabic + translation (ref stays on watermark only)";
+      btn.addEventListener("click", function (ev) {
+        try {
+          ev.preventDefault();
+          ev.stopPropagation();
+        } catch (e0) {}
+        g.clarityMemePushFromCard(card, "stock");
       });
+      row.appendChild(btn);
+    });
   }
 
-  function ensureAiUi() {
+  /** Single sleek toolbar: AI + all background options in one row above canvas */
+  function ensureToolbar() {
     var root =
       document.getElementById("meme-studio-root") ||
       document.getElementById("meme-card");
-    if (!root || root.querySelector(".clarity-meme-ai-bar")) return;
+    if (!root) return;
+
+    // Hide legacy top background bar
+    var legacy = root.querySelector(".meme-bar-bg");
+    if (legacy) {
+      legacy.style.display = "none";
+      legacy.setAttribute("aria-hidden", "true");
+    }
+
+    if (root.querySelector(".clarity-meme-toolbar")) return;
+
     var bar = document.createElement("div");
-    bar.className = "clarity-meme-ai-bar";
+    bar.className = "clarity-meme-toolbar clarity-meme-ai-bar";
     bar.style.cssText =
-      "display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;margin:0.5rem 0 0.65rem;padding:0.35rem 0;";
-    function mk(label, title, fn) {
+      "display:flex;flex-wrap:wrap;gap:0.35rem;align-items:center;margin:0.45rem 0 0.55rem;padding:0.25rem 0;";
+
+    function chip(label, title, fn) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "mv-chip";
       b.textContent = label;
-      b.title = title;
+      b.title = title || label;
       b.addEventListener("click", fn);
       return b;
     }
+
+    function st() {
+      return g.memeState || {};
+    }
+
     bar.appendChild(
-      mk("✨ AI scene", "New creative scenery (cycles styles)", function () {
-        var st = g.memeState || {};
-        fetchAiBackground({
-          ar: st.top,
-          en: st.mid,
-          ref: st.ref || st.bottom
-        });
+      chip("✨ AI scene", "New AI nature / galaxy scene", function () {
+        fetchAiBackground({ ar: st().top, en: st().mid, ref: st().ref });
       })
     );
     bar.appendChild(
-      mk("✨ AI again", "Another style / seed", function () {
-        var st = g.memeState || {};
-        fetchAiBackground({
-          ar: st.top,
-          en: st.mid,
-          ref: st.ref || st.bottom
-        });
+      chip("✨ AI again", "Another AI style", function () {
+        fetchAiBackground({ ar: st().top, en: st().mid, ref: st().ref });
       })
     );
     bar.appendChild(
-      mk("📷 Match photo", "Stock scenery for this verse", function () {
-        var st = g.memeState || {};
-        loadBgChain(
-          stockFor({ en: st.mid, ref: st.ref || st.bottom }),
-          0
-        );
+      chip("🌿 Nature", "HQ nature photo", function () {
+        fetchKind("nature");
       })
     );
+    bar.appendChild(
+      chip("🌌 Galaxy", "HQ galaxy / space", function () {
+        fetchKind("galaxy");
+      })
+    );
+    bar.appendChild(
+      chip("🌙 Night", "Night sky / aurora mood", function () {
+        fetchKind("night");
+      })
+    );
+    bar.appendChild(
+      chip("💧 Water", "Ocean / water", function () {
+        fetchKind("water");
+      })
+    );
+    bar.appendChild(
+      chip("🕌 Holy", "Mosque architecture", function () {
+        fetchKind("holy");
+      })
+    );
+    bar.appendChild(
+      chip("📷 Free", "Next free HQ photo", function () {
+        fetchKind("free");
+      })
+    );
+    bar.appendChild(
+      chip("⬛ Blank", "Solid blank", function () {
+        try {
+          if (typeof g.memeShowBlankPalette === "function") g.memeShowBlankPalette();
+        } catch (e) {}
+      })
+    );
+    bar.appendChild(
+      chip("◈ Pattern", "Geometric décor", function () {
+        try {
+          if (typeof g.clarityMemeDecorBg === "function") g.clarityMemeDecorBg("geometry");
+        } catch (e) {}
+      })
+    );
+
     var note = document.createElement("div");
     note.style.cssText =
-      "flex:1 1 100%;font-size:0.72rem;opacity:0.85;line-height:1.35";
+      "flex:1 1 100%;font-size:0.7rem;opacity:0.82;line-height:1.3";
     note.textContent =
-      "Scenery only — discard images that resemble prophets or use Quran as decoration.";
+      "Scenery only · ref on watermark · discard images that resemble prophets or use Quran as decoration.";
     bar.appendChild(note);
-    // Insert BEFORE stage so it never overlays canvas
+
     var stage =
       root.querySelector("#meme-stage-wrap") ||
-      root.querySelector(".meme-preview-only") ||
-      root.querySelector("#meme-stage");
-    if (stage && stage.parentNode) {
-      stage.parentNode.insertBefore(bar, stage);
-    } else {
-      root.insertBefore(bar, root.firstChild);
-    }
+      root.querySelector(".meme-preview-only");
+    if (stage && stage.parentNode) stage.parentNode.insertBefore(bar, stage);
+    else root.insertBefore(bar, root.firstChild);
   }
 
   function boot() {
-    ensureAiUi();
+    ensureToolbar();
     ensurePills();
-    setTimeout(ensureAiUi, 600);
+    setTimeout(ensureToolbar, 500);
     setTimeout(ensurePills, 800);
     setTimeout(ensurePills, 2500);
     try {
       var mo = new MutationObserver(function () {
-        clearTimeout(g.__memePillT);
-        g.__memePillT = setTimeout(function () {
+        clearTimeout(g.__memeTb);
+        g.__memeTb = setTimeout(function () {
+          ensureToolbar();
           ensurePills();
-          ensureAiUi();
         }, 400);
       });
       mo.observe(document.body, { childList: true, subtree: true });
     } catch (e) {}
   }
+
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", boot);
   else boot();

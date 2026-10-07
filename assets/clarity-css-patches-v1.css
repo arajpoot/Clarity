@@ -724,3 +724,26 @@ html body::before {
   display: none !important;
   height: 0 !important;
 }
+
+/* Meme studio sleek toolbar v3 */
+#meme-studio-root .meme-bar-bg {
+  display: none !important;
+}
+#meme-studio-root .clarity-meme-toolbar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  align-items: center !important;
+  margin: 0.4rem 0 0.5rem !important;
+}
+#meme-studio-root .clarity-meme-toolbar .mv-chip {
+  font-size: 0.72rem !important;
+  padding: 0.28rem 0.55rem !important;
+  border-radius: 999px !important;
+}
+@media (max-width: 700px) {
+  #meme-studio-root .clarity-meme-toolbar .mv-chip {
+    font-size: 0.68rem !important;
+    padding: 0.25rem 0.45rem !important;
+  }
+}
