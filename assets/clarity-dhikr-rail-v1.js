@@ -5,7 +5,7 @@
   "use strict";
   if (w.__CLARITY_DHIKR_RAIL_V2__) return;
   w.__CLARITY_DHIKR_RAIL_V2__ = true;
-  var VER = "20261006FD";
+  var VER = "20261006AR";
 
   var MAP = {
     reminder: {

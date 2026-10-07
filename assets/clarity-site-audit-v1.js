@@ -8,7 +8,7 @@
   if (root.__CLARITY_SITE_AUDIT_V1__) return;
   root.__CLARITY_SITE_AUDIT_V1__ = true;
 
-  var VER = "20261006FD";
+  var VER = "20261006AR";
   var results = [];
 
   function ok(name, detail) { results.push({ status: "ok", name: name, detail: detail || "" }); }

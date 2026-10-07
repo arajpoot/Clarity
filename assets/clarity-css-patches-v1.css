@@ -10,21 +10,17 @@ html[data-theme=dark] #clarity-top-duo{background:#0c1410!important}
   #clarity-visit-pill-bar,#main-application-workspace{scroll-margin-top:calc(var(--clarity-chrome-h,140px) + .35rem)!important}
 }
 
-/* FINAL DAY — desktop pin only; mobile unpinned (no overlap) */
+/* ARSENAL — mobile free scroll; desktop pin via data-chrome-pin */
 :root{--clarity-nav-h:48px;--clarity-chrome-h:0px}
-
-/* Default / mobile first: NOT sticky — banner scrolls away, content never under it */
-#clarity-global-nav.global-nav,nav#clarity-global-nav.global-nav{
+#clarity-global-nav.global-nav,nav#clarity-global-nav{
   position:relative!important;top:auto!important;z-index:40!important;
-  margin:0!important;margin-bottom:0!important;
-  border-bottom:none!important;box-shadow:none!important;
+  margin:0!important;border-bottom:none!important;box-shadow:none!important;
   background:#fffdf8!important;width:100%!important;max-width:100%!important;
 }
 html[data-theme=dark] #clarity-global-nav.global-nav{background:#152019!important}
 #clarity-top-duo{
   position:relative!important;top:auto!important;z-index:30!important;
-  margin:0!important;padding:0!important;
-  border:none!important;box-shadow:none!important;
+  margin:0!important;padding:0!important;border:none!important;box-shadow:none!important;
   background:#0d4f3c!important;width:100%!important;max-width:100%!important;
 }
 html[data-theme=dark] #clarity-top-duo{background:#0c1410!important}
@@ -33,29 +29,22 @@ html[data-theme=dark] #clarity-top-duo{background:#0c1410!important}
   margin:0!important;box-shadow:none!important;background:#0d4f3c!important;
 }
 #banner-media,.banner-media{background:#0d4f3c!important}
-html[data-theme=dark] #clarity-top-duo .banner,
-html[data-theme=dark] #banner-media{background:#0c1410!important}
+html[data-theme=dark] #clarity-top-duo .banner,html[data-theme=dark] #banner-media{background:#0c1410!important}
 html,body{overflow-x:hidden!important;max-width:100%!important}
 
-/* Desktop only: pin nav + banner like a top rail */
-@media (min-width:701px){
-  :root{--clarity-nav-h:48px}
-  #clarity-global-nav.global-nav,nav#clarity-global-nav.global-nav{
-    position:sticky!important;top:0!important;z-index:60!important;
-  }
-  #clarity-top-duo{
-    position:sticky!important;top:var(--clarity-nav-h,48px)!important;z-index:55!important;
-    margin-top:-1px!important;padding-top:1px!important;
-  }
-  #main-application-workspace,#clarity-visit-pill-bar{
-    scroll-margin-top:calc(var(--clarity-chrome-h, 200px) + .5rem);
-  }
+/* Desktop pin only when layout sets data-chrome-pin (min-width 701) */
+html[data-chrome-pin="1"] #clarity-global-nav.global-nav,
+html[data-chrome-pin="1"] nav#clarity-global-nav{
+  position:sticky!important;top:0!important;z-index:60!important;
 }
-@media (max-width:700px){
-  /* explicit mobile unpin */
-  #clarity-global-nav.global-nav,#clarity-top-duo{
-    position:relative!important;top:auto!important;
-  }
-  #clarity-top-duo .banner{max-height:none!important}
-  #main-application-workspace,#clarity-visit-pill-bar{scroll-margin-top:0!important}
+html[data-chrome-pin="1"] #clarity-top-duo{
+  position:sticky!important;top:var(--clarity-nav-h,48px)!important;z-index:55!important;
+  margin-top:-1px!important;padding-top:1px!important;
+  box-shadow:none!important;background:#0d4f3c!important;
+}
+html[data-chrome-pin="1"][data-theme=dark] #clarity-top-duo{background:#0c1410!important}
+html[data-chrome-pin="1"] #clarity-top-duo .banner{background:#0d4f3c!important}
+html[data-chrome-pin="1"] #main-application-workspace,
+html[data-chrome-pin="1"] #clarity-visit-pill-bar{
+  scroll-margin-top:calc(var(--clarity-chrome-h,200px) + .35rem);
 }
