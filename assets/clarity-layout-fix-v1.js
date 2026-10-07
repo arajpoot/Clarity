@@ -6,7 +6,7 @@
   "use strict";
   if (w.__CLARITY_LAYOUT_FIX_V3__) return;
   w.__CLARITY_LAYOUT_FIX_V3__ = true;
-  var VER = "20261006L3";
+  var VER = "20261006DK";
 
   function measure() {
     try {
