@@ -48,3 +48,59 @@ html[data-chrome-pin="1"] #main-application-workspace,
 html[data-chrome-pin="1"] #clarity-visit-pill-bar{
   scroll-margin-top:calc(var(--clarity-chrome-h,200px) + .35rem);
 }
+
+
+/* SEO paths: crawlable then tuck */
+.clarity-seo-paths{max-width:42rem;margin:.75rem auto 1rem;padding:.85rem 1rem;border-radius:12px;border:1px solid var(--border,#e0d5c4);background:var(--card-bg,rgba(255,253,248,.96));font-size:.92rem}
+.clarity-seo-paths a{color:var(--accent,#0d4f3c)}
+html.clarity-app-ready .clarity-seo-paths{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+/* Meme never on seeker/new_muslim focus */
+html[data-clarity-path="seeker"] #meme-card,
+html[data-clarity-path="seeker"] #meme-studio-root,
+html[data-clarity-path="seeker"] #tweet-desk-card,
+html[data-clarity-path="new_muslim"] #meme-card,
+html[data-clarity-path="new_muslim"] #meme-studio-root,
+html[data-clarity-path="new_muslim"] #tweet-desk-card,
+html:not([data-clarity-meme-ok="1"]) #meme-card,
+html:not([data-clarity-meme-ok="1"]) #meme-studio-root,
+html:not([data-clarity-meme-ok="1"]) #tweet-desk-card{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;pointer-events:none!important}
+
+
+/* ===== Desktop: pin global nav + banner as one sticky stack ===== */
+@media (min-width: 901px) {
+  #clarity-global-nav.global-nav,
+  nav#clarity-global-nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1200 !important;
+    margin: 0 !important;
+    border-bottom: none !important;
+  }
+  #clarity-top-duo {
+    position: sticky !important;
+    top: var(--clarity-nav-h, 52px) !important;
+    z-index: 1190 !important;
+    margin-top: 0 !important;
+    border-top: none !important;
+  }
+  /* Stitch: no gap between nav and banner */
+  #clarity-global-nav + #clarity-top-duo,
+  nav#clarity-global-nav + #clarity-top-duo,
+  #clarity-global-nav ~ #clarity-top-duo {
+    margin-top: 0 !important;
+  }
+  #clarity-top-duo .banner {
+    border-radius: 0 !important;
+    margin-top: 0 !important;
+  }
+  #clarity-top-duo .banner-overlay {
+    border-top: 1px solid rgba(184,146,42,0.25);
+  }
+}
+/* Mobile: free scroll (no sticky stack) */
+@media (max-width: 900px) {
+  #clarity-top-duo {
+    position: relative !important;
+    top: auto !important;
+  }
+}
