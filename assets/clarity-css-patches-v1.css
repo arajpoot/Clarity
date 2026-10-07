@@ -66,41 +66,50 @@ html:not([data-clarity-meme-ok="1"]) #meme-studio-root,
 html:not([data-clarity-meme-ok="1"]) #tweet-desk-card{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;pointer-events:none!important}
 
 
-/* ===== Desktop: pin global nav + banner as one sticky stack ===== */
-@media (min-width: 901px) {
+/* old pin block removed — see NUCLEAR sticky stack v2 */
+
+/* ===== NUCLEAR sticky stack v2 — single source of truth ===== */
+@media (min-width: 901px), (min-width: 600px) and (orientation: landscape) {
   #clarity-global-nav.global-nav,
   nav#clarity-global-nav {
     position: sticky !important;
     top: 0 !important;
     z-index: 1200 !important;
     margin: 0 !important;
-    border-bottom: none !important;
   }
   #clarity-top-duo {
     position: sticky !important;
-    top: var(--clarity-nav-h, 52px) !important;
+    top: var(--clarity-nav-h, 48px) !important;
     z-index: 1190 !important;
     margin-top: 0 !important;
-    border-top: none !important;
   }
-  /* Stitch: no gap between nav and banner */
-  #clarity-global-nav + #clarity-top-duo,
-  nav#clarity-global-nav + #clarity-top-duo,
-  #clarity-global-nav ~ #clarity-top-duo {
-    margin-top: 0 !important;
-  }
-  #clarity-top-duo .banner {
-    border-radius: 0 !important;
-    margin-top: 0 !important;
-  }
-  #clarity-top-duo .banner-overlay {
-    border-top: 1px solid rgba(184,146,42,0.25);
-  }
+  #clarity-top-duo .banner { border-radius: 0 !important; margin: 0 !important; }
 }
-/* Mobile: free scroll (no sticky stack) */
-@media (max-width: 900px) {
-  #clarity-top-duo {
-    position: relative !important;
-    top: auto !important;
-  }
+@media (max-width: 900px) and (orientation: portrait) {
+  #clarity-global-nav.global-nav, nav#clarity-global-nav,
+  #clarity-top-duo { position: relative !important; top: auto !important; }
+}
+.clarity-seo-paths, .clarity-seo-sr {
+  position: absolute !important; width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+  clip: rect(0,0,0,0) !important; border: 0 !important; white-space: nowrap !important;
+}
+
+/* JS-assisted pin flag (orientation-safe) */
+html[data-clarity-pin-banner="1"] #clarity-global-nav.global-nav,
+html[data-clarity-pin-banner="1"] nav#clarity-global-nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1200 !important;
+}
+html[data-clarity-pin-banner="1"] #clarity-top-duo {
+  position: sticky !important;
+  top: var(--clarity-nav-h, 48px) !important;
+  z-index: 1190 !important;
+}
+html[data-clarity-pin-banner="0"] #clarity-global-nav.global-nav,
+html[data-clarity-pin-banner="0"] nav#clarity-global-nav,
+html[data-clarity-pin-banner="0"] #clarity-top-duo {
+  position: relative !important;
+  top: auto !important;
 }
