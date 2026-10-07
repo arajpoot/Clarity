@@ -1,14 +1,19 @@
 {
-  "build": "20261007LIVE",
-  "pre_live_scan": "all-pass",
-  "files": 45,
-  "features": [
-    "sticky-desktop-chrome-no-double-paint",
-    "visit-pills",
-    "path-module-pills",
-    "meme-ar-en-ref-grid-toggles",
-    "notes-restore",
-    "vault-pbkdf2-210k",
-    "shariah-ai-backgrounds"
-  ]
+  "build": "20261007FINAL",
+  "phases": [
+    "deep-scan",
+    "perf-css",
+    "indexing",
+    "github-parity",
+    "sandbox",
+    "package"
+  ],
+  "live": "https://clarity-dawah.fyi/",
+  "repo": "https://github.com/arajpoot/Clarity",
+  "ai_modules": [
+    "meme-enhance-pollinations",
+    "shariah-sanitize",
+    "grid-toggles"
+  ],
+  "swap": "overwrite index.html assets/ sw.js robots.txt sitemap.xml _headers _redirects .nojekyll 404.html"
 }
