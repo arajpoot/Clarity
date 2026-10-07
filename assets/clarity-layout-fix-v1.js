@@ -1,22 +1,27 @@
 /**
- * Clarity Layout Fix v7 — sole chrome pin controller
- * Desktop/landscape: fixed nav+banner. Portrait mobile: flow.
- * Applies data-chrome-pin only; CSS at file end wins fighters.
+ * Clarity Layout Fix v8 — pin only true desktop; mobile never fixed
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_LAYOUT_FIX_V7__) return;
+  if (w.__CLARITY_LAYOUT_FIX_V8__) return;
+  w.__CLARITY_LAYOUT_FIX_V8__ = true;
   w.__CLARITY_LAYOUT_FIX_V7__ = true;
-  // Disable older layout fix if present
   w.__CLARITY_LAYOUT_FIX_V6__ = true;
 
   function shouldPin() {
     try {
-      var width = w.innerWidth || document.documentElement.clientWidth || 0;
-      if (width >= 901) return true;
-      var landscape = false;
-      try { landscape = w.matchMedia("(orientation: landscape)").matches; } catch (e) {}
-      return width >= 700 && landscape;
+      // Only pin on real desktop widths — never phones / small tablets
+      var width = Math.min(
+        w.innerWidth || 0,
+        document.documentElement.clientWidth || 0
+      );
+      if (width < 1024) return false;
+      // Prefer desktop pointer when available
+      try {
+        if (w.matchMedia("(hover: none) and (pointer: coarse)").matches && width < 1200)
+          return false;
+      } catch (e) {}
+      return true;
     } catch (e2) {
       return false;
     }
@@ -36,25 +41,23 @@
       if (body) body.classList.toggle("clarity-chrome-pinned", !!pin);
 
       var h = 52;
-      if (nav) {
-        // When fixed, offsetHeight is reliable
-        h = Math.max(44, Math.round(nav.offsetHeight || nav.getBoundingClientRect().height) || 52);
-      }
+      if (nav) h = Math.max(44, Math.round(nav.offsetHeight || 52));
       root.style.setProperty("--clarity-nav-h", h + "px");
 
       var duoH = 0;
-      if (duo) {
-        duoH = Math.round(duo.offsetHeight || duo.getBoundingClientRect().height) || 0;
-        if (duoH < 120 && pin) duoH = 160; // min banner while measuring
-      }
+      if (duo) duoH = Math.round(duo.offsetHeight || 0);
 
       if (pin) {
-        var stack = h + duoH;
+        // Prefer measured; floor so first card is never under chrome
+        var stack = Math.max(h + duoH, h + 180);
         root.style.setProperty("--clarity-chrome-h", stack + "px");
         if (body) body.style.paddingTop = stack + "px";
       } else {
         root.style.setProperty("--clarity-chrome-h", "0px");
-        if (body) body.style.paddingTop = "";
+        if (body) {
+          body.style.paddingTop = "";
+          body.style.removeProperty("padding-top");
+        }
       }
     } catch (e) {}
   }
@@ -65,38 +68,37 @@
     t = setTimeout(function () {
       t = null;
       measure();
-      // second pass after layout settles (desktop↔mobile kink)
-      setTimeout(measure, 80);
-    }, 30);
+      setTimeout(measure, 100);
+    }, 40);
   }
 
   function bind() {
     measure();
     w.addEventListener("resize", schedule, { passive: true });
     w.addEventListener("orientationchange", function () {
-      measure();
-      setTimeout(measure, 120);
-      setTimeout(measure, 350);
-      setTimeout(measure, 700);
+      // Force unpin during rotate then remeasure
+      try {
+        document.documentElement.setAttribute("data-chrome-pin", "0");
+        document.body && document.body.classList.remove("clarity-chrome-pinned");
+        if (document.body) document.body.style.paddingTop = "";
+      } catch (e) {}
+      setTimeout(measure, 50);
+      setTimeout(measure, 200);
+      setTimeout(measure, 500);
     });
-    if (w.visualViewport) {
+    if (w.visualViewport)
       w.visualViewport.addEventListener("resize", schedule, { passive: true });
-    }
     try {
-      var mq = w.matchMedia("(min-width:901px)");
+      var mq = w.matchMedia("(min-width:1024px)");
       if (mq.addEventListener) mq.addEventListener("change", schedule);
       else if (mq.addListener) mq.addListener(schedule);
     } catch (e) {}
-    try {
-      var mq2 = w.matchMedia("(orientation: landscape)");
-      if (mq2.addEventListener) mq2.addEventListener("change", schedule);
-    } catch (e3) {}
-    setTimeout(measure, 100);
-    setTimeout(measure, 400);
-    setTimeout(measure, 1000);
+    setTimeout(measure, 150);
+    setTimeout(measure, 500);
+    setTimeout(measure, 1200);
     w.addEventListener("load", function () {
       measure();
-      setTimeout(measure, 200);
+      setTimeout(measure, 300);
     });
   }
 
@@ -104,5 +106,5 @@
     document.addEventListener("DOMContentLoaded", bind);
   else bind();
 
-  w.ClarityLayoutFix = { version: "20261007C", measure: measure, shouldPin: shouldPin };
+  w.ClarityLayoutFix = { version: "20261007D", measure: measure, shouldPin: shouldPin };
 })(typeof window !== "undefined" ? window : this);
