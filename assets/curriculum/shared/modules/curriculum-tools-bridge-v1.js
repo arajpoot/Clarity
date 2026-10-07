@@ -6,7 +6,7 @@
   "use strict";
   if (w.__CLARITY_CURRICULUM_TOOLS_V1__) return;
   w.__CLARITY_CURRICULUM_TOOLS_V1__ = true;
-  var VER = "20261006DP";
+  var VER = "20261006L2";
 
   function inject(src) {
     return new Promise(function (resolve, reject) {
