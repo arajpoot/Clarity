@@ -1595,3 +1595,42 @@
     document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(typeof window !== "undefined" ? window : this);
+
+
+/* ---- clarity-smooth-resize-v1 ---- */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_SMOOTH_RESIZE_V1__) return;
+  g.__CLARITY_SMOOTH_RESIZE_V1__ = true;
+
+  var ticking = false;
+  function apply() {
+    ticking = false;
+    try {
+      var w = g.innerWidth || document.documentElement.clientWidth || 0;
+      var mobile = w <= 1023;
+      document.documentElement.classList.toggle("clarity-mobile", mobile);
+      document.documentElement.classList.toggle("clarity-desktop", !mobile);
+      document.documentElement.setAttribute("data-clarity-viewport", mobile ? "mobile" : "desktop");
+      // Banner sticky only desktop
+      var banner = document.getElementById("clarity-top-duo") || document.querySelector(".clarity-banner, #site-banner");
+      if (banner) {
+        if (mobile) {
+          banner.style.position = "relative";
+        }
+      }
+    } catch (e) {}
+  }
+  function onResize() {
+    if (ticking) return;
+    ticking = true;
+    if (typeof requestAnimationFrame === "function") requestAnimationFrame(apply);
+    else setTimeout(apply, 16);
+  }
+  g.addEventListener("resize", onResize, { passive: true });
+  g.addEventListener("orientationchange", function () {
+    setTimeout(apply, 100);
+  });
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
+  else apply();
+})(typeof window !== "undefined" ? window : this);

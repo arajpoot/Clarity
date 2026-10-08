@@ -923,3 +923,89 @@ html body::before {
     display: none !important;
   }
 }
+
+
+/* ===== SMOOTH VIEWPORT + MEME CENTER STAGE v6 ===== */
+html {
+  scroll-behavior: smooth;
+}
+#meme-studio-root,
+#meme-card .meme-studio {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  gap: 0.45rem !important;
+}
+#meme-studio-root .clarity-meme-toolbar,
+#meme-studio-root .clarity-meme-toggle-bar,
+#meme-studio-root .meme-bar-bg {
+  order: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  position: relative !important;
+  float: none !important;
+  clear: both !important;
+  z-index: 6 !important;
+}
+#meme-studio-root .meme-bar-bg { display: none !important; }
+#meme-studio-root .clarity-meme-toolbar { order: 1 !important; }
+#meme-studio-root .clarity-meme-toggle-bar { order: 2 !important; }
+
+#meme-stage-wrap,
+#meme-stage,
+.meme-preview-only {
+  order: 3 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0.5rem auto !important;
+  float: none !important;
+  clear: both !important;
+  position: relative !important;
+}
+#meme-canvas {
+  display: block !important;
+  margin: 0 auto !important;
+  max-width: min(100%, 720px) !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+}
+/* scale controls below canvas */
+#meme-studio-root .meme-scale-row,
+#meme-studio-root .meme-below,
+#meme-studio-root .meme-tools-below {
+  order: 4 !important;
+  width: 100% !important;
+}
+
+/* Smooth mobile/desktop chrome */
+@media (max-width: 1023px) {
+  html.clarity-mobile #clarity-top-duo,
+  html.clarity-mobile .clarity-sticky-chrome {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+@media (min-width: 1024px) {
+  html.clarity-desktop #clarity-top-duo.clarity-sticky-ok,
+  html.clarity-desktop .clarity-banner-sticky {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 40 !important;
+  }
+}
+
+/* Path strip module chips look tappable */
+#clarity-path-modules button,
+.clarity-path-strip button,
+.daily-path-tools button,
+.clarity-module-pill {
+  cursor: pointer;
+}
