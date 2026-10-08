@@ -1,20 +1,21 @@
 {
-  "build": "20261008CF",
-  "status": "pre-deploy-cleared",
-  "sandbox": "0 fail",
+  "build": "20261008FULL",
+  "label": "complete-production-fresh-start",
   "deploy": "cloudflare-pages-github",
   "live": "https://clarity-dawah.fyi/",
   "repo": "https://github.com/arajpoot/Clarity",
-  "CNAME": "clarity-dawah.fyi",
-  "js": 9,
-  "phases": [
-    "syntax",
-    "load-graph",
-    "orch",
-    "no-deleted-srcs",
-    "vault",
-    "csp",
-    "cname",
-    "sw"
-  ]
+  "modules": {
+    "core": "chunk-8",
+    "boot": "runtime-overlays",
+    "feature": "notes+tajweed+meme+layout+strips",
+    "path": "progress+polish+grave+hydrator",
+    "aux": "track+nuros+seeker+dhikr+shine",
+    "vault": "amana-gate",
+    "lazy": [
+      "notes-recovery",
+      "uft",
+      "nx-tj-lmr"
+    ]
+  },
+  "sandbox": "0-fail-multi-pass"
 }

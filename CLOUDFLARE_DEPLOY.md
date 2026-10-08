@@ -1,27 +1,24 @@
-# Cloudflare Pages via GitHub
+# Clarity production deploy (20261008FULL)
 
-## One-time setup (Dashboard)
-1. Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
-2. Select repo: `arajpoot/Clarity`
-3. Build settings:
-   - **Framework preset:** None
-   - **Build command:** (leave empty)
-   - **Build output directory:** `/` (root)
-   - **Root directory:** `/` (repo root)
-4. Environment: none required
-5. Save and deploy
-6. Custom domain: add `clarity-dawah.fyi` → DNS CNAME to `*.pages.dev`
+## GitHub → Cloudflare Pages
+1. Push/upload this package to `main`
+2. Pages project: build command empty, output `/`
+3. Custom domain: clarity-dawah.fyi (CNAME file included)
+4. Purge cache after first deploy
 
-## Going forward (every update)
-1. Push to `main` on GitHub (or upload files to `main`)
-2. Cloudflare auto-builds from GitHub connection
-3. Purge cache if needed: Caching → Configuration → Purge Everything
-4. Users: hard refresh; one-time SW clear if stuck
+## Do not delete on server
+- SEO topic folders
+- assets/curriculum content beyond manifests
+- assets/media
+- google*.html verification
 
-## Do NOT put asset JS/CSS at repo root
-Only under `assets/`. Root should stay: index.html, sw.js, robots.txt, sitemap.xml, _headers, _redirects, .nojekyll, 404.html, SEO folders.
-
-## Delete before each lean upload (if still present)
-- `assets/clarity-site-audit-v1.js`
-- Any `clarity-*.js` / `clarity-*.css` accidentally at **repo root**
-- Old singles merged into packs (layout-fix, meme-enhance, path-progress, etc.)
+## Assets JS (complete graph)
+- clarity-chunk-8.js
+- clarity-runtime-overlays-v1.js
+- clarity-feature-pack-v1.js
+- clarity-path-pack-v1.js
+- clarity-aux-pack-v1.js
+- clarity-amana-vault-gate-js-v1.js
+- clarity-notes-recovery-v1.js (lazy)
+- clarity-uft-full-restore-v1.js (lazy)
+- nx-tj-lmr-js-v1.js (lazy)
