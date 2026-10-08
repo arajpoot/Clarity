@@ -1,16 +1,16 @@
-/* Clarity Service Worker — full production shell 20261008CLEAN */
-const CACHE = "clarity-20261008CLEAN";
+/* Clarity Service Worker — full production shell 20261008SMOOTH */
+const CACHE = "clarity-20261008SMOOTH";
 const PRECACHE = [
   "/",
   "/index.html",
-  "/assets/clarity-critical-css-v1.css?v=20261008CLEAN",
-  "/assets/clarity-css-patches-v1.css?v=20261008CLEAN",
-  "/assets/clarity-runtime-overlays-v1.js?v=20261008CLEAN",
-  "/assets/clarity-chunk-8.js?v=20261008CLEAN",
-  "/assets/clarity-feature-pack-v1.js?v=20261008CLEAN",
-  "/assets/clarity-path-pack-v1.js?v=20261008CLEAN",
-  "/assets/clarity-aux-pack-v1.js?v=20261008CLEAN",
-  "/assets/clarity-amana-vault-gate-js-v1.js?v=20261008CLEAN",
+  "/assets/clarity-critical-css-v1.css?v=20261008SMOOTH",
+  "/assets/clarity-css-patches-v1.css?v=20261008SMOOTH",
+  "/assets/clarity-runtime-overlays-v1.js?v=20261008SMOOTH",
+  "/assets/clarity-chunk-8.js?v=20261008SMOOTH",
+  "/assets/clarity-feature-pack-v1.js?v=20261008SMOOTH",
+  "/assets/clarity-path-pack-v1.js?v=20261008SMOOTH",
+  "/assets/clarity-aux-pack-v1.js?v=20261008SMOOTH",
+  "/assets/clarity-amana-vault-gate-js-v1.js?v=20261008SMOOTH",
   "/robots.txt"
 ];
 
