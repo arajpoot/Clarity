@@ -1,4 +1,6 @@
-# Netlify / Cloudflare-compatible publish config
+# Legacy Netlify config (site now primary on Cloudflare Pages via GitHub).
+# Safe to keep for dual-host testing; Cloudflare ignores this file.
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -9,38 +11,7 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-[[headers]]
-  for = "/"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/sw.js"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-# Explicit SPA paths only — never /* → index.html
 [[redirects]]
-  from = "/meme"
-  to = "/index.html"
-  status = 200
-[[redirects]]
-  from = "/notes"
-  to = "/index.html"
-  status = 200
-[[redirects]]
-  from = "/journey"
-  to = "/index.html"
-  status = 200
-[[redirects]]
-  from = "/commands"
-  to = "/index.html"
-  status = 200
-[[redirects]]
-  from = "/about"
-  to = "/index.html"
-  status = 200
-[[redirects]]
-  from = "/vault"
+  from = "/*"
   to = "/index.html"
   status = 200

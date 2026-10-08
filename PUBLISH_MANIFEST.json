@@ -1,9 +1,20 @@
 {
-  "build": "20261007LEAN5",
-  "fixes": [
-    "_redirects-no-catch-all",
-    "assets-not-rewritten-to-index",
-    "netlify-toml-safe"
-  ],
-  "safe_to_publish": true
+  "build": "20261008CF",
+  "status": "pre-deploy-cleared",
+  "sandbox": "0 fail",
+  "deploy": "cloudflare-pages-github",
+  "live": "https://clarity-dawah.fyi/",
+  "repo": "https://github.com/arajpoot/Clarity",
+  "CNAME": "clarity-dawah.fyi",
+  "js": 9,
+  "phases": [
+    "syntax",
+    "load-graph",
+    "orch",
+    "no-deleted-srcs",
+    "vault",
+    "csp",
+    "cname",
+    "sw"
+  ]
 }

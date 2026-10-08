@@ -1,26 +1,23 @@
-/* Clarity Service Worker — Seeker-first offline shell 20261006B */
-const CACHE /* 20261006B */ = "clarity-seeker-v20261006B";
+/* Clarity Service Worker — lean CF shell 20261008CF */
+const CACHE = "clarity-20261008CF";
 const PRECACHE = [
   "/",
   "/index.html",
-  "/assets/clarity-critical-css-v1.css?v=20261006B",
-  "/assets/clarity-css-patches-v1.css?v=20261006B",
-  "/assets/clarity-runtime-overlays-v1.js?v=20261006B",
-  "/assets/curriculum/pathway-hydrator-v1.js?v=20261006B",
-  "/assets/clarity-path-progress-v1.js?v=20261006B",
-  "/assets/clarity-chunk-8.js?v=20261006B",
-  "/assets/clarity-track-os-v3.js?v=20261006B",
+  "/assets/clarity-critical-css-v1.css?v=20261008CF",
+  "/assets/clarity-css-patches-v1.css?v=20261008CF",
+  "/assets/clarity-runtime-overlays-v1.js?v=20261008CF",
+  "/assets/clarity-chunk-8.js?v=20261008CF",
+  "/assets/clarity-feature-pack-v1.js?v=20261008CF",
+  "/assets/clarity-path-pack-v1.js?v=20261008CF",
+  "/assets/clarity-aux-pack-v1.js?v=20261008CF",
+  "/assets/clarity-amana-vault-gate-js-v1.js?v=20261008CF",
   "/robots.txt"
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE).then((cache) =>
-      Promise.all(
-        PRECACHE.map((url) =>
-          cache.add(url).catch(() => null)
-        )
-      )
+      Promise.all(PRECACHE.map((url) => cache.add(url).catch(() => null)))
     ).then(() => self.skipWaiting())
   );
 });
@@ -28,9 +25,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(
-        keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))
-      )
+      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
     ).then(() => self.clients.claim())
   );
 });
@@ -39,10 +34,8 @@ self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
-  // Only same-origin
   if (url.origin !== self.location.origin) return;
 
-  // Network-first for HTML (always fresh index)
   if (req.mode === "navigate" || url.pathname.endsWith(".html") || url.pathname === "/") {
     event.respondWith(
       fetch(req)
@@ -56,7 +49,6 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Cache-first for versioned assets
   if (url.pathname.startsWith("/assets/")) {
     event.respondWith(
       caches.match(req).then((cached) => {

@@ -9,14 +9,6 @@
   Cache-Control: public, max-age=31536000, immutable
   Vary: Accept-Encoding
 
-/*.js
-  Cache-Control: public, max-age=31536000, immutable
-  Vary: Accept-Encoding
-
-/*.css
-  Cache-Control: public, max-age=31536000, immutable
-  Vary: Accept-Encoding
-
 /sw.js
   Cache-Control: public, max-age=0, must-revalidate
   Service-Worker-Allowed: /
