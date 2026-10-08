@@ -549,52 +549,8 @@
     return false;
   }
 
-  function ensurePills() {
-    document.querySelectorAll(".card[id$='-card'], .card[id], [id$='-card']").forEach(function (card) {
-      if (banned(card)) return;
-      if (card.querySelector(".clarity-to-notes-pill")) return;
-      var sample = extract(card);
-      if (!sample.ar && !sample.en) return;
-      if ((sample.ar + sample.en).length < 24) return;
-      var row = card.querySelector(".clarity-action-row");
-      if (!row) {
-        row = document.createElement("div");
-        row.className = "clarity-action-row";
-        card.appendChild(row);
-      }
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "clarity-to-notes-pill clarity-action-chip";
-      btn.textContent = "Notes";
-      btn.title = "Save to notepad";
-      btn.addEventListener("click", function (ev) {
-        try { ev.preventDefault(); ev.stopPropagation(); } catch (e0) {}
-        var p = extract(card);
-        var tag = /hadith|bukhari|muslim/i.test(p.ref + p.title) ? "Hadith"
-          : /qur|ayah|\d+\s*:\s*\d+/i.test(p.ref) ? "Qur'an" : "Reflection";
-        pushToNotes({
-          title: (p.title || p.ref || "Reflection").slice(0, 72),
-          tag: tag,
-          body: buildBody(p, card.id || "section"),
-          grave: /grave|death|akhirah/i.test(p.en + p.title + (card.id || ""))
-        });
-      });
-      row.appendChild(btn);
-    });
-  }
-
-  function boot() {
-    ensurePills();
-    setTimeout(ensurePills, 1000);
-    setTimeout(ensurePills, 3000);
-    try {
-      var mo = new MutationObserver(function () {
-        clearTimeout(g.__notesPillT);
-        g.__notesPillT = setTimeout(ensurePills, 500);
-      });
-      mo.observe(document.body, { childList: true, subtree: true });
-    } catch (e) {}
-  }
+  function ensurePills(){ return; }
+  function boot(){ /* pills: stable controller */ }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(typeof window !== "undefined" ? window : this);
@@ -1211,45 +1167,8 @@
     return false;
   }
 
-  function ensurePills() {
-    document.querySelectorAll(".clarity-to-meme-pill").forEach(function (btn) {
-      var card = btn.closest("[id$='-card'], .card");
-      if (!card || !isEssentialMemeCard(card)) {
-        try {
-          btn.parentNode && btn.parentNode.removeChild(btn);
-        } catch (e) {}
-      }
-    });
-    document.querySelectorAll(".card[id$='-card'], [id$='-card']").forEach(function (card) {
-      if (bannedCard(card)) return;
-      if (!isEssentialMemeCard(card)) return;
-      if (card.querySelector(".clarity-to-meme-pill")) return;
-      var sample = extract(card);
-      if (!sample.ar && !sample.en) return;
-      if ((sample.ar + sample.en).length < 24) return;
-      var row = card.querySelector(".clarity-action-row");
-      if (!row) {
-        row = document.createElement("div");
-        row.className = "clarity-action-row";
-        card.appendChild(row);
-      }
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "clarity-to-meme-pill clarity-action-chip";
-      btn.textContent = "Meme";
-      btn.title = "Push Arabic + translation to Meme Studio";
-      btn.addEventListener("click", function (ev) {
-        try {
-          ev.preventDefault();
-          ev.stopPropagation();
-        } catch (e0) {}
-        g.clarityMemePushFromCard(card, "stock");
-      });
-      row.appendChild(btn);
-    });
-  }
-
-  /** Unified toolbar + toggle bar — column stack on mobile */
+  function ensurePills() { return; /* stable controller */ }
+  /* obliterated ensurePills_gone */
   function ensureToolbar() {
     var root =
       document.getElementById("meme-studio-root") ||
@@ -1352,9 +1271,9 @@
   function boot() {
     ensureToolbar();
     ensurePills();
-    setTimeout(ensureToolbar, 400);
-    setTimeout(ensurePills, 800);
-    setTimeout(ensurePills, 2500);
+    setTimeout(ensureToolbar, 500);
+    /* debounced by stable controller */
+    /* debounced by stable controller */
     try {
       var mo = new MutationObserver(function () {
         clearTimeout(g.__memeTb);
@@ -1466,6 +1385,212 @@
     hookDraw();
     setTimeout(ensureToggles, 600);
   }
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})(typeof window !== "undefined" ? window : this);
+
+
+/* ---- clarity-action-pills-stable-v1.js ---- */
+/**
+ * Single controller: notes + meme pills — essentials only, no flash, no double MO
+ */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_ACTION_PILLS_STABLE_V1__) return;
+  g.__CLARITY_ACTION_PILLS_STABLE_V1__ = true;
+
+  var ESSENTIAL = {
+    "commands-card": 1,
+    "samina-verse-card": 1,
+    "samina-card": 1,
+    "journey-card": 1,
+    "grave-card": 1,
+    "grave-path-card": 1,
+    "seerah-card": 1,
+    "seerah-live-card": 1,
+    "seerah-mirror-card": 1,
+    "hadith-card": 1,
+    "verse-card": 1,
+    "daily-verse-card": 1,
+    "tafseer-card": 1,
+    "tafseer-resources-card": 1,
+    "quran-card": 1,
+    "character-card": 1,
+    "cw-card": 1,
+    "life-events-card": 1,
+    "soul-compass-card": 1,
+    "hell-sins-card": 1,
+    "night-breath-card": 1,
+    "deepen-study-card": 1,
+    "najiha-tafseer-card": 1,
+    "asma-names-lecture-card": 1
+  };
+
+  var BAN_ANCESTOR = "#clarity-top-duo, #clarity-global-nav, .banner, #clarity-last-visited, #clarity-path-modules, .clarity-path-strip, .clarity-visit-strip, #meme-card, #notes-shell, #tweet-desk-card";
+
+  function isEssential(card) {
+    if (!card || !card.id) return false;
+    if (ESSENTIAL[card.id]) return true;
+    if (card.getAttribute("data-clarity-meme-ok") === "1") return true;
+    if (card.getAttribute("data-clarity-notes-ok") === "1") return true;
+    return false;
+  }
+
+  function banned(card) {
+    if (!card) return true;
+    try {
+      if (card.closest(BAN_ANCESTOR)) return true;
+    } catch (e) {}
+    if (card.id === "meme-card" || card.id === "notes-shell") return true;
+    return false;
+  }
+
+  function hasVerse(card) {
+    var ar = card.querySelector(".verse-ar, .ayah-ar, #cmd-ar-text, .arabic, [lang='ar']");
+    var en = card.querySelector(".verse-en, .ayah-en, #cmd-en-text, .translation, .english");
+    if (ar && en) {
+      var t = ((ar.textContent || "") + (en.textContent || "")).trim();
+      return t.length >= 24;
+    }
+    return false;
+  }
+
+  function ensureRow(card) {
+    var row = card.querySelector(".clarity-action-row");
+    if (!row) {
+      row = document.createElement("div");
+      row.className = "clarity-action-row";
+      card.appendChild(row);
+    }
+    return row;
+  }
+
+  /** Strip ALL pills outside essentials — runs once per cycle */
+  function stripJunk() {
+    document.querySelectorAll(".clarity-to-meme-pill, .clarity-to-notes-pill").forEach(function (btn) {
+      var card = btn.closest("[id$='-card'], .card");
+      if (!card || banned(card) || !isEssential(card)) {
+        try {
+          btn.remove();
+        } catch (e) {
+          try {
+            btn.parentNode.removeChild(btn);
+          } catch (e2) {}
+        }
+      }
+    });
+  }
+
+  function addMeme(card) {
+    if (card.querySelector(".clarity-to-meme-pill")) return;
+    if (!hasVerse(card) && !ESSENTIAL[card.id]) return;
+    var row = ensureRow(card);
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "clarity-to-meme-pill clarity-action-chip";
+    btn.textContent = "Meme";
+    btn.addEventListener("click", function (ev) {
+      try {
+        ev.preventDefault();
+        ev.stopPropagation();
+      } catch (e) {}
+      if (typeof g.clarityMemePushFromCard === "function")
+        g.clarityMemePushFromCard(card, "stock");
+    });
+    row.appendChild(btn);
+  }
+
+  function addNotes(card) {
+    if (card.querySelector(".clarity-to-notes-pill")) return;
+    var row = ensureRow(card);
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "clarity-to-notes-pill clarity-action-chip";
+    btn.textContent = "Notes";
+    btn.addEventListener("click", function (ev) {
+      try {
+        ev.preventDefault();
+        ev.stopPropagation();
+      } catch (e) {}
+      // Prefer existing bridge extract via push if available
+      try {
+        var ar = (card.querySelector(".verse-ar, .arabic, [lang='ar'], #cmd-ar-text") || {}).textContent || "";
+        var en = (card.querySelector(".verse-en, .translation, #cmd-en-text") || {}).textContent || "";
+        var ref = (card.querySelector(".ref, .verse-ref") || {}).textContent || "";
+        if (typeof g.notesCreate === "function") {
+          g.notesCreate({
+            title: (ref || card.id || "Note").slice(0, 72),
+            tag: /hadith/i.test(ref) ? "Hadith" : "Qur'an",
+            body: (ar + "\n\n" + en).trim()
+          });
+        } else if (g.ClarityLazy && g.ClarityLazy.notes) {
+          g.ClarityLazy.notes().then(function () {
+            if (typeof g.notesCreate === "function")
+              g.notesCreate({
+                title: (ref || "Note").slice(0, 72),
+                tag: "Qur'an",
+                body: (ar + "\n\n" + en).trim()
+              });
+          });
+        }
+        if (typeof g.switchTab === "function") g.switchTab("reflection");
+      } catch (e2) {}
+    });
+    row.appendChild(btn);
+  }
+
+  var scheduled = false;
+  function cycle() {
+    scheduled = false;
+    stripJunk();
+    document.querySelectorAll(".card[id$='-card'], [id$='-card']").forEach(function (card) {
+      if (banned(card) || !isEssential(card)) return;
+      if (!hasVerse(card) && !ESSENTIAL[card.id]) return;
+      addMeme(card);
+      addNotes(card);
+    });
+  }
+
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    if (typeof requestAnimationFrame === "function")
+      requestAnimationFrame(function () {
+        setTimeout(cycle, 50);
+      });
+    else setTimeout(cycle, 80);
+  }
+
+  // Neutralize older aggressive ensurePills by replacing with no-ops after our cycle
+  function disarmFighters() {
+    // Wrap common names if they reappear on window
+    try {
+      // Meme module internal ensurePills cannot be reached; stripJunk handles flash
+    } catch (e) {}
+  }
+
+  function boot() {
+    cycle();
+    setTimeout(cycle, 500);
+    setTimeout(cycle, 2000);
+    // Quiet observer — only when cards added, debounced
+    try {
+      var mo = new MutationObserver(function (muts) {
+        var hit = false;
+        for (var i = 0; i < muts.length; i++) {
+          if (muts[i].addedNodes && muts[i].addedNodes.length) {
+            hit = true;
+            break;
+          }
+        }
+        if (hit) schedule();
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    } catch (e) {}
+    disarmFighters();
+  }
+
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", boot);
   else boot();
