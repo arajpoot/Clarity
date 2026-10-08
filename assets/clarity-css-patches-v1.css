@@ -423,38 +423,27 @@ html body::before {
   }
 }
 
-/* Meme studio mobile — horizontal chip rows (no stacked mess) */
+/* Meme studio mobile clean layout */
 @media (max-width: 700px) {
   #meme-studio-root .clarity-meme-ai-bar,
-  #meme-card .clarity-meme-ai-bar,
-  #meme-studio-root .clarity-meme-toolbar {
+  #meme-card .clarity-meme-ai-bar {
     position: relative !important;
     display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 0.35rem !important;
-    margin: 0.4rem 0 !important;
-    padding: 0.2rem 0 0.35rem !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    flex-direction: column !important;
+    gap: 0.4rem !important;
+    margin: 0.5rem 0 !important;
     z-index: 5 !important;
-  }
-  #meme-studio-root .clarity-meme-toolbar .mv-chip,
-  #meme-studio-root .clarity-meme-ai-bar .mv-chip {
-    flex: 0 0 auto !important;
-    white-space: nowrap !important;
-  }
-  #meme-studio-root .clarity-meme-toolbar .meme-toolbar-note {
-    display: none !important; /* tip on desktop only; saves mobile height */
   }
   #meme-stage-wrap, #meme-stage {
     position: relative !important;
     overflow: hidden !important;
   }
   #meme-stage .clarity-meme-ai-bar {
-    display: none !important;
+    display: none !important; /* if injected inside stage */
+  }
+  .meme-text-box {
+    pointer-events: auto;
+    opacity: 0.95;
   }
   .meme-text-box .meme-drag-handle {
     font-size: 0.65rem !important;
@@ -736,166 +725,108 @@ html body::before {
   height: 0 !important;
 }
 
-/* Meme studio sleek toolbar v4 — one horizontal row + AI chips */
+/* Meme studio sleek toolbar v3 */
 #meme-studio-root .meme-bar-bg {
-  display: none !important; /* superseded by unified toolbar */
+  display: none !important;
 }
-#meme-studio-root .clarity-meme-toolbar,
-#meme-studio-root .clarity-meme-ai-bar {
+#meme-studio-root .clarity-meme-toolbar {
   display: flex !important;
-  flex-direction: row !important;
   flex-wrap: wrap !important;
   gap: 0.35rem !important;
   align-items: center !important;
   margin: 0.4rem 0 0.5rem !important;
-  max-width: 100%;
 }
-#meme-studio-root .clarity-meme-toolbar .mv-chip,
-#meme-studio-root .clarity-meme-ai-bar .mv-chip {
+#meme-studio-root .clarity-meme-toolbar .mv-chip {
   font-size: 0.72rem !important;
   padding: 0.28rem 0.55rem !important;
   border-radius: 999px !important;
-  flex: 0 0 auto;
-}
-#meme-studio-root .clarity-meme-toolbar .meme-toolbar-note {
-  flex: 1 1 100%;
-  font-size: 0.7rem;
-  opacity: 0.82;
-  line-height: 1.3;
-  margin: 0.15rem 0 0;
-}
-#meme-studio-root .clarity-meme-toggle-bar {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  gap: 0.35rem !important;
-  align-items: center !important;
-  margin: 0.35rem 0 0.55rem !important;
 }
 @media (max-width: 700px) {
-  #meme-studio-root .clarity-meme-toolbar,
-  #meme-studio-root .clarity-meme-ai-bar,
-  #meme-studio-root .clarity-meme-toggle-bar {
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-  }
   #meme-studio-root .clarity-meme-toolbar .mv-chip {
     font-size: 0.68rem !important;
     padding: 0.25rem 0.45rem !important;
   }
 }
-@media (min-width: 701px) {
-  #meme-studio-root .clarity-meme-toolbar {
-    flex-wrap: wrap !important;
-  }
-}
 
-/* ===== MEME LAYOUT NUCLEAR v5 LEAN4 ===== */
-#meme-studio-root,
-#meme-studio-root.meme-realign,
-#meme-studio-root.meme-glory-layout {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  gap: 0.55rem !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
+
+/* ===== MEME STUDIO MOBILE/DESKTOP SLEEK v4 (CF) ===== */
 #meme-studio-root .meme-bar-bg {
   display: none !important;
 }
 #meme-studio-root .clarity-meme-toolbar,
 #meme-studio-root .clarity-meme-ai-bar,
+#meme-card .clarity-meme-toolbar,
 #meme-card .clarity-meme-ai-bar {
-  order: 1 !important;
-  position: relative !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  float: none !important;
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap !important;
+  gap: 0.35rem !important;
   align-items: center !important;
-  gap: 0.35rem !important;
   width: 100% !important;
   max-width: 100% !important;
-  margin: 0.25rem 0 !important;
+  margin: 0.4rem 0 0.55rem !important;
   padding: 0.25rem 0 !important;
-  box-sizing: border-box !important;
-  z-index: 2 !important;
-}
-#meme-studio-root .clarity-meme-toggle-bar {
-  order: 2 !important;
   position: relative !important;
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  gap: 0.35rem !important;
-  width: 100% !important;
-  margin: 0.15rem 0 0.35rem !important;
-}
-#meme-studio-root .meme-preview-only,
-#meme-studio-root #meme-stage-wrap {
-  order: 3 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  position: relative !important;
+  z-index: 5 !important;
   float: none !important;
-}
-#meme-studio-root .meme-below {
-  order: 4 !important;
-  width: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.45rem !important;
+  clear: both !important;
 }
 #meme-studio-root .clarity-meme-toolbar .mv-chip,
-#meme-studio-root .clarity-meme-ai-bar .mv-chip,
-#meme-studio-root .clarity-meme-toggle-bar .mv-chip {
+#meme-studio-root .clarity-meme-ai-bar .mv-chip {
   flex: 0 0 auto !important;
+  font-size: 0.72rem !important;
+  padding: 0.28rem 0.55rem !important;
+  border-radius: 999px !important;
   white-space: nowrap !important;
 }
-#meme-studio-root .meme-toolbar-note,
-#meme-studio-root .clarity-meme-ai-bar > div[style*="flex:1 1 100%"] {
-  flex: 1 1 100% !important;
+#meme-studio-root .clarity-meme-toggle-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.3rem !important;
   width: 100% !important;
-  order: 99;
-  font-size: 0.7rem !important;
-  opacity: 0.85;
-  line-height: 1.35;
+  clear: both !important;
+  margin: 0.25rem 0 0.45rem !important;
 }
-/* Mobile: horizontal scroll chips, full-width canvas */
-@media (max-width: 700px) {
-  #meme-studio-root .clarity-meme-toolbar,
-  #meme-studio-root .clarity-meme-ai-bar,
-  #meme-studio-root .clarity-meme-toggle-bar {
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-  }
-  #meme-studio-root .meme-toolbar-note,
-  #meme-studio-root .clarity-meme-ai-bar > div[style*="flex:1"] {
-    display: none !important;
-  }
-  #meme-studio-root #meme-stage,
-  #meme-studio-root .meme-stage {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  /* Kill any accidental side-by-side of AI + canvas */
-  #meme-card .meme-studio,
-  #meme-studio-root {
+#meme-stage-wrap,
+#meme-stage,
+.meme-preview-only {
+  width: 100% !important;
+  max-width: 100% !important;
+  clear: both !important;
+  float: none !important;
+  position: relative !important;
+  margin: 0 auto !important;
+}
+#meme-canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  display: block !important;
+}
+/* Kill side-by-side mess on narrow screens */
+@media (max-width: 900px) {
+  #meme-studio-root,
+  #meme-card .meme-studio {
     display: flex !important;
     flex-direction: column !important;
+    align-items: stretch !important;
   }
-}
-/* Desktop: chips above canvas, wrap nicely */
-@media (min-width: 701px) {
   #meme-studio-root .clarity-meme-toolbar,
-  #meme-studio-root .clarity-meme-ai-bar {
-    flex-wrap: wrap !important;
+  #meme-studio-root .clarity-meme-ai-bar,
+  #meme-studio-root .clarity-meme-toggle-bar,
+  #meme-stage-wrap,
+  .meme-preview-only,
+  .meme-below {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+  }
+  /* Hide any absolute overlays fighting the canvas */
+  #meme-stage .clarity-meme-ai-bar,
+  #meme-stage .clarity-meme-toolbar {
+    display: none !important;
   }
 }

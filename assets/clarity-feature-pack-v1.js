@@ -1114,7 +1114,7 @@
     var bar = document.createElement("div");
     bar.className = "clarity-meme-toolbar clarity-meme-ai-bar";
     bar.style.cssText =
-      "display:flex;flex-wrap:wrap;gap:0.35rem;align-items:center;margin:0.45rem 0 0.55rem;padding:0.25rem 0;max-width:100%;";
+      "display:flex;flex-direction:row;flex-wrap:wrap;gap:0.35rem;align-items:center;width:100%;max-width:100%;margin:0.45rem 0 0.55rem;padding:0.25rem 0;float:none;clear:both;";
 
     function chip(label, title, fn) {
       var b = document.createElement("button");
@@ -1178,15 +1178,6 @@
       })
     );
     bar.appendChild(
-      chip("📷 Match photo", "Stock scenery for current verse", function () {
-        try {
-          var st = g.memeState || {};
-          if (typeof g.memeFetchBg === "function") g.memeFetchBg("free");
-          else if (typeof fetchKind === "function") fetchKind("free");
-        } catch (eM) {}
-      })
-    );
-    bar.appendChild(
       chip("◈ Pattern", "Geometric décor", function () {
         try {
           if (typeof g.clarityMemeDecorBg === "function") g.clarityMemeDecorBg("geometry");
@@ -1195,9 +1186,10 @@
     );
 
     var note = document.createElement("div");
-    note.className = "meme-toolbar-note";
+    note.style.cssText =
+      "flex:1 1 100%;font-size:0.7rem;opacity:0.82;line-height:1.3";
     note.textContent =
-      "Scenery only — discard images that resemble prophets or use Quran as decoration.";
+      "Scenery only · ref on watermark · discard images that resemble prophets or use Quran as decoration.";
     bar.appendChild(note);
 
     var stage =
@@ -1205,11 +1197,6 @@
       root.querySelector(".meme-preview-only");
     if (stage && stage.parentNode) stage.parentNode.insertBefore(bar, stage);
     else root.insertBefore(bar, root.firstChild);
-
-    try {
-      bar.style.order = "1";
-      bar.setAttribute("data-meme-order", "toolbar");
-    } catch (eO) {}
   }
 
   function boot() {
@@ -1481,9 +1468,8 @@
     bar.appendChild(chip("grid4x4", "4×4 collage", "Collage mode: scene split into 4×4 cells"));
 
     var tip = document.createElement("span");
-    tip.className = "meme-toolbar-note";
-    tip.style.cssText = "font-size:0.7rem;opacity:0.8;margin-left:0.15rem;white-space:nowrap";
-    tip.textContent = "Grid = lines · 4×4 = collage";
+    tip.style.cssText = "font-size:0.7rem;opacity:0.8;margin-left:0.25rem";
+    tip.textContent = "Grid = lines · 4×4 = collage layout";
     bar.appendChild(tip);
 
     var stage =
