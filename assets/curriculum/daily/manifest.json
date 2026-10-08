@@ -1,36 +1,27 @@
 {
   "id": "daily",
-  "label": "Daily Muslim",
+  "label": "Daily Muslim \u2014 High school track",
+  "level": "high-school",
   "minI": 2,
+  "scripts": [
+    "clarity-daily-hs-curriculum-v1.js"
+  ],
   "features": [
+    "daily-hs-curriculum",
     "tajweed",
     "tafseer",
     "meme",
-    "deed-ledger",
     "weekly-review",
     "callig-lab",
-    "asma",
-    "tweet-desk",
-    "tajweed-lmr",
-    "callig-practice",
-    "notes-study"
+    "asma"
   ],
   "cards": [
-    "asma-names-lecture-card",
-    "callig-lab-card",
-    "daily-deed-ledger-card",
-    "deepen-study-card",
-    "hajj-checklist-card",
-    "meme-card",
-    "najiha-tafseer-card",
-    "seerah-mirror-card",
-    "tafseer-live-card",
-    "tafseer-resources-card",
+    "daily-hs-curriculum-card",
     "tajweed-live-card",
-    "tajweed-path-card",
-    "tj-deep-studio",
-    "tj-lmr-score-card",
-    "tweet-desk-card",
-    "weekly-review-card"
-  ]
+    "weekly-review-card",
+    "deepen-study-card",
+    "meme-card",
+    "callig-lab-card"
+  ],
+  "units": 4
 }
