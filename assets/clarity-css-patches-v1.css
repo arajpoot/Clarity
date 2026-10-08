@@ -1009,3 +1009,35 @@ html {
 .clarity-module-pill {
   cursor: pointer;
 }
+
+/* Sticky pills — no opacity flash */
+.clarity-to-meme-pill,
+.clarity-to-notes-pill {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: none !important;
+}
+[data-clarity-pills-stuck="1"] .clarity-action-row {
+  min-height: 1.8rem;
+}
+.clarity-daily-tools-strip,
+.clarity-path-module-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.35rem 0.5rem;
+}
+.clarity-daily-tools-strip .pm-pill,
+.clarity-path-module-strip .pm-pill {
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+}
+/* Debounced viewport: avoid layout thrash */
+html.clarity-mobile,
+html.clarity-desktop {
+  transition: none;
+}

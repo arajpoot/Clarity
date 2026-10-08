@@ -101,6 +101,7 @@
     "ilm-pathway-card": "Ilm pathway",
     "meme-card": "Meme studio",
     "tajweed-live-card": "Tajweed",
+    "tj-lmr": "Tajweed",
     "tajweed-path-card": "Tajweed path",
     "tj-lmr-score-card": "LMR score",
     "tafseer-resources-card": "Tafseer",
@@ -125,8 +126,8 @@
   var PATH_MODULES = {
     seeker: ["commands-card", "samina-verse-card", "soul-compass-card", "seerah-live-card", "grave-path-card", "about-clarity-card"],
     new_muslim: ["commands-card", "samina-verse-card", "ilm-pathway-card", "fiqh-quiz-card", "hajj-guide-card", "seerah-live-card"],
-    practicing: ["commands-card", "samina-verse-card", "weekly-review-card", "tajweed-live-card", "meme-card", "deepen-study-card", "hajj-checklist-card", "tibbe-nabwi-card"],
-    dai: ["commands-card", "meme-card", "deepen-study-card", "seerah-mirror-card", "asma-names-lecture-card", "callig-lab-card"]
+    practicing: ["commands-card", "samina-verse-card", "weekly-review-card", "tajweed-live-card", "tj-lmr", "notes-shell", "meme-card", "deepen-study-card", "callig-lab-card", "hajj-checklist-card"],
+    dai: ["commands-card", "meme-card", "notes-shell", "deepen-study-card", "seerah-mirror-card", "asma-names-lecture-card", "callig-lab-card", "tajweed-live-card"]
   };
 
   function loadVisits() {
@@ -154,14 +155,39 @@
   }
 
   function scrollToId(id) {
-    var el = document.getElementById(id);
+    if (!id) return;
+    var map = {
+      tajweed: ["tj-lmr", "tajweed-live-card", "tajweed-path-card", "tj-deep-studio"],
+      notes: ["notes-shell", "notes-card"],
+      meme: ["meme-card", "meme-studio-root"],
+      "tj-lmr": ["tj-lmr", "tajweed-live-card"],
+      "notes-shell": ["notes-shell"],
+      "tajweed-live-card": ["tajweed-live-card", "tj-lmr"]
+    };
+    var ids = map[id] || [id];
+    var el = null;
+    for (var i = 0; i < ids.length; i++) {
+      el = document.getElementById(ids[i]);
+      if (el) break;
+    }
     if (!el) return;
     try {
-      el.classList.remove("gate-hidden");
+      el.classList.remove("gate-hidden", "hidden");
       el.hidden = false;
       el.style.removeProperty("display");
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.style.removeProperty("visibility");
     } catch (e) {}
+    try {
+      if (/tj-lmr|tajweed/i.test(el.id) && g.ClarityLazy && g.ClarityLazy.tjLmr) g.ClarityLazy.tjLmr();
+      if (/notes/i.test(el.id) && g.ClarityLazy && g.ClarityLazy.notes) g.ClarityLazy.notes();
+    } catch (e2) {}
+    try {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (e3) {}
+    try {
+      if (/meme/i.test(el.id) && typeof g.switchTab === "function") g.switchTab("reminder");
+      if (/notes/i.test(el.id) && typeof g.switchTab === "function") g.switchTab("reflection");
+    } catch (e4) {}
   }
 
   function renderVisitBar() {
@@ -255,15 +281,18 @@
       path === "practicing" ? "Daily" : path === "new_muslim" ? "New Muslim" : path === "dai" ? "Da'i" : "Seeker";
     bar.appendChild(lab);
     mods.forEach(function (id) {
-      var el = document.getElementById(id);
-      // Dynamic: only show if module exists in DOM (opened path content)
-      if (!el) return;
+      var el = document.getElementById(id) || document.getElementById("tj-lmr") && /tajweed|tj-lmr/i.test(id);
+      // Always show core tools even if card id not yet in DOM
+      var always = /tajweed|tj-lmr|notes|meme|callig/i.test(id);
+      if (!el && !always && !document.getElementById(id)) return;
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "pm-pill";
-      btn.textContent = LABELS[id] || id.replace(/-card$/, "");
+      btn.setAttribute("data-clarity-goto", id);
+      btn.textContent = LABELS[id] || id.replace(/-card$/, "").replace(/-/g, " ");
       btn.title = btn.textContent;
-      btn.addEventListener("click", function () {
+      btn.addEventListener("click", function (ev) {
+        try { ev.preventDefault(); } catch (e0) {}
         scrollToId(id);
         pushVisit(id);
       });
@@ -309,9 +338,44 @@
     });
   }
 
+
+  function ensureToolsStrip() {
+    var bar = document.getElementById("clarity-daily-tools-strip");
+    if (bar) return bar;
+    bar = document.createElement("div");
+    bar.id = "clarity-daily-tools-strip";
+    bar.className = "clarity-daily-tools-strip";
+    bar.innerHTML = '<span class="pm-label">Tools</span>';
+    var tools = [
+      { id: "tajweed-live-card", label: "Tajweed" },
+      { id: "callig-lab-card", label: "Calligraphy" },
+      { id: "notes-shell", label: "Notes" },
+      { id: "meme-card", label: "Meme" }
+    ];
+    tools.forEach(function (t) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pm-pill";
+      btn.setAttribute("data-clarity-goto", t.id);
+      btn.textContent = t.label;
+      btn.addEventListener("click", function (ev) {
+        try { ev.preventDefault(); } catch (e) {}
+        scrollToId(t.id);
+      });
+      bar.appendChild(btn);
+    });
+    var pathBar = document.getElementById("clarity-path-module-strip");
+    if (pathBar && pathBar.parentNode) {
+      if (pathBar.nextSibling) pathBar.parentNode.insertBefore(bar, pathBar.nextSibling);
+      else pathBar.parentNode.appendChild(bar);
+    }
+    return bar;
+  }
+
   function boot() {
     renderVisitBar();
     renderPathStrip();
+    ensureToolsStrip();
     observeCards();
     setTimeout(function () {
       renderPathStrip();
@@ -1270,7 +1334,7 @@
 
   function boot() {
     ensureToolbar();
-    ensurePills();
+    /* nuked ensurePills */;
     setTimeout(ensureToolbar, 500);
     /* debounced by stable controller */
     /* debounced by stable controller */
@@ -1279,7 +1343,7 @@
         clearTimeout(g.__memeTb);
         g.__memeTb = setTimeout(function () {
           ensureToolbar();
-          ensurePills();
+          /* nuked ensurePills */;
         }, 400);
       });
       mo.observe(document.body, { childList: true, subtree: true });
@@ -1391,13 +1455,15 @@
 })(typeof window !== "undefined" ? window : this);
 
 
-/* ---- clarity-action-pills-stable-v1.js ---- */
+
+/* ---- clarity-action-pills-sticky-v2.js ---- */
 /**
- * Single controller: notes + meme pills — essentials only, no flash, no double MO
+ * Sticky pills — add once, never strip/recreate (no flash)
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_ACTION_PILLS_STABLE_V1__) return;
+  if (g.__CLARITY_ACTION_PILLS_STICKY_V2__) return;
+  g.__CLARITY_ACTION_PILLS_STICKY_V2__ = true;
   g.__CLARITY_ACTION_PILLS_STABLE_V1__ = true;
 
   var ESSENTIAL = {
@@ -1427,210 +1493,112 @@
     "asma-names-lecture-card": 1
   };
 
-  var BAN_ANCESTOR = "#clarity-top-duo, #clarity-global-nav, .banner, #clarity-last-visited, #clarity-path-modules, .clarity-path-strip, .clarity-visit-strip, #meme-card, #notes-shell, #tweet-desk-card";
-
-  function isEssential(card) {
+  function ok(card) {
     if (!card || !card.id) return false;
+    if (card.closest("#clarity-top-duo, .banner, #clarity-path-module-strip, #clarity-visit-pill-bar, #meme-card, #notes-shell"))
+      return false;
     if (ESSENTIAL[card.id]) return true;
     if (card.getAttribute("data-clarity-meme-ok") === "1") return true;
-    if (card.getAttribute("data-clarity-notes-ok") === "1") return true;
     return false;
   }
 
-  function banned(card) {
-    if (!card) return true;
-    try {
-      if (card.closest(BAN_ANCESTOR)) return true;
-    } catch (e) {}
-    if (card.id === "meme-card" || card.id === "notes-shell") return true;
-    return false;
+  function stuck(card) {
+    return card.getAttribute("data-clarity-pills-stuck") === "1";
   }
 
-  function hasVerse(card) {
-    var ar = card.querySelector(".verse-ar, .ayah-ar, #cmd-ar-text, .arabic, [lang='ar']");
-    var en = card.querySelector(".verse-en, .ayah-en, #cmd-en-text, .translation, .english");
-    if (ar && en) {
-      var t = ((ar.textContent || "") + (en.textContent || "")).trim();
-      return t.length >= 24;
+  function mark(card) {
+    card.setAttribute("data-clarity-pills-stuck", "1");
+  }
+
+  function row(card) {
+    var r = card.querySelector(".clarity-action-row");
+    if (!r) {
+      r = document.createElement("div");
+      r.className = "clarity-action-row";
+      card.appendChild(r);
     }
-    return false;
+    return r;
   }
 
-  function ensureRow(card) {
-    var row = card.querySelector(".clarity-action-row");
-    if (!row) {
-      row = document.createElement("div");
-      row.className = "clarity-action-row";
-      card.appendChild(row);
+  function stickCard(card) {
+    if (!ok(card) || stuck(card)) return;
+    if (card.querySelector(".clarity-to-meme-pill") && card.querySelector(".clarity-to-notes-pill")) {
+      mark(card);
+      return;
     }
-    return row;
-  }
-
-  /** Strip ALL pills outside essentials — runs once per cycle */
-  function stripJunk() {
-    document.querySelectorAll(".clarity-to-meme-pill, .clarity-to-notes-pill").forEach(function (btn) {
-      var card = btn.closest("[id$='-card'], .card");
-      if (!card || banned(card) || !isEssential(card)) {
+    var r = row(card);
+    if (!card.querySelector(".clarity-to-meme-pill")) {
+      var m = document.createElement("button");
+      m.type = "button";
+      m.className = "clarity-to-meme-pill clarity-action-chip";
+      m.textContent = "Meme";
+      m.addEventListener("click", function (ev) {
         try {
-          btn.remove();
-        } catch (e) {
-          try {
-            btn.parentNode.removeChild(btn);
-          } catch (e2) {}
-        }
-      }
-    });
-  }
-
-  function addMeme(card) {
-    if (card.querySelector(".clarity-to-meme-pill")) return;
-    if (!hasVerse(card) && !ESSENTIAL[card.id]) return;
-    var row = ensureRow(card);
-    var btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "clarity-to-meme-pill clarity-action-chip";
-    btn.textContent = "Meme";
-    btn.addEventListener("click", function (ev) {
-      try {
-        ev.preventDefault();
-        ev.stopPropagation();
-      } catch (e) {}
-      if (typeof g.clarityMemePushFromCard === "function")
-        g.clarityMemePushFromCard(card, "stock");
-    });
-    row.appendChild(btn);
-  }
-
-  function addNotes(card) {
-    if (card.querySelector(".clarity-to-notes-pill")) return;
-    var row = ensureRow(card);
-    var btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "clarity-to-notes-pill clarity-action-chip";
-    btn.textContent = "Notes";
-    btn.addEventListener("click", function (ev) {
-      try {
-        ev.preventDefault();
-        ev.stopPropagation();
-      } catch (e) {}
-      // Prefer existing bridge extract via push if available
-      try {
-        var ar = (card.querySelector(".verse-ar, .arabic, [lang='ar'], #cmd-ar-text") || {}).textContent || "";
-        var en = (card.querySelector(".verse-en, .translation, #cmd-en-text") || {}).textContent || "";
-        var ref = (card.querySelector(".ref, .verse-ref") || {}).textContent || "";
-        if (typeof g.notesCreate === "function") {
-          g.notesCreate({
-            title: (ref || card.id || "Note").slice(0, 72),
-            tag: /hadith/i.test(ref) ? "Hadith" : "Qur'an",
-            body: (ar + "\n\n" + en).trim()
-          });
-        } else if (g.ClarityLazy && g.ClarityLazy.notes) {
-          g.ClarityLazy.notes().then(function () {
-            if (typeof g.notesCreate === "function")
-              g.notesCreate({
-                title: (ref || "Note").slice(0, 72),
-                tag: "Qur'an",
-                body: (ar + "\n\n" + en).trim()
-              });
-          });
-        }
-        if (typeof g.switchTab === "function") g.switchTab("reflection");
-      } catch (e2) {}
-    });
-    row.appendChild(btn);
-  }
-
-  var scheduled = false;
-  function cycle() {
-    scheduled = false;
-    stripJunk();
-    document.querySelectorAll(".card[id$='-card'], [id$='-card']").forEach(function (card) {
-      if (banned(card) || !isEssential(card)) return;
-      if (!hasVerse(card) && !ESSENTIAL[card.id]) return;
-      addMeme(card);
-      addNotes(card);
-    });
-  }
-
-  function schedule() {
-    if (scheduled) return;
-    scheduled = true;
-    if (typeof requestAnimationFrame === "function")
-      requestAnimationFrame(function () {
-        setTimeout(cycle, 50);
+          ev.preventDefault();
+          ev.stopPropagation();
+        } catch (e) {}
+        if (typeof g.clarityMemePushFromCard === "function")
+          g.clarityMemePushFromCard(card, "stock");
       });
-    else setTimeout(cycle, 80);
+      r.appendChild(m);
+    }
+    if (!card.querySelector(".clarity-to-notes-pill")) {
+      var n = document.createElement("button");
+      n.type = "button";
+      n.className = "clarity-to-notes-pill clarity-action-chip";
+      n.textContent = "Notes";
+      n.addEventListener("click", function (ev) {
+        try {
+          ev.preventDefault();
+          ev.stopPropagation();
+        } catch (e) {}
+        try {
+          var ar = ((card.querySelector(".verse-ar, .arabic, [lang='ar'], #cmd-ar-text") || {}).textContent || "").trim();
+          var en = ((card.querySelector(".verse-en, .translation, #cmd-en-text") || {}).textContent || "").trim();
+          var ref = ((card.querySelector(".ref, .verse-ref") || {}).textContent || "").trim();
+          function create() {
+            if (typeof g.notesCreate === "function")
+              g.notesCreate({ title: (ref || card.id || "Note").slice(0, 72), tag: "Qur'an", body: (ar + "\n\n" + en).trim() });
+          }
+          if (typeof g.notesCreate === "function") create();
+          else if (g.ClarityLazy && g.ClarityLazy.notes) g.ClarityLazy.notes().then(create);
+          if (typeof g.switchTab === "function") g.switchTab("reflection");
+        } catch (e2) {}
+      });
+      r.appendChild(n);
+    }
+    mark(card);
   }
 
-  // Neutralize older aggressive ensurePills by replacing with no-ops after our cycle
-  function disarmFighters() {
-    // Wrap common names if they reappear on window
-    try {
-      // Meme module internal ensurePills cannot be reached; stripJunk handles flash
-    } catch (e) {}
+  function pass() {
+    document.querySelectorAll(".card[id$='-card'], [id$='-card']").forEach(stickCard);
   }
 
   function boot() {
-    cycle();
-    setTimeout(cycle, 500);
-    setTimeout(cycle, 2000);
-    // Quiet observer — only when cards added, debounced
-    try {
-      var mo = new MutationObserver(function (muts) {
-        var hit = false;
-        for (var i = 0; i < muts.length; i++) {
-          if (muts[i].addedNodes && muts[i].addedNodes.length) {
-            hit = true;
-            break;
-          }
-        }
-        if (hit) schedule();
-      });
-      mo.observe(document.body, { childList: true, subtree: true });
-    } catch (e) {}
-    disarmFighters();
+    pass();
+    setTimeout(pass, 600);
+    setTimeout(pass, 1800);
+    // No MutationObserver — prevents flash
   }
 
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", boot);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(typeof window !== "undefined" ? window : this);
 
-
-/* ---- clarity-smooth-resize-v1 ---- */
-(function (g) {
-  "use strict";
-  if (g.__CLARITY_SMOOTH_RESIZE_V1__) return;
-  g.__CLARITY_SMOOTH_RESIZE_V1__ = true;
-
-  var ticking = false;
-  function apply() {
-    ticking = false;
-    try {
-      var w = g.innerWidth || document.documentElement.clientWidth || 0;
-      var mobile = w <= 1023;
-      document.documentElement.classList.toggle("clarity-mobile", mobile);
-      document.documentElement.classList.toggle("clarity-desktop", !mobile);
-      document.documentElement.setAttribute("data-clarity-viewport", mobile ? "mobile" : "desktop");
-      // Banner sticky only desktop
-      var banner = document.getElementById("clarity-top-duo") || document.querySelector(".clarity-banner, #site-banner");
-      if (banner) {
-        if (mobile) {
-          banner.style.position = "relative";
-        }
-      }
-    } catch (e) {}
-  }
-  function onResize() {
-    if (ticking) return;
-    ticking = true;
-    if (typeof requestAnimationFrame === "function") requestAnimationFrame(apply);
-    else setTimeout(apply, 16);
-  }
-  g.addEventListener("resize", onResize, { passive: true });
-  g.addEventListener("orientationchange", function () {
-    setTimeout(apply, 100);
-  });
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
-  else apply();
-})(typeof window !== "undefined" ? window : this);
+/* ---- smooth-resize-v2 ---- */
+(function(g){"use strict";if(g.__CLARITY_SMOOTH_RESIZE_V2__)return;g.__CLARITY_SMOOTH_RESIZE_V2__=true;
+var t=null,last=0;
+function apply(){t=null;try{
+  var w=g.innerWidth||0;var mobile=w<=1023;
+  var root=document.documentElement;
+  if((mobile&&last===1)||(!mobile&&last===0))return;
+  last=mobile?1:0;
+  root.classList.toggle("clarity-mobile",mobile);
+  root.classList.toggle("clarity-desktop",!mobile);
+  root.setAttribute("data-clarity-viewport",mobile?"mobile":"desktop");
+}catch(e){}}
+function schedule(){if(t)return;t=setTimeout(function(){requestAnimationFrame(apply);},120);}
+g.addEventListener("resize",schedule,{passive:true});
+g.addEventListener("orientationchange",function(){setTimeout(apply,150);});
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",apply);else apply();
+})(typeof window!=="undefined"?window:this);
