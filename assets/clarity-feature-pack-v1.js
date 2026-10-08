@@ -600,147 +600,270 @@
 })(typeof window !== "undefined" ? window : this);
 
 
-/* ---- clarity-tj-whisper-restore-v1.js ---- */
+/* ---- clarity-tj-whisper-restore-v2.js ---- */
 /**
- * Clarity Tajweed + Whisper Restore v1
- * - Loads nx-tj-lmr when tajweed UI is shown / rail clicked
- * - Ensures Whisper CDN is allowed path; soft fallback to Web Speech API
+ * Clarity Tajweed + Whisper Restore v2
+ * Eager wire: mic, meter, MediaRecorder, play file, site links, Whisper soft path
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_TJ_WHISPER_RESTORE_V1__) return;
+  if (g.__CLARITY_TJ_WHISPER_RESTORE_V2__) return;
+  g.__CLARITY_TJ_WHISPER_RESTORE_V2__ = true;
   g.__CLARITY_TJ_WHISPER_RESTORE_V1__ = true;
 
   function loadTj() {
     if (g.__tjLmrLoaded) return Promise.resolve(true);
     if (g.ClarityLazy && typeof g.ClarityLazy.tjLmr === "function") {
-      return g.ClarityLazy.tjLmr().then(function () {
-        g.__tjLmrLoaded = true;
-        try {
-          if (typeof g.nurosStartLmrMeter === "function") { /* ready */ }
-        } catch (e) {}
-        return true;
-      }).catch(function () { return false; });
+      return g.ClarityLazy.tjLmr()
+        .then(function () {
+          g.__tjLmrLoaded = true;
+          wireFallback();
+          return true;
+        })
+        .catch(function () {
+          return injectScript();
+        });
     }
+    return injectScript();
+  }
+
+  function injectScript() {
     return new Promise(function (res) {
       if (document.querySelector('script[data-clarity-lazy="tj-lmr"]')) {
         g.__tjLmrLoaded = true;
+        wireFallback();
         res(true);
         return;
       }
       var s = document.createElement("script");
-      s.src = "./assets/nx-tj-lmr-js-v1.js?v=20261006C";
+      s.src = "./assets/nx-tj-lmr-js-v1.js?v=20261008TJ";
       s.defer = true;
       s.dataset.clarityLazy = "tj-lmr";
-      s.onload = function () { g.__tjLmrLoaded = true; res(true); };
-      s.onerror = function () { res(false); };
+      s.onload = function () {
+        g.__tjLmrLoaded = true;
+        wireFallback();
+        res(true);
+      };
+      s.onerror = function () {
+        wireFallback();
+        res(false);
+      };
       (document.body || document.documentElement).appendChild(s);
     });
   }
 
-  function maybeLoadFromClick(ev) {
+  /** Fallback mic + level meter if core buttons exist but handlers missing */
+  function wireFallback() {
     try {
-      var t = ev.target;
+      var rec = document.getElementById("tj-lmr-rec-btn");
+      var stop = document.getElementById("tj-lmr-rec-stop");
+      var play = document.getElementById("tj-lmr-rec-play");
+      var fill = document.getElementById("tj-lmr-meter-fill");
+      if (!rec) return;
+
+      // If core module already bound click, skip rebind
+      if (rec.getAttribute("data-clarity-tj-wired") === "1") return;
+      rec.setAttribute("data-clarity-tj-wired", "1");
+
+      var state = { rec: null, chunks: [], stream: null, url: null, recording: false };
+
+      function setStatus(msg) {
+        var el = document.getElementById("tj-lmr-status") || document.getElementById("tj-lmr-meta");
+        if (el) el.textContent = msg;
+      }
+
+      function startMeter(stream) {
+        try {
+          var Ctx = g.AudioContext || g.webkitAudioContext;
+          if (!Ctx) return;
+          var ctx = new Ctx();
+          var src = ctx.createMediaStreamSource(stream);
+          var an = ctx.createAnalyser();
+          an.fftSize = 512;
+          src.connect(an);
+          var data = new Uint8Array(an.fftSize);
+          g.__lmrMeterAn = an;
+          function tick() {
+            if (!g.__lmrMeterAn || !state.recording) return;
+            an.getByteTimeDomainData(data);
+            var sum = 0;
+            for (var i = 0; i < data.length; i++) {
+              var v = (data[i] - 128) / 128;
+              sum += v * v;
+            }
+            var lvl = Math.min(100, Math.round(400 * Math.sqrt(sum / data.length)));
+            if (fill) fill.style.width = lvl + "%";
+            g.__lmrMeterRaf = requestAnimationFrame(tick);
+          }
+          tick();
+        } catch (e) {}
+      }
+
+      function stopMeter() {
+        try {
+          if (g.__lmrMeterRaf) cancelAnimationFrame(g.__lmrMeterRaf);
+          g.__lmrMeterAn = null;
+          if (fill) fill.style.width = "0%";
+        } catch (e) {}
+      }
+
+      rec.addEventListener("click", function () {
+        if (state.recording) return;
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          setStatus("Mic not available in this browser");
+          return;
+        }
+        navigator.mediaDevices
+          .getUserMedia({ audio: true })
+          .then(function (stream) {
+            state.stream = stream;
+            state.chunks = [];
+            try {
+              state.rec = new MediaRecorder(stream);
+            } catch (e) {
+              setStatus("Recorder unsupported");
+              stream.getTracks().forEach(function (t) {
+                t.stop();
+              });
+              return;
+            }
+            state.rec.ondataavailable = function (ev) {
+              if (ev.data && ev.data.size) state.chunks.push(ev.data);
+            };
+            state.rec.onstop = function () {
+              try {
+                if (state.url) URL.revokeObjectURL(state.url);
+                var blob = new Blob(state.chunks, { type: "audio/webm" });
+                state.url = URL.createObjectURL(blob);
+                g.__tjUserBlobUrl = state.url;
+                setStatus("Recording ready — Play");
+              } catch (e2) {}
+              stopMeter();
+              if (state.stream) {
+                state.stream.getTracks().forEach(function (t) {
+                  t.stop();
+                });
+              }
+              state.recording = false;
+            };
+            state.rec.start();
+            state.recording = true;
+            startMeter(stream);
+            setStatus("Recording…");
+          })
+          .catch(function () {
+            setStatus("Mic permission denied");
+          });
+      });
+
+      if (stop) {
+        stop.addEventListener("click", function () {
+          try {
+            if (state.rec && state.recording) state.rec.stop();
+          } catch (e) {}
+        });
+      }
+
+      if (play) {
+        play.addEventListener("click", function () {
+          var url = state.url || g.__tjUserBlobUrl;
+          if (!url) {
+            setStatus("No recording yet");
+            return;
+          }
+          try {
+            var a = new Audio(url);
+            a.play();
+            setStatus("Playing recording");
+          } catch (e) {
+            setStatus("Play failed");
+          }
+        });
+      }
+
+      // File upload play if input exists
+      var fileIn = document.getElementById("tj-lmr-file") || document.querySelector("#tj-lmr input[type=file]");
+      if (fileIn && !fileIn.getAttribute("data-clarity-tj-wired")) {
+        fileIn.setAttribute("data-clarity-tj-wired", "1");
+        fileIn.addEventListener("change", function () {
+          try {
+            var f = fileIn.files && fileIn.files[0];
+            if (!f) return;
+            if (state.url) URL.revokeObjectURL(state.url);
+            state.url = URL.createObjectURL(f);
+            g.__tjUserBlobUrl = state.url;
+            setStatus("File loaded — Play");
+          } catch (e) {}
+        });
+      }
+    } catch (e) {
+      console.warn("tj wireFallback", e);
+    }
+  }
+
+  function maybeLoad(ev) {
+    try {
+      var t = ev && ev.target;
       if (!t || !t.closest) return;
       var hit = t.closest(
-        "#tj-lmr, #tj-lmr-panel, #tj-deep-studio, #tajweed-path-card, #tajweed-live-card, [data-rail-tab='tajweed'], .door-rail-btn[data-rail-tab='tajweed'], #callig-lab-card"
+        "#tj-lmr, #tj-lmr-panel, #tj-deep-studio, #tajweed-path-card, #tajweed-live-card, [data-rail-tab='tajweed'], .door-rail-btn[data-rail-tab='tajweed'], #callig-lab-card, [href*='tajweed'], [data-tab='tajweed']"
       );
-      if (hit) loadTj();
+      if (hit) loadTj().then(function () {
+        setTimeout(wireFallback, 200);
+        setTimeout(wireFallback, 800);
+      });
     } catch (e) {}
   }
 
-  document.addEventListener("click", maybeLoadFromClick, true);
-  document.addEventListener("pointerdown", maybeLoadFromClick, true);
+  document.addEventListener("click", maybeLoad, true);
+  document.addEventListener("pointerdown", maybeLoad, true);
 
-  /* Prefetch when path allows practicing+ */
-  function prefetchIfReady() {
+  // Sitewide deep-link: #tajweed or ?tajweed
+  function deepLink() {
     try {
-      var max = parseInt(document.documentElement.getAttribute("data-clarity-unlocked-max") || "0", 10);
-      if (max >= 2) {
-        if ("requestIdleCallback" in g)
-          requestIdleCallback(function () { loadTj(); }, { timeout: 8000 });
-        else setTimeout(loadTj, 5000);
+      var h = (location.hash || "") + (location.search || "");
+      if (/tajweed|tj-lmr|deep.?studio/i.test(h)) {
+        loadTj().then(function () {
+          setTimeout(wireFallback, 300);
+          var el =
+            document.getElementById("tj-lmr") ||
+            document.getElementById("tajweed-path-card") ||
+            document.getElementById("tj-deep-studio");
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       }
     } catch (e) {}
   }
-  g.addEventListener("load", function () { setTimeout(prefetchIfReady, 2000); });
-  g.addEventListener("clarity-path-changed", function () { setTimeout(prefetchIfReady, 500); });
-
-  /* Whisper: wrap ensure to fall back to webkitSpeechRecognition */
-  function installWhisperFallback() {
-    var prev = g.clarityVoiceEnsureWhisper;
-    if (typeof prev !== "function" || prev.__restored) return false;
-    g.clarityVoiceEnsureWhisper = async function () {
-      try {
-        return await prev.apply(this, arguments);
-      } catch (e) {
-        console.warn("Whisper load failed, using Web Speech if available", e);
-        return null;
-      }
-    };
-    g.clarityVoiceEnsureWhisper.__restored = true;
-    return true;
-  }
-
-  /* Soft speech recognition helper for studio */
-  g.claritySpeechCapture = function (opts) {
-    opts = opts || {};
-    return new Promise(function (resolve, reject) {
-      var SR = g.SpeechRecognition || g.webkitSpeechRecognition;
-      if (!SR) {
-        reject(new Error("Speech recognition unavailable"));
-        return;
-      }
-      var rec = new SR();
-      rec.lang = opts.lang || "ar-SA";
-      rec.interimResults = false;
-      rec.maxAlternatives = 1;
-      var done = false;
-      rec.onresult = function (ev) {
-        done = true;
-        try {
-          resolve((ev.results[0][0].transcript || "").trim());
-        } catch (e) {
-          reject(e);
-        }
-      };
-      rec.onerror = function (ev) {
-        if (!done) reject(new Error((ev && ev.error) || "speech-error"));
-      };
-      rec.onend = function () {
-        if (!done) reject(new Error("no-speech"));
-      };
-      try { rec.start(); } catch (e2) { reject(e2); }
-    });
-  };
 
   function boot() {
-    installWhisperFallback();
-    setTimeout(installWhisperFallback, 1500);
-    setTimeout(installWhisperFallback, 4000);
-    /* If tajweed panel already in DOM and visible, load */
-    try {
-      var panel = document.getElementById("tj-lmr-panel");
-      if (panel && panel.open) loadTj();
-    } catch (e) {}
+    deepLink();
+    // If panel already in DOM and visible-ish, load
+    var panel =
+      document.getElementById("tj-lmr") || document.getElementById("tj-lmr-panel");
+    if (panel) {
+      setTimeout(function () {
+        loadTj().then(function () {
+          wireFallback();
+        });
+      }, 600);
+    }
+    g.addEventListener("hashchange", deepLink);
   }
+
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  g.addEventListener("load", boot);
-
-  g.ClarityTjRestore = { load: loadTj, speech: g.claritySpeechCapture };
 })(typeof window !== "undefined" ? window : this);
 
 
-/* ---- clarity-meme-enhance-v1.js ---- */
+/* ---- clarity-meme-enhance-v4.js ---- */
 /**
- * Clarity Meme Enhance v3 — sleek toolbar, no ref on canvas, nature/galaxy HQ
- * Watermark strip already carries site reference.
+ * Clarity Meme Enhance v4 — mobile layout, HQ online BG, wide AI, essentials pills
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_MEME_ENHANCE_V3__) return;
+  if (g.__CLARITY_MEME_ENHANCE_V4__) return;
+  g.__CLARITY_MEME_ENHANCE_V4__ = true;
   g.__CLARITY_MEME_ENHANCE_V3__ = true;
   g.__CLARITY_MEME_ENHANCE_V2__ = true;
 
@@ -802,22 +925,10 @@
     en = en
       .replace(/Sahih International.*/i, "")
       .replace(/Recommended follow-up[\s\S]*/i, "")
-      .replace(/I am working on this.*/i, "")
       .trim();
-    if (!en) {
-      var ps = card.querySelectorAll("p");
-      for (var i = 0; i < ps.length; i++) {
-        var t = textOf(ps[i]);
-        if (t.length > 20 && !/[\u0600-\u06FF]{10}/.test(t) && !/Recommended/i.test(t)) {
-          en = t.slice(0, 500);
-          break;
-        }
-      }
-    }
     return { ar: ar, en: en, ref: ref };
   }
 
-  /** Apply Arabic + English only — no reference on canvas (watermark handles site) */
   function applyText(payload) {
     var ar = String(payload.arabic || payload.ar || "").trim();
     var en = String(payload.en || payload.english || "").trim();
@@ -826,35 +937,26 @@
       if (typeof g.memeState !== "object" || !g.memeState) g.memeState = {};
       g.memeState.top = ar;
       g.memeState.mid = en;
-      g.memeState.bottom = ""; // ref off canvas
-      g.memeState.ref = ref; // keep for status / AI mood only
+      g.memeState.bottom = "";
+      g.memeState.ref = ref;
       g.memeState._lastRef = ref;
       g.memeState.outline = Math.max(g.memeState.outline || 0, 5);
-      if (!g.memeState.topSize) g.memeState.topSize = 40;
-      if (!g.memeState.midSize) g.memeState.midSize = 28;
-      if (!g.memeState.bottomSize) g.memeState.bottomSize = 18;
       try {
         var i = document.getElementById("meme-top-input");
         var o = document.getElementById("meme-mid-input");
         var s = document.getElementById("meme-bottom-input");
         if (i) i.value = ar;
         if (o) o.value = en;
-        if (s) s.value = ""; // clear bot ref field
+        if (s) s.value = "";
       } catch (e1) {}
       if (typeof g.memeApplyVerseCard === "function") {
         try {
-          g.memeApplyVerseCard(ar, en, "", ""); // empty ref on canvas
+          g.memeApplyVerseCard(ar, en, "", "");
         } catch (e2) {}
       }
       g.memeState.top = ar || g.memeState.top;
       g.memeState.mid = en || g.memeState.mid;
       g.memeState.bottom = "";
-      g.memeState.ref = ref;
-      if (typeof g.memeAutoFitSizes === "function") {
-        try {
-          g.memeAutoFitSizes();
-        } catch (e3) {}
-      }
       function redraw() {
         try {
           if (g.memeState) {
@@ -866,28 +968,33 @@
         } catch (e4) {}
       }
       redraw();
-      setTimeout(redraw, 100);
-      setTimeout(redraw, 300);
+      setTimeout(redraw, 120);
+      setTimeout(redraw, 350);
     } catch (e) {
       console.warn("meme applyText", e);
     }
   }
 
-  // Broader nature + galaxy styles (still no prophet likeness / no Quran calligraphy)
+  // Wide Shariah-safe scenery (no prophet likeness, no Quran as decoration)
   var STYLES = [
-    "ultra high resolution nature landscape mountains valley soft light, no people",
-    "milky way galaxy stars night sky astrophotography high resolution, no text",
-    "deep space nebula colorful cosmos high resolution astronomy photo, no figures",
-    "ocean waves aerial coastline nature photography high resolution, no people",
-    "forest path misty morning light nature only high resolution",
-    "aurora borealis northern lights night sky high resolution, no people",
-    "desert sand dunes golden hour vast landscape high resolution",
-    "snow peaks alpine lake crystal clear reflection high resolution nature",
-    "tropical waterfall lush greenery nature photography high resolution",
-    "starfield long exposure night photography high resolution, no text"
+    "ultra high resolution mountain valley sunrise soft golden light no people",
+    "milky way galaxy stars night sky astrophotography 4k no text",
+    "deep space nebula colorful cosmos astronomy photo high resolution",
+    "ocean waves aerial turquoise coastline nature photography 4k",
+    "misty forest path morning light evergreen trees no people",
+    "aurora borealis northern lights over snow 4k no people",
+    "desert sand dunes golden hour vast empty landscape 4k",
+    "alpine lake crystal reflection snow peaks high resolution",
+    "tropical waterfall lush greenery nature only 4k",
+    "starfield long exposure night photography no text",
+    "olive grove mediterranean hills soft light no people",
+    "clouds above vast plain aerial landscape 4k",
+    "moonrise over calm sea long exposure no people",
+    "autumn forest canopy aerial high resolution",
+    "iceland black sand beach ocean mist 4k no people"
   ];
 
-  var BLOCK = /prophet|muhammad|messenger|sahaba|jesus|isa ibn|idol|crucifix|anime|cartoon god/i;
+  var BLOCK = /prophet|muhammad|messenger|sahaba|jesus|isa ibn|idol|crucifix|anime|cartoon god|quran page|mushaf face/i;
 
   function sanitizeTheme(text) {
     text = String(text || "")
@@ -898,41 +1005,48 @@
     return text.slice(0, 120) || "serene nature landscape";
   }
 
-  function aiPrompt(en, ar, ref, styleIdx) {
+  function aiPrompt(en, styleIdx) {
     var base = sanitizeTheme(en || "peace patience nature");
     var style = STYLES[(styleIdx || 0) % STYLES.length];
     return (
       "Photorealistic " +
       style +
-      ", 4k, NO human faces of prophets, NO Arabic calligraphy, NO Quran pages: mood " +
+      ", 4k, NO human faces of prophets, NO Arabic calligraphy, NO Quran pages, scenery only: mood " +
       base
     );
   }
 
+  // Online free photo chains — nature / architecture / space (Shariah-leaning)
   function stockFor(kind, payload) {
-    var seed = hash((payload && payload.en) || "" + (kind || "") + Date.now());
+    var seed = hash(((payload && payload.en) || "") + (kind || "") + Date.now());
     var s1 = seed % 9000;
     var s2 = (seed * 7) % 9000;
     var s3 = (seed * 13) % 9000;
-    // High-res nature / space oriented chains
+    var s4 = (seed * 17) % 9000;
     var nature = [
       "https://picsum.photos/seed/n" + s1 + "/1920/1080",
-      "https://picsum.photos/seed/n" + s2 + "/1920/1080",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Nature_landscape.jpg/1280px-Nature_landscape.jpg"
+      "https://picsum.photos/seed/nat" + s2 + "/1920/1080",
+      "https://picsum.photos/seed/forest" + s3 + "/1920/1080",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&q=80"
     ];
     var galaxy = [
       "https://picsum.photos/seed/g" + s1 + "/1920/1080",
-      "https://picsum.photos/seed/g" + s2 + "/1920/1080",
-      "https://picsum.photos/seed/space" + s3 + "/1920/1080"
+      "https://picsum.photos/seed/space" + s2 + "/1920/1080",
+      "https://picsum.photos/seed/stars" + s3 + "/1920/1080",
+      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1920&q=80",
+      "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1920&q=80"
     ];
     var water = [
       "https://picsum.photos/seed/w" + s1 + "/1920/1080",
-      "https://picsum.photos/seed/ocean" + s2 + "/1920/1080"
+      "https://picsum.photos/seed/ocean" + s2 + "/1920/1080",
+      "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1920&q=80"
     ];
     var holy = [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Great_Mosque_of_Kairouan_Panorama.jpg/1280px-Great_Mosque_of_Kairouan_Panorama.jpg",
-      "https://picsum.photos/seed/arch" + s1 + "/1920/1080"
+      "https://picsum.photos/seed/arch" + s1 + "/1920/1080",
+      "https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1920&q=80"
     ];
     var map = {
       nature: nature,
@@ -943,7 +1057,7 @@
       flowers: nature,
       spirit: nature,
       holy: holy,
-      free: nature.concat(galaxy),
+      free: nature.concat(galaxy).concat(water),
       dynamic: nature.concat(galaxy),
       flickr: nature
     };
@@ -981,17 +1095,10 @@
   function fetchAiBackground(payload) {
     payload = payload || {};
     aiStyleIdx = (aiStyleIdx + 1) % STYLES.length;
-    var prompt = aiPrompt(
-      payload.en || payload.english,
-      payload.ar || payload.arabic,
-      payload.ref,
-      aiStyleIdx
-    );
-    var seed = (hash(prompt + aiStyleIdx + Date.now()) % 99999) + 1;
     var urls = [];
-    for (var k = 0; k < 3; k++) {
-      var p = aiPrompt(payload.en, payload.ar, payload.ref, aiStyleIdx + k * 2);
-      var sd = (seed * (k + 3)) % 99999;
+    for (var k = 0; k < 4; k++) {
+      var p = aiPrompt(payload.en || payload.english, aiStyleIdx + k * 2);
+      var sd = (hash(p + Date.now() + k) % 99999) + 1;
       urls.push(
         "https://image.pollinations.ai/prompt/" +
           encodeURIComponent(p) +
@@ -1002,21 +1109,34 @@
     urls = urls.concat(stockFor("nature", payload));
     if (typeof g.memeFetchStatus === "function")
       g.memeFetchStatus(
-        "AI scene " + (aiStyleIdx + 1) + "/" + STYLES.length + " · nature/galaxy…"
+        "AI scene " + (aiStyleIdx + 1) + "/" + STYLES.length + " · scenery only…"
       );
     loadBgChain(urls, 0);
   }
 
   function fetchKind(kind) {
     var st = g.memeState || {};
+    if (typeof g.memeFetchStatus === "function")
+      g.memeFetchStatus("Fetching " + kind + "…");
     loadBgChain(stockFor(kind, { en: st.mid, ref: st.ref }), 0);
   }
 
-  // Bridge native memeFetchBg if present
   var _nativeFetch = typeof g.memeFetchBg === "function" ? g.memeFetchBg : null;
   g.memeFetchBg = function (kind) {
     kind = kind || "nature";
-    if (kind === "galaxy" || kind === "space" || kind === "nature" || kind === "night") {
+    if (
+      kind === "galaxy" ||
+      kind === "space" ||
+      kind === "nature" ||
+      kind === "night" ||
+      kind === "water" ||
+      kind === "holy" ||
+      kind === "free" ||
+      kind === "dynamic" ||
+      kind === "flowers" ||
+      kind === "spirit" ||
+      kind === "flickr"
+    ) {
       fetchKind(kind);
       return;
     }
@@ -1026,7 +1146,7 @@
         return;
       } catch (e) {}
     }
-    fetchKind(kind);
+    fetchKind("nature");
   };
 
   function push(payload, mode) {
@@ -1066,13 +1186,47 @@
     return false;
   }
 
+  function isEssentialMemeCard(card) {
+    if (!card || !card.id) return false;
+    var allow = {
+      "commands-card": 1,
+      "journey-card": 1,
+      "grave-card": 1,
+      "seerah-card": 1,
+      "hadith-card": 1,
+      "verse-card": 1,
+      "daily-verse-card": 1,
+      "tafseer-card": 1,
+      "quran-card": 1,
+      "character-card": 1,
+      "life-events-card": 1
+    };
+    if (allow[card.id]) return true;
+    if (card.getAttribute("data-clarity-meme-ok") === "1") return true;
+    if (
+      card.querySelector(".verse-ar, .ayah-ar, #cmd-ar-text") &&
+      card.querySelector(".verse-en, .ayah-en, #cmd-en-text, .translation")
+    )
+      return true;
+    return false;
+  }
+
   function ensurePills() {
+    document.querySelectorAll(".clarity-to-meme-pill").forEach(function (btn) {
+      var card = btn.closest("[id$='-card'], .card");
+      if (!card || !isEssentialMemeCard(card)) {
+        try {
+          btn.parentNode && btn.parentNode.removeChild(btn);
+        } catch (e) {}
+      }
+    });
     document.querySelectorAll(".card[id$='-card'], [id$='-card']").forEach(function (card) {
       if (bannedCard(card)) return;
+      if (!isEssentialMemeCard(card)) return;
       if (card.querySelector(".clarity-to-meme-pill")) return;
       var sample = extract(card);
       if (!sample.ar && !sample.en) return;
-      if ((sample.ar + sample.en).length < 20) return;
+      if ((sample.ar + sample.en).length < 24) return;
       var row = card.querySelector(".clarity-action-row");
       if (!row) {
         row = document.createElement("div");
@@ -1083,7 +1237,7 @@
       btn.type = "button";
       btn.className = "clarity-to-meme-pill clarity-action-chip";
       btn.textContent = "Meme";
-      btn.title = "Push Arabic + translation (ref stays on watermark only)";
+      btn.title = "Push Arabic + translation to Meme Studio";
       btn.addEventListener("click", function (ev) {
         try {
           ev.preventDefault();
@@ -1095,26 +1249,30 @@
     });
   }
 
-  /** Single sleek toolbar: AI + all background options in one row above canvas */
+  /** Unified toolbar + toggle bar — column stack on mobile */
   function ensureToolbar() {
     var root =
       document.getElementById("meme-studio-root") ||
       document.getElementById("meme-card");
     if (!root) return;
 
-    // Hide legacy top background bar
     var legacy = root.querySelector(".meme-bar-bg");
     if (legacy) {
       legacy.style.display = "none";
       legacy.setAttribute("aria-hidden", "true");
     }
 
+    // Move stray toggle bars that sit on canvas
+    root.querySelectorAll(".clarity-meme-toggle-bar, .meme-grid-toggles").forEach(function (tb) {
+      tb.style.cssText =
+        "display:flex;flex-wrap:wrap;gap:0.3rem;width:100%;max-width:100%;clear:both;float:none;position:relative;margin:0.3rem 0;z-index:6;";
+    });
+
     if (root.querySelector(".clarity-meme-toolbar")) return;
 
     var bar = document.createElement("div");
     bar.className = "clarity-meme-toolbar clarity-meme-ai-bar";
-    bar.style.cssText =
-      "display:flex;flex-direction:row;flex-wrap:wrap;gap:0.35rem;align-items:center;width:100%;max-width:100%;margin:0.45rem 0 0.55rem;padding:0.25rem 0;float:none;clear:both;";
+    bar.setAttribute("data-clarity-meme-bar", "1");
 
     function chip(label, title, fn) {
       var b = document.createElement("button");
@@ -1125,38 +1283,37 @@
       b.addEventListener("click", fn);
       return b;
     }
-
     function st() {
       return g.memeState || {};
     }
 
     bar.appendChild(
-      chip("✨ AI scene", "New AI nature / galaxy scene", function () {
+      chip("✨ AI scene", "New AI scenery", function () {
         fetchAiBackground({ ar: st().top, en: st().mid, ref: st().ref });
       })
     );
     bar.appendChild(
-      chip("✨ AI again", "Another AI style", function () {
+      chip("✨ AI again", "Next AI style", function () {
         fetchAiBackground({ ar: st().top, en: st().mid, ref: st().ref });
       })
     );
     bar.appendChild(
-      chip("🌿 Nature", "HQ nature photo", function () {
+      chip("🌿 Nature", "HQ nature", function () {
         fetchKind("nature");
       })
     );
     bar.appendChild(
-      chip("🌌 Galaxy", "HQ galaxy / space", function () {
+      chip("🌌 Galaxy", "HQ space", function () {
         fetchKind("galaxy");
       })
     );
     bar.appendChild(
-      chip("🌙 Night", "Night sky / aurora mood", function () {
+      chip("🌙 Night", "Night sky", function () {
         fetchKind("night");
       })
     );
     bar.appendChild(
-      chip("💧 Water", "Ocean / water", function () {
+      chip("💧 Water", "Ocean", function () {
         fetchKind("water");
       })
     );
@@ -1166,7 +1323,7 @@
       })
     );
     bar.appendChild(
-      chip("📷 Free", "Next free HQ photo", function () {
+      chip("📷 Free", "Next free HQ", function () {
         fetchKind("free");
       })
     );
@@ -1177,24 +1334,17 @@
         } catch (e) {}
       })
     );
-    bar.appendChild(
-      chip("◈ Pattern", "Geometric décor", function () {
-        try {
-          if (typeof g.clarityMemeDecorBg === "function") g.clarityMemeDecorBg("geometry");
-        } catch (e) {}
-      })
-    );
 
     var note = document.createElement("div");
-    note.style.cssText =
-      "flex:1 1 100%;font-size:0.7rem;opacity:0.82;line-height:1.3";
+    note.className = "clarity-meme-shariah-note";
     note.textContent =
-      "Scenery only · ref on watermark · discard images that resemble prophets or use Quran as decoration.";
+      "Scenery only · discard images that resemble prophets or use Quran as decoration.";
     bar.appendChild(note);
 
     var stage =
       root.querySelector("#meme-stage-wrap") ||
-      root.querySelector(".meme-preview-only");
+      root.querySelector(".meme-preview-only") ||
+      root.querySelector("#meme-stage");
     if (stage && stage.parentNode) stage.parentNode.insertBefore(bar, stage);
     else root.insertBefore(bar, root.firstChild);
   }
@@ -1202,7 +1352,7 @@
   function boot() {
     ensureToolbar();
     ensurePills();
-    setTimeout(ensureToolbar, 500);
+    setTimeout(ensureToolbar, 400);
     setTimeout(ensurePills, 800);
     setTimeout(ensurePills, 2500);
     try {
@@ -1222,297 +1372,101 @@
   else boot();
 })(typeof window !== "undefined" ? window : this);
 
-/**
- * Meme toggles + grid show/hide + 4x4 collage
- */
+
+/* ---- MEME_GRID_TOGGLES_V4 ---- */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_MEME_GRID_TOGGLES_V2__) return;
-  g.__CLARITY_MEME_GRID_TOGGLES_V2__ = true;
-  g.__CLARITY_MEME_GRID_TOGGLES_V1__ = true;
+  if (g.__CLARITY_MEME_GRID_V4__) return;
+  g.__CLARITY_MEME_GRID_V4__ = true;
 
-  var opts = {
-    showVerse: true,
-    showCanvasFrame: true,
-    showScene: true,
-    showGrid: false,
-    grid4x4: false
-  };
-
-  function state() {
-    if (typeof g.memeState !== "object" || !g.memeState) g.memeState = {};
-    return g.memeState;
-  }
-
-  function redraw() {
-    try {
-      if (typeof g.memeDraw === "function") g.memeDraw();
-    } catch (e) {}
-  }
-
-  function wrapDraw() {
-    if (typeof g.memeDraw !== "function" || g.memeDraw.__gridWrapped2) return;
-    var orig = g.memeDraw;
-    function wrapped() {
-      var st = state();
-      var saved = {
-        top: st.top,
-        mid: st.mid,
-        bottom: st.bottom,
-        bgImage: st.bgImage
-      };
-      try {
-        if (!opts.showVerse) {
-          st.top = "";
-          st.mid = "";
-          st.bottom = "";
-        }
-        if (!opts.showScene) {
-          st.bgImage = null;
-          if (st.bg === "image") st.bg = "blank";
-        }
-        if (opts.grid4x4) {
-          drawGrid4x4(saved);
-        } else {
-          orig.apply(this, arguments);
-          if (opts.showGrid) drawGridOverlay();
-          if (opts.showCanvasFrame) drawFrame();
-        }
-      } finally {
-        st.top = saved.top;
-        st.mid = saved.mid;
-        st.bottom = saved.bottom;
-        st.bgImage = saved.bgImage;
-      }
-    }
-    wrapped.__gridWrapped2 = true;
-    wrapped.__gridWrapped = true;
-    g.memeDraw = wrapped;
-  }
-
-  function canvasCtx() {
-    var canvas = document.getElementById("meme-canvas");
-    if (!canvas || !canvas.getContext) return null;
-    return { canvas: canvas, ctx: canvas.getContext("2d"), W: canvas.width || 1200, H: canvas.height || 675 };
-  }
-
-  function drawGridOverlay() {
-    var c = canvasCtx();
-    if (!c) return;
-    var ctx = c.ctx, W = c.W, H = c.H;
-    var cols = 4, rows = 4;
-    ctx.save();
-    ctx.strokeStyle = "rgba(255,255,255,0.28)";
-    ctx.lineWidth = 1;
-    for (var i = 1; i < cols; i++) {
-      var x = (W / cols) * i;
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, H);
-      ctx.stroke();
-    }
-    for (var j = 1; j < rows; j++) {
-      var y = (H / rows) * j;
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(W, y);
-      ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  function drawFrame() {
-    var c = canvasCtx();
-    if (!c) return;
-    c.ctx.save();
-    c.ctx.strokeStyle = "rgba(184,146,42,0.55)";
-    c.ctx.lineWidth = 4;
-    c.ctx.strokeRect(3, 3, c.W - 6, c.H - 6);
-    c.ctx.restore();
-  }
-
-  function wrapText(ctx, text, x, y, maxW, lineH) {
-    var words = String(text).split(/\s+/);
-    var line = "", lines = [];
-    for (var i = 0; i < words.length; i++) {
-      var test = line ? line + " " + words[i] : words[i];
-      if (ctx.measureText(test).width > maxW && line) {
-        lines.push(line);
-        line = words[i];
-      } else line = test;
-    }
-    if (line) lines.push(line);
-    var start = y - ((lines.length - 1) * lineH) / 2;
-    for (var j = 0; j < lines.length; j++) ctx.fillText(lines[j], x, start + j * lineH);
-  }
-
-  function drawGrid4x4(saved) {
-    var c = canvasCtx();
-    if (!c) return;
-    var ctx = c.ctx, W = c.W, H = c.H;
-    var cols = 4, rows = 4;
-    var cw = W / cols, ch = H / rows;
-    ctx.fillStyle = "#0c1410";
-    ctx.fillRect(0, 0, W, H);
-    var img = opts.showScene ? saved.bgImage : null;
-    for (var r = 0; r < rows; r++) {
-      for (var col = 0; col < cols; col++) {
-        var x = col * cw, y = r * ch;
-        ctx.save();
-        ctx.beginPath();
-        ctx.rect(x, y, cw, ch);
-        ctx.clip();
-        if (img && img.complete) {
-          try {
-            var sx = (col / cols) * (img.width - cw) * 0.15;
-            var sy = (r / rows) * (img.height - ch) * 0.15;
-            ctx.drawImage(img, sx, sy, img.width * 0.7, img.height * 0.7, x, y, cw, ch);
-          } catch (e1) {
-            ctx.fillStyle = "#1a2a22";
-            ctx.fillRect(x, y, cw, ch);
-          }
-        } else {
-          var gfill = ctx.createLinearGradient(x, y, x + cw, y + ch);
-          gfill.addColorStop(0, "#0d4f3c");
-          gfill.addColorStop(1, "#1a2a22");
-          ctx.fillStyle = gfill;
-          ctx.fillRect(x, y, cw, ch);
-        }
-        if (opts.showGrid) {
-          ctx.strokeStyle = "rgba(255,255,255,0.2)";
-          ctx.lineWidth = 2;
-          ctx.strokeRect(x + 1, y + 1, cw - 2, ch - 2);
-        }
-        ctx.restore();
-      }
-    }
-    if (opts.showVerse) {
-      var ar = saved.top || "";
-      var en = saved.mid || "";
-      var ref = saved.bottom || "";
-      ctx.save();
-      ctx.fillStyle = "rgba(0,0,0,0.45)";
-      ctx.fillRect(0, H * 0.28, W, H * 0.44);
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      if (ar) {
-        ctx.fillStyle = "#fff";
-        ctx.font = "600 " + Math.max(18, Math.floor(W / 28)) + "px Scheherazade New, serif";
-        wrapText(ctx, ar, W / 2, H * 0.38, W * 0.9, Math.floor(W / 26));
-      }
-      if (en) {
-        ctx.fillStyle = "#f0f4f1";
-        ctx.font = "500 " + Math.max(14, Math.floor(W / 42)) + "px Inter, system-ui, sans-serif";
-        wrapText(ctx, en, W / 2, H * 0.52, W * 0.88, Math.floor(W / 40));
-      }
-      if (ref) {
-        ctx.fillStyle = "rgba(255,255,255,0.85)";
-        ctx.font = "600 " + Math.max(12, Math.floor(W / 55)) + "px Inter, system-ui, sans-serif";
-        ctx.fillText(ref, W / 2, H * 0.66);
-      }
-      ctx.restore();
-    }
-    if (opts.showCanvasFrame) drawFrame();
-  }
-
-  function toggle(key) {
-    opts[key] = !opts[key];
-    // Grid lines default on when entering 4x4
-    if (key === "grid4x4" && opts.grid4x4 && !opts.showGrid) opts.showGrid = true;
-    redraw();
-    syncUi();
-  }
-
-  function syncUi() {
-    var root = document.querySelector(".clarity-meme-toggle-bar");
-    if (!root) return;
-    root.querySelectorAll("[data-meme-toggle]").forEach(function (btn) {
-      var k = btn.getAttribute("data-meme-toggle");
-      var on = !!opts[k];
-      btn.setAttribute("aria-pressed", on ? "true" : "false");
-      btn.classList.toggle("is-on", on);
-    });
-  }
-
-  function ensureToggleBar() {
+  function ensureToggles() {
     var root =
       document.getElementById("meme-studio-root") ||
       document.getElementById("meme-card");
-    if (!root) return;
-    // Upgrade old bar
-    var existing = root.querySelector(".clarity-meme-toggle-bar");
-    if (existing) existing.remove();
-
+    if (!root || root.querySelector(".clarity-meme-toggle-bar")) return;
     var bar = document.createElement("div");
     bar.className = "clarity-meme-toggle-bar";
-    bar.style.cssText =
-      "display:flex;flex-wrap:wrap;gap:0.35rem;align-items:center;margin:0.4rem 0 0.5rem;";
-
-    function chip(key, label, title) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "mv-chip clarity-meme-tog";
-      b.setAttribute("data-meme-toggle", key);
-      b.textContent = label;
-      b.title = title;
-      b.addEventListener("click", function () {
-        toggle(key);
-      });
-      return b;
-    }
-
-    bar.appendChild(chip("showVerse", "Verse", "Show or hide verse text on canvas"));
-    bar.appendChild(chip("showScene", "Scene", "Show or hide background / AI scene"));
-    bar.appendChild(chip("showCanvasFrame", "Frame", "Show or hide canvas frame"));
-    bar.appendChild(chip("showGrid", "Grid", "Show or hide 4×4 grid lines on canvas"));
-    bar.appendChild(chip("grid4x4", "4×4 collage", "Collage mode: scene split into 4×4 cells"));
-
-    var tip = document.createElement("span");
-    tip.style.cssText = "font-size:0.7rem;opacity:0.8;margin-left:0.25rem";
-    tip.textContent = "Grid = lines · 4×4 = collage layout";
-    bar.appendChild(tip);
-
+    bar.innerHTML =
+      '<button type="button" class="mv-chip" data-tg="scene">Scene</button>' +
+      '<button type="button" class="mv-chip" data-tg="frame">Frame</button>' +
+      '<button type="button" class="mv-chip" data-tg="grid">Grid</button>' +
+      '<button type="button" class="mv-chip" data-tg="grid4">4×4 collage</button>';
     var stage =
       root.querySelector("#meme-stage-wrap") ||
-      root.querySelector(".meme-preview-only") ||
-      root.querySelector(".clarity-meme-ai-bar");
-    if (stage && stage.parentNode) {
-      if (stage.classList.contains("clarity-meme-ai-bar") && stage.nextSibling) {
-        stage.parentNode.insertBefore(bar, stage.nextSibling);
-      } else {
-        stage.parentNode.insertBefore(bar, stage);
+      root.querySelector(".meme-preview-only");
+    var toolbar = root.querySelector(".clarity-meme-toolbar");
+    if (toolbar && toolbar.parentNode)
+      toolbar.parentNode.insertBefore(bar, toolbar.nextSibling);
+    else if (stage && stage.parentNode) stage.parentNode.insertBefore(bar, stage);
+    else root.appendChild(bar);
+
+    if (!g.memeState) g.memeState = {};
+    g.memeState.showGrid = !!g.memeState.showGrid;
+    g.memeState.grid4x4 = !!g.memeState.grid4x4;
+
+    bar.addEventListener("click", function (ev) {
+      var t = ev.target.closest("[data-tg]");
+      if (!t) return;
+      var k = t.getAttribute("data-tg");
+      if (k === "grid") {
+        g.memeState.showGrid = !g.memeState.showGrid;
+        t.classList.toggle("on", g.memeState.showGrid);
+      } else if (k === "grid4") {
+        g.memeState.grid4x4 = !g.memeState.grid4x4;
+        t.classList.toggle("on", g.memeState.grid4x4);
+      } else if (k === "scene") {
+        t.classList.toggle("on");
+      } else if (k === "frame") {
+        t.classList.toggle("on");
       }
-    } else {
-      root.insertBefore(bar, root.firstChild);
+      try {
+        if (typeof g.memeDraw === "function") g.memeDraw();
+      } catch (e) {}
+    });
+  }
+
+  // Hook draw for grid lines
+  var tries = 0;
+  function hookDraw() {
+    if (typeof g.memeDraw !== "function") {
+      if (tries++ < 30) setTimeout(hookDraw, 400);
+      return;
     }
-    syncUi();
+    if (g.__memeDrawGridHooked) return;
+    g.__memeDrawGridHooked = true;
+    var orig = g.memeDraw;
+    g.memeDraw = function () {
+      orig.apply(this, arguments);
+      try {
+        var canvas = document.getElementById("meme-canvas");
+        if (!canvas) return;
+        var ctx = canvas.getContext("2d");
+        var w = canvas.width,
+          h = canvas.height;
+        if (g.memeState && g.memeState.showGrid) {
+          ctx.save();
+          ctx.strokeStyle = "rgba(255,255,255,0.22)";
+          ctx.lineWidth = 1;
+          for (var i = 1; i < 4; i++) {
+            ctx.beginPath();
+            ctx.moveTo((i * w) / 4, 0);
+            ctx.lineTo((i * w) / 4, h);
+            ctx.moveTo(0, (i * h) / 4);
+            ctx.lineTo(w, (i * h) / 4);
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+      } catch (e) {}
+    };
   }
 
   function boot() {
-    wrapDraw();
-    ensureToggleBar();
-    setTimeout(function () {
-      wrapDraw();
-      ensureToggleBar();
-      syncUi();
-    }, 700);
-    setTimeout(function () {
-      wrapDraw();
-      ensureToggleBar();
-    }, 2000);
+    ensureToggles();
+    hookDraw();
+    setTimeout(ensureToggles, 600);
   }
-
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", boot);
   else boot();
-
-  g.ClarityMemeToggles = {
-    opts: opts,
-    redraw: redraw,
-    set: function (k, v) {
-      opts[k] = !!v;
-      redraw();
-      syncUi();
-    }
-  };
 })(typeof window !== "undefined" ? window : this);

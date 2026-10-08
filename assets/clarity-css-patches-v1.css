@@ -830,3 +830,96 @@ html body::before {
     display: none !important;
   }
 }
+
+/* meme-pill essentials only — hide leftovers outside allow-list cards */
+.clarity-to-meme-pill { font-size: 0.72rem; }
+#meme-card .clarity-to-meme-pill,
+#notes-shell .clarity-to-meme-pill,
+#clarity-top-duo .clarity-to-meme-pill,
+.banner .clarity-to-meme-pill { display: none !important; }
+
+
+/* ===== MEME STUDIO MOBILE FIX v5 ===== */
+#meme-studio-root,
+#meme-card .meme-studio,
+#meme-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+#meme-studio-root .meme-bar-bg {
+  display: none !important;
+}
+#meme-studio-root .clarity-meme-toolbar,
+#meme-studio-root .clarity-meme-ai-bar,
+#meme-card .clarity-meme-toolbar {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  position: relative !important;
+  z-index: 6 !important;
+  margin: 0.4rem 0 !important;
+  box-sizing: border-box !important;
+}
+#meme-studio-root .clarity-meme-toggle-bar,
+#meme-card .clarity-meme-toggle-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.3rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  position: relative !important;
+  z-index: 6 !important;
+  margin: 0.25rem 0 0.5rem !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+}
+#meme-stage-wrap,
+#meme-stage,
+.meme-preview-only {
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  position: relative !important;
+  margin: 0.4rem 0 !important;
+  left: auto !important;
+  right: auto !important;
+  overflow: hidden !important;
+}
+#meme-canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  display: block !important;
+}
+.clarity-meme-shariah-note {
+  flex: 1 1 100%;
+  font-size: 0.68rem;
+  opacity: 0.85;
+  line-height: 1.35;
+}
+@media (max-width: 900px) {
+  #meme-studio-root .clarity-meme-toolbar .mv-chip,
+  #meme-studio-root .clarity-meme-toggle-bar .mv-chip {
+    font-size: 0.68rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+  /* Kill absolute/overlap ghosts */
+  #meme-stage .clarity-meme-toolbar,
+  #meme-stage .clarity-meme-toggle-bar,
+  #meme-canvas + .clarity-meme-toolbar {
+    display: none !important;
+  }
+}
