@@ -1,8 +1,32 @@
 {
   "id": "dai",
-  "label": "Da'i",
+  "label": "Da'i \u2014 University track",
+  "level": "university",
   "minI": 3,
-  "scripts": [],
-  "features": ["transmit", "israeliyat", "sealed-nectar", "voice-translator", "tajalliyat"],
-  "cards": ["dai-transmit-card", "israeliyat-card", "sealed-nectar-card", "tajalliyat-lecture-card", "voice-translator-card"]
+  "scripts": [
+    "clarity-dai-university-v1.js"
+  ],
+  "features": [
+    "dai-university",
+    "transmit",
+    "israeliyat",
+    "sealed-nectar",
+    "voice-translator",
+    "tajalliyat"
+  ],
+  "cards": [
+    "dai-university-curriculum-card",
+    "dai-transmit-card",
+    "israeliyat-card",
+    "sealed-nectar-card",
+    "tajalliyat-lecture-card",
+    "voice-translator-card"
+  ],
+  "units": 6,
+  "inspired_by": [
+    "IU Madinah Aqeedah & Dawah",
+    "UQU Dawah & Culture",
+    "Dawah Academy methods",
+    "UM Dakwah media/psych"
+  ]
 }
