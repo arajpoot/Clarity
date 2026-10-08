@@ -1,8 +1,42 @@
 {
   "id": "seeker",
-  "label": "Seeker",
+  "label": "Seeker \u2014 Junior curriculum",
+  "level": "junior",
   "minI": 0,
-  "scripts": [],
-  "features": ["grave-path", "soul-compass", "commands", "seerah-live", "ilm-pathway", "night-breath", "hell-sins", "samina"],
-  "cards": ["about-clarity-card", "commands-card", "creation-tongue-reflection", "cw-card", "grave-path-card", "hell-sins-card", "ilm-pathway-card", "night-breath-card", "samina-card", "samina-verse-card", "seerah-live-card", "soul-compass-card"]
+  "scripts": [
+    "clarity-junior-curriculum-v1.js"
+  ],
+  "features": [
+    "junior-curriculum",
+    "grave-path",
+    "soul-compass",
+    "commands",
+    "seerah-live",
+    "ilm-pathway",
+    "night-breath",
+    "hell-sins",
+    "samina"
+  ],
+  "cards": [
+    "junior-curriculum-card",
+    "about-clarity-card",
+    "commands-card",
+    "creation-tongue-reflection",
+    "cw-card",
+    "grave-path-card",
+    "hell-sins-card",
+    "ilm-pathway-card",
+    "night-breath-card",
+    "samina-card",
+    "samina-verse-card",
+    "seerah-live-card",
+    "soul-compass-card"
+  ],
+  "units": 6,
+  "inspired_by": [
+    "SeekersGuidance foundations pattern",
+    "BeginIslam articles of faith / pillars map",
+    "Nawara Academy essentials week structure",
+    "NewMuslims.com staged lessons"
+  ]
 }
