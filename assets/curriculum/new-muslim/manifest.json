@@ -1,8 +1,33 @@
 {
   "id": "new-muslim",
-  "label": "New Muslim",
+  "label": "New Muslim \u2014 Junior high curriculum",
+  "level": "junior-high",
   "minI": 1,
-  "scripts": [],
-  "features": ["salah-starter", "fiqh-quiz", "hajj-guide", "tibbe-nabwi", "foundations"],
-  "cards": ["fiqh-quiz-card", "hajj-guide-card", "new-muslim-foundations-card", "salah-starter-card", "tibbe-nabwi-card"]
+  "scripts": [
+    "clarity-junior-high-curriculum-v1.js"
+  ],
+  "features": [
+    "junior-high-curriculum",
+    "salah-starter",
+    "fiqh-quiz",
+    "hajj-guide",
+    "tibbe-nabwi",
+    "foundations"
+  ],
+  "cards": [
+    "junior-high-curriculum-card",
+    "fiqh-quiz-card",
+    "hajj-guide-card",
+    "new-muslim-foundations-card",
+    "salah-starter-card",
+    "tibbe-nabwi-card"
+  ],
+  "units": 6,
+  "lessons": 13,
+  "inspired_by": [
+    "Kuttab L1-2",
+    "Nawara purification/prayer weeks",
+    "BeginIslam worship",
+    "NewMuslims.com"
+  ]
 }
