@@ -1,21 +1,10 @@
 {
-  "build": "20261008FULL",
-  "label": "complete-production-fresh-start",
-  "deploy": "cloudflare-pages-github",
-  "live": "https://clarity-dawah.fyi/",
-  "repo": "https://github.com/arajpoot/Clarity",
-  "modules": {
-    "core": "chunk-8",
-    "boot": "runtime-overlays",
-    "feature": "notes+tajweed+meme+layout+strips",
-    "path": "progress+polish+grave+hydrator",
-    "aux": "track+nuros+seeker+dhikr+shine",
-    "vault": "amana-gate",
-    "lazy": [
-      "notes-recovery",
-      "uft",
-      "nx-tj-lmr"
-    ]
-  },
-  "sandbox": "0-fail-multi-pass"
+  "build": "20261008CLEAN",
+  "purged": [
+    "ensurePills_DISABLED",
+    "notes-MO",
+    "meme-pill-MO",
+    "idle-defer-noop"
+  ],
+  "pills": "stable-controller-only"
 }
