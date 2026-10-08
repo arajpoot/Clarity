@@ -1178,6 +1178,15 @@
       })
     );
     bar.appendChild(
+      chip("📷 Match photo", "Stock scenery for current verse", function () {
+        try {
+          var st = g.memeState || {};
+          if (typeof g.memeFetchBg === "function") g.memeFetchBg("free");
+          else if (typeof fetchKind === "function") fetchKind("free");
+        } catch (eM) {}
+      })
+    );
+    bar.appendChild(
       chip("◈ Pattern", "Geometric décor", function () {
         try {
           if (typeof g.clarityMemeDecorBg === "function") g.clarityMemeDecorBg("geometry");
@@ -1196,6 +1205,11 @@
       root.querySelector(".meme-preview-only");
     if (stage && stage.parentNode) stage.parentNode.insertBefore(bar, stage);
     else root.insertBefore(bar, root.firstChild);
+
+    try {
+      bar.style.order = "1";
+      bar.setAttribute("data-meme-order", "toolbar");
+    } catch (eO) {}
   }
 
   function boot() {
