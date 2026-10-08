@@ -37,4 +37,5 @@ See `CURRICULUM_MANAGER.md` and `PERFORMANCE_V2.md`.
 Full phased upgrade: minified payloads, on-demand vault stack, pathway hydrator, non-blocking CSS, Seeker-first service worker.
 See `PERFORMANCE_V2.md` and `CURRICULUM_MANAGER.md`.
 
+
 > Educational only — not a fatwa. Verify with Qur'an, Sunnah, and a local scholar.
