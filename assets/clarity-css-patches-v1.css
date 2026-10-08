@@ -1041,3 +1041,135 @@ html.clarity-mobile,
 html.clarity-desktop {
   transition: none;
 }
+
+/* Junior curriculum */
+#junior-curriculum-card {
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 14px;
+  padding: 1rem 1.1rem 1.2rem;
+  margin: 0.75rem 0 1.25rem;
+}
+#junior-curriculum-card .card-title { margin-top: 0; }
+.junior-progress { display: flex; align-items: center; gap: 0.6rem; margin: 0.5rem 0 1rem; font-size: 0.85rem; }
+.junior-bar { flex: 1; height: 8px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; }
+.junior-bar-fill { height: 100%; background: linear-gradient(90deg, #2d6a4f, #d4af37); border-radius: 99px; transition: width 0.35s ease; }
+.junior-unit { margin: 0.9rem 0 1.1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.junior-unit h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.junior-goal { opacity: 0.85; font-size: 0.88rem; margin: 0 0 0.6rem; }
+.junior-lesson { padding: 0.55rem 0.65rem; margin: 0.4rem 0; border-radius: 10px; background: rgba(0,0,0,0.15); }
+.junior-lesson.is-done { opacity: 0.78; border-left: 3px solid #2d6a4f; }
+.junior-lesson h4 { margin: 0 0 0.35rem; font-size: 0.95rem; }
+.junior-lesson ul { margin: 0.25rem 0 0.5rem 1.1rem; padding: 0; font-size: 0.86rem; }
+.junior-ayah { margin: 0.4rem 0; font-size: 0.86rem; opacity: 0.92; }
+.junior-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+.junior-footnote { font-size: 0.72rem; opacity: 0.7; margin-top: 0.75rem; }
+
+.curr-activity { margin: 0.5rem 0; padding: 0.55rem 0.65rem; border-radius: 10px; background: rgba(45,106,79,0.15); border: 1px solid rgba(212,175,55,0.2); }
+.curr-act-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.8; margin-bottom: 0.25rem; }
+.curr-textarea { width: 100%; max-width: 100%; box-sizing: border-box; margin: 0.35rem 0; padding: 0.45rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.25); color: inherit; font: inherit; }
+.curr-rubric { font-size: 0.78rem; opacity: 0.8; }
+.curr-check { display: block; margin: 0.25rem 0; font-size: 0.88rem; }
+.curr-quiz-q { margin: 0.45rem 0; font-size: 0.88rem; }
+
+
+/* ===== PATH RAIL — stitched under banner, sticky all tabs ===== */
+#clarity-visit-pill-bar,
+#clarity-path-module-strip,
+#clarity-daily-tools-strip,
+.clarity-visit-strip,
+.clarity-path-module-strip,
+.clarity-daily-tools-strip,
+.cv-label, .cv-hint, .pm-hint {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#clarity-path-rail {
+  position: sticky;
+  top: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.4rem 0.65rem 0.5rem;
+  background: rgba(13, 31, 23, 0.97);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  backdrop-filter: blur(8px);
+}
+/* When banner is sticky on desktop, rail sits just below — use CSS var if set */
+html.clarity-desktop #clarity-top-duo.clarity-sticky-ok + #clarity-path-rail,
+html.clarity-desktop #clarity-top-duo + #clarity-path-rail {
+  top: 0;
+}
+/* Prefer: banner sticky, rail sticky stacked — both stick */
+html.clarity-desktop #clarity-top-duo {
+  position: sticky;
+  top: 0;
+  z-index: 46;
+}
+html.clarity-desktop #clarity-path-rail {
+  top: 0;
+  z-index: 45;
+}
+
+.cpr-paths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+.cpr-path {
+  border: 1px solid rgba(212,175,55,0.35);
+  background: rgba(0,0,0,0.25);
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.cpr-path.is-on {
+  background: linear-gradient(135deg, #2d6a4f, #1b4332);
+  border-color: rgba(212,175,55,0.6);
+  color: #fff;
+  font-weight: 600;
+}
+.cpr-modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  align-items: center;
+}
+.cpr-mod {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+.cpr-mod:hover {
+  border-color: rgba(212,175,55,0.45);
+}
+.curr-path-active {
+  outline: 1px solid rgba(212,175,55,0.35);
+  box-shadow: 0 0 0 1px rgba(45,106,79,0.25);
+}
+
+@media (max-width: 1023px) {
+  #clarity-path-rail {
+    position: sticky;
+    top: 0;
+    z-index: 45;
+  }
+  html.clarity-mobile #clarity-top-duo {
+    position: relative;
+    z-index: 40;
+  }
+}
