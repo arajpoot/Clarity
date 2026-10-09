@@ -292,3 +292,14 @@
   }
   boot();
 })(typeof window !== "undefined" ? window : this);
+
+/* PRIORITY5_SOURCE — educational source reminder for module footers */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_SOURCE_FOOTER_V1__) return;
+  g.__CLARITY_SOURCE_FOOTER_V1__ = true;
+  g.clarityModuleSourceFooter = function (ref) {
+    ref = ref || "Qur'an & authentic Sunnah — verify with a qualified local scholar";
+    return '<p class="notes-hint clarity-module-src" style="font-size:0.8rem;opacity:0.9;margin-top:0.5rem">Source orientation: ' + ref + '. Educational only — not a fatwa.</p>';
+  };
+})(typeof window !== "undefined" ? window : this);
