@@ -56,14 +56,32 @@
   }
 
   function enhanceOfficePanel() {
-    /* Hook Admin Office open to show staff strip */
-    var prev = g.ClarityAdminOffice && g.ClarityAdminOffice.open;
-    if (!prev || prev.__staffHooked) return;
-    g.ClarityAdminOffice.open = function () {
-      prev();
-      setTimeout(injectStaffStrip, 200);
-    };
-    g.ClarityAdminOffice.open.__staffHooked = true;
+    /* Hook Admin Office open to show staff strip — freeze-safe */
+    if (!g.ClarityAdminOffice || typeof g.ClarityAdminOffice.open !== "function") return;
+    if (g.ClarityAdminOffice.open.__staffHooked) return;
+    if (Object.isFrozen(g.ClarityAdminOffice)) {
+      /* Listen instead of mutating frozen API */
+      g.addEventListener("clarity-admin-office-open", function () {
+        setTimeout(injectStaffStrip, 200);
+      });
+      g.ClarityAdminOffice.open.__staffHooked = true; /* may throw if frozen function props */
+      return;
+    }
+    var prev = g.ClarityAdminOffice.open;
+    try {
+      g.ClarityAdminOffice.open = function () {
+        prev();
+        try {
+          g.dispatchEvent(new CustomEvent("clarity-admin-office-open"));
+        } catch (e0) {}
+        setTimeout(injectStaffStrip, 200);
+      };
+      g.ClarityAdminOffice.open.__staffHooked = true;
+    } catch (e) {
+      g.addEventListener("clarity-admin-office-open", function () {
+        setTimeout(injectStaffStrip, 200);
+      });
+    }
   }
 
   function injectStaffStrip() {
