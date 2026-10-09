@@ -156,19 +156,25 @@
 
     return chain.then(function () {
       STATUS.verified = STATUS.breaches.length === 0;
-      sealApis(seal.freezeApis);
-      try {
-        g.dispatchEvent(
-          new CustomEvent("clarity-vault-ready", {
-            detail: { status: STATUS, seal: { version: seal.version, build: seal.build } }
-          })
-        );
-      } catch (e) {}
-      log(
-        STATUS.verified ? "Vault verified & sealed" : "Vault loaded with integrity warnings",
-        seal.version
-      );
-      injectVaultBadge(seal);
+      /* Allow last foundation file's sync boot to finish before freeze */
+      return new Promise(function (resolve) {
+        setTimeout(function () {
+          sealApis(seal.freezeApis);
+          try {
+            g.dispatchEvent(
+              new CustomEvent("clarity-vault-ready", {
+                detail: { status: STATUS, seal: { version: seal.version, build: seal.build } }
+              })
+            );
+          } catch (e) {}
+          log(
+            STATUS.verified ? "Vault verified & sealed" : "Vault loaded with integrity warnings",
+            seal.version
+          );
+          injectVaultBadge(seal);
+          resolve();
+        }, 0);
+      });
     });
   }
 
