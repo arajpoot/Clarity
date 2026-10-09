@@ -1,0 +1,44 @@
+{
+  "office": "Clarity University — Operations & Maintenance (O&M)",
+  "version": 1,
+  "motto": "Circulate · clean · keep the veins open",
+  "metaphor": "O&M is the bloodstream of the form factor — continuous, quiet, essential.",
+  "disclaimer": "O&M keeps runtime hygiene on-device. Educational operations only — not infrastructure hosting staff.",
+  "crew": [
+    {
+      "id": "circulation",
+      "name": "Circulation Nurse",
+      "role": "Keep event and phase blood flowing — pulse curriculum, plaques, active phase",
+      "badge": "🩸",
+      "intervalMs": 20000
+    },
+    {
+      "id": "cache",
+      "name": "Cache Orderly",
+      "role": "Tidy transient UI state; nudge service worker awareness without force-wiping user data",
+      "badge": "🧊",
+      "intervalMs": 60000
+    },
+    {
+      "id": "dom",
+      "name": "DOM Janitor",
+      "role": "Clear orphan modals, stuck overlays, zombie toasts that block the path",
+      "badge": "🧹",
+      "intervalMs": 25000
+    },
+    {
+      "id": "storage",
+      "name": "Storage Steward",
+      "role": "Watch localStorage pressure; trim audit logs that grew too long",
+      "badge": "📦",
+      "intervalMs": 90000
+    },
+    {
+      "id": "liaison",
+      "name": "Wing Liaison",
+      "role": "Ping Security, Ops, Registrar, Lab so each wing stays in the circulation loop",
+      "badge": "🔗",
+      "intervalMs": 45000
+    }
+  ]
+}
