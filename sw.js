@@ -1,5 +1,5 @@
-/* Clarity SW 20261009LEAN — network-first assets; purge old caches */
-const CACHE = "clarity-20261009LEAN";
+/* Clarity SW 20261009ITLAB — network-first assets; purge old caches */
+const CACHE = "clarity-20261009ITLAB";
 const PRECACHE = ["/", "/index.html", "/robots.txt"];
 self.addEventListener("install", (e) => {
   e.waitUntil(

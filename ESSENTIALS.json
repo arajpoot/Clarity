@@ -1,12 +1,11 @@
 {
-  "build": "20261009LEAN",
-  "form_factor": "lean campus",
-  "changes": [
-    "deduped critical CSS/patches",
-    "merged progress+export \u2192 campus-utils",
-    "merged IT device lab into it-controller",
-    "edge admin (OM/security/registrar/staff/ux/faculty/chancellor/IT) fully lazy",
-    "sticky CSS folded into css-patches",
-    "critical path ~13 scripts"
+  "build": "20261009ITLAB",
+  "it_lab": true,
+  "features": [
+    "on-device diagnostic (storage, caches, SW, performance)",
+    "maintenance calls with auto health",
+    "O&M storage orderly",
+    "6 training assignments persisted locally",
+    "IT Device Lab sandbox UI"
   ]
 }
