@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Clarity University OS">
+  <defs>
+    <linearGradient id="cuGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8d48a"/>
+      <stop offset="50%" stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#a88420"/>
+    </linearGradient>
+    <linearGradient id="cuGreen" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a3d30"/>
+      <stop offset="100%" stop-color="#1a6b52"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer seal -->
+  <circle cx="64" cy="64" r="60" fill="url(#cuGreen)" stroke="url(#cuGold)" stroke-width="3.5"/>
+  <circle cx="64" cy="64" r="52" fill="none" stroke="url(#cuGold)" stroke-width="1.2" opacity="0.85"/>
+  <!-- Geometric octagram ring -->
+  <path fill="none" stroke="url(#cuGold)" stroke-width="1.4" opacity="0.9"
+    d="M64 22 L78 36 L106 36 L92 54 L106 72 L78 72 L64 106 L50 72 L22 72 L36 54 L22 36 L50 36 Z"/>
+  <!-- Inner medallion -->
+  <circle cx="64" cy="64" r="28" fill="#0d4f3c" stroke="url(#cuGold)" stroke-width="2"/>
+  <!-- Book / path mark -->
+  <path fill="url(#cuGold)" d="M48 58 L64 52 L80 58 L80 74 L64 80 L48 74 Z" opacity="0.95"/>
+  <path fill="#0a3d30" d="M64 54 L64 78" stroke="#0a3d30" stroke-width="1.5"/>
+  <!-- Star of guidance -->
+  <circle cx="64" cy="64" r="4" fill="#0d4f3c"/>
+  <path fill="url(#cuGold)" d="M64 40 L66.2 46.5 H73 L67.5 50.5 L69.5 57 L64 53.2 L58.5 57 L60.5 50.5 L55 46.5 H61.8 Z"/>
+  <!-- Wordmark arc (simplified dots for compactness in small size) -->
+  <circle cx="64" cy="18" r="1.5" fill="#e8d48a"/>
+  <text x="64" y="118" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="#e8d48a" letter-spacing="1">CU OS</text>
+</svg>

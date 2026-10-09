@@ -1,0 +1,90 @@
+
+/* Clarity University OS — Insignia */
+.cu-nav-brand {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  line-height: 1.15;
+  max-width: min(200px, 52vw);
+}
+.cu-nav-insignia {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.45), 0 2px 8px rgba(0, 0, 0, 0.2);
+  background: #0d4f3c;
+}
+.cu-nav-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.cu-nav-title {
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #0d4f3c;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html[data-theme="dark"] .cu-nav-title {
+  color: #e8d48a;
+}
+.cu-nav-sub {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  color: inherit;
+}
+.cu-banner-mark {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  margin-right: 0.35rem;
+  border-radius: 50%;
+}
+.banner-brand {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+}
+
+/* Certificate emboss */
+.cu-cert-insignia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0.25rem 0 0.5rem;
+}
+.cu-cert-insignia img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.5), 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+.cu-cert-os {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0d4f3c;
+}
+html[data-theme="dark"] .cu-cert-os {
+  color: #e8d48a;
+}
+.cdc-frame .cdc-brand {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 420px) {
+  .cu-nav-title { font-size: 0.72rem; }
+  .cu-nav-insignia { width: 32px; height: 32px; }
+}
