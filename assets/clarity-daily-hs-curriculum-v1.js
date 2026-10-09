@@ -73,6 +73,33 @@
   function openCard(id){var el=document.getElementById(id);if(!el)return;try{el.classList.remove("gate-hidden","hidden");el.hidden=false;el.style.removeProperty("display");el.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}}
   function ensure(){var c=document.getElementById("daily-hs-curriculum-card");if(c)return c;c=document.createElement("section");c.id="daily-hs-curriculum-card";c.className="card";c.setAttribute("data-clarity-path","practicing");c.innerHTML='<h2 class="card-title">High school — Daily path</h2><p class="card-lead">Tajweed, tafseer, weekly review, enrichment. Assignments stay on-device.</p><div id="daily-hs-progress" class="junior-progress"></div><div id="daily-hs-body" class="junior-body"></div>';var a=document.getElementById("weekly-review-card")||document.getElementById("tajweed-live-card")||document.getElementById("meme-card");if(a&&a.parentNode){if(a.nextSibling)a.parentNode.insertBefore(c,a.nextSibling);else a.parentNode.appendChild(c);}else (document.getElementById("main")||document.body).appendChild(c);return c;}
   function render(){ensure();var prog=document.getElementById("daily-hs-progress"),body=document.getElementById("daily-hs-body");if(!prog||!body)return;var t=0,d=0;UNITS.forEach(function(u){u.lessons.forEach(function(l){t++;if(done(l.id))d++;});});var pct=t?Math.round(100*d/t):0;prog.innerHTML='<div class="junior-bar"><div class="junior-bar-fill" style="width:'+pct+'%"></div></div><span>'+d+' / '+t+' · '+pct+'%</span>';var h="";UNITS.forEach(function(u){h+='<article class="junior-unit"><h3>'+u.title+'</h3><p class="junior-goal">'+u.goal+'</p>';u.lessons.forEach(function(les){var is=done(les.id);h+='<div class="junior-lesson'+(is?' is-done':'')+'"><h4>'+(is?'✓ ':'')+les.title+'</h4><ul>';(les.points||[]).forEach(function(pt){h+='<li>'+pt+'</li>';});h+='</ul>';if(les.activity)h+='<div class="curr-activity"><div class="curr-act-label">Assignment</div><p>'+les.activity.prompt+'</p></div>';h+='<div class="junior-actions">';if(les.openCard)h+='<button type="button" class="mv-chip" data-open="'+les.openCard+'">Open module</button>';if(!is)h+='<button type="button" class="mv-chip" data-mark="'+les.id+'">Mark done</button>';h+='</div></div>';});h+='</article>';});body.innerHTML=h;body.onclick=function(ev){var t=ev.target;if(!t)return;if(t.getAttribute('data-open'))openCard(t.getAttribute('data-open'));if(t.getAttribute('data-mark'))mark(t.getAttribute('data-mark'));};}
-  function boot(){render();g.addEventListener('clarity-path-changed',function(){render();setTimeout(mountBoost,50);});}
+  function mountBoost(){
+    var card=document.getElementById("daily-hs-curriculum-card");
+    if(!card)return;
+    try{
+      card.classList.remove("gate-hidden","hidden");
+      card.hidden=false;
+      card.style.display="";
+      card.style.removeProperty("display");
+      card.style.visibility="visible";
+    }catch(e){}
+    var rail=document.getElementById("clarity-path-rail");
+    if(rail&&rail.parentNode){
+      try{
+        if(rail.nextSibling!==card){
+          if(rail.nextSibling)rail.parentNode.insertBefore(card,rail.nextSibling);
+          else rail.parentNode.appendChild(card);
+        }
+      }catch(e2){}
+    }
+  }
+  function boot(){
+    render();
+    try{mountBoost();}catch(e0){}
+    g.addEventListener('clarity-path-changed',function(){
+      render();
+      setTimeout(function(){try{mountBoost();}catch(e){}},50);
+    });
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })(typeof window!=='undefined'?window:this);
