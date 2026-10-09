@@ -1,5 +1,5 @@
-/* Clarity SW 20261008FINAL2 — network-first for /assets so chrome updates apply */
-const CACHE = "clarity-20261008FINAL2";
+/* Clarity SW 20261008GATEFIX — network-first for /assets so chrome updates apply */
+const CACHE = "clarity-20261008GATEFIX";
 const PRECACHE = ["/", "/index.html", "/robots.txt"];
 self.addEventListener("install", (e) => {
   e.waitUntil(
