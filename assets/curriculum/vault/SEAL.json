@@ -1,0 +1,57 @@
+{
+  "vault": "Clarity University \u2014 Sealed Administrator Block",
+  "version": "1.0.0-sealed",
+  "build": "20261009VAULT",
+  "motto": "Foundation sealed \u00b7 form factor isolated \u00b7 upgrades may decorate, not corrupt",
+  "disclaimer": "Educational vault only. Integrity checks protect local learning records from accidental overwrite.",
+  "entry": "boot.js",
+  "foundationOrder": [
+    "foundation/engine.js",
+    "foundation/spark-quiz.js",
+    "foundation/diplomas.js",
+    "foundation/phase-plaque.js",
+    "foundation/curriculum-controller.js",
+    "foundation/college-seeker.js",
+    "foundation/college-practice.js",
+    "foundation/college-consistency.js",
+    "foundation/college-transmission.js",
+    "foundation/office-controller.js"
+  ],
+  "styles": [
+    "foundation/phase-plaque.css"
+  ],
+  "admin": [
+    "admin/registry.json",
+    "admin/ledger-schema.json",
+    "admin/diploma-templates.json"
+  ],
+  "sha256": {
+    "foundation/engine.js": "455bd3579a2053576f85602d6cc5106fb81abb25f0d706bee7e90bba7cd0a54a",
+    "foundation/spark-quiz.js": "e4ead9f71f65534acac7f7916ef69a965c9dbd22ed9aa50254350155325781be",
+    "foundation/diplomas.js": "9a4773bf98c0f26c5505e294f6d9d387c24a0aedc81782d14b01a5e6897a3d3e",
+    "foundation/phase-plaque.js": "6077dff6e08dc32a0a606fa32b779b560e4e16ccfd5a5ed5aa32ca95fcd44702",
+    "foundation/phase-plaque.css": "8d830c95f101586b7b13c175a26fbbb23b4cee22400a2f337f8c742dfea36574",
+    "foundation/curriculum-controller.js": "c05af622a46ffa60d8fbc4de8208c2d2d57c0cc291dded5d1b28f80233bd4c5e",
+    "foundation/college-seeker.js": "19703dde3f82344c6723f2b915cf8c1b1cb86ff592a256e8a49060114ed5dfda",
+    "foundation/college-practice.js": "15447fa79ef5a02b08bb1c919fb9a9da9dc7c0c9a4b6e961e6d5084b756ebf6a",
+    "foundation/college-consistency.js": "0dcde56a5103e531c54c2fb2e116431ef586b5a001025054b3622e98ad5e5be8",
+    "foundation/college-transmission.js": "77f5c9460c0e950c16e43661b8e2c3e9710e59111063243741cc63c14a38121c",
+    "admin/registry.json": "f29e82b5a3cc38c5bb6245708237462b45ba5882b40fd55d68adc381cc2aa17d",
+    "admin/ledger-schema.json": "ef9b83c0c26f8488cbaa4476fa72f407d35347ad663110a9d96c34a08591ded8",
+    "admin/diploma-templates.json": "1cbea632d6a609d7a6b7b90374f6255bdea17c19fcbbdc4d6f18f7dd5973b743",
+    "admin/README.md": "38f74f7e229f5867c5e9de62a9b495197a67aff36b3373a85b3bc2416fed8378",
+    "foundation/office-controller.js": "2dfb66960d9eb265d19fa96b47566317a1d94d4aa07e46cd83fd1e22a3cf067d"
+  },
+  "freezeApis": [
+    "ClarityCurriculumEngine",
+    "ClarityUniversity",
+    "ClarityAdminOffice",
+    "ClarityCurriculumController",
+    "ClarityJuniorCurriculum",
+    "clarityOpenModuleSparkQuiz",
+    "clarityOpenPhaseQuiz",
+    "clarityRecordUniversityScore",
+    "clarityOnPhaseQuizPass"
+  ],
+  "storageNamespace": "clarity_university_"
+}
