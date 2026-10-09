@@ -1,0 +1,71 @@
+
+/* Office of the Chancellor */
+.clarity-chancellor-crest {
+  position: fixed; top: 50%; right: 8px; transform: translateY(-50%);
+  z-index: 99970; width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(212,180,90,0.55);
+  background: linear-gradient(145deg, #2a2040, #1a1528);
+  color: #d4b45a; font-size: 1.1rem; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.35);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0.85;
+}
+.clarity-chancellor-crest:hover { opacity: 1; }
+.clarity-chancellor-modal {
+  position: fixed; inset: 0; z-index: 100100;
+  display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.clarity-chancellor-modal.show { display: flex !important; }
+.cch-backdrop {
+  position: absolute; inset: 0; background: rgba(12, 8, 24, 0.86); backdrop-filter: blur(12px);
+}
+.cch-panel {
+  position: relative; z-index: 1; max-width: 440px; width: 100%; max-height: 90vh; overflow: auto;
+  background: linear-gradient(165deg, #f4eef8, #ebe4f5); color: #1c1828;
+  border-radius: 14px; border: 2px solid #4a3568;
+  box-shadow: 0 22px 55px rgba(0,0,0,.45), inset 0 0 0 1px rgba(212,180,90,.35);
+  padding: 1.15rem 1.2rem;
+}
+html[data-theme="dark"] .cch-panel {
+  background: linear-gradient(165deg, #1a1628, #14101e); color: #ece6f5;
+}
+.cch-x {
+  position: absolute; top: .4rem; right: .5rem; border: none; background: transparent;
+  font-size: 1.35rem; cursor: pointer; color: inherit;
+}
+.cch-stamp {
+  display: inline-block; font-size: .62rem; font-weight: 800; letter-spacing: .14em;
+  padding: .2rem .5rem; border: 2px solid #6a5090; color: #4a3570;
+  transform: rotate(-4deg); margin-bottom: .4rem; background: rgba(106,80,144,.12);
+}
+.cch-panel h2 { margin: 0.2rem 0; font-size: 1.15rem; }
+.cch-title { font-size: .8rem; opacity: .85; margin: 0.2rem 0 0.5rem; }
+.cch-title code { font-size: .72rem; }
+.cch-greet { font-size: .86rem; line-height: 1.45; font-style: italic; margin: 0.5rem 0; }
+.cch-house {
+  padding: 0.55rem 0.65rem; border-radius: 10px; margin: 0.5rem 0;
+  border: 1px solid rgba(74,53,104,0.25); background: rgba(255,255,255,0.4);
+  font-size: .82rem;
+}
+html[data-theme="dark"] .cch-house { background: rgba(0,0,0,0.25); }
+.cch-notes { font-size: .75rem; opacity: .85; margin: 0.25rem 0 0; }
+.cch-duties { margin: 0.5rem 0; padding-left: 1.1rem; font-size: .78rem; line-height: 1.4; }
+.cch-disc { font-size: .68rem; opacity: .7; margin-top: 0.75rem; }
+.cch-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+.cnp-chan-btn {
+  background: linear-gradient(155deg, rgba(74,53,104,0.95), rgba(212,180,90,0.4)) !important;
+  font-weight: 800 !important;
+}
+.clarity-chancellor-toast {
+  position: fixed; left: 50%; top: 72px; transform: translateX(-50%) translateY(-12px);
+  z-index: 99995; max-width: min(420px, 92vw);
+  background: rgba(26, 20, 40, 0.95); color: #f0eaf8;
+  padding: 0.55rem 1rem; border-radius: 12px; font-size: 0.8rem; line-height: 1.4;
+  border: 1px solid rgba(212,180,90,0.45);
+  opacity: 0; pointer-events: none; transition: 0.4s ease;
+  box-shadow: 0 12px 32px rgba(0,0,0,.35);
+}
+.clarity-chancellor-toast.show {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+.cct-name { font-weight: 700; color: #d4b45a; display: block; margin-bottom: 0.15rem; font-size: 0.72rem; }
