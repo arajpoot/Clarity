@@ -1,0 +1,105 @@
+/* Secured Faculty Wing */
+.clarity-faculty-modal {
+  position: fixed; inset: 0; z-index: 100070;
+  display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.clarity-faculty-modal.show { display: flex !important; }
+.cfm-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(8,12,20,0.8); backdrop-filter: blur(10px);
+}
+.cfm-panel {
+  position: relative; z-index: 1;
+  max-width: 420px; width: 100%; max-height: 90vh; overflow: auto;
+  background: linear-gradient(165deg, #f6f0e8, #ebe4f5);
+  color: #1c1a28; border-radius: 14px;
+  border: 2px solid #4a3568;
+  box-shadow: 0 20px 50px rgba(0,0,0,.4), inset 0 0 0 1px rgba(212,180,90,.35);
+  padding: 1.1rem 1.15rem;
+}
+html[data-theme="dark"] .cfm-panel {
+  background: linear-gradient(165deg, #1a1624, #221a2e); color: #ece6f5;
+}
+.cfm-x {
+  position: absolute; top: .4rem; right: .5rem;
+  border: none; background: transparent; font-size: 1.35rem; cursor: pointer; color: inherit;
+}
+.cfs-sign-card, .cfh-card, .cfd-lead { font-size: .88rem; line-height: 1.45; }
+.cfs-kicker {
+  font-size: .65rem; letter-spacing: .12em; text-transform: uppercase;
+  color: #6b4a8a; font-weight: 700;
+}
+.cfs-stmt { margin: .75rem 0; font-style: italic; }
+.cfs-seal code, .cfs-dip code, .cfd-sig code {
+  font-size: .75rem; background: rgba(74,53,104,.1); padding: .1rem .35rem; border-radius: 4px;
+}
+.cfs-next { font-weight: 700; margin-top: .75rem; }
+.cfs-disc, .cfd-disc { font-size: .68rem; opacity: .75; margin-top: .75rem; }
+.cfd-list { display: flex; flex-direction: column; gap: .45rem; margin: .75rem 0; }
+.cfd-row {
+  display: flex; flex-direction: column; gap: .1rem;
+  padding: .5rem .6rem; border-radius: 10px;
+  border: 1px solid rgba(74,53,104,.2); background: rgba(255,255,255,.4);
+  font-size: .82rem;
+}
+html[data-theme="dark"] .cfd-row { background: rgba(0,0,0,.25); }
+.cfd-row.is-active { border-color: #c9a227; box-shadow: 0 0 0 1px rgba(201,162,39,.35); }
+.cfd-sig { font-size: .72rem; color: #1a6b52; }
+.cfd-sig.muted { color: inherit; opacity: .55; }
+.cfd-en { font-size: .68rem; font-weight: 700; }
+.cfd-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+.cnp-faculty-btn {
+  background: linear-gradient(155deg, rgba(74,53,104,.9), rgba(212,180,90,.35)) !important;
+}
+
+/* Teacher help popup */
+.clarity-faculty-help {
+  position: fixed; right: 14px; bottom: 72px; z-index: 99980;
+  max-width: min(340px, 92vw);
+  background: linear-gradient(160deg, #2a1a40, #1a1528);
+  color: #f0eaf8;
+  border-radius: 16px;
+  border: 1px solid rgba(212,180,90,.45);
+  box-shadow: 0 16px 40px rgba(0,0,0,.45);
+  padding: .85rem 1rem .75rem;
+  display: none;
+  gap: .65rem;
+  align-items: flex-start;
+}
+.clarity-faculty-help.show { display: flex; animation: cfhelp-in .35s ease-out; }
+@keyframes cfhelp-in {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.cfhelp-avatar {
+  font-size: 1.4rem; line-height: 1; color: #d4b45a;
+  flex-shrink: 0; margin-top: .15rem;
+}
+.cfhelp-main { flex: 1; min-width: 0; }
+.cfhelp-who { font-size: .72rem; font-weight: 700; color: #d4b45a; margin: 0 0 .25rem; }
+.cfhelp-tip { font-size: .86rem; line-height: 1.4; margin: 0 0 .4rem; }
+.cfhelp-ref, .cfhelp-scout { font-size: .72rem; opacity: .85; margin: .25rem 0; line-height: 1.35; }
+.cfhelp-ref a { color: #e8d48a; }
+.cfhelp-ask {
+  margin-top: .35rem; font-size: .72rem; font-weight: 700;
+  padding: .3rem .65rem; border-radius: 999px;
+  border: 1px solid rgba(212,180,90,.45); background: rgba(212,180,90,.15);
+  color: #f0eaf8; cursor: pointer;
+}
+.cfhelp-x {
+  position: absolute; top: .35rem; right: .45rem;
+  border: none; background: transparent; color: #f0eaf8;
+  font-size: 1.1rem; cursor: pointer; opacity: .7;
+}
+.clarity-faculty-toast {
+  position: fixed; left: 50%; bottom: 100px; transform: translateX(-50%) translateY(20px);
+  z-index: 99985; max-width: 90vw;
+  background: rgba(42,26,64,.95); color: #f0eaf8;
+  padding: .55rem .9rem; border-radius: 999px; font-size: .8rem;
+  border: 1px solid rgba(212,180,90,.4);
+  opacity: 0; pointer-events: none; transition: .35s ease;
+}
+.clarity-faculty-toast.show {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+.cft-name { font-weight: 700; color: #d4b45a; margin-right: .35rem; }

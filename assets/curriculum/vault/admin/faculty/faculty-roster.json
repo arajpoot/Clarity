@@ -1,0 +1,80 @@
+{
+  "office": "Clarity University — Secured Faculty Wing",
+  "version": 1,
+  "motto": "Teach with adab · sign with care · open the next door only when ready",
+  "disclaimer": "Faculty personas are educational guides on-device. They are not a substitute for a living qualified scholar, imam, or formal ijazah chain.",
+  "teachers": [
+    {
+      "phase": 1,
+      "id": "shaykh-nur",
+      "name": "Ustadh Nur al-Yaqeen",
+      "title": "Teacher of Foundations",
+      "college": "College of Foundations",
+      "specialty": "Tawḥīd, īmān, and first steps of the seeker",
+      "signatory": true,
+      "seal": "✦-NUR",
+      "greeting": "Peace upon you. We begin with Allah — One, without partner.",
+      "helpTone": "gentle-foundation",
+      "resourceTags": [
+        "tawhid",
+        "quran",
+        "new-muslim"
+      ]
+    },
+    {
+      "phase": 2,
+      "id": "ustadha-safaa",
+      "name": "Ustadha Safaa al-Amal",
+      "title": "Teacher of Practice",
+      "college": "College of Practice",
+      "specialty": "Ṭahārah, ṣalāh map, and patient practice",
+      "signatory": true,
+      "seal": "◈-SAF",
+      "greeting": "Practice is mercy when done step by step. Keep a local teacher for form.",
+      "helpTone": "practice-coach",
+      "resourceTags": [
+        "practice",
+        "salah",
+        "institute"
+      ]
+    },
+    {
+      "phase": 3,
+      "id": "ustadh-sabr",
+      "name": "Ustadh Sabr al-Itqan",
+      "title": "Teacher of Consistency",
+      "college": "College of Consistency",
+      "specialty": "Tajweed discipline, weekly review, craft with sincerity",
+      "signatory": true,
+      "seal": "✧-SBR",
+      "greeting": "Consistency over intensity. One rule, one āyah, honest review.",
+      "helpTone": "discipline-craft",
+      "resourceTags": [
+        "tajweed",
+        "research",
+        "quran"
+      ]
+    },
+    {
+      "phase": 4,
+      "id": "shaykh-balagh",
+      "name": "Shaykh Balagh al-Hikmah",
+      "title": "Teacher of Transmission",
+      "college": "College of Transmission",
+      "specialty": "Daʿwah ethics, Seerah method, source-care",
+      "signatory": true,
+      "seal": "❖-BLG",
+      "greeting": "Call to Allah with knowledge and soft speech. Verify before you transmit.",
+      "helpTone": "dawah-ethics",
+      "resourceTags": [
+        "dawah",
+        "hadith",
+        "seerah"
+      ]
+    }
+  ],
+  "handoff": {
+    "requirePriorSignature": true,
+    "message": "Present your signed diploma from the previous phase teacher to enroll with the next."
+  }
+}
