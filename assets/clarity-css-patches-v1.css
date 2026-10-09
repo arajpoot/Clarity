@@ -1753,3 +1753,94 @@ html[data-clarity-pin-banner="1"] #clarity-path-rail.clarity-path-rail {
     top: auto !important;
   }
 }
+
+
+/* ===== FINAL PUSH: horizontal TRACK + sticky chrome ===== */
+html, body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+#main-application-workspace,
+#main,
+main {
+  overflow: visible !important;
+}
+
+.clarity-gate-switcher.rrra-sitewide,
+.clarity-gate-switcher {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.35rem 0.45rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 0.4rem 0.55rem !important;
+  margin: 0 !important;
+  background: #0f1f18 !important;
+  text-align: left !important;
+}
+.clarity-gate-switcher .cgp-intro {
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  margin: 0 0 0.25rem 0 !important;
+  text-align: left !important;
+  font-size: 0.78rem !important;
+}
+.clarity-gate-switcher .cgp-track-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  width: 100% !important;
+}
+.clarity-gate-switcher .cgs-label {
+  display: inline-flex !important;
+  margin: 0 0.25rem 0 0 !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: rgba(230,220,180,0.9) !important;
+}
+.clarity-gate-switcher .cgs-btn {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  padding: 0.28rem 0.65rem !important;
+  white-space: nowrap !important;
+}
+.clarity-gate-switcher .cgs-reset,
+#clarity-path-reset-btn {
+  display: inline-flex !important;
+  width: auto !important;
+  background: #b8962e !important;
+  color: #1a1200 !important;
+  font-weight: 700 !important;
+}
+
+html #clarity-global-nav.global-nav,
+html nav#clarity-global-nav {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1300 !important;
+}
+html #clarity-top-duo {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: var(--clarity-nav-h, 48px) !important;
+  z-index: 1290 !important;
+}
+html .clarity-gate-switcher.rrra-sitewide {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: calc(var(--clarity-nav-h, 48px) + var(--clarity-banner-h, 120px)) !important;
+  z-index: 1285 !important;
+}

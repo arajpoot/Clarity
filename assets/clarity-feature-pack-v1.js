@@ -1160,3 +1160,71 @@
     };
   }
 })(typeof window !== "undefined" ? window : this);
+
+
+/* FINAL chrome lock — horizontal TRACK + sticky measurements */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_CHROME_LOCK_V1__) return;
+  g.__CLARITY_CHROME_LOCK_V1__ = true;
+  function measure() {
+    try {
+      var nav = document.getElementById("clarity-global-nav") || document.querySelector("nav.global-nav");
+      var duo = document.getElementById("clarity-top-duo");
+      var gate = document.querySelector(".clarity-gate-switcher");
+      var nh = nav ? Math.ceil(nav.getBoundingClientRect().height) : 48;
+      var bh = duo ? Math.ceil(duo.getBoundingClientRect().height) : 120;
+      document.documentElement.style.setProperty("--clarity-nav-h", nh + "px");
+      document.documentElement.style.setProperty("--clarity-banner-h", bh + "px");
+      document.documentElement.setAttribute("data-chrome-pin", "1");
+      if (nav) {
+        nav.style.setProperty("position", "sticky", "important");
+        nav.style.setProperty("top", "0", "important");
+        nav.style.setProperty("z-index", "1300", "important");
+      }
+      if (duo) {
+        duo.style.setProperty("position", "sticky", "important");
+        duo.style.setProperty("top", nh + "px", "important");
+        duo.style.setProperty("z-index", "1290", "important");
+      }
+      if (gate) {
+        gate.style.setProperty("display", "flex", "important");
+        gate.style.setProperty("flex-direction", "row", "important");
+        gate.style.setProperty("flex-wrap", "wrap", "important");
+        gate.style.setProperty("align-items", "center", "important");
+        gate.style.setProperty("justify-content", "flex-start", "important");
+        gate.style.setProperty("position", "sticky", "important");
+        gate.style.setProperty("top", (nh + bh) + "px", "important");
+        gate.style.setProperty("z-index", "1285", "important");
+        gate.style.setProperty("width", "100%", "important");
+        var row = gate.querySelector(".cgp-track-row");
+        if (row) {
+          row.style.setProperty("display", "flex", "important");
+          row.style.setProperty("flex-direction", "row", "important");
+          row.style.setProperty("flex-wrap", "wrap", "important");
+          row.style.setProperty("width", "100%", "important");
+        }
+        gate.querySelectorAll(".cgs-btn").forEach(function (b) {
+          b.style.setProperty("display", "inline-flex", "important");
+          b.style.setProperty("width", "auto", "important");
+        });
+      }
+    } catch (e) {}
+  }
+  function boot() {
+    measure();
+    setTimeout(measure, 100);
+    setTimeout(measure, 400);
+    setTimeout(measure, 1000);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  g.addEventListener("load", function () { setTimeout(measure, 50); setTimeout(measure, 300); });
+  g.addEventListener("resize", function () { setTimeout(measure, 80); });
+  g.addEventListener("orientationchange", function () {
+    setTimeout(measure, 100);
+    setTimeout(measure, 350);
+    setTimeout(measure, 700);
+  });
+  g.addEventListener("clarity-path-changed", function () { setTimeout(measure, 50); });
+})(typeof window !== "undefined" ? window : this);
