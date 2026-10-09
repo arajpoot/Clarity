@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "rotations": [
+    {
+      "dayMod": 0,
+      "ops": [
+        "health-check",
+        "sync-tracks",
+        "plaque-refresh"
+      ],
+      "scout": [
+        "quran-fatiha",
+        "quran-ikhlas",
+        "seekers-new-muslim"
+      ],
+      "ux": "Emphasize Phase 1 clarity: short leads, visible spark button"
+    },
+    {
+      "dayMod": 1,
+      "ops": [
+        "health-check",
+        "dom-modules"
+      ],
+      "scout": [
+        "quran-2-286",
+        "beginislam",
+        "yaqeen"
+      ],
+      "ux": "Phase 2\u20133: teacher hints on practice modules"
+    },
+    {
+      "dayMod": 2,
+      "ops": [
+        "health-check",
+        "progress-latency"
+      ],
+      "scout": [
+        "sunnah",
+        "quran-16-125",
+        "yaqeen"
+      ],
+      "ux": "Phase 4: source-care reminders in dawah modules"
+    }
+  ]
+}
