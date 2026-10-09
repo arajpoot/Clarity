@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "theme": "Grand Opening \u2014 calm path, powerful house",
+  "principles": [
+    "One question at a time on first visit",
+    "University wings live one tap away \u2014 not all visible at once",
+    "Study focus dims secondary chrome",
+    "Keyboard and mobile share the same compass",
+    "Never block learning behind admin furniture"
+  ],
+  "densityByPhase": {
+    "1": "minimal",
+    "2": "guided",
+    "3": "full",
+    "4": "full"
+  },
+  "compass": [
+    {
+      "id": "curriculum",
+      "label": "Curriculum",
+      "hint": "Your active phase modules",
+      "action": "curriculum"
+    },
+    {
+      "id": "chancellor",
+      "label": "Chancellor",
+      "hint": "State of the House",
+      "action": "chancellor"
+    },
+    {
+      "id": "faculty",
+      "label": "Faculty",
+      "hint": "Teachers & handoff",
+      "action": "faculty"
+    },
+    {
+      "id": "registrar",
+      "label": "Registrar",
+      "hint": "Resume or redo a phase",
+      "action": "registrar"
+    },
+    {
+      "id": "lab",
+      "label": "Lab",
+      "hint": "Calligraphy, tajweed, media, research",
+      "action": "lab"
+    },
+    {
+      "id": "library",
+      "label": "Library",
+      "hint": "Scout & librarian stacks",
+      "action": "library"
+    },
+    {
+      "id": "security",
+      "label": "Security",
+      "hint": "Wiring auditors",
+      "action": "security"
+    },
+    {
+      "id": "it",
+      "label": "IT Wing",
+      "hint": "CIO bridge \u00b7 sealed \u2194 edge",
+      "action": "it"
+    },
+    {
+      "id": "om",
+      "label": "O&M",
+      "hint": "Circulation crew",
+      "action": "om"
+    },
+    {
+      "id": "focus",
+      "label": "Study focus",
+      "hint": "Dim admin chrome while you learn",
+      "action": "focus"
+    },
+    {
+      "id": "help",
+      "label": "How this house works",
+      "hint": "60-second map",
+      "action": "help"
+    }
+  ]
+}
