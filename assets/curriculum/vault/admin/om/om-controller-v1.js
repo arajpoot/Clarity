@@ -70,6 +70,27 @@
   }
 
   /** 🧊 Cache Orderly — light SW ping, no aggressive wipe */
+  
+  /** Device storage orderly — real localStorage byte estimate */
+  function jobDeviceStorage() {
+    try {
+      var bytes = 0;
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        var v = localStorage.getItem(k) || "";
+        bytes += (k.length + v.length) * 2;
+      }
+      omLog("storage", "localStorage ~" + Math.round(bytes / 1024) + " KB, keys " + localStorage.length);
+      if (bytes > 4.5 * 1024 * 1024 && g.ClarityITLab && g.ClarityITLab.trimLogs) {
+        g.ClarityITLab.trimLogs();
+        omLog("storage", "Triggered IT lab log trim (large localStorage)");
+      }
+    } catch (e) {
+      omLog("storage", "estimate failed");
+    }
+    persistStats();
+  }
+
   function jobCache() {
     try {
       if (g.navigator && g.navigator.serviceWorker && g.navigator.serviceWorker.controller) {
