@@ -1,20 +1,14 @@
-/*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  X-Frame-Options: SAMEORIGIN
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  X-XSS-Protection: 0
-
-/assets/*
-  Cache-Control: public, max-age=31536000, immutable
-  Vary: Accept-Encoding
-
-/sw.js
-  Cache-Control: public, max-age=0, must-revalidate
-  Service-Worker-Allowed: /
-
-/index.html
-  Cache-Control: public, max-age=0, must-revalidate
-
-/
-  Cache-Control: public, max-age=0, must-revalidate
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Redirect · Clarity</title>
+<meta http-equiv="refresh" content="0;url=/">
+<link rel="canonical" href="https://clarity-dawah.fyi/">
+</head>
+<body>
+<p><a href="/">Clarity home</a></p>
+<script>location.replace("/");</script>
+</body>
+</html>

@@ -105,7 +105,6 @@ html[data-theme=dark] .global-nav,html[data-theme=dark] #clarity-global-nav{back
   ]
 }
 </script>
-
 <script id="clarity-path-boot-v1">
 (function(){try{var g=localStorage.getItem("clarity_path_focus")||localStorage.getItem("clarity_committed_path")||localStorage.getItem("clarity_path_override")||"seeker";if(g==="legacy7")g="practicing";var ok={seeker:1,new_muslim:1,practicing:1,dai:1};if(!ok[g])g="seeker";document.documentElement.setAttribute("data-clarity-path",g);document.documentElement.setAttribute("data-path-i",String({seeker:0,new_muslim:1,practicing:2,dai:3}[g]||0));}catch(e){}})();
 </script>
@@ -277,18 +276,17 @@ html[data-theme=dark],html[data-theme=dark] body{background:#0c1410;color:#e7efe
 #main-application-workspace{min-height:40vh}
 img[width][height]{height:auto;max-width:100%}
 
-/* Sticky top chrome — nav + banner float together */
-:root{--clarity-nav-h:48px}
+/* Sticky top chrome — hardened defaults (final overrides in sticky-harden CSS) */
+:root{--clarity-nav-h:48px;--clarity-banner-h:160px}
 #clarity-global-nav.global-nav{
-  position:sticky;top:0;z-index:60;
-  backdrop-filter:saturate(1.1) blur(8px);
-  -webkit-backdrop-filter:saturate(1.1) blur(8px);
-  box-shadow:0 1px 0 rgba(0,0,0,.06);
+  position:sticky!important;top:0!important;z-index:2100!important;
+  background:#fffdf8;box-shadow:0 1px 0 rgba(0,0,0,.08);
 }
+html[data-theme=dark] #clarity-global-nav.global-nav{background:#0f1a14}
 #clarity-top-duo{
-  position:sticky;top:var(--clarity-nav-h);z-index:55;
-  margin:0;padding:0;
-  box-shadow:none;
+  position:sticky!important;top:var(--clarity-nav-h)!important;z-index:2090!important;
+  margin:0;padding:0;background:#0d4f3c;
+  box-shadow:0 4px 14px rgba(0,0,0,.18);
 }
 #clarity-top-duo .banner{
   position:relative;overflow:hidden;margin:0;padding:0;
@@ -306,16 +304,16 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261008STICK" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261008STICK" media="print" onload="this.media='all'" id="clarity-critical-css-link">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261009POLISH" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261009POLISH" media="print" onload="this.media='all'" id="clarity-critical-css-link">
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261008STICK" media="print" onload="this.media='all'" fetchpriority="low">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261008STICK"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261009POLISH" media="print" onload="this.media='all'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261009POLISH"></noscript>
 <noscript></noscript>
 <noscript></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
@@ -327,11 +325,12 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n){n.rel="stylesheet"});
 })();
 </script>
-</head><body data-active-tab="journey" data-section-fortress="1">
+<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261009POLISH" id="clarity-sticky-harden-css"/>
+</head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1">
 
 <nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
-        <span class="nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave">✦ Clarity</span>
+        <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity University</span><span class="cu-nav-sub">OS · Nur Path</span></span></span>
         <span id="current-mode-badge" class="mode-badge">Clarity</span>
         <span class="theme-chip-row" role="group" aria-label="Theme">
           <button type="button" class="theme-chip" data-theme-chip="light" onclick="claritySetThemeMode('light')">Day</button>
@@ -461,14 +460,14 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 </div>
 </div>
 <!-- Phase5c: sitewide TRACK rail under banner -->
-<div class="clarity-gate-switcher rrra-sitewide" role="group" aria-label="Learning track — switch anytime">
+<div class="clarity-gate-switcher rrra-sitewide" data-rail-suppressed="1" style="display:none!important" hidden role="group" aria-label="Learning track — switch anytime">
   <span class="cgs-label">TRACK</span>
   <button type="button" class="cgs-btn cgs-seeker" data-gate="seeker" onclick="claritySwitchGate('seeker')" title="Curious Seeker — purpose, prophecy, Qur’an, next life"><span class="cgs-ico" aria-hidden="true">🔭</span><span class="cgs-txt"><span class="cgs-num">1</span> Seeker</span></button>
   <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="claritySwitchGate('new_muslim')" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
   <button type="button" class="cgs-btn cgs-daily" data-gate="practicing" onclick="claritySwitchGate('practicing')" title="Daily Muslim — streaks, tajweed, light legacy"><span class="cgs-ico" aria-hidden="true">📿</span><span class="cgs-txt"><span class="cgs-num">3</span> Daily</span></button>
   <button type="button" class="cgs-btn cgs-dai" data-gate="dai" onclick="claritySwitchGate('dai')" title="Aspiring Da’i — sincerity, sources, calm dawah"><span class="cgs-ico" aria-hidden="true">🕊️</span><span class="cgs-txt"><span class="cgs-num">4</span> Da’i</span></button>
-  <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn" title="Reset progress to Seeker level (optional)" onclick="clarityPathResetToSeeker()">
-    <span class="cgs-ico" aria-hidden="true">↻</span><span class="cgs-txt">Reset</span>
+  <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn" title="Registrar — resume or redo phases" onclick="clarityPathResetToSeeker()">
+    <span class="cgs-ico" aria-hidden="true">📋</span><span class="cgs-txt">Registrar</span>
   </button>
 </div>
 
@@ -2483,18 +2482,36 @@ if ("serviceWorker" in navigator) {
 
 
 
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-chunk-8.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-amana-vault-access-v1.js?v=20261008STICK" defer></script>
-<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261008STICK"/>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-junior-high-curriculum-v1.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-junior-curriculum-v1.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-dai-university-v1.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-daily-hs-curriculum-v1.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-feature-pack-v1.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-path-pack-v1.js?v=20261008STICK" defer></script>
-<script src="./assets/clarity-aux-pack-v1.js?v=20261008STICK" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261009POLISH" defer></script>
+<script src="./assets/clarity-amana-vault-access-v1.js?v=20261009POLISH" defer></script>
+<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261009POLISH"/>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261009POLISH" defer></script>
+<!-- Clarity University VAULT — sealed form factor (do not scatter foundation scripts) -->
+<!-- Clarity University OS — ordered form factor (do not reorder casually) -->
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261009POLISH" id="clarity-brand-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/chancellor/chancellor.css?v=20261009POLISH" id="clarity-chancellor-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/ux/ux-grand-opening.css?v=20261009POLISH" id="clarity-ux-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/faculty/faculty.css?v=20261009POLISH" id="clarity-faculty-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/lab/lab.css?v=20261009POLISH" id="clarity-lab-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/registrar/registrar.css?v=20261009POLISH" id="clarity-registrar-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/security/security.css?v=20261009POLISH" id="clarity-security-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/om/om.css?v=20261009POLISH" id="clarity-om-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/it/it.css?v=20261009POLISH" id="clarity-it-css"/>
+<link rel="preload" href="./assets/curriculum/vault/SEAL.json" as="fetch" crossorigin/>
+<script src="./assets/curriculum/vault/admin/brand/brand-insignia-v1.js?v=20261009POLISH" defer id="clarity-brand"></script>
+<script src="./assets/curriculum/vault/boot.js?v=20261009POLISH" defer id="clarity-vault-boot"></script>
+<script src="./assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261009POLISH" defer id="clarity-staff-dispatch"></script>
+<script src="./assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261009POLISH" defer id="clarity-faculty"></script>
+<script src="./assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261009POLISH" defer id="clarity-lab"></script>
+<script src="./assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261009POLISH" defer id="clarity-registrar"></script>
+<script src="./assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261009POLISH" defer id="clarity-security"></script>
+<script src="./assets/curriculum/vault/admin/om/om-controller-v1.js?v=20261009POLISH" defer id="clarity-om"></script>
+<script src="./assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261009POLISH" defer id="clarity-it"></script>
+<script src="./assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261009POLISH" defer id="clarity-chancellor"></script>
+<script src="./assets/curriculum/vault/admin/ux/ux-grand-opening-v1.js?v=20261009POLISH" defer id="clarity-ux-grand"></script>
+<script src="./assets/clarity-feature-pack-v1.js?v=20261009POLISH" defer></script>
+<script src="./assets/clarity-path-pack-v1.js?v=20261009POLISH" defer></script>
+<script src="./assets/clarity-aux-pack-v1.js?v=20261009POLISH" defer></script>
 
 
 <!-- GATE NUCLEAR V2 -->
@@ -2672,5 +2689,6 @@ if ("serviceWorker" in navigator) {
 })();
 </script>
 
+<script src="./assets/clarity-sticky-harden-v1.js?v=20261009POLISH" defer id="clarity-sticky-harden-js"></script>
 </body>
 </html>

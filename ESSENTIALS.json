@@ -1,1 +1,11 @@
-{"build":"20261008FINAL","fixes":["horizontal TRACK row","JS inline sticky lock","main overflow visible"]}
+{
+  "build": "20261009POLISH",
+  "phase": "polish-pass",
+  "fixes": [
+    "sw.js unclosed comment / syntax",
+    "script load order vault then wings",
+    "removed clarity-chunk-8 from index",
+    "IT dead policyCompassPatch removed",
+    "CSS/JS wing tags deduped ordered"
+  ]
+}
