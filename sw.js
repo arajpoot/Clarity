@@ -1,7 +1,7 @@
-/* Clarity SW 20261009POLISH — University OS
+/* Clarity SW 20261009HOTFIX1 — University OS
  * Network-first for HTML; cache assets; purge old caches on activate.
  */
-const CACHE = "clarity-20261009POLISH";
+const CACHE = "clarity-20261009CAMPUS2";
 const PRECACHE = ["/", "/index.html", "/robots.txt"];
 self.addEventListener("install", (e) => {
   e.waitUntil(

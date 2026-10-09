@@ -1,26 +1,14 @@
-# Cloudflare Pages — SPA + SEO topic paths
-/journey /index.html 200
-/seerah /index.html 200
-/grave /index.html 200
-/tafseer /index.html 200
-/tajweed /index.html 200
-/lectures /index.html 200
-/fiqh-tools /index.html 200
-/meme /index.html 200
-/notes /index.html 200
-/commands /index.html 200
-/about /index.html 200
-/prepare-for-death/ /index.html 200
-/remember-death/ /index.html 200
-/what-benefits-the-deceased/ /index.html 200
-/dua-for-the-deceased/ /index.html 200
-/janazah-prayer/ /index.html 200
-/ghusl-kafan-burial/ /index.html 200
-/wasiyyah/ /index.html 200
-/islamic-will/ /index.html 200
-/islamic-inheritance-calculator/ /index.html 200
-/debts-and-trusts/ /index.html 200
-/sadaqah-jariyah/ /index.html 200
-/hajj-checklist/ /index.html 200
-/charter/ /index.html 200
-/* /index.html 200
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Redirect · Clarity</title>
+<meta http-equiv="refresh" content="0;url=/">
+<link rel="canonical" href="https://clarity-dawah.fyi/">
+</head>
+<body>
+<p><a href="/">Clarity home</a></p>
+<script>location.replace("/");</script>
+</body>
+</html>
