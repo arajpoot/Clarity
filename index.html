@@ -306,16 +306,16 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261008VAULTISO103" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261008VAULTISO103" media="print" onload="this.media='all'" id="clarity-critical-css-link">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261008NIGHT3" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261008NIGHT3" media="print" onload="this.media='all'" id="clarity-critical-css-link">
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261008VAULTISO103" media="print" onload="this.media='all'" fetchpriority="low">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261008VAULTISO103"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261008NIGHT3" media="print" onload="this.media='all'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261008NIGHT3"></noscript>
 <noscript></noscript>
 <noscript></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
@@ -460,6 +460,18 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
     </div>
 </div>
 </div>
+<!-- Phase5c: sitewide TRACK rail under banner -->
+<div class="clarity-gate-switcher rrra-sitewide" role="group" aria-label="Learning track — switch anytime">
+  <span class="cgs-label">TRACK</span>
+  <button type="button" class="cgs-btn cgs-seeker" data-gate="seeker" onclick="claritySwitchGate('seeker')" title="Curious Seeker — purpose, prophecy, Qur’an, next life"><span class="cgs-ico" aria-hidden="true">🔭</span><span class="cgs-txt"><span class="cgs-num">1</span> Seeker</span></button>
+  <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="claritySwitchGate('new_muslim')" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
+  <button type="button" class="cgs-btn cgs-daily" data-gate="practicing" onclick="claritySwitchGate('practicing')" title="Daily Muslim — streaks, tajweed, light legacy"><span class="cgs-ico" aria-hidden="true">📿</span><span class="cgs-txt"><span class="cgs-num">3</span> Daily</span></button>
+  <button type="button" class="cgs-btn cgs-dai" data-gate="dai" onclick="claritySwitchGate('dai')" title="Aspiring Da’i — sincerity, sources, calm dawah"><span class="cgs-ico" aria-hidden="true">🕊️</span><span class="cgs-txt"><span class="cgs-num">4</span> Da’i</span></button>
+  <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn" title="Reset progress to Seeker level (optional)" onclick="clarityPathResetToSeeker()">
+    <span class="cgs-ico" aria-hidden="true">↻</span><span class="cgs-txt">Reset</span>
+  </button>
+</div>
+
 <!-- visit-pill-bar removed: path rail owns chrome -->
 <div id="clarity-three-doors" class="hidden" style="display:none!important" role="dialog" aria-modal="true" aria-labelledby="td-title">
   <div class="td-wrap td-wrap-paths">
@@ -600,16 +612,6 @@ window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot
 <div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
 <div class="rrra-hub-meta">8 sections</div></div>
 <div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · Meme Studio (auto verse/ḥadīth) · deepen-study links.</div>
-<div class="clarity-gate-switcher rrra-sitewide" role="group" aria-label="Learning track — switch anytime">
-  <span class="cgs-label">TRACK</span>
-  <button type="button" class="cgs-btn cgs-seeker" data-gate="seeker" onclick="claritySwitchGate('seeker')" title="Curious Seeker — purpose, prophecy, Qur’an, next life"><span class="cgs-ico" aria-hidden="true">🔭</span><span class="cgs-txt"><span class="cgs-num">1</span> Seeker</span></button>
-  <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="claritySwitchGate('new_muslim')" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
-  <button type="button" class="cgs-btn cgs-daily" data-gate="practicing" onclick="claritySwitchGate('practicing')" title="Daily Muslim — streaks, tajweed, light legacy"><span class="cgs-ico" aria-hidden="true">📿</span><span class="cgs-txt"><span class="cgs-num">3</span> Daily</span></button>
-  <button type="button" class="cgs-btn cgs-dai" data-gate="dai" onclick="claritySwitchGate('dai')" title="Aspiring Da’i — sincerity, sources, calm dawah"><span class="cgs-ico" aria-hidden="true">🕊️</span><span class="cgs-txt"><span class="cgs-num">4</span> Da’i</span></button>
-  <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn" title="Reset progress to Seeker level (optional)" onclick="clarityPathResetToSeeker()">
-    <span class="cgs-ico" aria-hidden="true">↻</span><span class="cgs-txt">Reset</span>
-  </button>
-</div>
 <div class="rrra-hub-body" id="rrra-hub-body-reminder"><div data-rrra="reminder" class="card card-commands" id="commands-card" data-min-i="0" data-curriculum-folder="seeker"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
  <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
  <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a>.</div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
@@ -2275,7 +2277,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   "use strict";
   if (window.__CLARITY_LAZY_V1__) return;
   window.__CLARITY_LAZY_V1__ = true;
-  var VER = "20261008VAULTISO103";
+  var VER = "20261008NIGHT3";
   var loaded = {};
   function loadOnce(id, src) {
     if (loaded[id]) return loaded[id];
@@ -2481,17 +2483,17 @@ if ("serviceWorker" in navigator) {
 
 
 
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-chunk-8.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-amana-vault-access-v1.js?v=20261008VAULTISO103" defer></script>
-<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261008VAULTISO103"/>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-junior-high-curriculum-v1.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-junior-curriculum-v1.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-dai-university-v1.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-daily-hs-curriculum-v1.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-feature-pack-v1.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-path-pack-v1.js?v=20261008VAULTISO103" defer></script>
-<script src="./assets/clarity-aux-pack-v1.js?v=20261008VAULTISO103" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-chunk-8.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-amana-vault-access-v1.js?v=20261008NIGHT3" defer></script>
+<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261008NIGHT3"/>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-junior-high-curriculum-v1.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-junior-curriculum-v1.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-dai-university-v1.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-daily-hs-curriculum-v1.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-feature-pack-v1.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-path-pack-v1.js?v=20261008NIGHT3" defer></script>
+<script src="./assets/clarity-aux-pack-v1.js?v=20261008NIGHT3" defer></script>
 </body>
 </html>
