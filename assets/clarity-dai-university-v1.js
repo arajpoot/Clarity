@@ -505,17 +505,39 @@
 (function (g) {
     function mountBoost(){
     var card=document.getElementById("dai-university-curriculum-card");
+    if(!card){
+      try{ if(typeof ensureCard==="function")ensureCard(); else if(typeof ensure==="function")ensure(); }catch(eE){}
+      card=document.getElementById("dai-university-curriculum-card");
+    }
     if(!card)return;
     var pathI=0;
     try{
-      pathI=parseInt((document.documentElement&&document.documentElement.getAttribute("data-path-i"))||"0",10)||0;
-    }catch(e0){}
+      var de=document.documentElement;
+      var raw=(de&&de.getAttribute("data-path-i"))||"";
+      pathI=parseInt(raw,10);
+      if(isNaN(pathI)){
+        var p="";
+        try{p=localStorage.getItem("clarity_path_focus")||localStorage.getItem("clarity_committed_path")||localStorage.getItem("clarity_path_override")||"seeker";}catch(eL){p="seeker";}
+        p=String(p).toLowerCase().replace(/_/g,"-");
+        var map={seeker:0,"new-muslim":1,daily:2,practicing:2,dai:3};
+        pathI=map[p]!=null?map[p]:0;
+      }
+    }catch(e0){pathI=0;}
     try{
       card.setAttribute("data-min-i","3");
       card.setAttribute("data-clarity-path","dai");
       card.setAttribute("data-curriculum-phase","dai");
+      card.setAttribute("data-rrra","action");
       card.setAttribute("data-curriculum-exclusive","1");
     }catch(e1){}
+    /* Phase 4: keep card inside its RRRA tab (not main/body orphan) */
+    try{
+      var tab=document.getElementById("tab-action");
+      if(tab&&card.parentNode!==tab&&!tab.contains(card)){
+        var hub=tab.querySelector(".rrra-hub-body, [id^=\"rrra-hub-body\"]")||tab;
+        hub.appendChild(card);
+      }
+    }catch(eR){}
     if(pathI!==3){
       try{
         card.classList.add("gate-hidden");
@@ -544,5 +566,11 @@
   }
   g.addEventListener("clarity-path-changed", function () {
     setTimeout(mountBoost, 80);
+  });
+
+  g.addEventListener("hashchange", function () { setTimeout(mountBoost, 60); });
+  document.addEventListener("clarity-rrra-change", function () { setTimeout(mountBoost, 60); });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") setTimeout(mountBoost, 80);
   });
 })(typeof window !== "undefined" ? window : this);

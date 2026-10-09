@@ -1402,3 +1402,21 @@ html.clarity-desktop #clarity-top-duo {
   cursor: pointer !important;
   opacity: 1 !important;
 }
+
+
+/* Phase4 curriculum-phase-card */
+.curriculum-phase-card {
+  margin-top: 1rem;
+  border-top: 3px solid var(--accent, #2d6a4f);
+  scroll-margin-top: 5.5rem;
+}
+.curriculum-phase-card.gate-hidden,
+.curriculum-phase-card[data-gate-hidden="1"] {
+  display: none !important;
+}
+.curriculum-phase-card .junior-progress {
+  margin: 0.5rem 0 0.75rem;
+}
+.curriculum-phase-card .junior-unit {
+  margin-bottom: 1rem;
+}

@@ -112,18 +112,39 @@
   function render(){ensure();var prog=document.getElementById("daily-hs-progress"),body=document.getElementById("daily-hs-body");if(!prog||!body)return;var t=0,d=0;UNITS.forEach(function(u){u.lessons.forEach(function(l){t++;if(done(l.id))d++;});});var pct=t?Math.round(100*d/t):0;prog.innerHTML='<div class="junior-bar"><div class="junior-bar-fill" style="width:'+pct+'%"></div></div><span>'+d+' / '+t+' · '+pct+'%</span>';var h="";UNITS.forEach(function(u){h+='<article class="junior-unit"><h3>'+u.title+'</h3><p class="junior-goal">'+u.goal+'</p>';u.lessons.forEach(function(les){var is=done(les.id);h+='<div class="junior-lesson'+(is?' is-done':'')+'"><h4>'+(is?'✓ ':'')+les.title+'</h4><ul>';(les.points||[]).forEach(function(pt){h+='<li>'+pt+'</li>';});h+='</ul>';if(les.activity)h+='<div class="curr-activity"><div class="curr-act-label">Assignment</div><p>'+les.activity.prompt+'</p></div>';h+='<div class="junior-actions">';if(les.openCard)h+='<button type="button" class="mv-chip" data-open="'+les.openCard+'">Open module</button>';if(!is)h+='<button type="button" class="mv-chip" data-mark="'+les.id+'">Mark done</button>';h+='</div></div>';});h+='</article>';});body.innerHTML=h;body.onclick=function(ev){var t=ev.target;if(!t)return;if(t.getAttribute('data-open'))openCard(t.getAttribute('data-open'));if(t.getAttribute('data-mark'))mark(t.getAttribute('data-mark'));};}
     function mountBoost(){
     var card=document.getElementById("daily-hs-curriculum-card");
+    if(!card){
+      try{ if(typeof ensureCard==="function")ensureCard(); else if(typeof ensure==="function")ensure(); }catch(eE){}
+      card=document.getElementById("daily-hs-curriculum-card");
+    }
     if(!card)return;
     var pathI=0;
     try{
-      pathI=parseInt((document.documentElement&&document.documentElement.getAttribute("data-path-i"))||"0",10)||0;
-    }catch(e0){}
+      var de=document.documentElement;
+      var raw=(de&&de.getAttribute("data-path-i"))||"";
+      pathI=parseInt(raw,10);
+      if(isNaN(pathI)){
+        var p="";
+        try{p=localStorage.getItem("clarity_path_focus")||localStorage.getItem("clarity_committed_path")||localStorage.getItem("clarity_path_override")||"seeker";}catch(eL){p="seeker";}
+        p=String(p).toLowerCase().replace(/_/g,"-");
+        var map={seeker:0,"new-muslim":1,daily:2,practicing:2,dai:3};
+        pathI=map[p]!=null?map[p]:0;
+      }
+    }catch(e0){pathI=0;}
     try{
       card.setAttribute("data-min-i","2");
       card.setAttribute("data-clarity-path","daily");
       card.setAttribute("data-curriculum-phase","daily");
+      card.setAttribute("data-rrra","reality");
       card.setAttribute("data-curriculum-exclusive","1");
     }catch(e1){}
-    /* Phase 2: exclusive — only the active learning path shows this curriculum */
+    /* Phase 4: keep card inside its RRRA tab (not main/body orphan) */
+    try{
+      var tab=document.getElementById("tab-reality");
+      if(tab&&card.parentNode!==tab&&!tab.contains(card)){
+        var hub=tab.querySelector(".rrra-hub-body, [id^=\"rrra-hub-body\"]")||tab;
+        hub.appendChild(card);
+      }
+    }catch(eR){}
     if(pathI!==2){
       try{
         card.classList.add("gate-hidden");
@@ -139,7 +160,6 @@
       card.style.removeProperty("display");
       card.style.visibility="visible";
     }catch(e3){}
-    /* Phase 1+2: never reparent under #clarity-path-rail */
   }
   function boot(){
     render();
@@ -150,4 +170,10 @@
     });
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+
+  g.addEventListener("hashchange", function () { setTimeout(mountBoost, 60); });
+  document.addEventListener("clarity-rrra-change", function () { setTimeout(mountBoost, 60); });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") setTimeout(mountBoost, 80);
+  });
 })(typeof window!=='undefined'?window:this);
