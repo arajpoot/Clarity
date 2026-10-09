@@ -1,6 +1,6 @@
-/* Clarity SW 20261008POLISH */
-const CACHE = "clarity-20261008POLISH";
-const PRECACHE = ["/", "/index.html", "/assets/clarity-critical-css-v1.css?v=20261008POLISH", "/assets/clarity-css-patches-v1.css?v=20261008POLISH", "/assets/clarity-runtime-overlays-v1.js?v=20261008POLISH", "/assets/clarity-chunk-8.js?v=20261008POLISH", "/assets/clarity-feature-pack-v1.js?v=20261008POLISH", "/assets/clarity-path-pack-v1.js?v=20261008POLISH", "/assets/clarity-aux-pack-v1.js?v=20261008POLISH", "/assets/clarity-amana-vault-gate-js-v1.js?v=20261008POLISH", "/robots.txt"];
+/* Clarity SW 20261008FULL2 */
+const CACHE = "clarity-20261008FULL2";
+const PRECACHE = ["/", "/index.html", "/assets/clarity-critical-css-v1.css?v=20261008FULL2", "/assets/clarity-css-patches-v1.css?v=20261008FULL2", "/assets/clarity-runtime-overlays-v1.js?v=20261008FULL2", "/assets/clarity-chunk-8.js?v=20261008FULL2", "/assets/clarity-feature-pack-v1.js?v=20261008FULL2", "/assets/clarity-path-pack-v1.js?v=20261008FULL2", "/assets/clarity-aux-pack-v1.js?v=20261008FULL2", "/assets/clarity-amana-vault-gate-js-v1.js?v=20261008VAULTISOISO","/assets/clarity-amana-vault-access-v1.js?v=20261008VAULTISOISO","/assets/clarity-amana-vault-css-v1.css?v=20261008FULL2", "/robots.txt"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => Promise.all(PRECACHE.map((u) => c.add(u).catch(() => null)))).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener("fetch", (e) => {
