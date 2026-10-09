@@ -1,18 +1,28 @@
 {
   "id": "shared",
-  "label": "Always-on shell",
+  "label": "Always-on shell + Administrator Office bridge",
   "minI": 0,
   "always": true,
   "scripts": [
     "modules/curriculum-tools-bridge-v1.js"
   ],
+  "office": {
+    "path": "office/",
+    "controller": "office/office-controller-v1.js",
+    "files": [
+      "registry.json",
+      "ledger-schema.json",
+      "diploma-templates.json"
+    ]
+  },
   "features": [
     "vault",
     "notes",
     "about",
     "family-tree-shell",
     "cw-card",
-    "curriculum-tools"
+    "curriculum-tools",
+    "university-office"
   ],
   "cards": [
     "about-clarity-card",
