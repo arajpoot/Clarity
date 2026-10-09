@@ -1420,3 +1420,100 @@ html.clarity-desktop #clarity-top-duo {
 .curriculum-phase-card .junior-unit {
   margin-bottom: 1rem;
 }
+
+
+/* Phase5 path-track rail + sticky stack */
+/* Track rail under banner — matches classic pill look + Reset */
+#clarity-path-rail.clarity-path-rail {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.35rem 0.55rem 0.4rem;
+  background: #0f1f18;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  z-index: 1280;
+}
+#clarity-path-rail .cpr-track-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.55rem;
+}
+#clarity-path-rail .cpr-track-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(230, 220, 180, 0.85);
+  text-transform: uppercase;
+}
+#clarity-path-rail .cpr-paths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+#clarity-path-rail .cpr-path {
+  border: none;
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #1a3d30;
+  color: #e8f0ea;
+}
+#clarity-path-rail .cpr-path.is-on {
+  box-shadow: 0 0 0 2px rgba(255, 220, 120, 0.55);
+  filter: brightness(1.08);
+}
+#clarity-path-rail .cpr-path[data-path="seeker"] { background: #c4a035; color: #1a1200; }
+#clarity-path-rail .cpr-path[data-path="new_muslim"] { background: #2d8a5a; color: #fff; }
+#clarity-path-rail .cpr-path[data-path="practicing"] { background: #2a6f9e; color: #fff; }
+#clarity-path-rail .cpr-path[data-path="dai"] { background: #6b4ea0; color: #fff; }
+#clarity-path-rail .cpr-reset {
+  background: #8a7a2e !important;
+  color: #1a1200 !important;
+}
+#clarity-path-rail .cpr-modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.35rem;
+}
+#clarity-path-rail .cpr-mod {
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  background: transparent;
+  color: rgba(230, 240, 230, 0.9);
+  cursor: pointer;
+}
+#clarity-path-rail .cpr-mod:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* Sticky: nav → banner (top-duo) → path rail  */
+html[data-chrome-pin="1"] #clarity-path-rail.clarity-path-rail,
+html[data-clarity-pin-banner="1"] #clarity-path-rail.clarity-path-rail {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: calc(var(--clarity-nav-h, 52px) + var(--clarity-banner-h, 56px)) !important;
+  z-index: 1280 !important;
+}
+@media (min-width: 901px) {
+  html #clarity-path-rail.clarity-path-rail {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: calc(var(--clarity-nav-h, 52px) + var(--clarity-banner-h, 56px)) !important;
+    z-index: 1280 !important;
+  }
+}
+@media (max-width: 900px) {
+  /* Mobile: keep rail sticky under banner when chrome pin on */
+  html[data-chrome-pin="1"] #clarity-path-rail.clarity-path-rail {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: calc(var(--clarity-nav-h, 48px) + var(--clarity-banner-h, 48px)) !important;
+  }
+}

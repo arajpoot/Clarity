@@ -115,8 +115,12 @@
     if (!MODULES[id]) return;
     try {
       localStorage.setItem(PATH_KEY, id);
+      localStorage.setItem("clarity_committed_path", id === "practicing" ? "daily" : id === "new_muslim" ? "new-muslim" : id);
       document.documentElement.setAttribute("data-clarity-path", id);
-      g.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { path: id } }));
+      var idxMap = { seeker: 0, new_muslim: 1, practicing: 2, daily: 2, dai: 3 };
+      var idx = idxMap[id] != null ? idxMap[id] : 0;
+      document.documentElement.setAttribute("data-path-i", String(idx));
+      g.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { path: id, pathI: idx } }));
     } catch (e) {}
     renderRail();
   }
@@ -203,18 +207,25 @@
   function renderRail() {
     var rail = ensureRail();
     var path = currentPath();
-    var html = '<div class="cpr-paths">';
+    var html = '<div class="cpr-track-row" role="group" aria-label="Phased learning track">';
+    html += '<span class="cpr-track-label">TRACK</span>';
+    html += '<div class="cpr-paths">';
     PATHS.forEach(function (p) {
       html +=
         '<button type="button" class="cpr-path' +
         (p.id === path ? " is-on" : "") +
         '" data-path="' +
         p.id +
+        '" aria-pressed="' +
+        (p.id === path ? "true" : "false") +
         '">' +
         p.label +
         "</button>";
     });
-    html += '</div><div class="cpr-modules">';
+    html +=
+      '<button type="button" class="cpr-path cpr-reset" id="clarity-path-reset-btn" data-path-reset="1" title="Reset to Seeker">↻Reset</button>';
+    html += "</div></div>";
+    html += '<div class="cpr-modules" aria-label="Modules on this path">';
     (MODULES[path] || []).forEach(function (m) {
       html += '<button type="button" class="cpr-mod" data-mod="' + m.id + '">' + m.label + "</button>";
     });
@@ -1080,3 +1091,33 @@
   );
 })(typeof window !== "undefined" ? window : this);
 
+
+
+/* Phase5 measure banner height for sticky path-rail */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_STICKY_MEASURE_V1__) return;
+  g.__CLARITY_STICKY_MEASURE_V1__ = true;
+  function measure() {
+    try {
+      var nav = document.getElementById("clarity-global-nav") || document.querySelector("nav.global-nav");
+      var duo = document.getElementById("clarity-top-duo");
+      var nh = nav ? Math.round(nav.getBoundingClientRect().height) : 52;
+      var bh = duo ? Math.round(duo.getBoundingClientRect().height) : 56;
+      document.documentElement.style.setProperty("--clarity-nav-h", nh + "px");
+      document.documentElement.style.setProperty("--clarity-banner-h", bh + "px");
+      document.documentElement.setAttribute("data-chrome-pin", "1");
+      document.documentElement.setAttribute("data-clarity-pin-banner", "1");
+    } catch (e) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () {
+    measure();
+    setTimeout(measure, 200);
+    setTimeout(measure, 800);
+  });
+  else {
+    measure();
+    setTimeout(measure, 200);
+  }
+  g.addEventListener("resize", function () { setTimeout(measure, 100); });
+})(typeof window !== "undefined" ? window : this);
