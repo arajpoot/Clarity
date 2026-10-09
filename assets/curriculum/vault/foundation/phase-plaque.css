@@ -876,3 +876,40 @@ html[data-theme="dark"] .cof-code { color: #d4b45a; }
 .cnp-office-btn {
   background: linear-gradient(155deg, rgba(13,79,60,0.85), rgba(212,180,90,0.35)) !important;
 }
+
+/* HOTFIX2: curriculum card must not collapse into void */
+#junior-curriculum-card,
+#junior-high-curriculum-card,
+#daily-hs-curriculum-card,
+#dai-university-curriculum-card {
+  display: block !important;
+  visibility: visible !important;
+  min-height: 120px;
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: var(--bg-elevated, #fffdf8);
+  border: 1px solid rgba(13, 79, 60, 0.18);
+  color: var(--text, #1c2a22);
+  position: relative;
+  z-index: 2;
+}
+html[data-theme="dark"] #junior-curriculum-card,
+html[data-theme="dark"] #junior-high-curriculum-card,
+html[data-theme="dark"] #daily-hs-curriculum-card,
+html[data-theme="dark"] #dai-university-curriculum-card {
+  background: #152019;
+  border-color: rgba(212, 180, 90, 0.25);
+  color: #e8f0ec;
+}
+#junior-curriculum-body .junior-lesson {
+  padding: 0.65rem 0.75rem;
+  margin: 0.4rem 0;
+  border-radius: 10px;
+  border: 1px solid rgba(13, 79, 60, 0.12);
+}
+#tab-reminder.is-active,
+#tab-reminder.rrra-hub-active {
+  display: block !important;
+  aria-hidden: false;
+}

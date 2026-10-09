@@ -290,6 +290,8 @@
       '<div id="junior-curriculum-progress" class="junior-progress"></div>' +
       '<div id="junior-curriculum-body" class="junior-body"></div>';
     var host =
+      document.getElementById("campus-stage-body") ||
+      document.getElementById("clarity-campus-stage") ||
       document.querySelector("#tab-reminder .rrra-hub-body") ||
       document.getElementById("tab-reminder") ||
       document.getElementById("main-application-workspace") ||
@@ -502,16 +504,35 @@
     }
   }
 
+  function revealCurriculumHost(tab) {
+    if (!tab) return;
+    try {
+      tab.hidden = false;
+      tab.removeAttribute("hidden");
+      tab.setAttribute("aria-hidden", "false");
+      tab.style.removeProperty("display");
+      if (tab.style.display === "none") tab.style.display = "";
+      tab.classList.add("is-active", "rrra-hub-active");
+      tab.classList.remove("gate-hidden", "hidden");
+    } catch (e) {}
+    /* sibling panels stay as path pack left them — only ensure our host is visible */
+    try {
+      var workspace = document.getElementById("main-application-workspace");
+      if (workspace) {
+        workspace.hidden = false;
+        workspace.style.removeProperty("display");
+      }
+      var mainApp = document.getElementById("main-application");
+      if (mainApp) {
+        mainApp.hidden = false;
+        mainApp.style.removeProperty("display");
+      }
+    } catch (e2) {}
+  }
+
   function mountBoost() {
     var card = ensureCard();
     if (!card) return;
-    try {
-      var tab = document.getElementById("tab-reminder");
-      if (tab && card.parentNode !== tab && !tab.contains(card)) {
-        var hub = tab.querySelector(".rrra-hub-body") || tab;
-        hub.appendChild(card);
-      }
-    } catch (eR) {}
     var phase = 1;
     try {
       phase = parseInt(localStorage.getItem(PHASE_KEY) || "1", 10) || 1;
@@ -524,10 +545,41 @@
       return;
     }
     try {
+      var tab = document.getElementById("tab-reminder");
+      var hub = tab
+        ? tab.querySelector(".rrra-hub-body") || tab
+        : null;
+      var workspace = document.getElementById("main-application-workspace");
+      /* Prefer tab hub; if tab stays display:none, also pin under workspace */
+      if (hub && (!card.parentNode || !hub.contains(card))) {
+        try {
+          hub.insertBefore(card, hub.firstChild);
+        } catch (eIns) {
+          hub.appendChild(card);
+        }
+      } else if (!card.parentNode && workspace) {
+        workspace.insertBefore(card, workspace.firstChild);
+      }
+      revealCurriculumHost(tab);
+      /* Soft-nudge RRRA path pack if present */
+      try {
+        if (typeof g.clarityOpenSectionDoor === "function") {
+          g.clarityOpenSectionDoor("reminder");
+        } else if (typeof g.setRrraHub === "function") {
+          g.setRrraHub("reminder");
+        } else {
+          document.dispatchEvent(
+            new CustomEvent("clarity-rrra-change", { detail: { hub: "reminder" } })
+          );
+        }
+      } catch (eNav) {}
+    } catch (eR) {}
+    try {
       card.classList.remove("gate-hidden", "hidden");
       card.removeAttribute("data-gate-hidden");
       card.hidden = false;
       card.style.removeProperty("display");
+      card.style.display = "";
       card.classList.add("junior-active");
     } catch (e3) {}
     render();
@@ -540,6 +592,7 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
+  g.addEventListener("clarity-vault-ready", function () { setTimeout(boot, 50); });
   g.addEventListener("clarity-path-changed", function () {
     setTimeout(mountBoost, 80);
   });

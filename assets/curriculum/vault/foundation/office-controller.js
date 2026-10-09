@@ -133,6 +133,7 @@
   }
 
   function openOfficePanel() {
+    try { g.dispatchEvent(new CustomEvent("clarity-admin-office-open")); } catch (eOpen) {}
     loadOffice(function () {
       var roll = rollCall();
       var m = document.getElementById("clarity-office-panel");
@@ -238,19 +239,35 @@
     });
   });
 
-  /* Enhance ClarityUniversity.issueDiploma if present */
+  /* Diploma bridge — never mutate frozen ClarityUniversity (SEAL).
+   * clarity-diploma-issued already restyles certificates from templates.
+   */
+  var __officeHooked = false;
   function hookUniversity() {
-    if (!g.ClarityUniversity || g.ClarityUniversity.__officeHooked) return;
+    if (__officeHooked) return;
+    if (!g.ClarityUniversity) return;
+    /* If API is sealed, event listener path is enough */
+    if (Object.isFrozen(g.ClarityUniversity)) {
+      __officeHooked = true;
+      return;
+    }
     var prev = g.ClarityUniversity.issueDiploma;
-    if (typeof prev !== "function") return;
-    g.ClarityUniversity.issueDiploma = function (phase) {
-      var dip = prev.call(g.ClarityUniversity, phase);
-      loadOffice(function () {
-        if (dip) applyDiplomaTemplate(phase, dip);
-      });
-      return dip;
-    };
-    g.ClarityUniversity.__officeHooked = true;
+    if (typeof prev !== "function") {
+      __officeHooked = true;
+      return;
+    }
+    try {
+      g.ClarityUniversity.issueDiploma = function (phase) {
+        var dip = prev.call(g.ClarityUniversity, phase);
+        loadOffice(function () {
+          if (dip) applyDiplomaTemplate(phase, dip);
+        });
+        return dip;
+      };
+    } catch (e) {
+      /* read-only after freeze — safe to ignore */
+    }
+    __officeHooked = true;
   }
 
   function injectOfficeDoor() {
@@ -283,10 +300,13 @@
       injectOfficeDoor();
     });
     setTimeout(injectOfficeDoor, 800);
-    setTimeout(hookUniversity, 500);
+    /* freeze-safe: single hook; event path covers post-seal */
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
+  g.addEventListener("clarity-vault-ready", function () {
+    setTimeout(function () { injectOfficeDoor(); }, 200);
+  });
   g.addEventListener("load", function () {
     setTimeout(boot, 400);
   });

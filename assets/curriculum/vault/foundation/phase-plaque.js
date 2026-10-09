@@ -118,7 +118,7 @@
       "<strong>How phases work</strong>" +
       "<ol>" +
       "<li><b>One module open</b> — only the current Junior lesson is unlocked.</li>" +
-      "<li><b>Checkmark</b> — mark complete to open the next module.</li>" +
+      "<li><b>Spark quiz</b> — answer correctly to open the next module.</li>" +
       "<li><b>All modules ✓</b> — then a short quiz appears.</li>" +
       "<li><b>Pass quiz</b> — unlocks the next phase (no skipping ahead).</li>" +
       "</ol></div>";
