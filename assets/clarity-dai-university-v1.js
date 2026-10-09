@@ -483,23 +483,34 @@
 
 /* mountBoost — pin curriculum card under path rail */
 (function (g) {
-  function mountBoost() {
-    var card = document.getElementById("dai-university-curriculum-card");
-    if (!card) return;
-    card.classList.remove("gate-hidden", "hidden");
-    card.hidden = false;
-    card.style.display = "";
-    card.style.removeProperty("display");
-    card.style.visibility = "visible";
-    var rail = document.getElementById("clarity-path-rail");
-    if (rail && rail.parentNode) {
-      try {
-        if (rail.nextSibling !== card) {
-          if (rail.nextSibling) rail.parentNode.insertBefore(card, rail.nextSibling);
-          else rail.parentNode.appendChild(card);
-        }
-      } catch (e) {}
+    function mountBoost(){
+    var card=document.getElementById("dai-university-card");
+    if(!card)return;
+    var pathI=0;
+    try{
+      pathI=parseInt((document.documentElement&&document.documentElement.getAttribute("data-path-i"))||"0",10)||0;
+    }catch(e0){}
+    try{
+      card.setAttribute("data-min-i","3");
+      card.setAttribute("data-clarity-path","dai");
+      card.setAttribute("data-curriculum-phase","dai");
+    }catch(e1){}
+    if(pathI<3){
+      try{
+        card.classList.add("gate-hidden");
+        card.setAttribute("data-gate-hidden","1");
+        card.style.setProperty("display","none","important");
+      }catch(e2){}
+      return;
     }
+    try{
+      card.classList.remove("gate-hidden","hidden");
+      card.removeAttribute("data-gate-hidden");
+      card.hidden=false;
+      card.style.removeProperty("display");
+      card.style.visibility="visible";
+    }catch(e3){}
+    /* Phase 1: do NOT reparent under #clarity-path-rail — that leaked the card into every RRRA tab */
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", function () {
