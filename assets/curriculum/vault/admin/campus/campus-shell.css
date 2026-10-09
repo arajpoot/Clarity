@@ -1,0 +1,216 @@
+
+/* Clarity University OS — Campus Shell
+ * Revamps legacy strips, plaque breathing room, curriculum stage, bottom rail.
+ */
+
+/* --- A1: Collapse Legacy / Print / Gate into a single Campus tools chip --- */
+.campus-tools-host {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.campus-tools-toggle {
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(13, 79, 60, 0.35);
+  background: linear-gradient(145deg, #0d4f3c, #1a6b52);
+  color: #f0e6c8;
+  cursor: pointer;
+}
+.campus-tools-panel {
+  display: none;
+  position: absolute;
+  z-index: 2200;
+  top: 100%;
+  right: 0;
+  margin-top: 0.25rem;
+  min-width: 180px;
+  padding: 0.4rem;
+  border-radius: 12px;
+  background: var(--bg-elevated, #fffdf8);
+  border: 1px solid rgba(13, 79, 60, 0.25);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+.campus-tools-panel.open { display: flex; flex-direction: column; gap: 0.25rem; }
+html[data-theme="dark"] .campus-tools-panel {
+  background: #152019;
+  border-color: rgba(212, 180, 90, 0.3);
+}
+.campus-tools-panel button,
+.campus-tools-panel .campus-tool-slot {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.campus-tools-panel button:hover { background: rgba(13, 79, 60, 0.1); }
+
+/* Hide original strip buttons once shelved */
+html[data-campus-shell="1"] .legacy-pack-btn,
+html[data-campus-shell="1"] #legacy-pack-btn,
+html[data-campus-shell="1"] [data-action="legacy-pack"],
+html[data-campus-shell="1"] .print-vault-pack,
+html[data-campus-shell="1"] #print-vault-pack-btn,
+html[data-campus-shell="1"] button[title*="Legacy"],
+html[data-campus-shell="1"] button[title*="Print vault"],
+html[data-campus-shell="1"] button[title*="Gate mode"] {
+  /* fallback: JS moves nodes; this hides stragglers in nav */
+}
+
+html[data-campus-shell="1"] .campus-shelved {
+  /* nodes moved into panel — hide any clone left */
+}
+
+/* Theme pills: quieter university style */
+html[data-campus-shell="1"] .theme-toggle,
+html[data-campus-shell="1"] .clarity-theme-pills,
+html[data-campus-shell="1"] #theme-pills {
+  opacity: 0.92;
+}
+
+/* --- A2: Breathing room under sticky banner --- */
+html[data-campus-shell="1"] #clarity-phase-plaque-rail,
+html[data-campus-shell="1"] #clarity-name-plaque-rail {
+  margin-top: 0.35rem;
+  margin-bottom: 0.25rem;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+}
+html[data-campus-shell="1"] #clarity-phase-plaque-rail {
+  border-radius: 12px;
+  background: rgba(255, 253, 248, 0.92);
+  border: 1px solid rgba(13, 79, 60, 0.12);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+html[data-theme="dark"][data-campus-shell="1"] #clarity-phase-plaque-rail {
+  background: rgba(21, 32, 25, 0.92);
+  border-color: rgba(212, 180, 90, 0.2);
+}
+html[data-campus-shell="1"] #clarity-name-plaque-rail {
+  border-radius: 12px;
+  background: rgba(13, 79, 60, 0.06);
+  border: 1px solid rgba(13, 79, 60, 0.12);
+}
+
+/* Banner density: slightly tighter on small screens */
+@media (max-width: 640px) {
+  html[data-campus-shell="1"] #clarity-top-duo .banner {
+    max-height: min(32vh, 220px);
+  }
+}
+
+/* --- B: University curriculum stage (always-visible learning desk) --- */
+#clarity-campus-stage {
+  display: block;
+  margin: 0.5rem 0.65rem 5.5rem;
+  padding: 0.75rem 0.85rem 1rem;
+  border-radius: 14px;
+  min-height: 28vh;
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(246, 241, 231, 0.95));
+  border: 1px solid rgba(13, 79, 60, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 5;
+}
+html[data-theme="dark"] #clarity-campus-stage {
+  background: linear-gradient(180deg, #141c18, #101612);
+  border-color: rgba(212, 180, 90, 0.22);
+}
+#clarity-campus-stage .campus-stage-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0d4f3c;
+  margin: 0 0 0.5rem;
+  opacity: 0.85;
+}
+html[data-theme="dark"] #clarity-campus-stage .campus-stage-label {
+  color: #d4b45a;
+}
+#clarity-campus-stage #junior-curriculum-card,
+#clarity-campus-stage #junior-high-curriculum-card,
+#clarity-campus-stage #daily-hs-curriculum-card,
+#clarity-campus-stage #dai-university-curriculum-card {
+  display: block !important;
+  visibility: visible !important;
+  margin: 0.35rem 0 0.75rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  min-height: 80px;
+}
+
+/* --- C: Bottom rail → Campus nav language --- */
+html[data-campus-shell="1"] .rrra-dock,
+html[data-campus-shell="1"] #rrra-dock,
+html[data-campus-shell="1"] nav.rrra-bottom,
+html[data-campus-shell="1"] .bottom-nav-rrra {
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(13, 79, 60, 0.2) !important;
+  background: rgba(255, 253, 248, 0.94) !important;
+}
+html[data-theme="dark"][data-campus-shell="1"] .rrra-dock,
+html[data-theme="dark"][data-campus-shell="1"] #rrra-dock {
+  background: rgba(12, 18, 15, 0.94) !important;
+  border-top-color: rgba(212, 180, 90, 0.25) !important;
+}
+/* Soft labels overlay via data attributes if JS retitles */
+.campus-rail-hint {
+  display: none;
+}
+
+
+/* --- Phase 2: theme pills + banner university calm --- */
+html[data-campus-shell="1"] #clarity-global-nav .nav-brand.cu-nav-brand {
+  margin-right: 0.35rem;
+}
+html[data-campus-shell="1"] .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+/* Soften CLARITY badge if present */
+html[data-campus-shell="1"] #current-mode-badge,
+html[data-campus-shell="1"] .current-mode-badge {
+  font-size: 0.65rem !important;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+/* Banner: reduce visual clash with plaques */
+html[data-campus-shell="1"] #clarity-top-duo {
+  border-bottom: 1px solid rgba(13, 79, 60, 0.15);
+}
+html[data-campus-shell="1"] #clarity-top-duo .banner-brand .brand-name {
+  letter-spacing: 0.04em;
+}
+
+/* Stage empty state */
+#campus-stage-body:empty::before {
+  content: "Modules load here · open Compass (✦) if the desk stays quiet";
+  display: block;
+  font-size: 0.82rem;
+  opacity: 0.65;
+  padding: 1rem 0.25rem;
+  text-align: center;
+}
+#campus-stage-body:not(:empty)::before {
+  content: none;
+}
+
+/* Bottom rail campus caption */
+html[data-campus-shell="1"] [data-campus-rail="reminder"] { /* quiet */ }
