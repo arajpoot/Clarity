@@ -84,8 +84,10 @@
       card.setAttribute("data-min-i","2");
       card.setAttribute("data-clarity-path","daily");
       card.setAttribute("data-curriculum-phase","daily");
+      card.setAttribute("data-curriculum-exclusive","1");
     }catch(e1){}
-    if(pathI<2){
+    /* Phase 2: exclusive — only the active learning path shows this curriculum */
+    if(pathI!==2){
       try{
         card.classList.add("gate-hidden");
         card.setAttribute("data-gate-hidden","1");
@@ -100,7 +102,7 @@
       card.style.removeProperty("display");
       card.style.visibility="visible";
     }catch(e3){}
-    /* Phase 1: do NOT reparent under #clarity-path-rail — that leaked the card into every RRRA tab */
+    /* Phase 1+2: never reparent under #clarity-path-rail */
   }
   function boot(){
     render();

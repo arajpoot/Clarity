@@ -408,8 +408,10 @@
       card.setAttribute("data-min-i","1");
       card.setAttribute("data-clarity-path","new-muslim");
       card.setAttribute("data-curriculum-phase","new-muslim");
+      card.setAttribute("data-curriculum-exclusive","1");
     }catch(e1){}
-    if(pathI<1){
+    /* Phase 2: exclusive — only the active learning path shows this curriculum */
+    if(pathI!==1){
       try{
         card.classList.add("gate-hidden");
         card.setAttribute("data-gate-hidden","1");
@@ -424,7 +426,7 @@
       card.style.removeProperty("display");
       card.style.visibility="visible";
     }catch(e3){}
-    /* Phase 1: do NOT reparent under #clarity-path-rail — that leaked the card into every RRRA tab */
+    /* Phase 1+2: never reparent under #clarity-path-rail */
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", function () {
