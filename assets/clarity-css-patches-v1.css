@@ -1673,3 +1673,83 @@ html[data-clarity-pin-banner="1"] #clarity-path-rail.clarity-path-rail {
     top: auto !important;
   }
 }
+
+
+/* Phase5d NIGHT — obliterate module/visit rails; lock TRACK */
+#clarity-path-rail,
+#clarity-path-module-strip,
+#clarity-visit-pill-bar,
+#clarity-daily-tools-strip,
+.clarity-path-module-strip,
+.clarity-visit-strip,
+.clarity-daily-tools-strip,
+.daily-path-tools,
+.cpr-modules {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.clarity-gate-switcher.rrra-sitewide,
+#clarity-top-duo + .clarity-gate-switcher {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 0.45rem 0.55rem !important;
+  gap: 0.4rem !important;
+  background: #0f1f18 !important;
+  z-index: 1285 !important;
+}
+.clarity-gate-switcher .cgs-btn,
+.clarity-gate-switcher .cgs-reset,
+#clarity-path-reset-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.clarity-gate-switcher .cgs-reset,
+#clarity-path-reset-btn {
+  background: #b8962e !important;
+  color: #1a1200 !important;
+  font-weight: 700 !important;
+}
+
+/* Sticky: landscape + desktop */
+@media (min-width: 901px), (orientation: landscape) and (min-height: 400px) {
+  html #clarity-global-nav.global-nav,
+  html nav#clarity-global-nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1300 !important;
+  }
+  html #clarity-top-duo {
+    position: sticky !important;
+    top: var(--clarity-nav-h, 48px) !important;
+    z-index: 1290 !important;
+  }
+  html .clarity-gate-switcher.rrra-sitewide {
+    position: sticky !important;
+    top: calc(var(--clarity-nav-h, 48px) + var(--clarity-banner-h, 100px)) !important;
+    z-index: 1285 !important;
+  }
+}
+@media (max-width: 900px) and (orientation: portrait) {
+  html #clarity-top-duo,
+  html .clarity-gate-switcher.rrra-sitewide,
+  html #clarity-global-nav.global-nav {
+    position: relative !important;
+    top: auto !important;
+  }
+}

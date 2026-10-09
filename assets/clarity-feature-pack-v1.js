@@ -182,55 +182,58 @@
     }, 50);
   }
   function ensureRail() {
+    if (document.querySelector(".clarity-gate-switcher")) return null;
     var rail = document.getElementById("clarity-path-rail");
     if (rail) return rail;
     ["clarity-visit-pill-bar", "clarity-path-module-strip", "clarity-daily-tools-strip"].forEach(function (id) {
       var n = document.getElementById(id);
-      if (n && n.parentNode) n.parentNode.removeChild(n);
-    });
-    document.querySelectorAll(".clarity-visit-strip, .clarity-daily-tools-strip").forEach(function (n) {
-      try {
-        n.remove();
-      } catch (e) {}
+      if (n) try { n.remove(); } catch (e) {}
     });
     rail = document.createElement("div");
     rail.id = "clarity-path-rail";
     rail.className = "clarity-path-rail";
-    rail.setAttribute("role", "navigation");
     var duo = document.getElementById("clarity-top-duo");
-    if (duo && duo.parentNode) {
+    var gate = document.querySelector(".clarity-gate-switcher");
+    if (gate && gate.parentNode) {
+      if (gate.nextSibling) gate.parentNode.insertBefore(rail, gate.nextSibling);
+      else gate.parentNode.appendChild(rail);
+    } else if (duo && duo.parentNode) {
       if (duo.nextSibling) duo.parentNode.insertBefore(rail, duo.nextSibling);
       else duo.parentNode.appendChild(rail);
-    } else document.body.insertBefore(rail, document.body.firstChild);
+    } else (document.body || document.documentElement).appendChild(rail);
     return rail;
   }
   function renderRail() {
-    var rail = ensureRail();
+    /* Phase5d: module/visit rail obliterated — TRACK lives in .clarity-gate-switcher only */
+    var gate = document.querySelector(".clarity-gate-switcher");
+    var rail = document.getElementById("clarity-path-rail");
+    if (gate) {
+      if (rail) {
+        try {
+          rail.style.display = "none";
+          rail.setAttribute("hidden", "");
+          rail.innerHTML = "";
+        } catch (e) {}
+      }
+      return;
+    }
+    var rail2 = ensureRail();
     var path = currentPath();
     var html = '<div class="cpr-track-row" role="group" aria-label="Phased learning track">';
-    html += '<span class="cpr-track-label">TRACK</span>';
-    html += '<div class="cpr-paths">';
+    html += '<span class="cpr-track-label">TRACK</span><div class="cpr-paths">';
     PATHS.forEach(function (p) {
       html +=
         '<button type="button" class="cpr-path' +
         (p.id === path ? " is-on" : "") +
         '" data-path="' +
         p.id +
-        '" aria-pressed="' +
-        (p.id === path ? "true" : "false") +
         '">' +
         p.label +
         "</button>";
     });
     html +=
-      '<button type="button" class="cpr-path cpr-reset" id="clarity-path-reset-btn" data-path-reset="1" title="Reset to Seeker">↻Reset</button>';
-    html += "</div></div>";
-    html += '<div class="cpr-modules" aria-label="Modules on this path">';
-    (MODULES[path] || []).forEach(function (m) {
-      html += '<button type="button" class="cpr-mod" data-mod="' + m.id + '">' + m.label + "</button>";
-    });
-    html += "</div>";
-    rail.innerHTML = html;
+      '<button type="button" class="cpr-path cpr-reset" id="clarity-path-reset-btn" data-path-reset="1">↻Reset</button></div></div>';
+    rail2.innerHTML = html;
   }
   function boot() {
     renderRail();
