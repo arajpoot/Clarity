@@ -289,3 +289,65 @@
     true
   );
 })(typeof window !== "undefined" ? window : this);
+
+/* ---- strip-nuke-v1: remove legacy straps; path rail owns chrome ---- */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_STRIP_NUKE_V1__) return;
+  g.__CLARITY_STRIP_NUKE_V1__ = true;
+  var KILL_IDS = [
+    "clarity-visit-pill-bar",
+    "clarity-path-module-strip",
+    "clarity-daily-tools-strip",
+    "clarity-last-visited",
+    "clarity-tools-strip"
+  ];
+  var KILL_SEL =
+    ".clarity-visit-strip, .cv-stitched-banner, .clarity-path-module-strip, .clarity-daily-tools-strip, .daily-path-tools, #clarity-path-tools, .path-tools-row";
+  function nuke() {
+    KILL_IDS.forEach(function (id) {
+      var n = document.getElementById(id);
+      if (n && n.parentNode) {
+        try {
+          n.parentNode.removeChild(n);
+        } catch (e) {}
+      }
+    });
+    try {
+      document.querySelectorAll(KILL_SEL).forEach(function (n) {
+        try {
+          n.remove();
+        } catch (e) {}
+      });
+    } catch (e) {}
+    // Hide TRACK row if path pack injects it with common text
+    try {
+      document.querySelectorAll("div, section, nav").forEach(function (el) {
+        if (el.id === "clarity-path-rail" || el.id === "tab-notes" || el.id === "amana-vault-gate" || el.id === "amana-vault-interior") return;
+        var t = (el.textContent || "").trim();
+        if (el.children.length <= 8 && /^TRACK/i.test(t) && /Seeker/i.test(t) && /Da.?i/i.test(t)) {
+          el.style.display = "none";
+          el.setAttribute("data-clarity-nuked-track", "1");
+        }
+        if (/^LAST$/i.test((el.querySelector && el.querySelector(".cv-label") || {}).textContent || "")) {
+          el.style.display = "none";
+        }
+      });
+    } catch (e2) {}
+  }
+  function boot() {
+    nuke();
+    setTimeout(nuke, 200);
+    setTimeout(nuke, 800);
+    setTimeout(nuke, 2000);
+    try {
+      var mo = new MutationObserver(function () {
+        clearTimeout(g.__stripNukeT);
+        g.__stripNukeT = setTimeout(nuke, 100);
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    } catch (e) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})(typeof window !== "undefined" ? window : this);

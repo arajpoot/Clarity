@@ -1173,3 +1173,232 @@ html.clarity-desktop #clarity-path-rail {
     z-index: 40;
   }
 }
+
+
+/* ===== STRIP NUKE + PATH RAIL VISIBILITY v3 ===== */
+#clarity-visit-pill-bar,
+.cv-stitched-banner,
+#clarity-path-module-strip,
+#clarity-daily-tools-strip,
+.clarity-visit-strip,
+.clarity-daily-tools-strip,
+.daily-path-tools,
+[data-clarity-nuked-track="1"] {
+  display: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#clarity-path-rail {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 48 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+  width: 100% !important;
+  padding: 0.45rem 0.75rem 0.55rem !important;
+  background: #0d1f17 !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35) !important;
+  color: #e8f0ea !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+#clarity-path-rail .cpr-paths,
+#clarity-path-rail .cpr-modules {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  align-items: center !important;
+}
+#clarity-path-rail .cpr-path,
+#clarity-path-rail .cpr-mod {
+  display: inline-flex !important;
+  align-items: center !important;
+  color: #e8f0ea !important;
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(212,175,55,0.4) !important;
+  border-radius: 999px !important;
+  padding: 0.3rem 0.75rem !important;
+  font-size: 0.8rem !important;
+  line-height: 1.2 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  cursor: pointer !important;
+}
+#clarity-path-rail .cpr-path.is-on {
+  background: linear-gradient(135deg, #2d6a4f, #1b4332) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+html.clarity-desktop #clarity-top-duo {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 49 !important;
+}
+
+/* Meme toolbar restored above canvas */
+#meme-card .clarity-meme-toolbar,
+#meme-studio-root .clarity-meme-toolbar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  width: 100% !important;
+  order: 1 !important;
+  margin: 0.4rem 0 !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+#meme-card .clarity-meme-toggle-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.3rem !important;
+  width: 100% !important;
+  order: 2 !important;
+  margin: 0.25rem 0 0.5rem !important;
+}
+#meme-stage-wrap, #meme-stage, .meme-preview-only {
+  order: 3 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+.clarity-meme-shariah-note {
+  flex: 1 1 100%;
+  font-size: 0.68rem;
+  opacity: 0.85;
+}
+.meme-tb-chip, .clarity-meme-toolbar .mv-chip {
+  font-size: 0.75rem !important;
+  padding: 0.28rem 0.55rem !important;
+}
+
+/* Tajweed input level meter */
+.tj-lmr-input-level, #tj-lmr-input-level {
+  margin: 0.45rem 0 0.6rem;
+}
+.tj-lmr-level-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+  margin-bottom: 0.2rem;
+}
+.tj-lmr-level-track {
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+.tj-lmr-level-fill, #tj-lmr-meter-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #2d6a4f, #d4af37);
+  transition: width 0.05s linear;
+}
+
+/* Calligraphy: narrower pad, side scroll, tip + viewport */
+#callig-stage-wrap.clarity-callig-narrow,
+#callig-stage-wrap {
+  max-width: min(100%, 560px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.35rem 0;
+}
+#callig-canvas {
+  max-width: min(100%, 520px) !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+.clarity-callig-tip-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  margin: 0.35rem 0 0.5rem;
+}
+.clarity-callig-tip-bar .cct-label {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  margin-right: 0.25rem;
+}
+.clarity-callig-tip-bar .mv-chip.on {
+  background: linear-gradient(135deg, #2d6a4f, #1b4332);
+  color: #fff;
+}
+#callig-lab-card {
+  overflow-x: visible;
+}
+
+/* Curriculum path cards — always visible when present */
+#junior-curriculum-card,
+#junior-high-curriculum-card,
+#daily-hs-curriculum-card,
+#dai-university-curriculum-card {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin: 0.75rem 0.5rem 1.25rem !important;
+  border: 1px solid rgba(212, 175, 55, 0.4) !important;
+  border-radius: 14px !important;
+  padding: 1rem 1.1rem !important;
+  background: rgba(19, 42, 32, 0.95) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+#junior-curriculum-card .card-title,
+#junior-high-curriculum-card .card-title,
+#daily-hs-curriculum-card .card-title,
+#dai-university-curriculum-card .card-title {
+  color: #d4af37 !important;
+  font-size: 1.15rem !important;
+}
+
+/* Vault access — gate must be reachable */
+#tab-notes.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 50vh !important;
+}
+#tab-notes.active.amana-locked #amana-vault-gate,
+#tab-notes.active #amana-vault-gate:not([hidden]) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 5 !important;
+  margin: 1rem auto !important;
+  max-width: 28rem !important;
+  width: calc(100% - 1.25rem) !important;
+}
+#amana-vault-gate .av-brand,
+#amana-vault-gate .av-warn,
+#amana-vault-gate input,
+#amana-vault-gate button {
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+/* Unlock / create buttons clickable */
+#amana-btn-unlock,
+#amana-btn-create,
+#amana-btn-have,
+#amana-btn-back-create {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+}

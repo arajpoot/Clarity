@@ -1,0 +1,49 @@
+/*! Clarity Amana Vault CSS — ISOLATED
+ * Scope: #tab-notes, #amana-vault-gate, #amana-vault-interior only.
+ * Do not import path-rail / meme / curriculum rules here.
+ */
+#tab-notes.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 40vh !important;
+}
+#tab-notes.active.amana-locked #amana-vault-gate,
+#amana-vault-gate:not([hidden]) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 6 !important;
+  margin: 1rem auto !important;
+  max-width: 28rem !important;
+  width: calc(100% - 1.25rem) !important;
+}
+#amana-vault-gate input,
+#amana-vault-gate button,
+#amana-btn-unlock,
+#amana-btn-create,
+#amana-btn-have,
+#amana-btn-back-create,
+#amana-btn-lock {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+#tab-notes.active.amana-unlocked #amana-vault-interior {
+  display: flex !important;
+  flex-direction: column !important;
+  visibility: visible !important;
+}
+#tab-notes.active.amana-unlocked #amana-vault-gate {
+  display: none !important;
+}
+/* Protect vault from accidental strip-nuke / path-rail hide */
+#amana-vault-gate,
+#amana-vault-interior,
+#tab-notes {
+  content-visibility: visible !important;
+}

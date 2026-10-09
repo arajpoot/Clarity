@@ -394,3 +394,38 @@
 
   g.ClarityJuniorHighCurriculum = { UNITS: UNITS, render: render, markDone: markDone };
 })(typeof window !== "undefined" ? window : this);
+
+/* mountBoost — pin curriculum card under path rail */
+(function (g) {
+  function mountBoost() {
+    var card = document.getElementById("junior-high-curriculum-card");
+    if (!card) return;
+    card.classList.remove("gate-hidden", "hidden");
+    card.hidden = false;
+    card.style.display = "";
+    card.style.removeProperty("display");
+    card.style.visibility = "visible";
+    var rail = document.getElementById("clarity-path-rail");
+    if (rail && rail.parentNode) {
+      try {
+        if (rail.nextSibling !== card) {
+          if (rail.nextSibling) rail.parentNode.insertBefore(card, rail.nextSibling);
+          else rail.parentNode.appendChild(card);
+        }
+      } catch (e) {}
+    }
+  }
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(mountBoost, 200);
+      setTimeout(mountBoost, 1000);
+      setTimeout(mountBoost, 2500);
+    });
+  else {
+    setTimeout(mountBoost, 200);
+    setTimeout(mountBoost, 1000);
+  }
+  g.addEventListener("clarity-path-changed", function () {
+    setTimeout(mountBoost, 80);
+  });
+})(typeof window !== "undefined" ? window : this);
