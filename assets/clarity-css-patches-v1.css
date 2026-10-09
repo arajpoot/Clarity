@@ -1844,3 +1844,85 @@ html .clarity-gate-switcher.rrra-sitewide {
   top: calc(var(--clarity-nav-h, 48px) + var(--clarity-banner-h, 120px)) !important;
   z-index: 1285 !important;
 }
+
+
+/* TRACK plaque — centered pills */
+.clarity-gate-switcher.rrra-sitewide,
+.clarity-gate-switcher {
+  justify-content: center !important;
+  text-align: center !important;
+}
+.clarity-gate-switcher .cgp-intro {
+  text-align: center !important;
+  flex: 1 1 100% !important;
+}
+.clarity-gate-switcher .cgp-track-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 0.4rem !important;
+}
+.clarity-gate-switcher .cgs-label {
+  margin: 0 0.35rem 0 0 !important;
+}
+.clarity-gate-switcher .cgs-btn {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  z-index: 2 !important;
+}
+.clarity-gate-switcher .cgs-btn.is-on {
+  box-shadow: 0 0 0 2px rgba(255, 220, 120, 0.7) !important;
+  transform: scale(1.03);
+}
+
+
+/* Path quiz — phase palettes + clearer options */
+#clarity-path-quiz-modal { pointer-events: auto !important; z-index: 10050 !important; }
+#clarity-path-quiz-modal .cpq-card {
+  border: 2px solid var(--cpq-accent, #d4b45a);
+  border-radius: 16px;
+  max-width: 26rem;
+  width: 92%;
+  padding: 1rem 1.1rem;
+  background: #0f1f18;
+  color: #e8f0ea;
+}
+#clarity-path-quiz-modal[data-quiz-target="new_muslim"] .cpq-card,
+#clarity-path-quiz-modal.cpq-phase-new_muslim .cpq-card {
+  border-color: #2d8a5a;
+  background: linear-gradient(165deg, #0f1f18, #0d281c);
+}
+#clarity-path-quiz-modal[data-quiz-target="practicing"] .cpq-card,
+#clarity-path-quiz-modal.cpq-phase-practicing .cpq-card {
+  border-color: #2a6f9e;
+  background: linear-gradient(165deg, #0f1a22, #0f1f18);
+}
+#clarity-path-quiz-modal[data-quiz-target="dai"] .cpq-card,
+#clarity-path-quiz-modal.cpq-phase-dai .cpq-card {
+  border-color: #6b4ea0;
+  background: linear-gradient(165deg, #1a1224, #0f1f18);
+}
+#clarity-path-quiz-modal[data-quiz-target="new_muslim"] h3 { color: #5dcea0 !important; }
+#clarity-path-quiz-modal[data-quiz-target="practicing"] h3 { color: #6eb6e8 !important; }
+#clarity-path-quiz-modal[data-quiz-target="dai"] h3 { color: #b39ddb !important; }
+#clarity-path-quiz-modal .cpq-opts { display: flex !important; flex-direction: column !important; gap: 0.45rem !important; }
+#clarity-path-quiz-modal .cpq-opt {
+  text-align: left !important;
+  padding: 0.55rem 0.75rem !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  background: rgba(255,255,255,0.06) !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+#clarity-path-quiz-modal .cpq-opt.correct {
+  border-color: #2d8a5a !important;
+  background: rgba(45,138,90,0.25) !important;
+}
+#clarity-path-quiz-modal .cpq-opt.wrong {
+  border-color: #c45c3e !important;
+  background: rgba(196,92,62,0.2) !important;
+}

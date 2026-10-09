@@ -1228,3 +1228,182 @@
   });
   g.addEventListener("clarity-path-changed", function () { setTimeout(measure, 50); });
 })(typeof window !== "undefined" ? window : this);
+
+/* TRACK pills + Reset — quiz-aware path switch */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_GATE_CLICK_V1__) return;
+  g.__CLARITY_GATE_CLICK_V1__ = true;
+  var IDX = { seeker: 0, new_muslim: 1, "new-muslim": 1, practicing: 2, daily: 2, dai: 3 };
+  function norm(id) {
+    id = String(id || "seeker");
+    if (id === "daily") id = "practicing";
+    if (id === "new-muslim") id = "new_muslim";
+    return id;
+  }
+  function unlockedMax() {
+    try { return parseInt(localStorage.getItem("clarity_path_unlocked_max") || "0", 10) || 0; } catch (e) { return 0; }
+  }
+  function markActive(id) {
+    id = norm(id);
+    try {
+      document.querySelectorAll(".clarity-gate-switcher .cgs-btn[data-gate]").forEach(function (b) {
+        var on = norm(b.getAttribute("data-gate")) === id;
+        b.classList.toggle("is-on", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    } catch (e) {}
+  }
+  function doSwitch(id) {
+    id = norm(id);
+    var idx = IDX[id] != null ? IDX[id] : 0;
+    var max = unlockedMax();
+    /* Equal or lower: free switch */
+    if (idx <= max) {
+      try {
+        localStorage.setItem("clarity_path_focus", id);
+        localStorage.setItem("clarity_committed_path", id === "practicing" ? "daily" : id === "new_muslim" ? "new-muslim" : id);
+        document.documentElement.setAttribute("data-clarity-path", id);
+        document.documentElement.setAttribute("data-path-i", String(idx));
+      } catch (e) {}
+      try {
+        g.__clarityPathBypass = true;
+        if (typeof g.clarityRequestPath === "function") g.clarityRequestPath(id);
+        else if (typeof g.__clarityPathDoSwitchRaw === "function") g.__clarityPathDoSwitchRaw(id);
+        else if (typeof g.applyGateSectionFilter === "function") g.applyGateSectionFilter(id);
+      } catch (e2) {}
+      finally { try { g.__clarityPathBypass = false; } catch (e3) {} }
+      markActive(id);
+      try { g.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { path: id, pathI: idx } })); } catch (e4) {}
+      return;
+    }
+    /* Higher path: open quiz / unlock — NO bypass, do NOT auto-raise unlocked_max */
+    try {
+      if (typeof g.clarityRequestPath === "function") g.clarityRequestPath(id);
+    } catch (e5) {
+      try { console.warn("[Clarity] unlock attempt", e5); } catch (e6) {}
+    }
+  }
+  function doReset() {
+    try {
+      localStorage.setItem("clarity_path_unlocked_max", "0");
+      localStorage.setItem("clarity_committed_path", "seeker");
+      localStorage.setItem("clarity_path_focus", "seeker");
+      localStorage.setItem("clarity_path_override", "seeker");
+      localStorage.removeItem("clarity_quiz_passed_v1");
+      localStorage.removeItem("clarity_path_quiz_done");
+    } catch (e) {}
+    try {
+      if (typeof g.clarityPathResetToSeeker === "function") g.clarityPathResetToSeeker();
+    } catch (e2) {}
+    try {
+      g.__clarityPathBypass = true;
+      if (typeof g.clarityRequestPath === "function") g.clarityRequestPath("seeker");
+    } catch (e3) {}
+    finally { try { g.__clarityPathBypass = false; } catch (e4) {} }
+    markActive("seeker");
+    try {
+      document.documentElement.setAttribute("data-path-i", "0");
+      g.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { path: "seeker", pathI: 0 } }));
+    } catch (e5) {}
+  }
+  document.addEventListener(
+    "click",
+    function (ev) {
+      var el = ev.target;
+      if (!el || !el.closest) return;
+      if (el.closest("#clarity-path-quiz-modal")) return;
+      if (el.closest("#clarity-path-reset-btn, .cgs-reset, [data-path-reset]")) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        doReset();
+        return;
+      }
+      var btn = el.closest(".clarity-gate-switcher .cgs-btn[data-gate]");
+      if (btn) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        doSwitch(btn.getAttribute("data-gate"));
+      }
+    },
+    true
+  );
+  function bootMark() {
+    try {
+      markActive(localStorage.getItem("clarity_path_focus") || "seeker");
+      var gate = document.querySelector(".clarity-gate-switcher");
+      if (gate) {
+        gate.style.setProperty("pointer-events", "auto", "important");
+        gate.querySelectorAll(".cgs-btn").forEach(function (b) {
+          b.style.setProperty("pointer-events", "auto", "important");
+          b.style.setProperty("cursor", "pointer", "important");
+        });
+      }
+    } catch (e) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bootMark);
+  else bootMark();
+  g.addEventListener("load", bootMark);
+  g.addEventListener("clarity-path-changed", function (ev) {
+    try { markActive((ev.detail && ev.detail.path) || "seeker"); } catch (e) {}
+  });
+})(typeof window !== "undefined" ? window : this);
+
+/* QUIZ ENHANCE — shuffle visible answers, phase colors, fetch bank */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_QUIZ_ENHANCE_V1__) return;
+  g.__CLARITY_QUIZ_ENHANCE_V1__ = true;
+  function shuffleDomOpts(root) {
+    var wrap = root.querySelector(".cpq-opts") || root;
+    var btns = Array.prototype.slice.call(wrap.querySelectorAll("button.cpq-opt"));
+    if (btns.length < 2) return;
+    for (var i = btns.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = btns[i];
+      btns[i] = btns[j];
+      btns[j] = tmp;
+    }
+    btns.forEach(function (b) { wrap.appendChild(b); });
+  }
+  function theme(modal) {
+    var h = (modal.querySelector("h3") || {}).textContent || "";
+    var target = "new_muslim";
+    if (/Daily/i.test(h)) target = "practicing";
+    else if (/Da'?i/i.test(h)) target = "dai";
+    else if (/New Muslim/i.test(h)) target = "new_muslim";
+    modal.setAttribute("data-quiz-target", target);
+    modal.classList.add("cpq-phase-" + target);
+  }
+  function enhance() {
+    var modal = document.getElementById("clarity-path-quiz-modal");
+    if (!modal || !modal.classList.contains("open")) return;
+    theme(modal);
+    var card = modal.querySelector(".cpq-card") || modal;
+    var sig = (card.querySelector(".cpq-q") || {}).textContent || "";
+    if (card.getAttribute("data-shuf") === sig) return;
+    shuffleDomOpts(card);
+    try { card.setAttribute("data-shuf", sig); } catch (e) {}
+  }
+  function loadBank() {
+    ["./assets/curriculum/shared/path-quiz-bank.json", "/assets/curriculum/shared/path-quiz-bank.json"].forEach(function (u, idx, arr) {
+      if (g.__CLARITY_QUIZ_BANK__) return;
+      fetch(u, { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (j) { g.__CLARITY_QUIZ_BANK__ = j; })
+        .catch(function () {});
+    });
+  }
+  function watch() {
+    var modal = document.getElementById("clarity-path-quiz-modal");
+    if (!modal) return;
+    new MutationObserver(function () { setTimeout(enhance, 20); }).observe(modal, {
+      childList: true, subtree: true, attributes: true, attributeFilter: ["class"]
+    });
+    enhance();
+  }
+  function boot() { loadBank(); watch(); setTimeout(watch, 800); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  g.addEventListener("load", function () { setTimeout(watch, 200); });
+})(typeof window !== "undefined" ? window : this);
