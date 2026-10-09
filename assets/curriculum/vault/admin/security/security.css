@@ -1,0 +1,53 @@
+
+/* Security Wing */
+.clarity-security-badge {
+  position: fixed; bottom: 12px; right: 12px; z-index: 99991;
+  font-size: 0.68rem; font-weight: 700; padding: 0.25rem 0.55rem;
+  border-radius: 999px; cursor: pointer;
+  border: 1px solid rgba(180, 80, 80, 0.45);
+  background: rgba(30, 12, 12, 0.92); color: #f0d0d0;
+  letter-spacing: 0.03em;
+}
+.clarity-security-badge.sec-warn {
+  border-color: #e08080; color: #ffe0e0;
+  box-shadow: 0 0 0 1px rgba(224, 128, 128, 0.35);
+  animation: sec-pulse 1.6s ease-in-out infinite;
+}
+@keyframes sec-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+.clarity-security-modal {
+  position: fixed; inset: 0; z-index: 100090;
+  display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.clarity-security-modal.show { display: flex !important; }
+.csm-backdrop {
+  position: absolute; inset: 0; background: rgba(20, 6, 6, 0.85); backdrop-filter: blur(10px);
+}
+.csm-panel {
+  position: relative; z-index: 1; max-width: 420px; width: 100%; max-height: 90vh; overflow: auto;
+  background: linear-gradient(165deg, #f8eeee, #f0e4e4); color: #2a1818;
+  border-radius: 14px; border: 2px solid #6a3030;
+  box-shadow: 0 20px 50px rgba(0,0,0,.45); padding: 1.1rem 1.15rem;
+}
+html[data-theme="dark"] .csm-panel {
+  background: linear-gradient(165deg, #241414, #1a1010); color: #f0e0e0;
+}
+.csm-x {
+  position: absolute; top: .4rem; right: .5rem; border: none; background: transparent;
+  font-size: 1.35rem; cursor: pointer; color: inherit;
+}
+.csm-stamp {
+  display: inline-block; font-size: .62rem; font-weight: 800; letter-spacing: .14em;
+  padding: .2rem .5rem; border: 2px solid #a05050; color: #8a3030;
+  transform: rotate(-6deg); margin-bottom: .35rem; background: rgba(160,80,80,.12);
+}
+.csm-lead { font-size: .82rem; opacity: .88; line-height: 1.4; margin: .35rem 0 .75rem; }
+.csm-breaks { margin: .4rem 0; padding-left: 1.1rem; font-size: .8rem; line-height: 1.4; }
+.csm-ok { color: #1a6b52; font-weight: 600; font-size: .86rem; }
+.csm-foot { font-size: .68rem; opacity: .7; margin-top: .75rem; }
+.csm-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+.cnp-sec-btn {
+  background: linear-gradient(155deg, rgba(90,30,30,.92), rgba(212,180,90,.28)) !important;
+}

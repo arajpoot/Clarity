@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "office": "Clarity University \u2014 Security Wing",
+  "motto": "Scan \u00b7 detect \u00b7 rewire \u00b7 never corrupt the seal",
+  "disclaimer": "Auditors soft-repair runtime wiring on-device. They do not modify sealed foundation files or issue security guarantees against attackers.",
+  "pipelines": [
+    {
+      "id": "vault-boot",
+      "label": "Vault seal boot",
+      "apis": [
+        "ClarityVault",
+        "__CLARITY_VAULT_SEALED__"
+      ],
+      "repair": "none"
+    },
+    {
+      "id": "curriculum",
+      "label": "Curriculum engine & controller",
+      "apis": [
+        "ClarityCurriculumEngine",
+        "ClarityCurriculumController"
+      ],
+      "methods": {
+        "ClarityCurriculumController": [
+          "syncTracks",
+          "goToPhase",
+          "getPhase"
+        ]
+      },
+      "repair": "syncTracks"
+    },
+    {
+      "id": "spark-quiz",
+      "label": "Spark quiz pipe",
+      "apis": [
+        "clarityOpenModuleSparkQuiz"
+      ],
+      "repair": "none"
+    },
+    {
+      "id": "university",
+      "label": "Diplomas & ledger",
+      "apis": [
+        "ClarityUniversity",
+        "clarityRecordUniversityScore"
+      ],
+      "methods": {
+        "ClarityUniversity": [
+          "getName",
+          "issueDiploma",
+          "openHall"
+        ]
+      },
+      "repair": "none"
+    },
+    {
+      "id": "staff",
+      "label": "Staff wing",
+      "apis": [
+        "ClarityStaffOps",
+        "ClarityStaffFiqh",
+        "ClarityStaffScout",
+        "ClarityStaffLibrarian"
+      ],
+      "repair": "staff-health"
+    },
+    {
+      "id": "faculty",
+      "label": "Faculty handoff",
+      "apis": [
+        "ClarityFaculty"
+      ],
+      "methods": {
+        "ClarityFaculty": [
+          "enroll",
+          "canStartPhase",
+          "offerHelp"
+        ]
+      },
+      "repair": "none"
+    },
+    {
+      "id": "lab",
+      "label": "Craft laboratory",
+      "apis": [
+        "ClarityLab"
+      ],
+      "methods": {
+        "ClarityLab": [
+          "render",
+          "openStation"
+        ]
+      },
+      "dom": [
+        "clarity-lab-shell"
+      ],
+      "repair": "lab-render"
+    },
+    {
+      "id": "registrar",
+      "label": "Registrar phase desk",
+      "apis": [
+        "ClarityRegistrar"
+      ],
+      "methods": {
+        "ClarityRegistrar": [
+          "applyInertUI",
+          "canEnter",
+          "openDesk"
+        ]
+      },
+      "repair": "inert-ui"
+    },
+    {
+      "id": "chrome",
+      "label": "Name / phase plaques",
+      "dom": [
+        "clarity-phase-plaque-rail",
+        "clarity-name-plaque-rail"
+      ],
+      "repair": "none"
+    }
+  ],
+  "scanIntervalMs": 30000,
+  "maxRepairsPerScan": 4
+}
