@@ -1192,7 +1192,7 @@
         gate.style.setProperty("flex-direction", "row", "important");
         gate.style.setProperty("flex-wrap", "wrap", "important");
         gate.style.setProperty("align-items", "center", "important");
-        gate.style.setProperty("justify-content", "flex-start", "important");
+        gate.style.setProperty("justify-content", "center", "important");
         gate.style.setProperty("position", "sticky", "important");
         gate.style.setProperty("top", (nh + bh) + "px", "important");
         gate.style.setProperty("z-index", "1285", "important");
