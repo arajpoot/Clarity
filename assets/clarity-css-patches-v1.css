@@ -1605,3 +1605,71 @@ html[data-clarity-pin-banner="1"] #clarity-path-rail.clarity-path-rail {
     top: auto !important;
   }
 }
+
+
+/* Phase5c night: landscape sticky + sitewide track */
+/* Sitewide track under banner */
+#clarity-top-duo + .clarity-gate-switcher.rrra-sitewide,
+.clarity-gate-switcher.rrra-sitewide {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  padding: 0.4rem 0.55rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: #0f1f18 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 1285;
+}
+.clarity-gate-switcher .cgs-label { display: inline-block !important; }
+.clarity-gate-switcher .cgs-reset,
+#clarity-path-reset-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: #b8962e !important;
+  color: #1a1200 !important;
+}
+
+/* Desktop + landscape: sticky nav + banner + track */
+@media (min-width: 901px), (orientation: landscape) and (min-width: 500px) {
+  html #clarity-global-nav.global-nav,
+  html nav#clarity-global-nav {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1300 !important;
+  }
+  html #clarity-top-duo {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: var(--clarity-nav-h, 52px) !important;
+    z-index: 1290 !important;
+  }
+  html #clarity-top-duo + .clarity-gate-switcher.rrra-sitewide,
+  html .clarity-gate-switcher.rrra-sitewide {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: calc(var(--clarity-nav-h, 52px) + var(--clarity-banner-h, 56px)) !important;
+    z-index: 1285 !important;
+  }
+}
+
+/* Portrait phone only: free scroll (no sticky banner) */
+@media (max-width: 900px) and (orientation: portrait) {
+  html #clarity-global-nav.global-nav,
+  html nav#clarity-global-nav,
+  html #clarity-top-duo,
+  html #clarity-top-duo + .clarity-gate-switcher.rrra-sitewide,
+  html .clarity-gate-switcher.rrra-sitewide,
+  html #clarity-path-rail {
+    position: relative !important;
+    top: auto !important;
+  }
+  html[data-chrome-pin="1"] #clarity-top-duo,
+  html[data-chrome-pin="1"] #clarity-global-nav.global-nav {
+    position: relative !important;
+    top: auto !important;
+  }
+}

@@ -1107,13 +1107,17 @@
       document.documentElement.style.setProperty("--clarity-nav-h", nh + "px");
       document.documentElement.style.setProperty("--clarity-banner-h", bh + "px");
       /* Mobile: never sticky banner — free scroll */
-      var mobile = false;
+      var portraitPhone = false;
       try {
-        mobile = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+        portraitPhone =
+          window.matchMedia &&
+          window.matchMedia("(max-width: 900px) and (orientation: portrait)").matches;
       } catch (eM) {
-        mobile = (window.innerWidth || 0) <= 900;
+        var w = window.innerWidth || 0;
+        var h = window.innerHeight || 0;
+        portraitPhone = w <= 900 && h >= w;
       }
-      if (mobile) {
+      if (portraitPhone) {
         document.documentElement.setAttribute("data-chrome-pin", "0");
         document.documentElement.setAttribute("data-clarity-pin-banner", "0");
       } else {
@@ -1132,6 +1136,7 @@
     setTimeout(measure, 200);
   }
   g.addEventListener("resize", function () { setTimeout(measure, 100); });
+  g.addEventListener("orientationchange", function () { setTimeout(measure, 150); setTimeout(measure, 400); });
 })(typeof window !== "undefined" ? window : this);
 
 ;(function(g){
