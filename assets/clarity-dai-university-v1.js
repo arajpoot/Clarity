@@ -278,27 +278,47 @@
   }
 
   function ensureCard() {
-    var card = document.getElementById("dai-university-curriculum-card");
-    if (card) return card;
+    var card = document.getElementById("dai-university-curriculum-card") || document.getElementById("dai-university-card");
+    if (card) {
+      try {
+        card.id = "dai-university-curriculum-card";
+        card.setAttribute("data-min-i", "3");
+        card.setAttribute("data-clarity-path", "dai");
+        card.setAttribute("data-curriculum-phase", "dai");
+        card.setAttribute("data-rrra", "action");
+        card.setAttribute("data-curriculum-exclusive", "1");
+      } catch (e) {}
+      return card;
+    }
     card = document.createElement("section");
     card.id = "dai-university-curriculum-card";
-    card.className = "card";
+    card.className = "card curriculum-phase-card";
+    card.setAttribute("data-min-i", "3");
     card.setAttribute("data-clarity-path", "dai");
-    card.setAttribute("data-clarity-curriculum", "university");
-    card.innerHTML =
-      '<h2 class="card-title">University track — Daʿī</h2>' +
-      '<p class="card-lead">Usūl, prophetic method, media craft, caution with weak reports, Asmāʾ/Seerah depth, and a portfolio capstone. Under the existing Daʿī path. Educational only.</p>' +
-      '<div id="dai-uni-progress" class="junior-progress"></div>' +
-      '<div id="dai-uni-body" class="junior-body"></div>' +
-      '<p class="junior-footnote">Informed by Madinah / UQU-style daʿwah course maps & Dawah Academy method modules. Not a degree or ijāzah.</p>';
-    var anchor =
-      document.getElementById("dai-transmit-card") ||
-      document.getElementById("israeliyat-card") ||
-      document.getElementById("meme-card");
-    if (anchor && anchor.parentNode) {
-      if (anchor.nextSibling) anchor.parentNode.insertBefore(card, anchor.nextSibling);
-      else anchor.parentNode.appendChild(card);
-    } else (document.getElementById("main") || document.body).appendChild(card);
+    card.setAttribute("data-curriculum-phase", "dai");
+    card.setAttribute("data-rrra", "action");
+    card.setAttribute("data-curriculum-exclusive", "1");
+    card.innerHTML = "<h2 class=\"card-title\">Da'i University curriculum</h2><p class=\"card-lead\">Methods, media, and portfolio practice. Educational only.</p><div id=\"dai-uni-progress\" class=\"junior-progress\"></div><div id=\"dai-uni-body\" class=\"junior-body\"></div>";
+    var tab = document.getElementById("tab-action");
+    var anchors = ["voice-translator-card", "israeliyat-card", "guidance-learn-strip"];
+    var placed = false;
+    for (var i = 0; i < anchors.length; i++) {
+      var a = document.getElementById(anchors[i]);
+      if (a && a.parentNode) {
+        try {
+          if (a.nextSibling) a.parentNode.insertBefore(card, a.nextSibling);
+          else a.parentNode.appendChild(card);
+          placed = true;
+          break;
+        } catch (e2) {}
+      }
+    }
+    if (!placed && tab) {
+      try { tab.appendChild(card); placed = true; } catch (e3) {}
+    }
+    if (!placed) {
+      try { (document.getElementById("main") || document.body).appendChild(card); } catch (e4) {}
+    }
     return card;
   }
 
@@ -484,7 +504,7 @@
 /* mountBoost — pin curriculum card under path rail */
 (function (g) {
     function mountBoost(){
-    var card=document.getElementById("dai-university-card");
+    var card=document.getElementById("dai-university-curriculum-card");
     if(!card)return;
     var pathI=0;
     try{
@@ -496,7 +516,6 @@
       card.setAttribute("data-curriculum-phase","dai");
       card.setAttribute("data-curriculum-exclusive","1");
     }catch(e1){}
-    /* Phase 2: exclusive — only the active learning path shows this curriculum */
     if(pathI!==3){
       try{
         card.classList.add("gate-hidden");
@@ -512,7 +531,6 @@
       card.style.removeProperty("display");
       card.style.visibility="visible";
     }catch(e3){}
-    /* Phase 1+2: never reparent under #clarity-path-rail */
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", function () {

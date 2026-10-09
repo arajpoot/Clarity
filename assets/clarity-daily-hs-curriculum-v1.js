@@ -71,7 +71,44 @@
   function done(id){var p=load();return !!(p[id]&&p[id].done);}
   function mark(id){var p=load();p[id]={done:true,at:Date.now()};save(p);render();}
   function openCard(id){var el=document.getElementById(id);if(!el)return;try{el.classList.remove("gate-hidden","hidden");el.hidden=false;el.style.removeProperty("display");el.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}}
-  function ensure(){var c=document.getElementById("daily-hs-curriculum-card");if(c)return c;c=document.createElement("section");c.id="daily-hs-curriculum-card";c.className="card";c.setAttribute("data-min-i","2");c.setAttribute("data-clarity-path","daily");c.setAttribute("data-clarity-path","daily");c.innerHTML='<h2 class="card-title">High school — Daily path</h2><p class="card-lead">Tajweed, tafseer, weekly review, enrichment. Assignments stay on-device.</p><div id="daily-hs-progress" class="junior-progress"></div><div id="daily-hs-body" class="junior-body"></div>';var a=document.getElementById("weekly-review-card")||document.getElementById("tajweed-live-card")||document.getElementById("meme-card");if(a&&a.parentNode){if(a.nextSibling)a.parentNode.insertBefore(c,a.nextSibling);else a.parentNode.appendChild(c);}else (document.getElementById("main")||document.body).appendChild(c);return c;}
+  function ensure(){
+    var c=document.getElementById("daily-hs-curriculum-card");
+    if(c){
+      try{
+        c.setAttribute("data-min-i","2");
+        c.setAttribute("data-clarity-path","daily");
+        c.setAttribute("data-curriculum-phase","daily");
+        c.setAttribute("data-rrra","reality");
+        c.setAttribute("data-curriculum-exclusive","1");
+      }catch(eA){}
+      return c;
+    }
+    c=document.createElement("section");
+    c.id="daily-hs-curriculum-card";
+    c.className="card curriculum-phase-card";
+    c.setAttribute("data-min-i","2");
+    c.setAttribute("data-clarity-path","daily");
+    c.setAttribute("data-curriculum-phase","daily");
+    c.setAttribute("data-rrra","reality");
+    c.setAttribute("data-curriculum-exclusive","1");
+    c.innerHTML='<h2 class="card-title">High school — Daily path</h2><p class="card-lead">Tajweed, tafseer, weekly review, enrichment. Assignments stay on-device.</p><div id="daily-hs-progress" class="junior-progress"></div><div id="daily-hs-body" class="junior-body"></div>';
+    var tab=document.getElementById("tab-reality");
+    var anchors=["weekly-review-card","deepen-study-card"];
+    var placed=false;
+    for(var i=0;i<anchors.length;i++){
+      var a=document.getElementById(anchors[i]);
+      if(a&&a.parentNode){
+        try{
+          if(a.nextSibling)a.parentNode.insertBefore(c,a.nextSibling);
+          else a.parentNode.appendChild(c);
+          placed=true;break;
+        }catch(eB){}
+      }
+    }
+    if(!placed&&tab){try{tab.appendChild(c);placed=true;}catch(eC){}}
+    if(!placed){try{(document.getElementById("main")||document.body).appendChild(c);}catch(eD){}}
+    return c;
+  }
   function render(){ensure();var prog=document.getElementById("daily-hs-progress"),body=document.getElementById("daily-hs-body");if(!prog||!body)return;var t=0,d=0;UNITS.forEach(function(u){u.lessons.forEach(function(l){t++;if(done(l.id))d++;});});var pct=t?Math.round(100*d/t):0;prog.innerHTML='<div class="junior-bar"><div class="junior-bar-fill" style="width:'+pct+'%"></div></div><span>'+d+' / '+t+' · '+pct+'%</span>';var h="";UNITS.forEach(function(u){h+='<article class="junior-unit"><h3>'+u.title+'</h3><p class="junior-goal">'+u.goal+'</p>';u.lessons.forEach(function(les){var is=done(les.id);h+='<div class="junior-lesson'+(is?' is-done':'')+'"><h4>'+(is?'✓ ':'')+les.title+'</h4><ul>';(les.points||[]).forEach(function(pt){h+='<li>'+pt+'</li>';});h+='</ul>';if(les.activity)h+='<div class="curr-activity"><div class="curr-act-label">Assignment</div><p>'+les.activity.prompt+'</p></div>';h+='<div class="junior-actions">';if(les.openCard)h+='<button type="button" class="mv-chip" data-open="'+les.openCard+'">Open module</button>';if(!is)h+='<button type="button" class="mv-chip" data-mark="'+les.id+'">Mark done</button>';h+='</div></div>';});h+='</article>';});body.innerHTML=h;body.onclick=function(ev){var t=ev.target;if(!t)return;if(t.getAttribute('data-open'))openCard(t.getAttribute('data-open'));if(t.getAttribute('data-mark'))mark(t.getAttribute('data-mark'));};}
     function mountBoost(){
     var card=document.getElementById("daily-hs-curriculum-card");

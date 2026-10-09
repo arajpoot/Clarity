@@ -274,30 +274,46 @@
   }
 
   function ensureCard() {
-    var card = document.getElementById("junior-high-curriculum-card");
-    if (card) return card;
+    var card = document.getElementById("junior-high-curriculum-card") || document.getElementById("jh-curriculum-card");
+    if (card) {
+      try {
+        card.id = "junior-high-curriculum-card";
+        card.setAttribute("data-min-i", "1");
+        card.setAttribute("data-clarity-path", "new-muslim");
+        card.setAttribute("data-curriculum-phase", "new-muslim");
+        card.setAttribute("data-rrra", "action");
+        card.setAttribute("data-curriculum-exclusive", "1");
+      } catch (e) {}
+      return card;
+    }
     card = document.createElement("section");
     card.id = "junior-high-curriculum-card";
-    card.className = "card";
-    card.setAttribute("data-clarity-path", "new_muslim");
-    card.setAttribute("data-clarity-curriculum", "junior-high");
-    card.innerHTML =
-      '<h2 class="card-title">Junior high — New Muslim</h2>' +
-      '<p class="card-lead">Practice track: purification, prayer, ḥalāl daily map, yearly pillars, Seerah into action. Progress stays on this device.</p>' +
-      '<div id="jh-curriculum-progress" class="junior-progress"></div>' +
-      '<div id="jh-curriculum-body" class="junior-body"></div>' +
-      '<p class="junior-footnote">Educational only — confirm worship details with a qualified local teacher. Patterns: Kuttab / Nawara / BeginIslam style roadmaps.</p>';
-
-    var anchor =
-      document.getElementById("new-muslim-foundations-card") ||
-      document.getElementById("salah-starter-card") ||
-      document.getElementById("fiqh-quiz-card") ||
-      document.getElementById("junior-curriculum-card");
-    if (anchor && anchor.parentNode) {
-      if (anchor.nextSibling) anchor.parentNode.insertBefore(card, anchor.nextSibling);
-      else anchor.parentNode.appendChild(card);
-    } else {
-      (document.getElementById("main") || document.body).appendChild(card);
+    card.className = "card curriculum-phase-card";
+    card.setAttribute("data-min-i", "1");
+    card.setAttribute("data-clarity-path", "new-muslim");
+    card.setAttribute("data-curriculum-phase", "new-muslim");
+    card.setAttribute("data-rrra", "action");
+    card.setAttribute("data-curriculum-exclusive", "1");
+    card.innerHTML = '<h2 class="card-title">Junior-high curriculum — New Muslim</h2><p class="card-lead">Practice foundations after Seeker. Educational only.</p><div id="jh-curriculum-progress" class="junior-progress"></div><div id="jh-curriculum-body" class="junior-body"></div>';
+    var tab = document.getElementById("tab-action");
+    var anchors = ["hajj-guide-card", "fiqh-quiz-card", "hell-sins-card"];
+    var placed = false;
+    for (var i = 0; i < anchors.length; i++) {
+      var a = document.getElementById(anchors[i]);
+      if (a && a.parentNode) {
+        try {
+          if (a.nextSibling) a.parentNode.insertBefore(card, a.nextSibling);
+          else a.parentNode.appendChild(card);
+          placed = true;
+          break;
+        } catch (e2) {}
+      }
+    }
+    if (!placed && tab) {
+      try { tab.appendChild(card); placed = true; } catch (e3) {}
+    }
+    if (!placed) {
+      try { (document.getElementById("main") || document.body).appendChild(card); } catch (e4) {}
     }
     return card;
   }
@@ -398,7 +414,7 @@
 /* mountBoost — pin curriculum card under path rail */
 (function (g) {
     function mountBoost(){
-    var card=document.getElementById("jh-curriculum-card");
+    var card=document.getElementById("junior-high-curriculum-card");
     if(!card)return;
     var pathI=0;
     try{
@@ -410,7 +426,6 @@
       card.setAttribute("data-curriculum-phase","new-muslim");
       card.setAttribute("data-curriculum-exclusive","1");
     }catch(e1){}
-    /* Phase 2: exclusive — only the active learning path shows this curriculum */
     if(pathI!==1){
       try{
         card.classList.add("gate-hidden");
@@ -426,7 +441,6 @@
       card.style.removeProperty("display");
       card.style.visibility="visible";
     }catch(e3){}
-    /* Phase 1+2: never reparent under #clarity-path-rail */
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", function () {

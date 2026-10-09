@@ -252,29 +252,44 @@
 
   function ensureCard() {
     var card = document.getElementById("junior-curriculum-card");
-    if (card) return card;
+    if (card) {
+      try {
+        card.setAttribute("data-min-i", "0");
+        card.setAttribute("data-clarity-path", "seeker");
+        card.setAttribute("data-curriculum-phase", "seeker");
+        card.setAttribute("data-rrra", "reminder");
+        card.setAttribute("data-curriculum-exclusive", "1");
+      } catch (e) {}
+      return card;
+    }
     card = document.createElement("section");
     card.id = "junior-curriculum-card";
-    card.className = "card";
+    card.className = "card curriculum-phase-card";
+    card.setAttribute("data-min-i", "0");
     card.setAttribute("data-clarity-path", "seeker");
-    card.setAttribute("data-clarity-curriculum", "junior");
-    card.innerHTML =
-      '<h2 class="card-title">Junior curriculum — Seeker</h2>' +
-      '<p class="card-lead">Elementary foundation: belief, pillars, the Messenger ﷺ, adab, and hope in the Hereafter. Short lessons. Progress stays on this device.</p>' +
-      '<div id="junior-curriculum-progress" class="junior-progress"></div>' +
-      '<div id="junior-curriculum-body" class="junior-body"></div>' +
-      '<p class="junior-footnote">Resources: Qur\'an.com · SeekersGuidance · BeginIslam patterns. Educational only — not a fatwa.</p>';
-
-    // Place near about or first seeker card
-    var anchor =
-      document.getElementById("about-clarity-card") ||
-      document.getElementById("soul-compass-card") ||
-      document.getElementById("commands-card");
-    if (anchor && anchor.parentNode) {
-      if (anchor.nextSibling) anchor.parentNode.insertBefore(card, anchor.nextSibling);
-      else anchor.parentNode.appendChild(card);
-    } else {
-      (document.getElementById("main") || document.body).appendChild(card);
+    card.setAttribute("data-curriculum-phase", "seeker");
+    card.setAttribute("data-rrra", "reminder");
+    card.setAttribute("data-curriculum-exclusive", "1");
+    card.innerHTML = '<h2 class="card-title">Junior curriculum — Seeker</h2><p class="card-lead">Foundations for young learners and new beginnings. Educational only.</p><div id="junior-curriculum-progress" class="junior-progress"></div><div id="junior-curriculum-body" class="junior-body"></div>';
+    var tab = document.getElementById("tab-reminder");
+    var anchors = ["ilm-pathway-card", "commands-card", "samina-verse-card"];
+    var placed = false;
+    for (var i = 0; i < anchors.length; i++) {
+      var a = document.getElementById(anchors[i]);
+      if (a && a.parentNode) {
+        try {
+          if (a.nextSibling) a.parentNode.insertBefore(card, a.nextSibling);
+          else a.parentNode.appendChild(card);
+          placed = true;
+          break;
+        } catch (e2) {}
+      }
+    }
+    if (!placed && tab) {
+      try { tab.appendChild(card); placed = true; } catch (e3) {}
+    }
+    if (!placed) {
+      try { (document.getElementById("main") || document.body).appendChild(card); } catch (e4) {}
     }
     return card;
   }
@@ -408,7 +423,6 @@
       card.setAttribute("data-curriculum-phase","seeker");
       card.setAttribute("data-curriculum-exclusive","1");
     }catch(e1){}
-    /* Phase 2: exclusive — only the active learning path shows this curriculum */
     if(pathI!==0){
       try{
         card.classList.add("gate-hidden");
@@ -424,7 +438,6 @@
       card.style.removeProperty("display");
       card.style.visibility="visible";
     }catch(e3){}
-    /* Phase 1+2: never reparent under #clarity-path-rail */
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", function () {
