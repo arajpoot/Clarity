@@ -1,0 +1,85 @@
+{
+  "office": "Clarity University — Secured Craft Laboratory",
+  "version": 1,
+  "motto": "Beauty with truth · craft with adab · research before transmission",
+  "disclaimer": "Lab projects are educational practice on-device. Calligraphy, media, and research here do not replace qualified teachers or formal certification.",
+  "director": {
+    "id": "ustadh-itqan-lab",
+    "name": "Ustadh Itqan al-Khatt",
+    "title": "Lab Director · Craft & Research",
+    "seal": "LAB-ITQ",
+    "greeting": "Welcome to the lab. Hands steady, intention clean, sources clear.",
+    "assistsPhases": [
+      3,
+      4,
+      2
+    ]
+  },
+  "stations": [
+    {
+      "id": "callig",
+      "name": "Calligraphy Atelier",
+      "icon": "✒️",
+      "card": "callig-lab-card",
+      "phase": 3,
+      "craft": "Write one letter or Name with presence; photograph or note progress.",
+      "skills": [
+        "patience",
+        "proportion",
+        "remembrance"
+      ]
+    },
+    {
+      "id": "tajweed",
+      "name": "Tajweed Booth",
+      "icon": "🎧",
+      "card": "tajweed-live-card",
+      "phase": 3,
+      "craft": "One rule, one ayah — record, compare, note one improvement.",
+      "skills": [
+        "makharij",
+        "listening",
+        "discipline"
+      ]
+    },
+    {
+      "id": "media",
+      "name": "Media Craft Bench",
+      "icon": "🎨",
+      "card": "meme-card",
+      "phase": 3,
+      "craft": "Design one truthful reminder with a verified verse or hadith text only.",
+      "skills": [
+        "accuracy",
+        "beauty",
+        "restraint"
+      ]
+    },
+    {
+      "id": "research",
+      "name": "Research Bench",
+      "icon": "📚",
+      "card": "deepen-study-card",
+      "phase": 3,
+      "craft": "Open deepen-study tools; capture three takeaways and one question for a teacher.",
+      "skills": [
+        "sourcing",
+        "humility",
+        "notes"
+      ]
+    },
+    {
+      "id": "design",
+      "name": "Module Design Atelier",
+      "icon": "🧪",
+      "card": null,
+      "phase": 4,
+      "craft": "Prototype a new lab exercise: title, goal, steps, source — for librarian review only.",
+      "skills": [
+        "curriculum-design",
+        "clarity",
+        "safety"
+      ]
+    }
+  ]
+}
