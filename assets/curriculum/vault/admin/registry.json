@@ -1,0 +1,63 @@
+{
+  "office": "Clarity University — Administrator Office",
+  "version": 1,
+  "motto": "Knowledge with adab · recognition without pretence",
+  "disclaimer": "Educational device-local records only. Not an accredited degree, ijazah, or fatwa license.",
+  "storageKeys": {
+    "learnerName": "clarity_learner_name_v1",
+    "ledger": "clarity_university_ledger_v1",
+    "diplomas": "clarity_university_diplomas_v1",
+    "portable": "clarity_university_portable_v1",
+    "phase": "clarity_curriculum_phase_v1",
+    "register": "clarity_office_register_v1"
+  },
+  "colleges": [
+    {
+      "id": "seeker",
+      "phase": 1,
+      "folder": "seeker",
+      "code": "JR",
+      "title": "College of Foundations",
+      "track": "Junior · Seeker",
+      "deanNote": "Belief before practice. One module, one spark."
+    },
+    {
+      "id": "new-muslim",
+      "phase": 2,
+      "folder": "new-muslim",
+      "code": "JH",
+      "title": "College of Practice",
+      "track": "Junior High · New Muslim",
+      "deanNote": "Purification and prayer with a living teacher nearby."
+    },
+    {
+      "id": "daily",
+      "phase": 3,
+      "folder": "daily",
+      "code": "HS",
+      "title": "College of Consistency",
+      "track": "Daily · High School",
+      "deanNote": "Craft, tajweed, and honest weekly review."
+    },
+    {
+      "id": "dai",
+      "phase": 4,
+      "folder": "dai",
+      "code": "DAI",
+      "title": "College of Transmission",
+      "track": "Da'i · University",
+      "deanNote": "Call with knowledge, mercy, and source care."
+    }
+  ],
+  "enrollmentRules": {
+    "requireNameForDiploma": true,
+    "sequentialPhases": true,
+    "sparkPassDefault": 2,
+    "phaseQuizPassRatio": 0.6,
+    "portableKind": "clarity-university-portable"
+  },
+  "officeHours": {
+    "note": "The office never sleeps on your device — records stay local until you export.",
+    "stamp": "CLARITY-ADMIN"
+  }
+}
