@@ -1106,8 +1106,20 @@
       var bh = duo ? Math.round(duo.getBoundingClientRect().height) : 56;
       document.documentElement.style.setProperty("--clarity-nav-h", nh + "px");
       document.documentElement.style.setProperty("--clarity-banner-h", bh + "px");
-      document.documentElement.setAttribute("data-chrome-pin", "1");
-      document.documentElement.setAttribute("data-clarity-pin-banner", "1");
+      /* Mobile: never sticky banner — free scroll */
+      var mobile = false;
+      try {
+        mobile = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+      } catch (eM) {
+        mobile = (window.innerWidth || 0) <= 900;
+      }
+      if (mobile) {
+        document.documentElement.setAttribute("data-chrome-pin", "0");
+        document.documentElement.setAttribute("data-clarity-pin-banner", "0");
+      } else {
+        document.documentElement.setAttribute("data-chrome-pin", "1");
+        document.documentElement.setAttribute("data-clarity-pin-banner", "1");
+      }
     } catch (e) {}
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () {
@@ -1120,4 +1132,23 @@
     setTimeout(measure, 200);
   }
   g.addEventListener("resize", function () { setTimeout(measure, 100); });
+})(typeof window !== "undefined" ? window : this);
+
+;(function(g){
+  if (typeof g.clarityPathResetToSeeker !== "function") {
+    g.clarityPathResetToSeeker = function () {
+      try {
+        localStorage.setItem("clarity_path_unlocked_max", "0");
+        localStorage.setItem("clarity_committed_path", "seeker");
+        localStorage.setItem("clarity_path_focus", "seeker");
+        localStorage.removeItem("clarity_quiz_passed_v1");
+        document.documentElement.setAttribute("data-clarity-path", "seeker");
+        document.documentElement.setAttribute("data-path-i", "0");
+        g.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { path: "seeker", pathI: 0 } }));
+      } catch (e) {}
+      try {
+        if (typeof g.claritySwitchGate === "function") g.claritySwitchGate("seeker");
+      } catch (e2) {}
+    };
+  }
 })(typeof window !== "undefined" ? window : this);

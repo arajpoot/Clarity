@@ -1517,3 +1517,91 @@ html[data-clarity-pin-banner="1"] #clarity-path-rail.clarity-path-rail {
     top: calc(var(--clarity-nav-h, 48px) + var(--clarity-banner-h, 48px)) !important;
   }
 }
+
+
+/* Phase5b gate rail + mobile no sticky banner */
+/* Gate switcher = primary track rail (TRACK + pills + Reset) */
+.clarity-gate-switcher.rrra-sitewide,
+.clarity-gate-switcher {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.4rem 0.45rem !important;
+  padding: 0.4rem 0.55rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  background: #0f1f18 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.clarity-gate-switcher .cgs-label,
+.clarity-gate-switcher .cpr-track-label {
+  display: inline-block !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: rgba(230, 220, 180, 0.9) !important;
+  margin-right: 0.15rem !important;
+}
+.clarity-gate-switcher .cgp-track-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  width: 100% !important;
+}
+.clarity-gate-switcher .cgs-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 0.28rem 0.65rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+}
+.clarity-gate-switcher .cgs-seeker { background: #c4a035 !important; color: #1a1200 !important; }
+.clarity-gate-switcher .cgs-new { background: #2d8a5a !important; color: #fff !important; }
+.clarity-gate-switcher .cgs-daily { background: #2a6f9e !important; color: #fff !important; }
+.clarity-gate-switcher .cgs-dai { background: #6b4ea0 !important; color: #fff !important; }
+.clarity-gate-switcher .cgs-reset,
+#clarity-path-reset-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: #b8962e !important;
+  color: #1a1200 !important;
+  font-weight: 700 !important;
+}
+.clarity-gate-switcher .cgs-btn.is-on,
+.clarity-gate-switcher .cgs-btn[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px rgba(255, 220, 120, 0.65) !important;
+}
+
+/* Hide duplicate JS path-rail track row if gate switcher present — keep module chips only */
+.clarity-gate-switcher ~ #clarity-path-rail .cpr-track-row,
+.clarity-gate-switcher ~ #clarity-path-rail .cpr-paths {
+  display: none !important;
+}
+
+/* MOBILE: no sticky banner / path chrome — scroll freely */
+@media (max-width: 900px) {
+  html #clarity-global-nav.global-nav,
+  html nav#clarity-global-nav,
+  html #clarity-top-duo,
+  html #clarity-path-rail.clarity-path-rail,
+  html .clarity-gate-switcher.rrra-sitewide {
+    position: relative !important;
+    top: auto !important;
+    z-index: auto !important;
+  }
+  html[data-chrome-pin="1"] #clarity-top-duo,
+  html[data-clarity-pin-banner="1"] #clarity-top-duo,
+  html[data-chrome-pin="1"] #clarity-global-nav.global-nav,
+  html[data-chrome-pin="1"] nav#clarity-global-nav {
+    position: relative !important;
+    top: auto !important;
+  }
+}
