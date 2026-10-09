@@ -1,0 +1,48 @@
+{
+  "office": "Score Controller",
+  "version": 1,
+  "entryShape": {
+    "at": "number — unix ms",
+    "phase": "1-4",
+    "moduleId": "string|null",
+    "kind": "spark|phase|makeup",
+    "correct": "number",
+    "total": "number",
+    "pct": "0-100"
+  },
+  "summaryShape": {
+    "attempts": "number",
+    "correct": "number",
+    "total": "number",
+    "best": "0-100"
+  },
+  "policies": {
+    "recordFails": true,
+    "recordPasses": true,
+    "weightSpark": 1,
+    "weightPhase": 2,
+    "transcriptRecent": 12
+  },
+  "gradeBands": [
+    {
+      "min": 90,
+      "label": "Excellent · ممتاز",
+      "latin": "Excellent"
+    },
+    {
+      "min": 75,
+      "label": "Very good · جيد جداً",
+      "latin": "Very good"
+    },
+    {
+      "min": 60,
+      "label": "Pass · مقبول",
+      "latin": "Pass"
+    },
+    {
+      "min": 0,
+      "label": "Needs review · يحتاج مراجعة",
+      "latin": "Needs review"
+    }
+  ]
+}
