@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "pending": [
+    {
+      "id": "ux-density-refresh",
+      "layer": "upgradable",
+      "title": "Refresh UX density after phase change",
+      "action": "ux-density",
+      "priority": 2
+    },
+    {
+      "id": "om-pulse-align",
+      "layer": "upgradable",
+      "title": "Align O&M pulse with registrar inert UI",
+      "action": "om-pulse",
+      "priority": 2
+    },
+    {
+      "id": "sec-scan-ingest",
+      "layer": "bridge",
+      "title": "Ingest security scan into IT bridge log",
+      "action": "sec-ingest",
+      "priority": 1
+    }
+  ]
+}

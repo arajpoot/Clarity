@@ -1,0 +1,71 @@
+
+/* IT Wing — data center bridge */
+.clarity-it-badge {
+  position: fixed; bottom: 12px; right: 72px; z-index: 99991;
+  font-size: 0.68rem; font-weight: 700; padding: 0.25rem 0.55rem;
+  border-radius: 999px; cursor: pointer;
+  border: 1px solid rgba(80, 160, 200, 0.5);
+  background: rgba(10, 30, 48, 0.92); color: #a8d4f0;
+}
+.clarity-it-badge.it-warn {
+  border-color: #e0a060; color: #ffe0c0;
+  box-shadow: 0 0 0 1px rgba(224, 160, 96, 0.35);
+}
+.clarity-it-modal {
+  position: fixed; inset: 0; z-index: 100110;
+  display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.clarity-it-modal.show { display: flex !important; }
+.cit-backdrop {
+  position: absolute; inset: 0; background: rgba(4, 16, 28, 0.86); backdrop-filter: blur(12px);
+}
+.cit-panel {
+  position: relative; z-index: 1; max-width: 440px; width: 100%; max-height: 90vh; overflow: auto;
+  background: linear-gradient(165deg, #eef5fa, #e4eef5); color: #142028;
+  border-radius: 14px; border: 2px solid #1a6080;
+  box-shadow: 0 22px 55px rgba(0,0,0,.45); padding: 1.15rem 1.2rem;
+}
+html[data-theme="dark"] .cit-panel {
+  background: linear-gradient(165deg, #0e1a24, #0a141c); color: #d8e8f0;
+}
+.cit-x {
+  position: absolute; top: .4rem; right: .5rem; border: none; background: transparent;
+  font-size: 1.35rem; cursor: pointer; color: inherit;
+}
+.cit-stamp {
+  display: inline-block; font-size: .62rem; font-weight: 800; letter-spacing: .14em;
+  padding: .2rem .5rem; border: 2px solid #2a90b0; color: #1a6080;
+  transform: rotate(-4deg); margin-bottom: .35rem; background: rgba(42,144,176,.12);
+}
+.cit-panel h2 { margin: 0.2rem 0; font-size: 1.1rem; }
+.cit-title { font-size: .8rem; opacity: .85; margin: 0.15rem 0 0.4rem; }
+.cit-greet { font-size: .84rem; font-style: italic; line-height: 1.4; margin: 0.4rem 0; }
+.cit-bridge {
+  padding: 0.5rem 0.65rem; border-radius: 10px; font-size: .82rem; margin: 0.5rem 0;
+  border: 1px solid rgba(26,96,128,0.3);
+}
+.cit-bridge.ok { background: rgba(26,107,82,0.12); }
+.cit-bridge.warn { background: rgba(160,100,40,0.15); }
+.cit-meta { font-size: .72rem; opacity: .8; }
+.cit-crew { margin: 0.35rem 0; padding-left: 1.1rem; font-size: .8rem; line-height: 1.4; }
+.cit-rule { font-size: .75rem; margin-top: 0.5rem; opacity: .85; }
+.cit-disc { font-size: .68rem; opacity: .7; margin-top: 0.5rem; }
+.cit-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+.cnp-it-btn {
+  background: linear-gradient(155deg, rgba(10,60,90,.95), rgba(212,180,90,.3)) !important;
+}
+.clarity-it-toast {
+  position: fixed; left: 50%; bottom: 130px; transform: translateX(-50%) translateY(12px);
+  z-index: 99994; max-width: 92vw; font-size: 0.78rem;
+  background: rgba(10, 40, 60, 0.95); color: #d0e8f5;
+  padding: 0.5rem 0.9rem; border-radius: 999px;
+  border: 1px solid rgba(80, 160, 200, 0.4);
+  opacity: 0; pointer-events: none; transition: 0.35s ease;
+}
+.clarity-it-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.cit-name { font-weight: 700; color: #a8d4f0; margin-right: 0.35rem; }
+.it-focus-ring {
+  outline: 2px solid rgba(42, 144, 176, 0.65);
+  outline-offset: 3px;
+  transition: outline 0.3s;
+}

@@ -1,0 +1,53 @@
+{
+  "office": "Clarity University \u2014 IT Wing (Data Center Operations)",
+  "version": 1,
+  "motto": "Sealed core \u00b7 living edge \u00b7 bridge never leaks",
+  "disclaimer": "IT Wing maintains educational runtime bridges on-device. Not a cloud host, not a penetration-test firm, not a warranty of uptime.",
+  "director": {
+    "id": "cio-nur-systems",
+    "name": "Eng. Nur al-Anzimat",
+    "title": "Chief Information Officer \u00b7 IT Wing",
+    "seal": "IT-NUR",
+    "greeting": "Sealed vault below, upgradable edge above \u2014 my job is the bridge stays honest.",
+    "focus": [
+      "Bridge sealed foundation \u2194 admin form factor",
+      "Ingest Security + O&M + Staff reports",
+      "Queue safe UI/runtime upgrades without touching SEAL hashes",
+      "Coordinate O&M as line crew under IT command"
+    ]
+  },
+  "lineCrew": [
+    {
+      "id": "om",
+      "unit": "O&M Crew",
+      "api": "ClarityOM",
+      "role": "Circulation & cleanup under IT"
+    },
+    {
+      "id": "security",
+      "unit": "Security Auditors",
+      "api": "ClaritySecurity",
+      "role": "Wiring integrity reports to CIO"
+    },
+    {
+      "id": "ops",
+      "unit": "Ops Steward",
+      "api": "ClarityStaffOps",
+      "role": "Controller health telemetry"
+    }
+  ],
+  "bridgeMap": {
+    "sealed": [
+      "curriculum/vault/foundation/*",
+      "curriculum/vault/SEAL.json",
+      "curriculum/vault/boot.js"
+    ],
+    "upgradable": [
+      "curriculum/vault/admin/**",
+      "assets/clarity-*-pack*.js",
+      "ux, faculty, registrar, lab, om, security, it, chancellor"
+    ],
+    "rule": "IT may queue upgrades only under admin/ and non-foundation assets. Foundation requires SEAL regeneration."
+  },
+  "scanIntervalMs": 40000
+}
