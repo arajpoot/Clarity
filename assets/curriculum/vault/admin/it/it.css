@@ -69,3 +69,54 @@ html[data-theme="dark"] .cit-panel {
   outline-offset: 3px;
   transition: outline 0.3s;
 }
+
+/* IT Device Lab */
+.clarity-it-lab-modal {
+  position: fixed; inset: 0; z-index: 100120;
+  display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.clarity-it-lab-modal.show { display: flex !important; }
+.citlab-backdrop {
+  position: absolute; inset: 0; background: rgba(4, 16, 28, 0.88); backdrop-filter: blur(10px);
+}
+.citlab-panel {
+  position: relative; z-index: 1; max-width: 520px; width: 100%; max-height: 92vh; overflow: auto;
+  background: linear-gradient(165deg, #eef5fa, #e4eef5); color: #142028;
+  border-radius: 14px; border: 2px solid #1a6080;
+  box-shadow: 0 22px 55px rgba(0,0,0,.45); padding: 1.1rem 1.15rem 1.25rem;
+}
+html[data-theme="dark"] .citlab-panel {
+  background: linear-gradient(165deg, #0e1a24, #0a141c); color: #d8e8f0;
+}
+.citlab-x {
+  position: absolute; top: .35rem; right: .45rem; border: none; background: transparent;
+  font-size: 1.35rem; cursor: pointer; color: inherit;
+}
+.citlab-stamp {
+  display: inline-block; font-size: .62rem; font-weight: 800; letter-spacing: .12em;
+  padding: .2rem .5rem; border: 2px solid #2a90b0; color: #1a6080;
+  transform: rotate(-3deg); margin-bottom: .35rem; background: rgba(42,144,176,.12);
+}
+.citlab-panel h2 { margin: 0.15rem 0; font-size: 1.08rem; }
+.citlab-sub { font-size: 0.82rem; opacity: 0.9; line-height: 1.4; margin: 0.35rem 0 0.65rem; }
+.citlab-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
+.citlab-btn {
+  border: 1px solid rgba(26,96,128,0.45); background: rgba(42,144,176,0.15);
+  color: inherit; border-radius: 999px; padding: 0.35rem 0.7rem; font-size: 0.78rem;
+  font-weight: 600; cursor: pointer;
+}
+.citlab-btn-sm { padding: 0.25rem 0.55rem; font-size: 0.72rem; }
+.citlab-h { font-size: 0.88rem; margin: 0.75rem 0 0.4rem; }
+.citlab-card {
+  border: 1px solid rgba(26,96,128,0.25); border-radius: 10px;
+  padding: 0.5rem 0.65rem; margin-bottom: 0.4rem; background: rgba(255,255,255,0.35);
+}
+html[data-theme="dark"] .citlab-card { background: rgba(255,255,255,0.04); }
+.citlab-card.done { border-color: rgba(45,138,90,0.55); }
+.citlab-brief { font-size: 0.78rem; margin: 0.25rem 0 0.4rem; opacity: 0.9; }
+.citlab-done { font-size: 0.72rem; font-weight: 700; color: #2d8a5a; }
+.citlab-out {
+  font-size: 0.68rem; line-height: 1.35; max-height: 180px; overflow: auto;
+  background: rgba(0,0,0,0.06); border-radius: 8px; padding: 0.5rem; white-space: pre-wrap;
+}
+html[data-theme="dark"] .citlab-out { background: rgba(0,0,0,0.35); }
