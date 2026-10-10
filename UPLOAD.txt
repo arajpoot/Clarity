@@ -1,17 +1,13 @@
-Phase 2 — Learning Stage desk on /campus/
+Fix: multipage /campus/ SEAL error
 
-Manual GitHub (main root):
-1. Replace index.html
-2. Replace campus/index.html  (folder campus/ already from Phase 1)
-3. Replace lab/index.html and vault/index.html (version bump only)
-4. Optional: _redirects, sitemap.xml if not already uploaded
+Cause: boot used ./assets/... which from /campus/ becomes /campus/assets/... (404).
+Fix: absolute /assets/curriculum/vault/
 
-Requires (already on site from earlier deploys):
-  assets/curriculum/vault/boot.js
-  assets/curriculum/vault/SEAL.json
-  assets/curriculum/vault/foundation/* 
-  assets/curriculum/vault/admin/campus/*
-  assets/clarity-campus-rescue-v1.js
+Upload to GitHub main (merge into existing paths):
+  assets/curriculum/vault/boot.js          ← required
+  assets/curriculum/vault/SEAL.json        ← build tag
+  assets/curriculum/vault/admin/lab/lab-controller-v1.js
+  (optional) other admin/*.js path fixes
 
-After commit: open https://clarity-dawah.fyi/campus/
-Expect: phase plaque + Junior curriculum card after vault boot.
+Then hard-refresh https://clarity-dawah.fyi/campus/
+Junior desk should load; red SEAL banner should stop.
