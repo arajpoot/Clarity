@@ -51,6 +51,29 @@
     }
     return false;
   }
+  
+  function openChancellor() {
+    if (g.ClarityChancellor && g.ClarityChancellor.openDesk) { g.ClarityChancellor.openDesk(); return true; }
+    return false;
+  }
+  function openRegistrar() {
+    if (g.ClarityRegistrar && g.ClarityRegistrar.openDesk) { g.ClarityRegistrar.openDesk(); return true; }
+    return false;
+  }
+  function openLab() {
+    if (g.ClarityLab && g.ClarityLab.openDesk) { g.ClarityLab.openDesk(); return true; }
+    if (g.ClarityLab && g.ClarityLab.render) { g.ClarityLab.render(); return true; }
+    return false;
+  }
+  function openOM() {
+    if (g.ClarityOM && g.ClarityOM.openDesk) { g.ClarityOM.openDesk(); return true; }
+    return false;
+  }
+  function openCompass() {
+    if (g.ClarityUX && g.ClarityUX.openCompass) { g.ClarityUX.openCompass(); return true; }
+    return false;
+  }
+
   function openIT() {
     if (g.ClarityIT && typeof g.ClarityIT.openDesk === "function") {
       g.ClarityIT.openDesk();
@@ -71,7 +94,12 @@
     var map = {
       faculty: openFaculty,
       security: openSecurity,
-      it: openIT
+      it: openIT,
+      chancellor: openChancellor,
+      registrar: openRegistrar,
+      lab: openLab,
+      om: openOM,
+      compass: openCompass
     };
     document.querySelectorAll(".cu-wing[data-wing]").forEach(function (btn) {
       if (btn.__wingWired) return;
