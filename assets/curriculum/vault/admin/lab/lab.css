@@ -103,3 +103,41 @@ html[data-theme="dark"] .clab-design-form textarea {
 }
 .clarity-lab-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .clt-name { font-weight: 700; color: #a8e6ff; margin-right: 0.35rem; }
+
+/* Mounted under banner in campus stage */
+#campus-stage-body #clarity-lab-shell,
+#clarity-campus-stage #clarity-lab-shell {
+  display: block !important;
+  visibility: visible !important;
+  margin: 0.75rem 0 1.25rem;
+  min-height: 12rem;
+  position: relative;
+  z-index: 6;
+}
+#clarity-lab-shell .clab-stations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.65rem 0;
+}
+#clarity-lab-shell .clab-station {
+  flex: 1 1 8.5rem;
+  min-width: 7.5rem;
+  text-align: left;
+  padding: 0.55rem 0.65rem;
+  border-radius: 12px;
+  border: 1px solid rgba(13,79,60,0.22);
+  background: rgba(255,253,248,0.92);
+  cursor: pointer;
+}
+html[data-theme="dark"] #clarity-lab-shell .clab-station {
+  background: rgba(20,28,24,0.95);
+  border-color: rgba(212,180,90,0.25);
+  color: #e7efe9;
+}
+#clarity-lab-shell .clab-station small {
+  display: block;
+  opacity: 0.75;
+  font-size: 0.72rem;
+  margin-top: 0.2rem;
+}

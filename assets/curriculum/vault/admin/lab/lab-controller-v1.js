@@ -85,6 +85,8 @@
     var shell = document.createElement("section");
     shell.id = "clarity-lab-shell";
     shell.className = "clarity-lab-shell card";
+    shell.hidden = false;
+    shell.style.display = "block";
     shell.innerHTML =
       '<div class="clab-head"><div class="clab-badge">LAB</div><div>' +
       '<h2 class="clab-title">Craft Laboratory</h2>' +
@@ -94,9 +96,11 @@
       '<div class="clab-workbench" id="clab-workbench"><p class="clab-empty">Select a station to open the workbench.</p></div>' +
       '<div class="clab-portfolio" id="clab-portfolio"></div>';
     var host =
+      document.getElementById("campus-stage-body") ||
+      document.getElementById("clarity-campus-stage") ||
+      document.getElementById("main-application-workspace") ||
       document.querySelector("#tab-reality .rrra-hub-body") ||
       document.getElementById("tab-reality") ||
-      document.getElementById("main-application-workspace") ||
       document.body;
     try {
       host.insertBefore(shell, host.firstChild);
@@ -353,11 +357,23 @@
       });
   }
   g.addEventListener("clarity-vault-ready", function () {
-    setTimeout(boot, 500);
+    setTimeout(boot, 400);
+  });
+  g.addEventListener("clarity-campus-ready", function () {
+    setTimeout(boot, 200);
+  });
+  document.addEventListener("clarity-rrra-change", function () {
+    setTimeout(function () {
+      if (g.ClarityLab && g.ClarityLab.render) g.ClarityLab.render();
+    }, 100);
   });
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
-      setTimeout(boot, 2200);
+      setTimeout(boot, 1200);
+      setTimeout(boot, 2800);
     });
-  } else setTimeout(boot, 2200);
+  } else {
+    setTimeout(boot, 1200);
+    setTimeout(boot, 2800);
+  }
 })(typeof window !== "undefined" ? window : this);
