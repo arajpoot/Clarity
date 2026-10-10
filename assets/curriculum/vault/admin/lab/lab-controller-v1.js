@@ -7,7 +7,7 @@
   if (g.__CLARITY_LAB_WING__) return;
   g.__CLARITY_LAB_WING__ = true;
 
-  var BASE = "./assets/curriculum/vault/admin/lab/";
+  var BASE = "/assets/curriculum/vault/admin/lab/";
   var PORT_KEY = "clarity_lab_portfolio_v1";
   var ACTIVE_KEY = "clarity_lab_active_v1";
   var DESIGN_KEY = "clarity_lab_design_drafts_v1";
