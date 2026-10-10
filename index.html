@@ -304,16 +304,16 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261009ENGINE" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261009ENGINE" media="print" onload="this.media='all'" id="clarity-critical-css-link">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261009MP1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261009MP1" media="print" onload="this.media='all'" id="clarity-critical-css-link">
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261009ENGINE" media="print" onload="this.media='all'" fetchpriority="low">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261009ENGINE"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261009MP1" media="print" onload="this.media='all'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261009MP1"></noscript>
 <noscript></noscript>
 <noscript></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
@@ -325,7 +325,7 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n){n.rel="stylesheet"});
 })();
 </script>
-<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261009ENGINE" id="clarity-sticky-harden-css"/>
+<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261009MP1" id="clarity-sticky-harden-css"/>
 </head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1">
 
 <nav id="clarity-global-nav" class="global-nav">
@@ -561,7 +561,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
       // soft load chunk if missing
       if (!document.querySelector('script[src*="clarity-chunk-8"]')) {
         var s = document.createElement("script");
-        s.src = "./assets/clarity-chunk-8.js?v=" + (document.documentElement.getAttribute("data-clarity-ver") || "20261009ENGINE");
+        s.src = "./assets/clarity-chunk-8.js?v=" + (document.documentElement.getAttribute("data-clarity-ver") || "20261009MP1");
         s.defer = true;
         s.onload = function(){
           try {
@@ -655,7 +655,38 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 var clarityLS=(function(){var m={},f={getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}},key:function(i){return Object.keys(m)[i]||null}};try{var ls=window["localStorage"],t="__c_t__";ls.setItem(t,"1");if(ls.getItem(t)!=="1")throw 0;ls.removeItem(t);return ls}catch(e){return f}})();
 var claritySession=(function(){var m={},f={getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}},key:function(i){return Object.keys(m)[i]||null}};try{var ss=window["sessionStorage"],t="__c_s__";ss.setItem(t,"1");ss.removeItem(t);return ss}catch(e){return f}})();
 window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot-err");if(!d){d=document.createElement("div");d.id="clarity-boot-err";d.style.cssText="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#7f1d1d;color:#fff;padding:8px;font:13px system-ui";(document.body||document.documentElement).appendChild(d)}d.textContent=String(msg)+(l?" @"+l:"")}catch(e){}};
-</script><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
+</script><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio>
+<!-- Phase1 multipage campus map -->
+<section id="cu-campus-map" class="cu-campus-map" aria-label="Campus buildings">
+  <div class="cu-map-inner">
+    <h2 class="cu-map-title">Campus map</h2>
+    <p class="cu-map-sub">Same university · lighter doors. Open a building without loading everything at once.</p>
+    <div class="cu-map-grid">
+      <a class="cu-map-tile" href="/campus/"><span class="cu-map-ico">🎓</span><span class="cu-map-name">Learning Stage</span><small>Phases · Junior desk</small></a>
+      <a class="cu-map-tile" href="/lab/"><span class="cu-map-ico">🧪</span><span class="cu-map-name">Craft Lab</span><small>Tajweed · media · research</small></a>
+      <a class="cu-map-tile" href="/vault/"><span class="cu-map-ico">🏦</span><span class="cu-map-name">Amana Vault</span><small>On-device · encrypted</small></a>
+      <a class="cu-map-tile" href="/"><span class="cu-map-ico">✦</span><span class="cu-map-name">Full companion</span><small>All tools on one page</small></a>
+    </div>
+  </div>
+</section>
+<style>
+.cu-campus-map{margin:.5rem .65rem 1rem;padding:0}
+.cu-map-inner{max-width:40rem;margin:0 auto;padding:.85rem 1rem;border-radius:16px;
+  background:linear-gradient(165deg,rgba(18,28,22,.98),rgba(12,20,16,.96));
+  border:1px solid rgba(212,180,90,.3);box-shadow:0 10px 32px rgba(0,0,0,.25)}
+.cu-map-title{margin:0 0 .25rem;font-size:1.05rem;color:#d4b45a;font-weight:800}
+.cu-map-sub{margin:0 0 .75rem;font-size:.82rem;opacity:.85;line-height:1.4}
+.cu-map-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
+@media(min-width:560px){.cu-map-grid{grid-template-columns:repeat(4,1fr)}}
+.cu-map-tile{display:flex;flex-direction:column;gap:.15rem;padding:.65rem .55rem;border-radius:12px;
+  text-decoration:none;color:#e7efe9;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.cu-map-tile:hover{border-color:rgba(212,180,90,.45);background:rgba(212,180,90,.1)}
+.cu-map-ico{font-size:1.15rem}
+.cu-map-name{font-weight:700;font-size:.85rem}
+.cu-map-tile small{font-size:.68rem;opacity:.7}
+</style>
+
+<div id="main-application-workspace" class="">
 
 <div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
 <div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
@@ -2326,7 +2357,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   "use strict";
   if (window.__CLARITY_LAZY_V1__) return;
   window.__CLARITY_LAZY_V1__ = true;
-  var VER = "20261009ENGINE";
+  var VER = "20261009MP1";
   var loaded = {};
   function loadOnce(id, src) {
     if (loaded[id]) return loaded[id];
@@ -2532,45 +2563,45 @@ if ("serviceWorker" in navigator) {
 
 
 
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261009ENGINE" defer></script>
-<script src="./assets/clarity-amana-vault-access-v1.js?v=20261009ENGINE" defer></script>
-<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261009ENGINE"/>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261009ENGINE" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261009MP1" defer></script>
+<script src="./assets/clarity-amana-vault-access-v1.js?v=20261009MP1" defer></script>
+<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261009MP1"/>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261009MP1" defer></script>
 <!-- Clarity University VAULT — sealed form factor (do not scatter foundation scripts) -->
 <!-- Clarity University OS — ordered form factor (do not reorder casually) -->
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261009ENGINE" id="clarity-brand-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/chancellor/chancellor.css?v=20261009ENGINE" id="clarity-chancellor-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/ux/ux-grand-opening.css?v=20261009ENGINE" id="clarity-ux-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/faculty/faculty.css?v=20261009ENGINE" id="clarity-faculty-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/lab/lab.css?v=20261009ENGINE" id="clarity-lab-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/registrar/registrar.css?v=20261009ENGINE" id="clarity-registrar-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/security/security.css?v=20261009ENGINE" id="clarity-security-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/om/om.css?v=20261009ENGINE" id="clarity-om-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/it/it.css?v=20261009ENGINE" id="clarity-it-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261009MP1" id="clarity-brand-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/chancellor/chancellor.css?v=20261009MP1" id="clarity-chancellor-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/ux/ux-grand-opening.css?v=20261009MP1" id="clarity-ux-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/faculty/faculty.css?v=20261009MP1" id="clarity-faculty-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/lab/lab.css?v=20261009MP1" id="clarity-lab-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/registrar/registrar.css?v=20261009MP1" id="clarity-registrar-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/security/security.css?v=20261009MP1" id="clarity-security-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/om/om.css?v=20261009MP1" id="clarity-om-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/it/it.css?v=20261009MP1" id="clarity-it-css"/>
 <link rel="preload" href="./assets/curriculum/vault/SEAL.json" as="fetch" crossorigin/>
-<script src="./assets/curriculum/vault/admin/brand/brand-insignia-v1.js?v=20261009ENGINE" defer id="clarity-brand"></script>
-<script src="./assets/curriculum/vault/boot.js?v=20261009ENGINE" defer id="clarity-vault-boot"></script>
-<script src="./assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261009ENGINE" defer id="clarity-staff-dispatch"></script>
-<script src="./assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261009ENGINE" defer id="clarity-faculty"></script>
-<script src="./assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261009ENGINE" defer id="clarity-lab"></script>
-<script src="./assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261009ENGINE" defer id="clarity-workers-ops"></script>
-<script src="./assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261009ENGINE" defer id="clarity-registrar"></script>
-<script src="./assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261009ENGINE" defer id="clarity-security"></script>
-<script src="./assets/curriculum/vault/admin/om/om-controller-v1.js?v=20261009ENGINE" defer id="clarity-om"></script>
-<script src="./assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261009ENGINE" defer id="clarity-it"></script>
-<script src="./assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261009ENGINE" defer id="clarity-chancellor"></script>
-<script src="./assets/curriculum/vault/admin/ux/ux-grand-opening-v1.js?v=20261009ENGINE" defer id="clarity-ux-grand"></script>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/campus/campus-shell.css?v=20261009ENGINE" id="clarity-campus-css"/>
-<link rel="stylesheet" href="./assets/curriculum/vault/admin/campus/campus-engine-v1.css?v=20261009ENGINE" id="clarity-engine-css"/>
-<script src="./assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261009ENGINE" defer id="clarity-campus"></script>
-<script src="./assets/curriculum/vault/admin/campus/campus-polish-v1.js?v=20261009ENGINE" defer id="clarity-campus-polish"></script>
-<script src="./assets/curriculum/vault/admin/campus/campus-engine-v1.js?v=20261009ENGINE" defer id="clarity-campus-engine"></script>
-<script src="./assets/clarity-campus-rescue-v1.js?v=20261009ENGINE" defer id="clarity-campus-rescue"></script>
+<script src="./assets/curriculum/vault/admin/brand/brand-insignia-v1.js?v=20261009MP1" defer id="clarity-brand"></script>
+<script src="./assets/curriculum/vault/boot.js?v=20261009MP1" defer id="clarity-vault-boot"></script>
+<script src="./assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261009MP1" defer id="clarity-staff-dispatch"></script>
+<script src="./assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261009MP1" defer id="clarity-faculty"></script>
+<script src="./assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261009MP1" defer id="clarity-lab"></script>
+<script src="./assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261009MP1" defer id="clarity-workers-ops"></script>
+<script src="./assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261009MP1" defer id="clarity-registrar"></script>
+<script src="./assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261009MP1" defer id="clarity-security"></script>
+<script src="./assets/curriculum/vault/admin/om/om-controller-v1.js?v=20261009MP1" defer id="clarity-om"></script>
+<script src="./assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261009MP1" defer id="clarity-it"></script>
+<script src="./assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261009MP1" defer id="clarity-chancellor"></script>
+<script src="./assets/curriculum/vault/admin/ux/ux-grand-opening-v1.js?v=20261009MP1" defer id="clarity-ux-grand"></script>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/campus/campus-shell.css?v=20261009MP1" id="clarity-campus-css"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/campus/campus-engine-v1.css?v=20261009MP1" id="clarity-engine-css"/>
+<script src="./assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261009MP1" defer id="clarity-campus"></script>
+<script src="./assets/curriculum/vault/admin/campus/campus-polish-v1.js?v=20261009MP1" defer id="clarity-campus-polish"></script>
+<script src="./assets/curriculum/vault/admin/campus/campus-engine-v1.js?v=20261009MP1" defer id="clarity-campus-engine"></script>
+<script src="./assets/clarity-campus-rescue-v1.js?v=20261009MP1" defer id="clarity-campus-rescue"></script>
 
-<script src="./assets/clarity-chunk-8.js?v=20261009ENGINE" defer></script>
-<script src="./assets/clarity-feature-pack-v1.js?v=20261009ENGINE" defer></script>
-<script src="./assets/clarity-path-pack-v1.js?v=20261009ENGINE" defer></script>
-<script src="./assets/clarity-aux-pack-v1.js?v=20261009ENGINE" defer></script>
+<script src="./assets/clarity-chunk-8.js?v=20261009MP1" defer></script>
+<script src="./assets/clarity-feature-pack-v1.js?v=20261009MP1" defer></script>
+<script src="./assets/clarity-path-pack-v1.js?v=20261009MP1" defer></script>
+<script src="./assets/clarity-aux-pack-v1.js?v=20261009MP1" defer></script>
 
 
 <!-- GATE NUCLEAR V2 -->
@@ -2748,6 +2779,6 @@ if ("serviceWorker" in navigator) {
 })();
 </script>
 
-<script src="./assets/clarity-sticky-harden-v1.js?v=20261009ENGINE" defer id="clarity-sticky-harden-js"></script>
+<script src="./assets/clarity-sticky-harden-v1.js?v=20261009MP1" defer id="clarity-sticky-harden-js"></script>
 </body>
 </html>

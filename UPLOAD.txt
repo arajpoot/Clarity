@@ -1,17 +1,16 @@
-Essentials only — copy into GitHub repo ROOT (same paths).
+Phase 1 multipage — copy into GitHub repo ROOT
 
 Termux:
-  unzip -o ~/storage/downloads/clarity-essentials-ENGINE.zip -d /tmp/ess
-  cd ~/Clarity
-  cp -a /tmp/ess/. .
-  # if zip contains clarity-essentials folder:
-  # cp -a /tmp/ess/clarity-essentials/. .
-  git add -A && git commit -m "Essentials ENGINE" && git push origin main
+  unzip -o ~/storage/downloads/clarity-multipage-p1.zip -d /tmp/mp1
+  cd ~/Clarity && git pull origin main
+  cp -a /tmp/mp1/. .
+  # if nested:
+  # cp -a /tmp/mp1/mp1-essentials/. .
+  ls index.html vault/index.html lab/index.html campus/index.html _redirects
+  git add -A && git commit -m "Phase1 multipage campus lab vault" && git push origin main
 
-Files:
-  index.html
-  sw.js
-  assets/clarity-*.js/css (vault + patches + rescue)
-  assets/curriculum/vault/admin/campus/*
-  assets/curriculum/vault/admin/lab/*
-  assets/curriculum/vault/admin/workers-ops-pack-v1.js
+New URLs after deploy:
+  https://clarity-dawah.fyi/
+  https://clarity-dawah.fyi/campus/
+  https://clarity-dawah.fyi/lab/
+  https://clarity-dawah.fyi/vault/
