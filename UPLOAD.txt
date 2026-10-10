@@ -1,13 +1,20 @@
-Fix: multipage /campus/ SEAL error
+Phase 3 fix — call: overhaul campus page (not more SEAL chasing)
 
-Cause: boot used ./assets/... which from /campus/ becomes /campus/assets/... (404).
-Fix: absolute /assets/curriculum/vault/
+ROOT CAUSES:
+1. Live sw.js was DUPLICATED (syntax break / bad caching)
+2. /campus/ depended on SEAL boot; any fetch fail = empty desk
+3. Engine now prefers #campus-stage-body
 
-Upload to GitHub main (merge into existing paths):
-  assets/curriculum/vault/boot.js          ← required
-  assets/curriculum/vault/SEAL.json        ← build tag
-  assets/curriculum/vault/admin/lab/lab-controller-v1.js
-  (optional) other admin/*.js path fixes
+WHAT THIS DOES:
+- campus/index.html loads foundation scripts DIRECTLY (no SEAL gate)
+- boot.js: if SEAL fails, emergency-loads foundation anyway
+- sw.js: single clean file, multipage + SEAL network-first, cache MP3
 
-Then hard-refresh https://clarity-dawah.fyi/campus/
-Junior desk should load; red SEAL banner should stop.
+UPLOAD to main root:
+  campus/index.html
+  sw.js                          ← important (replace broken duplicate)
+  assets/curriculum/vault/boot.js
+  assets/curriculum/vault/SEAL.json
+  assets/curriculum/vault/foundation/engine.js
+
+After push: clear site data once (SW), hard-refresh /campus/
