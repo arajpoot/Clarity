@@ -119,15 +119,6 @@
       { sealedMissing: sealedMissing, edgeMissing: edgeMissing, repairs: repairs.length }
     );
 
-    try {
-      if (g.ClarityITLab && g.ClarityITLab.health) {
-        g.ClarityITLab.health().then(function (h) {
-          report.deviceHealth = { ok: h.ok, issues: h.issues };
-          if (!h.ok) state.bridgeOk = false;
-          updateBadge();
-        });
-      }
-    } catch (eH) {}
     updateBadge();
     try {
       g.dispatchEvent(new CustomEvent("clarity-it-scan", { detail: report }));
@@ -501,21 +492,6 @@
         scanBridge();
       });
   }
-
-  function openDeviceLab() {
-    try {
-      if (g.ClarityITLab && g.ClarityITLab.openLab) return g.ClarityITLab.openLab();
-    } catch (e) {}
-    try {
-      var s = document.createElement("script");
-      s.src = BASE + "it-device-lab-v1.js?v=20261009ITLAB";
-      s.onload = function () {
-        if (g.ClarityITLab) g.ClarityITLab.openLab();
-      };
-      document.head.appendChild(s);
-    } catch (e2) {}
-  }
-  g.clarityOpenITLab = openDeviceLab;
 
   g.addEventListener("clarity-vault-ready", function () {
     setTimeout(boot, 1600);
