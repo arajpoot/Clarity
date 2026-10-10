@@ -1,71 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-campus-page="lab">
 <head>
+
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="color-scheme" content="dark"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261010MAP"/>
+<style>
+:root {
+  --cu-bg:#070c0a; --cu-gold:#e0c56a; --cu-teal:#1fa67a; --cu-text:#eaf3ee;
+  --cu-muted:rgba(234,243,238,.72); --cu-line:rgba(224,197,106,.28); --cu-max:58rem;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--cu-bg)!important;color:var(--cu-text)!important;
+  font-family:system-ui,-apple-system,sans-serif;min-height:100%}
+body.cu-page{background:
+  radial-gradient(1100px 480px at 50% -8%,rgba(31,166,122,.16),transparent 55%),
+  radial-gradient(700px 360px at 100% 15%,rgba(224,197,106,.07),transparent 50%),
+  var(--cu-bg)!important}
+.cu-map-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;
+  padding:.45rem .9rem;background:rgba(8,16,14,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--cu-line);position:sticky;top:0;z-index:100}
+.cu-map-brand{display:inline-flex;align-items:center;gap:.45rem;color:#f3e6c0;font-weight:800;text-decoration:none;font-size:.92rem}
+.cu-map-brand img{width:1.55rem;height:1.55rem;border-radius:50%;box-shadow:0 0 12px rgba(31,166,122,.35)}
+.cu-map-links{display:flex;flex-wrap:wrap;gap:.3rem}
+.cu-map-links a{color:var(--cu-muted);text-decoration:none;font-size:.74rem;font-weight:600;padding:.3rem .6rem;
+  border-radius:999px;border:1px solid rgba(255,255,255,.1)}
+.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.14);color:#f3e6c0;border-color:rgba(224,197,106,.4)}
+.cu-banner{position:relative;overflow:hidden;border-bottom:1px solid var(--cu-line);min-height:8rem}
+.cu-banner-bg{position:absolute;inset:0;
+  background:linear-gradient(115deg,rgba(7,12,10,.82),rgba(10,28,22,.55)),
+  url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg") center 38%/cover no-repeat;
+  filter:saturate(.85)}
+.cu-banner-arc{position:absolute;left:50%;top:15%;width:150%;height:200%;transform:translateX(-50%);
+  border:2px solid rgba(224,197,106,.18);border-radius:50%;pointer-events:none}
+.cu-banner-inner{position:relative;z-index:1;max-width:var(--cu-max);margin:0 auto;padding:1.15rem 1rem 1.3rem;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem}
+.cu-banner-seal{flex:0 0 auto;width:4.1rem;height:4.1rem;border-radius:50%;
+  box-shadow:0 0 0 2px rgba(224,197,106,.35),0 0 28px rgba(31,166,122,.25)}
+.cu-banner-seal img{width:100%;height:100%;border-radius:50%;display:block}
+.cu-banner-copy{flex:1 1 14rem;min-width:0;text-align:center}
+@media(min-width:560px){.cu-banner-copy{text-align:left}}
+.cu-banner-kicker{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(224,197,106,.95);font-weight:700;margin-bottom:.3rem}
+.cu-banner h1{margin:0 0 .3rem;font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:800;color:#f7efd6;
+  text-shadow:0 2px 16px rgba(0,0,0,.4)}
+.cu-banner p{margin:0;font-size:.86rem;line-height:1.45;color:rgba(234,243,238,.88);max-width:28rem}
+.cu-page-main{max-width:var(--cu-max);margin:0 auto;padding:1rem 1rem 4.5rem}
+.cu-panel{
+  background:linear-gradient(145deg,rgba(22,36,30,.98),rgba(12,22,18,.96));
+  border:1px solid var(--cu-line);border-radius:18px;padding:1.1rem 1.15rem;
+  box-shadow:0 16px 48px rgba(0,0,0,.32);margin:0 0 1rem}
+.cu-panel h2{margin:0 0 .4rem;font-size:1.05rem;color:var(--cu-gold)}
+.cu-panel p{margin:0;color:var(--cu-muted);font-size:.88rem;line-height:1.45}
+.cu-stations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;margin:1rem 0}
+@media(min-width:640px){.cu-stations{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.cu-station{
+  border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:.85rem .8rem;cursor:pointer;
+  background:linear-gradient(160deg,rgba(20,32,28,.95),rgba(10,18,14,.92));
+  color:var(--cu-text);text-align:left;font:inherit;transition:transform .15s,border-color .2s}
+.cu-station:hover{transform:translateY(-2px);border-color:rgba(224,197,106,.45)}
+.cu-station-ico{font-size:1.15rem;display:block;margin-bottom:.25rem}
+.cu-station-name{font-weight:800;font-size:.86rem;color:#f3e6c0;display:block}
+.cu-station-sub{font-size:.72rem;color:var(--cu-muted);margin-top:.15rem;display:block;line-height:1.35}
+.cu-foot{text-align:center;font-size:.72rem;color:var(--cu-muted);padding:1.5rem .5rem}
+.cu-foot a{color:var(--cu-gold);text-decoration:none}
+#clarity-lab-host, .lab-grid, .clarity-lab-root { color: var(--cu-text); }
+/* Vault gate on dark desk */
+.amana-vault-gate, #amana-vault-gate {
+  background:linear-gradient(145deg,rgba(22,36,30,.98),rgba(12,22,18,.96))!important;
+  border:1px solid var(--cu-line)!important;border-radius:18px!important;
+  padding:1.15rem 1.2rem!important;color:var(--cu-text)!important;
+  box-shadow:0 16px 48px rgba(0,0,0,.32)!important;max-width:100%!important}
+.av-brand{color:var(--cu-gold)!important;font-weight:800!important;font-size:1.1rem!important;margin-bottom:.5rem}
+.av-warn,.av-purpose{color:var(--cu-muted)!important;font-size:.86rem!important;line-height:1.45!important}
+.av-field, label.av-field{display:block;margin:.55rem 0;color:var(--cu-text)!important;font-size:.85rem}
+.av-field input, #amana-pass-new, #amana-pass-confirm, #amana-pass-unlock {
+  width:100%;margin-top:.25rem;padding:.55rem .65rem;border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.35);color:var(--cu-text)!important}
+#amana-btn-create, #amana-btn-unlock {
+  background:linear-gradient(135deg,#c9a227,#e8c47a)!important;color:#0c1410!important;
+  border:none!important;border-radius:999px!important;padding:.55rem 1.1rem!important;font-weight:700!important;margin:.35rem .25rem .35rem 0;cursor:pointer}
+#amana-btn-have, #amana-btn-back-create, .btn-secondary {
+  background:transparent!important;color:var(--cu-gold)!important;border:1px solid rgba(224,197,106,.4)!important;
+  border-radius:999px!important;padding:.5rem 1rem!important;font-weight:600!important;cursor:pointer}
+</style>
+
 <title>Craft Laboratory · Clarity University</title>
 <meta name="description" content="Clarity University Craft Laboratory — calligraphy, tajweed, media, research. Educational practice."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/lab/"/>
-
-<link rel="stylesheet" href="/assets/clarity-amana-vault-css-v1.css?v=20261009MP2"/>
-<link rel="stylesheet" href="/assets/clarity-css-patches-v1.css?v=20261009MP2"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261009MP2"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-engine-v1.css?v=20261009MP2"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261009MP2"/>
-<style>
-:root { --cu-bg:#0c1410; --cu-card:#152019; --cu-gold:#d4b45a; --cu-green:#0d4f3c; --cu-text:#e7efe9; }
-* { box-sizing:border-box; }
-body.cu-page { margin:0; font-family:system-ui,-apple-system,sans-serif; background:var(--cu-bg); color:var(--cu-text); min-height:100vh; }
-.cu-map-nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.5rem;
-  padding:.55rem .85rem; background:linear-gradient(90deg,#0a2a40,#0d4f3c); border-bottom:1px solid rgba(212,180,90,.25);
-  position:sticky; top:0; z-index:50; }
-.cu-map-brand { color:#f0e6c8; font-weight:800; text-decoration:none; letter-spacing:.02em; }
-.cu-map-links { display:flex; flex-wrap:wrap; gap:.35rem; }
-.cu-map-links a { color:rgba(231,239,233,.85); text-decoration:none; font-size:.8rem; font-weight:600;
-  padding:.3rem .55rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); }
-.cu-map-links a:hover, .cu-map-links a[aria-current="page"] { background:rgba(212,180,90,.2); color:#f0e6c8; border-color:rgba(212,180,90,.4); }
-.cu-page-main { max-width:52rem; margin:0 auto; padding:1rem .85rem 5rem; }
-.cu-hero { text-align:center; margin:1rem 0 1.25rem; }
-.cu-hero h1 { font-size:1.35rem; color:var(--cu-gold); margin:0 0 .35rem; }
-.cu-hero p { margin:0; opacity:.85; font-size:.9rem; line-height:1.45; }
-.cu-card { background:var(--cu-card); border:1px solid rgba(212,180,90,.28); border-radius:16px; padding:1rem 1.1rem; margin:0.75rem 0; }
-.cu-foot { text-align:center; font-size:.72rem; opacity:.6; padding:1.5rem .5rem; }
-</style>
-
 </head>
 <body class="cu-page" data-campus-page="lab">
-
 <nav class="cu-map-nav" aria-label="Campus map">
-  <a class="cu-map-brand" href="/">Clarity University</a>
-  <div class="cu-map-links">
-    <a href="/">Arrival</a>
-    <a href="/campus/">Campus</a>
-    <a href="/lab/" aria-current="page">Lab</a>
-    <a href="/vault/">Amana Vault</a>
-  </div>
+  <a class="cu-map-brand" href="/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010MAP" width="28" height="28" alt=""/>
+    Clarity University
+  </a>
+  <div class="cu-map-links"><a href="/">Arrival</a><a href="/campus/">Campus</a><a href="/lab/" aria-current="page">Lab</a><a href="/journey/">Journey</a><a href="/vault/">Amana Vault</a></div>
 </nav>
-
-<main class="cu-page-main">
-  <header class="cu-hero">
-    <h1>Craft Laboratory</h1>
-    <p>Beauty with truth · craft with adab · research before transmission.</p>
-  </header>
-  <div id="campus-stage-body">
-    <div id="clarity-lab-host"></div>
+<header class="cu-banner" role="banner">
+  <div class="cu-banner-bg" aria-hidden="true"></div>
+  <div class="cu-banner-arc" aria-hidden="true"></div>
+  <div class="cu-banner-inner">
+    <div class="cu-banner-seal">
+      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010MAP" width="66" height="66" alt="Clarity University seal"/>
+    </div>
+    <div class="cu-banner-copy">
+      <div class="cu-banner-kicker">Nur Path · Craft hall</div>
+      <h1>Craft Laboratory</h1>
+      <p>Beauty with truth · craft with adab · research before transmission. Projects stay on this device.</p>
+    </div>
   </div>
-  <p class="cu-foot">Lab projects stay on this device · educational only</p>
+</header>
+<main class="cu-page-main">
+  <section class="cu-panel">
+    <h2>Lab stations</h2>
+    <p>Open a station to practice. Educational only — not a fatwa.</p>
+  </section>
+  <div class="cu-stations" role="list">
+    <button type="button" class="cu-station" data-lab="calligraphy"><span class="cu-station-ico">✎</span><span class="cu-station-name">Calligraphy</span><span class="cu-station-sub">Stroke practice pad</span></button>
+    <button type="button" class="cu-station" data-lab="tajweed"><span class="cu-station-ico">♪</span><span class="cu-station-name">Tajweed</span><span class="cu-station-sub">Whisper &amp; rules</span></button>
+    <button type="button" class="cu-station" data-lab="notes"><span class="cu-station-ico">◈</span><span class="cu-station-name">Notes pad</span><span class="cu-station-sub">Study notes shell</span></button>
+    <button type="button" class="cu-station" data-lab="media"><span class="cu-station-ico">▶</span><span class="cu-station-name">Media</span><span class="cu-station-sub">Clips &amp; embeds</span></button>
+    <button type="button" class="cu-station" data-lab="research"><span class="cu-station-ico">◎</span><span class="cu-station-name">Research</span><span class="cu-station-sub">Scout &amp; sources</span></button>
+    <button type="button" class="cu-station" data-lab="meme"><span class="cu-station-ico">✦</span><span class="cu-station-name">Meme studio</span><span class="cu-station-sub">Background &amp; text</span></button>
+  </div>
+  <div class="cu-panel" id="clarity-lab-host">
+    <p id="lab-hint" style="margin:0;color:var(--cu-muted);font-size:.88rem">Loading lab controller…</p>
+  </div>
+  <p class="cu-foot"><a href="/campus/">Campus</a> · <a href="/vault/">Vault</a> · <a href="/">Arrival</a></p>
 </main>
-<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261009MP2" defer></script>
-<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261009MP2" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261010MAP"></script>
+<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261010MAP" defer></script>
 <script>
-window.addEventListener("load", function() {
-  setTimeout(function() {
-    if (window.ClarityLab && ClarityLab.render) ClarityLab.render();
-  }, 400);
-  setTimeout(function() {
-    if (window.ClarityLab && ClarityLab.render) ClarityLab.render();
-  }, 1500);
-});
+(function(){
+  function tryRender(){
+    try {
+      if (window.ClarityLab) {
+        if (ClarityLab.render) ClarityLab.render();
+        if (ClarityLab.openStation) { /* ok */ }
+        var h = document.getElementById("lab-hint");
+        if (h && document.querySelector("#clarity-lab-host .lab-grid, #clarity-lab-host .clarity-lab, #clarity-lab-host [data-lab-root]"))
+          h.remove();
+        else if (h) h.textContent = "Lab online — pick a station above, or use the panel below.";
+      }
+    } catch(e){}
+  }
+  document.querySelectorAll(".cu-station").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var id = btn.getAttribute("data-lab");
+      try {
+        if (window.ClarityLab && ClarityLab.openStation) ClarityLab.openStation(id);
+        else if (window.ClarityLab && ClarityLab.openCard) ClarityLab.openCard(id);
+        else if (window.ClarityLab && ClarityLab.render) ClarityLab.render(id);
+        else alert("Lab is still loading — try again in a moment.");
+      } catch(e) { console.warn(e); }
+    });
+  });
+  setTimeout(tryRender, 400);
+  setTimeout(tryRender, 1500);
+  setTimeout(tryRender, 3000);
+})();
 </script>
 </body>
 </html>
