@@ -418,35 +418,34 @@
 
   /** Hook controller goToPhase for inert future */
   function hookController() {
+    if (g.ClarityCurriculumController && g.ClarityCurriculumController.__registrarHooked) return;
     if (!g.ClarityCurriculumController) return;
-    if (g.ClarityCurriculumController.__registrarHooked) return;
-    var prev = g.ClarityCurriculumController.goToPhase;
-    if (typeof prev !== "function") return;
-    g.ClarityCurriculumController.goToPhase = function (target) {
+    function registrarGate(target) {
       var gate = canEnter(target);
       if (!gate.ok) {
-        alert(gate.reason);
-        openDesk();
+        try { alert(gate.reason || "Phase locked by Registrar."); } catch (e) {}
         return false;
       }
-      /* if moving to earlier completed phase, offer resume without auto-wipe */
-      if (target < activePhase() && hasDiploma(target)) {
-        var choice = confirm(
-          "Phase " +
-            target +
-            " already has a diploma.\n\nOK = Resume without clearing progress\nCancel = open Registrar to choose Redo"
-        );
-        if (!choice) {
-          openDesk();
-          return false;
-        }
-        setActivePhase(target);
-        return true;
-      }
-      setActivePhase(target);
-      return prev.call(g.ClarityCurriculumController, target);
-    };
-    g.ClarityCurriculumController.__registrarHooked = true;
+      return true;
+    }
+    if (typeof g.ClarityCurriculumController.registerGoToPhaseGate === "function") {
+      g.ClarityCurriculumController.registerGoToPhaseGate(registrarGate);
+      g.ClarityCurriculumController.__registrarHooked = true;
+      return;
+    }
+    if (Object.isFrozen(g.ClarityCurriculumController)) {
+      try { g.ClarityCurriculumController.__registrarHooked = true; } catch (e) {}
+      return;
+    }
+    var prev = g.ClarityCurriculumController.goToPhase;
+    if (typeof prev !== "function") return;
+    try {
+      g.ClarityCurriculumController.goToPhase = function (target) {
+        if (registrarGate(target) === false) return false;
+        return prev.call(g.ClarityCurriculumController, target);
+      };
+      g.ClarityCurriculumController.__registrarHooked = true;
+    } catch (eReg) {}
   }
 
   /** Diploma issue → stamp revision if superseding */
