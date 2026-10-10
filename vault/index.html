@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Amana Vault · Clarity University</title>
+<meta name="description" content="Amana Vault — on-device encrypted notes for estate readiness. Educational only, not a fatwa."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://clarity-dawah.fyi/vault/"/>
+
+<link rel="stylesheet" href="/assets/clarity-amana-vault-css-v1.css?v=20261009MP1"/>
+<link rel="stylesheet" href="/assets/clarity-css-patches-v1.css?v=20261009MP1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261009MP1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-engine-v1.css?v=20261009MP1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261009MP1"/>
+<style>
+:root { --cu-bg:#0c1410; --cu-card:#152019; --cu-gold:#d4b45a; --cu-green:#0d4f3c; --cu-text:#e7efe9; }
+* { box-sizing:border-box; }
+body.cu-page { margin:0; font-family:system-ui,-apple-system,sans-serif; background:var(--cu-bg); color:var(--cu-text); min-height:100vh; }
+.cu-map-nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.5rem;
+  padding:.55rem .85rem; background:linear-gradient(90deg,#0a2a40,#0d4f3c); border-bottom:1px solid rgba(212,180,90,.25);
+  position:sticky; top:0; z-index:50; }
+.cu-map-brand { color:#f0e6c8; font-weight:800; text-decoration:none; letter-spacing:.02em; }
+.cu-map-links { display:flex; flex-wrap:wrap; gap:.35rem; }
+.cu-map-links a { color:rgba(231,239,233,.85); text-decoration:none; font-size:.8rem; font-weight:600;
+  padding:.3rem .55rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); }
+.cu-map-links a:hover, .cu-map-links a[aria-current="page"] { background:rgba(212,180,90,.2); color:#f0e6c8; border-color:rgba(212,180,90,.4); }
+.cu-page-main { max-width:52rem; margin:0 auto; padding:1rem .85rem 5rem; }
+.cu-hero { text-align:center; margin:1rem 0 1.25rem; }
+.cu-hero h1 { font-size:1.35rem; color:var(--cu-gold); margin:0 0 .35rem; }
+.cu-hero p { margin:0; opacity:.85; font-size:.9rem; line-height:1.45; }
+.cu-card { background:var(--cu-card); border:1px solid rgba(212,180,90,.28); border-radius:16px; padding:1rem 1.1rem; margin:0.75rem 0; }
+.cu-foot { text-align:center; font-size:.72rem; opacity:.6; padding:1.5rem .5rem; }
+</style>
+
+</head>
+<body class="cu-page" data-campus-page="vault">
+
+<nav class="cu-map-nav" aria-label="Campus map">
+  <a class="cu-map-brand" href="/">Clarity University</a>
+  <div class="cu-map-links">
+    <a href="/">Arrival</a>
+    <a href="/campus/">Campus</a>
+    <a href="/lab/">Lab</a>
+    <a href="/vault/" aria-current="page">Amana Vault</a>
+  </div>
+</nav>
+
+<main class="cu-page-main">
+  <header class="cu-hero">
+    <h1>Amana Vault</h1>
+    <p>Private · on-device · encrypted at rest. You hold the passphrase. Educational — not a fatwa.</p>
+  </header>
+  <div id="tab-notes" class="tab-panel amana-locked active" style="display:block">
+    <div class="amana-vault-gate" id="amana-vault-gate" role="region" aria-label="Amana Vault login">
+      <div class="av-brand"><span class="icon" aria-hidden="true">🏦</span> Amana Vault</div>
+      <div class="av-warn">
+        <strong>You are responsible for your passphrase.</strong>
+        Clarity does not store it and cannot recover vault data if it is lost.
+        On-device only · encrypted at rest · educational — not a fatwa.
+      </div>
+      <div class="av-purpose" style="margin:0 0 0.85rem;padding:0.75rem 0.8rem;border-radius:12px;border:1px solid rgba(212,180,90,0.28);background:rgba(0,0,0,0.25);font-size:0.82rem;line-height:1.5">
+        <strong style="color:#d4b45a">What this vault is for</strong>
+        <p style="margin:0.35rem 0 0">Estate readiness notes: family outline, debts and trusts, wasiyyah notes, and farāʾiḍ study tools. A trust (amānah) — not a court filing.</p>
+      </div>
+      <div id="amana-gate-create">
+        <label class="av-field">Create passphrase<br/><input type="password" id="amana-pass-new" autocomplete="new-password"/></label>
+        <label class="av-field">Confirm<br/><input type="password" id="amana-pass-confirm" autocomplete="new-password"/></label>
+        <div id="amana-strength-bar" style="height:4px;background:#333;border-radius:2px;margin:.4rem 0"><div id="amana-strength-lab" style="height:100%;width:0;background:#0d4f3c;border-radius:2px"></div></div>
+        <button type="button" id="amana-btn-create">Create vault</button>
+        <button type="button" id="amana-btn-have" class="btn-secondary">I already have a vault</button>
+      </div>
+      <div id="amana-gate-unlock" hidden>
+        <label class="av-field">Passphrase<br/><input type="password" id="amana-pass-unlock" autocomplete="current-password"/></label>
+        <button type="button" id="amana-btn-unlock">Unlock</button>
+        <button type="button" id="amana-btn-back-create" class="btn-secondary">Back</button>
+      </div>
+      <div id="amana-lockout-panel" hidden>
+        <p id="amana-lockout-msg"></p>
+        <button type="button" id="amana-btn-reset-start">Reset vault (destructive)</button>
+      </div>
+      <p id="amana-attempts-lab" style="font-size:.75rem;opacity:.7"></p>
+    </div>
+    <div id="amana-vault-interior" hidden></div>
+  </div>
+  <p class="cu-foot">Clarity University · Amana Vault · educational only</p>
+</main>
+<script src="/assets/clarity-amana-vault-gate-js-v1.js?v=20261009MP1" defer></script>
+<script src="/assets/clarity-amana-vault-access-v1.js?v=20261009MP1" defer></script>
+<script>
+document.documentElement.setAttribute("data-active-tab","notes");
+document.body.setAttribute("data-active-tab","notes");
+</script>
+</body>
+</html>
