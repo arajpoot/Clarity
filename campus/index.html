@@ -7,12 +7,12 @@
 <title>Campus · Clarity University</title>
 <meta name="description" content="Clarity University campus — learning stage, faculty, security, IT. Educational only."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261010P4"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261010P4"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261010P4"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/security/security.css?v=20261010P4"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/it/it.css?v=20261010P4"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261010P4"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261010P4B"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261010P4B"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261010P4B"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/security/security.css?v=20261010P4B"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/it/it.css?v=20261010P4B"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261010P4B"/>
 <style>
 :root {
   --cu-bg:#070c0a; --cu-gold:#e0c56a; --cu-teal:#1fa67a; --cu-text:#eaf3ee;
@@ -126,12 +126,27 @@ body.cu-page{background:
 .cu-foot a{color:var(--cu-gold);text-decoration:none}
 .clarity-engine-hud{display:none!important}
 #clarity-name-plaque-rail,.cnp-inner{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .75rem}
+
+/* Wing modals always above campus chrome */
+.clarity-security-modal.show,
+.clarity-it-modal.show,
+.clarity-faculty-modal.show,
+#clarity-security-modal.show,
+#clarity-it-modal.show {
+  display: flex !important;
+  z-index: 200000 !important;
+}
+#clarity-phase-plaque-rail {
+  position: relative !important;
+  top: auto !important;
+  z-index: 5 !important;
+}
 </style>
 </head>
 <body class="cu-page" data-campus-page="campus" data-campus-stage="learn">
 <nav class="cu-map-nav" aria-label="Campus map">
   <a class="cu-map-brand" href="/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010P4" width="28" height="28" alt=""/>
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010P4B" width="28" height="28" alt=""/>
     Clarity University
   </a>
   <div class="cu-map-links">
@@ -147,7 +162,7 @@ body.cu-page{background:
   <div class="cu-banner-arc" aria-hidden="true"></div>
   <div class="cu-banner-inner">
     <div class="cu-banner-seal">
-      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010P4" width="68" height="68" alt="Clarity University seal — crescent"/>
+      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010P4B" width="68" height="68" alt="Clarity University seal — crescent"/>
     </div>
     <div class="cu-banner-copy">
       <div class="cu-banner-kicker">Nur Path · Phase 4 campus</div>
@@ -186,21 +201,22 @@ body.cu-page{background:
   <p class="cu-foot"><a href="/">Full companion</a> · <a href="/lab/">Lab</a> · <a href="/vault/">Vault</a><br/>Educational only — not a fatwa</p>
 </main>
 
-<script src="/assets/curriculum/vault/foundation/engine.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/foundation/spark-quiz.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/foundation/diplomas.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/foundation/phase-plaque.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/foundation/curriculum-controller.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/foundation/college-seeker.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/foundation/college-practice.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/foundation/college-consistency.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/foundation/college-transmission.js?v=20261010P4"></script>
-<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261010P4" defer></script>
-<script src="/assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261010P4" defer></script>
-<script src="/assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261010P4" defer></script>
-<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261010P4" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261010P4" defer></script>
-<script src="/assets/clarity-campus-rescue-v1.js?v=20261010P4" defer></script>
+<script src="/assets/curriculum/vault/foundation/engine.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/foundation/spark-quiz.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/foundation/diplomas.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/foundation/phase-plaque.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/foundation/curriculum-controller.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/foundation/college-seeker.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/foundation/college-practice.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/foundation/college-consistency.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/foundation/college-transmission.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261010P4B"></script>
+<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261010P4B" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261010P4B" defer></script>
+<script src="/assets/clarity-campus-rescue-v1.js?v=20261010P4B" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261010P4B" defer></script>
 <script>
 (function () {
   try { document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
