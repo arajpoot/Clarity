@@ -52,9 +52,13 @@
   }
   function openCard(id) {
     if (!id) return;
+    if (typeof g.clarityLabOpenTool === "function" && g.clarityLabOpenTool(id)) {
+      toast("Tool card opened.");
+      return;
+    }
     var el = document.getElementById(id);
     if (!el) {
-      toast("Card not on this screen — open the Reality door tab.");
+      toast("Card still loading — try Reflection / Reality tab, then reopen the station.");
       return;
     }
     try {
@@ -62,6 +66,7 @@
       el.hidden = false;
       el.style.removeProperty("display");
       el.scrollIntoView({ behavior: "smooth", block: "start" });
+      toast("Tool card opened.");
     } catch (e) {}
   }
   function toast(msg) {
