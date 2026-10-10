@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Campus · Learning Stage · Clarity University</title>
+<meta name="description" content="Clarity University learning stage — Junior pathway, phase desk, spark quizzes. Educational only — not a fatwa."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
+<link rel="preload" href="/assets/curriculum/vault/SEAL.json" as="fetch" crossorigin/>
+<link rel="stylesheet" href="/assets/clarity-css-patches-v1.css?v=20261009MP2"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261009MP2"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-engine-v1.css?v=20261009MP2"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261009MP2"/>
+<style>
+:root { --cu-bg:#0c1410; --cu-card:#152019; --cu-gold:#d4b45a; --cu-text:#e7efe9; }
+* { box-sizing:border-box; }
+body.cu-page { margin:0; font-family:system-ui,-apple-system,sans-serif; background:var(--cu-bg); color:var(--cu-text); min-height:100vh; }
+.cu-map-nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.5rem;
+  padding:.55rem .85rem; background:linear-gradient(90deg,#0a2a40,#0d4f3c); border-bottom:1px solid rgba(212,180,90,.25);
+  position:sticky; top:0; z-index:50; }
+.cu-map-brand { color:#f0e6c8; font-weight:800; text-decoration:none; }
+.cu-map-links { display:flex; flex-wrap:wrap; gap:.35rem; }
+.cu-map-links a { color:rgba(231,239,233,.85); text-decoration:none; font-size:.8rem; font-weight:600;
+  padding:.3rem .55rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); }
+.cu-map-links a[aria-current="page"] { background:rgba(212,180,90,.2); color:#f0e6c8; border-color:rgba(212,180,90,.4); }
+.cu-page-main { max-width:42rem; margin:0 auto; padding:.75rem .75rem 4rem; }
+.cu-hero { text-align:center; margin:.75rem 0 1rem; }
+.cu-hero h1 { font-size:1.3rem; color:var(--cu-gold); margin:0 0 .3rem; }
+.cu-hero p { margin:0; opacity:.85; font-size:.88rem; line-height:1.45; }
+#clarity-phase-plaque-rail, #clarity-name-plaque-rail { margin:.5rem 0; }
+#clarity-campus-stage { margin-top:.75rem; }
+#campus-stage-body { min-height:8rem; }
+#junior-curriculum-card, #junior-high-curriculum-card, #daily-hs-curriculum-card, #dai-university-curriculum-card {
+  display:block !important; visibility:visible !important; margin:.75rem 0 !important;
+}
+.cu-foot { text-align:center; font-size:.72rem; opacity:.55; padding:1.25rem .5rem; }
+.cu-foot a { color:#d4b45a; }
+</style>
+</head>
+<body class="cu-page" data-campus-page="campus" data-campus-stage="learn">
+<nav class="cu-map-nav" aria-label="Campus map">
+  <a class="cu-map-brand" href="/">Clarity University</a>
+  <div class="cu-map-links">
+    <a href="/">Arrival</a>
+    <a href="/campus/" aria-current="page">Campus</a>
+    <a href="/lab/">Lab</a>
+    <a href="/vault/">Amana Vault</a>
+  </div>
+</nav>
+<main class="cu-page-main">
+  <header class="cu-hero">
+    <h1>Learning Stage</h1>
+    <p>One module at a time. Spark quiz unlocks the next. Progress is saved on this device.</p>
+  </header>
+
+  <!-- Phase plaque mounts here -->
+  <div id="clarity-phase-plaque-host"></div>
+  <div id="clarity-name-plaque-rail" class="cnp-inner" aria-label="Learner and halls"></div>
+
+  <div id="clarity-campus-stage">
+    <p class="campus-stage-label">Learning stage · Phase desk</p>
+    <div id="campus-stage-body">
+      <p id="campus-loading-hint" style="opacity:.75;font-size:.88rem">Sealing vault and loading Junior desk…</p>
+    </div>
+  </div>
+
+  <p class="cu-foot"><a href="/">Full companion</a> · <a href="/lab/">Lab</a> · <a href="/vault/">Vault</a><br/>Educational only — not a fatwa</p>
+</main>
+
+<script src="/assets/curriculum/vault/boot.js?v=20261009MP2" defer id="clarity-vault-boot"></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261009MP2" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-polish-v1.js?v=20261009MP2" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-engine-v1.js?v=20261009MP2" defer></script>
+<script src="/assets/clarity-campus-rescue-v1.js?v=20261009MP2" defer></script>
+<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261009MP2" defer></script>
+<script>
+(function () {
+  function hideHint() {
+    var h = document.getElementById("campus-loading-hint");
+    if (h && document.getElementById("junior-curriculum-card")) h.remove();
+  }
+  function adopt() {
+    try {
+      if (window.ClarityCampus && ClarityCampus.adoptCurriculumCards) ClarityCampus.adoptCurriculumCards();
+      if (window.ClarityJuniorCurriculum && ClarityJuniorCurriculum.render) ClarityJuniorCurriculum.render();
+      if (window.ClarityCampusPolish && ClarityCampusPolish.version) { /* warm */ }
+    } catch (e) {}
+    hideHint();
+  }
+  window.addEventListener("clarity-vault-ready", function () {
+    setTimeout(adopt, 200);
+    setTimeout(adopt, 800);
+    setTimeout(adopt, 2000);
+  });
+  window.addEventListener("load", function () {
+    setTimeout(adopt, 1500);
+    setTimeout(adopt, 3500);
+  });
+  document.documentElement.setAttribute("data-campus-stage", "learn");
+})();
+</script>
+</body>
+</html>

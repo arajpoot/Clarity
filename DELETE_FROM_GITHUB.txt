@@ -1,0 +1,45 @@
+CLEAN INSTALL — delete these from GitHub main (they fight Phase 2)
+
+=== DELETE (legacy STUB curriculum — real code is vault/foundation) ===
+assets/clarity-junior-curriculum-v1.js
+assets/clarity-junior-high-curriculum-v1.js
+assets/clarity-dai-university-v1.js
+assets/clarity-daily-hs-curriculum-v1.js
+assets/clarity-curriculum-controller-v1.js
+assets/clarity-curriculum-engine-v1.js
+assets/clarity-university-diplomas-v1.js
+assets/clarity-module-spark-quiz-v1.js
+assets/clarity-phase-plaque-v1.js
+assets/clarity-phase-plaque-v1.css   (if present)
+
+=== DELETE (dead office duplicate outside sealed vault) ===
+assets/curriculum/office/office-controller-v1.js
+(optional whole folder if only stubs: assets/curriculum/office/ — keep only if you use those JSON copies)
+
+=== SAFE TO KEEP (needed) ===
+index.html
+campus/index.html
+lab/index.html
+vault/index.html
+_redirects
+_headers
+sw.js
+robots.txt
+sitemap.xml
+CNAME
+assets/curriculum/vault/**   (boot, SEAL, foundation, admin)
+assets/clarity-amana-*
+assets/clarity-chunk-8.js
+assets/clarity-feature-pack-v1.js
+assets/clarity-path-pack-v1.js
+assets/clarity-aux-pack-v1.js
+assets/clarity-css-patches-v1.css
+assets/clarity-critical-css-v1.css
+assets/clarity-sticky-harden-*
+assets/clarity-campus-rescue-v1.js
+
+=== REPLACE after deletes (this package) ===
+assets/curriculum/vault/boot.js
+assets/curriculum/vault/SEAL.json
+assets/curriculum/vault/foundation/engine.js
+campus/index.html  (from campus-index.html in this zip → path campus/index.html)
