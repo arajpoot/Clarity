@@ -1,20 +1,19 @@
-Phase 3 fix — call: overhaul campus page (not more SEAL chasing)
+MAIN OBLITERATE — not hide
 
-ROOT CAUSES:
-1. Live sw.js was DUPLICATED (syntax break / bad caching)
-2. /campus/ depended on SEAL boot; any fetch fail = empty desk
-3. Engine now prefers #campus-stage-body
+index.html no longer LOADS:
+  boot.js / SEAL.json  (entire foundation chain)
+  faculty, security, IT, lab, OM, chancellor, registrar, staff
+  campus-engine/shell/polish/rescue
+  related admin CSS
 
-WHAT THIS DOES:
-- campus/index.html loads foundation scripts DIRECTLY (no SEAL gate)
-- boot.js: if SEAL fails, emergency-loads foundation anyway
-- sw.js: single clean file, multipage + SEAL network-first, cache MP3
+Those live only on:
+  /campus/  (curriculum + wings)
+  /lab/
+  /vault/
 
-UPLOAD to main root:
+Upload:
+  index.html
   campus/index.html
-  sw.js                          ← important (replace broken duplicate)
-  assets/curriculum/vault/boot.js
-  assets/curriculum/vault/SEAL.json
-  assets/curriculum/vault/foundation/engine.js
+  assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js
 
-After push: clear site data once (SW), hard-refresh /campus/
+Hard-refresh /. Network tab should NOT show boot.js or foundation/*.
