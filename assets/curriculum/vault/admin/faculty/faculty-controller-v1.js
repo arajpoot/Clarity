@@ -509,12 +509,12 @@
     }, 500);
   };
 
-  /** Gate goToPhase if controller present */
+  /** Gate goToPhase — freeze-safe via registerGoToPhaseGate */
+  var __facultyHooked = false;
   function hookController() {
-    if (!g.ClarityCurriculumController || g.ClarityCurriculumController.__facultyHooked) return;
-    var prev = g.ClarityCurriculumController.goToPhase;
-    if (typeof prev !== "function") return;
-    g.ClarityCurriculumController.goToPhase = function (target) {
+    if (__facultyHooked) return;
+    if (!g.ClarityCurriculumController) return;
+    function facultyGate(target) {
       var gate = canStartPhase(target);
       if (target > currentPhase() && !gate.ok) {
         showHandoffModal(target, gate);
@@ -523,9 +523,30 @@
       if (target > 1 && !getEnrollment()[String(target)]) {
         enroll(target);
       }
-      return prev.call(g.ClarityCurriculumController, target);
-    };
-    g.ClarityCurriculumController.__facultyHooked = true;
+      return true;
+    }
+    if (typeof g.ClarityCurriculumController.registerGoToPhaseGate === "function") {
+      g.ClarityCurriculumController.registerGoToPhaseGate(facultyGate);
+      __facultyHooked = true;
+      return;
+    }
+    /* Fallback only if controller not frozen */
+    if (Object.isFrozen(g.ClarityCurriculumController)) {
+      __facultyHooked = true;
+      return;
+    }
+    var prev = g.ClarityCurriculumController.goToPhase;
+    if (typeof prev !== "function") {
+      __facultyHooked = true;
+      return;
+    }
+    try {
+      g.ClarityCurriculumController.goToPhase = function (target) {
+        if (facultyGate(target) === false) return false;
+        return prev.call(g.ClarityCurriculumController, target);
+      };
+    } catch (e) {}
+    __facultyHooked = true;
   }
 
   g.ClarityFaculty = {
