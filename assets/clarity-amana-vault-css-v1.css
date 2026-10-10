@@ -47,3 +47,48 @@
 #tab-notes {
   content-visibility: visible !important;
 }
+
+/* VAULT FORTIFY — no black void above gate */
+#tab-notes.active {
+  min-height: 0 !important;
+  padding-top: 0.25rem !important;
+  margin-top: 0 !important;
+  background: transparent !important;
+}
+#tab-notes.active > *:first-child {
+  margin-top: 0.25rem !important;
+}
+#amana-vault-gate {
+  margin-top: 0.35rem !important;
+  margin-bottom: 1rem !important;
+  padding: 1rem 1rem 1.1rem !important;
+  border-radius: 16px !important;
+  background: linear-gradient(165deg, rgba(18,28,22,0.98), rgba(12,20,16,0.96)) !important;
+  border: 1px solid rgba(212,180,90,0.35) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.28) !important;
+}
+#amana-vault-gate .av-brand {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: #d4b45a !important;
+  margin-bottom: 0.5rem !important;
+}
+/* Hide empty spacer siblings that create black bands */
+#tab-notes.active .notes-shell:not(.amana-visible) {
+  /* notes shell only after unlock typically */
+}
+html[data-active-tab="notes"] #clarity-campus-stage,
+html[data-active-tab="notes"] #campus-stage-body {
+  /* stage can shrink when vault focused */
+  min-height: 0 !important;
+}
+/* When vault tab active, pull content up under chrome */
+html[data-active-tab="notes"] #main-application-workspace {
+  padding-top: 0.25rem !important;
+}
+html[data-active-tab="notes"] #tab-notes {
+  scroll-margin-top: calc(var(--clarity-nav-h, 48px) + 0.5rem);
+}
+#amana-vault-gate {
+  scroll-margin-top: calc(var(--clarity-nav-h, 48px) + var(--clarity-banner-h, 0px) + 0.5rem);
+}

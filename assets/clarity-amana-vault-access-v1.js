@@ -34,6 +34,7 @@
     var interior = document.getElementById("amana-vault-interior");
     if (panel && !panel.classList.contains("amana-unlocked")) {
       panel.classList.add("amana-locked");
+      try { document.documentElement.setAttribute("data-vault-focus", "1"); } catch (eF) {}
     }
     if (gate) {
       gate.hidden = false;
@@ -48,6 +49,7 @@
         if (panel) {
           panel.classList.remove("amana-locked");
           panel.classList.add("amana-unlocked");
+          try { document.documentElement.removeAttribute("data-vault-focus"); } catch (eU) {}
         }
         if (interior) {
           interior.hidden = false;
@@ -68,6 +70,12 @@
       if (gate) {
         try {
           gate.scrollIntoView({ behavior: "smooth", block: "start" });
+          try { window.scrollBy(0, -8); } catch (eScroll) {}
+          try {
+            var notes = document.getElementById("tab-notes");
+            if (notes) notes.scrollTop = 0;
+            document.documentElement.scrollTop = Math.min(document.documentElement.scrollTop || 0, gate.offsetTop || 0);
+          } catch (e2) {}
         } catch (e) {}
         var input = document.getElementById("amana-pass-unlock") || document.getElementById("amana-pass-new");
         if (input) {
