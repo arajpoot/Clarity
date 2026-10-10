@@ -246,27 +246,16 @@
   function hookUniversity() {
     if (__officeHooked) return;
     if (!g.ClarityUniversity) return;
-    /* If API is sealed, event listener path is enough */
-    if (Object.isFrozen(g.ClarityUniversity)) {
-      __officeHooked = true;
-      return;
-    }
-    var prev = g.ClarityUniversity.issueDiploma;
-    if (typeof prev !== "function") {
-      __officeHooked = true;
-      return;
-    }
+    /* Never mutate ClarityUniversity (may be frozen by SEAL). Event path only. */
     try {
-      g.ClarityUniversity.issueDiploma = function (phase) {
-        var dip = prev.call(g.ClarityUniversity, phase);
-        loadOffice(function () {
-          if (dip) applyDiplomaTemplate(phase, dip);
-        });
-        return dip;
-      };
-    } catch (e) {
-      /* read-only after freeze — safe to ignore */
-    }
+      g.addEventListener("clarity-diploma-issued", function (ev) {
+        try {
+          var phase = ev && ev.detail && ev.detail.phase;
+          var dip = ev && ev.detail && ev.detail.diploma;
+          if (phase) loadOffice(function () { applyDiplomaTemplate(phase, dip); });
+        } catch (e) {}
+      });
+    } catch (e) {}
     __officeHooked = true;
   }
 

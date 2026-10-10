@@ -1,5 +1,5 @@
 /* Clarity University Diplomas + Name Plaque + Score Ledger v1
- * Completions: Junior → Junior High → Daily → Da'i
+ * Graduations: Junior → Junior High → Daily → Da'i
  * Certificates + scores stored locally; portable export for device transfer.
  * Educational recognition only — not a scholarly ijazah or fatwa license.
  */
@@ -254,7 +254,7 @@
     }
     document.getElementById("cnp-edit").onclick = function () {
       var cur = getName();
-      var n = prompt("Your learning name (on local study records):", cur || "");
+      var n = prompt("Your learning name (shown on certificates):", cur || "");
       if (n != null) setName(n);
     };
     document.getElementById("cnp-hall-btn").onclick = function () {
@@ -300,7 +300,7 @@
         '<div class="cdm-backdrop" data-cdm-close="1"></div>' +
         '<div class="cdm-wrap">' +
         '<button type="button" class="cdm-x" data-cdm-close="1" aria-label="Close">×</button>' +
-        '<div id="cdm-study record" class="cdm-study record"></div>' +
+        '<div id="cdm-certificate" class="cdm-certificate"></div>' +
         '<div class="cdm-actions">' +
         '<button type="button" class="cdm-btn" id="cdm-export">Export portable record</button>' +
         '<button type="button" class="cdm-btn cdm-secondary" id="cdm-import">Import on this device</button>' +
@@ -320,7 +320,7 @@
         importFromPrompt();
       };
     }
-    var cert = document.getElementById("cdm-study record");
+    var cert = document.getElementById("cdm-certificate");
     cert.innerHTML = buildCertificateHTML(dip, isNew);
     m.hidden = false;
     m.classList.add("show");
@@ -394,11 +394,11 @@
     if (!keys.length) {
       var name = getName();
       if (!name) {
-        var n = prompt("Set your learning name first (it appears on local study records):", "");
+        var n = prompt("Set your learning name first (it appears on certificates):", "");
         if (n) setName(n);
       }
       alert(
-        "No local study records yet. Complete modules in a phase and pass the phase quiz to save a record on this device."
+        "No diplomas yet. Complete all modules in a phase and pass the phase quiz to graduate that track."
       );
       return;
     }
@@ -488,7 +488,7 @@
           " — " +
           p.title +
           (s ? " | score " + Math.round((100 * s.correct) / (s.total || 1)) + "% (" + s.attempts + " checks)" : " | no scores yet") +
-          (dip ? " | RECORD " + dip.seal : " | not completed")
+          (dip ? " | DIPLOMA " + dip.seal : " | not graduated")
       );
     });
     lines.push("", "Recent attempts:");
@@ -564,7 +564,7 @@
     if (typeof prevPass === "function") prevPass(phase);
     /* ensure name */
     if (!getName()) {
-      var n = prompt("Name for your local study record:", getName() || "");
+      var n = prompt("Graduation name for your certificate:", getName() || "");
       if (n) setName(n);
     }
     issueDiploma(phase);
