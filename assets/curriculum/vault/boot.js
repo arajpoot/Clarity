@@ -264,15 +264,57 @@
     base: VAULT_BASE
   };
 
+  var EMERGENCY_ORDER = [
+    "foundation/engine.js",
+    "foundation/spark-quiz.js",
+    "foundation/diplomas.js",
+    "foundation/phase-plaque.js",
+    "foundation/curriculum-controller.js",
+    "foundation/college-seeker.js",
+    "foundation/college-practice.js",
+    "foundation/college-consistency.js",
+    "foundation/college-transmission.js",
+    "foundation/office-controller.js"
+  ];
+  var EMERGENCY_STYLES = ["foundation/phase-plaque.css"];
+
+  function emergencyLoad(reason) {
+    log("Emergency foundation load:", reason || "no SEAL");
+    var seal = {
+      version: "emergency",
+      build: "emergency",
+      foundationOrder: EMERGENCY_ORDER,
+      styles: EMERGENCY_STYLES,
+      sha256: {},
+      freezeApis: [
+        "ClarityCurriculumEngine",
+        "ClarityUniversity",
+        "ClarityJuniorCurriculum",
+        "ClaritySparkQuiz"
+      ]
+    };
+    return verifyAndLoad(seal).then(function () {
+      try {
+        g.dispatchEvent(new CustomEvent("clarity-vault-ready", { detail: { emergency: true } }));
+      } catch (e) {}
+    });
+  }
+
   function start() {
-    fetchText(VAULT_BASE + "SEAL.json?v=" + Date.now())
+    var base = VAULT_BASE;
+    if (!base || base.charAt(0) !== "/") {
+      base = "/assets/curriculum/vault/";
+      VAULT_BASE = base;
+    }
+    fetchText(base + "SEAL.json?v=" + Date.now())
       .then(function (t) {
         var seal = JSON.parse(t);
         return verifyAndLoad(seal);
       })
       .catch(function (err) {
-        log("Vault SEAL missing or unreadable — foundation not loaded", err && err.message);
+        log("Vault SEAL missing or unreadable — emergency load", err && err.message);
         showBreachBanner("SEAL.json");
+        return emergencyLoad(err && err.message);
       });
   }
 
