@@ -6,7 +6,7 @@
   "use strict";
   if (g.__CLARITY_WORKERS_OPS_V1__) return;
   g.__CLARITY_WORKERS_OPS_V1__ = true;
-  var VER = "20261009WORKERS";
+  var VER = "20261009VAULT";
 
   var SIM_KEY = "clarity_it_sandbox_sim_v1";
   var DRILL_KEY = "clarity_workers_drill_log_v1";
@@ -393,4 +393,144 @@
   try {
     console.info("%c Workers Ops ", "background:#0a2a40;color:#a8d4f0", VER, "IT sandbox · Security pipes · O&M pulse");
   } catch (e) {}
+})(typeof window !== "undefined" ? window : this);
+
+/* ---- WORKERS v2 append: IT report card + O&M realtime ticker ---- */
+(function (g) {
+  "use strict";
+  if (g.__CLARITY_WORKERS_V2__) return;
+  g.__CLARITY_WORKERS_V2__ = true;
+
+  var RT_KEY = "clarity_om_realtime_v1";
+  var IT_REP = "clarity_it_reports_rich_v1";
+
+  function lsGet(k, fb) {
+    try {
+      var v = localStorage.getItem(k);
+      return v == null ? fb : JSON.parse(v);
+    } catch (e) {
+      return fb;
+    }
+  }
+  function lsSet(k, v) {
+    try {
+      localStorage.setItem(k, JSON.stringify(v));
+    } catch (e) {}
+  }
+
+  /** Rich IT report after scan */
+  function writeITReport(extra) {
+    var ops = g.ClarityWorkersOps;
+    var sealed = ops && ops.probeSealed ? ops.probeSealed() : {};
+    var edge = ops && ops.probeEdge ? ops.probeEdge() : {};
+    var dom = ops && ops.probeDom ? ops.probeDom() : {};
+    var rep = {
+      at: Date.now(),
+      sealed: sealed,
+      edge: edge,
+      dom: dom,
+      extra: extra || null,
+      ver: (ops && ops.version) || "workers"
+    };
+    var arr = lsGet(IT_REP, []) || [];
+    arr.unshift(rep);
+    if (arr.length > 25) arr = arr.slice(0, 25);
+    lsSet(IT_REP, arr);
+    try {
+      console.info(
+        "%c IT Report ",
+        "background:#0a2a40;color:#a8d4f0",
+        "sealed",
+        Object.keys(sealed).filter(function (k) {
+          return sealed[k];
+        }).length +
+          "/" +
+          Object.keys(sealed).length,
+        "edge",
+        Object.keys(edge).filter(function (k) {
+          return edge[k];
+        }).length +
+          "/" +
+          Object.keys(edge).length
+      );
+    } catch (e) {}
+    return rep;
+  }
+
+  /** Hook scanBridge if present */
+  function hookIT() {
+    if (!g.ClarityIT || typeof g.ClarityIT.scanBridge !== "function") return;
+    if (g.ClarityIT.scanBridge.__rich) return;
+    var prev = g.ClarityIT.scanBridge;
+    g.ClarityIT.scanBridge = function () {
+      var r = prev.apply(this, arguments);
+      try {
+        writeITReport({ kind: "scanBridge" });
+      } catch (e) {}
+      return r;
+    };
+    g.ClarityIT.scanBridge.__rich = true;
+    g.ClarityIT.lastReports = function () {
+      return lsGet(IT_REP, []);
+    };
+  }
+
+  /** O&M realtime ticker — lightweight DOM health every 20s when page visible */
+  var omTimer = null;
+  function omTick() {
+    if (document.hidden) return;
+    var issues = [];
+    if (!document.getElementById("clarity-door-rail")) issues.push("door-rail");
+    if (!document.getElementById("clarity-top-duo")) issues.push("banner");
+    var vaultFocus = document.documentElement.getAttribute("data-vault-focus") === "1";
+    if (vaultFocus) {
+      var gate = document.getElementById("amana-vault-gate");
+      if (gate && gate.offsetTop > 120) {
+        /* soft nudge scroll if gate pushed down by void */
+        try {
+          gate.scrollIntoView({ block: "nearest", behavior: "auto" });
+        } catch (e) {}
+      }
+    }
+    try {
+      if (g.ClarityOM && g.ClarityOM.pulse && issues.length) g.ClarityOM.pulse();
+    } catch (e2) {}
+    var entry = { at: Date.now(), issues: issues, vaultFocus: vaultFocus };
+    var log = lsGet(RT_KEY, []) || [];
+    log.unshift(entry);
+    if (log.length > 40) log = log.slice(0, 40);
+    lsSet(RT_KEY, log);
+    try {
+      g.dispatchEvent(new CustomEvent("clarity-om-realtime", { detail: entry }));
+    } catch (e3) {}
+  }
+
+  function startOMRealtime() {
+    if (omTimer) return;
+    omTick();
+    if (typeof setInterval === "function") omTimer = setInterval(omTick, 20000);
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) omTick();
+    });
+    try {
+      console.info("%c O&M Realtime ", "background:#4a1020;color:#f5d0dc", "20s heartbeat · vault focus guard");
+    } catch (e) {}
+  }
+
+  if (g.ClarityWorkersOps) {
+    g.ClarityWorkersOps.writeITReport = writeITReport;
+    g.ClarityWorkersOps.omRealtimeStart = startOMRealtime;
+  }
+
+  function boot() {
+    hookIT();
+    startOMRealtime();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(boot, 2500);
+  });
+  else setTimeout(boot, 2500);
+  g.addEventListener("clarity-vault-ready", function () {
+    setTimeout(boot, 800);
+  });
 })(typeof window !== "undefined" ? window : this);
