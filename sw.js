@@ -1,5 +1,7 @@
-/* Clarity SW 20261009ITLAB — network-first assets; purge old caches */
-const CACHE = "clarity-20261009ITLAB";
+/* Clarity SW 20261009HOTFIX1 — University OS
+ * Network-first for HTML; cache assets; purge old caches on activate.
+ */
+const CACHE = "clarity-20261009CAMPUS2";
 const PRECACHE = ["/", "/index.html", "/robots.txt"];
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -40,5 +42,10 @@ self.addEventListener("fetch", (e) => {
         })
         .catch(() => caches.match(req))
     );
+  }
+});
+self.addEventListener("message", (e) => {
+  if (e.data && e.data.type === "clarity-om-ping") {
+    /* O&M heartbeat — no-op ack */
   }
 });
