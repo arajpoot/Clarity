@@ -126,6 +126,8 @@
           bodyId +
           '" class="junior-body curriculum-body"></div>';
         var host =
+          document.getElementById("campus-stage-body") ||
+          document.getElementById("clarity-campus-stage") ||
           (tabId && document.querySelector("#" + tabId + " .rrra-hub-body")) ||
           (tabId && document.getElementById(tabId)) ||
           document.getElementById("main-application-workspace") ||
