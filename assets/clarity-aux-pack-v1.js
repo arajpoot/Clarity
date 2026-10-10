@@ -98,7 +98,7 @@ try{window.__CLARITY_BOOT_TS=window.__CLARITY_BOOT_TS||Date.now()}catch(e){}!fun
     firstVisitTip();
   }
 
-  w.ClaritySeekerEase = { showDeed: ensureChip, version: "20261009CAMPUS4" };
+  w.ClaritySeekerEase = { showDeed: ensureChip, version: "20261009CAMPUS5" };
 })(typeof window !== "undefined" ? window : this);
 
 
@@ -110,7 +110,7 @@ try{window.__CLARITY_BOOT_TS=window.__CLARITY_BOOT_TS||Date.now()}catch(e){}!fun
   "use strict";
   if (w.__CLARITY_DHIKR_RAIL_V2__) return;
   w.__CLARITY_DHIKR_RAIL_V2__ = true;
-  var VER = "20261009CAMPUS4";
+  var VER = "20261009CAMPUS5";
 
   var MAP = {
     reminder: {

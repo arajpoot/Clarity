@@ -5,7 +5,7 @@
   "use strict";
   if (g.__CLARITY_CAMPUS_RESCUE_V2__) return;
   g.__CLARITY_CAMPUS_RESCUE_V2__ = true;
-  var VER = "20261009CAMPUS4";
+  var VER = "20261009CAMPUS5";
 
   if (typeof g.clarityOpenSectionDoor !== "function") {
     g.clarityOpenSectionDoor = function (tab) {
