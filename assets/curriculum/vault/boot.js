@@ -9,7 +9,16 @@
   if (g.__CLARITY_VAULT_BOOT__) return;
   g.__CLARITY_VAULT_BOOT__ = true;
 
-  var VAULT_BASE = "./assets/curriculum/vault/";
+  /* Absolute from site root so /campus/ /lab/ multipage work */
+  var VAULT_BASE = "/assets/curriculum/vault/";
+  try {
+    var sc = document.currentScript && document.currentScript.src;
+    if (sc) {
+      var u = new URL(sc, location.href);
+      VAULT_BASE = u.href.replace(/boot\.js(\?.*)?$/, "");
+    }
+  } catch (eBase) {}
+
   var STATUS = { sealed: false, verified: false, breaches: [], version: null };
 
   function log() {
