@@ -1,0 +1,17 @@
+Essentials only — copy into GitHub repo ROOT (same paths).
+
+Termux:
+  unzip -o ~/storage/downloads/clarity-essentials-ENGINE.zip -d /tmp/ess
+  cd ~/Clarity
+  cp -a /tmp/ess/. .
+  # if zip contains clarity-essentials folder:
+  # cp -a /tmp/ess/clarity-essentials/. .
+  git add -A && git commit -m "Essentials ENGINE" && git push origin main
+
+Files:
+  index.html
+  sw.js
+  assets/clarity-*.js/css (vault + patches + rescue)
+  assets/curriculum/vault/admin/campus/*
+  assets/curriculum/vault/admin/lab/*
+  assets/curriculum/vault/admin/workers-ops-pack-v1.js
