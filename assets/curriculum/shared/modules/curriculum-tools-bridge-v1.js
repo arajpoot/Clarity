@@ -12,7 +12,7 @@
         return;
       }
       var s = document.createElement("script");
-      s.src = src + (src.indexOf("?") >= 0 ? "&" : "?") + "v=20261009CAMPUS5";
+      s.src = src + (src.indexOf("?") >= 0 ? "&" : "?") + "v=20261009VAULT";
       s.defer = true;
       s.onload = function () { resolve("loaded"); };
       s.onerror = function () { resolve("missing"); };
