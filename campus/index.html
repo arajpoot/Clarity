@@ -1,35 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-campus-page="campus">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="color-scheme" content="dark"/>
 <title>Campus · Learning Stage · Clarity University</title>
 <meta name="description" content="Clarity University learning stage — Junior pathway, phases, spark quizzes. Educational only."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
-<link rel="stylesheet" href="/assets/clarity-css-patches-v1.css?v=20261009MP3"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261009MP3"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261009MP3"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-engine-v1.css?v=20261009MP3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261010PAINT"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261010PAINT"/>
 <style>
-:root { --cu-bg:#0c1410; --cu-gold:#d4b45a; --cu-text:#e7efe9; }
-* { box-sizing:border-box; }
-body.cu-page { margin:0; font-family:system-ui,sans-serif; background:var(--cu-bg); color:var(--cu-text); min-height:100vh; }
-.cu-map-nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.5rem;
-  padding:.55rem .85rem; background:linear-gradient(90deg,#0a2a40,#0d4f3c); border-bottom:1px solid rgba(212,180,90,.25);
-  position:sticky; top:0; z-index:50; }
-.cu-map-brand { color:#f0e6c8; font-weight:800; text-decoration:none; }
-.cu-map-links { display:flex; flex-wrap:wrap; gap:.35rem; }
-.cu-map-links a { color:rgba(231,239,233,.85); text-decoration:none; font-size:.8rem; font-weight:600;
-  padding:.3rem .55rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); }
-.cu-map-links a[aria-current="page"] { background:rgba(212,180,90,.2); color:#f0e6c8; }
-.cu-page-main { max-width:42rem; margin:0 auto; padding:.75rem .75rem 4rem; }
-.cu-hero { text-align:center; margin:.75rem 0 1rem; }
-.cu-hero h1 { font-size:1.3rem; color:var(--cu-gold); margin:0 0 .3rem; }
-.cu-hero p { margin:0; opacity:.85; font-size:.88rem; line-height:1.45; }
-#campus-stage-body { min-height:10rem; }
-#junior-curriculum-card, #junior-high-curriculum-card { display:block!important; visibility:visible!important; margin:.75rem 0!important; }
-.cu-foot { text-align:center; font-size:.72rem; opacity:.55; padding:1.25rem .5rem; }
-.cu-foot a { color:#d4b45a; }
+/* Campus paint — self-contained dark desk (no global light patches) */
+:root {
+  --cu-bg: #0c1410;
+  --cu-panel: #152019;
+  --cu-gold: #d4b45a;
+  --cu-text: #e7efe9;
+  --cu-muted: rgba(231,239,233,0.72);
+  --cu-line: rgba(212,180,90,0.28);
+  --clarity-nav-h: 48px;
+  --clarity-banner-h: 0px;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  background: var(--cu-bg) !important;
+  color: var(--cu-text) !important;
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100%;
+}
+body.cu-page { background: var(--cu-bg) !important; color: var(--cu-text) !important; }
+
+.cu-map-nav {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  background: linear-gradient(90deg, #0a2a40, #0d4f3c);
+  border-bottom: 1px solid var(--cu-line);
+  position: sticky; top: 0; z-index: 100;
+}
+.cu-map-brand { color: #f0e6c8; font-weight: 800; text-decoration: none; font-size: 0.95rem; }
+.cu-map-links { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.cu-map-links a {
+  color: rgba(231,239,233,0.9); text-decoration: none; font-size: 0.78rem; font-weight: 600;
+  padding: 0.3rem 0.55rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12);
+}
+.cu-map-links a[aria-current="page"] {
+  background: rgba(212,180,90,0.22); color: #f0e6c8; border-color: rgba(212,180,90,0.45);
+}
+
+.cu-page-main { max-width: 42rem; margin: 0 auto; padding: 0.75rem 0.75rem 4rem; }
+.cu-hero { text-align: center; margin: 0.65rem 0 0.85rem; }
+.cu-hero h1 { font-size: 1.28rem; color: var(--cu-gold); margin: 0 0 0.3rem; font-weight: 800; }
+.cu-hero p { margin: 0; color: var(--cu-muted); font-size: 0.88rem; line-height: 1.45; }
+
+/* Phase plaque: under map nav only, not under imaginary banner */
+#clarity-phase-plaque-rail,
+.clarity-phase-plaque-rail {
+  position: relative !important;
+  top: auto !important;
+  sticky: none;
+  z-index: 5 !important;
+  margin: 0 0 0.75rem !important;
+  border-radius: 14px !important;
+  border: 1px solid var(--cu-line) !important;
+  background: linear-gradient(165deg, #152019, #0f1a15) !important;
+  color: var(--cu-text) !important;
+  padding: 0.75rem 0.9rem !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.cpp-how {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(212,180,90,0.2) !important;
+  border-radius: 12px !important;
+  padding: 0.65rem 0.75rem !important;
+  margin: 0 0 0.65rem !important;
+  color: var(--cu-text) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.45 !important;
+}
+.cpp-how strong { color: var(--cu-gold) !important; display: block; margin-bottom: 0.25rem; }
+.cpp-how ol { margin: 0.2rem 0 0 1.1rem; padding: 0; color: var(--cu-muted) !important; }
+.cpp-how li { margin: 0.15rem 0; color: inherit !important; }
+.cpp-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.4rem 0; }
+.cpp-chip {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: var(--cu-text) !important;
+  border-radius: 10px !important;
+  padding: 0.4rem 0.55rem !important;
+  font-size: 0.75rem !important;
+}
+.cpp-chip.cpp-active {
+  border-color: rgba(212,180,90,0.55) !important;
+  background: rgba(212,180,90,0.12) !important;
+  color: #f0e6c8 !important;
+}
+.cpp-chip.cpp-locked { opacity: 0.55; }
+.cpp-status { font-size: 0.78rem; color: var(--cu-muted) !important; margin-top: 0.35rem; }
+
+/* Stage + Junior card readability */
+#clarity-campus-stage {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.campus-stage-label {
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--cu-gold); opacity: 0.85; margin: 0 0 0.5rem;
+}
+#campus-stage-body { min-height: 8rem; }
+
+#junior-curriculum-card,
+#junior-high-curriculum-card,
+#daily-hs-curriculum-card,
+#dai-university-curriculum-card,
+.curriculum-phase-card {
+  display: block !important;
+  visibility: visible !important;
+  background: linear-gradient(165deg, #152019, #101a14) !important;
+  color: var(--cu-text) !important;
+  border: 1px solid var(--cu-line) !important;
+  border-radius: 16px !important;
+  padding: 1rem 1.05rem !important;
+  margin: 0.75rem 0 1.25rem !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+}
+#junior-curriculum-card .card-title,
+#junior-curriculum-card h2,
+.curriculum-phase-card .card-title {
+  color: var(--cu-gold) !important;
+  font-size: 1.12rem !important;
+  margin: 0 0 0.4rem !important;
+}
+#junior-curriculum-card .card-lead,
+#junior-curriculum-card p,
+.curriculum-phase-card p,
+.junior-body,
+.curriculum-body {
+  color: var(--cu-muted) !important;
+}
+#junior-curriculum-card .junior-unit h3,
+#junior-curriculum-card h3 {
+  color: #c5e0d0 !important;
+}
+#junior-curriculum-card .junior-module,
+#junior-curriculum-card article {
+  background: rgba(0,0,0,0.22) !important;
+  border: 1px solid rgba(212,180,90,0.22) !important;
+  border-radius: 12px !important;
+  color: var(--cu-text) !important;
+}
+#junior-curriculum-card a { color: #e8c47a !important; }
+#junior-curriculum-card button,
+#junior-curriculum-card .cdm-btn {
+  color: #0c1410 !important;
+  background: linear-gradient(135deg, #c9a227, #e8c47a) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+
+.cu-foot { text-align: center; font-size: 0.72rem; color: var(--cu-muted); padding: 1.25rem 0.5rem; }
+.cu-foot a { color: var(--cu-gold); }
+
+/* Kill engine HUD on this page if it paints over content oddly */
+.clarity-engine-hud { display: none !important; }
 </style>
 </head>
 <body class="cu-page" data-campus-page="campus" data-campus-stage="learn">
@@ -47,45 +182,50 @@ body.cu-page { margin:0; font-family:system-ui,sans-serif; background:var(--cu-b
     <h1>Learning Stage</h1>
     <p>One module at a time. Spark quiz unlocks the next. Progress stays on this device.</p>
   </header>
-  <div id="clarity-name-plaque-rail" class="cnp-inner"></div>
+
   <div id="clarity-campus-stage">
-    <p class="campus-stage-label">Learning stage · Phase desk</p>
+    <p class="campus-stage-label">Phase desk</p>
     <div id="campus-stage-body">
-      <p id="campus-loading-hint" style="opacity:.75;font-size:.88rem">Loading Junior desk…</p>
+      <p id="campus-loading-hint" style="opacity:.75;font-size:.88rem;color:rgba(231,239,233,.7)">Loading Junior desk…</p>
     </div>
   </div>
-  <p class="cu-foot"><a href="/">Full companion</a> · <a href="/lab/">Lab</a> · <a href="/vault/">Vault</a></p>
+
+  <p class="cu-foot"><a href="/">Full companion</a> · <a href="/lab/">Lab</a> · <a href="/vault/">Vault</a><br/>Educational only — not a fatwa</p>
 </main>
 
-<!-- Phase 3: direct foundation load (no SEAL gate required for multipage desk) -->
-<script src="/assets/curriculum/vault/foundation/engine.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/foundation/spark-quiz.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/foundation/diplomas.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/foundation/phase-plaque.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/foundation/curriculum-controller.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/foundation/college-seeker.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/foundation/college-practice.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/foundation/college-consistency.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/foundation/college-transmission.js?v=20261009MP3"></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261009MP3" defer></script>
-<script src="/assets/clarity-campus-rescue-v1.js?v=20261009MP3" defer></script>
+<script src="/assets/curriculum/vault/foundation/engine.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/foundation/spark-quiz.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/foundation/diplomas.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/foundation/phase-plaque.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/foundation/curriculum-controller.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/foundation/college-seeker.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/foundation/college-practice.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/foundation/college-consistency.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/foundation/college-transmission.js?v=20261010PAINT"></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261010PAINT" defer></script>
+<script src="/assets/clarity-campus-rescue-v1.js?v=20261010PAINT" defer></script>
 <script>
-(function(){
-  function adopt(){
+(function () {
+  try { document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
+  function adopt() {
     try {
       if (window.ClarityJuniorCurriculum && ClarityJuniorCurriculum.render) ClarityJuniorCurriculum.render();
       if (window.ClarityCampus && ClarityCampus.adoptCurriculumCards) ClarityCampus.adoptCurriculumCards();
-    } catch(e){}
+    } catch (e) {}
     var h = document.getElementById("campus-loading-hint");
     if (h && document.getElementById("junior-curriculum-card")) h.remove();
-    else if (h && window.ClarityJuniorCurriculum) {
-      h.textContent = "Junior API ready — rendering…";
-      try { ClarityJuniorCurriculum.render && ClarityJuniorCurriculum.render(); } catch(e2){}
-    }
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(adopt,300); setTimeout(adopt,1200); });
-  else { setTimeout(adopt,300); setTimeout(adopt,1200); setTimeout(adopt,2500); }
-  try { document.documentElement.setAttribute("data-campus-stage","learn"); } catch(e){}
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(adopt, 300);
+      setTimeout(adopt, 1200);
+      setTimeout(adopt, 2500);
+    });
+  } else {
+    setTimeout(adopt, 300);
+    setTimeout(adopt, 1200);
+    setTimeout(adopt, 2500);
+  }
 })();
 </script>
 </body>
