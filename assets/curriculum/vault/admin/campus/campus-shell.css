@@ -214,3 +214,86 @@ html[data-campus-shell="1"] #clarity-top-duo .banner-brand .brand-name {
 
 /* Bottom rail campus caption */
 html[data-campus-shell="1"] [data-campus-rail="reminder"] { /* quiet */ }
+
+/* === POLISH: phase how plaque === */
+.cpp-how,
+.cpp-how-plaque {
+  max-width: 36rem;
+  margin: 0.65rem auto 0.85rem;
+  padding: 0.85rem 1rem 0.95rem;
+  border-radius: 14px;
+  text-align: left;
+  background: linear-gradient(165deg, rgba(255,253,248,0.98), rgba(232,242,236,0.95));
+  border: 1px solid rgba(13,79,60,0.18);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #1c2a22;
+}
+html[data-theme="dark"] .cpp-how,
+html[data-theme="dark"] .cpp-how-plaque {
+  background: linear-gradient(165deg, #152019, #1a2820);
+  border-color: rgba(212,180,90,0.28);
+  color: #e7efe9;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+}
+.cpp-how strong,
+.cpp-how-plaque strong {
+  display: block;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: #0d4f3c;
+  margin-bottom: 0.35rem;
+}
+html[data-theme="dark"] .cpp-how strong {
+  color: #d4b45a;
+}
+.cpp-how ol {
+  margin: 0.25rem 0 0 1.1rem;
+  padding: 0;
+}
+.cpp-how li {
+  margin: 0.25rem 0;
+}
+
+/* golden arc behind dua — not over text */
+#clarity-top-duo .banner-center,
+#clarity-top-duo .banner-overlay {
+  position: relative;
+  z-index: 2;
+}
+#clarity-top-duo .banner-media,
+#banner-media {
+  z-index: 0 !important;
+}
+#clarity-top-duo .banner::before,
+#clarity-top-duo .banner::after {
+  z-index: 0 !important;
+  opacity: 0.35 !important;
+  pointer-events: none !important;
+}
+#clarity-top-duo .rabbana-line,
+#clarity-top-duo .banner-dua,
+#clarity-top-duo [class*="rabbana"] {
+  position: relative;
+  z-index: 3 !important;
+}
+
+/* nav badge dedupe look */
+#current-mode-badge.mode-badge-campus,
+.mode-badge.mode-badge-campus {
+  font-size: 0.65rem !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* admin pill rail */
+.clarity-admin-pill-rail,
+.cnp-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin: 0.35rem 0 0.5rem;
+}
