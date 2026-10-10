@@ -1961,30 +1961,3 @@ html body .clarity-gate-switcher .cgs-btn {
   width: auto !important;
   margin: 0.15rem !important;
 }
-
-
-/* PRIORITY1 — single chrome: phase plaque only; TRACK gate dead */
-html body .clarity-gate-switcher,
-html body .clarity-gate-switcher.rrra-sitewide,
-#clarity-path-rail,
-#clarity-path-module-strip,
-#clarity-visit-pill-bar,
-.cpr-modules,
-.cpr-paths {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  max-height: 0 !important;
-  overflow: hidden !important;
-  pointer-events: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-}
-#clarity-phase-plaque,
-.clarity-phase-plaque,
-[data-clarity-phase-plaque] {
-  display: block !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}

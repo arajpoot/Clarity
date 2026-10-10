@@ -1,13 +1,12 @@
 /**
- * Campus Rescue v1 — door poly safe + empty stage recovery + diploma freeze safe
+ * Campus Rescue v2 — door API, stage recovery, post-vault junior mount
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_CAMPUS_RESCUE_V1__) return;
-  g.__CLARITY_CAMPUS_RESCUE_V1__ = true;
-  var VER = "20261009CAMPUS3";
+  if (g.__CLARITY_CAMPUS_RESCUE_V2__) return;
+  g.__CLARITY_CAMPUS_RESCUE_V2__ = true;
+  var VER = "20261009CAMPUS4";
 
-  /* Ensure door API always callable */
   if (typeof g.clarityOpenSectionDoor !== "function") {
     g.clarityOpenSectionDoor = function (tab) {
       try {
@@ -17,68 +16,77 @@
     };
   }
 
-  /* Diploma: never throw on frozen ClarityUniversity */
-  function softDiplomaHook() {
-    try {
-      var U = g.ClarityUniversity;
-      if (!U || typeof U.issueDiploma !== "function") return;
-      if (Object.isFrozen(U)) return;
-      /* leave as-is if writable */
-    } catch (e) {}
+  function stageBody() {
+    return document.getElementById("campus-stage-body");
   }
 
-  function stageEmpty() {
-    var body = document.getElementById("campus-stage-body");
-    if (!body) return true;
-    return !body.querySelector("#junior-curriculum-card, .junior-body, .junior-module, [data-module]");
+  function hasJunior() {
+    return !!document.getElementById("junior-curriculum-card");
   }
 
-  function rescueJunior() {
+  function tryJunior() {
     try {
-      if (g.ClarityJuniorCurriculum && typeof g.ClarityJuniorCurriculum.render === "function") {
-        g.ClarityJuniorCurriculum.render();
-        return true;
+      if (g.ClarityJuniorCurriculum) {
+        if (typeof g.ClarityJuniorCurriculum.render === "function") g.ClarityJuniorCurriculum.render();
+        return hasJunior();
       }
     } catch (e) {}
-    /* manual minimal card if vault junior missing */
-    var body = document.getElementById("campus-stage-body");
-    if (!body || document.getElementById("junior-curriculum-card")) return !!document.getElementById("junior-curriculum-card");
+    return false;
+  }
+
+  function ensureStage() {
+    try {
+      if (g.ClarityCampus && typeof g.ClarityCampus.run === "function") g.ClarityCampus.run();
+    } catch (e) {}
+    var body = stageBody();
+    if (!body) {
+      try {
+        if (g.ClarityCampus && g.ClarityCampus.run) g.ClarityCampus.run();
+      } catch (e2) {}
+      body = stageBody();
+    }
+    if (!body) return;
+    if (tryJunior()) return;
+    if (hasJunior()) return;
+    if (document.getElementById("campus-rescue-card")) return;
     var card = document.createElement("section");
-    card.id = "junior-curriculum-card";
-    card.className = "curriculum-card junior-active";
+    card.id = "campus-rescue-card";
+    card.className = "curriculum-card";
     card.innerHTML =
-      '<h2 class="card-title">Junior · Seeker foundations</h2>' +
-      '<p class="muted">Curriculum desk is waking up. If this stays empty, hard-refresh once (vault SEAL loads foundation modules).</p>' +
+      '<h2 class="card-title">Learning desk</h2>' +
+      '<p class="muted">Waiting for sealed Junior curriculum (vault). If this stays empty after a few seconds, tap retry or hard-refresh once.</p>' +
       '<p><button type="button" class="btn-soft" id="campus-rescue-retry">Retry load</button></p>';
     body.appendChild(card);
     var btn = document.getElementById("campus-rescue-retry");
     if (btn) {
       btn.onclick = function () {
+        tryJunior();
         try {
-          if (g.ClarityVault && g.ClarityVault.status) console.info(g.ClarityVault.status());
-          if (g.ClarityCampus && g.ClarityCampus.run) g.ClarityCampus.run();
-          if (g.ClarityJuniorCurriculum && g.ClarityJuniorCurriculum.render) g.ClarityJuniorCurriculum.render();
+          if (g.ClarityCampus) g.ClarityCampus.run();
         } catch (e) {}
+        if (hasJunior()) {
+          try { card.remove(); } catch (e) {}
+        }
       };
     }
-    return true;
   }
 
   function tick() {
-    softDiplomaHook();
-    if (stageEmpty()) rescueJunior();
+    ensureStage();
   }
 
   function boot() {
     tick();
-    setTimeout(tick, 600);
-    setTimeout(tick, 1800);
-    setTimeout(tick, 3500);
+    setTimeout(tick, 500);
+    setTimeout(tick, 1500);
+    setTimeout(tick, 3000);
+    setTimeout(tick, 5000);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
   g.addEventListener("clarity-vault-ready", function () {
-    setTimeout(tick, 100);
-    setTimeout(tick, 800);
+    setTimeout(tick, 50);
+    setTimeout(tick, 400);
+    setTimeout(tick, 1200);
   });
 })(typeof window !== "undefined" ? window : this);
