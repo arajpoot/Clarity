@@ -304,16 +304,16 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261010OBLIT2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261010OBLIT2" media="print" onload="this.media='all'" id="clarity-critical-css-link">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261010ESSENTIAL" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261010ESSENTIAL" media="print" onload="this.media='all'" id="clarity-critical-css-link">
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261010OBLIT2" media="print" onload="this.media='all'" fetchpriority="low">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261010OBLIT2"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261010ESSENTIAL" media="print" onload="this.media='all'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261010ESSENTIAL"></noscript>
 <noscript></noscript>
 <noscript></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
@@ -325,7 +325,7 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n){n.rel="stylesheet"});
 })();
 </script>
-<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261010OBLIT2" id="clarity-sticky-harden-css"/>
+<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261010ESSENTIAL" id="clarity-sticky-harden-css"/>
 
 <!-- Main obliterate: curriculum/admin live only on /campus/ /lab/ /vault/ -->
 <style id="clarity-main-oblit">
@@ -565,9 +565,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
         document.dispatchEvent(new CustomEvent("clarity-rrra-change", { detail: { hub: tab, tab: tab } }));
       } catch (e) {}
       // soft load chunk if missing
-      if (!document.querySelector('script[src*="clarity-chunk-8"]')) {
         var s = document.createElement("script");
-        s.src = "./assets/clarity-chunk-8.js?v=" + (document.documentElement.getAttribute("data-clarity-ver") || "20261009MP3");
         s.defer = true;
         s.onload = function(){
           try {
@@ -2027,11 +2025,36 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </div>
 </div>
 
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261010OBLIT2" defer></script>
-<script src="./assets/clarity-chunk-8.js?v=20261010OBLIT2" defer></script>
-<script src="./assets/clarity-feature-pack-v1.js?v=20261010OBLIT2" defer></script>
-<script src="./assets/clarity-path-pack-v1.js?v=20261010OBLIT2" defer></script>
-<script src="./assets/clarity-aux-pack-v1.js?v=20261010OBLIT2" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261010ESSENTIAL" defer></script>
+
+<!-- Clarity University OS essentials · 20261010ESSENTIAL -->
+<link rel="stylesheet" href="./assets/curriculum/vault/foundation/phase-plaque.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/campus/campus-shell.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/faculty/faculty.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/registrar/registrar.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/security/security.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/it/it.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/om/om.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/chancellor/chancellor.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/lab/lab.css?v=20261010ESSENTIAL"/>
+<link rel="stylesheet" href="./assets/curriculum/vault/admin/ux/ux-grand-opening.css?v=20261010ESSENTIAL"/>
+<script src="./assets/curriculum/vault/admin/brand/brand-insignia-v1.js?v=20261010ESSENTIAL" defer id="clarity-brand"></script>
+<script src="./assets/curriculum/vault/boot.js?v=20261010ESSENTIAL" defer id="clarity-vault-boot"></script>
+<script src="./assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261010ESSENTIAL" defer id="clarity-staff-dispatch"></script>
+<script src="./assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261010ESSENTIAL" defer id="clarity-faculty"></script>
+<script src="./assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261010ESSENTIAL" defer id="clarity-lab"></script>
+<script src="./assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261010ESSENTIAL" defer id="clarity-registrar"></script>
+<script src="./assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261010ESSENTIAL" defer id="clarity-security"></script>
+<script src="./assets/curriculum/vault/admin/om/om-controller-v1.js?v=20261010ESSENTIAL" defer id="clarity-om"></script>
+<script src="./assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261010ESSENTIAL" defer id="clarity-it"></script>
+<script src="./assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261010ESSENTIAL" defer id="clarity-chancellor"></script>
+<script src="./assets/curriculum/vault/admin/ux/ux-grand-opening-v1.js?v=20261010ESSENTIAL" defer id="clarity-ux-grand"></script>
+<script src="./assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261010ESSENTIAL" defer id="clarity-campus"></script>
+<script src="./assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261010ESSENTIAL" defer id="clarity-campus-wings"></script>
+<script src="./assets/clarity-feature-pack-v1.js?v=20261010ESSENTIAL" defer></script>
+<script src="./assets/clarity-path-pack-v1.js?v=20261010ESSENTIAL" defer></script>
+<script src="./assets/clarity-aux-pack-v1.js?v=20261010ESSENTIAL" defer></script>
 
 
 <!-- GATE NUCLEAR V2 -->
@@ -2209,7 +2232,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 })();
 </script>
 
-<script src="./assets/clarity-sticky-harden-v1.js?v=20261010OBLIT2" defer id="clarity-sticky-harden-js"></script>
+<script src="./assets/clarity-sticky-harden-v1.js?v=20261010ESSENTIAL" defer id="clarity-sticky-harden-js"></script>
 
 <footer id="clarity-site-footer" style="max-width:40rem;margin:2rem auto 5rem;padding:1rem 1.1rem;text-align:center;font-size:.78rem;color:rgba(74,85,79,.95);line-height:1.5">
   <p style="margin:0 0 .5rem"><strong>Campus map</strong> ·
