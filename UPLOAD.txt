@@ -1,16 +1,17 @@
-Phase 1 multipage — copy into GitHub repo ROOT
+Phase 2 — Learning Stage desk on /campus/
 
-Termux:
-  unzip -o ~/storage/downloads/clarity-multipage-p1.zip -d /tmp/mp1
-  cd ~/Clarity && git pull origin main
-  cp -a /tmp/mp1/. .
-  # if nested:
-  # cp -a /tmp/mp1/mp1-essentials/. .
-  ls index.html vault/index.html lab/index.html campus/index.html _redirects
-  git add -A && git commit -m "Phase1 multipage campus lab vault" && git push origin main
+Manual GitHub (main root):
+1. Replace index.html
+2. Replace campus/index.html  (folder campus/ already from Phase 1)
+3. Replace lab/index.html and vault/index.html (version bump only)
+4. Optional: _redirects, sitemap.xml if not already uploaded
 
-New URLs after deploy:
-  https://clarity-dawah.fyi/
-  https://clarity-dawah.fyi/campus/
-  https://clarity-dawah.fyi/lab/
-  https://clarity-dawah.fyi/vault/
+Requires (already on site from earlier deploys):
+  assets/curriculum/vault/boot.js
+  assets/curriculum/vault/SEAL.json
+  assets/curriculum/vault/foundation/* 
+  assets/curriculum/vault/admin/campus/*
+  assets/clarity-campus-rescue-v1.js
+
+After commit: open https://clarity-dawah.fyi/campus/
+Expect: phase plaque + Junior curriculum card after vault boot.
