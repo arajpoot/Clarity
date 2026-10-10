@@ -1,19 +1,13 @@
-MAIN OBLITERATE — not hide
+Map desk C22 — Lab + Vault + Journey
 
-index.html no longer LOADS:
-  boot.js / SEAL.json  (entire foundation chain)
-  faculty, security, IT, lab, OM, chancellor, registrar, staff
-  campus-engine/shell/polish/rescue
-  related admin CSS
+GitHub main (create folders if needed):
+  lab/index.html
+  vault/index.html
+  journey/index.html     ← NEW page
+  campus/index.html      ← nav includes Journey
+  _redirects
+  sitemap.xml
 
-Those live only on:
-  /campus/  (curriculum + wings)
-  /lab/
-  /vault/
-
-Upload:
-  index.html
-  campus/index.html
-  assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js
-
-Hard-refresh /. Network tab should NOT show boot.js or foundation/*.
+After deploy:
+  /lab/   /vault/   /journey/   /campus/
+All should share dark banner + crescent seal, not white-out.
