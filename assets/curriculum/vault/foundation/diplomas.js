@@ -254,7 +254,7 @@
     }
     var __el_cnp_edit = document.getElementById("cnp-edit"); if(__el_cnp_edit) __el_cnp_edit.onclick = function () {
       var cur = getName();
-      var n = prompt("Your learning name (shown on certificates):", cur || "");
+      var n = prompt("Your learning name (on local study records):", cur || "");
       if (n != null) setName(n);
     };
     var __el_cnp_hall_btn = document.getElementById("cnp-hall-btn"); if(__el_cnp_hall_btn) __el_cnp_hall_btn.onclick = function () {
@@ -398,7 +398,7 @@
         if (n) setName(n);
       }
       alert(
-        "No diplomas yet. Complete all modules in a phase and pass the phase quiz to graduate that track."
+        "No local study records yet. Complete modules in a phase and pass the phase quiz to save a record on this device."
       );
       return;
     }
@@ -564,7 +564,7 @@
     if (typeof prevPass === "function") prevPass(phase);
     /* ensure name */
     if (!getName()) {
-      var n = prompt("Graduation name for your certificate:", getName() || "");
+      var n = prompt("Name for your local study record:", getName() || "");
       if (n) setName(n);
     }
     issueDiploma(phase);
