@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Journey · Clarity University</title>
-<meta name="description" content="Nur Path degree map. Educational only."/>
+<title>Lab · Clarity University</title>
+<meta name="description" content="Craft laboratory. Educational only."/>
 <meta name="theme-color" content="#060b09"/>
-<link rel="canonical" href="https://clarity-dawah.fyi/journey/"/>
+<link rel="canonical" href="https://clarity-dawah.fyi/lab/"/>
 <style>
 :root{
   --cu-bg:#060b09;--cu-panel:rgba(12,20,16,.94);--cu-gold:#e0c56a;--cu-teal:#1fa67a;
@@ -53,24 +53,27 @@ button.cu-card{width:100%;text-align:left;font:inherit;cursor:pointer}
     <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011DUAL" alt="" width="24" height="24"/>
     <span>Clarity University</span>
   </a>
-  <div class="cu-links"><a href="/">Arrival</a><a href="/campus/">Campus</a><a href="/journey/" aria-current="page">Journey</a><a href="/library/">Library</a><a href="/lab/">Lab</a><a href="/systems/">Systems</a><a href="/vault/">Vault</a></div>
+  <div class="cu-links"><a href="/">Arrival</a><a href="/campus/">Campus</a><a href="/journey/">Journey</a><a href="/library/">Library</a><a href="/lab/" aria-current="page">Lab</a><a href="/systems/">Systems</a><a href="/vault/">Vault</a></div>
 </nav>
 <main class="cu-main">
 
 <header class="cu-hero">
-  <div class="cu-pill">Degree map</div>
-  <h1>Journey · Nur Path</h1>
-  <p>Four colleges. Sequential. Reflection pauses open the next section. Educational only.</p>
+  <div class="cu-pill">Studio</div>
+  <h1>Craft Laboratory</h1>
+  <p>Beauty with truth — practice stations of the university.</p>
 </header>
-<div class="cu-grid" style="grid-template-columns:1fr">
-  <a class="cu-card" href="/campus/"><strong>1 · Kulliyyat al-Usul</strong><span>Foundations — Tawhid, Qurʾan, Hadith, worship map, seerah, usul seed</span></a>
-  <a class="cu-card" href="/campus/"><strong>2 · Kulliyyat al-Ibadah</strong><span>Practice — confidence, taharah, salah, adhkar (locked until phase 1 complete)</span></a>
-  <a class="cu-card" href="/campus/"><strong>3 · Kulliyyat al-Itqan</strong><span>Consistency — tajweed, wird, stronger salah, annual pillars map</span></a>
-  <a class="cu-card" href="/campus/"><strong>4 · Kulliyyat al-Dawah</strong><span>Transmission — ethics, sources, audience wisdom, service</span></a>
-</div>
+<div id="clarity-lab-host" class="cu-stage"><p class="cu-stage-label">Workbench</p></div>
 
 <p class="cu-foot">Educational only — not a fatwa · Nur Path · <a href="/campus/">Campus desk</a></p>
 </main>
+
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261011DUAL"/>
+<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261011DUAL" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  try{if(window.ClarityLab&&ClarityLab.openDesk)ClarityLab.openDesk();else if(window.ClarityLab&&ClarityLab.render)ClarityLab.render();}catch(e){}
+});
+</script>
 
 </body>
 </html>
