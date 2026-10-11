@@ -1,0 +1,68 @@
+
+/* Registrar desk */
+.clarity-registrar-modal {
+  position: fixed; inset: 0; z-index: 100080;
+  display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.clarity-registrar-modal.show { display: flex !important; }
+.crm-backdrop {
+  position: absolute; inset: 0; background: rgba(6,18,24,0.82); backdrop-filter: blur(10px);
+}
+.crm-panel {
+  position: relative; z-index: 1; max-width: 420px; width: 100%; max-height: 90vh; overflow: auto;
+  background: linear-gradient(165deg, #eef5f8, #e8eef0); color: #1a282c;
+  border-radius: 14px; border: 2px solid #1a5060;
+  box-shadow: 0 20px 50px rgba(0,0,0,.4); padding: 1.1rem 1.15rem;
+}
+html[data-theme="dark"] .crm-panel {
+  background: linear-gradient(165deg, #122028, #0e1a20); color: #e2eef2;
+}
+.crm-x {
+  position: absolute; top: .4rem; right: .5rem; border: none; background: transparent;
+  font-size: 1.35rem; cursor: pointer; color: inherit;
+}
+.crm-stamp {
+  display: inline-block; font-size: .62rem; font-weight: 800; letter-spacing: .14em;
+  padding: .2rem .5rem; border: 2px solid #2a8aa0; color: #1a6080;
+  transform: rotate(-5deg); margin-bottom: .35rem; background: rgba(42,138,160,.1);
+}
+.crm-lead { font-size: .82rem; opacity: .88; line-height: 1.4; margin: .35rem 0 .75rem; }
+.crm-row {
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+  padding: .55rem .6rem; margin: .35rem 0; border-radius: 10px;
+  border: 1px solid rgba(26,80,96,.2); background: rgba(255,255,255,.5); font-size: .82rem;
+}
+html[data-theme="dark"] .crm-row { background: rgba(0,0,0,.25); }
+.crm-row.is-active { border-color: #c9a227; box-shadow: 0 0 0 1px rgba(201,162,39,.35); }
+.crm-row.is-inert { opacity: .55; }
+.crm-tag {
+  font-size: .68rem; font-weight: 700; padding: .15rem .45rem; border-radius: 999px;
+  background: rgba(80,80,80,.15);
+}
+.crm-btns button {
+  font-size: .72rem; font-weight: 700; margin-left: .25rem; cursor: pointer;
+  padding: .25rem .5rem; border-radius: 999px; border: 1px solid rgba(26,80,96,.35);
+  background: rgba(26,80,96,.12); color: inherit;
+}
+.crm-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .85rem; }
+.cnp-reg-btn {
+  background: linear-gradient(155deg, rgba(26,80,96,.9), rgba(212,180,90,.3)) !important;
+}
+.clarity-registrar-toast {
+  position: fixed; left: 50%; bottom: 120px; transform: translateX(-50%) translateY(12px);
+  z-index: 99987; max-width: 92vw; font-size: .78rem;
+  background: rgba(12,40,48,.95); color: #d4eef5; padding: .5rem .9rem; border-radius: 999px;
+  border: 1px solid rgba(42,138,160,.4); opacity: 0; pointer-events: none; transition: .35s ease;
+}
+.clarity-registrar-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Inert phase chips on plaque */
+.cpp-chip.cpp-inert {
+  opacity: .4; filter: grayscale(.5); cursor: not-allowed !important;
+  pointer-events: auto;
+}
+.cpp-chip.cpp-active-reg {
+  box-shadow: 0 0 0 2px rgba(42,138,160,.45);
+}
+.cpp-chip.cpp-redoable { cursor: pointer; }
+.cgs-btn.cgs-inert { opacity: .4; pointer-events: none; }
