@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="color-scheme" content="dark"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261010MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261011FINAL"/>
 <style>
 :root {
   --cu-bg:#070c0a; --cu-gold:#e0c56a; --cu-teal:#1fa67a; --cu-text:#eaf3ee;
@@ -83,6 +83,16 @@ body.cu-page{background:
 #amana-btn-have, #amana-btn-back-create, .btn-secondary {
   background:transparent!important;color:var(--cu-gold)!important;border:1px solid rgba(224,197,106,.4)!important;
   border-radius:999px!important;padding:.5rem 1rem!important;font-weight:600!important;cursor:pointer}
+
+/* nav polish FINAL */
+.cu-map-nav{position:sticky;top:0;z-index:300!important;display:flex!important;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem}
+.cu-map-links{display:flex!important;flex-wrap:wrap!important;gap:.35rem!important}
+.cu-map-links a{display:inline-block!important;visibility:visible!important;opacity:1!important;
+  color:#f3e6c0!important;padding:.35rem .65rem!important;border:1px solid rgba(224,197,106,.3)!important;
+  border-radius:999px!important;text-decoration:none!important;font-size:.74rem!important;font-weight:650!important}
+.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.2)!important;border-color:rgba(224,197,106,.55)!important}
+.cu-map-links a:hover{border-color:rgba(224,197,106,.55)!important}
+
 </style>
 
 <title>Craft Laboratory · Clarity University</title>
@@ -91,18 +101,18 @@ body.cu-page{background:
 </head>
 <body class="cu-page" data-campus-page="lab">
 <nav class="cu-map-nav" aria-label="Campus map">
-  <a class="cu-map-brand" href="/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010MAP" width="28" height="28" alt=""/>
+  <a class="cu-map-brand" href="https://clarity-dawah.fyi/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011FINAL" width="28" height="28" alt=""/>
     Clarity University
   </a>
-  <div class="cu-map-links"><a href="/">Arrival</a><a href="/campus/">Campus</a><a href="/lab/" aria-current="page">Lab</a><a href="/journey/">Journey</a><a href="/vault/">Amana Vault</a></div>
+  <div class="cu-map-links"><a href="https://clarity-dawah.fyi/">Arrival</a><a href="https://clarity-dawah.fyi/campus/">Campus</a><a href="https://clarity-dawah.fyi/journey/">Journey</a><a href="https://clarity-dawah.fyi/lab/" aria-current="page">Lab</a><a href="https://clarity-dawah.fyi/vault/">Vault</a><a href="https://clarity-dawah.fyi/charter/">Charter</a></div>
 </nav>
 <header class="cu-banner" role="banner">
   <div class="cu-banner-bg" aria-hidden="true"></div>
   <div class="cu-banner-arc" aria-hidden="true"></div>
   <div class="cu-banner-inner">
     <div class="cu-banner-seal">
-      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010MAP" width="66" height="66" alt="Clarity University seal"/>
+      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011FINAL" width="66" height="66" alt="Clarity University seal"/>
     </div>
     <div class="cu-banner-copy">
       <div class="cu-banner-kicker">Nur Path · Craft hall</div>
@@ -127,10 +137,10 @@ body.cu-page{background:
   <div class="cu-panel" id="clarity-lab-host">
     <p id="lab-hint" style="margin:0;color:var(--cu-muted);font-size:.88rem">Loading lab controller…</p>
   </div>
-  <p class="cu-foot"><a href="/campus/">Campus</a> · <a href="/vault/">Vault</a> · <a href="/">Arrival</a></p>
+  <p class="cu-foot"><a href="https://clarity-dawah.fyi/">Arrival</a> · <a href="https://clarity-dawah.fyi/campus/">Campus</a> · <a href="https://clarity-dawah.fyi/journey/">Journey</a> · <a href="https://clarity-dawah.fyi/lab/">Lab</a> · <a href="https://clarity-dawah.fyi/vault/">Vault</a> · <a href="https://clarity-dawah.fyi/charter/">Charter</a></p>
 </main>
-<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261010MAP"></script>
-<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261010MAP" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261011FINAL"></script>
+<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261011FINAL" defer></script>
 <script>
 (function(){
   function tryRender(){
