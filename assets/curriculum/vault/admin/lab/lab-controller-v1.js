@@ -101,6 +101,7 @@
       '<div class="clab-workbench" id="clab-workbench"><p class="clab-empty">Select a station to open the workbench.</p></div>' +
       '<div class="clab-portfolio" id="clab-portfolio"></div>';
     var host =
+      document.getElementById("clarity-lab-host") ||
       document.getElementById("campus-stage-body") ||
       document.getElementById("clarity-campus-stage") ||
       document.getElementById("main-application-workspace") ||
