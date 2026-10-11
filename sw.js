@@ -1,47 +1,78 @@
-/* Clarity Nur OS service worker · 20261011FINAL */
-const CACHE = "clarity-20261012BANNER";
-const PRECACHE = ["/", "/index.html", "/campus/", "/campus/index.html"];
+/* Clarity SW 20261009MP3 — multipage safe
+ * Network-first HTML + SEAL; cache other assets; one registration only.
+ */
+const CACHE = "clarity-20261009MP3";
+const PRECACHE = ["/", "/robots.txt"];
+
 self.addEventListener("install", (e) => {
   e.waitUntil(
-    caches.open(CACHE).then((c) =>
-      Promise.all(PRECACHE.map((u) => c.add(u).catch(() => null)))
-    ).then(() => self.skipWaiting())
+    caches
+      .open(CACHE)
+      .then((c) => Promise.all(PRECACHE.map((u) => c.add(u).catch(() => null))))
+      .then(() => self.skipWaiting())
   );
 });
+
 self.addEventListener("activate", (e) => {
   e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches
+      .keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
+
 self.addEventListener("fetch", (e) => {
-  if (e.request.method !== "GET") return;
-  const url = new URL(e.request.url);
+  const req = e.request;
+  if (req.method !== "GET") return;
+  const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
-  if (e.request.mode === "navigate" || url.pathname === "/" || url.pathname.endsWith(".html") || url.pathname.endsWith("/")) {
+
+  const path = url.pathname;
+  /* Never serve SPA fallback for multipage buildings */
+  const isNavigate =
+    req.mode === "navigate" || path.endsWith(".html") || path === "/" || path === "";
+  const isSeal = path.indexOf("/SEAL.json") >= 0 || path.indexOf("/boot.js") >= 0;
+  const isMulti =
+    path === "/campus" ||
+    path === "/campus/" ||
+    path.indexOf("/campus/") === 0 ||
+    path === "/lab" ||
+    path === "/lab/" ||
+    path.indexOf("/lab/") === 0 ||
+    path === "/vault" ||
+    path === "/vault/" ||
+    path.indexOf("/vault/") === 0;
+
+  if (isNavigate || isSeal || isMulti) {
     e.respondWith(
-      fetch(e.request)
+      fetch(req)
         .then((res) => {
-          const c = res.clone();
-          caches.open(CACHE).then((cache) => cache.put(e.request, c)).catch(() => {});
-          return res;
-        })
-        .catch(() => caches.match(e.request).then((r) => r || caches.match("/index.html")))
-    );
-    return;
-  }
-  if (url.pathname.startsWith("/assets/")) {
-    e.respondWith(
-      fetch(e.request)
-        .then((res) => {
-          if (res && res.ok) {
-            const c = res.clone();
-            caches.open(CACHE).then((cache) => cache.put(e.request, c)).catch(() => {});
+          if (res && res.ok && isNavigate) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
           }
           return res;
         })
-        .catch(() => caches.match(e.request))
+        .catch(() => {
+          if (isMulti || isSeal) return fetch(req);
+          return caches.match(req).then((r) => r || caches.match("/"));
+        })
+    );
+    return;
+  }
+
+  if (path.startsWith("/assets/")) {
+    e.respondWith(
+      fetch(req)
+        .then((res) => {
+          if (res && res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
+          }
+          return res;
+        })
+        .catch(() => caches.match(req))
     );
   }
 });
