@@ -1,0 +1,274 @@
+/* Clarity University — shared shell polish (campus only; does not touch Companion /) */
+:root {
+  --cu-bg: #070c0a;
+  --cu-gold: #e0c56a;
+  --cu-teal: #1fa67a;
+  --cu-text: #eaf3ee;
+  --cu-muted: rgba(234, 243, 238, 0.75);
+  --cu-line: rgba(224, 197, 106, 0.32);
+  --cu-card: rgba(14, 22, 18, 0.94);
+  --cu-ok: #7dcea0;
+  --cu-lock: rgba(234, 243, 238, 0.35);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  background: var(--cu-bg);
+  color: var(--cu-text);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  min-height: 100%;
+}
+body {
+  background:
+    radial-gradient(1200px 520px at 50% -10%, rgba(31, 166, 122, 0.14), transparent 55%),
+    var(--cu-bg);
+}
+.cu-banner {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.55rem 0.85rem;
+  background: rgba(8, 16, 14, 0.96);
+  border-bottom: 1px solid var(--cu-line);
+  backdrop-filter: blur(10px);
+}
+.cu-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #f3e6c0;
+}
+.cu-brand img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--cu-line);
+}
+.cu-brand strong { font-size: 1.02rem; font-weight: 800; }
+.cu-brand small {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cu-gold);
+}
+.cu-main-link {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-line);
+  background: rgba(224, 197, 106, 0.15);
+  color: var(--cu-gold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cu-wrap {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0.9rem 0.75rem 2.8rem;
+}
+.cu-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin: 0 0 0.85rem;
+}
+.cu-pills a {
+  font-size: 0.74rem;
+  font-weight: 650;
+  padding: 0.38rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-line);
+  background: rgba(0, 0, 0, 0.3);
+  color: #f3e6c0;
+  text-decoration: none;
+}
+.cu-pills a.here {
+  background: rgba(224, 197, 106, 0.22);
+  border-color: var(--cu-gold);
+}
+.cu-continue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.95rem;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 166, 122, 0.4);
+  background: linear-gradient(135deg, rgba(31, 166, 122, 0.18), rgba(224, 197, 106, 0.08));
+}
+.cu-continue strong { color: #f3e6c0; font-size: 0.92rem; }
+.cu-continue span { font-size: 0.78rem; color: var(--cu-muted); }
+.cu-continue a {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1fa67a, #0f4c3a);
+  color: #f7f3eb;
+  text-decoration: none;
+  border: 1px solid rgba(224, 197, 106, 0.35);
+}
+.cu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+@media (max-width: 540px) {
+  .cu-grid { grid-template-columns: 1fr; }
+}
+.cu-card {
+  display: block;
+  position: relative;
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid var(--cu-line);
+  background: linear-gradient(160deg, var(--cu-card), rgba(8, 14, 12, 0.98));
+  text-decoration: none;
+  color: var(--cu-text);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+}
+.cu-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(224, 197, 106, 0.55);
+}
+.cu-card.locked {
+  opacity: 0.72;
+  border-style: dashed;
+}
+.cu-card.locked:hover { transform: none; }
+.cu-card .tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cu-gold);
+  font-weight: 700;
+}
+.cu-card strong {
+  display: block;
+  color: #f3e6c0;
+  font-size: 1.02rem;
+  margin: 0.2rem 0 0.3rem;
+}
+.cu-card .desc {
+  font-size: 0.78rem;
+  color: var(--cu-muted);
+  line-height: 1.4;
+}
+.cu-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.18rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-line);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--cu-muted);
+}
+.cu-badge.open { color: var(--cu-ok); border-color: rgba(125, 206, 160, 0.45); }
+.cu-badge.done { color: var(--cu-gold); border-color: rgba(224, 197, 106, 0.5); }
+.cu-badge.locked { color: var(--cu-lock); }
+.cu-note {
+  margin: 1.15rem 0 0;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--cu-line);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--cu-muted);
+  background: rgba(0, 0, 0, 0.22);
+  text-align: center;
+}
+.cu-note a { color: var(--cu-gold); }
+.cu-foot {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--cu-muted);
+  padding: 1.1rem 0.8rem 1.4rem;
+}
+/* Desk learner */
+.cu-roles-toggle {
+  display: block;
+  margin: 0 auto 0.55rem;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 650;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-line);
+  background: rgba(0, 0, 0, 0.28);
+  color: #f3e6c0;
+  cursor: pointer;
+}
+.cu-roles {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 0.7rem;
+}
+.cu-roles.show { display: flex; }
+.cu-roles button {
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 650;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-line);
+  background: rgba(0, 0, 0, 0.32);
+  color: #f3e6c0;
+  cursor: pointer;
+}
+.cu-roles button.on {
+  background: rgba(31, 166, 122, 0.35);
+  border-color: var(--cu-teal);
+}
+.cu-phase-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  margin: 0 0 0.75rem;
+}
+.cu-phase-tabs a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-line);
+  color: #f3e6c0;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.28);
+}
+.cu-phase-tabs a.on {
+  background: rgba(224, 197, 106, 0.22);
+  border-color: var(--cu-gold);
+  color: #f3e6c0;
+}
+.cu-empty {
+  padding: 1.2rem;
+  border-radius: 14px;
+  border: 1px dashed var(--cu-line);
+  color: var(--cu-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  text-align: center;
+}
+#clarity-campus-stage, #campus-stage-body {
+  display: block;
+  width: 100%;
+  min-height: 12rem;
+}
