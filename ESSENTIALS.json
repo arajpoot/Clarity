@@ -1,8 +1,14 @@
 {
-  "build": "20261010SEAL",
-  "phase": "seal-resync",
+  "build": "20261010SMOOTH",
+  "phase": "smooth-main-scripts",
   "fixes": [
-    "SEAL hashes match foundation after goToPhase gate",
-    "integrity banner should clear"
+    "door polyfill: removed ghost script createElement",
+    "deduped stylesheet links",
+    "nuclear gate: reduced post-load fight interval 20\u21923",
+    "src-double-scan: clean",
+    "seeker: reduced mount retries",
+    "seeker: event remount debounce",
+    "campus-shell: fewer run retries",
+    "SEAL resync"
   ]
 }
