@@ -1,463 +1,194 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-campus-page="campus">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<meta name="color-scheme" content="dark"/>
-<title>Campus · Clarity University</title>
-<meta name="description" content="Clarity University campus — learning stage, faculty, security, IT. Educational only."/>
+<title>Learning Stage · Clarity University</title>
+<meta name="description" content="Clarity University learning desk — sequential modules, educational only. Not a fatwa or degree."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011RIWAQ"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011RIWAQ"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261011RIWAQ"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/registrar/registrar.css?v=20261011RIWAQ"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/chancellor/chancellor.css?v=20261011RIWAQ"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/security/security.css?v=20261011RIWAQ"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/it/it.css?v=20261011RIWAQ"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261011RIWAQ"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011LEAN"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011LEAN"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261011LEAN"/>
 <style>
 :root {
   --cu-bg:#070c0a; --cu-gold:#e0c56a; --cu-teal:#1fa67a; --cu-text:#eaf3ee;
-  --cu-muted:rgba(234,243,238,.72); --cu-line:rgba(224,197,106,.28); --cu-max:58rem;
+  --cu-muted:rgba(234,243,238,.72); --cu-line:rgba(224,197,106,.28); --cu-max:40rem;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--cu-bg)!important;color:var(--cu-text)!important;font-family:system-ui,-apple-system,sans-serif;min-height:100%}
+html,body{margin:0;background:var(--cu-bg)!important;color:var(--cu-text)!important;
+  font-family:system-ui,-apple-system,sans-serif;min-height:100%}
 body.cu-page{background:
-  radial-gradient(1100px 480px at 50% -8%,rgba(31,166,122,.16),transparent 55%),
-  radial-gradient(700px 360px at 100% 15%,rgba(224,197,106,.07),transparent 50%),
+  radial-gradient(1100px 480px at 50% -8%,rgba(31,166,122,.14),transparent 55%),
   var(--cu-bg)!important}
-
+/* Kill injected admin chrome from any leftover scripts */
+#clarity-chancellor-fab,#clarity-registrar-btn,#clarity-faculty-bar,
+.clarity-engine-hud,#clarity-security-badge,#clarity-it-badge,
+[data-chancellor-root],[data-registrar-root],.clab-dir-btn{display:none!important}
 .cu-map-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;
-  padding:.45rem .9rem;background:rgba(8,16,14,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--cu-line);position:sticky;top:0;z-index:100}
+  padding:.45rem .9rem;background:rgba(8,16,14,.94);border-bottom:1px solid var(--cu-line);
+  position:sticky;top:0;z-index:300}
 .cu-map-brand{display:inline-flex;align-items:center;gap:.45rem;color:#f3e6c0;font-weight:800;text-decoration:none;font-size:.92rem}
-.cu-map-brand img{width:1.55rem;height:1.55rem;border-radius:50%;box-shadow:0 0 12px rgba(31,166,122,.35)}
+.cu-map-brand img{width:1.5rem;height:1.5rem;border-radius:50%}
 .cu-map-links{display:flex;flex-wrap:wrap;gap:.3rem}
-.cu-map-links a{color:var(--cu-muted);text-decoration:none;font-size:.74rem;font-weight:600;padding:.3rem .6rem;
-  border-radius:999px;border:1px solid rgba(255,255,255,.1)}
-.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.14);color:#f3e6c0;border-color:rgba(224,197,106,.4)}
-
-/* Banner + insignia */
-.cu-banner{position:relative;overflow:hidden;border-bottom:1px solid var(--cu-line);min-height:8.5rem}
+.cu-map-links a{color:#f3e6c0;text-decoration:none;font-size:.74rem;font-weight:650;padding:.3rem .6rem;
+  border-radius:999px;border:1px solid rgba(224,197,106,.3)}
+.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.2);border-color:rgba(224,197,106,.55)}
+.cu-banner{position:relative;overflow:hidden;border-bottom:1px solid var(--cu-line);min-height:7rem}
 .cu-banner-bg{position:absolute;inset:0;
-  background:linear-gradient(115deg,rgba(7,12,10,.82),rgba(10,28,22,.55)),
+  background:linear-gradient(115deg,rgba(7,12,10,.88),rgba(10,28,22,.55)),
   url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg") center 38%/cover no-repeat;
   filter:saturate(.85)}
-.cu-banner-arc{position:absolute;left:50%;top:15%;width:150%;height:200%;transform:translateX(-50%);
-  border:2px solid rgba(224,197,106,.18);border-radius:50%;pointer-events:none;
-  box-shadow:0 0 50px rgba(224,197,106,.06) inset}
-.cu-banner-inner{position:relative;z-index:1;max-width:var(--cu-max);margin:0 auto;padding:1.2rem 1rem 1.35rem;
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;text-align:left}
-.cu-banner-seal{flex:0 0 auto;width:4.25rem;height:4.25rem;border-radius:50%;
-  box-shadow:0 0 0 2px rgba(224,197,106,.35),0 0 28px rgba(31,166,122,.25);
-  background:rgba(8,16,14,.5)}
-.cu-banner-seal img{width:100%;height:100%;display:block;border-radius:50%}
-.cu-banner-copy{flex:1 1 14rem;min-width:0;text-align:center}
-@media(min-width:560px){.cu-banner-copy{text-align:left}}
-.cu-banner-kicker{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(224,197,106,.95);font-weight:700;margin-bottom:.3rem}
-.cu-banner h1{margin:0 0 .3rem;font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:800;color:#f7efd6;
-  text-shadow:0 2px 16px rgba(0,0,0,.4)}
-.cu-banner p{margin:0;font-size:.86rem;line-height:1.45;color:rgba(234,243,238,.88);max-width:28rem}
-
-.cu-page-main{max-width:var(--cu-max);margin:0 auto;padding:1rem 1rem 4.5rem}
-
-/* Wing strip — Faculty · Security · IT */
-.cu-wings{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;margin:0 0 1rem;
-}
-@media(max-width:520px){.cu-wings{grid-template-columns:1fr}}
-.cu-wing{
-  border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:.75rem .8rem;cursor:pointer;
-  background:linear-gradient(160deg,rgba(20,32,28,.95),rgba(10,18,14,.92));
-  color:var(--cu-text);text-align:left;font:inherit;transition:transform .15s,border-color .2s,box-shadow .2s;
-}
-.cu-wing:hover{transform:translateY(-2px);border-color:rgba(224,197,106,.4);
-  box-shadow:0 10px 28px rgba(0,0,0,.25)}
-.cu-wing-ico{font-size:1.1rem;margin-bottom:.2rem}
-.cu-wing-name{font-weight:800;font-size:.88rem;color:#f3e6c0;display:block}
-.cu-wing-sub{font-size:.72rem;color:var(--cu-muted);line-height:1.35;margin-top:.15rem;display:block}
-.cu-wing[data-wing="faculty"]{border-color:rgba(31,166,122,.25)}
-.cu-wing[data-wing="security"]{border-color:rgba(168,212,240,.22)}
-.cu-wing[data-wing="it"]{border-color:rgba(224,197,106,.22)}
-
-/* Phase plaque restyle */
-#clarity-phase-plaque-rail,.clarity-phase-plaque-rail{
-  position:relative!important;top:auto!important;z-index:5!important;margin:0 0 1rem!important;
-  padding:0!important;border:none!important;background:transparent!important;box-shadow:none!important}
-.cpp-inner{
-  max-width:none!important;margin:0!important;padding:1rem 1.1rem 1.15rem!important;border-radius:18px!important;
-  border:1px solid var(--cu-line)!important;
-  background:linear-gradient(145deg,rgba(22,36,30,.98),rgba(12,22,18,.96))!important;
-  box-shadow:0 16px 48px rgba(0,0,0,.32)!important;position:relative;overflow:hidden}
-.cpp-how{
-  background:rgba(31,166,122,.08)!important;border:1px solid rgba(31,166,122,.22)!important;
-  border-radius:14px!important;padding:.85rem 1rem!important;margin:0 0 .85rem!important;
-  color:var(--cu-text)!important;font-size:.86rem!important;line-height:1.5!important}
-.cpp-how strong{color:var(--cu-gold)!important;font-size:.72rem!important;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.35rem}
-.cpp-how ol{margin:.15rem 0 0 1.1rem!important;padding:0!important;color:var(--cu-muted)!important}
-.cpp-how li{margin:.18rem 0;color:inherit!important}
-.cpp-chips{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem!important;margin:.45rem 0!important}
-@media(max-width:520px){.cpp-chips{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.cpp-chip{
-  display:flex!important;flex-direction:column;align-items:flex-start;gap:.12rem;
-  background:rgba(255,255,255,.04)!important;border:1px solid rgba(255,255,255,.1)!important;
-  color:var(--cu-text)!important;border-radius:12px!important;padding:.55rem .6rem!important;font-size:.76rem!important}
-.cpp-chip.cpp-active{
-  border-color:rgba(224,197,106,.55)!important;
-  background:linear-gradient(160deg,rgba(224,197,106,.16),rgba(31,166,122,.1))!important;color:#f7efd6!important}
-.cpp-chip.cpp-locked{opacity:.5}
-.cpp-status{font-size:.8rem!important;color:var(--cu-muted)!important;margin-top:.35rem!important;
-  padding-top:.45rem;border-top:1px solid rgba(255,255,255,.06)}
-
-.campus-stage-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-gold);font-weight:700;margin:0 0 .55rem}
-#junior-curriculum-card,#junior-high-curriculum-card,.curriculum-phase-card{
-  display:block!important;background:linear-gradient(165deg,rgba(20,32,26,.98),rgba(12,20,16,.96))!important;
-  color:var(--cu-text)!important;border:1px solid var(--cu-line)!important;border-radius:18px!important;
-  padding:1.15rem 1.2rem!important;margin:0 0 1.35rem!important;box-shadow:0 14px 40px rgba(0,0,0,.3)}
-#junior-curriculum-card .card-title,#junior-curriculum-card h2{color:var(--cu-gold)!important;font-size:1.18rem!important;font-weight:800!important}
-#junior-curriculum-card p,.junior-body{color:var(--cu-muted)!important}
-#junior-curriculum-card h3{color:#c8e6d6!important}
-#junior-curriculum-card .junior-module,#junior-curriculum-card article{
-  background:rgba(0,0,0,.28)!important;border:1px solid rgba(224,197,106,.2)!important;border-radius:14px!important;color:var(--cu-text)!important}
-#junior-curriculum-card a{color:#e8c47a!important}
-#junior-curriculum-card button{
-  color:#0c1410!important;background:linear-gradient(135deg,#c9a227,#e8c47a)!important;border:none!important;
-  border-radius:999px!important;font-weight:700!important}
-
-.cu-foot{text-align:center;font-size:.72rem;color:var(--cu-muted);padding:1.5rem .5rem}
+.cu-banner-inner{position:relative;z-index:1;max-width:var(--cu-max);margin:0 auto;padding:1.1rem 1rem;
+  display:flex;gap:.85rem;align-items:center;flex-wrap:wrap}
+.cu-banner-seal{width:3.6rem;height:3.6rem;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 0 2px rgba(224,197,106,.35)}
+.cu-banner-seal img{width:100%;height:100%;display:block}
+.cu-banner-kicker{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(224,197,106,.95);font-weight:700}
+.cu-banner h1{margin:.15rem 0;font-size:clamp(1.15rem,3.5vw,1.4rem);font-weight:800;color:#f7efd6}
+.cu-banner p{margin:0;font-size:.84rem;line-height:1.45;color:rgba(234,243,238,.88);max-width:26rem}
+.cu-page-main{max-width:var(--cu-max);margin:0 auto;padding:1rem 1rem 4rem}
+.cu-map{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin:0 0 1rem}
+@media(min-width:560px){.cu-map{grid-template-columns:repeat(3,1fr)}}
+.cu-map a{display:block;padding:.7rem .75rem;border-radius:14px;border:1px solid rgba(255,255,255,.1);
+  background:rgba(0,0,0,.28);text-decoration:none;color:var(--cu-text)}
+.cu-map a:hover{border-color:rgba(224,197,106,.45)}
+.cu-map a.here{border-color:rgba(224,197,106,.5);background:rgba(224,197,106,.1)}
+.cu-map strong{display:block;color:#f3e6c0;font-size:.84rem}
+.cu-map span{font-size:.7rem;color:var(--cu-muted);line-height:1.3}
+.cu-note{margin:0 0 1rem;padding:.75rem .9rem;border-radius:14px;border:1px solid var(--cu-line);
+  font-size:.8rem;line-height:1.45;color:var(--cu-muted);background:rgba(0,0,0,.22)}
+.cu-note a{color:var(--cu-gold)}
+.campus-stage-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cu-gold);font-weight:700;margin:0 0 .5rem}
+#clarity-campus-stage,#campus-stage-body{display:block;min-height:4rem}
+#junior-curriculum-card{display:block!important;margin:.25rem 0 1rem;padding:1rem;border-radius:16px;
+  border:1px solid var(--cu-line);background:linear-gradient(165deg,rgba(16,24,20,.98),rgba(10,16,13,.96))}
+#junior-curriculum-card .card-title, #junior-curriculum-card h2{color:var(--cu-gold)!important}
+.junior-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin:.35rem 0}
+.junior-bar-fill{height:100%;background:linear-gradient(90deg,#1fa67a,#e0c56a)}
+.junior-module{margin:.5rem 0;padding:.65rem .75rem;border-radius:12px;border:1px solid rgba(224,197,106,.2);background:rgba(0,0,0,.2)}
+#junior-curriculum-card button{margin:.25rem .25rem 0 0;padding:.35rem .7rem;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(224,197,106,.4);background:rgba(31,166,122,.2);color:#f3e6c0;font:inherit}
+.cu-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}
+.cu-tools button,.cu-tools a{font:inherit;cursor:pointer;padding:.5rem .85rem;border-radius:999px;
+  border:1px solid rgba(224,197,106,.35);background:rgba(0,0,0,.25);color:#f3e6c0;text-decoration:none;font-size:.78rem;font-weight:650}
+.cu-foot{text-align:center;font-size:.72rem;color:var(--cu-muted);padding:1.25rem .5rem}
 .cu-foot a{color:var(--cu-gold);text-decoration:none}
-.clarity-engine-hud{display:none!important}
-#clarity-name-plaque-rail,.cnp-inner{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .75rem}
-
-/* Wing modals always above campus chrome */
-.clarity-security-modal.show,
-.clarity-it-modal.show,
-.clarity-faculty-modal.show,
-#clarity-security-modal.show,
-#clarity-it-modal.show {
-  display: flex !important;
-  z-index: 200000 !important;
-}
-#clarity-phase-plaque-rail {
-  position: relative !important;
-  top: auto !important;
-  z-index: 5 !important;
-}
-
-/* nav polish FINAL */
-.cu-map-nav{position:sticky;top:0;z-index:300!important;display:flex!important;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem}
-.cu-map-links{display:flex!important;flex-wrap:wrap!important;gap:.35rem!important}
-.cu-map-links a{display:inline-block!important;visibility:visible!important;opacity:1!important;
-  color:#f3e6c0!important;padding:.35rem .65rem!important;border:1px solid rgba(224,197,106,.3)!important;
-  border-radius:999px!important;text-decoration:none!important;font-size:.74rem!important;font-weight:650!important}
-.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.2)!important;border-color:rgba(224,197,106,.55)!important}
-.cu-map-links a:hover{border-color:rgba(224,197,106,.55)!important}
-
-
-/* Journey strip — desk ↔ map */
-.cu-journey-strip{margin:1rem 0;padding:.85rem .9rem;border-radius:16px;border:1px solid var(--cu-line);
-  background:linear-gradient(160deg,rgba(18,28,22,.96),rgba(10,16,13,.94))}
-.cu-journey-strip-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cu-gold);font-weight:700;margin:0 0 .55rem}
-.cu-journey-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
-@media(max-width:520px){.cu-journey-rail{grid-template-columns:1fr 1fr}}
-.cu-journey-chip{display:flex;flex-direction:column;gap:.15rem;padding:.55rem .6rem;border-radius:12px;
-  border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.22);text-decoration:none;color:var(--cu-text);
-  transition:border-color .15s,transform .15s}
-.cu-journey-chip:hover{border-color:rgba(224,197,106,.45);transform:translateY(-1px)}
-.cu-journey-chip strong{font-size:.78rem;color:#f3e6c0}
-.cu-journey-chip span{font-size:.68rem;color:var(--cu-muted);line-height:1.3}
-.cu-journey-cta{margin-top:.65rem;display:flex;flex-wrap:wrap;gap:.4rem}
-.cu-journey-cta a{display:inline-block;padding:.45rem .85rem;border-radius:999px;font-size:.78rem;font-weight:700;
-  text-decoration:none;border:1px solid rgba(224,197,106,.4);color:#f3e6c0;background:rgba(31,166,122,.18)}
-.cu-journey-cta a.primary{background:rgba(224,197,106,.2);border-color:rgba(224,197,106,.55)}
-
-
-/* Campus map */
-.cu-campus-map{margin:0 0 1.1rem;padding:1rem .95rem 1.05rem;border-radius:18px;
-  border:1px solid var(--cu-line);
-  background:
-    radial-gradient(600px 200px at 50% 0%,rgba(31,166,122,.12),transparent 55%),
-    linear-gradient(165deg,rgba(14,22,18,.98),rgba(8,14,11,.96))}
-.cu-campus-map-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-gold);font-weight:700;margin:0 0 .35rem}
-.cu-campus-map-title{margin:0 0 .75rem;font-size:1.05rem;font-weight:800;color:#f3e6c0}
-.cu-campus-map-grid{display:grid;grid-template-columns:1.1fr 1fr 1.1fr;gap:.5rem;align-items:stretch}
-@media(max-width:560px){.cu-campus-map-grid{grid-template-columns:1fr}}
-.cu-map-tile{display:flex;flex-direction:column;justify-content:center;gap:.2rem;padding:.75rem .8rem;
-  border-radius:14px;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.28);
-  text-decoration:none;color:var(--cu-text);min-height:4.2rem;transition:border-color .15s,transform .15s,background .15s}
-.cu-map-tile:hover{border-color:rgba(224,197,106,.5);transform:translateY(-2px);background:rgba(31,166,122,.12)}
-.cu-map-tile.is-here{border-color:rgba(224,197,106,.55);background:rgba(224,197,106,.1);box-shadow:0 0 0 1px rgba(224,197,106,.15)}
-.cu-map-tile-ico{font-size:1.15rem;line-height:1}
-.cu-map-tile-name{font-weight:800;font-size:.88rem;color:#f3e6c0}
-.cu-map-tile-sub{font-size:.7rem;color:var(--cu-muted);line-height:1.35}
-.cu-map-center{display:flex;flex-direction:column;gap:.5rem}
-.cu-map-path{text-align:center;font-size:.68rem;color:rgba(224,197,106,.85);letter-spacing:.06em;margin:.15rem 0 .1rem}
-
+#campus-rescue-card{display:none!important} /* hide if curriculum present via JS remove */
 </style>
 </head>
-<body class="cu-page" data-campus-page="campus" data-campus-stage="learn">
-<nav class="cu-map-nav" aria-label="Campus map">
+<body class="cu-page" data-campus-page="campus" data-campus-stage="learn" data-campus-shell="1">
+<nav class="cu-map-nav" aria-label="Campus">
   <a class="cu-map-brand" href="https://clarity-dawah.fyi/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011RIWAQ" width="28" height="28" alt=""/>
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011LEAN" width="28" height="28" alt=""/>
     Clarity University
   </a>
-  <div class="cu-map-links"><a href="https://clarity-dawah.fyi/">Arrival</a><a href="https://clarity-dawah.fyi/campus/" aria-current="page">Campus</a><a href="https://clarity-dawah.fyi/journey/">Journey</a><a href="https://clarity-dawah.fyi/lab/">Lab</a><a href="https://clarity-dawah.fyi/vault/">Vault</a><a href="https://clarity-dawah.fyi/charter/">Charter</a></div>
+  <div class="cu-map-links">
+    <a href="https://clarity-dawah.fyi/">Arrival</a>
+    <a href="https://clarity-dawah.fyi/campus/" aria-current="page">Campus</a>
+    <a href="https://clarity-dawah.fyi/journey/">Journey</a>
+    <a href="https://clarity-dawah.fyi/lab/">Lab</a>
+    <a href="https://clarity-dawah.fyi/vault/">Vault</a>
+    <a href="https://clarity-dawah.fyi/charter/">Charter</a>
+  </div>
 </nav>
 
 <header class="cu-banner" role="banner">
   <div class="cu-banner-bg" aria-hidden="true"></div>
-  <div class="cu-banner-arc" aria-hidden="true"></div>
   <div class="cu-banner-inner">
     <div class="cu-banner-seal">
-      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011RIWAQ" width="68" height="68" alt="Clarity University seal — crescent"/>
+      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011LEAN" width="64" height="64" alt=""/>
     </div>
-    <div class="cu-banner-copy">
+    <div>
       <div class="cu-banner-kicker">Nur Path · Riwaq desk</div>
       <h1>Learning Stage</h1>
-      <p>One module at a time. Faculty · Security · IT stand with the desk. Progress stays on this device.</p>
+      <p>One module at a time. Progress stays on this device. Educational only — not a fatwa or degree.</p>
     </div>
   </div>
 </header>
 
 <main class="cu-page-main">
+  <nav class="cu-map" aria-label="Buildings">
+    <a href="https://clarity-dawah.fyi/"><strong>Arrival</strong><span>Companion tools</span></a>
+    <a class="here" href="https://clarity-dawah.fyi/campus/" aria-current="page"><strong>Campus desk</strong><span>You are here</span></a>
+    <a href="https://clarity-dawah.fyi/lab/"><strong>Lab</strong><span>Craft practice</span></a>
+    <a href="https://clarity-dawah.fyi/vault/"><strong>Vault</strong><span>Private notes</span></a>
+    <a href="https://clarity-dawah.fyi/journey/"><strong>Journey</strong><span>Full map</span></a>
+    <a href="https://clarity-dawah.fyi/charter/"><strong>Charter</strong><span>Method &amp; limits</span></a>
+  </nav>
 
-  <section class="cu-campus-map" id="cu-campus-map" aria-label="Campus map">
-    <p class="cu-campus-map-label">Campus map</p>
-    <h2 class="cu-campus-map-title">Buildings on the Nur Path</h2>
-    <div class="cu-campus-map-grid">
-      <a class="cu-map-tile" href="https://clarity-dawah.fyi/">
-        <span class="cu-map-tile-ico" aria-hidden="true">✦</span>
-        <span class="cu-map-tile-name">Arrival</span>
-        <span class="cu-map-tile-sub">Companion · daily doors</span>
-      </a>
-      <div class="cu-map-center">
-        <a class="cu-map-tile is-here" href="https://clarity-dawah.fyi/campus/" aria-current="page">
-          <span class="cu-map-tile-ico" aria-hidden="true">🎓</span>
-          <span class="cu-map-tile-name">Learning Stage</span>
-          <span class="cu-map-tile-sub">Desk · Faculty · Security · IT</span>
-        </a>
-        <p class="cu-map-path" aria-hidden="true">↓ walk the path ↓</p>
-        <a class="cu-map-tile" href="https://clarity-dawah.fyi/journey/">
-          <span class="cu-map-tile-ico" aria-hidden="true">🗺</span>
-          <span class="cu-map-tile-name">Journey map</span>
-          <span class="cu-map-tile-sub">Full wayfinding</span>
-        </a>
-      </div>
-      <div class="cu-map-center">
-        <a class="cu-map-tile" href="https://clarity-dawah.fyi/lab/">
-          <span class="cu-map-tile-ico" aria-hidden="true">🧪</span>
-          <span class="cu-map-tile-name">Lab</span>
-          <span class="cu-map-tile-sub">Craft · practice stations</span>
-        </a>
-        <a class="cu-map-tile" href="https://clarity-dawah.fyi/vault/">
-          <span class="cu-map-tile-ico" aria-hidden="true">🏦</span>
-          <span class="cu-map-tile-name">Amana Vault</span>
-          <span class="cu-map-tile-sub">On-device private notes</span>
-        </a>
-        <a class="cu-map-tile" href="https://clarity-dawah.fyi/charter/">
-          <span class="cu-map-tile-ico" aria-hidden="true">📜</span>
-          <span class="cu-map-tile-name">Charter</span>
-          <span class="cu-map-tile-sub">Purpose · boundaries</span>
-        </a>
-      </div>
-    </div>
-  </section>
+  <p class="cu-note">
+    <strong style="color:#f3e6c0">Foundations → Practice → Consistency → Transmission.</strong>
+    Classical study order as a gentle map — <strong>not affiliated</strong> with Al-Azhar, Madinah University, or any degree program.
+    <a href="https://clarity-dawah.fyi/charter/">Charter</a>
+  </p>
 
-  
-  <section class="cu-panel" id="riwaq-method" style="margin:0 0 1rem;padding:.9rem 1rem;border-radius:16px;border:1px solid rgba(224,197,106,.28);background:linear-gradient(165deg,rgba(16,24,20,.96),rgba(10,16,13,.94))">
-    <p style="margin:0 0 .35rem;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#e0c56a;font-weight:700">Riwaq method · educational only</p>
-    <p style="margin:0;font-size:.84rem;line-height:1.5;color:rgba(234,243,238,.8)">Foundations → Practice → Consistency → Transmission. One module open at a time. Inspired by classical study order — <strong style="color:#f3e6c0">not affiliated</strong> with Al-Azhar, Madinah University, or any degree program. <a href="https://clarity-dawah.fyi/charter/" style="color:#e0c56a">Charter</a></p>
-  </section>
-
-  <section class="cu-wings" aria-label="Campus wings">
-    <button type="button" class="cu-wing" data-wing="faculty" id="cu-wing-faculty">
-      <span class="cu-wing-ico" aria-hidden="true">🎓</span>
-      <span class="cu-wing-name">Faculty</span>
-      <span class="cu-wing-sub">Teachers · phase handoff · countersign</span>
-    </button>
-    <button type="button" class="cu-wing" data-wing="security" id="cu-wing-security">
-      <span class="cu-wing-ico" aria-hidden="true">◎</span>
-      <span class="cu-wing-name">Security</span>
-      <span class="cu-wing-sub">Wiring auditors · pipe integrity</span>
-    </button>
-    <button type="button" class="cu-wing" data-wing="it" id="cu-wing-it">
-      <span class="cu-wing-ico" aria-hidden="true">⚙</span>
-      <span class="cu-wing-name">IT</span>
-      <span class="cu-wing-sub">Bridge scan · sandbox · night watch</span>
-    </button>
-  </section>
-
-  <div id="clarity-name-plaque-rail" class="cnp-inner" aria-label="Learner"></div>
   <p class="campus-stage-label">Phase desk</p>
   <div id="clarity-campus-stage">
     <div id="campus-stage-body">
-      <p id="campus-loading-hint" style="opacity:.75;font-size:.88rem;color:rgba(234,243,238,.7)">Loading Junior desk…</p>
+      <p id="campus-loading-hint" style="opacity:.7;font-size:.88rem">Loading curriculum…</p>
     </div>
   </div>
-  
-  
-  <section class="cu-journey-strip" id="cu-journey-strip" aria-label="Journey map from desk">
-    <p class="cu-journey-strip-label">Journey · four buildings from this desk</p>
-    <div class="cu-journey-rail">
-      <a class="cu-journey-chip" href="https://clarity-dawah.fyi/"><strong>1 · Arrival</strong><span>Companion tools</span></a>
-      <a class="cu-journey-chip" href="https://clarity-dawah.fyi/campus/"><strong>2 · Campus</strong><span>Learning desk · you are here</span></a>
-      <a class="cu-journey-chip" href="https://clarity-dawah.fyi/lab/"><strong>3 · Lab</strong><span>Craft practice</span></a>
-      <a class="cu-journey-chip" href="https://clarity-dawah.fyi/vault/"><strong>4 · Vault</strong><span>Private notes</span></a>
-    </div>
-    <div class="cu-journey-cta">
-      <a class="primary" href="https://clarity-dawah.fyi/journey/">Open full Journey map</a>
-      <a href="https://clarity-dawah.fyi/journey/#how">How to walk the path</a>
-    </div>
-  </section>
 
-  <section id="campus-staff-strip" class="cu-enroll" aria-label="Staff on duty" style="margin:1rem 0;padding:.85rem .9rem;border-radius:16px;border:1px solid var(--cu-line);background:linear-gradient(160deg,rgba(18,28,22,.96),rgba(10,16,13,.94))">
-    <p style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cu-gold);font-weight:700;margin:0 0 .45rem">Staff wing · on duty</p>
-    <ul id="campus-staff-list" style="margin:.35rem 0;padding-left:1.1rem;font-size:.8rem;color:var(--cu-muted);line-height:1.45">
-      <li>Staff loading…</li>
-    </ul>
-    <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem">
-      <button type="button" id="btn-staff-train" style="flex:1;min-width:8rem;text-align:left;font:inherit;cursor:pointer;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.55rem .7rem;background:rgba(0,0,0,.22);color:var(--cu-text)"><strong style="display:block;color:#f3e6c0;font-size:.84rem">Train all staff</strong><span style="font-size:.72rem;color:var(--cu-muted)">Ops · authenticity · usher · runner</span></button>
-      <button type="button" id="btn-it-lab" style="flex:1;min-width:8rem;text-align:left;font:inherit;cursor:pointer;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.55rem .7rem;background:rgba(0,0,0,.22);color:var(--cu-text)"><strong style="display:block;color:#f3e6c0;font-size:.84rem">IT Device Lab</strong><span style="font-size:.72rem;color:var(--cu-muted)">Diagnostics · maintenance</span></button>
-    </div>
-  </section>
+  <div class="cu-tools">
+    <button type="button" id="btn-retry-desk">Retry desk</button>
+    <a href="https://clarity-dawah.fyi/lab/">Open Lab</a>
+    <a href="https://clarity-dawah.fyi/journey/">Journey map</a>
+    <button type="button" id="btn-it-lab">IT lab</button>
+  </div>
 
-  <p class="cu-foot"><a href="https://clarity-dawah.fyi/">Arrival</a> · <a href="https://clarity-dawah.fyi/campus/">Campus</a> · <a href="https://clarity-dawah.fyi/journey/">Journey</a> · <a href="https://clarity-dawah.fyi/lab/">Lab</a> · <a href="https://clarity-dawah.fyi/vault/">Vault</a> · <a href="https://clarity-dawah.fyi/charter/">Charter</a></p>
+  <p class="cu-foot">
+    <a href="https://clarity-dawah.fyi/">Arrival</a> · <a href="https://clarity-dawah.fyi/campus/">Campus</a> ·
+    <a href="https://clarity-dawah.fyi/journey/">Journey</a> · <a href="https://clarity-dawah.fyi/lab/">Lab</a> ·
+    <a href="https://clarity-dawah.fyi/vault/">Vault</a> · <a href="https://clarity-dawah.fyi/charter/">Charter</a>
+  </p>
 </main>
 
-<script src="/assets/curriculum/vault/boot.js?v=20261011RIWAQ"></script>
-<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261011RIWAQ" defer></script>
-<script src="/assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261011RIWAQ" defer></script>
-<script src="/assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261011RIWAQ" defer></script>
-<script src="/assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261011RIWAQ"></script>
-<script src="/assets/curriculum/vault/admin/it/it-device-lab-v1.js?v=20261011RIWAQ" defer></script>
-<script src="/assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261011RIWAQ"></script>
-<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261011RIWAQ" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011RIWAQ" defer></script>
-<script src="/assets/clarity-campus-rescue-v1.js?v=20261011RIWAQ" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261011RIWAQ" defer></script>
+<!-- Single curriculum path: boot only. No chancellor/registrar/faculty/workers injectors. -->
+<script src="/assets/curriculum/vault/boot.js?v=20261011LEAN"></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011LEAN" defer></script>
+<script src="/assets/clarity-campus-rescue-v1.js?v=20261011LEAN" defer></script>
+<script src="/assets/curriculum/vault/admin/it/it-device-lab-v1.js?v=20261011LEAN" defer></script>
 <script>
 (function () {
-  try { document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
-
-  function openWing(name) {
-    try {
-      if (name === "faculty" && window.ClarityFaculty) {
-        (ClarityFaculty.openDesk || ClarityFaculty.open || function(){})();
-        return;
-      }
-      if (name === "security" && window.ClaritySecurity) {
-        (ClaritySecurity.openDesk || ClaritySecurity.open || ClaritySecurity.scan || function(){})();
-        return;
-      }
-      if (name === "it") {
-        if (window.ClarityITLab && ClarityITLab.openLab) { ClarityITLab.openLab(); return; }
-        if (window.ClarityIT) {
-          (ClarityIT.openDesk || ClarityIT.open || ClarityIT.scanBridge || function(){})();
-          return;
-        }
-      }
-      alert(name.charAt(0).toUpperCase() + name.slice(1) + " wing is still loading — try again in a moment.");
-    } catch (e) {
-      console.warn(e);
-    }
+  function hasCurriculum() {
+    return !!(document.getElementById("junior-curriculum-card") ||
+      document.querySelector("#campus-stage-body .junior-module, #campus-stage-body .junior-bar"));
   }
-  document.querySelectorAll(".cu-wing").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      openWing(btn.getAttribute("data-wing"));
-    });
-  });
-
-  function hasDeskCurriculum() {
-    if (document.getElementById("junior-curriculum-card")) return true;
-    var body = document.getElementById("campus-stage-body");
-    return !!(body && body.querySelector(".junior-module, .junior-body, .junior-bar"));
-  }
-  function clearRescue() {
+  function clearChrome() {
     var r = document.getElementById("campus-rescue-card");
-    if (r) try { r.remove(); } catch (e) {}
+    if (r && hasCurriculum()) try { r.remove(); } catch (e) {}
     var h = document.getElementById("campus-loading-hint");
-    if (h && hasDeskCurriculum()) try { h.remove(); } catch (e2) {}
+    if (h && hasCurriculum()) try { h.remove(); } catch (e2) {}
+    // strip injected admin nodes if any leaked
+    ["clarity-chancellor-fab","clarity-registrar-btn"].forEach(function (id) {
+      var n = document.getElementById(id);
+      if (n) try { n.remove(); } catch (e3) {}
+    });
   }
   function adopt() {
     try {
       if (window.ClarityJuniorCurriculum && ClarityJuniorCurriculum.render) ClarityJuniorCurriculum.render();
       if (window.ClarityCampus && ClarityCampus.adoptCurriculumCards) ClarityCampus.adoptCurriculumCards();
     } catch (e) {}
-    var h = document.getElementById("campus-loading-hint");
-    if (hasDeskCurriculum()) clearRescue();
+    clearChrome();
+  }
+  document.getElementById("btn-retry-desk").onclick = function () { adopt(); };
+  var it = document.getElementById("btn-it-lab");
+  if (it) it.onclick = function () {
     try {
-      var rail = document.getElementById("clarity-phase-plaque-rail");
-      var main = document.querySelector(".cu-page-main");
-      var label = document.querySelector(".campus-stage-label");
-      if (rail && main && label && rail.parentNode !== main) main.insertBefore(rail, label);
-    } catch (e2) {}
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      setTimeout(adopt, 300); setTimeout(adopt, 1000); setTimeout(adopt, 2200);
-    });
-  } else {
-    setTimeout(adopt, 300); setTimeout(adopt, 1000); setTimeout(adopt, 2200);
-  }
-
-  function paintStaff() {
-    var list = document.getElementById("campus-staff-list");
-    if (!list) return;
-    var lines = [];
-    try {
-      if (window.ClarityStaffWorkforce && ClarityStaffWorkforce.roster) {
-        var r = ClarityStaffWorkforce.roster();
-        if (r.ops) lines.push("⚙ Ops Steward — checks " + (r.ops.checks || 0) + ", warn " + (r.ops.warn || 0));
-        if (r.fiqh) lines.push("⚖ Authenticity Clerk — online");
-        if (r.scout) lines.push("◈ Resource Scout — online");
-        if (r.librarian) lines.push("📚 Vault Librarian — online");
-        if (r.usher) lines.push("🧭 Phase Usher — runs " + (r.usher.runs || 0));
-        if (r.runner) lines.push("🏃 Curriculum Runner — runs " + (r.runner.runs || 0));
-        if (r.helpdesk) lines.push("💬 Help Desk — ready");
-        if (r.janitor) lines.push("🧹 Stage Orderly — cleans " + (r.janitor.cleans || 0));
-      } else if (window.ClarityStaffOps) {
-        var o = ClarityStaffOps.state ? ClarityStaffOps.state() : {};
-        lines.push("⚙ Ops Steward — checks " + (o.checks || 0));
-        lines.push("Full roster still loading…");
-      } else {
-        lines.push("Staff dispatcher loading…");
-      }
-    } catch (e) {
-      lines.push("Staff status unavailable — tap Train all");
-    }
-    if (!lines.length) lines.push("No staff report yet — tap Train all");
-    list.innerHTML = lines.map(function (x) { return "<li>" + x + "</li>"; }).join("");
-  }
-  var trainBtn = document.getElementById("btn-staff-train");
-  if (trainBtn) {
-    trainBtn.addEventListener("click", function () {
-      try {
-        if (window.ClarityStaffWorkforce && ClarityStaffWorkforce.trainAll) ClarityStaffWorkforce.trainAll();
-        else if (window.ClarityNurArsenal && ClarityNurArsenal.trainAll) ClarityNurArsenal.trainAll();
-        else if (window.ClarityStaffOps && ClarityStaffOps.check) ClarityStaffOps.check();
-      } catch (e) {}
-      setTimeout(paintStaff, 200);
-      setTimeout(paintStaff, 800);
-    });
-  }
-  var itLabBtn = document.getElementById("btn-it-lab");
-  if (itLabBtn) {
-    itLabBtn.addEventListener("click", function () {
       if (window.ClarityITLab && ClarityITLab.openLab) ClarityITLab.openLab();
-      else if (window.ClarityIT && (ClarityIT.openDesk || ClarityIT.scanBridge)) {
-        (ClarityIT.openDesk || ClarityIT.scanBridge)();
-      } else {
-        alert("IT Lab still loading — try again in a moment.");
-      }
-    });
-  }
-  window.addEventListener("clarity-staff-ready", function () { setTimeout(paintStaff, 150); setTimeout(paintStaff, 700); });
-  window.addEventListener("clarity-staff-trained", function () { paintStaff(); });
-  setTimeout(paintStaff, 1200);
-  setTimeout(paintStaff, 3000);
-
+      else alert("IT lab still loading — try again shortly.");
+    } catch (e) {}
+  };
+  window.addEventListener("clarity-vault-ready", function () {
+    setTimeout(adopt, 100);
+    setTimeout(adopt, 600);
+    setTimeout(adopt, 1500);
+  });
+  setTimeout(adopt, 800);
+  setTimeout(adopt, 2000);
+  setTimeout(adopt, 4000);
 })();
 </script>
-<script src="/assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261011RIWAQ" defer></script>
 </body>
 </html>
