@@ -7,14 +7,14 @@
 <title>Campus · Clarity University</title>
 <meta name="description" content="Clarity University campus — learning stage, faculty, security, IT. Educational only."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011JOURNEY"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011JOURNEY"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261011JOURNEY"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/registrar/registrar.css?v=20261011JOURNEY"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/chancellor/chancellor.css?v=20261011JOURNEY"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/security/security.css?v=20261011JOURNEY"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/it/it.css?v=20261011JOURNEY"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261011JOURNEY"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261011MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/registrar/registrar.css?v=20261011MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/chancellor/chancellor.css?v=20261011MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/security/security.css?v=20261011MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/it/it.css?v=20261011MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261011MAP"/>
 <style>
 :root {
   --cu-bg:#070c0a; --cu-gold:#e0c56a; --cu-teal:#1fa67a; --cu-text:#eaf3ee;
@@ -171,12 +171,34 @@ body.cu-page{background:
   text-decoration:none;border:1px solid rgba(224,197,106,.4);color:#f3e6c0;background:rgba(31,166,122,.18)}
 .cu-journey-cta a.primary{background:rgba(224,197,106,.2);border-color:rgba(224,197,106,.55)}
 
+
+/* Campus map */
+.cu-campus-map{margin:0 0 1.1rem;padding:1rem .95rem 1.05rem;border-radius:18px;
+  border:1px solid var(--cu-line);
+  background:
+    radial-gradient(600px 200px at 50% 0%,rgba(31,166,122,.12),transparent 55%),
+    linear-gradient(165deg,rgba(14,22,18,.98),rgba(8,14,11,.96))}
+.cu-campus-map-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-gold);font-weight:700;margin:0 0 .35rem}
+.cu-campus-map-title{margin:0 0 .75rem;font-size:1.05rem;font-weight:800;color:#f3e6c0}
+.cu-campus-map-grid{display:grid;grid-template-columns:1.1fr 1fr 1.1fr;gap:.5rem;align-items:stretch}
+@media(max-width:560px){.cu-campus-map-grid{grid-template-columns:1fr}}
+.cu-map-tile{display:flex;flex-direction:column;justify-content:center;gap:.2rem;padding:.75rem .8rem;
+  border-radius:14px;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.28);
+  text-decoration:none;color:var(--cu-text);min-height:4.2rem;transition:border-color .15s,transform .15s,background .15s}
+.cu-map-tile:hover{border-color:rgba(224,197,106,.5);transform:translateY(-2px);background:rgba(31,166,122,.12)}
+.cu-map-tile.is-here{border-color:rgba(224,197,106,.55);background:rgba(224,197,106,.1);box-shadow:0 0 0 1px rgba(224,197,106,.15)}
+.cu-map-tile-ico{font-size:1.15rem;line-height:1}
+.cu-map-tile-name{font-weight:800;font-size:.88rem;color:#f3e6c0}
+.cu-map-tile-sub{font-size:.7rem;color:var(--cu-muted);line-height:1.35}
+.cu-map-center{display:flex;flex-direction:column;gap:.5rem}
+.cu-map-path{text-align:center;font-size:.68rem;color:rgba(224,197,106,.85);letter-spacing:.06em;margin:.15rem 0 .1rem}
+
 </style>
 </head>
 <body class="cu-page" data-campus-page="campus" data-campus-stage="learn">
 <nav class="cu-map-nav" aria-label="Campus map">
   <a class="cu-map-brand" href="https://clarity-dawah.fyi/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011JOURNEY" width="28" height="28" alt=""/>
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011MAP" width="28" height="28" alt=""/>
     Clarity University
   </a>
   <div class="cu-map-links"><a href="https://clarity-dawah.fyi/">Arrival</a><a href="https://clarity-dawah.fyi/campus/" aria-current="page">Campus</a><a href="https://clarity-dawah.fyi/journey/">Journey</a><a href="https://clarity-dawah.fyi/lab/">Lab</a><a href="https://clarity-dawah.fyi/vault/">Vault</a><a href="https://clarity-dawah.fyi/charter/">Charter</a></div>
@@ -187,7 +209,7 @@ body.cu-page{background:
   <div class="cu-banner-arc" aria-hidden="true"></div>
   <div class="cu-banner-inner">
     <div class="cu-banner-seal">
-      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011JOURNEY" width="68" height="68" alt="Clarity University seal — crescent"/>
+      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011MAP" width="68" height="68" alt="Clarity University seal — crescent"/>
     </div>
     <div class="cu-banner-copy">
       <div class="cu-banner-kicker">Nur Path · Phase 4 campus</div>
@@ -198,6 +220,49 @@ body.cu-page{background:
 </header>
 
 <main class="cu-page-main">
+
+  <section class="cu-campus-map" id="cu-campus-map" aria-label="Campus map">
+    <p class="cu-campus-map-label">Campus map</p>
+    <h2 class="cu-campus-map-title">Buildings on the Nur Path</h2>
+    <div class="cu-campus-map-grid">
+      <a class="cu-map-tile" href="https://clarity-dawah.fyi/">
+        <span class="cu-map-tile-ico" aria-hidden="true">✦</span>
+        <span class="cu-map-tile-name">Arrival</span>
+        <span class="cu-map-tile-sub">Companion · daily doors</span>
+      </a>
+      <div class="cu-map-center">
+        <a class="cu-map-tile is-here" href="https://clarity-dawah.fyi/campus/" aria-current="page">
+          <span class="cu-map-tile-ico" aria-hidden="true">🎓</span>
+          <span class="cu-map-tile-name">Learning Stage</span>
+          <span class="cu-map-tile-sub">Desk · Faculty · Security · IT</span>
+        </a>
+        <p class="cu-map-path" aria-hidden="true">↓ walk the path ↓</p>
+        <a class="cu-map-tile" href="https://clarity-dawah.fyi/journey/">
+          <span class="cu-map-tile-ico" aria-hidden="true">🗺</span>
+          <span class="cu-map-tile-name">Journey map</span>
+          <span class="cu-map-tile-sub">Full wayfinding</span>
+        </a>
+      </div>
+      <div class="cu-map-center">
+        <a class="cu-map-tile" href="https://clarity-dawah.fyi/lab/">
+          <span class="cu-map-tile-ico" aria-hidden="true">🧪</span>
+          <span class="cu-map-tile-name">Lab</span>
+          <span class="cu-map-tile-sub">Craft · practice stations</span>
+        </a>
+        <a class="cu-map-tile" href="https://clarity-dawah.fyi/vault/">
+          <span class="cu-map-tile-ico" aria-hidden="true">🏦</span>
+          <span class="cu-map-tile-name">Amana Vault</span>
+          <span class="cu-map-tile-sub">On-device private notes</span>
+        </a>
+        <a class="cu-map-tile" href="https://clarity-dawah.fyi/charter/">
+          <span class="cu-map-tile-ico" aria-hidden="true">📜</span>
+          <span class="cu-map-tile-name">Charter</span>
+          <span class="cu-map-tile-sub">Purpose · boundaries</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="cu-wings" aria-label="Campus wings">
     <button type="button" class="cu-wing" data-wing="faculty" id="cu-wing-faculty">
       <span class="cu-wing-ico" aria-hidden="true">🎓</span>
@@ -253,17 +318,17 @@ body.cu-page{background:
   <p class="cu-foot"><a href="https://clarity-dawah.fyi/">Arrival</a> · <a href="https://clarity-dawah.fyi/campus/">Campus</a> · <a href="https://clarity-dawah.fyi/journey/">Journey</a> · <a href="https://clarity-dawah.fyi/lab/">Lab</a> · <a href="https://clarity-dawah.fyi/vault/">Vault</a> · <a href="https://clarity-dawah.fyi/charter/">Charter</a></p>
 </main>
 
-<script src="/assets/curriculum/vault/boot.js?v=20261011JOURNEY"></script>
-<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261011JOURNEY" defer></script>
-<script src="/assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261011JOURNEY" defer></script>
-<script src="/assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261011JOURNEY" defer></script>
-<script src="/assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261011JOURNEY"></script>
-<script src="/assets/curriculum/vault/admin/it/it-device-lab-v1.js?v=20261011JOURNEY" defer></script>
-<script src="/assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261011JOURNEY"></script>
-<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261011JOURNEY" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011JOURNEY" defer></script>
-<script src="/assets/clarity-campus-rescue-v1.js?v=20261011JOURNEY" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261011JOURNEY" defer></script>
+<script src="/assets/curriculum/vault/boot.js?v=20261011MAP"></script>
+<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261011MAP" defer></script>
+<script src="/assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261011MAP" defer></script>
+<script src="/assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261011MAP" defer></script>
+<script src="/assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261011MAP"></script>
+<script src="/assets/curriculum/vault/admin/it/it-device-lab-v1.js?v=20261011MAP" defer></script>
+<script src="/assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261011MAP"></script>
+<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261011MAP" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011MAP" defer></script>
+<script src="/assets/clarity-campus-rescue-v1.js?v=20261011MAP" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261011MAP" defer></script>
 <script>
 (function () {
   try { document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
@@ -387,6 +452,6 @@ body.cu-page{background:
 
 })();
 </script>
-<script src="/assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261011JOURNEY" defer></script>
+<script src="/assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261011MAP" defer></script>
 </body>
 </html>
