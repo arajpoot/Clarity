@@ -7,12 +7,12 @@
 <meta name="description" content="Clarity University campus — sequential colleges, faculty, security, IT. Educational only — not a fatwa."/>
 <meta name="theme-color" content="#070c0a"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/security/security.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/it/it.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261011DUAL"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011DESK"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011DESK"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261011DESK"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/security/security.css?v=20261011DESK"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/it/it.css?v=20261011DESK"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261011DESK"/>
 <style>
 
 :root {
@@ -161,12 +161,21 @@ body.cu-page{background:
 .cu-hall strong{display:block;color:#f3e6c0;font-size:.82rem}
 .cu-hall span{font-size:.7rem;color:var(--cu-muted)}
 
+
+/* cu-map-nav-harden */
+.cu-map-nav{position:sticky;top:0;z-index:300!important;display:flex!important}
+.cu-map-links{display:flex!important;flex-wrap:wrap!important;gap:.35rem!important}
+.cu-map-links a{display:inline-block!important;visibility:visible!important;opacity:1!important;
+  color:#f3e6c0!important;padding:.35rem .65rem!important;border:1px solid rgba(224,197,106,.3)!important;
+  border-radius:999px!important;text-decoration:none!important;font-size:.74rem!important;font-weight:650!important}
+.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.2)!important}
+.cu-halls{display:grid!important}
 </style>
 </head>
 <body class="cu-page" data-campus-page="campus" data-campus-stage="learn">
 <nav class="cu-map-nav" aria-label="Campus map">
   <a class="cu-map-brand" href="/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011DUAL" width="28" height="28" alt=""/>
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011DESK" width="28" height="28" alt=""/>
     Clarity University
   </a>
   <div class="cu-map-links">
@@ -184,7 +193,7 @@ body.cu-page{background:
   <div class="cu-banner-arc" aria-hidden="true"></div>
   <div class="cu-banner-inner">
     <div class="cu-banner-seal">
-      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011DUAL" width="68" height="68" alt="Clarity University seal"/>
+      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011DESK" width="68" height="68" alt="Clarity University seal"/>
     </div>
     <div class="cu-banner-copy">
       <div class="cu-banner-kicker">Nur Path · dual form</div>
@@ -234,6 +243,18 @@ body.cu-page{background:
     </div>
   </div>
 
+  
+  <section id="campus-staff-strip" class="cu-enroll" aria-label="Staff on duty" style="margin-top:1rem">
+    <p class="cu-enroll-label">Staff wing · on duty</p>
+    <ul id="campus-staff-list" style="margin:.35rem 0;padding-left:1.1rem;font-size:.8rem;color:var(--cu-muted);line-height:1.45">
+      <li>Loading staff roster…</li>
+    </ul>
+    <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem">
+      <button type="button" class="cu-enroll-btn" id="btn-staff-train" style="flex:1;min-width:8rem"><strong>Train all staff</strong><span>Ops · authenticity · usher · runner</span></button>
+      <button type="button" class="cu-enroll-btn" id="btn-staff-help" style="flex:1;min-width:8rem"><strong>Help desk tip</strong><span>Study guidance</span></button>
+    </div>
+  </section>
+
   <section aria-label="Halls">
     <div class="cu-halls">
       <a class="cu-hall" href="/journey/"><strong>Journey</strong><span>Four-college map</span></a>
@@ -248,16 +269,16 @@ body.cu-page{background:
 </main>
 
 <!-- Boot sealed vault first (ordered foundation + SEAL), then wings -->
-<script src="/assets/curriculum/vault/boot.js?v=20261011DUAL"></script>
-<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/it/it-device-lab-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/clarity-campus-rescue-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261011DUAL" defer></script>
+<script src="/assets/curriculum/vault/boot.js?v=20261011DESK"></script>
+<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261011DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261011DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261011DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/it/it-device-lab-v1.js?v=20261011DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261011DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011DESK" defer></script>
+<script src="/assets/clarity-campus-rescue-v1.js?v=20261011DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261011DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261011DESK" defer></script>
 <script>
 (function () {
   try { document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
@@ -348,17 +369,98 @@ body.cu-page{background:
   });
   window.addEventListener("clarity-path-changed", paintProgress);
 
+  function paintStaff() {
+    var list = document.getElementById("campus-staff-list");
+    if (!list) return;
+    var lines = [];
+    try {
+      if (window.ClarityStaffWorkforce && ClarityStaffWorkforce.roster) {
+        var r = ClarityStaffWorkforce.roster();
+        if (r.ops) lines.push("⚙ Ops Steward — checks " + (r.ops.checks || 0) + ", warn " + (r.ops.warn || 0));
+        if (r.fiqh) lines.push("⚖ Authenticity Clerk — online");
+        if (r.scout) lines.push("◈ Resource Scout — online");
+        if (r.librarian) lines.push("📚 Vault Librarian — online");
+        if (r.usher) lines.push("🧭 Phase Usher — runs " + (r.usher.runs || 0));
+        if (r.runner) lines.push("🏃 Curriculum Runner — runs " + (r.runner.runs || 0));
+        if (r.helpdesk) lines.push("💬 Help Desk — tips " + (r.helpdesk.tipsServed || 0));
+        if (r.janitor) lines.push("🧹 Stage Orderly — cleans " + (r.janitor.cleans || 0));
+      } else if (window.ClarityStaffOps) {
+        var o = ClarityStaffOps.state ? ClarityStaffOps.state() : {};
+        lines.push("⚙ Ops Steward — checks " + (o.checks || 0));
+        lines.push("Staff scripts still loading — wait or tap Train all");
+      } else {
+        lines.push("Staff dispatcher loading…");
+      }
+    } catch (e) {
+      lines.push("Staff status error — retry Train all");
+    }
+    list.innerHTML = lines.map(function (x) { return "<li>" + x + "</li>"; }).join("");
+  }
+
+  function ensureDeskVisible() {
+    var body = document.getElementById("campus-stage-body");
+    if (!body) return;
+    if (document.getElementById("junior-curriculum-card")) return;
+    if (document.getElementById("campus-desk-fallback")) return;
+    var fb = document.createElement("div");
+    fb.id = "campus-desk-fallback";
+    fb.style.cssText = "padding:.75rem;border:1px dashed rgba(224,197,106,.35);border-radius:12px;margin:.5rem 0";
+    fb.innerHTML = "<strong style=\"color:#f3e6c0\">University desk</strong>" +
+      "<p style=\"font-size:.85rem;color:rgba(234,243,238,.75);margin:.4rem 0\">Modules load from the sealed vault. If empty, enroll in a college above, then tap Retry.</p>" +
+      "<button type=\"button\" class=\"cu-enroll-btn\" id=\"campus-desk-retry\"><strong>Retry desk load</strong><span>Re-run vault colleges</span></button>";
+    body.appendChild(fb);
+    var btn = document.getElementById("campus-desk-retry");
+    if (btn) btn.onclick = function () {
+      try {
+        if (window.ClarityJuniorCurriculum && ClarityJuniorCurriculum.render) ClarityJuniorCurriculum.render();
+        if (window.ClarityCampus && ClarityCampus.adoptCurriculumCards) ClarityCampus.adoptCurriculumCards();
+        if (window.ClarityStaffWorkforce && ClarityStaffWorkforce.trainAll) ClarityStaffWorkforce.trainAll();
+      } catch (e) {}
+      adopt();
+      paintStaff();
+    };
+  }
+
+  var trainBtn = document.getElementById("btn-staff-train");
+  if (trainBtn) trainBtn.onclick = function () {
+    try {
+      if (window.ClarityStaffWorkforce && ClarityStaffWorkforce.trainAll) ClarityStaffWorkforce.trainAll();
+      else if (window.ClarityNurArsenal && ClarityNurArsenal.trainAll) ClarityNurArsenal.trainAll();
+      else if (window.ClarityStaffOps && ClarityStaffOps.check) ClarityStaffOps.check();
+    } catch (e) {}
+    paintStaff();
+  };
+  var helpBtn = document.getElementById("btn-staff-help");
+  if (helpBtn) helpBtn.onclick = function () {
+    try {
+      if (window.ClarityStaffHelpdesk && ClarityStaffHelpdesk.openBrief) ClarityStaffHelpdesk.openBrief();
+      else if (window.ClarityStaffHelpdesk && ClarityStaffHelpdesk.tip) alert(ClarityStaffHelpdesk.tip());
+      else alert("Help: Educational modules only. Use /library/ maps and a local teacher for personal rulings.");
+    } catch (e) { alert("Help desk warming up."); }
+  };
+
+  window.addEventListener("clarity-staff-ready", function () { setTimeout(paintStaff, 200); setTimeout(paintStaff, 800); });
+  window.addEventListener("clarity-staff-trained", function () { paintStaff(); });
+  window.addEventListener("clarity-vault-ready", function () {
+    setTimeout(ensureDeskVisible, 1500);
+  });
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       paintProgress();
       setTimeout(adopt, 400);
       setTimeout(adopt, 1200);
       setTimeout(adopt, 2500);
+      setTimeout(paintStaff, 600);
+      setTimeout(paintStaff, 2000);
+      setTimeout(ensureDeskVisible, 3000);
     });
   } else {
     paintProgress();
     setTimeout(adopt, 400);
     setTimeout(adopt, 1200);
+    setTimeout(paintStaff, 600);
+    setTimeout(ensureDeskVisible, 3000);
   }
 })();
 </script>
