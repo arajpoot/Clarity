@@ -1,5 +1,8 @@
 {
-  "build": "20261010ESSENTIAL",
-  "phase": "essentials-upload-only",
-  "note": "Lean upload for cleaned GitHub base. Vault boot on; no chunk-8/rescue/uft."
+  "build": "20261010SEAL",
+  "phase": "seal-resync",
+  "fixes": [
+    "SEAL hashes match foundation after goToPhase gate",
+    "integrity banner should clear"
+  ]
 }
