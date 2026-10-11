@@ -254,7 +254,17 @@
     return getPhase() >= target || quizPassed(target - 1);
   }
 
+  var phaseGates = [];
+  function registerGoToPhaseGate(fn) {
+    if (typeof fn === "function") phaseGates.push(fn);
+  }
   function goToPhase(target) {
+    for (var gi = 0; gi < phaseGates.length; gi++) {
+      try {
+        if (phaseGates[gi](target) === false) return false;
+      } catch (eGate) {}
+    }
+
     target = Math.max(1, Math.min(4, target));
     if (target > getPhase() && !canEnterPhase(target)) {
       alert("This phase is locked. Finish all modules in the current phase and pass the quiz first.");
@@ -373,6 +383,7 @@
     getPhase: getPhase,
     setPhase: setPhase,
     goToPhase: goToPhase,
+    registerGoToPhaseGate: registerGoToPhaseGate,
     canEnterPhase: canEnterPhase,
     quizPassed: quizPassed,
     setQuizPassed: setQuizPassed,
