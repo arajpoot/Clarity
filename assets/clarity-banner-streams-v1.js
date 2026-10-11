@@ -320,6 +320,96 @@
   g.clarityPlaySurah = playSurah;
   g.clarityReloadSalah = loadSalahSmart;
 
+
+  function formatDDMMYYYY(d) {
+    var dd = String(d.getDate()).padStart(2, "0");
+    var mm = String(d.getMonth() + 1).padStart(2, "0");
+    return dd + "-" + mm + "-" + d.getFullYear();
+  }
+  function buildMiniGrid(todayDay) {
+    var grid = document.getElementById("hijri-cal-grid");
+    if (!grid) return;
+    var html = "";
+    ["S","M","T","W","T","F","S"].forEach(function (d) {
+      html += '<span class="dow">' + d + "</span>";
+    });
+    for (var i = 1; i <= 30; i++) {
+      html += '<span class="day' + (i === todayDay ? " today" : "") + '">' + i + "</span>";
+    }
+    grid.innerHTML = html;
+  }
+  function loadHijriCalendar() {
+    fetch("https://api.aladhan.com/v1/gToH?date=" + formatDDMMYYYY(new Date()))
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        var h = j && j.data && j.data.hijri;
+        if (!h) return;
+        var meta = document.getElementById("hijri-cal-meta");
+        if (meta) meta.textContent = "Today: " + h.day + " " + (h.month && h.month.en) + " " + h.year;
+        var title = document.getElementById("hijri-cal-title");
+        if (title) title.textContent = ((h.month && h.month.en) || "Hijri").toUpperCase() + " · " + h.year;
+        buildMiniGrid(parseInt(h.day, 10) || 1);
+        /* side plaque */
+        var plaque = document.querySelector(".hijri-plaque-date, #hijri-side-date");
+        if (plaque) plaque.textContent = h.day + " " + (h.month && h.month.en) + " " + h.year + " AH";
+        /* temps placeholder — optional open-meteo later */
+        var t1 = document.getElementById("hijri-temps");
+        if (t1 && (!t1.textContent || t1.textContent.indexOf("—") >= 0)) {
+          t1.textContent = "Makkah · Madinah";
+        }
+      })
+      .catch(function () {
+        buildMiniGrid(1);
+        var meta = document.getElementById("hijri-cal-meta");
+        if (meta) meta.textContent = "Hijri unavailable offline";
+      });
+  }
+
+  /** Bottom rail tabs — base door (path-pack only wraps if this exists) */
+  function clarityOpenSectionDoor(name) {
+    name = String(name || "reminder").toLowerCase();
+    var map = { reminder: "tab-reminder", reality: "tab-reality", reflection: "tab-reflection", action: "tab-action", notes: "tab-notes", amana: "tab-notes", journey: "tab-reminder" };
+    var id = map[name] || "tab-" + name;
+    document.querySelectorAll(".tab-panel").forEach(function (panel) {
+      var on = panel.id === id;
+      panel.classList.toggle("active", on);
+      panel.setAttribute("aria-hidden", on ? "false" : "true");
+      if (on) {
+        panel.hidden = false;
+        panel.style.display = "block";
+        panel.style.removeProperty("visibility");
+      } else {
+        panel.style.display = "none";
+      }
+    });
+    document.querySelectorAll("[data-rail-tab], .door-rail-btn, .dr-btn").forEach(function (btn) {
+      var t = btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "";
+      btn.classList.toggle("active", t === name);
+    });
+    try {
+      document.body.setAttribute("data-active-tab", name);
+    } catch (e) {}
+    var panel = document.getElementById(id);
+    if (panel) {
+      try {
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (e2) {}
+    }
+    return panel;
+  }
+
+  g.clarityOpenSectionDoor = clarityOpenSectionDoor;
+  g.buildMiniGrid = buildMiniGrid;
+  g.loadHijriCalendar = loadHijriCalendar;
+
+  var _boot = boot;
+  boot = function () {
+    _boot();
+    try {
+      loadHijriCalendar();
+    } catch (e) {}
+  };
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(typeof window !== "undefined" ? window : this);
