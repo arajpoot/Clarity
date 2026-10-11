@@ -175,7 +175,7 @@
   }
 
   ready(function () {
-    setTimeout(boot, 200);
+    setTimeout(boot, 800);
     setTimeout(boot, 1200);
     setTimeout(boot, 3000);
   });

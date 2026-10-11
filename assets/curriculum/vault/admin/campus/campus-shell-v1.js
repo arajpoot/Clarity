@@ -194,9 +194,7 @@
 
   function boot() {
     run();
-    setTimeout(run, 400);
-    setTimeout(run, 1200);
-    setTimeout(run, 2500);
+    setTimeout(run, 600);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
