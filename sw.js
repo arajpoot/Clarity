@@ -1,5 +1,5 @@
 /* Clarity Nur OS service worker · 20261011FINAL */
-const CACHE = "clarity-20261011DUAL";
+const CACHE = "clarity-20261012BANNER";
 const PRECACHE = ["/", "/index.html", "/campus/", "/campus/index.html"];
 self.addEventListener("install", (e) => {
   e.waitUntil(

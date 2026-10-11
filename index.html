@@ -304,7 +304,7 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261011DUAL" as="style" onload="this.onload=null;this.rel='stylesheet'">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261012BANNER" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
@@ -312,7 +312,7 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261011DUAL" media="print" onload="this.media='all'" fetchpriority="low">
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261012BANNER" media="print" onload="this.media='all'" fetchpriority="low">
 <noscript></noscript>
 <noscript></noscript>
 <noscript></noscript>
@@ -325,7 +325,7 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n){n.rel="stylesheet"});
 })();
 </script>
-<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261011DUAL" id="clarity-sticky-harden-css"/>
+<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261012BANNER" id="clarity-sticky-harden-css"/>
 
 <!-- Main obliterate: curriculum/admin live only on /campus/ /lab/ /vault/ -->
 <style id="clarity-main-oblit">
@@ -521,38 +521,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
   </div>
 </section>
 
-id="clarity-three-doors" class="hidden" style="display:none!important" role="dialog" aria-modal="true" aria-labelledby="td-title">
-  <div class="td-wrap td-wrap-paths">
-    <div class="td-brand">
-      <div class="td-logo">✒ CLARITY</div>
-      <h1 id="td-title">Choose your path</h1>
-      <p>Four doors. One aim: send light ahead — not a fatwa path.</p>
-      <p class="td-sub">Educational only. Stored on this device. You can change path later.</p>
-    </div>
-    <div class="td-grid td-path-grid">
-      <button type="button" class="td-path gps-btn gps-seeker" data-gate="seeker" onclick="clarityWelcomePickTrack('seeker')">
-        <span class="gps-title">Seeker · Wake the heart</span>
-        <span class="gps-goal">Remember death. Send small light ahead. No overwhelm.</span>
-        <span class="gps-tag">Soul audit · short reminders · seerah spark</span>
-      </button>
-      <button type="button" class="td-path gps-btn gps-new_muslim" data-gate="new_muslim" onclick="clarityWelcomePickTrack('new_muslim')">
-        <span class="gps-title">New Muslim · Establish pillars</span>
-        <span class="gps-goal">Wudu, salah, short surahs, clear belief — stability first.</span>
-        <span class="gps-tag">Prayer · purification · basic fiqh · gentle path</span>
-      </button>
-      <button type="button" class="td-path gps-btn gps-practicing" data-gate="practicing" onclick="clarityWelcomePickTrack('practicing')">
-        <span class="gps-title">Daily Muslim · Craft &amp; consistency</span>
-        <span class="gps-goal">Habits that outlive you: Qur’an craft, character, weekly review.</span>
-        <span class="gps-tag">Tajweed · calligraphy · deed ledger · seerah mirror</span>
-      </button>
-      <button type="button" class="td-path gps-btn gps-dai" data-gate="dai" onclick="clarityWelcomePickTrack('dai')">
-        <span class="gps-title">Aspiring Da’i · Transmit light</span>
-        <span class="gps-goal">Teach with adab. Guard sources. Leave beneficial knowledge.</span>
-        <span class="gps-tag">Dawah tools · critical study · family legacy</span>
-      </button>
-    </div>
-    <p class="td-foot">Your choice is stored only on this device. Not a fatwa service.</p>
-  </div>
+<!-- three-doors moved to /campus/ university desk -->
 </div>
 
 <div id="landing-gate-screen" class="gate-overlay hidden" style="display:none!important">
@@ -627,7 +596,7 @@ id="clarity-three-doors" class="hidden" style="display:none!important" role="dia
     <h2 class="cw-title" id="cw-title"><span class="cw-moon" aria-hidden="true">🌙</span> Furnish Your Grave</h2>
     <p class="cw-sub">Private companion for the heart &amp; grave — Qur’an, authentic ḥadīth, daily deeds. Educational only · not a fatwa.</p>
     <p class="cw-track-kicker" id="cw-track-kicker">Choose a track</p>
-    <div class="cw-steps" role="list" id="cw-track-steps">
+    <div class="cw-steps" role="list" id="cw-track-steps" style="display:none!important" data-campus-only="1">
       <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('seeker')">
         <span class="cw-step-num">1</span>
         <div><strong>Seeker · Wake the heart</strong> — death-awareness, small light, seerah spark</div>
@@ -659,7 +628,7 @@ var claritySession=(function(){var m={},f={getItem:function(k){return Object.pro
 window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot-err");if(!d){d=document.createElement("div");d.id="clarity-boot-err";d.style.cssText="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#7f1d1d;color:#fff;padding:8px;font:13px system-ui";(document.body||document.documentElement).appendChild(d)}d.textContent=String(msg)+(l?" @"+l:"")}catch(e){}};
 </script><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio>
 <!-- Phase1 multipage campus map -->
-<section id="cu-campus-map" class="cu-campus-map" aria-label="Campus buildings">
+<section id="cu-campus-map" class="cu-campus-map" aria-label="Campus buildings" style="display:none!important" hidden aria-hidden="true" style="display:none!important" hidden>
   <div class="cu-map-inner">
     <h2 class="cu-map-title">Campus map</h2>
     <p class="cu-map-sub">Curriculum &amp; wings only on <strong>/campus/</strong> · Lab · Vault — not loaded here — Junior modules load there. Lab and Vault are their own doors.</p>
@@ -1412,7 +1381,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
  (makhārij → ṣifāt → nūn/mīm sākinah → madd → waqf).
  Check off lessons as you complete them — progress is saved on this device.
  Pair with a teacher when you can for live correction and eventual <em>ijāzah</em>.
- </p><div class="tj-progress-bar" id="tj-overall-progress"><div class="row"><span><strong>Overall progress</strong></span><span id="tj-overall-label">0 / 0 lessons</span></div><div class="track"><div class="fill" id="tj-overall-fill"></div></div></div><div class="lecture-box" style="margin-bottom:1.1rem;"><h3>▶️ Learn Tajweed – the Easy Way (English)</h3><p style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--text-muted);">
+ </p><div class="tj-progress-bar" id="tj-overall-progress"><div class="row"><span><strong>Overall progress</strong></span><span id="tj-overall-label">0 / 0 lessons</span></div><div class="track" style="display:none!important"><div class="fill" id="tj-overall-fill"></div></div></div><div class="lecture-box" style="margin-bottom:1.1rem;"><h3>▶️ Learn Tajweed – the Easy Way (English)</h3><p style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--text-muted);">
  Understand Al-Quran Academy playlist — clear short lessons for adults.
  </p><div class="hajj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f0f0f" style="background:#0f0f0f;"><details class="clarity-embed-fold" data-embed-id="tajweed-player"><summary>▶ Open lecture video <span class="cef-title">tajweed-player</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/videoseries?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" src="about:blank" id="tajweed-player-x1"
 
@@ -2023,18 +1992,19 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </div>
 </div>
 
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261011DUAL" defer></script>
+<script src="./assets/clarity-banner-streams-v1.js?v=20261012BANNER"></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261012BANNER" defer></script>
 
 <!-- Clarity University OS essentials · 20261010ESSENTIAL -->
-<script src="./assets/clarity-feature-pack-v1.js?v=20261011DUAL" defer></script>
-<script src="./assets/clarity-path-pack-v1.js?v=20261011DUAL" defer></script>
-<script src="./assets/clarity-aux-pack-v1.js?v=20261011DUAL" defer></script>
+<script src="./assets/clarity-feature-pack-v1.js?v=20261012BANNER" defer></script>
+<script src="./assets/clarity-path-pack-v1.js?v=20261012BANNER" defer></script>
+<script src="./assets/clarity-aux-pack-v1.js?v=20261012BANNER" defer></script>
 
 
 <!-- GATE NUCLEAR V2 -->
 
 
-<script src="./assets/clarity-sticky-harden-v1.js?v=20261011DUAL" defer id="clarity-sticky-harden-js"></script>
+<script src="./assets/clarity-sticky-harden-v1.js?v=20261012BANNER" defer id="clarity-sticky-harden-js"></script>
 
 <footer id="clarity-site-footer" style="max-width:40rem;margin:2rem auto 5rem;padding:1rem 1.1rem;text-align:center;font-size:.78rem;color:rgba(74,85,79,.95);line-height:1.5">
   <p style="margin:0 0 .5rem"><strong>Campus map</strong> ·
@@ -2071,9 +2041,9 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </script>
 
 
-<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261011DUAL" id="clarity-amana-css"/>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261011DUAL" defer id="clarity-amana-gate"></script>
-<script src="./assets/clarity-amana-vault-access-v1.js?v=20261011DUAL" defer id="clarity-amana-access"></script>
+<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261012BANNER" id="clarity-amana-css"/>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261012BANNER" defer id="clarity-amana-gate"></script>
+<script src="./assets/clarity-amana-vault-access-v1.js?v=20261012BANNER" defer id="clarity-amana-access"></script>
 
 </body>
 </html>
