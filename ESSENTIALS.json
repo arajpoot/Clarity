@@ -1,5 +1,16 @@
 {
-  "build": "20261012ESSENTIAL",
-  "phase": "essential-banner-tabs-calendar",
-  "includes": "landing dual-path, banner streams/salah/hijri, RRRA tabs, campus university, vault publications"
+  "build": "20261011UNIV",
+  "phase": "university-streamline-dual-path",
+  "paths": {
+    "companion": "/",
+    "university": [
+      "/campus/",
+      "/journey/",
+      "/library/",
+      "/lab/",
+      "/systems/",
+      "/vault/"
+    ]
+  },
+  "notes": "Landing remains companion; university pages share cu-shared chrome; systems hosts IT lab"
 }
