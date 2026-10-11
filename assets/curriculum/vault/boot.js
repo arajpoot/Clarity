@@ -159,6 +159,9 @@
             var text = new TextDecoder().decode(buf);
             return loadScriptText(url, text);
           });
+        }).catch(function (err) {
+          STATUS.breaches.push("fetch:" + rel);
+          try { console.warn("Vault skip", rel, err); } catch (e) {}
         });
       });
     });
