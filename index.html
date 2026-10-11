@@ -304,7 +304,7 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261012BANNER" as="style" onload="this.onload=null;this.rel='stylesheet'">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261012ESSENTIAL" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
@@ -312,7 +312,7 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261012BANNER" media="print" onload="this.media='all'" fetchpriority="low">
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261012ESSENTIAL" media="print" onload="this.media='all'" fetchpriority="low">
 <noscript></noscript>
 <noscript></noscript>
 <noscript></noscript>
@@ -325,7 +325,7 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n){n.rel="stylesheet"});
 })();
 </script>
-<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261012BANNER" id="clarity-sticky-harden-css"/>
+<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261012ESSENTIAL" id="clarity-sticky-harden-css"/>
 
 <!-- Main obliterate: curriculum/admin live only on /campus/ /lab/ /vault/ -->
 <style id="clarity-main-oblit">
@@ -357,6 +357,27 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
   border-color:rgba(31,166,122,.4);
   background:linear-gradient(160deg,rgba(13,79,60,.35),rgba(8,14,12,.95));
 }
+</style>
+
+
+<style id="cu-landing-focus-css">
+/* Landing: companion focus — hide university track chrome */
+#cu-campus-map, .cu-campus-map, #clarity-phase-plaque-host,
+.clarity-track-rail, #clarity-track-rail, .phased-learning-strip,
+[data-campus-only="1"] { display: none !important; }
+/* Ensure active tab panels are visible when opened */
+.tab-panel.active, .tab-panel[aria-hidden="false"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 12rem;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block !important; }
+/* Hijri mini grid */
+#hijri-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 0.55rem; text-align: center; }
+#hijri-cal-grid .dow { opacity: 0.6; font-weight: 700; }
+#hijri-cal-grid .day.today { background: rgba(31,166,122,.35); border-radius: 4px; font-weight: 800; color: #e0c56a; }
 </style>
 
 </head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1">
@@ -1992,19 +2013,19 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </div>
 </div>
 
-<script src="./assets/clarity-banner-streams-v1.js?v=20261012BANNER"></script>
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261012BANNER" defer></script>
+<script src="./assets/clarity-banner-streams-v1.js?v=20261012ESSENTIAL"></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261012ESSENTIAL" defer></script>
 
 <!-- Clarity University OS essentials · 20261010ESSENTIAL -->
-<script src="./assets/clarity-feature-pack-v1.js?v=20261012BANNER" defer></script>
-<script src="./assets/clarity-path-pack-v1.js?v=20261012BANNER" defer></script>
-<script src="./assets/clarity-aux-pack-v1.js?v=20261012BANNER" defer></script>
+<script src="./assets/clarity-feature-pack-v1.js?v=20261012ESSENTIAL" defer></script>
+<script src="./assets/clarity-path-pack-v1.js?v=20261012ESSENTIAL" defer></script>
+<script src="./assets/clarity-aux-pack-v1.js?v=20261012ESSENTIAL" defer></script>
 
 
 <!-- GATE NUCLEAR V2 -->
 
 
-<script src="./assets/clarity-sticky-harden-v1.js?v=20261012BANNER" defer id="clarity-sticky-harden-js"></script>
+<script src="./assets/clarity-sticky-harden-v1.js?v=20261012ESSENTIAL" defer id="clarity-sticky-harden-js"></script>
 
 <footer id="clarity-site-footer" style="max-width:40rem;margin:2rem auto 5rem;padding:1rem 1.1rem;text-align:center;font-size:.78rem;color:rgba(74,85,79,.95);line-height:1.5">
   <p style="margin:0 0 .5rem"><strong>Campus map</strong> ·
@@ -2041,9 +2062,9 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </script>
 
 
-<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261012BANNER" id="clarity-amana-css"/>
-<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261012BANNER" defer id="clarity-amana-gate"></script>
-<script src="./assets/clarity-amana-vault-access-v1.js?v=20261012BANNER" defer id="clarity-amana-access"></script>
+<link rel="stylesheet" href="./assets/clarity-amana-vault-css-v1.css?v=20261012ESSENTIAL" id="clarity-amana-css"/>
+<script src="./assets/clarity-amana-vault-gate-js-v1.js?v=20261012ESSENTIAL" defer id="clarity-amana-gate"></script>
+<script src="./assets/clarity-amana-vault-access-v1.js?v=20261012ESSENTIAL" defer id="clarity-amana-access"></script>
 
 </body>
 </html>
