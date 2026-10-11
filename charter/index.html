@@ -4,48 +4,52 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Charter · Clarity University</title>
-<meta name="description" content="Clarity University Charter — Method & limits · educational only. Educational only."/>
+<meta name="description" content="Charter · Clarity University. Educational only."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/charter/"/>
 <style>
-:root{--cu-bg:#070c0a;--cu-gold:#e0c56a;--cu-text:#eaf3ee;--cu-muted:rgba(234,243,238,.72);--cu-line:rgba(224,197,106,.28)}
+:root{--bg:#070c0a;--gold:#e0c56a;--teal:#1fa67a;--text:#eaf3ee;--muted:rgba(234,243,238,.72);--line:rgba(224,197,106,.28)}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--cu-bg);color:var(--cu-text);font-family:system-ui,-apple-system,sans-serif}
-.uni-banner{display:flex;align-items:center;gap:.75rem;padding:1rem 1.1rem;border-bottom:1px solid var(--cu-line);background:rgba(8,16,14,.92);position:sticky;top:0;z-index:100}
-.uni-banner img{width:42px;height:42px;border-radius:50%;border:1px solid var(--cu-line)}
-.uni-banner h1{margin:0;font-size:1.15rem;font-weight:800;color:#f3e6c0}
-.uni-banner small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-gold)}
-.uni-wrap{max-width:42rem;margin:0 auto;padding:1.25rem 1rem 2rem}
-.uni-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.25rem;justify-content:center}
-.uni-pill{padding:.45rem .85rem;border-radius:999px;text-decoration:none;font-size:.78rem;font-weight:650;border:1px solid var(--cu-line);color:#f3e6c0;background:rgba(0,0,0,.25)}
-.uni-pill.here{background:rgba(224,197,106,.18);border-color:rgba(224,197,106,.55)}
-.uni-content{padding:1rem;border-radius:16px;border:1px solid var(--cu-line);background:rgba(16,24,20,.6)}
-.uni-content h2{margin:.25rem 0 .5rem;color:#f3e6c0;font-size:1.1rem}
-.uni-content p{margin:0;font-size:.85rem;line-height:1.5;color:var(--cu-muted)}
-.uni-foot{text-align:center;font-size:.7rem;color:var(--cu-muted);padding:1.5rem}
+html,body{margin:0;padding:0;width:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
+body{background:radial-gradient(1000px 400px at 50% -10%,rgba(31,166,122,.1),transparent 50%),var(--bg)}
+.banner{position:sticky;top:0;z-index:600;width:100%;display:flex;align-items:center;justify-content:space-between;padding:.5rem .75rem;background:rgba(8,16,14,.97);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#f3e6c0}
+.brand img{width:30px;height:30px;border-radius:50%;border:1px solid var(--line)}
+.brand strong{font-size:.95rem;font-weight:800}
+.brand small{display:block;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.main-link{font-size:.72rem;font-weight:700;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--line);background:rgba(224,197,106,.15);color:var(--gold);text-decoration:none}
+.main{width:100%;padding:.6rem .5rem 1.5rem}
+@media(min-width:600px){.main{padding:.75rem 1rem 1.5rem}}
+.pills{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;width:100%;margin:0 0 .55rem}
+.pills a{font-size:.73rem;font-weight:650;padding:.35rem .7rem;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:#f3e6c0;text-decoration:none}
+.pills a.here{background:rgba(224,197,106,.2);border-color:var(--gold)}
+.card{width:100%;padding:.9rem;border-radius:14px;border:1px solid var(--line);background:rgba(16,24,20,.95);margin:.4rem 0}
+.card h2{margin:.1rem 0 .4rem;color:#f3e6c0;font-size:1.05rem}
+.card p{margin:0;font-size:.8rem;line-height:1.45;color:var(--muted)}
+.foot{text-align:center;font-size:.66rem;color:var(--muted);padding:.8rem}
+
 </style>
 </head>
 <body>
-<header class="uni-banner">
-  <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011UNI" alt="Clarity University insignia"/>
-  <div>
-    <small>University</small>
-    <h1>Charter</h1>
-  </div>
+<header class="banner">
+  <a class="brand" href="/campus/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
+  <a class="main-link" href="/">← Main</a>
 </header>
-<main class="uni-wrap">
-  <nav class="uni-pills" aria-label="University">
-    <a class="uni-pill" href="/campus/">Map</a>
-    <a class="uni-pill" href="/campus/desk/">Desk</a>
-    <a class="uni-pill" href="/lab/">Lab</a>
-    <a class="uni-pill" href="/vault/">Vault</a>
-    <a class="uni-pill" href="/journey/">Journey</a>
-    <a class="uni-pill here" href="/charter/">Charter</a>
-  </nav>
-  <div class="uni-content">
-    <h2>Charter</h2>
-    <p>Method & limits · educational only. Educational only — not a fatwa. Content loads from the shared curriculum engine where applicable.</p>
-  </div>
+<main class="main">
+
+<nav class="pills">
+  <a href="/campus/" >Map</a>
+  <a href="/campus/desk/" >Desk</a>
+  <a href="/lab/" >Lab</a>
+  <a href="/vault/" >Vault</a>
+  <a href="/journey/" >Journey</a>
+  <a href="/charter/" class="here">Charter</a>
+</nav>
+
+<div class='card'><h2>Charter</h2><p>Method and limits. Educational only — not a fatwa. Verify with Qur'an, Sunnah, and a local scholar.</p></div>
 </main>
-<footer class="uni-foot">Educational only — not a fatwa.</footer>
+<footer class="foot">Educational only — not a fatwa.</footer>
 </body>
 </html>
