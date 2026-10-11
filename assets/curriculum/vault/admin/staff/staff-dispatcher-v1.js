@@ -6,12 +6,14 @@
   if (g.__CLARITY_STAFF_DISPATCH__) return;
   g.__CLARITY_STAFF_DISPATCH__ = true;
 
-  var BASE = "./assets/curriculum/vault/admin/staff/";
+  var BASE = (function(){ try { var b=document.querySelector("base"); } catch(e){} return "/assets/curriculum/vault/admin/staff/"; })();
   var SCRIPTS = [
     "staff-ops-monitor-v1.js",
     "staff-fiqh-authenticity-v1.js",
     "staff-resource-scout-v1.js",
-    "staff-librarian-v1.js"
+    "staff-librarian-v1.js",
+    "nur-workers-arsenal-v1.js",
+    "staff-workforce-v2.js"
   ];
 
   function load(src) {
@@ -50,6 +52,10 @@
       } catch (e) {}
       try {
         g.dispatchEvent(new CustomEvent("clarity-staff-ready"));
+      setTimeout(function(){
+        try { if (g.ClarityStaffWorkforce && g.ClarityStaffWorkforce.trainAll) g.ClarityStaffWorkforce.trainAll();
+        else if (g.ClarityNurArsenal && g.ClarityNurArsenal.trainAll) g.ClarityNurArsenal.trainAll(); } catch(e){}
+      }, 400);
       } catch (e2) {}
       enhanceOfficePanel();
     });
