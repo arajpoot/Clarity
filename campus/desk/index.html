@@ -4,52 +4,47 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>University Desk · Clarity University</title>
-<meta name="description" content="Clarity University Desk — sequential modules, educational only. Not a fatwa or degree."/>
+<meta name="description" content="Clarity University Desk — sequential modules. Educational only. Not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/desk/"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011UNI"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011UNI"/>
 <style>
-:root{--cu-bg:#070c0a;--cu-gold:#e0c56a;--cu-teal:#1fa67a;--cu-text:#eaf3ee;--cu-muted:rgba(234,243,238,.72);--cu-line:rgba(224,197,106,.28)}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--cu-bg);color:var(--cu-text);font-family:system-ui,-apple-system,sans-serif;min-height:100%;width:100%}
-body{background:radial-gradient(1100px 480px at 50% -8%,rgba(31,166,122,.12),transparent 55%),var(--cu-bg)}
-/* Sticky banner — nothing pushes it */
-.uni-banner{position:sticky;top:0;z-index:400;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .9rem;background:rgba(8,16,14,.96);border-bottom:1px solid var(--cu-line);width:100%}
-.uni-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#f3e6c0}
-.uni-brand img{width:32px;height:32px;border-radius:50%;border:1px solid var(--cu-line)}
-.uni-brand strong{font-size:.98rem;font-weight:800}
-.uni-brand small{display:block;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cu-gold)}
-.arrival-pill{font:inherit;font-size:.72rem;font-weight:700;padding:.32rem .65rem;border-radius:999px;border:1px solid var(--cu-line);background:rgba(224,197,106,.14);color:var(--cu-gold);text-decoration:none}
-/* Full-width content */
-.uni-main{width:100%;max-width:none;padding:.75rem .6rem 2rem}
-@media(min-width:640px){.uni-main{padding:.9rem 1.1rem 2rem}}
-.nav-pills{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 0 .7rem;width:100%}
-.nav-pills a{font:inherit;font-size:.74rem;font-weight:650;padding:.38rem .75rem;border-radius:999px;border:1px solid var(--cu-line);background:rgba(0,0,0,.28);color:#f3e6c0;text-decoration:none}
-.nav-pills a.here{background:rgba(224,197,106,.18);border-color:rgba(224,197,106,.55)}
-.role-rail{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin:0 0 .8rem;width:100%}
-.role-rail button{font:inherit;font-size:.7rem;font-weight:650;padding:.3rem .65rem;border-radius:999px;border:1px solid var(--cu-line);background:rgba(0,0,0,.3);color:#f3e6c0;cursor:pointer}
-.role-rail button:active,.role-rail button.on{background:rgba(31,166,122,.3);border-color:var(--cu-teal)}
-.desk-label{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-gold);font-weight:700;margin:.4rem 0 .35rem;text-align:center}
-#clarity-campus-stage,#campus-stage-body{display:block;width:100%;min-height:6rem}
-#junior-curriculum-card{width:100%!important;max-width:none!important;margin:.2rem 0 1rem;padding:1rem;border-radius:16px;border:1px solid var(--cu-line);background:linear-gradient(165deg,rgba(16,24,20,.98),rgba(10,16,13,.96))}
-.how-phases{width:100%;margin:0 0 .7rem;padding:.75rem .9rem;border-radius:14px;border:1px solid var(--cu-line);background:rgba(0,0,0,.25);font-size:.78rem;line-height:1.45;color:var(--cu-muted)}
-.how-phases strong{color:var(--cu-gold);display:block;margin-bottom:.3rem}
-.uni-foot{text-align:center;font-size:.68rem;color:var(--cu-muted);padding:1rem}
+:root{--bg:#070c0a;--gold:#e0c56a;--teal:#1fa67a;--text:#eaf3ee;--muted:rgba(234,243,238,.72);--line:rgba(224,197,106,.28)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
+body{background:radial-gradient(1000px 400px at 50% -10%,rgba(31,166,122,.1),transparent 50%),var(--bg)}
+/* Banner is first child — sticky, full width, cannot be pushed */
+.banner{position:sticky;top:0;z-index:500;width:100%;display:flex;align-items:center;justify-content:space-between;padding:.5rem .75rem;background:rgba(8,16,14,.97);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#f3e6c0}
+.brand img{width:30px;height:30px;border-radius:50%;border:1px solid var(--line)}
+.brand strong{font-size:.95rem;font-weight:800}
+.brand small{display:block;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.main-link{font-size:.72rem;font-weight:700;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--line);background:rgba(224,197,106,.15);color:var(--gold);text-decoration:none}
+/* Full width main */
+.main{width:100%;padding:.6rem .5rem 1.5rem}
+@media(min-width:600px){.main{padding:.75rem 1rem 1.5rem}}
+.pills{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;width:100%;margin:0 0 .55rem}
+.pills a{font-size:.73rem;font-weight:650;padding:.35rem .7rem;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:#f3e6c0;text-decoration:none}
+.pills a.here{background:rgba(224,197,106,.2);border-color:var(--gold)}
+.roles{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;width:100%;margin:0 0 .6rem}
+.roles button{font:inherit;font-size:.68rem;font-weight:650;padding:.28rem .6rem;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.32);color:#f3e6c0;cursor:pointer}
+.roles button.on{background:rgba(31,166,122,.35);border-color:var(--teal)}
+.how{width:100%;margin:0 0 .55rem;padding:.65rem .8rem;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.22);font-size:.76rem;line-height:1.4;color:var(--muted)}
+.how strong{color:var(--gold);display:block;margin-bottom:.25rem}
+.label{text-align:center;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:.3rem 0 .4rem}
+#clarity-campus-stage,#campus-stage-body{display:block;width:100%;min-height:8rem}
+#junior-curriculum-card{width:100%!important;max-width:none!important;margin:0;padding:.9rem;border-radius:14px;border:1px solid var(--line);background:rgba(16,24,20,.95)}
+.foot{text-align:center;font-size:.66rem;color:var(--muted);padding:.8rem}
 </style>
 </head>
-<body class="cu-page" data-campus-page="desk" data-campus-stage="learn" data-campus-shell="1">
-<header class="uni-banner">
-  <a class="uni-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011UNI" alt=""/>
-    <div>
-      <small>University</small>
-      <strong>Clarity University</strong>
-    </div>
+<body data-campus-page="desk" data-campus-stage="learn" data-campus-shell="1">
+<header class="banner">
+  <a class="brand" href="/campus/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
+    <div><small>University</small><strong>Clarity University</strong></div>
   </a>
-  <a class="arrival-pill" href="/">← Main</a>
+  <a class="main-link" href="/">← Main</a>
 </header>
-<main class="uni-main">
-  <nav class="nav-pills" aria-label="University">
+<main class="main">
+  <nav class="pills">
     <a href="/campus/">Map</a>
     <a class="here" href="/campus/desk/">Desk</a>
     <a href="/lab/">Lab</a>
@@ -57,37 +52,26 @@ body{background:radial-gradient(1100px 480px at 50% -8%,rgba(31,166,122,.12),tra
     <a href="/journey/">Journey</a>
     <a href="/charter/">Charter</a>
   </nav>
-  <div class="role-rail" id="clarity-role-rail">
-    <button type="button" data-role="faculty">👨‍🏫 Faculty</button>
-    <button type="button" data-role="staff">🧑‍💼 Staff</button>
-    <button type="button" data-role="it">🖥️ IT</button>
-    <button type="button" data-role="om">⚙️ O&M</button>
-    <button type="button" data-role="security">🛡️ Security</button>
+  <div class="roles" id="roles">
+    <button type="button" data-role="faculty">Faculty</button>
+    <button type="button" data-role="staff">Staff</button>
+    <button type="button" data-role="it">IT</button>
+    <button type="button" data-role="om">O&M</button>
+    <button type="button" data-role="security">Security</button>
   </div>
-  <div class="how-phases">
-    <strong>How phases work</strong>
-    1. One module open — only the current lesson is unlocked.<br>
-    2. Spark quiz — answer correctly to open the next module.<br>
-    3. All modules ✓ — then a short quiz appears.<br>
-    4. Pass quiz — unlocks the next phase.
-  </div>
-  <p class="desk-label">University Desk</p>
-  <div id="clarity-campus-stage">
-    <div id="campus-stage-body"></div>
-  </div>
+  <div class="how"><strong>How phases work</strong>One module open → spark quiz unlocks next → all complete → phase quiz → next phase. Educational only.</div>
+  <p class="label">University Desk</p>
+  <div id="clarity-campus-stage"><div id="campus-stage-body"></div></div>
 </main>
-<footer class="uni-foot">Educational only — not a fatwa. Progress stays on this device.</footer>
-<script src="/assets/curriculum/vault/boot.js?v=20261011UNI" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011UNI" defer></script>
-<script src="/assets/clarity-campus-rescue-v1.js?v=20261011UNI" defer></script>
+<footer class="foot">Educational only — not a fatwa. Progress stays on this device.</footer>
+<script src="/assets/curriculum/vault/boot.js" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js" defer></script>
 <script>
-document.querySelectorAll('.role-rail button').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    document.querySelectorAll('.role-rail button').forEach(function(b){b.classList.remove('on')});
-    btn.classList.add('on');
-    var role = btn.getAttribute('data-role');
-    try { window.dispatchEvent(new CustomEvent('clarity-role-activate', {detail:{id:role,label:btn.textContent}})); } catch(e){}
-    console.info('%c Role', 'background:#1a0f08;color:#d4b45a', role, 'active');
+document.querySelectorAll('#roles button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#roles button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    try{window.dispatchEvent(new CustomEvent('clarity-role-activate',{detail:{id:b.dataset.role}}));}catch(e){}
   });
 });
 </script>
