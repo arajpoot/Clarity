@@ -304,16 +304,16 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261010OBLIT2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261010OBLIT2" media="print" onload="this.media='all'" id="clarity-critical-css-link">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261011DUAL" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261011DUAL" media="print" onload="this.media='all'" id="clarity-critical-css-link">
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261010OBLIT2" media="print" onload="this.media='all'" fetchpriority="low">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261010OBLIT2"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261011DUAL" media="print" onload="this.media='all'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261011DUAL"></noscript>
 <noscript></noscript>
 <noscript></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
@@ -325,7 +325,7 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n){n.rel="stylesheet"});
 })();
 </script>
-<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261010OBLIT2" id="clarity-sticky-harden-css"/>
+<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261011DUAL" id="clarity-sticky-harden-css"/>
 
 <!-- Main obliterate: curriculum/admin live only on /campus/ /lab/ /vault/ -->
 <style id="clarity-main-oblit">
@@ -336,7 +336,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 
 <nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
-        <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity University</span><span class="cu-nav-sub">OS · Nur Path</span></span></span>
+        <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
         <span id="current-mode-badge" class="mode-badge">Clarity</span>
         <span class="theme-chip-row" role="group" aria-label="Theme">
           <button type="button" class="theme-chip" data-theme-chip="light" onclick="claritySetThemeMode('light')">Day</button>
@@ -662,35 +662,39 @@ var clarityLS=(function(){var m={},f={getItem:function(k){return Object.prototyp
 var claritySession=(function(){var m={},f={getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}},key:function(i){return Object.keys(m)[i]||null}};try{var ss=window["sessionStorage"],t="__c_s__";ss.setItem(t,"1");ss.removeItem(t);return ss}catch(e){return f}})();
 window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot-err");if(!d){d=document.createElement("div");d.id="clarity-boot-err";d.style.cssText="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#7f1d1d;color:#fff;padding:8px;font:13px system-ui";(document.body||document.documentElement).appendChild(d)}d.textContent=String(msg)+(l?" @"+l:"")}catch(e){}};
 </script><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio>
-<!-- Phase1 multipage campus map -->
-<section id="cu-campus-map" class="cu-campus-map" aria-label="Campus buildings">
-  <div class="cu-map-inner">
-    <h2 class="cu-map-title">Campus map</h2>
-    <p class="cu-map-sub">Curriculum &amp; wings only on <strong>/campus/</strong> · Lab · Vault — not loaded here — Junior modules load there. Lab and Vault are their own doors.</p>
-    <div class="cu-map-grid">
-      <a class="cu-map-tile" href="/campus/" style="border-color:rgba(212,180,90,.55)"><span class="cu-map-ico">🎓</span><span class="cu-map-name">Learning Stage</span><small>Phase 2 desk · Junior modules</small></a>
-      <a class="cu-map-tile" href="/lab/"><span class="cu-map-ico">🧪</span><span class="cu-map-name">Craft Lab</span><small>Tajweed · media · research</small></a>
-      <a class="cu-map-tile" href="/vault/"><span class="cu-map-ico">🏦</span><span class="cu-map-name">Amana Vault</span><small>On-device · encrypted</small></a>
-      <a class="cu-map-tile" href="/"><span class="cu-map-ico">✦</span><span class="cu-map-name">Full companion</span><small>All tools on one page</small></a>
-    </div>
+<!-- Dual path: Companion desk vs University campus -->
+<section id="clarity-dual-path" class="clarity-dual-path" aria-label="Two paths">
+  <p class="dual-kicker">Choose your desk</p>
+  <div class="dual-tiles">
+    <a class="dual-tile dual-tile-companion" href="#main-content" id="dual-path-companion">
+      <span class="dual-ico" aria-hidden="true">🏠</span>
+      <span class="dual-name">Companion path</span>
+      <small>Reminder · Reality · Reflection · Action · tools on this page</small>
+    </a>
+    <a class="dual-tile dual-tile-university" href="/campus/">
+      <span class="dual-ico" aria-hidden="true">🎓</span>
+      <span class="dual-name">University path</span>
+      <small>Four colleges · phase desk · Faculty · Security · IT — on Campus pages</small>
+    </a>
   </div>
 </section>
-<style>
-.cu-campus-map{margin:.5rem .65rem 1rem;padding:0}
-.cu-map-inner{max-width:40rem;margin:0 auto;padding:.85rem 1rem;border-radius:16px;
-  background:linear-gradient(165deg,rgba(18,28,22,.98),rgba(12,20,16,.96));
-  border:1px solid rgba(212,180,90,.3);box-shadow:0 10px 32px rgba(0,0,0,.25)}
-.cu-map-title{margin:0 0 .25rem;font-size:1.05rem;color:#d4b45a;font-weight:800}
-.cu-map-sub{margin:0 0 .75rem;font-size:.82rem;opacity:.85;line-height:1.4}
-.cu-map-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
-@media(min-width:560px){.cu-map-grid{grid-template-columns:repeat(4,1fr)}}
-.cu-map-tile{display:flex;flex-direction:column;gap:.15rem;padding:.65rem .55rem;border-radius:12px;
-  text-decoration:none;color:#e7efe9;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
-.cu-map-tile:hover{border-color:rgba(212,180,90,.45);background:rgba(212,180,90,.1)}
-.cu-map-ico{font-size:1.15rem}
-.cu-map-name{font-weight:700;font-size:.85rem}
-.cu-map-tile small{font-size:.68rem;opacity:.7}
+<style id="clarity-dual-path-css">
+.clarity-dual-path{margin:.65rem .75rem 1rem;padding:0}
+.dual-kicker{margin:0 0 .45rem;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.75;text-align:center}
+.dual-tiles{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;max-width:40rem;margin:0 auto}
+@media(max-width:520px){.dual-tiles{grid-template-columns:1fr}}
+.dual-tile{display:flex;flex-direction:column;gap:.2rem;padding:.85rem .9rem;border-radius:16px;text-decoration:none;
+  border:1px solid rgba(13,79,60,.22);background:linear-gradient(165deg,rgba(255,255,255,.92),rgba(240,248,244,.95));
+  color:#0c1812;box-shadow:0 4px 16px rgba(0,0,0,.06);transition:transform .15s,border-color .2s}
+html[data-theme="dark"] .dual-tile{background:linear-gradient(165deg,rgba(18,28,22,.95),rgba(10,16,13,.98));color:#eaf3ee;border-color:rgba(224,197,106,.25)}
+.dual-tile:hover{transform:translateY(-2px);border-color:rgba(13,79,60,.45)}
+.dual-tile-university{border-color:rgba(212,180,90,.45)}
+.dual-ico{font-size:1.25rem}
+.dual-name{font-weight:800;font-size:.95rem;color:#0d4f3c}
+html[data-theme="dark"] .dual-name{color:#f3e6c0}
+.dual-tile small{font-size:.72rem;line-height:1.35;opacity:.85}
 </style>
+
 
 <div id="main-application-workspace" class="">
 
@@ -2027,11 +2031,11 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </div>
 </div>
 
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261010OBLIT2" defer></script>
-<script src="./assets/clarity-chunk-8.js?v=20261010OBLIT2" defer></script>
-<script src="./assets/clarity-feature-pack-v1.js?v=20261010OBLIT2" defer></script>
-<script src="./assets/clarity-path-pack-v1.js?v=20261010OBLIT2" defer></script>
-<script src="./assets/clarity-aux-pack-v1.js?v=20261010OBLIT2" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261011DUAL" defer></script>
+<script src="./assets/clarity-chunk-8.js?v=20261011DUAL" defer></script>
+<script src="./assets/clarity-feature-pack-v1.js?v=20261011DUAL" defer></script>
+<script src="./assets/clarity-path-pack-v1.js?v=20261011DUAL" defer></script>
+<script src="./assets/clarity-aux-pack-v1.js?v=20261011DUAL" defer></script>
 
 
 <!-- GATE NUCLEAR V2 -->
@@ -2209,14 +2213,16 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 })();
 </script>
 
-<script src="./assets/clarity-sticky-harden-v1.js?v=20261010OBLIT2" defer id="clarity-sticky-harden-js"></script>
+<script src="./assets/clarity-sticky-harden-v1.js?v=20261011DUAL" defer id="clarity-sticky-harden-js"></script>
 
 <footer id="clarity-site-footer" style="max-width:40rem;margin:2rem auto 5rem;padding:1rem 1.1rem;text-align:center;font-size:.78rem;color:rgba(74,85,79,.95);line-height:1.5">
-  <p style="margin:0 0 .5rem"><strong>Campus map</strong> ·
-    <a href="/campus/" style="color:#0d4f3c">Campus</a> ·
+  <p style="margin:0 0 .5rem"><strong>Two paths</strong> ·
+    <a href="#main-content" style="color:#0d4f3c">Companion</a> ·
+    <a href="/campus/" style="color:#0d4f3c">University campus</a> ·
+    <a href="/journey/" style="color:#0d4f3c">Journey</a> ·
     <a href="/lab/" style="color:#0d4f3c">Lab</a> ·
-    <a href="/vault/" style="color:#0d4f3c">Amana Vault</a> ·
-    <a href="/journey/" style="color:#0d4f3c">Journey</a>
+    <a href="/systems/" style="color:#0d4f3c">Systems</a> ·
+    <a href="/vault/" style="color:#0d4f3c">Vault</a>
   </p>
   <p style="margin:0;opacity:.85">Clarity · Educational only — not a fatwa · Local-first on this device</p>
 </footer>

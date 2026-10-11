@@ -1,14 +1,7 @@
 {
-  "build": "20261011CAMPUSFIX",
-  "base": "pre-dual-path github-as-is-2",
-  "kept": "campus layout form factor (banner, wings, stage CSS)",
-  "upgraded": [
-    "boot.js SEAL path",
-    "enroll",
-    "progress",
-    "IT lab wing",
-    "staff",
-    "systems page",
-    "nav dual-path"
-  ]
+  "build": "20261011DUAL",
+  "goal": "reverse integration",
+  "landing": "Companion + two tiles (Companion path | University path)",
+  "university": "layout/content on /campus/ /journey/ /lab/ /systems/ /vault/ only",
+  "staff": "dispatcher + workforce on campus pages"
 }
