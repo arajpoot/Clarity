@@ -1,80 +1,92 @@
 {
-  "office": "Clarity University — Secured Faculty Wing",
-  "version": 1,
-  "motto": "Teach with adab · sign with care · open the next door only when ready",
-  "disclaimer": "Faculty personas are educational guides on-device. They are not a substitute for a living qualified scholar, imam, or formal ijazah chain.",
-  "teachers": [
+  "version": "20261011RIWAQ",
+  "disclaimer": "Educational role labels inspired by classical Islamic study sequences (foundations before specialization). Not affiliated with Al-Azhar, Islamic University of Madinah, or any degree-granting institution. Not a fatwa service.",
+  "method": {
+    "sequence": ["tawhid", "revelation", "worship", "character", "transmission"],
+    "note": "One module open at a time. Sources preferred: Qur'an, authentic hadith collections, verified study tools."
+  },
+  "riwaq": [
     {
-      "phase": 1,
-      "id": "shaykh-nur",
-      "name": "Ustadh Nur al-Yaqeen",
-      "title": "Teacher of Foundations",
-      "college": "College of Foundations",
-      "specialty": "Tawḥīd, īmān, and first steps of the seeker",
-      "signatory": true,
-      "seal": "✦-NUR",
-      "greeting": "Peace upon you. We begin with Allah — One, without partner.",
-      "helpTone": "gentle-foundation",
-      "resourceTags": [
-        "tawhid",
-        "quran",
-        "new-muslim"
-      ]
+      "id": "riwaq-usul",
+      "name": "Riwaq of Foundations",
+      "arabic": "رواق الأصول",
+      "phase": "seeker",
+      "focus": ["Tawhid", "Qur'an literacy", "Hadith introduction", "Pillars map"],
+      "mirrors": "Preparatory foundations before specialization"
     },
     {
-      "phase": 2,
-      "id": "ustadha-safaa",
-      "name": "Ustadha Safaa al-Amal",
-      "title": "Teacher of Practice",
-      "college": "College of Practice",
-      "specialty": "Ṭahārah, ṣalāh map, and patient practice",
-      "signatory": true,
-      "seal": "◈-SAF",
-      "greeting": "Practice is mercy when done step by step. Keep a local teacher for form.",
-      "helpTone": "practice-coach",
-      "resourceTags": [
-        "practice",
-        "salah",
-        "institute"
-      ]
+      "id": "riwaq-ibadah",
+      "name": "Riwaq of Practice",
+      "arabic": "رواق العبادة",
+      "phase": "new_muslim",
+      "focus": ["Taharah", "Salah confidence", "Everyday fiqh map"],
+      "mirrors": "Worship applied with gentleness"
     },
     {
-      "phase": 3,
-      "id": "ustadh-sabr",
-      "name": "Ustadh Sabr al-Itqan",
-      "title": "Teacher of Consistency",
-      "college": "College of Consistency",
-      "specialty": "Tajweed discipline, weekly review, craft with sincerity",
-      "signatory": true,
-      "seal": "✧-SBR",
-      "greeting": "Consistency over intensity. One rule, one āyah, honest review.",
-      "helpTone": "discipline-craft",
-      "resourceTags": [
-        "tajweed",
-        "research",
-        "quran"
-      ]
+      "id": "riwaq-istiqamah",
+      "name": "Riwaq of Consistency",
+      "arabic": "رواق الاستقامة",
+      "phase": "practicing",
+      "focus": ["Tajweed habit", "Wird", "Stronger salah"],
+      "mirrors": "Steady daily discipline"
     },
     {
-      "phase": 4,
-      "id": "shaykh-balagh",
-      "name": "Shaykh Balagh al-Hikmah",
-      "title": "Teacher of Transmission",
-      "college": "College of Transmission",
-      "specialty": "Daʿwah ethics, Seerah method, source-care",
-      "signatory": true,
-      "seal": "❖-BLG",
-      "greeting": "Call to Allah with knowledge and soft speech. Verify before you transmit.",
-      "helpTone": "dawah-ethics",
-      "resourceTags": [
-        "dawah",
-        "hadith",
-        "seerah"
-      ]
+      "id": "riwaq-dawah",
+      "name": "Riwaq of Transmission",
+      "arabic": "رواق الدعوة",
+      "phase": "dai",
+      "focus": ["Adab of calling", "Source honesty", "Service"],
+      "mirrors": "Share only what is verified; no pressure"
     }
   ],
-  "handoff": {
-    "requirePriorSignature": true,
-    "message": "Present your signed diploma from the previous phase teacher to enroll with the next."
-  }
+  "faculty": [
+    {
+      "id": "dean-usul",
+      "title": "Dean of Foundations",
+      "arabic": "عميد الأصول",
+      "wing": "faculty",
+      "charge": "Guard sequential unlock. Tawhid before debate. Educational only."
+    },
+    {
+      "id": "shaykh-quran",
+      "title": "Tutor of Qur'an literacy",
+      "arabic": "مدرس القرآن",
+      "wing": "faculty",
+      "charge": "Encourage slow reading, verified text links, no ijazah claims."
+    },
+    {
+      "id": "shaykh-hadith",
+      "title": "Tutor of Hadith literacy",
+      "arabic": "مدرس الحديث",
+      "wing": "faculty",
+      "charge": "Prefer ṣaḥīḥ reports; show grade and collection when available."
+    },
+    {
+      "id": "tutor-fiqh",
+      "title": "Tutor of worship map",
+      "arabic": "مدرس فقه العبادات",
+      "wing": "faculty",
+      "charge": "Map practices; defer personal rulings to local qualified teachers."
+    },
+    {
+      "id": "tutor-adab",
+      "title": "Tutor of character",
+      "arabic": "مدرس الأدب",
+      "wing": "faculty",
+      "charge": "Truthfulness, kindness, clean tongue before transmission."
+    },
+    {
+      "id": "tutor-dawah",
+      "title": "Tutor of transmission ethics",
+      "arabic": "مدرس آداب الدعوة",
+      "wing": "faculty",
+      "charge": "No coercion; source honesty; educational invitations only."
+    }
+  ],
+  "admin": [
+    {"id": "registrar", "title": "Registrar", "charge": "Path enrollment and phase progress on-device."},
+    {"id": "chancellor", "title": "Chancellor (ceremonial)", "charge": "Charter tone and educational boundaries."},
+    {"id": "security", "title": "Security auditors", "charge": "Wiring integrity, no unsafe claims."},
+    {"id": "it", "title": "IT stewards", "charge": "Local storage, cache hygiene, device lab."}
+  ]
 }
