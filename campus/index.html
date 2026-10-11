@@ -4,108 +4,52 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Clarity University · Arrival</title>
-<meta name="description" content="Clarity University arrival — journey map, desk, lab, vault. Educational only. Not a fatwa or degree."/>
-<link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
+<meta name="description" content="Clarity University · Arrival. Educational only."/>
+<link rel="canonical" href="https://clarity-dawah.fyi/"/>
 <style>
-:root{--cu-bg:#070c0a;--cu-gold:#e0c56a;--cu-teal:#1fa67a;--cu-text:#eaf3ee;--cu-muted:rgba(234,243,238,.72);--cu-line:rgba(224,197,106,.28);--cu-card:rgba(16,24,20,.96)}
+:root{--bg:#070c0a;--gold:#e0c56a;--teal:#1fa67a;--text:#eaf3ee;--muted:rgba(234,243,238,.72);--line:rgba(224,197,106,.28)}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--cu-bg);color:var(--cu-text);font-family:system-ui,-apple-system,sans-serif;min-height:100%}
-body{background:radial-gradient(1200px 500px at 50% -10%,rgba(31,166,122,.16),transparent 50%),var(--cu-bg)}
-.uni-banner{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.7rem 1rem;border-bottom:1px solid var(--cu-line);background:rgba(8,16,14,.94);position:sticky;top:0;z-index:200}
-.uni-brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:#f3e6c0}
-.uni-brand img{width:36px;height:36px;border-radius:50%;border:1px solid var(--cu-line)}
-.uni-brand strong{font-size:1.05rem;font-weight:800}
-.uni-brand small{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-gold);opacity:.85}
-.theme-pills{display:flex;gap:.3rem}
-.theme-pills button{font:inherit;font-size:.68rem;font-weight:700;padding:.28rem .55rem;border-radius:999px;border:1px solid var(--cu-line);background:rgba(0,0,0,.3);color:#f3e6c0;cursor:pointer}
-.theme-pills button.active{background:rgba(31,166,122,.35);border-color:var(--cu-teal)}
-.uni-wrap{max-width:44rem;margin:0 auto;padding:1rem .9rem 2rem}
-.arrival-link{display:inline-flex;align-items:center;gap:.35rem;margin:0 0 .8rem;padding:.4rem .75rem;border-radius:999px;background:rgba(224,197,106,.12);border:1px solid var(--cu-line);color:var(--cu-gold);text-decoration:none;font-size:.78rem;font-weight:700}
-.uni-kicker{margin:0 0 .55rem;font-size:.64rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;text-align:center;color:var(--cu-gold);opacity:.8}
-.uni-pills{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-@media(max-width:540px){.uni-pills{grid-template-columns:1fr}}
-.uni-pill{display:flex;flex-direction:column;gap:.22rem;padding:.95rem 1rem;border-radius:18px;text-decoration:none;border:1px solid rgba(224,197,106,.3);background:linear-gradient(165deg,var(--cu-card),rgba(10,16,13,.98));color:var(--cu-text);box-shadow:0 8px 24px rgba(0,0,0,.28);transition:transform .15s,border-color .2s}
-.uni-pill:hover{transform:translateY(-3px);border-color:rgba(224,197,106,.6)}
-.uni-pill .ico{font-size:1.4rem}
-.uni-pill strong{font-weight:800;font-size:1rem;color:#f3e6c0}
-.uni-pill span{font-size:.74rem;line-height:1.35;color:var(--cu-muted)}
-.role-rail{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:1.1rem 0 .6rem}
-.role-rail button{font:inherit;font-size:.7rem;font-weight:650;padding:.32rem .65rem;border-radius:999px;border:1px solid var(--cu-line);background:rgba(0,0,0,.28);color:#f3e6c0;cursor:pointer}
-.uni-note{margin:1.1rem 0 0;padding:.8rem 1rem;border-radius:14px;border:1px solid var(--cu-line);font-size:.76rem;line-height:1.45;color:var(--cu-muted);background:rgba(0,0,0,.22);text-align:center}
-.uni-note a{color:var(--cu-gold)}
-.uni-foot{text-align:center;font-size:.68rem;color:var(--cu-muted);padding:1.4rem .5rem}
+html,body{margin:0;padding:0;width:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
+body{background:radial-gradient(1000px 400px at 50% -10%,rgba(31,166,122,.1),transparent 50%),var(--bg)}
+.banner{position:sticky;top:0;z-index:600;width:100%;display:flex;align-items:center;justify-content:space-between;padding:.5rem .75rem;background:rgba(8,16,14,.97);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#f3e6c0}
+.brand img{width:30px;height:30px;border-radius:50%;border:1px solid var(--line)}
+.brand strong{font-size:.95rem;font-weight:800}
+.brand small{display:block;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.main-link{font-size:.72rem;font-weight:700;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--line);background:rgba(224,197,106,.15);color:var(--gold);text-decoration:none}
+.main{width:100%;padding:.6rem .5rem 1.5rem}
+@media(min-width:600px){.main{padding:.75rem 1rem 1.5rem}}
+.pills{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;width:100%;margin:0 0 .55rem}
+.pills a{font-size:.73rem;font-weight:650;padding:.35rem .7rem;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:#f3e6c0;text-decoration:none}
+.pills a.here{background:rgba(224,197,106,.2);border-color:var(--gold)}
+.card{width:100%;padding:.9rem;border-radius:14px;border:1px solid var(--line);background:rgba(16,24,20,.95);margin:.4rem 0}
+.card h2{margin:.1rem 0 .4rem;color:#f3e6c0;font-size:1.05rem}
+.card p{margin:0;font-size:.8rem;line-height:1.45;color:var(--muted)}
+.foot{text-align:center;font-size:.66rem;color:var(--muted);padding:.8rem}
+
 </style>
 </head>
 <body>
-<header class="uni-banner">
-  <a class="uni-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011UNI" alt="Clarity University"/>
-    <div>
-      <small>Nur Path · OS</small>
-      <strong>Clarity University</strong>
-    </div>
+<header class="banner">
+  <a class="brand" href="/campus/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
+    <div><small>University</small><strong>Clarity University</strong></div>
   </a>
-  <div class="theme-pills">
-    <button data-theme="light">Day</button>
-    <button data-theme="dark" class="active">Night</button>
-    <button data-theme="system">System</button>
-  </div>
+  <a class="main-link" href="/">← Main</a>
 </header>
-<main class="uni-wrap">
-  <a class="arrival-link" href="/">← Arrival · Companion Home</a>
-  <p class="uni-kicker">University Journey Map · Educational only</p>
-  <div class="uni-pills">
-    <a class="uni-pill" href="/campus/desk/">
-      <span class="ico">📖</span>
-      <strong>University Desk</strong>
-      <span>Phase desk · sequential modules · spark quizzes</span>
-    </a>
-    <a class="uni-pill" href="/lab/">
-      <span class="ico">🧪</span>
-      <strong>Craft Laboratory</strong>
-      <span>Calligraphy · Tajweed · Media · Research · Design</span>
-    </a>
-    <a class="uni-pill" href="/vault/">
-      <span class="ico">🔒</span>
-      <strong>Amana Vault</strong>
-      <span>Private notes · on-device · sealed</span>
-    </a>
-    <a class="uni-pill" href="/journey/">
-      <span class="ico">🗺️</span>
-      <strong>Full Journey</strong>
-      <span>Seeker → New Muslim → Daily → Da'i</span>
-    </a>
-    <a class="uni-pill" href="/charter/">
-      <span class="ico">📜</span>
-      <strong>Charter</strong>
-      <span>Method, limits, educational only</span>
-    </a>
-    <a class="uni-pill" href="/">
-      <span class="ico">🏠</span>
-      <strong>Main Landing</strong>
-      <span>Return to companion desk</span>
-    </a>
-  </div>
-  <div class="role-rail" id="clarity-role-rail-static">
-    <button type="button">👨‍🏫 Faculty</button>
-    <button type="button">🧑‍💼 Staff</button>
-    <button type="button">🖥️ IT</button>
-    <button type="button">⚙️ O&M</button>
-    <button type="button">🛡️ Security</button>
-  </div>
-  <p class="uni-note">Foundations → Practice → Consistency → Transmission. Classical study order as a gentle map — not affiliated with Al-Azhar, Madinah University, or any degree program. <a href="/charter/">Read the Charter</a></p>
+<main class="main">
+
+<nav class="pills">
+  <a href="/campus/" class="here">Map</a>
+  <a href="/campus/desk/" >Desk</a>
+  <a href="/lab/" >Lab</a>
+  <a href="/vault/" >Vault</a>
+  <a href="/journey/" >Journey</a>
+  <a href="/charter/" >Charter</a>
+</nav>
+
+<div class='card'><h2>University Journey Map</h2><p>Choose a path. Educational only — not a fatwa or degree.</p></div>
 </main>
-<footer class="uni-foot">Educational only — not a fatwa. Verify with Qur'an, Sunnah, and a local scholar.</footer>
-<script src="/assets/curriculum/vault/admin/staff/role-injector-v1.js?v=20261011ADMIN" defer></script>
-<script>
-document.querySelectorAll('.theme-pills button').forEach(function(b){
-  b.addEventListener('click',function(){
-    var t=b.getAttribute('data-theme');
-    document.documentElement.setAttribute('data-theme',t==='system'?'dark':t);
-    document.querySelectorAll('.theme-pills button').forEach(function(x){x.classList.remove('active')});
-    b.classList.add('active');
-  });
-});
-</script>
+<footer class="foot">Educational only — not a fatwa.</footer>
 </body>
 </html>
