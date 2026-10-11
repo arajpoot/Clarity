@@ -4,181 +4,77 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Campus desk · Clarity University</title>
-<meta name="description" content="Nur Path campus desk — colleges, halls, learning stage. Educational only."/>
+<meta name="description" content="Clarity University campus — four colleges, sequential learning stage. Educational only — not a fatwa."/>
 <meta name="theme-color" content="#060b09"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
-<style>
-:root{
-  --cu-bg:#060b09;--cu-panel:rgba(12,20,16,.94);--cu-gold:#e0c56a;--cu-teal:#1fa67a;
-  --cu-text:#eaf3ee;--cu-muted:rgba(234,243,238,.7);--cu-line:rgba(224,197,106,.22);
-  --cu-max:58rem;--cu-radius:16px;--cu-font:system-ui,-apple-system,"Segoe UI",sans-serif;
-}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--cu-bg);color:var(--cu-text);font-family:var(--cu-font);line-height:1.45}
-body.cu{background:radial-gradient(900px 400px at 50% -10%,rgba(31,166,122,.12),transparent 55%),var(--cu-bg)}
-.cu-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding:.5rem 1rem;
-  background:rgba(5,10,8,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--cu-line);position:sticky;top:0;z-index:200}
-.cu-brand{display:inline-flex;align-items:center;gap:.45rem;color:#f3e6c0;font-weight:800;text-decoration:none;font-size:.92rem}
-.cu-brand img{width:1.5rem;height:1.5rem;border-radius:50%}
-.cu-links{display:flex;flex-wrap:wrap;gap:.2rem}
-.cu-links a{color:var(--cu-muted);text-decoration:none;font-size:.7rem;font-weight:650;padding:.3rem .55rem;border-radius:999px;border:1px solid transparent}
-.cu-links a:hover{color:#f3e6c0;border-color:rgba(255,255,255,.1)}
-.cu-links a[aria-current="page"]{color:#f3e6c0;background:rgba(224,197,106,.12);border-color:var(--cu-line)}
-.cu-main{max-width:var(--cu-max);margin:0 auto;padding:1.15rem 1rem 3.5rem}
-.cu-hero h1{margin:0 0 .35rem;font-size:clamp(1.25rem,3vw,1.65rem);color:var(--cu-gold);font-weight:800}
-.cu-hero p{margin:0;color:var(--cu-muted);font-size:.88rem;max-width:36rem}
-.cu-pill{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-  padding:.18rem .5rem;border-radius:999px;background:rgba(31,166,122,.18);color:#8fdfc0;margin-bottom:.45rem}
-.cu-grid{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr))}
-.cu-card{border:1px solid rgba(255,255,255,.08);border-radius:var(--cu-radius);padding:.85rem .95rem;
-  background:linear-gradient(165deg,rgba(20,32,28,.95),rgba(10,16,14,.92));color:inherit;text-decoration:none;display:block;
-  transition:border-color .15s,transform .15s}
-.cu-card:hover{border-color:rgba(224,197,106,.4);transform:translateY(-1px)}
-.cu-card strong{display:block;color:#f3e6c0;font-size:.88rem;margin-bottom:.15rem}
-.cu-card span{font-size:.72rem;color:var(--cu-muted);line-height:1.35}
-button.cu-card{width:100%;text-align:left;font:inherit;cursor:pointer}
-.cu-stage{margin:1rem 0;padding:1rem;border-radius:var(--cu-radius);border:1px solid var(--cu-line);background:var(--cu-panel);min-height:12rem}
-.cu-stage-label{font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cu-gold);margin:0 0 .55rem;opacity:.9}
-.cu-beacon{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .85rem}
-.cu-beacon span{font-size:.68rem;padding:.22rem .5rem;border-radius:8px;border:1px solid rgba(255,255,255,.08);color:var(--cu-muted)}
-.cu-beacon span.on{border-color:rgba(31,166,122,.45);color:#8fdfc0}
-.cu-foot{text-align:center;font-size:.7rem;color:var(--cu-muted);margin-top:2.25rem}
-.cu-foot a{color:var(--cu-gold)}
-</style>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/registrar/registrar.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/chancellor/chancellor.css?v=20261011DUAL"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011DUAL"/>
-
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261011UNIV"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011UNIV"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261011UNIV"/>
 </head>
 <body class="cu">
-<nav class="cu-nav" aria-label="Nur Path">
-  <a class="cu-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011DUAL" alt="" width="24" height="24"/>
-    <span>Clarity University</span>
-  </a>
-  <div class="cu-links"><a href="/">Arrival</a><a href="/campus/" aria-current="page">Campus</a><a href="/journey/">Journey</a><a href="/library/">Library</a><a href="/lab/">Lab</a><a href="/systems/">Systems</a><a href="/vault/">Vault</a></div>
+<nav class="cu-nav" aria-label="University">
+  <a class="cu-brand" href="/campus/"><img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/> Clarity University</a>
+  <div class="cu-links">
+    <a href="/">Companion</a>
+    <a href="/campus/" aria-current="page">Campus</a>
+    <a href="/journey/">Journey</a>
+    <a href="/library/">Library</a>
+    <a href="/lab/">Lab</a>
+    <a href="/systems/">Systems</a>
+    <a href="/vault/">Vault</a>
+  </div>
 </nav>
 <main class="cu-main">
+  <header class="cu-hero">
+    <span class="cu-pill">Nur Path · dual form</span>
+    <h1>Campus desk</h1>
+    <p>Four colleges in order: Foundations → Practice → Consistency → Transmission. Progress is stored on this device. The Companion home remains your daily tools desk.</p>
+  </header>
 
-<header class="cu-hero">
-  <div class="cu-pill">Academic precinct · Kulliyyat al-Nur</div>
-  <h1>Campus desk</h1>
-  <p>Study the sequential Nur Path here. Halls of the Umadaʾ, records, and systems serve the journey — companion streams stay at Arrival.</p>
-</header>
-<div class="cu-beacon" aria-live="polite">
-  <span id="bc-vault">Vault</span>
-  <span id="bc-staff">Staff</span>
-  <span id="bc-it">IT</span>
-  <span id="bc-sec">Security</span>
-  <span id="bc-om">O&amp;M</span>
-</div>
-<section>
-  <p class="cu-stage-label">Halls of the House</p>
-  <div class="cu-grid">
-    <button type="button" class="cu-card" data-wing="chancellor"><strong>Raʾis al-Jamiʿah</strong><span>Chancellor · tone of the House</span></button>
-    <button type="button" class="cu-card" data-wing="faculty"><strong>Umadaʾ · Faculty</strong><span>Deans · handoff seals</span></button>
-    <button type="button" class="cu-card" data-wing="registrar"><strong>Amin al-Sijillat</strong><span>Registrar · diplomas</span></button>
-    <button type="button" class="cu-card" data-wing="staff"><strong>Idarat al-Khidmat</strong><span>Ops · authenticity · scout · librarian</span></button>
-    <a class="cu-card" href="/library/"><strong>Maktabah</strong><span>Library · rotation briefs</span></a>
-    <a class="cu-card" href="/lab/"><strong>Craft Lab</strong><span>Calligraphy &amp; practice</span></a>
-    <a class="cu-card" href="/systems/"><strong>Markaz al-Taqniyyah</strong><span>IT · Security · O&amp;M plant</span></a>
-    <a class="cu-card" href="/journey/"><strong>Journey map</strong><span>Usul → Ibadah → Itqan → Dawah</span></a>
-  </div>
-</section>
-<div id="clarity-phase-plaque-host"></div>
-<div id="clarity-name-plaque-rail" class="cnp-inner" aria-label="Learner"></div>
+  <p id="cu-progress-strip" class="cu-progress" role="status">Loading path…</p>
+  <div id="clarity-phase-plaque-host"></div>
 
-<section class="cu-stage" id="cu-path-enroll" style="margin-bottom:1.25rem">
-  <p class="cu-stage-label">Enroll · choose your starting college track</p>
-  <p style="font-size:.85rem;opacity:.8;margin:0 0 .75rem">Educational only. Stored on this device. You can change path later — not a fatwa path.</p>
-  <div class="cu-grid" style="grid-template-columns:1fr">
-    <button type="button" class="cu-card" data-enroll="seeker"><strong>1 · Seeker · Foundations</strong><span>Tawhid, Qur'an, Hadith, worship map — College of Usul</span></button>
-    <button type="button" class="cu-card" data-enroll="new_muslim"><strong>2 · New Muslim · Practice</strong><span>Taharah, salah, confidence — College of Ibadah</span></button>
-    <button type="button" class="cu-card" data-enroll="practicing"><strong>3 · Daily · Consistency</strong><span>Tajweed, wird, steady worship — College of Itqan</span></button>
-    <button type="button" class="cu-card" data-enroll="dai"><strong>4 · Daʿi · Transmission</strong><span>Ethics, sources, service — College of Dawah</span></button>
-  </div>
-  <p style="font-size:.72rem;opacity:.65;margin:.65rem 0 0">Progress unlocks in order on the learning stage below. Registrar tools open from the halls.</p>
-</section>
+  <section class="cu-stage" id="cu-path-enroll">
+    <p class="cu-stage-label">Enroll · starting college</p>
+    <p class="cu-note">Educational only. You may resume a lower phase anytime. Higher phases unlock after modules + phase quiz.</p>
+    <div class="cu-grid" style="grid-template-columns:1fr">
+      <button type="button" class="cu-card" data-enroll="seeker"><strong>1 · Seeker · College of Foundations (Usul)</strong><span>Tawhid, Qur'an adab, Hadith intro, worship map</span></button>
+      <button type="button" class="cu-card" data-enroll="new_muslim"><strong>2 · New Muslim · College of Practice (Ibadah)</strong><span>Confidence after shahadah, taharah, salah, daily adhkar</span></button>
+      <button type="button" class="cu-card" data-enroll="practicing"><strong>3 · Daily · College of Consistency (Itqan)</strong><span>Tajweed, wird, stronger salah, Ramadan &amp; zakat awareness</span></button>
+      <button type="button" class="cu-card" data-enroll="dai"><strong>4 · Daʿi · College of Transmission (Dawah)</strong><span>Ethics of the caller, source discipline, wisdom, service</span></button>
+    </div>
+  </section>
 
-<section class="cu-stage" id="cu-stage" aria-label="Learning stage">
-  <p class="cu-stage-label">Learning stage · Phase desk</p>
-  <div id="campus-stage-body">
-    <p id="campus-loading-hint" style="opacity:.7;font-size:.88rem">Sealing vault · opening College of Foundations…</p>
-  </div>
-</section>
+  <section class="cu-stage" id="cu-stage" aria-label="Learning stage">
+    <p class="cu-stage-label">Learning stage · sequential modules</p>
+    <div id="campus-stage-body">
+      <p id="campus-loading-hint" class="cu-note">Sealing vault · opening College of Foundations…</p>
+    </div>
+  </section>
 
-<p class="cu-foot">Educational only — not a fatwa · Nur Path · <a href="/campus/">Campus desk</a></p>
+  <section>
+    <p class="cu-stage-label">Halls</p>
+    <div class="cu-grid">
+      <a class="cu-card" href="/journey/"><strong>Journey</strong><span>Path map across the four colleges</span></a>
+      <a class="cu-card" href="/library/"><strong>Library</strong><span>Sources and reading shelves</span></a>
+      <a class="cu-card" href="/lab/"><strong>Lab</strong><span>Craft: tajweed, meme, notes practice</span></a>
+      <a class="cu-card" href="/systems/"><strong>Systems</strong><span>IT device lab, O&amp;M, security</span></a>
+      <a class="cu-card" href="/vault/"><strong>Vault publications</strong><span>Local study records · educational</span></a>
+      <a class="cu-card" href="/"><strong>Companion desk</strong><span>Reminder · Reality · Reflection · Action tools</span></a>
+    </div>
+  </section>
+
+  <p class="cu-foot">Educational curriculum only — not a fatwa, degree, or accreditation. Verify with Qur'an, Sunnah, and qualified local scholarship.</p>
 </main>
-
-<script src="/assets/curriculum/vault/boot.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/staff/nur-workers-arsenal-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261011DUAL" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-shared-v1.js?v=20261011UNIV" defer></script>
+<script src="/assets/curriculum/vault/boot.js?v=20261011UNIV" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011UNIV" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-engine-v1.js?v=20261011UNIV" defer></script>
 <script>
-(function(){
-  function openWing(name){
-    var map={chancellor:window.ClarityChancellor,faculty:window.ClarityFaculty,registrar:window.ClarityRegistrar,staff:window.ClarityAdminOffice};
-    var api=map[name];
-    if(name==="staff"){
-      try{
-        if(window.ClarityAdminOffice&&ClarityAdminOffice.open){ClarityAdminOffice.open();return;}
-        if(window.ClarityNurArsenal){ClarityNurArsenal.trainAll();alert("Staff services trained — Ops, authenticity, scout, librarian (on-device).");return;}
-      }catch(e){}
-    }
-    if(api){
-      var fn=api.openDesk||api.open||api.render;
-      if(typeof fn==="function"){fn.call(api);return;}
-    }
-    alert("Hall is still loading — try again in a moment.");
-  }
-  document.querySelectorAll("[data-wing]").forEach(function(el){
-    el.addEventListener("click",function(){openWing(el.getAttribute("data-wing"));});
-  });
-  function lit(id,on){var e=document.getElementById(id);if(e)e.classList.toggle("on",!!on);}
-  window.addEventListener("clarity-vault-ready",function(){
-    lit("bc-vault",true);
-    var h=document.getElementById("campus-loading-hint");
-    if(h)h.remove();
-  });
-  window.addEventListener("clarity-staff-ready",function(){lit("bc-staff",true);});
-  setTimeout(function(){
-    lit("bc-it",!!window.ClarityIT);
-    lit("bc-sec",!!window.ClaritySecurity);
-    lit("bc-om",!!window.ClarityOM);
-    lit("bc-staff",!!(window.ClarityStaffOps||window.ClarityNurArsenal));
-  },2000);
-})();
-</script>
-
-
-<script>
-document.querySelectorAll("[data-enroll]").forEach(function(btn){
-  btn.addEventListener("click", function(){
-    var t = btn.getAttribute("data-enroll");
-    try {
-      localStorage.setItem("clarity_path_focus", t === "practicing" ? "practicing" : t);
-      localStorage.setItem("clarity_committed_path", t === "practicing" ? "practicing" : t);
-      if (t === "seeker") localStorage.setItem("clarity_curriculum_phase_v1", "1");
-      if (t === "new_muslim") localStorage.setItem("clarity_curriculum_phase_v1", "2");
-      if (t === "practicing") localStorage.setItem("clarity_curriculum_phase_v1", "3");
-      if (t === "dai") localStorage.setItem("clarity_curriculum_phase_v1", "4");
-    } catch (e) {}
-    try {
-      if (typeof window.clarityWelcomePickTrack === "function") window.clarityWelcomePickTrack(t);
-    } catch (e2) {}
-    var stage = document.getElementById("cu-stage") || document.getElementById("campus-stage-body");
-    if (stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
-    document.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { path: t } }));
-  });
+window.addEventListener("clarity-vault-ready", function () {
+  var h = document.getElementById("campus-loading-hint");
+  if (h) h.remove();
 });
 </script>
-
 </body>
 </html>
