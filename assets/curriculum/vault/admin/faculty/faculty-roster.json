@@ -1,80 +1,81 @@
 {
-  "office": "Clarity University — Secured Faculty Wing",
-  "version": 1,
-  "motto": "Teach with adab · sign with care · open the next door only when ready",
-  "disclaimer": "Faculty personas are educational guides on-device. They are not a substitute for a living qualified scholar, imam, or formal ijazah chain.",
+  "office": "Kulliyyat al-Nur \u2014 Faculty of the Nur Path",
+  "version": 2,
+  "motto": "\u0639\u0644\u0645 \u00b7 \u0623\u062f\u0628 \u00b7 \u0623\u0645\u0627\u0646\u0629 \u2014 Knowledge, adab, trust",
+  "disclaimer": "Titles mirror classical Islamic university hierarchy for educational UX only. Personas are on-device guides \u2014 not living mujtahids, not formal ijazah, not fatwa authority. Not affiliated with Al-Azhar or the Islamic University of Madinah.",
+  "hierarchyNote": "Ra'is \u2192 Umada' (deans) \u2192 Mudarrisun (teachers) \u2192 students",
   "teachers": [
     {
       "phase": 1,
-      "id": "shaykh-nur",
-      "name": "Ustadh Nur al-Yaqeen",
-      "title": "Teacher of Foundations",
-      "college": "College of Foundations",
-      "specialty": "Tawḥīd, īmān, and first steps of the seeker",
+      "id": "amid-usul-nur",
+      "name": "Shaykh Nur al-Yaqeen",
+      "title": "Amid (Dean) \u2014 College of Foundations (U\u1e63\u016bl)",
+      "rank": "Amid",
+      "college": "Kulliyyat al-Usul \u2014 College of Foundations",
+      "specialty": "Taw\u1e25\u012bd, \u012bm\u0101n, Qur'an adab for the seeker",
       "signatory": true,
-      "seal": "✦-NUR",
-      "greeting": "Peace upon you. We begin with Allah — One, without partner.",
+      "seal": "\u2726-USUL",
+      "greeting": "As-sal\u0101mu \u02bfalaykum. We open with Allah \u2014 One, without partner.",
       "helpTone": "gentle-foundation",
       "resourceTags": [
         "tawhid",
         "quran",
-        "new-muslim"
+        "iman"
       ]
     },
     {
       "phase": 2,
-      "id": "ustadha-safaa",
+      "id": "amid-ibadah-safaa",
       "name": "Ustadha Safaa al-Amal",
-      "title": "Teacher of Practice",
-      "college": "College of Practice",
-      "specialty": "Ṭahārah, ṣalāh map, and patient practice",
+      "title": "Amidah (Dean) \u2014 College of Practice (\u02bfIb\u0101dah)",
+      "rank": "Amidah",
+      "college": "Kulliyyat al-Ibadah \u2014 College of Practice",
+      "specialty": "\u1e6cah\u0101rah, \u1e63al\u0101h practice, new Muslim confidence",
       "signatory": true,
-      "seal": "◈-SAF",
-      "greeting": "Practice is mercy when done step by step. Keep a local teacher for form.",
-      "helpTone": "practice-coach",
+      "seal": "\u25c8-IBADAH",
+      "greeting": "Practice with patience. Keep a local teacher for your prayer details.",
+      "helpTone": "patient-practice",
       "resourceTags": [
-        "practice",
+        "taharah",
         "salah",
-        "institute"
+        "new-muslim"
       ]
     },
     {
       "phase": 3,
-      "id": "ustadh-sabr",
-      "name": "Ustadh Sabr al-Itqan",
-      "title": "Teacher of Consistency",
-      "college": "College of Consistency",
-      "specialty": "Tajweed discipline, weekly review, craft with sincerity",
+      "id": "amid-itqan-rashid",
+      "name": "Shaykh Rashid al-Itqan",
+      "title": "Amid (Dean) \u2014 College of Consistency (Itq\u0101n)",
+      "rank": "Amid",
+      "college": "Kulliyyat al-Itqan \u2014 College of Consistency",
+      "specialty": "Tajweed discipline, daily wird, steady worship",
       "signatory": true,
-      "seal": "✧-SBR",
-      "greeting": "Consistency over intensity. One rule, one āyah, honest review.",
-      "helpTone": "discipline-craft",
+      "seal": "\u25c6-ITQAN",
+      "greeting": "Consistency is a form of sincerity. Recite what is easy, every day.",
+      "helpTone": "steady-discipline",
       "resourceTags": [
         "tajweed",
-        "research",
-        "quran"
+        "wird",
+        "salah"
       ]
     },
     {
       "phase": 4,
-      "id": "shaykh-balagh",
-      "name": "Shaykh Balagh al-Hikmah",
-      "title": "Teacher of Transmission",
-      "college": "College of Transmission",
-      "specialty": "Daʿwah ethics, Seerah method, source-care",
+      "id": "amid-dawah-hakim",
+      "name": "Shaykh Hakim al-Balagh",
+      "title": "Amid (Dean) \u2014 College of Transmission (Da\u02bfwah)",
+      "rank": "Amid",
+      "college": "Kulliyyat al-Dawah \u2014 College of Transmission",
+      "specialty": "Ethics of calling, source discipline, wisdom with audiences",
       "signatory": true,
-      "seal": "❖-BLG",
-      "greeting": "Call to Allah with knowledge and soft speech. Verify before you transmit.",
-      "helpTone": "dawah-ethics",
+      "seal": "\u2727-DAWAH",
+      "greeting": "Call with knowledge and mercy. This diploma is not a fatwa licence.",
+      "helpTone": "wise-transmission",
       "resourceTags": [
         "dawah",
-        "hadith",
-        "seerah"
+        "adab",
+        "sources"
       ]
     }
-  ],
-  "handoff": {
-    "requirePriorSignature": true,
-    "message": "Present your signed diploma from the previous phase teacher to enroll with the next."
-  }
+  ]
 }
