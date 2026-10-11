@@ -4,86 +4,49 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Library · Clarity University</title>
-<meta name="description" content="University library. Educational only."/>
+<meta name="description" content="Source shelves for Clarity University. Educational orientation."/>
 <meta name="theme-color" content="#060b09"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/library/"/>
-<style>
-:root{
-  --cu-bg:#060b09;--cu-panel:rgba(12,20,16,.94);--cu-gold:#e0c56a;--cu-teal:#1fa67a;
-  --cu-text:#eaf3ee;--cu-muted:rgba(234,243,238,.7);--cu-line:rgba(224,197,106,.22);
-  --cu-max:58rem;--cu-radius:16px;--cu-font:system-ui,-apple-system,"Segoe UI",sans-serif;
-}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--cu-bg);color:var(--cu-text);font-family:var(--cu-font);line-height:1.45}
-body.cu{background:radial-gradient(900px 400px at 50% -10%,rgba(31,166,122,.12),transparent 55%),var(--cu-bg)}
-.cu-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding:.5rem 1rem;
-  background:rgba(5,10,8,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--cu-line);position:sticky;top:0;z-index:200}
-.cu-brand{display:inline-flex;align-items:center;gap:.45rem;color:#f3e6c0;font-weight:800;text-decoration:none;font-size:.92rem}
-.cu-brand img{width:1.5rem;height:1.5rem;border-radius:50%}
-.cu-links{display:flex;flex-wrap:wrap;gap:.2rem}
-.cu-links a{color:var(--cu-muted);text-decoration:none;font-size:.7rem;font-weight:650;padding:.3rem .55rem;border-radius:999px;border:1px solid transparent}
-.cu-links a:hover{color:#f3e6c0;border-color:rgba(255,255,255,.1)}
-.cu-links a[aria-current="page"]{color:#f3e6c0;background:rgba(224,197,106,.12);border-color:var(--cu-line)}
-.cu-main{max-width:var(--cu-max);margin:0 auto;padding:1.15rem 1rem 3.5rem}
-.cu-hero h1{margin:0 0 .35rem;font-size:clamp(1.25rem,3vw,1.65rem);color:var(--cu-gold);font-weight:800}
-.cu-hero p{margin:0;color:var(--cu-muted);font-size:.88rem;max-width:36rem}
-.cu-pill{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-  padding:.18rem .5rem;border-radius:999px;background:rgba(31,166,122,.18);color:#8fdfc0;margin-bottom:.45rem}
-.cu-grid{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr))}
-.cu-card{border:1px solid rgba(255,255,255,.08);border-radius:var(--cu-radius);padding:.85rem .95rem;
-  background:linear-gradient(165deg,rgba(20,32,28,.95),rgba(10,16,14,.92));color:inherit;text-decoration:none;display:block;
-  transition:border-color .15s,transform .15s}
-.cu-card:hover{border-color:rgba(224,197,106,.4);transform:translateY(-1px)}
-.cu-card strong{display:block;color:#f3e6c0;font-size:.88rem;margin-bottom:.15rem}
-.cu-card span{font-size:.72rem;color:var(--cu-muted);line-height:1.35}
-button.cu-card{width:100%;text-align:left;font:inherit;cursor:pointer}
-.cu-stage{margin:1rem 0;padding:1rem;border-radius:var(--cu-radius);border:1px solid var(--cu-line);background:var(--cu-panel);min-height:12rem}
-.cu-stage-label{font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cu-gold);margin:0 0 .55rem;opacity:.9}
-.cu-beacon{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .85rem}
-.cu-beacon span{font-size:.68rem;padding:.22rem .5rem;border-radius:8px;border:1px solid rgba(255,255,255,.08);color:var(--cu-muted)}
-.cu-beacon span.on{border-color:rgba(31,166,122,.45);color:#8fdfc0}
-.cu-foot{text-align:center;font-size:.7rem;color:var(--cu-muted);margin-top:2.25rem}
-.cu-foot a{color:var(--cu-gold)}
-</style>
-
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261011UNIV"/>
 </head>
 <body class="cu">
-<nav class="cu-nav" aria-label="Nur Path">
-  <a class="cu-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011DUAL" alt="" width="24" height="24"/>
-    <span>Clarity University</span>
-  </a>
-  <div class="cu-links"><a href="/">Arrival</a><a href="/campus/">Campus</a><a href="/journey/">Journey</a><a href="/library/" aria-current="page">Library</a><a href="/lab/">Lab</a><a href="/systems/">Systems</a><a href="/vault/">Vault</a></div>
+<nav class="cu-nav" aria-label="University">
+  <a class="cu-brand" href="/campus/"><img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/> Clarity University</a>
+  <div class="cu-links">
+    <a href="/">Companion</a>
+    <a href="/campus/">Campus</a>
+    <a href="/journey/">Journey</a>
+    <a href="/library/" aria-current="page">Library</a>
+    <a href="/lab/">Lab</a>
+    <a href="/systems/">Systems</a>
+    <a href="/vault/">Vault</a>
+  </div>
 </nav>
 <main class="cu-main">
-
-<header class="cu-hero">
-  <div class="cu-pill">Maktabah</div>
-  <h1>Library</h1>
-  <p>Amin al-Maktabah · Kashshaf al-Masadir · Katib al-Tawthiq — on-device briefs, not fatwa.</p>
-</header>
-<div class="cu-stage"><p class="cu-stage-label">Rotation issues</p><pre id="lib-issues" style="font-size:.72rem;white-space:pre-wrap;opacity:.85">…</pre></div>
-<div class="cu-stage"><p class="cu-stage-label">Scout inbox</p><pre id="lib-scout" style="font-size:.72rem;white-space:pre-wrap;opacity:.85">…</pre></div>
-<div class="cu-stage"><p class="cu-stage-label">Authenticity log</p><pre id="lib-auth" style="font-size:.72rem;white-space:pre-wrap;opacity:.85">…</pre></div>
-
-<p class="cu-foot">Educational only — not a fatwa · Nur Path · <a href="/campus/">Campus desk</a></p>
+  <header class="cu-hero">
+    <span class="cu-pill">Sources</span>
+    <h1>Library of Light</h1>
+    <p>Primary shelves for study maps. Prefer Qur'an and authentic Sunnah; use educational sites as maps — not as a substitute for a living teacher.</p>
+  </header>
+  <div class="cu-grid">
+    <a class="cu-card" href="https://quran.com" target="_blank" rel="noopener"><strong>Qur'an.com</strong><span>Arabic, translation, audio</span></a>
+    <a class="cu-card" href="https://sunnah.com" target="_blank" rel="noopener"><strong>Sunnah.com</strong><span>Hadith collections with grades where available</span></a>
+    <a class="cu-card" href="https://corpus.quran.com" target="_blank" rel="noopener"><strong>Quranic Arabic Corpus</strong><span>Word morphology study aid</span></a>
+    <a class="cu-card" href="https://seekersguidance.org/" target="_blank" rel="noopener"><strong>SeekersGuidance</strong><span>Courses and answers — educational</span></a>
+    <a class="cu-card" href="https://beginislam.org/" target="_blank" rel="noopener"><strong>BeginIslam</strong><span>New Muslim oriented materials</span></a>
+    <a class="cu-card" href="https://islamqa.info/en" target="_blank" rel="noopener"><strong>IslamQA (reference)</strong><span>Compare views; confirm with local scholarship</span></a>
+  </div>
+  <section class="cu-stage">
+    <p class="cu-stage-label">How to use this shelf</p>
+    <ul class="cu-list">
+      <li>Campus modules already link deep-learn targets where relevant.</li>
+      <li>For personal rulings, ask a qualified local scholar.</li>
+      <li>Companion home holds live verse, seerah, and tool cards.</li>
+    </ul>
+  </section>
+  <div class="cu-bridge"><a href="/campus/">Campus</a><a href="/vault/">Publications</a><a href="/">Companion</a></div>
+  <p class="cu-foot">Educational orientation only — not a fatwa desk.</p>
 </main>
-
-<script src="/assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js?v=20261011DUAL" defer></script>
-<script src="/assets/curriculum/vault/admin/staff/nur-workers-arsenal-v1.js?v=20261011DUAL" defer></script>
-<script>
-function show(id,d){var e=document.getElementById(id);if(!e)return;try{e.textContent=JSON.stringify(d,null,2)}catch(x){e.textContent=String(d)}}
-window.addEventListener("load",function(){
-  setTimeout(function(){
-    var A=window.ClarityNurArsenal;
-    if(!A){show("lib-issues","Open Campus once to train workers, then return.");return;}
-    try{A.trainAll()}catch(e){}
-    show("lib-issues",A.read("libIssues"));
-    show("lib-scout",A.read("scoutInbox"));
-    show("lib-auth",A.read("authenticity"));
-  },1200);
-});
-</script>
-
+<script src="/assets/curriculum/vault/admin/campus/cu-shared-v1.js?v=20261011UNIV" defer></script>
 </body>
 </html>
