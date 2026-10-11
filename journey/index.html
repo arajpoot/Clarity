@@ -3,158 +3,49 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Journey Map · Clarity University</title>
-<meta name="description" content="Clarity University journey map — Arrival, Campus desk, Lab, Vault."/>
+<title>Journey · Clarity University</title>
+<meta name="description" content="Clarity University Journey — Full map · Seeker → Da'i. Educational only."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/journey/"/>
 <style>
-
-:root {
-  --cu-bg:#070c0a; --cu-gold:#e0c56a; --cu-teal:#1fa67a; --cu-text:#eaf3ee;
-  --cu-muted:rgba(234,243,238,.72); --cu-line:rgba(224,197,106,.28); --cu-max:40rem;
-}
+:root{--cu-bg:#070c0a;--cu-gold:#e0c56a;--cu-text:#eaf3ee;--cu-muted:rgba(234,243,238,.72);--cu-line:rgba(224,197,106,.28)}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--cu-bg)!important;color:var(--cu-text)!important;font-family:system-ui,-apple-system,sans-serif;min-height:100%}
-body.cu-page{background:
-  radial-gradient(1100px 480px at 50% -8%,rgba(31,166,122,.14),transparent 55%),
-  radial-gradient(700px 360px at 100% 15%,rgba(224,197,106,.06),transparent 50%),
-  var(--cu-bg)!important}
-.cu-map-nav{display:flex!important;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;
-  padding:.45rem .9rem;background:rgba(8,16,14,.92);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--cu-line);position:sticky;top:0;z-index:300}
-.cu-map-brand{display:inline-flex;align-items:center;gap:.45rem;color:#f3e6c0;font-weight:800;text-decoration:none;font-size:.92rem}
-.cu-map-brand img{width:1.55rem;height:1.55rem;border-radius:50%}
-.cu-map-links{display:flex!important;flex-wrap:wrap;gap:.35rem}
-.cu-map-links a{display:inline-block;color:#f3e6c0!important;text-decoration:none;font-size:.74rem;font-weight:650;
-  padding:.35rem .65rem;border-radius:999px;border:1px solid rgba(224,197,106,.3)!important}
-.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.2)!important;border-color:rgba(224,197,106,.55)!important}
-.cu-banner{position:relative;overflow:hidden;border-bottom:1px solid var(--cu-line);min-height:7.5rem}
-.cu-banner-bg{position:absolute;inset:0;
-  background:linear-gradient(115deg,rgba(7,12,10,.85),rgba(10,28,22,.55)),
-  url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg") center 38%/cover no-repeat;
-  filter:saturate(.85)}
-.cu-banner-arc{position:absolute;left:50%;top:12%;width:150%;height:200%;transform:translateX(-50%);
-  background:radial-gradient(ellipse at center,rgba(224,197,106,.12),transparent 60%);pointer-events:none}
-.cu-banner-inner{position:relative;z-index:1;max-width:var(--cu-max);margin:0 auto;padding:1.1rem 1rem 1.2rem;
-  display:flex;flex-wrap:wrap;align-items:center;gap:.85rem}
-.cu-banner-seal{width:3.8rem;height:3.8rem;border-radius:50%;overflow:hidden;
-  box-shadow:0 0 0 2px rgba(224,197,106,.35),0 8px 24px rgba(0,0,0,.35)}
-.cu-banner-seal img{width:100%;height:100%;display:block}
-.cu-banner-copy{flex:1;min-width:12rem}
-.cu-banner-kicker{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(224,197,106,.95);font-weight:700;margin-bottom:.25rem}
-.cu-banner h1{margin:0 0 .25rem;font-size:clamp(1.15rem,3.5vw,1.45rem);font-weight:800;color:#f7efd6}
-.cu-banner p{margin:0;font-size:.84rem;line-height:1.45;color:rgba(234,243,238,.88);max-width:26rem}
-.cu-page-main{max-width:var(--cu-max);margin:0 auto;padding:1rem 1rem 4.5rem}
-.cu-panel{margin:0 0 .75rem;padding:1rem 1.05rem;border-radius:16px;border:1px solid var(--cu-line);
-  background:linear-gradient(165deg,rgba(16,24,20,.96),rgba(10,16,13,.94))}
-.cu-panel h2{margin:0 0 .35rem;font-size:1rem;color:var(--cu-gold)}
-.cu-panel p{margin:0;color:var(--cu-muted);font-size:.86rem;line-height:1.45}
-.cu-foot{text-align:center;font-size:.72rem;color:var(--cu-muted);padding:1.5rem .5rem}
-.cu-foot a{color:var(--cu-gold);text-decoration:none}
-/* Lab shell inside host — no double page chrome */
-#clarity-lab-host .clarity-lab-shell{margin:0;border:none;background:transparent;box-shadow:none;padding:0}
-#clarity-lab-host .clab-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.75rem}
-#clarity-lab-host .clab-badge{font-size:.65rem;font-weight:800;letter-spacing:.12em;color:var(--cu-gold);
-  border:1px solid rgba(224,197,106,.4);border-radius:999px;padding:.2rem .55rem}
-#clarity-lab-host .clab-title{margin:.2rem 0 0;font-size:1.05rem;color:#f3e6c0}
-#clarity-lab-host .clab-sub{margin:.2rem 0 0;font-size:.8rem;color:var(--cu-muted)}
-#clarity-lab-host .clab-stations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin-bottom:.75rem}
-@media(min-width:560px){#clarity-lab-host .clab-stations{grid-template-columns:repeat(3,minmax(0,1fr))}}
-#clarity-lab-host .clab-stations [data-station],
-#clarity-lab-host .clab-stations button{
-  text-align:left;font:inherit;cursor:pointer;padding:.7rem .75rem;border-radius:14px;
-  border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.28);color:var(--cu-text)}
-#clarity-lab-host .clab-stations [data-station]:hover{border-color:rgba(224,197,106,.45)}
-#clarity-lab-host .clab-workbench{padding:.85rem;border-radius:14px;border:1px solid rgba(224,197,106,.22);background:rgba(0,0,0,.22);min-height:5rem}
-#clarity-lab-host .clab-portfolio{margin-top:.75rem;font-size:.8rem;color:var(--cu-muted)}
-
-.cu-map-board{display:grid;gap:.55rem;margin:0 0 1rem}
-.cu-map-card{display:flex;gap:.75rem;align-items:flex-start;padding:.9rem 1rem;border-radius:16px;
-  border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.28);text-decoration:none;color:var(--cu-text);
-  transition:border-color .15s,transform .15s}
-.cu-map-card:hover{border-color:rgba(224,197,106,.45);transform:translateY(-2px)}
-.cu-map-card.is-primary{border-color:rgba(224,197,106,.5);background:rgba(224,197,106,.08)}
-.cu-map-card-ico{font-size:1.35rem;line-height:1;flex:0 0 auto}
-.cu-map-card-body{min-width:0}
-.cu-map-card-name{font-weight:800;font-size:.95rem;color:#f3e6c0;display:block}
-.cu-map-card-sub{font-size:.78rem;color:var(--cu-muted);line-height:1.4;margin-top:.15rem}
-.cu-map-card-step{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(224,197,106,.9);font-weight:700;margin-bottom:.15rem}
-.cu-cta{display:inline-block;margin-top:.65rem;padding:.5rem 1rem;border-radius:999px;font-weight:700;font-size:.84rem;
-  text-decoration:none;border:1px solid rgba(224,197,106,.5);color:#f3e6c0;background:rgba(31,166,122,.2)}
+html,body{margin:0;background:var(--cu-bg);color:var(--cu-text);font-family:system-ui,-apple-system,sans-serif}
+.uni-banner{display:flex;align-items:center;gap:.75rem;padding:1rem 1.1rem;border-bottom:1px solid var(--cu-line);background:rgba(8,16,14,.92);position:sticky;top:0;z-index:100}
+.uni-banner img{width:42px;height:42px;border-radius:50%;border:1px solid var(--cu-line)}
+.uni-banner h1{margin:0;font-size:1.15rem;font-weight:800;color:#f3e6c0}
+.uni-banner small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-gold)}
+.uni-wrap{max-width:42rem;margin:0 auto;padding:1.25rem 1rem 2rem}
+.uni-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.25rem;justify-content:center}
+.uni-pill{padding:.45rem .85rem;border-radius:999px;text-decoration:none;font-size:.78rem;font-weight:650;border:1px solid var(--cu-line);color:#f3e6c0;background:rgba(0,0,0,.25)}
+.uni-pill.here{background:rgba(224,197,106,.18);border-color:rgba(224,197,106,.55)}
+.uni-content{padding:1rem;border-radius:16px;border:1px solid var(--cu-line);background:rgba(16,24,20,.6)}
+.uni-content h2{margin:.25rem 0 .5rem;color:#f3e6c0;font-size:1.1rem}
+.uni-content p{margin:0;font-size:.85rem;line-height:1.5;color:var(--cu-muted)}
+.uni-foot{text-align:center;font-size:.7rem;color:var(--cu-muted);padding:1.5rem}
 </style>
 </head>
-<body class="cu-page" data-campus-page="journey">
-<nav class="cu-map-nav" aria-label="Campus map">
-  <a class="cu-map-brand" href="https://clarity-dawah.fyi/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011UI" width="28" height="28" alt=""/>
-    Clarity University
-  </a>
-  <div class="cu-map-links"><a href="https://clarity-dawah.fyi/">Arrival</a><a href="https://clarity-dawah.fyi/campus/">Campus</a><a href="https://clarity-dawah.fyi/journey/" aria-current="page">Journey</a><a href="https://clarity-dawah.fyi/lab/">Lab</a><a href="https://clarity-dawah.fyi/vault/">Vault</a><a href="https://clarity-dawah.fyi/charter/">Charter</a></div>
-</nav>
-<header class="cu-banner" role="banner">
-  <div class="cu-banner-bg" aria-hidden="true"></div>
-  <div class="cu-banner-arc" aria-hidden="true"></div>
-  <div class="cu-banner-inner">
-    <div class="cu-banner-seal">
-      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011UI" width="64" height="64" alt=""/>
-    </div>
-    <div class="cu-banner-copy">
-      <div class="cu-banner-kicker">Nur Path · Wayfinding</div>
-      <h1>Campus journey</h1>
-      <p>Four buildings. One university. Start where you are — educational only.</p>
-    </div>
+<body>
+<header class="uni-banner">
+  <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011UNI" alt="Clarity University insignia"/>
+  <div>
+    <small>University</small>
+    <h1>Journey</h1>
   </div>
 </header>
-<main class="cu-page-main">
-  <div class="cu-map-board" role="navigation" aria-label="Journey stations">
-    <a class="cu-map-card" href="https://clarity-dawah.fyi/">
-      <span class="cu-map-card-ico" aria-hidden="true">✦</span>
-      <span class="cu-map-card-body">
-        <span class="cu-map-card-step">1</span>
-        <span class="cu-map-card-name">Arrival</span>
-        <span class="cu-map-card-sub">Companion · Qur’an · daily doors</span>
-      </span>
-    </a>
-    <a class="cu-map-card is-primary" href="https://clarity-dawah.fyi/campus/">
-      <span class="cu-map-card-ico" aria-hidden="true">🎓</span>
-      <span class="cu-map-card-body">
-        <span class="cu-map-card-step">2 · Main desk</span>
-        <span class="cu-map-card-name">Campus · Learning desk</span>
-        <span class="cu-map-card-sub">Phase modules · Faculty · Security · IT</span>
-      </span>
-    </a>
-    <a class="cu-map-card" href="https://clarity-dawah.fyi/lab/">
-      <span class="cu-map-card-ico" aria-hidden="true">🧪</span>
-      <span class="cu-map-card-body">
-        <span class="cu-map-card-step">3</span>
-        <span class="cu-map-card-name">Craft Laboratory</span>
-        <span class="cu-map-card-sub">Calligraphy · Tajweed · media · research</span>
-      </span>
-    </a>
-    <a class="cu-map-card" href="https://clarity-dawah.fyi/vault/">
-      <span class="cu-map-card-ico" aria-hidden="true">🏦</span>
-      <span class="cu-map-card-body">
-        <span class="cu-map-card-step">4</span>
-        <span class="cu-map-card-name">Amana Vault</span>
-        <span class="cu-map-card-sub">On-device encrypted notes</span>
-      </span>
-    </a>
+<main class="uni-wrap">
+  <nav class="uni-pills" aria-label="University">
+    <a class="uni-pill" href="/campus/">Map</a>
+    <a class="uni-pill" href="/campus/desk/">Desk</a>
+    <a class="uni-pill" href="/lab/">Lab</a>
+    <a class="uni-pill" href="/vault/">Vault</a>
+    <a class="uni-pill here" href="/journey/">Journey</a>
+    <a class="uni-pill" href="/charter/">Charter</a>
+  </nav>
+  <div class="uni-content">
+    <h2>Journey</h2>
+    <p>Full map · Seeker → Da'i. Educational only — not a fatwa. Content loads from the shared curriculum engine where applicable.</p>
   </div>
-
-  <section class="cu-panel" id="desk-cta">
-    <h2>Continue studying</h2>
-    <p>Sequential modules live on Campus. Progress stays in this browser.</p>
-    <a class="cu-cta" href="https://clarity-dawah.fyi/campus/">Open Campus learning desk →</a>
-  </section>
-
-  <section class="cu-panel" id="how">
-    <h2>How to walk the path</h2>
-    <p>1. Arrive and settle. 2. Study on Campus one module at a time. 3. Practice craft in the Lab. 4. Keep private notes in the Vault.</p>
-  </section>
-  <p class="cu-foot">
-  <a href="https://clarity-dawah.fyi/">Arrival</a> · <a href="https://clarity-dawah.fyi/campus/">Campus</a> ·
-  <a href="https://clarity-dawah.fyi/journey/">Journey</a> · <a href="https://clarity-dawah.fyi/lab/">Lab</a> ·
-  <a href="https://clarity-dawah.fyi/vault/">Vault</a> · <a href="https://clarity-dawah.fyi/charter/">Charter</a>
-</p>
 </main>
+<footer class="uni-foot">Educational only — not a fatwa.</footer>
 </body>
 </html>
