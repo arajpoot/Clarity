@@ -4,47 +4,40 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Full Journey · Clarity University</title>
-<meta name="description" content="Full Journey · Clarity University. Educational only."/>
-<style>
-:root{--bg:#070c0a;--gold:#e0c56a;--text:#eaf3ee;--muted:rgba(234,243,238,.75);--line:rgba(224,197,106,.3)}
-*{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;min-height:100%}
-body{background:radial-gradient(1000px 400px at 50% -10%,rgba(31,166,122,.1),transparent 50%),var(--bg)}
-.banner{position:sticky;top:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:.55rem .8rem;background:rgba(8,16,14,.96);border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#f3e6c0}
-.brand img{width:32px;height:32px;border-radius:50%;border:1px solid var(--line)}
-.brand strong{font-size:1rem;font-weight:800}
-.brand small{display:block;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
-.main-link{font-size:.72rem;font-weight:700;padding:.32rem .65rem;border-radius:999px;border:1px solid var(--line);background:rgba(224,197,106,.14);color:var(--gold);text-decoration:none}
-.wrap{max-width:42rem;margin:0 auto;padding:.9rem .75rem 2rem}
-.pills{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 0 .8rem}
-.pills a{font-size:.74rem;font-weight:650;padding:.38rem .75rem;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.28);color:#f3e6c0;text-decoration:none}
-.pills a.here{background:rgba(224,197,106,.2);border-color:var(--gold)}
-.card{padding:1.05rem;border-radius:16px;border:1px solid var(--line);background:rgba(16,24,20,.94);margin:.4rem 0}
-.card h2{margin:.1rem 0 .45rem;color:#f3e6c0;font-size:1.15rem}
-.card p{margin:0 0 .55rem;font-size:.84rem;line-height:1.5;color:var(--muted)}
-.card a{color:var(--gold)}
-.foot{text-align:center;font-size:.7rem;color:var(--muted);padding:1rem}
-</style>
+<meta name="description" content="Clarity University — educational only, not a fatwa."/>
+<link rel="canonical" href="https://clarity-dawah.fyi/journey/"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261011P34"/>
 </head>
 <body>
-<header class="banner">
-  <a class="brand" href="/campus/"><img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/><div><small>University</small><strong>Clarity University</strong></div></a>
-  <a class="main-link" href="/">← Main</a>
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
+  <a class="cu-main-link" href="/">← Companion</a>
 </header>
-<main class="wrap">
-<nav class="pills">
-  <a href="/campus/">Map</a>
-  <a href="/campus/desk/">Desk</a>
-  <a href="/lab/" >Lab</a>
-  <a href="/vault/" >Vault</a>
-  <a href="/journey/" class="here">Journey</a>
-  <a href="/charter/" >Charter</a>
-</nav>
-<div class="card"><h2>Full Journey</h2>
-<p>Seeker (Junior) → New Muslim → Daily → Da'i. One module open at a time. A checkmark unlocks the next module. Complete the phase and pass the quiz to advance.</p>
-<p><a href="/campus/desk/">→ Continue on the Desk</a></p></div>
+<main class="cu-wrap">
+  <nav class="cu-pills" aria-label="Campus">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/?phase=seeker">Desk</a>
+    <a href="/lab/" class="">Lab</a>
+    <a href="/vault/" class="">Vault</a>
+    <a href="/journey/" class="here">Journey</a>
+    <a href="/charter/" class="">Charter</a>
+  </nav>
+  <h1 style="text-align:center;color:#f3e6c0;font-size:1.25rem;font-weight:800">Full Journey</h1>
+  <p class="cu-note" style="text-align:left">
+    <strong style="color:#f3e6c0">Seeker (Junior) → New Muslim → Daily → Daʿi.</strong><br/>
+    One module open at a time. A checkmark unlocks the next module.
+    Complete the phase and pass the quiz to advance.
+  </p>
+  <div class="cu-grid" style="margin-top:1rem">
+    <a class="cu-card" href="/campus/desk/?phase=seeker"><span class="tag">1</span><strong>Seeker</strong><span class="desc">Belief foundations</span></a>
+    <a class="cu-card" href="/campus/desk/?phase=new-muslim"><span class="tag">2</span><strong>New Muslim</strong><span class="desc">Purification &amp; prayer</span></a>
+    <a class="cu-card" href="/campus/desk/?phase=daily"><span class="tag">3</span><strong>Daily</strong><span class="desc">Craft &amp; consistency</span></a>
+    <a class="cu-card" href="/campus/desk/?phase=dai"><span class="tag">4</span><strong>Daʿi</strong><span class="desc">Transmit with adab</span></a>
+  </div>
+  <p style="text-align:center;margin-top:1.2rem"><a class="cu-main-link" href="/campus/desk/?phase=seeker">→ Continue on the Desk</a></p>
 </main>
-<footer class="foot">Educational only — not a fatwa.</footer>
-</body>
-</html>
+<footer class="cu-foot">Educational only — not a fatwa. Progress stays on this device.</footer>
+</body></html>
