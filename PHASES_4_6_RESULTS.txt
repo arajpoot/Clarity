@@ -1,0 +1,19 @@
+Additional phases (after merge 1–3)
+===================================
+Phase 4 — Inventory
+  GitHub root modules/faculty/admin downloaded and compared.
+
+Phase 5 — Learning modules swap
+  foundation colleges + engine, controller, plaque, spark, diplomas, office
+  SEAL.json + boot.js (soft-fail on missing fetch)
+  Campus loads colleges via boot.js (ordered SEAL path)
+
+Phase 6 — Faculty & admin form factor
+  faculty controller/css/roster/help-book
+  registrar + chancellor controllers/css
+  campus-shell, engine, wings-bridge, polish
+  Campus page links faculty/registrar/chancellor CSS+JS
+  Staff + IT from phase 3 retained
+
+Landing index.html: UNCHANGED (bf9c8940…)
+University tile → /campus/

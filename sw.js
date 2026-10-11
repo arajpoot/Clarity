@@ -1,7 +1,7 @@
 /* Clarity SW 20261009MP3 — multipage safe
  * Network-first HTML + SEAL; cache other assets; one registration only.
  */
-const CACHE = "clarity-20261009MP3";
+const CACHE = "clarity-20261011ENGINE";
 const PRECACHE = ["/", "/robots.txt"];
 
 self.addEventListener("install", (e) => {
