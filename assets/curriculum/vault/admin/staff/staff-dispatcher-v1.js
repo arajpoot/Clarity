@@ -6,7 +6,7 @@
   if (g.__CLARITY_STAFF_DISPATCH__) return;
   g.__CLARITY_STAFF_DISPATCH__ = true;
 
-  var BASE = (function(){ try { var b=document.querySelector("base"); } catch(e){} return "/assets/curriculum/vault/admin/staff/"; })();
+  var BASE = "/assets/curriculum/vault/admin/staff/"; 
   var SCRIPTS = [
     "staff-ops-monitor-v1.js",
     "staff-fiqh-authenticity-v1.js",
