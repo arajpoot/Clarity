@@ -11,262 +11,143 @@
       return;
     }
     var UNITS = [
-      {
-        id: "dai-u1",
-        title: "Unit 1 — Usul al-Dawah and ethics of the caller",
-        goal: "Define dawah with sincerity; protect intention and adab.",
-        lessons: [
-          {
-            id: "dai-u1-l1",
-            title: "Definition and intention",
-            minutes: 15,
-            points: [
-              "Dawah is calling to Allah with knowledge and mercy.",
-              "Intention: for Allah, not ego or audience size.",
-              "Watch one foundational ethics talk, then write your intention."
-            ],
-            openCard: "dai-transmit-card",
-            video: {
-              title: "Foundations of calling to Allah — curated series",
-              list: "PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp",
-              href: "https://www.youtube.com/playlist?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp",
-              note: "Educational. Methods differ by school — confirm sensitive issues with a local scholar."
-            },
-            activity: {
-              type: "write",
-              prompt: "Write 4-6 lines: What is dawah, and what intention will you protect?",
-              rubric: "Clear definition · sincere intention · no harshness"
-            },
-            links: [{ label: "Qur'an 16:125", href: "https://quran.com/16/125" }]
-          },
-          {
-            id: "dai-u1-l2",
-            title: "Adab of the dai",
-            minutes: 12,
-            points: [
-              "Knowledge before speech; patience; humility; respect for the audience.",
-              "Avoid mockery and compulsion — guidance is from Allah.",
-              "List 5 character traits you will practice this week."
-            ],
-            openCard: "cw-card",
-            video: {
-              title: "Character growth lectures",
-              list: "PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs",
-              href: "https://www.youtube.com/playlist?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs",
-              note: "Take practical adab; leave advanced disputes to scholars."
-            },
-            activity: {
-              type: "checklist",
-              prompt: "Tick traits you will practice",
-              items: ["Patience", "Humility", "Truthfulness", "Listening first", "Soft speech"]
-            },
-            links: []
-          }
-        ]
-      },
-      {
-        id: "dai-u2",
-        title: "Unit 2 — Prophetic method in dawah",
-        goal: "Extract methods from the Seerah for real conversations.",
-        lessons: [
-          {
-            id: "dai-u2-l1",
-            title: "Seerah as method lab",
-            minutes: 20,
-            points: [
-              "Study one Seerah episode: audience, message, tone, outcome.",
-              "Prophets used hikmah, stories, questions, and lived example.",
-              "Watch a Sealed Nectar segment, then write a method note."
-            ],
-            openCard: "sealed-nectar-card",
-            video: {
-              title: "Sealed Nectar — Seerah series",
-              list: "PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X",
-              href: "https://www.youtube.com/playlist?list=PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X",
-              note: "Classic Seerah study aid already in Clarity. Cross-check details with a reliable teacher."
-            },
-            activity: {
-              type: "write",
-              prompt: "Method note: Audience / Message / Tone / One lesson for today",
-              rubric: "Specific Seerah scene · transferable method · respectful tone"
-            },
-            links: [{ label: "Qur'an 33:21", href: "https://quran.com/33/21" }]
-          },
-          {
-            id: "dai-u2-l2",
-            title: "Samina — living transmission",
-            minutes: 12,
-            points: [
-              "Dawah begins with personal obedience.",
-              "Open Samina / Commands; teach one verse meaning to a family member (with adab)."
-            ],
-            openCard: "samina-verse-card",
-            video: {
-              title: "Ishaq / living Qur'an reminders",
-              list: "PLH3gvuJis52MDUOlpiilZaJ_TNc8YMZVN",
-              href: "https://www.youtube.com/playlist?list=PLH3gvuJis52MDUOlpiilZaJ_TNc8YMZVN",
-              note: "Use as reminder fuel, not as a fatwa source."
-            },
-            activity: {
-              type: "teachback",
-              prompt: "Teach-back: explain one verse to someone (or record for yourself).",
-              rubric: "Accurate meaning · soft tone · invited questions"
-            },
-            links: []
-          }
-        ]
-      },
-      {
-        id: "dai-u3",
-        title: "Unit 3 — Content craft (media-aware dawah)",
-        goal: "Produce truthful, beautiful, Shariah-safe reminders.",
-        lessons: [
-          {
-            id: "dai-u3-l1",
-            title: "Meme Studio as reminder lab",
-            minutes: 15,
-            points: [
-              "Truth over virality; cite sources; no mockery of people.",
-              "Build one verse/hadith reminder and review wording carefully."
-            ],
-            openCard: "meme-card",
-            video: {
-              title: "Yaqeen media-literacy style talks (curated)",
-              list: "PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp",
-              href: "https://www.youtube.com/playlist?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp",
-              note: "Watch for framing ideas only. Your content must stay accurate and gentle."
-            },
-            activity: {
-              type: "project",
-              prompt: "One reminder card with source reference in Notes.",
-              rubric: "Accurate text · clear source · respectful design"
-            },
-            links: []
-          },
-          {
-            id: "dai-u3-l2",
-            title: "Notes portfolio",
-            minutes: 10,
-            points: [
-              "Keep a private portfolio of lessons, sources, and open questions.",
-              "Export encrypted backup if using Amana Vault notes."
-            ],
-            openCard: "notes-shell",
-            activity: { type: "write", prompt: "Portfolio index: 3 lessons · 2 sources · 1 open question." },
-            links: []
-          }
-        ]
-      },
-      {
-        id: "dai-u4",
-        title: "Unit 4 — Clarity vs confusion (Israeliyat and caution)",
-        goal: "Spot weak stories; prioritize Qur'an and authentic Sunnah.",
-        lessons: [
-          {
-            id: "dai-u4-l1",
-            title: "Israeliyat awareness",
-            minutes: 15,
-            points: [
-              "Not every story circulating is authentic.",
-              "When unsure, pause and ask a teacher before teaching others.",
-              "Open the Israeliyat caution card in Clarity."
-            ],
-            openCard: "israeliyat-card",
-            video: {
-              title: "Careful study mindset — curated reflections",
-              list: "PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp",
-              href: "https://www.youtube.com/playlist?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp",
-              note: "Use talks to build caution habits; authentication needs hadith methodology with scholars."
-            },
-            activity: {
-              type: "write",
-              prompt: "One viral claim you will not share until verified — and why.",
-              rubric: "Humility · source awareness · no mockery"
-            },
-            links: []
-          }
-        ]
-      },
-      {
-        id: "dai-u5",
-        title: "Unit 5 — Voice, Asma, Sealed Nectar depth",
-        goal: "Know Allah's Names and the Prophet's life to call with light.",
-        lessons: [
-          {
-            id: "dai-u5-l1",
-            title: "Asma — knowing Allah to call to Him",
-            minutes: 15,
-            points: [
-              "Study one Name deeply; let it shape how you speak about Allah.",
-              "Avoid inventing meanings; stay with reliable explanations."
-            ],
-            openCard: "tajalliyat-lecture-card",
-            video: {
-              title: "99 Names lecture series",
-              list: "PLQ02IYL5pmhH0KWBrGxxR-lCCwlTFIVbm",
-              href: "https://www.youtube.com/playlist?list=PLQ02IYL5pmhH0KWBrGxxR-lCCwlTFIVbm",
-              note: "One Name per session is enough. Educational reflection only."
-            },
-            activity: { type: "write", prompt: "Name · brief meaning · how it changes your dawah tone." },
-            links: []
-          },
-          {
-            id: "dai-u5-l2",
-            title: "Sealed Nectar / timeline study",
-            minutes: 20,
-            points: [
-              "Map one period of the Seerah (Makkah or Madinah).",
-              "Note mercy, patience, and strategic wisdom for modern conversations."
-            ],
-            openCard: "sealed-nectar-card",
-            video: {
-              title: "Sealed Nectar — full series",
-              list: "PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X",
-              href: "https://www.youtube.com/playlist?list=PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X",
-              open: false,
-              note: "Watch one episode carefully; write timeline notes."
-            },
-            activity: { type: "write", prompt: "Timeline card: period · key event · one mercy lesson." },
-            links: []
-          }
-        ]
-      },
-      {
-        id: "dai-u6",
-        title: "Unit 6 — Capstone portfolio",
-        goal: "Assemble a humble, source-aware dawah portfolio.",
-        lessons: [
-          {
-            id: "dai-u6-l1",
-            title: "Capstone checklist",
-            minutes: 20,
-            points: [
-              "Intention written · adab list · one Seerah method · one verified reminder · open questions for a teacher.",
-              "Do not claim scholarship; remain a student who shares carefully."
-            ],
-            openCard: "dai-transmit-card",
-            video: {
-              title: "Final character reminder — growth playlist",
-              list: "PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs",
-              href: "https://www.youtube.com/playlist?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs",
-              note: "Close with humility. Educational only — not a certificate or fatwa license."
-            },
-            activity: {
-              type: "checklist",
-              prompt: "Capstone items",
-              items: [
-                "Written intention",
-                "5 adab traits practiced",
-                "Seerah method note",
-                "One sourced reminder",
-                "Questions list for a teacher"
-              ]
-            },
-            links: []
-          }
-        ]
-      }
-    ];
+    /* College of Transmission — Daʿi
+       Usul al-Da'wah, ethics, knowledge before speech — Madinah Da'wah faculty spirit + Azhar Da'wah.
+       Educational only — not a fatwa or licence to issue rulings. */
+    {
+      id: "dai-u1-ethics",
+      title: "Unit 1 — Ethics of the caller",
+      goal: "Sincerity, mercy, and knowledge before speech.",
+      lessons: [
+        {
+          id: "dai-u1-l1",
+          title: "Intention and humility",
+          minutes: 15,
+          points: [
+            "Call to Allah — not to ego, brand, or argument score.",
+            "Mercy and wisdom are conditions of beautiful calling.",
+            "You remain a student even when teaching basics."
+          ],
+          ayah: { ref: "Qur'an 16:125", en: "Invite to the way of your Lord with wisdom and good instruction…" },
+          deepLearn: [
+            { label: "Qur'an 16:125", href: "https://quran.com/16/125" },
+            { label: "Qur'an 12:108", href: "https://quran.com/12/108" }
+          ]
+        },
+        {
+          id: "dai-u1-l2",
+          title: "Knowledge before speech",
+          minutes: 14,
+          points: [
+            "Do not teach what you have not verified.",
+            "Refer complex questions to qualified scholars.",
+            "This college trains adab — it is not ijazah or fatwa authority."
+          ],
+          ayah: { ref: "Qur'an 17:36", en: "Do not pursue that of which you have no knowledge…" },
+          deepLearn: [
+            { label: "Qur'an 17:36", href: "https://quran.com/17/36" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "dai-u2-sources",
+      title: "Unit 2 — Source discipline",
+      goal: "Qur'an and Sunnah first; cite carefully.",
+      lessons: [
+        {
+          id: "dai-u2-l1",
+          title: "Primary sources in speech",
+          minutes: 15,
+          points: [
+            "Prefer clear Qur'an and well-known authentic hadith for public teaching.",
+            "Avoid weak or fabricated reports; when unsure, stay silent on the claim."
+          ],
+          deepLearn: [
+            { label: "quran.com", href: "https://quran.com" },
+            { label: "sunnah.com", href: "https://sunnah.com" }
+          ]
+        },
+        {
+          id: "dai-u2-l2",
+          title: "Citing and context",
+          minutes: 12,
+          points: [
+            "Quote with reference when possible.",
+            "Context of revelation and scholarly explanation matter for sensitive verses."
+          ],
+          deepLearn: [
+            { label: "SeekersGuidance", href: "https://seekersguidance.org/" },
+            { label: "Yaqeen Institute", href: "https://yaqeeninstitute.org/" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "dai-u3-audience",
+      title: "Unit 3 — Audience & wisdom",
+      goal: "Speak to the level of the listener.",
+      lessons: [
+        {
+          id: "dai-u3-l1",
+          title: "New Muslim and seeker care",
+          minutes: 14,
+          points: [
+            "Begin with Tawhid and hope; do not overload with advanced disputes.",
+            "Protect dignity; private faults are not public content."
+          ],
+          ayah: { ref: "Qur'an 20:44", en: "Speak to him mildly…" },
+          deepLearn: [
+            { label: "Qur'an 20:44", href: "https://quran.com/20/44" }
+          ]
+        },
+        {
+          id: "dai-u3-l2",
+          title: "Disagreement with adab",
+          minutes: 12,
+          points: [
+            "Difference among scholars is not a licence for harshness.",
+            "Public da'wah avoids takfir culture and mockery."
+          ],
+          deepLearn: [
+            { label: "Qur'an 49:11", href: "https://quran.com/49/11" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "dai-u4-service",
+      title: "Unit 4 — Service & continuity",
+      goal: "Dawah as service; keep learning after any diploma on this device.",
+      lessons: [
+        {
+          id: "dai-u4-l1",
+          title: "Service over platform",
+          minutes: 12,
+          points: [
+            "Help with teaching basics, charity logistics, or mosque needs as able.",
+            "Online reach without knowledge is a trust tested."
+          ],
+          deepLearn: [
+            { label: "Qur'an 61:2-3", href: "https://quran.com/61/2-3" }
+          ]
+        },
+        {
+          id: "dai-u4-l2",
+          title: "Never graduate from learning",
+          minutes: 10,
+          points: [
+            "Device diplomas mark milestones on this path — not scholarly authority.",
+            "Continue with teachers, books, and sincere company."
+          ],
+          ayah: { ref: "Qur'an 20:114", en: "My Lord, increase me in knowledge." },
+          deepLearn: [
+            { label: "Qur'an 20:114", href: "https://quran.com/20/114" }
+          ]
+        }
+      ]
+    }
+  ];
 
     var track = g.ClarityCurriculumEngine.createTrack({
       phase: 4,
