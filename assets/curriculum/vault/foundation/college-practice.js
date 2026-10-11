@@ -11,145 +11,215 @@
       return;
     }
     var UNITS = [
-    /* College of Practice — New Muslim / Junior High
-       Inspired by Madinah Fiqh al-Ibadat progression + Azhar practical worship tracks.
-       Educational only — not a fatwa. */
     {
-      id: "jh-u1-confidence",
-      title: "Unit 1 — Confidence after Shahadah",
-      goal: "Settle the heart; learning is gradual (Qur'an 2:286).",
+      id: "jh-u1-welcome",
+      title: "Unit 1 — Welcome & confidence",
+      goal: "Settle the heart after curiosity or Shahādah; know where to ask.",
       lessons: [
         {
           id: "jh-u1-l1",
-          title: "Capacity and sincerity",
-          minutes: 12,
+          title: "You are not alone",
+          minutes: 8,
           points: [
-            "Allah does not burden a soul beyond its capacity.",
-            "Mistakes in early practice are part of growth when sincerity is present.",
-            "Keep Tawhid units as your base; this college is about doing with guidance."
+            "Learning is gradual — Allah does not burden a soul beyond its capacity.",
+            "Mistakes in practice are part of growth; sincerity matters.",
+            "Keep Junior units as your belief base; this track is about doing."
           ],
-          ayah: { ref: "Qur'an 2:286", en: "Allah does not charge a soul except with that within its capacity." },
-          deepLearn: [
+          ayah: { ref: "Qur'an 2:286", en: "Allah does not charge a soul except [with that within] its capacity." },
+          openCard: "new-muslim-foundations-card",
+          links: [
             { label: "Qur'an 2:286", href: "https://quran.com/2/286" },
-            { label: "Qur'an 94:5-6", href: "https://quran.com/94/5-6" }
+            { label: "SeekersGuidance", href: "https://seekersguidance.org/" }
           ]
         },
         {
           id: "jh-u1-l2",
-          title: "Where to ask questions",
+          title: "Shahādah living meaning",
           minutes: 10,
           points: [
-            "Prefer a local imam or known teacher for personal situations.",
-            "Use primary texts and trusted educational sites for study maps.",
-            "This desk never issues a binding fatwa."
+            "Lā ilāha illā Allāh — no deity worthy of worship except Allah.",
+            "Muḥammadun rasūl Allāh — Muhammad ﷺ is His messenger.",
+            "It is a contract of loyalty and a door to mercy."
           ],
-          deepLearn: [
-            { label: "SeekersGuidance", href: "https://seekersguidance.org/" },
-            { label: "BeginIslam", href: "https://beginislam.org/" }
-          ]
+          openCard: "soul-compass-card",
+          links: [{ label: "Qur'an 3:18", href: "https://quran.com/3/18" }]
         }
       ]
     },
     {
       id: "jh-u2-taharah",
-      title: "Unit 2 — Taharah in practice",
-      goal: "Wudu and purity steps with patience (Madinah Fiqh of Worship track).",
+      title: "Unit 2 — Purification (ṭahārah)",
+      goal: "Know why purity matters and the main types (wuḍūʾ, ghusl overview).",
       lessons: [
         {
           id: "jh-u2-l1",
-          title: "Wudu step map",
-          minutes: 14,
+          title: "Cleanliness is half of faith",
+          minutes: 10,
+          video: { title: "Purification and prayer foundations", list: "PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp", href: "https://www.youtube.com/playlist?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp", note: "Educational overview — learn wuḍūʿ steps with a local teacher." },
           points: [
-            "Intention in the heart; wash as taught in reliable beginner fiqh.",
-            "Practice once slowly before prayer time pressure.",
-            "Confirm details with a living teacher for your school of practice."
+            "Prayer needs purity of body and place.",
+            "Wuḍūʾ: wash face, arms, wipe head, wash feet — learn steps with a teacher or reliable guide.",
+            "Junior-high goal: understand the map; perfect form with practice."
           ],
-          ayah: { ref: "Qur'an 5:6", en: "When you rise to pray, wash your faces and your hands to the elbows…" },
-          deepLearn: [
-            { label: "Qur'an 5:6", href: "https://quran.com/5/6" },
-            { label: "sunnah.com — purification", href: "https://sunnah.com/search?q=wudu" }
+          openCard: "salah-starter-card",
+          links: [
+            { label: "BeginIslam — Worship guide", href: "https://beginislam.org/" }
           ]
         },
         {
           id: "jh-u2-l2",
-          title: "What breaks wudu (overview)",
-          minutes: 12,
+          title: "When to renew",
+          minutes: 8,
           points: [
-            "Common nullifiers are taught in every beginner madhhab curriculum.",
-            "When unsure, renew wudu — ease is part of the deen.",
-            "Do not invent detailed rulings from an app alone."
+            "Wuḍūʾ breaks with certain events (e.g. using the toilet, deep sleep) — confirm details with a local teacher.",
+            "Ghusl is required after major impurity — learn the obligation list carefully.",
+            "When unsure, ask — do not guess on worship."
           ],
-          deepLearn: [
-            { label: "SeekersGuidance — purification", href: "https://seekersguidance.org/" }
-          ]
+          openCard: "fiqh-quiz-card",
+          links: []
         }
       ]
     },
     {
       id: "jh-u3-salah",
-      title: "Unit 3 — Salah practice path",
-      goal: "Build the five prayers with presence (Azhar/Madinah ibadah practice).",
+      title: "Unit 3 — Prayer (ṣalāh)",
+      goal: "Build a working daily prayer habit with correct outline.",
       lessons: [
         {
           id: "jh-u3-l1",
-          title: "Times and rak'ahs map",
-          minutes: 14,
+          title: "Five prayers — the spine of the day",
+          minutes: 12,
+          video: { title: "Prayer guidance series", list: "PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs", href: "https://www.youtube.com/playlist?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs", note: "Watch for overview; perfect form with a teacher." },
           points: [
-            "Learn the five daily names, rough times, and unit counts.",
-            "Use a local timetable; this module is a map, not a prayer calculator ruling."
+            "Fajr, Ẓuhr, ʿAṣr, Maghrib, ʿIshāʾ structure the day.",
+            "Open Salah Starter and follow one prayer slowly.",
+            "Minimum: facing Qiblah, intention, Takbīr, Fātiḥah, rukūʿ, sujūd, salām — verify with a guide."
           ],
-          ayah: { ref: "Qur'an 11:114", en: "Establish prayer at the two ends of the day and in the approach of the night…" },
-          deepLearn: [
-            { label: "Qur'an 11:114", href: "https://quran.com/11/114" },
-            { label: "Qur'an 2:238", href: "https://quran.com/2/238" }
+          openCard: "salah-starter-card",
+          links: [
+            { label: "Qur'an 4:103", href: "https://quran.com/4/103" }
           ]
         },
         {
           id: "jh-u3-l2",
-          title: "Khushu — presence of heart",
-          minutes: 12,
+          title: "What to recite first",
+          minutes: 10,
           points: [
-            "Slow the opening takbir; understand al-Fatiha meaning.",
-            "One focused prayer is better than many rushed ones."
+            "Al-Fātiḥah is required in every unit of prayer.",
+            "Add short sūrahs as you learn (e.g. Al-Ikhlāṣ).",
+            "Use Notes to write lines you are memorizing."
           ],
-          ayah: { ref: "Qur'an 23:1-2", en: "Successful are the believers who are humble in their prayers." },
-          deepLearn: [
-            { label: "Qur'an 23:1-2", href: "https://quran.com/23/1-2" },
-            { label: "Qur'an 1", href: "https://quran.com/1" }
+          openCard: "commands-card",
+          links: [
+            { label: "Qur'an 1 — Al-Fātiḥah", href: "https://quran.com/1" },
+            { label: "Qur'an 112", href: "https://quran.com/112" }
           ]
+        },
+        {
+          id: "jh-u3-l3",
+          title: "Fiqh quiz — check yourself",
+          minutes: 10,
+          points: [
+            "Take the Fiqh Quiz module to spot gaps.",
+            "Wrong answers are teachers — review, then retest.",
+            "Local mosque class beats internet alone for prayer form."
+          ],
+          openCard: "fiqh-quiz-card",
+          links: []
         }
       ]
     },
     {
-      id: "jh-u4-daily-adhkar",
-      title: "Unit 4 — Daily adhkar & manners",
-      goal: "Morning/evening remembrance and basic adab.",
+      id: "jh-u4-halal-day",
+      title: "Unit 4 — Daily ḥalāl map",
+      goal: "Food, speech, and earnings — simple boundaries.",
       lessons: [
         {
           id: "jh-u4-l1",
-          title: "Morning and evening",
-          minutes: 12,
+          title: "Eat of the good things",
+          minutes: 8,
           points: [
-            "Short authentic adhkar after prayer and at day edges.",
-            "Consistency over quantity."
+            "Ḥalāl food and drink matter; avoid what is clearly forbidden (e.g. pork, alcohol).",
+            "When labels are unclear, ask and choose the safer option.",
+            "Gratitude before and after eating is Prophetic adab."
           ],
-          deepLearn: [
-            { label: "sunnah.com — adhkar themes", href: "https://sunnah.com/search?q=morning" },
-            { label: "Qur'an 33:41-42", href: "https://quran.com/33/41-42" }
-          ]
+          openCard: "tibbe-nabwi-card",
+          links: [{ label: "Qur'an 2:168", href: "https://quran.com/2/168" }]
         },
         {
           id: "jh-u4-l2",
-          title: "Adab with parents and neighbours",
+          title: "Speech and screens",
+          minutes: 8,
+          points: [
+            "Truthfulness and avoiding mockery protect the heart.",
+            "Backbiting and gossip harm; silence can be worship.",
+            "One honest conversation is better than an hour of empty scroll."
+          ],
+          openCard: "cw-card",
+          links: []
+        }
+      ]
+    },
+    {
+      id: "jh-u5-calendar",
+      title: "Unit 5 — Ramadan, Zakāh, Ḥajj (overview)",
+      goal: "Know the yearly pillars at junior-high depth.",
+      lessons: [
+        {
+          id: "jh-u5-l1",
+          title: "Fasting — why and how (overview)",
           minutes: 10,
           points: [
-            "Excellence to parents and kindness to neighbours are core practice.",
-            "Character is worship when done for Allah."
+            "Ramadan trains taqwā and empathy.",
+            "Who must fast and who is excused needs a teacher’s detail.",
+            "Start by respecting the month and learning the timetable."
           ],
-          ayah: { ref: "Qur'an 4:36", en: "Worship Allah… and be good to parents…" },
-          deepLearn: [
-            { label: "Qur'an 4:36", href: "https://quran.com/4/36" }
-          ]
+          openCard: "commands-card",
+          links: [{ label: "Qur'an 2:183", href: "https://quran.com/2/183" }]
+        },
+        {
+          id: "jh-u5-l2",
+          title: "Zakāh & Ḥajj — maps for later",
+          minutes: 8,
+          points: [
+            "Zakāh purifies wealth; thresholds and rates need calculation help.",
+            "Ḥajj is once in a lifetime for those able — see Hajj Guide for the journey map.",
+            "Junior-high: know they exist and why; details when you are ready."
+          ],
+          openCard: "hajj-guide-card",
+          links: []
+        }
+      ]
+    },
+    {
+      id: "jh-u6-seerah-practice",
+      title: "Unit 6 — Seerah into practice",
+      goal: "Connect the Prophet’s life ﷺ to daily choices.",
+      lessons: [
+        {
+          id: "jh-u6-l1",
+          title: "Mercy in action",
+          minutes: 10,
+          video: { title: "Sealed Nectar — Seerah for practice", list: "PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X", href: "https://www.youtube.com/playlist?list=PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X", note: "One episode is enough for this module." },
+          points: [
+            "Read one Seerah Live segment slowly.",
+            "Extract one behavior to try today (patience, honesty, kindness).",
+            "Mark the lesson done only after the action."
+          ],
+          openCard: "seerah-live-card",
+          links: [{ label: "Qur'an 33:21", href: "https://quran.com/33/21" }]
+        },
+        {
+          id: "jh-u6-l2",
+          title: "Promotion checkpoint",
+          minutes: 5,
+          points: [
+            "If prayer outline is stable and Units 1–5 feel familiar, you are ready for Daily (high-school) track.",
+            "Keep Notes of questions for a teacher.",
+            "Junior high is practice; high school adds tajweed, tafseer, and depth."
+          ],
+          openCard: "ilm-pathway-card",
+          links: []
         }
       ]
     }

@@ -223,9 +223,9 @@
     try {
       g.dispatchEvent(new CustomEvent("clarity-diploma-issued", { detail: dip }));
     } catch (e) {}
-    try { showDiploma(dip, true); } catch (e1) {}
-    try { renderHall(); } catch (e2) {}
-    try { renderPlaque(); } catch (e3) {}
+    showDiploma(dip, true);
+    renderHall();
+    renderPlaque();
     return dip;
   }
 
@@ -250,14 +250,14 @@
     } else {
       var duo = document.getElementById("clarity-top-duo");
       if (duo && duo.parentNode) duo.parentNode.insertBefore(rail, duo.nextSibling);
-      else try{if(document.body&&document.body.insertBefore)document.body.insertBefore(rail, document.body.firstChild);}catch(_e){}
+      else document.body.insertBefore(rail, document.body.firstChild);
     }
-    var __el_cnp_edit = document.getElementById("cnp-edit"); if(__el_cnp_edit) __el_cnp_edit.onclick = function () {
+    document.getElementById("cnp-edit").onclick = function () {
       var cur = getName();
       var n = prompt("Your learning name (on local study records):", cur || "");
       if (n != null) setName(n);
     };
-    var __el_cnp_hall_btn = document.getElementById("cnp-hall-btn"); if(__el_cnp_hall_btn) __el_cnp_hall_btn.onclick = function () {
+    document.getElementById("cnp-hall-btn").onclick = function () {
       openHall();
     };
   }
@@ -306,17 +306,17 @@
         '<button type="button" class="cdm-btn cdm-secondary" id="cdm-import">Import on this device</button>' +
         '<button type="button" class="cdm-btn cdm-secondary" data-cdm-close="1">Close</button>' +
         "</div></div>";
-      (document.body&&document.body.appendChild?document.body.appendChild(m):null);
+      document.body.appendChild(m);
       m.addEventListener("click", function (ev) {
         if (ev.target && ev.target.getAttribute("data-cdm-close")) {
           m.hidden = true;
           m.classList.remove("show");
         }
       });
-      var __el_cdm_export = document.getElementById("cdm-export"); if(__el_cdm_export) __el_cdm_export.onclick = function () {
+      document.getElementById("cdm-export").onclick = function () {
         exportPortable();
       };
-      var __el_cdm_import = document.getElementById("cdm-import"); if(__el_cdm_import) __el_cdm_import.onclick = function () {
+      document.getElementById("cdm-import").onclick = function () {
         importFromPrompt();
       };
     }
@@ -398,7 +398,7 @@
         if (n) setName(n);
       }
       alert(
-        "No local study records yet. Complete modules in a phase and pass the phase quiz to save a record on this device."
+        "No diplomas yet. Complete all modules in a phase and pass the phase quiz to graduate that track."
       );
       return;
     }
@@ -421,16 +421,16 @@
         '<button type="button" class="cdm-btn cdm-secondary" id="cdh-import">Import record</button>' +
         '<button type="button" class="cdm-btn cdm-secondary" id="cdh-transcript">Transcript</button>' +
         "</div></div>";
-      (document.body&&document.body.appendChild?document.body.appendChild(hall):null);
+      document.body.appendChild(hall);
       hall.addEventListener("click", function (ev) {
         if (ev.target && ev.target.getAttribute("data-cdh-close")) {
           hall.hidden = true;
           hall.classList.remove("show");
         }
       });
-      var __el_cdh_export = document.getElementById("cdh-export"); if(__el_cdh_export) __el_cdh_export.onclick = exportPortable;
-      var __el_cdh_import = document.getElementById("cdh-import"); if(__el_cdh_import) __el_cdh_import.onclick = importFromPrompt;
-      var __el_cdh_transcript = document.getElementById("cdh-transcript"); if(__el_cdh_transcript) __el_cdh_transcript.onclick = showTranscript;
+      document.getElementById("cdh-export").onclick = exportPortable;
+      document.getElementById("cdh-import").onclick = importFromPrompt;
+      document.getElementById("cdh-transcript").onclick = showTranscript;
     }
     var list = document.getElementById("cdh-list");
     list.innerHTML = keys
@@ -459,7 +459,7 @@
         );
       })
       .join("");
-    if(list)list.onclick= function (ev) {
+    list.onclick = function (ev) {
       var btn = ev.target.closest && ev.target.closest(".cdh-card");
       if (!btn) return;
       var ph = btn.getAttribute("data-phase");
@@ -602,17 +602,19 @@
   };
 
   function boot() {
-    try { ensureUI(); renderPlaque(); syncPortable(); } catch (e) {}
+    ensureUI();
+    renderPlaque();
+    syncPortable();
   }
-  if (document.readyState === "loading") if(document.addEventListener)document.addEventListener("DOMContentLoaded", boot);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  typeof g.addEventListener==="function"&&g.addEventListener("load", function () {
+  g.addEventListener("load", function () {
     setTimeout(boot, 300);
   });
-  typeof g.addEventListener==="function"&&g.addEventListener("clarity-diploma-issued", function () {
+  g.addEventListener("clarity-diploma-issued", function () {
     renderPlaque();
   });
-  typeof g.addEventListener==="function"&&g.addEventListener("clarity-curriculum-phase", function () {
+  g.addEventListener("clarity-curriculum-phase", function () {
     renderPlaque();
   });
 })(typeof window !== "undefined" ? window : this);

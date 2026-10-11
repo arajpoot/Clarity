@@ -244,24 +244,21 @@
    */
   var __officeHooked = false;
   function hookUniversity() {
-    if (g.__clarityOfficeHooked) return;
-    g.__clarityOfficeHooked = true;
+    if (__officeHooked) return;
     if (!g.ClarityUniversity) return;
-    if (Object.isFrozen(g.ClarityUniversity)) return;
-    var prev = g.ClarityUniversity.issueDiploma;
-    if (typeof prev !== "function") return;
+    /* Never mutate ClarityUniversity (may be frozen by SEAL). Event path only. */
     try {
-      g.ClarityUniversity.issueDiploma = function (phase) {
-        var dip = prev.call(g.ClarityUniversity, phase);
-        loadOffice(function () {
-          if (dip) applyDiplomaTemplate(phase, dip);
-        });
-        return dip;
-      };
+      g.addEventListener("clarity-diploma-issued", function (ev) {
+        try {
+          var phase = ev && ev.detail && ev.detail.phase;
+          var dip = ev && ev.detail && ev.detail.diploma;
+          if (phase) loadOffice(function () { applyDiplomaTemplate(phase, dip); });
+        } catch (e) {}
+      });
     } catch (e) {}
+    __officeHooked = true;
   }
 
-  
   function injectOfficeDoor() {
     var hall = document.getElementById("cnp-hall-btn");
     if (!hall || document.getElementById("cnp-office-btn")) return;

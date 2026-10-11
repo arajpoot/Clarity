@@ -13,303 +13,179 @@
   var PHASE_KEY = "clarity_curriculum_phase_v1";
 
   var UNITS = [
-    /* Nur Path Junior — sequence inspired by foundational tracks at
-       Islamic University of Madinah (Tawhid, Quran sciences, Hadith intro,
-       Fiqh of worship) and Al-Azhar Ushuluddin/Sharia first principles.
-       Educational companion only — not a fatwa. Verify with scholars. */
     {
-      id: "u1-tawhid",
-      title: "Unit 1 — Tawhid (Creed foundations)",
-      goal: "Know Allah is One — the heart of every sound Islamic path (Madinah Aqidah 1 · Azhar Aqidah).",
+      id: "u1-who-is-allah",
+      title: "Unit 1 — Who is Allah?",
+      goal: "Know Allah is One, the Creator who loves good and guides us.",
       lessons: [
         {
           id: "u1-l1",
-          title: "Allah is One — nothing is like Him",
-          minutes: 12,
+          title: "Allah is One",
+          minutes: 8,
           points: [
-            "Tawhid: worship Allah alone, without partners.",
-            "Surah al-Ikhlas teaches He is One, Self-Sufficient, without equal.",
-            "Junior practice: say Lā ilāha illā Allāh with presence of heart."
+            "Allah created the heavens and the earth.",
+            "Nothing is like Him — He is unique.",
+            "We worship Him alone (Tawhid)."
           ],
-          ayah: { ref: "Qur'an 112:1-4", en: "Say: He is Allah, One. Allah, the Self-Sufficient…" },
-          deepLearn: [
-            { label: "Qur'an 112 (quran.com)", href: "https://quran.com/112" },
-            { label: "Qur'an 2:163", href: "https://quran.com/2/163" }
-          ],
+          ayah: { ref: "Qur'an 112:1-4", en: "Say: He is Allah, One." },
           links: [{ label: "Qur'an 112", href: "https://quran.com/112" }]
         },
         {
           id: "u1-l2",
-          title: "Names and knowledge of Allah",
-          minutes: 12,
+          title: "Allah sees and knows",
+          minutes: 8,
           points: [
-            "Allah sees and knows what is open and what is hidden.",
-            "He is closer in knowledge and care than the jugular vein.",
-            "Call upon Him by His beautiful names with humility."
+            "Allah knows what we show and what we hide.",
+            "He is closer to us than our jugular vein — in knowledge and care.",
+            "Junior practice: say Bismillah before a small task."
           ],
           ayah: { ref: "Qur'an 50:16", en: "We are closer to him than his jugular vein." },
-          deepLearn: [
-            { label: "Qur'an 50:16", href: "https://quran.com/50/16" },
-            { label: "Qur'an 59:22-24", href: "https://quran.com/59/22-24" }
-          ],
           links: [{ label: "Qur'an 50:16", href: "https://quran.com/50/16" }]
-        },
-        {
-          id: "u1-l3",
-          title: "Six pillars of iman (map)",
-          minutes: 14,
-          points: [
-            "1) Allah  2) Angels  3) Books  4) Messengers  5) Last Day  6) Qadar",
-            "This map is the classical creed outline taught in beginner tracks.",
-            "Depth comes module by module — do not rush."
-          ],
-          ayah: { ref: "Qur'an 4:136", en: "Believe in Allah, His Messenger, the Book…" },
-          deepLearn: [
-            { label: "Qur'an 4:136", href: "https://quran.com/4/136" },
-            { label: "BeginIslam — faith overview", href: "https://beginislam.org/" }
-          ],
-          links: [{ label: "Qur'an 4:136", href: "https://quran.com/4/136" }]
         }
       ]
     },
     {
-      id: "u2-quran",
-      title: "Unit 2 — Qur'an: recitation & respect",
-      goal: "Honour the Book — tilawah manners and a first taste of Ulum al-Quran (Madinah Quran 1 · Azhar Quran studies).",
+      id: "u2-iman",
+      title: "Unit 2 — Six pillars of iman",
+      goal: "Name the six beliefs every Muslim holds.",
       lessons: [
         {
           id: "u2-l1",
-          title: "Adab with the Qur'an",
-          minutes: 12,
+          title: "Belief map (overview)",
+          minutes: 10,
           points: [
-            "The Qur'an is the speech of Allah — approach with wudu when you can, and with humility always.",
-            "Seek refuge from Shaytan before reciting.",
-            "Junior goal: recite short surahs slowly and correctly."
+            "1) Allah  2) Angels  3) Revealed Books  4) Prophets  5) Last Day  6) Divine Decree (Qadar)",
+            "Junior goal: remember the list; depth comes later.",
+            "Iman grows with learning and good deeds."
           ],
-          ayah: { ref: "Qur'an 16:98", en: "When you recite the Qur'an, seek refuge in Allah from Satan…" },
-          deepLearn: [
-            { label: "Qur'an 16:98", href: "https://quran.com/16/98" },
-            { label: "Qur'an 73:4 (tartil)", href: "https://quran.com/73/4" }
-          ],
-          links: [{ label: "Qur'an 16:98", href: "https://quran.com/16/98" }]
+          openCard: "soul-compass-card",
+          links: [{ label: "BeginIslam — Articles of Faith", href: "https://beginislam.org/" }]
         },
         {
           id: "u2-l2",
-          title: "Al-Fatiha — the opening",
-          minutes: 14,
+          title: "Prophets and the Last Day (gentle)",
+          minutes: 10,
           points: [
-            "Al-Fatiha is recited in every unit of prayer.",
-            "It is praise, guidance-seeking, and the path of those favoured — not of those under anger or astray.",
-            "Memorize with meaning, not only sound."
+            "Allah sent messengers as mercy and guides.",
+            "The final messenger is Muhammad (peace be upon him).",
+            "We will return to Allah; prepare with hope and good actions."
           ],
-          ayah: { ref: "Qur'an 1:1-7", en: "In the name of Allah… Guide us to the straight path." },
-          deepLearn: [
-            { label: "Qur'an 1 — al-Fatiha", href: "https://quran.com/1" },
-            { label: "Tafsir aid (quran.com)", href: "https://quran.com/1?translations=20" }
-          ],
-          links: [{ label: "Qur'an 1", href: "https://quran.com/1" }]
-        },
-        {
-          id: "u2-l3",
-          title: "What is Ulum al-Quran? (gentle map)",
-          minutes: 12,
-          points: [
-            "Sciences of the Qur'an include revelation, compilation, and how we understand verses.",
-            "Beginners start with clear verses on belief and worship.",
-            "Always: educational study — ask a qualified teacher for deeper rulings."
-          ],
-          ayah: { ref: "Qur'an 15:9", en: "Indeed, it is We who sent down the Reminder, and indeed, We will be its guardian." },
-          deepLearn: [
-            { label: "Qur'an 15:9", href: "https://quran.com/15/9" },
-            { label: "SeekersGuidance — Qur'an topics", href: "https://seekersguidance.org/" }
-          ],
-          links: [{ label: "Qur'an 15:9", href: "https://quran.com/15/9" }]
+          openCard: "seerah-live-card",
+          links: [{ label: "Qur'an 33:56", href: "https://quran.com/33/56" }]
         }
       ]
     },
     {
-      id: "u3-hadith",
-      title: "Unit 3 — Prophetic guidance (Hadith intro)",
-      goal: "Meet the Sunnah with respect — introduction track (Madinah Hadith intro · Mustalah seed).",
+      id: "u3-pillars",
+      title: "Unit 3 — Five pillars of Islam",
+      goal: "Know the five acts that structure Muslim life.",
       lessons: [
         {
           id: "u3-l1",
-          title: "Why we follow the Messenger ﷺ",
-          minutes: 12,
+          title: "Shahadah to Hajj (map)",
+          minutes: 10,
           points: [
-            "Allah commands obedience to the Messenger as obedience to Him in what is revealed.",
-            "The Sunnah explains and embodies the Qur'an.",
-            "Peace and blessings upon him whenever he is mentioned."
+            "1) Shahadah  2) Salah  3) Zakah  4) Sawm  5) Hajj",
+            "Junior focus: meaning of each in simple words.",
+            "Practice of prayer deepens in New Muslim track."
           ],
-          ayah: { ref: "Qur'an 4:59", en: "Obey Allah and obey the Messenger…" },
-          deepLearn: [
-            { label: "Qur'an 4:59", href: "https://quran.com/4/59" },
-            { label: "Qur'an 33:56", href: "https://quran.com/33/56" }
-          ],
-          links: [{ label: "Qur'an 4:59", href: "https://quran.com/4/59" }]
+          openCard: "commands-card",
+          links: [{ label: "Qur'an 2:183 (fasting)", href: "https://quran.com/2/183" }]
         },
         {
           id: "u3-l2",
-          title: "A first authentic narration (mercy)",
+          title: "Living words — Commands",
           minutes: 12,
           points: [
-            "Begin with well-known, widely accepted narrations taught to beginners.",
-            "Example theme: mercy to others and to oneself in worship.",
-            "Check collections on sunnah.com — prefer graded reports; ask a teacher if unsure."
+            "Allah addresses believers with guidance.",
+            "Open Commands and read one verse slowly.",
+            "Write one small action in Notes."
           ],
-          ayah: { ref: "Qur'an 21:107", en: "We sent you not but as a mercy to the worlds." },
-          deepLearn: [
-            { label: "sunnah.com — Bukhari", href: "https://sunnah.com/bukhari" },
-            { label: "Qur'an 21:107", href: "https://quran.com/21/107" }
-          ],
-          links: [{ label: "sunnah.com", href: "https://sunnah.com/bukhari" }]
-        },
-        {
-          id: "u3-l3",
-          title: "Mustalah seed — what is a chain?",
-          minutes: 10,
-          points: [
-            "Hadith science cares about who narrated from whom (isnad) and the text (matn).",
-            "Junior level: know that scholars graded reports; we do not invent grades ourselves.",
-            "Educational only — not a substitute for Hadith faculty training."
-          ],
-          deepLearn: [
-            { label: "sunnah.com home", href: "https://sunnah.com/" },
-            { label: "Yaqeen — Prophetic example (essays)", href: "https://yaqeeninstitute.org/" }
-          ],
-          links: [{ label: "sunnah.com", href: "https://sunnah.com/" }]
+          openCard: "commands-card",
+          links: []
         }
       ]
     },
     {
-      id: "u4-fiqh-ibadah",
-      title: "Unit 4 — Fiqh of worship (beginner)",
-      goal: "Purification and prayer map — Fiqh al-Ibadat 1 style (Madinah Fiqh of Worship · Azhar practical fiqh).",
+      id: "u4-messenger",
+      title: "Unit 4 — The Messenger",
+      goal: "Love and follow the Prophet as the best example.",
       lessons: [
         {
           id: "u4-l1",
-          title: "Taharah — purity before prayer",
-          minutes: 14,
+          title: "Who is Muhammad?",
+          minutes: 10,
           points: [
-            "Prayer needs purity: wudu for minor impurity; ghusl when required.",
-            "Learn the steps of wudu from a reliable teacher; practice calmly.",
-            "Intention (niyyah) is in the heart for Allah."
+            "He is the final messenger and a mercy to the worlds.",
+            "His character was the Qur'an in action.",
+            "We send salawat when we mention him."
           ],
-          ayah: { ref: "Qur'an 5:6", en: "When you rise to pray, wash your faces and your hands…" },
-          deepLearn: [
-            { label: "Qur'an 5:6", href: "https://quran.com/5/6" },
-            { label: "SeekersGuidance — purification", href: "https://seekersguidance.org/" }
-          ],
-          links: [{ label: "Qur'an 5:6", href: "https://quran.com/5/6" }]
+          openCard: "seerah-live-card",
+          links: [
+            { label: "Qur'an 21:107", href: "https://quran.com/21/107" },
+            { label: "Qur'an 33:21", href: "https://quran.com/33/21" }
+          ]
         },
         {
           id: "u4-l2",
-          title: "Salah — the five daily prayers",
-          minutes: 14,
+          title: "Samina wa atana",
+          minutes: 8,
           points: [
-            "The five prayers are pillars of a Muslim day.",
-            "Learn times, rak'ahs, and presence of heart (khushu) gradually.",
-            "Local scholars and teachers correct posture and recitation — use them."
+            "Believers say: we hear and we obey.",
+            "Open the Samina card and reflect on one verse.",
+            "Obedience is love in action."
           ],
-          ayah: { ref: "Qur'an 2:238", en: "Maintain the prayers, especially the middle prayer…" },
-          deepLearn: [
-            { label: "Qur'an 2:238", href: "https://quran.com/2/238" },
-            { label: "Qur'an 11:114", href: "https://quran.com/11/114" }
-          ],
-          links: [{ label: "Qur'an 2:238", href: "https://quran.com/2/238" }]
-        },
-        {
-          id: "u4-l3",
-          title: "Zakat · fasting · Hajj (overview only)",
-          minutes: 12,
-          points: [
-            "Pillars beyond salah: zakat, fasting Ramadan, Hajj if able.",
-            "This module only maps the names and purposes — detailed rulings need a teacher.",
-            "Never invent financial or travel rulings from an app alone."
-          ],
-          ayah: { ref: "Qur'an 2:183", en: "Fasting is prescribed for you as it was for those before you…" },
-          deepLearn: [
-            { label: "Qur'an 2:183", href: "https://quran.com/2/183" },
-            { label: "Qur'an 3:97 (Hajj)", href: "https://quran.com/3/97" }
-          ],
-          links: [{ label: "Qur'an 2:183", href: "https://quran.com/2/183" }]
+          openCard: "samina-card",
+          links: []
         }
       ]
     },
     {
-      id: "u5-seerah",
-      title: "Unit 5 — Seerah & character",
-      goal: "Walk with the Prophet ﷺ — biography seed and akhlaq (Madinah Seerah · Islamic values).",
+      id: "u5-adab",
+      title: "Unit 5 — Adab and character",
+      goal: "Good manners are half of faith in practice.",
       lessons: [
         {
           id: "u5-l1",
-          title: "Mercy and truthfulness",
-          minutes: 12,
+          title: "Truth, kindness, clean tongue",
+          minutes: 10,
           points: [
-            "His character was the Qur'an in action — honesty, patience, mercy.",
-            "Junior practice: one true word, one kind act daily.",
-            "Send salawat when he is mentioned."
+            "A Muslim's tongue and hands do not harm others.",
+            "Smile, greet with salam, keep promises.",
+            "Junior deed: one kind word today."
           ],
-          ayah: { ref: "Qur'an 68:4", en: "And you are truly of a magnificent character." },
-          deepLearn: [
-            { label: "Qur'an 68:4", href: "https://quran.com/68/4" },
-            { label: "Qur'an 33:21", href: "https://quran.com/33/21" }
-          ],
-          links: [{ label: "Qur'an 68:4", href: "https://quran.com/68/4" }]
+          openCard: "creation-tongue-reflection",
+          links: []
         },
         {
           id: "u5-l2",
-          title: "Makkan patience · Madinan community",
-          minutes: 12,
+          title: "Parents and teachers",
+          minutes: 8,
           points: [
-            "Early Muslims faced hardship with patience in Makkah.",
-            "In Madinah, brotherhood and justice shaped the community.",
-            "Study seerah with verified books and teachers — not random clips alone."
+            "Honour parents — a major path to Allah's pleasure.",
+            "Respect teachers of beneficial knowledge.",
+            "Ask with adab; listen more than you speak."
           ],
-          deepLearn: [
-            { label: "Qur'an 9:40 (cave)", href: "https://quran.com/9/40" },
-            { label: "Yaqeen — Seerah resources", href: "https://yaqeeninstitute.org/" }
-          ],
-          links: [{ label: "Qur'an 9:40", href: "https://quran.com/9/40" }]
+          links: [{ label: "Qur'an 17:23", href: "https://quran.com/17/23" }]
         }
       ]
     },
     {
-      id: "u6-usul-seed",
-      title: "Unit 6 — How rulings are approached (Usul seed)",
-      goal: "Respect the method — intro to sources (Madinah Usul intro · Azhar usul awareness).",
+      id: "u6-hereafter",
+      title: "Unit 6 — Remember the meeting with Allah",
+      goal: "Live today ready for the long stay.",
       lessons: [
         {
           id: "u6-l1",
-          title: "Qur'an and Sunnah as sources",
-          minutes: 12,
-          points: [
-            "Primary sources: Book of Allah and Sunnah of His Messenger ﷺ.",
-            "Scholars use principles (usul) to understand texts — you are beginning that respect.",
-            "App modules never replace a mufti or local scholar for personal rulings."
-          ],
-          ayah: { ref: "Qur'an 4:59", en: "If you disagree, refer it to Allah and the Messenger…" },
-          deepLearn: [
-            { label: "Qur'an 4:59", href: "https://quran.com/4/59" },
-            { label: "SeekersGuidance — methodology", href: "https://seekersguidance.org/" }
-          ],
-          links: [{ label: "Qur'an 4:59", href: "https://quran.com/4/59" }]
-        },
-        {
-          id: "u6-l2",
-          title: "Adab of seeking knowledge",
+          title: "Death is a door — hope and work",
           minutes: 10,
           points: [
-            "Sincerity, humility, verifying sources, and patience.",
-            "Prefer sequential learning — as in classical faculties.",
-            "Educational disclaimer on every step of this journey."
+            "Everyone will taste death; the grave is the first station.",
+            "Send light ahead with small sincere deeds.",
+            "Junior tone: hope and responsibility, not despair."
           ],
-          ayah: { ref: "Qur'an 20:114", en: "My Lord, increase me in knowledge." },
-          deepLearn: [
-            { label: "Qur'an 20:114", href: "https://quran.com/20/114" },
-            { label: "Qur'an 39:9", href: "https://quran.com/39/9" }
-          ],
-          links: [{ label: "Qur'an 20:114", href: "https://quran.com/20/114" }]
+          openCard: "grave-path-card",
+          links: [{ label: "Qur'an 67:2", href: "https://quran.com/67/2" }]
         }
       ]
     }
@@ -410,7 +286,7 @@
     card.setAttribute("data-curriculum-exclusive", "1");
     card.innerHTML =
       '<h2 class="card-title">Junior curriculum — Phase 1</h2>' +
-      '<p class="card-lead">One module at a time. Answer a short reflection pause to open the next section. Finish all modules, then pass the phase quiz to advance. Educational only.</p>' +
+      '<p class="card-lead">One module at a time. Answer a short spark quiz to unlock the next. Finish all modules, then pass the phase quiz to advance. Educational only.</p>' +
       '<div id="junior-curriculum-progress" class="junior-progress"></div>' +
       '<div id="junior-curriculum-body" class="junior-body"></div>';
     var host =
@@ -427,22 +303,6 @@
     }
     return card;
   }
-
-  
-    function deepLearnHtml(lesson) {
-      var dl = lesson.deepLearn || lesson.links || [];
-      if (!dl || !dl.length) return "";
-      var h = '<div class="junior-deep" style="margin-top:.5rem;padding:.5rem .65rem;border-radius:10px;border:1px dashed rgba(224,197,106,.35);background:rgba(13,79,60,.12)">';
-      h += '<div style="font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#d4b45a;margin-bottom:.35rem">Deep learning · primary sources</div>';
-      h += '<ul style="margin:0;padding-left:1.1rem;font-size:.8rem;line-height:1.45">';
-      dl.forEach(function (L) {
-        if (!L || !L.href) return;
-        h += '<li><a href="' + String(L.href).replace(/"/g, "") + '" target="_blank" rel="noopener noreferrer">' +
-          String(L.label || L.href) + '</a></li>';
-      });
-      h += '</ul><p style="margin:.4rem 0 0;font-size:.72rem;opacity:.75">Educational only — not a fatwa. Confirm with a qualified teacher.</p></div>';
-      return h;
-    }
 
   function render() {
     ensureCard();
@@ -468,7 +328,7 @@
       pct +
       "%</span>" +
       (allComplete()
-        ? '<button type="button" class="junior-phase-quiz-btn" id="junior-open-phase-quiz">Phase quiz — open next section phase</button>'
+        ? '<button type="button" class="junior-phase-quiz-btn" id="junior-open-phase-quiz">Phase quiz — unlock next phase</button>'
         : '<span class="junior-lock-hint">Complete modules in order. Next phase stays locked until all are checked and you pass the quiz.</span>');
 
     var html = "";
@@ -525,7 +385,6 @@
           les.ayah.en +
           "</blockquote>";
       }
-      html += deepLearnHtml(les);
       if (les.video) {
         var v = les.video;
         var src = v.list
@@ -563,7 +422,7 @@
         html +=
           '<button type="button" class="mv-chip junior-done-btn junior-spark-btn" data-spark="' +
           les.id +
-          '">✦ Reflect to continue — open next section</button>';
+          '">✦ Prove it — unlock next</button>';
       } else {
         html += '<span class="junior-done-label">Completed \u2713</span>';
       }
@@ -728,16 +587,17 @@
 
   function boot() {
     mountBoost();
-    setTimeout(mountBoost, 500);
+    setTimeout(mountBoost, 300);
+    setTimeout(mountBoost, 1200);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
   g.addEventListener("clarity-vault-ready", function () { setTimeout(boot, 50); });
   g.addEventListener("clarity-path-changed", function () {
-    setTimeout(mountBoost, 120);
+    setTimeout(mountBoost, 80);
   });
   document.addEventListener("clarity-rrra-change", function () {
-    setTimeout(mountBoost, 120);
+    setTimeout(mountBoost, 60);
   });
 
   g.ClarityJuniorCurriculum = {
