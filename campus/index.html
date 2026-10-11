@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Clarity University · Journey Map</title>
-<meta name="description" content="Clarity University journey map — Seeker to Da'i. Educational only. Not a fatwa or degree."/>
+<meta name="description" content="Clarity University — Seeker to Da'i. Sequential modules. Educational only. Not a fatwa or degree."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
 <style>
 :root{--bg:#070c0a;--gold:#e0c56a;--teal:#1fa67a;--text:#eaf3ee;--muted:rgba(234,243,238,.72);--line:rgba(224,197,106,.28)}
@@ -21,13 +21,15 @@ body{background:radial-gradient(1100px 500px at 50% -8%,rgba(31,166,122,.14),tra
 .pills{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 0 .8rem}
 .pills a{font-size:.74rem;font-weight:650;padding:.38rem .75rem;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.28);color:#f3e6c0;text-decoration:none}
 .pills a.here{background:rgba(224,197,106,.2);border-color:var(--gold)}
-.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.6rem 0 1rem}
-@media(max-width:520px){.phase-grid{grid-template-columns:1fr}}
-.phase{padding:.85rem .9rem;border-radius:16px;border:1px solid var(--line);background:rgba(16,24,20,.92);text-decoration:none;color:var(--text);display:block}
-.phase:hover{border-color:rgba(224,197,106,.5)}
-.phase strong{display:block;color:#f3e6c0;font-size:.95rem;margin-bottom:.2rem}
-.phase span{font-size:.74rem;color:var(--muted);line-height:1.35}
-.note{margin:1rem 0 0;padding:.75rem .9rem;border-radius:12px;border:1px solid var(--line);font-size:.76rem;color:var(--muted);background:rgba(0,0,0,.2);text-align:center}
+h1{text-align:center;font-size:1.2rem;color:#f3e6c0;margin:.3rem 0 .7rem;font-weight:800}
+.phases{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin:0 0 1rem}
+@media(max-width:520px){.phases{grid-template-columns:1fr}}
+.phase{display:block;padding:.9rem 1rem;border-radius:16px;border:1px solid var(--line);background:linear-gradient(165deg,rgba(16,24,20,.95),rgba(10,16,13,.98));text-decoration:none;color:var(--text);transition:border-color .15s,transform .15s}
+.phase:hover{border-color:rgba(224,197,106,.5);transform:translateY(-2px)}
+.phase .num{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.phase strong{display:block;color:#f3e6c0;font-size:.98rem;margin:.15rem 0 .25rem}
+.phase span{font-size:.75rem;color:var(--muted);line-height:1.4}
+.note{margin:1rem 0 0;padding:.8rem 1rem;border-radius:12px;border:1px solid var(--line);font-size:.76rem;line-height:1.45;color:var(--muted);background:rgba(0,0,0,.22);text-align:center}
 .note a{color:var(--gold)}
 .foot{text-align:center;font-size:.68rem;color:var(--muted);padding:1rem}
 </style>
@@ -49,34 +51,40 @@ body{background:radial-gradient(1100px 500px at 50% -8%,rgba(31,166,122,.14),tra
     <a href="/journey/">Journey</a>
     <a href="/charter/">Charter</a>
   </nav>
-  <h1 style="text-align:center;font-size:1.15rem;color:#f3e6c0;margin:.2rem 0 .6rem">Journey Map</h1>
-  <div class="phase-grid">
+  <h1>Journey Map</h1>
+  <div class="phases">
     <a class="phase" href="/campus/desk/">
-      <strong>1 · Junior (Seeker)</strong>
-      <span>Belief foundations. One module at a time. Spark quiz unlocks the next.</span>
+      <span class="num">Phase 1</span>
+      <strong>Junior · Seeker</strong>
+      <span>Belief foundations. One module open. Spark quiz unlocks the next. Finish all, then phase quiz.</span>
     </a>
     <a class="phase" href="/campus/desk/">
-      <strong>2 · New Muslim</strong>
-      <span>Purification and prayer practice. Unlocks after Junior phase quiz.</span>
+      <span class="num">Phase 2</span>
+      <strong>New Muslim</strong>
+      <span>Purification and prayer practice. Unlocks after the Junior phase quiz.</span>
     </a>
     <a class="phase" href="/campus/desk/">
-      <strong>3 · Daily</strong>
+      <span class="num">Phase 3</span>
+      <strong>Daily</strong>
       <span>Craft and consistency. High-school level daily practice.</span>
     </a>
     <a class="phase" href="/campus/desk/">
-      <strong>4 · Da'i</strong>
+      <span class="num">Phase 4</span>
+      <strong>Da'i</strong>
       <span>Transmit with adab. University-level transmission.</span>
     </a>
     <a class="phase" href="/lab/">
+      <span class="num">Lab</span>
       <strong>Craft Laboratory</strong>
-      <span>Calligraphy, Tajweed, Media, Research, Design ateliers.</span>
+      <span>Calligraphy, Tajweed, Media, Research, and Design ateliers.</span>
     </a>
     <a class="phase" href="/vault/">
+      <span class="num">Vault</span>
       <strong>Amana Vault</strong>
       <span>Private notes. Everything stays on this device.</span>
     </a>
   </div>
-  <p class="note">Foundations → Practice → Consistency → Transmission. Classical study order as a gentle map — not affiliated with Al-Azhar, Madinah University, or any degree program. <a href="/charter/">Charter</a></p>
+  <p class="note">Foundations → Practice → Consistency → Transmission. Classical study order as a gentle map — not affiliated with Al-Azhar, Madinah University, or any degree program. <a href="/charter/">Read the Charter</a></p>
 </main>
 <footer class="foot">Educational only — not a fatwa. Verify with Qur'an, Sunnah, and a local scholar.</footer>
 </body>
