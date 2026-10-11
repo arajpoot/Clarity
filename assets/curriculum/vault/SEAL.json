@@ -1,7 +1,7 @@
 {
   "vault": "Clarity University \u2014 Sealed Administrator Block",
   "version": "1.0.0-sealed",
-  "build": "20261010HOUSE",
+  "build": "20261010SEAL",
   "motto": "Foundation sealed \u00b7 form factor isolated \u00b7 upgrades may decorate, not corrupt",
   "disclaimer": "Educational vault only. Integrity checks protect local learning records from accidental overwrite.",
   "entry": "boot.js",
@@ -40,7 +40,21 @@
     "admin/ledger-schema.json": "ef9b83c0c26f8488cbaa4476fa72f407d35347ad663110a9d96c34a08591ded8",
     "admin/diploma-templates.json": "1cbea632d6a609d7a6b7b90374f6255bdea17c19fcbbdc4d6f18f7dd5973b743",
     "admin/README.md": "4e6d2c37a2e40a8bcb003fcf0a5cfea4c4898d315783b2a15f510823b41bcf39",
-    "foundation/office-controller.js": "a1da5488c0f41c9a97d50eb14a1afe0f3b8fc2550f2e5f64b8d5881445baf4f7"
+    "foundation/office-controller.js": "a1da5488c0f41c9a97d50eb14a1afe0f3b8fc2550f2e5f64b8d5881445baf4f7",
+    "admin/chancellor/chancellor-office.json": "8011fe8097bd339a1cede46f92a4912be9cb6ad46fdf3af1bc976bf0f3356539",
+    "admin/faculty/faculty-roster.json": "ce10837f0f65d52f3810fb53c9bdfe39d5d6d5fb2c172b7954178de8bcc0fd66",
+    "admin/faculty/help-book.json": "5d217340c8214052c2c9b6d3b19a73dfee45dc92169fc67d2ca46db99b6495fd",
+    "admin/it/it-roster.json": "845911f6993dbfb41c850ddb01b84d8b5f2fdc60aae8b4a437640c6dfd593c3d",
+    "admin/it/upgrade-queue.json": "4c44bf18cac7753f55113529cf61855bb62fae9e554a3481d3eb578e5639d53e",
+    "admin/lab/lab-manifest.json": "2ed499857cb6538e09a0c977376b90e8a1c2a9f85bf8f475b39a8150b4590843",
+    "admin/lab/lab-modules.json": "2614a38da4ac3405b16cd37d59ecfa3096ba4141408ca5a23e93bd4428475332",
+    "admin/om/om-roster.json": "06ca53c78666639b0e7873fe72874c99c27e359e1f1ba488d595d7be9c70a941",
+    "admin/registrar/registrar-policy.json": "79120fcc2e463b5900f342d25f4b15a574e68a43d2b54d3537aebb0c39a9b3db",
+    "admin/security/wiring-map.json": "06fcaa38c921fd125bd58611b3734f09fa7a4ecc5114117f681e2dc3cba849e2",
+    "admin/staff/staff-roster.json": "cbb78a4b6836823c860f3d37427aab7a0dd0c0e0f006096e4f14b19ffff5311c",
+    "admin/ux/ux-policy.json": "0b16106f462297affe558233e394d73b2b40e20ef17ef6ece3cafe7acdf44b38",
+    "admin/staff/library/rotation-playbook.json": "1832880bf7216634c8b5d683ff03346c56f6712d840eecec4a31548e69e47573",
+    "admin/staff/library/shelves.json": "cdf36b540a15cfdd09454b2bbeb31de1b87e95598603ec1c352f57119a12444e"
   },
   "freezeApis": [
     "ClarityCurriculumEngine",
