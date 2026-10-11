@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="color-scheme" content="dark"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261010MAP"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261011FINAL"/>
 <style>
 :root {
   --cu-bg:#070c0a; --cu-gold:#e0c56a; --cu-teal:#1fa67a; --cu-text:#eaf3ee;
@@ -83,6 +83,16 @@ body.cu-page{background:
 #amana-btn-have, #amana-btn-back-create, .btn-secondary {
   background:transparent!important;color:var(--cu-gold)!important;border:1px solid rgba(224,197,106,.4)!important;
   border-radius:999px!important;padding:.5rem 1rem!important;font-weight:600!important;cursor:pointer}
+
+/* nav polish FINAL */
+.cu-map-nav{position:sticky;top:0;z-index:300!important;display:flex!important;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem}
+.cu-map-links{display:flex!important;flex-wrap:wrap!important;gap:.35rem!important}
+.cu-map-links a{display:inline-block!important;visibility:visible!important;opacity:1!important;
+  color:#f3e6c0!important;padding:.35rem .65rem!important;border:1px solid rgba(224,197,106,.3)!important;
+  border-radius:999px!important;text-decoration:none!important;font-size:.74rem!important;font-weight:650!important}
+.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.2)!important;border-color:rgba(224,197,106,.55)!important}
+.cu-map-links a:hover{border-color:rgba(224,197,106,.55)!important}
+
 </style>
 
 <title>Journey Map · Clarity University</title>
@@ -91,18 +101,18 @@ body.cu-page{background:
 </head>
 <body class="cu-page">
 <nav class="cu-map-nav" aria-label="Campus map">
-  <a class="cu-map-brand" href="/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010MAP" width="28" height="28" alt=""/>
+  <a class="cu-map-brand" href="https://clarity-dawah.fyi/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011FINAL" width="28" height="28" alt=""/>
     Clarity University
   </a>
-  <div class="cu-map-links"><a href="/">Arrival</a><a href="/campus/">Campus</a><a href="/lab/">Lab</a><a href="/journey/" aria-current="page">Journey</a><a href="/vault/">Amana Vault</a></div>
+  <div class="cu-map-links"><a href="https://clarity-dawah.fyi/">Arrival</a><a href="https://clarity-dawah.fyi/campus/">Campus</a><a href="https://clarity-dawah.fyi/journey/" aria-current="page">Journey</a><a href="https://clarity-dawah.fyi/lab/">Lab</a><a href="https://clarity-dawah.fyi/vault/">Vault</a><a href="https://clarity-dawah.fyi/charter/">Charter</a></div>
 </nav>
 <header class="cu-banner" role="banner">
   <div class="cu-banner-bg" aria-hidden="true"></div>
   <div class="cu-banner-arc" aria-hidden="true"></div>
   <div class="cu-banner-inner">
     <div class="cu-banner-seal">
-      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010MAP" width="66" height="66" alt="Clarity University seal"/>
+      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261011FINAL" width="66" height="66" alt="Clarity University seal"/>
     </div>
     <div class="cu-banner-copy">
       <div class="cu-banner-kicker">Nur Path · Wayfinding</div>
@@ -114,15 +124,15 @@ body.cu-page{background:
 <main class="cu-page-main">
   <div class="cu-stations" style="grid-template-columns:1fr;gap:.65rem">
     <a class="cu-station" href="/" style="text-decoration:none"><span class="cu-station-ico">✦</span><span class="cu-station-name">Arrival</span><span class="cu-station-sub">Companion · Qur’an · daily doors</span></a>
-    <a class="cu-station" href="/campus/" style="text-decoration:none"><span class="cu-station-ico">🎓</span><span class="cu-station-name">Campus</span><span class="cu-station-sub">Junior desk · Faculty · Security · IT</span></a>
-    <a class="cu-station" href="/lab/" style="text-decoration:none"><span class="cu-station-ico">🧪</span><span class="cu-station-name">Lab</span><span class="cu-station-sub">Calligraphy · Tajweed · media · research</span></a>
-    <a class="cu-station" href="/vault/" style="text-decoration:none"><span class="cu-station-ico">🏦</span><span class="cu-station-name">Amana Vault</span><span class="cu-station-sub">On-device encrypted notes</span></a>
+    <a class="cu-station" href="https://clarity-dawah.fyi/campus/" style="text-decoration:none"><span class="cu-station-ico">🎓</span><span class="cu-station-name">Campus</span><span class="cu-station-sub">Junior desk · Faculty · Security · IT</span></a>
+    <a class="cu-station" href="https://clarity-dawah.fyi/lab/" style="text-decoration:none"><span class="cu-station-ico">🧪</span><span class="cu-station-name">Lab</span><span class="cu-station-sub">Calligraphy · Tajweed · media · research</span></a>
+    <a class="cu-station" href="https://clarity-dawah.fyi/vault/" style="text-decoration:none"><span class="cu-station-ico">🏦</span><span class="cu-station-name">Amana Vault</span><span class="cu-station-sub">On-device encrypted notes</span></a>
   </div>
   <section class="cu-panel">
     <h2>How to walk the path</h2>
     <p>1. Arrive and settle. 2. Study on Campus one module at a time. 3. Practice craft in the Lab. 4. Keep private notes in the Vault. Progress on Campus stays in this browser.</p>
   </section>
-  <p class="cu-foot">Clarity University · educational only — not a fatwa</p>
+  <p class="cu-foot"><a href="https://clarity-dawah.fyi/">Arrival</a> · <a href="https://clarity-dawah.fyi/campus/">Campus</a> · <a href="https://clarity-dawah.fyi/journey/">Journey</a> · <a href="https://clarity-dawah.fyi/lab/">Lab</a> · <a href="https://clarity-dawah.fyi/vault/">Vault</a> · <a href="https://clarity-dawah.fyi/charter/">Charter</a></p>
 </main>
 </body>
 </html>
