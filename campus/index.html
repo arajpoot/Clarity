@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-campus-page="campus">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="color-scheme" content="dark"/>
+<title>Campus · Clarity University</title>
+<meta name="description" content="Clarity University campus — learning stage, faculty, security, IT. Educational only."/>
+<link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261010HOUSE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/campus-shell.css?v=20261010HOUSE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/faculty/faculty.css?v=20261010HOUSE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/security/security.css?v=20261010HOUSE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/it/it.css?v=20261010HOUSE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/brand/brand-insignia.css?v=20261010HOUSE"/>
+<style>
+:root {
+  --cu-bg:#070c0a; --cu-gold:#e0c56a; --cu-teal:#1fa67a; --cu-text:#eaf3ee;
+  --cu-muted:rgba(234,243,238,.72); --cu-line:rgba(224,197,106,.28); --cu-max:58rem;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--cu-bg)!important;color:var(--cu-text)!important;font-family:system-ui,-apple-system,sans-serif;min-height:100%}
+body.cu-page{background:
+  radial-gradient(1100px 480px at 50% -8%,rgba(31,166,122,.16),transparent 55%),
+  radial-gradient(700px 360px at 100% 15%,rgba(224,197,106,.07),transparent 50%),
+  var(--cu-bg)!important}
+
+.cu-map-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;
+  padding:.45rem .9rem;background:rgba(8,16,14,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--cu-line);position:sticky;top:0;z-index:100}
+.cu-map-brand{display:inline-flex;align-items:center;gap:.45rem;color:#f3e6c0;font-weight:800;text-decoration:none;font-size:.92rem}
+.cu-map-brand img{width:1.55rem;height:1.55rem;border-radius:50%;box-shadow:0 0 12px rgba(31,166,122,.35)}
+.cu-map-links{display:flex;flex-wrap:wrap;gap:.3rem}
+.cu-map-links a{color:var(--cu-muted);text-decoration:none;font-size:.74rem;font-weight:600;padding:.3rem .6rem;
+  border-radius:999px;border:1px solid rgba(255,255,255,.1)}
+.cu-map-links a[aria-current="page"]{background:rgba(224,197,106,.14);color:#f3e6c0;border-color:rgba(224,197,106,.4)}
+
+/* Banner + insignia */
+.cu-banner{position:relative;overflow:hidden;border-bottom:1px solid var(--cu-line);min-height:8.5rem}
+.cu-banner-bg{position:absolute;inset:0;
+  background:linear-gradient(115deg,rgba(7,12,10,.82),rgba(10,28,22,.55)),
+  url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg") center 38%/cover no-repeat;
+  filter:saturate(.85)}
+.cu-banner-arc{position:absolute;left:50%;top:15%;width:150%;height:200%;transform:translateX(-50%);
+  border:2px solid rgba(224,197,106,.18);border-radius:50%;pointer-events:none;
+  box-shadow:0 0 50px rgba(224,197,106,.06) inset}
+.cu-banner-inner{position:relative;z-index:1;max-width:var(--cu-max);margin:0 auto;padding:1.2rem 1rem 1.35rem;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;text-align:left}
+.cu-banner-seal{flex:0 0 auto;width:4.25rem;height:4.25rem;border-radius:50%;
+  box-shadow:0 0 0 2px rgba(224,197,106,.35),0 0 28px rgba(31,166,122,.25);
+  background:rgba(8,16,14,.5)}
+.cu-banner-seal img{width:100%;height:100%;display:block;border-radius:50%}
+.cu-banner-copy{flex:1 1 14rem;min-width:0;text-align:center}
+@media(min-width:560px){.cu-banner-copy{text-align:left}}
+.cu-banner-kicker{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(224,197,106,.95);font-weight:700;margin-bottom:.3rem}
+.cu-banner h1{margin:0 0 .3rem;font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:800;color:#f7efd6;
+  text-shadow:0 2px 16px rgba(0,0,0,.4)}
+.cu-banner p{margin:0;font-size:.86rem;line-height:1.45;color:rgba(234,243,238,.88);max-width:28rem}
+
+.cu-page-main{max-width:var(--cu-max);margin:0 auto;padding:1rem 1rem 4.5rem}
+
+/* Wing strip — Faculty · Security · IT */
+.cu-wings{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.5rem;margin:0 0 1rem;
+}
+@media(max-width:520px){.cu-wings{grid-template-columns:1fr}}
+.cu-wing{
+  border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:.75rem .8rem;cursor:pointer;
+  background:linear-gradient(160deg,rgba(20,32,28,.95),rgba(10,18,14,.92));
+  color:var(--cu-text);text-align:left;font:inherit;transition:transform .15s,border-color .2s,box-shadow .2s;
+}
+.cu-wing:hover{transform:translateY(-2px);border-color:rgba(224,197,106,.4);
+  box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.cu-wing-ico{font-size:1.1rem;margin-bottom:.2rem}
+.cu-wing-name{font-weight:800;font-size:.88rem;color:#f3e6c0;display:block}
+.cu-wing-sub{font-size:.72rem;color:var(--cu-muted);line-height:1.35;margin-top:.15rem;display:block}
+.cu-wing[data-wing="faculty"]{border-color:rgba(31,166,122,.25)}
+.cu-wing[data-wing="security"]{border-color:rgba(168,212,240,.22)}
+.cu-wing[data-wing="it"]{border-color:rgba(224,197,106,.22)}
+
+/* Phase plaque restyle */
+#clarity-phase-plaque-rail,.clarity-phase-plaque-rail{
+  position:relative!important;top:auto!important;z-index:5!important;margin:0 0 1rem!important;
+  padding:0!important;border:none!important;background:transparent!important;box-shadow:none!important}
+.cpp-inner{
+  max-width:none!important;margin:0!important;padding:1rem 1.1rem 1.15rem!important;border-radius:18px!important;
+  border:1px solid var(--cu-line)!important;
+  background:linear-gradient(145deg,rgba(22,36,30,.98),rgba(12,22,18,.96))!important;
+  box-shadow:0 16px 48px rgba(0,0,0,.32)!important;position:relative;overflow:hidden}
+.cpp-how{
+  background:rgba(31,166,122,.08)!important;border:1px solid rgba(31,166,122,.22)!important;
+  border-radius:14px!important;padding:.85rem 1rem!important;margin:0 0 .85rem!important;
+  color:var(--cu-text)!important;font-size:.86rem!important;line-height:1.5!important}
+.cpp-how strong{color:var(--cu-gold)!important;font-size:.72rem!important;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.35rem}
+.cpp-how ol{margin:.15rem 0 0 1.1rem!important;padding:0!important;color:var(--cu-muted)!important}
+.cpp-how li{margin:.18rem 0;color:inherit!important}
+.cpp-chips{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem!important;margin:.45rem 0!important}
+@media(max-width:520px){.cpp-chips{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cpp-chip{
+  display:flex!important;flex-direction:column;align-items:flex-start;gap:.12rem;
+  background:rgba(255,255,255,.04)!important;border:1px solid rgba(255,255,255,.1)!important;
+  color:var(--cu-text)!important;border-radius:12px!important;padding:.55rem .6rem!important;font-size:.76rem!important}
+.cpp-chip.cpp-active{
+  border-color:rgba(224,197,106,.55)!important;
+  background:linear-gradient(160deg,rgba(224,197,106,.16),rgba(31,166,122,.1))!important;color:#f7efd6!important}
+.cpp-chip.cpp-locked{opacity:.5}
+.cpp-status{font-size:.8rem!important;color:var(--cu-muted)!important;margin-top:.35rem!important;
+  padding-top:.45rem;border-top:1px solid rgba(255,255,255,.06)}
+
+.campus-stage-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-gold);font-weight:700;margin:0 0 .55rem}
+#junior-curriculum-card,#junior-high-curriculum-card,.curriculum-phase-card{
+  display:block!important;background:linear-gradient(165deg,rgba(20,32,26,.98),rgba(12,20,16,.96))!important;
+  color:var(--cu-text)!important;border:1px solid var(--cu-line)!important;border-radius:18px!important;
+  padding:1.15rem 1.2rem!important;margin:0 0 1.35rem!important;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+#junior-curriculum-card .card-title,#junior-curriculum-card h2{color:var(--cu-gold)!important;font-size:1.18rem!important;font-weight:800!important}
+#junior-curriculum-card p,.junior-body{color:var(--cu-muted)!important}
+#junior-curriculum-card h3{color:#c8e6d6!important}
+#junior-curriculum-card .junior-module,#junior-curriculum-card article{
+  background:rgba(0,0,0,.28)!important;border:1px solid rgba(224,197,106,.2)!important;border-radius:14px!important;color:var(--cu-text)!important}
+#junior-curriculum-card a{color:#e8c47a!important}
+#junior-curriculum-card button{
+  color:#0c1410!important;background:linear-gradient(135deg,#c9a227,#e8c47a)!important;border:none!important;
+  border-radius:999px!important;font-weight:700!important}
+
+.cu-foot{text-align:center;font-size:.72rem;color:var(--cu-muted);padding:1.5rem .5rem}
+.cu-foot a{color:var(--cu-gold);text-decoration:none}
+.clarity-engine-hud{display:none!important}
+#clarity-name-plaque-rail,.cnp-inner{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .75rem}
+
+/* Wing modals always above campus chrome */
+.clarity-security-modal.show,
+.clarity-it-modal.show,
+.clarity-faculty-modal.show,
+#clarity-security-modal.show,
+#clarity-it-modal.show {
+  display: flex !important;
+  z-index: 200000 !important;
+}
+#clarity-phase-plaque-rail {
+  position: relative !important;
+  top: auto !important;
+  z-index: 5 !important;
+}
+</style>
+</head>
+<body class="cu-page" data-campus-page="campus" data-campus-stage="learn">
+<nav class="cu-map-nav" aria-label="Campus map">
+  <a class="cu-map-brand" href="/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010HOUSE" width="28" height="28" alt=""/>
+    Clarity University
+  </a>
+  <div class="cu-map-links">
+    <a href="/">Arrival</a>
+    <a href="/campus/" aria-current="page">Campus</a>
+    <a href="/lab/">Lab</a>
+    <a href="/journey/">Journey</a>
+    <a href="/vault/">Amana Vault</a>
+  </div>
+</nav>
+
+<header class="cu-banner" role="banner">
+  <div class="cu-banner-bg" aria-hidden="true"></div>
+  <div class="cu-banner-arc" aria-hidden="true"></div>
+  <div class="cu-banner-inner">
+    <div class="cu-banner-seal">
+      <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg?v=20261010HOUSE" width="68" height="68" alt="Clarity University seal — crescent"/>
+    </div>
+    <div class="cu-banner-copy">
+      <div class="cu-banner-kicker">Nur Path · Phase 4 campus</div>
+      <h1>Learning Stage</h1>
+      <p>One module at a time. Faculty · Security · IT stand with the desk. Progress stays on this device.</p>
+    </div>
+  </div>
+</header>
+
+<main class="cu-page-main">
+  <section class="cu-wings" aria-label="Campus wings">
+    <button type="button" class="cu-wing" data-wing="chancellor" id="cu-wing-chancellor">
+      <span class="cu-wing-ico" aria-hidden="true">⚜</span>
+      <span class="cu-wing-name">Chancellor</span>
+      <span class="cu-wing-sub">State of the House</span>
+    </button>
+    <button type="button" class="cu-wing" data-wing="faculty" id="cu-wing-faculty">
+      <span class="cu-wing-ico" aria-hidden="true">🎓</span>
+      <span class="cu-wing-name">Faculty</span>
+      <span class="cu-wing-sub">Teachers · phase handoff · countersign</span>
+    </button>
+    <button type="button" class="cu-wing" data-wing="registrar" id="cu-wing-registrar">
+      <span class="cu-wing-ico" aria-hidden="true">📋</span>
+      <span class="cu-wing-name">Registrar</span>
+      <span class="cu-wing-sub">Resume · redo · diplomas</span>
+    </button>
+    <button type="button" class="cu-wing" data-wing="lab" id="cu-wing-lab">
+      <span class="cu-wing-ico" aria-hidden="true">✒️</span>
+      <span class="cu-wing-name">Lab</span>
+      <span class="cu-wing-sub">Craft &amp; calligraphy</span>
+    </button>
+    <button type="button" class="cu-wing" data-wing="security" id="cu-wing-security">
+      <span class="cu-wing-ico" aria-hidden="true">◎</span>
+      <span class="cu-wing-name">Security</span>
+      <span class="cu-wing-sub">Wiring auditors · pipe integrity</span>
+    </button>
+    <button type="button" class="cu-wing" data-wing="it" id="cu-wing-it">
+      <span class="cu-wing-ico" aria-hidden="true">⚙</span>
+      <span class="cu-wing-name">IT</span>
+      <span class="cu-wing-sub">Bridge scan · sandbox · night watch</span>
+    </button>
+  </section>
+
+  <div class="cu-journey-cta" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.5rem;margin:0 0 1.1rem">
+    <a href="/journey/" style="text-decoration:none;border:1px solid rgba(224,197,106,.35);border-radius:14px;padding:.8rem .9rem;background:linear-gradient(160deg,rgba(31,166,122,.18),rgba(10,18,14,.92));color:#f3e6c0">
+      <strong style="display:block;font-size:.9rem">Journey path</strong>
+      <span style="font-size:.72rem;opacity:.8">Seeker → New Muslim → Daily → Daʿi</span>
+    </a>
+    <a href="/#clarity-campus-stage" style="text-decoration:none;border:1px solid rgba(31,166,122,.28);border-radius:14px;padding:.8rem .9rem;background:rgba(20,32,28,.9);color:#eaf3ee">
+      <strong style="display:block;font-size:.9rem">Learning desk</strong>
+      <span style="font-size:.72rem;opacity:.8">Modules on the main companion</span>
+    </a>
+    <a href="/lab/" style="text-decoration:none;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.8rem .9rem;background:rgba(20,32,28,.9);color:#eaf3ee">
+      <strong style="display:block;font-size:.9rem">Craft Lab</strong>
+      <span style="font-size:.72rem;opacity:.8">Calligraphy &amp; practice</span>
+    </a>
+  </div>
+
+  <div id="clarity-name-plaque-rail" class="cnp-inner" aria-label="Learner"></div>
+  <p class="campus-stage-label">Phase desk</p>
+  <div id="clarity-campus-stage">
+    <div id="campus-stage-body">
+      <p id="campus-loading-hint" style="opacity:.75;font-size:.88rem;color:rgba(234,243,238,.7)">Loading Junior desk…</p>
+    </div>
+  </div>
+
+  <p class="cu-foot"><a href="/">Full companion</a> · <a href="/lab/">Lab</a> · <a href="/vault/">Vault</a><br/>Educational only — not a fatwa</p>
+</main>
+
+<script src="/assets/curriculum/vault/foundation/engine.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/foundation/spark-quiz.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/foundation/diplomas.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/foundation/phase-plaque.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/foundation/curriculum-controller.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/foundation/college-seeker.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/foundation/college-practice.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/foundation/college-consistency.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/foundation/college-transmission.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/admin/security/security-auditors-v1.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/admin/registrar/registrar-controller-v1.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/admin/it/it-controller-v1.js?v=20261010HOUSE"></script>
+<script src="/assets/curriculum/vault/admin/workers-ops-pack-v1.js?v=20261010HOUSE" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261010HOUSE" defer></script>
+<script src="/assets/clarity-campus-rescue-v1.js?v=20261010HOUSE" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-wings-bridge-v1.js?v=20261010HOUSE" defer></script>
+<script>
+(function () {
+  try { document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
+
+  function openWing(name) {
+    try {
+      var api = {
+        faculty: window.ClarityFaculty,
+        security: window.ClaritySecurity,
+        it: window.ClarityIT,
+        chancellor: window.ClarityChancellor,
+        registrar: window.ClarityRegistrar,
+        lab: window.ClarityLab,
+        om: window.ClarityOM
+      }[name];
+      if (api) {
+        var fn = api.openDesk || api.open || api.scan || api.scanBridge || api.render;
+        if (typeof fn === "function") { fn.call(api); return; }
+      }
+      if (window.ClarityCampusWings && ClarityCampusWings.open) {
+        if (ClarityCampusWings.open(name)) return;
+      }
+      alert((name || "Wing") + " is still loading — wait a moment or open Compass on the main app.");
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+  document.querySelectorAll(".cu-wing").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      openWing(btn.getAttribute("data-wing"));
+    });
+  });
+
+  function adopt() {
+    try {
+      if (window.ClarityJuniorCurriculum && ClarityJuniorCurriculum.render) ClarityJuniorCurriculum.render();
+      if (window.ClarityCampus && ClarityCampus.adoptCurriculumCards) ClarityCampus.adoptCurriculumCards();
+    } catch (e) {}
+    var h = document.getElementById("campus-loading-hint");
+    if (h && document.getElementById("junior-curriculum-card")) h.remove();
+    try {
+      var rail = document.getElementById("clarity-phase-plaque-rail");
+      var main = document.querySelector(".cu-page-main");
+      var label = document.querySelector(".campus-stage-label");
+      if (rail && main && label && rail.parentNode !== main) main.insertBefore(rail, label);
+    } catch (e2) {}
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(adopt, 300); setTimeout(adopt, 1000); setTimeout(adopt, 2200);
+    });
+  } else {
+    setTimeout(adopt, 300); setTimeout(adopt, 1000); setTimeout(adopt, 2200);
+  }
+})();
+</script>
+</body>
+</html>
