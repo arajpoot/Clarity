@@ -36,6 +36,10 @@
   }
 
   function shelfTools() {
+    /* LEAN skip: no floating tool shelf on multipage campus */
+    if (document.body && document.body.getAttribute("data-campus-page") === "campus") return;
+    return shelfToolsInner();}
+  function shelfToolsInner() {
     if (document.getElementById("campus-tools-wrap")) return;
     var tools = findToolButtons();
     if (!tools.legacy && !tools.print && !tools.gate) return;
