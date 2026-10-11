@@ -6,19 +6,19 @@
 <title>University Desk · Clarity University</title>
 <meta name="description" content="Clarity University Desk — sequential modules. Educational only. Not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/desk/"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261011DESK"/>
 <style>
 :root{--bg:#070c0a;--gold:#e0c56a;--teal:#1fa67a;--text:#eaf3ee;--muted:rgba(234,243,238,.72);--line:rgba(224,197,106,.28)}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
 body{background:radial-gradient(1000px 400px at 50% -10%,rgba(31,166,122,.1),transparent 50%),var(--bg)}
-/* Banner is first child — sticky, full width, cannot be pushed */
-.banner{position:sticky;top:0;z-index:500;width:100%;display:flex;align-items:center;justify-content:space-between;padding:.5rem .75rem;background:rgba(8,16,14,.97);border-bottom:1px solid var(--line)}
+/* Banner always first and sticky — injected content cannot push it */
+.banner{position:sticky;top:0;z-index:600;width:100%;display:flex;align-items:center;justify-content:space-between;padding:.5rem .75rem;background:rgba(8,16,14,.97);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#f3e6c0}
 .brand img{width:30px;height:30px;border-radius:50%;border:1px solid var(--line)}
 .brand strong{font-size:.95rem;font-weight:800}
 .brand small{display:block;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .main-link{font-size:.72rem;font-weight:700;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--line);background:rgba(224,197,106,.15);color:var(--gold);text-decoration:none}
-/* Full width main */
 .main{width:100%;padding:.6rem .5rem 1.5rem}
 @media(min-width:600px){.main{padding:.75rem 1rem 1.5rem}}
 .pills{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;width:100%;margin:0 0 .55rem}
@@ -27,11 +27,16 @@ body{background:radial-gradient(1000px 400px at 50% -10%,rgba(31,166,122,.1),tra
 .roles{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;width:100%;margin:0 0 .6rem}
 .roles button{font:inherit;font-size:.68rem;font-weight:650;padding:.28rem .6rem;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.32);color:#f3e6c0;cursor:pointer}
 .roles button.on{background:rgba(31,166,122,.35);border-color:var(--teal)}
-.how{width:100%;margin:0 0 .55rem;padding:.65rem .8rem;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.22);font-size:.76rem;line-height:1.4;color:var(--muted)}
-.how strong{color:var(--gold);display:block;margin-bottom:.25rem}
+/* Contain engine-injected phase plaque so it stays inside main flow */
+#clarity-phase-plaque-rail,.clarity-phase-plaque-rail{
+  position:relative!important;top:auto!important;width:100%!important;margin:.4rem 0 .6rem!important;
+  padding:.65rem .8rem!important;border-radius:12px!important;border:1px solid var(--line)!important;
+  background:rgba(0,0,0,.25)!important;font-size:.76rem!important;line-height:1.4!important;z-index:1!important
+}
+#clarity-phase-plaque-rail strong{color:var(--gold)}
 .label{text-align:center;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:.3rem 0 .4rem}
 #clarity-campus-stage,#campus-stage-body{display:block;width:100%;min-height:8rem}
-#junior-curriculum-card{width:100%!important;max-width:none!important;margin:0;padding:.9rem;border-radius:14px;border:1px solid var(--line);background:rgba(16,24,20,.95)}
+#junior-curriculum-card{width:100%!important;max-width:none!important;margin:.3rem 0 1rem!important;padding:.9rem!important;border-radius:14px!important;border:1px solid var(--line)!important;background:rgba(16,24,20,.95)!important}
 .foot{text-align:center;font-size:.66rem;color:var(--muted);padding:.8rem}
 </style>
 </head>
@@ -59,19 +64,30 @@ body{background:radial-gradient(1000px 400px at 50% -10%,rgba(31,166,122,.1),tra
     <button type="button" data-role="om">O&M</button>
     <button type="button" data-role="security">Security</button>
   </div>
-  <div class="how"><strong>How phases work</strong>One module open → spark quiz unlocks next → all complete → phase quiz → next phase. Educational only.</div>
   <p class="label">University Desk</p>
   <div id="clarity-campus-stage"><div id="campus-stage-body"></div></div>
 </main>
 <footer class="foot">Educational only — not a fatwa. Progress stays on this device.</footer>
-<script src="/assets/curriculum/vault/boot.js" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js" defer></script>
+<script src="/assets/curriculum/vault/boot.js?v=20261011DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261011DESK" defer></script>
 <script>
-document.querySelectorAll('#roles button').forEach(function(b){
-  b.addEventListener('click',function(){
-    document.querySelectorAll('#roles button').forEach(function(x){x.classList.remove('on')});
-    b.classList.add('on');
-    try{window.dispatchEvent(new CustomEvent('clarity-role-activate',{detail:{id:b.dataset.role}}));}catch(e){}
+// Keep injected phase plaque inside main, never before banner
+function containPlaque(){
+  var rail = document.getElementById("clarity-phase-plaque-rail");
+  var main = document.querySelector(".main");
+  if (rail && main && rail.parentNode !== main){
+    main.insertBefore(rail, main.querySelector("#clarity-campus-stage"));
+  }
+}
+document.addEventListener("DOMContentLoaded", function(){
+  setTimeout(containPlaque, 400);
+  setTimeout(containPlaque, 1200);
+});
+document.querySelectorAll("#roles button").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll("#roles button").forEach(function(x){x.classList.remove("on")});
+    b.classList.add("on");
+    try{ window.dispatchEvent(new CustomEvent("clarity-role-activate", {detail:{id:b.dataset.role}})); }catch(e){}
   });
 });
 </script>
