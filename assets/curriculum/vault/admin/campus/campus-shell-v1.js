@@ -131,6 +131,10 @@
   }
 
   function adoptCurriculumCards() {
+    try {
+      var r = document.getElementById("campus-rescue-card");
+      if (r && (document.getElementById("junior-curriculum-card") || document.querySelector("#campus-stage-body .junior-module"))) r.remove();
+    } catch (eR) {}
     var stage = ensureStage();
     var body = document.getElementById("campus-stage-body") || stage;
     var ids = [
