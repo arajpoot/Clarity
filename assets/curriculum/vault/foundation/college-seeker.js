@@ -587,17 +587,16 @@
 
   function boot() {
     mountBoost();
-    setTimeout(mountBoost, 300);
-    setTimeout(mountBoost, 1200);
+    setTimeout(mountBoost, 500);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
   g.addEventListener("clarity-vault-ready", function () { setTimeout(boot, 50); });
   g.addEventListener("clarity-path-changed", function () {
-    setTimeout(mountBoost, 80);
+    setTimeout(mountBoost, 120);
   });
   document.addEventListener("clarity-rrra-change", function () {
-    setTimeout(mountBoost, 60);
+    setTimeout(mountBoost, 120);
   });
 
   g.ClarityJuniorCurriculum = {
