@@ -90,6 +90,19 @@ button.cu-card{width:100%;text-align:left;font:inherit;cursor:pointer}
 </section>
 <div id="clarity-phase-plaque-host"></div>
 <div id="clarity-name-plaque-rail" class="cnp-inner" aria-label="Learner"></div>
+
+<section class="cu-stage" id="cu-path-enroll" style="margin-bottom:1.25rem">
+  <p class="cu-stage-label">Enroll · choose your starting college track</p>
+  <p style="font-size:.85rem;opacity:.8;margin:0 0 .75rem">Educational only. Stored on this device. You can change path later — not a fatwa path.</p>
+  <div class="cu-grid" style="grid-template-columns:1fr">
+    <button type="button" class="cu-card" data-enroll="seeker"><strong>1 · Seeker · Foundations</strong><span>Tawhid, Qur'an, Hadith, worship map — College of Usul</span></button>
+    <button type="button" class="cu-card" data-enroll="new_muslim"><strong>2 · New Muslim · Practice</strong><span>Taharah, salah, confidence — College of Ibadah</span></button>
+    <button type="button" class="cu-card" data-enroll="practicing"><strong>3 · Daily · Consistency</strong><span>Tajweed, wird, steady worship — College of Itqan</span></button>
+    <button type="button" class="cu-card" data-enroll="dai"><strong>4 · Daʿi · Transmission</strong><span>Ethics, sources, service — College of Dawah</span></button>
+  </div>
+  <p style="font-size:.72rem;opacity:.65;margin:.65rem 0 0">Progress unlocks in order on the learning stage below. Registrar tools open from the halls.</p>
+</section>
+
 <section class="cu-stage" id="cu-stage" aria-label="Learning stage">
   <p class="cu-stage-label">Learning stage · Phase desk</p>
   <div id="campus-stage-body">
@@ -142,6 +155,29 @@ button.cu-card{width:100%;text-align:left;font:inherit;cursor:pointer}
     lit("bc-staff",!!(window.ClarityStaffOps||window.ClarityNurArsenal));
   },2000);
 })();
+</script>
+
+
+<script>
+document.querySelectorAll("[data-enroll]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var t = btn.getAttribute("data-enroll");
+    try {
+      localStorage.setItem("clarity_path_focus", t === "practicing" ? "practicing" : t);
+      localStorage.setItem("clarity_committed_path", t === "practicing" ? "practicing" : t);
+      if (t === "seeker") localStorage.setItem("clarity_curriculum_phase_v1", "1");
+      if (t === "new_muslim") localStorage.setItem("clarity_curriculum_phase_v1", "2");
+      if (t === "practicing") localStorage.setItem("clarity_curriculum_phase_v1", "3");
+      if (t === "dai") localStorage.setItem("clarity_curriculum_phase_v1", "4");
+    } catch (e) {}
+    try {
+      if (typeof window.clarityWelcomePickTrack === "function") window.clarityWelcomePickTrack(t);
+    } catch (e2) {}
+    var stage = document.getElementById("cu-stage") || document.getElementById("campus-stage-body");
+    if (stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { path: t } }));
+  });
+});
 </script>
 
 </body>
