@@ -17,6 +17,10 @@
   ];
 
   function openHelper(h) {
+    if (g.ClarityLazyWings && typeof g.ClarityLazyWings.open === "function" && h && h.id) {
+      g.ClarityLazyWings.open(h.id);
+      return true;
+    }
     var api = g[h.api];
     try {
       if (api && typeof api.openDesk === "function") { api.openDesk(); return true; }
