@@ -1,6 +1,15 @@
-# University multipage
-/campus /campus/ 301
-/journey /journey/ 301
-/lab /lab/ 301
-/vault /vault/ 301
-/charter /charter/ 301
+# Clarity University — Cloudflare Pages redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Legacy campus entry → multipage map
+/campus-index.html  /campus/  301
+/campus-index       /campus/  301
+
+# Optional clean aliases
+/campus/desk  /campus/desk/  301
+/lab          /lab/          301
+/library      /library/      301
+/journey      /journey/      301
+/vault        /vault/        301
+/charter      /charter/      301
+/systems      /systems/      301
