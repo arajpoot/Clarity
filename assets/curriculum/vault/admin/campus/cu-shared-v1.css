@@ -1,14 +1,15 @@
-/* Clarity University — shared shell polish (campus only; does not touch Companion /) */
+/* Clarity University — shared shell + curriculum tiles (R1 unified design) */
 :root {
   --cu-bg: #070c0a;
   --cu-gold: #e0c56a;
   --cu-teal: #1fa67a;
   --cu-text: #eaf3ee;
-  --cu-muted: rgba(234, 243, 238, 0.75);
-  --cu-line: rgba(224, 197, 106, 0.32);
-  --cu-card: rgba(14, 22, 18, 0.94);
+  --cu-muted: rgba(234, 243, 238, 0.78);
+  --cu-line: rgba(224, 197, 106, 0.34);
+  --cu-card: rgba(14, 22, 18, 0.96);
   --cu-ok: #7dcea0;
   --cu-lock: rgba(234, 243, 238, 0.35);
+  --cu-radius: 16px;
 }
 * { box-sizing: border-box; }
 html, body {
@@ -126,17 +127,19 @@ body {
 @media (max-width: 540px) {
   .cu-grid { grid-template-columns: 1fr; }
 }
+/* Map / page tiles */
 .cu-card {
   display: block;
   position: relative;
   padding: 1rem 1.05rem;
-  border-radius: 18px;
+  border-radius: var(--cu-radius);
   border: 1px solid var(--cu-line);
   background: linear-gradient(160deg, var(--cu-card), rgba(8, 14, 12, 0.98));
   text-decoration: none;
   color: var(--cu-text);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+  min-height: 5.5rem;
 }
 .cu-card:hover {
   transform: translateY(-3px);
@@ -198,7 +201,11 @@ body {
   color: var(--cu-muted);
   padding: 1.1rem 0.8rem 1.4rem;
 }
-/* Desk learner */
+/* Desk */
+.cu-desk-main { width: 100%; padding: 0.7rem 0.6rem 2rem; }
+@media (min-width: 640px) {
+  .cu-desk-main { padding: 0.85rem 1rem 2rem; }
+}
 .cu-roles-toggle {
   display: block;
   margin: 0 auto 0.55rem;
@@ -256,7 +263,6 @@ body {
 .cu-phase-tabs a.on {
   background: rgba(224, 197, 106, 0.22);
   border-color: var(--cu-gold);
-  color: #f3e6c0;
 }
 .cu-empty {
   padding: 1.2rem;
@@ -267,8 +273,162 @@ body {
   line-height: 1.5;
   text-align: center;
 }
-#clarity-campus-stage, #campus-stage-body {
+/* R1: Companion curriculum classes → university tile language */
+#clarity-campus-stage,
+#campus-stage-body {
   display: block;
   width: 100%;
-  min-height: 12rem;
+  min-height: 8rem;
+}
+#junior-curriculum-card,
+#junior-high-curriculum-card,
+#daily-hs-curriculum-card,
+#dai-university-curriculum-card,
+.curriculum-phase-card,
+.card.curriculum-phase-card {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0.35rem 0 1rem !important;
+  padding: 1rem 1.05rem !important;
+  border-radius: var(--cu-radius) !important;
+  border: 1px solid var(--cu-line) !important;
+  background: linear-gradient(160deg, var(--cu-card), rgba(8, 14, 12, 0.98)) !important;
+  color: var(--cu-text) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+.card-title,
+.curriculum-phase-card h2,
+#junior-curriculum-card h2 {
+  color: #f3e6c0 !important;
+  font-size: 1.05rem !important;
+  margin: 0 0 0.35rem !important;
+}
+.card-lead,
+.curriculum-phase-card .card-lead {
+  color: var(--cu-muted) !important;
+  font-size: 0.8rem !important;
+  line-height: 1.45 !important;
+}
+.junior-module,
+.module-card,
+#junior-curriculum-body > div,
+#jh-curriculum-body > div,
+#daily-hs-body > div,
+#dai-uni-body > div {
+  margin: 0.55rem 0 !important;
+  padding: 0.75rem 0.85rem !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(224, 197, 106, 0.22) !important;
+  background: rgba(0, 0, 0, 0.22) !important;
+}
+.junior-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin: 0.35rem 0;
+}
+.junior-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cu-teal), var(--cu-gold));
+  border-radius: 999px;
+}
+.junior-prog-label,
+.junior-lock-hint {
+  font-size: 0.75rem;
+  color: var(--cu-muted);
+}
+button.junior-phase-quiz-btn,
+.junior-module button,
+.curriculum-phase-card button {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-height: 44px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-line);
+  background: linear-gradient(135deg, #1fa67a, #0f4c3a);
+  color: #f7f3eb;
+  cursor: pointer;
+  margin-top: 0.35rem;
+}
+/* R2 skeleton */
+.cu-skel {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.5rem 0 1rem;
+}
+.cu-skel-tile {
+  height: 4.2rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(224, 197, 106, 0.28);
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+  background-size: 200% 100%;
+  animation: cuShimmer 1.2s ease-in-out infinite;
+}
+@keyframes cuShimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+.cu-retry {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-line);
+  background: rgba(224, 197, 106, 0.12);
+  color: var(--cu-gold);
+  cursor: pointer;
+}
+/* Plaque contained */
+#clarity-phase-plaque-rail,
+.clarity-phase-plaque-rail {
+  position: relative !important;
+  top: auto !important;
+  width: 100% !important;
+  margin: 0.4rem 0 0.7rem !important;
+  padding: 0.7rem 0.9rem !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--cu-line) !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  font-size: 0.78rem !important;
+  line-height: 1.45 !important;
+  z-index: 1 !important;
+  color: var(--cu-text) !important;
+}
+
+/* UI parity — open module tile (reference junior curriculum) */
+.junior-module.junior-open,
+.junior-module[data-unlocked="1"],
+.curriculum-phase-card .junior-module:first-of-type {
+  border-color: rgba(224, 197, 106, 0.45) !important;
+  background: rgba(15, 76, 58, 0.25) !important;
+}
+.junior-module button,
+button.junior-unlock,
+.junior-module .prove-btn {
+  background: linear-gradient(135deg, #1fa67a, #0f4c3a) !important;
+  color: #f7f3eb !important;
+  border: 1px solid rgba(224, 197, 106, 0.35) !important;
+  min-height: 44px;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+.campus-stage-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cu-gold);
+  font-weight: 700;
+  margin: 0.5rem 0 0.35rem;
+}
+#clarity-campus-stage {
+  padding: 0.75rem;
+  border-radius: 18px;
+  border: 1px solid var(--cu-line);
+  background: rgba(0, 0, 0, 0.2);
 }

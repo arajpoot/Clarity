@@ -1,7 +1,8 @@
-/* Campus mount bridge v2 — Phases B: all phase cards into #campus-stage-body */
+/* Campus mount bridge v3 — R2 desk never empty + phase cards */
 (function (g) {
   "use strict";
-  if (g.__CU_CAMPUS_MOUNT_V2__) return;
+  if (g.__CU_CAMPUS_MOUNT_V3__) return;
+  g.__CU_CAMPUS_MOUNT_V3__ = true;
   g.__CU_CAMPUS_MOUNT_V2__ = true;
   g.__CU_CAMPUS_MOUNT_V1__ = true;
 
@@ -60,6 +61,54 @@
     return null;
   }
 
+  function ensureSkeleton() {
+    var body = stageBody();
+    if (!body) return;
+    if (body.querySelector(".curriculum-phase-card, [id$='-curriculum-card'] .junior-module")) {
+      removeSkeleton();
+      return;
+    }
+    if (body.querySelector(".cu-skel")) return;
+    var sk = document.createElement("div");
+    sk.className = "cu-skel";
+    sk.id = "cu-stage-skeleton";
+    sk.innerHTML =
+      '<div class="cu-skel-tile"></div><div class="cu-skel-tile"></div><div class="cu-skel-tile"></div>' +
+      '<p class="cu-empty" style="border:none;padding:0.4rem 0">Loading modules…</p>';
+    body.appendChild(sk);
+  }
+
+  function removeSkeleton() {
+    var sk = document.getElementById("cu-stage-skeleton");
+    if (sk) sk.remove();
+    var body = stageBody();
+    if (!body) return;
+    body.querySelectorAll(".cu-empty").forEach(function (n) {
+      if ((n.textContent || "").indexOf("Loading") >= 0) n.remove();
+    });
+  }
+
+  function showRetry() {
+    var body = stageBody();
+    if (!body || body.querySelector(".cu-retry")) return;
+    removeSkeleton();
+    var box = document.createElement("div");
+    box.className = "cu-empty";
+    box.innerHTML =
+      "Modules did not mount yet.<br/>Check connection or retry." +
+      '<br/><button type="button" class="cu-retry" id="cu-mount-retry">Retry load</button>';
+    body.appendChild(box);
+    var btn = document.getElementById("cu-mount-retry");
+    if (btn) {
+      btn.onclick = function () {
+        box.remove();
+        tries = 0;
+        ensureSkeleton();
+        tick();
+      };
+    }
+  }
+
   function showCard(card, on) {
     if (!card) return;
     try {
@@ -98,8 +147,7 @@
       var id = CARD_BY_PHASE[k];
       var card = placeCard(id);
       showCard(card, pn === n);
-      var apiName = API_BY_PHASE[pn];
-      var api = g[apiName];
+      var api = g[API_BY_PHASE[pn]];
       try {
         if (api && typeof api.show === "function") api.show(pn === n);
         if (pn === n && api && typeof api.render === "function") api.render();
@@ -113,50 +161,45 @@
     try {
       if (typeof g.clarityRefreshPhasePlaque === "function") g.clarityRefreshPhasePlaque();
     } catch (e3) {}
-    try {
-      g.dispatchEvent(new CustomEvent("clarity-path-changed", { detail: { path: PATH_BY_PHASE[n] } }));
-    } catch (e4) {}
-  }
-
-  function removeEmpty() {
-    var body = stageBody();
-    if (!body) return;
-    var empty = body.querySelector(".cu-empty");
-    if (empty && body.querySelector(".curriculum-phase-card, .junior-module, [id$='-curriculum-card']")) {
-      empty.remove();
-    }
   }
 
   var tries = 0;
   function tick() {
     tries++;
     var meta = alignStorage();
+    ensureSkeleton();
     syncTracks(meta.n);
-    removeEmpty();
     var id = CARD_BY_PHASE[meta.n];
     var card = id && document.getElementById(id);
-    if (!card && tries < 30) setTimeout(tick, tries < 10 ? 200 : 450);
-    else if (card) {
+    var hasBody =
+      card &&
+      ((card.textContent || "").length > 40 ||
+        card.querySelector(".junior-module, .junior-progress, [id$='-body']"));
+    if (hasBody) {
+      removeSkeleton();
       setTimeout(function () {
         syncTracks(meta.n);
-        removeEmpty();
-      }, 500);
-      setTimeout(function () {
-        syncTracks(meta.n);
-      }, 1500);
+        removeSkeleton();
+      }, 400);
+      return;
     }
+    if (tries < 28) setTimeout(tick, tries < 10 ? 200 : 450);
+    else showRetry();
   }
 
   function boot() {
     if (!document.body || document.body.getAttribute("data-campus-page") !== "desk") return;
     alignStorage();
-    setTimeout(tick, 80);
+    ensureSkeleton();
+    setTimeout(tick, 60);
     g.addEventListener("clarity-vault-ready", function () {
       tries = 0;
+      ensureSkeleton();
       setTimeout(tick, 40);
     });
     g.addEventListener("cu-phase-selected", function () {
       tries = 0;
+      ensureSkeleton();
       setTimeout(tick, 60);
     });
   }
