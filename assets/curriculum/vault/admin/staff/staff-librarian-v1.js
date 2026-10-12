@@ -13,7 +13,7 @@
   var BACKUP_KEY = "clarity_librarian_curriculum_backup_v1";
   var ISSUES_KEY = "clarity_librarian_issues_v1";
   var LAST_ISSUE_KEY = "clarity_librarian_last_issue_v1";
-  var BASE = "./assets/curriculum/vault/admin/staff/library/";
+  var BASE = "/assets/curriculum/vault/admin/staff/library/";
 
   var state = {
     id: "librarian",

@@ -11,9 +11,7 @@
     "staff-ops-monitor-v1.js",
     "staff-fiqh-authenticity-v1.js",
     "staff-resource-scout-v1.js",
-    "staff-librarian-v1.js",
-    "nur-workers-arsenal-v1.js",
-    "staff-workforce-v2.js"
+    "staff-librarian-v1.js"
   ];
 
   function load(src) {
@@ -52,12 +50,6 @@
       } catch (e) {}
       try {
         g.dispatchEvent(new CustomEvent("clarity-staff-ready"));
-      setTimeout(function () {
-        try {
-          if (g.ClarityStaffWorkforce && g.ClarityStaffWorkforce.trainAll) g.ClarityStaffWorkforce.trainAll();
-          else if (g.ClarityNurArsenal && g.ClarityNurArsenal.trainAll) g.ClarityNurArsenal.trainAll();
-        } catch (eT) {}
-      }, 350);
       } catch (e2) {}
       enhanceOfficePanel();
     });
