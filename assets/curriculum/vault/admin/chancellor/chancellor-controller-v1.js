@@ -7,7 +7,7 @@
   if (g.__CLARITY_CHANCELLOR__) return;
   g.__CLARITY_CHANCELLOR__ = true;
 
-  var BASE = "./assets/curriculum/vault/admin/chancellor/";
+  var BASE = "/assets/curriculum/vault/admin/chancellor/";
   var LOG_KEY = "clarity_chancellor_log_v1";
   var office = null;
   var state = { briefs: 0, convocations: 0, last: null };
