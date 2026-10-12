@@ -8,7 +8,7 @@
   if (g.__CLARITY_OM_CREW__) return;
   g.__CLARITY_OM_CREW__ = true;
 
-  var BASE = "./assets/curriculum/vault/admin/om/";
+  var BASE = "/assets/curriculum/vault/admin/om/";
   var LOG_KEY = "clarity_om_log_v1";
   var STATS_KEY = "clarity_om_stats_v1";
   var roster = null;
