@@ -432,3 +432,52 @@ button.junior-unlock,
   border: 1px solid var(--cu-line);
   background: rgba(0, 0, 0, 0.2);
 }
+
+/* Ilm path medallions — inspired by arched icon template */
+.cu-medallion-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0.55rem;
+  margin:0 0 1rem;
+}
+@media(max-width:560px){.cu-medallion-row{grid-template-columns:1fr 1fr}}
+.cu-medallion{
+  display:flex;flex-direction:column;align-items:center;gap:0.4rem;
+  text-decoration:none;color:var(--cu-text);text-align:center;
+}
+.cu-medallion .ring{
+  width:4.4rem;height:4.4rem;border-radius:50%;
+  border:3px solid rgba(212,180,90,.85);
+  box-shadow:0 0 0 2px rgba(15,40,30,.9), 0 6px 16px rgba(0,0,0,.35);
+  background:radial-gradient(circle at 40% 30%, rgba(255,255,255,.12), transparent 55%),
+             linear-gradient(160deg,#0d3d32,#071410);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.55rem;position:relative;overflow:hidden;
+}
+.cu-medallion.on .ring{
+  border-color:#e0c56a;
+  box-shadow:0 0 0 2px rgba(224,197,106,.35), 0 0 20px rgba(31,166,122,.25);
+}
+.cu-medallion.locked{opacity:0.55}
+.cu-medallion.locked .ring{filter:grayscale(0.35)}
+.cu-medallion strong{font-size:0.72rem;color:#f3e6c0;line-height:1.25}
+.cu-medallion small{font-size:0.62rem;color:var(--cu-muted)}
+
+/* Always-visible worker float strip */
+#cu-worker-strip{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:0.65rem;z-index:7500;
+  display:flex;flex-wrap:wrap;gap:0.35rem;justify-content:center;
+  max-width:96vw;padding:0.35rem 0.5rem;
+  border-radius:999px;border:1px solid rgba(224,197,106,.3);
+  background:rgba(8,16,14,.92);backdrop-filter:blur(10px);
+  box-shadow:0 8px 28px rgba(0,0,0,.4);
+}
+#cu-worker-strip button{
+  font:inherit;font-size:0.68rem;font-weight:700;
+  padding:0.35rem 0.55rem;border-radius:999px;min-height:36px;
+  border:1px solid rgba(224,197,106,.25);background:rgba(0,0,0,.35);
+  color:#f3e6c0;cursor:pointer;white-space:nowrap;
+}
+#cu-worker-strip button:hover{border-color:#e0c56a;background:rgba(31,166,122,.25)}
+body.cu-has-worker-strip{padding-bottom:3.5rem}
