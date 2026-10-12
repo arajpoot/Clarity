@@ -8,7 +8,7 @@
   if (g.__CLARITY_SECURITY_WING__) return;
   g.__CLARITY_SECURITY_WING__ = true;
 
-  var BASE = "./assets/curriculum/vault/admin/security/";
+  var BASE = "/assets/curriculum/vault/admin/security/";
   var LOG_KEY = "clarity_security_audit_log_v1";
   var STATE_KEY = "clarity_security_state_v1";
   var map = null;
