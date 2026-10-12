@@ -4,8 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Craft Laboratory · Clarity University</title>
-<meta name="description" content="Craft Laboratory — calligraphy, tajweed, media, research. Educational only."/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261012UI"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261012GN"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261012GN"/>
 <style>
 .lab-hero{margin:0 0 1rem;padding:1rem 1.1rem;border-radius:18px;border:1px solid var(--cu-line);
   background:linear-gradient(145deg,rgba(15,76,58,.4),rgba(10,18,14,.95))}
@@ -16,19 +16,15 @@
 .lab-stations{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.55rem;margin:0 0 1rem}
 .lab-station{display:flex;flex-direction:column;gap:.35rem;padding:.85rem .75rem;border-radius:14px;
   border:1px solid rgba(224,197,106,.28);background:rgba(0,0,0,.32);text-decoration:none;color:var(--cu-text);
-  min-height:8.5rem;transition:border-color .15s,transform .15s}
+  min-height:8.5rem;transition:border-color .15s,transform .15s;cursor:pointer}
 .lab-station:hover{border-color:rgba(224,197,106,.55);transform:translateY(-2px)}
 .lab-station .ico{font-size:1.35rem}
 .lab-station strong{font-size:.88rem;color:#f3e6c0}
 .lab-station span{font-size:.72rem;color:var(--cu-muted);line-height:1.35}
-.lab-detail{padding:1rem;border-radius:16px;border:1px solid var(--cu-line);background:rgba(0,0,0,.28);margin-bottom:1rem}
-.lab-detail h2{margin:0 0 .35rem;font-size:1rem;color:#e0c56a}
-.lab-detail ol{margin:.4rem 0 .6rem 1.2rem;font-size:.82rem;color:var(--cu-muted);line-height:1.45}
-.lab-detail .cta{display:inline-block;margin-top:.35rem;padding:.4rem .85rem;border-radius:999px;font-size:.78rem;font-weight:700;
-  background:linear-gradient(135deg,#c9a227,#8a7010);color:#1a1408;text-decoration:none;border:none}
+#clarity-lab-root,#lab-stage{min-height:4rem;margin-top:.5rem}
 </style>
 </head>
-<body>
+<body data-campus-page="lab">
 <header class="cu-banner">
   <a class="cu-brand" href="/campus/"><img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/><div><small>University</small><strong>Laboratory</strong></div></a>
   <a class="cu-main-link" href="/">← Companion</a>
@@ -41,56 +37,37 @@
     <a href="/library/">Library</a>
     <a href="/charter/">Charter</a>
   </nav>
-
   <section class="lab-hero">
     <span class="lab-badge">Lab</span>
     <h1>Craft Laboratory</h1>
     <p class="dir"><strong style="color:#e0c56a">Ustadh Itqan al-Khatt</strong> · Beauty with truth · craft with adab · research before transmission</p>
   </section>
-
-  <div class="lab-stations" role="list">
-    <a class="lab-station" href="/#callig" role="listitem">
-      <span class="ico">✍️</span>
-      <strong>Calligraphy Atelier</strong>
-      <span>Write one letter or Name with presence; photograph or note progress.</span>
-    </a>
-    <a class="lab-station" href="/campus/desk/?phase=daily" role="listitem">
-      <span class="ico">🎧</span>
-      <strong>Tajweed Booth</strong>
-      <span>One rule, one ayah — record, compare, note one improvement.</span>
-    </a>
-    <a class="lab-station" href="/#meme" role="listitem">
-      <span class="ico">🎨</span>
-      <strong>Media Craft Bench</strong>
-      <span>Design one truthful reminder with a verified verse or hadith text only.</span>
-    </a>
-    <a class="lab-station" href="/library/" role="listitem">
-      <span class="ico">📚</span>
-      <strong>Research Bench</strong>
-      <span>Open deepen-study tools; capture three takeaways and one question for a teacher.</span>
-    </a>
-    <a class="lab-station" href="/campus/desk/?phase=dai" role="listitem">
-      <span class="ico">🧪</span>
-      <strong>Module Design Atelier</strong>
-      <span>Prototype a lab exercise: title, goal, steps, source — educational only.</span>
-    </a>
+  <div class="lab-stations" id="lab-stations-static" role="list">
+    <button type="button" class="lab-station" data-station="callig" role="listitem"><span class="ico">✍️</span><strong>Calligraphy Atelier</strong><span>Write one letter or Name with presence.</span></button>
+    <button type="button" class="lab-station" data-station="tajweed" role="listitem"><span class="ico">🎧</span><strong>Tajweed Booth</strong><span>One rule, one ayah — improve once.</span></button>
+    <button type="button" class="lab-station" data-station="media" role="listitem"><span class="ico">🎨</span><strong>Media Craft Bench</strong><span>Verified verse/hadith reminder only.</span></button>
+    <button type="button" class="lab-station" data-station="research" role="listitem"><span class="ico">📚</span><strong>Research Bench</strong><span>Three takeaways + one teacher question.</span></button>
+    <button type="button" class="lab-station" data-station="design" role="listitem"><span class="ico">🧪</span><strong>Module Design Atelier</strong><span>Prototype an educational lab exercise.</span></button>
   </div>
-
-  <section class="lab-detail">
-    <h2>🎧 Tajweed Booth · sample project</h2>
-    <p style="margin:0 0 .4rem;font-size:.82rem;color:var(--cu-muted)">One rule, one ayah — record, compare, note one improvement.</p>
-    <p style="margin:0;font-size:.84rem;color:#f3e6c0;font-weight:600">Rule laboratory · ~20 min</p>
-    <ol>
-      <li>Open Tajweed booth / Companion tools</li>
-      <li>Select one rule (e.g. qalqalah)</li>
-      <li>Recite / listen once</li>
-      <li>Note one improvement</li>
-    </ol>
-    <a class="cta" href="/campus/desk/?phase=daily">Open Daily desk →</a>
-  </section>
-
-  <p class="cu-note">Lab projects are educational practice on-device. They do not replace qualified teachers or formal certification.</p>
+  <div id="clarity-lab-root"><div id="lab-stage"></div></div>
+  <p class="cu-note">Lab projects are educational practice on-device. Not formal certification.</p>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa.</footer>
+<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261012GN" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=20261012GN" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-helper-dock-v1.js?v=20261012GN" defer></script>
+<script>
+document.querySelectorAll(".lab-station").forEach(function(b){
+  b.addEventListener("click", function(){
+    try {
+      if (window.ClarityLab && typeof ClarityLab.openStation === "function") ClarityLab.openStation(b.getAttribute("data-station"));
+      else if (window.ClarityLab && typeof ClarityLab.render === "function") ClarityLab.render();
+      else if (window.ClarityLab && typeof ClarityLab.openDesk === "function") ClarityLab.openDesk();
+      var st = document.getElementById("lab-stage");
+      if (st) st.scrollIntoView({behavior:"smooth", block:"start"});
+    } catch(e) {}
+  });
+});
+</script>
 </body>
 </html>
