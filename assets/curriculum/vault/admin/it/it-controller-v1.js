@@ -8,7 +8,7 @@
   if (g.__CLARITY_IT_WING__) return;
   g.__CLARITY_IT_WING__ = true;
 
-  var BASE = "./assets/curriculum/vault/admin/it/";
+  var BASE = "/assets/curriculum/vault/admin/it/";
   var LOG_KEY = "clarity_it_bridge_log_v1";
   var QUEUE_KEY = "clarity_it_upgrade_queue_v1";
   var REPORT_KEY = "clarity_it_reports_v1";
