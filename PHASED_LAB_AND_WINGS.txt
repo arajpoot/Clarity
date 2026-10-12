@@ -1,0 +1,29 @@
+Phased plan — Lab modules + worker floats + companion safety
+============================================================
+
+DONE this package (Phase 0–1):
+- Ilm path medallion icons (template-inspired circular gold rings)
+- Worker strip (always visible) + ✦ dock rewired
+- Desk/map pills: data-role + nav links re-bound after vault ready
+- University lab: no meme-card deep links; media station educational-only copy
+
+Phase L1 — Lab on request (next)
+- Station click opens ClarityLab.openStation panel in #lab-stage
+- Portfolio localStorage already in lab-controller — surface “Complete & log”
+
+Phase L2 — Selective Companion bridges (user opt-in only)
+- Calligraphy / Tajweed: link to Companion anchors (#callig, tajweed tools) in new tab
+- NEVER auto-load Companion chrome into /lab/
+- No meme studio links on university pages
+
+Phase L3 — Companion meme cleanup (separate small PR)
+- On Companion index only: hide/remove meme chips from Learn/Affairs rails
+- Do NOT ship full Companion rewrite with university zip
+- Feature flag or CSS hide [data-meme], #meme-card, .meme-studio-entry
+
+Phase L4 — Verify
+- Desk: Faculty/IT/Security pills open modals
+- Worker strip visible on map/desk/lab
+- /lab/ stations open without meme
+- Companion still loads alone on /
+
