@@ -1,0 +1,13 @@
+Housekeeping 20261012FIX
+========================
+Root cause of "stuck after welcome":
+  college-seeker mountBoost only inserts into Companion #tab-reminder / workspace.
+  Pure /campus/desk has neither → card created but never visible; modal felt like a freeze.
+
+Fixes:
+  1. cu-campus-mount-v1.js — aligns path/phase storage, places phase cards into #campus-stage-body,
+     calls ClarityJuniorCurriculum.render(), retries until vault ready.
+  2. Welcome modal — Escape, backdrop click, 14s auto-dismiss, dispatches cu-phase-selected on close.
+
+Still recommended on host:
+  Redirect or delete legacy /campus-index.html (old stack).
