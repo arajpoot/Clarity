@@ -1,0 +1,31 @@
+Phase 0 — Companion craft inventory (from index-banner2.html ~1.8MB)
+====================================================================
+Source scanned: artifacts/index-banner2.html
+
+MEME / MEDIA
+  DOM: #meme-card (line ~5269), classes meme-card-realigned, meme-studio-cols, meme-chip-wrap
+  Functions (sample): memeDraw, memeDownload, memeFetchBg, memeSharePng, memeFillFromCommand,
+    memeLoadImageFromUrl, tdSendToMeme, memeMushafGuardBoot
+  Hits: meme-studio ~83, id="meme ~34
+  Storage: likely localStorage keys under meme* (verify on live)
+  Sections: RRRA reminder pin, tools cards, send-to-meme from other modules
+
+TAJWEED
+  Stubs: clarityLiveTajweed, tdTajweed
+  Level meter block ~line 25100 (AudioContext / analyser, not wrapping getUserMedia)
+  Whisper references ~133 (shared whisper-tiny panel notes)
+  Hits: tajweed ~154
+
+CALLIGRAPHY
+  Functions: calligStart, calligEnd, calligRedraw, calligMicToggle, calligDownload,
+    calligStrokePath, calligProgressSave, calligGoogleTranslate, calligFocusWhisper…
+  Mic panel: #callig-mic-panel ~5453
+  Hits: callig* functions many; UI tightly coupled to Companion CSS
+
+DEPS
+  Mic / MediaRecorder / AudioContext, canvas, speechSynthesis, optional online image fetch
+  Companion CSS variables and RRRA layout — NOT portable as raw HTML paste
+
+PHASE 1 DECISION
+  Ship shared /assets/craft/* lab-native studios with same educational goals;
+  full 1:1 DOM port deferred until CSS isolation complete (Phase 2+ harden).
