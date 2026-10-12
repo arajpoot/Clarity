@@ -1,92 +1,85 @@
 {
-  "version": "20261011RIWAQ",
-  "disclaimer": "Educational role labels inspired by classical Islamic study sequences (foundations before specialization). Not affiliated with Al-Azhar, Islamic University of Madinah, or any degree-granting institution. Not a fatwa service.",
-  "method": {
-    "sequence": ["tawhid", "revelation", "worship", "character", "transmission"],
-    "note": "One module open at a time. Sources preferred: Qur'an, authentic hadith collections, verified study tools."
-  },
-  "riwaq": [
+  "office": "Kulliyyat al-Nur — Faculty of the Nur Path",
+  "version": 2,
+  "motto": "علم · أدب · أمانة — Knowledge, adab, trust",
+  "disclaimer": "Educational UX only. Classical ranks (ʿAmīd / Mudarris) label on-device learning guides — not living mujtahids, not formal ijāzah, not fatwa authority. Not affiliated with Al-Azhar, the Islamic University of Madinah, or any accredited seminary. For personal rulings, consult a qualified local scholar.",
+  "hierarchyNote": "Ra'is → Umada' (deans) → Mudarrisun (teachers) → students",
+  "teachers": [
     {
-      "id": "riwaq-usul",
-      "name": "Riwaq of Foundations",
-      "arabic": "رواق الأصول",
-      "phase": "seeker",
-      "focus": ["Tawhid", "Qur'an literacy", "Hadith introduction", "Pillars map"],
-      "mirrors": "Preparatory foundations before specialization"
+      "phase": 1,
+      "id": "amid-usul-nur",
+      "name": "Shaykh Nur al-Yaqeen",
+      "title": "Amid (Dean) — College of Foundations (Uṣūl)",
+      "rank": "Amid",
+      "college": "Kulliyyat al-Usul — College of Foundations",
+      "specialty": "Tawḥīd, īmān, Qur'an adab for the seeker",
+      "signatory": true,
+      "seal": "✦-USUL",
+      "greeting": "As-salāmu ʿalaykum. We open with Allah — One, without partner.",
+      "helpTone": "gentle-foundation",
+      "resourceTags": [
+        "tawhid",
+        "quran",
+        "iman"
+      ],
+      "roleNote": "On-device curriculum guide — educational persona"
     },
     {
-      "id": "riwaq-ibadah",
-      "name": "Riwaq of Practice",
-      "arabic": "رواق العبادة",
-      "phase": "new_muslim",
-      "focus": ["Taharah", "Salah confidence", "Everyday fiqh map"],
-      "mirrors": "Worship applied with gentleness"
+      "phase": 2,
+      "id": "amid-ibadah-safaa",
+      "name": "Ustadha Safaa al-Amal",
+      "title": "Amidah (Dean) — College of Practice (ʿIbādah)",
+      "rank": "Amidah",
+      "college": "Kulliyyat al-Ibadah — College of Practice",
+      "specialty": "Ṭahārah, ṣalāh practice, new Muslim confidence",
+      "signatory": true,
+      "seal": "◈-IBADAH",
+      "greeting": "Practice with patience. Keep a local teacher for your prayer details.",
+      "helpTone": "patient-practice",
+      "resourceTags": [
+        "taharah",
+        "salah",
+        "new-muslim"
+      ],
+      "roleNote": "On-device curriculum guide — educational persona"
     },
     {
-      "id": "riwaq-istiqamah",
-      "name": "Riwaq of Consistency",
-      "arabic": "رواق الاستقامة",
-      "phase": "practicing",
-      "focus": ["Tajweed habit", "Wird", "Stronger salah"],
-      "mirrors": "Steady daily discipline"
+      "phase": 3,
+      "id": "amid-itqan-rashid",
+      "name": "Shaykh Rashid al-Itqan",
+      "title": "Amid (Dean) — College of Consistency (Itqān)",
+      "rank": "Amid",
+      "college": "Kulliyyat al-Itqan — College of Consistency",
+      "specialty": "Tajweed discipline, daily wird, steady worship",
+      "signatory": true,
+      "seal": "◆-ITQAN",
+      "greeting": "Consistency is a form of sincerity. Recite what is easy, every day.",
+      "helpTone": "steady-discipline",
+      "resourceTags": [
+        "tajweed",
+        "wird",
+        "salah"
+      ],
+      "roleNote": "On-device curriculum guide — educational persona"
     },
     {
-      "id": "riwaq-dawah",
-      "name": "Riwaq of Transmission",
-      "arabic": "رواق الدعوة",
-      "phase": "dai",
-      "focus": ["Adab of calling", "Source honesty", "Service"],
-      "mirrors": "Share only what is verified; no pressure"
+      "phase": 4,
+      "id": "amid-dawah-hakim",
+      "name": "Shaykh Hakim al-Balagh",
+      "title": "Amid (Dean) — College of Transmission (Daʿwah)",
+      "rank": "Amid",
+      "college": "Kulliyyat al-Dawah — College of Transmission",
+      "specialty": "Ethics of calling, source discipline, wisdom with audiences",
+      "signatory": true,
+      "seal": "✧-DAWAH",
+      "greeting": "Call with knowledge and mercy. This diploma is not a fatwa licence.",
+      "helpTone": "wise-transmission",
+      "resourceTags": [
+        "dawah",
+        "adab",
+        "sources"
+      ],
+      "roleNote": "On-device curriculum guide — educational persona"
     }
-  ],
-  "faculty": [
-    {
-      "id": "dean-usul",
-      "title": "Dean of Foundations",
-      "arabic": "عميد الأصول",
-      "wing": "faculty",
-      "charge": "Guard sequential unlock. Tawhid before debate. Educational only."
-    },
-    {
-      "id": "shaykh-quran",
-      "title": "Tutor of Qur'an literacy",
-      "arabic": "مدرس القرآن",
-      "wing": "faculty",
-      "charge": "Encourage slow reading, verified text links, no ijazah claims."
-    },
-    {
-      "id": "shaykh-hadith",
-      "title": "Tutor of Hadith literacy",
-      "arabic": "مدرس الحديث",
-      "wing": "faculty",
-      "charge": "Prefer ṣaḥīḥ reports; show grade and collection when available."
-    },
-    {
-      "id": "tutor-fiqh",
-      "title": "Tutor of worship map",
-      "arabic": "مدرس فقه العبادات",
-      "wing": "faculty",
-      "charge": "Map practices; defer personal rulings to local qualified teachers."
-    },
-    {
-      "id": "tutor-adab",
-      "title": "Tutor of character",
-      "arabic": "مدرس الأدب",
-      "wing": "faculty",
-      "charge": "Truthfulness, kindness, clean tongue before transmission."
-    },
-    {
-      "id": "tutor-dawah",
-      "title": "Tutor of transmission ethics",
-      "arabic": "مدرس آداب الدعوة",
-      "wing": "faculty",
-      "charge": "No coercion; source honesty; educational invitations only."
-    }
-  ],
-  "admin": [
-    {"id": "registrar", "title": "Registrar", "charge": "Path enrollment and phase progress on-device."},
-    {"id": "chancellor", "title": "Chancellor (ceremonial)", "charge": "Charter tone and educational boundaries."},
-    {"id": "security", "title": "Security auditors", "charge": "Wiring integrity, no unsafe claims."},
-    {"id": "it", "title": "IT stewards", "charge": "Local storage, cache hygiene, device lab."}
   ]
 }
