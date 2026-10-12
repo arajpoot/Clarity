@@ -198,38 +198,57 @@
     try {
       if (sessionStorage.getItem("cu_ilm_greet_" + phaseId())) return;
     } catch (e) {}
-    var t = teacherForPhase(phaseNum());
-    if (!t || !document.body) return;
+    var tch = teacherForPhase(phaseNum());
+    if (!tch || !document.body) return;
+    if (document.getElementById("cu-ilm-modal-bg")) return;
     var bg = document.createElement("div");
     bg.id = "cu-ilm-modal-bg";
+    bg.setAttribute("role", "presentation");
     bg.innerHTML =
       '<div id="cu-ilm-modal" role="dialog" aria-modal="true">' +
       "<h3>" +
-      escape(t.name) +
+      escape(tch.name) +
       "</h3>" +
       "<p><strong style=\"color:#e0c56a\">" +
-      escape(t.title || "") +
+      escape(tch.title || "") +
       "</strong></p>" +
       "<p>" +
-      escape(t.greeting || "") +
+      escape(tch.greeting || "") +
       "</p>" +
       "<p style=\"font-size:.72rem;opacity:.7\">On-device educational guide — not a formal scholar appointment or fatwa source.</p>" +
       "<button type=\"button\" id=\"cu-ilm-modal-ok\">Bismillāh — begin</button></div>";
     document.body.appendChild(bg);
-    document.getElementById("cu-ilm-modal-ok").onclick = function () {
+    function close() {
       try {
         sessionStorage.setItem("cu_ilm_greet_" + phaseId(), "1");
       } catch (e2) {}
-      bg.remove();
-    };
-    bg.addEventListener("click", function (ev) {
-      if (ev.target === bg) {
-        try {
-          sessionStorage.setItem("cu_ilm_greet_" + phaseId(), "1");
-        } catch (e3) {}
+      try {
         bg.remove();
+      } catch (e3) {
+        if (bg.parentNode) bg.parentNode.removeChild(bg);
       }
+      /* nudge mount after close */
+      try {
+        g.dispatchEvent(new CustomEvent("cu-phase-selected", { detail: { id: phaseId(), n: phaseNum() } }));
+      } catch (e4) {}
+    }
+    var ok = document.getElementById("cu-ilm-modal-ok");
+    if (ok) ok.onclick = close;
+    bg.addEventListener("click", function (ev) {
+      if (ev.target === bg) close();
     });
+    document.addEventListener(
+      "keydown",
+      function onKey(ev) {
+        if (ev.key === "Escape") {
+          document.removeEventListener("keydown", onKey);
+          close();
+        }
+      },
+      { once: false }
+    );
+    /* never leave user stuck */
+    setTimeout(close, 14000);
   }
 
   function paintDesk() {
