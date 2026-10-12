@@ -3,40 +3,71 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Library · Clarity University</title>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261012UI"/>
+<title>Craft Laboratory · Clarity University</title>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261012GN"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261012GN"/>
+<style>
+.lab-hero{margin:0 0 1rem;padding:1rem 1.1rem;border-radius:18px;border:1px solid var(--cu-line);
+  background:linear-gradient(145deg,rgba(15,76,58,.4),rgba(10,18,14,.95))}
+.lab-hero .lab-badge{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:.2rem .5rem;border-radius:8px;background:rgba(31,166,122,.35);color:#e0c56a;margin-bottom:.35rem}
+.lab-hero h1{margin:0 0 .25rem;font-size:1.35rem;color:#f3e6c0}
+.lab-hero .dir{font-size:.8rem;color:var(--cu-muted);line-height:1.4;margin:0}
+.lab-stations{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.55rem;margin:0 0 1rem}
+.lab-station{display:flex;flex-direction:column;gap:.35rem;padding:.85rem .75rem;border-radius:14px;
+  border:1px solid rgba(224,197,106,.28);background:rgba(0,0,0,.32);text-decoration:none;color:var(--cu-text);
+  min-height:8.5rem;transition:border-color .15s,transform .15s;cursor:pointer}
+.lab-station:hover{border-color:rgba(224,197,106,.55);transform:translateY(-2px)}
+.lab-station .ico{font-size:1.35rem}
+.lab-station strong{font-size:.88rem;color:#f3e6c0}
+.lab-station span{font-size:.72rem;color:var(--cu-muted);line-height:1.35}
+#clarity-lab-root,#lab-stage{min-height:4rem;margin-top:.5rem}
+</style>
 </head>
-<body>
+<body data-campus-page="lab">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/><div><small>University</small><strong>Library</strong></div></a>
+  <a class="cu-brand" href="/campus/"><img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/><div><small>University</small><strong>Laboratory</strong></div></a>
   <a class="cu-main-link" href="/">← Companion</a>
 </header>
 <main class="cu-wrap">
-  <nav class="cu-pills"><a href="/campus/">Map</a><a href="/campus/desk/?phase=seeker">Desk</a><a class="here" href="/library/">Library</a><a href="/charter/">Charter</a></nav>
-  <h1 style="text-align:center;color:#f3e6c0;font-size:1.25rem;font-weight:800">Source shelves</h1>
-  <p class="cu-note">Gather · verify · study. Pointers only — not fatwas. Prefer a local teacher for rulings.</p>
-  <div class="cu-grid" style="margin-top:1rem">
-    <div class="cu-card" style="cursor:default">
-      <span class="tag">Phase 1</span>
-      <strong>Belief foundations</strong>
-      <span class="desc"><a href="https://quran.com/112" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">Qur'an 112 — Al-Ikhlas</a> · <a href="https://quran.com/1" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">Qur'an 1 — Al-Fatiha</a></span>
-    </div>
-    <div class="cu-card" style="cursor:default">
-      <span class="tag">Phase 2</span>
-      <strong>Practice & purification</strong>
-      <span class="desc"><a href="https://quran.com/2/286" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">Qur'an 2:286</a> · <a href="https://seekersguidance.org/" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">SeekersGuidance</a> · <a href="https://beginislam.org/" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">BeginIslam</a></span>
-    </div>
-    <div class="cu-card" style="cursor:default">
-      <span class="tag">Phase 3</span>
-      <strong>Consistency & craft</strong>
-      <span class="desc"><a href="https://yaqeeninstitute.org/" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">Yaqeen Institute</a> · <a href="https://quran.com/73/4" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">Qur'an — measured recitation reminder 73:4</a></span>
-    </div>
-    <div class="cu-card" style="cursor:default">
-      <span class="tag">Phase 4</span>
-      <strong>Transmission with adab</strong>
-      <span class="desc"><a href="https://quran.com/16/125" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">Qur'an 16:125</a> · <a href="https://sunnah.com/" target="_blank" rel="noopener noreferrer" style="color:#e0c56a">Sunnah.com</a></span>
-    </div>
+  <nav class="cu-pills">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/?phase=seeker">Desk</a>
+    <a class="here" href="/lab/">Lab</a>
+    <a href="/library/">Library</a>
+    <a href="/charter/">Charter</a>
+  </nav>
+  <section class="lab-hero">
+    <span class="lab-badge">Lab</span>
+    <h1>Craft Laboratory</h1>
+    <p class="dir"><strong style="color:#e0c56a">Ustadh Itqan al-Khatt</strong> · Beauty with truth · craft with adab · research before transmission</p>
+  </section>
+  <div class="lab-stations" id="lab-stations-static" role="list">
+    <button type="button" class="lab-station" data-station="callig" role="listitem"><span class="ico">✍️</span><strong>Calligraphy Atelier</strong><span>Write one letter or Name with presence.</span></button>
+    <button type="button" class="lab-station" data-station="tajweed" role="listitem"><span class="ico">🎧</span><strong>Tajweed Booth</strong><span>One rule, one ayah — improve once.</span></button>
+    <button type="button" class="lab-station" data-station="media" role="listitem"><span class="ico">🎨</span><strong>Media Craft Bench</strong><span>Verified verse/hadith reminder only.</span></button>
+    <button type="button" class="lab-station" data-station="research" role="listitem"><span class="ico">📚</span><strong>Research Bench</strong><span>Three takeaways + one teacher question.</span></button>
+    <button type="button" class="lab-station" data-station="design" role="listitem"><span class="ico">🧪</span><strong>Module Design Atelier</strong><span>Prototype an educational lab exercise.</span></button>
   </div>
+  <div id="clarity-lab-root"><div id="lab-stage"></div></div>
+  <p class="cu-note">Lab projects are educational practice on-device. Not formal certification.</p>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa.</footer>
-</body></html>
+<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261012GN" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=20261012GN" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-helper-dock-v1.js?v=20261012GN" defer></script>
+<script>
+document.querySelectorAll(".lab-station").forEach(function(b){
+  b.addEventListener("click", function(){
+    try {
+      if (window.ClarityLab && typeof ClarityLab.openStation === "function") ClarityLab.openStation(b.getAttribute("data-station"));
+      else if (window.ClarityLab && typeof ClarityLab.render === "function") ClarityLab.render();
+      else if (window.ClarityLab && typeof ClarityLab.openDesk === "function") ClarityLab.openDesk();
+      var st = document.getElementById("lab-stage");
+      if (st) st.scrollIntoView({behavior:"smooth", block:"start"});
+    } catch(e) {}
+  });
+});
+</script>
+</body>
+</html>
