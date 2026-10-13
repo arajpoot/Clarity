@@ -1,4 +1,4 @@
-/* Media Reminder Bench — Lab-native (replaces public "Meme Studio" naming) */
+/* Media Reminder — enriched Phase B + portfolio */
 (function (g) {
   "use strict";
   if (g.__CLARITY_MEDIA_REMINDER_V1__) return;
@@ -19,19 +19,18 @@
     var box = el("div", "craft-root");
     box.innerHTML =
       "<h2>🎨 Media Reminder Bench</h2>" +
-      '<p class="craft-lead">One truthful reminder with a <strong>verified</strong> Qurʾān or ḥadīth source line. No mockery, no fabricated text.</p>' +
+      '<p class="craft-lead">Truthful reminder with a <strong>verified</strong> source. Log for O&amp;M → teacher score. No mockery.</p>' +
       '<div class="craft-toolbar" style="flex-direction:column;align-items:stretch">' +
-      '<input class="craft-field" id="mr-text" type="text" maxlength="280" placeholder="Reminder text (your words, polite)" />' +
+      '<input class="craft-field" id="mr-text" type="text" maxlength="280" placeholder="Reminder text (polite, your words)" />' +
       '<input class="craft-field" id="mr-src" type="text" maxlength="120" placeholder="Source e.g. Qurʾān 2:152 or Bukhārī…" />' +
       "</div>" +
       '<div class="craft-toolbar">' +
-      '<button type="button" id="mr-render">Preview card</button>' +
+      '<button type="button" id="mr-render">Preview</button>' +
       '<button type="button" class="secondary" id="mr-dl">Download PNG</button>' +
-      '<button type="button" class="secondary" id="mr-log">Complete &amp; log</button>' +
-      "</div>" +
-      '<div class="craft-canvas-wrap"><canvas id="mr-canvas" width="720" height="405" aria-label="Reminder preview"></canvas></div>' +
+      '<button type="button" class="secondary" id="mr-log">Complete &amp; log</button></div>' +
+      '<div class="craft-canvas-wrap"><canvas id="mr-canvas" width="720" height="405"></canvas></div>' +
       '<p class="craft-log" id="mr-status"></p>' +
-      '<p class="craft-note">Educational media only. Not affiliated with any seminary. Verify wording with a teacher when unsure.</p>';
+      '<p class="craft-note">Educational media only. Verify wording with a teacher when unsure.</p>';
     root.appendChild(box);
 
     var canvas = box.querySelector("#mr-canvas");
@@ -60,12 +59,9 @@
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.fillText("Clarity University · educational reminder", w / 2, h * 0.88);
     }
-
     function wrap(ctx, text, x, y, maxW, lineH) {
       ctx.textAlign = "center";
-      var words = text.split(/\s+/);
-      var line = "";
-      var yy = y;
+      var words = text.split(/\s+/), line = "", yy = y;
       for (var i = 0; i < words.length; i++) {
         var test = line ? line + " " + words[i] : words[i];
         if (ctx.measureText(test).width > maxW && line) {
@@ -78,44 +74,29 @@
     }
 
     paint();
-    box.querySelector("#mr-render").onclick = function () {
-      paint();
-      box.querySelector("#mr-status").textContent = "Preview updated.";
-    };
+    box.querySelector("#mr-render").onclick = function () { paint(); box.querySelector("#mr-status").textContent = "Preview updated."; };
     box.querySelector("#mr-dl").onclick = function () {
       paint();
       var src = (box.querySelector("#mr-src").value || "").trim();
-      if (!src) {
-        box.querySelector("#mr-status").textContent = "Add a source line before download.";
-        return;
-      }
+      if (!src) { box.querySelector("#mr-status").textContent = "Add a source before download."; return; }
       var a = document.createElement("a");
       a.download = "clarity-reminder.png";
       a.href = canvas.toDataURL("image/png");
       a.click();
-      box.querySelector("#mr-status").textContent = "Download started.";
     };
     box.querySelector("#mr-log").onclick = function () {
       var src = (box.querySelector("#mr-src").value || "").trim();
-      if (!src) {
-        box.querySelector("#mr-status").textContent = "Source required to log.";
-        return;
-      }
-      var log = {
-        at: Date.now(),
-        station: "media",
-        text: (box.querySelector("#mr-text").value || "").trim(),
-        source: src
-      };
+      var text = (box.querySelector("#mr-text").value || "").trim();
+      if (!src) { box.querySelector("#mr-status").textContent = "Source required to log."; return; }
       try {
         var arr = JSON.parse(localStorage.getItem(KEY) || "[]");
-        arr.unshift(log);
+        arr.unshift({ at: Date.now(), text: text, source: src });
         localStorage.setItem(KEY, JSON.stringify(arr.slice(0, 40)));
       } catch (e) {}
-      box.querySelector("#mr-status").textContent = "Logged with source · on this device.";
-      try {
-        g.dispatchEvent(new CustomEvent("cu-craft-complete", { detail: log }));
-      } catch (e2) {}
+      if (g.ClarityLabPortfolio) {
+        g.ClarityLabPortfolio.submit({ station: "media", title: "Media reminder", note: text + " [" + src + "]", meta: { source: src } });
+        box.querySelector("#mr-status").textContent = "Logged with source · O&M review queue.";
+      } else box.querySelector("#mr-status").textContent = "Logged on device.";
     };
   }
 
