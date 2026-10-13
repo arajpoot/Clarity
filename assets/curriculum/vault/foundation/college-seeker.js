@@ -12,97 +12,173 @@
   var PROGRESS_KEY = "clarity_junior_progress_v1";
   var PHASE_KEY = "clarity_curriculum_phase_v1";
 
+
   var UNITS = [
     {
       id: "u1-who-is-allah",
       title: "Unit 1 — Who is Allah?",
-      goal: "Know Allah is One, the Creator who loves good and guides us.",
+      goal: "Know Allah is One — Creator, not like creation — and turn to Him with humility.",
       lessons: [
         {
           id: "u1-l1",
           title: "Allah is One",
-          minutes: 8,
-          points: [
-            "Allah created the heavens and the earth.",
-            "Nothing is like Him — He is unique.",
-            "We worship Him alone (Tawhid)."
+          minutes: 12,
+          adab: "Sit with a calm heart. This is knowledge of Allah — not debate sport.",
+          body: [
+            "The first truth a seeker holds is tawḥīd: Allah is One. He alone creates, sustains, and deserves worship. Nothing shares His lordship or His right to be worshipped.",
+            "When we say «Allāhu aḥad», we are not inventing a slogan — we are affirming what revelation taught. Creation points to a Creator; the heart finds rest when it stops assigning partners to Him.",
+            "Practice for this lesson is small and honest: before your next task, say Bismillāh and intend the act for Allah alone."
           ],
-          ayah: { ref: "Qur'an 112:1-4", en: "Say: He is Allah, One." },
-          links: [{ label: "Qur'an 112", href: "https://quran.com/112" }]
+          points: [
+            "Allah alone is the Creator of the heavens and the earth.",
+            "Nothing is like Him — He is unique (laysa ka-mithlihi shayʾ).",
+            "Worship is for Him alone (tawḥīd al-ulūhiyyah).",
+            "Junior practice: Bismillāh before one ordinary task today."
+          ],
+          ayah: {
+            ref: "Qurʾān 112:1–4",
+            en: "Say: He is Allah, One. Allah, the Self-Sufficient. He neither begets nor is begotten. And there is none comparable to Him."
+          },
+          practice: "Write one sentence: what does «Allah is One» change in how you speak today?",
+          lab: { station: "media", label: "Lab · Media reminder (tawḥīd line + source)" },
+          links: [
+            { label: "Qurʾān 112", href: "https://quran.com/112" },
+            { label: "Qurʾān 42:11", href: "https://quran.com/42/11" }
+          ]
         },
         {
           id: "u1-l2",
           title: "Allah sees and knows",
-          minutes: 8,
-          points: [
-            "Allah knows what we show and what we hide.",
-            "He is closer to us than our jugular vein — in knowledge and care.",
-            "Junior practice: say Bismillah before a small task."
+          minutes: 12,
+          adab: "Let this lesson soften the tongue — He hears every word.",
+          body: [
+            "Allah’s knowledge is not like ours. He knows what we show and what we hide. Nothing escapes His awareness — yet His knowledge is paired with mercy for the one who turns back.",
+            "The Qurʾān reminds us that He is closer in knowledge and care than we imagine. That is not an invitation to casualness; it is an invitation to sincerity (ikhlāṣ).",
+            "When you are alone, you are still with the One who sees. That is a door to both awe and hope."
           ],
-          ayah: { ref: "Qur'an 50:16", en: "We are closer to him than his jugular vein." },
-          links: [{ label: "Qur'an 50:16", href: "https://quran.com/50/16" }]
+          points: [
+            "Allah knows the open and the secret.",
+            "Awareness of His seeing trains honesty.",
+            "Hope: He accepts repentance from those who return.",
+            "Junior practice: pause before a private action — remember He sees."
+          ],
+          ayah: {
+            ref: "Qurʾān 50:16",
+            en: "We created the human being and We know what his soul whispers to him; We are closer to him than his jugular vein."
+          },
+          practice: "One private moment today: whisper a short istighfār with presence.",
+          links: [{ label: "Qurʾān 50:16", href: "https://quran.com/50/16" }]
         }
       ]
     },
     {
       id: "u2-iman",
-      title: "Unit 2 — Six pillars of iman",
-      goal: "Name the six beliefs every Muslim holds.",
+      title: "Unit 2 — Six pillars of īmān",
+      goal: "Map the six articles of faith and hold them with humility, not slogans.",
       lessons: [
         {
           id: "u2-l1",
           title: "Belief map (overview)",
-          minutes: 10,
-          points: [
-            "1) Allah  2) Angels  3) Revealed Books  4) Prophets  5) Last Day  6) Divine Decree (Qadar)",
-            "Junior goal: remember the list; depth comes later.",
-            "Iman grows with learning and good deeds."
+          minutes: 14,
+          adab: "Īmān grows with knowledge and action — not with haste.",
+          body: [
+            "Classical teaching lists six articles of faith: belief in Allah, His angels, His books, His messengers, the Last Day, and divine decree (qadar) — its good and its bitter.",
+            "This unit is a map, not a full theology course. A seeker learns the names of the pillars so the heart has somewhere to hang later lessons.",
+            "Each pillar will return in later units with more detail. Today: know the six, and ask Allah for firmness."
           ],
-          openCard: "soul-compass-card",
-          links: [{ label: "BeginIslam — Articles of Faith", href: "https://beginislam.org/" }]
+          points: [
+            "Six: Allah · angels · books · messengers · Last Day · qadar.",
+            "Īmān is belief in the heart, speech, and action — according to Ahl al-Sunnah teaching in educational summary.",
+            "We do not argue strangers into faith; we learn and live.",
+            "Junior practice: list the six from memory once."
+          ],
+          ayah: {
+            ref: "Qurʾān 4:136",
+            en: "O you who believe: believe in Allah and His Messenger and the Book He sent down to His Messenger…"
+          },
+          practice: "Without looking, write the six pillars; check; correct gently.",
+          links: [{ label: "Qurʾān 4:136", href: "https://quran.com/4/136" }]
         },
         {
           id: "u2-l2",
-          title: "Prophets and the Last Day (gentle)",
-          minutes: 10,
-          points: [
-            "Allah sent messengers as mercy and guides.",
-            "The final messenger is Muhammad (peace be upon him).",
-            "We will return to Allah; prepare with hope and good actions."
+          title: "Messengers and the Last Day (gentle)",
+          minutes: 14,
+          adab: "Speak of the prophets with ṣalawāt and respect.",
+          body: [
+            "Allah sent messengers as bringers of good news and warners. The final messenger is Muḥammad ﷺ — mercy to the worlds. Belief in him includes belief in those sent before him.",
+            "The Last Day is real: standing, judgment, and the meeting with Allah. Remembering it is not meant to freeze the heart — it is meant to straighten the walk.",
+            "Keep this gentle: hope and fear together. Do not use the ākhirah to crush a learner; use it to wake sincerity."
           ],
-          openCard: "seerah-live-card",
-          links: [{ label: "Qur'an 33:56", href: "https://quran.com/33/56" }]
+          points: [
+            "Messengers are chosen servants — not divine.",
+            "Muḥammad ﷺ is the Seal of the Prophets.",
+            "The Last Day organises priorities.",
+            "Junior practice: one ṣalāh upon the Prophet ﷺ with presence."
+          ],
+          ayah: {
+            ref: "Qurʾān 33:56",
+            en: "Allah and His angels send blessings upon the Prophet. O you who believe, send blessings upon him and salute him with peace."
+          },
+          practice: "Send ṣalāh ten times slowly; notice the heart.",
+          lab: { station: "tajweed", label: "Lab · Tajweed (short āyah presence)" },
+          links: [{ label: "Qurʾān 33:56", href: "https://quran.com/33/56" }]
         }
       ]
     },
     {
       id: "u3-pillars",
       title: "Unit 3 — Five pillars of Islam",
-      goal: "Know the five acts that structure Muslim life.",
+      goal: "Know the five pillars as a living structure — not a checklist only.",
       lessons: [
         {
           id: "u3-l1",
-          title: "Shahadah to Hajj (map)",
-          minutes: 10,
-          points: [
-            "1) Shahadah  2) Salah  3) Zakah  4) Sawm  5) Hajj",
-            "Junior focus: meaning of each in simple words.",
-            "Practice of prayer deepens in New Muslim track."
+          title: "From shahādah to ḥajj (map)",
+          minutes: 14,
+          adab: "Pillars are gifts of structure; learn them with gratitude.",
+          body: [
+            "Islām is built on five: the testimony of faith, prayer, zakāh, fasting Ramaḍān, and ḥajj for those who can. This is a famous educational frame from the Sunnah.",
+            "Shahādah is the door. Ṣalāh is the daily spine. Zakāh purifies wealth and community. Ṣawm trains the soul. Ḥajj gathers the ummah in response to Allah’s call.",
+            "You are not asked to master fiqh today. You are asked to know the five by name and meaning at a seeker level."
           ],
-          openCard: "commands-card",
-          links: [{ label: "Qur'an 2:183 (fasting)", href: "https://quran.com/2/183" }]
+          points: [
+            "Shahādah · ṣalāh · zakāh · ṣawm · ḥajj.",
+            "Each pillar has conditions taught by scholars — seek local teachers for rulings.",
+            "Junior practice: name the five aloud once with calm.",
+            "Educational only — not a personal fatwa."
+          ],
+          ayah: {
+            ref: "Qurʾān 2:183",
+            en: "O you who believe: fasting is prescribed for you as it was prescribed for those before you — that you may gain taqwā."
+          },
+          practice: "Choose one pillar to understand better this week with a reliable teacher or class.",
+          links: [
+            { label: "Qurʾān 2:183", href: "https://quran.com/2/183" },
+            { label: "Lab · Calligraphy (Allāh)", href: "/lab/" }
+          ]
         },
         {
           id: "u3-l2",
-          title: "Living words — Commands",
+          title: "Living words — hearing and obeying",
           minutes: 12,
-          points: [
-            "Allah addresses believers with guidance.",
-            "Open Commands and read one verse slowly.",
-            "Write one small action in Notes."
+          adab: "Samʿinā wa aṭaʿnā — we hear and we obey — is the believer’s posture.",
+          body: [
+            "Knowledge without response becomes weight. The Qurʾān praises those who, when called, hear and obey as best they can.",
+            "For a junior seeker, «obey» starts with the obvious: truthfulness, prayer effort, kind speech, and leaving what is clearly wrong.",
+            "Do not claim ranks you have not earned. Walk one sincere step."
           ],
-          openCard: "commands-card",
-          links: []
+          points: [
+            "Hearing revelation is a trust.",
+            "Obedience is according to ability — with sincerity.",
+            "Leave argumentation that does not change the self.",
+            "Junior practice: one concrete obedience today (prayer on time, or an apology)."
+          ],
+          ayah: {
+            ref: "Qurʾān 2:285",
+            en: "The Messenger believes in what was sent down to him from his Lord, and so do the believers… they say: We hear and we obey."
+          },
+          practice: "Write one act of obedience you will do before sleep — then do it.",
+          lab: { station: "callig", label: "Lab · Calligraphy (one letter with presence)" },
+          links: [{ label: "Qurʾān 2:285", href: "https://quran.com/2/285" }]
         }
       ]
     },
@@ -373,6 +449,18 @@
       }
 
       html += "<ul>";
+      
+      if (les.adab) {
+        html += '<p class="junior-adab"><em>' + les.adab + "</em></p>";
+      }
+      if (les.body && les.body.length) {
+        html += '<div class="junior-body-text">';
+        les.body.forEach(function (para) {
+          html += "<p>" + para + "</p>";
+        });
+        html += "</div>";
+      }
+
       (les.points || []).forEach(function (pt) {
         html += "<li>" + pt + "</li>";
       });
@@ -410,7 +498,19 @@
           les.openCard +
           '">Open related card</button>';
       }
-      (les.links || []).forEach(function (lk) {
+      
+      if (les.practice) {
+        html += '<p class="junior-practice"><strong>Practice:</strong> ' + les.practice + "</p>";
+      }
+      if (les.lab && les.lab.station) {
+        html +=
+          '<a class="mv-chip" href="/lab/" data-lab-station="' +
+          les.lab.station +
+          '">' +
+          (les.lab.label || "Open Lab") +
+          "</a>";
+      }
+(les.links || []).forEach(function (lk) {
         html +=
           '<a class="mv-chip" href="' +
           lk.href +
