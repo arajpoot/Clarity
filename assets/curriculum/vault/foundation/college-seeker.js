@@ -183,89 +183,173 @@
       ]
     },
     {
+
       id: "u4-messenger",
-      title: "Unit 4 — The Messenger",
-      goal: "Love and follow the Prophet as the best example.",
+      title: "Unit 4 — The Messenger ﷺ",
+      goal: "Know, love, and follow the Prophet ﷺ as the best example — with ṣalāh and adab.",
       lessons: [
         {
           id: "u4-l1",
-          title: "Who is Muhammad?",
-          minutes: 10,
-          points: [
-            "He is the final messenger and a mercy to the worlds.",
-            "His character was the Qur'an in action.",
-            "We send salawat when we mention him."
+          title: "Who is Muḥammad ﷺ?",
+          minutes: 14,
+          adab: "When his name is mentioned, send ṣalāh. Speak of him with love, not slogans.",
+          body: [
+            "Muḥammad ﷺ is the final messenger and a mercy to the worlds. He did not speak from desire in matters of revelation; his character was described as the Qurʾān lived.",
+            "Believing in him includes believing in the messengers before him. We do not raise him above the station of prophethood, and we do not neglect the rights of his message.",
+            "A seeker’s first manners with the Prophet ﷺ: learn a little of his life, send ṣalāh, and try one sunnah of kindness today."
           ],
-          openCard: "seerah-live-card",
+          points: [
+            "Final messenger — Seal of the Prophets.",
+            "Mercy to the worlds; best example in character.",
+            "Ṣalāh upon him is a daily courtesy of īmān.",
+            "Junior practice: ten ṣalawāt with presence."
+          ],
+          ayah: {
+            ref: "Qurʾān 21:107",
+            en: "And We have not sent you except as a mercy to the worlds."
+          },
+          practice: "Send ṣalāh ten times slowly; read one short sīrah paragraph from a reliable source.",
+          lab: { station: "media", label: "Lab · Media reminder (ṣalāh upon the Prophet + source)" },
           links: [
-            { label: "Qur'an 21:107", href: "https://quran.com/21/107" },
-            { label: "Qur'an 33:21", href: "https://quran.com/33/21" }
+            { label: "Qurʾān 21:107", href: "https://quran.com/21/107" },
+            { label: "Qurʾān 33:21", href: "https://quran.com/33/21" }
           ]
         },
         {
           id: "u4-l2",
-          title: "Samina wa atana",
-          minutes: 8,
-          points: [
-            "Believers say: we hear and we obey.",
-            "Open the Samina card and reflect on one verse.",
-            "Obedience is love in action."
+          title: "We hear and we obey",
+          minutes: 12,
+          adab: "Hearing is a trust. Answer with what you can do today — not with claims.",
+          body: [
+            "The believers’ posture is samʿinā wa aṭaʿnā — we hear and we obey. That is not blind pride; it is trust in Allah and His Messenger ﷺ within the limits of sincere capacity.",
+            "For a junior seeker, obedience starts near: prayer effort, truthful speech, honouring parents, leaving clear harm.",
+            "Do not use religion to win arguments. Use it to straighten the self."
           ],
-          openCard: "samina-card",
-          links: []
+          points: [
+            "Hearing revelation is a trust.",
+            "Obey according to ability, with sincerity.",
+            "One concrete act beats ten claims.",
+            "Junior practice: one obedience before sleep."
+          ],
+          ayah: {
+            ref: "Qurʾān 2:285",
+            en: "The Messenger believes in what was sent down to him from his Lord, and so do the believers… they say: We hear and we obey."
+          },
+          practice: "Write one act of obedience; complete it before sleep.",
+          links: [{ label: "Qurʾān 2:285", href: "https://quran.com/2/285" }]
         }
       ]
     },
     {
       id: "u5-adab",
       title: "Unit 5 — Adab and character",
-      goal: "Good manners are half of faith in practice.",
+      goal: "Good character is part of faith in practice — tongue, hands, and private honesty.",
       lessons: [
         {
           id: "u5-l1",
           title: "Truth, kindness, clean tongue",
-          minutes: 10,
-          points: [
-            "A Muslim's tongue and hands do not harm others.",
-            "Smile, greet with salam, keep promises.",
-            "Junior deed: one kind word today."
+          minutes: 14,
+          adab: "The tongue is a small organ with a large account.",
+          body: [
+            "A Muslim is one from whose tongue and hand people are safe. Truthfulness is a mark of īmān; lying opens doors that are hard to close.",
+            "Kindness is not weakness. A smile, a greeting of salām, and keeping promises are small deeds with heavy weight.",
+            "Clean the tongue of mockery, gossip, and cruelty — especially online, where harm travels far."
           ],
-          openCard: "creation-tongue-reflection",
-          links: []
+          points: [
+            "Safety of tongue and hand is a definition taught in the Sunnah.",
+            "Salām, smile, kept promises.",
+            "Junior deed: one kind word to someone who does not expect it.",
+            "Pause before posting."
+          ],
+          ayah: {
+            ref: "Qurʾān 49:11",
+            en: "O you who believe: let not a people ridicule another people… and do not insult one another by nicknames."
+          },
+          practice: "One kind word + one held tongue today.",
+          lab: { station: "callig", label: "Lab · Calligraphy (write «salām» or Allāh with presence)" },
+          links: [{ label: "Qurʾān 49:11", href: "https://quran.com/49/11" }]
         },
         {
           id: "u5-l2",
           title: "Parents and teachers",
-          minutes: 8,
-          points: [
-            "Honour parents — a major path to Allah's pleasure.",
-            "Respect teachers of beneficial knowledge.",
-            "Ask with adab; listen more than you speak."
+          minutes: 12,
+          adab: "Enter on parents and teachers with lowered wing — not debate energy.",
+          body: [
+            "Honouring parents is among the greatest paths to Allah’s pleasure. Even when it is hard, the command remains soft speech and effort.",
+            "Teachers of beneficial knowledge deserve respect. Ask with adab; listen more than you speak.",
+            "If you disagree, do not humiliate. Seek clarity without crushing dignity."
           ],
-          links: [{ label: "Qur'an 17:23", href: "https://quran.com/17/23" }]
+          points: [
+            "Parents: soft word, effort, duʿāʾ.",
+            "Teachers: respect the trust of knowledge.",
+            "Junior practice: a message or act of honour today.",
+            "Duʿāʾ for parents is a lifelong door."
+          ],
+          ayah: {
+            ref: "Qurʾān 17:23",
+            en: "Your Lord has decreed that you worship none but Him, and that you honour parents…"
+          },
+          practice: "One act or message of honour to a parent or teacher.",
+          links: [{ label: "Qurʾān 17:23", href: "https://quran.com/17/23" }]
         }
       ]
     },
     {
       id: "u6-hereafter",
       title: "Unit 6 — Remember the meeting with Allah",
-      goal: "Live today ready for the long stay.",
+      goal: "Live today with hope and responsibility — the meeting with Allah is real.",
       lessons: [
         {
           id: "u6-l1",
           title: "Death is a door — hope and work",
-          minutes: 10,
-          points: [
-            "Everyone will taste death; the grave is the first station.",
-            "Send light ahead with small sincere deeds.",
-            "Junior tone: hope and responsibility, not despair."
+          minutes: 14,
+          adab: "Junior tone: hope and responsibility, not despair or scare-theatre.",
+          body: [
+            "Everyone will taste death. The grave is a station on a longer journey. Remembering death is meant to soften the heart and straighten priorities — not to freeze the learner in fear.",
+            "Send light ahead with small sincere deeds: prayer, charity, kind speech, seeking knowledge for Allah.",
+            "Balance khawf and rajāʾ — fear that restrains wrong, and hope that keeps you walking."
           ],
-          openCard: "grave-path-card",
-          links: [{ label: "Qur'an 67:2", href: "https://quran.com/67/2" }]
+          points: [
+            "Death is certain; preparation is daily.",
+            "Small sincere deeds matter.",
+            "Avoid despair — Allah’s mercy is vast.",
+            "Junior practice: one deed «sent ahead» today."
+          ],
+          ayah: {
+            ref: "Qurʾān 67:2",
+            en: "He who created death and life to test you as to which of you is best in deed."
+          },
+          practice: "One quiet deed for Allah before night.",
+          lab: { station: "tajweed", label: "Lab · Tajweed (short āyah with presence)" },
+          links: [{ label: "Qurʾān 67:2", href: "https://quran.com/67/2" }]
+        },
+        {
+          id: "u6-l2",
+          title: "Hope, work, and a clean ending",
+          minutes: 12,
+          adab: "Ask for a good ending without claiming ranks.",
+          body: [
+            "A seeker asks Allah for a good ending (ḥusn al-khātimah) while working with what is in front of them today.",
+            "Keep accounts light: debts, apologies, and habits that stain the heart. This is educational reminder — not a personal fatwa on inheritance or ritual detail.",
+            "Finish Phase 1 with gratitude. Phase quizzes and later tracks are doors, not trophies."
+          ],
+          points: [
+            "Ask for a good ending; act today.",
+            "Lighten burdens you can lighten.",
+            "Gratitude after completing modules.",
+            "Educational only — consult scholars for rulings."
+          ],
+          ayah: {
+            ref: "Qurʾān 59:18",
+            en: "O you who believe: fear Allah, and let every soul look to what it has sent forth for tomorrow."
+          },
+          practice: "List one burden to lighten and one deed to continue after Phase 1.",
+          links: [{ label: "Qurʾān 59:18", href: "https://quran.com/59/18" }]
         }
       ]
     }
   ];
+
 
   function flatModules() {
     var list = [];
@@ -504,7 +588,9 @@
       }
       if (les.lab && les.lab.station) {
         html +=
-          '<a class="mv-chip" href="/lab/" data-lab-station="' +
+          '<a class="mv-chip" href="/lab/?station=' +
+          les.lab.station +
+          '" data-lab-station="' +
           les.lab.station +
           '">' +
           (les.lab.label || "Open Lab") +
