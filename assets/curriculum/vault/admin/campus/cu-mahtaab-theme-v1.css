@@ -1,0 +1,103 @@
+/* Mahtaab theme — full-moon energy on deep night campus */
+:root {
+  --mahtaab-silver: #e8eef5;
+  --mahtaab-glow: rgba(232, 238, 245, 0.55);
+  --mahtaab-gold: #e0c56a;
+  --mahtaab-deep: #070d0b;
+  --mahtaab-panel: rgba(12, 20, 18, 0.92);
+}
+
+html[data-mahtaab="full"] body,
+body[data-mahtaab="full"] {
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(232, 238, 245, 0.09), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 100% 100%, rgba(31, 166, 122, 0.08), transparent 45%),
+    var(--mahtaab-deep) !important;
+}
+
+/* Soft lunar rim on cards */
+html[data-mahtaab] .cu-card,
+html[data-mahtaab] .lab-hero,
+html[data-mahtaab] .lab-station,
+html[data-mahtaab] .cu-how,
+html[data-mahtaab] .craft-root {
+  box-shadow:
+    0 0 0 1px rgba(232, 238, 245, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(232, 238, 245, 0.06);
+  border-color: rgba(224, 197, 106, 0.28) !important;
+}
+
+html[data-mahtaab="full"] .cu-banner {
+  border-bottom: 1px solid rgba(232, 238, 245, 0.12) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+html[data-mahtaab] .cu-pills a.here {
+  box-shadow: 0 0 16px rgba(224, 197, 106, 0.2);
+}
+
+/* Moon orb — brief shine on hydrate complete */
+#cu-mahtaab-orb {
+  position: fixed;
+  top: 0.65rem;
+  right: 0.85rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9500;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 35% 30%, #fffef8, #c5d0dc 45%, #8a9aab 100%);
+  box-shadow: 0 0 0 transparent;
+  transition: opacity 0.4s ease;
+}
+#cu-mahtaab-orb.shine {
+  opacity: 0.9;
+  animation: mahtaab-pulse 1.6s ease-out forwards;
+}
+@keyframes mahtaab-pulse {
+  0% {
+    transform: scale(0.6);
+    box-shadow: 0 0 0 0 var(--mahtaab-glow);
+  }
+  40% {
+    transform: scale(1);
+    box-shadow: 0 0 28px 6px var(--mahtaab-glow);
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* Hydration phase hints (subtle) */
+html[data-mahtaab="seed"] .cu-wrap {
+  opacity: 0.92;
+}
+html[data-mahtaab="crescent"] .cu-wrap,
+html[data-mahtaab="half"] .cu-wrap {
+  transition: opacity 0.35s ease;
+  opacity: 0.97;
+}
+html[data-mahtaab="full"] .cu-wrap {
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+/* Headings catch moonlight */
+html[data-mahtaab="full"] h1,
+html[data-mahtaab="full"] h2,
+html[data-mahtaab="full"] .cu-brand strong {
+  text-shadow: 0 0 24px rgba(232, 238, 245, 0.12);
+}
+
+/* Compass FAB — lunar rim */
+html[data-mahtaab] #cu-compass-fab {
+  box-shadow:
+    0 0 0 1px rgba(232, 238, 245, 0.2),
+    0 10px 28px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(224, 197, 106, 0.15);
+}
