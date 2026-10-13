@@ -1,8 +1,9 @@
-/* Clarity SW 20261009MP3 — multipage safe
- * Network-first HTML + SEAL; cache other assets; one registration only.
+/* Clarity SW 20261013NC3 — multipage university safe
+ * Network-first for HTML/navigate + campus buildings; cache assets.
+ * One registration; old caches purged on activate.
  */
-const CACHE = "clarity-20261011ENGINE";
-const PRECACHE = ["/", "/robots.txt"];
+const CACHE = "clarity-20261013NC3";
+const PRECACHE = ["/", "/robots.txt", "/campus/"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -22,6 +23,23 @@ self.addEventListener("activate", (e) => {
   );
 });
 
+function isBuilding(path) {
+  const roots = [
+    "/campus",
+    "/lab",
+    "/vault",
+    "/journey",
+    "/library",
+    "/charter",
+    "/systems"
+  ];
+  for (var i = 0; i < roots.length; i++) {
+    var r = roots[i];
+    if (path === r || path === r + "/" || path.indexOf(r + "/") === 0) return true;
+  }
+  return false;
+}
+
 self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
@@ -29,20 +47,10 @@ self.addEventListener("fetch", (e) => {
   if (url.origin !== self.location.origin) return;
 
   const path = url.pathname;
-  /* Never serve SPA fallback for multipage buildings */
   const isNavigate =
     req.mode === "navigate" || path.endsWith(".html") || path === "/" || path === "";
   const isSeal = path.indexOf("/SEAL.json") >= 0 || path.indexOf("/boot.js") >= 0;
-  const isMulti =
-    path === "/campus" ||
-    path === "/campus/" ||
-    path.indexOf("/campus/") === 0 ||
-    path === "/lab" ||
-    path === "/lab/" ||
-    path.indexOf("/lab/") === 0 ||
-    path === "/vault" ||
-    path === "/vault/" ||
-    path.indexOf("/vault/") === 0;
+  const isMulti = isBuilding(path);
 
   if (isNavigate || isSeal || isMulti) {
     e.respondWith(
@@ -55,7 +63,7 @@ self.addEventListener("fetch", (e) => {
           return res;
         })
         .catch(() => {
-          if (isMulti || isSeal) return fetch(req);
+          if (isMulti || isSeal) return Promise.reject();
           return caches.match(req).then((r) => r || caches.match("/"));
         })
     );
