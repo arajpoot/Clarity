@@ -4,6 +4,7 @@
  */
 (function (g) {
   "use strict";
+  var __NC1_GUARD = true;
   if (g.__CLARITY_LAB_WING__) return;
   g.__CLARITY_LAB_WING__ = true;
 
@@ -382,3 +383,13 @@
     setTimeout(boot, 2800);
   }
 })(typeof window !== "undefined" ? window : this);
+
+;(function(){
+  var prev = typeof window !== "undefined" && window.ClarityLab;
+  if (!prev || !prev.render) return;
+  var old = prev.render;
+  prev.render = function(){
+    if (document.body && document.body.getAttribute("data-campus-page") === "lab") return;
+    return old.apply(this, arguments);
+  };
+})();
