@@ -1,0 +1,74 @@
+/* Companion Mahtaab theme — soft moon glow on deep night + day calm */
+html[data-mahtaab="seed"] #clarity-top-duo .banner {
+  transition: box-shadow 0.8s ease, filter 0.8s ease;
+}
+
+html[data-mahtaab="crescent"] #clarity-top-duo .banner,
+html[data-mahtaab="half"] #clarity-top-duo .banner,
+html[data-mahtaab="full"] #clarity-top-duo .banner {
+  box-shadow:
+    0 0 0 1px rgba(224, 197, 106, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 48px rgba(230, 220, 180, 0.06);
+}
+
+/* Full moon accent on brand */
+html[data-mahtaab="full"] #clarity-top-duo .banner-brand .brand-name {
+  text-shadow: 0 0 18px rgba(243, 230, 192, 0.35);
+}
+
+/* Day mode contrast (CD-B3 calendar + plaques) */
+html:not([data-theme="dark"]) #clarity-top-duo .banner-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(247, 243, 235, 0.88) 0%,
+    rgba(247, 243, 235, 0.94) 100%
+  );
+  color: #1a2a22;
+}
+
+html:not([data-theme="dark"]) #clarity-top-duo .salah-times-section,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-section {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(15, 76, 58, 0.25);
+  color: #152019;
+}
+
+html:not([data-theme="dark"]) #clarity-top-duo .rabbana-box {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 76, 58, 0.2);
+}
+
+html:not([data-theme="dark"]) #clarity-top-duo .rabbana-arabic,
+html:not([data-theme="dark"]) #clarity-top-duo .bismillah {
+  color: #0f4c3a;
+}
+
+html:not([data-theme="dark"]) #clarity-top-duo .subtitle,
+html:not([data-theme="dark"]) #clarity-top-duo .rabbana-english {
+  color: rgba(21, 32, 25, 0.8);
+}
+
+html:not([data-theme="dark"]) .stream-drawer {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 76, 58, 0.22);
+}
+
+html:not([data-theme="dark"]) .stream-drawer-summary {
+  color: #0f4c3a;
+}
+
+/* Compact calendar meta emphasis */
+#clarity-top-duo .hijri-cal-meta {
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 700px) {
+  html:not([data-theme="dark"]) #clarity-top-duo .banner-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(247, 243, 235, 0.92) 0%,
+      rgba(247, 243, 235, 0.97) 100%
+    );
+  }
+}
