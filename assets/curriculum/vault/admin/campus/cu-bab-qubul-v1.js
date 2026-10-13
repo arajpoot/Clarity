@@ -78,7 +78,7 @@
       "#cu-bab-qubul .bab-primary{background:linear-gradient(135deg,#1fa67a,#0f4c3a);color:#f7f3eb}" +
       "#cu-bab-qubul .bab-ghost{background:transparent;color:#f3e6c0}" +
       "#cu-bab-qubul .bab-seal{text-align:center;margin:1rem 0;padding:1rem;border-radius:14px;border:1px dashed rgba(224,197,106,.5);" +
-      "background:rgba(224,197,106,.08)}" +
+      "background:rgba(224,197,106,.08)}#cu-bab-qubul .bab-seal strong{display:block;color:#e0c56a;font-size:1.05rem;margin:0 0 .5rem;line-height:1.35}#cu-bab-qubul .bab-seal .bab-name{display:block;font-size:1.15rem;font-weight:700;color:#f3e6c0;margin:.15rem 0 .35rem}#cu-bab-qubul .bab-seal .bab-meta{display:block;font-size:.75rem;opacity:.8;margin:.15rem 0}#cu-bab-qubul .bab-card{max-width:min(26rem,94vw)}" +
       "#cu-bab-entry{display:inline-flex;align-items:center;justify-content:center;margin:.45rem 0 .65rem;" +
       "font:inherit;font-size:.75rem;font-weight:700;padding:.4rem .95rem;border-radius:999px;" +
       "border:1px solid rgba(224,197,106,.4);background:rgba(15,76,58,.45);color:#f3e6c0;cursor:pointer;" +
@@ -176,12 +176,13 @@
         "<h2>Accepted — as a Seeker</h2>" +
         '<div class="bab-seal">' +
         "<strong>Kulliyyat al-Uṣūl · Foundations</strong>" +
-        "<span>" +
+        '<span class="bab-name">' +
         String(name).replace(/</g, "") +
-        "</span><br/><span style=\"font-size:.75rem;opacity:.8\">" +
+        "</span>" +
+        '<span class="bab-meta">' +
         when +
-        "</span><br/>" +
-        '<span style="font-size:.7rem;opacity:.65">On-device seal · not a diploma</span></div>' +
+        "</span>" +
+        '<span class="bab-meta">On-device seal · not a diploma</span></div>' +
         "<p>Your path opens at <strong>Junior · Module 1</strong>. One lesson unlocked. Spark with adab.</p>" +
         "<p style=\"font-size:.75rem;opacity:.7\">Educational only — not affiliated with Al-Azhar or any seminary.</p>" +
         '<div class="bab-actions">' +
