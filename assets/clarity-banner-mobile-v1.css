@@ -1,0 +1,264 @@
+/* CD-B1 — Companion banner mobile: unstack, no inner scroll, thumb-first */
+/* Desktop (≥701px) unchanged */
+
+@media (max-width: 700px) {
+  :root {
+    --cu-banner-touch: 44px;
+  }
+
+  /* Hero: media + overlay stack — page scrolls, not banner */
+  #clarity-top-duo .banner {
+    max-height: none !important;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  #clarity-top-duo .banner-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 34vh;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  #clarity-top-duo .banner-still-img,
+  #clarity-top-duo .banner-live-iframe {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    min-height: 140px;
+  }
+
+  /* Overlay becomes vertical stack under / over media */
+  #clarity-top-duo .banner-overlay {
+    position: relative !important;
+    inset: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    padding: 0.55rem 0.65rem 0.75rem !important;
+    background: linear-gradient(
+      180deg,
+      rgba(7, 13, 11, 0.75) 0%,
+      rgba(7, 13, 11, 0.92) 40%,
+      rgba(7, 13, 11, 0.97) 100%
+    );
+  }
+
+  /* Order: center brand/du'a first, then salah (priority), then calendar */
+  #clarity-top-duo .banner-center {
+    order: 1;
+    width: 100%;
+    text-align: center;
+  }
+
+  #clarity-top-duo .banner-side.right {
+    order: 2;
+    width: 100%;
+  }
+
+  #clarity-top-duo .banner-side.left {
+    order: 3;
+    width: 100%;
+  }
+
+  #clarity-top-duo .banner-side.left,
+  #clarity-top-duo .banner-side.right {
+    max-width: 100%;
+    flex: none;
+  }
+
+  /* Brand + bismillah compact */
+  #clarity-top-duo .bismillah {
+    font-size: clamp(0.95rem, 4vw, 1.15rem);
+    line-height: 1.4;
+    margin: 0.15rem 0;
+  }
+
+  #clarity-top-duo .banner-brand {
+    font-size: 1.05rem;
+    margin: 0.2rem 0;
+  }
+
+  #clarity-top-duo .subtitle {
+    font-size: 0.72rem;
+    opacity: 0.85;
+    margin-bottom: 0.35rem;
+  }
+
+  /* Rabbana: readable, controls touch-sized */
+  #clarity-top-duo .rabbana-box {
+    margin: 0.35rem auto 0.5rem;
+    max-width: 100%;
+    padding: 0.45rem 0.5rem;
+  }
+
+  #clarity-top-duo .rabbana-arabic {
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    line-height: 1.55;
+  }
+
+  #clarity-top-duo .rabbana-english {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    max-height: 2.8em;
+    overflow: hidden;
+  }
+
+  #clarity-top-duo .rabbana-cycle {
+    min-width: var(--cu-banner-touch);
+    min-height: var(--cu-banner-touch);
+    font-size: 1.25rem;
+  }
+
+  /* Stream: wrap, large targets — primary row */
+  #clarity-top-duo .stream-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0.4rem 0 0.25rem;
+  }
+
+  #clarity-top-duo .stream-controls button,
+  #clarity-top-duo .live-haramain-btn,
+  #clarity-top-duo .quran-stream-btn {
+    min-height: var(--cu-banner-touch);
+    min-width: var(--cu-banner-touch);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.82rem;
+    border-radius: 999px;
+  }
+
+  #clarity-top-duo .stream-controls select,
+  #clarity-top-duo .live-place-select,
+  #clarity-top-duo .stream-select {
+    min-height: var(--cu-banner-touch);
+    font-size: 0.78rem;
+    max-width: 46%;
+    flex: 1 1 auto;
+  }
+
+  /* Salah — hero on mobile */
+  #clarity-top-duo .salah-times-section {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    border-radius: 14px;
+    border: 1px solid rgba(224, 197, 106, 0.35);
+    background: rgba(15, 76, 58, 0.35);
+  }
+
+  #clarity-top-duo .salah-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  /* Next salah emphasis via JS class */
+  #clarity-top-duo .salah-times-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  #clarity-top-duo .salah-times-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35rem 0.4rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    min-height: 40px;
+  }
+
+  #clarity-top-duo .salah-times-list li.salah-next {
+    background: rgba(224, 197, 106, 0.18);
+    border: 1px solid rgba(224, 197, 106, 0.45);
+    font-weight: 700;
+    min-height: var(--cu-banner-touch);
+    font-size: 0.95rem;
+  }
+
+  #clarity-top-duo .salah-times-list li.salah-next .salah-name::before {
+    content: "Next · ";
+    color: #e0c56a;
+    font-weight: 700;
+  }
+
+  #clarity-top-duo .hijri-local-time {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 0.35rem;
+  }
+
+  #clarity-top-duo .azan-toggle-row {
+    min-height: var(--cu-banner-touch);
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+  }
+
+  /* Calendar — compact: hide heavy grid by default on very small */
+  #clarity-top-duo .hijri-cal-section {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border-radius: 14px;
+    border: 1px solid rgba(224, 197, 106, 0.25);
+    background: rgba(0, 0, 0, 0.22);
+  }
+
+  #clarity-top-duo .hijri-cal-grid {
+    display: none; /* full grid desktop/tablet only; meta + event stay */
+  }
+
+  #clarity-top-duo .cal-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+
+  #clarity-top-duo .hijri-cal-meta {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0.25rem 0;
+  }
+
+  #clarity-top-duo .hijri-next-event {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  #clarity-top-duo .hijri-temps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    margin-top: 0.35rem;
+  }
+
+  #clarity-top-duo .banner-name-plaque {
+    margin: 0 auto 0.35rem;
+  }
+
+  /* Plaques smaller on narrow */
+  #clarity-top-duo .allah-plaque .arabic {
+    font-size: 1.35rem;
+  }
+}
+
+/* Slightly wider phones: show mini cal grid */
+@media (min-width: 480px) and (max-width: 700px) {
+  #clarity-top-duo .hijri-cal-grid {
+    display: grid;
+    font-size: 0.65rem;
+  }
+}
