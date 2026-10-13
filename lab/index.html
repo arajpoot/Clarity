@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Craft Laboratory · Clarity University</title>
 <meta name="description" content="Calligraphy, Tajweed, Media Reminder — University Lab. Educational only."/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261012MAH"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261012MAH"/>
-<link rel="stylesheet" href="/assets/craft/craft-shell.css?v=20261012MAH"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261012B"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/lab.css?v=20261012B"/>
+<link rel="stylesheet" href="/assets/craft/craft-shell.css?v=20261012B"/>
 <style>
 .lab-hero{margin:0 0 1rem;padding:1rem 1.1rem;border-radius:18px;border:1px solid var(--cu-line);
   background:linear-gradient(145deg,rgba(15,76,58,.4),rgba(10,18,14,.95))}
@@ -26,10 +26,10 @@
 #lab-stage{min-height:3rem}
 .lab-admit{font-size:.78rem;color:var(--cu-muted);margin:0 0 .75rem;padding:.55rem .75rem;border-radius:12px;border:1px dashed var(--cu-line)}
 </style>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.css?v=20261012MAH"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-app-polish-v1.css?v=20261012MAH"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-mahtaab-theme-v1.css?v=20261012MAH"/>
-<script src="/assets/curriculum/vault/admin/campus/cu-mahtaab-hydrate-v1.js?v=20261012MAH"></script>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.css?v=20261012B"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-app-polish-v1.css?v=20261012B"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-mahtaab-theme-v1.css?v=20261012B"/>
+<script src="/assets/curriculum/vault/admin/campus/cu-mahtaab-hydrate-v1.js?v=20261012B"></script>
 </head>
 <body data-campus-page="lab">
 <header class="cu-banner">
@@ -57,17 +57,24 @@
     <button type="button" class="lab-station" data-station="research"><span class="ico">📚</span><strong>Research Bench</strong><span>Library shelves · teacher question.</span></button>
     <button type="button" class="lab-station" data-station="design"><span class="ico">🧪</span><strong>Module Design</strong><span>Prototype exercise draft on-device.</span></button>
   </div>
+  
+  <div id="cu-lab-workflow" style="display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1rem;justify-content:center">
+    <button type="button" class="craft-btn secondary" id="cu-btn-om-review" style="font:inherit">O&amp;M · Review queue</button>
+    <button type="button" class="craft-btn secondary" id="cu-btn-teacher-score" style="font:inherit">Lab Director · Score</button>
+    <button type="button" class="craft-btn secondary" id="cu-btn-transcript" style="font:inherit">My transcript</button>
+  </div>
+
   <div id="clarity-lab-root"><div id="lab-stage"></div></div>
   <p class="cu-note">Studios are Lab-native builds (Phase 0–2). Companion meme pills removal is Phase 3. Educational only — not certification.</p>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa.</footer>
-<script src="/assets/craft/calligraphy-studio-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/craft/tajweed-studio-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/craft/media-reminder-studio-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/craft/craft-bridge-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-helper-dock-v1.js?v=20261012MAH" defer></script>
+<script src="/assets/craft/calligraphy-studio-v1.js?v=20261012B" defer></script>
+<script src="/assets/craft/tajweed-studio-v1.js?v=20261012B" defer></script>
+<script src="/assets/craft/media-reminder-studio-v1.js?v=20261012B" defer></script>
+<script src="/assets/craft/craft-bridge-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/lab-controller-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-helper-dock-v1.js?v=20261012B" defer></script>
 <script>
 document.querySelectorAll(".lab-station").forEach(function(b){
   b.addEventListener("click", function(){
@@ -77,9 +84,25 @@ document.querySelectorAll(".lab-station").forEach(function(b){
   });
 });
 </script>
-<script src="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-compass-fab-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-spark-adab-v1.js?v=20261012MAH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-bab-qubul-v1.js?v=20261012MAH" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-compass-fab-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-spark-adab-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-bab-qubul-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/lab-portfolio-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/lab-om-assistant-v1.js?v=20261012B" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/lab-teacher-score-v1.js?v=20261012B" defer></script>
+<script>
+document.getElementById("cu-btn-om-review")&&(document.getElementById("cu-btn-om-review").onclick=function(){
+  if(window.ClarityLabOmAssist)ClarityLabOmAssist.open();
+});
+document.getElementById("cu-btn-teacher-score")&&(document.getElementById("cu-btn-teacher-score").onclick=function(){
+  if(window.ClarityLabTeacher)ClarityLabTeacher.open();
+});
+document.getElementById("cu-btn-transcript")&&(document.getElementById("cu-btn-transcript").onclick=function(){
+  var P=window.ClarityLabPortfolio;if(!P)return;
+  var rows=P.transcript();
+  alert(rows.length?rows.map(function(r){return r.station+" · "+r.title+" · "+r.score;}).join("\n"):"No transcript entries yet. Complete a lab, O&M review, then teacher score.");
+});
+</script>
 </body>
 </html>
