@@ -115,18 +115,16 @@ html[data-theme=dark] .global-nav,html[data-theme=dark] #clarity-global-nav{back
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
 <title>Clarity – Furnish Your Grave | NurOS Islamic Companion</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://api.alquran.cloud">
 <link rel="dns-prefetch" href="https://upload.wikimedia.org">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Inter:wght@400;600&display=optional&text=" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript></noscript>
 <noscript></noscript>
 
 <link rel="dns-prefetch" href="https://api.alquran.cloud">
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="dns-prefetch" href="https://everyayah.com">
 
 
@@ -304,16 +302,16 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261011ENGINE" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/clarity-critical-css-v1.css?v=20261011ENGINE" media="print" onload="this.media='all'" id="clarity-critical-css-link">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261013CD1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><!-- deduped css -->
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261011ENGINE" media="print" onload="this.media='all'" fetchpriority="low">
-<noscript><link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261011ENGINE"></noscript>
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261013CD1" media="print" onload="this.media='all'" fetchpriority="low">
+<noscript><!-- deduped css --></noscript>
 <noscript></noscript>
 <noscript></noscript>
 <!-- Clarity factor map: critical :root CSS stays inline; all patch styles live in
@@ -325,13 +323,14 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n){n.rel="stylesheet"});
 })();
 </script>
-<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261011ENGINE" id="clarity-sticky-harden-css"/>
+<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261013CD1" id="clarity-sticky-harden-css"/>
 
 <!-- Main obliterate: curriculum/admin live only on /campus/ /lab/ /vault/ -->
 <style id="clarity-main-oblit">
 #clarity-phase-plaque-rail,.clarity-engine-hud,#clarity-security-badge,#clarity-it-badge{display:none!important}
 #tab-notes[data-oblit-vault]{display:block!important;aria-hidden:false}
 </style>
+<link rel="stylesheet" href="/assets/clarity-companion-perf-v1.css?v=20261013CD1"/>
 </head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1">
 
 <nav id="clarity-global-nav" class="global-nav">
@@ -2031,13 +2030,11 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </div>
 </div>
 
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261011ENGINE" defer></script>
-<script src="./assets/clarity-chunk-8.js?v=20261011ENGINE" defer></script>
-<script src="./assets/clarity-feature-pack-v1.js?v=20261011ENGINE" defer></script>
-<script src="./assets/clarity-path-pack-v1.js?v=20261011ENGINE" defer></script>
-<script src="./assets/clarity-aux-pack-v1.js?v=20261011ENGINE" defer></script>
-
-
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261013CD1" defer></script>
+<!-- diet idle: clarity-chunk-8.js -->
+<!-- diet idle: clarity-feature-pack-v1.js -->
+<!-- diet idle: clarity-path-pack-v1.js -->
+<!-- diet idle: clarity-aux-pack-v1.js -->
 <!-- GATE NUCLEAR V2 -->
 <script>
 (function () {
@@ -2213,7 +2210,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 })();
 </script>
 
-<script src="./assets/clarity-sticky-harden-v1.js?v=20261011ENGINE" defer id="clarity-sticky-harden-js"></script>
+<script src="./assets/clarity-sticky-harden-v1.js?v=20261013CD1" defer id="clarity-sticky-harden-js"></script>
 
 <footer id="clarity-site-footer" style="max-width:40rem;margin:2rem auto 5rem;padding:1rem 1.1rem;text-align:center;font-size:.78rem;color:rgba(74,85,79,.95);line-height:1.5">
   <p style="margin:0 0 .5rem"><strong>Two paths</strong> ·
@@ -2225,7 +2222,12 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </p>
   <p style="margin:0;opacity:.85">Clarity · Educational only — not a fatwa · Local-first on this device</p>
 </footer>
-<script src="/assets/craft/companion-meme-hide-v1.js?v=20261012GAL" defer></script>
+<script src="/assets/craft/companion-meme-hide-v1.js?v=20261013CD1" defer></script>
   
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+
+<script src="/assets/clarity-companion-diet-idle-v1.js?v=20261013CD1" defer></script>
+<script src="/assets/clarity-companion-perf-v1.js?v=20261013CD1" defer></script>
+
 </body>
 </html>
