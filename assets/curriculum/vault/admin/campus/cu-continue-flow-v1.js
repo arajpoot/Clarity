@@ -195,8 +195,9 @@
     if (path.indexOf("/journey") === 0) syncJourney();
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  function safeBoot(){ try { boot(); } catch(e){} }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", safeBoot);
+  else safeBoot();
   g.addEventListener("cu-mahtaab-ready", boot);
 
   g.ClarityContinueFlow = { refresh: boot, scrollToJunior: scrollToJunior };
