@@ -1,0 +1,121 @@
+/* CD-B6 — calendar day contrast + mobile column force + vault rail */
+
+/* Day/light: calendar cells must not wash out */
+html[data-theme="light"] #clarity-top-duo .hijri-cal-section,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-section {
+  background: #f4f7f4 !important;
+  border: 1px solid rgba(15, 76, 58, 0.28) !important;
+  color: #152019 !important;
+}
+
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-grid {
+  color: #152019 !important;
+}
+
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid span,
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid div,
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid td,
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid th,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-grid span,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-grid div,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-grid button {
+  color: #1a2a22 !important;
+  opacity: 1 !important;
+}
+
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid .day,
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid [class*="day"],
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-grid .day,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-grid [class*="day"] {
+  color: #152019 !important;
+  background: transparent;
+}
+
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid .today,
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid .is-today,
+html[data-theme="light"] #clarity-top-duo .hijri-cal-grid [aria-current="date"],
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-grid .today,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-grid .is-today {
+  background: rgba(15, 76, 58, 0.15) !important;
+  color: #0c3d30 !important;
+  font-weight: 700 !important;
+  border-radius: 8px;
+}
+
+html[data-theme="light"] #clarity-top-duo .cal-title,
+html[data-theme="light"] #clarity-top-duo .hijri-cal-meta,
+html[data-theme="light"] #clarity-top-duo .hijri-next-event,
+html[data-theme="light"] #clarity-top-duo .hijri-temps,
+html:not([data-theme="dark"]) #clarity-top-duo .cal-title,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-cal-meta,
+html:not([data-theme="dark"]) #clarity-top-duo .hijri-next-event {
+  color: #152019 !important;
+}
+
+/* Mobile column — higher specificity + flex order */
+@media (max-width: 700px) {
+  #clarity-top-duo .banner,
+  #clarity-top-duo > .banner {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+
+  #clarity-top-duo .banner-media {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 9;
+    max-height: 32vh !important;
+    order: 0 !important;
+  }
+
+  #clarity-top-duo .banner-overlay {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    inset: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    gap: 0.5rem !important;
+  }
+
+  #clarity-top-duo .banner-side,
+  #clarity-top-duo .banner-side.left,
+  #clarity-top-duo .banner-side.right,
+  #clarity-top-duo .banner-center {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    float: none !important;
+  }
+
+  #clarity-top-duo .banner-center { order: 1 !important; }
+  #clarity-top-duo .banner-side.right { order: 2 !important; }
+  #clarity-top-duo .banner-side.left { order: 3 !important; }
+
+  #clarity-top-duo .hijri-cal-grid {
+    display: none !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 700px) {
+  #clarity-top-duo .hijri-cal-grid {
+    display: grid !important;
+  }
+}
+
+/* Vault rail always navigates */
+.rrra-rail-vault {
+  cursor: pointer;
+}
