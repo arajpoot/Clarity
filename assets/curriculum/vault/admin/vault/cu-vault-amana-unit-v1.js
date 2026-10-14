@@ -74,7 +74,9 @@
       "<span>● Vault open this session</span>" +
       '<span style="display:flex;gap:.35rem;flex-wrap:wrap">' +
       '<button type="button" class="vault-btn vault-btn-primary" id="vault-save">Save encrypted</button>' +
-      '<button type="button" class="vault-btn" id="vault-export">Export</button>' +
+      '<button type="button" class="vault-btn" id="vault-export">Export JSON</button>' +
+      '<button type="button" class="vault-btn" id="vault-print-pack">Print pack</button>' +
+      '<button type="button" class="vault-btn" id="vault-export-pack">Export pack</button>' +
       '<button type="button" class="vault-btn" id="vault-lock">🔒 Lock</button>' +
       "</span></div>" +
       '<details class="vault-mod" open><summary>📋 Heir readiness · for those you leave behind</summary><div class="vault-mod-body">' +
@@ -89,16 +91,7 @@
       "</div></details>" +
       '<details class="vault-mod" open><summary>🌳 Family tree · interactive pedigree</summary><div class="vault-mod-body" id="cu-uft-mount">' +
       '<p class="vault-micro">Loading pedigree…</p></div></details>' +
-      '<details class="vault-mod"><summary>📐 Farāʾiḍ · study tools</summary><div class="vault-mod-body">' +
-      ta("faraid", "scenario", "Scenario description (study only)") +
-      ta("faraid", "notes", "Questions for a qualified teacher") +
-      '<fieldset class="vault-checks"><legend>Common-error cases (study checklist)</legend>' +
-      chk("unborn", "Unborn child") +
-      chk("missing", "Missing father / grandfather issues") +
-      chk("prior", "Spouses from previous marriage") +
-      chk("nonmuslim", "Non-Muslim relatives (rules differ — ask a teacher)") +
-      "</fieldset>" +
-      '<p class="vault-micro">Not a personal calculation of your estate.</p></div></details>' +
+      '<details class="vault-mod"><summary>📐 Farāʾiḍ · study tools</summary><div class="vault-mod-body" id="cu-faraid-mount"></div></details>' +
       '<details class="vault-mod"><summary>📜 Wasiyyah · bequest notes</summary><div class="vault-mod-body">' +
       ta("wasiyyah", "text", "Draft wasiyyah thoughts (non-binding)", 5) +
       '<p class="vault-micro">Classical teaching discusses limits (including the third; not using wasiyyah to cancel heir shares). Confirm with a teacher.</p>' +
@@ -111,6 +104,16 @@
       var mountEl = document.getElementById("cu-uft-mount");
       if (mountEl && window.ClarityVaultUFT) ClarityVaultUFT.mount(mountEl);
     } catch (e) {}
+    try {
+      var fm = document.getElementById("cu-faraid-mount");
+      if (fm && window.ClarityVaultFaraid) ClarityVaultFaraid.mount(fm);
+    } catch (e2) {}
+    try {
+      var pb = document.getElementById("vault-print-pack");
+      if (pb && window.ClarityVaultPrint) pb.onclick = function(){ ClarityVaultPrint.printPack(); };
+      var eb = document.getElementById("vault-export-pack");
+      if (eb && window.ClarityVaultPrint) eb.onclick = function(){ ClarityVaultPrint.exportPack(); };
+    } catch (e3) {}
 
     $("vault-save").onclick = function () {
       V()

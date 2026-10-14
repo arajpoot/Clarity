@@ -133,3 +133,9 @@
   background: rgba(0,0,0,.25); color: #f3e6c0; cursor: pointer;
   min-height: 28px;
 }
+
+.vault-field select {
+  min-height: 44px; width: 100%; border-radius: 10px;
+  border: 1px solid rgba(224,197,106,.3); background: rgba(0,0,0,.35);
+  color: #eaf3ee; padding: .35rem .5rem; font: inherit;
+}
