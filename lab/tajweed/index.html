@@ -1,15 +1,45 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Tajweed studio · Clarity University</title>
-<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-campus-page="lab">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Tajweed studio · Lab · Clarity University</title>
+<meta name="description" content="Clarity University craft laboratory — educational practice only."/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261014L01"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-app-polish-v1.css?v=20261014L01"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-phase5-polish-v1.css?v=20261014L01"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014L01"/>
 </head>
-<body class="cu-addon">
+<body class="cu-page" data-campus-page="lab">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
+  <a class="cu-brand" href="/campus/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
   <a class="cu-main-link" href="/">← Companion</a>
 </header>
-<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="here">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
-<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
 <main class="cu-wrap">
+  <nav class="cu-pills" aria-label="Campus">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/lab/" class="here">Lab</a>
+    <a href="/vault/">Vault</a>
+    <a href="/journey/">Journey</a>
+    <a href="/charter/">Charter</a>
+  </nav>
+  <nav class="lab-station-nav" aria-label="Lab stations">
+    <a href="/lab/">Hub</a>
+    <a href="/lab/tajweed/"  class="here">Tajweed</a>
+    <a href="/lab/arabic/" >Arabic</a>
+    <a href="/lab/recite/" >Recitation</a>
+    <a href="/lab/calligraphy/">Calligraphy</a>
+  </nav>
+
+  <h1 class="lab-h1">Tajweed studio</h1>
+  <p class="lab-lead">Listen · Match · Record. Score is a practice helper, not a qāriʾ verdict. Nothing is uploaded.</p>
+  
+  <div class="studio-stage lab-studio">
+  
 
 <h1>Tajweed studio</h1>
 <p class="muted">Listen · Match · Record. Score is a practice helper, not a qāriʾ verdict. Nothing is uploaded.</p>
@@ -240,8 +270,11 @@
     </div>
   </details></div>
 
+
+  </div>
+
 </main>
-<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
-<script src="/assets/nx-tj-lmr-js-v1.js"></script>
-<script>document.addEventListener("click",function(e){if(e.target&&(e.target.id==="tj-lmr-score-btn"||e.target.id==="tj-lmr-mark-done")){var n=parseInt(localStorage.getItem("clarity_lab_tajweed")||"0",10)+1;localStorage.setItem("clarity_lab_tajweed",String(n));}});</script>
+<footer class="cu-foot">Educational practice only — not a qāriʾ certificate or fatwa. Mic only after you tap Record.</footer>
+<script src="/assets/nx-tj-lmr-js-v1.js?v=20261014L01" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/cu-lab-av-v1.js?v=20261014L01" defer></script>
 </body></html>
