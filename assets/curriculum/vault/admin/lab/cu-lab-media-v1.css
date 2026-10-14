@@ -1,0 +1,12 @@
+.media-studio { padding: 1rem; border-radius: 16px; border: 1px solid var(--cu-line, rgba(212,180,90,.3)); margin: 1rem 0; }
+.media-studio .vault-field { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.65rem; font-size: 0.8rem; }
+.media-studio textarea, .media-studio select {
+  border-radius: 10px; border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(0,0,0,0.25); color: inherit; padding: 0.45rem 0.55rem; font: inherit;
+  min-height: 44px;
+}
+.media-studio textarea.arabic { font-size: 1.25rem; line-height: 1.8; }
+#media-canvas {
+  width: 100%; max-width: 22rem; height: auto; display: block; margin: 1rem auto 0;
+  border-radius: 12px; border: 1px solid rgba(212,180,90,0.3);
+}
