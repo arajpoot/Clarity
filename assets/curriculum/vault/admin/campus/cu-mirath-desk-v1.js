@@ -4,7 +4,7 @@
   if (g.__CU_MIRATH_DESK_V1__) return;
   g.__CU_MIRATH_DESK_V1__ = true;
 
-  var SYL = "/assets/curriculum/mirath/syllabus-v1.json?v=20261013V0I1";
+  var SYL = "/assets/curriculum/mirath/syllabus-v1.json?v=20261013V2";
 
   function el(tag, cls, html) {
     var n = document.createElement(tag);
@@ -25,6 +25,11 @@
         var lab = u.lab
           ? '<a class="mv-chip" href="/vault/">Vault lab</a>'
           : "";
+        var body = (u.body || [])
+          .map(function (para) {
+            return "<p class=\"mirath-body\">" + para + "</p>";
+          })
+          .join("");
         return (
           '<div class="mirath-unit"><strong>' +
           (i + 1) +
@@ -33,6 +38,7 @@
           "</strong><p>" +
           u.goal +
           "</p>" +
+          body +
           lab +
           "</div>"
         );
