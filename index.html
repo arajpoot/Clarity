@@ -337,17 +337,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 <link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261013CDB6"/>
 <link rel="stylesheet" href="/assets/clarity-banner-restore-v1.css?v=20261013CDB6"/>
 <link rel="stylesheet" href="/assets/clarity-banner-fix-v1.css?v=20261013CDB6"/>
-</head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><div id="meet-guide" style="margin:.5rem .75rem;padding:.7rem .85rem;border:1px solid #e0d5c4;border-radius:10px;background:#fffdf8">
-<strong>Meet the guide.</strong> Read the testimony, then the path. Not a formal witnessing.
-<a href="/welcome/">Start</a> · <a href="/adhkar/">Morning / evening</a>
-</div>
-<div id="clarity-charter-strip" style="margin:.5rem .75rem;padding:.6rem .8rem;border:1px solid #e0d5c4;border-radius:10px;background:#fffdf8;font-size:.82rem;line-height:1.45">
-<strong>Charter.</strong> We submit to Allah through the Qur’an and authentic Sunnah. We do not sell a madhhab. We do not issue fatwa. Weak reports are not practice. Data stays on this device. Acceptance is with Allah; a streak is not a witness.
-<a href="/charter/">Full charter</a> · <a href="/campus/desk/?phase=seeker">Desk</a>
-</div>
-
-
-<nav id="clarity-global-nav" class="global-nav">
+</head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><p id="campus-addons" style="margin:.4rem .75rem;font-size:.78rem;opacity:.8">Campus add-ons: <a href="/campus/">University map</a> · <a href="/welcome/">Guide</a> · <a href="/lab/tajweed/">Tajweed studio</a> · <a href="/adhkar/">Adhkār</a></p><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
         <span id="current-mode-badge" class="mode-badge">Clarity</span>
@@ -2273,19 +2263,5 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </script>
 
 </body>
-
-<style id="clarity-student-hide">
-#meme-card, .card-meme, #tweet-desk, .tweet-desk, [data-section="meme"] { display:none !important; }
-</style>
-<script id="clarity-student-path">
-(function(){
-  try {
-    var el = document.querySelector("#today-deed-text, .one-action, #one-action-text");
-    if (el && /loading/i.test(el.textContent||"")) {
-      el.innerHTML = 'Today: <a href="https://quran.com/2/153">2:153</a> — seek help through patience and prayer.';
-    }
-  } catch(e){}
-})();
-</script>
 
 </html>
