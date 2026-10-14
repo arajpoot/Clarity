@@ -178,7 +178,9 @@
         .then(function () {
           pass.value = "";
           showGate(false);
-          renderModules();
+          try { window.dispatchEvent(new CustomEvent("cu-vault-unlocked")); } catch(e){}
+          if (window.ClarityVaultAmanaUnit && ClarityVaultAmanaUnit.render) ClarityVaultAmanaUnit.render();
+          else renderModules();
           toast("Unlocked");
         })
         .catch(function (e) {
@@ -194,7 +196,9 @@
           .then(function () {
             pass.value = "";
             showGate(false);
-            renderModules();
+            try { window.dispatchEvent(new CustomEvent("cu-vault-unlocked")); } catch(e){}
+            if (window.ClarityVaultAmanaUnit && ClarityVaultAmanaUnit.render) ClarityVaultAmanaUnit.render();
+            else renderModules();
             toast("Vault created · remember your passphrase");
           })
           .catch(function (e) {
@@ -250,6 +254,7 @@
     }
   }
 
+  g.ClarityVaultUI = { showGate: showGate, renderModules: renderModules };
   function boot() {
     if ((location.pathname || "").indexOf("/vault") !== 0) return;
     if (!g.crypto || !g.crypto.subtle) {
