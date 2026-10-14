@@ -1,43 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Craft Laboratory · Clarity University</title>
-<link rel="canonical" href="https://clarity-dawah.fyi/lab/"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261013P5"/>
-<style>
-.lab-stations{display:grid;grid-template-columns:repeat(auto-fill,minmax(10rem,1fr));gap:.55rem}
-.lab-station{display:block;padding:.85rem .75rem;border-radius:14px;border:1px solid rgba(224,197,106,.28);background:rgba(0,0,0,.32);color:#f3e6c0;text-decoration:none;min-height:7rem}
-.lab-station span{display:block;font-size:.75rem;color:#c5d0c8;margin-top:.25rem}
-</style>
+<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
 </head>
-<body data-campus-page="lab">
+<body class="cu-addon">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Laboratory</strong></div></a>
+  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
   <a class="cu-main-link" href="/">← Companion</a>
 </header>
+<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="here">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
+<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
 <main class="cu-wrap">
-  <nav class="cu-pills">
-    <a href="/campus/">Map</a>
-    <a href="/campus/desk/?phase=seeker">Desk</a>
-    <a class="here" href="/lab/">Lab</a>
-    <a href="/library/">Library</a>
-    <a href="/charter/">Charter</a>
-  </nav>
-  <div class="lab-hero" style="margin:0 0 1rem;padding:1rem;border-radius:18px;border:1px solid var(--cu-line,rgba(224,197,106,.3))">
-    <div style="font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#e0c56a">Craft laboratory</div>
-    <h1 style="margin:.2rem 0;color:#f3e6c0;font-size:1.3rem">Ateliers</h1>
-    <p style="margin:0;font-size:.82rem;opacity:.8">Original lab door. Studios below are add-ons. Progress stays on this device.</p>
-  </div>
-  <div class="lab-stations">
-    <a class="lab-station" href="/lab/tajweed/"><strong>Tajweed studio</strong><span>Listen · match · record · score</span></a>
-    <a class="lab-station" href="/lab/arabic/"><strong>Arabic studio</strong><span>Same audio loop</span></a>
-    <a class="lab-station" href="/lab/recite/"><strong>Recitation</strong><span>Master, whisper, meters</span></a>
-    <a class="lab-station" href="/lab/calligraphy/"><strong>Calligraphy</strong><span>Trace the letter</span></a>
-    <a class="lab-station" href="/lab/hifz/"><strong>Hifz</strong><span>One ayah, then recall</span></a>
-    <a class="lab-station" href="/adhkar/"><strong>Adhkār</strong><span>Morning / evening</span></a>
-  </div>
-  <p class="cu-note">Educational only. Verify with a teacher. Not an ijāzah.</p>
+
+<h1>Craft Laboratory</h1>
+<p class="muted">One door. Studios below share the same campus chrome. Progress stays on this device.</p>
+<div class="grid">
+<a class="card" href="/lab/tajweed/"><strong>Tajweed studio</strong><span class="muted">Listen · match · record · score</span></a>
+<a class="card" href="/lab/arabic/"><strong>Arabic studio</strong><span class="muted">Same audio loop</span></a>
+<a class="card" href="/lab/recite/"><strong>Recitation</strong><span class="muted">Master, whisper, meters</span></a>
+<a class="card" href="/lab/calligraphy/"><strong>Calligraphy</strong><span class="muted">Trace the letter</span></a>
+<a class="card" href="/lab/hifz/"><strong>Hifz</strong><span class="muted">One ayah, then recall</span></a>
+</div>
+<div class="card" id="progress"><strong>Progress</strong><div id="bars"></div></div>
+
 </main>
+<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
+<script>
+function n(k){return parseInt(localStorage.getItem(k)||"0",10)||0}
+var rows=[["Tajweed","clarity_lab_tajweed"],["Arabic","clarity_lab_arabic"],["Recitation","clarity_lab_recite"],["Calligraphy","clarity_lab_calligraphy"],["Hifz","clarity_lab_hifz"]];
+document.getElementById("bars").innerHTML=rows.map(function(r){return '<p class="muted">'+r[0]+' · '+n(r[1])+'</p>';}).join("");
+</script>
 </body></html>
