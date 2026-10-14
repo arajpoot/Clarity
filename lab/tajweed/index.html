@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Tajweed studio · Clarity</title>
+<style>
+:root{--bg:#f6f1e7;--text:#1c2a22;--accent:#0d4f3c;--card:#fffdf8;--line:#e0d5c4;--gold:#b8922a}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+main{max-width:46rem;margin:0 auto;padding:1rem}
+h1{color:var(--accent);font-size:1.35rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin:.5rem 0}
+header{display:flex;justify-content:space-between;align-items:center;padding:.6rem 1rem;background:#0d4f3c;color:#fff;flex-wrap:wrap}
+header a{color:#fff;text-decoration:none;margin-left:.55rem}
+.tj-tool-panel{background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:.6rem .8rem;margin:.6rem 0}
+.tj-tool-hint,.tj-lmr-label,.tj-lmr-meta,.tj-lmr-score-note{font-size:.82rem;color:#5c6b62}
+.tj-lmr-ar,.arabic{direction:rtl;font-size:1.45rem;line-height:1.9;color:#0d4f3c}
+button,.btn-soft,.btn-secondary{background:#0d4f3c;color:#fff;border:0;border-radius:999px;padding:.4rem .8rem;font-weight:700;cursor:pointer;margin:.15rem}
+.btn-secondary{background:#5c6b62}
+.tj-lmr-mode.active,.tj-lmr-step.active{outline:2px solid var(--gold)}
+.tj-lmr-score-val{font-size:1.6rem;font-weight:800;color:var(--accent)}
+.tj-lmr-score-bars div{height:8px;background:#e0d5c4;border-radius:99px;margin:.25rem 0}
+.tj-lmr-bar{height:100%;background:var(--accent);border-radius:99px}
+select,input{padding:.3rem .4rem;border-radius:8px;border:1px solid var(--line)}
+.muted{color:#5c6b62;font-size:.8rem}
+</style></head><body><header><a href="/campus/desk/?phase=seeker" style="font-weight:700;color:#f3e6c0">Clarity</a>
+<nav><a href="/lab/">Lab</a><a href="/lab/recite/">Recite</a><a href="/adhkar/">Adhkār</a><a href="/">Companion</a></nav></header>
+<p style="margin:0;padding:.4rem 1rem;background:#f5edd6;font-size:.8rem">Guide · Foundations — On-device guide. Not a scholar. Alignment score is a practice helper, not a qāriʾ verdict.</p>
+<main>
+<h1>Tajweed studio</h1>
+<p class="muted">Same Listen · Match · Record loop as the companion: master audio, whisper mic, level meters, score on this device. Nothing is uploaded.</p>
+  <details class="tj-tool-panel" id="tj-lmr-panel" open>
+    <summary>🎧 Listen · Match · Record (working practice loop)</summary>
+    <div class="tj-practice-loop" id="tj-lmr">
+      <p class="tj-tool-hint" style="margin-bottom:0.55rem">Practice a full āyah <em>or</em> a tajweed rule with master audio (Ḥuṣarī via EveryAyah · text via AlQuran.cloud). Whisper, record, then get an on-device alignment score. Nothing is uploaded.</p>
+
+      <div class="tj-lmr-mode-row" role="group" aria-label="Practice mode">
+        <button type="button" class="tj-lmr-mode active" data-mode="verse" id="tj-lmr-mode-verse">📖 Verse practice</button>
+        <button type="button" class="tj-lmr-mode" data-mode="rule" id="tj-lmr-mode-rule">📐 Rule audio practice</button>
+      </div>
+
+      <div class="tj-lmr-toolbar" id="tj-lmr-toolbar-verse">
+        <label class="tj-lmr-label">Sūrah
+          <select id="tj-lmr-surah" aria-label="Surah">
+<option value="1">1 · Al-Fātiḥah</option>
+<option value="2">2 · Al-Baqarah</option>
+<option value="3">3 · Āl ʿImrān</option>
+<option value="4">4 · An-Nisāʾ</option>
+<option value="5">5 · Al-Māʾidah</option>
+<option value="6">6 · Al-Anʿām</option>
+<option value="7">7 · Al-Aʿrāf</option>
+<option value="8">8 · Al-Anfāl</option>
+<option value="9">9 · At-Tawbah</option>
+<option value="10">10 · Yūnus</option>
+<option value="11">11 · Hūd</option>
+<option value="12">12 · Yūsuf</option>
+<option value="13">13 · Ar-Raʿd</option>
+<option value="14">14 · Ibrāhīm</option>
+<option value="15">15 · Al-Ḥijr</option>
+<option value="16">16 · An-Naḥl</option>
+<option value="17">17 · Al-Isrāʾ</option>
+<option value="18">18 · Al-Kahf</option>
+<option value="19">19 · Maryam</option>
+<option value="20">20 · Ṭā-Hā</option>
+<option value="21">21 · Al-Anbiyāʾ</option>
+<option value="22">22 · Al-Ḥajj</option>
+<option value="23">23 · Al-Muʾminūn</option>
+<option value="24">24 · An-Nūr</option>
+<option value="25">25 · Al-Furqān</option>
+<option value="26">26 · Ash-Shuʿarāʾ</option>
+<option value="27">27 · An-Naml</option>
+<option value="28">28 · Al-Qaṣaṣ</option>
+<option value="29">29 · Al-ʿAnkabūt</option>
+<option value="30">30 · Ar-Rūm</option>
+<option value="31">31 · Luqmān</option>
+<option value="32">32 · As-Sajdah</option>
+<option value="33">33 · Al-Aḥzāb</option>
+<option value="34">34 · Sabaʾ</option>
+<option value="35">35 · Fāṭir</option>
+<option value="36">36 · Yā-Sīn</option>
+<option value="37">37 · Aṣ-Ṣāffāt</option>
+<option value="38">38 · Ṣād</option>
+<option value="39">39 · Az-Zumar</option>
+<option value="40">40 · Ghāfir</option>
+<option value="41">41 · Fuṣṣilat</option>
+<option value="42">42 · Ash-Shūrā</option>
+<option value="43">43 · Az-Zukhruf</option>
+<option value="44">44 · Ad-Dukhān</option>
+<option value="45">45 · Al-Jāthiyah</option>
+<option value="46">46 · Al-Aḥqāf</option>
+<option value="47">47 · Muḥammad</option>
+<option value="48">48 · Al-Fatḥ</option>
+<option value="49">49 · Al-Ḥujurāt</option>
+<option value="50">50 · Qāf</option>
+<option value="51">51 · Adh-Dhāriyāt</option>
+<option value="52">52 · Aṭ-Ṭūr</option>
+<option value="53">53 · An-Najm</option>
+<option value="54">54 · Al-Qamar</option>
+<option value="55">55 · Ar-Raḥmān</option>
+<option value="56">56 · Al-Wāqiʿah</option>
+<option value="57">57 · Al-Ḥadīd</option>
+<option value="58">58 · Al-Mujādilah</option>
+<option value="59">59 · Al-Ḥashr</option>
+<option value="60">60 · Al-Mumtaḥanah</option>
+<option value="61">61 · Aṣ-Ṣaff</option>
+<option value="62">62 · Al-Jumuʿah</option>
+<option value="63">63 · Al-Munāfiqūn</option>
+<option value="64">64 · At-Taghābun</option>
+<option value="65">65 · Aṭ-Ṭalāq</option>
+<option value="66">66 · At-Taḥrīm</option>
+<option value="67">67 · Al-Mulk</option>
+<option value="68">68 · Al-Qalam</option>
+<option value="69">69 · Al-Ḥāqqah</option>
+<option value="70">70 · Al-Maʿārij</option>
+<option value="71">71 · Nūḥ</option>
+<option value="72">72 · Al-Jinn</option>
+<option value="73">73 · Al-Muzzammil</option>
+<option value="74">74 · Al-Muddaththir</option>
+<option value="75">75 · Al-Qiyāmah</option>
+<option value="76">76 · Al-Insān</option>
+<option value="77">77 · Al-Mursalāt</option>
+<option value="78">78 · An-Nabaʾ</option>
+<option value="79">79 · An-Nāziʿāt</option>
+<option value="80">80 · ʿAbasa</option>
+<option value="81">81 · At-Takwīr</option>
+<option value="82">82 · Al-Infiṭār</option>
+<option value="83">83 · Al-Muṭaffifīn</option>
+<option value="84">84 · Al-Inshiqāq</option>
+<option value="85">85 · Al-Burūj</option>
+<option value="86">86 · Aṭ-Ṭāriq</option>
+<option value="87">87 · Al-Aʿlā</option>
+<option value="88">88 · Al-Ghāshiyah</option>
+<option value="89">89 · Al-Fajr</option>
+<option value="90">90 · Al-Balad</option>
+<option value="91">91 · Ash-Shams</option>
+<option value="92">92 · Al-Layl</option>
+<option value="93">93 · Aḍ-Ḍuḥā</option>
+<option value="94">94 · Ash-Sharḥ</option>
+<option value="95">95 · At-Tīn</option>
+<option value="96">96 · Al-ʿAlaq</option>
+<option value="97">97 · Al-Qadr</option>
+<option value="98">98 · Al-Bayyinah</option>
+<option value="99">99 · Az-Zalzalah</option>
+<option value="100">100 · Al-ʿĀdiyāt</option>
+<option value="101">101 · Al-Qāriʿah</option>
+<option value="102">102 · At-Takāthur</option>
+<option value="103">103 · Al-ʿAṣr</option>
+<option value="104">104 · Al-Humazah</option>
+<option value="105">105 · Al-Fīl</option>
+<option value="106">106 · Quraysh</option>
+<option value="107">107 · Al-Māʿūn</option>
+<option value="108">108 · Al-Kawthar</option>
+<option value="109">109 · Al-Kāfirūn</option>
+<option value="110">110 · An-Naṣr</option>
+<option value="111">111 · Al-Masad</option>
+<option value="112">112 · Al-Ikhlāṣ</option>
+<option value="113">113 · Al-Falaq</option>
+<option value="114">114 · An-Nās</option>
+</select>
+        </label>
+        <label class="tj-lmr-label">Āyah
+          <input type="number" id="tj-lmr-ayah" min="1" max="286" value="1" aria-label="Ayah number" />
+        </label>
+        <button type="button" class="btn-soft" id="tj-lmr-fetch">⬇ Pull āyah</button>
+        <button type="button" class="btn-secondary" id="tj-lmr-random" title="Pick a short practice āyah" aria-label="Pick a short practice ayah">📖</button>
+      </div>
+
+      <div class="tj-lmr-toolbar" id="tj-lmr-toolbar-rule" hidden>
+        <label class="tj-lmr-label">Tajweed rule
+          <select id="tj-lmr-rule" aria-label="Tajweed rule">
+            <option value="makharij">Makhārij · مخارج</option>
+            <option value="izhar">Iẓhār · إظهار</option>
+            <option value="ikhfa">Ikhfāʾ · إخفاء</option>
+            <option value="idgham">Idghām · إدغام</option>
+            <option value="iqlab">Iqlāb · إقلاب</option>
+            <option value="qalqalah">Qalqalah · قلقلة</option>
+            <option value="ghunnah">Ghunnah · غُنّة</option>
+            <option value="madd">Madd · مدّ</option>
+            <option value="waqf">Waqf · وقف</option>
+          </select>
+        </label>
+        <button type="button" class="btn-soft" id="tj-lmr-fetch-rule">⬇ Load rule example</button>
+        <button type="button" class="btn-secondary" id="tj-lmr-rule-next" title="Next example for this rule">Next example →</button>
+      </div>
+
+      <div class="tj-lmr-read-panel" id="tj-lmr-read-panel" aria-live="polite">
+        <div class="tj-lmr-read-label">📖 Read · practice text</div>
+        <div class="tj-lmr-meta" id="tj-lmr-meta-read">Choose a sūrah &amp; āyah (or rule example), then Pull / Load.</div>
+        <div class="arabic tj-lmr-ar tj-lmr-ar-read" id="tj-lmr-ar-read" dir="rtl" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="tj-lmr-en" id="tj-lmr-en-read" style="text-align:center;font-size:0.88rem;opacity:0.9;margin-top:0.25rem"></div>
+      </div>
+
+      <div class="tj-lmr-steps" role="tablist">
+        <button type="button" class="tj-lmr-step active" data-step="1">1 · Listen</button>
+        <button type="button" class="tj-lmr-step" data-step="2">2 · Match</button>
+        <button type="button" class="tj-lmr-step" data-step="3">3 · Record</button>
+        <button type="button" class="tj-lmr-step" data-step="4">4 · Focus</button>
+      </div>
+
+      <div class="tj-lmr-panel" id="tj-lmr-step1">
+        <div class="tj-lmr-ayah-card">
+          <div class="tj-lmr-meta" id="tj-lmr-meta">Choose a sūrah &amp; āyah, then Pull.</div>
+          <div class="arabic tj-lmr-ar" id="tj-lmr-ar" dir="rtl" lang="ar">…</div>
+          <div class="tj-lmr-en" id="tj-lmr-en"></div>
+          <div class="tj-lmr-audio-row">
+            <button type="button" class="btn-soft" id="tj-lmr-play-master" disabled>▶ Play master (Ḥuṣarī)</button>
+            <audio id="tj-lmr-master-audio" preload="none"></audio>
+            <a class="tj-lmr-ext" id="tj-lmr-quran-link" href="https://quran.com" target="_blank" rel="noopener">Open on Quran.com ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tj-lmr-panel" id="tj-lmr-step2" hidden>
+        <p class="tj-tool-hint">Whisper along while the master plays. Watch pauses, madd length, and ghunnah. Replay as needed.</p>
+        <div class="arabic tj-lmr-ar tj-lmr-ar-sm" id="tj-lmr-ar2" dir="rtl" lang="ar">…</div>
+        <div class="tj-lmr-audio-row">
+          <button type="button" class="btn-soft" id="tj-lmr-play-master2">▶ Replay master</button>
+          <label class="tj-lmr-check"><input type="checkbox" id="tj-lmr-matched" /> I whispered once with the audio</label>
+        </div>
+      </div>
+
+      <div class="tj-lmr-panel" id="tj-lmr-step3" hidden>
+        <p class="tj-tool-hint">In-app whisper recorder. Record, play back next to the master, then <strong>Score vs master</strong>. Alignment is a practice helper (timing &amp; energy) — not a qāriʾ verdict. Seek a teacher for true correction.</p>
+        <div class="tj-lmr-rec-row">
+          <button type="button" class="btn-soft" id="tj-lmr-rec-btn">🎙 Start whisper</button>
+          <button type="button" class="btn-secondary" id="tj-lmr-rec-stop" disabled>⏹ Stop</button>
+          <button type="button" class="btn-soft" id="tj-lmr-rec-play" disabled>▶ My recording</button>
+          <button type="button" class="btn-soft" id="tj-lmr-play-master3">▶ Master again</button>
+          <button type="button" class="btn-soft" id="tj-lmr-score-btn" disabled>📊 Score vs master</button>
+        </div>
+        <div class="tj-lmr-rec-status" id="tj-lmr-rec-status">Mic ready · tap Start whisper</div>
+        <audio id="tj-lmr-user-audio" controls style="width:100%;margin-top:0.45rem;display:none"></audio>
+        <div class="tj-lmr-score-card" id="tj-lmr-score-card" hidden data-min-i="2" data-curriculum-folder="daily">
+          <div class="tj-lmr-score-title">Practice alignment</div>
+          <div class="tj-lmr-score-val" id="tj-lmr-score-val">—</div>
+          <div class="tj-lmr-score-bars">
+            <div class="tj-lmr-bar"><span>Timing</span><div class="track"><div class="fill" id="tj-lmr-bar-time"></div></div></div>
+            <div class="tj-lmr-bar"><span>Energy shape</span><div class="track"><div class="fill" id="tj-lmr-bar-energy"></div></div></div>
+            <div class="tj-lmr-bar"><span>Length match</span><div class="track"><div class="fill" id="tj-lmr-bar-len"></div></div></div>
+          </div>
+          <p class="tj-lmr-score-note" id="tj-lmr-score-note"></p>
+        </div>
+        <div class="tj-lmr-log" id="tj-lmr-log">
+          <div class="tj-lmr-log-title">Session log (this device)</div>
+          <div id="tj-lmr-log-list" class="tj-lmr-log-list">No sessions yet.</div>
+        </div>
+      </div>
+
+      <div class="tj-lmr-panel" id="tj-lmr-step4" hidden>
+        <p class="tj-tool-hint">Pick <em>one</em> rule from the tiles above. Only that rule today — consistency over intensity.</p>
+        <div class="tj-lmr-focus-row" id="tj-lmr-focus-chips"></div>
+        <p class="tj-lmr-focus-note" id="tj-lmr-focus-note">Tap a rule tile above, or a chip here.</p>
+        <button type="button" class="btn-soft" id="tj-lmr-mark-done">✓ Mark this loop done (today)</button>
+        <span class="tj-lmr-loop-stat" id="tj-lmr-loop-stat"></span>
+      </div>
+    </div>
+  </details>
+<p class="muted">Verify with a teacher. <a href="https://quran.com/1">Quran.com</a> · <a href="/charter/">Charter</a></p>
+</main>
+<script src="/assets/nx-tj-lmr-js-v1.js"></script>
+<script>
+document.addEventListener("click", function(e){
+  if (e.target && e.target.id === "tj-lmr-score-btn") {
+    setTimeout(function(){
+      var n = parseInt(localStorage.getItem("clarity_lab_tajweed")||"0",10)+1;
+      localStorage.setItem("clarity_lab_tajweed", String(n));
+    }, 400);
+  }
+});
+</script>
+</body></html>
