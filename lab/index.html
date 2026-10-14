@@ -1,43 +1,43 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Lab · Clarity</title><style>
-:root{--bg:#f6f1e7;--text:#1c2a22;--accent:#0d4f3c;--card:#fffdf8;--line:#e0d5c4}
-*{box-sizing:border-box}body{margin:0;font-family:Georgia,serif;background:var(--bg);color:var(--text);line-height:1.55}
-main{max-width:42rem;margin:0 auto;padding:1rem 1rem 2.5rem}
-h1{color:var(--accent);font-size:1.4rem}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin:.6rem 0}
-.ar{direction:rtl;font-size:1.35rem;line-height:1.9}
-button,.btn{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:.45rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
-.muted{color:#5c6b62;font-size:.85rem}
-a{color:var(--accent)}
-header{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1rem;background:#0d4f3c;color:#fff;flex-wrap:wrap}
-header a{color:#fff;text-decoration:none;margin-left:.6rem}
-.bar{height:8px;background:#e0d5c4;border-radius:99px;overflow:hidden;margin:.3rem 0 .6rem}
-.bar span{display:block;height:100%;background:var(--accent)}
-</style></head><body><header><a href="/campus/desk/?phase=seeker" style="font-weight:700;color:#f3e6c0">Clarity</a>
-<nav><a href="/campus/desk/?phase=seeker">Desk</a><a href="/library/">Library</a><a href="/lab/">Lab</a><a href="/">Companion</a></nav></header>
-<p style="margin:0;padding:.4rem 1rem;background:#f5edd6;font-size:.8rem">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p><main>
-<h1>Lab</h1>
-<p class="muted">Progress stays on this device. Recitation links to Quran.com. Tajweed is practice on the letter you recited.</p>
-<div class="card" id="progress"><strong>Progress</strong><div id="bars"></div></div>
-<div class="card"><strong>Stations</strong>
-<p><a class="btn" href="/lab/tajweed/">Tajweed rules</a>
-<a class="btn" href="/lab/recite/">Recitation</a>
-<a class="btn" href="/lab/calligraphy/">Calligraphy</a>
-<a class="btn" href="/lab/arabic/">Arabic</a>
-<a class="btn" href="/lab/hifz/">Hifz</a>
-<a class="btn" href="/adhkar/">Adhkār</a></p>
-</div>
-<footer style="margin-top:1.2rem;font-size:.78rem;color:#5c6b62">Educational only. Verify on <a href="https://quran.com">Quran.com</a> / <a href="https://sunnah.com">Sunnah.com</a>. Ask a qualified local scholar for rulings. <a href="/charter/">Charter</a></footer></main>
-<script>
-function n(k){ return parseInt(localStorage.getItem(k)||"0",10)||0; }
-var rows = [
-  ["Tajweed","clarity_lab_tajweed",12],
-  ["Recitation","clarity_lab_recite",7],
-  ["Calligraphy","clarity_lab_calligraphy",7],
-  ["Arabic","clarity_lab_arabic",4],
-  ["Hifz","clarity_lab_hifz",7]
-];
-document.getElementById("bars").innerHTML = rows.map(function(r){
-  var v=n(r[1]), pct=Math.min(100, Math.round(v/r[2]*100));
-  return '<p style="margin:.4rem 0 .1rem">'+r[0]+' · '+v+'</p><div class="bar"><span style="width:'+pct+'%"></span></div>';
-}).join("");
-</script></body></html>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Craft Laboratory · Clarity University</title>
+<link rel="canonical" href="https://clarity-dawah.fyi/lab/"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261013P5"/>
+<style>
+.lab-stations{display:grid;grid-template-columns:repeat(auto-fill,minmax(10rem,1fr));gap:.55rem}
+.lab-station{display:block;padding:.85rem .75rem;border-radius:14px;border:1px solid rgba(224,197,106,.28);background:rgba(0,0,0,.32);color:#f3e6c0;text-decoration:none;min-height:7rem}
+.lab-station span{display:block;font-size:.75rem;color:#c5d0c8;margin-top:.25rem}
+</style>
+</head>
+<body data-campus-page="lab">
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Laboratory</strong></div></a>
+  <a class="cu-main-link" href="/">← Companion</a>
+</header>
+<main class="cu-wrap">
+  <nav class="cu-pills">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/?phase=seeker">Desk</a>
+    <a class="here" href="/lab/">Lab</a>
+    <a href="/library/">Library</a>
+    <a href="/charter/">Charter</a>
+  </nav>
+  <div class="lab-hero" style="margin:0 0 1rem;padding:1rem;border-radius:18px;border:1px solid var(--cu-line,rgba(224,197,106,.3))">
+    <div style="font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#e0c56a">Craft laboratory</div>
+    <h1 style="margin:.2rem 0;color:#f3e6c0;font-size:1.3rem">Ateliers</h1>
+    <p style="margin:0;font-size:.82rem;opacity:.8">Original lab door. Studios below are add-ons. Progress stays on this device.</p>
+  </div>
+  <div class="lab-stations">
+    <a class="lab-station" href="/lab/tajweed/"><strong>Tajweed studio</strong><span>Listen · match · record · score</span></a>
+    <a class="lab-station" href="/lab/arabic/"><strong>Arabic studio</strong><span>Same audio loop</span></a>
+    <a class="lab-station" href="/lab/recite/"><strong>Recitation</strong><span>Master, whisper, meters</span></a>
+    <a class="lab-station" href="/lab/calligraphy/"><strong>Calligraphy</strong><span>Trace the letter</span></a>
+    <a class="lab-station" href="/lab/hifz/"><strong>Hifz</strong><span>One ayah, then recall</span></a>
+    <a class="lab-station" href="/adhkar/"><strong>Adhkār</strong><span>Morning / evening</span></a>
+  </div>
+  <p class="cu-note">Educational only. Verify with a teacher. Not an ijāzah.</p>
+</main>
+</body></html>
