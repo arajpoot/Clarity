@@ -86,3 +86,23 @@ Search before delete:
 - Orphan `welcome/`, `adhkar/`, `path/unit-1/` if empty
 
 Do **not** delete Companion root `index.html` or Amana Companion leftovers still used at `/`.
+
+## NC2 completed (20261014NC2)
+
+Eager on Desk:
+- boot.js (SEAL + foundation)
+- campus-shell-v1.js
+- cu-campus-mount-v1.js
+- cu-learner-v1.js
+- cu-page-flow-v1.js
+- cu-spark-adab-v1.js
+
+Idle (cu-desk-idle-v1.js sequential):
+- cu-overlay-housekeep-v1.js
+- cu-continue-flow-v1.js
+- cu-mirath-desk-v1.js
+- cu-phase5-polish-v1.js
+- cu-smooth-runtime-v1.js
+
+Removed from Desk path: rescue, engine, companion patches (NC1).
+Guards: mount/shell already singleton.
