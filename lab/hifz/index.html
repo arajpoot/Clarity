@@ -1,44 +1,30 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Hifz lab</title><style>
-:root{--bg:#f6f1e7;--text:#1c2a22;--accent:#0d4f3c;--card:#fffdf8;--line:#e0d5c4}
-*{box-sizing:border-box}body{margin:0;font-family:Georgia,serif;background:var(--bg);color:var(--text);line-height:1.55}
-main{max-width:42rem;margin:0 auto;padding:1rem 1rem 2.5rem}
-h1{color:var(--accent);font-size:1.4rem}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin:.6rem 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-@media(max-width:560px){.grid{grid-template-columns:1fr}}
-a.station{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.8rem}
-a.station strong{color:var(--accent);display:block}
-.ar{direction:rtl;font-size:1.6rem;line-height:1.8}
-button{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:.45rem .9rem;font-weight:700;cursor:pointer}
-.muted{color:#5c6b62;font-size:.85rem}
-header{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1rem;background:#0d4f3c;color:#fff}
-header a{color:#fff;text-decoration:none;margin-left:.6rem}
-</style></head><body><header><a href="/campus/desk/?phase=seeker" style="font-weight:700;color:#f3e6c0">Clarity</a>
-<nav><a href="/campus/desk/?phase=seeker">Desk</a><a href="/library/">Library</a><a href="/">Companion</a><a href="/lab/">Lab</a></nav></header>
-<p style="margin:0;padding:.4rem 1rem;background:#f5edd6;font-size:.8rem">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah. Lab practice unlocks with the Daily year. Verify with a teacher.</p><main>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hifz · Clarity University</title>
+<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
+</head>
+<body class="cu-addon">
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
+  <a class="cu-main-link" href="/">← Companion</a>
+</header>
+<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="here">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
+<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
+<main class="cu-wrap">
+
 <h1>Hifz</h1>
-<p class="muted">One ayah, then hide and recall. <a href="https://quran.com/1">Al-Fātiḥah on Quran.com</a></p>
-<div class="card">
-<p class="ar" id="ayah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+<p class="muted">One ayah, then hide and recall. <a href="https://quran.com/1">Al-Fātiḥah</a></p>
+<div class="card studio-stage"><p class="ar" id="ayah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
 <p id="en">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
-<button type="button" id="hide">Hide meaning</button>
-<button type="button" id="mark">Mark as reviewed</button>
-<p class="muted" id="c"></p>
-</div>
-<p class="muted">Goal is practice, not a certificate. Verify with a teacher.</p>
-<footer style="margin-top:1.2rem;font-size:.78rem;color:#5c6b62">Educational only. Verify on <a href="https://quran.com">Quran.com</a> / <a href="https://sunnah.com">Sunnah.com</a>. Ask a qualified local scholar for rulings. <a href="/charter/">Charter</a></footer></main>
+<button id="hide">Hide meaning</button> <button id="mark">Mark reviewed</button>
+<p class="muted" id="c"></p></div>
+
+</main>
+<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
 <script>
 var hidden=false;
-document.getElementById("hide").onclick=function(){
-  hidden=!hidden;
-  document.getElementById("en").style.visibility = hidden ? "hidden" : "visible";
-  this.textContent = hidden ? "Show meaning" : "Hide meaning";
-};
-function count(){ document.getElementById("c").textContent = "Reviewed on this device: "+(localStorage.getItem("clarity_lab_hifz")||"0"); }
-document.getElementById("mark").onclick=function(){
-  var n=parseInt(localStorage.getItem("clarity_lab_hifz")||"0",10)+1;
-  localStorage.setItem("clarity_lab_hifz", String(n));
-  count();
-};
+document.getElementById("hide").onclick=function(){hidden=!hidden;document.getElementById("en").style.visibility=hidden?"hidden":"visible";this.textContent=hidden?"Show meaning":"Hide meaning"};
+function count(){document.getElementById("c").textContent="Reviewed: "+(localStorage.getItem("clarity_lab_hifz")||"0")}
+document.getElementById("mark").onclick=function(){var n=parseInt(localStorage.getItem("clarity_lab_hifz")||"0",10)+1;localStorage.setItem("clarity_lab_hifz",String(n));count()};
 count();
-</script></body></html>
+</script>
+</body></html>
