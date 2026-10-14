@@ -74,6 +74,8 @@
       "<span>● Vault open this session</span>" +
       '<span style="display:flex;gap:.35rem;flex-wrap:wrap">' +
       '<button type="button" class="vault-btn vault-btn-primary" id="vault-save">Save encrypted</button>' +
+      '<button type="button" class="vault-btn" id="vault-import-json">Import JSON</button>' +
+      '<input type="file" id="vault-import-file" accept="application/json,.json" hidden />' +
       '<button type="button" class="vault-btn" id="vault-export">Export JSON</button>' +
       '<button type="button" class="vault-btn" id="vault-print-pack">Print pack</button>' +
       '<button type="button" class="vault-btn" id="vault-export-pack">Export pack</button>' +
@@ -114,6 +116,11 @@
       var eb = document.getElementById("vault-export-pack");
       if (eb && window.ClarityVaultPrint) eb.onclick = function(){ ClarityVaultPrint.exportPack(); };
     } catch (e3) {}
+    try {
+      if (window.ClarityVaultJsonImport) {
+        ClarityVaultJsonImport.wireButton("vault-import-json", "vault-import-file");
+      }
+    } catch (e4) {}
 
     $("vault-save").onclick = function () {
       V()
