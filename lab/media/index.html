@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system" data-campus-page="lab">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Media · Reminder studio · Lab</title>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261014MAHTAAB"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-app-polish-v1.css?v=20261014MAHTAAB"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-mahtaab-theme-v1.css?v=20261014MAHTAAB"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-theme-v1.css?v=20261014MAHTAAB"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-top-v1.css?v=20261014MAHTAAB"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014MAHTAAB"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-media-v1.css?v=20261014MAHTAAB"/>
+</head>
+<body class="cu-page" data-campus-page="lab" data-mahtaab="seed">
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
+  <div class="cu-banner-actions">
+    <a class="cu-main-link" href="/">← Companion</a>
+  </div>
+</header>
+<main class="cu-wrap">
+  <nav class="cu-pills" aria-label="Campus">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/lab/" class="here">Lab</a>
+    <a href="/vault/">Vault</a>
+    <a href="/journey/">Journey</a>
+    <a href="/charter/">Charter</a>
+  </nav>
+  <nav class="lab-station-nav">
+    <a href="/lab/">Hub</a>
+    <a href="/lab/tajweed/">Tajweed</a>
+    <a href="/lab/arabic/">Arabic</a>
+    <a href="/lab/recite/">Recitation</a>
+    <a href="/lab/media/" class="here">Media</a>
+  </nav>
+
+  <h1 class="lab-h1">Media · Reminder studio</h1>
+  <p class="lab-lead">Craft a calm, shareable reminder — āyah + short reflection. On-device canvas. Educational daʿwah craft, not entertainment excess.</p>
+
+  <section class="media-studio card">
+    <label class="vault-field"><span>Āyah reference</span>
+      <select id="media-ref">
+        <option value="112:1">Al-Ikhlāṣ 112:1</option>
+        <option value="112:1-4">Al-Ikhlāṣ 112:1–4</option>
+        <option value="2:255">Āyat al-Kursī (open online)</option>
+        <option value="103:1-3">Al-ʿAṣr</option>
+        <option value="1:1">Al-Fātiḥah 1:1</option>
+      </select>
+    </label>
+    <label class="vault-field"><span>Arabic (edit if needed)</span>
+      <textarea id="media-ar" rows="2" dir="rtl" class="arabic">قُلْ هُوَ ٱللَّهُ أَحَدٌ</textarea>
+    </label>
+    <label class="vault-field"><span>English reflection line</span>
+      <textarea id="media-en" rows="2">Say: He is Allah, One.</textarea>
+    </label>
+    <label class="vault-field"><span>Background tone</span>
+      <select id="media-bg">
+        <option value="night">Night green</option>
+        <option value="gold">Soft gold</option>
+        <option value="parchment">Parchment</option>
+        <option value="deep">Deep teal</option>
+      </select>
+    </label>
+    <div class="lab-av-row">
+      <button type="button" class="lab-btn lab-btn-primary" id="media-render">Render card</button>
+      <button type="button" class="lab-btn" id="media-hear">Hear āyah</button>
+      <button type="button" class="lab-btn" id="media-download">Download PNG</button>
+    </div>
+    <canvas id="media-canvas" width="1080" height="1350" aria-label="Reminder canvas"></canvas>
+    <p class="lab-micro">Nothing is uploaded. Share only what you would stand by before Allah. Not a fatwa.</p>
+  </section>
+</main>
+<footer class="cu-foot">Educational daʿwah craft — not entertainment.</footer>
+<audio id="lab-hub-audio" preload="none"></audio>
+<script src="/assets/curriculum/vault/admin/campus/cu-theme-v1.js?v=20261014MAHTAAB" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-mahtaab-hydrate-v1.js?v=20261014MAHTAAB" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/cu-lab-av-v1.js?v=20261014MAHTAAB" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/cu-lab-media-v1.js?v=20261014MAHTAAB" defer></script>
+</body>
+</html>
