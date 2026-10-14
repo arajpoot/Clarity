@@ -1,111 +1,111 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-campus-page="vault">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Amana Vault · Clarity University</title>
-<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
-<style>
-label{display:block;margin:.45rem 0 .15rem;font-size:.82rem;color:#f3e6c0}
-input,select,textarea{width:100%;background:#0c1410;color:#e7efe9;border:1px solid rgba(212,180,90,.28);border-radius:8px;padding:.4rem .5rem}
-.row{display:flex;gap:.4rem;flex-wrap:wrap;margin:.45rem 0}
-.av-warn{border:1px solid rgba(212,180,90,.45);background:rgba(212,180,90,.08);padding:.7rem .8rem;border-radius:12px}
-.member{border-bottom:1px solid rgba(212,180,90,.15);padding:.35rem 0}
-table{width:100%;border-collapse:collapse;font-size:.85rem}
-td,th{border-bottom:1px solid rgba(212,180,90,.2);padding:.3rem;text-align:left}
-</style></head>
-<body class="cu-addon">
-<header class="cu-banner"><a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a><a class="cu-main-link" href="/">← Companion</a></header>
-<nav class="cu-tabs">
-  <a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a>
-  <a class="here" href="/vault/">Vault</a><a href="/charter/">Charter</a><a href="/">Companion</a>
-</nav>
-<p class="cu-guide">Own door. On this device. Educational genealogy — not a legal pedigree. Not a fatwa.</p>
+<meta name="description" content="On-device Amana Vault — educational estate readiness. Not a fatwa."/>
+<link rel="canonical" href="https://clarity-dawah.fyi/vault/"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-app-polish-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-mahtaab-theme-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layer-nuclear-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-smooth-foundation-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-phase5-polish-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/vault/cu-vault-shell-v1.css?v=20261014NC3"/>
+<link rel="manifest" href="/assets/curriculum/vault/admin/campus/manifest.webmanifest"/>
+<meta name="theme-color" content="#0d4f3c"/>
+</head>
+<body>
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/">
+    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
+  <a class="cu-main-link" href="/">← Companion</a>
+</header>
 <main class="cu-wrap">
-<div class="card" id="amana-vault-gate">
-  <h1>Amana Vault</h1>
-  <div class="av-warn"><strong>You are responsible for your passphrase.</strong> Clarity does not store it and cannot recover vault data if it is lost. On-device only · educational — not a fatwa.</div>
-  <p>Private notes for estate readiness, family registry, and farāʾiḍ study. Not a court filing. Confirm with a qualified local scholar and, where needed, counsel.</p>
-  <p class="muted">A report in al-Tirmidhī warns against injustice in the will — verify the full isnād and fiqh with a scholar.</p>
-  <div id="amana-gate-create">
-    <label>New vault passphrase</label><input type="password" id="amana-pass-new"/>
-    <label>Confirm</label><input type="password" id="amana-pass-confirm"/>
-    <div class="row"><button type="button" id="amana-btn-create">Create & open vault</button><button type="button" id="amana-btn-have">I have a vault</button></div>
-  </div>
-  <div id="amana-gate-unlock" hidden>
-    <label>Vault passphrase</label><input type="password" id="amana-pass-unlock"/>
-    <div class="row"><button type="button" id="amana-btn-unlock">Open vault</button></div>
-  </div>
-  <p id="amana-gate-status" class="muted"></p>
-</div>
-<div id="amana-vault-interior" hidden>
-  <div class="card"><div class="row"><strong>Vault open</strong><button type="button" id="amana-btn-lock">Lock</button></div></div>
-  <details class="card" open id="vault-dd-user-family-tree-card">
-    <summary>1 · Family tree · registry & pedigree</summary>
-    <p class="muted">Reviewed for educational accuracy · Sep 2026 · not a fatwa. Oldest generation at the top. Maiden names for women. Saved only on this device.</p>
-    <ol class="muted"><li>Add a member. Set gender and alive / deceased.</li><li>Link as parent, spouse, sibling, or child.</li><li>Use the list as the pedigree. Not a legal certificate.</li></ol>
-    <label>Name</label><input id="m-name"/>
-    <label>Gender</label><select id="m-gender"><option>male</option><option>female</option></select>
-    <label>Status</label><select id="m-status"><option>alive</option><option>deceased</option></select>
-    <label>Relation to you</label><select id="m-rel"><option>self</option><option>spouse</option><option>child</option><option>parent</option><option>sibling</option><option>grandparent</option></select>
-    <button type="button" id="m-add">Add member</button>
-    <div id="m-list"></div>
-  </details>
-  <details class="card" id="vault-dd-faraid-card" open>
-    <summary>2 · Farāʾiḍ · inheritance study</summary>
-    <p class="muted">Educational outline from the registry. Schools differ. Not a personal fatwa. <a href="https://quran.com/4/11">Qur’an 4:11</a> · <a href="https://quran.com/4/12">4:12</a></p>
-    <button type="button" id="f-run">Study shares from registry</button>
-    <div id="f-out"></div>
-  </details>
-  <details class="card" id="vault-dd-wasiyyah-card">
-    <summary>3 · Wasiyyah notes</summary>
-    <p class="muted">Bequest notes for discussion with a teacher. 1/3 cap and non-heir reminders are not calculated here.</p>
-    <textarea id="w-notes" placeholder="Notes for a scholar — not a deed"></textarea>
-    <button type="button" id="w-save">Save notes</button>
-  </details>
-</div>
+  <nav class="cu-pills" aria-label="Campus">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/lab/">Lab</a>
+    <a href="/vault/" class="here">Vault</a>
+    <a href="/journey/">Journey</a>
+    <a href="/charter/">Charter</a>
+  </nav>
+
+  <h1 class="vault-title">Amana Vault</h1>
+  <p class="cu-note vault-lead">
+    Private estate-readiness tools stay <strong>on this device</strong>.
+    You hold the passphrase. Educational only — not a fatwa, not a law office, not affiliated with Al-Azhar or any seminary.
+  </p>
+
+  <!-- Gate (V2 will wire real crypto; V0 is honest shell) -->
+  <section id="vault-gate" class="vault-panel" aria-label="Vault unlock">
+    <h2>Unlock</h2>
+    <p class="vault-hint">Create or enter your on-device passphrase when the secure module is mounted (next phase). Until then, browse the module map and study <strong>Mīrāth</strong> on the Desk.</p>
+    <div class="vault-gate-row">
+      <input type="password" id="vault-pass" autocomplete="current-password" placeholder="Passphrase" disabled aria-disabled="true"/>
+      <button type="button" id="vault-unlock-btn" class="vault-btn" disabled title="Secure unlock arrives in V2">Unlock (soon)</button>
+    </div>
+    <p class="vault-micro">No recovery if forgotten — that is by design for privacy.</p>
+  </section>
+
+  <section id="vault-modules" class="vault-panel" aria-label="Vault modules">
+    <h2>Modules (private space)</h2>
+    <p class="vault-hint">After unlock, one private Amana unit opens (heir readiness · tree · farāʾiḍ · wasiyyah) — encrypted on this device.</p>
+    <div class="vault-grid">
+      <article class="vault-tile" data-mod="amana">
+        <span class="tag">Amana pack</span>
+        <strong>Legacy pack</strong>
+        <span class="desc">Identity, next of kin, debts, wasiyyah notes, janazah one-pager — export/print after unlock.</span>
+      </article>
+      <article class="vault-tile" data-mod="tree">
+        <span class="tag">Family</span>
+        <strong>Family tree</strong>
+        <span class="desc">Pedigree sketch for educational farāʾiḍ context — not a court filing.</span>
+      </article>
+      <article class="vault-tile" data-mod="faraid">
+        <span class="tag">Farāʾiḍ</span>
+        <strong>Shares illustrator</strong>
+        <span class="desc">Educational portion map + common-error cases. Not a personal fatwa.</span>
+      </article>
+      <article class="vault-tile" data-mod="wasiyyah">
+        <span class="tag">Wasiyyah</span>
+        <strong>Bequest notes</strong>
+        <span class="desc">1/3 cap &amp; non-heir reminders — for discussion with a qualified teacher.</span>
+      </article>
+    </div>
+  </section>
+
+  <section id="vault-mirath-link" class="vault-panel vault-study">
+    <h2>Study first · Mīrāth</h2>
+    <p class="vault-hint">Inheritance knowledge is mercy when learned with adab. Start the educational branch on the Desk, then return here for private lab notes.</p>
+    <a class="vault-btn vault-btn-primary" href="/campus/desk/?phase=seeker&amp;track=mirath">Open Mīrāth on Desk</a>
+    <a class="vault-btn" href="/campus/desk/?phase=seeker" style="margin-left:.35rem">Open Desk</a>
+  </section>
+
+  <p class="vault-foot-note">Companion remains the daily path. Full vault tools belong here — no loop back required for study.</p>
 </main>
-<script>
-(function(){
-  var HASH="clarity_vault_hash_v1", TREE="clarity_vault_tree_v1", WASI="clarity_vault_wasi_v1";
-  function $(id){return document.getElementById(id)}
-  async function sha(s){var d=await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));return Array.from(new Uint8Array(d)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")}
-  function members(){try{return JSON.parse(localStorage.getItem(TREE)||"[]")}catch(e){return []}}
-  function paint(){
-    var list=members();
-    $("m-list").innerHTML=list.map(function(m,i){return '<div class="member">'+(i+1)+'. '+m.name+' · '+m.gender+' · '+m.status+' · '+m.rel+'</div>'}).join("")||'<p class="muted">No members yet.</p>';
-  }
-  function openV(){$("amana-vault-gate").hidden=true;$("amana-vault-interior").hidden=false;paint();var w=localStorage.getItem(WASI);if(w)$("w-notes").value=w}
-  $("amana-btn-have").onclick=function(){$("amana-gate-create").hidden=true;$("amana-gate-unlock").hidden=false};
-  $("amana-btn-create").onclick=async function(){
-    var a=$("amana-pass-new").value,b=$("amana-pass-confirm").value;
-    if(a.length<8||a!==b){$("amana-gate-status").textContent="Use 8+ matching characters.";return}
-    localStorage.setItem(HASH, await sha(a)); openV();
-  };
-  $("amana-btn-unlock").onclick=async function(){
-    if(await sha($("amana-pass-unlock").value)!==localStorage.getItem(HASH)){$("amana-gate-status").textContent="Does not match.";return}
-    openV();
-  };
-  $("amana-btn-lock").onclick=function(){$("amana-vault-interior").hidden=true;$("amana-vault-gate").hidden=false};
-  $("m-add").onclick=function(){
-    var n=$("m-name").value.trim(); if(!n) return;
-    var list=members(); list.push({name:n,gender:$("m-gender").value,status:$("m-status").value,rel:$("m-rel").value});
-    localStorage.setItem(TREE, JSON.stringify(list)); $("m-name").value=""; paint();
-  };
-  $("f-run").onclick=function(){
-    var list=members();
-    var spouse=list.filter(function(m){return m.rel==="spouse"&&m.status==="alive"}).length;
-    var sons=list.filter(function(m){return m.rel==="child"&&m.gender==="male"}).length;
-    var daughters=list.filter(function(m){return m.rel==="child"&&m.gender==="female"}).length;
-    var father=list.some(function(m){return m.rel==="parent"&&m.gender==="male"&&m.status==="alive"});
-    var mother=list.some(function(m){return m.rel==="parent"&&m.gender==="female"&&m.status==="alive"});
-    var rows=[];
-    if(spouse) rows.push(["Spouse", spouse>1?"shared 1/8 or 1/4 — schools differ":"1/8 if child, else 1/4"]);
-    if(sons||daughters) rows.push(["Children", sons?"residue; son takes twice a daughter":"daughters: 1/2 if one, 2/3 if more"]);
-    if(father) rows.push(["Father","1/6 if child, else residue"]);
-    if(mother) rows.push(["Mother","1/6 if child or siblings, else 1/3"]);
-    if(!rows.length) rows.push(["—","Add living heirs in the registry first."]);
-    $("f-out").innerHTML='<table><tr><th>Heir</th><th>Educational outline</th></tr>'+rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'}).join("")+'</table><p class="muted">Not a ruling. ʿawl and radd are not calculated. Ask a scholar.</p>';
-  };
-  $("w-save").onclick=function(){localStorage.setItem(WASI,$("w-notes").value);};
-  if(localStorage.getItem(HASH)) $("amana-btn-have").click();
-})();
-</script>
-</body></html>
+<footer class="cu-foot">Educational only — not a fatwa. You hold your passphrase.</footer>
+<script src="/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=20261014NC3" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.js?v=20261014NC3" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-compass-fab-v1.js?v=20261014NC3" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-phase5-polish-v1.js?v=20261014NC3" defer></script>
+
+
+
+
+
+<script src="/assets/curriculum/vault/admin/vault/cu-vault-secure-v1.js?v=20261014NC3"></script>
+<script src="/assets/curriculum/vault/admin/vault/cu-vault-uft-v1.js?v=20261014NC3"></script>
+<script src="/assets/curriculum/vault/admin/vault/cu-vault-faraid-v1.js?v=20261014NC3"></script>
+<script src="/assets/curriculum/vault/admin/vault/cu-vault-print-v1.js?v=20261014NC3"></script>
+<script src="/assets/curriculum/vault/admin/vault/cu-vault-json-import-v1.js?v=20261014NC3"></script>
+<script src="/assets/curriculum/vault/admin/vault/cu-vault-integrity-v1.js?v=20261014NC3"></script>
+<script src="/assets/curriculum/vault/admin/vault/cu-vault-ui-v1.js?v=20261014NC3" defer></script>
+<script src="/assets/curriculum/vault/admin/vault/cu-vault-amana-unit-v1.js?v=20261014NC3" defer></script>
+
+</body>
+</html>
