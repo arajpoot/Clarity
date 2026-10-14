@@ -1,0 +1,24 @@
+NC4 — Delete candidates (University only; verify zero refs before delete)
+========================================================================
+SAFE TO STOP LINKING (already off Desk NC1-2):
+  assets/curriculum/vault/admin/campus/campus-engine-v1.css
+  assets/curriculum/vault/admin/campus/campus-engine-v1.js
+  assets/curriculum/vault/admin/campus/campus-polish-v1.js
+  assets/curriculum/vault/admin/campus/campus-shell.css  (replaced by cu-shared-v1.css)
+
+REVIEW BEFORE DELETE (may be dynamic / future):
+  cu-helper-dock-v1.js
+  cu-deploy-gate-v1.js
+  cu-deep-shelf-v1.js
+  cu-content-depth-v1.js
+  cu-ilm-path-v1.js
+  cu-lab-curriculum-link-v1.js
+  cu-local-certificate-v1.js
+  cu-phase-plaque-local-v1.js
+
+DO NOT DELETE (idle-loaded or vault):
+  cu-continue-flow-v1.js, cu-mirath-desk-v1.js, cu-desk-idle-v1.js
+  entire assets/curriculum/vault/admin/vault/*
+  foundation/*, SEAL.json, boot.js
+
+COMPANION: leave / and companion assets intact.
