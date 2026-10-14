@@ -98,3 +98,38 @@
 .vault-check { display:flex; gap:.4rem; align-items:flex-start; margin:.3rem 0; min-height:40px; }
 .vault-toast { position:fixed; bottom:5rem; left:50%; transform:translateX(-50%) translateY(120%); background:#0f4c3a; color:#f3e6c0; padding:.55rem 1rem; border-radius:999px; font-size:.8rem; font-weight:700; z-index:99999; transition:transform .25s; border:1px solid rgba(224,197,106,.35); }
 .vault-toast.show { transform:translateX(-50%) translateY(0); }
+
+/* V3a pedigree */
+.cu-uft-shell { margin-top: .35rem; }
+.cu-uft-toolbar { display:flex; flex-wrap:wrap; gap:.35rem; align-items:center; margin-bottom:.55rem; }
+.cu-uft-viewport {
+  max-height: 22rem; overflow: auto;
+  padding: .5rem; border-radius: 12px;
+  border: 1px solid rgba(224,197,106,.25);
+  background: rgba(0,0,0,.25);
+}
+.uft-pedigree { display:flex; flex-direction:column; gap: .75rem; }
+.uft-node { display:flex; flex-direction:column; align-items:flex-start; gap:.35rem; }
+.uft-children {
+  margin-left: 1.1rem;
+  padding-left: .75rem;
+  border-left: 2px solid rgba(224,197,106,.35);
+  display:flex; flex-direction:column; gap:.5rem;
+}
+.uft-card {
+  min-width: 11rem; max-width: 18rem;
+  padding: .45rem .55rem;
+  border-radius: 10px;
+  border: 1px solid rgba(224,197,106,.3);
+  background: rgba(15,76,58,.35);
+  color: #eaf3ee;
+}
+.uft-card-head { font-size: .85rem; }
+.uft-card-meta { font-size: .72rem; opacity: .75; }
+.uft-card-actions { display:flex; flex-wrap:wrap; gap:.25rem; margin-top:.3rem; }
+.uft-card-actions button {
+  font-size: .68rem; padding: .2rem .4rem;
+  border-radius: 6px; border: 1px solid rgba(224,197,106,.3);
+  background: rgba(0,0,0,.25); color: #f3e6c0; cursor: pointer;
+  min-height: 28px;
+}

@@ -87,10 +87,8 @@
       ta("amana", "janazahNote", "Janazah + burial notes") +
       ta("amana", "doNot", "Do-not list (educational)") +
       "</div></details>" +
-      '<details class="vault-mod" open><summary>🌳 Family tree · sketch</summary><div class="vault-mod-body">' +
-      ta("tree", "notes", "People & relationships (plain text). Optional lines: spouse, children, parents, siblings.", 6) +
-      '<p class="vault-micro">Educational pedigree for Mīrāth study — not a court filing. Full interactive tree port can deepen later.</p>' +
-      "</div></details>" +
+      '<details class="vault-mod" open><summary>🌳 Family tree · interactive pedigree</summary><div class="vault-mod-body" id="cu-uft-mount">' +
+      '<p class="vault-micro">Loading pedigree…</p></div></details>' +
       '<details class="vault-mod"><summary>📐 Farāʾiḍ · study tools</summary><div class="vault-mod-body">' +
       ta("faraid", "scenario", "Scenario description (study only)") +
       ta("faraid", "notes", "Questions for a qualified teacher") +
@@ -108,6 +106,11 @@
       '<p class="vault-micro" style="margin-top:.75rem">Educational only — not a fatwa. You hold the passphrase.</p>';
 
     bind(host);
+
+    try {
+      var mountEl = document.getElementById("cu-uft-mount");
+      if (mountEl && window.ClarityVaultUFT) ClarityVaultUFT.mount(mountEl);
+    } catch (e) {}
 
     $("vault-save").onclick = function () {
       V()
