@@ -106,3 +106,18 @@ Idle (cu-desk-idle-v1.js sequential):
 
 Removed from Desk path: rescue, engine, companion patches (NC1).
 Guards: mount/shell already singleton.
+
+## NC3 completed (20261014NC3)
+
+Nav contract (all university pages):
+Map · Desk · Lab · Vault · Journey · Charter (`cu-pills`)
+
+Removed from Lab/Journey/Charter/Vault where present:
+- cu-addon-chrome.css
+- companion clarity-css-patches
+
+Orphan routes (still 200 — optional later content, not deleted):
+- /welcome/ · /adhkar/ · /path/unit-1/
+These are valid pages; not linked in primary pills (reduces chrome fight).
+
+Smoke targets: each primary pill → 200; single pill nav; no companion CSS on university shells.
