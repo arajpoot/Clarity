@@ -330,11 +330,12 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 #clarity-phase-plaque-rail,.clarity-engine-hud,#clarity-security-badge,#clarity-it-badge{display:none!important}
 #tab-notes[data-oblit-vault]{display:block!important;aria-hidden:false}
 </style>
-<link rel="stylesheet" href="/assets/clarity-companion-perf-v1.css?v=20261013CDB4"/>
-<link rel="stylesheet" href="/assets/clarity-banner-mobile-v1.css?v=20261013CDB4"/>
-<link rel="stylesheet" href="/assets/clarity-banner-stream-v1.css?v=20261013CDB4"/>
-<link rel="stylesheet" href="/assets/clarity-companion-mahtaab-v1.css?v=20261013CDB4"/>
-<link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261013CDB4"/>
+<link rel="stylesheet" href="/assets/clarity-companion-perf-v1.css?v=20261013CDB5"/>
+<link rel="stylesheet" href="/assets/clarity-banner-mobile-v1.css?v=20261013CDB5"/>
+<link rel="stylesheet" href="/assets/clarity-banner-stream-v1.css?v=20261013CDB5"/>
+<link rel="stylesheet" href="/assets/clarity-companion-mahtaab-v1.css?v=20261013CDB5"/>
+<link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261013CDB5"/>
+<link rel="stylesheet" href="/assets/clarity-banner-restore-v1.css?v=20261013CDB5"/>
 </head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1">
 
 <nav id="clarity-global-nav" class="global-nav">
@@ -397,71 +398,48 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
           <div class="rabbana-english" id="rabbana-english"></div>
           <div class="rabbana-ref" id="rabbana-ref"></div>
         </div>
-        <div class="stream-controls stream-controls-cdb2">
-          <!-- CD-B2 primary: Live + Listen -->
-          <div class="stream-primary" role="group" aria-label="Live and Listen">
-            <button type="button" class="live-haramain-btn stream-pill-primary" id="live-haramain-btn" onclick="toggleHaramainLive()" title="Haramain live as banner background">
-              <span class="live-dot" aria-hidden="true"></span><span id="live-haramain-label">Live</span>
-            </button>
-            <button type="button" id="stream-btn" class="quran-stream-btn stream-pill-primary" onclick="toggleQuranStream()">
-              <span id="stream-icon">▶</span><span id="stream-text">Listen</span>
-            </button>
+        <div class="stream-controls stream-controls-classic">
+          <button type="button" class="live-haramain-btn" id="live-haramain-btn" onclick="toggleHaramainLive()" title="Haramain live as banner background">
+            <span class="live-dot" aria-hidden="true"></span><span id="live-haramain-label">Live</span>
+          </button>
+          <select id="live-place-select" class="live-place-select stream-select" onchange="changeHaramainPlace()" aria-label="Live source">
+            <option value="makkah" selected>Makkah</option>
+            <option value="madinah">Madinah</option>
+          </select>
+          <select id="stream-select" class="stream-select" onchange="changeStream()" title="Qurʾān radio" aria-label="Qurʾān radio">
+            <option value="https://qurango.net/radio/tarateel">Tarateel (Arabic)</option>
+            <option value="https://backup.qurango.net/radio/tarateel">Tarateel Backup</option>
+            <option value="https://qurango.net/radio/maher">Maher Al-Muaiqly</option>
+            <option value="https://qurango.net/radio/abdulbasit_abdulsamad_mojawwad">Abdulbasit Mujawwad</option>
+            <option value="https://qurango.net/radio/ajamy">Ahmad Al-Ajmy</option>
+            <option value="https://qurango.net/radio/ghamdi">Saad Al-Ghamdi</option>
+            <option value="https://qurango.net/radio/mix">Beautiful Mix</option>
+            <option value="https://backup.qurango.net/radio/translation_quran_english_basit">English Translation</option>
+            <option value="https://backup.qurango.net/radio/translation_quran_urdu_basit">Urdu Translation</option>
+          </select>
+          <button type="button" id="stream-btn" class="quran-stream-btn" onclick="toggleQuranStream()">
+            <span id="stream-icon">▶</span><span id="stream-text">Listen</span>
+          </button>
+          <select id="surah-list-pill" class="stream-select surah-dropdown" onchange="clarityPlaySurahFromSelect(this)" title="Full Surah list" aria-label="Play Surah">
+            <option value="">📖 Surahs…</option>
+          </select>
+          <select id="surah-reciter-pill" class="stream-select" onchange="claritySetReciter(this.value)" title="Reciter" aria-label="Reciter">
+            <option value="afs">Alafasy</option>
+            <option value="basit">Abdul Basit</option>
+            <option value="sds">As-Sudais</option>
+            <option value="maher">Maher</option>
+            <option value="ajm">Al-Ajmy</option>
+            <option value="ghamdi">Al-Ghamdi</option>
+            <option value="husary">Al-Husary</option>
+            <option value="minshawi">Minshawi</option>
+            <option value="shatri">Ash-Shatri</option>
+            <option value="yasser">Yasser Dosari</option>
+          </select>
+          <button type="button" class="quran-stream-btn" id="surah-surprise-pill" onclick="claritySurpriseSurahReciter()" title="Open a Surah with a reciter">📖</button>
+          <div class="volume-control">
+            <button type="button" class="mute-btn" id="mute-btn" onclick="toggleMute()" title="Mute">🔊</button>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.85" oninput="setVolume(this.value)" aria-label="Volume">
           </div>
-          <!-- Stations & options drawer -->
-          <details class="stream-drawer">
-            <summary class="stream-drawer-summary">Stations &amp; options</summary>
-            <div class="stream-drawer-body">
-              <label class="stream-field">
-                <span class="stream-field-label">Live place</span>
-                <select id="live-place-select" class="live-place-select stream-select" onchange="changeHaramainPlace()" aria-label="Live source">
-                  <option value="makkah" selected>Makkah</option>
-                  <option value="madinah">Madinah</option>
-                </select>
-              </label>
-              <label class="stream-field">
-                <span class="stream-field-label">Radio station</span>
-                <select id="stream-select" class="stream-select" onchange="changeStream()" title="Qurʾān radio" aria-label="Qurʾān radio">
-                  <option value="https://qurango.net/radio/tarateel">Tarateel (Arabic)</option>
-                  <option value="https://backup.qurango.net/radio/tarateel">Tarateel Backup</option>
-                  <option value="https://qurango.net/radio/maher">Maher Al-Muaiqly</option>
-                  <option value="https://qurango.net/radio/abdulbasit_abdulsamad_mojawwad">Abdulbasit Mujawwad</option>
-                  <option value="https://qurango.net/radio/ajamy">Ahmad Al-Ajmy</option>
-                  <option value="https://qurango.net/radio/ghamdi">Saad Al-Ghamdi</option>
-                  <option value="https://qurango.net/radio/mix">Beautiful Mix</option>
-                  <option value="https://backup.qurango.net/radio/translation_quran_english_basit">English Translation</option>
-                  <option value="https://backup.qurango.net/radio/translation_quran_urdu_basit">Urdu Translation</option>
-                </select>
-              </label>
-              <label class="stream-field">
-                <span class="stream-field-label">Surah</span>
-                <select id="surah-list-pill" class="stream-select surah-dropdown" onchange="clarityPlaySurahFromSelect(this)" title="Full Surah list" aria-label="Play Surah">
-                  <option value="">📖 Surahs…</option>
-                </select>
-              </label>
-              <label class="stream-field">
-                <span class="stream-field-label">Reciter</span>
-                <select id="surah-reciter-pill" class="stream-select" onchange="claritySetReciter(this.value)" title="Reciter" aria-label="Reciter">
-                  <option value="afs">Alafasy</option>
-                  <option value="basit">Abdul Basit</option>
-                  <option value="sds">As-Sudais</option>
-                  <option value="maher">Maher</option>
-                  <option value="ajm">Al-Ajmy</option>
-                  <option value="ghamdi">Al-Ghamdi</option>
-                  <option value="husary">Al-Husary</option>
-                  <option value="minshawi">Minshawi</option>
-                  <option value="shatri">Ash-Shatri</option>
-                  <option value="yasser">Yasser Dosari</option>
-                </select>
-              </label>
-              <div class="stream-drawer-actions">
-                <button type="button" class="quran-stream-btn stream-surprise" id="surah-surprise-pill" onclick="claritySurpriseSurahReciter()" title="Open a Surah with a reciter">📖 Surprise</button>
-                <div class="volume-control">
-                  <button type="button" class="mute-btn" id="mute-btn" onclick="toggleMute()" title="Mute">🔊</button>
-                  <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.85" oninput="setVolume(this.value)" aria-label="Volume">
-                </div>
-              </div>
-            </div>
-          </details>
         </div>
         <audio id="quran-audio" preload="none" crossorigin="anonymous"></audio>
       </div>
@@ -2251,10 +2229,10 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 
-<script src="/assets/clarity-companion-diet-idle-v1.js?v=20261013CDB4" defer></script>
-<script src="/assets/clarity-companion-perf-v1.js?v=20261013CDB4" defer></script>
+<script src="/assets/clarity-companion-diet-idle-v1.js?v=20261013CDB5" defer></script>
+<script src="/assets/clarity-companion-perf-v1.js?v=20261013CDB5" defer></script>
 
-<script src="/assets/clarity-banner-mobile-v1.js?v=20261013CDB4" defer></script>
-<script src="/assets/clarity-companion-mahtaab-v1.js?v=20261013CDB4" defer></script>
+<script src="/assets/clarity-banner-mobile-v1.js?v=20261013CDB5" defer></script>
+<script src="/assets/clarity-companion-mahtaab-v1.js?v=20261013CDB5" defer></script>
 </body>
 </html>
