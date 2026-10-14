@@ -330,12 +330,13 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 #clarity-phase-plaque-rail,.clarity-engine-hud,#clarity-security-badge,#clarity-it-badge{display:none!important}
 #tab-notes[data-oblit-vault]{display:block!important;aria-hidden:false}
 </style>
-<link rel="stylesheet" href="/assets/clarity-companion-perf-v1.css?v=20261013CDB5"/>
-<link rel="stylesheet" href="/assets/clarity-banner-mobile-v1.css?v=20261013CDB5"/>
-<link rel="stylesheet" href="/assets/clarity-banner-stream-v1.css?v=20261013CDB5"/>
-<link rel="stylesheet" href="/assets/clarity-companion-mahtaab-v1.css?v=20261013CDB5"/>
-<link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261013CDB5"/>
-<link rel="stylesheet" href="/assets/clarity-banner-restore-v1.css?v=20261013CDB5"/>
+<link rel="stylesheet" href="/assets/clarity-companion-perf-v1.css?v=20261013CDB6"/>
+<link rel="stylesheet" href="/assets/clarity-banner-mobile-v1.css?v=20261013CDB6"/>
+<link rel="stylesheet" href="/assets/clarity-banner-stream-v1.css?v=20261013CDB6"/>
+<link rel="stylesheet" href="/assets/clarity-companion-mahtaab-v1.css?v=20261013CDB6"/>
+<link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261013CDB6"/>
+<link rel="stylesheet" href="/assets/clarity-banner-restore-v1.css?v=20261013CDB6"/>
+<link rel="stylesheet" href="/assets/clarity-banner-fix-v1.css?v=20261013CDB6"/>
 </head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1">
 
 <nav id="clarity-global-nav" class="global-nav">
@@ -602,7 +603,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
   <button type="button" class="door-rail-btn rrra-rail-real" data-rail-tab="reality" data-rrra="reality" onclick="try{window.clarityOpenSectionDoor&&window.clarityOpenSectionDoor('reality')}catch(e){}"><span class="dr-ico">◉</span><span class="dr-label">Reality</span><span class="dr-count" id="rrra-count-reality"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-refl" data-rail-tab="reflection" data-rrra="reflection" onclick="try{window.clarityOpenSectionDoor&&window.clarityOpenSectionDoor('reflection')}catch(e){}"><span class="dr-ico">☾</span><span class="dr-label">Reflection</span><span class="dr-count" id="rrra-count-reflection"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-act" data-rail-tab="action" data-rrra="action" onclick="try{window.clarityOpenSectionDoor&&window.clarityOpenSectionDoor('action')}catch(e){}"><span class="dr-ico">➤</span><span class="dr-label">Action</span><span class="dr-count" id="rrra-count-action"></span></button>
-  <button type="button" class="door-rail-btn rrra-rail-vault" data-rail-tab="notes" data-rrra="action" onclick="location.href='/vault/'"><span class="dr-ico">🏦</span><span class="dr-label">Amana Vault</span></button>
+  <button type="button" class="door-rail-btn rrra-rail-vault" data-rail-tab="vault" data-rrra="action" onclick="event.preventDefault();event.stopPropagation();try{window.location.assign('/vault/')}catch(e){window.location.href='/vault/'};return false;"><span class="dr-ico">🏦</span><span class="dr-label">Amana Vault</span></button>
 </nav>
 
 <noscript>
@@ -2229,10 +2230,10 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 
-<script src="/assets/clarity-companion-diet-idle-v1.js?v=20261013CDB5" defer></script>
-<script src="/assets/clarity-companion-perf-v1.js?v=20261013CDB5" defer></script>
+<script src="/assets/clarity-companion-diet-idle-v1.js?v=20261013CDB6" defer></script>
+<script src="/assets/clarity-companion-perf-v1.js?v=20261013CDB6" defer></script>
 
-<script src="/assets/clarity-banner-mobile-v1.js?v=20261013CDB5" defer></script>
-<script src="/assets/clarity-companion-mahtaab-v1.js?v=20261013CDB5" defer></script>
+<script src="/assets/clarity-banner-mobile-v1.js?v=20261013CDB6" defer></script>
+<script src="/assets/clarity-companion-mahtaab-v1.js?v=20261013CDB6" defer></script>
 </body>
 </html>
