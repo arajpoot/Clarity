@@ -1,40 +1,30 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Adhkār · Clarity</title><style>
-:root{--bg:#f6f1e7;--text:#1c2a22;--accent:#0d4f3c;--card:#fffdf8;--line:#e0d5c4}
-*{box-sizing:border-box}body{margin:0;font-family:Georgia,serif;background:var(--bg);color:var(--text);line-height:1.55}
-main{max-width:42rem;margin:0 auto;padding:1rem 1rem 2.5rem}
-h1{color:var(--accent);font-size:1.4rem}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin:.6rem 0}
-.ar{direction:rtl;font-size:1.35rem;line-height:1.9}
-button,.btn{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:.45rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
-.muted{color:#5c6b62;font-size:.85rem}
-a{color:var(--accent)}
-header{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1rem;background:#0d4f3c;color:#fff;flex-wrap:wrap}
-header a{color:#fff;text-decoration:none;margin-left:.6rem}
-.bar{height:8px;background:#e0d5c4;border-radius:99px;overflow:hidden;margin:.3rem 0 .6rem}
-.bar span{display:block;height:100%;background:var(--accent)}
-</style></head><body><header><a href="/campus/desk/?phase=seeker" style="font-weight:700;color:#f3e6c0">Clarity</a>
-<nav><a href="/campus/desk/?phase=seeker">Desk</a><a href="/library/">Library</a><a href="/lab/">Lab</a><a href="/">Companion</a></nav></header>
-<p style="margin:0;padding:.4rem 1rem;background:#f5edd6;font-size:.8rem">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p><main>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Adhkār · Clarity University</title>
+<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
+</head>
+<body class="cu-addon">
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
+  <a class="cu-main-link" href="/">← Companion</a>
+</header>
+<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="">Lab</a><a href="/adhkar/" class="here">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
+<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
+<main class="cu-wrap">
+
 <h1>Morning and evening</h1>
 <p class="muted" id="when"></p>
 <div class="card" id="set"></div>
-<p class="muted">Confirm full wordings with a teacher. <a href="https://sunnah.com/hisn">Hisn al-Muslim on Sunnah.com</a></p>
-<footer style="margin-top:1.2rem;font-size:.78rem;color:#5c6b62">Educational only. Verify on <a href="https://quran.com">Quran.com</a> / <a href="https://sunnah.com">Sunnah.com</a>. Ask a qualified local scholar for rulings. <a href="/charter/">Charter</a></footer></main>
+<p class="muted"><a href="https://sunnah.com/hisn">Hisn al-Muslim on Sunnah.com</a></p>
+
+</main>
+<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
 <script>
 (function(){
-  var h = new Date().getHours();
-  var morning = h >= 4 && h < 12;
-  var evening = h >= 15 && h < 22;
-  document.getElementById("when").textContent = "Local hour "+h+" · "+(morning?"morning set":evening?"evening set":"either set is fine");
-  var items = morning ? [
-    ["أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ","We have entered the morning and the dominion belongs to Allah."],
-    ["سُبْحَانَ اللَّهِ وَبِحَمْدِهِ","Glory is to Allah and praise is to Him. Often taught 100 times."],
-    ["اللَّهُمَّ بِكَ أَصْبَحْنَا","O Allah, by You we enter the morning."]
-  ] : [
-    ["أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ","We have entered the evening and the dominion belongs to Allah."],
-    ["أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ","I seek refuge in the perfect words of Allah from the evil of what He created."],
-    ["اللَّهُمَّ بِكَ أَمْسَيْنَا","O Allah, by You we enter the evening."]
-  ];
-  document.getElementById("set").innerHTML = items.map(function(x){ return '<p class="ar">'+x[0]+'</p><p>'+x[1]+'</p>'; }).join("");
+  var h=new Date().getHours();
+  var morning=h>=4&&h<12, evening=h>=15&&h<22;
+  document.getElementById("when").textContent="Local hour "+h+" · "+(morning?"morning set":evening?"evening set":"either set is fine");
+  var items=morning?[["أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ","We have entered the morning and the dominion belongs to Allah."],["سُبْحَانَ اللَّهِ وَبِحَمْدِهِ","Glory is to Allah and praise is to Him."]]:[["أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ","We have entered the evening and the dominion belongs to Allah."],["أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ","I seek refuge in the perfect words of Allah."]];
+  document.getElementById("set").innerHTML=items.map(function(x){return '<p class="ar">'+x[0]+'</p><p>'+x[1]+'</p>';}).join("");
 })();
-</script></body></html>
+</script>
+</body></html>
