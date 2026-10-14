@@ -337,7 +337,15 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 <link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261013CDB6"/>
 <link rel="stylesheet" href="/assets/clarity-banner-restore-v1.css?v=20261013CDB6"/>
 <link rel="stylesheet" href="/assets/clarity-banner-fix-v1.css?v=20261013CDB6"/>
-</head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1">
+</head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><div id="meet-guide" style="margin:.5rem .75rem;padding:.7rem .85rem;border:1px solid #e0d5c4;border-radius:10px;background:#fffdf8">
+<strong>Meet the guide.</strong> Read the testimony, then the path. Not a formal witnessing.
+<a href="/welcome/">Start</a> · <a href="/adhkar/">Morning / evening</a>
+</div>
+<div id="clarity-charter-strip" style="margin:.5rem .75rem;padding:.6rem .8rem;border:1px solid #e0d5c4;border-radius:10px;background:#fffdf8;font-size:.82rem;line-height:1.45">
+<strong>Charter.</strong> We submit to Allah through the Qur’an and authentic Sunnah. We do not sell a madhhab. We do not issue fatwa. Weak reports are not practice. Data stays on this device. Acceptance is with Allah; a streak is not a witness.
+<a href="/charter/">Full charter</a> · <a href="/campus/desk/?phase=seeker">Desk</a>
+</div>
+
 
 <nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
@@ -2265,4 +2273,19 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </script>
 
 </body>
+
+<style id="clarity-student-hide">
+#meme-card, .card-meme, #tweet-desk, .tweet-desk, [data-section="meme"] { display:none !important; }
+</style>
+<script id="clarity-student-path">
+(function(){
+  try {
+    var el = document.querySelector("#today-deed-text, .one-action, #one-action-text");
+    if (el && /loading/i.test(el.textContent||"")) {
+      el.innerHTML = 'Today: <a href="https://quran.com/2/153">2:153</a> — seek help through patience and prayer.';
+    }
+  } catch(e){}
+})();
+</script>
+
 </html>

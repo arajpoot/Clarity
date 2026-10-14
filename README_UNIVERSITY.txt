@@ -1,16 +1,18 @@
-Clarity University pages — 20261011UNIV
+Clarity learning path — 20261014PATH
 
-Two paths:
-  /              Companion (RRRA tools, legacy learning cards)
-  /campus/       University desk + sequential colleges
-  /journey/      Four-college map
-  /library/      Source shelves
-  /lab/          Craft map into Companion tools
-  /systems/      IT Device Lab + O&M training
-  /vault/        Local study records (not accreditation)
+Charter on / and /charter/.
+Desk: /campus/desk/?phase=seeker
+Unit 1 is static HTML (Qur'an 112) so a crawler sees the Arabic.
+Deed writes { unit, at } to localStorage. No quiz on Unit 1.
+Student nav: Desk · Library · Companion.
+Lab hidden until Daily. No Faculty/Security/IT/diploma/shaykh names in student UI.
 
-Upload: campus/, journey/, library/, lab/, systems/, vault/,
-  assets/curriculum/vault/admin/campus/cu-shared-v1.*,
-  assets/curriculum/vault/SEAL.json (if diplomas/transmission changed)
+Upload:
+  charter/
+  campus/
+  campus/desk/
+  library/
+  index.html  (charter strip + hide meme from scroll)
+  README_UNIVERSITY.txt
 
-Clear SW once after deploy.
+Educational only. Verify on Quran.com / Sunnah.com. Ask a local scholar for rulings.
