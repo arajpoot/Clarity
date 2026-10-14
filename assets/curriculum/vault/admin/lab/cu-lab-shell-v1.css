@@ -1,0 +1,35 @@
+/* Lab shell L0+L1 */
+.lab-h1 { color: #d4b45a; font-size: 1.35rem; margin: 0.5rem 0 0.35rem; text-align: center; }
+.lab-lead { text-align: center; font-size: 0.9rem; opacity: 0.9; max-width: 36rem; margin: 0 auto 1rem; line-height: 1.45; }
+.lab-micro { font-size: 0.78rem; opacity: 0.8; line-height: 1.4; margin: 0.4rem 0 0; }
+.lab-policy { max-width: 40rem; margin: 0 auto 1.25rem; padding: 1rem 1.1rem; border-radius: 16px;
+  border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.28); }
+.lab-policy h2 { color: #e0c56a; font-size: 1rem; margin: 0 0 0.5rem; }
+.lab-policy ol { margin: 0; padding-left: 1.2rem; font-size: 0.86rem; line-height: 1.5; }
+.lab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 0.65rem; margin: 1rem 0; }
+.lab-card { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.85rem; border-radius: 14px;
+  border: 1px solid rgba(212,180,90,0.28); background: rgba(15,76,58,0.28); color: #e7efe9; text-decoration: none;
+  min-height: 7rem; transition: border-color .15s, transform .15s; }
+.lab-card:hover { border-color: rgba(212,180,90,0.55); transform: translateY(-1px); }
+.lab-card-hot { box-shadow: 0 0 0 1px rgba(31,166,122,0.35), 0 8px 24px rgba(0,0,0,0.25); }
+.lab-card-ico { font-size: 1.35rem; }
+.lab-card strong { color: #f3e6c0; font-size: 0.95rem; }
+.lab-card span { font-size: 0.75rem; opacity: 0.85; line-height: 1.35; }
+.lab-station-nav { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; margin: 0.35rem 0 0.75rem; }
+.lab-station-nav a { font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.7rem; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12); color: rgba(231,239,233,0.9); text-decoration: none; min-height: 40px;
+  display: inline-flex; align-items: center; }
+.lab-station-nav a.here { background: rgba(212,180,90,0.2); border-color: rgba(212,180,90,0.45); color: #f0e6c8; }
+.lab-lesson-strip { margin: 0.75rem 0 1rem; padding: 0.85rem; border-radius: 14px; border: 1px solid rgba(212,180,90,0.25);
+  background: rgba(0,0,0,0.22); }
+.lab-lesson-strip h2 { font-size: 0.95rem; color: #e0c56a; margin: 0 0 0.5rem; }
+.lab-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.lab-chip, .lab-btn { min-height: 44px; padding: 0.4rem 0.85rem; border-radius: 999px; border: 1px solid rgba(212,180,90,0.35);
+  background: rgba(15,76,58,0.4); color: #f3e6c0; font-weight: 600; font-size: 0.8rem; cursor: pointer; }
+.lab-btn-primary, #tj-lmr-play-master.lab-btn-primary { background: linear-gradient(135deg,#1fa67a,#0f4c3a); color: #fff; }
+.lab-btn-ghost { background: transparent; }
+.lab-av-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+.lab-studio { margin-top: 0.5rem; }
+/* LMR readability on dark university shell */
+.tj-practice-loop, .tj-tool-panel { color: #e7efe9; }
+.tj-lmr-mode { min-height: 40px; }
