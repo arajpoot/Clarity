@@ -1,30 +1,19 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Arabic studio · Clarity</title>
-<style>
-:root{--bg:#f6f1e7;--text:#1c2a22;--accent:#0d4f3c;--card:#fffdf8;--line:#e0d5c4;--gold:#b8922a}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
-main{max-width:46rem;margin:0 auto;padding:1rem}
-h1{color:var(--accent);font-size:1.35rem}
-header{display:flex;justify-content:space-between;align-items:center;padding:.6rem 1rem;background:#0d4f3c;color:#fff;flex-wrap:wrap}
-header a{color:#fff;text-decoration:none;margin-left:.55rem}
-.tj-tool-panel{background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:.6rem .8rem;margin:.6rem 0}
-.tj-tool-hint,.tj-lmr-label,.tj-lmr-meta,.tj-lmr-score-note{font-size:.82rem;color:#5c6b62}
-.tj-lmr-ar,.arabic{direction:rtl;font-size:1.45rem;line-height:1.9;color:#0d4f3c}
-button,.btn-soft,.btn-secondary{background:#0d4f3c;color:#fff;border:0;border-radius:999px;padding:.4rem .8rem;font-weight:700;cursor:pointer;margin:.15rem}
-.btn-secondary{background:#5c6b62}
-.tj-lmr-mode.active{outline:2px solid var(--gold)}
-.tj-lmr-score-val{font-size:1.6rem;font-weight:800;color:var(--accent)}
-.tj-lmr-score-bars div{height:8px;background:#e0d5c4;border-radius:99px;margin:.25rem 0}
-select,input{padding:.3rem .4rem;border-radius:8px;border:1px solid var(--line)}
-.muted{color:#5c6b62;font-size:.8rem}
-.card{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin:.5rem 0}
-</style></head><body><header><a href="/campus/desk/?phase=seeker" style="font-weight:700;color:#f3e6c0">Clarity</a>
-<nav><a href="/lab/">Lab</a><a href="/lab/tajweed/">Tajweed</a><a href="/lab/arabic/">Arabic</a><a href="/lab/recite/">Recite</a><a href="/">Companion</a></nav></header>
-<p style="margin:0;padding:.4rem 1rem;background:#f5edd6;font-size:.8rem">Guide · Foundations — On-device guide. Not a scholar. Score is a practice helper, not a qāriʾ verdict.</p>
-<main>
+<title>Arabic studio · Clarity University</title>
+<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
+</head>
+<body class="cu-addon">
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
+  <a class="cu-main-link" href="/">← Companion</a>
+</header>
+<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="here">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
+<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
+<main class="cu-wrap">
+
 <h1>Arabic studio</h1>
-<p class="muted">Same Listen · Match · Record loop. Pull an āyah, hear the master, whisper, then score on this device. Start with Al-Fātiḥah.</p>
-  <details class="tj-tool-panel" id="tj-lmr-panel" open>
+<p class="muted">Same loop. Start with Al-Fātiḥah. Nothing is uploaded.</p>
+<div class="studio-stage">  <details class="tj-tool-panel" id="tj-lmr-panel" open>
     <summary>🎧 Listen · Match · Record (working practice loop)</summary>
     <div class="tj-practice-loop" id="tj-lmr">
       <p class="tj-tool-hint" style="margin-bottom:0.55rem">Practice a full āyah <em>or</em> a tajweed rule with master audio (Ḥuṣarī via EveryAyah · text via AlQuran.cloud). Whisper, record, then get an on-device alignment score. Nothing is uploaded.</p>
@@ -249,16 +238,10 @@ select,input{padding:.3rem .4rem;border-radius:8px;border:1px solid var(--line)}
         <span class="tj-lmr-loop-stat" id="tj-lmr-loop-stat"></span>
       </div>
     </div>
-  </details>
-<p class="muted">Nothing is uploaded. Verify with a teacher. <a href="https://quran.com">Quran.com</a> · <a href="/charter/">Charter</a></p>
+  </details></div>
+
 </main>
+<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
 <script src="/assets/nx-tj-lmr-js-v1.js"></script>
-<script>
-document.addEventListener("click", function(e){
-  if (e.target && (e.target.id === "tj-lmr-score-btn" || e.target.id === "tj-lmr-mark-done")) {
-    var n = parseInt(localStorage.getItem("clarity_lab_arabic")||"0",10)+1;
-    localStorage.setItem("clarity_lab_arabic", String(n));
-  }
-});
-</script>
+<script>document.addEventListener("click",function(e){if(e.target&&(e.target.id==="tj-lmr-score-btn"||e.target.id==="tj-lmr-mark-done")){var n=parseInt(localStorage.getItem("clarity_lab_arabic")||"0",10)+1;localStorage.setItem("clarity_lab_arabic",String(n));}});</script>
 </body></html>
