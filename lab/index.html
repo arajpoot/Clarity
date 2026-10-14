@@ -1,13 +1,22 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Craft Laboratory · Clarity University</title>
-<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-app-polish-v1.css?v=20261014NC3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-phase5-polish-v1.css?v=20261014NC3"/>
 </head>
 <body class="cu-addon">
 <header class="cu-banner">
   <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
   <a class="cu-main-link" href="/">← Companion</a>
 </header>
-<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="here">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
+  <nav class="cu-pills" aria-label="Campus">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/lab/" class="here">Lab</a>
+    <a href="/vault/">Vault</a>
+    <a href="/journey/">Journey</a>
+    <a href="/charter/">Charter</a>
+  </nav>
 <p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
 <main class="cu-wrap">
 
@@ -29,4 +38,5 @@ function n(k){return parseInt(localStorage.getItem(k)||"0",10)||0}
 var rows=[["Tajweed","clarity_lab_tajweed"],["Arabic","clarity_lab_arabic"],["Recitation","clarity_lab_recite"],["Calligraphy","clarity_lab_calligraphy"],["Hifz","clarity_lab_hifz"]];
 document.getElementById("bars").innerHTML=rows.map(function(r){return '<p class="muted">'+r[0]+' · '+n(r[1])+'</p>';}).join("");
 </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body></html>
