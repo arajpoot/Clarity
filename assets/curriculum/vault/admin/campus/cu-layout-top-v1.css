@@ -1,0 +1,68 @@
+/* Project-wide layout: banner pinned top, clean stage */
+header.cu-banner {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  padding: 0.45rem 0.75rem;
+  padding-top: calc(0.45rem + env(safe-area-inset-top, 0px));
+  border-bottom: 1px solid rgba(212, 180, 90, 0.28);
+  backdrop-filter: blur(8px);
+}
+.cu-banner .cu-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: #f0e6c8;
+}
+.cu-banner .cu-brand img {
+  width: 2rem;
+  height: 2rem;
+}
+.cu-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+main.cu-wrap {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0.65rem 0.75rem 5rem;
+}
+/* Lab LMR controls readable */
+.tj-lmr-mode, .tj-lmr-toolbar button, .tj-lmr-toolbar select,
+[class*="tj-lmr"] button {
+  color: var(--cu-text, #e8f0ea) !important;
+  background: rgba(15, 76, 58, 0.45) !important;
+  border: 1px solid rgba(212, 180, 90, 0.35) !important;
+  border-radius: 10px;
+  min-height: 40px;
+}
+.tj-lmr-mode.active {
+  background: rgba(212, 180, 90, 0.28) !important;
+  border-color: rgba(212, 180, 90, 0.6) !important;
+  color: var(--cu-gold-soft, #f0e6c8) !important;
+}
+.tj-practice-loop, .studio-stage {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* Arabic text */
+.tj-lmr-ar, [id*="lmr-ar"] {
+  font-family: "Scheherazade New", "Amiri", "Noto Naskh Arabic", serif;
+  font-size: 1.45rem;
+  line-height: 2;
+  direction: rtl;
+  text-align: right;
+}
+/* Mahtaab progressive reveal helpers */
+[data-mahtaab="seed"] { opacity: 0.92; }
+[data-mahtaab="crescent"] { transition: opacity 0.35s ease; }
+[data-mahtaab="full"] { opacity: 1; }

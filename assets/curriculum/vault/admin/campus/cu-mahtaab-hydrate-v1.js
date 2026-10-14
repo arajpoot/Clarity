@@ -5,8 +5,10 @@
  */
 (function (g) {
   "use strict";
-  if (g.__CU_MAHTAAB_HYDRATE_V1__) return;
-  g.__CU_MAHTAAB_HYDRATE_V1__ = true;
+  if (try{document.documentElement.setAttribute("data-mahtaab-engine","1");}catch(e){}
+g.__CU_MAHTAAB_HYDRATE_V1__) return;
+  try{document.documentElement.setAttribute("data-mahtaab-engine","1");}catch(e){}
+g.__CU_MAHTAAB_HYDRATE_V1__ = true;
 
   var VER = "20261012MAH";
   var loaded = {};
