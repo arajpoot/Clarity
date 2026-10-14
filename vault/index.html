@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-campus-page="vault">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Amana Vault · Clarity University</title>
-<meta name="description" content="Clarity University — educational only, not a fatwa."/>
+<meta name="description" content="On-device Amana Vault — educational estate readiness. Not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/vault/"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261013P5"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.css?v=20261013P5"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-app-polish-v1.css?v=20261013P5"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-mahtaab-theme-v1.css?v=20261013P5"/>
-<script src="/assets/curriculum/vault/admin/campus/cu-mahtaab-hydrate-v1.js?v=20261013P5"></script>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layer-nuclear-v1.css?v=20261013P5"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-smooth-foundation-v1.css?v=20261013P5"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261013V0I1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.css?v=20261013V0I1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-app-polish-v1.css?v=20261013V0I1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-mahtaab-theme-v1.css?v=20261013V0I1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layer-nuclear-v1.css?v=20261013V0I1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-smooth-foundation-v1.css?v=20261013V0I1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-phase5-polish-v1.css?v=20261013V0I1"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/vault/cu-vault-shell-v1.css?v=20261013V0I1"/>
 <link rel="manifest" href="/assets/curriculum/vault/admin/campus/manifest.webmanifest"/>
 <meta name="theme-color" content="#0d4f3c"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-phase5-polish-v1.css?v=20261013P5"/>
 </head>
 <body>
 <header class="cu-banner">
@@ -29,28 +29,68 @@
   <nav class="cu-pills" aria-label="Campus">
     <a href="/campus/">Map</a>
     <a href="/campus/desk/?phase=seeker">Desk</a>
-    <a href="/lab/" class="">Lab</a>
+    <a href="/lab/">Lab</a>
     <a href="/vault/" class="here">Vault</a>
-    <a href="/journey/" class="">Journey</a>
-    <a href="/charter/" class="">Charter</a>
+    <a href="/journey/">Journey</a>
+    <a href="/charter/">Charter</a>
   </nav>
-  <h1 style="text-align:center;color:#f3e6c0;font-size:1.25rem;font-weight:800">Amana Vault</h1>
-  <p class="cu-note">
-    Private study notes and estate-readiness tools stay <strong style="color:#f3e6c0">on this device</strong>.
-    University progress keys are separate from Companion streaks.
-    Full vault gate may also open from Companion when needed.
+
+  <h1 class="vault-title">Amana Vault</h1>
+  <p class="cu-note vault-lead">
+    Private estate-readiness tools stay <strong>on this device</strong>.
+    You hold the passphrase. Educational only — not a fatwa, not a law office, not affiliated with Al-Azhar or any seminary.
   </p>
-  <div class="cu-grid" style="margin-top:1rem">
-    <a class="cu-card" href="/#notes"><span class="tag">Vault</span><strong>Open on Companion</strong><span class="desc">Encrypted-at-rest tools when available.</span></a>
-    <a class="cu-card" href="/campus/desk/?phase=seeker"><span class="tag">Desk</span><strong>Learning desk</strong><span class="desc">Curriculum modules.</span></a>
-  </div>
+
+  <!-- Gate (V2 will wire real crypto; V0 is honest shell) -->
+  <section id="vault-gate" class="vault-panel" aria-label="Vault unlock">
+    <h2>Unlock</h2>
+    <p class="vault-hint">Create or enter your on-device passphrase when the secure module is mounted (next phase). Until then, browse the module map and study <strong>Mīrāth</strong> on the Desk.</p>
+    <div class="vault-gate-row">
+      <input type="password" id="vault-pass" autocomplete="current-password" placeholder="Passphrase" disabled aria-disabled="true"/>
+      <button type="button" id="vault-unlock-btn" class="vault-btn" disabled title="Secure unlock arrives in V2">Unlock (soon)</button>
+    </div>
+    <p class="vault-micro">No recovery if forgotten — that is by design for privacy.</p>
+  </section>
+
+  <section id="vault-modules" class="vault-panel" aria-label="Vault modules">
+    <h2>Modules (private space)</h2>
+    <p class="vault-hint">These open fully after secure mount. Labels show what will live here.</p>
+    <div class="vault-grid">
+      <article class="vault-tile" data-mod="amana">
+        <span class="tag">Amana pack</span>
+        <strong>Legacy pack</strong>
+        <span class="desc">Identity, next of kin, debts, wasiyyah notes, janazah one-pager — export/print after unlock.</span>
+      </article>
+      <article class="vault-tile" data-mod="tree">
+        <span class="tag">Family</span>
+        <strong>Family tree</strong>
+        <span class="desc">Pedigree sketch for educational farāʾiḍ context — not a court filing.</span>
+      </article>
+      <article class="vault-tile" data-mod="faraid">
+        <span class="tag">Farāʾiḍ</span>
+        <strong>Shares illustrator</strong>
+        <span class="desc">Educational portion map + common-error cases. Not a personal fatwa.</span>
+      </article>
+      <article class="vault-tile" data-mod="wasiyyah">
+        <span class="tag">Wasiyyah</span>
+        <strong>Bequest notes</strong>
+        <span class="desc">1/3 cap &amp; non-heir reminders — for discussion with a qualified teacher.</span>
+      </article>
+    </div>
+  </section>
+
+  <section id="vault-mirath-link" class="vault-panel vault-study">
+    <h2>Study first · Mīrāth</h2>
+    <p class="vault-hint">Inheritance knowledge is mercy when learned with adab. Start the educational branch on the Desk, then return here for private lab notes.</p>
+    <a class="vault-btn vault-btn-primary" href="/campus/desk/?phase=seeker&amp;track=mirath">Open Mīrāth on Desk</a>
+  </section>
+
+  <p class="vault-foot-note">Companion remains the daily path. Full vault tools belong here — no loop back required for study.</p>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. You hold your passphrase.</footer>
-<script src="/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=20261013P5" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.js?v=20261013P5" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-compass-fab-v1.js?v=20261013P5" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-spark-adab-v1.js?v=20261013P5" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-bab-qubul-v1.js?v=20261013P5" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-smooth-runtime-v1.js?v=20261013P5" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-phase5-polish-v1.js?v=20261013P5" defer></script>
-</body></html>
+<script src="/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=20261013V0I1" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.js?v=20261013V0I1" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-compass-fab-v1.js?v=20261013V0I1" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-phase5-polish-v1.js?v=20261013V0I1" defer></script>
+</body>
+</html>
