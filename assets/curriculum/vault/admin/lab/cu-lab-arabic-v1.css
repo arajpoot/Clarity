@@ -1,0 +1,47 @@
+/* Arabic Lab — immersion + SRS path (not Tajweed) */
+.ar-lab { max-width: 40rem; margin: 0 auto; }
+.ar-progress {
+  display: flex; gap: 0.35rem; justify-content: center; flex-wrap: wrap;
+  margin: 0.5rem 0 1rem;
+}
+.ar-progress button {
+  min-height: 40px; padding: 0.35rem 0.75rem; border-radius: 999px;
+  border: 1.5px solid rgba(45,125,118,0.35); background: rgba(45,125,118,0.1);
+  font-weight: 700; font-size: 0.78rem; cursor: pointer; color: inherit;
+}
+.ar-progress button.here {
+  background: #2d7d76; color: #fff; border-color: #2d7d76;
+}
+.ar-card {
+  padding: 1.1rem; border-radius: 16px; margin-bottom: 0.85rem;
+  border: 1px solid rgba(184,166,135,0.4); background: var(--cu-card, #fffef8);
+}
+.ar-prompt { text-align: center; margin: 0.75rem 0; }
+.ar-prompt .ar-word {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 2.4rem; line-height: 1.6; direction: rtl;
+  color: var(--cu-text, #2a2319);
+}
+.ar-prompt .ar-hint { font-size: 0.85rem; opacity: 0.75; margin-top: 0.35rem; }
+.ar-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 0.75rem 0;
+}
+.ar-choice {
+  min-height: 72px; border-radius: 14px; border: 1.5px solid rgba(30,125,94,0.25);
+  background: rgba(30,125,94,0.06); font-size: 1.5rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 0.35rem;
+  transition: border-color .15s, background .15s, transform .12s;
+}
+.ar-choice:hover { border-color: #1e7d5e; transform: translateY(-1px); }
+.ar-choice.ok { background: rgba(30,125,94,0.25); border-color: #1e7d5e; }
+.ar-choice.bad { background: rgba(162,59,78,0.15); border-color: #a23b4e; }
+.ar-status { text-align: center; font-size: 0.88rem; min-height: 1.4em; margin: 0.5rem 0; }
+.ar-letter-row { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; }
+.ar-letter {
+  width: 3rem; height: 3rem; border-radius: 12px; border: 1px solid rgba(184,166,135,0.45);
+  background: rgba(255,254,248,0.9); font-size: 1.5rem; font-family: serif;
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+}
+html[data-theme="dark"] .ar-letter { background: rgba(0,0,0,0.25); }
+.ar-letter.here { border-color: #1e7d5e; box-shadow: 0 0 0 2px rgba(30,125,94,0.25); }
+.ar-srs-meta { font-size: 0.75rem; opacity: 0.8; text-align: center; }
