@@ -86,3 +86,16 @@
     }, 8000);
   } catch (e2) {}
 })(typeof window !== "undefined" ? window : this);
+
+;(function(g){
+  function hideEmptyDeskHosts(){
+    if((location.pathname||"").indexOf("/campus/desk")<0) return;
+    ["clarity-how-phases-slot","clarity-phase-plaque-host","clarity-name-plaque-rail"].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el && !el.children.length){ el.setAttribute("hidden","hidden"); el.style.display="none"; }
+    });
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", hideEmptyDeskHosts);
+  else hideEmptyDeskHosts();
+  setTimeout(hideEmptyDeskHosts, 500);
+})(typeof window!=="undefined"?window:this);

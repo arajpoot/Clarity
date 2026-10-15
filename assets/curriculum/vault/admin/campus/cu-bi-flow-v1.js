@@ -28,6 +28,10 @@
       "</div></details>";
   }
 
+  function isDesk() {
+    var p = location.pathname || "";
+    return p.indexOf("/campus/desk") >= 0;
+  }
   function run() {
     var b = banner();
     var main = document.querySelector("main.cu-wrap, main");
@@ -35,6 +39,22 @@
       document.body.insertBefore(b, document.body.firstElementChild);
     }
     if (!main) return;
+    /* Desk: single optional how-card — never invent a second layer over Junior stage */
+    if (isDesk()) {
+      var slot = document.getElementById("clarity-how-phases-slot");
+      var existing = document.getElementById("clarity-how-phases") || document.querySelector(".cu-how-phases, [class*='how-phases']");
+      if (existing && existing.children.length && slot && !slot.contains(existing)) {
+        slot.appendChild(existing);
+      }
+      /* hide empty hosts so they do not paint grey plaques */
+      ["clarity-how-phases-slot", "clarity-phase-plaque-host", "clarity-name-plaque-rail"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && !el.children.length && !(el.textContent || "").trim()) {
+          el.style.display = "none";
+        }
+      });
+      return;
+    }
     ["#clarity-how-phases", "[class*='how-phases']", "#clarity-phase-plaque-host", "#clarity-name-plaque-rail"].forEach(
       function (sel) {
         try {

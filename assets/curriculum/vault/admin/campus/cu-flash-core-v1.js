@@ -159,6 +159,19 @@
   } catch (e2) {}
 })(typeof window !== "undefined" ? window : this);
 
+;(function(g){
+  function hideEmptyDeskHosts(){
+    if((location.pathname||"").indexOf("/campus/desk")<0) return;
+    ["clarity-how-phases-slot","clarity-phase-plaque-host","clarity-name-plaque-rail"].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el && !el.children.length){ el.setAttribute("hidden","hidden"); el.style.display="none"; }
+    });
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", hideEmptyDeskHosts);
+  else hideEmptyDeskHosts();
+  setTimeout(hideEmptyDeskHosts, 500);
+})(typeof window!=="undefined"?window:this);
+
 /* ---- cu-bi-flow-v1.js ---- */
 /* BI-2/5 — flow: banner first, phase chrome in main, optional collapse */
 (function (g) {
@@ -190,6 +203,10 @@
       "</div></details>";
   }
 
+  function isDesk() {
+    var p = location.pathname || "";
+    return p.indexOf("/campus/desk") >= 0;
+  }
   function run() {
     var b = banner();
     var main = document.querySelector("main.cu-wrap, main");
@@ -197,6 +214,22 @@
       document.body.insertBefore(b, document.body.firstElementChild);
     }
     if (!main) return;
+    /* Desk: single optional how-card — never invent a second layer over Junior stage */
+    if (isDesk()) {
+      var slot = document.getElementById("clarity-how-phases-slot");
+      var existing = document.getElementById("clarity-how-phases") || document.querySelector(".cu-how-phases, [class*='how-phases']");
+      if (existing && existing.children.length && slot && !slot.contains(existing)) {
+        slot.appendChild(existing);
+      }
+      /* hide empty hosts so they do not paint grey plaques */
+      ["clarity-how-phases-slot", "clarity-phase-plaque-host", "clarity-name-plaque-rail"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && !el.children.length && !(el.textContent || "").trim()) {
+          el.style.display = "none";
+        }
+      });
+      return;
+    }
     ["#clarity-how-phases", "[class*='how-phases']", "#clarity-phase-plaque-host", "#clarity-name-plaque-rail"].forEach(
       function (sel) {
         try {
