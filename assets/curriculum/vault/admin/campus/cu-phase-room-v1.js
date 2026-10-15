@@ -1,11 +1,12 @@
 /**
- * Quiet phase room — mount only one college, strip extra chrome.
+ * Quiet phase room v2 — one college, strip chrome, craft handoff, next riwāq.
  * data-phase-room: seeker | practice | consistency | transmission
- * Educational only.
+ * Educational only. Lab pill stays free reference.
  */
 (function (g) {
   "use strict";
-  if (g.__CU_PHASE_ROOM__) return;
+  if (g.__CU_PHASE_ROOM_V2__) return;
+  g.__CU_PHASE_ROOM_V2__ = true;
   g.__CU_PHASE_ROOM__ = true;
 
   var PHASE_KEY = "clarity_curriculum_phase_v1";
@@ -23,6 +24,29 @@
     consistency: "Consistency (Daily)",
     transmission: "Transmission (Daʿī)"
   };
+  /* Phase 2 — one craft handoff per phase (Lab = reference) */
+  var CRAFT = {
+    seeker: {
+      href: "/lab/calligraphy/",
+      label: "Calligraphy — one letter with presence",
+      blurb: "Anchor what you learned with the hand. One letter or the Name — slowly."
+    },
+    practice: {
+      href: "/lab/tajweed/",
+      label: "Tajweed — one rule, one āyah",
+      blurb: "Serve prayer confidence. One rule, one short āyah."
+    },
+    consistency: {
+      href: "/lab/recite/",
+      label: "Recite — short steady portion",
+      blurb: "Daily itqān. A small portion you can repeat with care."
+    },
+    transmission: {
+      href: "/lab/media/",
+      label: "Media — one verified reminder",
+      blurb: "Source honesty before sharing. One short, checked reminder."
+    }
+  };
 
   function room() {
     return (document.body && document.body.getAttribute("data-phase-room")) || "seeker";
@@ -37,9 +61,7 @@
   }
 
   function allowed() {
-    var r = room();
-    var need = ROOM_TO_NUM[r] || 1;
-    return phaseNow() >= need;
+    return phaseNow() >= (ROOM_TO_NUM[room()] || 1);
   }
 
   function stripChrome() {
@@ -50,15 +72,23 @@
       "clarity-how-phases-slot",
       "campus-staff-strip",
       "campus-rescue-card",
-      "cu-stage-skeleton"
+      "cu-stage-skeleton",
+      "campus-loading-hint"
     ].forEach(function (id) {
       var n = document.getElementById(id);
-      if (n) try { n.remove(); } catch (e) {}
+      if (n && (id !== "campus-loading-hint" || document.querySelector("[id$='-curriculum-card'], .junior-module"))) {
+        try {
+          if (id === "campus-loading-hint") n.remove();
+          else n.remove();
+        } catch (e) {}
+      }
     });
     document.querySelectorAll(
       ".clarity-phase-plaque, .cu-skel, [data-chancellor-root], #clarity-chancellor-fab"
     ).forEach(function (n) {
-      try { n.remove(); } catch (e) {}
+      try {
+        n.remove();
+      } catch (e) {}
     });
   }
 
@@ -72,9 +102,60 @@
     var id = keep[room()];
     document.querySelectorAll("[id$='-curriculum-card'], .curriculum-phase-card").forEach(function (el) {
       if (id && el.id === id) return;
-      if (id && el.querySelector && el.querySelector("#" + id)) return;
-      try { el.remove(); } catch (e) {}
+      try {
+        el.remove();
+      } catch (e) {}
     });
+  }
+
+  function modulesComplete() {
+    var body = document.getElementById("campus-stage-body");
+    if (!body) return false;
+    var locks = body.querySelectorAll(".junior-module .lock, [data-locked='1'], .is-locked");
+    var modules = body.querySelectorAll(".junior-module, [data-module-id], .curriculum-module");
+    /* Heuristic: phase quiz button or "phase complete" block, or no locked modules with some modules present */
+    if (body.querySelector(".junior-phase-quiz-btn, .junior-phase-complete, [data-phase-complete]"))
+      return true;
+    if (modules.length && locks.length === 0) return true;
+    /* Progress text e.g. 11/11 */
+    var txt = body.textContent || "";
+    var m = txt.match(/(\d+)\s*\/\s*(\d+)\s*modules/i);
+    if (m && m[1] === m[2] && parseInt(m[1], 10) > 0) return true;
+    return false;
+  }
+
+  function ensureCraftSlot() {
+    var r = room();
+    var craft = CRAFT[r];
+    if (!craft) return;
+    var host = document.getElementById("cu-phase-craft");
+    if (!host) {
+      host = document.createElement("section");
+      host.id = "cu-phase-craft";
+      host.className = "cu-phase-craft";
+      var stage = document.getElementById("clarity-campus-stage");
+      if (stage && stage.parentNode) stage.parentNode.insertBefore(host, stage.nextSibling);
+      else return;
+    }
+    /* Phase 3: show when modules complete OR phase already advanced past this room */
+    var show = modulesComplete() || phaseNow() > (ROOM_TO_NUM[r] || 1);
+    if (!show) {
+      host.hidden = true;
+      host.innerHTML = "";
+      return;
+    }
+    host.hidden = false;
+    host.innerHTML =
+      '<p class="cu-craft-kicker">Practice this level</p>' +
+      "<p class=\"cu-craft-blurb\">" +
+      craft.blurb +
+      "</p>" +
+      '<a class="cu-btn" href="' +
+      craft.href +
+      '">' +
+      craft.label +
+      " →</a> " +
+      '<a class="cu-btn ghost" href="/lab/">All Lab stations (reference)</a>';
   }
 
   function renderRoom() {
@@ -86,14 +167,16 @@
         g.ClarityJuniorHighCurriculum.render();
       if (r === "consistency" && g.ClarityDailyHsCurriculum && g.ClarityDailyHsCurriculum.render)
         g.ClarityDailyHsCurriculum.render();
-      if (r === "transmission" && g.ClarityDaiUniversity && g.ClarityDaiUniversity.render)
-        g.ClarityDaiUniversity.render();
-      else if (r === "transmission" && g.ClarityDaiUniversityCurriculum && g.ClarityDaiUniversityCurriculum.render)
-        g.ClarityDaiUniversityCurriculum.render();
+      if (r === "transmission") {
+        if (g.ClarityDaiUniversity && g.ClarityDaiUniversity.render) g.ClarityDaiUniversity.render();
+        else if (g.ClarityDaiUniversityCurriculum && g.ClarityDaiUniversityCurriculum.render)
+          g.ClarityDaiUniversityCurriculum.render();
+      }
     } catch (e) {}
     stripOtherCards();
     stripChrome();
     paintGate();
+    ensureCraftSlot();
     paintNext();
   }
 
@@ -113,8 +196,17 @@
       gate.innerHTML =
         "<h2>This riwāq is still sealed</h2>" +
         "<p>Complete the previous phase and its phase quiz first. Progress stays on this device.</p>" +
-        '<p><a class="cu-btn" href="' + ROOM_PATH[prev] + '">Return to ' + ROOM_LABEL[prev] + "</a> " +
+        '<p><a class="cu-btn" href="' +
+        ROOM_PATH[prev] +
+        '">Return to ' +
+        ROOM_LABEL[prev] +
+        "</a> " +
         '<a class="cu-btn ghost" href="/campus/desk/">All riwāq</a></p>';
+      var craft = document.getElementById("cu-phase-craft");
+      if (craft) {
+        craft.hidden = true;
+        craft.innerHTML = "";
+      }
     }
   }
 
@@ -129,8 +221,14 @@
       el.hidden = false;
       el.innerHTML =
         "<strong>Next riwāq open</strong>" +
-        "<p>You may enter " + ROOM_LABEL[next] + ".</p>" +
-        '<a class="cu-btn" href="' + ROOM_PATH[next] + '">Continue to ' + ROOM_LABEL[next] + " →</a>";
+        "<p>You may enter " +
+        ROOM_LABEL[next] +
+        ".</p>" +
+        '<a class="cu-btn" href="' +
+        ROOM_PATH[next] +
+        '">Continue to ' +
+        ROOM_LABEL[next] +
+        " →</a>";
     } else if (n === 4 && unlocked >= 4) {
       el.hidden = false;
       el.innerHTML =
