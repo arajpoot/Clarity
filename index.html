@@ -2421,7 +2421,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </footer>
 <script src="/assets/craft/companion-meme-hide-v1.js?v=20261015BIH" defer></script>
 <script src="/assets/craft/companion-tools-restore-v1.js?v=20261015BIH" defer></script>
-<!-- flow-perf path-strip disabled 20261015LAND2: bottom nav is enough -->
+<!-- flow-perf path-strip disabled 20261015FIX1: bottom nav is enough -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 
 <script src="/assets/clarity-companion-diet-idle-v1.js?v=20261015BIH" defer></script>
@@ -2453,16 +2453,16 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </script>
 
 
-<link rel="stylesheet" href="/assets/clarity-amana-vault-v1.css?v=20261015AMANALAND"/>
+<link rel="stylesheet" href="/assets/clarity-amana-vault-v1.css?v=20261015FIX1"/>
 <div id="nuros-amana-panel" role="dialog" aria-modal="true" aria-labelledby="av-title" aria-hidden="true">
   <button type="button" class="av-close" onclick="NurOS.closeVault()" aria-label="Close">×</button>
   <h2 id="av-title">Amana Vault</h2>
   <p><strong>NurOS</strong> keeps your intentions on this device only. Export a sealed package to move to another phone or browser — or retrieve an emergency backup.</p>
   <div class="av-status" id="av-status">Checking storage…</div>
 <button type="button" id="nuros-vault-fab" onclick="try{NurOS.openVault()}catch(e){location.hash='notes'}" title="Amana Vault" aria-label="Amana Vault">🕋</button>
-<script src="/assets/clarity-amana-vault-secure-v1.js?v=20261015AMANALAND" defer></script>
-<script src="/assets/clarity-amana-vault-nuros-v1.js?v=20261015AMANALAND" defer></script>
-<script src="/assets/amana-phase1-local-guard.js?v=20261015AMANAF" defer></script>
+<script src="/assets/clarity-amana-vault-secure-v1.js?v=20261015FIX1" defer></script>
+<script src="/assets/clarity-amana-vault-nuros-v1.js?v=20261015FIX1" defer></script>
+<script src="/assets/amana-phase1-local-guard.js?v=20261015FIX1" defer></script>
 
 
 <script id="amana-lazy-estate">
@@ -2483,7 +2483,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   function bootEstate(){
     if (loaded) return;
     loaded = true;
-    var v="20261015AMANAF";
+    var v="20261015FIX1";
     load("/assets/clarity-amana-fiqh-v1.js?v="+v).then(function(){
       return load("/assets/clarity-amana-uft-v1.js?v="+v);
     }).then(function(){
