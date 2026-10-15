@@ -64,4 +64,8 @@
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", schedule);
   } else schedule();
+
+  g.addEventListener("clarity-companion-need-tools", function () {
+    try { run(); } catch (e) {}
+  });
 })(typeof window !== "undefined" ? window : this);
