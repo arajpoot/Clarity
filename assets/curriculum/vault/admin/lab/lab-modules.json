@@ -1,6 +1,49 @@
 {
-  "version": 1,
+  "version": 2,
   "projects": [
+    {
+      "id": "lab-ar1",
+      "station": "arabic",
+      "title": "Letter with presence",
+      "minutes": 12,
+      "goal": "Learn one Arabic letter: shape, name, and one tip — calm review.",
+      "steps": [
+        "Open Arabic studio (/lab/arabic/)",
+        "Pick one letter from the letters path",
+        "Say the name aloud once",
+        "Write the letter slowly three times (paper or calligraphy pad)"
+      ],
+      "output": "note",
+      "href": "/lab/arabic/"
+    },
+    {
+      "id": "lab-ar2",
+      "station": "arabic",
+      "title": "Immersion match · image ↔ word",
+      "minutes": 15,
+      "goal": "Match a short Arabic word to meaning without rushing — i+1 style.",
+      "steps": [
+        "Open Arabic studio immersion / match mode",
+        "Complete one short round",
+        "Note one word you will reuse in ṣalāh or Qur’an reading"
+      ],
+      "output": "note",
+      "href": "/lab/arabic/"
+    },
+    {
+      "id": "lab-ar3",
+      "station": "arabic",
+      "title": "Phrase for the day",
+      "minutes": 10,
+      "goal": "One comprehensible phrase (e.g. greeting or Qur’anic fragment you already hear) with adab.",
+      "steps": [
+        "Open Arabic studio phrases",
+        "Repeat once slowly",
+        "Use it once the same day if appropriate"
+      ],
+      "output": "note",
+      "href": "/lab/arabic/"
+    },
     {
       "id": "lab-c1",
       "station": "callig",
