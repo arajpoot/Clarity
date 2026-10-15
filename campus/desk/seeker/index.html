@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="system">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
@@ -7,46 +7,39 @@
 <title>Foundations · Junior · Desk · Clarity University</title>
 <meta name="description" content="Uṣūl — one module at a time. Belief before debate. Educational only."/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015P234"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015P234"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261015P234"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015UNIV"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015UNIV"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261015UNIV"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261015UNIV"/>
 
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261015P234"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261015P1UI"/>
 <style>
 /* Quiet room — hide heavy injectors; keep map-width stage */
 #clarity-phase-plaque-host,#clarity-phase-plaque-rail,#clarity-name-plaque-rail,
 #clarity-how-phases-slot,.clarity-phase-plaque,#campus-rescue-card,
 #clarity-chancellor-fab,[data-chancellor-root]{display:none!important}
-#clarity-campus-stage{max-width:min(52rem,100%);margin:0 auto 1.25rem;position:relative;z-index:2}
+#clarity-campus-stage{max-width:min(96rem,100%);margin:0 auto 1.25rem;position:relative;z-index:2}
 #campus-stage-body{min-height:6rem}
-.cu-room-lead{max-width:min(52rem,100%);margin:0 auto .85rem;font-size:.9rem;line-height:1.5;opacity:.9}
+.cu-room-lead{max-width:min(96rem,100%);margin:0 auto .85rem;font-size:.9rem;line-height:1.5;opacity:.9}
 .cu-btn{display:inline-block;margin:.25rem .35rem .25rem 0;padding:.45rem .9rem;border-radius:999px;
   border:1px solid rgba(184,166,135,.45);background:rgba(31,166,122,.15);color:inherit;text-decoration:none;font-weight:700;font-size:.84rem}
 .cu-btn.ghost{background:transparent}
-#cu-phase-gate,#cu-next-riwaq{max-width:min(52rem,100%);margin:0 auto 1rem;padding:1rem;border-radius:16px;
+#cu-phase-gate,#cu-next-riwaq{max-width:min(96rem,100%);margin:0 auto 1rem;padding:1rem;border-radius:16px;
   border:1px solid rgba(184,166,135,.35);background:rgba(0,0,0,.2)}
 #cu-next-riwaq[hidden],#cu-phase-gate[hidden]{display:none!important}
 #junior-curriculum-card,#junior-high-curriculum-card,#daily-hs-curriculum-card,#dai-university-curriculum-card{
   display:block!important;margin:0;padding:1rem;border-radius:16px;border:1px solid rgba(184,166,135,.3);
   background:rgba(0,0,0,.18)}
-.cu-desk-subnav{display:flex;flex-wrap:wrap;gap:.35rem;max-width:min(52rem,100%);margin:0 auto .75rem}
+.cu-desk-subnav{display:flex;flex-wrap:wrap;gap:.35rem;max-width:min(96rem,100%);margin:0 auto .75rem}
 .cu-desk-subnav a{font-size:.75rem;font-weight:650;padding:.3rem .65rem;border-radius:999px;text-decoration:none;
   border:1px solid rgba(184,166,135,.3);color:inherit;opacity:.9}
 .cu-desk-subnav a.here{border-color:rgba(224,197,106,.55);background:rgba(224,197,106,.12)}
-
-.cu-phase-craft{max-width:min(52rem,100%);margin:0 auto 1rem;padding:1rem 1.05rem;border-radius:16px;
-  border:1px solid rgba(224,197,106,.4);background:rgba(31,166,122,.1)}
-.cu-phase-craft[hidden]{display:none!important}
-.cu-craft-kicker{margin:0 0 .35rem;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;
-  font-weight:800;color:rgba(224,197,106,.95)}
-.cu-craft-blurb{margin:0 0 .65rem;font-size:.86rem;line-height:1.45;opacity:.9}
-
 </style>
 
 </head>
 <body class="cu-page" data-campus-page="desk" data-phase-room="seeker">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><div><small>University · Nur Path</small><strong>Clarity University</strong></div></a>
+  <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Clarity University</strong></div></a>
   <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
 </header>
 <main class="cu-wrap">
@@ -69,14 +62,13 @@
       <p id="campus-loading-hint" style="opacity:.7;font-size:.88rem">Opening this riwāq…</p>
     </div>
   </div>
-  <section id="cu-phase-craft" class="cu-phase-craft" hidden></section>
   <div id="cu-next-riwaq" hidden></div>
   <p class="cu-room-lead" style="opacity:.75;font-size:.78rem">
     <a href="/campus/desk/">← All riwāq</a> · <a href="/lab/">Lab</a> · <a href="/library/">Library</a>
   </p>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. Verify with Qurʾān, Sunnah, and a local scholar.</footer>
-<script src="/assets/curriculum/vault/boot.js?v=20261015P234"></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-phase-room-v1.js?v=20261015P234" defer></script>
+<script src="/assets/curriculum/vault/boot.js?v=20261015P1UI"></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-phase-room-v1.js?v=20261015P1UI" defer></script>
 </body>
 </html>
