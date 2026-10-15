@@ -350,7 +350,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 #callig-canvas{max-width:100%;height:auto;touch-action:none}
 #cu-companion-notes-pad{display:block!important}
 </style>
-</head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><p id="campus-addons" style="margin:.4rem .75rem;font-size:.78rem;opacity:.8">Campus add-ons: <a href="/campus/">University map</a> · <a href="/welcome/">Guide</a> · <a href="/lab/tajweed/">Tajweed studio</a> · <a href="/adhkar/">Adhkār</a></p><nav id="clarity-global-nav" class="global-nav">
+</head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><p id="campus-addons" style="margin:.4rem .75rem;font-size:.78rem;opacity:.8">Campus add-ons: <a href="/campus/">University map</a> · <a href="/welcome/">Guide</a> · <a href="/lab/tajweed/">Tajweed studio</a> · <a href="/adhkar/">Adhkār</a></p><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
         <span id="current-mode-badge" class="mode-badge">Clarity</span>
@@ -614,7 +614,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
   <button type="button" class="door-rail-btn rrra-rail-real" data-rail-tab="reality" data-rrra="reality" onclick="try{window.clarityOpenSectionDoor&&window.clarityOpenSectionDoor('reality')}catch(e){}"><span class="dr-ico">◉</span><span class="dr-label">Reality</span><span class="dr-count" id="rrra-count-reality"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-refl" data-rail-tab="reflection" data-rrra="reflection" onclick="try{window.clarityOpenSectionDoor&&window.clarityOpenSectionDoor('reflection')}catch(e){}"><span class="dr-ico">☾</span><span class="dr-label">Reflection</span><span class="dr-count" id="rrra-count-reflection"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-act" data-rail-tab="action" data-rrra="action" onclick="try{window.clarityOpenSectionDoor&&window.clarityOpenSectionDoor('action')}catch(e){}"><span class="dr-ico">➤</span><span class="dr-label">Action</span><span class="dr-count" id="rrra-count-action"></span></button>
-  <button type="button" class="door-rail-btn rrra-rail-vault" data-rail-tab="vault" data-rrra="action" onclick="event.preventDefault();event.stopPropagation();window.location.assign('/vault/');return false;"><span class="dr-ico">🏦</span><span class="dr-label">Amana Vault</span></button>
+  <button type="button" class="door-rail-btn rrra-rail-vault" data-rail-tab="vault" data-rrra="action" onclick="event.preventDefault();event.stopPropagation();try{if(typeof switchTab==='function')switchTab('notes');else location.hash='notes';if(window.NurOS&&NurOS.openVault)setTimeout(function(){NurOS.openVault()},100);}catch(e){location.hash='notes';}return false;"><span class="dr-ico">🏦</span><span class="dr-label">Amana Vault</span></button>
 </nav>
 
 <noscript>
@@ -2037,21 +2037,17 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </div>
 <div data-rrra="action" class="card card-notes"><h2 data-i18n="notes_title">📝 Clarity Notes</h2><p style="font-size:0.94rem; margin-bottom:0.75rem;" data-i18n="notes_desc">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p><div class="notes-shell" id="notes-shell" data-min-i="0" data-always="1" data-curriculum-folder="shared"><div class="notes-list-pane" id="notes-list-pane"><div class="notes-list-toolbar"><input type="text" class="notes-search" id="notes-search" placeholder="Search notes… (/ )" autocomplete="off" oninput="notesSetQuery(this.value)"><div class="notes-toolbar-row"><button type="button" onclick="notesCreate()">＋ New</button><button type="button" class="btn-secondary" onclick="notesExport()" title="Download notes JSON">⬇ Export</button><button type="button" class="btn-secondary" onclick="document.getElementById('notes-import-file').click()" title="Import notes JSON">⬆ Import</button><input type="file" id="notes-import-file" accept="application/json,.json" hidden onchange="notesImport(event)"><button type="button" class="btn-secondary" onclick="notesRestoreSeed()" title="Restore starter library">↺ Seed</button></div></div><div class="notes-tag-filter" id="notes-tag-filter"></div><div class="notes-list" id="notes-list" role="listbox" aria-label="Notes"></div></div><div class="notes-editor-pane" id="notes-editor-pane"><div id="notes-editor-empty" class="notes-empty" style="display:none"><div style="font-size:2rem">✒️</div><p><strong>No note selected</strong></p><p>Create a new note or pick one from the list.<br>Tip: press <kbd>Ctrl</kbd>+<kbd>N</kbd> for a blank page.</p><button type="button" onclick="notesCreate()">New note</button></div><div id="notes-editor-active" style="display:none; flex-direction:column; flex:1; min-height:0;"><div class="notes-editor-toolbar"><div class="notes-view-toggle" role="group" aria-label="View mode"><button type="button" id="nv-edit" onclick="notesSetView('edit')">Edit</button><button type="button" id="nv-split" onclick="notesSetView('split')">Split</button><button type="button" id="nv-preview" onclick="notesSetView('preview')">Preview</button></div><select id="notes-tag-select" onchange="notesUpdateField('tag', this.value)" title="Section tag"><option value="">Tag…</option><option value="Guide">Guide</option><option value="Journey">Journey</option><option value="Commands">Commands</option><option value="Quran">Quran</option><option value="Tafseer">Tafseer</option><option value="Tajweed">Tajweed</option><option value="Seerah">Seerah</option><option value="Lectures">Lectures</option><option value="Grave">Grave</option><option value="Practice">Practice</option><option value="Guidance">Guidance</option><option value="Reflection">Reflection</option></select><button type="button" class="btn-soft" onclick="notesToggleGrave()" id="notes-grave-btn" title="Mark as light for the grave">🌙 Grave</button><button type="button" class="btn-secondary" onclick="notesRequestDelete()" title="Delete note">🗑</button></div><input type="text" class="notes-title-input" id="notes-title" placeholder="Title" oninput="notesUpdateField('title', this.value)"><div class="notes-body-area edit-only" id="notes-body-area"><textarea class="notes-body-input" id="notes-body" placeholder="Write in Markdown… reflections, ayat, goals for the day." oninput="notesUpdateField('body', this.value)"></textarea><div class="notes-md-preview" id="notes-preview" aria-live="polite"></div></div><div class="notes-status"><span id="notes-save-status">Ready · stays on this device</span><span id="notes-char-count"></span><button type="button" class="notes-save-now" id="notes-save-now" onclick="notesSaveNow()">Save note</button><span id="notes-grave-status"></span></div></div></div></div><p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>Ctrl/⌘ S</kbd> save · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device. Tasks on Today can open a dated deed note here.</p></div>
 </div></div>
-<div id="tab-notes" class="tab-panel" data-v4-vault="1" hidden aria-hidden="true" data-companion-notes="1">
-  <div class="cu-v4-vault-cta" style="max-width:28rem;margin:1.5rem auto;padding:1.35rem 1.4rem;border-radius:16px;border:1px solid rgba(212,180,90,.4);background:linear-gradient(160deg,rgba(12,28,22,.98),rgba(8,16,12,.99));text-align:center;color:#e7efe9">
-    <div style="font-size:1.6rem;margin-bottom:.4rem" aria-hidden="true">🏦</div>
-    <h2 style="margin:0 0 .45rem;color:#d4b45a;font-size:1.15rem">Amana Vault lives at University</h2>
-    <p style="margin:0 0 .85rem;font-size:.88rem;line-height:1.5;opacity:.92">
-      Private estate tools (passphrase, family tree, farāʾiḍ study, wasiyyah notes) are on the University Vault — encrypted on this device.
-      Companion stays your daily path.
-    </p>
-    <p style="margin:0 0 1rem;font-size:.78rem;opacity:.8">Educational only — not a fatwa. You hold the passphrase.</p>
-    <a href="/vault/" style="display:inline-block;padding:.55rem 1.25rem;border-radius:999px;background:linear-gradient(135deg,#c9a227,#e8c47a);color:#0c1410;font-weight:700;text-decoration:none">Open University Vault</a>
-    <p style="margin:.75rem 0 0;font-size:.75rem"><a href="/campus/desk/?phase=seeker&amp;track=mirath" style="color:#7dcea0">Study Mīrāth on Desk</a></p>
+<div id="tab-notes" class="tab-panel" data-amana-local="1" hidden aria-hidden="true">
+  <div id="amana-vault-host">
+    <p class="amana-disclaimer"><strong>Amana Vault · Companion</strong> — Passphrase-locked notes on <em>this device only</em>.
+      Clarity cannot recover your passphrase. Educational only — not a fatwa, not a court document, not legal advice.
+      Export a sealed package from the 🕋 panel if you change phones.</p>
   </div>
+  <p style="text-align:center;font-size:.78rem;opacity:.8;margin:1rem 0 2rem">
+    <button type="button" class="btn-soft" onclick="try{NurOS.openVault()}catch(e){}">Open package panel</button>
+    · University study desk stays at <a href="/campus/">/campus/</a>
+  </p>
 </div>
-
-
 <script src="./assets/clarity-runtime-overlays-v1.js?v=20261015BIH" defer></script>
 <!-- diet idle: clarity-chunk-8.js -->
 <!-- diet idle: clarity-feature-pack-v1.js -->
@@ -2240,7 +2236,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
     <a href="/campus/" style="color:#0d4f3c">University campus</a> ·
     <a href="https://clarity-dawah.fyi/journey/" style="color:#0d4f3c">Journey</a> ·
     <a href="https://clarity-dawah.fyi/lab/" style="color:#0d4f3c">Lab</a> ·
-    <a href="https://clarity-dawah.fyi/vault/" style="color:#0d4f3c">Vault</a>
+    <a href="#notes" data-amana-local="1" style="color:#0d4f3c">Vault</a>
   </p>
   <p style="margin:0;opacity:.85">Clarity · Educational only — not a fatwa · Local-first on this device</p>
 </footer>
@@ -2262,7 +2258,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   window.__CLARITY_V4_VAULT_BRIDGE__ = true;
   function goVault(ev){
     if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-    window.location.assign("/vault/");
+    try{if(typeof switchTab==="function")switchTab("notes");else location.hash="notes";}catch(e){location.hash="notes";}
     return false;
   }
   document.addEventListener("click", function(ev){
@@ -2277,6 +2273,18 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   }, true);
 })();
 </script>
+
+
+<link rel="stylesheet" href="/assets/clarity-amana-vault-v1.css?v=20261015AMANA"/>
+<div id="nuros-amana-panel" role="dialog" aria-modal="true" aria-labelledby="av-title" aria-hidden="true">
+  <button type="button" class="av-close" onclick="NurOS.closeVault()" aria-label="Close">×</button>
+  <h2 id="av-title">Amana Vault</h2>
+  <p><strong>NurOS</strong> keeps your intentions on this device only. Export a sealed package to move to another phone or browser — or retrieve an emergency backup.</p>
+  <div class="av-status" id="av-status">Checking storage…</div>
+<button type="button" id="nuros-vault-fab" onclick="try{NurOS.openVault()}catch(e){location.hash='notes'}" title="Amana Vault" aria-label="Amana Vault">🕋</button>
+<script src="/assets/clarity-amana-vault-secure-v1.js?v=20261015AMANA" defer></script>
+<script src="/assets/clarity-amana-vault-nuros-v1.js?v=20261015AMANA" defer></script>
+<script src="/assets/amana-phase1-local-guard.js?v=20261015AMANA" defer></script>
 
 </body>
 
