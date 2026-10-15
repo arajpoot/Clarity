@@ -246,6 +246,11 @@
         } catch (e) {}
       }
     );
+    /* hide empty hosts global */
+    ["clarity-how-phases-slot","clarity-phase-plaque-host","clarity-name-plaque-rail"].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el && !el.children.length && !(el.textContent||"").trim()){ el.style.display="none"; el.setAttribute("hidden","hidden"); }
+    });
     document.querySelectorAll("nav.cu-map-nav, nav.cu-tabs").forEach(function (n) {
       try {
         n.remove();
