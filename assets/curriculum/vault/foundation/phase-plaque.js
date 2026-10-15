@@ -104,7 +104,12 @@
       if (duo.nextSibling) duo.parentNode.insertBefore(rail, duo.nextSibling);
       else duo.parentNode.appendChild(rail);
     } else {
-      document.body.insertBefore(rail, document.body.firstChild);
+      var banner = document.querySelector("header.cu-banner");
+      if (banner && banner.parentNode) {
+        banner.parentNode.insertBefore(rail, banner.nextSibling);
+      } else {
+        document.body.insertBefore(rail, document.body.firstChild);
+      }
     }
     return rail;
   }
@@ -113,15 +118,22 @@
     var rail = ensurePlaque();
     var phase = getPhase();
     var st = juniorStats();
-    var steps =
-      '<div class="cpp-how">' +
-      "<strong>How phases work</strong>" +
-      "<ol>" +
-      "<li><b>One module open</b> — only the current Junior lesson is unlocked.</li>" +
-      "<li><b>Spark quiz</b> — answer correctly to open the next module.</li>" +
-      "<li><b>All modules ✓</b> — then a short quiz appears.</li>" +
-      "<li><b>Pass quiz</b> — unlocks the next phase (no skipping ahead).</li>" +
-      "</ol></div>";
+    var onDesk = (location.pathname || "").indexOf("/campus/desk") >= 0;
+    var steps = onDesk
+      ? '<details class="cpp-how cpp-how-compact"><summary>How phases work</summary><ol>' +
+        "<li><b>One module open</b> — only the current Junior lesson is unlocked.</li>" +
+        "<li><b>Spark quiz</b> — answer correctly to open the next module.</li>" +
+        "<li><b>All modules ✓</b> — then a short quiz appears.</li>" +
+        "<li><b>Pass quiz</b> — unlocks the next phase (no skipping ahead).</li>" +
+        "</ol></details>"
+      : '<div class="cpp-how">' +
+        "<strong>How phases work</strong>" +
+        "<ol>" +
+        "<li><b>One module open</b> — only the current Junior lesson is unlocked.</li>" +
+        "<li><b>Spark quiz</b> — answer correctly to open the next module.</li>" +
+        "<li><b>All modules ✓</b> — then a short quiz appears.</li>" +
+        "<li><b>Pass quiz</b> — unlocks the next phase (no skipping ahead).</li>" +
+        "</ol></div>";
 
     var chips = PHASES.map(function (p) {
       var state = "locked";
