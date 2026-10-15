@@ -269,3 +269,18 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(typeof window !== "undefined" ? window : this);
+
+/* FD5 unlock signal */
+(function(g){
+  function signal(){
+    try{sessionStorage.setItem("cu_vault_unlocked_v1","1");}catch(e){}
+    try{g.dispatchEvent(new CustomEvent("cu-vault-unlocked"));}catch(e2){}
+    try{g.ClarityVaultWings&&g.ClarityVaultWings.load();}catch(e3){}
+  }
+  var obs=new MutationObserver(function(){
+    var m=document.getElementById("vault-modules");
+    if(m&&m.style&&m.style.display!=="none"&&m.childNodes.length){signal();}
+  });
+  if(document.body)obs.observe(document.body,{childList:true,subtree:true,attributes:true});
+  setTimeout(function(){try{obs.disconnect();}catch(e){}},15000);
+})(typeof window!=="undefined"?window:this);
