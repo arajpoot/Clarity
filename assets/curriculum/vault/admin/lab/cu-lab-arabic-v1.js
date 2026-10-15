@@ -178,6 +178,15 @@
         speakAr(current.ar);
       };
     }
+    if ($("ar-match-mic")) {
+      $("ar-match-mic").onclick = function () {
+        var b = $("ar-match-mic");
+        if (mediaRec && mediaRec.state === "recording") {
+          mediaRec.stop();
+          b.textContent = "Mic";
+        } else startMic(b);
+      };
+    }
   }
 
   function nextPhrase() {
@@ -214,6 +223,30 @@
       box.appendChild(div);
     });
     $("ar-review-meta").textContent = Object.keys(data).length + " words touched on this device · spaced review";
+  }
+
+  
+  var mediaRec=null, chunks=[];
+  function startMic(btn){
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+      if($("ar-match-status"))$("ar-match-status").textContent="Mic not available in this browser.";
+      return;
+    }
+    navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+      chunks=[];
+      mediaRec=new MediaRecorder(stream);
+      mediaRec.ondataavailable=function(e){if(e.data.size)chunks.push(e.data);};
+      mediaRec.onstop=function(){
+        stream.getTracks().forEach(function(t){t.stop();});
+        if($("ar-match-status"))$("ar-match-status").textContent="Recording saved in this session only — compare by ear with Hear.";
+        try{localStorage.setItem("clarity_lab_last_v1",String(Date.now()));}catch(e){}
+      };
+      mediaRec.start();
+      if(btn)btn.textContent="Stop";
+      setTimeout(function(){if(mediaRec&&mediaRec.state==="recording"){mediaRec.stop();if(btn)btn.textContent="Mic";}},4000);
+    }).catch(function(){
+      if($("ar-match-status"))$("ar-match-status").textContent="Mic permission denied.";
+    });
   }
 
   function speakAr(text) {
