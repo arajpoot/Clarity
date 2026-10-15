@@ -1,9 +1,8 @@
-/* Amana Vault secure — Companion-local */
-
 /**
- * Amana Vault — passphrase locker (Web Crypto AES-GCM + PBKDF2)
- * Pattern from on-device Clarity build. Data never leaves the device.
+ * Amana Vault — full landing + passphrase create/safeguard + Web Crypto
+ * AES-GCM + PBKDF2-SHA256 (120000 iterations). Device-only.
  * Clarity does not store or recover the passphrase.
+ * Educational only — not a fatwa or court document.
  */
 (function () {
   "use strict";
@@ -70,12 +69,26 @@
   }
 
   function hasVault() {
-    try { return !!localStorage.getItem(VAULT_KEY); } catch (e) { return false; }
+    try {
+      return !!localStorage.getItem(VAULT_KEY);
+    } catch (e) {
+      return false;
+    }
   }
 
   function setStatus(msg) {
     var el = document.getElementById("p5-vault-status");
     if (el) el.textContent = msg || "";
+  }
+
+  function clearPassFields() {
+    try {
+      var p = document.getElementById("p5-vault-pass");
+      var p2 = document.getElementById("p5-vault-pass2");
+      if (p) p.value = "";
+      if (p2) p2.value = "";
+    } catch (e) {}
+    sessionKey = null;
   }
 
   function updateUI() {
@@ -84,29 +97,64 @@
     if (locked) locked.style.display = SESSION_UNLOCKED ? "none" : "block";
     if (open) open.style.display = SESSION_UNLOCKED ? "block" : "none";
     var badge = document.getElementById("p5-vault-badge");
-    if (badge) badge.textContent = SESSION_UNLOCKED ? "Vault open · this session" : "Vault locked";
+    if (badge) badge.textContent = SESSION_UNLOCKED ? "Vault open · this session only" : "Vault locked";
+    var setupBtn = document.getElementById("p5-vault-setup");
+    if (setupBtn) setupBtn.style.display = hasVault() ? "none" : "inline-block";
+    var unlockBtn = document.getElementById("p5-vault-unlock");
+    if (unlockBtn) unlockBtn.style.display = hasVault() ? "inline-block" : "none";
+    var conf = document.getElementById("p5-vault-pass2-wrap");
+    if (conf) conf.style.display = hasVault() ? "none" : "block";
+    var mode = document.getElementById("p5-vault-mode");
+    if (mode) {
+      mode.textContent = hasVault()
+        ? "Vault exists on this device — unlock with your passphrase."
+        : "No vault yet — create one with First-time setup (confirm passphrase).";
+    }
   }
 
   async function setupVault() {
     if (!window.crypto || !crypto.subtle) {
-      setStatus("Web Crypto not available in this browser");
+      setStatus("Web Crypto not available in this browser — use a modern browser with HTTPS.");
       return;
+    }
+    if (hasVault()) {
+      if (!confirm("A vault already exists on this device. Creating a new one will overwrite the encrypted blob. Continue only if you still know any old passphrase is disposable.")) {
+        return;
+      }
     }
     var p1 = (document.getElementById("p5-vault-pass") || {}).value || "";
     var p2 = (document.getElementById("p5-vault-pass2") || {}).value || "";
-    if (p1.length < 8) { setStatus("Use at least 8 characters"); return; }
-    if (p1 !== p2) { setStatus("Passphrases did not match"); return; }
+    if (p1.length < 8) {
+      setStatus("Use at least 8 characters (longer is safer).");
+      return;
+    }
+    if (p1 !== p2) {
+      setStatus("Passphrases did not match — re-enter both fields.");
+      return;
+    }
+    if (!confirm("Confirm: you will write this passphrase down offline (not in this app). If you lose it, vault data cannot be recovered. Continue?")) {
+      setStatus("Setup cancelled — passphrase not saved by Clarity.");
+      return;
+    }
     try {
-      var empty = { notes: "", contacts: [], debts: [], wasiyyah: "", updatedAt: new Date().toISOString() };
+      var empty = {
+        notes: "",
+        contacts: "",
+        debts: "",
+        wasiyyah: "",
+        updatedAt: new Date().toISOString()
+      };
       var blob = await encryptObj(empty, p1);
       localStorage.setItem(VAULT_KEY, JSON.stringify(blob));
-      localStorage.setItem(META_KEY, JSON.stringify({ createdAt: new Date().toISOString() }));
+      localStorage.setItem(META_KEY, JSON.stringify({ createdAt: new Date().toISOString(), kdf: "PBKDF2-SHA256-120000" }));
       SESSION_UNLOCKED = true;
       window.__AMANA_VAULT_DATA__ = empty;
-      setStatus("Vault created · passphrase is only in your memory");
+      clearPassFields();
+      setStatus("Vault created · passphrase is only in your memory — lock when finished.");
       updateUI();
+      renderVaultData(empty);
     } catch (e) {
-      setStatus("Setup failed: " + (e.message || e));
+      setStatus("Setup failed: " + (e && e.message ? e.message : e));
     }
   }
 
@@ -116,15 +164,22 @@
       return;
     }
     var pass = (document.getElementById("p5-vault-pass") || {}).value || "";
-    if (!pass) { setStatus("Enter passphrase"); return; }
+    if (!pass) {
+      setStatus("Enter passphrase");
+      return;
+    }
     try {
       var raw = localStorage.getItem(VAULT_KEY);
-      if (!raw) { setStatus("No vault yet — use First-time setup"); return; }
+      if (!raw) {
+        setStatus("No vault yet — use First-time setup");
+        return;
+      }
       var blob = JSON.parse(raw);
       var data = await decryptObj(blob, pass);
       SESSION_UNLOCKED = true;
       window.__AMANA_VAULT_DATA__ = data;
-      setStatus("Unlocked for this session");
+      clearPassFields();
+      setStatus("Unlocked for this session — lock when you leave.");
       updateUI();
       renderVaultData(data);
     } catch (e) {
@@ -137,22 +192,17 @@
   async function lockVault() {
     SESSION_UNLOCKED = false;
     window.__AMANA_VAULT_DATA__ = null;
-    try {
-      var p = document.getElementById("p5-vault-pass");
-      var p2 = document.getElementById("p5-vault-pass2");
-      if (p) p.value = "";
-      if (p2) p2.value = "";
-    } catch (e) {}
+    clearPassFields();
     setStatus("Locked");
     updateUI();
   }
 
   async function saveVaultFields() {
-    if (!SESSION_UNLOCKED) { setStatus("Unlock first"); return; }
-    var pass = (document.getElementById("p5-vault-pass") || {}).value || "";
-    if (!pass) {
-      pass = prompt("Re-enter passphrase to save (not stored by Clarity):") || "";
+    if (!SESSION_UNLOCKED) {
+      setStatus("Unlock first");
+      return;
     }
+    var pass = prompt("Re-enter passphrase to save (not stored by Clarity):") || "";
     if (!pass) return;
     var data = {
       notes: (document.getElementById("p5-vault-notes") || {}).value || "",
@@ -165,9 +215,9 @@
       var blob = await encryptObj(data, pass);
       localStorage.setItem(VAULT_KEY, JSON.stringify(blob));
       window.__AMANA_VAULT_DATA__ = data;
-      setStatus("Saved · encrypted on this device");
+      setStatus("Saved encrypted on this device · " + data.updatedAt);
     } catch (e) {
-      setStatus("Save failed: " + (e.message || e));
+      setStatus("Save failed: " + (e && e.message ? e.message : e));
     }
   }
 
@@ -179,107 +229,142 @@
       var d = document.getElementById("p5-vault-debts");
       var w = document.getElementById("p5-vault-wasiyyah");
       if (n) n.value = data.notes || "";
-      if (c) c.value = typeof data.contacts === "string" ? data.contacts : (data.contacts || []).join("\n");
-      if (d) d.value = typeof data.debts === "string" ? data.debts : (data.debts || []).join("\n");
+      if (c) c.value = typeof data.contacts === "string" ? data.contacts : JSON.stringify(data.contacts || "");
+      if (d) d.value = typeof data.debts === "string" ? data.debts : JSON.stringify(data.debts || "");
       if (w) w.value = data.wasiyyah || "";
     } catch (e) {}
   }
 
   function mount() {
-    if (document.getElementById("p5-vault-card")) return;
+    if (document.getElementById("p5-vault-card")) {
+      updateUI();
+      return;
+    }
     var card = document.createElement("div");
     card.id = "p5-vault-card";
     card.className = "p5-vault-card";
-    card.style.display = "none";
     card.innerHTML =
       "<h3>🔒 Amana Vault</h3>" +
-      '<div class="p5-vault-warn"><strong>You are responsible for your passphrase.</strong> Clarity does not store it and cannot recover vault data if it is lost. Educational workspace — not a fatwa.</div>' +
+      '<div class="p5-vault-warn">' +
+      "<strong>You are responsible for your passphrase.</strong> Clarity does not store it and cannot recover vault data if it is lost. " +
+      "Educational workspace — not a fatwa, not a court document, not legal advice." +
+      "</div>" +
+      '<div class="p5-vault-process">' +
+      "<strong>How to create &amp; safeguard</strong>" +
+      "<ol>" +
+      "<li><strong>Choose a passphrase</strong> only you know (at least 8 characters; longer is safer).</li>" +
+      "<li><strong>Confirm it</strong> in the second field, then tap <em>First-time setup</em>.</li>" +
+      "<li><strong>Write it offline</strong> (paper in a safe place). Do not save it in this app or screenshots.</li>" +
+      "<li><strong>Lock</strong> when you leave. Closing the tab or switching away locks this session.</li>" +
+      "<li><strong>Export</strong> a sealed package (🕋) before changing phones — still needs the same passphrase knowledge for your own notes discipline.</li>" +
+      "</ol>" +
+      "<p class=\"p5-vault-tech\">Protection on device: AES-GCM · PBKDF2-SHA-256 · 120 000 iterations. Data never leaves the browser storage of this device unless you export.</p>" +
+      "</div>" +
       '<div id="p5-vault-badge" class="p5-vault-status">Vault locked</div>' +
+      '<p id="p5-vault-mode" class="p5-vault-mode"></p>' +
       '<div id="p5-vault-locked">' +
-        '<label style="font-size:0.85rem">Passphrase</label><br/>' +
-        '<input type="password" id="p5-vault-pass" autocomplete="new-password" placeholder="Enter passphrase" />' + '<button type="button" id="p5-vault-toggle" style="margin-top:0.35rem;font-size:0.78rem">Show passphrase</button>' +
-        '<input type="password" id="p5-vault-pass2" autocomplete="new-password" placeholder="Confirm (setup only)" />' +
-        '<div class="p5-vault-actions">' +
-          '<button type="button" class="primary" id="p5-vault-unlock">Unlock</button>' +
-          '<button type="button" id="p5-vault-setup">First-time setup</button>' +
-        "</div>" +
+      '<label style="font-size:0.85rem">Passphrase</label><br/>' +
+      '<input type="password" id="p5-vault-pass" autocomplete="new-password" placeholder="Enter passphrase" />' +
+      '<div id="p5-vault-pass2-wrap">' +
+      '<label style="font-size:0.85rem">Confirm passphrase (setup only)</label><br/>' +
+      '<input type="password" id="p5-vault-pass2" autocomplete="new-password" placeholder="Confirm (setup only)" />' +
+      "</div>" +
+      '<button type="button" id="p5-vault-toggle" class="p5-vault-toggle">Show passphrase</button>' +
+      '<div class="p5-vault-actions">' +
+      '<button type="button" class="primary" id="p5-vault-unlock">Unlock</button>' +
+      '<button type="button" id="p5-vault-setup">First-time setup</button>' +
+      "</div>" +
       "</div>" +
       '<div id="p5-vault-open" style="display:none">' +
-        '<label style="font-size:0.82rem">Notes</label>' +
-        '<textarea id="p5-vault-notes" rows="3" style="width:100%;border-radius:10px;padding:0.5rem;background:rgba(0,0,0,0.35);color:inherit;border:1px solid rgba(212,180,90,0.3)"></textarea>' +
-        '<label style="font-size:0.82rem">ICE contacts</label>' +
-        '<textarea id="p5-vault-contacts" rows="2" style="width:100%;border-radius:10px;padding:0.5rem;background:rgba(0,0,0,0.35);color:inherit;border:1px solid rgba(212,180,90,0.3)" placeholder="Name · relation · phone"></textarea>' +
-        '<label style="font-size:0.82rem">Debts / rights</label>' +
-        '<textarea id="p5-vault-debts" rows="2" style="width:100%;border-radius:10px;padding:0.5rem;background:rgba(0,0,0,0.35);color:inherit;border:1px solid rgba(212,180,90,0.3)"></textarea>' +
-        '<label style="font-size:0.82rem">Waṣiyyah notes (≤⅓ reminder)</label>' +
-        '<textarea id="p5-vault-wasiyyah" rows="2" style="width:100%;border-radius:10px;padding:0.5rem;background:rgba(0,0,0,0.35);color:inherit;border:1px solid rgba(212,180,90,0.3)"></textarea>' +
-        '<div class="p5-vault-actions">' +
-          '<button type="button" class="primary" id="p5-vault-save">Save encrypted</button>' +
-          '<button type="button" id="p5-vault-lock">Lock</button>' +
-        "</div>" +
+      '<label style="font-size:0.82rem">Notes</label>' +
+      '<textarea id="p5-vault-notes" rows="3"></textarea>' +
+      '<label style="font-size:0.82rem">ICE contacts</label>' +
+      '<textarea id="p5-vault-contacts" rows="2" placeholder="Name · relation · phone"></textarea>' +
+      '<label style="font-size:0.82rem">Debts / rights</label>' +
+      '<textarea id="p5-vault-debts" rows="2"></textarea>' +
+      '<label style="font-size:0.82rem">Waṣiyyah notes (≤⅓ reminder)</label>' +
+      '<textarea id="p5-vault-wasiyyah" rows="2"></textarea>' +
+      '<div class="p5-vault-actions">' +
+      '<button type="button" class="primary" id="p5-vault-save">Save encrypted</button>' +
+      '<button type="button" id="p5-vault-lock">Lock</button>' +
+      "</div>" +
       "</div>" +
       '<div class="p5-vault-status" id="p5-vault-status"></div>';
 
-    var host = document.getElementById("amana-vault-host") || document.getElementById("tab-notes") || document.getElementById("p4-affairs-root") || document.getElementById("p5-offline-pack");
-    var main = document.querySelector(".main-content") || document.body;
-    if (host && host.parentNode) host.parentNode.insertBefore(card, host);
-    else if (document.getElementById("amana-vault-host")) document.getElementById("amana-vault-host").appendChild(card);
-    else main.appendChild(card);
-    try { card.style.display = "block"; } catch(e) {}
+    var host =
+      document.getElementById("amana-vault-host") ||
+      document.getElementById("tab-notes") ||
+      document.getElementById("p4-affairs-root") ||
+      document.getElementById("p5-offline-pack");
+    var main = document.querySelector(".main-content") || document.querySelector("main") || document.body;
+    if (host) {
+      var disc = host.querySelector(".amana-disclaimer");
+      if (disc && disc.nextSibling) host.insertBefore(card, disc.nextSibling);
+      else host.appendChild(card);
+    } else {
+      main.appendChild(card);
+    }
+    try {
+      card.style.display = "block";
+    } catch (e) {}
 
-    document.getElementById("p5-vault-unlock").onclick = function () { unlockVault(); };
-    var tog = document.getElementById("p5-vault-toggle");
-    if (tog) tog.onclick = function () {
-      var p = document.getElementById("p5-vault-pass");
-      var p2 = document.getElementById("p5-vault-pass2");
-      if (!p) return;
-      var show = p.type === "password";
-      p.type = show ? "text" : "password";
-      if (p2) p2.type = p.type;
-      tog.textContent = show ? "Hide passphrase" : "Show passphrase";
+    document.getElementById("p5-vault-unlock").onclick = function () {
+      unlockVault();
     };
-    document.getElementById("p5-vault-setup").onclick = function () { setupVault(); };
-    document.getElementById("p5-vault-lock").onclick = function () { lockVault(); };
-    document.getElementById("p5-vault-save").onclick = function () { saveVaultFields(); };
+    document.getElementById("p5-vault-setup").onclick = function () {
+      setupVault();
+    };
+    document.getElementById("p5-vault-lock").onclick = function () {
+      lockVault();
+    };
+    document.getElementById("p5-vault-save").onclick = function () {
+      saveVaultFields();
+    };
+    var tog = document.getElementById("p5-vault-toggle");
+    if (tog) {
+      tog.onclick = function () {
+        var p = document.getElementById("p5-vault-pass");
+        var p2 = document.getElementById("p5-vault-pass2");
+        if (!p) return;
+        var show = p.type === "password";
+        p.type = show ? "text" : "password";
+        if (p2) p2.type = p.type;
+        tog.textContent = show ? "Hide passphrase" : "Show passphrase";
+      };
+    }
     updateUI();
   }
 
-  function show(room) {
-    var card = document.getElementById("p5-vault-card");
-    if (card) card.style.display = room === "amanah" ? "block" : "none";
-  }
-
-  
-  /* Phase 3 — lock on hide / pagehide; show-hide passphrase */
-  document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === "hidden") {
-      try { lockVault(); } catch (e) {}
-    }
-  });
-  window.addEventListener("pagehide", function () {
-    try { lockVault(); } catch (e) {}
-  });
-
   function boot() {
     mount();
-    var prev = window.phase1OpenRoom;
-    window.phase1OpenRoom = function (room) {
-      try { if (typeof prev === "function") prev(room); } catch (e) {}
-      show(room);
-    };
-    try { show(localStorage.getItem("clarity_phase1_room") || "today"); } catch (e) { show("today"); }
-
     window.ClarityVault = {
       hasVault: hasVault,
       unlock: unlockVault,
       lock: lockVault,
-      isOpen: function () { return SESSION_UNLOCKED; }
+      isOpen: function () {
+        return SESSION_UNLOCKED;
+      }
     };
   }
 
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") {
+      try {
+        lockVault();
+      } catch (e) {}
+    }
+  });
+  window.addEventListener("pagehide", function () {
+    try {
+      lockVault();
+    } catch (e) {}
+  });
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 360); });
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(boot, 200);
+    });
   } else {
-    setTimeout(boot, 360);
+    setTimeout(boot, 200);
   }
 })();
