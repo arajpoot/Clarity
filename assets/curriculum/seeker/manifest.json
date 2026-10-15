@@ -1,41 +1,32 @@
 {
-  "id": "seeker",
-  "label": "Seeker — Junior curriculum",
-  "level": "junior",
-  "minI": 0,
+  "id": "new-muslim",
+  "label": "New Muslim — Junior high curriculum",
+  "level": "junior-high",
+  "minI": 1,
   "scripts": [],
   "features": [
-    "junior-curriculum",
-    "grave-path",
-    "soul-compass",
-    "commands",
-    "seerah-live",
-    "ilm-pathway",
-    "night-breath",
-    "hell-sins",
-    "samina"
+    "junior-high-curriculum",
+    "salah-starter",
+    "fiqh-quiz",
+    "hajj-guide",
+    "tibbe-nabwi",
+    "foundations"
   ],
   "cards": [
-    "junior-curriculum-card",
-    "about-clarity-card",
-    "commands-card",
-    "creation-tongue-reflection",
-    "cw-card",
-    "grave-path-card",
-    "hell-sins-card",
-    "ilm-pathway-card",
-    "night-breath-card",
-    "samina-card",
-    "samina-verse-card",
-    "seerah-live-card",
-    "soul-compass-card"
+    "junior-high-curriculum-card",
+    "fiqh-quiz-card",
+    "hajj-guide-card",
+    "new-muslim-foundations-card",
+    "salah-starter-card",
+    "tibbe-nabwi-card"
   ],
   "units": 6,
+  "lessons": 13,
   "inspired_by": [
-    "SeekersGuidance foundations pattern",
-    "BeginIslam articles of faith / pillars map",
-    "Nawara Academy essentials week structure",
-    "NewMuslims.com staged lessons"
+    "Kuttab L1-2",
+    "Nawara purification/prayer weeks",
+    "BeginIslam worship",
+    "NewMuslims.com"
   ],
-  "note": "Junior modules mount from sealed vault college-seeker — do not load legacy clarity-junior-curriculum-v1.js"
+  "note": "New Muslim / junior-high from vault college-practice — scripts via SEAL foundation, not pathway hydrator"
 }
