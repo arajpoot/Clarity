@@ -197,7 +197,7 @@
       '<div id="p5-vault-badge" class="p5-vault-status">Vault locked</div>' +
       '<div id="p5-vault-locked">' +
         '<label style="font-size:0.85rem">Passphrase</label><br/>' +
-        '<input type="password" id="p5-vault-pass" autocomplete="new-password" placeholder="Enter passphrase" />' +
+        '<input type="password" id="p5-vault-pass" autocomplete="new-password" placeholder="Enter passphrase" />' + '<button type="button" id="p5-vault-toggle" style="margin-top:0.35rem;font-size:0.78rem">Show passphrase</button>' +
         '<input type="password" id="p5-vault-pass2" autocomplete="new-password" placeholder="Confirm (setup only)" />' +
         '<div class="p5-vault-actions">' +
           '<button type="button" class="primary" id="p5-vault-unlock">Unlock</button>' +
@@ -228,6 +228,16 @@
     try { card.style.display = "block"; } catch(e) {}
 
     document.getElementById("p5-vault-unlock").onclick = function () { unlockVault(); };
+    var tog = document.getElementById("p5-vault-toggle");
+    if (tog) tog.onclick = function () {
+      var p = document.getElementById("p5-vault-pass");
+      var p2 = document.getElementById("p5-vault-pass2");
+      if (!p) return;
+      var show = p.type === "password";
+      p.type = show ? "text" : "password";
+      if (p2) p2.type = p.type;
+      tog.textContent = show ? "Hide passphrase" : "Show passphrase";
+    };
     document.getElementById("p5-vault-setup").onclick = function () { setupVault(); };
     document.getElementById("p5-vault-lock").onclick = function () { lockVault(); };
     document.getElementById("p5-vault-save").onclick = function () { saveVaultFields(); };
@@ -238,6 +248,17 @@
     var card = document.getElementById("p5-vault-card");
     if (card) card.style.display = room === "amanah" ? "block" : "none";
   }
+
+  
+  /* Phase 3 — lock on hide / pagehide; show-hide passphrase */
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") {
+      try { lockVault(); } catch (e) {}
+    }
+  });
+  window.addEventListener("pagehide", function () {
+    try { lockVault(); } catch (e) {}
+  });
 
   function boot() {
     mount();
