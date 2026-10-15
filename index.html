@@ -302,7 +302,7 @@ html[data-theme=dark] #clarity-global-nav.global-nav{
 html:not([data-theme=dark]) #clarity-global-nav.global-nav{
   background:rgba(255,253,248,.94);
 }
-</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261013CD1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+</style><link rel="preload" href="./assets/clarity-critical-css-v1.css?v=20261015TOOLS" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><!-- deduped css -->
 <noscript></noscript>
  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Clarity%20%E2%80%93%20Furnish%20Your%20Grave%22%2C%22short_name%22%3A%22Clarity%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f3eb%22%2C%22theme_color%22%3A%22%230f4c3a%22%2C%22description%22%3A%22Prepare%20the%20heart%20and%20the%20grave%20with%20Quran%2C%20Hadith%20and%20daily%20deeds.%22%7D"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Clarity">
@@ -310,7 +310,7 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 
-<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261013CD1" media="print" onload="this.media='all'" fetchpriority="low">
+<link rel="stylesheet" href="./assets/clarity-css-patches-v1.css?v=20261015TOOLS" media="print" onload="this.media='all'" fetchpriority="low">
 <noscript><!-- deduped css --></noscript>
 <noscript></noscript>
 <noscript></noscript>
@@ -323,20 +323,20 @@ html:not([data-theme=dark]) #clarity-global-nav.global-nav{
 document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n){n.rel="stylesheet"});
 })();
 </script>
-<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261013CD1" id="clarity-sticky-harden-css"/>
+<link rel="stylesheet" href="./assets/clarity-sticky-harden-v1.css?v=20261015TOOLS" id="clarity-sticky-harden-css"/>
 
 <!-- Main obliterate: curriculum/admin live only on /campus/ /lab/ /vault/ -->
 <style id="clarity-main-oblit">
 #clarity-phase-plaque-rail,.clarity-engine-hud,#clarity-security-badge,#clarity-it-badge{display:none!important}
 #tab-notes[data-oblit-vault]{display:block!important;aria-hidden:false}
 </style>
-<link rel="stylesheet" href="/assets/clarity-companion-perf-v1.css?v=20261013CDB6"/>
-<link rel="stylesheet" href="/assets/clarity-banner-mobile-v1.css?v=20261013CDB6"/>
-<link rel="stylesheet" href="/assets/clarity-banner-stream-v1.css?v=20261013CDB6"/>
-<link rel="stylesheet" href="/assets/clarity-companion-mahtaab-v1.css?v=20261013CDB6"/>
-<link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261013CDB6"/>
-<link rel="stylesheet" href="/assets/clarity-banner-restore-v1.css?v=20261013CDB6"/>
-<link rel="stylesheet" href="/assets/clarity-banner-fix-v1.css?v=20261013CDB6"/>
+<link rel="stylesheet" href="/assets/clarity-companion-perf-v1.css?v=20261015TOOLS"/>
+<link rel="stylesheet" href="/assets/clarity-banner-mobile-v1.css?v=20261015TOOLS"/>
+<link rel="stylesheet" href="/assets/clarity-banner-stream-v1.css?v=20261015TOOLS"/>
+<link rel="stylesheet" href="/assets/clarity-companion-mahtaab-v1.css?v=20261015TOOLS"/>
+<link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261015TOOLS"/>
+<link rel="stylesheet" href="/assets/clarity-banner-restore-v1.css?v=20261015TOOLS"/>
+<link rel="stylesheet" href="/assets/clarity-banner-fix-v1.css?v=20261015TOOLS"/>
 <style id="cu-meme-restore-css">
 /* Phase B — Meme Studio visible on Companion */
 #meme-card.meme-card-realigned,#meme-card,[data-rrra-pin="reminder"]#meme-card{
@@ -344,6 +344,11 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
   max-height:none!important;opacity:1!important}
 #meme-studio-root,.meme-studio{display:block!important;visibility:visible!important}
 #cu-lab-craft-hint{display:none!important}
+</style>
+<style id="cu-tools-restore-css">
+#callig-lab-card,#tajweed-live-card,#tajweed-path-card{display:block!important;visibility:visible!important}
+#callig-canvas{max-width:100%;height:auto;touch-action:none}
+#cu-companion-notes-pad{display:block!important}
 </style>
 </head><body data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><p id="campus-addons" style="margin:.4rem .75rem;font-size:.78rem;opacity:.8">Campus add-ons: <a href="/campus/">University map</a> · <a href="/welcome/">Guide</a> · <a href="/lab/tajweed/">Tajweed studio</a> · <a href="/adhkar/">Adhkār</a></p><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
@@ -2031,7 +2036,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </div>
 <div data-rrra="action" class="card card-notes"><h2 data-i18n="notes_title">📝 Clarity Notes</h2><p style="font-size:0.94rem; margin-bottom:0.75rem;" data-i18n="notes_desc">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p><div class="notes-shell" id="notes-shell" data-min-i="0" data-always="1" data-curriculum-folder="shared"><div class="notes-list-pane" id="notes-list-pane"><div class="notes-list-toolbar"><input type="text" class="notes-search" id="notes-search" placeholder="Search notes… (/ )" autocomplete="off" oninput="notesSetQuery(this.value)"><div class="notes-toolbar-row"><button type="button" onclick="notesCreate()">＋ New</button><button type="button" class="btn-secondary" onclick="notesExport()" title="Download notes JSON">⬇ Export</button><button type="button" class="btn-secondary" onclick="document.getElementById('notes-import-file').click()" title="Import notes JSON">⬆ Import</button><input type="file" id="notes-import-file" accept="application/json,.json" hidden onchange="notesImport(event)"><button type="button" class="btn-secondary" onclick="notesRestoreSeed()" title="Restore starter library">↺ Seed</button></div></div><div class="notes-tag-filter" id="notes-tag-filter"></div><div class="notes-list" id="notes-list" role="listbox" aria-label="Notes"></div></div><div class="notes-editor-pane" id="notes-editor-pane"><div id="notes-editor-empty" class="notes-empty" style="display:none"><div style="font-size:2rem">✒️</div><p><strong>No note selected</strong></p><p>Create a new note or pick one from the list.<br>Tip: press <kbd>Ctrl</kbd>+<kbd>N</kbd> for a blank page.</p><button type="button" onclick="notesCreate()">New note</button></div><div id="notes-editor-active" style="display:none; flex-direction:column; flex:1; min-height:0;"><div class="notes-editor-toolbar"><div class="notes-view-toggle" role="group" aria-label="View mode"><button type="button" id="nv-edit" onclick="notesSetView('edit')">Edit</button><button type="button" id="nv-split" onclick="notesSetView('split')">Split</button><button type="button" id="nv-preview" onclick="notesSetView('preview')">Preview</button></div><select id="notes-tag-select" onchange="notesUpdateField('tag', this.value)" title="Section tag"><option value="">Tag…</option><option value="Guide">Guide</option><option value="Journey">Journey</option><option value="Commands">Commands</option><option value="Quran">Quran</option><option value="Tafseer">Tafseer</option><option value="Tajweed">Tajweed</option><option value="Seerah">Seerah</option><option value="Lectures">Lectures</option><option value="Grave">Grave</option><option value="Practice">Practice</option><option value="Guidance">Guidance</option><option value="Reflection">Reflection</option></select><button type="button" class="btn-soft" onclick="notesToggleGrave()" id="notes-grave-btn" title="Mark as light for the grave">🌙 Grave</button><button type="button" class="btn-secondary" onclick="notesRequestDelete()" title="Delete note">🗑</button></div><input type="text" class="notes-title-input" id="notes-title" placeholder="Title" oninput="notesUpdateField('title', this.value)"><div class="notes-body-area edit-only" id="notes-body-area"><textarea class="notes-body-input" id="notes-body" placeholder="Write in Markdown… reflections, ayat, goals for the day." oninput="notesUpdateField('body', this.value)"></textarea><div class="notes-md-preview" id="notes-preview" aria-live="polite"></div></div><div class="notes-status"><span id="notes-save-status">Ready · stays on this device</span><span id="notes-char-count"></span><button type="button" class="notes-save-now" id="notes-save-now" onclick="notesSaveNow()">Save note</button><span id="notes-grave-status"></span></div></div></div></div><p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>Ctrl/⌘ S</kbd> save · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device. Tasks on Today can open a dated deed note here.</p></div>
 </div></div>
-<div id="tab-notes" class="tab-panel" data-v4-vault="1" hidden aria-hidden="true">
+<div id="tab-notes" class="tab-panel" data-v4-vault="1" hidden aria-hidden="true" data-companion-notes="1">
   <div class="cu-v4-vault-cta" style="max-width:28rem;margin:1.5rem auto;padding:1.35rem 1.4rem;border-radius:16px;border:1px solid rgba(212,180,90,.4);background:linear-gradient(160deg,rgba(12,28,22,.98),rgba(8,16,12,.99));text-align:center;color:#e7efe9">
     <div style="font-size:1.6rem;margin-bottom:.4rem" aria-hidden="true">🏦</div>
     <h2 style="margin:0 0 .45rem;color:#d4b45a;font-size:1.15rem">Amana Vault lives at University</h2>
@@ -2046,7 +2051,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </div>
 
 
-<script src="./assets/clarity-runtime-overlays-v1.js?v=20261013CD1" defer></script>
+<script src="./assets/clarity-runtime-overlays-v1.js?v=20261015TOOLS" defer></script>
 <!-- diet idle: clarity-chunk-8.js -->
 <!-- diet idle: clarity-feature-pack-v1.js -->
 <!-- diet idle: clarity-path-pack-v1.js -->
@@ -2226,7 +2231,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 })();
 </script>
 
-<script src="./assets/clarity-sticky-harden-v1.js?v=20261013CD1" defer id="clarity-sticky-harden-js"></script>
+<script src="./assets/clarity-sticky-harden-v1.js?v=20261015TOOLS" defer id="clarity-sticky-harden-js"></script>
 
 <footer id="clarity-site-footer" style="max-width:40rem;margin:2rem auto 5rem;padding:1rem 1.1rem;text-align:center;font-size:.78rem;color:rgba(74,85,79,.95);line-height:1.5">
   <p style="margin:0 0 .5rem"><strong>Two paths</strong> ·
@@ -2239,14 +2244,15 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <p style="margin:0;opacity:.85">Clarity · Educational only — not a fatwa · Local-first on this device</p>
 </footer>
 <script src="/assets/craft/companion-meme-hide-v1.js?v=20261015MEME" defer></script>
+<script src="/assets/craft/companion-tools-restore-v1.js?v=20261015TOOLS" defer></script>
   
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 
-<script src="/assets/clarity-companion-diet-idle-v1.js?v=20261013CDB6" defer></script>
-<script src="/assets/clarity-companion-perf-v1.js?v=20261013CDB6" defer></script>
+<script src="/assets/clarity-companion-diet-idle-v1.js?v=20261015TOOLS" defer></script>
+<script src="/assets/clarity-companion-perf-v1.js?v=20261015TOOLS" defer></script>
 
-<script src="/assets/clarity-banner-mobile-v1.js?v=20261013CDB6" defer></script>
-<script src="/assets/clarity-companion-mahtaab-v1.js?v=20261013CDB6" defer></script>
+<script src="/assets/clarity-banner-mobile-v1.js?v=20261015TOOLS" defer></script>
+<script src="/assets/clarity-companion-mahtaab-v1.js?v=20261015TOOLS" defer></script>
 
 <script id="clarity-v4-vault-bridge">
 (function(){
