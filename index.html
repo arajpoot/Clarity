@@ -350,7 +350,18 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 #callig-canvas{max-width:100%;height:auto;touch-action:none}
 #cu-companion-notes-pad{display:block!important}
 </style>
-</head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><p id="campus-addons" style="margin:.4rem .75rem;font-size:.78rem;opacity:.8">Campus add-ons: <a href="/campus/">University map</a> · <a href="/welcome/">Guide</a> · <a href="/lab/tajweed/">Tajweed studio</a> · <a href="/adhkar/">Adhkār</a></p><nav id="clarity-global-nav" class="global-nav">
+<style id="cu-land-clean-v1">
+#campus-addons-removed,.campus-addons-removed{display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important}
+#cu-bi-path-strip,.cu-bi-path-strip,#cu-bi-hero-line{display:none!important;height:0!important;overflow:hidden!important;margin:0!important}
+.dual-tiles{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;max-width:36rem;margin:0.75rem auto 1rem;padding:0 .75rem}
+@media(max-width:520px){.dual-tiles{grid-template-columns:1fr}}
+.dual-tile{display:block;text-decoration:none;color:inherit;padding:1rem 1.1rem;border-radius:16px;
+  border:1px solid rgba(212,180,90,.35);background:rgba(0,0,0,.22)}
+.dual-tile .dual-name{display:block;font-weight:800;font-size:1rem;margin:.25rem 0}
+.dual-tile small{display:block;opacity:.85;font-size:.78rem;line-height:1.35}
+</style>
+
+</head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
         <span id="current-mode-badge" class="mode-badge">Clarity</span>
@@ -678,9 +689,8 @@ window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot
 </script><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio>
 <!-- Dual path: Companion desk vs University campus -->
 <section id="clarity-dual-path" class="clarity-dual-path" aria-label="Two paths">
-  <p class="dual-kicker">Choose your desk</p>
-  <p id="cu-bi-hero-line" style="text-align:center;max-width:36rem;margin:.35rem auto .5rem;font-size:.84rem;line-height:1.45;opacity:.9">Companion path: Reminder → Reality → Reflect → Action → Notes. University is the structured desk. Progress stays on this device. Educational only.</p>
-<div class="dual-tiles">
+  
+  <div class="dual-tiles">
     <a class="dual-tile dual-tile-companion" href="#main-content" id="dual-path-companion">
       <span class="dual-ico" aria-hidden="true">🏠</span>
       <span class="dual-name">Companion path</span>
@@ -2411,8 +2421,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </footer>
 <script src="/assets/craft/companion-meme-hide-v1.js?v=20261015BIH" defer></script>
 <script src="/assets/craft/companion-tools-restore-v1.js?v=20261015BIH" defer></script>
-<script src="/assets/clarity-companion-flow-perf-v1.js?v=20261015BIH" defer></script>
-  
+<!-- flow-perf path-strip disabled 20261015LAND2: bottom nav is enough -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 
 <script src="/assets/clarity-companion-diet-idle-v1.js?v=20261015BIH" defer></script>
