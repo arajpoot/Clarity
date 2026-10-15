@@ -1,0 +1,98 @@
+/* University page enrichment — cards, paths, stages */
+.cu-page-hero {
+  text-align: center;
+  margin: 0.5rem 0 1rem;
+}
+.cu-page-hero h1 {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  color: var(--cu-gold, #d4b45a);
+  margin: 0 0 0.4rem;
+  font-weight: 800;
+}
+html[data-theme="light"] .cu-page-hero h1 { color: #8b6f3f; }
+.cu-page-hero p {
+  margin: 0 auto;
+  max-width: 36rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.cu-rich-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)) !important;
+  gap: 0.75rem !important;
+  max-width: min(56rem, 100%);
+  margin: 0.75rem auto 1.25rem !important;
+}
+.cu-rich-card {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem;
+  padding: 1rem 1.05rem !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(184, 166, 135, 0.4) !important;
+  background: var(--cu-card, rgba(21, 32, 25, 0.95)) !important;
+  color: var(--cu-text, #e8f0ea) !important;
+  text-decoration: none !important;
+  min-height: 8.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+html[data-theme="light"] .cu-rich-card {
+  background: #fffef8 !important;
+  color: #2a2319 !important;
+  border-color: #b8a687 !important;
+}
+.cu-rich-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(30, 125, 94, 0.55) !important;
+}
+.cu-rich-card .ico { font-size: 1.45rem; line-height: 1; }
+.cu-rich-card strong {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: inherit;
+}
+.cu-rich-card span {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  opacity: 0.88;
+}
+.cu-rich-card .tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1e7d5e;
+}
+.cu-rich-card.open { border-left: 4px solid #1e7d5e !important; }
+.cu-rich-card.locked { opacity: 0.72; border-left: 4px solid #888 !important; }
+
+.cu-stage-band {
+  max-width: min(56rem, 100%);
+  margin: 0.5rem auto 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(30, 125, 94, 0.25);
+  background: rgba(30, 125, 94, 0.08);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+html[data-theme="light"] .cu-stage-band {
+  background: rgba(30, 125, 94, 0.1);
+  border-color: rgba(30, 125, 94, 0.22);
+}
+
+/* Force old lab-grid if present */
+.lab-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)) !important;
+  gap: 0.65rem !important;
+}
+.lab-card {
+  display: flex !important;
+  flex-direction: column !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
