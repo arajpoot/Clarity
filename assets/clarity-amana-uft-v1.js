@@ -1,7 +1,7 @@
-/* Companion UFT module — loaded for Notes/Amana only */
-(function(g){
-"use strict";
-try{
+/* Companion UFT module — syntax-safe wrap 20261015FIX */
+(function (g) {
+  "use strict";
+  try {
 /* UFT companion module */
 function uftRead() {
       try { return JSON.parse(clarityLS.getItem(UFT_KEY) || '{}'); }
@@ -6088,9 +6088,15 @@ function uftIntegrityReport(includeDismissed) {
         } catch (err) { console.error('uft chip', err); }
       }, true);
     })();
-
-    
-(
-}catch(e){console.warn("UFT module",e);}
-try{if(typeof uftLoad==="function")uftLoad();else if(typeof uftRender==="function")uftRender();}catch(e2){}
-})(typeof window!=="undefined"?window:this);
+  } catch (e) {
+    console.warn("UFT module load", e);
+  }
+  try {
+    if (typeof g.uftLoad === "function") g.uftLoad();
+    else if (typeof uftLoad === "function") uftLoad();
+  } catch (e2) {}
+  try {
+    if (typeof g.uftRender === "function") g.uftRender();
+    else if (typeof uftRender === "function") uftRender();
+  } catch (e3) {}
+})(typeof window !== "undefined" ? window : this);
