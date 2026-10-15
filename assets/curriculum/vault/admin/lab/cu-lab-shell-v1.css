@@ -33,3 +33,19 @@
 /* LMR readability on dark university shell */
 .tj-practice-loop, .tj-tool-panel { color: #e7efe9; }
 .tj-lmr-mode { min-height: 40px; }
+.hifz-ar {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.75rem;
+  line-height: 2;
+  direction: rtl;
+  text-align: center;
+  margin: 1rem 0 0.5rem;
+  color: var(--cu-text, #2a2319);
+}
+.hifz-en {
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0 0 1rem;
+}
