@@ -1,43 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="system" data-campus-page="map">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Clarity University · Journey Map</title>
-<meta name="description" content="Clarity University journey map. Sequential path from Seeker to Da'i. Educational only."/>
-<link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
-<style>
-.cu-how{margin:0 0 1rem;padding:.85rem 1rem;border-radius:14px;border:1px solid var(--cu-line);background:rgba(0,0,0,.28);font-size:.8rem;line-height:1.45;color:var(--cu-muted)}
-.cu-how strong{color:#f3e6c0}
-.cu-how ol{margin:.35rem 0 0 1.1rem;padding:0}
-.cu-phase-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin:0 0 1rem}
-@media(max-width:520px){.cu-phase-row{grid-template-columns:1fr 1fr}}
-.cu-phase-chip{display:block;padding:.65rem .45rem;border-radius:12px;border:1px solid var(--cu-line);background:rgba(0,0,0,.3);text-align:center;text-decoration:none;color:var(--cu-muted);font-size:.72rem;line-height:1.3}
-.cu-phase-chip strong{display:block;color:#f3e6c0;font-size:.84rem;margin-bottom:.15rem}
-.cu-addon{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin:.4rem 0 1rem}
-@media(max-width:520px){.cu-addon{grid-template-columns:1fr}}
-.cu-addon a{display:block;padding:.7rem .8rem;border-radius:12px;border:1px dashed rgba(224,197,106,.45);background:rgba(224,197,106,.06);color:#f3e6c0;text-decoration:none;font-size:.8rem}
-.cu-addon a strong{display:block;font-size:.9rem}
-</style>
-<link rel="manifest" href="/assets/curriculum/vault/admin/campus/manifest.webmanifest"/>
-<meta name="theme-color" content="#0d4f3c"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014UX"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261014UX"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014UX"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261014UX"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261014WAKE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014WAKE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261014WAKE"/>
 </head>
-<body data-e8-library="1" data-campus-page="campus">
+<body class="cu-page" data-campus-page="map">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt="Clarity University"/>
-    <div><small>University · Nur Path</small><strong>Clarity University</strong></div>
-  </a>
+  <a class="cu-brand" href="/campus/"><div><small>University · Nur Path</small><strong>Clarity University</strong></div></a>
   <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
 </header>
 <main class="cu-wrap">
@@ -49,13 +23,15 @@
     <a href="/journey/">Journey</a>
     <a href="/charter/">Charter</a>
   </nav>
+
   <div class="cu-continue" id="cu-continue">
     <div>
-      <strong data-cu-continue-title>Continue learning</strong><br/>
-      <span data-cu-continue-sub>Pick up your path on this device</span>
+      <strong data-cu-continue-title>Continue · Junior · Seeker</strong><br/>
+      <span data-cu-continue-sub>Start Unit 1 — Who is Allah?</span>
     </div>
     <a href="/campus/desk/?phase=seeker">Open desk →</a>
   </div>
+
   <div class="cu-how">
     <strong>How phases work</strong>
     <ol>
@@ -65,42 +41,73 @@
       <li><strong>Pass quiz</strong> — unlocks the next phase (no skipping ahead).</li>
     </ol>
   </div>
+
   <div class="cu-medallion-row" aria-label="Ilm path colleges">
-    <a class="cu-medallion on" href="/campus/desk/?phase=seeker"><span class="ring" aria-hidden="true">📖</span><strong>Uṣūl</strong><small>Foundations</small></a>
-    <a class="cu-medallion locked" href="/campus/desk/?phase=new-muslim"><span class="ring" aria-hidden="true">🕌</span><strong>ʿIbādah</strong><small>Practice</small></a>
-    <a class="cu-medallion locked" href="/campus/desk/?phase=daily"><span class="ring" aria-hidden="true">🎧</span><strong>Itqān</strong><small>Consistency</small></a>
-    <a class="cu-medallion locked" href="/campus/desk/?phase=dai"><span class="ring" aria-hidden="true">🕊</span><strong>Balāgh</strong><small>Transmission</small></a>
+    <a class="cu-medallion on" href="/campus/desk/?phase=seeker"><span class="ring">📖</span><strong>Uṣūl</strong><small>Foundations</small></a>
+    <a class="cu-medallion locked" href="/campus/desk/?phase=new-muslim"><span class="ring">🕌</span><strong>ʿIbādah</strong><small>Practice</small></a>
+    <a class="cu-medallion locked" href="/campus/desk/?phase=daily"><span class="ring">🎧</span><strong>Itqān</strong><small>Consistency</small></a>
+    <a class="cu-medallion locked" href="/campus/desk/?phase=dai"><span class="ring">🕊️</span><strong>Balāgh</strong><small>Transmission</small></a>
   </div>
-  <div class="cu-phase-row" id="cu-phase-chips">
-    <a class="cu-phase-chip on" data-phase="seeker" href="/campus/desk/?phase=seeker"><strong>1 Junior</strong>Open now</a>
-    <a class="cu-phase-chip locked" data-phase="new-muslim" href="/campus/desk/?phase=new-muslim"><strong>2 New Muslim</strong>Locked</a>
-    <a class="cu-phase-chip locked" data-phase="daily" href="/campus/desk/?phase=daily"><strong>3 Daily</strong>Locked</a>
-    <a class="cu-phase-chip locked" data-phase="dai" href="/campus/desk/?phase=dai"><strong>4 Daʿi</strong>Locked</a>
+
+  <div class="cu-phase-row">
+    <a class="cu-phase-chip on" href="/campus/desk/?phase=seeker"><strong>1 Junior</strong>Open now</a>
+    <a class="cu-phase-chip locked" href="/campus/desk/?phase=new-muslim"><strong>2 New Muslim</strong>Locked</a>
+    <a class="cu-phase-chip locked" href="/campus/desk/?phase=daily"><strong>3 Daily</strong>Locked</a>
+    <a class="cu-phase-chip locked" href="/campus/desk/?phase=dai"><strong>4 Daʿī</strong>Locked</a>
   </div>
+
   <span class="cu-section-kicker">Academic precinct · Kulliyyat al-Nur</span>
-  <h1 style="text-align:center;font-size:1.2rem;color:#f3e6c0;margin:.2rem 0 .85rem;font-weight:800">Journey Map</h1>
+  <h1 style="text-align:center;font-size:1.25rem;margin:.35rem 0 .85rem;font-weight:800;color:var(--cu-gold,#d4b45a)">Journey Map</h1>
+
   <div class="cu-grid" id="cu-phase-grid">
-    <a class="cu-card" data-phase="seeker" href="/campus/desk/?phase=seeker"><span class="cu-badge open">Open</span><span class="tag">Phase 1 · Uṣūl</span><strong>Junior · Seeker</strong><span class="desc">Belief foundations. One module open. Spark quiz unlocks the next.</span></a>
-    <a class="cu-card" data-phase="new-muslim" href="/campus/desk/?phase=new-muslim"><span class="cu-badge locked">Locked</span><span class="tag">Phase 2 · ʿIbādah</span><strong>New Muslim</strong><span class="desc">Purification and prayer practice after the Junior phase quiz.</span></a>
-    <a class="cu-card" data-phase="daily" href="/campus/desk/?phase=daily"><span class="cu-badge locked">Locked</span><span class="tag">Phase 3 · Itqān</span><strong>Daily</strong><span class="desc">Craft and consistency — tajweed, reflection, steady deeds.</span></a>
-    <a class="cu-card" data-phase="dai" href="/campus/desk/?phase=dai"><span class="cu-badge locked">Locked</span><span class="tag">Phase 4 · Balāgh</span><strong>Daʿi</strong><span class="desc">Transmit with adab. Wisdom and clear limits.</span></a>
-    <a class="cu-card" href="/lab/"><span class="tag">Lab</span><strong>Craft Laboratory</strong><span class="desc">Calligraphy, Tajweed, Media, Research, Design ateliers.</span></a>
-    <a class="cu-card" href="/library/"><span class="tag">Library</span><strong>Source shelves</strong><span class="desc">Qurʾān, Sunnah, and deepen pointers.</span></a>
+    <a class="cu-card" href="/campus/desk/?phase=seeker">
+      <span class="cu-badge open">Open</span>
+      <span class="tag">Phase 1 · Uṣūl</span>
+      <strong>Junior · Seeker</strong>
+      <span class="desc">Belief foundations. One module open. Spark quiz unlocks the next.</span>
+    </a>
+    <a class="cu-card" href="/campus/desk/?phase=new-muslim">
+      <span class="cu-badge locked">Locked</span>
+      <span class="tag">Phase 2 · ʿIbādah</span>
+      <strong>New Muslim</strong>
+      <span class="desc">Purification and prayer practice after the Junior phase quiz.</span>
+    </a>
+    <a class="cu-card" href="/campus/desk/?phase=daily">
+      <span class="cu-badge locked">Locked</span>
+      <span class="tag">Phase 3 · Itqān</span>
+      <strong>Daily</strong>
+      <span class="desc">Craft and consistency — tajweed, reflection, steady deeds.</span>
+    </a>
+    <a class="cu-card" href="/campus/desk/?phase=dai">
+      <span class="cu-badge locked">Locked</span>
+      <span class="tag">Phase 4 · Balāgh</span>
+      <strong>Daʿī</strong>
+      <span class="desc">Transmit with adab. Wisdom and clear limits.</span>
+    </a>
+    <a class="cu-card" href="/lab/">
+      <span class="cu-badge open">Open</span>
+      <span class="tag">Lab</span>
+      <strong>Craft Laboratory</strong>
+      <span class="desc">Tajweed · Arabic · Recitation · Media · Calligraphy · Hifz</span>
+    </a>
+    <a class="cu-card" href="/library/">
+      <span class="cu-badge open">Open</span>
+      <span class="tag">Library</span>
+      <strong>Source shelves</strong>
+      <span class="desc">Qurʾān, Sunnah, and deepen pointers.</span>
+    </a>
   </div>
+
   <span class="cu-section-kicker">Add-ons · under the campus</span>
-  <div class="cu-addon">
-    <a href="/welcome/"><strong>Meet the guide</strong>Testimony, then the path. Not a formal witnessing.</a>
-    <a href="/adhkar/"><strong>Morning / evening</strong>Adhkār from your local time.</a>
-    <a href="/lab/"><strong>Lab door</strong>Tajweed, Arabic, Recitation, Hifz, Calligraphy — open from here only.</a>
-    <a href="/charter/"><strong>Charter</strong>Six limits. Educational only.</a>
+  <div class="cu-grid" style="margin-top:0.5rem">
+    <a class="cu-card" href="/welcome/"><strong>Meet the guide</strong><span class="desc">Testimony, then the path. Not a formal witnessing.</span></a>
+    <a class="cu-card" href="/adhkar/"><strong>Morning / evening</strong><span class="desc">Adhkār from your local time.</span></a>
+    <a class="cu-card" href="/lab/"><strong>Lab door</strong><span class="desc">Open craft stations from here.</span></a>
+    <a class="cu-card" href="/charter/"><strong>Charter</strong><span class="desc">Six limits. Educational only.</span></a>
   </div>
-  <p class="cu-note">Foundations → Practice → Consistency → Transmission. Not affiliated with Al-Azhar or Madinah University. <a href="/charter/">Charter</a></p>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. Verify with Qurʾān, Sunnah, and a local scholar.</footer>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014UX" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014UX" defer></script>
-
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014WAKE" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014WAKE" defer></script>
 </body>
 </html>
