@@ -1,30 +1,36 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Adhkār · Clarity University</title>
-<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-shared-v1.css?v=20261014E8"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-theme-v1.css?v=20261014E8"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-bi-shell-v1.css?v=20261014E8"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-nav-rich-v1.css?v=20261014E8"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014E8"/>
 </head>
-<body class="cu-addon">
+<body class="cu-page">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
-  <a class="cu-main-link" href="/">← Companion</a>
+  <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Clarity University</strong></div></a>
+  <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
 </header>
-<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="">Lab</a><a href="/adhkar/" class="here">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
-<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
 <main class="cu-wrap">
-
-<h1>Morning and evening</h1>
-<p class="muted" id="when"></p>
-<div class="card" id="set"></div>
-<p class="muted"><a href="https://sunnah.com/hisn">Hisn al-Muslim on Sunnah.com</a></p>
-
+  <nav class="cu-pills">
+    <a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a>
+    <a href="/vault/">Vault</a><a href="/journey/">Journey</a><a href="/charter/">Charter</a>
+  </nav>
+  <h1 class="lab-h1" style="text-align:center">Morning / evening adhkār</h1>
+  <p class="lab-lead" id="adhkar-slot">Based on your device clock — educational reminder, not a timed fatwa.</p>
+  <section class="card" style="max-width:40rem;margin:1rem auto;padding:1.1rem" id="adhkar-card">
+    <h2 id="adhkar-title">…</h2>
+    <ul id="adhkar-list" style="line-height:1.65;padding-left:1.2rem"></ul>
+    <p class="lab-micro">For fuller collections open Companion. Verify wording with a trusted source.</p>
+  </section>
 </main>
-<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
-<script>
-(function(){
-  var h=new Date().getHours();
-  var morning=h>=4&&h<12, evening=h>=15&&h<22;
-  document.getElementById("when").textContent="Local hour "+h+" · "+(morning?"morning set":evening?"evening set":"either set is fine");
-  var items=morning?[["أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ","We have entered the morning and the dominion belongs to Allah."],["سُبْحَانَ اللَّهِ وَبِحَمْدِهِ","Glory is to Allah and praise is to Him."]]:[["أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ","We have entered the evening and the dominion belongs to Allah."],["أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ","I seek refuge in the perfect words of Allah."]];
-  document.getElementById("set").innerHTML=items.map(function(x){return '<p class="ar">'+x[0]+'</p><p>'+x[1]+'</p>';}).join("");
-})();
-</script>
+<footer class="cu-foot">Educational only — not a fatwa.</footer>
+<script src="/assets/curriculum/vault/admin/campus/cu-theme-v1.js?v=20261014E8" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-nav-rich-v1.js?v=20261014E8" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-adhkar-v1.js?v=20261014E8" defer></script>
 </body></html>
