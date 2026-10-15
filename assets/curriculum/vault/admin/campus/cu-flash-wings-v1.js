@@ -4,11 +4,12 @@
   if (g.__CU_FLASH_WINGS_V1__) return;
   g.__CU_FLASH_WINGS_V1__ = true;
 
-  var VER = "20261014FD";
+  var VER = "20261014FD6";
   var page = (document.body && document.body.getAttribute("data-campus-page")) || "";
   var path = location.pathname || "";
 
   var COMMON = [
+    "/assets/curriculum/vault/admin/campus/cu-flash-prefetch-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-mahtaab-hydrate-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-nav-phases-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.js?v=" + VER,
