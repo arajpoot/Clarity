@@ -126,3 +126,24 @@ html, body { max-width: 100vw; }
   background: rgba(0,0,0,.35); color: inherit; border: 1px solid rgba(212,180,90,.3);
   box-sizing: border-box;
 }
+
+/* Castle UI — never show lock + open together */
+#p5-vault-card.is-locked #p5-vault-open,
+#p5-vault-card:not(.is-unlocked) #p5-vault-open { display: none !important; }
+#p5-vault-card.is-unlocked #p5-vault-locked { display: none !important; }
+html[data-amana-session="locked"] #amana-fiqh-host,
+html[data-amana-session="locked"] #user-family-tree-card,
+html[data-amana-session="locked"] #faraid-card,
+html[data-amana-session="locked"] #wasiyyah-card,
+html[data-amana-session="locked"] #fiqh-workflow-card {
+  display: none !important;
+}
+html[data-amana-session="open"] #amana-fiqh-host { display: block; }
+#p5-vault-card[data-castle]::after {
+  content: "Castle " attr(data-castle);
+  display: block;
+  font-size: 0.65rem;
+  opacity: 0.55;
+  margin-top: 0.5rem;
+  text-align: right;
+}
