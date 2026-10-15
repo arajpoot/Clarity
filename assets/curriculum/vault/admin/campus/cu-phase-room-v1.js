@@ -1,5 +1,5 @@
 /**
- * Quiet phase room v2 — one college, strip chrome, craft handoff, next riwāq.
+ * Quiet phase room v2 + P5 craft CTA — one college, strip chrome, craft handoff, next riwāq.
  * data-phase-room: seeker | practice | consistency | transmission
  * Educational only. Lab pill stays free reference.
  */
@@ -25,26 +25,35 @@
     transmission: "Transmission (Daʿī)"
   };
   /* Phase 2 — one craft handoff per phase (Lab = reference) */
+  /* Phase 5 — after-module craft CTA: Lab practice + Companion deep link */
   var CRAFT = {
     seeker: {
       href: "/lab/calligraphy/",
       label: "Calligraphy — one letter with presence",
-      blurb: "Anchor what you learned with the hand. One letter or the Name — slowly."
+      blurb: "Anchor what you learned with the hand. One letter or the Name — slowly.",
+      companionHref: "/#reminder",
+      companionLabel: "Companion · Reminder"
     },
     practice: {
       href: "/lab/tajweed/",
       label: "Tajweed — one rule, one āyah",
-      blurb: "Serve prayer confidence. One rule, one short āyah."
+      blurb: "Serve prayer confidence. One rule, one short āyah.",
+      companionHref: "/#reality",
+      companionLabel: "Companion · Reality"
     },
     consistency: {
       href: "/lab/recite/",
       label: "Recite — short steady portion",
-      blurb: "Daily itqān. A small portion you can repeat with care."
+      blurb: "Daily itqān. A small portion you can repeat with care.",
+      companionHref: "/#reflection",
+      companionLabel: "Companion · Reflection"
     },
     transmission: {
       href: "/lab/media/",
       label: "Media — one verified reminder",
-      blurb: "Source honesty before sharing. One short, checked reminder."
+      blurb: "Source honesty before sharing. One short, checked reminder.",
+      companionHref: "/#action",
+      companionLabel: "Companion · Action"
     }
   };
 
@@ -130,32 +139,75 @@
     if (!craft) return;
     var host = document.getElementById("cu-phase-craft");
     if (!host) {
-      host = document.createElement("section");
+      host = document.createElement("div");
       host.id = "cu-phase-craft";
       host.className = "cu-phase-craft";
       var stage = document.getElementById("clarity-campus-stage");
       if (stage && stage.parentNode) stage.parentNode.insertBefore(host, stage.nextSibling);
-      else return;
+      else {
+        var main = document.querySelector("main") || document.body;
+        main.appendChild(host);
+      }
     }
-    /* Phase 3: show when modules complete OR phase already advanced past this room */
-    var show = modulesComplete() || phaseNow() > (ROOM_TO_NUM[r] || 1);
-    if (!show) {
-      host.hidden = true;
-      host.innerHTML = "";
+    var done = modulesComplete() || phaseNow() > (ROOM_TO_NUM[r] || 1);
+    host.hidden = false;
+    if (!done) {
+      /* Soft preview — after-module craft waiting */
+      host.className = "cu-phase-craft is-waiting";
+      host.innerHTML =
+        '<p class="cu-craft-kicker">After this phase\'s modules</p>' +
+        '<p class="cu-craft-blurb">Complete the modules (and phase quiz when shown). Then a focused craft opens here: <strong>' +
+        craft.label +
+        "</strong>.</p>" +
+        '<p class="cu-craft-hint">' +
+        craft.blurb +
+        "</p>" +
+        '<p class="cu-craft-actions">' +
+        '<a class="cu-btn ghost" href="/lab/">Lab stations (reference anytime)</a> ' +
+        '<a class="cu-btn ghost" href="' +
+        (craft.companionHref || "/") +
+        '">' +
+        (craft.companionLabel || "Companion") +
+        "</a></p>";
       return;
     }
-    host.hidden = false;
+    host.className = "cu-phase-craft is-ready";
     host.innerHTML =
-      '<p class="cu-craft-kicker">Practice this level</p>' +
-      "<p class=\"cu-craft-blurb\">" +
+      '<p class="cu-craft-kicker">Practice this level · craft unlocked</p>' +
+      '<p class="cu-craft-blurb">' +
       craft.blurb +
       "</p>" +
+      '<p class="cu-craft-actions">' +
       '<a class="cu-btn" href="' +
       craft.href +
       '">' +
       craft.label +
       " →</a> " +
-      '<a class="cu-btn ghost" href="/lab/">All Lab stations (reference)</a>';
+      '<a class="cu-btn" href="' +
+      (craft.companionHref || "/") +
+      '">' +
+      (craft.companionLabel || "Companion") +
+      "</a> " +
+      '<a class="cu-btn ghost" href="/lab/">All Lab stations</a></p>';
+  }
+
+  
+  function injectCraftStyles() {
+    if (document.getElementById("cu-phase-craft-css")) return;
+    var s = document.createElement("style");
+    s.id = "cu-phase-craft-css";
+    s.textContent =
+      ".cu-phase-craft{margin:1rem 0;padding:0.85rem 1rem;border-radius:14px;border:1px solid rgba(212,180,90,.35);" +
+      "background:rgba(0,0,0,.22);max-width:40rem}" +
+      ".cu-phase-craft.is-waiting{opacity:.92;border-style:dashed}" +
+      ".cu-phase-craft.is-ready{border-color:rgba(31,166,122,.55);background:rgba(13,79,60,.25)}" +
+      ".cu-craft-kicker{font-weight:800;color:#e8c47a;margin:0 0 .35rem;font-size:.9rem}" +
+      ".cu-craft-blurb,.cu-craft-hint{font-size:.82rem;line-height:1.45;margin:0 0 .5rem}" +
+      ".cu-craft-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin:0}" +
+      ".cu-phase-craft .cu-btn{display:inline-block;padding:.35rem .75rem;border-radius:999px;font-size:.78rem;" +
+      "border:1px solid rgba(212,180,90,.45);background:rgba(13,79,60,.4);color:#f3ead0;text-decoration:none}" +
+      ".cu-phase-craft .cu-btn.ghost{background:transparent;opacity:.9}";
+    document.head.appendChild(s);
   }
 
   function renderRoom() {
@@ -175,6 +227,7 @@
     } catch (e) {}
     stripOtherCards();
     stripChrome();
+    injectCraftStyles();
     paintGate();
     ensureCraftSlot();
     paintNext();
