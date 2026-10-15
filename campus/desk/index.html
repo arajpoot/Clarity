@@ -1,60 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-campus-page="desk">
+<html lang="en" data-theme="system" data-campus-page="desk">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Desk · Clarity University</title>
-<meta name="description" content="Clarity University learning desk — Junior pathway. Educational only — not a fatwa."/>
-<link rel="canonical" href="https://clarity-dawah.fyi/campus/desk/"/>
-<link rel="preload" href="/assets/curriculum/vault/SEAL.json" as="fetch" crossorigin/>
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261014FD"/>
-<style id="cu-desk-nc1">
-html, body { margin:0; min-height:100%; background:#0c1410 !important; color:#e7efe9 !important; }
-body.cu-page {
-  font-family: system-ui, -apple-system, sans-serif;
-  background: radial-gradient(1200px 600px at 50% -10%, #163028, #0c1410 55%) !important;
-}
-#clarity-campus-stage, #campus-stage-body, #junior-curriculum-card,
-#junior-high-curriculum-card, #daily-hs-curriculum-card, #dai-university-curriculum-card {
-  max-width: 42rem; margin-left: auto; margin-right: auto; color: #e7efe9;
-}
-#junior-curriculum-card, .curriculum-phase-card, .card {
-  background: rgba(21, 32, 25, 0.95) !important;
-  color: #e7efe9 !important;
-  border: 1px solid rgba(212, 180, 90, 0.28);
-  border-radius: 16px;
-}
-#junior-curriculum-card p, #junior-curriculum-card li {
-  color: rgba(231, 239, 233, 0.92) !important; opacity: 1 !important;
-}
-#clarity-how-phases, .cu-how-float, [class*="how-phases"] {
-  position: relative !important; top: auto !important; left: auto !important; right: auto !important;
-  background: rgba(15, 76, 58, 0.35) !important; color: #e7efe9 !important;
-  border: 1px solid rgba(212, 180, 90, 0.3) !important;
-  max-width: 42rem; margin: 0.6rem auto !important; z-index: 1 !important; box-shadow: none !important;
-}
-.cu-map-nav { display: none !important; }
-</style>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014FD"/>
+<title>Learning Desk · Clarity University</title>
+<meta name="description" content="One module at a time. Spark quiz unlocks the next. Educational only."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-desk-enrich-v1.css?v=20261014FD"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261014FD"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014FD"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261014FD"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-desk-enrich-v1.css?v=20261014FD"/>
-
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261014DESK"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014DESK"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261014DESK"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-desk-enrich-v1.css?v=20261014DESK"/>
+<style>
+.desk-how {
+  max-width: min(52rem, 100%);
+  margin: 0.35rem auto 0.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(184,166,135,0.35);
+  background: rgba(0,0,0,0.18);
+  color: inherit;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+html[data-theme="light"] .desk-how { background: rgba(42,35,25,0.05); }
+.desk-how summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.65rem 0.9rem;
+  list-style: none;
+}
+.desk-how summary::-webkit-details-marker { display: none; }
+.desk-how .desk-how-body { padding: 0 0.9rem 0.75rem; opacity: 0.92; }
+.desk-how ol { margin: 0.35rem 0 0 1.1rem; padding: 0; }
+#clarity-campus-stage {
+  position: relative;
+  z-index: 2;
+  max-width: min(52rem, 100%);
+  margin: 0 auto 1.5rem;
+}
+#campus-stage-body { min-height: 8rem; }
+#clarity-how-phases-slot:empty,
+#clarity-phase-plaque-host:empty,
+#clarity-name-plaque-rail:empty { display: none !important; }
+</style>
 </head>
-<body class="cu-page" data-campus-page="desk" data-campus-stage="learn">
+<body class="cu-page" data-campus-page="desk">
 <header class="cu-banner">
   <a class="cu-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
     <div><small>University</small><strong>Clarity University</strong></div>
   </a>
-  <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
+  <div class="cu-banner-actions">
+    <a class="cu-main-link" href="/">← Companion</a>
+  </div>
 </header>
 <main class="cu-wrap">
   <nav class="cu-pills" aria-label="Campus">
@@ -65,17 +63,24 @@ body.cu-page {
     <a href="/journey/">Journey</a>
     <a href="/charter/">Charter</a>
   </nav>
-  <!-- NUC2 order: phase chrome inside main, never above banner -->
-  <div id="clarity-how-phases-slot"></div>
-  <div id="clarity-phase-plaque-host"></div>
-  <div id="clarity-name-plaque-rail" class="cnp-inner" aria-label="Learner and halls"></div>
 
-  <header class="cu-hero" style="text-align:center;margin:.5rem 0 0.75rem">
+  <header class="cu-hero" style="text-align:center;margin:.5rem 0 0.5rem">
     <h1 style="color:#d4b45a;font-size:1.25rem;margin:0 0 .35rem">Learning Desk</h1>
     <p style="margin:0;opacity:.85;font-size:.88rem">One module at a time. Spark quiz unlocks the next. Progress stays on this device.</p>
   </header>
-  
-  
+
+  <details class="desk-how" id="desk-how-phases">
+    <summary>How phases work</summary>
+    <div class="desk-how-body">
+      <ol>
+        <li><strong>One module open</strong> — only the current lesson is unlocked.</li>
+        <li><strong>Spark quiz</strong> — answer correctly to open the next module.</li>
+        <li><strong>All modules ✓</strong> — then a short phase quiz appears.</li>
+        <li><strong>Pass quiz</strong> — unlocks the next phase (no skipping ahead).</li>
+      </ol>
+    </div>
+  </details>
+
   <div id="clarity-campus-stage">
     <p class="campus-stage-label" style="text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7">Learning stage · Phase desk</p>
     <div id="campus-stage-body">
@@ -85,17 +90,12 @@ body.cu-page {
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. On-device learning records.</footer>
 
-<!-- NC2 eager: seal + stage + spark (quiz path) -->
-<!-- NC2 idle: polish / continue / mirath -->
-
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014FD" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014FD" defer></script>
-
-<script src="/assets/curriculum/vault/boot.js?v=20261014FD"></script>
-<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261014FD" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-campus-mount-v1.js?v=20261014FD" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-learner-v1.js?v=20261014FD" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-spark-adab-v1.js?v=20261014FD" defer></script>
-
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014DESK" defer></script>
+<script src="/assets/curriculum/vault/boot.js?v=20261014DESK"></script>
+<script src="/assets/curriculum/vault/admin/campus/campus-shell-v1.js?v=20261014DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-campus-mount-v1.js?v=20261014DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-learner-v1.js?v=20261014DESK" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-spark-adab-v1.js?v=20261014DESK" defer></script>
 </body>
 </html>
