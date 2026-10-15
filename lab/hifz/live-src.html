@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hifz · Clarity University</title>
+<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
+</head>
+<body class="cu-addon">
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
+  <a class="cu-main-link" href="/">← Companion</a>
+</header>
+<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="here">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
+<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
+<main class="cu-wrap">
+
+<h1>Hifz</h1>
+<p class="muted">One ayah, then hide and recall. <a href="https://quran.com/1">Al-Fātiḥah</a></p>
+<div class="card studio-stage"><p class="ar" id="ayah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+<p id="en">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
+<button id="hide">Hide meaning</button> <button id="mark">Mark reviewed</button>
+<p class="muted" id="c"></p></div>
+
+</main>
+<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
+<script>
+var hidden=false;
+document.getElementById("hide").onclick=function(){hidden=!hidden;document.getElementById("en").style.visibility=hidden?"hidden":"visible";this.textContent=hidden?"Show meaning":"Hide meaning"};
+function count(){document.getElementById("c").textContent="Reviewed: "+(localStorage.getItem("clarity_lab_hifz")||"0")}
+document.getElementById("mark").onclick=function(){var n=parseInt(localStorage.getItem("clarity_lab_hifz")||"0",10)+1;localStorage.setItem("clarity_lab_hifz",String(n));count()};
+count();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body></html>
