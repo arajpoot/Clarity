@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="system">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
@@ -7,12 +7,13 @@
 <title>Riwāq · Learning Desk · Clarity University</title>
 <meta name="description" content="Four quiet study halls. One phase at a time. Educational only."/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015P234"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015P234"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261015P234"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015UNIV"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015UNIV"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261015UNIV"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261015UNIV"/>
 
 <style>
-.riwaq-grid{display:grid;gap:.65rem;max-width:min(52rem,100%);margin:0 auto}
+.riwaq-grid{display:grid;gap:.65rem;max-width:min(96rem,100%);margin:0 auto}
 .riwaq-card{display:block;padding:1rem 1.1rem;border-radius:16px;border:1px solid rgba(184,166,135,.35);
   background:rgba(0,0,0,.22);text-decoration:none;color:inherit}
 .riwaq-card.locked{opacity:.55;pointer-events:none}
@@ -21,13 +22,13 @@
 .riwaq-card .tag{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
 .riwaq-card .desc{font-size:.84rem;opacity:.85;line-height:1.4;margin-top:.35rem}
 .riwaq-card .status{font-size:.75rem;margin-top:.45rem;font-weight:700}
-.cu-quiet{max-width:min(52rem,100%);margin:0 auto 1rem;font-size:.88rem;line-height:1.5;opacity:.9}
+.cu-quiet{max-width:min(96rem,100%);margin:0 auto 1rem;font-size:.88rem;line-height:1.5;opacity:.9}
 </style>
 
 </head>
 <body class="cu-page" data-campus-page="desk-hub">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><div><small>University · Nur Path</small><strong>Clarity University</strong></div></a>
+  <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Clarity University</strong></div></a>
   <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
 </header>
 <main class="cu-wrap">
@@ -41,7 +42,7 @@
   </nav>
   <header class="cu-page-hero">
     <h1>Four riwāq</h1>
-    <p>One quiet hall at a time. Finish modules — practice one craft for this level — pass the phase quiz to open the next door.</p>
+    <p>One quiet hall at a time. Finish a phase — its quiz opens the next door.</p>
   </header>
   <p class="cu-quiet">Foundations → Practice → Consistency → Transmission. Progress stays on this device. Educational only — not a degree or fatwa.</p>
   <div class="riwaq-grid" id="riwaq-grid"></div>
@@ -53,10 +54,10 @@
   var phase=1;
   try{ phase=parseInt(localStorage.getItem(KEY)||"1",10)||1; }catch(e){}
   var rooms=[
-    {n:1,href:"/campus/desk/seeker/",tag:"Phase 1 · Uṣūl",name:"Foundations",desc:"Junior · Seeker — belief, pillars, character seeds. Ends with one calligraphy practice."},
-    {n:2,href:"/campus/desk/practice/",tag:"Phase 2 · ʿIbādah",name:"Practice",desc:"New Muslim track — purification and prayer confidence. Ends with one tajweed practice."},
-    {n:3,href:"/campus/desk/consistency/",tag:"Phase 3 · Itqān",name:"Consistency",desc:"Daily discipline — tajweed habit, steady deeds. Ends with one recite practice."},
-    {n:4,href:"/campus/desk/transmission/",tag:"Phase 4 · Balāgh",name:"Transmission",desc:"Daʿī ethics — share only what is verified, with adab. Ends with one media practice."}
+    {n:1,href:"/campus/desk/seeker/",tag:"Phase 1 · Uṣūl",name:"Foundations",desc:"Junior · Seeker — belief, pillars, character seeds."},
+    {n:2,href:"/campus/desk/practice/",tag:"Phase 2 · ʿIbādah",name:"Practice",desc:"New Muslim track — purification and prayer confidence."},
+    {n:3,href:"/campus/desk/consistency/",tag:"Phase 3 · Itqān",name:"Consistency",desc:"Daily discipline — tajweed habit, steady deeds."},
+    {n:4,href:"/campus/desk/transmission/",tag:"Phase 4 · Balāgh",name:"Transmission",desc:"Daʿī ethics — share only what is verified, with adab."}
   ];
   var g=document.getElementById("riwaq-grid");
   g.innerHTML=rooms.map(function(r){
