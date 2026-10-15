@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Recitation studio · Lab</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261014UX"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014UX"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014UX"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-recite-v1.css?v=20261014UX"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261014WAKE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261014WAKE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014WAKE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-recite-v1.css?v=20261014WAKE"/>
 </head>
 <body class="cu-page">
 <header class="cu-banner">
@@ -27,35 +27,30 @@
   </nav>
   <div class="rc-lab">
     <h1 class="lab-h1">Recitation studio</h1>
-    <p class="lab-lead">Bite-size path: Listen → Read → Self-check → Meaning. Not a qāriʾ score. Not Tajweed rules (use Tajweed lab).</p>
-    <div class="rc-path">
-      <button type="button" class="here" data-rc-unit="0">Al-Fātiḥah 1</button>
-      <button type="button" data-rc-unit="1">Al-Ikhlāṣ 1</button>
-      <button type="button" data-rc-unit="2">Al-ʿAṣr 1</button>
-    </div>
+    <p class="lab-lead">Fetch āyah online · Listen → Read → Self-check → Assessment. Progress tiles on this device. Rules of pronunciation → Tajweed lab.</p>
+    <div class="rc-tiles" id="rc-tiles"></div>
     <section class="rc-card">
       <div class="rc-step" id="rc-step">Step 1 · Listen</div>
-      <h2 id="rc-title" style="text-align:center;font-size:1.05rem;margin:0.35rem 0">…</h2>
+      <h2 id="rc-title" style="text-align:center;font-size:1.05rem">…</h2>
       <p class="rc-ar" id="rc-ar" dir="rtl">…</p>
       <p class="rc-en" id="rc-en">…</p>
       <div class="lab-av-row" id="rc-actions" style="justify-content:center">
-        <button type="button" class="lab-btn lab-btn-primary" id="rc-hear">Hear master</button>
+        <button type="button" class="lab-btn lab-btn-primary" id="rc-hear">Hear</button>
         <button type="button" class="lab-btn" id="rc-next">Next step</button>
+        <button type="button" class="lab-btn" id="rc-continue">Next āyah →</button>
       </div>
       <div id="rc-quiz" hidden>
         <p id="rc-q" style="text-align:center;font-weight:700"></p>
         <div class="rc-choices" id="rc-options"></div>
-        <div class="lab-av-row" style="justify-content:center;margin-top:0.5rem">
-          <button type="button" class="lab-btn" id="rc-continue">Continue</button>
-        </div>
       </div>
       <p class="rc-status" id="rc-status"></p>
+      <a class="rc-tajweed-link" href="/lab/tajweed/">Open Tajweed lab for rules →</a>
     </section>
   </div>
 </main>
-<footer class="cu-foot">Educational practice only — not a qāriʾ certificate.</footer>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014UX" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014UX" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-av-v1.js?v=20261014UX" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-recite-v1.js?v=20261014UX" defer></script>
+<footer class="cu-foot">Educational only — not a qāriʾ certificate. Online text via public Quran API when available.</footer>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014WAKE" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014WAKE" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/cu-lab-av-v1.js?v=20261014WAKE" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/cu-lab-recite-v1.js?v=20261014WAKE" defer></script>
 </body></html>
