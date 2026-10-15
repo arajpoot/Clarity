@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system" data-campus-page="desk" data-phase-room="seeker">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Foundations · Junior · Desk · Clarity University</title>
+<meta name="description" content="Uṣūl — one module at a time. Belief before debate. Educational only."/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015RIWAQ4"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015RIWAQ4"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261015RIWAQ4"/>
+<style>
+/* Quiet room — hide heavy injectors */
+#clarity-phase-plaque-host,#clarity-phase-plaque-rail,#clarity-name-plaque-rail,
+#clarity-how-phases-slot,.clarity-phase-plaque,#campus-rescue-card,
+#clarity-chancellor-fab,[data-chancellor-root]{display:none!important}
+#clarity-campus-stage{max-width:36rem;margin:0 auto 1.25rem;position:relative;z-index:2}
+#campus-stage-body{min-height:6rem}
+.cu-room-lead{max-width:36rem;margin:0 auto .85rem;font-size:.9rem;line-height:1.5;opacity:.9}
+.cu-btn{display:inline-block;margin:.25rem .35rem .25rem 0;padding:.45rem .9rem;border-radius:999px;
+  border:1px solid rgba(184,166,135,.45);background:rgba(31,166,122,.15);color:inherit;text-decoration:none;font-weight:700;font-size:.84rem}
+.cu-btn.ghost{background:transparent}
+#cu-phase-gate,#cu-next-riwaq{max-width:36rem;margin:0 auto 1rem;padding:1rem;border-radius:16px;
+  border:1px solid rgba(184,166,135,.35);background:rgba(0,0,0,.2)}
+#cu-next-riwaq[hidden],#cu-phase-gate[hidden]{display:none!important}
+#junior-curriculum-card,#junior-high-curriculum-card,#daily-hs-curriculum-card,#dai-university-curriculum-card{
+  display:block!important;margin:0;padding:1rem;border-radius:16px;border:1px solid rgba(184,166,135,.3);
+  background:rgba(0,0,0,.18)}
+</style>
+</head>
+<body class="cu-page" data-campus-page="desk" data-phase-room="seeker">
+<header class="cu-banner">
+  <a class="cu-brand" href="/campus/desk/"><div><small>Desk · Phase 1</small><strong>Foundations · Junior</strong></div></a>
+  <div class="cu-banner-actions"><a class="cu-main-link" href="/campus/desk/">All riwāq</a></div>
+</header>
+<main class="cu-wrap">
+  <nav class="cu-pills" aria-label="Campus">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/" class="here">Desk</a>
+    <a href="/lab/">Lab</a>
+    <a href="/library/">Library</a>
+    <a href="/vault/">Vault</a>
+    <a href="/charter/">Charter</a>
+  </nav>
+  <p class="cu-room-lead">Uṣūl — one module at a time. Belief before debate.</p>
+  <div id="cu-phase-gate" hidden></div>
+  <div id="clarity-campus-stage">
+    <div id="campus-stage-body">
+      <p id="campus-loading-hint" style="opacity:.7;font-size:.88rem">Opening this riwāq…</p>
+    </div>
+  </div>
+  <div id="cu-next-riwaq" hidden></div>
+  <p style="max-width:36rem;margin:1rem auto;font-size:.78rem;opacity:.75">
+    <a href="/campus/desk/">← All riwāq</a> · <a href="/lab/">Lab</a> · <a href="/library/">Library</a>
+  </p>
+</main>
+<!-- Lean stack: vault boot + one room controller (no wings / shell / desk-opener) -->
+<script src="/assets/curriculum/vault/boot.js?v=20261015RIWAQ4"></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-phase-room-v1.js?v=20261015RIWAQ4" defer></script>
+</body>
+</html>
