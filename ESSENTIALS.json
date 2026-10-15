@@ -1,8 +1,11 @@
 {
-  "build": "20261011ADMIN",
-  "roles": ["faculty", "staff", "it", "om", "security"],
-  "landing": "university-journey-map",
-  "desk": "/campus/desk/",
-  "lab": "direct-to-desk-modules",
-  "educational": true
+  "build": "20261015FLOW",
+  "companion": "intact",
+  "university_nav": "Map Desk Lab Library Vault Charter",
+  "purged": [
+    "docs",
+    "campus-index",
+    "path",
+    "phase-notes"
+  ]
 }
