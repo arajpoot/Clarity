@@ -1,0 +1,21 @@
+{
+  "build": "20261016L4L6",
+  "admin_campus_essentials": [
+    "cu-campus-critical-v1.css",
+    "cu-flash-core-v1.js",
+    "cu-flash-wings-v1.js",
+    "cu-flash-prefetch-v1.js",
+    "cu-mahtaab-hydrate-v1.js",
+    "cu-overlay-housekeep-v1.js",
+    "cu-phase-room-v1.js",
+    "cu-campus-roles-v1.js",
+    "cu-companion-enrich-v1.js",
+    "cu-continue-flow-v1.js",
+    "cu-nav-phases-v1.js",
+    "cu-page-flow-v1.js",
+    "cu-map-idle-v1.js"
+  ],
+  "css_merged_into": "cu-campus-critical-v1.css",
+  "wings_extra_flag": "localStorage.cu_wings_extra=1",
+  "notes": "L4 merge CSS; L5 extra wings opt-in; L6 allowlist for admin/campus"
+}
