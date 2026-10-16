@@ -28,11 +28,13 @@
   /* Phase 5 — after-module craft CTA: Lab practice + Companion deep link */
   var CRAFT = {
     seeker: {
-      href: "/lab/calligraphy/",
-      label: "Calligraphy — one letter with presence",
-      blurb: "Anchor what you learned with the hand. One letter or the Name — slowly.",
+      href: "/lab/arabic/?deck=everyday",
+      label: "Arabic — flash a few everyday words",
+      blurb: "Lock vocabulary with flashcards, then one calligraphy stroke if you wish.",
       companionHref: "/#reminder",
-      companionLabel: "Companion · Reminder"
+      companionLabel: "Companion · Reminder",
+      altHref: "/lab/calligraphy/",
+      altLabel: "Calligraphy — one letter"
     },
     practice: {
       href: "/lab/tajweed/",
@@ -163,7 +165,9 @@
         craft.blurb +
         "</p>" +
         '<p class="cu-craft-actions">' +
-        '<a class="cu-btn ghost" href="/lab/">Lab stations (reference anytime)</a> ' +
+        '<a class="cu-btn ghost" href="/lab/">Lab stations</a> ' +
+          (craft.altHref ? '<a class="cu-btn ghost" href="' + craft.altHref + '">' + (craft.altLabel || 'More lab') + '</a> ' : '') +
+           +
         '<a class="cu-btn ghost" href="' +
         (craft.companionHref || "/") +
         '">' +
