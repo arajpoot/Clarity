@@ -1,126 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-campus-page="lab">
+<html lang="en" data-theme="system" data-campus-page="lab">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Arabic studio · Lab · Clarity University</title>
-<meta name="description" content="Arabic language path — letters, immersion match, phrases. Not Tajweed. Educational only."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014FD6"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-arabic-v1.css?v=20261016A"/>
-<style id="cu-empty-host-hide">
-#clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
-</style>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.css?v=20261015ENRICH"/>
+<meta name="description" content="Arabic vocabulary studio — flash, match, learn, test. Educational only."/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-campus-critical-v1.css?v=20261016ARABIC"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261016ARABIC"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-arabic-v1.css?v=20261016ARABIC"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-enrich-hide-v1.css?v=20261016ARABIC"/>
 </head>
 <body class="cu-page" data-campus-page="lab">
 <header class="cu-banner">
   <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Clarity University</strong></div></a>
-  <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
+  <div class="cu-banner-actions"><a class="cu-main-link" href="/lab/">Lab</a> · <a class="cu-main-link" href="/">Companion</a></div>
 </header>
 <main class="cu-wrap">
   <nav class="cu-pills" aria-label="Campus">
     <a href="/campus/">Map</a>
     <a href="/campus/desk/">Desk</a>
     <a href="/lab/" class="here">Lab</a>
+    <a href="/library/">Library</a>
     <a href="/vault/">Vault</a>
-    <a href="/journey/">Journey</a>
     <a href="/charter/">Charter</a>
   </nav>
-  <nav class="lab-station-nav">
-    <a href="/lab/">Hub</a>
-    <a href="/lab/tajweed/">Tajweed</a>
-    <a href="/lab/arabic/" class="here">Arabic</a>
-    <a href="/lab/recite/">Recitation</a>
-    <a href="/lab/media/">Media</a>
-    <a href="/lab/calligraphy/">Calligraphy</a>
-    <a href="/lab/hifz/">Hifz</a>
-  </nav>
-
-  <div class="ar-lab">
-    <h1 class="lab-h1">Arabic studio</h1>
-    <p class="lab-lead">Language path — not Tajweed. Inspired by immersion (image↔word), spaced review, and short comprehensible phrases. Educational only.</p>
-
-    <div class="ar-progress" role="tablist">
-      <button type="button" data-ar-mode="letters" class="here">1 · Letters</button>
-      <button type="button" data-ar-mode="match">2 · Match</button>
-      <button type="button" data-ar-mode="phrases">3 · Phrases</button>
-      <button type="button" data-ar-mode="review">4 · Review</button>
-      <button type="button" data-ar-mode="quiz">5 · Quiz</button>
-    </div>
-
-    <section class="ar-card" id="ar-panel-letters">
-      <h2 style="margin:0 0 0.5rem;font-size:1rem;color:#2d7d76">Letters · hear &amp; name</h2>
-      <p class="lab-micro">Tap a letter. Hear it. Read the tip. Script first — tajweed rules live in the Tajweed lab.</p>
-      <div class="ar-letter-row" id="ar-letter-row"></div>
-      <p class="ar-prompt"><strong id="ar-letter-name">Choose a letter</strong></p>
-      <p class="lab-micro" id="ar-letter-tip" style="text-align:center"></p>
-    </section>
-
-    <section class="ar-card" id="ar-panel-match" hidden>
-      <h2 style="margin:0 0 0.5rem;font-size:1rem;color:#2d7d76">Match · immersion</h2>
-      <p class="lab-micro">See the Arabic word → choose the meaning (Rosetta-style association). Optional: Hear.</p>
-      <div class="ar-prompt">
-        <div class="ar-word" id="ar-match-word" dir="rtl">…</div>
-        <div class="ar-hint" id="ar-match-hint"></div>
-      </div>
-      <div class="lab-av-row" style="justify-content:center">
-        <button type="button" class="lab-btn" id="ar-match-hear">Hear Arabic</button>
-        <button type="button" class="lab-btn" id="ar-match-mic">Mic</button>
-      </div>
-      <div class="ar-grid" id="ar-match-grid"></div>
-      <p class="ar-status" id="ar-match-status"></p>
-    </section>
-
-    <section class="ar-card" id="ar-panel-phrases" hidden>
-      <h2 style="margin:0 0 0.5rem;font-size:1rem;color:#2d7d76">Phrases · i+1</h2>
-      <p class="lab-micro">Listen first. Guess meaning. Then reveal. Short, useful Arabic.</p>
-      <div class="ar-prompt">
-        <div class="ar-word" id="ar-phrase-ar" dir="rtl">…</div>
-        <div class="ar-hint" id="ar-phrase-en">…</div>
-      </div>
-      <div class="lab-av-row" style="justify-content:center">
-        <button type="button" class="lab-btn lab-btn-primary" id="ar-phrase-hear">Hear</button>
-        <button type="button" class="lab-btn" id="ar-phrase-reveal">Reveal meaning</button>
-        <button type="button" class="lab-btn" id="ar-phrase-next">Next</button>
-      </div>
-      <p class="ar-status" id="ar-phrase-status"></p>
-    </section>
-
-    <section class="ar-card" id="ar-panel-review" hidden>
-      <h2 style="margin:0 0 0.5rem;font-size:1rem;color:#2d7d76">Review · on-device SRS</h2>
-      <p class="ar-srs-meta" id="ar-review-meta">…</p>
-      <div id="ar-review-list"></div>
-      <p class="lab-micro">Spaced repetition stays on this device only.</p>
-    </section>
-  
-    <section class="ar-card" id="ar-panel-quiz" hidden>
-      <h2 style="margin:0 0 0.5rem;font-size:1rem;color:#2d7d76">Quiz · on-device</h2>
-      <p class="lab-micro">Short scored round (letters + words). Nothing leaves this device. Educational only — not a certificate.</p>
-      <p class="ar-status" id="ar-quiz-score">Score: 0 / 0</p>
-      <div class="ar-prompt">
-        <div class="ar-word" id="ar-quiz-prompt" dir="rtl">…</div>
-        <div class="ar-hint" id="ar-quiz-hint">Choose the correct meaning</div>
-      </div>
-      <div class="ar-grid" id="ar-quiz-grid"></div>
-      <div class="lab-av-row" style="justify-content:center;margin-top:0.65rem;flex-wrap:wrap;gap:0.4rem">
-        <button type="button" class="lab-btn lab-btn-primary" id="ar-quiz-next">Next</button>
-        <button type="button" class="lab-btn" id="ar-quiz-restart">Restart round</button>
-        <button type="button" class="lab-btn" id="ar-quiz-hear">Hear</button>
-      </div>
-      <p class="ar-status" id="ar-quiz-status"></p>
-    </section>
-
-  </div>
+  <h1 style="font-size:1.2rem;color:#d4b45a;margin:.5rem 0">Arabic studio</h1>
+  <p style="font-size:.85rem;opacity:.9;margin:0 0 .5rem">Vocabulary path with levels. For rules of recitation use <a href="/lab/tajweed/" style="color:inherit;font-weight:700">Tajweed lab</a>.</p>
+  <section id="ar-studio" data-arabic-lab></section>
+  <p style="font-size:.8rem;margin:1rem 0"><a href="/campus/desk/seeker/" style="font-weight:700;color:#d4b45a">← Back to Seeker desk</a> · practice after a module</p>
 </main>
-<footer class="cu-foot">Educational language practice — not an ijāzah. Tajweed rules → Tajweed lab.</footer>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-arabic-v1.js?v=20261016A" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.js?v=20261015ENRICH" defer></script>
+<footer class="cu-foot">Educational only — not a fatwa. Not affiliated with Al-Azhar or Madinah University.</footer>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261016ARABIC" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261016ARABIC" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/cu-lab-arabic-v1.js?v=20261016ARABIC" defer></script>
 </body>
 </html>
