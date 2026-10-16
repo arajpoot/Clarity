@@ -1,0 +1,27 @@
+HOUSEKEEP phases (post KEEP swap)
+=================================
+H0 DONE - diagnose: Journey Map cards unstyled because cu-page-enrich-v1.css
+         not linked after L0L12 strip; styles lived there not in flash/shell.
+
+H1 (this package) - Restore map card CSS
+  - Link cu-page-enrich-v1.css on Map
+  - Bake insurance card grid into cu-uni-shell-v1.css
+  Smoke: Map shows card grid not run-on links
+
+H2 - Desk hub lag
+  - Confirm wings allowlist only (mahtaab + continue)
+  - No roles/enrich on desk
+  - Prefetch Seeker on idle from desk only if needed
+  Smoke: Desk interactive < 1s after paint
+
+H3 - Phase room transition
+  - Seeker stays boot+phase-room+flash only
+  - Avoid loading map-only wings on rooms
+  Smoke: Desk -> Seeker no multi-second freeze
+
+H4 - Cross-page CSS
+  - Lab/Library still need viewport/page-enrich if they use cards
+  - Keep those in campus KEEP set
+  Smoke: Lab hub cards OK
+
+H5 - Final smoke Map -> Desk -> Seeker -> Lab -> Vault
