@@ -13,6 +13,13 @@
     return (location.pathname || "").replace(/\/+$/, "") || "/";
   }
 
+  function ensureSingleStrip() {
+    /* remove duplicate role strips */
+    var strips = document.querySelectorAll(".cu-roles-strip, #cu-campus-roles");
+    if (strips.length > 1) {
+      for (var i = 1; i < strips.length; i++) strips[i].remove();
+    }
+  }
   function allowedPage() {
     var p = path();
     return p === "/campus" || p === "/campus/" || p === "/campus/desk" || p === "/campus/desk/";

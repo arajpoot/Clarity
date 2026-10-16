@@ -5,6 +5,7 @@
   g.__CU_NAV_PHASES_V1__ = true;
 
   function hallRail() {
+    if (document.body && document.body.getAttribute("data-campus-page") === "map") return; /* map uses journey cards */
     if (document.querySelector(".cu-hall-rail")) return;
     var pills = document.querySelector(".cu-pills");
     if (!pills) return;
@@ -12,10 +13,10 @@
     rail.className = "cu-hall-rail";
     rail.setAttribute("aria-label", "Learning halls");
     var halls = [
-      { id: "usul", label: "Uṣūl", href: "/campus/desk/?phase=seeker" },
-      { id: "ibadah", label: "ʿIbādah", href: "/campus/desk/?phase=new-muslim" },
-      { id: "itqan", label: "Itqān", href: "/campus/desk/?phase=daily" },
-      { id: "balagh", label: "Balāgh", href: "/campus/desk/?phase=dai" }
+      { id: "usul", label: "Uṣūl", href: "/campus/desk/seeker/" },
+      { id: "ibadah", label: "ʿIbādah", href: "/campus/desk/practice/" },
+      { id: "itqan", label: "Itqān", href: "/campus/desk/consistency/" },
+      { id: "balagh", label: "Balāgh", href: "/campus/desk/transmission/" }
     ];
     var q = "";
     try {
