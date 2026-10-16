@@ -123,11 +123,15 @@
     document.querySelectorAll("[data-ar-mode]").forEach(function (b) {
       b.classList.toggle("here", b.getAttribute("data-ar-mode") === m);
     });
-    ["ar-panel-letters", "ar-panel-match", "ar-panel-phrases", "ar-panel-review"].forEach(function (id) {
+    ["ar-panel-letters", "ar-panel-match", "ar-panel-phrases", "ar-panel-review", "ar-panel-quiz"].forEach(function (id) {
       var el = $(id);
       if (el) el.hidden = true;
     });
     if (m === "letters" && $("ar-panel-letters")) $("ar-panel-letters").hidden = false;
+    if (m === "quiz" && $("ar-panel-quiz")) {
+      $("ar-panel-quiz").hidden = false;
+      startQuiz();
+    }
     if (m === "match" && $("ar-panel-match")) {
       $("ar-panel-match").hidden = false;
       nextMatch();
@@ -249,6 +253,103 @@
     });
   }
 
+  
+  var quizState = { i: 0, score: 0, total: 0, items: [], answered: false };
+
+  function buildQuizItems() {
+    var items = [];
+    WORDS.forEach(function (w) {
+      items.push({ type: "word", ar: w.ar, en: w.en, tr: w.tr, emoji: w.emoji });
+    });
+    LETTERS.slice(0, 12).forEach(function (L) {
+      items.push({ type: "letter", ar: L.ar, en: L.name, tr: L.name, tip: L.tip });
+    });
+    return shuffle(items).slice(0, 10);
+  }
+
+  function updateQuizScore() {
+    var el = $("ar-quiz-score");
+    if (el) el.textContent = "Score: " + quizState.score + " / " + quizState.total + " · Q " + Math.min(quizState.i + 1, quizState.items.length) + " of " + quizState.items.length;
+  }
+
+  function nextQuiz() {
+    if (!quizState.items.length) {
+      quizState.items = buildQuizItems();
+      quizState.i = 0;
+      quizState.score = 0;
+      quizState.total = 0;
+    }
+    if (quizState.i >= quizState.items.length) {
+      if ($("ar-quiz-prompt")) $("ar-quiz-prompt").textContent = "✓";
+      if ($("ar-quiz-hint")) $("ar-quiz-hint").textContent = "Round complete";
+      if ($("ar-quiz-grid")) $("ar-quiz-grid").innerHTML = "";
+      if ($("ar-quiz-status"))
+        $("ar-quiz-status").textContent =
+          "Finished: " + quizState.score + " / " + quizState.total + ". Restart for a new mix. Educational only.";
+      updateQuizScore();
+      return;
+    }
+    quizState.answered = false;
+    var cur = quizState.items[quizState.i];
+    if ($("ar-quiz-prompt")) $("ar-quiz-prompt").textContent = cur.ar;
+    if ($("ar-quiz-hint"))
+      $("ar-quiz-hint").textContent = cur.type === "letter" ? "What is this letter's name?" : "What does this mean?";
+    if ($("ar-quiz-status")) $("ar-quiz-status").textContent = "";
+    var correct = cur.en;
+    var pool =
+      cur.type === "letter"
+        ? LETTERS.map(function (L) {
+            return L.name;
+          })
+        : WORDS.map(function (w) {
+            return w.en;
+          });
+    var choices = shuffle(
+      [correct].concat(
+        shuffle(pool.filter(function (x) {
+          return x !== correct;
+        })).slice(0, 3)
+      )
+    );
+    var grid = $("ar-quiz-grid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    choices.forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "ar-choice";
+      b.textContent = c;
+      b.addEventListener("click", function () {
+        if (quizState.answered) return;
+        quizState.answered = true;
+        quizState.total++;
+        if (c === correct) {
+          quizState.score++;
+          review(cur.ar, true);
+          $("ar-quiz-status").textContent = "Correct · " + (cur.tr || correct);
+          b.style.borderColor = "#1fa67a";
+        } else {
+          review(cur.ar, false);
+          $("ar-quiz-status").textContent = "Answer: " + correct;
+          b.style.borderColor = "#b83030";
+        }
+        updateQuizScore();
+        quizState.i++;
+        setTimeout(nextQuiz, 700);
+      });
+      grid.appendChild(b);
+    });
+    updateQuizScore();
+  }
+
+  function startQuiz() {
+    quizState.items = buildQuizItems();
+    quizState.i = 0;
+    quizState.score = 0;
+    quizState.total = 0;
+    nextQuiz();
+  }
+
   function speakAr(text) {
     if (!g.speechSynthesis) return;
     try {
@@ -299,6 +400,13 @@
     if ($("ar-phrase-next")) {
       $("ar-phrase-next").onclick = nextPhrase;
     }
+    if ($("ar-quiz-next")) $("ar-quiz-next").onclick = function () { quizState.answered = true; quizState.i++; nextQuiz(); };
+    if ($("ar-quiz-restart")) $("ar-quiz-restart").onclick = startQuiz;
+    if ($("ar-quiz-hear"))
+      $("ar-quiz-hear").onclick = function () {
+        var cur = quizState.items[quizState.i];
+        if (cur) speakAr(cur.ar);
+      };
     setMode("letters");
   }
 
