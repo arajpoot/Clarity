@@ -1,413 +1,568 @@
-/* Arabic Lab v1 — Rosetta-inspired immersion + SRS + i+1 phrases
- * Distinct from Tajweed (rules/recitation). Educational only.
+/**
+ * Arabic Lab Studio — A0–A8 educational vocabulary path
+ * Modes: Flash · Match · Learn · Test · Type · Letters
+ * On-device only. Not Tajweed. Educational only — not a fatwa.
  */
 (function (g) {
   "use strict";
   if (g.__CU_LAB_ARABIC_V1__) return;
   g.__CU_LAB_ARABIC_V1__ = true;
 
-  var KEY = "clarity_arabic_srs_v1";
+  var KEY = "clarity_arabic_studio_v1";
+  var VER = "20261016ARABIC";
 
-  /* Image→meaning via emoji (on-device, no stock people) — immersion match */
-  var WORDS = [
-    { ar: "كِتَاب", en: "book", emoji: "📖", tr: "kitāb" },
-    { ar: "قَلَم", en: "pen", emoji: "🖊️", tr: "qalam" },
-    { ar: "بَيْت", en: "house", emoji: "🏠", tr: "bayt" },
-    { ar: "مَاء", en: "water", emoji: "💧", tr: "māʾ" },
-    { ar: "شَمْس", en: "sun", emoji: "☀️", tr: "shams" },
-    { ar: "قَمَر", en: "moon", emoji: "🌙", tr: "qamar" },
-    { ar: "نَجْم", en: "star", emoji: "⭐", tr: "najm" },
-    { ar: "شَجَرَة", en: "tree", emoji: "🌳", tr: "shajarah" },
-    { ar: "وَرْدَة", en: "rose", emoji: "🌹", tr: "wardah" },
-    { ar: "قَلْب", en: "heart", emoji: "💚", tr: "qalb" },
-    { ar: "يَد", en: "hand", emoji: "✋", tr: "yad" },
-    { ar: "عَيْن", en: "eye", emoji: "👁️", tr: "ʿayn" },
-    { ar: "بَاب", en: "door", emoji: "🚪", tr: "bāb" },
-    { ar: "طَعَام", en: "food", emoji: "🍽️", tr: "ṭaʿām" },
-    { ar: "سَلَام", en: "peace", emoji: "🕊️", tr: "salām" }
-  ];
+  /* A0 schema: { id, ar, en, tr?, tags[], emoji? } */
+  var DECKS = {
+    everyday: {
+      id: "everyday",
+      title: "Everyday words",
+      level: 1,
+      cards: [
+        { id: "e1", ar: "كِتَاب", en: "book", tr: "kitāb", emoji: "📖", tags: ["noun"] },
+        { id: "e2", ar: "قَلَم", en: "pen", tr: "qalam", emoji: "🖊️", tags: ["noun"] },
+        { id: "e3", ar: "بَيْت", en: "house", tr: "bayt", emoji: "🏠", tags: ["noun"] },
+        { id: "e4", ar: "مَاء", en: "water", tr: "māʾ", emoji: "💧", tags: ["noun"] },
+        { id: "e5", ar: "شَمْس", en: "sun", tr: "shams", emoji: "☀️", tags: ["noun"] },
+        { id: "e6", ar: "قَمَر", en: "moon", tr: "qamar", emoji: "🌙", tags: ["noun"] },
+        { id: "e7", ar: "قَلْب", en: "heart", tr: "qalb", emoji: "💚", tags: ["noun"] },
+        { id: "e8", ar: "بَاب", en: "door", tr: "bāb", emoji: "🚪", tags: ["noun"] },
+        { id: "e9", ar: "سَلَام", en: "peace", tr: "salām", emoji: "🕊️", tags: ["noun"] },
+        { id: "e10", ar: "طَعَام", en: "food", tr: "ṭaʿām", emoji: "🍽️", tags: ["noun"] }
+      ]
+    },
+    salah: {
+      id: "salah",
+      title: "Ṣalāh lexicon",
+      level: 2,
+      cards: [
+        { id: "s1", ar: "صَلَاة", en: "prayer", tr: "ṣalāh", tags: ["worship"] },
+        { id: "s2", ar: "وُضُوء", en: "ablution", tr: "wuḍūʾ", tags: ["worship"] },
+        { id: "s3", ar: "رُكُوع", en: "bowing", tr: "rukūʿ", tags: ["worship"] },
+        { id: "s4", ar: "سُجُود", en: "prostration", tr: "sujūd", tags: ["worship"] },
+        { id: "s5", ar: "قِبْلَة", en: "prayer direction", tr: "qiblah", tags: ["worship"] },
+        { id: "s6", ar: "إِمَام", en: "prayer leader", tr: "imām", tags: ["worship"] },
+        { id: "s7", ar: "فَجْر", en: "dawn prayer time", tr: "fajr", tags: ["worship"] },
+        { id: "s8", ar: "مَغْرِب", en: "sunset prayer time", tr: "maghrib", tags: ["worship"] }
+      ]
+    },
+    stems: {
+      id: "stems",
+      title: "High-frequency stems",
+      level: 3,
+      cards: [
+        { id: "t1", ar: "عَلِمَ", en: "he knew", tr: "ʿalima", tags: ["stem"] },
+        { id: "t2", ar: "كَتَبَ", en: "he wrote", tr: "kataba", tags: ["stem"] },
+        { id: "t3", ar: "قَرَأَ", en: "he read", tr: "qaraʾa", tags: ["stem"] },
+        { id: "t4", ar: "آمَنَ", en: "he believed", tr: "āmana", tags: ["stem"] },
+        { id: "t5", ar: "عَبَدَ", en: "he worshipped", tr: "ʿabada", tags: ["stem"] },
+        { id: "t6", ar: "رَحِمَ", en: "he showed mercy", tr: "raḥima", tags: ["stem"] },
+        { id: "t7", ar: "صَبَرَ", en: "he was patient", tr: "ṣabara", tags: ["stem"] },
+        { id: "t8", ar: "شَكَرَ", en: "he thanked", tr: "shakara", tags: ["stem"] }
+      ]
+    }
+  };
 
   var LETTERS = [
-    { ar: "ا", name: "alif", tip: "Long ā sound when vowelled; seat of hamza sometimes." },
-    { ar: "ب", name: "bāʾ", tip: "Like English b." },
-    { ar: "ت", name: "tāʾ", tip: "Like English t." },
-    { ar: "ث", name: "thāʾ", tip: "Like English th in think." },
-    { ar: "ج", name: "jīm", tip: "Like j in jam (common teaching)." },
-    { ar: "ح", name: "ḥāʾ", tip: "Heavy h from the throat — listen more than force." },
-    { ar: "خ", name: "khāʾ", tip: "Like German Bach — gentle scrape." },
-    { ar: "د", name: "dāl", tip: "Like English d." },
-    { ar: "ر", name: "rāʾ", tip: "Tapped r." },
-    { ar: "س", name: "sīn", tip: "Like English s." },
-    { ar: "ش", name: "shīn", tip: "Like English sh." },
-    { ar: "ص", name: "ṣād", tip: "Emphatic s — fuller mouth." },
-    { ar: "م", name: "mīm", tip: "Like English m." },
-    { ar: "ن", name: "nūn", tip: "Like English n." },
-    { ar: "ه", name: "hāʾ", tip: "Light h." },
-    { ar: "و", name: "wāw", tip: "w / long ū." },
-    { ar: "ي", name: "yāʾ", tip: "y / long ī." },
-    { ar: "ل", name: "lām", tip: "Like English l — core of Allāh." }
+    { ar: "ا", name: "alif" }, { ar: "ب", name: "bāʾ" }, { ar: "ت", name: "tāʾ" },
+    { ar: "ث", name: "thāʾ" }, { ar: "ج", name: "jīm" }, { ar: "ح", name: "ḥāʾ" },
+    { ar: "خ", name: "khāʾ" }, { ar: "د", name: "dāl" }, { ar: "ر", name: "rāʾ" },
+    { ar: "س", name: "sīn" }, { ar: "ش", name: "shīn" }, { ar: "ص", name: "ṣād" },
+    { ar: "ض", name: "ḍād" }, { ar: "ط", name: "ṭāʾ" }, { ar: "ع", name: "ʿayn" },
+    { ar: "ف", name: "fāʾ" }, { ar: "ق", name: "qāf" }, { ar: "ك", name: "kāf" },
+    { ar: "ل", name: "lām" }, { ar: "م", name: "mīm" }, { ar: "ن", name: "nūn" },
+    { ar: "ه", name: "hāʾ" }, { ar: "و", name: "wāw" }, { ar: "ي", name: "yāʾ" }
   ];
 
-  var PHRASES = [
-    { ar: "السَّلَامُ عَلَيْكُمْ", en: "Peace be upon you.", emoji: "🤝" },
-    { ar: "وَعَلَيْكُمُ السَّلَام", en: "And upon you be peace.", emoji: "🤝" },
-    { ar: "بِسْمِ اللَّهِ", en: "In the name of Allah.", emoji: "📗" },
-    { ar: "الْحَمْدُ لِلَّهِ", en: "All praise is for Allah.", emoji: "🌟" },
-    { ar: "شُكْرًا", en: "Thank you.", emoji: "🙏" },
-    { ar: "نَعَمْ", en: "Yes.", emoji: "✅" },
-    { ar: "لَا", en: "No.", emoji: "❌" },
-    { ar: "مَا اسْمُكَ؟", en: "What is your name? (m)", emoji: "💬" }
-  ];
+  var state = {
+    mode: "flash",
+    deckId: "everyday",
+    ix: 0,
+    flipped: false,
+    matchPairs: [],
+    matchSelected: null,
+    matchMatched: {},
+    learnQueue: [],
+    testItems: [],
+    testIx: 0,
+    testScore: 0,
+    typeAnswer: ""
+  };
 
-  function $(id) {
-    return document.getElementById(id);
-  }
-
-  function loadSRS() {
+  function loadProg() {
     try {
       return JSON.parse(localStorage.getItem(KEY) || "{}");
     } catch (e) {
       return {};
     }
   }
-  function saveSRS(data) {
+  function saveProg(p) {
     try {
-      localStorage.setItem(KEY, JSON.stringify(data));
-      localStorage.setItem("clarity_lab_last_v1", String(Date.now()));
+      localStorage.setItem(KEY, JSON.stringify(p));
     } catch (e) {}
   }
 
-  /** Simple SM-2-ish: again / good */
-  function review(id, good) {
-    var data = loadSRS();
-    var card = data[id] || { due: 0, interval: 0, ease: 2.3 };
-    var now = Date.now();
-    if (good) {
-      card.interval = card.interval ? Math.min(30, Math.round(card.interval * card.ease)) : 1;
-      card.ease = Math.min(2.8, card.ease + 0.05);
-    } else {
-      card.interval = 0;
-      card.ease = Math.max(1.5, card.ease - 0.15);
-    }
-    card.due = now + card.interval * 86400000;
-    data[id] = card;
-    saveSRS(data);
+  function deck() {
+    return DECKS[state.deckId] || DECKS.everyday;
+  }
+  function cards() {
+    return deck().cards.slice();
   }
 
-  function dueWords() {
-    var data = loadSRS();
-    var now = Date.now();
-    var due = WORDS.filter(function (w) {
-      var c = data[w.ar];
-      return !c || c.due <= now;
-    });
-    return due.length ? due : WORDS.slice();
-  }
-
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i];
-      a[i] = a[j];
-      a[j] = t;
-    }
-    return a;
-  }
-
-  var mode = "letters";
-  var current = null;
-
-  function setMode(m) {
-    mode = m;
-    document.querySelectorAll("[data-ar-mode]").forEach(function (b) {
-      b.classList.toggle("here", b.getAttribute("data-ar-mode") === m);
-    });
-    ["ar-panel-letters", "ar-panel-match", "ar-panel-phrases", "ar-panel-review", "ar-panel-quiz"].forEach(function (id) {
-      var el = $(id);
-      if (el) el.hidden = true;
-    });
-    if (m === "letters" && $("ar-panel-letters")) $("ar-panel-letters").hidden = false;
-    if (m === "quiz" && $("ar-panel-quiz")) {
-      $("ar-panel-quiz").hidden = false;
-      startQuiz();
-    }
-    if (m === "match" && $("ar-panel-match")) {
-      $("ar-panel-match").hidden = false;
-      nextMatch();
-    }
-    if (m === "phrases" && $("ar-panel-phrases")) {
-      $("ar-panel-phrases").hidden = false;
-      nextPhrase();
-    }
-    if (m === "review" && $("ar-panel-review")) {
-      $("ar-panel-review").hidden = false;
-      nextReview();
-    }
-  }
-
-  function nextMatch() {
-    var pool = dueWords();
-    current = pool[Math.floor(Math.random() * pool.length)];
-    var wrong = shuffle(WORDS.filter(function (w) {
-      return w.ar !== current.ar;
-    })).slice(0, 3);
-    var choices = shuffle(wrong.concat([current]));
-    $("ar-match-word").textContent = current.ar;
-    $("ar-match-hint").textContent = "What does this mean? (think, then tap)";
-    $("ar-match-status").textContent = "";
-    var grid = $("ar-match-grid");
-    grid.innerHTML = "";
-    choices.forEach(function (w) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "ar-choice";
-      b.innerHTML = "<span>" + w.emoji + "</span> <span style=\"font-size:0.85rem\">" + w.en + "</span>";
-      b.addEventListener("click", function () {
-        if (w.ar === current.ar) {
-          b.classList.add("ok");
-          $("ar-match-status").textContent = "Yes — " + current.tr + " · " + current.en;
-          review(current.ar, true);
-          setTimeout(nextMatch, 700);
-        } else {
-          b.classList.add("bad");
-          $("ar-match-status").textContent = "Try again — look at the letters.";
-          review(current.ar, false);
-        }
-      });
-      grid.appendChild(b);
-    });
-    if ($("ar-match-hear")) {
-      $("ar-match-hear").onclick = function () {
-        speakAr(current.ar);
-      };
-    }
-    if ($("ar-match-mic")) {
-      $("ar-match-mic").onclick = function () {
-        var b = $("ar-match-mic");
-        if (mediaRec && mediaRec.state === "recording") {
-          mediaRec.stop();
-          b.textContent = "Mic";
-        } else startMic(b);
-      };
-    }
-  }
-
-  function nextPhrase() {
-    current = PHRASES[Math.floor(Math.random() * PHRASES.length)];
-    $("ar-phrase-ar").textContent = current.ar;
-    $("ar-phrase-en").textContent = "Reveal meaning after you listen.";
-    $("ar-phrase-en").dataset.hidden = "1";
-    $("ar-phrase-status").textContent = "";
-  }
-
-  function nextReview() {
-    var data = loadSRS();
-    var list = WORDS.map(function (w) {
-      var c = data[w.ar] || { interval: 0 };
-      return { w: w, iv: c.interval || 0 };
-    }).sort(function (a, b) {
-      return a.iv - b.iv;
-    });
-    var box = $("ar-review-list");
-    box.innerHTML = "";
-    list.slice(0, 8).forEach(function (row) {
-      var div = document.createElement("div");
-      div.className = "ar-card";
-      div.style.padding = "0.65rem";
-      div.innerHTML =
-        "<div style=\"display:flex;justify-content:space-between;align-items:center;gap:0.5rem\">" +
-        "<span style=\"font-size:1.4rem;font-family:serif\" dir=\"rtl\">" +
-        row.w.ar +
-        "</span><span>" +
-        row.w.emoji +
-        " " +
-        row.w.en +
-        "</span></div>";
-      box.appendChild(div);
-    });
-    $("ar-review-meta").textContent = Object.keys(data).length + " words touched on this device · spaced review";
-  }
-
-  
-  var mediaRec=null, chunks=[];
-  function startMic(btn){
-    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-      if($("ar-match-status"))$("ar-match-status").textContent="Mic not available in this browser.";
-      return;
-    }
-    navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
-      chunks=[];
-      mediaRec=new MediaRecorder(stream);
-      mediaRec.ondataavailable=function(e){if(e.data.size)chunks.push(e.data);};
-      mediaRec.onstop=function(){
-        stream.getTracks().forEach(function(t){t.stop();});
-        if($("ar-match-status"))$("ar-match-status").textContent="Recording saved in this session only — compare by ear with Hear.";
-        try{localStorage.setItem("clarity_lab_last_v1",String(Date.now()));}catch(e){}
-      };
-      mediaRec.start();
-      if(btn)btn.textContent="Stop";
-      setTimeout(function(){if(mediaRec&&mediaRec.state==="recording"){mediaRec.stop();if(btn)btn.textContent="Mic";}},4000);
-    }).catch(function(){
-      if($("ar-match-status"))$("ar-match-status").textContent="Mic permission denied.";
-    });
-  }
-
-  
-  var quizState = { i: 0, score: 0, total: 0, items: [], answered: false };
-
-  function buildQuizItems() {
-    var items = [];
-    WORDS.forEach(function (w) {
-      items.push({ type: "word", ar: w.ar, en: w.en, tr: w.tr, emoji: w.emoji });
-    });
-    LETTERS.slice(0, 12).forEach(function (L) {
-      items.push({ type: "letter", ar: L.ar, en: L.name, tr: L.name, tip: L.tip });
-    });
-    return shuffle(items).slice(0, 10);
-  }
-
-  function updateQuizScore() {
-    var el = $("ar-quiz-score");
-    if (el) el.textContent = "Score: " + quizState.score + " / " + quizState.total + " · Q " + Math.min(quizState.i + 1, quizState.items.length) + " of " + quizState.items.length;
-  }
-
-  function nextQuiz() {
-    if (!quizState.items.length) {
-      quizState.items = buildQuizItems();
-      quizState.i = 0;
-      quizState.score = 0;
-      quizState.total = 0;
-    }
-    if (quizState.i >= quizState.items.length) {
-      if ($("ar-quiz-prompt")) $("ar-quiz-prompt").textContent = "✓";
-      if ($("ar-quiz-hint")) $("ar-quiz-hint").textContent = "Round complete";
-      if ($("ar-quiz-grid")) $("ar-quiz-grid").innerHTML = "";
-      if ($("ar-quiz-status"))
-        $("ar-quiz-status").textContent =
-          "Finished: " + quizState.score + " / " + quizState.total + ". Restart for a new mix. Educational only.";
-      updateQuizScore();
-      return;
-    }
-    quizState.answered = false;
-    var cur = quizState.items[quizState.i];
-    if ($("ar-quiz-prompt")) $("ar-quiz-prompt").textContent = cur.ar;
-    if ($("ar-quiz-hint"))
-      $("ar-quiz-hint").textContent = cur.type === "letter" ? "What is this letter's name?" : "What does this mean?";
-    if ($("ar-quiz-status")) $("ar-quiz-status").textContent = "";
-    var correct = cur.en;
-    var pool =
-      cur.type === "letter"
-        ? LETTERS.map(function (L) {
-            return L.name;
-          })
-        : WORDS.map(function (w) {
-            return w.en;
-          });
-    var choices = shuffle(
-      [correct].concat(
-        shuffle(pool.filter(function (x) {
-          return x !== correct;
-        })).slice(0, 3)
-      )
-    );
-    var grid = $("ar-quiz-grid");
-    if (!grid) return;
-    grid.innerHTML = "";
-    choices.forEach(function (c) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "ar-choice";
-      b.textContent = c;
-      b.addEventListener("click", function () {
-        if (quizState.answered) return;
-        quizState.answered = true;
-        quizState.total++;
-        if (c === correct) {
-          quizState.score++;
-          review(cur.ar, true);
-          $("ar-quiz-status").textContent = "Correct · " + (cur.tr || correct);
-          b.style.borderColor = "#1fa67a";
-        } else {
-          review(cur.ar, false);
-          $("ar-quiz-status").textContent = "Answer: " + correct;
-          b.style.borderColor = "#b83030";
-        }
-        updateQuizScore();
-        quizState.i++;
-        setTimeout(nextQuiz, 700);
-      });
-      grid.appendChild(b);
-    });
-    updateQuizScore();
-  }
-
-  function startQuiz() {
-    quizState.items = buildQuizItems();
-    quizState.i = 0;
-    quizState.score = 0;
-    quizState.total = 0;
-    nextQuiz();
-  }
-
-  function speakAr(text) {
-    if (!g.speechSynthesis) return;
+  function speak(ar) {
     try {
+      if (!g.speechSynthesis) return;
       g.speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(text);
+      var u = new SpeechSynthesisUtterance(ar);
       u.lang = "ar-SA";
       u.rate = 0.85;
       g.speechSynthesis.speak(u);
     } catch (e) {}
   }
 
-  function boot() {
-    document.querySelectorAll("[data-ar-mode]").forEach(function (b) {
-      b.addEventListener("click", function () {
-        setMode(b.getAttribute("data-ar-mode"));
-      });
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+  function setMode(m) {
+    state.mode = m;
+    state.flipped = false;
+    state.ix = 0;
+    if (m === "match") setupMatch();
+    if (m === "learn") setupLearn();
+    if (m === "test") setupTest();
+    render();
+  }
+
+  function setupMatch() {
+    var c = cards().slice(0, 6);
+    var pairs = [];
+    c.forEach(function (card) {
+      pairs.push({ id: card.id, side: "ar", text: card.ar, pair: card.id });
+      pairs.push({ id: card.id + "-en", side: "en", text: card.en, pair: card.id });
     });
-    var row = $("ar-letter-row");
-    if (row) {
-      LETTERS.forEach(function (L) {
-        var b = document.createElement("button");
-        b.type = "button";
-        b.className = "ar-letter";
-        b.textContent = L.ar;
-        b.title = L.name;
-        b.addEventListener("click", function () {
-          row.querySelectorAll(".ar-letter").forEach(function (x) {
-            x.classList.remove("here");
-          });
-          b.classList.add("here");
-          $("ar-letter-name").textContent = L.name + " · " + L.ar;
-          $("ar-letter-tip").textContent = L.tip;
-          speakAr(L.ar);
-        });
-        row.appendChild(b);
-      });
+    for (var i = pairs.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = pairs[i];
+      pairs[i] = pairs[j];
+      pairs[j] = t;
     }
-    if ($("ar-phrase-reveal")) {
-      $("ar-phrase-reveal").onclick = function () {
-        if (current) $("ar-phrase-en").textContent = current.emoji + " " + current.en;
+    state.matchPairs = pairs;
+    state.matchSelected = null;
+    state.matchMatched = {};
+  }
+
+  function setupLearn() {
+    var p = loadProg();
+    var due = p.due || {};
+    var list = cards().filter(function (c) {
+      return !due[c.id] || due[c.id] <= Date.now();
+    });
+    if (!list.length) list = cards();
+    state.learnQueue = list;
+    state.ix = 0;
+    state.flipped = false;
+  }
+
+  function setupTest() {
+    var c = cards().slice();
+    for (var i = c.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = c[i];
+      c[i] = c[j];
+      c[j] = t;
+    }
+    state.testItems = c.slice(0, Math.min(8, c.length)).map(function (card) {
+      var opts = [card.en];
+      var pool = cards().filter(function (x) { return x.id !== card.id; });
+      while (opts.length < 4 && pool.length) {
+        var k = Math.floor(Math.random() * pool.length);
+        opts.push(pool.splice(k, 1)[0].en);
+      }
+      for (var i = opts.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = opts[i];
+        opts[i] = opts[j];
+        opts[j] = t;
+      }
+      return { card: card, options: opts };
+    });
+    state.testIx = 0;
+    state.testScore = 0;
+  }
+
+  function rateLearn(knew) {
+    var card = state.learnQueue[state.ix];
+    if (!card) return;
+    var p = loadProg();
+    p.due = p.due || {};
+    var day = 24 * 60 * 60 * 1000;
+    p.due[card.id] = Date.now() + (knew ? 3 * day : 1 * day);
+    p.seen = (p.seen || 0) + 1;
+    saveProg(p);
+    state.ix++;
+    state.flipped = false;
+    if (state.ix >= state.learnQueue.length) {
+      state.ix = 0;
+      setupLearn();
+    }
+    render();
+  }
+
+  function render() {
+    var root = $("ar-studio");
+    if (!root) return;
+
+    var modeBar =
+      '<div class="ar-modes" role="toolbar">' +
+      ["flash", "match", "learn", "test", "type", "letters"]
+        .map(function (m) {
+          return (
+            '<button type="button" class="ar-mode-btn' +
+            (state.mode === m ? " here" : "") +
+            '" data-mode="' +
+            m +
+            '">' +
+            m.charAt(0).toUpperCase() +
+            m.slice(1) +
+            "</button>"
+          );
+        })
+        .join("") +
+      "</div>";
+
+    var deckBar =
+      '<div class="ar-decks">' +
+      Object.keys(DECKS)
+        .map(function (id) {
+          var d = DECKS[id];
+          return (
+            '<button type="button" class="ar-deck-btn' +
+            (state.deckId === id ? " here" : "") +
+            '" data-deck="' +
+            id +
+            '">L' +
+            d.level +
+            " · " +
+            d.title +
+            "</button>"
+          );
+        })
+        .join("") +
+      "</div>";
+
+    var body = "";
+    if (state.mode === "flash") body = renderFlash();
+    else if (state.mode === "match") body = renderMatch();
+    else if (state.mode === "learn") body = renderLearn();
+    else if (state.mode === "test") body = renderTest();
+    else if (state.mode === "type") body = renderType();
+    else if (state.mode === "letters") body = renderLetters();
+
+    root.innerHTML =
+      '<p class="ar-lead">Arabic vocabulary studio — levels unlock harder decks. Educational only. Not Tajweed or tafsīr.</p>' +
+      deckBar +
+      modeBar +
+      '<div class="ar-stage">' +
+      body +
+      "</div>" +
+      '<p class="ar-note">Progress stays on this device. Verify meanings with a trusted teacher.</p>';
+
+    root.querySelectorAll("[data-mode]").forEach(function (b) {
+      b.onclick = function () {
+        setMode(b.getAttribute("data-mode"));
+      };
+    });
+    root.querySelectorAll("[data-deck]").forEach(function (b) {
+      b.onclick = function () {
+        state.deckId = b.getAttribute("data-deck");
+        state.ix = 0;
+        state.flipped = false;
+        if (state.mode === "match") setupMatch();
+        if (state.mode === "learn") setupLearn();
+        if (state.mode === "test") setupTest();
+        render();
+      };
+    });
+    bindStage();
+  }
+
+  function renderFlash() {
+    var c = cards();
+    var card = c[state.ix % c.length];
+    return (
+      '<div class="ar-card-wrap">' +
+      '<div class="ar-flash' +
+      (state.flipped ? " flipped" : "") +
+      '" id="ar-flash-card">' +
+      '<div class="ar-face ar-front"><span class="ar-ar" dir="rtl" lang="ar">' +
+      card.ar +
+      "</span>" +
+      (card.tr ? '<span class="ar-tr">' + card.tr + "</span>" : "") +
+      "</div>" +
+      '<div class="ar-face ar-back"><span class="ar-en">' +
+      (card.emoji ? card.emoji + " " : "") +
+      card.en +
+      "</span></div></div>" +
+      '<div class="ar-actions">' +
+      '<button type="button" class="ar-btn" id="ar-hear">Hear</button>' +
+      '<button type="button" class="ar-btn" id="ar-flip">Flip</button>' +
+      '<button type="button" class="ar-btn primary" id="ar-next">Next</button>' +
+      "</div>" +
+      '<p class="ar-meta">' +
+      (state.ix % c.length) +
+      1 +
+      " / " +
+      c.length +
+      " · " +
+      deck().title +
+      "</p></div>"
+    );
+  }
+
+  function renderMatch() {
+    var html =
+      '<p class="ar-meta">Tap a pair — Arabic with its meaning.</p><div class="ar-match-grid">';
+    state.matchPairs.forEach(function (p, i) {
+      var done = state.matchMatched[p.pair];
+      var sel = state.matchSelected === i;
+      html +=
+        '<button type="button" class="ar-match-cell' +
+        (done ? " done" : "") +
+        (sel ? " sel" : "") +
+        '" data-match-i="' +
+        i +
+        '"' +
+        (done ? " disabled" : "") +
+        ">" +
+        p.text +
+        "</button>";
+    });
+    html +=
+      '</div><button type="button" class="ar-btn" id="ar-match-reset">New round</button>';
+    return html;
+  }
+
+  function renderLearn() {
+    if (!state.learnQueue.length) setupLearn();
+    var card = state.learnQueue[state.ix];
+    if (!card)
+      return '<p>Deck clear for now. Come back later or switch deck.</p>';
+    return (
+      '<div class="ar-card-wrap">' +
+      '<p class="ar-meta">Learn · spaced review</p>' +
+      '<div class="ar-flash' +
+      (state.flipped ? " flipped" : "") +
+      '" id="ar-flash-card">' +
+      '<div class="ar-face ar-front"><span class="ar-ar" dir="rtl" lang="ar">' +
+      card.ar +
+      "</span></div>" +
+      '<div class="ar-face ar-back"><span class="ar-en">' +
+      card.en +
+      "</span></div></div>" +
+      '<div class="ar-actions">' +
+      '<button type="button" class="ar-btn" id="ar-hear">Hear</button>' +
+      '<button type="button" class="ar-btn" id="ar-flip">Show</button>' +
+      '<button type="button" class="ar-btn" id="ar-again">Again</button>' +
+      '<button type="button" class="ar-btn primary" id="ar-knew">Knew</button>' +
+      "</div></div>"
+    );
+  }
+
+  function renderTest() {
+    if (!state.testItems.length) setupTest();
+    if (state.testIx >= state.testItems.length) {
+      return (
+        '<div class="ar-card-wrap"><p class="ar-en">Score: ' +
+        state.testScore +
+        " / " +
+        state.testItems.length +
+        '</p><button type="button" class="ar-btn primary" id="ar-test-retry">Try again</button></div>'
+      );
+    }
+    var item = state.testItems[state.testIx];
+    return (
+      '<div class="ar-card-wrap"><p class="ar-meta">Test ' +
+      (state.testIx + 1) +
+      " / " +
+      state.testItems.length +
+      '</p><p class="ar-ar" dir="rtl" lang="ar">' +
+      item.card.ar +
+      '</p><div class="ar-options">' +
+      item.options
+        .map(function (o) {
+          return (
+            '<button type="button" class="ar-btn block" data-opt="' +
+            o.replace(/"/g, "") +
+            '">' +
+            o +
+            "</button>"
+          );
+        })
+        .join("") +
+      "</div></div>"
+    );
+  }
+
+  function renderType() {
+    var c = cards();
+    var card = c[state.ix % c.length];
+    return (
+      '<div class="ar-card-wrap"><p class="ar-meta">Type the English meaning</p>' +
+      '<p class="ar-ar" dir="rtl" lang="ar">' +
+      card.ar +
+      '</p><input class="ar-input" id="ar-type-in" autocomplete="off" placeholder="meaning"/>' +
+      '<div class="ar-actions"><button type="button" class="ar-btn" id="ar-hear">Hear</button>' +
+      '<button type="button" class="ar-btn primary" id="ar-type-check">Check</button></div>' +
+      '<p class="ar-meta" id="ar-type-fb"></p></div>'
+    );
+  }
+
+  function renderLetters() {
+    return (
+      '<div class="ar-letters">' +
+      LETTERS.map(function (L) {
+        return (
+          '<button type="button" class="ar-letter" data-letter="' +
+          L.ar +
+          '" title="' +
+          L.name +
+          '"><span dir="rtl" lang="ar">' +
+          L.ar +
+          "</span><small>" +
+          L.name +
+          "</small></button>"
+        );
+      }).join("") +
+      "</div>"
+    );
+  }
+
+  function bindStage() {
+    var flash = $("ar-flash-card");
+    if (flash) {
+      flash.onclick = function () {
+        state.flipped = !state.flipped;
+        render();
       };
     }
-    if ($("ar-phrase-hear")) {
-      $("ar-phrase-hear").onclick = function () {
-        if (current) speakAr(current.ar);
+    var flip = $("ar-flip");
+    if (flip)
+      flip.onclick = function () {
+        state.flipped = !state.flipped;
+        render();
       };
-    }
-    if ($("ar-phrase-next")) {
-      $("ar-phrase-next").onclick = nextPhrase;
-    }
-    if ($("ar-quiz-next")) $("ar-quiz-next").onclick = function () { quizState.answered = true; quizState.i++; nextQuiz(); };
-    if ($("ar-quiz-restart")) $("ar-quiz-restart").onclick = startQuiz;
-    if ($("ar-quiz-hear"))
-      $("ar-quiz-hear").onclick = function () {
-        var cur = quizState.items[quizState.i];
-        if (cur) speakAr(cur.ar);
+    var next = $("ar-next");
+    if (next)
+      next.onclick = function () {
+        state.ix++;
+        state.flipped = false;
+        render();
       };
-    setMode("letters");
+    var hear = $("ar-hear");
+    if (hear)
+      hear.onclick = function () {
+        var c =
+          state.mode === "learn"
+            ? state.learnQueue[state.ix]
+            : cards()[state.ix % cards().length];
+        if (c) speak(c.ar);
+      };
+    var again = $("ar-again");
+    if (again)
+      again.onclick = function () {
+        rateLearn(false);
+      };
+    var knew = $("ar-knew");
+    if (knew)
+      knew.onclick = function () {
+        rateLearn(true);
+      };
+    var reset = $("ar-match-reset");
+    if (reset)
+      reset.onclick = function () {
+        setupMatch();
+        render();
+      };
+    document.querySelectorAll("[data-match-i]").forEach(function (btn) {
+      btn.onclick = function () {
+        var i = +btn.getAttribute("data-match-i");
+        if (state.matchMatched[state.matchPairs[i].pair]) return;
+        if (state.matchSelected === null) {
+          state.matchSelected = i;
+          render();
+          return;
+        }
+        if (state.matchSelected === i) {
+          state.matchSelected = null;
+          render();
+          return;
+        }
+        var a = state.matchPairs[state.matchSelected];
+        var b = state.matchPairs[i];
+        if (a.pair === b.pair && a.side !== b.side) {
+          state.matchMatched[a.pair] = true;
+        }
+        state.matchSelected = null;
+        render();
+      };
+    });
+    document.querySelectorAll("[data-opt]").forEach(function (btn) {
+      btn.onclick = function () {
+        var item = state.testItems[state.testIx];
+        if (btn.getAttribute("data-opt") === item.card.en) state.testScore++;
+        state.testIx++;
+        render();
+      };
+    });
+    var retry = $("ar-test-retry");
+    if (retry)
+      retry.onclick = function () {
+        setupTest();
+        render();
+      };
+    var chk = $("ar-type-check");
+    if (chk)
+      chk.onclick = function () {
+        var card = cards()[state.ix % cards().length];
+        var val = ($("ar-type-in") || {}).value || "";
+        var fb = $("ar-type-fb");
+        if (fb)
+          fb.textContent =
+            val.trim().toLowerCase() === card.en.toLowerCase()
+              ? "Correct"
+              : "Answer: " + card.en;
+        if (val.trim().toLowerCase() === card.en.toLowerCase()) {
+          state.ix++;
+          setTimeout(render, 600);
+        }
+      };
+    document.querySelectorAll("[data-letter]").forEach(function (b) {
+      b.onclick = function () {
+        speak(b.getAttribute("data-letter"));
+      };
+    });
+  }
+
+  function boot() {
+    var q = "";
+    try {
+      q = new URL(location.href).searchParams.get("deck") || "";
+    } catch (e) {}
+    if (q && DECKS[q]) state.deckId = q;
+    var host =
+      document.getElementById("ar-studio") ||
+      document.getElementById("lab-arabic-root") ||
+      document.querySelector("[data-arabic-lab]");
+    if (!host) {
+      host = document.createElement("section");
+      host.id = "ar-studio";
+      var main = document.querySelector("main.cu-wrap") || document.querySelector("main");
+      if (main) main.appendChild(host);
+      else document.body.appendChild(host);
+    } else {
+      host.id = "ar-studio";
+    }
+    render();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
