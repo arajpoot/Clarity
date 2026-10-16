@@ -1,0 +1,68 @@
+/* Nuclear layer housekeeping — one modal family, no jump fights */
+#cu-bab-qubul,
+.clarity-faculty-modal,
+.clarity-it-modal,
+.clarity-om-modal,
+.clarity-security-modal,
+.cu-wing-modal,
+#cu-lab-om-panel,
+#cu-lab-teacher-panel {
+  z-index: 130000 !important;
+}
+
+/* Only one full-screen dim at a time */
+body.cu-modal-open #cu-compass-panel.open {
+  display: none !important;
+}
+body.cu-modal-open #cu-compass-fab {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Worker strip never above modals */
+#cu-worker-strip {
+  z-index: 8000 !important;
+}
+#cu-helper-dock {
+  display: none !important; /* compass FAB owns helpers */
+}
+
+/* Admission entry pill — never broken / full-bleed grey */
+#cu-bab-entry,
+button#cu-bab-entry {
+  display: inline-flex !important;
+  width: auto !important;
+  max-width: 100%;
+  margin: 0.35rem auto !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(224, 197, 106, 0.45) !important;
+  background: rgba(15, 76, 58, 0.5) !important;
+  color: #f3e6c0 !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  padding: 0.4rem 0.95rem !important;
+  white-space: nowrap !important;
+  float: none !important;
+  clear: both !important;
+}
+.cu-bab-entry-wrap {
+  display: block !important;
+  text-align: center !important;
+  width: 100%;
+  margin: 0.35rem 0 0.6rem !important;
+}
+
+/* Reduce layout jump: stable banner */
+.cu-banner {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Desk role pills: wrap cleanly, no overlap with FAB */
+.cu-role-row,
+[class*="role-pill"] {
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+}

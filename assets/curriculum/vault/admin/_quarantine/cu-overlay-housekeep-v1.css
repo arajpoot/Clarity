@@ -1,0 +1,144 @@
+/* H1–H2 Housekeeping: contain wing desks, stop ghost text bleed */
+html[data-theme="dark"] {
+  --cu-modal-bg: rgba(8, 14, 12, 0.92);
+  --cu-modal-card: rgba(14, 22, 18, 0.98);
+}
+
+/* Any wing/faculty/IT/OM/security modal shell */
+.clarity-faculty-modal,
+.clarity-it-modal,
+.clarity-om-modal,
+.clarity-security-modal,
+.clarity-chancellor-modal,
+.clarity-registrar-modal,
+[id*="faculty-modal"],
+[id*="it-modal"],
+[id*="security-modal"],
+[id*="om-modal"],
+[class*="wing-modal"],
+.cu-wing-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 120000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.75rem !important;
+  background: var(--cu-modal-bg) !important;
+  overflow: auto !important;
+  box-sizing: border-box !important;
+}
+
+.clarity-faculty-modal[hidden],
+.clarity-it-modal[hidden],
+.clarity-om-modal[hidden],
+.clarity-security-modal[hidden],
+[hidden].clarity-faculty-modal {
+  display: none !important;
+}
+
+/* Inner card */
+.clarity-faculty-modal > *,
+.clarity-it-modal > *,
+.clarity-om-modal > *,
+.clarity-security-modal > *,
+.clarity-chancellor-modal > *,
+.clarity-registrar-modal > *,
+.cu-wing-modal > * {
+  max-width: 28rem !important;
+  width: 100% !important;
+  max-height: min(88vh, 40rem) !important;
+  overflow: auto !important;
+  margin: auto !important;
+  padding: 1rem 1.1rem !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(224, 197, 106, 0.4) !important;
+  background: var(--cu-modal-card) !important;
+  color: #eaf3ee !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55) !important;
+  line-height: 1.45 !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
+/* Faculty roster lines often dump as naked text nodes / spans */
+.clarity-faculty-modal,
+.clarity-it-modal {
+  font-size: 0.85rem !important;
+}
+.clarity-faculty-modal button,
+.clarity-it-modal button,
+.clarity-om-modal button,
+.clarity-security-modal button {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-height: 40px;
+  padding: 0.35rem 0.7rem;
+  margin: 0.25rem 0.25rem 0 0;
+  border-radius: 999px;
+  border: 1px solid rgba(224, 197, 106, 0.35);
+  background: rgba(31, 166, 122, 0.35);
+  color: #f7f3eb;
+  cursor: pointer;
+}
+
+/* Worker strip: single bottom bar; dock sits above it */
+#cu-worker-strip {
+  z-index: 9000 !important;
+  bottom: 0.5rem !important;
+}
+#cu-helper-dock {
+  z-index: 9100 !important;
+  bottom: 3.6rem !important;
+}
+@media (max-width: 560px) {
+  /* Prefer strip; tuck dock higher so it doesn't stack on content */
+  #cu-helper-dock { bottom: 3.8rem !important; }
+}
+
+/* Prevent page text selection bleed under open modal */
+body.cu-modal-open {
+  overflow: hidden !important;
+}
+
+/* Ilm ribbon / faculty inject should not paint full-width naked text on map */
+body[data-campus-page="campus"] .cu-ilm-ribbon,
+body[data-campus-page="map"] .cu-ilm-ribbon {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Contain campus-wings forced show rules if they only set display:flex without card */
+.clarity-faculty-modal.show,
+.clarity-it-modal.show,
+.clarity-security-modal.show {
+  display: flex !important;
+}
+
+/* Roster / IT report text: force readable blocks */
+.clarity-faculty-modal .cfd-body,
+.clarity-faculty-modal .cfd-list,
+.clarity-it-modal .cit-body,
+.clarity-faculty-desk-modal,
+#clarity-faculty-desk-modal,
+#clarity-it-modal {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+.clarity-faculty-modal p,
+.clarity-it-modal p,
+.clarity-faculty-modal li,
+.clarity-it-modal li {
+  margin: 0.35rem 0 !important;
+  line-height: 1.45 !important;
+}
+/* Close control always visible */
+.clarity-faculty-modal .cfd-close,
+.clarity-it-modal .cit-close,
+.clarity-faculty-modal button[aria-label="Close"],
+.clarity-it-modal button[aria-label="Close"] {
+  float: right;
+  min-width: 2rem;
+}

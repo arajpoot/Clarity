@@ -1,0 +1,139 @@
+/* App-inspired polish — cleaner type, quieter chrome, one primary float */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+html, body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
+}
+.cu-banner {
+  padding: 0.5rem 0.85rem !important;
+  background: rgba(8, 16, 14, 0.97) !important;
+}
+.cu-brand strong {
+  font-size: 0.98rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em;
+}
+.cu-brand small {
+  font-size: 0.55rem !important;
+  letter-spacing: 0.14em !important;
+}
+.cu-pills {
+  gap: 0.3rem !important;
+  margin-bottom: 0.75rem !important;
+}
+.cu-pills a {
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  padding: 0.32rem 0.65rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: rgba(0,0,0,0.25) !important;
+  color: rgba(243,230,192,0.88) !important;
+}
+.cu-pills a.here {
+  background: rgba(224,197,106,0.2) !important;
+  border-color: rgba(224,197,106,0.55) !important;
+  color: #f3e6c0 !important;
+}
+.cu-wrap { max-width: 42rem !important; }
+.cu-how, .lab-admit, .cu-note {
+  font-size: 0.8rem !important;
+  line-height: 1.5 !important;
+}
+.cu-card strong, .lab-hero h1 {
+  font-weight: 800 !important;
+  letter-spacing: 0.01em;
+}
+.cu-card .desc, .lab-station span {
+  font-size: 0.75rem !important;
+  line-height: 1.4 !important;
+  color: rgba(234,243,238,0.72) !important;
+}
+
+/* Quieter teacher ribbon on desk */
+.cu-ilm-ribbon, [class*="ilm-path"], .cu-teacher-card {
+  font-size: 0.82rem !important;
+  line-height: 1.45 !important;
+}
+
+/* Hide redundant bottom worker strip on small screens — compass FAB owns it */
+@media (max-width: 720px) {
+  #cu-worker-strip { display: none !important; }
+  body.cu-has-worker-strip { padding-bottom: 1rem !important; }
+}
+
+/* App-like compass FAB (replaces competing floats visually) */
+#cu-compass-fab {
+  position: fixed;
+  right: 0.85rem;
+  bottom: 5.5rem;
+  z-index: 9200;
+  width: 3.15rem;
+  height: 3.15rem;
+  border-radius: 50%;
+  border: 1px solid rgba(224,197,106,0.4);
+  background: radial-gradient(circle at 35% 30%, #3d2a6b, #1a1030 55%, #0d4f3c);
+  color: #f3e6c0;
+  font-size: 1.25rem;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cu-compass-fab[aria-expanded="true"] {
+  background: radial-gradient(circle at 35% 30%, #1fa67a, #0f4c3a);
+}
+#cu-compass-panel {
+  position: fixed;
+  right: 0.85rem;
+  bottom: 9rem;
+  z-index: 9201;
+  display: none;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 11rem;
+  padding: 0.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(224,197,106,0.35);
+  background: rgba(10,16,14,0.96);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+}
+#cu-compass-panel.open { display: flex; }
+#cu-compass-panel button, #cu-compass-panel a {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-align: left;
+  padding: 0.45rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #f3e6c0;
+  text-decoration: none;
+  cursor: pointer;
+}
+#cu-compass-panel button:hover, #cu-compass-panel a:hover {
+  background: rgba(31,166,122,0.2);
+  border-color: rgba(224,197,106,0.25);
+}
+#cu-compass-panel .hint {
+  font-size: 0.62rem;
+  color: rgba(234,243,238,0.5);
+  padding: 0.2rem 0.35rem 0.35rem;
+  line-height: 1.3;
+}
+
+/* Soft section labels like app "ACADEMIC PRECINCT" */
+.cu-section-kicker {
+  display: block;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(125,206,160,0.85);
+  margin: 0.35rem 0 0.25rem;
+}

@@ -1,0 +1,159 @@
+/* BeginIslam-inspired smooth foundation — mobile-first, stable, fast-feel */
+/* Not affiliated with beginislam.org — structural UX inspiration only */
+
+:root {
+  --cu-touch: 44px;
+  --cu-radius: 14px;
+  --cu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --cu-max: 42rem;
+}
+
+/* Fluid type + stable base */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Content column — phone first, grow calmly */
+.cu-wrap {
+  width: 100%;
+  max-width: var(--cu-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.65rem 0.85rem 5.5rem;
+  box-sizing: border-box;
+}
+
+/* Sticky header — no jump */
+.cu-banner {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.45rem 0.75rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Primary pills — horizontal scroll on narrow, no wrap chaos */
+.cu-pills {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 0.5rem 0 0.85rem;
+  padding-bottom: 0.15rem;
+}
+.cu-pills::-webkit-scrollbar { display: none; }
+.cu-pills a {
+  flex: 0 0 auto;
+  min-height: var(--cu-touch);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s var(--cu-ease), border-color 0.2s var(--cu-ease);
+}
+
+/* Cards — consistent rhythm */
+.cu-card,
+.lab-hero,
+.lab-station,
+.cu-how,
+.craft-root {
+  border-radius: var(--cu-radius);
+  transition: box-shadow 0.25s var(--cu-ease);
+}
+
+/* Touch targets */
+button,
+.craft-btn,
+.lab-station,
+#cu-compass-fab,
+#cu-bab-entry {
+  min-height: var(--cu-touch);
+  min-width: var(--cu-touch);
+}
+
+/* Images / media never overflow */
+img, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Desk: curriculum is the hero — less chrome density on small screens */
+@media (max-width: 640px) {
+  .cu-ilm-ribbon,
+  [class*="teacher-card"] {
+    font-size: 0.8rem !important;
+  }
+  /* Collapse secondary role rows into compass only on very small */
+  body[data-campus-page="desk"] .cu-role-row:not(.primary) {
+    display: none;
+  }
+}
+
+/* Desktop comfort */
+@media (min-width: 768px) {
+  .cu-wrap {
+    padding: 1rem 1.25rem 3rem;
+  }
+  .cu-pills {
+    flex-wrap: wrap;
+    overflow: visible;
+    justify-content: center;
+  }
+}
+
+/* Safe area for notched phones */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .cu-wrap {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+  #cu-compass-fab {
+    bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+  #cu-compass-panel {
+    bottom: calc(9rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Skeleton calm while Mahtaab hydrates */
+html[data-mahtaab="seed"] .cu-wrap,
+html[data-mahtaab="crescent"] .cu-wrap {
+  min-height: 40vh;
+}
+
+/* Focus visible for keyboard / a11y */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #e0c56a;
+  outline-offset: 2px;
+}

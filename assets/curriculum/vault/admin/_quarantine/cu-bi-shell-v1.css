@@ -1,0 +1,188 @@
+/* BI-0 → BI-6 — Begin-inspired shell (Clarity identity retained)
+ * Educational UI only — not affiliated with beginislam.org
+ */
+
+html, body.cu-page {
+  font-family: "Plus Jakarta Sans", Inter, system-ui, -apple-system, sans-serif !important;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* BI-0 — Rich pills on solid plaque */
+.cu-pills {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: min(42rem, calc(100% - 1rem));
+  margin: 0.55rem auto 0.75rem !important;
+  padding: 0.4rem 0.5rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(184, 166, 135, 0.45) !important;
+  background: #2a3228 !important;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+}
+html[data-theme="light"] .cu-pills,
+html[data-theme="system"] .cu-pills {
+  background: #fffef8 !important;
+  border-color: rgba(184, 166, 135, 0.55) !important;
+  box-shadow: 0 6px 20px rgba(42, 35, 25, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+  html[data-theme="system"] .cu-pills {
+    background: #2a3228 !important;
+    border-color: rgba(184, 166, 135, 0.35) !important;
+  }
+}
+.cu-pills a {
+  font-family: inherit !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  padding: 0.48rem 1rem !important;
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center;
+  border-radius: 999px !important;
+  border: 1px solid transparent !important;
+  text-decoration: none !important;
+  color: #f3efe4 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+html[data-theme="light"] .cu-pills a {
+  color: #2a2319 !important;
+  background: rgba(30, 125, 94, 0.08) !important;
+}
+.cu-pills a.here {
+  background: #1e7d5e !important;
+  border-color: #1e7d5e !important;
+  color: #fffef8 !important;
+  box-shadow: 0 2px 10px rgba(30, 125, 94, 0.35);
+}
+html[data-theme="light"] .cu-pills a.here {
+  background: #1e7d5e !important;
+  color: #fff !important;
+}
+.cu-pills a:hover {
+  border-color: rgba(201, 163, 82, 0.55);
+}
+
+/* BI-1 — Day reading tokens (Begin-adjacent paper/ink) */
+html[data-theme="light"] {
+  --cu-bg: #f4ede0;
+  --cu-bg-elev: #ebe0cb;
+  --cu-card: #fffef8;
+  --cu-text: #2a2319;
+  --cu-muted: #5a4f3f;
+  --cu-gold: #8b6f3f;
+  --cu-gold-soft: #5c4623;
+  --cu-teal: #1e7d5e;
+  --cu-ok: #1e7d5e;
+  --cu-line: #b8a687;
+  --cu-link: #1e7d5e;
+  --cu-link-hover: #145c45;
+  --cu-link-visited: #2d7d4e;
+  --cu-banner-bg: linear-gradient(90deg, #145c45, #1e7d5e 55%, #2d7d4e);
+}
+html[data-theme="light"] body.cu-page {
+  background:
+    radial-gradient(ellipse 90% 50% at 50% -10%, rgba(30, 125, 94, 0.1), transparent 50%),
+    linear-gradient(180deg, #f7f1e6 0%, #f4ede0 45%, #ebe0cb 100%) !important;
+  color: var(--cu-text) !important;
+}
+html[data-theme="light"] #junior-curriculum-card,
+html[data-theme="light"] .card,
+html[data-theme="light"] .lab-policy,
+html[data-theme="light"] .lab-card,
+html[data-theme="light"] .curriculum-phase-card {
+  background: #fffef8 !important;
+  color: #2a2319 !important;
+  border: 1px solid #b8a687 !important;
+  box-shadow: 0 4px 18px rgba(42, 35, 25, 0.06);
+}
+html[data-theme="light"] #junior-curriculum-card p,
+html[data-theme="light"] #junior-curriculum-card li {
+  color: #2a2319 !important;
+  font-size: 0.98rem !important;
+  line-height: 1.65 !important;
+}
+
+/* BI-2 — Chrome order locked */
+header.cu-banner {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10000 !important;
+  order: 0 !important;
+}
+body.cu-page {
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.cu-page > header.cu-banner { order: 0; }
+body.cu-page > main { order: 2; flex: 1; }
+#clarity-how-phases,
+[class*="how-phases"],
+#clarity-phase-plaque-host,
+#clarity-name-plaque-rail {
+  position: relative !important;
+  top: auto !important;
+  z-index: 1 !important;
+  max-width: min(52rem, 100%);
+  margin: 0.5rem auto !important;
+}
+/* Collapsible how-phases on small screens */
+@media (max-width: 640px) {
+  #clarity-how-phases details,
+  [class*="how-phases"] details { display: block; }
+}
+
+/* BI-3 — Soft section tints */
+.lab-card[href*="tajweed"] { border-left: 4px solid #1e7d5e; }
+.lab-card[href*="arabic"] { border-left: 4px solid #2d7d76; }
+.lab-card[href*="recite"] { border-left: 4px solid #2c5282; }
+.lab-card[href*="media"] { border-left: 4px solid #b8851c; }
+.lab-card[href*="callig"] { border-left: 4px solid #7a5d3f; }
+.lab-card[href*="hifz"] { border-left: 4px solid #6d4b93; }
+#junior-curriculum-card h2,
+.curriculum-phase-card h2 {
+  color: #8b6f3f;
+}
+html[data-theme="dark"] #junior-curriculum-card h2 { color: #d4b45a; }
+
+/* BI-4 — Lab / practice chips look intentional */
+#campus-stage-body a,
+#junior-curriculum-card a {
+  color: var(--cu-link) !important;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+/* Practice callout */
+#junior-curriculum-card [class*="practice"],
+#junior-curriculum-card p:has(+ *) {
+  /* soft callout handled by existing mint box */
+}
+
+/* BI-5 — Motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+.cu-pills a,
+.lab-card {
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-card:hover { transform: none; }
+}
+
+/* BI-6 — Clarity exceed markers (subtle) */
+.cu-foot::after {
+  content: " · University path · on-device vault · lab practice";
+  opacity: 0.75;
+}
