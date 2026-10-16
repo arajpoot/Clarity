@@ -1,10 +1,10 @@
-/* FD3 wings - 20261016AUDIT clean */
+/* FD3 wings L1+L2 allowlist - 20261016L0L12 */
 (function (g) {
   "use strict";
   if (g.__CU_FLASH_WINGS_V1__) return;
   g.__CU_FLASH_WINGS_V1__ = true;
 
-  var VER = "20261016AUDIT";
+  var VER = "20261016L0L12";
   var page = (document.body && document.body.getAttribute("data-campus-page")) || "";
   var phase = (document.body && document.body.getAttribute("data-phase-room")) || "";
   var path = location.pathname || "";
@@ -13,23 +13,18 @@
     "/assets/curriculum/vault/admin/campus/cu-mahtaab-hydrate-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-overlay-housekeep-v1.js?v=" + VER
   ];
-
   var MAP = [
     "/assets/curriculum/vault/admin/campus/cu-flash-prefetch-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-nav-phases-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-map-idle-v1.js?v=" + VER
   ];
-
   var DESK_HUB = [
     "/assets/curriculum/vault/admin/campus/cu-continue-flow-v1.js?v=" + VER
   ];
 
   function isDeskHub() {
     return (path === "/campus/desk" || path === "/campus/desk/") && !phase;
-  }
-  function isDeskRoom() {
-    return path.indexOf("/campus/desk/") >= 0 && path !== "/campus/desk/" && path !== "/campus/desk";
   }
   function isMap() {
     return path === "/campus/" || path === "/campus" || page === "map";
@@ -71,7 +66,7 @@
     var list = COMMON.slice();
     if (isMap()) list = list.concat(MAP);
     else if (isDeskHub()) list = list.concat(DESK_HUB);
-    // phase rooms: COMMON only (mahtaab)
+    // phase rooms / lab / vault: COMMON only
 
     var i = 0;
     function next() {
