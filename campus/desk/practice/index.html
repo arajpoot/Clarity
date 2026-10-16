@@ -1,49 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-
-<title>Practice · New Muslim · Desk · Clarity University</title>
-<meta name="description" content="ʿIbādah — purification and prayer with gentleness. Educational only."/>
+<title>Practice · Clarity University</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261016SMOKE"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261016SMOKE"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261016SMOKE"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261016SMOKE"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261016SMOKE"/>
-<style>
-/* Quiet room — hide heavy injectors; keep map-width stage */
-#clarity-phase-plaque-host,#clarity-phase-plaque-rail,#clarity-name-plaque-rail,
-#clarity-how-phases-slot,.clarity-phase-plaque,#campus-rescue-card,
-#clarity-chancellor-fab,[data-chancellor-root]{display:none!important}
-#clarity-campus-stage{max-width:min(96rem,100%);margin:0 auto 1.25rem;position:relative;z-index:2}
-#campus-stage-body{min-height:6rem}
-.cu-room-lead{max-width:min(96rem,100%);margin:0 auto .85rem;font-size:.9rem;line-height:1.5;opacity:.9}
-.cu-btn{display:inline-block;margin:.25rem .35rem .25rem 0;padding:.45rem .9rem;border-radius:999px;
-  border:1px solid rgba(184,166,135,.45);background:rgba(31,166,122,.15);color:inherit;text-decoration:none;font-weight:700;font-size:.84rem}
-.cu-btn.ghost{background:transparent}
-#cu-phase-gate,#cu-next-riwaq{max-width:min(96rem,100%);margin:0 auto 1rem;padding:1rem;border-radius:16px;
-  border:1px solid rgba(184,166,135,.35);background:rgba(0,0,0,.2)}
-#cu-next-riwaq[hidden],#cu-phase-gate[hidden]{display:none!important}
-#junior-curriculum-card,#junior-high-curriculum-card,#daily-hs-curriculum-card,#dai-university-curriculum-card{
-  display:block!important;margin:0;padding:1rem;border-radius:16px;border:1px solid rgba(184,166,135,.3);
-  background:rgba(0,0,0,.18)}
-.cu-desk-subnav{display:flex;flex-wrap:wrap;gap:.35rem;max-width:min(96rem,100%);margin:0 auto .75rem}
-.cu-desk-subnav a{font-size:.75rem;font-weight:650;padding:.3rem .65rem;border-radius:999px;text-decoration:none;
-  border:1px solid rgba(184,166,135,.3);color:inherit;opacity:.9}
-.cu-desk-subnav a.here{border-color:rgba(224,197,106,.55);background:rgba(224,197,106,.12)}
-</style>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-shell-v1.css?v=20261016SMOKE"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-desk-opener-v1.css?v=20261016SMOKE"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-enrich-hide-v1.css?v=20261016SMOKE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261016AUDIT"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-shell-v1.css?v=20261016AUDIT"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261016AUDIT"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-enrich-hide-v1.css?v=20261016AUDIT"/>
 </head>
 <body class="cu-page" data-campus-page="desk" data-phase-room="practice">
 <header class="cu-banner">
   <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Clarity University</strong></div></a>
-  <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
+  <div class="cu-banner-actions"><a class="cu-main-link" href="/campus/desk/">Desk</a> · <a class="cu-main-link" href="/">Companion</a></div>
 </header>
 <main class="cu-wrap">
   <nav class="cu-pills" aria-label="Campus">
@@ -54,29 +24,14 @@
     <a href="/vault/">Vault</a>
     <a href="/charter/">Charter</a>
   </nav>
-  <div class="cu-desk-subnav" aria-label="Phase rooms"><a href="/campus/desk/">All</a><a href="/campus/desk/seeker/">1 Foundations</a><a href="/campus/desk/practice/" class="here">2 Practice</a><a href="/campus/desk/consistency/">3 Consistency</a><a href="/campus/desk/transmission/">4 Transmission</a></div>
-  <header class="cu-page-hero">
-    <h1>Practice · New Muslim</h1>
-    <p>ʿIbādah — purification and prayer with gentleness.</p>
-  </header>
-  <div id="cu-phase-gate" hidden></div>
-  <div id="clarity-campus-stage">
-    <div id="campus-stage-body">
-      <p id="campus-loading-hint" style="opacity:.7;font-size:.88rem">Opening this riwāq…</p>
-    </div>
-  </div>
-  <div id="cu-next-riwaq" hidden></div>
-  <p class="cu-room-lead" style="opacity:.75;font-size:.78rem">
-    <a href="/campus/desk/">← All riwāq</a> · <a href="/lab/">Lab</a> · <a href="/library/">Library</a>
-  </p>
+  <div id="clarity-phase-plaque-host"></div>
+  <div id="clarity-how-phases-slot"></div>
+  <div id="cu-stage"></div>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. Verify with Qurʾān, Sunnah, and a local scholar.</footer>
-<script src="/assets/curriculum/vault/boot.js?v=20261016SMOKE"></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-phase-room-v1.js?v=20261016SMOKE" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-module-deeplink-v1.js?v=20261016SMOKE" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-desk-opener-v1.js?v=20261016SMOKE" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261016SMOKE" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261016SMOKE" defer></script>
+<footer class="cu-foot">Educational only - not a fatwa.</footer>
+<script src="/assets/curriculum/vault/boot.js?v=20261016AUDIT" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-phase-room-v1.js?v=20261016AUDIT" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261016AUDIT" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261016AUDIT" defer></script>
 </body>
 </html>
