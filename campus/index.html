@@ -4,29 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Clarity University · Journey Map</title>
-<meta name="description" content="Clarity University map — Desk, Lab, Library, Vault. Educational only."/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<style>
-/* Map: one rail only — kill injected duplicate halls if any slip through */
-body[data-campus-page="map"] .cu-hall-rail { display: none !important; }
-body[data-campus-page="map"] .cu-medallion-row + .cu-medallion-row { display: none !important; }
-#cu-companion-enrich { margin-top: 1.25rem; }
-.cu-enrich-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  gap: 0.55rem; margin-top: 0.5rem;
-}
-.cu-enrich-card {
-  display: flex; flex-direction: column; gap: 0.25rem;
-  padding: 0.75rem 0.85rem; border-radius: 14px; text-decoration: none; color: inherit;
-  border: 1px solid rgba(184,166,135,0.35); background: rgba(21,32,28,0.95);
-  font-size: 0.82rem; line-height: 1.35;
-}
-html[data-theme="light"] .cu-enrich-card { background: #fffef8; }
-.cu-enrich-card strong { font-size: 0.9rem; }
-.cu-enrich-title { font-size: 1rem; color: var(--cu-gold,#d4b45a); margin: 0 0 0.25rem; }
-.cu-enrich-lead { font-size: 0.82rem; opacity: 0.85; margin: 0 0 0.35rem; }
-</style>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-campus-critical-v1.css?v=20261016L4L6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261016S0S3" onerror="this.onerror=null;this.href='/assets/curriculum/vault/admin/campus/cu-campus-critical-v1.css?v=20261016S0S3'"/>
 </head>
 <body class="cu-page" data-campus-page="map">
 <header class="cu-banner">
@@ -34,13 +13,7 @@ html[data-theme="light"] .cu-enrich-card { background: #fffef8; }
   <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
 </header>
 <main class="cu-wrap">
-  <p class="cu-stage-band" style="text-align:center;font-size:.88rem;margin:.5rem 0">
-    Start at the <a href="/campus/desk/seeker/" style="font-weight:800;color:inherit">Desk</a> ·
-    practice in the <a href="/lab/" style="font-weight:700;color:inherit">Lab</a> ·
-    sources in the <a href="/library/" style="font-weight:700;color:inherit">Library</a> ·
-    notes in the <a href="/vault/" style="font-weight:700;color:inherit">Vault</a>.
-  </p>
-
+  <p class="cu-stage-band" style="text-align:center;font-size:.88rem">Start at the <a href="/campus/desk/seeker/" style="font-weight:800;color:inherit">Desk</a> · <a href="/lab/" style="font-weight:700;color:inherit">Lab</a> · <a href="/library/" style="font-weight:700;color:inherit">Library</a> · <a href="/vault/" style="font-weight:700;color:inherit">Vault</a>.</p>
   <nav class="cu-pills" aria-label="Campus">
     <a href="/campus/" class="here">Map</a>
     <a href="/campus/desk/">Desk</a>
@@ -49,101 +22,26 @@ html[data-theme="light"] .cu-enrich-card { background: #fffef8; }
     <a href="/vault/">Vault</a>
     <a href="/charter/">Charter</a>
   </nav>
-
   <div class="cu-continue" id="cu-continue">
-    <div>
-      <strong>Continue · Junior · Seeker</strong><br/>
-      <span>Start Unit 1 — Who is Allah?</span>
-    </div>
+    <div><strong>Continue · Junior · Seeker</strong><br/><span>Start Unit 1 — Who is Allah?</span></div>
     <a href="/campus/desk/seeker/">Open desk →</a>
   </div>
-
-  <details class="desk-how" style="max-width:min(52rem,100%);margin:.5rem auto;border:1px solid rgba(184,166,135,.35);border-radius:14px;padding:.15rem .75rem;font-size:.82rem">
-    <summary style="cursor:pointer;font-weight:700;padding:.5rem 0">How phases work</summary>
-    <ol style="margin:.25rem 0 .65rem 1.1rem;padding:0;line-height:1.45">
-      <li><strong>One module open</strong> — only the current lesson is unlocked.</li>
-      <li><strong>Spark quiz</strong> — answer correctly to open the next module.</li>
-      <li><strong>All modules ✓</strong> — then a short phase quiz appears.</li>
-      <li><strong>Pass quiz</strong> — unlocks the next phase (no skipping ahead).</li>
-    </ol>
-  </details>
-
-  <div id="cu-roles-host" class="cu-role-row" style="justify-content:center;margin:.5rem 0"></div>
-  <p id="cu-roles-status" style="text-align:center;font-size:.75rem;opacity:.8;min-height:1em"></p>
-  <div id="cu-roles-faculty-panel" hidden style="max-width:min(40rem,100%);margin:.35rem auto .75rem;padding:.75rem;border-radius:12px;border:1px solid rgba(184,166,135,.3);font-size:.85rem"></div>
-
-  <span class="cu-section-kicker" style="display:block;text-align:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:.5rem">Academic precinct · Kulliyyat al-Nur</span>
+  <div id="cu-roles-host"></div>
+  <span class="cu-section-kicker" style="display:block;text-align:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:.75rem">Academic precinct</span>
   <h1 style="text-align:center;font-size:1.2rem;color:#d4b45a;margin:.25rem 0 .75rem;font-weight:800">Journey Map</h1>
-
   <div class="cu-grid">
-    <a class="cu-card" href="/campus/desk/seeker/">
-      <span class="cu-badge open">Open</span>
-      <span class="tag">Phase 1 · Uṣūl</span>
-      <strong>Junior · Seeker</strong>
-      <span class="desc">Belief foundations. One module open. Spark quiz unlocks the next.</span>
-    </a>
-    <a class="cu-card" href="/campus/desk/practice/">
-      <span class="cu-badge locked">Locked</span>
-      <span class="tag">Phase 2 · ʿIbādah</span>
-      <strong>New Muslim</strong>
-      <span class="desc">Purification and prayer practice after the Junior phase quiz.</span>
-    </a>
-    <a class="cu-card" href="/campus/desk/consistency/">
-      <span class="cu-badge locked">Locked</span>
-      <span class="tag">Phase 3 · Itqān</span>
-      <strong>Daily</strong>
-      <span class="desc">Craft and consistency — tajweed, reflection, steady deeds.</span>
-    </a>
-    <a class="cu-card" href="/campus/desk/transmission/">
-      <span class="cu-badge locked">Locked</span>
-      <span class="tag">Phase 4 · Balāgh</span>
-      <strong>Daʿī</strong>
-      <span class="desc">Transmit with adab. Wisdom and clear limits.</span>
-    </a>
-    <a class="cu-card" href="/lab/">
-      <span class="cu-badge open">Open</span>
-      <span class="tag">Lab</span>
-      <strong>Craft Laboratory</strong>
-      <span class="desc">Tajweed · Arabic · Recitation · Media · Calligraphy · Hifz</span>
-    </a>
-    <a class="cu-card" href="/library/">
-      <span class="cu-badge open">Open</span>
-      <span class="tag">Library</span>
-      <strong>Source shelves</strong>
-      <span class="desc">Qurʾān, Sunnah, and deepen pointers.</span>
-    </a>
+    <a class="cu-card" href="/campus/desk/seeker/"><span class="cu-badge open">Open</span><span class="tag">Phase 1</span><strong>Junior · Seeker</strong><span class="desc">Belief foundations. One module open.</span></a>
+    <a class="cu-card" href="/campus/desk/practice/"><span class="cu-badge locked">Locked</span><span class="tag">Phase 2</span><strong>Practice</strong><span class="desc">New Muslim practice after Junior quiz.</span></a>
+    <a class="cu-card" href="/campus/desk/consistency/"><span class="cu-badge locked">Locked</span><span class="tag">Phase 3</span><strong>Consistency</strong><span class="desc">Steady craft and review.</span></a>
+    <a class="cu-card" href="/campus/desk/transmission/"><span class="cu-badge locked">Locked</span><span class="tag">Phase 4</span><strong>Transmission</strong><span class="desc">Share with adab and sources.</span></a>
+    <a class="cu-card" href="/lab/"><span class="cu-badge open">Open</span><span class="tag">Lab</span><strong>Craft Laboratory</strong><span class="desc">Arabic · Tajweed · more</span></a>
+    <a class="cu-card" href="/library/"><span class="cu-badge open">Open</span><span class="tag">Library</span><strong>Source shelves</strong><span class="desc">Pointers for deeper reading.</span></a>
   </div>
-
-  <span class="cu-section-kicker" style="display:block;text-align:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:1rem">Add-ons</span>
-  <div class="cu-grid" style="margin-top:.5rem">
-    <a class="cu-card" href="/welcome/"><strong>Meet the guide</strong><span class="desc">Testimony, then the path. Not a formal witnessing.</span></a>
-    <a class="cu-card" href="/adhkar/"><strong>Morning / evening</strong><span class="desc">Adhkār from your local time.</span></a>
-    <a class="cu-card" href="/charter/"><strong>Charter</strong><span class="desc">Six limits. Educational only.</span></a>
-  </div>
-
-  <!-- Companion enrichment: bottom only; id prevents double inject -->
-  <section id="cu-companion-enrich" class="cu-companion-enrich">
-    <h2 class="cu-enrich-title">Learning enrichment · from Companion</h2>
-    <p class="cu-enrich-lead">Linked for study — educational only. Depth stays in Lab / Desk.</p>
-    <div class="cu-enrich-grid">
-      <a class="cu-enrich-card" href="/#reminder"><strong>Daily verse</strong><span>Open Companion Reminder for a living āyah.</span></a>
-      <a class="cu-enrich-card" href="/lab/tajweed/"><strong>Tajweed (Lab)</strong><span>Rules and line practice in the Lab booth.</span></a>
-      <a class="cu-enrich-card" href="/lab/calligraphy/"><strong>Calligraphy (Lab)</strong><span>Stroke practice after a foundations module.</span></a>
-      <a class="cu-enrich-card" href="/lab/media/"><strong>Media reminder</strong><span>Calm scenery-safe reminder — Lab media station.</span></a>
-      <a class="cu-enrich-card" href="/#commands"><strong>Commands</strong><span>Companion Commands — one action with the verse.</span></a>
-      <a class="cu-enrich-card" href="/vault/"><strong>Amana / Vault</strong><span>University vault for private on-device notes.</span></a>
-    </div>
-  </section>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. Verify with Qurʾān, Sunnah, and a local scholar.</footer>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261016L4L6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261016L4L6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-campus-roles-v1.js?v=20261016L4L6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.js?v=20261016L4L6" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+<footer class="cu-foot">Educational only — not a fatwa.</footer>
+<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261016S0S3"></script>
+<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261016S0S3" defer></script>
+<script src="/campus/assets/js/cu-flash-wings-v1.js?v=20261016S0S3" defer></script>
+<script src="/campus/assets/js/cu-campus-roles-v1.js?v=20261016S0S3" defer></script>
 </body>
 </html>
