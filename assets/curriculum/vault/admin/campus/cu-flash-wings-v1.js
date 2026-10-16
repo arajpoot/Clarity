@@ -19,7 +19,7 @@
   var MAP = [
     "/assets/curriculum/vault/admin/campus/cu-page-flow-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-lazy-wings-v1.js?v=" + VER,
-    "/assets/curriculum/vault/admin/campus/cu-compass-fab-v1.js?v=" + VER,
+?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-smooth-runtime-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-map-idle-v1.js?v=" + VER,
     "/assets/curriculum/vault/admin/campus/cu-link-trust-v1.js?v=" + VER
