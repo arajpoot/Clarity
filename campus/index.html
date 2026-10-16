@@ -1,20 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-campus-page="map">
+<html lang="en" data-theme="system" data-campus-page="map">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Clarity University · Journey Map</title>
+<meta name="description" content="Clarity University map — Desk, Lab, Library, Vault. Educational only."/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261016U12"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261016U12"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261016U12"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261016U12"/>
-<style id="cu-empty-host-hide">
-#clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261016U3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261016U3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-page-enrich-v1.css?v=20261016U3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-shell-v1.css?v=20261016U3"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-campus-roles-v1.css?v=20261016U3"/>
+<style>
+/* Map: one rail only — kill injected duplicate halls if any slip through */
+body[data-campus-page="map"] .cu-hall-rail { display: none !important; }
+body[data-campus-page="map"] .cu-medallion-row + .cu-medallion-row { display: none !important; }
+#cu-companion-enrich { margin-top: 1.25rem; }
+.cu-enrich-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.55rem; margin-top: 0.5rem;
+}
+.cu-enrich-card {
+  display: flex; flex-direction: column; gap: 0.25rem;
+  padding: 0.75rem 0.85rem; border-radius: 14px; text-decoration: none; color: inherit;
+  border: 1px solid rgba(184,166,135,0.35); background: rgba(21,32,28,0.95);
+  font-size: 0.82rem; line-height: 1.35;
+}
+html[data-theme="light"] .cu-enrich-card { background: #fffef8; }
+.cu-enrich-card strong { font-size: 0.9rem; }
+.cu-enrich-title { font-size: 1rem; color: var(--cu-gold,#d4b45a); margin: 0 0 0.25rem; }
+.cu-enrich-lead { font-size: 0.82rem; opacity: 0.85; margin: 0 0 0.35rem; }
 </style>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.css?v=20261016U12"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-campus-roles-v1.css?v=20261016U12"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-shell-v1.css?v=20261016U12"/>
 </head>
 <body class="cu-page" data-campus-page="map">
 <header class="cu-banner">
@@ -22,7 +38,12 @@
   <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
 </header>
 <main class="cu-wrap">
-    <div class="cu-stage-band" id="cu-flow-hint">Start at the <a href="/campus/desk/seeker/" style="font-weight:800;color:inherit">Desk</a> · practice in the <a href="/lab/" style="font-weight:700;color:inherit">Lab</a> · sources in the <a href="/library/" style="font-weight:700;color:inherit">Library</a> · notes in the <a href="/vault/" style="font-weight:700;color:inherit">Vault</a>.</div>
+  <p class="cu-stage-band" style="text-align:center;font-size:.88rem;margin:.5rem 0">
+    Start at the <a href="/campus/desk/seeker/" style="font-weight:800;color:inherit">Desk</a> ·
+    practice in the <a href="/lab/" style="font-weight:700;color:inherit">Lab</a> ·
+    sources in the <a href="/library/" style="font-weight:700;color:inherit">Library</a> ·
+    notes in the <a href="/vault/" style="font-weight:700;color:inherit">Vault</a>.
+  </p>
 
   <nav class="cu-pills" aria-label="Campus">
     <a href="/campus/" class="here">Map</a>
@@ -35,40 +56,30 @@
 
   <div class="cu-continue" id="cu-continue">
     <div>
-      <strong data-cu-continue-title>Continue · Junior · Seeker</strong><br/>
-      <span data-cu-continue-sub>Start Unit 1 — Who is Allah?</span>
+      <strong>Continue · Junior · Seeker</strong><br/>
+      <span>Start Unit 1 — Who is Allah?</span>
     </div>
     <a href="/campus/desk/seeker/">Open desk →</a>
   </div>
 
-  <div class="cu-how">
-    <strong>How phases work</strong>
-    <ol>
+  <details class="desk-how" style="max-width:min(52rem,100%);margin:.5rem auto;border:1px solid rgba(184,166,135,.35);border-radius:14px;padding:.15rem .75rem;font-size:.82rem">
+    <summary style="cursor:pointer;font-weight:700;padding:.5rem 0">How phases work</summary>
+    <ol style="margin:.25rem 0 .65rem 1.1rem;padding:0;line-height:1.45">
       <li><strong>One module open</strong> — only the current lesson is unlocked.</li>
       <li><strong>Spark quiz</strong> — answer correctly to open the next module.</li>
       <li><strong>All modules ✓</strong> — then a short phase quiz appears.</li>
-      <li><strong>Craft handoff</strong> — one Lab practice for this level (optional before quiz).</li><li><strong>Pass quiz</strong> — unlocks the next phase (no skipping ahead).</li>
+      <li><strong>Pass quiz</strong> — unlocks the next phase (no skipping ahead).</li>
     </ol>
-  </div>
+  </details>
 
-  <div class="cu-medallion-row" aria-label="Ilm path colleges">
-    <a class="cu-medallion on" href="/campus/desk/seeker/"><span class="ring">📖</span><strong>Uṣūl</strong><small>Foundations</small></a>
-    <a class="cu-medallion locked" href="/campus/desk/practice/"><span class="ring">🕌</span><strong>ʿIbādah</strong><small>Practice</small></a>
-    <a class="cu-medallion locked" href="/campus/desk/consistency/"><span class="ring">🎧</span><strong>Itqān</strong><small>Consistency</small></a>
-    <a class="cu-medallion locked" href="/campus/desk/transmission/"><span class="ring">🕊️</span><strong>Balāgh</strong><small>Transmission</small></a>
-  </div>
+  <div id="cu-roles-host" class="cu-role-row" style="justify-content:center;margin:.5rem 0"></div>
+  <p id="cu-roles-status" style="text-align:center;font-size:.75rem;opacity:.8;min-height:1em"></p>
+  <div id="cu-roles-faculty-panel" hidden style="max-width:min(40rem,100%);margin:.35rem auto .75rem;padding:.75rem;border-radius:12px;border:1px solid rgba(184,166,135,.3);font-size:.85rem"></div>
 
-  <div class="cu-phase-row">
-    <a class="cu-phase-chip on" href="/campus/desk/seeker/"><strong>1 Junior</strong>Open now</a>
-    <a class="cu-phase-chip locked" href="/campus/desk/practice/"><strong>2 New Muslim</strong>Locked</a>
-    <a class="cu-phase-chip locked" href="/campus/desk/consistency/"><strong>3 Daily</strong>Locked</a>
-    <a class="cu-phase-chip locked" href="/campus/desk/transmission/"><strong>4 Daʿī</strong>Locked</a>
-  </div>
+  <span class="cu-section-kicker" style="display:block;text-align:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:.5rem">Academic precinct · Kulliyyat al-Nur</span>
+  <h1 style="text-align:center;font-size:1.2rem;color:#d4b45a;margin:.25rem 0 .75rem;font-weight:800">Journey Map</h1>
 
-  <span class="cu-section-kicker">Academic precinct · Kulliyyat al-Nur</span>
-  <h1 style="text-align:center;font-size:1.25rem;margin:.35rem 0 .85rem;font-weight:800;color:var(--cu-gold,#d4b45a)">Journey Map</h1>
-
-  <div class="cu-grid" id="cu-phase-grid">
+  <div class="cu-grid">
     <a class="cu-card" href="/campus/desk/seeker/">
       <span class="cu-badge open">Open</span>
       <span class="tag">Phase 1 · Uṣūl</span>
@@ -107,18 +118,31 @@
     </a>
   </div>
 
-  <span class="cu-section-kicker">Add-ons · under the campus</span>
-  <div class="cu-grid" style="margin-top:0.5rem">
+  <span class="cu-section-kicker" style="display:block;text-align:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:1rem">Add-ons</span>
+  <div class="cu-grid" style="margin-top:.5rem">
     <a class="cu-card" href="/welcome/"><strong>Meet the guide</strong><span class="desc">Testimony, then the path. Not a formal witnessing.</span></a>
     <a class="cu-card" href="/adhkar/"><strong>Morning / evening</strong><span class="desc">Adhkār from your local time.</span></a>
-    <a class="cu-card" href="/lab/"><strong>Lab door</strong><span class="desc">Open craft stations from here.</span></a>
     <a class="cu-card" href="/charter/"><strong>Charter</strong><span class="desc">Six limits. Educational only.</span></a>
   </div>
+
+  <!-- Companion enrichment: bottom only; id prevents double inject -->
+  <section id="cu-companion-enrich" class="cu-companion-enrich">
+    <h2 class="cu-enrich-title">Learning enrichment · from Companion</h2>
+    <p class="cu-enrich-lead">Linked for study — educational only. Depth stays in Lab / Desk.</p>
+    <div class="cu-enrich-grid">
+      <a class="cu-enrich-card" href="/#reminder"><strong>Daily verse</strong><span>Open Companion Reminder for a living āyah.</span></a>
+      <a class="cu-enrich-card" href="/lab/tajweed/"><strong>Tajweed (Lab)</strong><span>Rules and line practice in the Lab booth.</span></a>
+      <a class="cu-enrich-card" href="/lab/calligraphy/"><strong>Calligraphy (Lab)</strong><span>Stroke practice after a foundations module.</span></a>
+      <a class="cu-enrich-card" href="/lab/media/"><strong>Media reminder</strong><span>Calm scenery-safe reminder — Lab media station.</span></a>
+      <a class="cu-enrich-card" href="/#commands"><strong>Commands</strong><span>Companion Commands — one action with the verse.</span></a>
+      <a class="cu-enrich-card" href="/vault/"><strong>Amana / Vault</strong><span>University vault for private on-device notes.</span></a>
+    </div>
+  </section>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. Verify with Qurʾān, Sunnah, and a local scholar.</footer>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261016U12" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261016U12" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-campus-roles-v1.js?v=20261016U12" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.js?v=20261016U12" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261016U3" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261016U3" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-campus-roles-v1.js?v=20261016U3" defer></script>
+<script src="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.js?v=20261016U3" defer></script>
 </body>
 </html>
