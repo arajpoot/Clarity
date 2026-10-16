@@ -93,11 +93,9 @@
         .join("") +
       "</div>";
 
-    var host =
-      document.querySelector("main.cu-wrap") ||
-      document.querySelector("main") ||
-      document.body;
+    var host = document.querySelector("main.cu-wrap") || document.querySelector("main") || document.body;
     var foot = document.querySelector("footer.cu-foot");
+    /* Always bottom of main content — before footer */
     if (foot && foot.parentNode) foot.parentNode.insertBefore(box, foot);
     else host.appendChild(box);
   }

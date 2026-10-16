@@ -1,5 +1,5 @@
 /**
- * Campus roles strip — IE-2..IE-4 · 20261015IE25
+ * Campus roles strip — IE-2..IE-4 · 20261016A
  * Map + desk hub only. Lazy-loads wings via cu-lazy-wings (no full flash on quiet rooms).
  */
 (function (g) {
@@ -7,7 +7,7 @@
   if (g.__CU_CAMPUS_ROLES_V1__) return;
   g.__CU_CAMPUS_ROLES_V1__ = true;
 
-  var VER = "20261015IE25";
+  var VER = "20261016A";
 
   function path() {
     return (location.pathname || "").replace(/\/+$/, "") || "/";
@@ -20,7 +20,7 @@
 
   function ensureLazyWings() {
     return new Promise(function (resolve) {
-      if (g.CuLazyWings && typeof g.CuLazyWings.openWing === "function") {
+      if (g.ClarityLazyWings && typeof g.ClarityLazyWings.openWing === "function") {
         resolve(true);
         return;
       }
@@ -28,7 +28,7 @@
         var n = 0;
         var t = setInterval(function () {
           n++;
-          if (g.CuLazyWings && g.CuLazyWings.openWing) {
+          if (g.ClarityLazyWings && g.ClarityLazyWings.openWing) {
             clearInterval(t);
             resolve(true);
           } else if (n > 40) {
@@ -42,7 +42,7 @@
       s.src = "/assets/curriculum/vault/admin/campus/cu-lazy-wings-v1.js?v=" + VER;
       s.defer = true;
       s.onload = function () {
-        resolve(!!(g.CuLazyWings && g.CuLazyWings.openWing));
+        resolve(!!(g.ClarityLazyWings && g.ClarityLazyWings.openWing));
       };
       s.onerror = function () {
         resolve(false);
@@ -122,7 +122,7 @@
         return;
       }
       try {
-        g.CuLazyWings.openWing(id).then(function (opened) {
+        g.ClarityLazyWings.openWing(id).then(function (opened) {
           if (id === "faculty") showFacultyTip();
           if (id === "security") setStatus("Security: educational device checks only — not a threat product.");
           else if (id === "it") setStatus("IT: on-device help · storage stays local.");
@@ -158,9 +158,15 @@
       '<div id="cu-roles-faculty-panel" class="cu-roles-faculty-panel" hidden></div>';
 
     var host = document.querySelector("main.cu-wrap") || document.querySelector("main") || document.body;
-    var enrich = document.getElementById("cu-companion-enrich");
-    if (enrich && enrich.parentNode) enrich.parentNode.insertBefore(box, enrich);
-    else {
+    /* After primary map content; before companion enrich (enrich stays at bottom) */
+    var anchor =
+      document.getElementById("cu-continue") ||
+      document.querySelector(".cu-how") ||
+      document.querySelector(".cu-pills");
+    if (anchor && anchor.parentNode) {
+      if (anchor.nextSibling) anchor.parentNode.insertBefore(box, anchor.nextSibling);
+      else anchor.parentNode.appendChild(box);
+    } else {
       var foot = document.querySelector("footer.cu-foot");
       if (foot && foot.parentNode) foot.parentNode.insertBefore(box, foot);
       else host.appendChild(box);

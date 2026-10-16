@@ -31,17 +31,21 @@
 
     var panel = document.createElement("div");
     panel.id = "cu-compass-panel";
+    var hasRoles = !!document.getElementById("cu-campus-roles");
+    var wingBtns = hasRoles
+      ? ""
+      : '<button type="button" data-wing="faculty">Faculty</button>' +
+        '<button type="button" data-wing="it">IT</button>' +
+        '<button type="button" data-wing="security">Security</button>' +
+        '<button type="button" data-wing="om">O&amp;M</button>';
     panel.innerHTML =
       '<div class="hint">On-device guides · not live staff or fatwa</div>' +
       '<a href="/campus/">Campus map</a>' +
-      '<a href="/campus/desk/?phase=seeker">Desk</a>' +
+      '<a href="/campus/desk/">Desk</a>' +
       '<a href="/lab/">Lab</a>' +
       '<a href="/library/">Library</a>' +
-      '<a href="/journey/">Journey</a>' +
-      '<button type="button" data-wing="faculty">Faculty</button>' +
-      '<button type="button" data-wing="it">IT</button>' +
-      '<button type="button" data-wing="security">Security</button>' +
-      '<button type="button" data-wing="om">O&amp;M</button>' +
+      '<a href="/lab/arabic/">Arabic studio</a>' +
+      (wingBtns ? wingBtns : '<span class="hint">Roles strip is on this page</span>') +
       '<a href="/">← Companion</a>';
 
     var fab = document.createElement("button");
@@ -79,6 +83,6 @@
     if (old) old.style.display = "none";
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
-  else build();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(build, 700); });
+  else setTimeout(build, 700);
 })(typeof window !== "undefined" ? window : this);
