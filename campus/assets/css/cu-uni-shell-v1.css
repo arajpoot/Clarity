@@ -1,0 +1,92 @@
+/* University UI shell — harmonized campus chrome (educational only) */
+:root {
+  --cu-bg: #0c1210;
+  --cu-card: #15201c;
+  --cu-line: rgba(184,166,135,0.28);
+  --cu-gold: #d4b45a;
+  --cu-text: #e8f0ea;
+  --cu-muted: #9aab9f;
+  --cu-green: #1e7d5e;
+  --cu-pill: #1a2822;
+}
+html[data-theme="light"] {
+  --cu-bg: #f4efe4;
+  --cu-card: #fffef8;
+  --cu-line: rgba(42,35,25,0.14);
+  --cu-gold: #8b6f3f;
+  --cu-text: #2a2319;
+  --cu-muted: #5a4f3f;
+  --cu-pill: #ebe0cb;
+}
+body.cu-page { background: var(--cu-bg); color: var(--cu-text); font-family: "Plus Jakarta Sans", system-ui, sans-serif; margin: 0; }
+.cu-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--cu-line);
+  background: linear-gradient(180deg, #0f1a16, #0c1210);
+  position: sticky; top: 0; z-index: 10000;
+}
+html[data-theme="light"] .cu-banner { background: linear-gradient(180deg, #fffef8, #f0e8d8); }
+.cu-brand { text-decoration: none; color: inherit; }
+.cu-brand small { display: block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.75; }
+.cu-brand strong { font-size: 1rem; color: var(--cu-gold); }
+.cu-main-link { color: var(--cu-gold); text-decoration: none; font-weight: 700; font-size: 0.85rem; }
+.cu-wrap { max-width: min(56rem, 100%); margin: 0 auto; padding: 0.5rem 0.75rem 2rem; }
+.cu-pills {
+  display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center;
+  padding: 0.45rem; margin: 0.5rem auto; border-radius: 999px;
+  background: var(--cu-pill); border: 1px solid var(--cu-line);
+}
+.cu-pills a {
+  text-decoration: none; color: inherit; font-weight: 700; font-size: 0.78rem;
+  padding: 0.4rem 0.75rem; border-radius: 999px;
+}
+.cu-pills a.here { background: var(--cu-green); color: #fff; }
+.cu-hall-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem;
+  margin: 0.5rem 0;
+}
+@media (max-width: 520px) { .cu-hall-row { grid-template-columns: repeat(2, 1fr); } }
+.cu-hall {
+  text-align: center; text-decoration: none; color: inherit;
+  padding: 0.55rem 0.35rem; border-radius: 14px;
+  border: 1px solid var(--cu-line); background: var(--cu-card);
+  font-size: 0.78rem;
+}
+.cu-hall.here { border-color: var(--cu-green); box-shadow: 0 0 0 2px rgba(30,125,94,0.25); }
+.cu-hall strong { display: block; font-size: 0.85rem; }
+.cu-shaykh {
+  margin: 0.65rem 0; padding: 0.85rem 1rem; border-radius: 16px;
+  border: 1px solid var(--cu-line); background: var(--cu-card);
+}
+.cu-shaykh .kicker { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cu-muted); }
+.cu-shaykh h2 { margin: 0.25rem 0; font-size: 1.05rem; color: var(--cu-gold); }
+.cu-shaykh p { margin: 0.25rem 0; font-size: 0.86rem; line-height: 1.45; }
+.cu-shaykh .disc { font-size: 0.72rem; color: var(--cu-muted); }
+.cu-role-row { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; margin: 0.5rem 0; }
+.cu-role-row a, .cu-role-row span {
+  font-size: 0.72rem; font-weight: 700; padding: 0.35rem 0.65rem; border-radius: 999px;
+  border: 1px solid var(--cu-line); background: var(--cu-card); text-decoration: none; color: inherit;
+}
+.cu-stage {
+  margin: 0.75rem 0 1rem; padding: 1rem; border-radius: 16px;
+  border: 1px solid var(--cu-line); background: var(--cu-card);
+}
+.cu-stage h1 { color: var(--cu-gold); font-size: 1.15rem; margin: 0 0 0.35rem; }
+.cu-foot { text-align: center; font-size: 0.75rem; color: var(--cu-muted); padding: 1rem; }
+/* compact phase plaque on desk/rooms */
+.cpp-how-compact summary { cursor: pointer; font-weight: 700; }
+details.cpp-how { font-size: 0.8rem; }
+
+/* Map cards insurance H1 */
+.cu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.65rem;margin:.5rem 0 1rem}
+.cu-card{display:flex;flex-direction:column;gap:.3rem;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(184,166,135,.35);background:rgba(21,32,28,.95);text-decoration:none;color:inherit;font-size:.86rem;line-height:1.4}
+html[data-theme=light] .cu-card{background:#fffef8}
+.cu-card strong{font-size:.98rem;color:#d4b45a}
+.cu-card .tag{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.cu-card .desc{opacity:.9;font-size:.82rem}
+.cu-badge{display:inline-block;font-size:.65rem;font-weight:800;padding:.15rem .45rem;border-radius:999px;width:max-content}
+.cu-badge.open{background:#1e7d5e;color:#fff}
+.cu-badge.locked{background:rgba(255,255,255,.08);opacity:.75}
+.cu-section-kicker{display:block;text-align:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:.5rem}
+.cu-continue{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding:.75rem 1rem;margin:.5rem auto;border-radius:14px;border:1px solid rgba(184,166,135,.35);background:rgba(21,32,28,.9);max-width:min(52rem,100%)}
+.cu-continue a{font-weight:800;color:#d4b45a}

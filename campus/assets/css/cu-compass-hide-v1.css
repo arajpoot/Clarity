@@ -1,0 +1,11 @@
+/* Force-hide unopened compass panel — stops grey link soup under banner */
+#cu-compass-panel:not(.open) {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: fixed !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
