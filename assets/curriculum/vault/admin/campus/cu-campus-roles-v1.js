@@ -1,28 +1,81 @@
 /**
- * Campus roles strip — IE-2..IE-4 · 20261016A
- * Map + desk hub only. Lazy-loads wings via cu-lazy-wings (no full flash on quiet rooms).
+ * Campus roles strip — 20261016ROLES
+ * Works without wing loader: educational tips + room links.
+ * Lazy wings enhance when available.
  */
 (function (g) {
   "use strict";
   if (g.__CU_CAMPUS_ROLES_V1__) return;
   g.__CU_CAMPUS_ROLES_V1__ = true;
 
-  var VER = "20261016A";
+  var VER = "20261016ROLES";
 
   function path() {
     return (location.pathname || "").replace(/\/+$/, "") || "/";
   }
 
-  function ensureSingleStrip() {
-    /* remove duplicate role strips */
-    var strips = document.querySelectorAll(".cu-roles-strip, #cu-campus-roles");
-    if (strips.length > 1) {
-      for (var i = 1; i < strips.length; i++) strips[i].remove();
-    }
-  }
   function allowedPage() {
     var p = path();
     return p === "/campus" || p === "/campus/" || p === "/campus/desk" || p === "/campus/desk/";
+  }
+
+  function phaseFromPath() {
+    var p = path().toLowerCase();
+    if (p.indexOf("seeker") >= 0) return "seeker";
+    if (p.indexOf("practice") >= 0) return "practice";
+    if (p.indexOf("consistency") >= 0) return "consistency";
+    if (p.indexOf("transmission") >= 0) return "transmission";
+    return "hub";
+  }
+
+  var TIPS = {
+    faculty: {
+      title: "Faculty · Campus desk",
+      body: "Choose a quiet room: Seeker → Practice → Consistency → Transmission. One phase at a time.",
+      href: "/campus/desk/seeker/"
+    },
+    security: {
+      title: "Security · Adab online",
+      body: "Protect privacy: vault stays on-device. Do not share passphrases. Educational guides only — not surveillance.",
+      href: "/vault/"
+    },
+    it: {
+      title: "IT · Device help",
+      body: "Prefer hard-refresh if a module looks stuck. University pages use on-device storage. Clear site data only if you accept losing local progress.",
+      href: "/campus/"
+    },
+    om: {
+      title: "O&M · Steady practice",
+      body: "Small daily acts beat rare long sessions. Lab stations support craft after desk modules.",
+      href: "/lab/"
+    },
+    registrar: {
+      title: "Registrar · Path record",
+      body: "Progress is stored in this browser only. Phase unlock uses localStorage. No remote transcript.",
+      href: "/campus/desk/seeker/"
+    }
+  };
+
+  function setStatus(msg) {
+    var el = document.getElementById("cu-roles-status");
+    if (el) el.textContent = msg || "";
+  }
+
+  function showPanel(id) {
+    var spec = TIPS[id] || TIPS.faculty;
+    var panel = document.getElementById("cu-roles-faculty-panel");
+    if (!panel) return;
+    panel.hidden = false;
+    panel.innerHTML =
+      "<strong>" +
+      spec.title +
+      "</strong><p>" +
+      spec.body +
+      '</p><p class="cu-roles-actions"><a class="cu-roles-link" href="' +
+      spec.href +
+      '">Open →</a> · <a class="cu-roles-link" href="/campus/">Campus map</a> · <a class="cu-roles-link" href="/">Companion</a></p>' +
+      '<p class="cu-roles-note">Educational personas only — not living ijāzah or fatwa staff.</p>';
+    setStatus("");
   }
 
   function ensureLazyWings() {
@@ -58,89 +111,15 @@
     });
   }
 
-  function phaseFromPath() {
-    var p = path().toLowerCase();
-    if (p.indexOf("seeker") >= 0) return "seeker";
-    if (p.indexOf("practice") >= 0) return "practice";
-    if (p.indexOf("consistency") >= 0) return "consistency";
-    if (p.indexOf("transmission") >= 0) return "transmission";
-    return "hub";
-  }
-
-  var PHASE_TIP = {
-    hub: {
-      title: "Faculty · Campus desk",
-      tip: "Choose a quiet room: Seeker → Practice → Consistency → Transmission. One phase at a time.",
-      href: "/campus/desk/seeker/"
-    },
-    seeker: {
-      title: "Faculty · Seeker",
-      tip: "Foundations first: belief, purification of intent, short modules. Then open Practice when ready.",
-      href: "/campus/desk/seeker/"
-    },
-    practice: {
-      title: "Faculty · Practice",
-      tip: "New Muslim desk: living the pillars with calm routine. Craft after modules — Lab is reference.",
-      href: "/campus/desk/practice/"
-    },
-    consistency: {
-      title: "Faculty · Daily",
-      tip: "Consistency: adhkār, adab, steady review. Prefer small daily acts over long rare sessions.",
-      href: "/campus/desk/consistency/"
-    },
-    transmission: {
-      title: "Faculty · Daʿwah",
-      tip: "Transmission: share with sincerity and sources. Educational only — not a fatwa desk.",
-      href: "/campus/desk/transmission/"
-    }
-  };
-
-  function setStatus(msg) {
-    var el = document.getElementById("cu-roles-status");
-    if (el) el.textContent = msg || "";
-  }
-
-  function showFacultyTip() {
-    var spec = PHASE_TIP[phaseFromPath()] || PHASE_TIP.hub;
-    var panel = document.getElementById("cu-roles-faculty-panel");
-    if (!panel) return;
-    panel.hidden = false;
-    panel.innerHTML =
-      "<strong>" +
-      spec.title +
-      "</strong><p>" +
-      spec.tip +
-      '</p><p class="cu-roles-actions"><a class="cu-roles-link" href="' +
-      spec.href +
-      '">Open this riwaq →</a> · <a class="cu-roles-link" href="/campus/">Campus map</a> · <a class="cu-roles-link" href="/">Companion</a></p>' +
-      '<p class="cu-roles-note">Educational personas only — not living ijāzah.</p>';
-    setStatus("Faculty guide open (local tip). Full wing loads on demand.");
-  }
-
   function openRole(id) {
-    setStatus("Loading " + id + "…");
+    showPanel(id);
     ensureLazyWings().then(function (ok) {
-      if (!ok) {
-        if (id === "faculty") {
-          showFacultyTip();
-          return;
-        }
-        setStatus("Wing loader unavailable — use Campus map links.");
-        return;
-      }
+      if (!ok || !g.ClarityLazyWings || !g.ClarityLazyWings.openWing) return;
       try {
         g.ClarityLazyWings.openWing(id).then(function (opened) {
-          if (id === "faculty") showFacultyTip();
-          if (id === "security") setStatus("Security: educational device checks only — not a threat product.");
-          else if (id === "it") setStatus("IT: on-device help · storage stays local.");
-          else if (id === "om") setStatus("O&M: light maintenance cues.");
-          else if (!opened && id !== "faculty") setStatus(id + " loaded — if no panel, use map / Companion.");
-          else if (opened) setStatus(id + " desk opened.");
+          if (opened) setStatus(id + " desk opened when available.");
         });
-      } catch (e) {
-        if (id === "faculty") showFacultyTip();
-        setStatus("Open failed — tip available for Faculty.");
-      }
+      } catch (e) {}
     });
   }
 
@@ -154,7 +133,7 @@
     box.setAttribute("aria-label", "Campus roles");
     box.innerHTML =
       '<h2 class="cu-roles-title">Campus roles · guided learning</h2>' +
-      '<p class="cu-roles-lead">Interactive staff for orientation. Loads only when you tap — keeps quiet rooms light.</p>' +
+      '<p class="cu-roles-lead">Interactive staff for orientation. Tips work offline; full desks load when available.</p>' +
       '<div class="cu-roles-row" role="toolbar">' +
       '<button type="button" class="cu-roles-btn" data-role="faculty">🎓 Faculty</button>' +
       '<button type="button" class="cu-roles-btn" data-role="security">◎ Security</button>' +
@@ -165,10 +144,8 @@
       '<div id="cu-roles-faculty-panel" class="cu-roles-faculty-panel" hidden></div>';
 
     var host = document.querySelector("main.cu-wrap") || document.querySelector("main") || document.body;
-    /* After primary map content; before companion enrich (enrich stays at bottom) */
     var anchor =
       document.getElementById("cu-continue") ||
-      document.querySelector(".cu-how") ||
       document.querySelector(".cu-pills");
     if (anchor && anchor.parentNode) {
       if (anchor.nextSibling) anchor.parentNode.insertBefore(box, anchor.nextSibling);
