@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015UNIV"/>
 <link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261015UNIV"/>
 <link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014FD6"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-arabic-v1.css?v=20261014FD6"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-arabic-v1.css?v=20261016A"/>
 <style id="cu-empty-host-hide">
 #clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
 </style>
@@ -50,6 +50,7 @@
       <button type="button" data-ar-mode="match">2 · Match</button>
       <button type="button" data-ar-mode="phrases">3 · Phrases</button>
       <button type="button" data-ar-mode="review">4 · Review</button>
+      <button type="button" data-ar-mode="quiz">5 · Quiz</button>
     </div>
 
     <section class="ar-card" id="ar-panel-letters">
@@ -96,13 +97,30 @@
       <div id="ar-review-list"></div>
       <p class="lab-micro">Spaced repetition stays on this device only.</p>
     </section>
+  
+    <section class="ar-card" id="ar-panel-quiz" hidden>
+      <h2 style="margin:0 0 0.5rem;font-size:1rem;color:#2d7d76">Quiz · on-device</h2>
+      <p class="lab-micro">Short scored round (letters + words). Nothing leaves this device. Educational only — not a certificate.</p>
+      <p class="ar-status" id="ar-quiz-score">Score: 0 / 0</p>
+      <div class="ar-prompt">
+        <div class="ar-word" id="ar-quiz-prompt" dir="rtl">…</div>
+        <div class="ar-hint" id="ar-quiz-hint">Choose the correct meaning</div>
+      </div>
+      <div class="ar-grid" id="ar-quiz-grid"></div>
+      <div class="lab-av-row" style="justify-content:center;margin-top:0.65rem;flex-wrap:wrap;gap:0.4rem">
+        <button type="button" class="lab-btn lab-btn-primary" id="ar-quiz-next">Next</button>
+        <button type="button" class="lab-btn" id="ar-quiz-restart">Restart round</button>
+        <button type="button" class="lab-btn" id="ar-quiz-hear">Hear</button>
+      </div>
+      <p class="ar-status" id="ar-quiz-status"></p>
+    </section>
+
   </div>
 </main>
 <footer class="cu-foot">Educational language practice — not an ijāzah. Tajweed rules → Tajweed lab.</footer>
 <script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014FD6" defer></script>
 <script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-arabic-v1.js?v=20261014FD6" defer></script>
+<script src="/assets/curriculum/vault/admin/lab/cu-lab-arabic-v1.js?v=20261016A" defer></script>
 <script src="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.js?v=20261015ENRICH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-module-deeplink-v1.js?v=20261015P4" defer></script>
 </body>
 </html>
