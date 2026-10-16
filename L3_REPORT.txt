@@ -1,0 +1,14 @@
+L3 Quarantine (20261016L3)
+=====================
+Moved 34 zero-ref files into:
+  assets/curriculum/vault/admin/campus/_quarantine/
+
+GitHub steps:
+1. Upload this zip (adds _quarantine/ copies)
+2. Delete the SAME filenames from:
+   assets/curriculum/vault/admin/campus/
+   (see DELETE_FROM_ACTIVE.txt)
+3. Do NOT delete _quarantine/ until a week of stable smoke
+4. Never delete foundation/, flash-*, mahtaab, phase-room, roles, boot
+
+Missing from clone (skipped): []
