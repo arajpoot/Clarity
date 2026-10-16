@@ -1,0 +1,203 @@
+{
+  "build": "20261016S0S3",
+  "phases": "S0-S3",
+  "surface_root": "/campus/assets/",
+  "deep_fallback": "/assets/curriculum/vault/admin/campus/",
+  "copied": [
+    {
+      "file": "cu-campus-critical-v1.css",
+      "bytes": 39554,
+      "dest": "campus/assets/css/cu-campus-critical-v1.css"
+    },
+    {
+      "file": "cu-campus-roles-v1.css",
+      "bytes": 1051,
+      "dest": "campus/assets/css/cu-campus-roles-v1.css"
+    },
+    {
+      "file": "cu-campus-roles-v1.js",
+      "bytes": 7536,
+      "dest": "campus/assets/js/cu-campus-roles-v1.js"
+    },
+    {
+      "file": "cu-companion-enrich-v1.css",
+      "bytes": 842,
+      "dest": "campus/assets/css/cu-companion-enrich-v1.css"
+    },
+    {
+      "file": "cu-companion-enrich-v1.js",
+      "bytes": 1756,
+      "dest": "campus/assets/js/cu-companion-enrich-v1.js"
+    },
+    {
+      "file": "cu-compass-hide-v1.css",
+      "bytes": 347,
+      "dest": "campus/assets/css/cu-compass-hide-v1.css"
+    },
+    {
+      "file": "cu-continue-flow-v1.js",
+      "bytes": 7611,
+      "dest": "campus/assets/js/cu-continue-flow-v1.js"
+    },
+    {
+      "file": "cu-enrich-hide-v1.css",
+      "bytes": 657,
+      "dest": "campus/assets/css/cu-enrich-hide-v1.css"
+    },
+    {
+      "file": "cu-flash-core-v1.js",
+      "bytes": 11472,
+      "dest": "campus/assets/js/cu-flash-core-v1.js"
+    },
+    {
+      "file": "cu-flash-prefetch-v1.js",
+      "bytes": 2259,
+      "dest": "campus/assets/js/cu-flash-prefetch-v1.js"
+    },
+    {
+      "file": "cu-flash-v1.css",
+      "bytes": 21428,
+      "dest": "campus/assets/css/cu-flash-v1.css"
+    },
+    {
+      "file": "cu-flash-wings-v1.js",
+      "bytes": 2550,
+      "dest": "campus/assets/js/cu-flash-wings-v1.js"
+    },
+    {
+      "file": "cu-layout-wide-v1.css",
+      "bytes": 4804,
+      "dest": "campus/assets/css/cu-layout-wide-v1.css"
+    },
+    {
+      "file": "cu-mahtaab-hydrate-v1.js",
+      "bytes": 5690,
+      "dest": "campus/assets/js/cu-mahtaab-hydrate-v1.js"
+    },
+    {
+      "file": "cu-map-idle-v1.js",
+      "bytes": 1456,
+      "dest": "campus/assets/js/cu-map-idle-v1.js"
+    },
+    {
+      "file": "cu-module-lab-inject-v1.js",
+      "bytes": 5544,
+      "dest": "campus/assets/js/cu-module-lab-inject-v1.js"
+    },
+    {
+      "file": "cu-nav-phases-v1.js",
+      "bytes": 3331,
+      "dest": "campus/assets/js/cu-nav-phases-v1.js"
+    },
+    {
+      "file": "cu-overlay-housekeep-v1.js",
+      "bytes": 2704,
+      "dest": "campus/assets/js/cu-overlay-housekeep-v1.js"
+    },
+    {
+      "file": "cu-page-enrich-v1.css",
+      "bytes": 6006,
+      "dest": "campus/assets/css/cu-page-enrich-v1.css"
+    },
+    {
+      "file": "cu-page-flow-v1.js",
+      "bytes": 1645,
+      "dest": "campus/assets/js/cu-page-flow-v1.js"
+    },
+    {
+      "file": "cu-phase-room-v1.js",
+      "bytes": 11475,
+      "dest": "campus/assets/js/cu-phase-room-v1.js"
+    },
+    {
+      "file": "cu-uni-shell-v1.css",
+      "bytes": 4918,
+      "dest": "campus/assets/css/cu-uni-shell-v1.css"
+    },
+    {
+      "file": "cu-uni-viewport-v1.css",
+      "bytes": 4483,
+      "dest": "campus/assets/css/cu-uni-viewport-v1.css"
+    },
+    {
+      "file": "cu-campus-surface-v1.js",
+      "bytes": 2164,
+      "dest": "campus/assets/js/cu-campus-surface-v1.js"
+    }
+  ],
+  "missing": [],
+  "s0_refs_by_page": {
+    "/campus/": [
+      "cu-campus-critical-v1.css",
+      "cu-campus-roles-v1.js",
+      "cu-companion-enrich-v1.js",
+      "cu-flash-core-v1.js",
+      "cu-flash-wings-v1.js"
+    ],
+    "/campus/desk/": [
+      "cu-campus-critical-v1.css",
+      "cu-flash-core-v1.js",
+      "cu-flash-wings-v1.js"
+    ],
+    "/campus/desk/seeker/": [
+      "cu-campus-critical-v1.css",
+      "cu-enrich-hide-v1.css",
+      "cu-flash-core-v1.js",
+      "cu-flash-wings-v1.js",
+      "cu-module-lab-inject-v1.js",
+      "cu-phase-room-v1.js"
+    ],
+    "/campus/desk/practice/": [
+      "cu-campus-critical-v1.css",
+      "cu-enrich-hide-v1.css",
+      "cu-flash-core-v1.js",
+      "cu-flash-wings-v1.js",
+      "cu-module-lab-inject-v1.js",
+      "cu-phase-room-v1.js"
+    ],
+    "/campus/desk/consistency/": [
+      "cu-campus-critical-v1.css",
+      "cu-enrich-hide-v1.css",
+      "cu-flash-core-v1.js",
+      "cu-flash-wings-v1.js",
+      "cu-module-lab-inject-v1.js",
+      "cu-phase-room-v1.js"
+    ],
+    "/campus/desk/transmission/": [
+      "cu-campus-critical-v1.css",
+      "cu-enrich-hide-v1.css",
+      "cu-flash-core-v1.js",
+      "cu-flash-wings-v1.js",
+      "cu-module-lab-inject-v1.js",
+      "cu-phase-room-v1.js"
+    ],
+    "/lab/": [
+      "cu-campus-critical-v1.css",
+      "cu-flash-core-v1.js",
+      "cu-flash-wings-v1.js"
+    ],
+    "/library/": [
+      "cu-campus-critical-v1.css",
+      "cu-flash-core-v1.js",
+      "cu-flash-wings-v1.js"
+    ],
+    "/vault/": [
+      "cu-companion-enrich-v1.css",
+      "cu-enrich-hide-v1.css",
+      "cu-flash-core-v1.js",
+      "cu-flash-v1.css",
+      "cu-flash-wings-v1.js",
+      "cu-layout-wide-v1.css",
+      "cu-uni-viewport-v1.css"
+    ],
+    "wings": [
+      "cu-continue-flow-v1.js",
+      "cu-flash-prefetch-v1.js",
+      "cu-mahtaab-hydrate-v1.js",
+      "cu-map-idle-v1.js",
+      "cu-nav-phases-v1.js",
+      "cu-overlay-housekeep-v1.js",
+      "cu-page-flow-v1.js"
+    ]
+  }
+}
