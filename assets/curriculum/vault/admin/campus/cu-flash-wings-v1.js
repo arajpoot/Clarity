@@ -1,10 +1,9 @@
-/* FD3 wings L1+L2 allowlist - 20261016L0L12 */
+/* H2-H5 wings allowlist */
 (function (g) {
   "use strict";
   if (g.__CU_FLASH_WINGS_V1__) return;
   g.__CU_FLASH_WINGS_V1__ = true;
-
-  var VER = "20261016L0L12";
+  var VER = "20261016H2H5";
   var page = (document.body && document.body.getAttribute("data-campus-page")) || "";
   var phase = (document.body && document.body.getAttribute("data-phase-room")) || "";
   var path = location.pathname || "";
@@ -53,21 +52,14 @@
       document.head.appendChild(s);
     });
   }
-
   function idle(fn) {
-    if (typeof requestIdleCallback === "function") {
-      requestIdleCallback(function () { fn(); }, { timeout: 2500 });
-    } else {
-      setTimeout(fn, 200);
-    }
+    if (typeof requestIdleCallback === "function") requestIdleCallback(function () { fn(); }, { timeout: 2500 });
+    else setTimeout(fn, 200);
   }
-
   function run() {
     var list = COMMON.slice();
     if (isMap()) list = list.concat(MAP);
     else if (isDeskHub()) list = list.concat(DESK_HUB);
-    // phase rooms / lab / vault: COMMON only
-
     var i = 0;
     function next() {
       if (i >= list.length) return;
@@ -76,7 +68,6 @@
     }
     idle(next);
   }
-
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
   else run();
 })(typeof window !== "undefined" ? window : this);
