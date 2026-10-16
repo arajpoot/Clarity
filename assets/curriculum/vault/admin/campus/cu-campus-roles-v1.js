@@ -1,14 +1,12 @@
 /**
- * Campus roles strip — 20261016ROLES
- * Works without wing loader: educational tips + room links.
- * Lazy wings enhance when available.
+ * Campus Guided Learning — self-contained interactive module
+ * No ClarityLazyWings dependency. Educational personas only.
+ * 20261016GUIDE
  */
 (function (g) {
   "use strict";
   if (g.__CU_CAMPUS_ROLES_V1__) return;
   g.__CU_CAMPUS_ROLES_V1__ = true;
-
-  var VER = "20261016ROLES";
 
   function path() {
     return (location.pathname || "").replace(/\/+$/, "") || "/";
@@ -19,137 +17,162 @@
     return p === "/campus" || p === "/campus/" || p === "/campus/desk" || p === "/campus/desk/";
   }
 
-  function phaseFromPath() {
-    var p = path().toLowerCase();
-    if (p.indexOf("seeker") >= 0) return "seeker";
-    if (p.indexOf("practice") >= 0) return "practice";
-    if (p.indexOf("consistency") >= 0) return "consistency";
-    if (p.indexOf("transmission") >= 0) return "transmission";
-    return "hub";
-  }
-
-  var TIPS = {
+  var ROLES = {
     faculty: {
-      title: "Faculty · Campus desk",
-      body: "Choose a quiet room: Seeker → Practice → Consistency → Transmission. One phase at a time.",
-      href: "/campus/desk/seeker/"
+      icon: "🎓",
+      title: "Faculty · Guide",
+      steps: [
+        "Open the Seeker room for foundations (tawḥīd, short modules).",
+        "Complete modules in order; spark quiz unlocks the next.",
+        "When Phase 1 quiz is passed, Practice room unlocks."
+      ],
+      actions: [
+        { label: "Open Seeker room", href: "/campus/desk/seeker/" },
+        { label: "Campus map", href: "/campus/" },
+        { label: "How phases", href: "#desk-how-phases" }
+      ]
     },
     security: {
-      title: "Security · Adab online",
-      body: "Protect privacy: vault stays on-device. Do not share passphrases. Educational guides only — not surveillance.",
-      href: "/vault/"
+      icon: "◎",
+      title: "Security · Privacy adab",
+      steps: [
+        "Vault and notes stay on this device — not on our servers.",
+        "Never share a vault passphrase in chat or screenshots.",
+        "Hard-refresh if a page looks stuck; clear site data only if you accept losing local progress."
+      ],
+      actions: [
+        { label: "Open Vault", href: "/vault/" },
+        { label: "Charter limits", href: "/charter/" }
+      ]
     },
     it: {
+      icon: "💻",
       title: "IT · Device help",
-      body: "Prefer hard-refresh if a module looks stuck. University pages use on-device storage. Clear site data only if you accept losing local progress.",
-      href: "/campus/"
+      steps: [
+        "Use Day / Night / Auto in the banner for readable contrast.",
+        "If scripts look old, hard-refresh (cache). Progress is localStorage.",
+        "Lab stations need mic permission only when you choose Record."
+      ],
+      actions: [
+        { label: "Lab hub", href: "/lab/" },
+        { label: "Map", href: "/campus/" }
+      ]
     },
     om: {
+      icon: "◇",
       title: "O&M · Steady practice",
-      body: "Small daily acts beat rare long sessions. Lab stations support craft after desk modules.",
-      href: "/lab/"
+      steps: [
+        "Prefer a short daily module over rare long sessions.",
+        "After a desk module, open one Lab craft (tajweed / arabic).",
+        "Adhkār window follows your device time on /adhkar/."
+      ],
+      actions: [
+        { label: "Adhkār", href: "/adhkar/" },
+        { label: "Tajweed lab", href: "/lab/tajweed/" },
+        { label: "Arabic lab", href: "/lab/arabic/" }
+      ]
     },
     registrar: {
+      icon: "📋",
       title: "Registrar · Path record",
-      body: "Progress is stored in this browser only. Phase unlock uses localStorage. No remote transcript.",
-      href: "/campus/desk/seeker/"
+      steps: [
+        "Phase unlock keys live in this browser only.",
+        "There is no remote transcript or certificate authority here.",
+        "Educational path: Seeker → Practice → Consistency → Transmission."
+      ],
+      actions: [
+        { label: "Continue Seeker", href: "/campus/desk/seeker/" },
+        { label: "Journey", href: "/journey/" }
+      ]
     }
   };
 
-  function setStatus(msg) {
-    var el = document.getElementById("cu-roles-status");
-    if (el) el.textContent = msg || "";
+  function ensureCss() {
+    if (document.getElementById("cu-guided-css")) return;
+    var s = document.createElement("style");
+    s.id = "cu-guided-css";
+    s.textContent =
+      ".cu-campus-roles{max-width:min(52rem,100%);margin:.65rem auto;padding:.85rem 1rem;border-radius:16px;border:1px solid rgba(184,166,135,.35);background:rgba(21,32,28,.95);color:inherit}" +
+      "html[data-theme=light] .cu-campus-roles{background:#fffef8}" +
+      ".cu-roles-title{margin:0 0 .25rem;font-size:1.05rem;color:#d4b45a}" +
+      ".cu-roles-lead{margin:0 0 .55rem;font-size:.82rem;opacity:.88}" +
+      ".cu-roles-row{display:flex;flex-wrap:wrap;gap:.4rem;margin:.35rem 0}" +
+      ".cu-roles-btn{min-height:40px;padding:.4rem .75rem;border-radius:999px;border:1px solid rgba(30,125,94,.35);background:rgba(30,125,94,.12);color:inherit;font-weight:700;font-size:.78rem;cursor:pointer}" +
+      ".cu-roles-btn[aria-pressed=true]{background:#1e7d5e;color:#fff;border-color:#1e7d5e}" +
+      ".cu-roles-panel{margin-top:.55rem;padding:.75rem .85rem;border-radius:12px;border:1px solid rgba(184,166,135,.3);background:rgba(0,0,0,.18);font-size:.86rem;line-height:1.45}" +
+      "html[data-theme=light] .cu-roles-panel{background:rgba(42,35,25,.05)}" +
+      ".cu-roles-panel h3{margin:0 0 .35rem;font-size:.95rem;color:#d4b45a}" +
+      ".cu-roles-panel ol{margin:.25rem 0 .5rem 1.1rem;padding:0}" +
+      ".cu-roles-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}" +
+      ".cu-roles-actions a{display:inline-flex;padding:.35rem .7rem;border-radius:999px;background:#1e7d5e;color:#fff;text-decoration:none;font-weight:700;font-size:.78rem}" +
+      ".cu-roles-note{margin:.5rem 0 0;font-size:.72rem;opacity:.75}";
+    document.head.appendChild(s);
   }
 
-  function showPanel(id) {
-    var spec = TIPS[id] || TIPS.faculty;
+  function renderPanel(id) {
+    var r = ROLES[id];
+    if (!r) return;
     var panel = document.getElementById("cu-roles-faculty-panel");
     if (!panel) return;
     panel.hidden = false;
+    panel.className = "cu-roles-panel";
     panel.innerHTML =
-      "<strong>" +
-      spec.title +
-      "</strong><p>" +
-      spec.body +
-      '</p><p class="cu-roles-actions"><a class="cu-roles-link" href="' +
-      spec.href +
-      '">Open →</a> · <a class="cu-roles-link" href="/campus/">Campus map</a> · <a class="cu-roles-link" href="/">Companion</a></p>' +
-      '<p class="cu-roles-note">Educational personas only — not living ijāzah or fatwa staff.</p>';
-    setStatus("");
-  }
+      "<h3>" +
+      r.icon +
+      " " +
+      r.title +
+      "</h3><ol>" +
+      r.steps
+        .map(function (s) {
+          return "<li>" + s + "</li>";
+        })
+        .join("") +
+      '</ol><div class="cu-roles-actions">' +
+      r.actions
+        .map(function (a) {
+          return '<a href="' + a.href + '">' + a.label + "</a>";
+        })
+        .join("") +
+      '</div><p class="cu-roles-note">Educational personas only — not living staff, ijāzah, or fatwa authority.</p>';
 
-  function ensureLazyWings() {
-    return new Promise(function (resolve) {
-      if (g.ClarityLazyWings && typeof g.ClarityLazyWings.openWing === "function") {
-        resolve(true);
-        return;
-      }
-      if (document.querySelector('script[src*="cu-lazy-wings"]')) {
-        var n = 0;
-        var t = setInterval(function () {
-          n++;
-          if (g.ClarityLazyWings && g.ClarityLazyWings.openWing) {
-            clearInterval(t);
-            resolve(true);
-          } else if (n > 40) {
-            clearInterval(t);
-            resolve(false);
-          }
-        }, 50);
-        return;
-      }
-      var s = document.createElement("script");
-      s.src = "/assets/curriculum/vault/admin/campus/cu-lazy-wings-v1.js?v=" + VER;
-      s.defer = true;
-      s.onload = function () {
-        resolve(!!(g.ClarityLazyWings && g.ClarityLazyWings.openWing));
-      };
-      s.onerror = function () {
-        resolve(false);
-      };
-      document.head.appendChild(s);
-    });
-  }
-
-  function openRole(id) {
-    showPanel(id);
-    ensureLazyWings().then(function (ok) {
-      if (!ok || !g.ClarityLazyWings || !g.ClarityLazyWings.openWing) return;
-      try {
-        g.ClarityLazyWings.openWing(id).then(function (opened) {
-          if (opened) setStatus(id + " desk opened when available.");
-        });
-      } catch (e) {}
+    document.querySelectorAll(".cu-roles-btn").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-role") === id ? "true" : "false");
     });
   }
 
   function mount() {
     if (!allowedPage()) return;
     if (document.getElementById("cu-campus-roles")) return;
+    ensureCss();
 
     var box = document.createElement("section");
     box.id = "cu-campus-roles";
     box.className = "cu-campus-roles";
-    box.setAttribute("aria-label", "Campus roles");
+    box.setAttribute("aria-label", "Campus guided learning");
     box.innerHTML =
       '<h2 class="cu-roles-title">Campus roles · guided learning</h2>' +
-      '<p class="cu-roles-lead">Interactive staff for orientation. Tips work offline; full desks load when available.</p>' +
+      '<p class="cu-roles-lead">Tap a role for interactive steps and links. Works fully on-device — no wing loader required.</p>' +
       '<div class="cu-roles-row" role="toolbar">' +
-      '<button type="button" class="cu-roles-btn" data-role="faculty">🎓 Faculty</button>' +
-      '<button type="button" class="cu-roles-btn" data-role="security">◎ Security</button>' +
-      '<button type="button" class="cu-roles-btn" data-role="it">💻 IT</button>' +
-      '<button type="button" class="cu-roles-btn" data-role="om">◇ O&amp;M</button>' +
-      '<button type="button" class="cu-roles-btn" data-role="registrar">📋 Registrar</button>' +
-      '</div><p id="cu-roles-status" class="cu-roles-status" aria-live="polite"></p>' +
-      '<div id="cu-roles-faculty-panel" class="cu-roles-faculty-panel" hidden></div>';
+      Object.keys(ROLES)
+        .map(function (id) {
+          return (
+            '<button type="button" class="cu-roles-btn" data-role="' +
+            id +
+            '">' +
+            ROLES[id].icon +
+            " " +
+            id.charAt(0).toUpperCase() +
+            id.slice(1) +
+            "</button>"
+          );
+        })
+        .join("") +
+      '</div><div id="cu-roles-faculty-panel" hidden></div>';
 
     var host = document.querySelector("main.cu-wrap") || document.querySelector("main") || document.body;
-    var anchor =
-      document.getElementById("cu-continue") ||
-      document.querySelector(".cu-pills");
+    var anchor = document.getElementById("cu-continue") || document.querySelector(".cu-pills");
     if (anchor && anchor.parentNode) {
-      if (anchor.nextSibling) anchor.parentNode.insertBefore(box, anchor.nextSibling);
-      else anchor.parentNode.appendChild(box);
+      anchor.parentNode.insertBefore(box, anchor.nextSibling);
     } else {
       var foot = document.querySelector("footer.cu-foot");
       if (foot && foot.parentNode) foot.parentNode.insertBefore(box, foot);
@@ -158,12 +181,15 @@
 
     box.querySelectorAll("[data-role]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        openRole(btn.getAttribute("data-role"));
+        renderPanel(btn.getAttribute("data-role"));
       });
     });
+
+    /* Default open Faculty so interaction is obvious */
+    renderPanel("faculty");
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount);
   else mount();
-  setTimeout(mount, 500);
+  setTimeout(mount, 400);
 })(typeof window !== "undefined" ? window : this);
