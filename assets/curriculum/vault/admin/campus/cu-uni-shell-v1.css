@@ -76,3 +76,17 @@ html[data-theme="light"] .cu-banner { background: linear-gradient(180deg, #fffef
 /* compact phase plaque on desk/rooms */
 .cpp-how-compact summary { cursor: pointer; font-weight: 700; }
 details.cpp-how { font-size: 0.8rem; }
+
+/* Map cards insurance H1 */
+.cu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.65rem;margin:.5rem 0 1rem}
+.cu-card{display:flex;flex-direction:column;gap:.3rem;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(184,166,135,.35);background:rgba(21,32,28,.95);text-decoration:none;color:inherit;font-size:.86rem;line-height:1.4}
+html[data-theme=light] .cu-card{background:#fffef8}
+.cu-card strong{font-size:.98rem;color:#d4b45a}
+.cu-card .tag{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.cu-card .desc{opacity:.9;font-size:.82rem}
+.cu-badge{display:inline-block;font-size:.65rem;font-weight:800;padding:.15rem .45rem;border-radius:999px;width:max-content}
+.cu-badge.open{background:#1e7d5e;color:#fff}
+.cu-badge.locked{background:rgba(255,255,255,.08);opacity:.75}
+.cu-section-kicker{display:block;text-align:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:.5rem}
+.cu-continue{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding:.75rem 1rem;margin:.5rem auto;border-radius:14px;border:1px solid rgba(184,166,135,.35);background:rgba(21,32,28,.9);max-width:min(52rem,100%)}
+.cu-continue a{font-weight:800;color:#d4b45a}
