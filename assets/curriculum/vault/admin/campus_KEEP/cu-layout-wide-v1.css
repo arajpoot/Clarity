@@ -1,0 +1,190 @@
+/* Wide, enriched layout — university shells
+ * Day reading palette deepened; stages use more of the viewport.
+ */
+
+/* ---- Wider chrome ---- */
+main.cu-wrap {
+  max-width: min(72rem, 100%) !important;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.75rem clamp(0.75rem, 3vw, 1.75rem) 5.5rem !important;
+  box-sizing: border-box;
+}
+
+header.cu-banner {
+  width: 100%;
+  max-width: none;
+  padding-left: clamp(0.65rem, 2.5vw, 1.5rem);
+  padding-right: clamp(0.65rem, 2.5vw, 1.5rem);
+}
+
+.cu-pills {
+  max-width: min(72rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Desk / curriculum stage */
+#clarity-campus-stage,
+#campus-stage-body,
+#junior-curriculum-card,
+#junior-high-curriculum-card,
+#daily-hs-curriculum-card,
+#dai-university-curriculum-card,
+.curriculum-phase-card {
+  max-width: min(52rem, 100%) !important;
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Lab grid — more columns on wide screens */
+.lab-grid {
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)) !important;
+  max-width: min(64rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lab-policy,
+.lab-av-demo,
+.media-studio,
+.lab-lead,
+.lab-h1 {
+  max-width: min(52rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.studio-stage,
+.lab-studio,
+.tj-practice-loop {
+  max-width: min(48rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Vault */
+.vault-panel,
+.vault-lead,
+.vault-title {
+  max-width: min(48rem, 100%) !important;
+}
+
+/* Two-column enhancement on large screens for lab hub */
+@media (min-width: 900px) {
+  .lab-hub-spread {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 1.25rem;
+    align-items: start;
+    max-width: min(72rem, 100%);
+    margin: 0 auto 1rem;
+  }
+  .lab-hub-spread .lab-policy { margin: 0; max-width: none; }
+  .lab-hub-spread .lab-av-demo { margin: 0; max-width: none; }
+}
+
+/* Reading comfort */
+#junior-curriculum-card,
+.curriculum-phase-card,
+.card {
+  padding: 1.15rem 1.25rem !important;
+  line-height: 1.65;
+}
+#junior-curriculum-card p,
+.junior-body-text p {
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+}
+
+/* ---- Enriched DAY reading palette ---- */
+html[data-theme="light"] {
+  --cu-bg: #ebe4d4;
+  --cu-bg-elev: #faf6ec;
+  --cu-card: #fffef9;
+  --cu-text: #14231c;
+  --cu-muted: #3d4f46;
+  --cu-gold: #7a5c14;
+  --cu-gold-soft: #5c4510;
+  --cu-teal: #0a4334;
+  --cu-ok: #145a45;
+  --cu-line: rgba(10, 67, 52, 0.2);
+  --cu-link: #0a4334;
+  --cu-link-hover: #063328;
+  --cu-link-visited: #1a5c48;
+  --cu-banner-bg: linear-gradient(90deg, #0a4334 0%, #0d4f3c 45%, #1a6b52 100%);
+}
+
+html[data-theme="light"] body.cu-page {
+  background:
+    radial-gradient(ellipse 100% 60% at 50% -15%, rgba(26, 107, 82, 0.14), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 20%, rgba(184, 146, 42, 0.08), transparent 45%),
+    linear-gradient(180deg, #f0ebe0 0%, #ebe4d4 40%, #e5dcc8 100%) !important;
+  color: var(--cu-text) !important;
+}
+
+html[data-theme="light"] #junior-curriculum-card,
+html[data-theme="light"] .curriculum-phase-card,
+html[data-theme="light"] .card,
+html[data-theme="light"] .lab-policy,
+html[data-theme="light"] .lab-card,
+html[data-theme="light"] .lab-av-demo,
+html[data-theme="light"] .media-studio {
+  background: #fffef9 !important;
+  color: #14231c !important;
+  border: 1px solid rgba(10, 67, 52, 0.16) !important;
+  box-shadow: 0 4px 20px rgba(20, 35, 28, 0.06);
+}
+
+html[data-theme="light"] #junior-curriculum-card p,
+html[data-theme="light"] #junior-curriculum-card li,
+html[data-theme="light"] .junior-body-text p {
+  color: #1a2e24 !important;
+}
+
+html[data-theme="light"] .lab-h1,
+html[data-theme="light"] h1 {
+  color: #7a5c14 !important;
+}
+
+html[data-theme="light"] .lab-card strong {
+  color: #0a4334 !important;
+}
+
+html[data-theme="light"] .lab-card span {
+  color: #3d4f46 !important;
+}
+
+html[data-theme="light"] .cu-pills a {
+  background: rgba(255, 254, 249, 0.85);
+  color: #0a4334;
+  border-color: rgba(10, 67, 52, 0.2);
+}
+
+html[data-theme="light"] .cu-pills a.here {
+  background: rgba(10, 67, 52, 0.12);
+  border-color: rgba(122, 92, 20, 0.45);
+  color: #5c4510;
+}
+
+/* System light branch same richness */
+@media (prefers-color-scheme: light) {
+  html[data-theme="system"] {
+    --cu-bg: #ebe4d4;
+    --cu-bg-elev: #faf6ec;
+    --cu-card: #fffef9;
+    --cu-text: #14231c;
+    --cu-muted: #3d4f46;
+    --cu-gold: #7a5c14;
+    --cu-gold-soft: #5c4510;
+    --cu-teal: #0a4334;
+    --cu-link: #0a4334;
+    --cu-banner-bg: linear-gradient(90deg, #0a4334 0%, #0d4f3c 45%, #1a6b52 100%);
+  }
+  html[data-theme="system"] body.cu-page {
+    background:
+      radial-gradient(ellipse 100% 60% at 50% -15%, rgba(26, 107, 82, 0.14), transparent 55%),
+      linear-gradient(180deg, #f0ebe0 0%, #ebe4d4 40%, #e5dcc8 100%) !important;
+  }
+}
