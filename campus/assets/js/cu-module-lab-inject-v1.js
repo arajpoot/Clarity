@@ -93,7 +93,7 @@
       (cfg.practiceHint || "One small honest act.") +
       "</li>" +
       "<li><strong>Lab:</strong> skill the hands and tongue.</li>" +
-      "<li><strong>Library (optional):</strong> pin a primary source.</li>" +
+      "<li><strong>Library (optional):</strong> pin a primary source. <a href=\"/vault/#locker\">Vault locker</a>.</li>" +
       "</ol>" +
       '<div class="cu-contract-row">' +
       '<a class="cu-contract-chip primary" href="' +
