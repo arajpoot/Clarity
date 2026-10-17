@@ -1,0 +1,42 @@
+{
+  "do_not_touch": [
+    "/",
+    "index.html (root)",
+    "Companion tabs",
+    "Amana vault root assets"
+  ],
+  "workers_found": [
+    "assets/curriculum/vault/admin/chancellor/chancellor-controller-v1.js",
+    "assets/curriculum/vault/admin/faculty/faculty-controller-v1.js",
+    "assets/curriculum/vault/admin/faculty/it-controller-v1.js",
+    "assets/curriculum/vault/admin/faculty/it-device-lab-v1.js",
+    "assets/curriculum/vault/admin/it/it-controller-v1.js",
+    "assets/curriculum/vault/admin/it/it-device-lab-v1.js",
+    "assets/curriculum/vault/admin/om/om-controller-v1.js",
+    "assets/curriculum/vault/admin/registrar/registrar-controller-v1.js",
+    "assets/curriculum/vault/admin/security/registrar-controller-v1.js",
+    "assets/curriculum/vault/admin/security/security-auditors-v1.js",
+    "assets/curriculum/vault/admin/staff/nur-workers-arsenal-v1.js",
+    "assets/curriculum/vault/admin/staff/role-injector-v1.js",
+    "assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js",
+    "assets/curriculum/vault/admin/staff/staff-fiqh-authenticity-v1.js",
+    "assets/curriculum/vault/admin/staff/staff-librarian-v1.js",
+    "assets/curriculum/vault/admin/staff/staff-ops-monitor-v1.js",
+    "assets/curriculum/vault/admin/staff/staff-resource-scout-v1.js",
+    "assets/curriculum/vault/admin/staff/staff-workforce-v2.js",
+    "assets/curriculum/vault/admin/workers-ops-pack-v1.js"
+  ],
+  "rosters": [
+    "assets/curriculum/vault/admin/staff/staff-roster.json",
+    "assets/curriculum/vault/admin/om/om-roster.json",
+    "assets/curriculum/vault/admin/it/it-roster.json",
+    "assets/curriculum/vault/admin/faculty/it-roster.json",
+    "assets/curriculum/vault/admin/faculty/faculty-roster.json"
+  ],
+  "storage_contract": {
+    "cu_uni_progress_v1": "phase + stepsDone + updated",
+    "cu_uni_day_note_v1": "one knowledge item per calendar day",
+    "cu_uni_bots_v1": "bot interaction log",
+    "forbidden": "clarity_* Companion keys"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "build": "20261017UNI8",
+  "phases": {
+    "U0": {
+      "workers": 19,
+      "rosters": 5
+    },
+    "U1": {
+      "css_bytes": 4649
+    },
+    "U1_js": "syntax_ok",
+    "U2": "landing_ok",
+    "U3": "faculty_ok",
+    "U4": "desk_ok",
+    "U5": "bots_ok",
+    "U6": "grading_ok",
+    "U7_U8_smoke": {
+      "errs": [],
+      "phase": 2,
+      "steps": 1,
+      "keys": [
+        "cu_uni_progress_v1",
+        "cu_uni_day_note_v1"
+      ]
+    }
+  },
+  "errs": []
+}
