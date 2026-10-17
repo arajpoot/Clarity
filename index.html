@@ -2089,7 +2089,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <div id="amana-gate-create">
     <label for="amana-pass-new">New vault passphrase</label>
     <div class="av-field">
-      <input type="password" id="amana-pass-new" autocomplete="off" data-lpignore="true" data-form-type="other" minlength="8" placeholder="••••••••••••" />
+      <input type="password" id="amana-pass-new" autocomplete="off" data-lpignore="true" data-form-type="other" data-1p-ignore="true" minlength="8" enterkeyhint="next" placeholder="Choose passphrase (12+ recommended)" />
       <button type="button" class="av-eye" data-for="amana-pass-new" title="Show/hide">👁</button>
     </div>
     <div class="av-strength" aria-hidden="true"><i id="amana-strength-bar"></i></div>
@@ -2097,7 +2097,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
     <label for="amana-pass-confirm">Confirm</label>
     <div class="av-field">
-      <input type="password" id="amana-pass-confirm" autocomplete="off" data-lpignore="true" data-form-type="other" placeholder="••••••••••••" />
+      <input type="password" id="amana-pass-confirm" autocomplete="off" data-lpignore="true" data-form-type="other" data-1p-ignore="true" enterkeyhint="done" placeholder="Confirm passphrase" />
       <button type="button" class="av-eye" data-for="amana-pass-confirm" title="Show/hide">👁</button>
     </div>
 
@@ -2110,7 +2110,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <div id="amana-gate-unlock" hidden>
     <label for="amana-pass-unlock">Vault passphrase</label>
     <div class="av-field">
-      <input type="password" id="amana-pass-unlock" autocomplete="off" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly')" placeholder="••••••••••••" />
+      <input type="password" id="amana-pass-unlock" autocomplete="off" data-lpignore="true" data-form-type="other" data-1p-ignore="true" enterkeyhint="done" placeholder="Enter passphrase" />
       <button type="button" class="av-eye" data-for="amana-pass-unlock" title="Show/hide">👁</button>
     </div>
     <div class="av-actions">
@@ -2579,7 +2579,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <link rel="stylesheet" href="/assets/clarity-amana-vault-v1.css?v=20261016P3c"/>
 <link rel="stylesheet" href="/assets/clarity-amana-vault-css-v1.css?v=20261016P3"/>
-<link rel="stylesheet" href="/assets/clarity-amana-live-gate-v1.css?v=20261016GATE"/>
+<link rel="stylesheet" href="/assets/clarity-amana-live-gate-v1.css?v=20261016FIX"/>
 <link rel="stylesheet" href="/assets/clarity-amana-live-interior-v1.css?v=20261016CD"/>
 <div id="nuros-amana-panel" role="dialog" aria-modal="true" aria-labelledby="av-title" aria-hidden="true">
   <button type="button" class="av-close" onclick="NurOS.closeVault()" aria-label="Close">×</button>
@@ -2587,9 +2587,10 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <p><strong>NurOS</strong> keeps your intentions on this device only. Export a sealed package to move to another phone or browser — or retrieve an emergency backup.</p>
   <div class="av-status" id="av-status">Checking storage…</div>
 <button type="button" id="nuros-vault-fab" onclick="try{NurOS.openVault()}catch(e){location.hash='notes'}" title="Amana Vault" aria-label="Amana Vault">🕋</button>
-<script src="/assets/clarity-amana-live-gate-js-v1.js?v=20261016GATE" defer></script>
-<script src="/assets/clarity-amana-live-secure-login-v1.js?v=20261016GATE" defer></script>
-<script src="/assets/clarity-amana-live-unlock-fix-v1.js?v=20261016GATE" defer></script>
+<script src="/assets/clarity-amana-live-gate-js-v1.js?v=20261016FIX" defer></script>
+<script src="/assets/clarity-amana-live-secure-login-v1.js?v=20261016FIX" defer></script>
+<script src="/assets/clarity-amana-live-input-fix-v1.js?v=20261016FIX" defer></script>
+<script src="/assets/clarity-amana-live-unlock-fix-v1.js?v=20261016FIX" defer></script>
 <script>
 /* Phase B: alias AmanaVault → ClarityVault for bridge compatibility */
 (function(){
