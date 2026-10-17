@@ -19,11 +19,12 @@
       var el = $(id);
       if (!el) return;
       if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-        el.value = "";
-        /* break password managers */
+        /* Never leave fields readonly/disabled — that freezes mobile typing */
         try {
-          el.setAttribute("readonly", "readonly");
-          setTimeout(function(){ try { el.removeAttribute("readonly"); } catch(e){} }, 50);
+          var active = document.activeElement === el;
+          if (!active) el.value = "";
+          el.removeAttribute("readonly");
+          if (!isLockedOut()) el.disabled = false;
         } catch(e){}
       }
     });

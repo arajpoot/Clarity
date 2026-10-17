@@ -351,3 +351,18 @@ body.amana-unlocked #uft-stage,
   visibility: visible !important;
   min-height: 12rem !important;
 }
+/* INPUT FIX 20261016FIX — never block passphrase typing */
+#amana-vault-gate input[type="password"],
+#amana-vault-gate input[type="text"],
+#amana-pass-new,
+#amana-pass-confirm,
+#amana-pass-unlock {
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  touch-action: manipulation;
+}
+#amana-vault-gate, #amana-vault-gate .av-field, #amana-vault-gate .av-actions {
+  pointer-events: auto !important;
+}

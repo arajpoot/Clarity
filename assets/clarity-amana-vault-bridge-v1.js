@@ -405,14 +405,11 @@
       n++;
       wrapCastle();
       sync();
-      if (n > 40 && g.ClarityVault) {
+      if (n > 15) {
         clearInterval(iv);
-        setInterval(function () {
-          wrapCastle();
-          sync();
-        }, 2000);
+        setInterval(function () { sync(); }, 5000);
       }
-    }, 300);
+    }, 500);
   }
 
   document.addEventListener(
