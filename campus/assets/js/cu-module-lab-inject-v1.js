@@ -1,7 +1,6 @@
 /**
- * Module → Lab inject (end of module + flash CTA)
- * Runs on phase rooms only. Does not touch SEAL foundation.
- * Educational only.
+ * U2 Module completion contract + Lab inject
+ * Phase rooms only. Companion untouched. Educational only.
  */
 (function (g) {
   "use strict";
@@ -18,11 +17,39 @@
     hifz: { href: "/lab/hifz/", label: "Lab · Hifz" }
   };
 
-  var PHASE_ARABIC = {
-    seeker: { deck: "everyday", label: "Arabic · Everyday words (flash)" },
-    practice: { deck: "salah", label: "Arabic · Ṣalāh lexicon (flash)" },
-    consistency: { deck: "stems", label: "Arabic · High-frequency stems" },
-    transmission: { deck: "stems", label: "Arabic · Review stems + share carefully" }
+  var PHASE = {
+    seeker: {
+      labHref: "/lab/arabic/?deck=everyday",
+      labLabel: "Lab · Arabic flash",
+      libHref: "/library/#aqidah",
+      libLabel: "Library · ʿAqīdah shelf",
+      practiceHint: "Write one honest line: what changes if Allah is One?"
+    },
+    practice: {
+      labHref: "/lab/tajweed/",
+      labLabel: "Lab · Tajweed",
+      labHref2: "/lab/arabic/?deck=salah",
+      labLabel2: "Arabic · ṣalāh words",
+      libHref: "/library/#fiqh",
+      libLabel: "Library · Fiqh shelf",
+      practiceHint: "Practise one rule or one short āyah with presence."
+    },
+    consistency: {
+      labHref: "/lab/recite/",
+      labLabel: "Lab · Recite",
+      labHref2: "/lab/arabic/?deck=stems",
+      labLabel2: "Arabic · stems",
+      libHref: "/library/#quran",
+      libLabel: "Library · Qurʾān shelf",
+      practiceHint: "Repeat a small portion you can keep tomorrow."
+    },
+    transmission: {
+      labHref: "/lab/media/",
+      labLabel: "Lab · Media (source-checked)",
+      libHref: "/library/#hadith",
+      libLabel: "Library · Hadith shelf",
+      practiceHint: "Share only with a clear source — or do not share yet."
+    }
   };
 
   function room() {
@@ -40,7 +67,6 @@
         a.setAttribute("href", STATION[st].href);
         if (!(a.textContent || "").trim()) a.textContent = STATION[st].label;
       }
-      // legacy /lab/?station=
       if (href.indexOf("/lab/?station=") === 0 || href.indexOf("/lab?station=") === 0) {
         var s = (href.split("station=")[1] || "").split("&")[0];
         if (STATION[s]) a.setAttribute("href", STATION[s].href);
@@ -48,65 +74,95 @@
     });
   }
 
-  function injectModuleFooters() {
-    var r = room();
-    if (!r || !PHASE_ARABIC[r]) return;
-    var ar = PHASE_ARABIC[r];
-    var arHref = "/lab/arabic/?deck=" + encodeURIComponent(ar.deck);
+  function contractHtml(cfg) {
+    var extra = "";
+    if (cfg.labHref2) {
+      extra =
+        '<a class="cu-contract-chip" href="' +
+        cfg.labHref2 +
+        '">' +
+        cfg.labLabel2 +
+        "</a>";
+    }
+    return (
+      '<div class="cu-contract">' +
+      '<p class="cu-contract-kicker">After this module · completion contract</p>' +
+      '<ol class="cu-contract-steps">' +
+      "<li><strong>Understood?</strong> Pause until the idea is clear — not rushed.</li>" +
+      "<li><strong>One practice:</strong> " +
+      (cfg.practiceHint || "One small honest act.") +
+      "</li>" +
+      "<li><strong>Lab:</strong> skill the hands and tongue.</li>" +
+      "<li><strong>Library (optional):</strong> pin a primary source.</li>" +
+      "</ol>" +
+      '<div class="cu-contract-row">' +
+      '<a class="cu-contract-chip primary" href="' +
+      cfg.labHref +
+      '">' +
+      cfg.labLabel +
+      "</a>" +
+      extra +
+      '<a class="cu-contract-chip ghost" href="' +
+      cfg.libHref +
+      '">' +
+      cfg.libLabel +
+      "</a>" +
+      '<a class="cu-contract-chip ghost" href="/lab/">All Lab stations</a>' +
+      "</div>" +
+      '<p class="cu-contract-note">Educational only — not a fatwa. The tick is practice on this device, not a witness.</p>' +
+      "</div>"
+    );
+  }
 
-    /* Open / expanded module blocks */
+  function injectContracts() {
+    var r = room();
+    var cfg = PHASE[r];
+    if (!cfg) return;
+
     var candidates = document.querySelectorAll(
       ".junior-lesson, .junior-module, .cu-module, [data-module], .mv-lesson, article.lesson"
     );
     if (!candidates.length) {
-      /* fallback: each completed or open block with practice */
-      candidates = document.querySelectorAll(".junior-practice, .cu-stage section");
+      candidates = document.querySelectorAll(".junior-practice");
     }
-
+    /* If curriculum uses nested practice, attach to parent module-like node */
+    var hosts = [];
     candidates.forEach(function (node) {
-      var host = node.classList.contains("junior-practice")
-        ? node.parentElement
-        : node;
-      if (!host || host.querySelector(".cu-lab-inject")) return;
-
-      var bar = document.createElement("div");
-      bar.className = "cu-lab-inject";
-      bar.innerHTML =
-        '<p class="cu-lab-inject-kicker">After this module · Lab practice</p>' +
-        '<div class="cu-lab-inject-row">' +
-        '<a class="mv-chip cu-lab-inject-chip" href="' +
-        arHref +
-        '">🃏 ' +
-        ar.label +
-        "</a>" +
-        '<a class="mv-chip cu-lab-inject-chip" href="/lab/tajweed/">Lab · Tajweed</a>' +
-        '<a class="mv-chip cu-lab-inject-chip ghost" href="/lab/">All stations</a>' +
-        "</div>";
-      host.appendChild(bar);
+      var host = node.classList.contains("junior-practice") ? node.parentElement : node;
+      if (host && hosts.indexOf(host) < 0) hosts.push(host);
     });
-
-    /* Also ensure craft strip has Arabic when phase-room craft exists */
-    var craft = document.querySelector(".cu-craft-cta, #cu-craft-cta, .cu-phase-craft");
-    if (craft && !craft.querySelector("[data-arabic-flash]")) {
-      var a = document.createElement("a");
-      a.className = "cu-btn";
-      a.href = arHref;
-      a.setAttribute("data-arabic-flash", "1");
-      a.textContent = ar.label;
-      craft.appendChild(a);
+    if (!hosts.length) {
+      var stage = document.getElementById("cu-stage");
+      if (stage && !stage.querySelector(".cu-contract")) {
+        var wrap = document.createElement("div");
+        wrap.className = "cu-contract-mount";
+        wrap.innerHTML = contractHtml(cfg);
+        stage.appendChild(wrap);
+      }
+      return;
     }
+    hosts.forEach(function (host) {
+      if (!host || host.querySelector(".cu-contract")) return;
+      var bar = document.createElement("div");
+      bar.innerHTML = contractHtml(cfg);
+      host.appendChild(bar.firstChild);
+    });
   }
 
   function injectStyles() {
-    if (document.getElementById("cu-lab-inject-css")) return;
+    if (document.getElementById("cu-contract-css")) return;
     var s = document.createElement("style");
-    s.id = "cu-lab-inject-css";
+    s.id = "cu-contract-css";
     s.textContent =
-      ".cu-lab-inject{margin:.65rem 0 .25rem;padding:.65rem .75rem;border-radius:12px;border:1px solid rgba(184,166,135,.35);background:rgba(30,125,94,.08)}" +
-      ".cu-lab-inject-kicker{margin:0 0 .35rem;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;opacity:.85}" +
-      ".cu-lab-inject-row{display:flex;flex-wrap:wrap;gap:.35rem}" +
-      ".cu-lab-inject-chip{display:inline-flex;align-items:center;padding:.35rem .7rem;border-radius:999px;background:#1e7d5e;color:#fff!important;text-decoration:none;font-weight:700;font-size:.75rem}" +
-      ".cu-lab-inject-chip.ghost{background:transparent;color:inherit!important;border:1px solid rgba(184,166,135,.4)}";
+      ".cu-contract{margin:.75rem 0 .35rem;padding:.85rem .9rem;border-radius:14px;border:1px solid rgba(184,166,135,.4);background:rgba(30,125,94,.1)}" +
+      ".cu-contract-kicker{margin:0 0 .4rem;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#d4b45a}" +
+      ".cu-contract-steps{margin:.2rem 0 .55rem 1.1rem;font-size:.86rem;line-height:1.45}" +
+      ".cu-contract-steps li{margin:.2rem 0}" +
+      ".cu-contract-row{display:flex;flex-wrap:wrap;gap:.35rem}" +
+      ".cu-contract-chip{display:inline-flex;align-items:center;padding:.4rem .75rem;border-radius:999px;font-size:.76rem;font-weight:700;text-decoration:none;color:inherit;border:1px solid rgba(184,166,135,.4)}" +
+      ".cu-contract-chip.primary{background:#1e7d5e;color:#fff!important;border-color:#1e7d5e}" +
+      ".cu-contract-chip.ghost{background:transparent}" +
+      ".cu-contract-note{margin:.45rem 0 0;font-size:.72rem;opacity:.8}";
     document.head.appendChild(s);
   }
 
@@ -114,7 +170,7 @@
     if ((location.pathname || "").indexOf("/campus/desk/") < 0) return;
     injectStyles();
     rewriteLabChips(document);
-    injectModuleFooters();
+    injectContracts();
   }
 
   function observe() {
@@ -124,16 +180,13 @@
     var t = null;
     var obs = new MutationObserver(function () {
       if (t) clearTimeout(t);
-      t = setTimeout(function () {
-        rewriteLabChips(document);
-        injectModuleFooters();
-      }, 200);
+      t = setTimeout(run, 220);
     });
     obs.observe(main, { childList: true, subtree: true });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", observe);
   else observe();
-  setTimeout(run, 800);
-  setTimeout(run, 2000);
+  setTimeout(run, 600);
+  setTimeout(run, 1800);
 })(typeof window !== "undefined" ? window : this);
