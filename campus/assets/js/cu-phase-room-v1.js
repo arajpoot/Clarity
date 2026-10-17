@@ -113,9 +113,51 @@
     var id = keep[room()];
     document.querySelectorAll("[id$='-curriculum-card'], .curriculum-phase-card").forEach(function (el) {
       if (id && el.id === id) return;
-      try {
-        el.remove();
-      } catch (e) {}
+      try { el.remove(); } catch (e) {}
+    });
+    /* C2: remove foreign module lists that auto-mounted without card ids */
+    var allow = {
+      seeker: /junior|seeker/i,
+      practice: /junior-high|practice|new.?muslim/i,
+      consistency: /daily|consistency/i,
+      transmission: /dai|transmission|university/i
+    };
+    var re = allow[room()];
+    document.querySelectorAll("#cu-stage > *, #campus-stage-body, [id*='curriculum']").forEach(function (el) {
+      if (!el || !el.id) return;
+      if (id && el.id === id) return;
+      if (re && re.test(el.id || el.className || "")) return;
+      if (/curriculum-card|junior-curriculum|junior-high|daily-hs|dai-university/i.test(el.id || "")) {
+        if (id && el.id === id) return;
+        if (id && el.id !== id) { try { el.remove(); } catch (e2) {} }
+      }
+    });
+  }
+
+  function clearStageForeign() {
+    var stage = document.getElementById("cu-stage") || document.getElementById("campus-stage-body");
+    if (!stage) return;
+    /* keep hosts empty of prior multi-curriculum dumps before exclusive render */
+  }
+
+  /* C1: only the active room's curriculum may render */
+  function isolateCurriculumApis() {
+    var map = {
+      ClarityJuniorCurriculum: "seeker",
+      ClarityJuniorHighCurriculum: "practice",
+      ClarityDailyHsCurriculum: "consistency",
+      ClarityDaiUniversity: "transmission",
+      ClarityDaiUniversityCurriculum: "transmission"
+    };
+    Object.keys(map).forEach(function (name) {
+      var api = g[name];
+      if (!api || typeof api.render !== "function" || api.__cu_room_isolated) return;
+      var orig = api.render;
+      api.render = function () {
+        if (room() !== map[name]) return;
+        return orig.apply(api, arguments);
+      };
+      api.__cu_room_isolated = true;
     });
   }
 
@@ -216,20 +258,25 @@
 
   function renderRoom() {
     try {
+      isolateCurriculumApis();
       var r = room();
+      /* exclusive — else-if chain so only one path runs */
       if (r === "seeker" && g.ClarityJuniorCurriculum && g.ClarityJuniorCurriculum.render)
         g.ClarityJuniorCurriculum.render();
-      if (r === "practice" && g.ClarityJuniorHighCurriculum && g.ClarityJuniorHighCurriculum.render)
+      else if (r === "practice" && g.ClarityJuniorHighCurriculum && g.ClarityJuniorHighCurriculum.render)
         g.ClarityJuniorHighCurriculum.render();
-      if (r === "consistency" && g.ClarityDailyHsCurriculum && g.ClarityDailyHsCurriculum.render)
+      else if (r === "consistency" && g.ClarityDailyHsCurriculum && g.ClarityDailyHsCurriculum.render)
         g.ClarityDailyHsCurriculum.render();
-      if (r === "transmission") {
+      else if (r === "transmission") {
         if (g.ClarityDaiUniversity && g.ClarityDaiUniversity.render) g.ClarityDaiUniversity.render();
         else if (g.ClarityDaiUniversityCurriculum && g.ClarityDaiUniversityCurriculum.render)
           g.ClarityDaiUniversityCurriculum.render();
       }
     } catch (e) {}
     stripOtherCards();
+    setTimeout(stripOtherCards, 400);
+    setTimeout(stripOtherCards, 1200);
+    setTimeout(isolateCurriculumApis, 100);
     stripChrome();
     injectCraftStyles();
     paintGate();
@@ -311,6 +358,21 @@
     setTimeout(boot, 50);
     setTimeout(boot, 500);
   });
+  
+  /* C3: when foundation scripts auto-mount, re-isolate */
+  (function watchMount() {
+    var main = document.querySelector("main") || document.body;
+    if (!main || typeof MutationObserver === "undefined") return;
+    var t = null;
+    var obs = new MutationObserver(function () {
+      if (t) clearTimeout(t);
+      t = setTimeout(function () {
+        try { isolateCurriculumApis(); stripOtherCards(); } catch (eW) {}
+      }, 150);
+    });
+    obs.observe(main, { childList: true, subtree: true });
+  })();
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 
