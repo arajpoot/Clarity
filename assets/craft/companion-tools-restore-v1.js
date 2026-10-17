@@ -89,6 +89,14 @@
   }
 
   function bootNotes() {
+    /* AMANA_WS2_KILL_NOTES_PAD — replaced by Quick note + Worksheet */
+    try {
+      var old = document.getElementById("cu-companion-notes-pad");
+      if (old && old.parentNode) old.parentNode.removeChild(old);
+    } catch (eKill) {}
+    return;
+    /* original bootNotes disabled */
+
     var tab = document.getElementById("tab-notes");
     if (!tab) return;
     if (document.getElementById("cu-companion-notes-pad")) return;
