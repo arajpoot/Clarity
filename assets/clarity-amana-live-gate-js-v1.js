@@ -7,6 +7,8 @@
   var META_KEY = "clarity_amana_vault_meta_v1";
   var DATA_KEY = "clarity_amana_vault_blob_v1";
   var SESSION_UNLOCKED = false;
+  var IDLE_MS = 5 * 60 * 1000;
+  var _idleTimer = null;
   var sessionKey = null; // CryptoKey in memory only
   var ITERATIONS = 120000;
 
@@ -84,23 +86,19 @@
 
   var SESSION_KEY_STORE = "clarity_amana_session_key_v1";
 
+  /* BANK hardening: never persist raw AES key in sessionStorage/localStorage.
+     Session unlock lives in memory only (sessionKey). Tab close / lock clears it. */
   async function saveSessionKey(key){
-    try {
-      var raw = await crypto.subtle.exportKey("raw", key);
-      sessionStorage.setItem(SESSION_KEY_STORE, bufToB64(raw));
-    } catch(e){ console.warn("session key save", e); }
+    sessionKey = key || null;
+    try { sessionStorage.removeItem(SESSION_KEY_STORE); } catch(e){}
   }
   async function loadSessionKey(){
-    try {
-      var b64 = sessionStorage.getItem(SESSION_KEY_STORE);
-      if (!b64) return null;
-      var raw = b64ToBuf(b64);
-      return await crypto.subtle.importKey(
-        "raw", raw, { name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]
-      );
-    } catch(e){ return null; }
+    /* Memory-only — do not rehydrate extractable keys from web storage */
+    try { sessionStorage.removeItem(SESSION_KEY_STORE); } catch(e){}
+    return sessionKey || null;
   }
   function clearSessionKey(){
+    sessionKey = null;
     try { sessionStorage.removeItem(SESSION_KEY_STORE); } catch(e){}
   }
 
@@ -273,6 +271,7 @@
       await saveSessionKey(key);
       clearPassFields();
       setLockedUI(false);
+      resetIdle();
       fillHeirForm({});
       status("Vault open. You hold the only key.");
       try { if (typeof uftZoomInit === "function") uftZoomInit(); } catch(e){}
@@ -318,6 +317,7 @@
       try { await saveSessionKey(key); } catch(eS){}
       clearPassFields();
       setLockedUI(false);
+      resetIdle();
       fillHeirForm((payload && payload.heir) || {});
       status("Vault open · this session only");
       setTimeout(function(){ try { status(""); } catch(e){} }, 2500);
@@ -367,6 +367,25 @@
     }
   }
 
+  
+  function resetIdle(){
+    try { if (_idleTimer) clearTimeout(_idleTimer); } catch(e){}
+    if (!SESSION_UNLOCKED) return;
+    _idleTimer = setTimeout(function(){
+      try { lockNow(); status("Locked after idle — unlock again.", true); } catch(e){}
+    }, IDLE_MS);
+  }
+  function wireIdle(){
+    ["pointerdown","keydown","touchstart","scroll"].forEach(function(ev){
+      document.addEventListener(ev, function(){ if (SESSION_UNLOCKED) resetIdle(); }, { passive: true, capture: true });
+    });
+    document.addEventListener("visibilitychange", function(){
+      if (document.visibilityState === "hidden" && SESSION_UNLOCKED) {
+        try { lockNow(); } catch(e){}
+      }
+    });
+  }
+
   function lockNow(){
     sessionKey = null;
     clearSessionKey();
@@ -384,10 +403,17 @@
 
   function amanaEsc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
   function printPack(){
+    if (!SESSION_UNLOCKED) {
+      status("Unlock the vault first to print.", true);
+      return;
+    }
     var d = readHeirForm();
     var w = window.open("", "_blank");
-    if (!w) return;
-    w.document.write("<pre style='font-family:system-ui;padding:1.5rem;white-space:pre-wrap'>" +
+    if (!w) {
+      status("Pop-up blocked — allow pop-ups to print.", true);
+      return;
+    }
+    var body =
       "Amana Vault · Heir readiness (educational — not a fatwa)\n\n" +
       "Full name: " + (d.fullname||"—") + "\n" +
       "Next of kin: " + (d.kin||"—") + "\n" +
@@ -396,9 +422,16 @@
       "Debts / trusts:\n" + (d.debts||"—") + "\n\n" +
       "Documents:\n" + (d.docs||"—") + "\n\n" +
       "Letter:\n" + (d.letter||"—") + "\n\n" +
-      "Printed from on-device Clarity · confirm with scholar & local counsel\n</pre>");
+      "Printed from on-device Clarity · confirm with scholar & local counsel\n";
+    w.document.open();
+    w.document.write(
+      "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>Amana pack</title></head><body>" +
+      "<pre style=\"font-family:system-ui,sans-serif;padding:1.5rem;white-space:pre-wrap\">" +
+      amanaEsc(body) +
+      "</pre></body></html>"
+    );
     w.document.close();
-    w.print();
+    try { w.focus(); w.print(); } catch(e){}
   }
 
   function wireEyes(){
@@ -417,7 +450,7 @@
     if (!tab) return;
     if (!$("amana-vault-gate")) return;
 
-    wireEyes();
+    wireEyes(); wireIdle();
     var pn = $("amana-pass-new");
     if (pn) pn.addEventListener("input", updateStrength);
 
