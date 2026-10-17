@@ -276,6 +276,9 @@
       sel.appendChild(opt);
     });
     if (prev) sel.value = prev;
+    if (!sel.value && sheet.length) {
+      sel.value = sheet[0].id;
+    }
     showDetail(sel.value);
     if (detail && !sel.value) {
       detail.innerHTML = sheet.length

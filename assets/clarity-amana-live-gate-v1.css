@@ -554,3 +554,98 @@ body.amana-vault-focus #clarity-visit-pill-bar {
   max-width: none;
   margin: 0.5rem 0.1rem 1rem;
 }
+
+
+/* WS3 UI — passphrase full width, no Notes pad, focus mode, worksheet */
+#amana-vault-gate,
+#tab-notes.amana-locked #amana-vault-gate,
+#tab-notes.active.amana-locked #amana-vault-gate {
+  max-width: min(36rem, 100%) !important;
+  width: calc(100% - 0.5rem) !important;
+  box-sizing: border-box !important;
+}
+#amana-vault-gate input[type="password"],
+#amana-pass-new,
+#amana-pass-confirm,
+#amana-pass-unlock {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 2.75rem !important;
+  font-size: 1rem !important;
+}
+#amana-vault-gate .av-field {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+/* Remove companion Notes pad everywhere */
+#cu-companion-notes-pad {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+/* Strong focus mode when vault open */
+body.amana-vault-focus .banner,
+body.amana-vault-focus #clarity-top-duo,
+body.amana-vault-focus .banner-overlay,
+body.amana-vault-focus .path-duo,
+body.amana-vault-focus #companion-university-duo,
+body.amana-vault-focus [class*="path-card"],
+body.amana-vault-focus .track-strip,
+body.amana-vault-focus #clarity-path-track,
+body.amana-vault-focus #clarity-visit-pill-bar,
+body.amana-vault-focus .phased-learning-bar,
+body.amana-vault-focus #phased-learning,
+body.amana-vault-focus .rrra-intro-strip {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+body.amana-vault-focus #main-application-workspace,
+body.amana-vault-focus .page-wrapper {
+  padding-top: 0.25rem !important;
+}
+/* Worksheet hero inside vault */
+#tab-notes.amana-unlocked #amana-worksheet-dd {
+  display: block !important;
+  order: -1;
+  border: 1px solid rgba(212,180,90,0.45) !important;
+  background: rgba(0,20,12,0.35) !important;
+  margin: 0.4rem 0.05rem 0.9rem !important;
+  padding: 0.4rem 0.55rem 0.8rem !important;
+}
+#tab-notes.amana-unlocked #amana-worksheet-select {
+  width: 100% !important;
+  min-height: 2.6rem !important;
+  font-size: 0.95rem !important;
+}
+#tab-notes.amana-unlocked .amana-session-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(8,24,18,0.94);
+}
+/* Quick note intro */
+.amana-quick-note .aw-intro {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.9;
+  margin: 0 0 0.45rem;
+}
+
+html.amana-vault-focus .banner,
+html.amana-vault-focus #clarity-top-duo,
+html.amana-vault-focus .path-duo,
+html.amana-vault-focus #companion-university-duo,
+html.amana-vault-focus .track-strip,
+html.amana-vault-focus #clarity-path-track,
+html.amana-vault-focus #clarity-visit-pill-bar {
+  display: none !important;
+}

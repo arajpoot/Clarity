@@ -132,7 +132,7 @@
     if (locked) {
       tab.classList.add("amana-locked");
       tab.classList.remove("amana-unlocked");
-      try { document.body.classList.remove("amana-vault-focus"); } catch(eF){}
+      try { document.body.classList.remove("amana-vault-focus"); document.documentElement.classList.remove("amana-vault-focus"); } catch(eF){}
       if (gate) gate.hidden = false;
       if (interior) interior.hidden = true;
       SESSION_UNLOCKED = false;
@@ -140,7 +140,7 @@
     } else {
       tab.classList.remove("amana-locked");
       tab.classList.add("amana-unlocked");
-      try { document.body.classList.add("amana-vault-focus"); } catch(eF2){}
+      try { document.body.classList.add("amana-vault-focus"); document.documentElement.classList.add("amana-vault-focus"); } catch(eF2){}
       try { if (typeof clarityAmanaUnseal === "function") clarityAmanaUnseal(); } catch(e){}
       if (gate) { gate.hidden = true; try { gate.setAttribute("hidden",""); } catch(eG){} }
       if (interior) {
@@ -333,7 +333,8 @@
       status("Vault open · this session only");
       try {
         var _wn = (typeof clarityAmanaImportWorksheet === "function") ? clarityAmanaImportWorksheet() : 0;
-        if (_wn > 0) status("Vault open · " + _wn + " quick note(s) imported to worksheet");
+        if (_wn > 0) status("Vault open · " + _wn + " note(s) in worksheet");
+        try { if (typeof clarityAmanaRenderWorksheet === "function") clarityAmanaRenderWorksheet(); } catch(eR){}
       } catch(eW){}
       setTimeout(function(){ try { status(""); } catch(e){} }, 2500);
       /* Defer heavy tree paint so unlock feedback is visible first */
