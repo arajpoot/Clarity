@@ -1,0 +1,73 @@
+/* Amana vault focus + full-width gate — 20261016FOCUS
+   Hide companion chrome while vault session is open.
+   Widen lock gate to near full content width. */
+
+/* ===== LOCK GATE: full usable width ===== */
+#tab-notes #amana-vault-gate,
+#tab-notes.active #amana-vault-gate,
+#tab-notes.amana-locked #amana-vault-gate,
+#tab-notes.active.amana-locked #amana-vault-gate,
+#amana-vault-host #amana-vault-gate {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+#tab-notes #amana-vault-host {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding-left: 0.15rem !important;
+  padding-right: 0.15rem !important;
+}
+#amana-vault-gate input[type="password"],
+#amana-pass-unlock,
+#amana-pass-new,
+#amana-pass-confirm {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* ===== FOCUS: hide chrome (class on html/body) ===== */
+html.amana-vault-focus #clarity-top-duo,
+html.amana-vault-focus .banner,
+html.amana-vault-focus #banner-media,
+html.amana-vault-focus #clarity-dual-path,
+html.amana-vault-focus .clarity-dual-path,
+html.amana-vault-focus .dual-tiles,
+html.amana-vault-focus #cw-track-kicker,
+html.amana-vault-focus #cw-track-steps,
+html.amana-vault-focus .cw-steps,
+html.amana-vault-focus #clarity-visit-pill-bar,
+html.amana-vault-focus .cw-track-kicker,
+body.amana-vault-focus #clarity-top-duo,
+body.amana-vault-focus .banner,
+body.amana-vault-focus #clarity-dual-path,
+body.amana-vault-focus .clarity-dual-path,
+body.amana-vault-focus #cw-track-steps,
+body.amana-vault-focus #clarity-visit-pill-bar {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+/* Also when tab-notes unlocked (fallback without body class) */
+#tab-notes.amana-unlocked ~ #clarity-dual-path { display: none !important; }
+
+/* Sticky session bar for lock access */
+#tab-notes.amana-unlocked .amana-session-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(8, 24, 18, 0.96);
+}
