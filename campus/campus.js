@@ -148,7 +148,8 @@
     "/assets/curriculum/vault/admin/staff/nur-workers-arsenal-v1.js",
     "/assets/curriculum/vault/admin/security/security-auditors-v1.js",
     "/assets/curriculum/vault/admin/om/om-controller-v1.js",
-    "/assets/curriculum/vault/admin/it/it-controller-v1.js"
+    "/assets/curriculum/vault/admin/it/it-controller-v1.js",
+    "/assets/curriculum/vault/admin/registrar/registrar-controller-v1.js"
   ];
   function loadScript(src) {
     return new Promise(function (resolve) {
@@ -285,10 +286,11 @@
           "<strong>" + (t.name || t.title || "Faculty") + "</strong><span>" +
           (t.title || t.rank || "") + (t.specialty ? " · " + t.specialty : "") +
           "</span>";
-        a.addEventListener("click", function () {
+        a.onclick = function () {
           setPhase(phase);
-          if (!isRegistered()) register(phase);
-        });
+          if (!isRegistered()) openRegisterConfirm(phase);
+          else { /* already registered */ }
+        };
         host.appendChild(a);
       });
     }
@@ -301,28 +303,79 @@
       .catch(function () { paint(fallback); });
   }
 
+  
+  /** Registrar-style confirmation card before opening campus record */
+  function openRegisterConfirm(phase) {
+    phase = Math.max(1, Math.min(4, parseInt(phase, 10) || 1));
+    var meta = phaseMeta(phase);
+    var existing = document.getElementById("cu-registrar-confirm");
+    if (existing) existing.remove();
+    var m = document.createElement("div");
+    m.id = "cu-registrar-confirm";
+    m.setAttribute("role", "dialog");
+    m.setAttribute("aria-modal", "true");
+    m.style.cssText =
+      "position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;" +
+      "background:rgba(0,0,0,0.55);padding:1rem";
+    m.innerHTML =
+      '<div style="max-width:22rem;width:100%;border-radius:16px;border:1px solid rgba(212,180,90,0.35);' +
+      'background:#0f1a16;color:#e8f0ea;padding:1.1rem 1.15rem;box-shadow:0 12px 40px rgba(0,0,0,0.45)">' +
+      '<div style="font-size:0.65rem;font-weight:800;letter-spacing:0.1em;color:#d4b45a;margin-bottom:0.35rem">REGISTRAR · ON-DEVICE</div>' +
+      '<strong style="display:block;margin-bottom:0.35rem">Open campus record?</strong>' +
+      '<p style="font-size:0.85rem;line-height:1.45;opacity:0.9;margin:0 0 0.75rem">' +
+      'College: <strong>' + meta.label + '</strong><br/>Advisor: ' + meta.faculty + '<br/>' +
+      'One active phase at a time. Later phases stay inert until unlocked. ' +
+      'Not an official enrollment. Educational only — not a fatwa.</p>' +
+      '<div style="display:flex;flex-wrap:wrap;gap:0.4rem">' +
+      '<button type="button" id="cu-reg-yes" class="cu-btn">Confirm &amp; register</button>' +
+      '<button type="button" id="cu-reg-go" class="cu-btn soft">Confirm &amp; enter class</button>' +
+      '<button type="button" id="cu-reg-no" class="cu-btn soft">Cancel</button>' +
+      '</div></div>';
+    document.body.appendChild(m);
+    document.getElementById("cu-reg-no").onclick = function () { m.remove(); };
+    document.getElementById("cu-reg-yes").onclick = function () {
+      register(phase);
+      try {
+        if (g.ClarityRegistrar && typeof g.ClarityRegistrar.setActivePhase === "function") {
+          g.ClarityRegistrar.setActivePhase(phase);
+        }
+      } catch (e) {}
+      m.remove();
+      renderAll();
+      var flash = document.getElementById("cu-reg-flash");
+      if (flash) flash.textContent = "Record confirmed. Advisor ready — enter class when you wish.";
+    };
+    document.getElementById("cu-reg-go").onclick = function () {
+      register(phase);
+      try {
+        if (g.ClarityRegistrar && typeof g.ClarityRegistrar.setActivePhase === "function") {
+          g.ClarityRegistrar.setActivePhase(phase);
+        }
+      } catch (e) {}
+      location.href = meta.desk;
+    };
+    m.addEventListener("click", function (ev) {
+      if (ev.target === m) m.remove();
+    });
+  }
+
   function bindAdmission() {
     document.querySelectorAll("[data-cu-register]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var ph = btn.getAttribute("data-cu-register") || readProgress().phase || 1;
-        register(ph);
-        renderAll();
-        var msg = document.getElementById("cu-reg-flash");
-        if (msg) {
-          msg.textContent = "Record opened on this device. Your advisor is ready. Enter class when you are.";
-        }
+        openRegisterConfirm(ph);
       });
     });
     document.querySelectorAll("[data-cu-register-and-go]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var ph = btn.getAttribute("data-cu-register-and-go") || "1";
-        register(ph);
-        location.href = phaseMeta(parseInt(ph, 10)).desk;
+        openRegisterConfirm(ph);
       });
     });
   }
 
   g.CuCampus = {
+    openRegisterConfirm: openRegisterConfirm,
     readProgress: readProgress,
     register: register,
     isRegistered: isRegistered,
