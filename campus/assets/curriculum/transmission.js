@@ -6,8 +6,8 @@
   "use strict";
   var ROOM = "transmission";
   var API = "ClarityDaiUniversity";
-  var CHAIN = ["/assets/curriculum/vault/foundation/engine.js", "/assets/curriculum/vault/foundation/spark-quiz.js", "/assets/curriculum/vault/foundation/phase-plaque.js", "/assets/curriculum/vault/foundation/college-transmission.js"];
-  var VER = "20261017F0F3";
+  var CHAIN = ["/assets/curriculum/vault/foundation/engine.js", "/assets/curriculum/vault/foundation/spark-quiz.js", "/assets/curriculum/vault/foundation/diplomas.js", "/assets/curriculum/vault/foundation/phase-plaque.js", "/assets/curriculum/vault/foundation/college-transmission.js"];
+  var VER = "20261017WIRE";
   if (g.__CU_CURRICULUM_LOADER__ === ROOM) return;
 
   function currentRoom() {
