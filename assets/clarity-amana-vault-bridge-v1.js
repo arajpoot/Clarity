@@ -38,10 +38,19 @@
 
   function isOpen() {
     try {
+      if (g.AmanaVault && typeof g.AmanaVault.isOpen === "function") {
+        return !!g.AmanaVault.isOpen();
+      }
+    } catch (e) {}
+    try {
       if (g.ClarityVault && typeof g.ClarityVault.isOpen === "function") {
         return !!g.ClarityVault.isOpen();
       }
-    } catch (e) {}
+    } catch (e2) {}
+    try {
+      var notes = document.getElementById("tab-notes");
+      if (notes && notes.classList.contains("amana-unlocked")) return true;
+    } catch (e3) {}
     return false;
   }
 
@@ -214,7 +223,11 @@
 
   function wrapCastle() {
     if (castleWrapped) return true;
-    if (!g.ClarityVault) return false;
+    if (!g.ClarityVault) {
+      /* Live gate uses AmanaVault only */
+      if (g.AmanaVault) { castleWrapped = true; return true; }
+      return false;
+    }
     /* Castle freezes its API — never assign onto that object */
     try {
       if (g.ClarityVault.__bridgeWrapped) {

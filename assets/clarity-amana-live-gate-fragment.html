@@ -1,0 +1,102 @@
+<div class="amana-vault-gate" id="amana-vault-gate" role="region" aria-label="Amana Vault login">
+  <div class="av-brand"><span class="icon" aria-hidden="true">🏦</span> Amana Vault</div>
+  <div class="av-warn">
+    <strong>You are responsible for your passphrase.</strong>
+    Clarity does not store it and cannot recover vault data if it is lost.
+    On-device only · encrypted at rest · educational — not a fatwa.
+  </div>
+
+  <div class="av-purpose" style="margin:0 0 0.85rem;padding:0.75rem 0.8rem;border-radius:12px;border:1px solid rgba(212,180,90,0.28);background:rgba(0,0,0,0.25);font-size:0.82rem;line-height:1.5;color:rgba(232,240,234,0.92)">
+    <strong style="color:#d4b45a">What this vault is for</strong>
+    <p style="margin:0.35rem 0 0">
+      Amana Vault holds private notes for <strong>estate readiness</strong>: who you leave behind, debts and trusts to settle first,
+      wasiyyah notes, family outline, and farāʾiḍ study tools. It is a <em>trust (amānah)</em> between you and those who may need this after you —
+      not a court filing and not a fatwa.
+    </p>
+    <p style="margin:0.45rem 0 0">
+      <strong style="color:#d4b45a">Why do it the right way</strong> — Allah commands justice in what we leave behind.
+      Harmful or unjust wills are a serious matter. The Prophet ﷺ warned against injustice in the will:
+    </p>
+    <blockquote style="margin:0.5rem 0 0;padding:0.55rem 0.65rem;border-left:3px solid rgba(212,180,90,0.55);background:rgba(212,180,90,0.08);font-size:0.8rem;line-height:1.45">
+      “Indeed a man and a woman perform deeds in obedience to Allah for sixty years, then death presents itself to them,
+      and they cause such harm in the will that the Fire becomes warranted for them.”
+      <span style="display:block;margin-top:0.35rem;opacity:0.85;font-size:0.75rem">— reported from al-Tirmidhī · educational wording; verify full isnād and fiqh with a scholar</span>
+    </blockquote>
+    <p style="margin:0.45rem 0 0;font-size:0.78rem;opacity:0.9">
+      Use this space to organise names, rights, and notes <strong>so heirs are not left in confusion</strong> —
+      then confirm inheritance and wasiyyah with a qualified local scholar and, where needed, counsel.
+    </p>
+  </div>
+
+  <p class="av-hint-text">Create a strong passphrase (prefer 12+). Never reuse email or banking passwords.</p>
+
+  <div id="amana-gate-create">
+    <label for="amana-pass-new">New vault passphrase</label>
+    <div class="av-field">
+      <input type="password" id="amana-pass-new" autocomplete="off" data-lpignore="true" data-form-type="other" minlength="8" placeholder="••••••••••••" />
+      <button type="button" class="av-eye" data-for="amana-pass-new" title="Show/hide">👁</button>
+    </div>
+    <div class="av-strength" aria-hidden="true"><i id="amana-strength-bar"></i></div>
+    <div class="av-strength-lab" id="amana-strength-lab">Strength: —</div>
+
+    <label for="amana-pass-confirm">Confirm</label>
+    <div class="av-field">
+      <input type="password" id="amana-pass-confirm" autocomplete="off" data-lpignore="true" data-form-type="other" placeholder="••••••••••••" />
+      <button type="button" class="av-eye" data-for="amana-pass-confirm" title="Show/hide">👁</button>
+    </div>
+
+    <div class="av-actions">
+      <button type="button" class="av-btn-primary" id="amana-btn-create">Create &amp; open vault</button>
+      <button type="button" class="av-btn-soft" id="amana-btn-have">I have a vault</button>
+    </div>
+  </div>
+
+  <div id="amana-gate-unlock" hidden>
+    <label for="amana-pass-unlock">Vault passphrase</label>
+    <div class="av-field">
+      <input type="password" id="amana-pass-unlock" autocomplete="off" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly')" placeholder="••••••••••••" />
+      <button type="button" class="av-eye" data-for="amana-pass-unlock" title="Show/hide">👁</button>
+    </div>
+    <div class="av-actions">
+      <button type="button" class="av-btn-primary" id="amana-btn-unlock">Open vault</button>
+      <button type="button" class="av-btn-soft" id="amana-btn-back-create">Create new instead</button>
+    </div>
+    <div id="amana-lockout-panel" hidden style="margin-top:0.75rem;padding:0.7rem 0.8rem;border-radius:12px;border:1px solid rgba(196,92,62,0.4);background:rgba(196,92,62,0.12);font-size:0.8rem;line-height:1.45;color:rgba(255,230,220,0.95)">
+      <strong>Vault temporarily locked</strong>
+      <p id="amana-lockout-msg" style="margin:0.35rem 0 0">Too many failed attempts. Wait or reset this device vault.</p>
+      <p style="margin:0.4rem 0 0;font-size:0.75rem;opacity:0.9">Reset destroys encrypted data on <em>this device only</em>. Clarity cannot recover a lost passphrase.</p>
+      <div class="av-actions" style="margin-top:0.55rem">
+        <button type="button" class="av-btn-soft" id="amana-btn-reset-start" style="border-color:rgba(196,92,62,0.5)">Reset vault on this device…</button>
+      </div>
+      <div id="amana-reset-confirm" hidden style="margin-top:0.55rem">
+        <label for="amana-reset-type" style="display:block;font-size:0.75rem;margin-bottom:0.25rem">Type <strong>RESET VAULT</strong> to confirm</label>
+        <input type="text" id="amana-reset-type" autocomplete="off" placeholder="RESET VAULT" style="width:100%;padding:0.45rem 0.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.35);color:inherit;margin-bottom:0.4rem" />
+        <button type="button" class="av-btn-primary" id="amana-btn-reset-go" style="background:#a03a2a">Destroy &amp; create new passphrase</button>
+      </div>
+    </div>
+    <p id="amana-attempts-lab" style="font-size:0.72rem;opacity:0.75;margin:0.4rem 0 0;text-align:center"></p>
+  </div>
+
+  <div id="amana-backup-guidance" class="av-backup-guide" style="margin:0.9rem 0 0;padding:0.85rem 0.9rem;border-radius:12px;border:1px solid rgba(212,180,90,0.35);background:rgba(212,180,90,0.08);font-size:0.8rem;line-height:1.5;color:rgba(232,240,234,0.95)">
+    <strong style="color:#d4b45a;display:block;margin-bottom:0.35rem">Protect this amānah — your responsibility</strong>
+    <ul style="margin:0.25rem 0 0 1.1rem;padding:0">
+      <li style="margin:0.3rem 0"><strong>Write your passphrase offline</strong> — paper or another offline store you control. Clarity never keeps it and cannot reset it for you.</li>
+      <li style="margin:0.3rem 0"><strong>Download encrypted vault data regularly</strong> — use <em>Export encrypted backup</em> below while unlocked (or after open). Keep copies on media you control.</li>
+      <li style="margin:0.3rem 0"><strong>No on-device hint</strong> — reminder strips were removed so nothing on this phone can weaken the passphrase.</li>
+      <li style="margin:0.3rem 0"><strong>Failed attempts lock the gate</strong> — after several wrong tries, wait or type <code>RESET VAULT</code> to destroy local data and start over (this device only).</li>
+      <li style="margin:0.3rem 0"><strong>Ultimate loss</strong> — if the passphrase and all backups are gone, vault contents cannot be recovered. That is intentional for privacy.</li>
+    </ul>
+    <div class="av-actions" style="margin-top:0.65rem;flex-wrap:wrap;gap:0.4rem">
+      <button type="button" class="av-btn-soft" id="amana-btn-export-encrypted" title="Download encrypted blob from this device">⬇ Export encrypted backup</button>
+      <button type="button" class="av-btn-soft" id="amana-btn-backup-help">How to store the passphrase</button>
+    </div>
+    <p id="amana-backup-status" style="margin:0.45rem 0 0;font-size:0.72rem;opacity:0.85"></p>
+  </div>
+
+  <p class="av-sec-note" style="font-size:0.72rem;line-height:1.4;opacity:0.8;margin:0.5rem 0 0;text-align:center">
+    Security: data encrypted on this device (AES-GCM). Passphrase never stored. Auto-locks after idle.
+    Use <strong>Print vault pack</strong> only when unlocked — you will be asked to confirm.
+  </p>
+
+  <div class="av-status" id="amana-gate-status"></div>
+</div>
