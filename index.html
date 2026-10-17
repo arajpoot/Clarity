@@ -2052,14 +2052,124 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </div>
 <div data-rrra="action" class="card card-notes"><h2 data-i18n="notes_title">📝 Clarity Notes</h2><p style="font-size:0.94rem; margin-bottom:0.75rem;" data-i18n="notes_desc">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p><div class="notes-shell" id="notes-shell" data-min-i="0" data-always="1" data-curriculum-folder="shared"><div class="notes-list-pane" id="notes-list-pane"><div class="notes-list-toolbar"><input type="text" class="notes-search" id="notes-search" placeholder="Search notes… (/ )" autocomplete="off" oninput="notesSetQuery(this.value)"><div class="notes-toolbar-row"><button type="button" onclick="notesCreate()">＋ New</button><button type="button" class="btn-secondary" onclick="notesExport()" title="Download notes JSON">⬇ Export</button><button type="button" class="btn-secondary" onclick="document.getElementById('notes-import-file').click()" title="Import notes JSON">⬆ Import</button><input type="file" id="notes-import-file" accept="application/json,.json" hidden onchange="notesImport(event)"><button type="button" class="btn-secondary" onclick="notesRestoreSeed()" title="Restore starter library">↺ Seed</button></div></div><div class="notes-tag-filter" id="notes-tag-filter"></div><div class="notes-list" id="notes-list" role="listbox" aria-label="Notes"></div></div><div class="notes-editor-pane" id="notes-editor-pane"><div id="notes-editor-empty" class="notes-empty" style="display:none"><div style="font-size:2rem">✒️</div><p><strong>No note selected</strong></p><p>Create a new note or pick one from the list.<br>Tip: press <kbd>Ctrl</kbd>+<kbd>N</kbd> for a blank page.</p><button type="button" onclick="notesCreate()">New note</button></div><div id="notes-editor-active" style="display:none; flex-direction:column; flex:1; min-height:0;"><div class="notes-editor-toolbar"><div class="notes-view-toggle" role="group" aria-label="View mode"><button type="button" id="nv-edit" onclick="notesSetView('edit')">Edit</button><button type="button" id="nv-split" onclick="notesSetView('split')">Split</button><button type="button" id="nv-preview" onclick="notesSetView('preview')">Preview</button></div><select id="notes-tag-select" onchange="notesUpdateField('tag', this.value)" title="Section tag"><option value="">Tag…</option><option value="Guide">Guide</option><option value="Journey">Journey</option><option value="Commands">Commands</option><option value="Quran">Quran</option><option value="Tafseer">Tafseer</option><option value="Tajweed">Tajweed</option><option value="Seerah">Seerah</option><option value="Lectures">Lectures</option><option value="Grave">Grave</option><option value="Practice">Practice</option><option value="Guidance">Guidance</option><option value="Reflection">Reflection</option></select><button type="button" class="btn-soft" onclick="notesToggleGrave()" id="notes-grave-btn" title="Mark as light for the grave">🌙 Grave</button><button type="button" class="btn-secondary" onclick="notesRequestDelete()" title="Delete note">🗑</button></div><input type="text" class="notes-title-input" id="notes-title" placeholder="Title" oninput="notesUpdateField('title', this.value)"><div class="notes-body-area edit-only" id="notes-body-area"><textarea class="notes-body-input" id="notes-body" placeholder="Write in Markdown… reflections, ayat, goals for the day." oninput="notesUpdateField('body', this.value)"></textarea><div class="notes-md-preview" id="notes-preview" aria-live="polite"></div></div><div class="notes-status"><span id="notes-save-status">Ready · stays on this device</span><span id="notes-char-count"></span><button type="button" class="notes-save-now" id="notes-save-now" onclick="notesSaveNow()">Save note</button><span id="notes-grave-status"></span></div></div></div></div><p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>Ctrl/⌘ S</kbd> save · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device. Tasks on Today can open a dated deed note here.</p></div>
 </div></div>
-<div id="tab-notes" class="tab-panel" data-amana-local="1" hidden aria-hidden="true">
+<div id="tab-notes" class="tab-panel amana-locked" data-amana-local="1" hidden aria-hidden="true">
   <div id="amana-vault-host">
-    <p class="amana-disclaimer"><strong>Amana Vault · Companion</strong> — Private, passphrase-locked notes on <em>this device only</em>.
-      <strong>Clarity does not store your passphrase and cannot recover vault data if it is lost.</strong>
-      Write the passphrase offline before First-time setup. Educational only — not a fatwa, not a court document, not legal advice.
-      Use the 🕋 button for sealed package export/import when changing devices. University desk remains at <a href="/campus/">/campus/</a>.</p>
+<div class="amana-vault-gate" id="amana-vault-gate" role="region" aria-label="Amana Vault login">
+  <div class="av-brand"><span class="icon" aria-hidden="true">🏦</span> Amana Vault</div>
+  <div class="av-warn">
+    <strong>You are responsible for your passphrase.</strong>
+    Clarity does not store it and cannot recover vault data if it is lost.
+    On-device only · encrypted at rest · educational — not a fatwa.
   </div>
-  <div id="amana-fiqh-host" hidden style="display:none" class="amana-fiqh-host">
+
+  <div class="av-purpose" style="margin:0 0 0.85rem;padding:0.75rem 0.8rem;border-radius:12px;border:1px solid rgba(212,180,90,0.28);background:rgba(0,0,0,0.25);font-size:0.82rem;line-height:1.5;color:rgba(232,240,234,0.92)">
+    <strong style="color:#d4b45a">What this vault is for</strong>
+    <p style="margin:0.35rem 0 0">
+      Amana Vault holds private notes for <strong>estate readiness</strong>: who you leave behind, debts and trusts to settle first,
+      wasiyyah notes, family outline, and farāʾiḍ study tools. It is a <em>trust (amānah)</em> between you and those who may need this after you —
+      not a court filing and not a fatwa.
+    </p>
+    <p style="margin:0.45rem 0 0">
+      <strong style="color:#d4b45a">Why do it the right way</strong> — Allah commands justice in what we leave behind.
+      Harmful or unjust wills are a serious matter. The Prophet ﷺ warned against injustice in the will:
+    </p>
+    <blockquote style="margin:0.5rem 0 0;padding:0.55rem 0.65rem;border-left:3px solid rgba(212,180,90,0.55);background:rgba(212,180,90,0.08);font-size:0.8rem;line-height:1.45">
+      “Indeed a man and a woman perform deeds in obedience to Allah for sixty years, then death presents itself to them,
+      and they cause such harm in the will that the Fire becomes warranted for them.”
+      <span style="display:block;margin-top:0.35rem;opacity:0.85;font-size:0.75rem">— reported from al-Tirmidhī · educational wording; verify full isnād and fiqh with a scholar</span>
+    </blockquote>
+    <p style="margin:0.45rem 0 0;font-size:0.78rem;opacity:0.9">
+      Use this space to organise names, rights, and notes <strong>so heirs are not left in confusion</strong> —
+      then confirm inheritance and wasiyyah with a qualified local scholar and, where needed, counsel.
+    </p>
+  </div>
+
+  <p class="av-hint-text">Create a strong passphrase (prefer 12+). Never reuse email or banking passwords.</p>
+
+  <div id="amana-gate-create">
+    <label for="amana-pass-new">New vault passphrase</label>
+    <div class="av-field">
+      <input type="password" id="amana-pass-new" autocomplete="off" data-lpignore="true" data-form-type="other" minlength="8" placeholder="••••••••••••" />
+      <button type="button" class="av-eye" data-for="amana-pass-new" title="Show/hide">👁</button>
+    </div>
+    <div class="av-strength" aria-hidden="true"><i id="amana-strength-bar"></i></div>
+    <div class="av-strength-lab" id="amana-strength-lab">Strength: —</div>
+
+    <label for="amana-pass-confirm">Confirm</label>
+    <div class="av-field">
+      <input type="password" id="amana-pass-confirm" autocomplete="off" data-lpignore="true" data-form-type="other" placeholder="••••••••••••" />
+      <button type="button" class="av-eye" data-for="amana-pass-confirm" title="Show/hide">👁</button>
+    </div>
+
+    <div class="av-actions">
+      <button type="button" class="av-btn-primary" id="amana-btn-create">Create &amp; open vault</button>
+      <button type="button" class="av-btn-soft" id="amana-btn-have">I have a vault</button>
+    </div>
+  </div>
+
+  <div id="amana-gate-unlock" hidden>
+    <label for="amana-pass-unlock">Vault passphrase</label>
+    <div class="av-field">
+      <input type="password" id="amana-pass-unlock" autocomplete="off" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly')" placeholder="••••••••••••" />
+      <button type="button" class="av-eye" data-for="amana-pass-unlock" title="Show/hide">👁</button>
+    </div>
+    <div class="av-actions">
+      <button type="button" class="av-btn-primary" id="amana-btn-unlock">Open vault</button>
+      <button type="button" class="av-btn-soft" id="amana-btn-back-create">Create new instead</button>
+    </div>
+    <div id="amana-lockout-panel" hidden style="margin-top:0.75rem;padding:0.7rem 0.8rem;border-radius:12px;border:1px solid rgba(196,92,62,0.4);background:rgba(196,92,62,0.12);font-size:0.8rem;line-height:1.45;color:rgba(255,230,220,0.95)">
+      <strong>Vault temporarily locked</strong>
+      <p id="amana-lockout-msg" style="margin:0.35rem 0 0">Too many failed attempts. Wait or reset this device vault.</p>
+      <p style="margin:0.4rem 0 0;font-size:0.75rem;opacity:0.9">Reset destroys encrypted data on <em>this device only</em>. Clarity cannot recover a lost passphrase.</p>
+      <div class="av-actions" style="margin-top:0.55rem">
+        <button type="button" class="av-btn-soft" id="amana-btn-reset-start" style="border-color:rgba(196,92,62,0.5)">Reset vault on this device…</button>
+      </div>
+      <div id="amana-reset-confirm" hidden style="margin-top:0.55rem">
+        <label for="amana-reset-type" style="display:block;font-size:0.75rem;margin-bottom:0.25rem">Type <strong>RESET VAULT</strong> to confirm</label>
+        <input type="text" id="amana-reset-type" autocomplete="off" placeholder="RESET VAULT" style="width:100%;padding:0.45rem 0.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.35);color:inherit;margin-bottom:0.4rem" />
+        <button type="button" class="av-btn-primary" id="amana-btn-reset-go" style="background:#a03a2a">Destroy &amp; create new passphrase</button>
+      </div>
+    </div>
+    <p id="amana-attempts-lab" style="font-size:0.72rem;opacity:0.75;margin:0.4rem 0 0;text-align:center"></p>
+  </div>
+
+  <div id="amana-backup-guidance" class="av-backup-guide" style="margin:0.9rem 0 0;padding:0.85rem 0.9rem;border-radius:12px;border:1px solid rgba(212,180,90,0.35);background:rgba(212,180,90,0.08);font-size:0.8rem;line-height:1.5;color:rgba(232,240,234,0.95)">
+    <strong style="color:#d4b45a;display:block;margin-bottom:0.35rem">Protect this amānah — your responsibility</strong>
+    <ul style="margin:0.25rem 0 0 1.1rem;padding:0">
+      <li style="margin:0.3rem 0"><strong>Write your passphrase offline</strong> — paper or another offline store you control. Clarity never keeps it and cannot reset it for you.</li>
+      <li style="margin:0.3rem 0"><strong>Download encrypted vault data regularly</strong> — use <em>Export encrypted backup</em> below while unlocked (or after open). Keep copies on media you control.</li>
+      <li style="margin:0.3rem 0"><strong>No on-device hint</strong> — reminder strips were removed so nothing on this phone can weaken the passphrase.</li>
+      <li style="margin:0.3rem 0"><strong>Failed attempts lock the gate</strong> — after several wrong tries, wait or type <code>RESET VAULT</code> to destroy local data and start over (this device only).</li>
+      <li style="margin:0.3rem 0"><strong>Ultimate loss</strong> — if the passphrase and all backups are gone, vault contents cannot be recovered. That is intentional for privacy.</li>
+    </ul>
+    <div class="av-actions" style="margin-top:0.65rem;flex-wrap:wrap;gap:0.4rem">
+      <button type="button" class="av-btn-soft" id="amana-btn-export-encrypted" title="Download encrypted blob from this device">⬇ Export encrypted backup</button>
+      <button type="button" class="av-btn-soft" id="amana-btn-backup-help">How to store the passphrase</button>
+    </div>
+    <p id="amana-backup-status" style="margin:0.45rem 0 0;font-size:0.72rem;opacity:0.85"></p>
+  </div>
+
+  <p class="av-sec-note" style="font-size:0.72rem;line-height:1.4;opacity:0.8;margin:0.5rem 0 0;text-align:center">
+    Security: data encrypted on this device (AES-GCM). Passphrase never stored. Auto-locks after idle.
+    Use <strong>Print vault pack</strong> only when unlocked — you will be asked to confirm.
+  </p>
+
+  <div class="av-status" id="amana-gate-status"></div>
+</div>
+
+<div class="amana-vault-interior" id="amana-vault-interior" hidden inert aria-hidden="true" data-amana-sealed="1">
+  <div class="amana-session-bar">
+    <span>● Vault open this session</span>
+    <button type="button" class="lock-btn" id="amana-btn-lock">🔒 Lock now</button>
+  </div>
+  <p class="amana-disclaimer" style="margin:0.75rem 0;font-size:0.85rem;opacity:0.9">
+    Estate tools (family tree, farāʾiḍ, wasiyyah) load after unlock · Phase C will expand heir readiness.
+    Educational only — not a fatwa or court document.
+  </p>
+</div>
+
+  </div>
+<div id="amana-fiqh-host" hidden style="display:none" class="amana-fiqh-host">
 <div class="card card-tools fiqh-tool-card" id="fiqh-workflow-card"><h2>⚖️ Fiqh tools — estate, heirs &amp; wasiyyah</h2><p style="font-size:0.92rem;margin:0 0 0.65rem;color:var(--text-muted);">
  Islamic estate settlement follows a fixed order. Use these three tools together — educational only, not a fatwa or court document.
  </p>
@@ -2460,13 +2570,46 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <link rel="stylesheet" href="/assets/clarity-amana-vault-v1.css?v=20261016P3c"/>
 <link rel="stylesheet" href="/assets/clarity-amana-vault-css-v1.css?v=20261016P3"/>
+<link rel="stylesheet" href="/assets/clarity-amana-live-gate-v1.css?v=20261016GATE"/>
 <div id="nuros-amana-panel" role="dialog" aria-modal="true" aria-labelledby="av-title" aria-hidden="true">
   <button type="button" class="av-close" onclick="NurOS.closeVault()" aria-label="Close">×</button>
   <h2 id="av-title">Amana Vault</h2>
   <p><strong>NurOS</strong> keeps your intentions on this device only. Export a sealed package to move to another phone or browser — or retrieve an emergency backup.</p>
   <div class="av-status" id="av-status">Checking storage…</div>
 <button type="button" id="nuros-vault-fab" onclick="try{NurOS.openVault()}catch(e){location.hash='notes'}" title="Amana Vault" aria-label="Amana Vault">🕋</button>
-<script src="/assets/clarity-amana-vault-secure-v1.js?v=20261016P3c" defer></script>
+<script src="/assets/clarity-amana-live-gate-js-v1.js?v=20261016GATE" defer></script>
+<script src="/assets/clarity-amana-live-secure-login-v1.js?v=20261016GATE" defer></script>
+<script src="/assets/clarity-amana-live-unlock-fix-v1.js?v=20261016GATE" defer></script>
+<script>
+/* Phase B: alias AmanaVault → ClarityVault for bridge compatibility */
+(function(){
+  function alias(){
+    if (window.AmanaVault && !window.ClarityVault) {
+      window.ClarityVault = {
+        version: "LIVE-GATE",
+        hasVault: function(){ try { return !!localStorage.getItem("clarity_amana_vault_blob_v1"); } catch(e){ return false; } },
+        isOpen: function(){ return !!(window.AmanaVault && window.AmanaVault.isOpen && window.AmanaVault.isOpen()); },
+        unlock: function(){},
+        lock: function(){ try { if (window.AmanaVault.lock) window.AmanaVault.lock(); } catch(e){} }
+      };
+    } else if (window.AmanaVault && window.ClarityVault) {
+      try {
+        var av = window.AmanaVault;
+        window.ClarityVault = {
+          version: "LIVE-GATE",
+          hasVault: window.ClarityVault.hasVault || function(){ try { return !!localStorage.getItem("clarity_amana_vault_blob_v1"); } catch(e){ return false; } },
+          isOpen: function(){ return !!(av.isOpen && av.isOpen()); },
+          unlock: window.ClarityVault.unlock,
+          lock: function(){ try { if (av.lock) av.lock(); } catch(e){} }
+        };
+      } catch(e){}
+    }
+  }
+  setTimeout(alias, 400);
+  setTimeout(alias, 1200);
+  window.addEventListener("load", function(){ setTimeout(alias, 300); });
+})();
+</script>
 <script src="/assets/clarity-amana-vault-nuros-v1.js?v=20261015FIX1" defer></script>
 <script src="/assets/amana-phase1-local-guard.js?v=20261015FIX1" defer></script>
 
