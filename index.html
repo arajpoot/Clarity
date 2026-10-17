@@ -2154,7 +2154,18 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
     Use <strong>Print vault pack</strong> only when unlocked — you will be asked to confirm.
   </p>
 
-  <div class="av-status" id="amana-gate-status"></div>
+  
+  <div class="amana-quick-note" id="amana-quick-note">
+    <div class="aw-label">📝 Quick note <span class="aw-muted">(saved on this device · imports after unlock)</span></div>
+    <input type="text" id="amana-quick-note-title" maxlength="120" placeholder="Title (optional)" autocomplete="off" />
+    <textarea id="amana-quick-note-body" rows="2" maxlength="2000" placeholder="Quick capture while locked…"></textarea>
+    <div class="aw-actions">
+      <button type="button" class="av-btn-soft" id="amana-quick-note-save">Save quick note</button>
+    </div>
+    <div id="amana-staging-preview" class="aw-stage-preview" aria-live="polite"></div>
+  </div>
+
+<div class="av-status" id="amana-gate-status"></div>
 </div>
 
 <div class="amana-vault-interior" id="amana-vault-interior" class="amana-fortress-capsule" hidden inert aria-hidden="true" data-amana-sealed="1">
@@ -2162,6 +2173,23 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
     <span>● Vault open this session</span>
     <button type="button" class="lock-btn" id="amana-btn-lock">🔒 Lock now</button>
   </div>
+
+
+  <details class="amana-worksheet-dd" id="amana-worksheet-dd" open>
+    <summary>📒 Worksheet · quick notes with time stamp</summary>
+    <div class="amana-worksheet-body">
+      <p class="aw-muted">Notes from the lock screen import here when you unlock. You can also add notes inside the vault.</p>
+      <label class="aw-label" for="amana-worksheet-select">Notes (<span id="amana-worksheet-count">0</span>)</label>
+      <select id="amana-worksheet-select" class="aw-select"></select>
+      <div id="amana-worksheet-detail" class="aw-detail-wrap"></div>
+      <div class="aw-compose">
+        <input type="text" id="amana-sheet-note-title" maxlength="120" placeholder="Title (optional)" autocomplete="off" />
+        <textarea id="amana-sheet-note-body" rows="2" maxlength="2000" placeholder="Add a note inside the vault…"></textarea>
+        <button type="button" class="av-btn-primary" id="amana-sheet-note-save">Add to worksheet</button>
+      </div>
+    </div>
+  </details>
+
 
   <details class="amana-heir-dd" id="amana-heir-dd">
 <summary>📋 Heir readiness · for those you leave behind</summary>
@@ -2578,8 +2606,8 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 
 <link rel="stylesheet" href="/assets/clarity-amana-vault-v1.css?v=20261016P3c"/>
-<link rel="stylesheet" href="/assets/clarity-amana-vault-css-v1.css?v=20261016PAD"/>
-<link rel="stylesheet" href="/assets/clarity-amana-live-gate-v1.css?v=20261016PAD"/>
+<link rel="stylesheet" href="/assets/clarity-amana-vault-css-v1.css?v=20261016WS"/>
+<link rel="stylesheet" href="/assets/clarity-amana-live-gate-v1.css?v=20261016WS"/>
 <link rel="stylesheet" href="/assets/clarity-amana-live-interior-v1.css?v=20261016CD"/>
 <div id="nuros-amana-panel" role="dialog" aria-modal="true" aria-labelledby="av-title" aria-hidden="true">
   <button type="button" class="av-close" onclick="NurOS.closeVault()" aria-label="Close">×</button>
@@ -2587,10 +2615,11 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <p><strong>NurOS</strong> keeps your intentions on this device only. Export a sealed package to move to another phone or browser — or retrieve an emergency backup.</p>
   <div class="av-status" id="av-status">Checking storage…</div>
 <button type="button" id="nuros-vault-fab" onclick="try{NurOS.openVault()}catch(e){location.hash='notes'}" title="Amana Vault" aria-label="Amana Vault">🕋</button>
-<script src="/assets/clarity-amana-live-gate-js-v1.js?v=20261016SMOKE" defer></script>
+<script src="/assets/clarity-amana-live-gate-js-v1.js?v=20261016WS" defer></script>
 <script src="/assets/clarity-amana-live-secure-login-v1.js?v=20261016SMOKE" defer></script>
 <script src="/assets/clarity-amana-live-input-fix-v1.js?v=20261016SMOKE" defer></script>
 <script src="/assets/clarity-amana-live-single-path-v1.js?v=20261016GUARD" defer></script>
+<script src="/assets/clarity-amana-worksheet-v1.js?v=20261016WS" defer></script>
 <script src="/assets/clarity-amana-live-unlock-fix-v1.js?v=20261016FIX" defer></script>
 <script>
 /* Phase B: alias AmanaVault → ClarityVault for bridge compatibility */
