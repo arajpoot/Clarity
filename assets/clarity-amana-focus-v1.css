@@ -71,3 +71,31 @@ body.amana-vault-focus #clarity-visit-pill-bar {
   z-index: 40;
   background: rgba(8, 24, 18, 0.96);
 }
+
+
+/* FOCUS2 — kill TRACK rail + phased strip + top packs while vault open */
+html.amana-vault-focus .clarity-gate-switcher,
+html.amana-vault-focus .rrra-sitewide,
+html.amana-vault-focus [class*="gate-switcher"],
+html.amana-vault-focus .nav-buttons,
+html.amana-vault-focus #amana-top-print-btn,
+body.amana-vault-focus .clarity-gate-switcher,
+body.amana-vault-focus .rrra-sitewide,
+body.amana-vault-focus [class*="gate-switcher"],
+body.amana-vault-focus .nav-buttons {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+/* feature-pack may force flex — override */
+html.amana-vault-focus div.clarity-gate-switcher.rrra-sitewide {
+  display: none !important;
+}

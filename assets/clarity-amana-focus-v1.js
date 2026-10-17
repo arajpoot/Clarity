@@ -19,7 +19,11 @@
     ".banner",
     ".clarity-dual-path",
     ".dual-tiles",
-    "#clarity-dual-path"
+    "#clarity-dual-path",
+    ".clarity-gate-switcher",
+    ".rrra-sitewide",
+    ".nav-buttons",
+    "[class*='gate-switcher']"
   ];
   var saved = {};
 
@@ -43,15 +47,22 @@
   }
 
   function hideEl(el) {
-    if (!el || el.__amanaFocusHidden) return;
-    el.__amanaFocusHidden = true;
-    el.__amanaFocusPrev = el.getAttribute("style") || "";
+    if (!el) return;
+    if (!el.__amanaFocusHidden) {
+      el.__amanaFocusHidden = true;
+      el.__amanaFocusPrev = el.getAttribute("style") || "";
+    }
+    /* Re-apply every sync — other packs force display:flex on TRACK rail */
     el.style.setProperty("display", "none", "important");
     el.style.setProperty("visibility", "hidden", "important");
     el.style.setProperty("height", "0", "important");
+    el.style.setProperty("max-height", "0", "important");
     el.style.setProperty("overflow", "hidden", "important");
     el.style.setProperty("margin", "0", "important");
     el.style.setProperty("padding", "0", "important");
+    el.style.setProperty("opacity", "0", "important");
+    el.style.setProperty("pointer-events", "none", "important");
+    try { el.setAttribute("hidden", ""); el.setAttribute("aria-hidden", "true"); } catch (e) {}
   }
 
   function showEl(el) {
@@ -90,6 +101,14 @@
 
   function sync() {
     apply(isOpen());
+    if (isOpen()) {
+      try {
+        document.querySelectorAll("div,section,aside,p").forEach(function (el) {
+          var tx = (el.textContent || "").trim();
+          if (tx.indexOf("Phased learning") === 0 && tx.length < 160) hideEl(el);
+        });
+      } catch (e) {}
+    }
   }
 
   g.clarityAmanaFocusSync = sync;
@@ -124,5 +143,5 @@
     setTimeout(boot, 100);
     setTimeout(sync, 800);
   });
-  setInterval(sync, 2000);
+  setInterval(sync, 800);
 })(window);
