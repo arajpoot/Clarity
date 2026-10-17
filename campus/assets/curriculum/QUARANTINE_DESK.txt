@@ -1,0 +1,11 @@
+F6 - Do not load on desk rooms
+================================
+Blocked from campus/desk/* pages:
+  /assets/curriculum/vault/boot.js          (loads ALL colleges)
+  foundation/curriculum-controller.js
+  foundation/diplomas.js
+  foundation/office-controller.js
+  cross-room college-*.js (other than the room's own)
+
+Allowed per room: see manifest.json chain only.
+Companion and SEAL foundation tree: unchanged on disk.

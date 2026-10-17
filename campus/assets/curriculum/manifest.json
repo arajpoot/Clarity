@@ -1,0 +1,72 @@
+{
+  "build": "20261017F6",
+  "note": "Surface room loaders; foundation remains deep source. One room one chain.",
+  "deep_base": "/assets/curriculum/vault/foundation/",
+  "rooms": {
+    "seeker": {
+      "surface": "/campus/assets/curriculum/seeker.js",
+      "chain": [
+        "engine.js",
+        "spark-quiz.js",
+        "phase-plaque.js",
+        "college-seeker.js"
+      ],
+      "api": "ClarityJuniorCurriculum",
+      "auto_boot_problem": true
+    },
+    "practice": {
+      "surface": "/campus/assets/curriculum/practice.js",
+      "chain": [
+        "engine.js",
+        "spark-quiz.js",
+        "phase-plaque.js",
+        "college-practice.js"
+      ],
+      "api": "ClarityJuniorHighCurriculum",
+      "auto_boot_problem": true
+    },
+    "consistency": {
+      "surface": "/campus/assets/curriculum/consistency.js",
+      "chain": [
+        "engine.js",
+        "spark-quiz.js",
+        "phase-plaque.js",
+        "college-consistency.js"
+      ],
+      "api": "ClarityDailyHsCurriculum",
+      "auto_boot_problem": true
+    },
+    "transmission": {
+      "surface": "/campus/assets/curriculum/transmission.js",
+      "chain": [
+        "engine.js",
+        "spark-quiz.js",
+        "phase-plaque.js",
+        "college-transmission.js"
+      ],
+      "api": "ClarityDaiUniversity",
+      "auto_boot_problem": true
+    }
+  },
+  "not_in_room_chain": [
+    "curriculum-controller.js",
+    "diplomas.js",
+    "office-controller.js",
+    "boot.js full seal"
+  ],
+  "phases_complete": [
+    "F0",
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6"
+  ],
+  "f4": "phase-room orchestrator only; surface loaders own curriculum",
+  "f5": "campus/assets/curriculum/data/*.meta.json placeholders",
+  "f6_quarantine_desk": [
+    "Do NOT load from desk rooms: boot.js (full), curriculum-controller.js, diplomas.js, office-controller.js",
+    "Do NOT load cross-college scripts from another room loader"
+  ]
+}
