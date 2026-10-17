@@ -2157,50 +2157,73 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <div class="av-status" id="amana-gate-status"></div>
 </div>
 
-<div class="amana-vault-interior" id="amana-vault-interior" hidden inert aria-hidden="true" data-amana-sealed="1">
+<div class="amana-vault-interior" id="amana-vault-interior" class="amana-fortress-capsule" hidden inert aria-hidden="true" data-amana-sealed="1">
   <div class="amana-session-bar">
     <span>● Vault open this session</span>
     <button type="button" class="lock-btn" id="amana-btn-lock">🔒 Lock now</button>
   </div>
-  <p class="amana-disclaimer" style="margin:0.75rem 0;font-size:0.85rem;opacity:0.9">
-    Estate tools (family tree, farāʾiḍ, wasiyyah) load after unlock · Phase C will expand heir readiness.
-    Educational only — not a fatwa or court document.
-  </p>
-</div>
 
+  <details class="amana-heir-dd" id="amana-heir-dd">
+<summary>📋 Heir readiness · for those you leave behind</summary>
+<div class="amana-heir-body">
+<div class="amana-heir-readiness" id="amana-heir-readiness">
+    <h2>📋 Heir readiness · for those you leave behind</h2>
+    <p class="ahr-disc">
+      On-device only · encrypted at rest · not a fatwa · you keep the passphrase record.
+      Fill what you can so next of kin know where to begin. Confirm with a scholar and local counsel.
+    </p>
+    <div class="ahr-ready" id="amana-readiness-lab">Readiness: 0/12 (0%) — Fill name &amp; next of kin, then open Debts.</div>
+
+    <label for="ahr-fullname">Full name (as on documents)</label>
+    <input type="text" id="ahr-fullname" placeholder="Legal / commonly used name" autocomplete="name" />
+
+    <label for="ahr-kin">Next of kin · phone</label>
+    <input type="text" id="ahr-kin" placeholder="Name · relation · phone" />
+
+    <label for="ahr-wasi">Executor / wasī · guardian of minors</label>
+    <input type="text" id="ahr-wasi" placeholder="Wasī name · phone · Guardian of children…" />
+
+    <label for="ahr-missed">Missed obligations (notes only — not a fatwa)</label>
+    <textarea id="ahr-missed" placeholder="Missed fasts… vows… unperformed Ḥajj if due… notes for a scholar…"></textarea>
+
+    <label for="ahr-letter">Letter to my family (optional)</label>
+    <textarea id="ahr-letter" placeholder="Beloved family… forgive me… settle debts first… make duʿāʾ…"></textarea>
+
+    <label for="ahr-debts">Debts / trusts to settle first</label>
+    <textarea id="ahr-debts" placeholder="People owed… amounts if known… documents location…"></textarea>
+
+    <label for="ahr-docs">Where key documents are</label>
+    <input type="text" id="ahr-docs" placeholder="Folder / app / person who knows…" />
+
+    <div class="amana-family-tree-lite" id="amana-family-tree-lite" style="margin-top:0.85rem;padding-top:0.75rem;border-top:1px solid rgba(212,180,90,0.25)">
+      <h3 style="font-size:1rem;color:#d4b45a;margin:0 0 0.35rem">🌳 Family outline (for heirs · educational)</h3>
+      <p style="font-size:0.78rem;opacity:0.8;margin:0 0 0.5rem;line-height:1.4">
+        Simple on-device notes for who is in the household. Not a legal pedigree or court filing — confirm farāʾiḍ with a scholar.
+      </p>
+      <label for="ahr-spouse">Spouse(s)</label>
+      <input type="text" id="ahr-spouse" placeholder="Name(s)" />
+      <label for="ahr-children">Children</label>
+      <textarea id="ahr-children" placeholder="Names · ages if helpful for guardianship notes…"></textarea>
+      <label for="ahr-parents">Parents / grandparents still living</label>
+      <input type="text" id="ahr-parents" placeholder="Names" />
+      <label for="ahr-siblings">Siblings</label>
+      <input type="text" id="ahr-siblings" placeholder="Names" />
+      <label for="ahr-other-heirs">Other possible heirs / notes</label>
+      <textarea id="ahr-other-heirs" placeholder="e.g. notes a scholar should know…"></textarea>
+    </div>
+
+    <div class="ahr-actions">
+      <button type="button" id="ahr-save">Save to vault</button>
+      <button type="button" class="soft" id="ahr-print">🖨 Print pack</button>
+      <button type="button" class="soft" id="ahr-scroll-fiqh">↓ Fiqh tools</button>
+    </div>
   </div>
-<div id="amana-fiqh-host" hidden style="display:none" class="amana-fiqh-host">
-<div class="card card-tools fiqh-tool-card" id="fiqh-workflow-card"><h2>⚖️ Fiqh tools — estate, heirs &amp; wasiyyah</h2><p style="font-size:0.92rem;margin:0 0 0.65rem;color:var(--text-muted);">
- Islamic estate settlement follows a fixed order. Use these three tools together — educational only, not a fatwa or court document.
- </p>
-<div class="clarity-shariah-compass" style="margin:.5rem 0 .75rem;padding:.65rem .8rem;border-radius:14px;border:1px solid rgba(143,191,98,.35);background:linear-gradient(135deg,rgba(15,76,58,.35),rgba(0,0,0,.2));font-size:.82rem;line-height:1.5">
-  <strong style="color:var(--gold,#d4b45a)">🧭 Shariah study compass</strong>
-  <ul style="margin:.35rem 0 0;padding-left:1.15rem">
-    <li><strong>Primary sources first</strong> — Qurʾān &amp; authentic Sunnah (verify grades).</li>
-    <li><strong>No DIY fatwa</strong> — calculators and drafts teach structure; scholars issue rulings.</li>
-    <li><strong>Fixed inheritance</strong> — farāʾiḍ shares are set by revelation; wasiyyah cannot cancel them.</li>
-    <li><strong>Local law</strong> — civil registration of wills/estates may still be required where you live.</li>
-  </ul>
-  <p style="margin:.4rem 0 0;opacity:.95"><strong>Educational purpose only — not a fatwa or court document.</strong></p>
 </div>
-<ol class="fiqh-steps" style="margin:0.35rem 0 0.75rem 1.1rem;font-size:0.9rem;line-height:1.55;"><li><strong>Funeral &amp; debts</strong> — paid first from the estate.</li><li><strong>Wasiyyah (optional)</strong> — up to <strong>⅓ of what remains</strong> to <em>non-heirs</em> or charity (Prophet ﷺ: no bequest to an heir).</li><li><strong>Farāʾiḍ</strong> — the rest (at least ⅔) by Qurʾānic shares among living heirs (4:11–12, 4:176).</li></ol><div class="fiqh-path-wizard" id="fiqh-path-wizard">
-  <div class="fiqh-path-title">🧭 Estate study path <span class="fiqh-path-sub">aligned to the tool tutorials</span></div>
-  <div class="fiqh-flow-nav" role="navigation" aria-label="Fiqh tool path">
-    <button type="button" class="btn-secondary fiqh-step-btn" data-fiqh-step="1" onclick="fiqhGoStep(1)">1 · Family tree</button>
-    <button type="button" class="btn-secondary fiqh-step-btn" data-fiqh-step="2" onclick="fiqhGoStep(2)">2 · Farāʾiḍ shares</button>
-    <button type="button" class="btn-secondary fiqh-step-btn" data-fiqh-step="3" onclick="fiqhGoStep(3)">3 · Wasiyyah draft</button>
-  </div>
-  <ol class="fiqh-path-checklist" id="fiqh-path-checklist">
-    <li data-step="1"><strong>Tree:</strong> gender · vital · year · link relatives · Data health</li>
-    <li data-step="2"><strong>Farāʾiḍ:</strong> load living heirs · net after debts · study shares (Hanafi aid)</li>
-    <li data-step="3"><strong>Wasiyyah:</strong> debts first · ≤⅓ non-heirs · executor · save/print draft</li>
-  </ol>
-  <p class="fiqh-path-hint" id="fiqh-path-hint">Start at the tree so heirs and vitals feed Farāʾiḍ and Wasiyyah. Educational only — not a fatwa.</p>
-</div><p class="notes-hint" style="margin-top:0.65rem;"><strong>How they link:</strong> mark ♂/♀ and †/● on the tree → load living heirs into Farāʾiḍ → pull estate figures into Wasiyyah → keep bequests ≤ ⅓ and never to fixed-share heirs.
- Study: <a href="https://islamqa.info/en/answers/111834" target="_blank" rel="noopener">wasiyyah</a> ·
- <a href="https://getmirath.com/" target="_blank" rel="noopener">Mirath</a> ·
- <a href="https://quran.com/4:11" target="_blank" rel="noopener">Qurʾān 4:11</a>.
- </p></div><div class="card card-tree fiqh-tool-card" id="user-family-tree-card"><div class="cred-stamp">Reviewed for educational accuracy: Clarity editorial pass (Qur’an / classical farāʾiḍ outlines) · Sep 2026 · Educational only — not a fatwa.</div><div class="uft-titlebar"><div class="uft-titlebar-main"><h2>🌳 Family tree</h2><span class="uft-titlebar-sub">Ancestry pedigree · registry · links</span></div><p class="uft-titlebar-desc">
+</details>
+
+  <div id="amana-fiqh-tools-wrap">
+
+<div class="card card-tree fiqh-tool-card" id="user-family-tree-card"><div class="cred-stamp">Reviewed for educational accuracy: Clarity editorial pass (Qur’an / classical farāʾiḍ outlines) · Sep 2026 · Educational only — not a fatwa.</div><div class="uft-titlebar"><div class="uft-titlebar-main"><h2>🌳 Family tree</h2><span class="uft-titlebar-sub">Ancestry pedigree · registry · links</span></div><p class="uft-titlebar-desc">
  Private descendant pedigree: oldest generation at the top, you at the bottom. Maiden names for women. Saved only on this device.
  </p>
 <details class="clarity-tool-tutorial meme-tutorial-compact" id="uft-tutorial" style="margin:.4rem 0 .55rem;font-size:.78rem;line-height:1.45;background:var(--accent-soft,rgba(212,180,90,.12));border-radius:10px;padding:.35rem .65rem;border:1px solid var(--border,rgba(255,255,255,.12))">
@@ -2214,7 +2237,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </ol>
   <p style="margin:.35rem 0 0;opacity:.9"><strong>Educational only — not a fatwa.</strong> Use this map to load living heirs into Inheritance and Wasiyyah tools below.</p>
 </details>
-</div><div class="meme-palette" id="uft-palette" style="display:flex;"><span class="notes-hint" style="margin-right:0.35rem;">Workspace:</span><button type="button" class="meme-swatch" style="background:#0f4c3a" onclick="uftSetSkin('green')" title="Deep green"></button><button type="button" class="meme-swatch" style="background:#1a365d" onclick="uftSetSkin('navy')" title="Navy"></button><button type="button" class="meme-swatch" style="background:#4a1942" onclick="uftSetSkin('plum')" title="Plum"></button><button type="button" class="meme-swatch" style="background:#7c2d12" onclick="uftSetSkin('earth')" title="Earth"></button><button type="button" class="meme-swatch" style="background:#0e7490" onclick="uftSetSkin('teal')" title="Teal"></button><button type="button" class="meme-swatch" style="background:#365314" onclick="uftSetSkin('olive')" title="Olive"></button><button type="button" class="meme-swatch" style="background:#44403c" onclick="uftSetSkin('charcoal')" title="Charcoal"></button><button type="button" class="meme-swatch" style="background:#f5f0e6;border:1px solid #ccc" onclick="uftSetSkin('parchment')" title="Parchment"></button></div><div class="uft-stage" id="uft-stage" data-skin="green"><input type="file" id="uft-load-file" accept="application/json,.json" hidden onchange="uftLoadFile(event)"><input type="file" id="uft-cards-file" accept="application/json,.json,.csv,text/csv" hidden onchange="uftLoadMemberCards(event)"><input type="file" id="uft-pack-file" accept="application/json,.json" hidden onchange="clarityImportPack(event)"><svg class="uft-bg" id="uft-bg" viewBox="0 0 400 460" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><defs><linearGradient id="uftTrunk" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4a2c14"/><stop offset="45%" stop-color="#7a4a22"/><stop offset="100%" stop-color="#3a220f"/></linearGradient><linearGradient id="uftCanopy" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8fbf62"/><stop offset="55%" stop-color="#3f8a4a"/><stop offset="100%" stop-color="#1f5a32"/></linearGradient><radialGradient id="uftLeafA" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#b7e07a"/><stop offset="100%" stop-color="#2d6b38"/></radialGradient></defs><ellipse class="uft-ground" cx="200" cy="438" rx="170" ry="18" fill="rgba(40,80,30,0.28)"/><path class="uft-trunk" d="M186 430 C184 360 176 300 188 238 C192 220 196 210 200 200 C204 210 208 220 212 238 C224 300 216 360 214 430 C210 436 190 436 186 430 Z" fill="url(#uftTrunk)"/><path d="M198 300 C190 280 176 268 160 262" stroke="#5a3418" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M202 290 C214 270 236 258 258 254" stroke="#5a3418" stroke-width="5" fill="none" stroke-linecap="round"/><g id="uft-branches"></g><ellipse cx="200" cy="168" rx="128" ry="78" fill="url(#uftCanopy)" opacity="0.42"/><g id="uft-leaves"></g></svg><div class="uft-wrap"><div class="uft-chrome no-print"><div class="clarity-toolbar-amana no-print"><button type="button" class="btn-secondary" onclick="uftShowIntegrity()">🩺 Data health</button><button type="button" class="btn-secondary" onclick="uftPrintFamilySheet()">🖨️ Family sheet</button></div></div><div class="uft-tree-first"><div class="uft-view-bar"><span class="uft-hint" style="margin:0 0.2rem 0 0;">Workspace:</span><button type="button" id="uft-view-pedigree" class="active" onclick="uftSetView('pedigree')">Main pedigree</button><span class="uft-zoom-tools" title="Zoom pedigree cards"><button type="button" class="btn-secondary uft-zoom-btn" onclick="uftZoomBy(-0.12)" aria-label="Zoom out">−</button><button type="button" class="btn-secondary uft-zoom-btn" id="uft-zoom-label" onclick="uftZoomReset()" ondblclick="uftZoomReset()" title="Reset zoom (double-tap pedigree or tap here)">100%</button><button type="button" class="btn-secondary uft-zoom-btn" onclick="uftZoomBy(0.12)" aria-label="Zoom in">+</button></span></div><div id="uft-preview-wrap" class="uft-preview-wrap"><div class="uft-chip-legend" id="uft-chip-legend" title="Card controls">
+</div><div class="meme-palette" id="uft-palette" style="display:flex;"><span class="notes-hint" style="margin-right:0.35rem;">Workspace:</span><button type="button" class="meme-swatch" style="background:#0f4c3a" onclick="uftSetSkin('green')" title="Deep green"></button><button type="button" class="meme-swatch" style="background:#1a365d" onclick="uftSetSkin('navy')" title="Navy"></button><button type="button" class="meme-swatch" style="background:#4a1942" onclick="uftSetSkin('plum')" title="Plum"></button><button type="button" class="meme-swatch" style="background:#7c2d12" onclick="uftSetSkin('earth')" title="Earth"></button><button type="button" class="meme-swatch" style="background:#0e7490" onclick="uftSetSkin('teal')" title="Teal"></button><button type="button" class="meme-swatch" style="background:#365314" onclick="uftSetSkin('olive')" title="Olive"></button><button type="button" class="meme-swatch" style="background:#44403c" onclick="uftSetSkin('charcoal')" title="Charcoal"></button><button type="button" class="meme-swatch" style="background:#f5f0e6;border:1px solid #ccc" onclick="uftSetSkin('parchment')" title="Parchment"></button></div><div class="uft-stage" id="uft-stage" data-skin="green"><input type="file" id="uft-load-file" accept="application/json,.json" hidden onchange="uftLoadFile(event)"><input type="file" id="uft-cards-file" accept="application/json,.json,.csv,text/csv" hidden onchange="uftLoadMemberCards(event)"><input type="file" id="uft-pack-file" accept="application/json,.json" hidden onchange="clarityImportPack(event)"><svg class="uft-bg" id="uft-bg" viewBox="0 0 400 460" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><defs><linearGradient id="uftTrunk" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4a2c14"/><stop offset="45%" stop-color="#7a4a22"/><stop offset="100%" stop-color="#3a220f"/></linearGradient><linearGradient id="uftCanopy" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8fbf62"/><stop offset="55%" stop-color="#3f8a4a"/><stop offset="100%" stop-color="#1f5a32"/></linearGradient><radialGradient id="uftLeafA" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#b7e07a"/><stop offset="100%" stop-color="#2d6b38"/></radialGradient></defs><ellipse class="uft-ground" cx="200" cy="438" rx="170" ry="18" fill="rgba(40,80,30,0.28)"/><path class="uft-trunk" d="M186 430 C184 360 176 300 188 238 C192 220 196 210 200 200 C204 210 208 220 212 238 C224 300 216 360 214 430 C210 436 190 436 186 430 Z" fill="url(#uftTrunk)"/><path d="M198 300 C190 280 176 268 160 262" stroke="#5a3418" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M202 290 C214 270 236 258 258 254" stroke="#5a3418" stroke-width="5" fill="none" stroke-linecap="round"/><g id="uft-branches"></g><ellipse cx="200" cy="168" rx="128" ry="78" fill="url(#uftCanopy)" opacity="0.42"/><g id="uft-leaves"></g></svg><div class="uft-wrap"><div class="uft-chrome no-print"><div class="clarity-toolbar-amana no-print"><button type="button" class="btn-secondary" onclick="uftShowIntegrity()">🩺 Data health</button><button type="button" class="btn-secondary" onclick="uftPrintFamilySheet()">🖨️ Family sheet</button><button type="button" class="btn-secondary" onclick="uftPrintPedigreeView()">🌳 Print pedigree</button></div></div><div class="uft-tree-first"><div class="uft-view-bar"><span class="uft-hint" style="margin:0 0.2rem 0 0;">Workspace:</span><button type="button" id="uft-view-pedigree" class="active" onclick="uftSetView('pedigree')">Main pedigree</button><span class="uft-zoom-tools" title="Zoom pedigree cards"><button type="button" class="btn-secondary uft-zoom-btn" onclick="uftZoomBy(-0.12)" aria-label="Zoom out">−</button><button type="button" class="btn-secondary uft-zoom-btn" id="uft-zoom-label" onclick="uftZoomReset()" ondblclick="uftZoomReset()" title="Reset zoom (double-tap pedigree or tap here)">100%</button><button type="button" class="btn-secondary uft-zoom-btn" onclick="uftZoomBy(0.12)" aria-label="Zoom in">+</button></span></div><div id="uft-preview-wrap" class="uft-preview-wrap"><div class="uft-chip-legend" id="uft-chip-legend" title="Card controls">
   <span class="uft-leg-item"><span class="uft-leg-chip live">●</span> Alive</span>
   <span class="uft-leg-item"><span class="uft-leg-chip dead">†</span> Deceased</span>
   <span class="uft-leg-item"><span class="uft-leg-chip">♂♀</span> Gender</span>
@@ -2254,7 +2277,9 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
  <textarea id="uft-siblings" placeholder="Your siblings — one per line"></textarea><textarea id="uft-children" placeholder="Your children — one per line"></textarea><textarea id="uft-grandchildren" placeholder="Your grandchildren — one per line"></textarea></label><label class="uft-rel-box" style="grid-column:1/-1;">Add a relation to any generation
  <div class="uft-rel-add"><input type="search" id="uft-rel-card-search" class="uft-card-pick" placeholder="Search cards by starting letters…" autocomplete="off" oninput="uftFilterCardSelects(this.value)"><select id="uft-rel-cards" class="uft-card-pick" aria-label="Member cards" onchange="uftPickMemberCard(this)"><option value="">1. Pick from loaded member cards…</option></select><select id="uft-rel-pick" aria-label="Existing members" onchange="uftPickExistingName(this)"><option value="">Or choose someone already on the tree…</option></select><select id="uft-rel-anchor" aria-label="Attach to"><option value="self">You</option><option value="spouse">Spouse</option><option value="father">Father</option><option value="mother">Mother</option><option value="pgf">Father’s father</option><option value="pgm">Father’s mother</option><option value="mgf">Mother’s father</option><option value="mgm">Mother’s mother</option><option value="g1">G1 (oldest)</option><option value="g2">G2</option><option value="g3">G3</option></select><select id="uft-rel-type" aria-label="Relation"><option value="sibling">Sibling</option><option value="child">Child / offspring</option><option value="spouse">Spouse</option><option value="grandchild">Grandchild</option><option value="uncle">Uncle</option><option value="aunt">Aunt</option><option value="nephew">Nephew</option><option value="niece">Niece</option><option value="cousin">Cousin</option></select><input type="text" id="uft-rel-name" list="uft-rel-name-list" placeholder="Or type a new name" maxlength="80" onkeydown="if(event.key==='Enter'){event.preventDefault();uftAddRel();}"><datalist id="uft-rel-name-list"></datalist><select id="uft-rel-vital" aria-label="Alive or deceased"><option value="">Status…</option><option value="alive">Alive</option><option value="deceased">Deceased</option></select><select id="uft-rel-gender" aria-label="Gender"><option value="">Gender…</option><option value="male">Male</option><option value="female">Female</option></select><input type="number" id="uft-rel-born" min="1800" max="2099" placeholder="Year of birth" inputmode="numeric"><button type="button" onclick="uftAddRel()">＋ Add to tree</button></div><div class="uft-vital-row"><select id="uft-vital-who" aria-label="Person"></select><select id="uft-vital-status" aria-label="Status"><option value="">Status…</option><option value="alive">Alive</option><option value="deceased">Deceased</option></select><button type="button" class="btn-secondary" onclick="uftApplyVital()">Set status</button></div><div id="uft-rel-list" class="uft-rel-list"></div></label></div></details></div></div><details class="uft-file-ops-standalone" id="uft-file-ops-section"><summary>Save · download · upload <span style="opacity:0.75;font-weight:500;">(collapsed until needed)</span></summary><p class="uft-hint" style="margin:0.25rem 0 0.45rem;">Pedigree save, file transfer, and named copies — outside the Edit names package. All files stay on this device.</p><div class="uft-actions"><button type="button" onclick="uftSave()" title="Save and show pedigree in workspace">💾 Save · show pedigree</button><button type="button" class="btn-secondary" onclick="uftRender(); try{uftCollapseEditor()}catch(e){}">↻ Refresh view</button><button type="button" class="btn-soft" onclick="uftStartFresh()" title="Clear pedigree and rebuild from member cards">🆕 Start tree</button><button type="button" class="btn-soft" onclick="uftClear()">🗑 Clear tree</button></div><div class="uft-file-menus no-print"><label>Download
  <select id="uft-download-menu" onchange="uftRunDownloadMenu(this)"><option value="">Choose download…</option><option value="csv">Member cards · CSV (Excel)</option><option value="cards">Member cards · JSON (backup)</option><option value="tree">Full tree · JSON (with links)</option><option value="png">Pedigree view · PNG (clean generations)</option><option value="text">Family tree · TXT (names + links)</option><option value="pack">Amānah pack · JSON</option></select></label><label>Upload
- <select id="uft-upload-menu" onchange="uftRunUploadMenu(this)"><option value="">Choose upload…</option><option value="cards">Member cards CSV/JSON → picker list</option><option value="tree">Full tree JSON (replace pedigree)</option><option value="pack">Amānah pack</option></select></label></div><p class="uft-hint no-print" style="margin:0.35rem 0 0;">Download <strong>Member cards · CSV (Excel)</strong> to edit names and generations in Excel, then Upload the same CSV back into the picker list. Full tree JSON restores links.</p><div class="uft-save-row"><span class="uft-status" id="uft-status">Private on this device — not uploaded.</span><div class="uft-lib"><select id="uft-library" aria-label="Saved copies" onchange="uftLoadSnapshot(this.value)"><option value="">Saved copies…</option></select><button type="button" class="btn-secondary" onclick="uftSnapshot()">Save named copy</button></div></div></details></div></div><div class="card card-tools fiqh-tool-card" id="faraid-card" style="margin-top:1rem;"><div class="cred-stamp">Reviewed for educational accuracy: Clarity editorial pass (Qur’an / classical farāʾiḍ outlines) · Sep 2026 · Educational only — not a fatwa.</div><h2>⚖️ Inheritance (Farāʾiḍ) — from your family tree</h2>
+ <select id="uft-upload-menu" onchange="uftRunUploadMenu(this)"><option value="">Choose upload…</option><option value="cards">Member cards CSV/JSON → picker list</option><option value="tree">Full tree JSON (replace pedigree)</option><option value="pack">Amānah pack</option></select></label></div><p class="uft-hint no-print" style="margin:0.35rem 0 0;">Download <strong>Member cards · CSV (Excel)</strong> to edit names and generations in Excel, then Upload the same CSV back into the picker list. Full tree JSON restores links.</p><div class="uft-save-row"><span class="uft-status" id="uft-status">Private on this device — not uploaded.</span><div class="uft-lib"><select id="uft-library" aria-label="Saved copies" onchange="uftLoadSnapshot(this.value)"><option value="">Saved copies…</option></select><button type="button" class="btn-secondary" onclick="uftSnapshot()">Save named copy</button></div></div></details></div></div></div><!-- /uft-stage --></div><!-- /user-family-tree-card -->
+
+<div class="card card-tools fiqh-tool-card" id="faraid-card" style="margin-top:1rem;"><div class="cred-stamp">Reviewed for educational accuracy: Clarity editorial pass (Qur’an / classical farāʾiḍ outlines) · Sep 2026 · Educational only — not a fatwa.</div><h2>⚖️ Inheritance (Farāʾiḍ) — from your family tree</h2>
 <details class="clarity-tool-tutorial meme-tutorial-compact" id="faraid-tutorial" style="margin:.4rem 0 .55rem;font-size:.78rem;line-height:1.45;background:var(--accent-soft,rgba(212,180,90,.12));border-radius:10px;padding:.35rem .65rem;border:1px solid var(--border,rgba(255,255,255,.12))">
   <summary style="cursor:pointer;font-weight:700;color:var(--gold,#d4b45a);list-style:none">💡 How to use Inheritance (Farāʾiḍ) · quick guide</summary>
   <ol style="margin:.35rem 0 0;padding-left:1.15rem">
@@ -2278,7 +2303,8 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
  <input type="number" id="faraid-funeral" min="0" step="any" placeholder="0"></label><label>Debts of the deceased
  <input type="number" id="faraid-debts" min="0" step="any" placeholder="0"></label><label>Wasiyyah (bequest ≤ ⅓ of remainder, non-heir)
  <input type="number" id="faraid-wasiyyah" min="0" step="any" placeholder="0"></label><label>Net distributable (auto)
- <input type="text" id="faraid-net" readonly placeholder="Calculated on run" style="opacity:0.9;"></label></div><div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.55rem 0;"><button type="button" onclick="faraidPullTree()">📥 Load heirs from family tree</button><button type="button" class="btn-secondary" onclick="try{document.getElementById('user-family-tree-card').scrollIntoView({behavior:'smooth'});}catch(e){}">🌳 Edit tree first</button><button type="button" onclick="faraidCalculate()">Calculate shares</button><button type="button" class="btn-secondary" onclick="faraidResetHeirs()">Clear heirs</button><button type="button" class="btn-secondary" onclick="faraidPrintResult()">🖨️ Print result</button><button type="button" class="btn-secondary" onclick="try{wasiPullFromFaraid();document.getElementById('wasiyyah-card').scrollIntoView({behavior:'smooth'});}catch(e){}">↗ Push figures to Wasiyyah</button></div><div id="faraid-heirs" style="margin-top:0.45rem;"></div><div id="faraid-result" class="search-result" style="margin-top:0.75rem;display:none;"></div><p class="notes-hint" style="margin-top:0.55rem;">Set ♂/♀ and †/● on pedigree cards so heirs load correctly. Further study: <a href="https://getmirath.com/" target="_blank" rel="noopener">Mirath</a> · <a href="https://qurani.io/inheritance-calculator/" target="_blank" rel="noopener">Qurani</a> · <a href="https://zakat.international/" target="_blank" rel="noopener">Amanah</a></p></div><div class="card card-tools fiqh-tool-card" id="wasiyyah-card" data-note="hanafi"><div class="cred-stamp">Reviewed for educational accuracy: Clarity editorial pass (Qur’an / classical farāʾiḍ outlines) · Sep 2026 · Educational only — not a fatwa.</div><p class="td-src clarity-disc" style="font-size:.82rem"><strong>Educational purpose only — not a fatwa or legal will.</strong></p><h2>📜 Wasiyyah — Islamic will &amp; bequest</h2>
+ <input type="text" id="faraid-net" readonly placeholder="Calculated on run" style="opacity:0.9;"></label></div><div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.55rem 0;"><button type="button" onclick="faraidPullTree()">📥 Load heirs from family tree</button><button type="button" class="btn-secondary" onclick="try{document.getElementById('user-family-tree-card').scrollIntoView({behavior:'smooth'});}catch(e){}">🌳 Edit tree first</button><button type="button" onclick="faraidCalculate()">Calculate shares</button><button type="button" class="btn-secondary" onclick="faraidResetHeirs()">Clear heirs</button><button type="button" class="btn-secondary" onclick="faraidPrintResult()">🖨️ Print result</button><button type="button" class="btn-secondary" onclick="try{wasiPullFromFaraid();document.getElementById('wasiyyah-card').scrollIntoView({behavior:'smooth'});}catch(e){}">↗ Push figures to Wasiyyah</button></div><div id="faraid-heirs" style="margin-top:0.45rem;"></div><div id="faraid-result" class="search-result" style="margin-top:0.75rem;display:none;"></div><p class="notes-hint" style="margin-top:0.55rem;">Set ♂/♀ and †/● on pedigree cards so heirs load correctly. Further study: <a href="https://getmirath.com/" target="_blank" rel="noopener">Mirath</a> · <a href="https://qurani.io/inheritance-calculator/" target="_blank" rel="noopener">Qurani</a> · <a href="https://zakat.international/" target="_blank" rel="noopener">Amanah</a></p></div>
+<div class="card card-tools fiqh-tool-card" id="wasiyyah-card" data-note="hanafi"><div class="cred-stamp">Reviewed for educational accuracy: Clarity editorial pass (Qur’an / classical farāʾiḍ outlines) · Sep 2026 · Educational only — not a fatwa.</div><p class="td-src clarity-disc" style="font-size:.82rem"><strong>Educational purpose only — not a fatwa or legal will.</strong></p><h2>📜 Wasiyyah — Islamic will &amp; bequest</h2>
 <details class="clarity-tool-tutorial meme-tutorial-compact" id="wasiyyah-tutorial" style="margin:.4rem 0 .55rem;font-size:.78rem;line-height:1.45;background:var(--accent-soft,rgba(212,180,90,.12));border-radius:10px;padding:.35rem .65rem;border:1px solid var(--border,rgba(255,255,255,.12))">
   <summary style="cursor:pointer;font-weight:700;color:var(--gold,#d4b45a);list-style:none">💡 How to draft a Wasiyyah · quick guide</summary>
   <ol style="margin:.35rem 0 0;padding-left:1.15rem">
@@ -2316,28 +2342,11 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
  <a href="https://islamqa.info/en/answers/111834" target="_blank" rel="noopener">IslamQA — ruling on wasiyyah</a> ·
  <a href="https://trybarakah.com/learn/islamic-will" target="_blank" rel="noopener">Islamic will overview</a> ·
  <a href="https://anic.org.au/last-islamic-will-wasiyah-testament/" target="_blank" rel="noopener">ANIC template (AU)</a> ·
- <a href="https://wassiyyah.com" target="_blank" rel="noopener">Wassiyyah (multi-country)</a></p></div></div></div>
-<div class="card card-tools" id="deepen-study-card" style="margin-top:1.2rem">
-  <h2>📚 Deepen your study</h2>
-  <p style="font-size:0.9rem;color:var(--text-muted);margin:0 0 0.6rem">Trusted libraries for Qurʾān, ḥadīth &amp; fiqh. Always verify with a local scholar. Links open in a new tab.</p>
-  <div style="display:flex;flex-wrap:wrap;gap:0.45rem;margin-bottom:0.75rem">
-    <a class="btn-soft" href="https://quran.com" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;padding:0.45rem 0.85rem">Quran.com</a>
-    <a class="btn-soft" href="https://sunnah.com" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;padding:0.45rem 0.85rem">Sunnah.com</a>
-    <a class="btn-soft" href="https://corpus.quran.com" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;padding:0.45rem 0.85rem">Quranic Arabic Corpus</a>
-    <a class="btn-soft" href="https://islamqa.info" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;padding:0.45rem 0.85rem">IslamQA</a>
-    <a class="btn-soft" href="https://seekersguidance.org" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;padding:0.45rem 0.85rem">SeekersGuidance</a>
-  </div>
-  <h3 style="font-size:1.05rem;margin:0.8rem 0 0.4rem;color:var(--accent)">Fiqh tools (in-app)</h3>
-  <p style="font-size:0.88rem;color:var(--text-muted);margin:0 0 0.5rem">Wasiyyah · Pedigree · Farāʾiḍ live only under this Fiqh tools tab. One Farāʾiḍ calculator is not copied into other tabs.</p>
-  <div style="display:flex;flex-wrap:wrap;gap:0.4rem">
-    <button type="button" class="btn-secondary" onclick="document.getElementById('user-family-tree-card').scrollIntoView({behavior:'smooth',block:'start'})">🌳 Family tree</button>
-    <button type="button" class="btn-secondary" onclick="document.getElementById('faraid-card').scrollIntoView({behavior:'smooth',block:'start'})">⚖️ Farāʾiḍ</button>
-    <button type="button" class="btn-secondary" onclick="document.getElementById('wasiyyah-card').scrollIntoView({behavior:'smooth',block:'start'})">📜 Wasiyyah</button>
-    <a class="btn-soft" href="https://zakat.international/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;padding:0.45rem 0.85rem">Zakat calculators</a>
-  </div>
+ <a href="https://wassiyyah.com" target="_blank" rel="noopener">Wassiyyah (multi-country)</a></p></div>
+
+</div><!-- /amana-fiqh-tools-wrap -->
 </div>
-</main>
-  </div>
+
   <p style="text-align:center;font-size:.78rem;opacity:.8;margin:1rem 0 2rem">
     University structured desk: <a href="/campus/">/campus/</a> · This vault does not depend on University SEAL.
   </p>
@@ -2571,6 +2580,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <link rel="stylesheet" href="/assets/clarity-amana-vault-v1.css?v=20261016P3c"/>
 <link rel="stylesheet" href="/assets/clarity-amana-vault-css-v1.css?v=20261016P3"/>
 <link rel="stylesheet" href="/assets/clarity-amana-live-gate-v1.css?v=20261016GATE"/>
+<link rel="stylesheet" href="/assets/clarity-amana-live-interior-v1.css?v=20261016CD"/>
 <div id="nuros-amana-panel" role="dialog" aria-modal="true" aria-labelledby="av-title" aria-hidden="true">
   <button type="button" class="av-close" onclick="NurOS.closeVault()" aria-label="Close">×</button>
   <h2 id="av-title">Amana Vault</h2>
