@@ -1,0 +1,81 @@
+/* iPhone / mobile University day-mode + switch performance */
+:root{color-scheme:light dark}
+
+/* Force readable DAY surfaces — high specificity for iOS Safari */
+html[data-theme=light],
+html[data-theme=light] body.cu-page{
+  color-scheme:light!important;
+  --cu-ink:#1a2a22!important;
+  --cu-muted:rgba(26,42,34,.78)!important;
+  --cu-bg0:#f3f0e6!important;
+  --cu-bg1:#eef4ef!important;
+  --cu-plaque:#fffef9!important;
+  --cu-card:#fffef9!important;
+  --cu-line:rgba(70,124,69,.28)!important;
+  --cu-gold:#8a6a12!important;
+  background:#eef4ef!important;
+  color:#1a2a22!important;
+}
+html[data-theme=light] body.cu-page::before{opacity:.03!important}
+
+html[data-theme=light] .cu-banner,
+html[data-theme=light] .cu-topstrip{
+  background:linear-gradient(180deg,#f7f5ee,#eef3ee)!important;
+  color:#1a2a22!important;
+  border-color:rgba(70,124,69,.25)!important;
+}
+html[data-theme=light] .cu-brand strong{color:#6b5420!important}
+html[data-theme=light] .cu-pills,
+html[data-theme=light] .cu-card,
+html[data-theme=light] .cu-continue,
+html[data-theme=light] .cu-plaque,
+html[data-theme=light] details.cu-plaque,
+html[data-theme=light] .cu-contract,
+html[data-theme=light] .cu-lib-card,
+html[data-theme=light] .junior-curriculum-card,
+html[data-theme=light] .junior-module,
+html[data-theme=light] .curriculum-phase-card,
+html[data-theme=light] #cu-stage > div,
+html[data-theme=light] #cu-stage section,
+html[data-theme=light] #cu-stage article{
+  background:#fffef9!important;
+  color:#1a2a22!important;
+  border-color:rgba(184,146,42,.4)!important;
+}
+html[data-theme=light] .cu-card .desc,
+html[data-theme=light] .cu-lead,
+html[data-theme=light] .cu-muted,
+html[data-theme=light] #cu-stage p{color:rgba(26,42,34,.8)!important}
+html[data-theme=light] h1,
+html[data-theme=light] .cu-h1,
+html[data-theme=light] h2,
+html[data-theme=light] .cu-card strong,
+html[data-theme=light] .cu-contract-kicker{color:#6b5420!important}
+
+html[data-theme=light] .cu-pills a{color:#1a2a22!important}
+html[data-theme=light] .cu-pills a.here{background:#467C45!important;color:#fff!important}
+
+/* Curriculum foundation often ships dark cards — override in day */
+html[data-theme=light] [class*="junior"],
+html[data-theme=light] [class*="curriculum"],
+html[data-theme=light] [class*="phase-plaque"],
+html[data-theme=light] .lock-msg,
+html[data-theme=light] .module-body{
+  color:#1a2a22!important;
+}
+html[data-theme=light] [style*="background:#0"],
+html[data-theme=light] [style*="background: #0"],
+html[data-theme=light] [style*="background:#1"],
+html[data-theme=light] [style*="background:rgb(0"],
+html[data-theme=light] [style*="background:rgba(0"]{
+  background:#fffef9!important;
+}
+
+/* iOS: reduce paint cost */
+@supports (-webkit-touch-callout:none){
+  .cu-banner{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  body.cu-page{background-attachment:scroll!important}
+}
+
+/* Prefer content visibility for offscreen */
+.cu-grid .cu-card{content-visibility:auto;contain-intrinsic-size:120px}
