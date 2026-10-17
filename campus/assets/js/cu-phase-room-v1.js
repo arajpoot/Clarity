@@ -256,25 +256,31 @@
     document.head.appendChild(s);
   }
 
+  
   function renderRoom() {
+    /* F4: curriculum owned by campus/assets/curriculum/{room}.js
+       phase-room only isolates, strips, paints gate/craft */
+    try { isolateCurriculumApis(); } catch (e0) {}
+    try { stripOtherCards(); } catch (e1) {}
+    /* If surface loader already rendered, do not call all APIs.
+       Only fallback-render if API present and stage still empty. */
     try {
-      isolateCurriculumApis();
       var r = room();
-      /* exclusive — else-if chain so only one path runs */
-      if (r === "seeker" && g.ClarityJuniorCurriculum && g.ClarityJuniorCurriculum.render)
-        g.ClarityJuniorCurriculum.render();
-      else if (r === "practice" && g.ClarityJuniorHighCurriculum && g.ClarityJuniorHighCurriculum.render)
-        g.ClarityJuniorHighCurriculum.render();
-      else if (r === "consistency" && g.ClarityDailyHsCurriculum && g.ClarityDailyHsCurriculum.render)
-        g.ClarityDailyHsCurriculum.render();
-      else if (r === "transmission") {
-        if (g.ClarityDaiUniversity && g.ClarityDaiUniversity.render) g.ClarityDaiUniversity.render();
-        else if (g.ClarityDaiUniversityCurriculum && g.ClarityDaiUniversityCurriculum.render)
-          g.ClarityDaiUniversityCurriculum.render();
+      var stage = document.getElementById("cu-stage");
+      var empty = stage && !(stage.textContent || "").trim();
+      var apiName = {
+        seeker: "ClarityJuniorCurriculum",
+        practice: "ClarityJuniorHighCurriculum",
+        consistency: "ClarityDailyHsCurriculum",
+        transmission: "ClarityDaiUniversity"
+      }[r];
+      if (empty && apiName && g[apiName] && typeof g[apiName].render === "function") {
+        g[apiName].render();
       }
-    } catch (e) {}
-    stripOtherCards();
-    setTimeout(stripOtherCards, 400);
+    } catch (e2) {}
+    try { stripOtherCards(); } catch (e3) {}
+    setTimeout(function () { try { isolateCurriculumApis(); stripOtherCards(); } catch (e4) {} }, 400);
+setTimeout(stripOtherCards, 400);
     setTimeout(stripOtherCards, 1200);
     setTimeout(isolateCurriculumApis, 100);
     stripChrome();
@@ -373,6 +379,9 @@
     obs.observe(main, { childList: true, subtree: true });
   })();
 
+  document.addEventListener("cu-curriculum-ready", function () {
+    try { isolateCurriculumApis(); stripOtherCards(); paintGate(); } catch (eR) {}
+  });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 
