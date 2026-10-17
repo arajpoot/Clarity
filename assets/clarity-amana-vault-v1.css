@@ -83,6 +83,11 @@ html, body { max-width: 100vw; }
 .p5-vault-actions button.primary{background:linear-gradient(135deg,#c9a227,#e8c47a);color:#0c1410}
 .p5-vault-status{font-size:.82rem;margin-top:.5rem;opacity:.9;min-height:1.2em}
 #amana-vault-host{max-width:40rem;margin:0 auto;padding:.5rem}
+/* unlocked: full width pedigree */
+#tab-notes.amana-unlocked #amana-vault-host,
+#tab-notes.active.amana-unlocked #amana-vault-host{
+  max-width:none;width:100%;margin:0;padding:.25rem .12rem 1rem}
+
 .amana-disclaimer{font-size:.8rem;line-height:1.45;opacity:.9;margin:.5rem 0 .75rem;padding:.65rem .8rem;
   border-radius:12px;border:1px solid rgba(212,180,90,.3);background:rgba(0,0,0,.2)}
 #nuros-vault-fab{position:fixed;right:max(.75rem,env(safe-area-inset-right));bottom:max(4.5rem,calc(3.5rem + env(safe-area-inset-bottom)));
@@ -90,7 +95,8 @@ html, body { max-width: 100vw; }
   background:linear-gradient(145deg,#0d4f3c,#145a45);color:#f3ead0;font-size:1.2rem;cursor:pointer;
   box-shadow:0 4px 14px rgba(0,0,0,.35)}
 
-.amana-fiqh-host{max-width:min(52rem,100%);margin:0 auto 1.5rem;padding:0 .5rem}
+.amana-fiqh-host{max-width:min(52rem,100%);margin:0 auto 1.5rem;padding:0 .15rem}
+#tab-notes.amana-unlocked #amana-fiqh-tools-wrap{max-width:none;width:100%;padding:0 .1rem}
 .amana-fiqh-host .card{margin:0.75rem 0}
 .fiqh-path-focus{outline:2px solid rgba(212,180,90,.55);outline-offset:2px}
 

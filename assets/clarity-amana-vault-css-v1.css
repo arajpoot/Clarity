@@ -155,3 +155,62 @@ html[data-amana-session="open"] #fiqh-workflow-card {
 }
 #tab-notes.amana-locked #amana-vault-interior { display: none !important; }
 #tab-notes.amana-locked #amana-vault-gate { display: block !important; }
+
+
+/* VIEWPORT RESTORE 20261016PAD — narrow side chrome so zoomed pedigree can edge-scroll */
+#tab-notes.active.amana-unlocked #amana-vault-host,
+#tab-notes.amana-unlocked #amana-vault-host {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.25rem 0.15rem 1rem !important;
+  box-sizing: border-box !important;
+}
+#tab-notes.active.amana-unlocked #amana-vault-interior,
+#tab-notes.amana-unlocked #amana-vault-interior {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.15rem 0.1rem 1rem !important;
+  box-sizing: border-box !important;
+}
+#tab-notes.active.amana-unlocked #amana-fiqh-tools-wrap,
+#tab-notes.amana-unlocked #amana-fiqh-tools-wrap,
+#tab-notes.active.amana-unlocked #user-family-tree-card,
+#tab-notes.amana-unlocked #user-family-tree-card,
+#tab-notes.active.amana-unlocked #faraid-card,
+#tab-notes.amana-unlocked #faraid-card,
+#tab-notes.active.amana-unlocked #wasiyyah-card,
+#tab-notes.amana-unlocked #wasiyyah-card {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0.2rem !important;
+  padding-right: 0.2rem !important;
+  box-sizing: border-box !important;
+}
+#tab-notes.active.amana-unlocked #uft-stage,
+#tab-notes.amana-unlocked #uft-stage,
+#tab-notes.active.amana-unlocked .uft-viewport,
+#tab-notes.amana-unlocked .uft-viewport,
+#tab-notes.active.amana-unlocked [class*="uft-stage"],
+#tab-notes.amana-unlocked [class*="family-tree"] {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  touch-action: pan-x pan-y !important;
+}
+/* Heir bar can stay slightly inset; tree needs the edges */
+#tab-notes.active.amana-unlocked .amana-session-bar {
+  margin-left: 0.15rem !important;
+  margin-right: 0.15rem !important;
+}
+/* Gate stays narrow when locked — do not widen lock card */
+#tab-notes.amana-locked #amana-vault-gate,
+#tab-notes.active.amana-locked #amana-vault-gate {
+  max-width: 28rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
