@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html data-mahtaab="1" lang="en" data-theme="dark">
+<html lang="en" data-theme="system" data-campus-page="library" data-mahtaab="1">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Library · Source shelves · Clarity University</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261016HARMONY"/>
-
-<style id="cu-empty-host-hide">
-#clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
-</style>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261016HARMONY"/>
-<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261016HARMONY"></script>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261016HARMONY"/>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261016HARMONY"></script>
+<meta name="description" content="Educational source shelves — Qurʾān, Hadith, ʿaqīdah pointers. Not a fatwa service."/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261016LIB"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261016LIB"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-library-v1.css?v=20261016LIB"/>
+<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261016LIB"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261016LIB"></script>
 </head>
-<body class="cu-mahtaab-on cu-page">
+<body class="cu-page cu-mahtaab-on" data-campus-page="library">
 <div class="cu-topstrip">
   <div class="cu-top-links">
     <span>Campus</span>
@@ -25,15 +22,18 @@
     <a href="/lab/arabic/">Arabic studio</a>
     <a href="/library/">Library</a>
   </div>
-  <div class="cu-top-links">
-    <a href="/">Companion home</a>
-  </div>
+  <div class="cu-top-links"><a href="/">Companion home</a></div>
 </div>
 <header class="cu-banner">
   <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Clarity University</strong></div></a>
-  <div class="cu-banner-actions"><button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button><button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button><button type="button" class="cu-theme-pill" data-cu-theme="system">System</button><a class="cu-main-link" href="/">← Companion</a></div>
+  <div class="cu-banner-actions">
+    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">System</button>
+    <a class="cu-main-link" href="/">← Companion</a>
+  </div>
 </header>
-<main class="cu-wrap">
+<main class="cu-wrap cu-lib">
   <nav class="cu-pills" aria-label="Campus">
     <a href="/campus/">Map</a>
     <a href="/campus/desk/">Desk</a>
@@ -42,27 +42,135 @@
     <a href="/vault/">Vault</a>
     <a href="/charter/">Charter</a>
   </nav>
-  <h1 class="lab-h1" style="text-align:center">Source shelves</h1>
-  <p class="lab-lead">Pointers for deeper reading. Educational only — verify with Qurʾān, Sunnah, and a local scholar.</p>
-  <div class="lab-grid" style="max-width:48rem;margin:1rem auto">
-    <div class="lab-card"><strong>Qurʾān</strong><span>Read with a trusted translation. Lab stations practice listening and recall.</span></div>
-    <div class="lab-card"><strong>40 Nawawī</strong><span>Short ḥadīth path for character and intention — study with a teacher when you can.</span></div>
-    <div class="lab-card"><strong>ʿAqīdah basics</strong><span>Desk Junior units: Who is Allah? — humility, not debate sport.</span></div>
-    <div class="lab-card"><strong>Fiqh of worship</strong><span>New Muslim / ʿIbādah hall after Junior phase quiz.</span></div>
-    <div class="lab-card"><strong>Mīrāth literacy</strong><span>Desk Mīrāth lessons + Vault tools — educational, not a fatwa engine.</span></div>
-    <div class="lab-card"><strong>Adhkār</strong><span><a href="/adhkar/">Morning / evening</a> on-device window.</span></div>
+
+  <h1>Source shelves</h1>
+  <p class="cu-lib-lead">Pointers for deeper reading. Practice stays on Desk and Lab. Educational only.</p>
+
+  <!-- L0 -->
+  <div class="cu-lib-disc">
+    <strong>How to use this library.</strong>
+    Cards marked <em>Campus</em> or <em>Lab</em> stay on Clarity. Cards marked <em>External</em> open trusted free sites in a new tab.
+    Clarity does not issue fatwas. Verify with Qurʾān, Sunnah, and a local scholar. Not affiliated with Al-Azhar or Madinah University.
   </div>
+
+  <!-- L1 + L2 Qurʾān -->
+  <section class="cu-lib-shelf" id="quran">
+    <h2>Qurʾān</h2>
+    <div class="cu-lib-grid">
+      <article class="cu-lib-card">
+        <div class="cu-lib-badges"><span class="cu-lib-badge external">External</span><span class="cu-lib-badge lab">Lab</span></div>
+        <h3>Read · listen · reflect</h3>
+        <p>Trusted free Qurʾān interfaces for translation, audio, and study tools. Use Lab for tajweed and Arabic vocabulary.</p>
+        <div class="cu-lib-links">
+          <a class="primary" href="https://quran.com" target="_blank" rel="noopener noreferrer">Quran.com</a>
+          <a href="https://tanzil.net" target="_blank" rel="noopener noreferrer">Tanzil</a>
+          <a href="/lab/tajweed/">Tajweed lab</a>
+          <a href="/lab/arabic/?deck=everyday">Arabic flash</a>
+        </div>
+      </article>
+      <article class="cu-lib-card">
+        <div class="cu-lib-badges"><span class="cu-lib-badge external">External</span></div>
+        <h3>Word tools · tafsīr libraries</h3>
+        <p>Morphology and large free tafsīr collections for deeper research — not a substitute for a teacher.</p>
+        <div class="cu-lib-links">
+          <a class="primary" href="https://corpus.quran.com" target="_blank" rel="noopener noreferrer">Quranic Arabic Corpus</a>
+          <a href="https://www.altafsir.com" target="_blank" rel="noopener noreferrer">Altafsir.com</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- L1 + L3 Hadith -->
+  <section class="cu-lib-shelf" id="hadith">
+    <h2>40 Nawawī · Hadith</h2>
+    <div class="cu-lib-grid">
+      <article class="cu-lib-card">
+        <div class="cu-lib-badges"><span class="cu-lib-badge external">External</span><span class="cu-lib-badge campus">Campus</span></div>
+        <h3>Forty ḥadīth of al-Nawawī</h3>
+        <p>Core character and intention texts. Read on Sunnah.com; connect practice on the Desk path.</p>
+        <div class="cu-lib-links">
+          <a class="primary" href="https://sunnah.com/nawawi40" target="_blank" rel="noopener noreferrer">Nawawī 40</a>
+          <a href="https://sunnah.com" target="_blank" rel="noopener noreferrer">Sunnah.com</a>
+          <a href="/campus/desk/seeker/">Seeker desk</a>
+        </div>
+      </article>
+      <article class="cu-lib-card">
+        <div class="cu-lib-badges"><span class="cu-lib-badge external">External</span></div>
+        <h3>Search the collections</h3>
+        <p>Browse broader hadith books with care — check grading notes on the site and ask a teacher when unsure.</p>
+        <div class="cu-lib-links">
+          <a class="primary" href="https://sunnah.com" target="_blank" rel="noopener noreferrer">Open Sunnah.com</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- L1 remaining shelves -->
+  <section class="cu-lib-shelf" id="aqidah">
+    <h2>ʿAqīdah basics</h2>
+    <div class="cu-lib-grid">
+      <article class="cu-lib-card">
+        <div class="cu-lib-badges"><span class="cu-lib-badge campus">Campus</span></div>
+        <h3>Who is Allah? — humility path</h3>
+        <p>Junior units on the Seeker desk. Not debate sport. One open module at a time.</p>
+        <div class="cu-lib-links">
+          <a class="primary" href="/campus/desk/seeker/">Open Seeker desk</a>
+          <a href="/campus/">Journey map</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cu-lib-shelf" id="fiqh">
+    <h2>Fiqh of worship</h2>
+    <div class="cu-lib-grid">
+      <article class="cu-lib-card">
+        <div class="cu-lib-badges"><span class="cu-lib-badge campus">Campus</span><span class="cu-lib-badge lab">Lab</span></div>
+        <h3>Prayer confidence path</h3>
+        <p>Practice room after Junior quiz. Lab supports tajweed and ṣalāh lexicon — not a fatwa service.</p>
+        <div class="cu-lib-links">
+          <a class="primary" href="/campus/desk/practice/">Practice desk</a>
+          <a href="/lab/tajweed/">Tajweed lab</a>
+          <a href="/lab/arabic/?deck=salah">Arabic · ṣalāh words</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cu-lib-shelf" id="mirath">
+    <h2>Mīrāth literacy</h2>
+    <div class="cu-lib-grid">
+      <article class="cu-lib-card">
+        <div class="cu-lib-badges"><span class="cu-lib-badge campus">Campus</span></div>
+        <h3>Inheritance literacy · educational</h3>
+        <p>Desk lessons and Vault tools for notes. Not a court document, not legal advice.</p>
+        <div class="cu-lib-links">
+          <a class="primary" href="/campus/desk/">Desk</a>
+          <a href="/vault/">Amana Vault</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cu-lib-shelf" id="adhkar">
+    <h2>Adhkār</h2>
+    <div class="cu-lib-grid">
+      <article class="cu-lib-card">
+        <div class="cu-lib-badges"><span class="cu-lib-badge campus">Campus</span></div>
+        <h3>Morning · evening on-device</h3>
+        <p>Use Companion’s on-device adhkār window for daily remembrance; return here for structured study links.</p>
+        <div class="cu-lib-links">
+          <a class="primary" href="/">Companion home</a>
+          <a href="/campus/desk/consistency/">Consistency desk</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
 </main>
-<footer class="cu-foot">Not affiliated with Al-Azhar or Madinah University. Educational only.</footer>
-
-<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261016HARMONY" defer></script>
-<script src="/campus/assets/js/cu-flash-wings-v1.js?v=20261016HARMONY" defer></script>
-
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/campus/assets/js/cu-mahtaab-hydrate-v1.js?v=20261016HARMONY" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-</body></html>
+<footer class="cu-foot">Educational only — not a fatwa. External sites are not controlled by Clarity. University path · on-device vault · lab practice</footer>
+<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261016LIB" defer></script>
+<script src="/campus/assets/js/cu-flash-wings-v1.js?v=20261016LIB" defer></script>
+<script src="/campus/assets/js/cu-mahtaab-hydrate-v1.js?v=20261016LIB" defer></script>
+</body>
+</html>
