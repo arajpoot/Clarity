@@ -4,66 +4,114 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Campus map · Clarity University</title>
-<meta name="description" content="Clarity University guided learning. Educational only — not a fatwa."/>
+<meta name="description" content="Clarity University — educational on-ramp and guided desk learning. Not a fatwa."/>
 <meta name="theme-color" content="#0a1210"/>
-<link rel="stylesheet" href="/campus/campus.css?v=20261017UNI8"/>
+<link rel="stylesheet" href="/campus/campus.css?v=20261017ONRAMP"/>
 </head>
 <body>
 <nav class="cu-shell-nav" aria-label="University">
   <a class="cu-shell-brand" href="/campus/"><span>ن</span><span><small>UNIVERSITY</small>Clarity University</span></a>
-  <div class="cu-shell-links"><a href="/campus/" aria-current="page">Map</a><a href="/campus/faculty.html">Faculty</a><a href="/campus/phase-desk.html">Phase desk</a><a href="/campus/bots.html">Bots</a><a href="/campus/grading.html">Progress</a><a href="/">Companion</a></div>
+  <div class="cu-shell-links"><a href="/campus/" aria-current="page">Map</a><a href="/campus/desk/">Desk</a><a href="/campus/faculty.html">Faculty</a><a href="/campus/bots.html">Bots</a><a href="/campus/grading.html">Progress</a><a href="/">Companion</a></div>
 </nav>
 <main class="cu-main">
 
 <header class="cu-hero">
-  <div class="cu-pill">University · Nur Path</div>
+  <div class="cu-pill">University · arrival</div>
   <h1>Campus map</h1>
-  <p>Four colleges · phase desk · Faculty · guided workers. Calm study, one step at a time.</p>
+  <p>Arrive · open a local campus record · meet your advisor · enter the desk classroom. Educational only — not a fatwa.</p>
 </header>
+
 <div class="cu-beacon" aria-label="Worker beacons">
   <span data-cu-beacon="faculty">Faculty</span>
   <span data-cu-beacon="security">Security</span>
   <span data-cu-beacon="it">IT</span>
   <span data-cu-beacon="om">O&amp;M</span>
-  <span data-cu-beacon="ops">Ops</span>
   <span data-cu-beacon="arsenal">Arsenal</span>
 </div>
-<section class="cu-panel">
+
+<section class="cu-panel" id="cu-continue-panel">
   <div class="cu-section-label" style="margin-top:0">Continue where you left off</div>
   <p class="cu-note"><strong data-cu-phase-label>Foundations</strong> · steps <span data-cu-steps>0</span></p>
   <div class="cu-progress"><i data-cu-progress-bar style="width:8%"></i></div>
-  <p style="margin:.75rem 0 0"><a class="cu-btn" data-cu-continue-href href="/campus/phase-desk.html">Open phase desk →</a></p>
+  <p style="margin:.75rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem">
+    <a class="cu-btn" id="cu-enter-class" data-cu-continue-href href="/campus/desk/seeker/">Enter classroom →</a>
+    <a class="cu-btn soft" href="/campus/desk/">Desk index</a>
+  </p>
 </section>
+
+<section class="cu-panel" id="cu-admission">
+  <div class="cu-section-label" style="margin-top:0">Admission · on this device</div>
+  <p class="cu-note" data-cu-reg-status>Not registered yet.</p>
+  <div class="cu-steps">
+    <div class="cu-step" data-cu-step-reg>
+      <div class="n">1</div>
+      <div>
+        <strong>Open a campus record</strong>
+        <p class="cu-note" style="margin:.25rem 0 0">Local only — not an official university enrollment. One active phase at a time.</p>
+        <p style="margin:.5rem 0 0;display:flex;flex-wrap:wrap;gap:.35rem">
+          <button type="button" class="cu-btn" data-cu-register="1">Register · Foundations</button>
+          <button type="button" class="cu-btn soft" data-cu-register="2">Practice</button>
+          <button type="button" class="cu-btn soft" data-cu-register="3">Consistency</button>
+          <button type="button" class="cu-btn soft" data-cu-register="4">Transmission</button>
+        </p>
+        <p id="cu-reg-flash" class="cu-note" style="margin:.45rem 0 0"></p>
+      </div>
+    </div>
+    <div class="cu-step">
+      <div class="n">2</div>
+      <div>
+        <strong>Advisor</strong>
+        <p class="cu-note" style="margin:.25rem 0 0"><span data-cu-advisor-name>—</span></p>
+        <div class="cu-advisor" data-cu-advisor-line>—</div>
+      </div>
+    </div>
+    <div class="cu-step">
+      <div class="n">3</div>
+      <div>
+        <strong>First class</strong>
+        <p class="cu-note" style="margin:.25rem 0 0">Sequential modules live in the desk room. Later units stay locked until you mark complete.</p>
+        <p style="margin:.5rem 0 0">
+          <button type="button" class="cu-btn" data-cu-register-and-go="1">Register &amp; open Seeker desk →</button>
+        </p>
+      </div>
+    </div>
+  </div>
+  <p class="cu-note" style="margin:.5rem 0 0;font-size:.78rem">Intention aid for learning only. Not a court document. Not a fatwa.</p>
+</section>
+
 <section>
   <div class="cu-section-label">Today’s campus note</div>
   <div class="cu-panel cu-note"><strong data-cu-today-note>…</strong></div>
 </section>
+
 <section>
-  <div class="cu-section-label">Four colleges</div>
+  <div class="cu-section-label">Four colleges · classrooms</div>
   <div class="cu-grid">
-    <a class="cu-card" href="/campus/phase-desk.html?phase=1"><strong>1 · Usul</strong><span>Foundations — Tawhid, Qurʾān, Hadith map</span></a>
-    <a class="cu-card" href="/campus/phase-desk.html?phase=2"><strong>2 · Ibadah</strong><span>Practice — purity, salah, confidence</span></a>
-    <a class="cu-card" href="/campus/phase-desk.html?phase=3"><strong>3 · Itqan</strong><span>Consistency — tajweed, wird, steady worship</span></a>
-    <a class="cu-card" href="/campus/phase-desk.html?phase=4"><strong>4 · Dawah</strong><span>Transmission — adab, sources, service</span></a>
+    <a class="cu-card" href="/campus/desk/seeker/"><strong>1 · Usul desk</strong><span>Foundations classroom</span></a>
+    <a class="cu-card" href="/campus/desk/practice/"><strong>2 · Ibadah desk</strong><span>Practice classroom</span></a>
+    <a class="cu-card" href="/campus/desk/consistency/"><strong>3 · Itqan desk</strong><span>Consistency classroom</span></a>
+    <a class="cu-card" href="/campus/desk/transmission/"><strong>4 · Dawah desk</strong><span>Transmission classroom</span></a>
   </div>
 </section>
+
 <section>
-  <div class="cu-section-label">Faculty</div>
+  <div class="cu-section-label">Faculty advisors</div>
   <div class="cu-staff-row" id="cu-faculty-host"><p class="cu-note">Loading faculty…</p></div>
   <p style="margin:.75rem 0 0"><a class="cu-btn soft" href="/campus/faculty.html">All Faculty →</a></p>
 </section>
+
 <section>
-  <div class="cu-section-label">Campus services</div>
+  <div class="cu-section-label">Services</div>
   <div class="cu-grid">
     <a class="cu-card" href="/campus/bots.html"><strong>IT · Security · O&amp;M</strong><span>On-device guided checks</span></a>
     <a class="cu-card" href="/campus/grading.html"><strong>Progress mirror</strong><span>One University marker</span></a>
-    <a class="cu-card" href="/campus/desk/"><strong>Legacy desk rooms</strong><span>Existing college desks</span></a>
+    <a class="cu-card" href="/campus/phase-desk.html"><strong>Phase switchboard</strong><span>Status only · class is on Desk</span></a>
   </div>
 </section>
 
 <p class="cu-foot">Educational only — not a fatwa. Last reviewed October 2026 · Quran.com / Sunnah.com.<br/>
-<a href="/">Companion home</a> · University progress uses <code>cu_uni_*</code> keys only on this device.</p>
+<a href="/">Companion home</a> · On-device campus record only (<code>cu_uni_*</code>) · not an official enrollment.</p>
 </main>
-<script src="/campus/campus.js?v=20261017UNI8" defer></script>
+<script src="/campus/campus.js?v=20261017ONRAMP" defer></script>
 </body>
 </html>

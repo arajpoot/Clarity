@@ -1,33 +1,40 @@
 /**
- * Clarity University campus.js · 20261017UNI8
- * cu_uni_* storage only. Bridges existing vault admin workers when available.
+ * Clarity University on-ramp · 20261017ONRAMP
+ * Map foyer → local registration → faculty advisor → desk classroom
+ * Storage: cu_uni_* only (bridges read-only to desk continue if present)
  * Educational only — not a fatwa.
  */
 (function (g) {
   "use strict";
-  if (g.__CU_CAMPUS_SHELL_V1__) return;
-  g.__CU_CAMPUS_SHELL_V1__ = true;
+  if (g.__CU_CAMPUS_ONRAMP_V1__) return;
+  g.__CU_CAMPUS_ONRAMP_V1__ = true;
 
   var KEY = "cu_uni_progress_v1";
+  var KEY_REG = "cu_uni_registration_v1";
   var KEY_BOTS = "cu_uni_bots_v1";
   var KEY_NOTE = "cu_uni_day_note_v1";
-  var BUILD = "20261017UNI8";
+  var BUILD = "20261017ONRAMP";
 
   var PHASES = [
-    { id: 1, key: "seeker", label: "Kulliyyat al-Usul · Foundations", desk: "/campus/desk/seeker/" },
-    { id: 2, key: "practice", label: "Kulliyyat al-Ibadah · Practice", desk: "/campus/desk/practice/" },
-    { id: 3, key: "consistency", label: "Kulliyyat al-Itqan · Consistency", desk: "/campus/desk/consistency/" },
-    { id: 4, key: "transmission", label: "Kulliyyat al-Dawah · Transmission", desk: "/campus/desk/transmission/" }
+    { id: 1, key: "seeker", label: "Kulliyyat al-Usul · Foundations", desk: "/campus/desk/seeker/", faculty: "Shaykh Nur al-Yaqeen" },
+    { id: 2, key: "practice", label: "Kulliyyat al-Ibadah · Practice", desk: "/campus/desk/practice/", faculty: "Ustadha Safaa al-Amal" },
+    { id: 3, key: "consistency", label: "Kulliyyat al-Itqan · Consistency", desk: "/campus/desk/consistency/", faculty: "Shaykh Rashid al-Itqan" },
+    { id: 4, key: "transmission", label: "Kulliyyat al-Dawah · Transmission", desk: "/campus/desk/transmission/", faculty: "Shaykh Hakim al-Balagh" }
   ];
+
+  var HELP = {
+    "1": ["Read slowly. Tawḥīd is loyalty of the heart, not a slogan.", "Open one verse and sit with a single line.", "You do not need to finish fast — finish sincere."],
+    "2": ["Use this as a map; confirm prayer details with a local teacher.", "Mistakes in practice are part of learning when sincerity is present.", "Write one small action for today."],
+    "3": ["One tajweed rule applied well beats ten rushed.", "Weekly review is honesty, not self-punishment.", "Craft beauty without inventing meanings."],
+    "4": ["Before teaching, ask: is my source clear?", "Adab is part of the message.", "If unsure of a ruling, pause and ask qualified scholarship."]
+  };
 
   var NOTES = [
     "Begin with the Name of Allah. One sincere page is better than ten rushed ones.",
     "Knowledge without action is a burden; a small deed done consistently is a treasure.",
     "Ask Allah for beneficial knowledge — and protection from knowledge that does not benefit.",
-    "The best of you are those who learn the Qurʾān and teach it (educational reminder — verify sources).",
-    "Leave the world better than you found it: one right restored, one duʿāʾ made.",
-    "Humility is the vessel of ʿilm. Argue less; implement more.",
-    "Your grave will be furnished with what you send ahead today."
+    "Your grave will be furnished with what you send ahead today.",
+    "Humility is the vessel of ʿilm. Argue less; implement more."
   ];
 
   function readProgress() {
@@ -35,14 +42,20 @@
       var o = JSON.parse(localStorage.getItem(KEY) || "null");
       if (o && typeof o === "object") return o;
     } catch (e) {}
-    return { phase: 1, stepsDone: 0, lastAction: null, updated: null };
+    return { phase: 1, stepsDone: 0, lastAction: null, updated: null, registered: false };
   }
   function writeProgress(o) {
     o.updated = new Date().toISOString();
-    try {
-      localStorage.setItem(KEY, JSON.stringify(o));
-    } catch (e) {}
+    try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
     return o;
+  }
+  function readReg() {
+    try {
+      return JSON.parse(localStorage.getItem(KEY_REG) || "null");
+    } catch (e) { return null; }
+  }
+  function writeReg(o) {
+    try { localStorage.setItem(KEY_REG, JSON.stringify(o)); } catch (e) {}
   }
   function todayKey() {
     var d = new Date();
@@ -54,15 +67,34 @@
       if (o && o.day === todayKey() && o.text) return o.text;
     } catch (e) {}
     var text = NOTES[Math.floor(Math.random() * NOTES.length)];
-    try {
-      localStorage.setItem(KEY_NOTE, JSON.stringify({ day: todayKey(), text: text }));
-    } catch (e2) {}
+    try { localStorage.setItem(KEY_NOTE, JSON.stringify({ day: todayKey(), text: text })); } catch (e2) {}
     return text;
   }
   function phaseMeta(id) {
     for (var i = 0; i < PHASES.length; i++) if (PHASES[i].id === id) return PHASES[i];
     return PHASES[0];
   }
+  function advisorLine(phase) {
+    var arr = HELP[String(phase)] || HELP["1"];
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  /** Continue → real desk classroom (legacy desk rooms) */
+  function continueHref() {
+    var p = readProgress();
+    var meta = phaseMeta(p.phase);
+    /* Prefer desk continue engine path if it stored a room */
+    try {
+      var c = JSON.parse(localStorage.getItem("cu_continue_v1") || "null");
+      if (c && c.href && String(c.href).indexOf("/campus/desk/") === 0) return c.href;
+      if (c && c.room) {
+        var map = { seeker: "/campus/desk/seeker/", practice: "/campus/desk/practice/", consistency: "/campus/desk/consistency/", transmission: "/campus/desk/transmission/" };
+        if (map[c.room]) return map[c.room];
+      }
+    } catch (e) {}
+    return meta.desk;
+  }
+
   function markStep() {
     var p = readProgress();
     p.stepsDone = (p.stepsDone || 0) + 1;
@@ -71,54 +103,79 @@
   }
   function setPhase(n) {
     var p = readProgress();
-    p.phase = Math.max(1, Math.min(4, parseInt(n, 10) || 1));
+    var next = Math.max(1, Math.min(4, parseInt(n, 10) || 1));
+    /* single active phase — registrar spirit: allow set but record */
+    p.phase = next;
     p.lastAction = "phase";
-    return writeProgress(p);
-  }
-  function continueHref() {
-    return phaseMeta(readProgress().phase).desk;
+    writeProgress(p);
+    var reg = readReg() || {};
+    reg.activePhase = next;
+    reg.advisor = phaseMeta(next).faculty;
+    writeReg(reg);
+    return p;
   }
 
+  /** Phase B — local registration (no accounts) */
+  function register(phase) {
+    phase = Math.max(1, Math.min(4, parseInt(phase, 10) || 1));
+    var meta = phaseMeta(phase);
+    var reg = {
+      registered: true,
+      activePhase: phase,
+      college: meta.label,
+      advisor: meta.faculty,
+      registeredAt: new Date().toISOString(),
+      disclaimer: "On-device campus record only. Not an official university enrollment. Educational only — not a fatwa."
+    };
+    writeReg(reg);
+    var p = readProgress();
+    p.registered = true;
+    p.phase = phase;
+    p.lastAction = "register";
+    writeProgress(p);
+    return reg;
+  }
+
+  function isRegistered() {
+    var r = readReg();
+    return !!(r && r.registered);
+  }
+
+  /* Workers */
   var WORKER_SCRIPTS = [
     "/assets/curriculum/vault/admin/faculty/faculty-controller-v1.js",
     "/assets/curriculum/vault/admin/staff/staff-dispatcher-v1.js",
     "/assets/curriculum/vault/admin/staff/nur-workers-arsenal-v1.js",
-    "/assets/curriculum/vault/admin/staff/staff-ops-monitor-v1.js",
     "/assets/curriculum/vault/admin/security/security-auditors-v1.js",
     "/assets/curriculum/vault/admin/om/om-controller-v1.js",
     "/assets/curriculum/vault/admin/it/it-controller-v1.js"
   ];
-
   function loadScript(src) {
     return new Promise(function (resolve) {
       var s = document.createElement("script");
-      s.src = src + (src.indexOf("?") >= 0 ? "&" : "?") + "v=" + BUILD;
+      s.src = src + "?v=" + BUILD;
       s.async = true;
-      s.onload = function () { resolve({ src: src, ok: true }); };
-      s.onerror = function () { resolve({ src: src, ok: false }); };
+      s.onload = function () { resolve(true); };
+      s.onerror = function () { resolve(false); };
       document.head.appendChild(s);
     });
   }
-
   var workersReady = null;
   function ensureWorkers() {
     if (workersReady) return workersReady;
-    workersReady = Promise.all(WORKER_SCRIPTS.map(loadScript)).then(function (results) {
+    workersReady = Promise.all(WORKER_SCRIPTS.map(loadScript)).then(function () {
       var st = {
-        faculty: !!(g.ClarityFaculty),
-        security: !!(g.ClaritySecurity),
-        om: !!(g.ClarityOM),
-        it: !!(g.ClarityIT),
-        arsenal: !!(g.ClarityNurArsenal),
-        ops: !!(g.ClarityStaffOps),
-        results: results
+        faculty: !!g.ClarityFaculty,
+        security: !!g.ClaritySecurity,
+        om: !!g.ClarityOM,
+        it: !!g.ClarityIT,
+        arsenal: !!g.ClarityNurArsenal,
+        ops: !!g.ClarityStaffOps
       };
-      try {
-        document.querySelectorAll("[data-cu-beacon]").forEach(function (el) {
-          var k = el.getAttribute("data-cu-beacon");
-          if (k && st[k]) el.classList.add("on");
-        });
-      } catch (e) {}
+      document.querySelectorAll("[data-cu-beacon]").forEach(function (el) {
+        var k = el.getAttribute("data-cu-beacon");
+        if (k && st[k]) el.classList.add("on");
+      });
       return st;
     });
     return workersReady;
@@ -138,70 +195,29 @@
   function runBot(kind) {
     ensureWorkers().then(function (st) {
       if (kind === "security") {
-        try {
-          if (g.ClaritySecurity && typeof g.ClaritySecurity.scan === "function") g.ClaritySecurity.scan();
-          if (g.ClaritySecurity && typeof g.ClaritySecurity.openDesk === "function") {
-            /* optional desk */
-          }
-          botLog(st.security
-            ? "Security worker: on-device scan path available. Confirm this browser is yours only."
-            : "Security (local fallback): Keep passphrase private. This device only. Educational only.");
-        } catch (e) {
-          botLog("Security (local): this device only. Educational only.");
-        }
-        try { localStorage.setItem("cu_uni_security_ok_v1", todayKey()); } catch (e2) {}
+        try { if (g.ClaritySecurity && g.ClaritySecurity.scan) g.ClaritySecurity.scan(); } catch (e) {}
+        botLog(st.security ? "Security: on-device scan path available. This device only." : "Security (local): this device only. Educational only.");
       } else if (kind === "it") {
-        try {
-          if (g.ClarityNurArsenal && typeof g.ClarityNurArsenal.trainAll === "function") {
-            g.ClarityNurArsenal.trainAll();
-            botLog("IT / arsenal: trainAll requested (on-device workers).");
-          } else if (g.ClarityIT && typeof g.ClarityIT.report === "function") {
-            g.ClarityIT.report();
-            botLog("IT worker: status report requested.");
-          } else {
-            botLog("IT (local): Offline shell = campus.css/js + HTML. Progress keys cu_uni_* only.");
-          }
-        } catch (e) {
-          botLog("IT (local): offline shell OK.");
-        }
+        try { if (g.ClarityNurArsenal && g.ClarityNurArsenal.trainAll) g.ClarityNurArsenal.trainAll(); } catch (e) {}
+        botLog("IT: offline shell + cu_uni_* progress. Educational only.");
       } else if (kind === "om") {
-        try {
-          if (g.ClarityOM && typeof g.ClarityOM.pulse === "function") g.ClarityOM.pulse();
-        } catch (e) {}
-        var p = markStep();
-        botLog("O&M: marked one University step (phase " + p.phase + ", steps " + p.stepsDone + "). Mirror, not scoreboard.");
-        renderProgressWidgets();
-      } else if (kind === "faculty") {
-        try {
-          if (g.ClarityFaculty) {
-            var fn = g.ClarityFaculty.openDesk || g.ClarityFaculty.open || g.ClarityFaculty.render;
-            if (typeof fn === "function") {
-              fn.call(g.ClarityFaculty);
-              botLog("Faculty controller desk opened.");
-              return;
-            }
-          }
-        } catch (e) {}
-        botLog("Faculty: opening Faculty page.");
-        location.href = "/campus/faculty.html";
+        try { if (g.ClarityOM && g.ClarityOM.pulse) g.ClarityOM.pulse(); } catch (e) {}
+        markStep();
+        botLog("O&M: one University step marked. Mirror, not scoreboard.");
+        renderAll();
       } else if (kind === "ops") {
-        try {
-          if (g.ClarityStaffOps && typeof g.ClarityStaffOps.runHealth === "function") {
-            g.ClarityStaffOps.runHealth();
-            botLog("Ops steward: health check requested.");
-          } else {
-            botLog("Ops (local): module controllers not mounted — use Phase desk steps.");
-          }
-        } catch (e) {
-          botLog("Ops (local): health reminder complete.");
-        }
+        try { if (g.ClarityStaffOps && g.ClarityStaffOps.runHealth) g.ClarityStaffOps.runHealth(); } catch (e) {}
+        botLog("Ops: health reminder (local).");
+      } else if (kind === "faculty") {
+        location.href = "/campus/faculty.html";
       }
     });
   }
 
-  function renderProgressWidgets() {
+  function renderAll() {
     var p = readProgress();
     var meta = phaseMeta(p.phase);
+    var reg = readReg();
     document.querySelectorAll("[data-cu-phase-label]").forEach(function (el) {
       el.textContent = meta.label;
     });
@@ -221,37 +237,58 @@
     document.querySelectorAll("[data-cu-last]").forEach(function (el) {
       el.textContent = p.updated ? new Date(p.updated).toLocaleString() : "—";
     });
+    document.querySelectorAll("[data-cu-advisor-name]").forEach(function (el) {
+      el.textContent = (reg && reg.advisor) || meta.faculty;
+    });
+    document.querySelectorAll("[data-cu-advisor-line]").forEach(function (el) {
+      el.textContent = advisorLine(p.phase);
+    });
+    document.querySelectorAll("[data-cu-reg-status]").forEach(function (el) {
+      el.textContent = isRegistered()
+        ? "Campus record open · " + ((reg && reg.college) || meta.label)
+        : "Not registered yet — open a local campus record to begin.";
+    });
+    document.querySelectorAll("[data-cu-step-reg]").forEach(function (el) {
+      el.classList.toggle("done", isRegistered());
+    });
+    var enter = document.getElementById("cu-enter-class");
+    if (enter) {
+      enter.setAttribute("href", continueHref());
+      enter.style.opacity = isRegistered() ? "1" : "0.55";
+    }
   }
 
   function normalizeFacultyList(data) {
     if (!data) return [];
     if (Array.isArray(data)) return data;
-    var list = data.faculty || data.teachers || data.members || data.roster || data.staff || [];
-    if (Array.isArray(list) && list.length) return list;
-    if (data.workers && Array.isArray(data.workers)) return data.workers;
-    return [];
+    return data.faculty || data.teachers || data.members || data.roster || data.workers || [];
   }
 
   function loadFacultyCards() {
     var host = document.getElementById("cu-faculty-host");
     if (!host) return;
-    var fallback = [
-      { name: "Amid · Foundations", title: "College of Usul", specialty: "Tawhid & Qurʾān foundations", phase: 1 },
-      { name: "Amid · Practice", title: "College of Ibadah", specialty: "Taharah & salah confidence", phase: 2 },
-      { name: "Amid · Consistency", title: "College of Itqan", specialty: "Tajweed & steady wird", phase: 3 },
-      { name: "Amid · Transmission", title: "College of Dawah", specialty: "Adab & source care", phase: 4 }
-    ];
+    var fallback = PHASES.map(function (ph) {
+      return { name: ph.faculty, title: ph.label, specialty: "Phase " + ph.id + " advisor", phase: ph.id };
+    });
     function paint(list) {
       host.innerHTML = "";
       list.slice(0, 8).forEach(function (t) {
+        var phase = t.phase || 1;
         var a = document.createElement("a");
         a.className = "cu-card";
-        var phase = t.phase || 1;
-        a.href = "/campus/phase-desk.html?phase=" + phase;
+        a.href = "/campus/desk/" + (phaseMeta(phase).key === "seeker" ? "seeker" : phaseMeta(phase).key) + "/";
+        if (phase === 1) a.href = "/campus/desk/seeker/";
+        if (phase === 2) a.href = "/campus/desk/practice/";
+        if (phase === 3) a.href = "/campus/desk/consistency/";
+        if (phase === 4) a.href = "/campus/desk/transmission/";
         a.innerHTML =
           "<strong>" + (t.name || t.title || "Faculty") + "</strong><span>" +
-          (t.title || t.rank || t.role || "") +
-          (t.specialty ? " · " + t.specialty : "") + "</span>";
+          (t.title || t.rank || "") + (t.specialty ? " · " + t.specialty : "") +
+          "</span>";
+        a.addEventListener("click", function () {
+          setPhase(phase);
+          if (!isRegistered()) register(phase);
+        });
         host.appendChild(a);
       });
     }
@@ -264,39 +301,63 @@
       .catch(function () { paint(fallback); });
   }
 
+  function bindAdmission() {
+    document.querySelectorAll("[data-cu-register]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var ph = btn.getAttribute("data-cu-register") || readProgress().phase || 1;
+        register(ph);
+        renderAll();
+        var msg = document.getElementById("cu-reg-flash");
+        if (msg) {
+          msg.textContent = "Record opened on this device. Your advisor is ready. Enter class when you are.";
+        }
+      });
+    });
+    document.querySelectorAll("[data-cu-register-and-go]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var ph = btn.getAttribute("data-cu-register-and-go") || "1";
+        register(ph);
+        location.href = phaseMeta(parseInt(ph, 10)).desk;
+      });
+    });
+  }
+
   g.CuCampus = {
     readProgress: readProgress,
-    writeProgress: writeProgress,
+    register: register,
+    isRegistered: isRegistered,
     setPhase: setPhase,
     markStep: markStep,
     todayNote: todayNote,
+    continueHref: continueHref,
     ensureWorkers: ensureWorkers,
     runBot: runBot,
-    continueHref: continueHref,
-    render: renderProgressWidgets,
+    render: renderAll,
     KEY: KEY,
+    KEY_REG: KEY_REG,
     BUILD: BUILD
   };
 
   function boot() {
-    renderProgressWidgets();
+    renderAll();
     loadFacultyCards();
+    bindAdmission();
     ensureWorkers();
     document.querySelectorAll("[data-cu-bot]").forEach(function (btn) {
       btn.addEventListener("click", function () { runBot(btn.getAttribute("data-cu-bot")); });
     });
     document.querySelectorAll("[data-cu-mark-step]").forEach(function (btn) {
-      btn.addEventListener("click", function () { markStep(); renderProgressWidgets(); });
+      btn.addEventListener("click", function () { markStep(); renderAll(); });
     });
     document.querySelectorAll("[data-cu-set-phase]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         setPhase(btn.getAttribute("data-cu-set-phase"));
-        renderProgressWidgets();
+        renderAll();
       });
     });
     try {
       var q = new URLSearchParams(location.search).get("phase");
-      if (q) { setPhase(q); renderProgressWidgets(); }
+      if (q) { setPhase(q); renderAll(); }
     } catch (e) {}
   }
 
