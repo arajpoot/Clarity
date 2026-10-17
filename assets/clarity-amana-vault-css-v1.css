@@ -92,3 +92,39 @@ html[data-active-tab="notes"] #tab-notes {
 #amana-vault-gate {
   scroll-margin-top: calc(var(--clarity-nav-h, 48px) + var(--clarity-banner-h, 0px) + 0.5rem);
 }
+
+
+/* ---- Phase 1–2 bridge fortify (20261016BRIDGE) ---- */
+#amana-fiqh-host[hidden],
+#amana-fiqh-host[aria-hidden="true"] {
+  display: none !important;
+}
+#amana-fiqh-host.amana-estate-open,
+html[data-amana-session="open"] #amana-fiqh-host {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+html[data-amana-session="locked"] #user-family-tree-card,
+html[data-amana-session="locked"] #faraid-card,
+html[data-amana-session="locked"] #wasiyyah-card,
+html[data-amana-session="locked"] #fiqh-workflow-card {
+  display: none !important;
+}
+html[data-amana-session="open"] #user-family-tree-card,
+html[data-amana-session="open"] #faraid-card,
+html[data-amana-session="open"] #wasiyyah-card,
+html[data-amana-session="open"] #fiqh-workflow-card {
+  display: block !important;
+  visibility: visible !important;
+}
+#p5-vault-card {
+  max-width: 36rem;
+  margin: 0.75rem auto 1rem;
+  position: relative;
+  z-index: 5;
+}
+#tab-notes.amana-locked #amana-fiqh-host {
+  display: none !important;
+}
