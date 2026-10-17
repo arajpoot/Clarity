@@ -1,126 +1,39 @@
 <!DOCTYPE html>
-<html data-mahtaab="1" lang="en" data-theme="dark" data-campus-page="vault">
+<html lang="en" data-theme="system" data-campus-page="vault">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Amana Vault · Clarity University</title>
-<meta name="description" content="On-device Amana Vault — educational estate readiness. Not a fatwa."/>
-<link rel="canonical" href="https://clarity-dawah.fyi/vault/"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/vault/cu-vault-shell-v1.css?v=20261016HARMONY"/>
-<link rel="manifest" href="/assets/curriculum/vault/admin/campus/manifest.webmanifest"/>
-<meta name="theme-color" content="#0d4f3c"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261016HARMONY"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-viewport-v1.css?v=20261016HARMONY"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-
-<link rel="stylesheet" href="/campus/assets/css/cu-flash-v1.css?v=20261016HARMONY"/>
-<style id="cu-empty-host-hide">
-#clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
-</style>
-<link rel="stylesheet" href="/campus/assets/css/cu-companion-enrich-v1.css?v=20261016HARMONY"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-enrich-hide-v1.css?v=20261016HARMONY"/>
-<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261016HARMONY"></script>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261016HARMONY"/>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261016HARMONY"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261017BI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261017BI"/>
+<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261017BI"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261017BI"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261017BI"/>
 </head>
-<body class="cu-mahtaab-on">
-<div class="cu-topstrip">
-  <div class="cu-top-links">
-    <span>Campus</span>
-    <a href="/campus/">University map</a>
-    <a href="/campus/desk/seeker/">Desk</a>
-    <a href="/lab/tajweed/">Tajweed studio</a>
-    <a href="/lab/arabic/">Arabic studio</a>
-    <a href="/library/">Library</a>
-  </div>
-  <div class="cu-top-links">
-    <a href="/">Companion home</a>
-  </div>
-</div>
+<body class="cu-page" data-campus-page="vault">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
-    <div><small>University</small><strong>Clarity University</strong></div>
-  </a>
-  <div class="cu-banner-actions"><button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button><button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button><button type="button" class="cu-theme-pill" data-cu-theme="system">System</button><a class="cu-main-link" href="/">← Companion</a></div>
+  <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Clarity University</strong></div></a>
+  <div class="cu-banner-actions"><a class="cu-main-link" href="/">Companion</a></div>
 </header>
 <main class="cu-wrap">
-  <nav class="cu-pills" aria-label="Campus">
-    <a href="/campus/">Map</a>
-    <a href="/campus/desk/">Desk</a>
-    <a href="/lab/">Lab</a>
-    <a href="/library/">Library</a>
-    <a href="/vault/" class="here">Vault</a>
-    <a href="/charter/">Charter</a>
-  </nav>
-
-  <h1 class="vault-title">Amana Vault</h1>
-  <p class="cu-note vault-lead">
-    Private estate-readiness tools stay <strong>on this device</strong>.
-    You hold the passphrase. Educational only — not a fatwa, not a law office, not affiliated with Al-Azhar or any seminary.
-  </p>
-
-  <!-- Gate (V2 will wire real crypto; V0 is honest shell) -->
-  <section id="vault-gate" class="vault-panel" aria-label="Vault unlock">
-    <h2>Unlock</h2>
-    <p class="vault-hint">Create or enter your on-device passphrase when the secure module is mounted (next phase). Until then, browse the module map and study <strong>Mīrāth</strong> on the Desk.</p>
-    <div class="vault-gate-row">
-      <input type="password" id="vault-pass" autocomplete="current-password" placeholder="Passphrase" disabled aria-disabled="true"/>
-      <button type="button" id="vault-unlock-btn" class="vault-btn" disabled title="Secure unlock arrives in V2">Unlock (soon)</button>
-    </div>
-    <p class="vault-micro">No recovery if forgotten — that is by design for privacy.</p>
-  </section>
-
-  <section id="vault-modules" class="vault-panel" aria-label="Vault modules">
-    <h2>Modules (private space)</h2>
-    <p class="vault-hint">After unlock, one private Amana unit opens (heir readiness · tree · farāʾiḍ · wasiyyah) — encrypted on this device.</p>
-    <div class="vault-grid">
-      <article class="vault-tile" data-mod="amana">
-        <span class="tag">Amana pack</span>
-        <strong>Legacy pack</strong>
-        <span class="desc">Identity, next of kin, debts, wasiyyah notes, janazah one-pager — export/print after unlock.</span>
-      </article>
-      <article class="vault-tile" data-mod="tree">
-        <span class="tag">Family</span>
-        <strong>Family tree</strong>
-        <span class="desc">Pedigree sketch for educational farāʾiḍ context — not a court filing.</span>
-      </article>
-      <article class="vault-tile" data-mod="faraid">
-        <span class="tag">Farāʾiḍ</span>
-        <strong>Shares illustrator</strong>
-        <span class="desc">Educational portion map + common-error cases. Not a personal fatwa.</span>
-      </article>
-      <article class="vault-tile" data-mod="wasiyyah">
-        <span class="tag">Wasiyyah</span>
-        <strong>Bequest notes</strong>
-        <span class="desc">1/3 cap &amp; non-heir reminders — for discussion with a qualified teacher.</span>
-      </article>
-    </div>
-  </section>
-
-  <section id="vault-mirath-link" class="vault-panel vault-study">
-    <h2>Study first · Mīrāth</h2>
-    <p class="vault-hint">Inheritance knowledge is mercy when learned with adab. Start the educational branch on the Desk, then return here for private lab notes.</p>
-    <a class="vault-btn vault-btn-primary" href="/campus/desk/?phase=seeker&amp;track=mirath">Open Mīrāth on Desk</a>
-    <a class="vault-btn" href="/campus/desk/?phase=seeker" style="margin-left:.35rem">Open Desk</a>
-  </section>
-
-  <p class="vault-foot-note">Companion remains the daily path. Full vault tools belong here — no loop back required for study.</p>
+<nav class="cu-pills" aria-label="Campus">
+  <a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a>
+  <a href="/library/">Library</a><a href="/vault/" class="here">Vault</a><a href="/charter/">Charter</a>
+</nav>
+<h1 style="color:#d4b45a">Amana Vault</h1>
+<p>University educational workspace. On this device only.</p>
+<div style="margin:1rem 0;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(184,166,135,.35);background:rgba(30,125,94,.1);font-size:.88rem">
+  <strong>Not legal advice.</strong> Literacy aids only - not a court document, not a fatwa.
+  You are responsible for any passphrase. Clarity cannot recover it.
+</div>
+<div id="cu-vault-root">
+  <p style="opacity:.85">Secure vault modules mount here when present in your deploy.</p>
+  <p><a href="/campus/desk/">Desk</a> · <a href="/library/#mirath">Mirath shelf</a></p>
+</div>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. You hold your passphrase.</footer>
-
-<script src="/assets/curriculum/vault/admin/vault/cu-vault-secure-v1.js?v=20261016HARMONY"></script>
-<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261016HARMONY" defer></script>
-<script src="/campus/assets/js/cu-flash-wings-v1.js?v=20261016HARMONY" defer></script>
-<script src="/assets/curriculum/vault/admin/vault/cu-vault-ui-v1.js?v=20261016HARMONY" defer></script>
-<script src="/assets/curriculum/vault/admin/vault/cu-vault-wings-v1.js?v=20261016HARMONY" defer></script>
-
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/campus/assets/js/cu-mahtaab-hydrate-v1.js?v=20261016HARMONY" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+<footer class="cu-foot">Educational only - not a fatwa.</footer>
+<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261017BI" defer></script>
+<script src="/campus/assets/js/cu-flash-wings-v1.js?v=20261017BI" defer></script>
 </body>
 </html>
