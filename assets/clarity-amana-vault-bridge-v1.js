@@ -84,33 +84,42 @@
       );
     } catch (e) {}
 
+    var interior = $("amana-vault-interior");
+    if (interior) {
+      if (unlocked) {
+        interior.hidden = false;
+        interior.removeAttribute("hidden");
+        interior.removeAttribute("inert");
+        interior.setAttribute("aria-hidden", "false");
+        interior.style.removeProperty("display");
+      } else {
+        interior.hidden = true;
+        interior.setAttribute("hidden", "");
+        interior.setAttribute("inert", "");
+        interior.setAttribute("aria-hidden", "true");
+      }
+    }
+
     var host = $("amana-fiqh-host");
     if (host) {
       host.hidden = !unlocked;
       host.setAttribute("aria-hidden", unlocked ? "false" : "true");
-      if (unlocked) {
-        host.style.removeProperty("display");
-        host.classList.add("amana-estate-open");
-      } else {
-        host.style.display = "none";
-        host.classList.remove("amana-estate-open");
-      }
+      if (unlocked) host.style.removeProperty("display");
+      else host.style.display = "none";
     }
 
     [
       "user-family-tree-card",
       "faraid-card",
       "wasiyyah-card",
-      "fiqh-workflow-card"
+      "fiqh-workflow-card",
+      "amana-fiqh-tools-wrap"
     ].forEach(function (id) {
       var el = $(id);
       if (!el) return;
       el.hidden = !unlocked;
-      if (unlocked) {
-        el.style.removeProperty("display");
-      } else {
-        el.style.display = "none";
-      }
+      if (unlocked) el.style.removeProperty("display");
+      else el.style.display = "none";
     });
 
     var notes = $("tab-notes");

@@ -144,3 +144,14 @@ html[data-amana-session="open"] #fiqh-workflow-card {
   color: var(--gold, #d4b45a);
   font-weight: 650;
 }
+
+/* Phase C–D interior */
+#tab-notes.amana-unlocked #amana-vault-gate { display: none !important; }
+#tab-notes.amana-unlocked #amana-vault-interior,
+#tab-notes.amana-unlocked #amana-vault-interior:not([hidden]) {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+#tab-notes.amana-locked #amana-vault-interior { display: none !important; }
+#tab-notes.amana-locked #amana-vault-gate { display: block !important; }
