@@ -2459,6 +2459,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 
 <link rel="stylesheet" href="/assets/clarity-amana-vault-v1.css?v=20261015CASTLE"/>
+<link rel="stylesheet" href="/assets/clarity-amana-vault-css-v1.css?v=20261015CASTLE"/>
 <div id="nuros-amana-panel" role="dialog" aria-modal="true" aria-labelledby="av-title" aria-hidden="true">
   <button type="button" class="av-close" onclick="NurOS.closeVault()" aria-label="Close">×</button>
   <h2 id="av-title">Amana Vault</h2>
@@ -2470,41 +2471,35 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="/assets/amana-phase1-local-guard.js?v=20261015FIX1" defer></script>
 
 
+<script src="/assets/clarity-amana-vault-bridge-v1.js?v=20261016BRIDGE" defer></script>
 <script id="amana-lazy-estate">
 (function(g){
   "use strict";
+  /* Estate scripts load primarily on vault unlock (bridge). This remains a
+     fallback when the user opens Notes before Castle has finished booting. */
   if (g.__AMANA_LAZY_ESTATE__) return;
   g.__AMANA_LAZY_ESTATE__ = true;
-  var loaded = false;
-  function load(src){
-    return new Promise(function(res){
-      if (document.querySelector('script[src*="'+src.split('/').pop().split('?')[0]+'"]')) return res();
-      var s=document.createElement('script');
-      s.src=src; s.defer=true;
-      s.onload=function(){res();}; s.onerror=function(){res();};
-      document.body.appendChild(s);
-    });
-  }
-  function bootEstate(){
-    if (loaded) return;
-    loaded = true;
-    var v="20261015FIX1";
-    load("/assets/clarity-amana-fiqh-v1.js?v="+v).then(function(){
-      return load("/assets/clarity-amana-uft-v1.js?v="+v);
-    }).then(function(){
-      try { if (typeof uftLoad==="function") uftLoad(); } catch(e){}
-      try { if (typeof uftRender==="function") uftRender(); } catch(e){}
-    });
+  function maybeBoot(){
+    try {
+      if (g.ClarityVault && g.ClarityVault.isOpen && g.ClarityVault.isOpen()) {
+        /* Bridge owns load; only nudge render */
+        try { if (typeof uftRender === "function") uftRender(); } catch(e){}
+        return;
+      }
+    } catch(e){}
   }
   document.addEventListener("click", function(ev){
-    var t=ev.target;
+    var t = ev.target;
     if (!t) return;
-    if ((t.getAttribute&&t.getAttribute("data-tab")==="notes") || (t.closest&&t.closest('[data-tab="notes"]')) || (location.hash||"").indexOf("notes")>=0)
-      setTimeout(bootEstate, 50);
+    if ((t.getAttribute && t.getAttribute("data-tab")==="notes") ||
+        (t.closest && t.closest('[data-tab="notes"]')) ||
+        (location.hash||"").indexOf("notes")>=0)
+      setTimeout(maybeBoot, 80);
   });
   g.addEventListener("hashchange", function(){
-    if ((location.hash||"").toLowerCase().indexOf("notes")>=0) bootEstate();
+    if ((location.hash||"").toLowerCase().indexOf("notes")>=0) setTimeout(maybeBoot, 80);
   });
+  g.addEventListener("clarity-amana-unlock", function(){ setTimeout(maybeBoot, 40); });
 })(window);
 </script>
 
