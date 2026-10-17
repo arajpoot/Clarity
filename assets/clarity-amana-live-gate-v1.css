@@ -366,3 +366,14 @@ body.amana-unlocked #uft-stage,
 #amana-vault-gate, #amana-vault-gate .av-field, #amana-vault-gate .av-actions {
   pointer-events: auto !important;
 }
+
+/* STATUS VIS — always show gate feedback */
+#amana-gate-status, .av-status {
+  display: block !important;
+  visibility: visible !important;
+  min-height: 1.2em;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+#amana-gate-status.err, .av-status.err { color: #f0a090; font-weight: 600; }

@@ -233,6 +233,12 @@
     var raw = localStorage.getItem(DATA_KEY);
     if (!raw) return { heir: {} };
     var packed = JSON.parse(raw);
+    if (packed && (packed.clarityAmanaEncrypted || packed.ciphertext) && !packed.data) {
+      throw new Error("OLD_CASTLE_FORMAT");
+    }
+    if (!packed || !packed.iv || !packed.data) {
+      throw new Error("BAD_BLOB");
+    }
     return decryptJson(key, packed);
   }
 
@@ -287,33 +293,54 @@
     var pw = ($("amana-pass-unlock") || {}).value || "";
     var meta = loadMeta();
     if (!meta || !meta.salt) {
-      status("No vault found on this device.", true);
+      /* Castle-era blob may exist without live meta */
+      try {
+        var raw0 = localStorage.getItem(DATA_KEY);
+        if (raw0 && /clarityAmanaEncrypted|ciphertext/.test(raw0)) {
+          status("Old vault format on this device. Use Reset vault (type RESET VAULT), then Create & open.", true);
+          return;
+        }
+      } catch(e0){}
+      status("No vault found on this device. Use Create & open.", true);
       return;
     }
     if (!pw) {
       status("Enter your passphrase.", true);
       return;
     }
-    status("Unlocking…");
+    status("Unlocking… please wait");
+    /* Let the status paint before heavy PBKDF2 (avoids frozen UI with no message) */
+    await new Promise(function(r){ setTimeout(r, 30); });
     try {
       var key = await deriveKey(pw, b64ToBuf(meta.salt));
       var payload = await loadVault(key);
       sessionKey = key;
-      await saveSessionKey(key);
+      try { await saveSessionKey(key); } catch(eS){}
       clearPassFields();
       setLockedUI(false);
-      fillHeirForm(payload.heir || {});
-      status("");
-      try { if (typeof uftZoomInit === "function") uftZoomInit(); } catch(e){}
-      try { if (typeof uftRender === "function") uftRender(); } catch(e){}
-      try {
-        var ed = document.getElementById("uft-editor");
-        if (ed) ed.classList.remove("collapsed");
-        var reg = document.getElementById("uft-registry-box");
-        if (reg) reg.setAttribute("open", "");
-      } catch(e){}
+      fillHeirForm((payload && payload.heir) || {});
+      status("Vault open · this session only");
+      setTimeout(function(){ try { status(""); } catch(e){} }, 2500);
+      /* Defer heavy tree paint so unlock feedback is visible first */
+      setTimeout(function(){
+        try { if (typeof uftZoomInit === "function") uftZoomInit(); } catch(e){}
+        try { if (typeof uftRender === "function") uftRender(); } catch(e){}
+        try {
+          var ed = document.getElementById("uft-editor");
+          if (ed) ed.classList.remove("collapsed");
+          var reg = document.getElementById("uft-registry-box");
+          if (reg) reg.setAttribute("open", "");
+        } catch(e){}
+      }, 120);
     } catch (e) {
-      status("Wrong passphrase or damaged vault data.", true);
+      var msg = "Wrong passphrase or damaged vault data.";
+      try {
+        var raw = localStorage.getItem(DATA_KEY) || "";
+        if (raw && /clarityAmanaEncrypted|ciphertext/.test(raw) && !/"data"\s*:/.test(raw)) {
+          msg = "Incompatible old vault blob. Reset vault on this device, then create a new one.";
+        }
+      } catch(e3){}
+      status(msg, true);
       try {
         ["amana-pass-unlock","amana-pass-new","amana-pass-confirm"].forEach(function(id){
           var el = document.getElementById(id); if (el) el.value = "";
