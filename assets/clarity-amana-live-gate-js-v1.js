@@ -329,6 +329,10 @@
       resetIdle();
       fillHeirForm((payload && payload.heir) || {});
       status("Vault open · this session only");
+      try {
+        var _wn = (typeof clarityAmanaImportWorksheet === "function") ? clarityAmanaImportWorksheet() : 0;
+        if (_wn > 0) status("Vault open · " + _wn + " quick note(s) imported to worksheet");
+      } catch(eW){}
       setTimeout(function(){ try { status(""); } catch(e){} }, 2500);
       /* Defer heavy tree paint so unlock feedback is visible first */
       setTimeout(function(){
