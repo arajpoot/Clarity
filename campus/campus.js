@@ -13,7 +13,7 @@
   var KEY_REG = "cu_uni_registration_v1";
   var KEY_BOTS = "cu_uni_bots_v1";
   var KEY_NOTE = "cu_uni_day_note_v1";
-  var BUILD = "20261017ONRAMP";
+  var BUILD = "20261017GUIDE";
 
   var PHASES = [
     { id: 1, key: "seeker", label: "Kulliyyat al-Usul · Foundations", desk: "/campus/desk/seeker/", faculty: "Shaykh Nur al-Yaqeen" },

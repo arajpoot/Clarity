@@ -4,23 +4,32 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Progress mirror · Clarity University</title>
-<meta name="description" content="Clarity University — educational on-ramp and guided desk learning. Not a fatwa."/>
+<meta name="description" content="University progress mirror and diploma hall link. Educational only — not a fatwa."/>
 <meta name="theme-color" content="#0a1210"/>
-<link rel="stylesheet" href="/campus/campus.css?v=20261017WIRE"/>
+<link rel="stylesheet" href="/campus/campus.css?v=20261017GUIDE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261017GUIDE"/>
 </head>
 <body>
 <nav class="cu-shell-nav" aria-label="University">
   <a class="cu-shell-brand" href="/campus/"><span>ن</span><span><small>UNIVERSITY</small>Clarity University</span></a>
-  <div class="cu-shell-links"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/campus/faculty.html">Faculty</a><a href="/campus/bots.html">Bots</a><a href="/campus/grading.html" aria-current="page">Progress</a><a href="/">Companion</a></div>
+  <div class="cu-shell-links">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/campus/faculty.html">Faculty</a>
+    <a href="/campus/bots.html">Bots</a>
+    <a href="/campus/grading.html" aria-current="page">Progress</a>
+    <a href="/">Companion</a>
+  </div>
 </nav>
 <main class="cu-main">
-
 <header class="cu-hero">
   <div class="cu-pill">Mirror · not scoreboard</div>
   <h1>University progress</h1>
-  <p>Acceptance is with Allah. This only mirrors what you marked on this device.</p>
+  <p>Acceptance is with Allah. This page mirrors on-device study marks only.</p>
 </header>
+
 <section class="cu-panel">
+  <div class="cu-section-label" style="margin-top:0">Campus marker (<code>cu_uni_*</code>)</div>
   <p class="cu-note" data-cu-reg-status>—</p>
   <p class="cu-note"><strong data-cu-phase-label>—</strong></p>
   <div class="cu-progress"><i data-cu-progress-bar style="width:8%"></i></div>
@@ -32,14 +41,72 @@
     <button type="button" class="cu-btn soft" data-cu-mark-step>Mark a quiet step</button>
   </p>
 </section>
+
+<section class="cu-panel" id="cu-diploma-bridge">
+  <div class="cu-section-label" style="margin-top:0">Diploma ledger · Hall of Records</div>
+  <p class="cu-note">When foundation diplomas are loaded, you can open the local Hall of Records (certificates on this device only).</p>
+  <div id="clarity-name-plaque-slot"></div>
+  <p id="cu-hall-status" class="cu-note">Checking diploma scripts…</p>
+  <p style="margin:.65rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem">
+    <button type="button" class="cu-btn" id="cu-open-hall" disabled>Open Hall of Records</button>
+    <button type="button" class="cu-btn soft" id="cu-refresh-ledger">Refresh ledger summary</button>
+  </p>
+  <pre id="cu-ledger-summary" class="cu-bot-log" style="margin-top:0.75rem;min-height:3rem">—</pre>
+</section>
+
 <section class="cu-panel">
   <div class="cu-section-label" style="margin-top:0">Today’s campus note</div>
   <p class="cu-note" data-cu-today-note>—</p>
 </section>
 
 <p class="cu-foot">Educational only — not a fatwa. Last reviewed October 2026 · Quran.com / Sunnah.com.<br/>
-<a href="/">Companion home</a> · On-device campus record only (<code>cu_uni_*</code>) · not an official enrollment.</p>
+<a href="/">Companion home</a> · Not an official transcript.</p>
 </main>
-<script src="/campus/campus.js?v=20261017WIRE" defer></script>
+<script src="/campus/campus.js?v=20261017GUIDE" defer></script>
+<script src="/assets/curriculum/vault/foundation/diplomas.js?v=20261017GUIDE" defer></script>
+<script>
+(function(){
+  function summary(){
+    var el = document.getElementById("cu-ledger-summary");
+    var st = document.getElementById("cu-hall-status");
+    var btn = document.getElementById("cu-open-hall");
+    var U = window.ClarityUniversity;
+    if (!U) {
+      st.textContent = "Diploma scripts not available offline yet — campus marker above still works.";
+      btn.disabled = true;
+      el.textContent = "No diploma ledger loaded.";
+      return;
+    }
+    st.textContent = "Diploma ledger ready on this device.";
+    btn.disabled = false;
+    try {
+      var dips = (U.getDiplomas && U.getDiplomas()) || [];
+      var ledger = (U.getLedger && U.getLedger()) || [];
+      var name = (U.getName && U.getName()) || "(name not set)";
+      el.textContent = "Learner: " + name + "\nDiplomas: " + (Array.isArray(dips) ? dips.length : 0) +
+        "\nLedger entries: " + (Array.isArray(ledger) ? ledger.length : 0) +
+        "\nEducational recognition only — not an ijāzah.";
+    } catch (e) {
+      el.textContent = "Ledger readable with limited fields.";
+    }
+  }
+  function bind(){
+    var btn = document.getElementById("cu-open-hall");
+    var ref = document.getElementById("cu-refresh-ledger");
+    if (btn) btn.onclick = function(){
+      try {
+        if (window.ClarityUniversity && ClarityUniversity.openHall) ClarityUniversity.openHall();
+        else alert("Hall of Records is not mounted yet.");
+      } catch (e) { alert("Could not open Hall."); }
+    };
+    if (ref) ref.onclick = summary;
+    summary();
+    setTimeout(summary, 800);
+    setTimeout(summary, 2000);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
+  else bind();
+})();
+</script>
 </body>
 </html>
