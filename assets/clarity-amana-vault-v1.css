@@ -147,3 +147,17 @@ html[data-amana-session="open"] #amana-fiqh-host { display: block; }
   margin-top: 0.5rem;
   text-align: right;
 }
+
+#p5-vault-reset, .p5-vault-reset {
+  background: transparent !important;
+  border: 1px dashed rgba(200,100,80,.45) !important;
+  color: #e8b4a8 !important;
+  font-size: .78rem !important;
+  margin-top: .35rem;
+}
+#p5-vault-reset:hover { border-color: #c45c3e !important; }
+#p5-vault-pass, #p5-vault-pass2 {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}

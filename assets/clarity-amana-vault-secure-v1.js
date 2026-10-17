@@ -138,16 +138,21 @@
 
   function clearPassFields() {
     try {
-      var p = document.getElementById("p5-vault-pass");
-      var p2 = document.getElementById("p5-vault-pass2");
-      if (p) {
-        p.value = "";
-        p.type = "password";
-      }
-      if (p2) {
-        p2.value = "";
-        p2.type = "password";
-      }
+      ["p5-vault-pass", "p5-vault-pass2"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.value = "";
+        el.type = "password";
+        try {
+          el.setAttribute("autocomplete", "off");
+          el.setAttribute("autocapitalize", "off");
+          el.setAttribute("autocorrect", "off");
+          el.setAttribute("spellcheck", "false");
+          el.setAttribute("data-lpignore", "true");
+          el.setAttribute("data-form-type", "other");
+          el.setAttribute("name", "clarity-amana-" + id);
+        } catch (e1) {}
+      });
       var tog = document.getElementById("p5-vault-toggle");
       if (tog) tog.textContent = "Show passphrase";
     } catch (e) {}
@@ -204,7 +209,9 @@
     var badge = document.getElementById("p5-vault-badge");
     if (badge) badge.textContent = SESSION_UNLOCKED ? "Vault open · this session only" : "Vault locked";
     var setupBtn = document.getElementById("p5-vault-setup");
-    if (setupBtn) setupBtn.style.display = hasVault() || SESSION_UNLOCKED ? "none" : "inline-block";
+    if (setupBtn) setupBtn.style.display = SESSION_UNLOCKED ? "none" : hasVault() ? "none" : "inline-block";
+    var resetBtn = document.getElementById("p5-vault-reset");
+    if (resetBtn) resetBtn.style.display = !SESSION_UNLOCKED && hasVault() ? "inline-block" : "none";
     var unlockBtn = document.getElementById("p5-vault-unlock");
     if (unlockBtn) {
       unlockBtn.style.display = hasVault() && !SESSION_UNLOCKED ? "inline-block" : "none";
@@ -228,6 +235,22 @@
     }
     gateEstate(SESSION_UNLOCKED);
     if (SESSION_UNLOCKED) resetIdle();
+  }
+
+
+  function wipeVaultLocal() {
+    if (!confirm("Erase the encrypted vault on THIS device?\n\nYou cannot recover the old data without the original passphrase. Clarity cannot restore it.\n\nContinue?")) return;
+    if (!confirm("Final confirm: delete the local vault blob and start over?")) return;
+    try {
+      localStorage.removeItem(VAULT_KEY);
+      localStorage.removeItem(META_KEY);
+      localStorage.removeItem(ATTEMPT_KEY);
+    } catch (e) {}
+    SESSION_UNLOCKED = false;
+    window.__AMANA_VAULT_DATA__ = null;
+    clearPassFields();
+    setStatus("Vault erased on this device — choose a new passphrase and First-time setup.");
+    updateUI();
   }
 
   async function setupVault() {
@@ -314,6 +337,7 @@
       } else {
         setStatus("Unlock failed — wrong passphrase or corrupted vault" + (left ? " · " + left + " tries left" : ""));
       }
+      clearPassFields();
       updateUI();
     }
   }
@@ -393,13 +417,14 @@
       '<p id="p5-vault-mode" class="p5-vault-mode"></p>' +
       '<div id="p5-vault-locked">' +
       '<label>Passphrase</label><br/>' +
-      '<input type="password" id="p5-vault-pass" autocomplete="current-password" placeholder="Enter passphrase" />' +
+      '<input type="password" id="p5-vault-pass" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-form-type="other" name="clarity-amana-pass" placeholder="Enter passphrase" />' +
       '<div id="p5-vault-pass2-wrap"><label>Confirm (setup only)</label><br/>' +
-      '<input type="password" id="p5-vault-pass2" autocomplete="new-password" placeholder="Confirm passphrase" /></div>' +
+      '<input type="password" id="p5-vault-pass2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-form-type="other" name="clarity-amana-pass2" placeholder="Confirm passphrase" /></div>' +
       '<button type="button" id="p5-vault-toggle" class="p5-vault-toggle">Show passphrase</button>' +
       '<div class="p5-vault-actions">' +
       '<button type="button" class="primary" id="p5-vault-unlock">Unlock</button>' +
-      '<button type="button" id="p5-vault-setup">First-time setup</button></div></div>' +
+      '<button type="button" id="p5-vault-setup">First-time setup</button>' +
+      '<button type="button" id="p5-vault-reset" class="p5-vault-reset" title="Erase encrypted vault on this device">Start over</button></div></div>' +
       '<div id="p5-vault-open" hidden style="display:none">' +
       "<label>Notes</label><textarea id=\"p5-vault-notes\" rows=\"3\"></textarea>" +
       "<label>ICE contacts</label><textarea id=\"p5-vault-contacts\" rows=\"2\"></textarea>" +
@@ -421,6 +446,8 @@
     document.getElementById("p5-vault-setup").onclick = function () {
       setupVault();
     };
+    var resetEl = document.getElementById("p5-vault-reset");
+    if (resetEl) resetEl.onclick = function () { wipeVaultLocal(); };
     document.getElementById("p5-vault-lock").onclick = function () {
       lockVault();
     };
