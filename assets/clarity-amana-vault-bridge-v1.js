@@ -210,8 +210,18 @@
     else onLocked();
   }
 
+  var castleWrapped = false;
+
   function wrapCastle() {
-    if (!g.ClarityVault || g.ClarityVault.__bridgeWrapped) return false;
+    if (castleWrapped) return true;
+    if (!g.ClarityVault) return false;
+    /* Castle freezes its API — never assign onto that object */
+    try {
+      if (g.ClarityVault.__bridgeWrapped) {
+        castleWrapped = true;
+        return true;
+      }
+    } catch (e0) {}
     var api = g.ClarityVault;
     var unlock = api.unlock;
     var lock = api.lock;
@@ -221,6 +231,7 @@
       version: api.version,
       hasVault: api.hasVault,
       isOpen: api.isOpen,
+      __bridgeWrapped: true,
       unlock: function () {
         var r = unlock.apply(api, arguments);
         Promise.resolve(r).then(
@@ -242,8 +253,8 @@
     try {
       Object.freeze(wrapped);
     } catch (e) {}
-    wrapped.__bridgeWrapped = true;
     g.ClarityVault = wrapped;
+    castleWrapped = true;
     return true;
   }
 
