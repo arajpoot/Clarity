@@ -1,0 +1,43 @@
+/* Library shelves enrichment */
+.cu-lib{width:100%;max-width:none;box-sizing:border-box}
+.cu-lib-disc{
+  margin:0 0 1rem;padding:.85rem 1rem;border-radius:14px;
+  border:1px solid rgba(184,166,135,.35);background:rgba(30,125,94,.1);
+  font-size:.84rem;line-height:1.45
+}
+.cu-lib-disc strong{color:#d4b45a}
+.cu-lib h1{font-size:clamp(1.4rem,3vw,1.9rem);color:#d4b45a;margin:.2rem 0 .35rem}
+.cu-lib .cu-lib-lead{opacity:.85;margin:0 0 1rem;font-size:.95rem}
+.cu-lib-shelf{margin:0 0 1.35rem}
+.cu-lib-shelf h2{
+  font-size:clamp(1.1rem,2.2vw,1.35rem);color:#d4b45a;margin:0 0 .55rem;font-weight:800
+}
+.cu-lib-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr));
+  gap:.65rem;width:100%
+}
+.cu-lib-card{
+  display:flex;flex-direction:column;gap:.35rem;
+  padding:1rem 1.05rem;border-radius:16px;
+  border:1px solid rgba(184,166,135,.35);background:rgba(18,28,24,.94);
+  min-height:8.5rem
+}
+html[data-theme=light] .cu-lib-card{background:#fffef8}
+.cu-lib-card h3{margin:0;font-size:1.02rem;color:#d4b45a;font-weight:800}
+.cu-lib-card p{margin:0;font-size:.84rem;line-height:1.4;opacity:.9;flex:1}
+.cu-lib-badges{display:flex;flex-wrap:wrap;gap:.3rem;margin:.15rem 0}
+.cu-lib-badge{
+  font-size:.65rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+  padding:.15rem .45rem;border-radius:999px;border:1px solid rgba(184,166,135,.35)
+}
+.cu-lib-badge.campus{background:#1e7d5e;color:#fff;border-color:#1e7d5e}
+.cu-lib-badge.lab{background:rgba(212,180,90,.2);color:#d4b45a}
+.cu-lib-badge.external{background:rgba(255,255,255,.06)}
+.cu-lib-links{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
+.cu-lib-links a{
+  display:inline-flex;align-items:center;
+  padding:.35rem .65rem;border-radius:999px;font-size:.75rem;font-weight:700;
+  text-decoration:none;color:inherit;border:1px solid rgba(184,166,135,.4)
+}
+.cu-lib-links a.primary{background:#1e7d5e;color:#fff;border-color:#1e7d5e}
+.cu-lib-links a:hover{border-color:#d4b45a}
