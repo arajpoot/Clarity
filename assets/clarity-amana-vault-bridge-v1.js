@@ -1,14 +1,12 @@
 /**
- * Amana Vault Bridge — Phase 1–2 restore (20261016BRIDGE)
+ * Amana Vault Bridge — Phase 1–3 (20261016P3)
  * ---------------------------------------------------------------------------
  * Amanah: single crypto owner = Castle (clarity-amana-vault-secure-v1.js).
  * This module does NOT re-derive keys and does NOT store passphrases.
  *
- * Duties:
- *  1. After unlock — load family tree + fiqh scripts once, then render.
- *  2. Keep #amana-fiqh-host and estate cards in sync with ClarityVault.isOpen().
- *  3. On lock — hide estate UI (Castle also calls gateEstate; this is a safety net).
- *  4. Focus notes tab + vault card when rail / FAB requests vault.
+ * Phase 1–2: unlock/lock → show/hide estate UI; load UFT + fiqh once.
+ * Phase 3:   path wizard focus, sealed-blob hygiene, print-pack gate,
+ *            post-unlock scroll to workflow, optional restore hook.
  *
  * University (/campus/*, sealed curriculum vault) is out of scope.
  * Educational only — not a fatwa, not a court document.
@@ -16,11 +14,16 @@
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_AMANA_BRIDGE_V1__) return;
+  if (g.__CLARITY_AMANA_BRIDGE_V1__) {
+    if (g.__CLARITY_AMANA_BRIDGE_VER__ === "20261016P3") return;
+  }
   g.__CLARITY_AMANA_BRIDGE_V1__ = true;
+  g.__CLARITY_AMANA_BRIDGE_VER__ = "20261016P3";
 
-  var VER = "20261016BRIDGE";
+  var VER = "20261016P3";
   var ESTATE_VER = "20261015FIX1";
+  var VAULT_BLOB = "clarity_amana_vault_blob_v1";
+  var VAULT_META = "clarity_amana_vault_meta_v1";
   var estateLoading = false;
   var estateLoaded = false;
   var lastOpen = null;
@@ -124,7 +127,6 @@
         return loadScript("/assets/clarity-amana-uft-v1.js?v=" + v);
       })
       .then(function () {
-        /* Optional full restore — non-fatal if missing */
         return loadScript(
           "/assets/clarity-uft-full-restore-v1.js?v=" + v
         ).catch(function () {});
@@ -147,16 +149,44 @@
       });
   }
 
+  function focusEstatePath() {
+    try {
+      if (typeof g.fiqhGoStep === "function") {
+        g.fiqhGoStep(1);
+        return;
+      }
+    } catch (e) {}
+    var wf = $("fiqh-workflow-card");
+    if (wf && wf.scrollIntoView) {
+      try {
+        wf.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (e2) {}
+    }
+  }
+
+  function ensureVaultKeysListed() {
+    try {
+      var blob = localStorage.getItem(VAULT_BLOB);
+      var meta = localStorage.getItem(VAULT_META);
+      if (blob) localStorage.setItem(VAULT_BLOB, blob);
+      if (meta) localStorage.setItem(VAULT_META, meta);
+    } catch (e) {}
+  }
+
   function onUnlocked() {
     setEstateVisible(true);
+    ensureVaultKeysListed();
     bootEstateScripts().then(function () {
       try {
         if (typeof g.uftRender === "function") g.uftRender();
       } catch (e) {}
+      setTimeout(focusEstatePath, 120);
     });
     try {
       g.dispatchEvent(
-        new CustomEvent("clarity-amana-unlock", { detail: { ver: VER } })
+        new CustomEvent("clarity-amana-unlock", {
+          detail: { ver: VER }
+        })
       );
     } catch (e2) {}
   }
@@ -165,7 +195,9 @@
     setEstateVisible(false);
     try {
       g.dispatchEvent(
-        new CustomEvent("clarity-amana-lock", { detail: { ver: VER } })
+        new CustomEvent("clarity-amana-lock", {
+          detail: { ver: VER }
+        })
       );
     } catch (e) {}
   }
@@ -178,7 +210,6 @@
     else onLocked();
   }
 
-  /** Wrap Castle API once it appears so unlock/lock fire bridge immediately */
   function wrapCastle() {
     if (!g.ClarityVault || g.ClarityVault.__bridgeWrapped) return false;
     var api = g.ClarityVault;
@@ -247,6 +278,58 @@
     }, 80);
   }
 
+  function printPackGuarded(ev) {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    if (!isOpen()) {
+      showNotesAndVault();
+      try {
+        var st = $("p5-vault-status") || $("p5-vault-badge");
+        if (st) st.textContent = "Unlock vault to print pack (session only).";
+      } catch (e) {}
+      return false;
+    }
+    try {
+      if (typeof g.__CLARITY_AMANA_NATIVE_PRINT__ === "function") {
+        g.__CLARITY_AMANA_NATIVE_PRINT__();
+        return false;
+      }
+    } catch (e2) {}
+    try {
+      var data = g.__AMANA_VAULT_DATA__ || {};
+      var w = g.open("", "_blank", "noopener,noreferrer");
+      if (!w) return false;
+      var body =
+        "Clarity · Amana Vault pack (educational)\n" +
+        "Session export — not a fatwa or court document.\n" +
+        "Updated: " +
+        (data.updatedAt || "") +
+        "\n\n--- Notes ---\n" +
+        (data.notes || "") +
+        "\n\n--- ICE contacts ---\n" +
+        (typeof data.contacts === "string"
+          ? data.contacts
+          : JSON.stringify(data.contacts || "")) +
+        "\n\n--- Debts / rights ---\n" +
+        (typeof data.debts === "string"
+          ? data.debts
+          : JSON.stringify(data.debts || "")) +
+        "\n\n--- Wasiyyah notes (<=1/3 educational) ---\n" +
+        (data.wasiyyah || "") +
+        "\n";
+      w.document.write(
+        "<pre style=\"font-family:system-ui,sans-serif;padding:1.25rem;white-space:pre-wrap\">" +
+          body.replace(/</g, "&lt;") +
+          "</pre>"
+      );
+      w.document.close();
+      try {
+        w.focus();
+        w.print();
+      } catch (e3) {}
+    } catch (e4) {}
+    return false;
+  }
+
   g.NurOS = g.NurOS || {};
   if (typeof g.NurOS.openVault !== "function") {
     g.NurOS.openVault = showNotesAndVault;
@@ -260,22 +343,36 @@
     };
   }
 
+  if (typeof g.clarityAmanaPrintPack === "function" && !g.__CLARITY_AMANA_NATIVE_PRINT__) {
+    g.__CLARITY_AMANA_NATIVE_PRINT__ = g.clarityAmanaPrintPack;
+  }
+  g.clarityAmanaPrintPackGuarded = printPackGuarded;
+  g.clarityAmanaPrintPack = function () {
+    if (!isOpen()) return printPackGuarded();
+    if (typeof g.__CLARITY_AMANA_NATIVE_PRINT__ === "function") {
+      try {
+        return g.__CLARITY_AMANA_NATIVE_PRINT__.apply(g, arguments);
+      } catch (e) {
+        return printPackGuarded();
+      }
+    }
+    return printPackGuarded();
+  };
+
   function boot() {
     wrapCastle();
-    /* Initial: locked until Castle reports open */
     if (lastOpen === null) {
       lastOpen = false;
       setEstateVisible(false);
     }
     sync();
-    /* Poll briefly until Castle boots, then light poll for session */
+    ensureVaultKeysListed();
     var n = 0;
     var iv = setInterval(function () {
       n++;
       wrapCastle();
       sync();
       if (n > 40 && g.ClarityVault) {
-        /* after ~12s settle to slower watch */
         clearInterval(iv);
         setInterval(function () {
           wrapCastle();
@@ -292,10 +389,12 @@
       if (!t || !t.closest) return;
       if (
         t.closest(".rrra-rail-vault") ||
-        t.closest("[data-open-vault]") ||
-        t.closest("#amana-top-print-btn")
+        t.closest("[data-open-vault]")
       ) {
         setTimeout(showNotesAndVault, 20);
+      }
+      if (t.closest("#amana-top-print-btn")) {
+        printPackGuarded(ev);
       }
       if (
         (t.getAttribute && t.getAttribute("data-tab") === "notes") ||

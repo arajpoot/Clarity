@@ -128,3 +128,19 @@ html[data-amana-session="open"] #fiqh-workflow-card {
 #tab-notes.amana-locked #amana-fiqh-host {
   display: none !important;
 }
+
+/* Phase 3 path focus */
+.fiqh-path-focus {
+  outline: 2px solid rgba(212,180,90,.55);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(31,166,122,.12);
+}
+.fiqh-step-btn.on {
+  background: rgba(31,166,122,.35) !important;
+  border-color: rgba(212,180,90,.5) !important;
+  font-weight: 700;
+}
+#fiqh-path-checklist li.on {
+  color: var(--gold, #d4b45a);
+  font-weight: 650;
+}
