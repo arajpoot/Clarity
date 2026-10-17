@@ -6,8 +6,8 @@
   "use strict";
   var ROOM = "practice";
   var API = "ClarityJuniorHighCurriculum";
-  var CHAIN = ["/assets/curriculum/vault/foundation/engine.js", "/assets/curriculum/vault/foundation/spark-quiz.js", "/assets/curriculum/vault/foundation/diplomas.js", "/assets/curriculum/vault/foundation/phase-plaque.js", "/assets/curriculum/vault/foundation/college-practice.js"];
-  var VER = "20261017WIRE";
+  var CHAIN = ["/assets/curriculum/vault/foundation/engine.js", "/assets/curriculum/vault/foundation/spark-quiz.js", "/assets/curriculum/vault/foundation/phase-plaque.js", "/assets/curriculum/vault/foundation/diplomas.js", "/assets/curriculum/vault/foundation/college-practice.js"];
+  var VER = "20261017GUIDE";
   if (g.__CU_CURRICULUM_LOADER__ === ROOM) return;
 
   function currentRoom() {
