@@ -1,0 +1,212 @@
+/* Clarity University BI harmony - calm green + gold plaques + full width */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Scheherazade+New:wght@600;700&display=swap");
+
+:root{
+  --bi-green:#3d6b3c;
+  --bi-green-deep:#1e3d28;
+  --bi-green-soft:rgba(70,124,69,.12);
+  --cu-gold:#c9a227;
+  --cu-gold-rim:rgba(201,162,39,.55);
+  --cu-gold-soft:rgba(201,162,39,.14);
+  --cu-ink:#e9f0ea;
+  --cu-muted:rgba(233,240,234,.78);
+  --cu-bg0:#0a100e;
+  --cu-bg1:#101a16;
+  --cu-plaque:rgba(16,28,22,.82);
+  --cu-line:rgba(201,162,39,.4);
+  --cu-radius:18px;
+  --cu-pad:clamp(.85rem,2.8vw,1.6rem);
+}
+html[data-theme=light]{
+  --cu-ink:#1a2a22;
+  --cu-muted:rgba(26,42,34,.75);
+  --cu-bg0:#f4f1e8;
+  --cu-bg1:#eef3ee;
+  --cu-plaque:rgba(255,253,248,.92);
+  --cu-line:rgba(70,124,69,.28);
+  --bi-green:#467C45;
+}
+
+html,body.cu-page{
+  margin:0;padding:0;width:100%;max-width:100%;overflow-x:hidden;
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  color:var(--cu-ink);
+  background:
+    radial-gradient(ellipse 100% 70% at 50% -15%, rgba(70,124,69,.2), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 10%, rgba(201,162,39,.07), transparent 45%),
+    linear-gradient(180deg,var(--cu-bg1),var(--cu-bg0));
+  min-height:100vh;
+}
+html[data-theme=light] body.cu-page{
+  background:
+    radial-gradient(ellipse 100% 70% at 50% -15%, rgba(70,124,69,.1), transparent 55%),
+    linear-gradient(180deg,#f7f5ee,#eef3ee);
+}
+
+/* subtle geometric lattice - non-figurative */
+body.cu-page::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
+  background-image:
+    linear-gradient(rgba(201,162,39,.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,162,39,.5) 1px, transparent 1px);
+  background-size:48px 48px;
+}
+html[data-theme=light] body.cu-page::before{opacity:.035}
+
+.cu-topstrip,.cu-banner,.cu-wrap,main.cu-wrap,footer.cu-foot,nav.cu-pills{position:relative;z-index:1}
+
+.cu-topstrip{
+  width:100%;box-sizing:border-box;
+  padding:.4rem var(--cu-pad);
+  font-size:.72rem;letter-spacing:.03em;
+  background:linear-gradient(90deg,rgba(10,20,16,.95),rgba(20,40,28,.92));
+  border-bottom:1px solid var(--cu-line);
+  display:flex;flex-wrap:wrap;gap:.4rem .9rem;align-items:center;justify-content:space-between;
+}
+html[data-theme=light] .cu-topstrip{background:linear-gradient(90deg,#e8f0e8,#f3f0e6)}
+.cu-topstrip a{color:var(--cu-gold);text-decoration:none;font-weight:600}
+.cu-topstrip a:hover{text-decoration:underline}
+.cu-top-links{display:flex;flex-wrap:wrap;gap:.45rem .85rem;align-items:center}
+
+.cu-banner{
+  width:100%;box-sizing:border-box;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.65rem;
+  padding:.75rem var(--cu-pad);
+  background:linear-gradient(180deg,rgba(22,42,32,.94),rgba(12,22,18,.9));
+  border-bottom:1px solid var(--cu-line);
+  position:sticky;top:0;z-index:1000;
+  backdrop-filter:blur(12px);
+}
+html[data-theme=light] .cu-banner{
+  background:linear-gradient(180deg,rgba(255,253,248,.95),rgba(240,244,240,.92));
+}
+.cu-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:inherit}
+.cu-brand-mark{
+  width:2.15rem;height:2.15rem;border-radius:12px;
+  border:1px solid var(--cu-gold-rim);
+  background:radial-gradient(circle at 30% 30%,rgba(201,162,39,.25),rgba(30,61,40,.9));
+  display:grid;place-items:center;
+  font-family:"Scheherazade New","Cormorant Garamond",serif;
+  color:var(--cu-gold);font-size:1.15rem;font-weight:700;
+}
+html[data-theme=light] .cu-brand-mark{background:radial-gradient(circle at 30% 30%,#f5edd6,#e7f0e7)}
+.cu-brand small{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.cu-brand strong{
+  display:block;font-family:"Cormorant Garamond",serif;
+  font-size:1.35rem;font-weight:700;color:var(--cu-gold);letter-spacing:.02em;line-height:1.1;
+}
+.cu-banner-actions{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+.cu-main-link,.cu-theme-pill{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.38rem .75rem;border-radius:999px;font-size:.74rem;font-weight:700;
+  border:1px solid var(--cu-line);background:rgba(255,255,255,.04);color:inherit;
+  text-decoration:none;cursor:pointer;
+}
+html[data-theme=light] .cu-main-link,html[data-theme=light] .cu-theme-pill{background:rgba(70,124,69,.06)}
+.cu-main-link:hover,.cu-theme-pill:hover{border-color:var(--cu-gold);color:var(--cu-gold)}
+
+/* Full-width wrap */
+.cu-wrap,main.cu-wrap{
+  width:100%;max-width:none;box-sizing:border-box;
+  margin:0 auto;padding:1rem var(--cu-pad) 2.75rem;
+}
+
+/* Pills - beginislam calm + gold active */
+nav.cu-pills,.cu-pills{
+  display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;justify-content:center;
+  width:100%;box-sizing:border-box;
+  padding:.55rem .65rem;margin:0 0 1rem;
+  border-radius:999px;
+  background:var(--cu-plaque);
+  border:1px solid var(--cu-gold-rim);
+  box-shadow:0 0 0 1px rgba(201,162,39,.08),0 10px 30px rgba(0,0,0,.12);
+}
+.cu-pills a{
+  display:inline-flex;align-items:center;gap:.35rem;
+  padding:.48rem 1.05rem;border-radius:999px;
+  font-size:.86rem;font-weight:700;text-decoration:none;color:var(--cu-ink);
+  border:1px solid transparent;transition:.15s ease;
+}
+.cu-pills a .ico{font-size:.95rem;opacity:.9;line-height:1}
+.cu-pills a:hover{background:var(--bi-green-soft);border-color:rgba(70,124,69,.25)}
+.cu-pills a.here{
+  background:var(--bi-green);color:#fff!important;border-color:var(--bi-green);
+  box-shadow:0 4px 14px rgba(70,124,69,.3);
+}
+
+/* Gold-rimmed plaques */
+.cu-plaque,.cu-continue,.cu-card,.cu-lib-card,.cu-contract,.cu-lib-disc,details.cu-plaque{
+  background:var(--cu-plaque);
+  border:1px solid var(--cu-gold-rim);
+  border-radius:var(--cu-radius);
+  box-shadow:0 0 0 1px rgba(201,162,39,.06),0 12px 28px rgba(0,0,0,.1);
+}
+.cu-continue{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;
+  width:100%;box-sizing:border-box;
+  padding:1.05rem 1.2rem;margin:.25rem 0 1.1rem;
+  background:linear-gradient(135deg,rgba(70,124,69,.18),var(--cu-plaque));
+}
+.cu-continue a{font-weight:800;color:var(--cu-gold);font-size:1.02rem;text-decoration:none}
+.cu-continue a:hover{text-decoration:underline}
+
+h1,.cu-h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(1.55rem,3.4vw,2.15rem);font-weight:700;
+  color:var(--cu-gold);letter-spacing:.01em;margin:.25rem 0 .55rem;line-height:1.15;
+}
+h2,.cu-h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(1.2rem,2.5vw,1.5rem);font-weight:700;color:var(--cu-gold);margin:.9rem 0 .4rem;
+}
+.cu-lead{font-size:clamp(.95rem,1.7vw,1.08rem);line-height:1.55;color:var(--cu-muted);max-width:48rem}
+
+.cu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,16.5rem),1fr));
+  gap:.8rem;width:100%;margin:.4rem 0 1.2rem;
+}
+.cu-card{
+  display:flex;flex-direction:column;gap:.35rem;
+  padding:1.1rem 1.15rem;text-decoration:none;color:inherit;min-height:7rem;
+  transition:transform .14s,box-shadow .14s,border-color .14s;
+}
+.cu-card:hover{
+  transform:translateY(-2px);
+  border-color:var(--cu-gold);
+  box-shadow:0 0 0 1px rgba(201,162,39,.2),0 14px 32px rgba(0,0,0,.16);
+}
+.cu-card strong{font-size:1.08rem;color:var(--cu-gold);font-family:"Cormorant Garamond",serif;font-weight:700}
+.cu-card .desc{font-size:.88rem;line-height:1.4;color:var(--cu-muted)}
+.cu-card .cu-ico{
+  width:2rem;height:2rem;border-radius:10px;display:grid;place-items:center;
+  border:1px solid var(--cu-gold-rim);background:var(--cu-gold-soft);
+  font-size:1rem;margin-bottom:.15rem;
+}
+.cu-badge{
+  display:inline-block;font-size:.66rem;font-weight:800;padding:.16rem .48rem;
+  border-radius:999px;width:max-content;letter-spacing:.04em;text-transform:uppercase;
+}
+.cu-badge.open{background:var(--bi-green);color:#fff}
+.cu-badge.locked{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+html[data-theme=light] .cu-badge.locked{background:rgba(0,0,0,.04)}
+
+.cu-foot{
+  width:100%;box-sizing:border-box;text-align:center;
+  padding:1.1rem var(--cu-pad) 2.2rem;font-size:.75rem;opacity:.75;
+  border-top:1px solid var(--cu-line);
+}
+
+/* Arabic elegance when present */
+[lang=ar],.arabic,.ar-ar{
+  font-family:"Scheherazade New","Amiri",serif;
+  direction:rtl;
+}
+
+/* Stage full width */
+#cu-stage,.cu-stage{width:100%;max-width:none}
+
+@media (min-width:900px){
+  .cu-pills a{font-size:.9rem;padding:.52rem 1.2rem}
+}
