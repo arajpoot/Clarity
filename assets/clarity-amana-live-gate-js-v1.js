@@ -132,6 +132,7 @@
     if (locked) {
       tab.classList.add("amana-locked");
       tab.classList.remove("amana-unlocked");
+      try { document.body.classList.remove("amana-vault-focus"); } catch(eF){}
       if (gate) gate.hidden = false;
       if (interior) interior.hidden = true;
       SESSION_UNLOCKED = false;
@@ -139,6 +140,7 @@
     } else {
       tab.classList.remove("amana-locked");
       tab.classList.add("amana-unlocked");
+      try { document.body.classList.add("amana-vault-focus"); } catch(eF2){}
       try { if (typeof clarityAmanaUnseal === "function") clarityAmanaUnseal(); } catch(e){}
       if (gate) { gate.hidden = true; try { gate.setAttribute("hidden",""); } catch(eG){} }
       if (interior) {

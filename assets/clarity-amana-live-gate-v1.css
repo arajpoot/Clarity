@@ -501,3 +501,56 @@ body.amana-unlocked #uft-stage,
 .aw-btn.aw-danger { border-color: rgba(196,92,62,0.45); background: rgba(196,92,62,0.15); }
 .aw-compose { margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
 .aw-actions { margin-top: 0.35rem; }
+
+
+/* VAULT FOCUS MODE — hide chrome when unlocked for noise-free worksheet/tree */
+html[data-active-tab="notes"] #tab-notes.amana-unlocked ~ * { }
+body[data-active-tab="notes"] #tab-notes.amana-unlocked {
+  /* flag for children */
+}
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) .banner,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) #clarity-top-duo,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) .path-duo,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) #companion-university-duo,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) .track-strip,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) #clarity-path-track,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) .phased-learning-bar,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) #clarity-visit-pill-bar {
+  display: none !important;
+}
+/* fallback without :has */
+#tab-notes.amana-unlocked {
+  --amana-focus: 1;
+}
+body.amana-vault-focus .banner,
+body.amana-vault-focus #clarity-top-duo,
+body.amana-vault-focus .path-duo,
+body.amana-vault-focus #companion-university-duo,
+body.amana-vault-focus .track-strip,
+body.amana-vault-focus #clarity-path-track,
+body.amana-vault-focus #clarity-visit-pill-bar {
+  display: none !important;
+}
+/* Worksheet always visible block inside interior */
+#tab-notes.amana-unlocked #amana-worksheet-dd {
+  display: block !important;
+  visibility: visible !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0.35rem 0.1rem 0.85rem !important;
+  padding: 0.35rem 0.5rem 0.75rem !important;
+  border: 1px solid rgba(212,180,90,0.4) !important;
+  background: rgba(0,0,0,0.22) !important;
+}
+#tab-notes.amana-unlocked #amana-worksheet-select {
+  display: block !important;
+  width: 100% !important;
+  min-height: 2.4rem !important;
+  font-size: 0.9rem !important;
+}
+#tab-notes.amana-unlocked #cu-companion-notes-pad {
+  /* keep pad but quieter when unlocked — worksheet is primary */
+  opacity: 0.92;
+  max-width: none;
+  margin: 0.5rem 0.1rem 1rem;
+}

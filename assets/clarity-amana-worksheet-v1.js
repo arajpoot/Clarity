@@ -137,36 +137,70 @@
       .replace(/"/g, "&quot;");
   }
 
-  /** Import staging → worksheet (call on unlock) */
-  function importStagingToWorksheet() {
-    var staging = readStaging();
-    if (!staging.length) {
-      renderWorksheet();
-      return 0;
+  function readCompanionNotes() {
+    try {
+      var a = JSON.parse(localStorage.getItem("clarity_companion_notes_v1") || "[]");
+      return Array.isArray(a) ? a : [];
+    } catch (e) {
+      return [];
     }
+  }
+
+  /** Import staging + companion Notes pad → worksheet (call on unlock) */
+  function importStagingToWorksheet() {
     var sheet = readSheetLocal();
     var existing = {};
     sheet.forEach(function (n) {
       if (n && n.id) existing[n.id] = 1;
+      if (n && n.fingerprint) existing[n.fingerprint] = 1;
     });
     var added = 0;
-    staging.forEach(function (n) {
-      if (!n || !n.id || existing[n.id]) return;
+    var now = new Date().toISOString();
+
+    function pushNote(n, source) {
+      if (!n) return;
+      var body = (n.body || n.note || "").trim();
+      var title = (n.title || "").trim();
+      if (!body && !title) return;
+      var fp =
+        n.id ||
+        source +
+          ":" +
+          (n.created || "") +
+          ":" +
+          title.slice(0, 40) +
+          ":" +
+          body.slice(0, 80);
+      if (existing[fp] || (n.id && existing[n.id])) return;
+      var id = n.id || uid();
       sheet.push({
-        id: n.id,
-        title: n.title || "",
-        body: n.body || "",
-        created: n.created || new Date().toISOString(),
-        imported: new Date().toISOString(),
-        source: n.source || "lock-screen"
+        id: id,
+        fingerprint: fp,
+        title: title,
+        body: body,
+        created: n.created || n.ts || now,
+        imported: now,
+        source: source
       });
-      existing[n.id] = 1;
+      existing[fp] = 1;
+      existing[id] = 1;
       added++;
+    }
+
+    readStaging().forEach(function (n) {
+      pushNote(n, n.source || "lock-screen");
     });
+    readCompanionNotes().forEach(function (n) {
+      pushNote(n, "notes-pad");
+    });
+
     writeSheetLocal(sheet);
-    writeStaging([]); /* clear staging after import */
+    writeStaging([]); /* clear quick-note staging after import */
     renderWorksheet();
     renderStagingPreview();
+    try {
+      if (typeof clarityAmanaRenderWorksheet === "function") clarityAmanaRenderWorksheet();
+    } catch (e) {}
     return added;
   }
 
