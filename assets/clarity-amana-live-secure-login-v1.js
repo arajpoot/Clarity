@@ -30,6 +30,7 @@
     });
     var rt = $("amana-reset-type");
     if (rt) rt.value = "";
+    try { if (typeof clarityAmanaUnfreezePass === "function") clarityAmanaUnfreezePass(); } catch(e){}
   }
 
   function getAttempts(){

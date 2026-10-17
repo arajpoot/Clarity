@@ -178,9 +178,18 @@
 
   function clearPassFields(){
     ["amana-pass-new","amana-pass-confirm","amana-pass-unlock"].forEach(function(id){
-      var el = $(id); if (el) el.value = "";
+      var el = $(id);
+      if (!el) return;
+      el.value = "";
+      try {
+        el.removeAttribute("readonly");
+        el.readOnly = false;
+        el.disabled = false;
+        el.removeAttribute("disabled");
+      } catch(e){}
     });
     updateStrength();
+    try { if (typeof clarityAmanaUnfreezePass === "function") clarityAmanaUnfreezePass(); } catch(e){}
   }
 
   function readinessScore(data){
@@ -395,6 +404,7 @@
       if (el) { el.value = ""; el.blur(); }
     });
     setLockedUI(true);
+    try { if (typeof clarityAmanaUnfreezePass === 'function') clarityAmanaUnfreezePass(); } catch(eU){}
     if (hasVault()) showUnlockMode(true);
     else showUnlockMode(false);
     status("Vault locked · passphrase cleared.");
@@ -478,6 +488,7 @@
 
     // Default locked unless this browser tab still has a session key (survives refresh)
     setLockedUI(true);
+    try { if (typeof clarityAmanaUnfreezePass === 'function') clarityAmanaUnfreezePass(); } catch(eU){}
     if (hasVault()) showUnlockMode(true);
     else showUnlockMode(false);
     updateStrength();

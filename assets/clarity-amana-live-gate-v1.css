@@ -377,3 +377,18 @@ body.amana-unlocked #uft-stage,
   line-height: 1.4;
 }
 #amana-gate-status.err, .av-status.err { color: #f0a090; font-weight: 600; }
+
+/* SMOKE INPUT — never look/behave read-only when editable */
+#amana-vault-gate input[type="password"],
+#amana-pass-new, #amana-pass-confirm, #amana-pass-unlock {
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  touch-action: manipulation !important;
+  -webkit-opacity: 1 !important;
+}
+#amana-vault-gate input[disabled] {
+  /* only lockout should disable; visual still clear */
+  opacity: 0.85 !important;
+}
