@@ -1,0 +1,95 @@
+/* Arabic studio surface · 20261017SURF · /lab/arabic/ */
+:root {
+  --ar-bg: #f3f7f5;
+  --ar-text: #13201a;
+  --ar-muted: #3a4a42;
+  --ar-gold: #9a7b2e;
+  --ar-teal: #1e7d5e;
+  --ar-card: #0f1613;
+  --ar-card-text: #e8f0ea;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ar-bg);
+  color: var(--ar-text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.45;
+}
+a { color: #0d4f3c; }
+.cu-wrap { max-width: 42rem; margin: 0 auto; padding: 1rem 1rem 2.5rem; }
+.ar-top { font-size: 0.85rem; margin-bottom: 0.75rem; }
+.ar-top a { margin-right: 0.5rem; font-weight: 600; text-decoration: none; }
+.ar-top a:hover { text-decoration: underline; }
+h1.ar-title { color: var(--ar-gold); font-size: 1.3rem; margin: 0 0 0.35rem; font-weight: 800; }
+.ar-intro { font-size: 0.9rem; color: var(--ar-muted); margin: 0 0 0.85rem; }
+#ar-studio { max-width: 100%; margin: 0 auto; padding: 0 0 1rem; }
+.ar-lead { display: none; }
+.ar-path, .ar-note, .ar-session, .ar-meta { font-size: 0.8rem; color: var(--ar-muted); }
+.ar-path { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; margin: 0 0 0.55rem; }
+.ar-session-bar, .ar-decks, .ar-modes, .ar-actions, .ar-grade {
+  display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.55rem; justify-content: center;
+}
+.ar-deck-btn, .ar-mode-btn, .ar-btn {
+  border: 1px solid rgba(45, 90, 70, 0.22);
+  background: #fff;
+  color: var(--ar-text);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+.ar-deck-btn.here, .ar-mode-btn.here, .ar-btn.primary {
+  background: var(--ar-teal);
+  color: #fff;
+  border-color: var(--ar-teal);
+}
+.ar-btn.block { display: block; width: 100%; margin: 0.3rem 0; border-radius: 12px; text-align: left; }
+.ar-stage { margin-top: 0.35rem; }
+.ar-card-wrap {
+  padding: 1.15rem;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--ar-card);
+  color: var(--ar-card-text);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+}
+.ar-card-wrap .ar-tr,
+.ar-card-wrap .ar-meta,
+.ar-card-wrap .ar-note { color: rgba(232,240,234,0.8); }
+.ar-card-wrap .ar-btn {
+  background: rgba(255,255,255,0.1);
+  color: var(--ar-card-text);
+  border-color: rgba(184,166,135,0.4);
+}
+.ar-card-wrap .ar-btn.primary { background: var(--ar-teal); color: #fff; border-color: var(--ar-teal); }
+.ar-flash { min-height: 11rem; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.ar-face { text-align: center; width: 100%; }
+.ar-flash:not(.flipped) .ar-back { display: none; }
+.ar-flash.flipped .ar-front { display: none; }
+.ar-visual { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+.ar-emoji { font-size: 2.6rem; line-height: 1; }
+.ar-ar { font-size: clamp(1.8rem, 6vw, 2.4rem); font-weight: 700; display: block; margin: 0.2rem 0; line-height: 1.4; }
+.ar-en { font-size: 1.25rem; font-weight: 700; }
+.ar-tr { display: block; opacity: 0.85; font-size: 0.9rem; }
+.ar-ex { font-size: 0.95rem; margin: 0.45rem 0 0; }
+.ar-root { font-size: 0.75rem; opacity: 0.75; margin: 0.35rem 0 0; }
+.ar-meta { text-align: center; margin: 0.5rem 0 0; }
+.ar-match-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+@media (max-width: 520px) { .ar-match-grid { grid-template-columns: repeat(2, 1fr); } }
+.ar-match-cell {
+  min-height: 3rem; border-radius: 12px; border: 1px solid rgba(184,166,135,0.35);
+  background: rgba(21,32,28,0.95); color: inherit; font-weight: 700; cursor: pointer;
+}
+.ar-match-cell.sel { outline: 2px solid var(--ar-teal); }
+.ar-match-cell.done { opacity: 0.35; }
+.ar-letters { display: grid; grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); gap: 0.35rem; }
+.ar-letter {
+  border-radius: 12px; border: 1px solid rgba(184,166,135,0.3);
+  background: rgba(21,32,28,0.9); color: #e8f0ea; padding: 0.45rem; cursor: pointer;
+}
+.ar-letter span { font-size: 1.35rem; display: block; }
+.ar-letter small { font-size: 0.65rem; opacity: 0.75; }
