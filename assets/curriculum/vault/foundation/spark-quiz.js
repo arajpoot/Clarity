@@ -1,6 +1,6 @@
-/* Clarity Module Spark Quiz v1
- * Replaces simple checkmarks: answer to unlock the next module.
- * Educational only — not a fatwa.
+/* Clarity Module Spark Quiz v2 — adab gate
+ * Answer to unlock next module. Shows lesson adab before questions.
+ * Educational only — not a fatwa. Not a grade of iman.
  */
 (function (g) {
   "use strict";
@@ -8,7 +8,8 @@
   g.__CLARITY_MODULE_SPARK_QUIZ_V1__ = true;
 
   var BANK = null;
-  var BANK_URL = "./assets/curriculum/shared/module-spark-quiz-bank.json";
+  /* absolute path — relative ./ broke on /campus/desk/seeker/ */
+  var BANK_URL = "/assets/curriculum/shared/module-spark-quiz-bank.json";
   var ENCOURAGE = [
     "Beautiful — knowledge opened the next door.",
     "May Allah increase you. Next module unlocked.",
@@ -37,7 +38,6 @@
       });
   }
 
-  /** Auto-generate up to 3 MCQs from lesson points + title */
   function autoQuiz(lesson) {
     var pts = (lesson && lesson.points) || [];
     var title = (lesson && lesson.title) || "this module";
@@ -56,12 +56,7 @@
       var p1 = String(pts[1]).replace(/[—–].*$/, "").trim();
       qs.push({
         q: "From this module, which action fits best?",
-        opts: [
-          p1.slice(0, 110),
-          "Skip reflection entirely",
-          "Share unverified claims",
-          "Abandon sincerity"
-        ],
+        opts: [p1.slice(0, 110), "Skip reflection entirely", "Share unverified claims", "Abandon sincerity"],
         a: 0
       });
     }
@@ -87,7 +82,6 @@
   }
 
   function shuffleOpts(item) {
-    /* keep correct answer text; shuffle display order */
     var opts = (item.opts || []).slice();
     var correct = opts[item.a];
     for (var i = opts.length - 1; i > 0; i--) {
@@ -114,7 +108,8 @@
       '<div class="csq-spark" aria-hidden="true">✦</div>' +
       '<button type="button" class="csq-x" data-csq-close="1" aria-label="Close">×</button>' +
       '<h2 id="csq-title">Spark check</h2>' +
-      '<p class="csq-lead" id="csq-lead">Answer to unlock the next module. Educational only.</p>' +
+      '<p class="csq-lead" id="csq-lead">Answer with adab to unlock the next module. Educational only — not a grade of īmān.</p>' +
+      '<div id="csq-adab" class="csq-adab" hidden></div>' +
       '<div id="csq-body"></div>' +
       '<div class="csq-actions">' +
       '<button type="button" class="csq-submit" id="csq-submit">Unlock next module</button>' +
@@ -140,99 +135,102 @@
   function burstCelebrate(el) {
     if (!el) return;
     el.hidden = false;
-    el.innerHTML = "";
-    var symbols = ["✦", "✧", "·", "∗", "☆"];
-    for (var i = 0; i < 18; i++) {
-      var s = document.createElement("span");
-      s.className = "csq-particle";
-      s.textContent = symbols[i % symbols.length];
-      s.style.setProperty("--dx", (Math.random() * 160 - 80).toFixed(1) + "px");
-      s.style.setProperty("--dy", (Math.random() * -120 - 20).toFixed(1) + "px");
-      s.style.setProperty("--delay", (Math.random() * 0.25).toFixed(2) + "s");
-      el.appendChild(s);
-    }
+    el.textContent = "✦";
     setTimeout(function () {
       el.hidden = true;
-      el.innerHTML = "";
-    }, 1600);
+    }, 1200);
   }
 
-  /**
-   * Open spark quiz for a lesson.
-   * onPass(lessonId) called when student passes.
-   */
-  g.clarityOpenModuleSparkQuiz = function (lessonId, lesson, onPass) {
+  function adabText(lesson) {
+    if (lesson && lesson.adab) return String(lesson.adab);
+    return "Sit with a calm heart. This is knowledge — not debate sport. Answer sincerely.";
+  }
+
+  /** Public API used by college-seeker Prove it button */
+  g.ClaritySparkQuiz = g.ClaritySparkQuiz || {};
+  g.ClaritySparkQuiz.open = function (lessonId, lesson, onPass) {
     var m = ensureModal();
     var body = document.getElementById("csq-body");
     var result = document.getElementById("csq-result");
+    var celebrate = document.getElementById("csq-celebrate");
+    var adabEl = document.getElementById("csq-adab");
     var title = document.getElementById("csq-title");
     var lead = document.getElementById("csq-lead");
-    var celebrate = document.getElementById("csq-celebrate");
-    if (title) title.textContent = "Spark check — " + ((lesson && lesson.title) || "module");
+    if (title) title.textContent = "Spark check · " + ((lesson && lesson.title) || "module");
     if (lead)
       lead.textContent =
-        "Show you understood this module. Pass to unlock the next. Educational only — not a fatwa.";
+        "Read the adab line, then answer to unlock the next module. Educational only — not a grade of īmān.";
+    if (adabEl) {
+      adabEl.hidden = false;
+      adabEl.innerHTML =
+        "<strong>Adab</strong>" +
+        "<p>“" +
+        adabText(lesson) +
+        "”</p>" +
+        '<label class="csq-adab-check"><input type="checkbox" id="csq-adab-ok"/> I will answer with this adab</label>';
+    }
     if (result) {
       result.hidden = true;
       result.textContent = "";
       result.className = "csq-result";
     }
-    if (celebrate) {
-      celebrate.hidden = true;
-      celebrate.innerHTML = "";
-    }
+    if (celebrate) celebrate.hidden = true;
     body.innerHTML = "<p class=\"csq-loading\">Preparing questions…</p>";
     m.hidden = false;
     m.classList.add("show");
-    m.classList.remove("csq-pass-glow");
 
-    getQuestions(lessonId, lesson, function (qs, passNeed) {
-      if (!qs.length) {
-        body.innerHTML = "<p>No questions — unlocking by sincerity path.</p>";
-        if (typeof onPass === "function") onPass(lessonId);
-        setTimeout(close, 600);
+    getQuestions(lessonId, lesson, function (questions, passNeed) {
+      var prepared = (questions || []).map(shuffleOpts);
+      if (!prepared.length) {
+        body.innerHTML = "<p>No questions available. Re-read the module, then try again.</p>";
         return;
       }
-      var prepared = qs.map(shuffleOpts);
-      var html = "";
-      prepared.forEach(function (item, i) {
-        html += '<fieldset class="csq-q" data-qi="' + i + '">';
-        html += "<legend>" + (i + 1) + ". " + item.q + "</legend>";
-        item.opts.forEach(function (opt, oi) {
-          var id = "csq-" + i + "-" + oi;
-          html +=
-            '<label class="csq-opt" for="' +
-            id +
-            '"><input type="radio" name="csq-' +
-            i +
-            '" id="' +
-            id +
-            '" value="' +
-            oi +
-            '"/> <span>' +
-            opt +
-            "</span></label>";
-        });
-        html += "</fieldset>";
-      });
+      var html = prepared
+        .map(function (item, i) {
+          var opts = (item.opts || [])
+            .map(function (opt, j) {
+              return (
+                '<label class="csq-opt"><input type="radio" name="csq-' +
+                i +
+                '" value="' +
+                j +
+                '"/> <span>' +
+                opt +
+                "</span></label>"
+              );
+            })
+            .join("");
+          return (
+            '<fieldset class="csq-q"><legend>' +
+            (i + 1) +
+            ". " +
+            item.q +
+            "</legend>" +
+            opts +
+            "</fieldset>"
+          );
+        })
+        .join("");
       body.innerHTML = html;
-      body._prepared = prepared;
-      body._passNeed = passNeed;
-      body._lessonId = lessonId;
-      body._onPass = onPass;
 
       var sub = document.getElementById("csq-submit");
       if (sub) {
         sub.textContent = "Unlock next module";
         sub.disabled = false;
         sub.onclick = function () {
+          var ok = document.getElementById("csq-adab-ok");
+          if (ok && !ok.checked) {
+            result.hidden = false;
+            result.className = "csq-result fail";
+            result.textContent = "Tick the adab line first — then answer the questions.";
+            return;
+          }
           var correct = 0;
           prepared.forEach(function (item, i) {
             var picked = body.querySelector('input[name="csq-' + i + '"]:checked');
             if (picked && parseInt(picked.value, 10) === item.a) correct++;
           });
           var need = Math.min(passNeed || 2, prepared.length);
-          /* allow full pass if only 2 questions */
           if (prepared.length <= 2) need = prepared.length;
           result.hidden = false;
           if (typeof g.clarityRecordUniversityScore === "function") {
@@ -272,7 +270,6 @@
               need +
               "+ correct.";
             result.className = "csq-result fail";
-            /* gentle hint: reveal first point */
             if (lesson && lesson.points && lesson.points[0]) {
               result.textContent += " Hint: “" + String(lesson.points[0]).slice(0, 80) + "…”";
             }
@@ -282,7 +279,10 @@
     });
   };
 
-  /* Prefetch bank */
+  /* aliases used by older college builds */
+  g.clarityOpenSparkQuiz = g.ClaritySparkQuiz.open;
+  g.openSparkQuiz = g.ClaritySparkQuiz.open;
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       loadBank(function () {});
