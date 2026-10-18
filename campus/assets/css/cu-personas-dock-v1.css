@@ -13,6 +13,14 @@
   border-radius:14px;border:1px solid rgba(201,162,39,.45);
   background:#12201a;min-width:11rem
 }
+/* CRITICAL: hidden must win over display:flex */
+.cu-personas-dock-panel[hidden],
+.cu-personas-dock:not(.open) .cu-personas-dock-panel{
+  display:none!important
+}
+.cu-personas-dock.open .cu-personas-dock-panel{
+  display:flex!important
+}
 html[data-theme=light] .cu-personas-dock-panel{background:#fffef9;color:#1a2a22}
 .cu-personas-dock-item{
   text-align:left;padding:.45rem .65rem;border-radius:10px;border:0;
