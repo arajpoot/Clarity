@@ -1,12 +1,13 @@
-Clarity Lab surface final · 20261017LABF
+Clarity Lab studios surface port · 20261017PORT
 
-L3 Deep Arabic runtime archived (note only)
-L4 Lab hub + studio shells (tajweed, hifz, recite, calligraphy, media)
-L5 /lab/shared/lab-shell.css + lab-theme.js (Day/Night/System)
-L6 Links doc
-L7 Smoke
+All studios share chrome (banner + Day/Night/System):
+  /lab/
+  /lab/arabic/   full studio
+  /lab/tajweed/  body + tajweed-lmr + av
+  /lab/hifz/     studio.js + av
+  /lab/recite/
+  /lab/calligraphy/
+  /lab/media/
+  /lab/shared/   lab-shell, lab-theme, lab-av, flash*, tajweed-lmr
 
-Arabic full studio: /lab/arabic/
-Banner + theme bar restored on lab surface pages.
-
-Extract at site main root. Hard-refresh.
+Extract at site main root. Hard-refresh each /lab/*/ 
