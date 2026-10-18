@@ -1,6 +1,6 @@
 {
   "version": "20261017SENT",
-  "disclaimer": "Educational only — not a fatwa. Verify with a trusted teacher.",
+  "disclaimer": "Educational only — not a fatwa. Hajj phrases are language practice; follow your group's guide and a trusted teacher.",
   "packs": {
     "everyday_plus": [
       {
@@ -72,6 +72,94 @@
         "en": "ending salām of prayer",
         "tr": "taslīm",
         "emoji": "🕊️"
+      }
+    ],
+    "haramayn_hajj": [
+      {
+        "id": "hj1",
+        "ar": "لَبَّيْكَ",
+        "en": "Here I am (at Your service)",
+        "tr": "labbayk",
+        "emoji": "🕋",
+        "example": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ."
+      },
+      {
+        "id": "hj2",
+        "ar": "حَجّ",
+        "en": "pilgrimage (Ḥajj)",
+        "tr": "ḥajj",
+        "emoji": "🕌"
+      },
+      {
+        "id": "hj3",
+        "ar": "عُمْرَة",
+        "en": "lesser pilgrimage",
+        "tr": "ʿumrah",
+        "emoji": "🌙"
+      },
+      {
+        "id": "hj4",
+        "ar": "طَوَاف",
+        "en": "circumambulation",
+        "tr": "ṭawāf",
+        "emoji": "🔄"
+      },
+      {
+        "id": "hj5",
+        "ar": "سَعْي",
+        "en": "Saʿy between Ṣafā and Marwah",
+        "tr": "saʿy",
+        "emoji": "🚶"
+      },
+      {
+        "id": "hj6",
+        "ar": "مِنًى",
+        "en": "Minā",
+        "tr": "minā",
+        "emoji": "⛺"
+      },
+      {
+        "id": "hj7",
+        "ar": "عَرَفَة",
+        "en": "ʿArafah",
+        "tr": "ʿarafah",
+        "emoji": "⛰️"
+      },
+      {
+        "id": "hj8",
+        "ar": "مُزْدَلِفَة",
+        "en": "Muzdalifah",
+        "tr": "muzdalifah",
+        "emoji": "🌌"
+      },
+      {
+        "id": "hj9",
+        "ar": "كَعْبَة",
+        "en": "the Kaʿbah",
+        "tr": "kaʿbah",
+        "emoji": "🕋"
+      },
+      {
+        "id": "hj10",
+        "ar": "مَسْجِد",
+        "en": "mosque",
+        "tr": "masjid",
+        "emoji": "🕌",
+        "example": "هَذَا مَسْجِدٌ."
+      },
+      {
+        "id": "hj11",
+        "ar": "زَمْزَم",
+        "en": "Zamzam water",
+        "tr": "zamzam",
+        "emoji": "💧"
+      },
+      {
+        "id": "hj12",
+        "ar": "مَدِينَة",
+        "en": "Madinah",
+        "tr": "madīnah",
+        "emoji": "💚"
       }
     ]
   },
@@ -224,6 +312,46 @@
           "قَمَرٌ",
           "بَابٌ"
         ]
+      }
+    ],
+    "5": [
+      {
+        "id": "hj1a",
+        "pattern": "template",
+        "ar": "أَنَا فِي مَكَّةَ.",
+        "en": "I am in Makkah.",
+        "frame": "أَنَا فِي ___."
+      },
+      {
+        "id": "hj1b",
+        "pattern": "template",
+        "ar": "أَنَا فِي الْمَدِينَةِ.",
+        "en": "I am in Madinah.",
+        "frame": "أَنَا فِي ___."
+      },
+      {
+        "id": "hj1c",
+        "pattern": "nominal",
+        "ar": "هَذَا الْمَسْجِدُ كَبِيرٌ.",
+        "en": "This mosque is large.",
+        "slots": [
+          "هَذَا الْمَسْجِدُ",
+          "كَبِيرٌ"
+        ]
+      },
+      {
+        "id": "hj1d",
+        "pattern": "template",
+        "ar": "أَيْنَ الْكَعْبَةُ؟",
+        "en": "Where is the Kaʿbah?",
+        "frame": "أَيْنَ ___؟"
+      },
+      {
+        "id": "hj1e",
+        "pattern": "template",
+        "ar": "عِنْدِي مَاءُ زَمْزَمَ.",
+        "en": "I have Zamzam water.",
+        "frame": "عِنْدِي ___."
       }
     ]
   }

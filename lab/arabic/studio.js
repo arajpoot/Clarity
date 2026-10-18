@@ -10,7 +10,7 @@
 
   var KEY = "cu_lab_ar_progress_v1";
   var KEY_BANK = "cu_lab_ar_bank_v1";
-  var VER = "20261017LABF";
+  var VER = "20261017TQ";
   var NEW_CAP = 10;
   var ALLOW_FETCH = false; /* S0: offline first; expand uses local bank JSON */
 
@@ -54,6 +54,22 @@
         { id: "t6", ar: "سَمِعَ", en: "he heard", tr: "samiʿa", root: "س م ع" },
         { id: "t7", ar: "عَمِلَ", en: "he worked / did", tr: "ʿamila", root: "ع م ل" },
         { id: "t8", ar: "طَلَبَ", en: "he sought", tr: "ṭalaba", root: "ط ل ب" }
+      ]
+    },
+    
+    haramayn: {
+      id: "haramayn", title: "Hajj & Ḥaramayn", level: 5, path: 2,
+      cards: [
+        { id: "hj1", ar: "لَبَّيْكَ", en: "Here I am (at Your service)", tr: "labbayk", emoji: "🕋", example: "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ." },
+        { id: "hj2", ar: "حَجّ", en: "pilgrimage (Ḥajj)", tr: "ḥajj", emoji: "🕌" },
+        { id: "hj3", ar: "عُمْرَة", en: "lesser pilgrimage", tr: "ʿumrah", emoji: "🌙" },
+        { id: "hj4", ar: "طَوَاف", en: "circumambulation", tr: "ṭawāf", emoji: "🔄" },
+        { id: "hj5", ar: "سَعْي", en: "Saʿy (Ṣafā–Marwah)", tr: "saʿy", emoji: "🚶" },
+        { id: "hj6", ar: "كَعْبَة", en: "the Kaʿbah", tr: "kaʿbah", emoji: "🕋" },
+        { id: "hj7", ar: "زَمْزَم", en: "Zamzam", tr: "zamzam", emoji: "💧" },
+        { id: "hj8", ar: "مَدِينَة", en: "Madinah", tr: "madīnah", emoji: "💚" },
+        { id: "hj9", ar: "مَسْجِد", en: "mosque", tr: "masjid", emoji: "🕌", example: "هَذَا مَسْجِدٌ." },
+        { id: "hj10", ar: "عَرَفَة", en: "ʿArafah", tr: "ʿarafah", emoji: "⛰️" }
       ]
     },
     path: {
