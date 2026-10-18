@@ -1,0 +1,54 @@
+
+/* Canonical chrome — Map template forced sitewide */
+.cu-banner-canonical{
+  display:flex!important;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:.5rem;width:100%;box-sizing:border-box;
+  padding:.55rem clamp(.75rem,2.5vw,1.35rem)!important;
+  background:linear-gradient(180deg,rgba(14,40,32,.97),rgba(12,32,26,.95));
+  border-bottom:1px solid rgba(201,162,39,.35);
+}
+html[data-theme=light] .cu-banner-canonical{
+  background:linear-gradient(180deg,#f7f4ec,#eef2ea);
+  border-bottom-color:rgba(201,162,39,.4);
+}
+.cu-banner-canonical .cu-brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:inherit}
+.cu-banner-canonical .cu-brand-mark{
+  width:2rem;height:2rem;border-radius:999px;display:flex;align-items:center;justify-content:center;
+  background:#467C45;color:#fff;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700
+}
+.cu-banner-canonical .cu-brand small{display:block;font-size:.65rem;opacity:.75;letter-spacing:.04em;text-transform:uppercase}
+.cu-banner-canonical .cu-brand strong{display:block;font-size:1rem;color:#c9a227}
+.cu-banner-canonical .cu-banner-actions{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+.cu-banner-canonical .cu-theme-pill{
+  min-height:36px;padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(201,162,39,.45);
+  background:transparent;color:inherit;font-size:.78rem;font-weight:700;cursor:pointer
+}
+.cu-banner-canonical .cu-main-link{
+  min-height:36px;padding:.3rem .75rem;border-radius:999px;border:1px solid rgba(201,162,39,.4);
+  text-decoration:none;color:inherit;font-size:.78rem;font-weight:700
+}
+
+.cu-pills-canonical{
+  display:flex!important;flex-wrap:wrap;gap:.35rem;align-items:center;
+  margin:.55rem 0 .85rem;padding:.4rem;border-radius:999px;
+  border:1px solid rgba(201,162,39,.35);background:rgba(70,124,69,.1);
+  max-width:100%;box-sizing:border-box
+}
+.cu-pills-canonical a{
+  display:inline-flex!important;align-items:center;gap:.3rem;
+  padding:.4rem .75rem;min-height:40px;border-radius:999px;
+  text-decoration:none!important;color:inherit!important;
+  font-size:.78rem;font-weight:700
+}
+.cu-pills-canonical a.here,
+.cu-pills-canonical a[aria-current=page]{
+  background:#467C45!important;color:#fff!important
+}
+.cu-pills-canonical .cu-pill-ico{opacity:.9;font-size:.85rem}
+
+/* Kill fighters even if re-injected */
+body.cu-canon-chrome .cu-topstrip{display:none!important}
+body.cu-canon-chrome .cu-theme-bar,
+body.cu-canon-chrome .cu-ui-chrome-extra-themes{display:none!important}
+body.cu-canon-chrome header.cu-banner:not(.cu-banner-canonical){display:none!important}
+body.cu-canon-chrome nav.cu-pills:not(.cu-pills-canonical){display:none!important}
