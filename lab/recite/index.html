@@ -2,25 +2,22 @@
 <html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Recite studio · Lab · Clarity University</title>
-<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261017LABF"/>
+<meta name="description" content="Guided āyah practice for 114 sūrahs."/>
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261017TQ"/>
+<link rel="stylesheet" href="/lab/recite/studio.css?v=20261017TQ"/>
+
 </head>
 <body class="lab-surface" data-campus-page="lab">
 <div class="lab-topstrip">
-  <div><span>Campus</span>
-    <a href="/campus/">University map</a>
-    <a href="/campus/desk/">Desk</a>
-    <a href="/lab/arabic/">Arabic</a>
-    <a href="/lab/tajweed/">Tajweed</a>
-  </div>
+  <div><span>Campus</span> <a href="/campus/">University map</a> <a href="/campus/desk/">Desk</a>
+  <a href="/lab/arabic/">Arabic</a> <a href="/lab/tajweed/">Tajweed</a></div>
   <div><a href="/">Companion home</a></div>
 </div>
 <header class="lab-banner">
-  <a class="lab-brand" href="/campus/">
-    <span class="lab-brand-mark" aria-hidden="true">ن</span>
-    <span><small>UNIVERSITY</small><strong>Clarity University</strong></span>
-  </a>
+  <a class="lab-brand" href="/campus/"><span class="lab-brand-mark" aria-hidden="true">ن</span>
+  <span><small>UNIVERSITY</small><strong>Clarity University</strong></span></a>
   <div class="lab-banner-actions">
     <button type="button" class="lab-theme-pill" data-lab-theme="light">Day</button>
     <button type="button" class="lab-theme-pill" data-lab-theme="dark">Night</button>
@@ -31,13 +28,34 @@
 <nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/vault/">Vault</a><a href="/charter/">Charter</a></nav>
 
 <main class="lab-main">
-  <h1 style="color:var(--lab-gold);font-size:1.2rem">Recite studio</h1>
-  <p style="color:var(--lab-muted)">Guided recitation practice.</p>
-  <p style="color:var(--lab-muted);font-size:.88rem">Surface shell · banner + theme. Studio modules mount from deploy assets when available.</p>
-  <p style="margin-top:1rem"><a href="/lab/">← Lab hub</a> · <a href="/lab/arabic/">Arabic</a></p>
-  <div id="lab-studio-root"></div>
-  <p class="lab-foot">Educational only — not a fatwa. · 20261017LABF</p>
+
+<h1 style="color:var(--lab-gold);font-size:1.25rem;margin:0 0 .35rem">Recite studio</h1>
+<p style="color:var(--lab-muted);font-size:.9rem;margin:0 0 1rem">Guided āyah practice for all 114 sūrahs. Hear master audio · show/hide text. Educational only — not a qāriʾ verdict.</p>
+
+<section id="recite-root" style="border:1px solid var(--lab-line);border-radius:16px;padding:1rem;background:var(--lab-panel)">
+  <div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.75rem">
+    <label>Sūrah <select id="recite-surah"></select></label>
+    <label>Āyah <input type="number" id="recite-ayah" min="1" value="1" style="width:4rem"/></label>
+    <button type="button" class="lab-btn lab-btn-primary" id="recite-pull">Pull āyah</button>
+  </div>
+  <p id="recite-meta" style="font-size:.78rem;color:var(--lab-muted)">Choose a sūrah</p>
+  <p id="recite-ar" dir="rtl" lang="ar" style="font-size:1.4rem;line-height:1.9;margin:.5rem 0"></p>
+  <p id="recite-en" style="font-size:.9rem;color:var(--lab-muted)"></p>
+  <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.75rem">
+    <button type="button" class="lab-btn lab-btn-primary" id="recite-hear">▶ Hear (Ḥuṣarī)</button>
+    <button type="button" class="lab-btn" id="recite-hide">Hide text</button>
+    <button type="button" class="lab-btn" id="recite-show">Show text</button>
+    <button type="button" class="lab-btn" id="recite-speak-en">Speak translation</button>
+    <a class="lab-btn" id="recite-to-tj" href="/lab/tajweed/">Match / Record in Tajweed</a>
+  </div>
+  <p id="recite-status" style="font-size:.75rem;color:var(--lab-muted);margin-top:.5rem"></p>
+</section>
+
+<p class="lab-foot">Educational only — not a fatwa. · Surface · 20261017TQ</p>
 </main>
-<script src="/lab/shared/lab-theme.js?v=20261017LABF" defer></script>
+<script src="/lab/shared/lab-theme.js?v=20261017TQ" defer></script>
+<script src="/lab/shared/verse-practice.js?v=20261017TQ" defer></script>
+<script src="/lab/shared/lab-av.js?v=20261017TQ" defer></script>
+<script src="/lab/recite/studio.js?v=20261017TQ" defer></script>
 </body>
 </html>
