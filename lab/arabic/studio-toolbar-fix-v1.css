@@ -1,0 +1,10 @@
+
+/* Arabic studio toolbar: stop DeskVaultTajweed mash */
+.ar-toolbar,.ar-row,.ar-actions{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+a.ar-btn,button.ar-btn,.ar-btn{
+  display:inline-flex!important;align-items:center;gap:.25rem;
+  padding:.4rem .7rem;min-height:36px;margin:0 .15rem .25rem 0;
+  border-radius:999px;border:1px solid rgba(201,162,39,.4);
+  text-decoration:none!important;color:inherit!important;
+  font-size:.78rem;font-weight:700;background:rgba(70,124,69,.12)
+}
