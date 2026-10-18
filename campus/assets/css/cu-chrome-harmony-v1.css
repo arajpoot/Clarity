@@ -1,0 +1,138 @@
+
+/**
+ * University chrome harmony v1 — CH0/CH1
+ * Dedupe theme · full-width stage · readable day plaques · consistent pills
+ */
+:root{
+  --cu-gold:#c9a227;
+  --cu-green:#467C45;
+  --cu-ink:#1a2a22;
+  --cu-cream:#fffef9;
+  --cu-night:#0e1814;
+  --cu-night-card:#15241e;
+  --cu-max:min(96rem,100%);
+}
+
+/* Full viewport width stage */
+.cu-page main.cu-wrap,
+.cu-page .cu-wrap,
+main.lab-main,
+body.cu-page main{
+  max-width:var(--cu-max)!important;
+  width:100%!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:clamp(.75rem,2.5vw,1.35rem)!important;
+  padding-right:clamp(.75rem,2.5vw,1.35rem)!important;
+  box-sizing:border-box!important;
+}
+
+/* Hide legacy topstrip when banner exists (one chrome row) */
+body.cu-page:has(.cu-banner) .cu-topstrip{
+  display:none!important;
+}
+
+/* Banner single theme cluster */
+.cu-banner{
+  display:flex!important;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:.5rem;
+  width:100%;
+  box-sizing:border-box;
+  padding:.55rem clamp(.75rem,2.5vw,1.35rem)!important;
+}
+.cu-banner-actions{
+  display:flex!important;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:.35rem;
+}
+/* Kill injected duplicate theme pills after Companion link */
+.cu-banner-actions .cu-main-link ~ .cu-theme-pill,
+.cu-banner-actions .cu-main-link ~ [data-cu-theme],
+.cu-banner .cu-theme-pill:nth-of-type(n+4),
+header.cu-banner + .cu-theme-bar,
+.cu-ui-chrome-extra-themes{
+  display:none!important;
+}
+
+/* Standard pills rail */
+.cu-pills{
+  display:flex!important;
+  flex-wrap:wrap;
+  gap:.35rem;
+  margin:.5rem 0 .85rem;
+  padding:.4rem;
+  border-radius:999px;
+  border:1px solid rgba(201,162,39,.35);
+  background:rgba(70,124,69,.08);
+  max-width:100%;
+  box-sizing:border-box;
+}
+.cu-pills a{
+  display:inline-flex;
+  align-items:center;
+  gap:.25rem;
+  padding:.4rem .75rem;
+  min-height:40px;
+  border-radius:999px;
+  text-decoration:none;
+  color:inherit;
+  font-size:.8rem;
+  font-weight:700;
+}
+.cu-pills a.here,
+.cu-pills a[aria-current="page"]{
+  background:var(--cu-green);
+  color:#fff!important;
+}
+
+/* Day mode: force readable plaques (fix dark-on-dark) */
+html[data-theme=light] body.cu-page,
+html[data-theme=light] body{
+  background:linear-gradient(180deg,#f4f1ea 0%,#eef2ec 100%)!important;
+  color:var(--cu-ink)!important;
+}
+html[data-theme=light] .cu-plaque,
+html[data-theme=light] .cu-card,
+html[data-theme=light] .cu-continue,
+html[data-theme=light] .card,
+html[data-theme=light] details.cu-plaque,
+html[data-theme=light] .cu-buddy-hit,
+html[data-theme=light] .cu-buddy-chat,
+html[data-theme=light] .vault-card,
+html[data-theme=light] .lab-card{
+  background:var(--cu-cream)!important;
+  color:var(--cu-ink)!important;
+  border-color:rgba(201,162,39,.4)!important;
+}
+html[data-theme=light] .cu-plaque h1,
+html[data-theme=light] .cu-plaque h2,
+html[data-theme=light] .cu-h1,
+html[data-theme=light] .cu-lead strong{
+  color:#8a6d12!important;
+}
+
+/* Night: keep deep green but cards lifted */
+html[data-theme=dark] .cu-plaque,
+html[data-theme=dark] .cu-card,
+html[data-theme=dark] .cu-continue{
+  background:var(--cu-night-card)!important;
+  border-color:rgba(201,162,39,.4)!important;
+}
+
+/* Charter spine stack: tighten vertical rhythm */
+#cu-welcome-back:empty,
+#cu-spine-strip:empty,
+#cu-study-circle:empty{display:none!important}
+
+/* Vault/library orphan pages without banner — minimal pad */
+body:not(.cu-page) main,
+.vault-main{
+  max-width:var(--cu-max);
+  margin:0 auto;
+  padding:clamp(.75rem,2.5vw,1.35rem);
+  box-sizing:border-box;
+}
