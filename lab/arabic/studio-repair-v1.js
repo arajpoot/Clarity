@@ -124,7 +124,7 @@
       if (due && /Due\s*\(\s*0\s*\)/i.test(due.textContent || "")) {
         due.setAttribute("data-ar-action", "due-empty");
       }
-      injectSpeakBar();
+      setTimeout(injectSpeakBar, 80);
     } catch (e) {}
     decorating = false;
   }
@@ -199,7 +199,7 @@
         try { localStorage.setItem(DAY_KEY, String(Math.min(30, dayIndex() + 1))); } catch (e) {}
         var bar = $("ar-studio") && $("ar-studio").querySelector(".ar-speak-path");
         if (bar) bar.remove();
-        injectSpeakBar();
+        setTimeout(injectSpeakBar, 80);
         toast("Day " + dayIndex());
       }
     } catch (e) {}

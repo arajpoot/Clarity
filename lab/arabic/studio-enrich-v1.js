@@ -128,7 +128,7 @@
       if (r && !r.querySelector(".ar-buddy-bridge")) {
         var d = document.createElement("div");
         d.className = "ar-buddy-bridge";
-        d.innerHTML = '<a class="ar-btn ar-btn-link" href="/campus/buddy/">Study Buddy</a><a class="ar-btn ar-btn-link primary" href="/lab/arabic/hajj2027/">Hajj 2027 phrases</a>';
+        d.innerHTML = '<a class="ar-btn" href="/campus/buddy/">Study Buddy</a> <a class="ar-btn primary" href="/lab/arabic/hajj2027/">Hajj 2027 phrases</a>';
         r.appendChild(d);
       }
       if (r && !r.querySelector(".ar-retention")) {
@@ -136,7 +136,7 @@
         el.className = "ar-retention";
         var day = 1;
         try { day = parseInt(localStorage.getItem("cu_lab_ar_day_v1") || "1", 10) || 1; } catch (e) {}
-        el.innerHTML = '<span class="ar-retention-line">Speak path day ' + day + '/30</span> <a class="ar-btn ar-btn-link" href="/campus/transcript/">Transcript</a>';
+        el.innerHTML = "Speak path day " + day + '/30 · <a href="/campus/transcript/">Transcript</a>';
         r.appendChild(el);
       }
     } catch (e) {}

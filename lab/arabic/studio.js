@@ -10,7 +10,7 @@
 
   var KEY = "cu_lab_ar_progress_v1";
   var KEY_BANK = "cu_lab_ar_bank_v1";
-  var VER = "20261017TQ";
+  var VER = "20261018FULL";
   var NEW_CAP = 10;
   var ALLOW_FETCH = false; /* S0: offline first; expand uses local bank JSON */
 
@@ -492,10 +492,10 @@
     if (!root) return;
     var dueN = dueList().length;
     var pathNote =
-      '<div class="ar-path-row"><p class="ar-path">Path phase <strong>' + state.pathPhase +
+      '<p class="ar-path">Path phase <strong>' + state.pathPhase +
       "</strong> · suggested deck: <strong>" +
       ((DECKS[suggestDeckForPath()] && DECKS[suggestDeckForPath()].title) || "Everyday") +
-      '</strong> <button type="button" class="ar-btn" id="ar-use-path">Use path deck</button></p></div>\';
+      '</strong> <button type="button" class="ar-btn" id="ar-use-path">Use path deck</button></p>';
 
     var session =
       '<div class="ar-session-bar">' +
@@ -545,13 +545,40 @@
     else if (state.mode === "type") body = renderType();
     else if (state.mode === "letters") body = renderLetters();
 
-    root.innerHTML =
-      '' +
-      pathNote + session + deckBar + modeBar +
-      '<div class="ar-stage">' + body + "</div>" +
-      '<p class="ar-note">On-device · <code>cu_lab_ar_*</code> · Pattern practice is not a grammar fatwa. Verify with a trusted teacher.</p>';
+    try {
+      if (!pathNote) pathNote = "";
+      if (!session) session = "";
+      if (!deckBar) deckBar = "";
+      if (!modeBar) modeBar = "";
+      if (!body) body = '<p class="ar-note">Loading cards…</p>';
+      root.innerHTML =
+        pathNote +
+        session +
+        deckBar +
+        modeBar +
+        '<div class="ar-stage">' +
+        body +
+        "</div>" +
+        '<p class="ar-note">On-device · <code>cu_lab_ar_*</code> · Pattern practice is not a grammar fatwa. Verify with a trusted teacher.</p>';
+    } catch (err) {
+      root.innerHTML =
+        '<p class="ar-note">Studio UI error — retry. Educational only.</p>' +
+        pathNote +
+        session +
+        deckBar +
+        modeBar;
+      try {
+        console.error("[CuLabArabic render]", err);
+      } catch (e2) {}
+    }
 
-    bind();
+    try {
+      bind();
+    } catch (e3) {
+      try {
+        console.error("[CuLabArabic bind]", e3);
+      } catch (e4) {}
+    }
   }
 
   function answerMcq(mode, choice) {
@@ -765,8 +792,14 @@
       if (main) main.appendChild(host);
       else document.body.appendChild(host);
     }
-    loadBank(function () {
+    /* paint shell immediately so L1–L5 + modes never disappear */
+    try {
       render();
+    } catch (e) {}
+    loadBank(function () {
+      try {
+        render();
+      } catch (e2) {}
     });
   }
 

@@ -129,3 +129,10 @@ html[data-theme=light] .ar-card-wrap {
   gap: .4rem;
   margin: .35rem 0 .75rem;
 }
+
+/* FULL lab visibility (20261018FULL) */
+.ar-decks,.ar-modes,.ar-session-bar{display:flex!important;flex-wrap:wrap!important;gap:.4rem!important;margin:0 0 .65rem}
+.ar-deck-btn,.ar-mode-btn{display:inline-flex!important;min-height:40px;padding:.45rem .8rem;border-radius:999px;border:1px solid rgba(201,162,39,.4);background:rgba(255,255,255,.08);color:inherit;font-weight:700;font-size:.8rem;cursor:pointer}
+.ar-deck-btn.here,.ar-mode-btn.here{background:#467C45!important;color:#fff!important;border-color:#467C45!important}
+.ar-stage{min-height:8rem;margin:.5rem 0 1rem}
+.ar-speak-path{margin:0 0 .75rem;padding:.65rem;border-radius:14px;border:1px solid rgba(201,162,39,.3)}
