@@ -1,13 +1,4 @@
-Clarity Lab studios surface port · 20261017PORT
-
-All studios share chrome (banner + Day/Night/System):
-  /lab/
-  /lab/arabic/   full studio
-  /lab/tajweed/  body + tajweed-lmr + av
-  /lab/hifz/     studio.js + av
-  /lab/recite/
-  /lab/calligraphy/
-  /lab/media/
-  /lab/shared/   lab-shell, lab-theme, lab-av, flash*, tajweed-lmr
-
-Extract at site main root. Hard-refresh each /lab/*/ 
+Lab TJ+Arabic Library · 20261017LIB
+Tajweed: full LMR hosts (read-along, record, score)
+Arabic library: /lab/arabic/library/ Letters · Words · Jumlah · Hajj stay
+Extract at main root.
