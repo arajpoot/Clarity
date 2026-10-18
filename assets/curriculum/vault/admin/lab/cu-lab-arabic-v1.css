@@ -35,3 +35,42 @@
 .ar-letter span{font-size:1.35rem;display:block}
 .ar-letter small{font-size:.65rem;opacity:.75}
 html[data-theme=light] .ar-card-wrap,html[data-theme=light] .ar-match-cell,html[data-theme=light] .ar-deck-btn,html[data-theme=light] .ar-letter{background:#fffef8}
+
+
+/* FIX 20261017FIX */
+body.cu-page, body {
+  background: #f3f7f5;
+  color: #13201a;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  margin: 0;
+}
+a { color: #0d4f3c; }
+.ar-lead { display: none; } /* page shell owns intro */
+.ar-path { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; }
+.ar-card-wrap {
+  background: #0f1613 !important;
+  color: #e8f0ea !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+.ar-card-wrap .ar-tr, .ar-card-wrap .ar-note, .ar-card-wrap .ar-meta { color: rgba(232,240,234,0.8); }
+.ar-card-wrap .ar-btn {
+  background: rgba(255,255,255,0.08);
+  color: #e8f0ea;
+  border-color: rgba(184,166,135,0.4);
+}
+.ar-card-wrap .ar-btn.primary { background: #1e7d5e; color: #fff; border-color: #1e7d5e; }
+.ar-deck-btn, .ar-mode-btn, .ar-session-bar .ar-btn {
+  background: #fff;
+  color: #13201a;
+  border: 1px solid rgba(45,90,70,0.22);
+}
+.ar-deck-btn.here, .ar-mode-btn.here { background: #1e7d5e; color: #fff; border-color: #1e7d5e; }
+.ar-session-bar .ar-btn.primary { background: #1e7d5e; color: #fff; }
+.ar-note, .ar-path { color: #3a4a42; }
+#ar-studio { padding-bottom: 1rem; }
+.cu-wrap { max-width: 42rem; margin: 0 auto; padding: 1rem 1rem 2.5rem; }
+.ar-top { font-size: 0.85rem; margin-bottom: 0.75rem; }
+.ar-top a { margin-right: 0.35rem; text-decoration: none; font-weight: 600; }
+.ar-top a:hover { text-decoration: underline; }
+h1.ar-title { color: #9a7b2e; font-size: 1.25rem; margin: 0 0 0.35rem; font-weight: 800; }
+.ar-intro { font-size: 0.9rem; color: #3a4a42; margin: 0 0 0.85rem; line-height: 1.45; }

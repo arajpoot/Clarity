@@ -10,7 +10,7 @@
 
   var KEY = "cu_lab_ar_progress_v1";
   var KEY_BANK = "cu_lab_ar_bank_v1";
-  var VER = "20261017SENT";
+  var VER = "20261017FIX";
   var NEW_CAP = 10;
   var ALLOW_FETCH = false; /* S0: offline first; expand uses local bank JSON */
 
@@ -476,9 +476,10 @@
     if (!root) return;
     var dueN = dueList().length;
     var pathNote =
-      '<p class="ar-path">Path suggestion: phase <strong>' + state.pathPhase +
-      "</strong> → " + ((DECKS[suggestDeckForPath()] && DECKS[suggestDeckForPath()].title) || "") +
-      ' · <button type="button" class="ar-btn" id="ar-use-path">Use path deck</button></p>';
+      '<p class="ar-path">Path phase <strong>' + state.pathPhase +
+      "</strong> · suggested deck: <strong>" +
+      ((DECKS[suggestDeckForPath()] && DECKS[suggestDeckForPath()].title) || "Everyday") +
+      '</strong> <button type="button" class="ar-btn" id="ar-use-path">Use path deck</button></p>';
 
     var session =
       '<div class="ar-session-bar">' +
@@ -529,7 +530,7 @@
     else if (state.mode === "letters") body = renderLetters();
 
     root.innerHTML =
-      '<p class="ar-lead">Arabic studio — hear · see · MCQ · Jumlah sentences. Educational only. Not Tajweed or tafsīr.</p>' +
+      '' +
       pathNote + session + deckBar + modeBar +
       '<div class="ar-stage">' + body + "</div>" +
       '<p class="ar-note">On-device · <code>cu_lab_ar_*</code> · Pattern practice is not a grammar fatwa. Verify with a trusted teacher.</p>';
