@@ -209,9 +209,8 @@
         '<p class="cu-craft-actions">' +
         '<a class="cu-btn ghost" href="/lab/">Lab stations</a> ' +
           (craft.altHref ? '<a class="cu-btn ghost" href="' + craft.altHref + '">' + (craft.altLabel || 'More lab') + '</a> ' : '') +
-           +
         '<a class="cu-btn ghost" href="' +
-        (craft.companionHref || "/") +
+        (craft.companionHref && String(craft.companionHref).indexOf('NaN') < 0 ? craft.companionHref : "/") +
         '">' +
         (craft.companionLabel || "Companion") +
         "</a></p>";
@@ -225,12 +224,12 @@
       "</p>" +
       '<p class="cu-craft-actions">' +
       '<a class="cu-btn" href="' +
-      craft.href +
+      (craft.href && String(craft.href).indexOf('NaN') < 0 ? craft.href : "/lab/") +
       '">' +
       craft.label +
       " →</a> " +
       '<a class="cu-btn" href="' +
-      (craft.companionHref || "/") +
+      (craft.companionHref && String(craft.companionHref).indexOf('NaN') < 0 ? craft.companionHref : "/") +
       '">' +
       (craft.companionLabel || "Companion") +
       "</a> " +

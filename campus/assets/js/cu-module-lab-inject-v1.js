@@ -7,6 +7,21 @@
   if (g.__CU_MODULE_LAB_INJECT_V1__) return;
   g.__CU_MODULE_LAB_INJECT_V1__ = true;
 
+
+  function safeHref(h, fallback) {
+    if (h == null || h === "" || h !== h /* NaN */) return fallback || "/lab/";
+    h = String(h);
+    if (h.indexOf("NaN") >= 0 || h.indexOf("undefined") >= 0) return fallback || "/lab/";
+    if (h.charAt(0) !== "/" && h.indexOf("http") !== 0) return fallback || "/lab/";
+    return h;
+  }
+  function safeLabel(s, fallback) {
+    if (s == null || s !== s) return fallback || "Open";
+    s = String(s);
+    if (!s.trim() || s.indexOf("NaN") >= 0) return fallback || "Open";
+    return s;
+  }
+
   var STATION = {
     media: { href: "/lab/media/", label: "Lab · Media" },
     tajweed: { href: "/lab/recite/", label: "Lab · Recite (tajweed practice)" },
@@ -79,7 +94,7 @@
     if (cfg.labHref2) {
       extra =
         '<a class="cu-contract-chip" href="' +
-        cfg.labHref2 +
+        safeHref(cfg.labHref2, "/lab/") +
         '">' +
         cfg.labLabel2 +
         "</a>";
@@ -97,13 +112,13 @@
       "</ol>" +
       '<div class="cu-contract-row">' +
       '<a class="cu-contract-chip primary" href="' +
-      cfg.labHref +
+      safeHref(cfg.labHref, "/lab/") +
       '">' +
       cfg.labLabel +
       "</a>" +
       extra +
       '<a class="cu-contract-chip ghost" href="' +
-      cfg.libHref +
+      safeHref(cfg.libHref, "/library/") +
       '">' +
       cfg.libLabel +
       "</a>" +
@@ -202,9 +217,9 @@
         "<strong>After this module · skill in the Lab</strong>" +
         "<p style=\"margin:0.35rem 0 0.55rem;font-size:0.88rem;opacity:0.9\">Desk teaches. Lab practices. One short station — no second streak.</p>" +
         "<div class=\"cu-row\" style=\"flex-wrap:wrap;gap:0.4rem\">" +
-        "<a class=\"cu-main-link\" href=\"" + (conf.labHref || "/lab/") + "\">" + (conf.labLabel || "Open Lab") + "</a>" +
-        (conf.labHref2
-          ? "<a href=\"" + conf.labHref2 + "\">" + (conf.labLabel2 || "More lab") + "</a>"
+        "<a class=\"cu-main-link\" href=\"" + (safeHref(conf.labHref, "/lab/")) + "\">" + (conf.labLabel || "Open Lab") + "</a>" +
+        (safeHref(conf.labHref2, "")
+          ? "<a href=\"" + safeHref(conf.labHref2, "") + "\">" + (conf.labLabel2 || "More lab") + "</a>"
           : "") +
         (conf.libHref
           ? "<a href=\"" + conf.libHref + "\">" + (conf.libLabel || "Library") + "</a>"
