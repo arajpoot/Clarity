@@ -1,0 +1,137 @@
+/* University chrome lock · 20261017HARM
+   One banner · one theme trio · viewport-fit wrap
+*/
+:root {
+  --cu-wrap-max: min(42rem, 100%);
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body.cu-page {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+.cu-topstrip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.72rem;
+  border-bottom: 1px solid rgba(212,180,90,0.18);
+}
+.cu-topstrip a { text-decoration: none; margin-right: 0.45rem; font-weight: 600; opacity: 0.85; }
+.cu-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid rgba(212,180,90,0.2);
+  background: linear-gradient(180deg, rgba(13,79,60,0.28), transparent);
+}
+.cu-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #d4b45a;
+}
+.cu-brand-mark {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0d4f3c, #1a6b52);
+  color: #f0e6c8;
+}
+.cu-brand small { display: block; font-size: 0.62rem; letter-spacing: 0.08em; opacity: 0.8; }
+.cu-brand strong { font-size: 0.95rem; }
+.cu-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  align-items: center;
+}
+/* Only ONE theme control group in the banner */
+.cu-banner-actions .cu-theme-pill {
+  border: 1px solid rgba(212,180,90,0.28);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-banner-actions .cu-theme-pill[aria-pressed="true"],
+.cu-banner-actions .cu-theme-pill:hover {
+  border-color: #d4b45a;
+  color: #d4b45a;
+}
+.cu-main-link {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  opacity: 0.9;
+  margin-left: 0.15rem;
+}
+.cu-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.5rem 0.85rem;
+  max-width: var(--cu-wrap-max);
+  margin: 0 auto;
+}
+.cu-pills a {
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 650;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  opacity: 0.85;
+}
+.cu-pills a.here, .cu-pills a[aria-current="page"] {
+  border-color: rgba(212,180,90,0.35);
+  background: rgba(212,180,90,0.1);
+  color: #d4b45a;
+  opacity: 1;
+}
+.cu-wrap, .lab-main {
+  width: 100%;
+  max-width: var(--cu-wrap-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.75rem 0.85rem 2.5rem;
+  box-sizing: border-box;
+}
+.cu-foot, .lab-foot {
+  text-align: center;
+  font-size: 0.72rem;
+  opacity: 0.75;
+  padding: 1rem 0.85rem 1.5rem;
+  max-width: var(--cu-wrap-max);
+  margin: 0 auto;
+}
+/* Suppress secondary theme injectors (companion/auto row) */
+body.cu-page .cu-banner-actions .lab-theme-pill,
+body.cu-page header.cu-banner + .theme-row,
+body.cu-page [data-theme-legacy],
+body.cu-page .cu-banner-actions a.cu-main-link + .cu-theme-pill { }
+/* Hide duplicate Day/Night/Auto if a second group appears after banner */
+.cu-banner ~ .cu-banner-actions,
+.cu-banner-actions + .cu-banner-actions { display: none !important; }
+/* Mobile safe area */
+@supports (padding: max(0px)) {
+  .cu-topstrip, .cu-banner {
+    padding-left: max(0.85rem, env(safe-area-inset-left));
+    padding-right: max(0.85rem, env(safe-area-inset-right));
+  }
+}
