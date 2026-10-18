@@ -1,0 +1,19 @@
+Spark adab v2 + map guard (20261018ADAB)
+
+1. Replace foundation spark-quiz (fixes bank path + adab gate in modal):
+   assets/curriculum/vault/foundation/spark-quiz.js
+
+2. Optional style:
+   campus/assets/css/cu-spark-quiz-v2.css
+   (link on seeker if modal looks unstyled)
+
+3. Adab note on desk rooms:
+   campus/assets/js/cu-adab-v1.js
+
+4. Map guard (Junior must not paint on /campus/):
+   campus/assets/js/cu-map-curriculum-guard-v1.js
+   Add to campus/index.html before flash-core:
+   <script src="/campus/assets/js/cu-map-curriculum-guard-v1.js?v=20261018ADAB"></script>
+
+Prove it modal now shows lesson.adab + checkbox before unlock.
+Companion frozen.
