@@ -1,0 +1,112 @@
+/* Clarity University UI revamp */
+:root {
+  --cu-gold: #d4b45a;
+  --cu-teal: #1e7d5e;
+  --cu-wrap: min(40rem, 100%);
+  --cu-radius: 18px;
+  --cu-line: rgba(212, 180, 90, 0.22);
+}
+html[data-theme="light"] {
+  --cu-bg: #f0f5f2;
+  --cu-panel: #ffffff;
+  --cu-text: #13201a;
+  --cu-muted: rgba(19, 32, 26, 0.68);
+}
+html[data-theme="dark"], html:not([data-theme="light"]) {
+  --cu-bg: #0a1210;
+  --cu-panel: rgba(15, 24, 20, 0.92);
+  --cu-text: #e8f0ea;
+  --cu-muted: rgba(232, 240, 234, 0.7);
+}
+* { box-sizing: border-box; }
+body.cu-page {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: radial-gradient(900px 420px at 50% -8%, rgba(31, 166, 122, 0.09), transparent 55%), var(--cu-bg);
+  color: var(--cu-text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.45;
+}
+a { color: var(--cu-gold); }
+.cu-topstrip {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 0.5rem;
+  padding: 0.3rem 0.75rem; font-size: 0.68rem;
+  border-bottom: 1px solid var(--cu-line); background: rgba(0,0,0,0.12);
+}
+html[data-theme="light"] .cu-topstrip { background: rgba(255,255,255,0.55); }
+.cu-topstrip a { color: var(--cu-muted); text-decoration: none; font-weight: 600; margin-right: 0.4rem; }
+.cu-banner {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem;
+  padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--cu-line);
+  background: linear-gradient(180deg, rgba(13, 79, 60, 0.32), transparent);
+}
+.cu-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--cu-gold); }
+.cu-brand-mark {
+  width: 2.05rem; height: 2.05rem; border-radius: 50%; display: grid; place-items: center;
+  font-weight: 800; background: linear-gradient(145deg, #0d4f3c, #1a6b52); color: #f0e6c8;
+}
+.cu-brand small { display: block; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+.cu-brand strong { font-size: 0.95rem; font-weight: 800; }
+.cu-banner-actions { display: flex; flex-wrap: wrap; gap: 0.28rem; align-items: center; }
+.cu-theme-pill, .cu-main-link {
+  border: 1px solid var(--cu-line); background: transparent; color: var(--cu-muted);
+  border-radius: 999px; padding: 0.28rem 0.58rem; font-size: 0.68rem; font-weight: 700;
+  cursor: pointer; text-decoration: none; font-family: inherit;
+}
+.cu-theme-pill[aria-pressed="true"], .cu-theme-pill:hover, .cu-main-link:hover {
+  color: var(--cu-gold); border-color: rgba(212, 180, 90, 0.45);
+}
+/* Hide Auto / duplicate theme controls outside primary banner actions */
+body.cu-page [data-cu-theme="auto"] { display: none !important; }
+.cu-banner-actions + .cu-banner-actions { display: none !important; }
+
+.cu-dock, .cu-pills.cu-dock {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem;
+  max-width: var(--cu-wrap); margin: 0.75rem auto 0.35rem; padding: 0.45rem;
+  border-radius: 999px; border: 1px solid var(--cu-line); background: var(--cu-panel);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+.cu-dock a {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15rem;
+  min-width: 3.4rem; padding: 0.45rem 0.4rem; border-radius: 999px; text-decoration: none;
+  color: var(--cu-muted); font-size: 0.62rem; font-weight: 700; border: 1px solid transparent;
+}
+.cu-dock a .ico { font-size: 0.95rem; line-height: 1; }
+.cu-dock a.here, .cu-dock a[aria-current="page"] {
+  color: var(--cu-gold); border-color: rgba(212, 180, 90, 0.4); background: rgba(212, 180, 90, 0.1);
+}
+body.cu-page .cu-pills:not(.cu-dock) { display: none !important; }
+
+.cu-wrap, .lab-main {
+  width: 100%; max-width: var(--cu-wrap); margin: 0 auto; padding: 0.65rem 0.85rem 2.5rem;
+}
+.cu-lead { font-size: 0.88rem; color: var(--cu-muted); margin: 0.5rem 0 0.85rem; }
+.cu-h1 { color: var(--cu-gold); font-size: 1.25rem; margin: 0.35rem 0; font-weight: 800; }
+
+.lab-card-grid, .cu-card-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.55rem; margin: 0.85rem 0;
+}
+.lab-card, .cu-card {
+  display: block; text-decoration: none; color: inherit;
+  border: 1px solid var(--cu-line); border-radius: var(--cu-radius);
+  padding: 0.85rem 0.9rem; background: var(--cu-panel); min-height: 5.5rem;
+}
+.lab-card:hover, .cu-card:hover { border-color: rgba(212, 180, 90, 0.5); }
+.lab-card strong, .cu-card strong { display: block; color: var(--cu-gold); font-size: 0.92rem; margin-bottom: 0.25rem; }
+.lab-card span, .cu-card span { font-size: 0.75rem; color: var(--cu-muted); line-height: 1.35; }
+.cu-badge {
+  display: inline-block; font-size: 0.58rem; font-weight: 800; letter-spacing: 0.04em;
+  padding: 0.12rem 0.4rem; border-radius: 999px; margin-bottom: 0.35rem;
+  background: rgba(30, 125, 94, 0.25); color: #7dcea0;
+}
+.cu-foot, .lab-foot {
+  text-align: center; font-size: 0.7rem; color: var(--cu-muted);
+  padding: 1.25rem 0.85rem 1.75rem; max-width: var(--cu-wrap); margin: 0 auto;
+}
+@supports (padding: max(0px)) {
+  .cu-topstrip, .cu-banner {
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+  }
+}
