@@ -1,86 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-campus-page="lab">
+<html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Hifz · Lab · Clarity University</title>
-<meta name="description" content="Clarity University lab — educational practice only."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014FD6"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015UNIV"/>
-<style id="cu-empty-host-hide">
-#clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
-</style>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.css?v=20261015ENRICH"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hifz studio · Lab · Clarity University</title>
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261017LABF"/>
 </head>
-<body class="cu-page" data-campus-page="lab">
-<header class="cu-banner">
-  <a class="cu-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
-    <div><small>University</small><strong>Clarity University</strong></div>
+<body class="lab-surface" data-campus-page="lab">
+<div class="lab-topstrip">
+  <div><span>Campus</span>
+    <a href="/campus/">University map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/lab/arabic/">Arabic</a>
+    <a href="/lab/tajweed/">Tajweed</a>
+  </div>
+  <div><a href="/">Companion home</a></div>
+</div>
+<header class="lab-banner">
+  <a class="lab-brand" href="/campus/">
+    <span class="lab-brand-mark" aria-hidden="true">ن</span>
+    <span><small>UNIVERSITY</small><strong>Clarity University</strong></span>
   </a>
-  <div class="cu-banner-actions">
-    <a class="cu-main-link" href="/">← Companion</a>
+  <div class="lab-banner-actions">
+    <button type="button" class="lab-theme-pill" data-lab-theme="light">Day</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="dark">Night</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="system">System</button>
+    <a class="lab-link" href="/">Companion</a>
   </div>
 </header>
-<main class="cu-wrap">
-  <nav class="cu-pills" aria-label="Campus">
-    <a href="/campus/">Map</a>
-    <a href="/campus/desk/">Desk</a>
-    <a href="/lab/" class="here">Lab</a>
-    <a href="/vault/">Vault</a>
-    <a href="/journey/">Journey</a>
-    <a href="/charter/">Charter</a>
-  </nav>
+<nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/vault/">Vault</a><a href="/charter/">Charter</a></nav>
 
-  <nav class="lab-station-nav" aria-label="Lab stations">
-    <a href="/lab/">Hub</a>
-    <a href="/lab/tajweed/">Tajweed</a>
-    <a href="/lab/arabic/">Arabic</a>
-    <a href="/lab/recite/">Recitation</a>
-    <a href="/lab/media/">Media</a>
-    <a href="/lab/calligraphy/">Calligraphy</a>
-    <a href="/lab/hifz/" class=here>Hifz</a>
-  </nav>
-
-  <h1 class="lab-h1">Hifz studio</h1>
-  <p class="lab-lead">One āyah: hear · see · hide · recall. Self-check only — not a teacher’s verdict.</p>
-  <section class="card" style="max-width:40rem;margin:0 auto;padding:1rem" id="hifz-root">
-    <div class="lab-chips">
-      <button type="button" class="lab-chip" data-hifz="1:1">Al-Fātiḥah 1</button>
-      <button type="button" class="lab-chip" data-hifz="1:2">Al-Fātiḥah 2</button>
-      <button type="button" class="lab-chip" data-hifz="112:1">Al-Ikhlāṣ 1</button>
-      <button type="button" class="lab-chip" data-hifz="112:2">Al-Ikhlāṣ 2</button>
-      <button type="button" class="lab-chip" data-hifz="103:1">Al-ʿAṣr 1</button>
-    </div>
-    <p class="lab-micro" id="hifz-meta">Choose an āyah</p>
-    <p class="hifz-ar" id="hifz-ar" dir="rtl" lang="ar">…</p>
-    <p class="hifz-en" id="hifz-en">…</p>
-    <div class="lab-av-row">
-      <button type="button" class="lab-btn lab-btn-primary" id="hifz-hear">Hear</button>
-      <button type="button" class="lab-btn" id="hifz-hide">Hide text</button>
-      <button type="button" class="lab-btn" id="hifz-show">Show text</button>
-      <button type="button" class="lab-btn" id="hifz-mark">Mark practiced</button>
-    </div>
-    <p class="lab-micro" id="hifz-status"></p>
-  </section>
-
+<main class="lab-main">
+  <h1 style="color:var(--lab-gold);font-size:1.2rem">Hifz studio</h1>
+  <p style="color:var(--lab-muted)">One āyah: hear · see · hide · recall.</p>
+  <p style="color:var(--lab-muted);font-size:.88rem">Surface shell · banner + theme. Studio modules mount from deploy assets when available.</p>
+  <p style="margin-top:1rem"><a href="/lab/">← Lab hub</a> · <a href="/lab/arabic/">Arabic</a></p>
+  <div id="lab-studio-root"></div>
+  <p class="lab-foot">Educational only — not a fatwa. · 20261017LABF</p>
 </main>
-<footer class="cu-foot">Educational practice only — not an ijāzah or fatwa.</footer>
-
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-av-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-hifz-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-depth-v1.js?v=20261014FD6" defer></script>
-
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.js?v=20261015ENRICH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-module-deeplink-v1.js?v=20261015P4" defer></script>
+<script src="/lab/shared/lab-theme.js?v=20261017LABF" defer></script>
 </body>
 </html>
