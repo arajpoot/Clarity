@@ -492,10 +492,10 @@
     if (!root) return;
     var dueN = dueList().length;
     var pathNote =
-      '<p class="ar-path">Path phase <strong>' + state.pathPhase +
+      '<div class="ar-path-row"><p class="ar-path">Path phase <strong>' + state.pathPhase +
       "</strong> · suggested deck: <strong>" +
       ((DECKS[suggestDeckForPath()] && DECKS[suggestDeckForPath()].title) || "Everyday") +
-      '</strong> <button type="button" class="ar-btn" id="ar-use-path">Use path deck</button></p>';
+      '</strong> <button type="button" class="ar-btn" id="ar-use-path">Use path deck</button></p></div>\';
 
     var session =
       '<div class="ar-session-bar">' +
@@ -503,7 +503,7 @@
       '<button type="button" class="ar-btn" id="ar-expand">Expand bank</button>' +
       '<a class="ar-btn ar-btn-link" href="/campus/desk/seeker/">Desk</a>' +
       '<a class="ar-btn ar-btn-link" href="/vault/#locker">Vault</a>' +
-      '<a class="ar-btn ar-btn-link" href="/lab/tajweed/">Tajweed</a></div></div>';
+      '<a class="ar-btn ar-btn-link" href="/lab/tajweed/">Tajweed</a></div>';
 
     var modes = ["flash", "match", "learn", "test", "listen", "sentence", "type", "letters"];
     var modeBar =
