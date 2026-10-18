@@ -1,12 +1,52 @@
-.cu-campus-roles{max-width:min(96rem,100%);margin:1rem auto 1.25rem;padding:0 clamp(.65rem,2vw,1.25rem);box-sizing:border-box}
-.cu-roles-title{font-size:1.05rem;font-weight:800;color:#f3ead0;margin:0 0 .3rem}
-.cu-roles-lead{font-size:.8rem;opacity:.88;margin:0 0 .55rem;line-height:1.4}
+
+/* Campus roles RP1 */
+.cu-campus-roles{max-width:100%;margin:.35rem 0 .5rem;padding:0;box-sizing:border-box}
+.cu-roles-in-host{margin:0}
+.cu-roles-lead{font-size:.8rem;opacity:.9;margin:0 0 .5rem;line-height:1.4}
 .cu-roles-row{display:flex;flex-wrap:wrap;gap:.4rem}
-.cu-roles-btn{font-size:.78rem;padding:.4rem .75rem;border-radius:999px;border:1px solid rgba(212,180,90,.4);background:rgba(13,79,60,.35);color:#f3ead0;cursor:pointer}
-.cu-roles-btn:hover{border-color:rgba(232,196,122,.7)}
-.cu-roles-status{font-size:.75rem;min-height:1.1em;margin:.45rem 0 0;opacity:.9}
-.cu-roles-faculty-panel{margin-top:.65rem;padding:.75rem .9rem;border-radius:14px;border:1px solid rgba(212,180,90,.35);background:rgba(0,0,0,.25);font-size:.82rem;line-height:1.45}
-.cu-roles-faculty-panel strong{color:#e8c47a;display:block;margin-bottom:.35rem}
-.cu-roles-faculty-panel p{margin:.35rem 0}
-.cu-roles-link{color:#9fd4b8;text-decoration:underline}
-.cu-roles-note{font-size:.72rem;opacity:.8}
+.cu-roles-btn{
+  font-size:.78rem;padding:.45rem .8rem;min-height:40px;border-radius:999px;
+  border:1px solid rgba(201,162,39,.45);background:rgba(70,124,69,.2);
+  color:inherit;cursor:pointer;font-weight:700;touch-action:manipulation
+}
+.cu-roles-btn:hover,.cu-roles-btn:focus{border-color:#c9a227;outline:none}
+.cu-roles-faculty-panel{margin-top:.55rem;padding:.65rem .75rem;border-radius:12px;border:1px solid rgba(201,162,39,.3);font-size:.85rem}
+.cu-roles-status{font-size:.75rem;margin:.35rem 0 0;opacity:.85}
+
+/* Modal */
+.cu-role-modal{
+  position:fixed;inset:0;z-index:10000;display:flex;align-items:flex-end;justify-content:center;
+  background:rgba(0,0,0,.55);padding:0;box-sizing:border-box
+}
+@media (min-width:720px){
+  .cu-role-modal{align-items:center;padding:1.25rem}
+}
+.cu-role-modal-card{
+  width:100%;max-width:28rem;max-height:min(88vh,40rem);overflow:auto;
+  background:#12201a;color:#f3ead0;border:1px solid rgba(201,162,39,.5);
+  border-radius:18px 18px 0 0;padding:1.1rem 1.15rem 1.25rem;position:relative;
+  box-shadow:0 -8px 40px rgba(0,0,0,.35)
+}
+@media (min-width:720px){
+  .cu-role-modal-card{border-radius:18px}
+}
+html[data-theme=light] .cu-role-modal-card{
+  background:#fffef9;color:#1a2a22
+}
+.cu-role-modal-close{
+  position:absolute;top:.45rem;right:.55rem;width:2.25rem;height:2.25rem;
+  border:0;border-radius:999px;background:rgba(201,162,39,.15);color:inherit;
+  font-size:1.35rem;line-height:1;cursor:pointer
+}
+.cu-role-modal-kicker{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;opacity:.75;margin:0 1.5rem .25rem 0}
+.cu-role-modal-card h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.35rem;color:#c9a227;margin:.15rem 0 .35rem}
+.cu-role-modal-blurb{font-size:.9rem;margin:0 0 .65rem;opacity:.9}
+.cu-role-steps{margin:.25rem 0 .75rem 1.15rem;padding:0;font-size:.9rem;line-height:1.5}
+.cu-role-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.cu-role-action{
+  display:inline-flex;padding:.45rem .85rem;min-height:40px;align-items:center;
+  border-radius:999px;background:#467C45;color:#fff!important;text-decoration:none;
+  font-size:.8rem;font-weight:800
+}
+.cu-role-action:nth-child(n+2){background:transparent;color:inherit!important;border:1px solid rgba(201,162,39,.45)}
+.cu-role-disc{font-size:.72rem;opacity:.75;margin:.65rem 0 0}
