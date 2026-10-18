@@ -1,0 +1,12 @@
+
+/* Map streamline — single chrome, less plaque noise */
+.cu-map-stream .cu-topstrip{display:none!important} /* banner is enough */
+.cu-map-grid{margin:0 0 1rem}
+.cu-map-tools{margin:.45rem 0}
+.cu-map-tools summary{cursor:pointer;font-weight:800;color:#c9a227}
+.cu-map-tools .cu-row a{
+  display:inline-flex;padding:.4rem .75rem;border-radius:999px;text-decoration:none;
+  border:1px solid rgba(201,162,39,.4);font-size:.8rem;font-weight:700;color:inherit
+}
+/* hide duplicate theme if chrome injects second set */
+.cu-banner-actions .cu-theme-pill + .cu-main-link + .cu-theme-pill{display:none}
