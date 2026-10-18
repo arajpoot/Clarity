@@ -1,0 +1,46 @@
+
+.cu-buddy{max-width:42rem;margin:0 auto;width:100%}
+.cu-buddy h1{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.5rem,3.2vw,2rem);color:#c9a227;margin:.15rem 0 .35rem}
+.cu-buddy-disc{
+  font-size:.82rem;line-height:1.45;padding:.7rem .85rem;border-radius:14px;margin:0 0 .75rem;
+  border:1px solid rgba(201,162,39,.4);background:rgba(70,124,69,.1)
+}
+.cu-buddy-search{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .75rem}
+.cu-buddy-search input{
+  flex:1 1 12rem;min-width:0;padding:.55rem .75rem;border-radius:12px;
+  border:1px solid rgba(201,162,39,.4);background:transparent;color:inherit;font-size:.95rem
+}
+.cu-buddy-search button{
+  padding:.55rem 1rem;border-radius:999px;border:0;background:#467C45;color:#fff;font-weight:800;cursor:pointer
+}
+.cu-buddy-hits{display:grid;gap:.4rem;margin:0 0 1rem}
+.cu-buddy-hit{
+  display:block;padding:.75rem .9rem;border-radius:14px;text-decoration:none;color:inherit;
+  border:1px solid rgba(201,162,39,.35);background:rgba(255,254,249,.95)
+}
+html[data-theme=dark] .cu-buddy-hit{background:rgba(18,28,24,.94)}
+.cu-buddy-hit strong{color:#c9a227;display:block;margin-bottom:.2rem}
+.cu-buddy-hit span{font-size:.84rem;opacity:.88;line-height:1.4}
+.cu-buddy-chat{
+  border:1px solid rgba(201,162,39,.45);border-radius:16px;overflow:hidden;
+  background:rgba(255,254,249,.92);display:flex;flex-direction:column;min-height:22rem
+}
+html[data-theme=dark] .cu-buddy-chat{background:rgba(18,28,24,.94)}
+.cu-buddy-log{flex:1;overflow:auto;padding:.85rem;display:flex;flex-direction:column;gap:.55rem;max-height:50vh}
+.cu-buddy-msg{max-width:92%;padding:.55rem .75rem;border-radius:14px;font-size:.9rem;line-height:1.45}
+.cu-buddy-msg.user{align-self:flex-end;background:#467C45;color:#fff}
+.cu-buddy-msg.bot{align-self:flex-start;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.25)}
+.cu-buddy-msg .src{display:block;margin-top:.35rem;font-size:.75rem;opacity:.85}
+.cu-buddy-compose{display:flex;gap:.35rem;padding:.55rem;border-top:1px solid rgba(201,162,39,.3)}
+.cu-buddy-compose input{
+  flex:1;padding:.55rem .7rem;border-radius:12px;border:1px solid rgba(201,162,39,.35);
+  background:transparent;color:inherit;font-size:.95rem
+}
+.cu-buddy-compose button{
+  padding:.55rem .9rem;border-radius:999px;border:0;background:#467C45;color:#fff;font-weight:800;cursor:pointer
+}
+.cu-buddy-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0 .75rem}
+.cu-buddy-chips button{
+  padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(201,162,39,.4);
+  background:transparent;color:inherit;font-size:.78rem;font-weight:700;cursor:pointer
+}
