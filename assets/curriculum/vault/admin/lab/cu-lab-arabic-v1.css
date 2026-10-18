@@ -1,6 +1,7 @@
-/* Arabic studio · 20261017ARABIC */
+/* Arabic studio · 20261017SENT */
 #ar-studio{max-width:min(42rem,100%);margin:0 auto;padding:.5rem 0 2rem}
-.ar-lead{font-size:.88rem;opacity:.9;margin:0 0 .65rem;line-height:1.45}
+.ar-lead{font-size:.88rem;opacity:.9;margin:0 0 .5rem;line-height:1.45}
+.ar-path{font-size:.8rem;opacity:.9;margin:0 0 .55rem}
 .ar-note{font-size:.72rem;opacity:.75;margin:.75rem 0 0}
 .ar-session-bar,.ar-decks,.ar-modes,.ar-actions,.ar-grade{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .55rem;justify-content:center}
 .ar-session{font-size:.8rem;opacity:.9;text-align:center;margin:0 0 .5rem}
@@ -17,19 +18,18 @@
 .ar-flash:not(.flipped) .ar-back{display:none}
 .ar-flash.flipped .ar-front{display:none}
 .ar-visual{display:flex;flex-direction:column;align-items:center;gap:.35rem}
-.ar-emoji{font-size:2.6rem;line-height:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,.25))}
+.ar-emoji{font-size:2.6rem;line-height:1}
 .ar-ar{font-size:clamp(1.8rem,6vw,2.4rem);font-weight:700;display:block;margin:.2rem 0;line-height:1.4}
 .ar-en{font-size:1.25rem;font-weight:700}
 .ar-tr{display:block;opacity:.75;font-size:.9rem}
-.ar-ex{font-size:.95rem;opacity:.9;margin:.45rem 0 0;line-height:1.5}
-.ar-root{font-size:.75rem;opacity:.7;margin:.35rem 0 0;letter-spacing:.04em}
+.ar-ex{font-size:.95rem;opacity:.9;margin:.45rem 0 0}
+.ar-root{font-size:.75rem;opacity:.7;margin:.35rem 0 0}
 .ar-meta{text-align:center;font-size:.78rem;opacity:.8;margin:.5rem 0 0}
 .ar-match-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
 @media(max-width:520px){.ar-match-grid{grid-template-columns:repeat(2,1fr)}}
 .ar-match-cell{min-height:3rem;border-radius:12px;border:1px solid rgba(184,166,135,.35);background:rgba(21,32,28,.95);color:inherit;font-weight:700;cursor:pointer}
 .ar-match-cell.sel{outline:2px solid #1e7d5e}
 .ar-match-cell.done{opacity:.35}
-.ar-input{width:100%;max-width:16rem;margin:.5rem auto;display:block;padding:.5rem .75rem;border-radius:10px;border:1px solid rgba(184,166,135,.4);background:rgba(0,0,0,.2);color:inherit;font-size:1.1rem}
 .ar-letters{display:grid;grid-template-columns:repeat(auto-fill,minmax(3.5rem,1fr));gap:.35rem}
 .ar-letter{border-radius:12px;border:1px solid rgba(184,166,135,.3);background:rgba(21,32,28,.9);color:inherit;padding:.45rem;cursor:pointer}
 .ar-letter span{font-size:1.35rem;display:block}
