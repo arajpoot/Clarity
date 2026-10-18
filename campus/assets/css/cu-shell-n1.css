@@ -1,0 +1,43 @@
+/* N1 University shell — pills under banner, stable stage
+   20261018N1 */
+.cu-banner {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+/* Pills always first chrome inside main */
+main.cu-wrap > nav.cu-pills {
+  order: 1;
+  position: sticky;
+  top: 3.25rem;
+  z-index: 45;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 0.75rem;
+  padding: 0.4rem 0;
+  background: inherit;
+  background: rgba(8, 24, 18, 0.92);
+  backdrop-filter: blur(6px);
+}
+html[data-theme="light"] main.cu-wrap > nav.cu-pills {
+  background: rgba(247, 243, 235, 0.94);
+}
+main.cu-wrap {
+  display: flex;
+  flex-direction: column;
+}
+main.cu-wrap > .cu-continue { order: 2; }
+main.cu-wrap > .cu-h1 { order: 3; }
+main.cu-wrap > .cu-lead { order: 4; }
+main.cu-wrap > #clarity-phase-plaque-host,
+main.cu-wrap > #clarity-how-phases-slot { order: 5; }
+main.cu-wrap > #cu-stage { order: 6; min-height: 8rem; }
+main.cu-wrap > #cu-mirath-host,
+main.cu-wrap > #cu-ub-lab-handoff,
+main.cu-wrap > .cu-contract,
+main.cu-wrap > .cu-plaque { order: 7; }
+/* Anything scripts inject into main without id goes after stage */
+main.cu-wrap > *:not(nav.cu-pills):not(.cu-continue):not(.cu-h1):not(.cu-lead):not(#clarity-phase-plaque-host):not(#clarity-how-phases-slot):not(#cu-stage) {
+  order: 8;
+}
