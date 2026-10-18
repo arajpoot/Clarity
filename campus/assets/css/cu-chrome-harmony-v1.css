@@ -136,3 +136,8 @@ body:not(.cu-page) main,
   padding:clamp(.75rem,2.5vw,1.35rem);
   box-sizing:border-box;
 }
+
+/* PR3 phase-room chrome lock */
+body[data-phase-room] .cu-topstrip{display:none!important}
+body[data-phase-room] .cu-ui-chrome-extra-themes,
+body[data-phase-room] .cu-theme-bar{display:none!important}
