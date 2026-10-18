@@ -1,0 +1,24 @@
+
+.cu-student{max-width:42rem;margin:0 auto;width:100%}
+.cu-student h1{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.5rem,3.2vw,2rem);color:#c9a227;margin:.15rem 0 .4rem}
+.cu-student h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.15rem;color:#c9a227;margin:0 0 .4rem}
+.cu-plaque{
+  padding:1rem 1.1rem;border-radius:16px;margin:.55rem 0;
+  border:1px solid rgba(201,162,39,.45);background:rgba(255,254,249,.95);color:#1a2a22
+}
+html[data-theme=dark] .cu-plaque{background:rgba(18,28,24,.94);color:inherit}
+.cu-plaque p,.cu-plaque li{font-size:.9rem;line-height:1.5}
+.cu-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.cu-row a,.cu-row button{
+  display:inline-flex;align-items:center;padding:.45rem .85rem;border-radius:999px;
+  font-size:.8rem;font-weight:800;text-decoration:none;border:1px solid rgba(201,162,39,.4);
+  background:#467C45;color:#fff;cursor:pointer
+}
+.cu-row a.ghost,.cu-row button.ghost{background:transparent;color:inherit}
+.cu-meta{font-size:.78rem;opacity:.8}
+.cu-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.cu-table th,.cu-table td{padding:.4rem .35rem;border-bottom:1px solid rgba(201,162,39,.2);text-align:left}
+.cu-badge-soft{display:inline-block;padding:.12rem .4rem;border-radius:999px;font-size:.68rem;font-weight:800;background:rgba(70,124,69,.15)}
+.cu-welcome{background:linear-gradient(135deg,rgba(70,124,69,.14),rgba(255,254,249,.95))}
+.cu-ico-row{display:flex;align-items:center;gap:.5rem}
+.cu-ico-row .mark{width:1.8rem;height:1.8rem;border-radius:10px;display:grid;place-items:center;border:1px solid rgba(201,162,39,.45);background:rgba(201,162,39,.12);font-size:.95rem}
