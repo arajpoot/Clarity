@@ -16,3 +16,9 @@ html[data-theme=light] .h27-card{background:#fffef9;color:#1a2a22}
 .h27-btn.primary{background:#467C45;color:#fff;border-color:#467C45}
 .h27-btn.match{flex:1 1 10rem;text-align:left}
 .h27-foot{font-size:.82rem;margin-top:1rem}
+
+/* LABV layout — fill readable card area, reduce void */
+#hajj27-root{min-height:14rem;max-width:40rem}
+.h27-card{margin:0.5rem 0 1rem}
+main.cu-wrap{padding-bottom:5rem}
+.cu-personas-dock{z-index:40}
