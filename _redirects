@@ -1,24 +1,33 @@
 # Clarity University — Cloudflare Pages redirects
-# https://developers.cloudflare.com/pages/configuration/redirects/
+# P0: University landing is Charter
 
-# Legacy campus entry → multipage map
-/campus-index.html  /campus/  301
-/campus-index       /campus/  301
+/university          /charter/     301
+/university/         /charter/     301
+/uni                 /charter/     301
+/admit               /charter/#admission  302
+/admission           /charter/#admission  302
 
-# Optional clean aliases
-/campus/desk  /campus/desk/  301
-/lab          /lab/          301
-/library      /library/      301
-/journey      /journey/      301
-/vault        /vault/        301
-/charter      /charter/      301
-/systems      /systems/      301
+# Legacy campus entry
+/campus-index.html   /campus/      301
+/campus-index        /campus/      301
 
-/craft /lab/ 301
-/craft/ /lab/ 301
+/campus/desk         /campus/desk/ 301
+/lab                 /lab/         301
+/library             /library/     301
+/vault               /vault/       301
+/charter             /charter/     301
 
-# Phase rooms (quiet desk split)
-/campus/desk/seeker  /campus/desk/seeker/  301
-/campus/desk/practice  /campus/desk/practice/  301
+/campus/desk/seeker       /campus/desk/seeker/       301
+/campus/desk/practice     /campus/desk/practice/     301
 /campus/desk/consistency  /campus/desk/consistency/  301
-/campus/desk/transmission  /campus/desk/transmission/  301
+/campus/desk/transmission /campus/desk/transmission/ 301
+
+/craft  /lab/  301
+/craft/ /lab/  301
+
+/campus/transcript   /campus/transcript/   301
+/campus/assignments  /campus/assignments/  301
+/campus/schedule     /campus/schedule/     301
+/campus/diploma      /campus/diploma/      301
+/transcript          /campus/transcript/   301
+/diploma             /campus/diploma/      301
