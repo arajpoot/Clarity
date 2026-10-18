@@ -501,9 +501,9 @@
       '<div class="ar-session-bar">' +
       '<button type="button" class="ar-btn primary" data-mode="reviews">Due (' + dueN + ")</button>" +
       '<button type="button" class="ar-btn" id="ar-expand">Expand bank</button>' +
-      '<a class="ar-btn" href="/campus/desk/seeker/">Desk</a>' +
-      '<a class="ar-btn" href="/vault/#locker">Vault</a>' +
-      '<a class="ar-btn" href="/lab/tajweed/">Tajweed</a></div>';
+      '<a class="ar-btn ar-btn-link" href="/campus/desk/seeker/">Desk</a>' +
+      '<a class="ar-btn ar-btn-link" href="/vault/#locker">Vault</a>' +
+      '<a class="ar-btn ar-btn-link" href="/lab/tajweed/">Tajweed</a></div></div>';
 
     var modes = ["flash", "match", "learn", "test", "listen", "sentence", "type", "letters"];
     var modeBar =

@@ -1,10 +1,14 @@
 
-/* Arabic studio toolbar: stop DeskVaultTajweed mash */
-.ar-toolbar,.ar-row,.ar-actions{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
-a.ar-btn,button.ar-btn,.ar-btn{
-  display:inline-flex!important;align-items:center;gap:.25rem;
-  padding:.4rem .7rem;min-height:36px;margin:0 .15rem .25rem 0;
-  border-radius:999px;border:1px solid rgba(201,162,39,.4);
-  text-decoration:none!important;color:inherit!important;
-  font-size:.78rem;font-weight:700;background:rgba(70,124,69,.12)
+/* R3 Arabic toolbar spacing (20261018R2R3) */
+.ar-toolbar,.ar-row,.ar-actions,.ar-quick-links{
+  display:flex!important;flex-wrap:wrap!important;gap:.4rem!important;align-items:center
 }
+a.ar-btn,button.ar-btn,.ar-btn,.ar-btn-link{
+  display:inline-flex!important;align-items:center;justify-content:center;
+  padding:.4rem .75rem!important;min-height:36px;margin:0 .2rem .3rem 0!important;
+  border-radius:999px!important;border:1px solid rgba(201,162,39,.4)!important;
+  text-decoration:none!important;color:inherit!important;
+  font-size:.78rem!important;font-weight:700!important;
+  background:rgba(70,124,69,.14)!important;white-space:nowrap
+}
+a.ar-btn-link + a.ar-btn-link{margin-left:.15rem}
