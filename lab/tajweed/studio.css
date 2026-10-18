@@ -1,0 +1,14 @@
+/* Tajweed surface · 20261017PORT */
+.lab-main .studio-stage, .lab-main .tj-practice-loop { max-width: 40rem; }
+.lab-main details { margin: 0.75rem 0; }
+.lab-main .lab-chip, .lab-main .tj-lmr-mode {
+  border: 1px solid var(--lab-line, rgba(212,180,90,0.25));
+  background: transparent; color: inherit; border-radius: 999px;
+  padding: 0.35rem 0.7rem; margin: 0.2rem; cursor: pointer; font-weight: 650;
+}
+.lab-main .tj-lmr-mode.active, .lab-main .lab-chip:hover {
+  background: rgba(30,125,94,0.25); border-color: #1e7d5e;
+}
+.lab-main select, .lab-main button.lab-btn {
+  font: inherit; border-radius: 10px; padding: 0.4rem 0.65rem;
+}
