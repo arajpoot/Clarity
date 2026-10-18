@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Amana Vault · Clarity University</title>
-<meta name="description" content="University educational trust workspace. On-device study pins. Not legal advice. Not a fatwa."/>
-<meta name="theme-color" content="#0a1210"/>
+<meta name="description" content="On-device study locker. Educational only — not legal advice."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-harmony-v1.css?v=20261018CH6"/>
 <link rel="stylesheet" href="/vault/vault.css?v=20261017VAULT"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018CH6"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018CH6"></script>
 </head>
-<body>
-<nav class="v-nav" aria-label="Campus">
-  <a class="v-brand" href="/campus/"><small>UNIVERSITY</small>Clarity University</a>
-  <div class="v-pills"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a><a href="/library/">Library</a><a href="/vault/" aria-current="page">Vault</a><a href="/charter/">Charter</a><a href="/">Companion</a></div>
-</nav>
-<main class="v-main">
+<body class="cu-page" data-campus-page="vault">
+<header class="cu-banner">
+  <a class="cu-brand" href="/charter/">
+    <span class="cu-brand-mark" aria-hidden="true">ن</span>
+    <div><small>University · Vault</small><strong>Clarity University</strong></div>
+  </a>
+  <div class="cu-banner-actions">
+    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
+    <a class="cu-main-link" href="/">← Companion</a>
+  </div>
+</header>
+<main class="cu-wrap v-main">
+<nav class="cu-pills" aria-label="Campus"><a href="/charter/">Charter</a><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a><a href="/library/">Library</a><a href="/campus/buddy/">Buddy</a><a href="/vault/" class="here" aria-current="page">Vault</a></nav>
+
 <header class="v-hero">
   <div class="v-pill">Educational trust workspace</div>
   <h1>Amana Vault</h1>
@@ -121,6 +138,8 @@
 <p class="v-foot">Educational only — not a fatwa. Last reviewed October 2026 · Quran.com / Sunnah.com.<br/>
 University Vault uses <code>cu_vault_*</code> keys only · Companion Amana is separate.</p>
 </main>
-<script src="/vault/vault.js?v=20261017VAULT" defer></script>
+<footer class="cu-foot">Educational only — not a fatwa. Not legal advice.</footer>
+<script src="/campus/assets/js/cu-chrome-harmony-v1.js?v=20261018CH6" defer></script>
+<script src="/campus/assets/js/cu-personas-rp6.js?v=20261018CH6" defer></script>
 </body>
 </html>
