@@ -4,30 +4,20 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Journey Map · Clarity University</title>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018P3P10"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018P3P10"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018P3P10"/>
-<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261018P3P10"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018P3P10"></script>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018P3P10"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018P3P10"></script>
-<link rel="stylesheet" href="/campus/assets/css/cu-chrome-lock-v1.css?v=20261018P3P10"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-ui-revamp-v1.css?v=20261018P3P10"/>
-<script src="/campus/assets/js/cu-ui-chrome-v1.js?v=20261018P3P10"></script>
-<link rel="stylesheet" href="/campus/assets/css/cu-student-spine-v1.css?v=20261018P3P10"/>
+<meta name="description" content="Clarity University map — desk, lab, library, charter. Educational only."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018STREAM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018STREAM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018STREAM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018STREAM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-student-spine-v1.css?v=20261018STREAM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-map-stream-v1.css?v=20261018STREAM"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018STREAM"></script>
+<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261018STREAM"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018STREAM"></script>
+<script src="/campus/assets/js/cu-companion-bridge-v1.js?v=20261018STREAM"></script>
 </head>
-<body class="cu-page cu-mahtaab-on" data-campus-page="map">
-<div class="cu-topstrip">
-  <div class="cu-top-links">
-    <span>Campus</span>
-    <a href="/campus/">Map</a>
-    <a href="/campus/desk/seeker/">Desk</a>
-    <a href="/lab/">Lab</a>
-    <a href="/library/">Library</a>
-    <a href="/charter/">Charter</a>
-  </div>
-  <div class="cu-top-links"><a href="/">Companion home</a></div>
-</div>
+<body class="cu-page cu-map-stream" data-campus-page="map">
 <header class="cu-banner">
   <a class="cu-brand" href="/charter/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
@@ -36,60 +26,112 @@
   <div class="cu-banner-actions">
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
-    <button type="button" class="cu-theme-pill" data-cu-theme="system">System</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
     <a class="cu-main-link" href="/">← Companion</a>
   </div>
 </header>
 <main class="cu-wrap">
-<div id="cu-welcome-back" class="cu-plaque cu-welcome" style="margin-bottom:1rem"></div>
-<div id="cu-spine-strip" class="cu-plaque" style="margin-bottom:1rem"></div>
-<div id="cu-study-circle" class="cu-plaque" style="margin-bottom:1rem"></div>
-<nav class="cu-pills" aria-label="Campus"><a href="/campus/" class="here"><span class="ico">◫</span>Map</a><a href="/campus/desk/"><span class="ico">▦</span>Desk</a><a href="/lab/"><span class="ico">◈</span>Lab</a><a href="/library/"><span class="ico">☰</span>Library</a><a href="/vault/"><span class="ico">◈</span>Vault</a><a href="/charter/"><span class="ico">✦</span>Charter</a></nav>
-<p class="cu-lead">One open door at a time. Lessons on the Desk, skills in the Lab, sources in the Library, notes in the Vault.</p>
+<nav class="cu-pills" aria-label="Campus">
+  <a href="/charter/">Charter</a>
+  <a href="/campus/" class="here" aria-current="page">Map</a>
+  <a href="/campus/desk/">Desk</a>
+  <a href="/lab/">Lab</a>
+  <a href="/library/">Library</a>
+  <a href="/campus/buddy/">Buddy</a>
+  <a href="/vault/">Vault</a>
+</nav>
+
+<!-- Single continue + soft admit -->
+<div id="cu-soft-admit-slot"></div>
 <div class="cu-continue" id="cu-continue">
-  <div><strong>Continue · Seeker</strong><br/><span>Unit 1 — Who is Allah?</span></div>
-  <a href="/campus/desk/seeker/">Open desk →</a>
+  <div>
+    <strong>Continue · Seeker</strong><br/>
+    <span>Open the desk — one module at a time</span>
+  </div>
+  <a href="/campus/desk/seeker/">Open →</a>
 </div>
-<div id="cu-roles-host"></div>
-<details class="cu-plaque" style="padding:.85rem 1.1rem;margin:0 0 1rem">
-  <summary style="font-weight:800;color:var(--cu-gold,#c9a227);cursor:pointer">How phases work</summary>
-  <ol style="margin:.5rem 0 0 1.15rem;font-size:.9rem;line-height:1.5">
-    <li>Seeker — foundations; one module open.</li>
-    <li>Practice — after the Junior phase quiz.</li>
-    <li>Consistency — steady craft.</li>
-    <li>Transmission — sources and limits.</li>
-  </ol>
-  <p style="font-size:.85rem;margin:.5rem 0 0"><a href="/charter/" style="color:inherit;font-weight:700">Full charter →</a></p>
-</details>
+
 <h1 class="cu-h1">Journey Map</h1>
-<div class="cu-grid">
-  <a class="cu-card" href="/campus/desk/seeker/"><span class="cu-ico">١</span><span class="cu-badge open">Open</span><strong>Seeker</strong><span class="desc">Belief foundations. One module at a time.</span></a>
-  <a class="cu-card" href="/campus/desk/practice/"><span class="cu-ico">٢</span><span class="cu-badge locked">Phase 2</span><strong>Practice</strong><span class="desc">New Muslim path after the phase quiz.</span></a>
-  <a class="cu-card" href="/campus/desk/consistency/"><span class="cu-ico">٣</span><span class="cu-badge locked">Phase 3</span><strong>Consistency</strong><span class="desc">Steady craft and review.</span></a>
-  <a class="cu-card" href="/campus/desk/transmission/"><span class="cu-ico">٤</span><span class="cu-badge open">Open</span><strong>Transmission</strong><span class="desc">Share with adab and clear sources.</span></a>
-  <a class="cu-card" href="/lab/"><span class="cu-ico">◈</span><span class="cu-badge open">Open</span><strong>Craft Laboratory</strong><span class="desc">Arabic · Tajweed · Recite · Media</span></a>
-  <a class="cu-card" href="/library/"><span class="cu-ico">☰</span><span class="cu-badge open">Open</span><strong>Source shelves</strong><span class="desc">Qurʾān · Hadith · pointers outward.</span></a>
+<p class="cu-lead">Lessons on the Desk · skills in the Lab · sources in the Library · private notes in the Vault.</p>
+
+<div class="cu-grid cu-map-grid">
+  <a class="cu-card" href="/campus/desk/seeker/">
+    <span class="cu-badge open">Open</span>
+    <strong>Seeker</strong>
+    <span class="desc">Belief foundations. One module at a time.</span>
+  </a>
+  <a class="cu-card" href="/campus/desk/practice/">
+    <span class="cu-badge locked">Phase 2</span>
+    <strong>Practice</strong>
+    <span class="desc">New Muslim path after the phase quiz.</span>
+  </a>
+  <a class="cu-card" href="/campus/desk/consistency/">
+    <span class="cu-badge locked">Phase 3</span>
+    <strong>Consistency</strong>
+    <span class="desc">Steady craft and review.</span>
+  </a>
+  <a class="cu-card" href="/campus/desk/transmission/">
+    <span class="cu-badge open">Open</span>
+    <strong>Transmission</strong>
+    <span class="desc">Share with adab and clear sources.</span>
+  </a>
+  <a class="cu-card" href="/lab/">
+    <span class="cu-badge open">Lab</span>
+    <strong>Craft Laboratory</strong>
+    <span class="desc">Arabic · Tajweed · Recite · Hajj 2027 phrases</span>
+  </a>
+  <a class="cu-card" href="/library/">
+    <span class="cu-badge open">Open</span>
+    <strong>Source shelves</strong>
+    <span class="desc">Qurʾān · Hadith · pointers outward</span>
+  </a>
 </div>
+
+<!-- Collapsed tools — was stacked plaques -->
+<details class="cu-plaque cu-map-tools">
+  <summary>Student tools · transcript · schedule · diploma</summary>
+  <div class="cu-row" style="margin-top:.55rem">
+    <a href="/campus/transcript/">Transcript</a>
+    <a href="/campus/assignments/">Assignments</a>
+    <a href="/campus/schedule/">Schedule</a>
+    <a href="/campus/diploma/">Diploma Hall</a>
+    <a href="/campus/buddy/">Study Buddy</a>
+  </div>
+</details>
+
+<details class="cu-plaque cu-map-tools">
+  <summary>Hajj preparation · language + companion ritual study</summary>
+  <p class="cu-meta" style="margin:.4rem 0">University: everyday Arabic for travel. Companion: ritual guide and checklist (deep study).</p>
+  <div class="cu-row">
+    <a href="/lab/arabic/hajj2027/">Hajj 2027 Arabic phrases</a>
+    <a href="/#hajj-guide-card">Companion · Ritual Guide</a>
+    <a href="/#hajj-checklist-card">Companion · Checklist</a>
+  </div>
+</details>
+
+<details class="cu-plaque cu-map-tools">
+  <summary>How phases work</summary>
+  <ol style="margin:.45rem 0 0 1.1rem;font-size:.9rem;line-height:1.5">
+    <li><strong>Seeker</strong> — foundations; one module open.</li>
+    <li><strong>Practice</strong> — after the Junior phase quiz.</li>
+    <li><strong>Consistency</strong> — steady craft.</li>
+    <li><strong>Transmission</strong> — sources and limits.</li>
+  </ol>
+  <p style="font-size:.85rem;margin:.45rem 0 0"><a href="/charter/">Full charter →</a></p>
+</details>
+
+<details class="cu-plaque cu-map-tools" id="cu-roles-details">
+  <summary>Campus roles · guided personas (optional)</summary>
+  <div id="cu-roles-host"></div>
+  <p class="cu-meta">Educational personas only — not living staff, ijāzah, or fatwa authority.</p>
+</details>
 
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. Verify with Qurʾān, Sunnah, and a local scholar.</footer>
-<script src="/campus/assets/js/cu-continue-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-flash-wings-v1.js?v=20261018P3P10" defer></script>
-<script>
-(function(){function L(){var s=document.createElement('script');s.src='/campus/assets/js/cu-mahtaab-hydrate-v1.js?v=20261018P3P10';s.defer=true;document.body.appendChild(s);}
-if('requestIdleCallback' in window)requestIdleCallback(L,{timeout:3000});else setTimeout(L,1500);})();
-</script>
-<script>
-(function(){function L(){var s=document.createElement('script');s.src='/campus/assets/js/cu-campus-roles-v1.js?v=20261018P3P10';s.defer=true;document.body.appendChild(s);}
-if('requestIdleCallback' in window)requestIdleCallback(L,{timeout:2500});else setTimeout(L,1200);})();
-</script>
-
-
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/campus/assets/js/cu-map-soft-admit-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-transcript-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-assign-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-schedule-v1.js?v=20261018P3P10" defer></script>
+<footer class="cu-foot">Educational only — not a fatwa. Map-first campus · companion deep study via links.</footer>
+<script src="/campus/assets/js/cu-continue-v1.js?v=20261018STREAM" defer></script>
+<script src="/campus/assets/js/cu-map-soft-admit-v1.js?v=20261018STREAM" defer></script>
+<script src="/campus/assets/js/cu-campus-roles-v1.js?v=20261018STREAM" defer></script>
+<script src="/campus/assets/js/cu-map-stream-v1.js?v=20261018STREAM" defer></script>
+<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261018STREAM" defer></script>
 </body>
 </html>
