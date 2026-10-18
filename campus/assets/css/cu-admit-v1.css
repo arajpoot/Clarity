@@ -1,0 +1,56 @@
+/* P0-P1 Charter landing + admission */
+.cu-charter-landing{width:100%;max-width:40rem;margin:0 auto}
+.cu-charter-landing h1{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(1.55rem,3.5vw,2.1rem);color:#c9a227;margin:.2rem 0 .4rem
+}
+.cu-charter-landing .cu-lead{font-size:.98rem;line-height:1.55;opacity:.9;margin:0 0 1rem}
+.cu-charter-card{
+  padding:1rem 1.1rem;border-radius:16px;margin:.65rem 0;
+  border:1px solid rgba(201,162,39,.45);
+  background:rgba(255,254,249,.94);color:#1a2a22
+}
+html[data-theme=dark] .cu-charter-card,
+html:not([data-theme=light]) body.cu-page .cu-charter-card{
+  background:rgba(18,28,24,.94);color:inherit
+}
+html[data-theme=light] .cu-charter-card{background:#fffef9;color:#1a2a22}
+.cu-charter-card h2{font-size:1.05rem;color:#c9a227;margin:0 0 .45rem}
+.cu-charter-card ol,.cu-charter-card ul{margin:.25rem 0 .4rem 1.15rem;font-size:.9rem;line-height:1.5}
+.cu-admit-form label{display:block;font-size:.82rem;font-weight:700;margin:.45rem 0 .2rem}
+.cu-admit-form input[type=text]{
+  width:100%;box-sizing:border-box;padding:.55rem .7rem;border-radius:12px;
+  border:1px solid rgba(201,162,39,.4);font-size:1rem;background:transparent;color:inherit
+}
+.cu-admit-intents{display:flex;flex-wrap:wrap;gap:.4rem;margin:.35rem 0}
+.cu-admit-intents label{
+  display:inline-flex;align-items:center;gap:.3rem;font-weight:600;font-size:.85rem;
+  padding:.35rem .65rem;border-radius:999px;border:1px solid rgba(201,162,39,.35);cursor:pointer
+}
+.cu-admit-check{display:flex;gap:.5rem;align-items:flex-start;font-size:.86rem;margin:.55rem 0;line-height:1.4}
+.cu-admit-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.65rem}
+.cu-admit-actions button,.cu-admit-actions a.cu-btn-primary{
+  appearance:none;border:0;cursor:pointer;text-decoration:none;
+  padding:.55rem 1rem;border-radius:999px;font-weight:800;font-size:.88rem;
+  background:#467C45;color:#fff
+}
+.cu-admit-actions a.cu-btn-ghost,.cu-admit-actions button.ghost{
+  background:transparent;color:inherit;border:1px solid rgba(201,162,39,.45)
+}
+.cu-admit-error{color:#8a3030;font-size:.85rem;margin:.35rem 0}
+.cu-admit-letter{
+  margin-top:.75rem;padding:1rem 1.1rem;border-radius:16px;
+  border:1px solid rgba(201,162,39,.5);background:rgba(70,124,69,.08)
+}
+.cu-admit-letter h3{margin:0 0 .35rem;color:#c9a227}
+.cu-admit-bism{font-family:"Scheherazade New",serif;font-size:1.15rem}
+.cu-admit-meta,.cu-admit-note{font-size:.8rem;opacity:.8}
+.cu-spine{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.4rem;margin:.75rem 0
+}
+.cu-spine a{
+  display:block;padding:.65rem .7rem;border-radius:14px;text-decoration:none;color:inherit;
+  border:1px solid rgba(201,162,39,.35);font-size:.8rem;font-weight:700;text-align:center
+}
+.cu-spine a span{display:block;font-size:.68rem;font-weight:600;opacity:.75;margin-top:.15rem}
+.cu-spine a.primary{background:#467C45;color:#fff;border-color:#467C45}
