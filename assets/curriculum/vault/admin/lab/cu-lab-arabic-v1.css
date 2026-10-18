@@ -1,33 +1,37 @@
-/* Arabic studio shell */
-#ar-studio{max-width:min(40rem,100%);margin:0 auto;padding:.5rem 0 2rem}
+/* Arabic studio · 20261017ARABIC */
+#ar-studio{max-width:min(42rem,100%);margin:0 auto;padding:.5rem 0 2rem}
 .ar-lead{font-size:.88rem;opacity:.9;margin:0 0 .65rem;line-height:1.45}
 .ar-note{font-size:.72rem;opacity:.75;margin:.75rem 0 0}
-.ar-decks,.ar-modes{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .55rem}
+.ar-session-bar,.ar-decks,.ar-modes,.ar-actions,.ar-grade{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .55rem;justify-content:center}
+.ar-session{font-size:.8rem;opacity:.9;text-align:center;margin:0 0 .5rem}
 .ar-deck-btn,.ar-mode-btn,.ar-btn{
   border:1px solid rgba(184,166,135,.35);background:rgba(21,32,28,.9);color:inherit;
-  border-radius:999px;padding:.4rem .75rem;font-weight:700;font-size:.78rem;cursor:pointer
+  border-radius:999px;padding:.4rem .75rem;font-weight:700;font-size:.78rem;cursor:pointer;text-decoration:none
 }
 .ar-deck-btn.here,.ar-mode-btn.here,.ar-btn.primary{background:#1e7d5e;color:#fff;border-color:#1e7d5e}
 .ar-btn.block{display:block;width:100%;margin:.3rem 0;border-radius:12px;text-align:left}
 .ar-stage{margin-top:.35rem}
-.ar-card-wrap{padding:1rem;border-radius:16px;border:1px solid rgba(184,166,135,.35);background:rgba(15,22,19,.95)}
-.ar-flash{min-height:8rem;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
-.ar-face{text-align:center}
+.ar-card-wrap{padding:1.1rem;border-radius:18px;border:1px solid rgba(184,166,135,.35);background:rgba(15,22,19,.95)}
+.ar-flash{min-height:11rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ar-face{text-align:center;width:100%}
 .ar-flash:not(.flipped) .ar-back{display:none}
 .ar-flash.flipped .ar-front{display:none}
-.ar-ar{font-size:2rem;font-weight:700;display:block;margin:.25rem 0}
-.ar-en{font-size:1.2rem;font-weight:700}
-.ar-tr{display:block;opacity:.75;font-size:.85rem}
-.ar-actions{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.75rem}
+.ar-visual{display:flex;flex-direction:column;align-items:center;gap:.35rem}
+.ar-emoji{font-size:2.6rem;line-height:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,.25))}
+.ar-ar{font-size:clamp(1.8rem,6vw,2.4rem);font-weight:700;display:block;margin:.2rem 0;line-height:1.4}
+.ar-en{font-size:1.25rem;font-weight:700}
+.ar-tr{display:block;opacity:.75;font-size:.9rem}
+.ar-ex{font-size:.95rem;opacity:.9;margin:.45rem 0 0;line-height:1.5}
+.ar-root{font-size:.75rem;opacity:.7;margin:.35rem 0 0;letter-spacing:.04em}
 .ar-meta{text-align:center;font-size:.78rem;opacity:.8;margin:.5rem 0 0}
 .ar-match-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
 @media(max-width:520px){.ar-match-grid{grid-template-columns:repeat(2,1fr)}}
 .ar-match-cell{min-height:3rem;border-radius:12px;border:1px solid rgba(184,166,135,.35);background:rgba(21,32,28,.95);color:inherit;font-weight:700;cursor:pointer}
 .ar-match-cell.sel{outline:2px solid #1e7d5e}
 .ar-match-cell.done{opacity:.35}
-.ar-input{width:100%;max-width:16rem;margin:.5rem auto;display:block;padding:.5rem .75rem;border-radius:10px;border:1px solid rgba(184,166,135,.4);background:rgba(0,0,0,.2);color:inherit}
+.ar-input{width:100%;max-width:16rem;margin:.5rem auto;display:block;padding:.5rem .75rem;border-radius:10px;border:1px solid rgba(184,166,135,.4);background:rgba(0,0,0,.2);color:inherit;font-size:1.1rem}
 .ar-letters{display:grid;grid-template-columns:repeat(auto-fill,minmax(3.5rem,1fr));gap:.35rem}
 .ar-letter{border-radius:12px;border:1px solid rgba(184,166,135,.3);background:rgba(21,32,28,.9);color:inherit;padding:.45rem;cursor:pointer}
 .ar-letter span{font-size:1.35rem;display:block}
 .ar-letter small{font-size:.65rem;opacity:.75}
-html[data-theme=light] .ar-card-wrap,html[data-theme=light] .ar-match-cell,html[data-theme=light] .ar-deck-btn{background:#fffef8}
+html[data-theme=light] .ar-card-wrap,html[data-theme=light] .ar-match-cell,html[data-theme=light] .ar-deck-btn,html[data-theme=light] .ar-letter{background:#fffef8}
