@@ -1,99 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-campus-page="lab">
+<html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Calligraphy · Lab · Clarity University</title>
-<meta name="description" content="Clarity University lab — educational practice only."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014FD6"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-callig-v1.css?v=20261014FD6"/>
-
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015UNIV"/>
-<style id="cu-empty-host-hide">
-#clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
-</style>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.css?v=20261015ENRICH"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Calligraphy studio · Lab · Clarity University</title>
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261017LABF"/>
 </head>
-<body class="cu-page" data-campus-page="lab">
-<header class="cu-banner">
-  <a class="cu-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
-    <div><small>University</small><strong>Clarity University</strong></div>
+<body class="lab-surface" data-campus-page="lab">
+<div class="lab-topstrip">
+  <div><span>Campus</span>
+    <a href="/campus/">University map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/lab/arabic/">Arabic</a>
+    <a href="/lab/tajweed/">Tajweed</a>
+  </div>
+  <div><a href="/">Companion home</a></div>
+</div>
+<header class="lab-banner">
+  <a class="lab-brand" href="/campus/">
+    <span class="lab-brand-mark" aria-hidden="true">ن</span>
+    <span><small>UNIVERSITY</small><strong>Clarity University</strong></span>
   </a>
-  <div class="cu-banner-actions">
-    <a class="cu-main-link" href="/">← Companion</a>
+  <div class="lab-banner-actions">
+    <button type="button" class="lab-theme-pill" data-lab-theme="light">Day</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="dark">Night</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="system">System</button>
+    <a class="lab-link" href="/">Companion</a>
   </div>
 </header>
-<main class="cu-wrap">
-  <nav class="cu-pills" aria-label="Campus">
-    <a href="/campus/">Map</a>
-    <a href="/campus/desk/">Desk</a>
-    <a href="/lab/" class="here">Lab</a>
-    <a href="/vault/">Vault</a>
-    <a href="/journey/">Journey</a>
-    <a href="/charter/">Charter</a>
-  </nav>
+<nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/vault/">Vault</a><a href="/charter/">Charter</a></nav>
 
-  <nav class="lab-station-nav" aria-label="Lab stations">
-    <a href="/lab/">Hub</a>
-    <a href="/lab/tajweed/">Tajweed</a>
-    <a href="/lab/arabic/">Arabic</a>
-    <a href="/lab/recite/">Recitation</a>
-    <a href="/lab/media/">Media</a>
-    <a href="/lab/calligraphy/" class=here>Calligraphy</a>
-    <a href="/lab/hifz/">Hifz</a>
-  </nav>
-
-  <h1 class="lab-h1">Calligraphy studio</h1>
-  <p class="lab-lead">Trace a letter with calm. On-device pad — nothing is uploaded. Practice for beauty and remembrance, not display.</p>
-  <section class="card lab-policy" style="max-width:40rem;margin:0 auto 1rem">
-    <h2>Letters</h2>
-    <div class="lab-chips" id="callig-letters">
-      <button type="button" class="lab-chip" data-letter="ا">ا</button>
-      <button type="button" class="lab-chip" data-letter="ب">ب</button>
-      <button type="button" class="lab-chip" data-letter="ت">ت</button>
-      <button type="button" class="lab-chip" data-letter="ث">ث</button>
-      <button type="button" class="lab-chip" data-letter="ج">ج</button>
-      <button type="button" class="lab-chip" data-letter="ح">ح</button>
-      <button type="button" class="lab-chip" data-letter="خ">خ</button>
-      <button type="button" class="lab-chip" data-letter="س">س</button>
-      <button type="button" class="lab-chip" data-letter="ل">ل</button>
-      <button type="button" class="lab-chip" data-letter="م">م</button>
-      <button type="button" class="lab-chip" data-letter="ه">ه</button>
-      <button type="button" class="lab-chip" data-letter="و">و</button>
-      <button type="button" class="lab-chip" data-letter="ي">ي</button>
-      <button type="button" class="lab-chip" data-letter="لا">لا</button>
-      <button type="button" class="lab-chip" data-letter="الله">الله</button>
-    </div>
-  </section>
-  <section class="card" style="max-width:40rem;margin:0 auto;padding:1rem">
-    <p class="lab-micro" id="callig-guide">Tap a letter · trace over the ghost · Clear to retry.</p>
-    <div class="callig-stage">
-      <canvas id="callig-ghost" width="720" height="360" aria-hidden="true"></canvas>
-      <canvas id="callig-pad" width="720" height="360" aria-label="Trace pad"></canvas>
-    </div>
-    <div class="lab-av-row" style="margin-top:0.75rem">
-      <button type="button" class="lab-btn" id="callig-clear">Clear</button>
-      <button type="button" class="lab-btn lab-btn-primary" id="callig-save">Save mark (device)</button>
-    </div>
-  </section>
-
+<main class="lab-main">
+  <h1 style="color:var(--lab-gold);font-size:1.2rem">Calligraphy studio</h1>
+  <p style="color:var(--lab-muted)">Letter craft laboratory.</p>
+  <p style="color:var(--lab-muted);font-size:.88rem">Surface shell · banner + theme. Studio modules mount from deploy assets when available.</p>
+  <p style="margin-top:1rem"><a href="/lab/">← Lab hub</a> · <a href="/lab/arabic/">Arabic</a></p>
+  <div id="lab-studio-root"></div>
+  <p class="lab-foot">Educational only — not a fatwa. · 20261017LABF</p>
 </main>
-<footer class="cu-foot">Educational practice only — not an ijāzah or fatwa.</footer>
-
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-callig-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-depth-v1.js?v=20261014FD6" defer></script>
-
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.js?v=20261015ENRICH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-module-deeplink-v1.js?v=20261015P4" defer></script>
+<script src="/lab/shared/lab-theme.js?v=20261017LABF" defer></script>
 </body>
 </html>
