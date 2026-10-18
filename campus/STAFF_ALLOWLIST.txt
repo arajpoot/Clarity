@@ -1,0 +1,15 @@
+U-F Staff allowlist (university only) — 20261018UF
+================================================
+Student chrome must NOT load Faculty / Security / IT / shaykh names.
+
+Staff pages (faculty.html, bots.html, grading.html) may load ONE path each:
+  Faculty:  assets/curriculum/vault/admin/faculty/faculty-controller-v1.js
+  IT:       assets/curriculum/vault/admin/it/it-controller-v1.js
+            (do not also load faculty/it-controller-v1.js)
+  Registrar: assets/curriculum/vault/admin/registrar/registrar-controller-v1.js
+            (do not also load security/registrar-controller-v1.js)
+  Security auditors: admin/security/security-auditors-v1.js only on staff ops
+
+Desk rooms: keep QUARANTINE_DESK.txt — never boot.js all-colleges.
+Quarantine folder remains a parts bin, not auto-load.
+Companion root: do not touch.

@@ -1,3 +1,4 @@
+/* U-F Staff allowlist: see campus/STAFF_ALLOWLIST.txt — single IT path admin/it/, single registrar admin/registrar/, never dual-load faculty/it or security/registrar on same page. */
 /**
  * Clarity University on-ramp · 20261017ONRAMP
  * Map foyer → local registration → faculty advisor → desk classroom
