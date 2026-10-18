@@ -1,63 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-campus-page="lab">
+<html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Recitation studio · Lab</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-flash-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-layout-wide-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-uni-viewport-v1.css?v=20261015UNIV"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261014FD6"/>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-recite-v1.css?v=20261014FD6"/>
-<style id="cu-empty-host-hide">
-#clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
-</style>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.css?v=20261015ENRICH"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Recite studio · Lab · Clarity University</title>
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261017LABF"/>
 </head>
-<body class="cu-page">
-<header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><div><small>University</small><strong>Clarity University</strong></div></a>
-  <div class="cu-banner-actions"><a class="cu-main-link" href="/">← Companion</a></div>
-</header>
-<main class="cu-wrap">
-  <nav class="cu-pills">
-    <a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" class="here">Lab</a>
-    <a href="/vault/">Vault</a><a href="/journey/">Journey</a><a href="/charter/">Charter</a>
-  </nav>
-  <nav class="lab-station-nav">
-    <a href="/lab/">Hub</a><a href="/lab/tajweed/">Tajweed</a><a href="/lab/arabic/">Arabic</a>
-    <a href="/lab/recite/" class="here">Recitation</a><a href="/lab/media/">Media</a>
-    <a href="/lab/calligraphy/">Calligraphy</a><a href="/lab/hifz/">Hifz</a>
-  </nav>
-  <div class="rc-lab">
-    <h1 class="lab-h1">Recitation studio</h1>
-    <p class="lab-lead">Fetch āyah online · Listen → Read → Self-check → Assessment. Progress tiles on this device. Rules of pronunciation → Tajweed lab.</p>
-    <div class="rc-tiles" id="rc-tiles"></div>
-    <section class="rc-card">
-      <div class="rc-step" id="rc-step">Step 1 · Listen</div>
-      <h2 id="rc-title" style="text-align:center;font-size:1.05rem">…</h2>
-      <p class="rc-ar" id="rc-ar" dir="rtl">…</p>
-      <p class="rc-en" id="rc-en">…</p>
-      <div class="lab-av-row" id="rc-actions" style="justify-content:center">
-        <button type="button" class="lab-btn lab-btn-primary" id="rc-hear">Hear</button>
-        <button type="button" class="lab-btn" id="rc-next">Next step</button>
-        <button type="button" class="lab-btn" id="rc-continue">Next āyah →</button>
-      </div>
-      <div id="rc-quiz" hidden>
-        <p id="rc-q" style="text-align:center;font-weight:700"></p>
-        <div class="rc-choices" id="rc-options"></div>
-      </div>
-      <p class="rc-status" id="rc-status"></p>
-      <a class="rc-tajweed-link" href="/lab/tajweed/">Open Tajweed lab for rules →</a>
-    </section>
+<body class="lab-surface" data-campus-page="lab">
+<div class="lab-topstrip">
+  <div><span>Campus</span>
+    <a href="/campus/">University map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/lab/arabic/">Arabic</a>
+    <a href="/lab/tajweed/">Tajweed</a>
   </div>
+  <div><a href="/">Companion home</a></div>
+</div>
+<header class="lab-banner">
+  <a class="lab-brand" href="/campus/">
+    <span class="lab-brand-mark" aria-hidden="true">ن</span>
+    <span><small>UNIVERSITY</small><strong>Clarity University</strong></span>
+  </a>
+  <div class="lab-banner-actions">
+    <button type="button" class="lab-theme-pill" data-lab-theme="light">Day</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="dark">Night</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="system">System</button>
+    <a class="lab-link" href="/">Companion</a>
+  </div>
+</header>
+<nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/vault/">Vault</a><a href="/charter/">Charter</a></nav>
+
+<main class="lab-main">
+  <h1 style="color:var(--lab-gold);font-size:1.2rem">Recite studio</h1>
+  <p style="color:var(--lab-muted)">Guided recitation practice.</p>
+  <p style="color:var(--lab-muted);font-size:.88rem">Surface shell · banner + theme. Studio modules mount from deploy assets when available.</p>
+  <p style="margin-top:1rem"><a href="/lab/">← Lab hub</a> · <a href="/lab/arabic/">Arabic</a></p>
+  <div id="lab-studio-root"></div>
+  <p class="lab-foot">Educational only — not a fatwa. · 20261017LABF</p>
 </main>
-<footer class="cu-foot">Educational only — not a qāriʾ certificate. Online text via public Quran API when available.</footer>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-core-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-flash-wings-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-av-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-recite-v1.js?v=20261014FD6" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-companion-enrich-v1.js?v=20261015ENRICH" defer></script>
-<script src="/assets/curriculum/vault/admin/campus/cu-module-deeplink-v1.js?v=20261015P4" defer></script>
-</body></html>
+<script src="/lab/shared/lab-theme.js?v=20261017LABF" defer></script>
+</body>
+</html>
