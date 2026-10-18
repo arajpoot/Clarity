@@ -171,6 +171,7 @@
   function openModal(roleId) {
     var role = ROLES[roleId];
     if (!role) return;
+    try { closeDockPanel(); } catch (e) {}
     closeModal();
     ensureCss();
 
@@ -313,6 +314,34 @@
   }
 
   /* RP4 — floating dock */
+  function closeDockPanel() {
+    var dock = document.getElementById("cu-personas-dock");
+    if (!dock) return;
+    var panel = dock.querySelector(".cu-personas-dock-panel");
+    var toggle = dock.querySelector(".cu-personas-dock-toggle");
+    if (panel) {
+      panel.hidden = true;
+      panel.setAttribute("hidden", "");
+      panel.style.display = "none";
+    }
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+    dock.classList.remove("open");
+  }
+
+  function openDockPanel() {
+    var dock = document.getElementById("cu-personas-dock");
+    if (!dock) return;
+    var panel = dock.querySelector(".cu-personas-dock-panel");
+    var toggle = dock.querySelector(".cu-personas-dock-toggle");
+    if (panel) {
+      panel.hidden = false;
+      panel.removeAttribute("hidden");
+      panel.style.display = "flex";
+    }
+    if (toggle) toggle.setAttribute("aria-expanded", "true");
+    dock.classList.add("open");
+  }
+
   function mountDock() {
     if (document.getElementById("cu-personas-dock")) return;
     var p = pathName();
@@ -330,7 +359,7 @@
     dock.className = "cu-personas-dock";
     dock.innerHTML =
       '<button type="button" class="cu-personas-dock-toggle" aria-expanded="false" aria-label="Campus guides">◈ Guides</button>' +
-      '<div class="cu-personas-dock-panel" hidden>' +
+      '<div class="cu-personas-dock-panel" hidden style="display:none">' +
       Object.keys(ROLES)
         .map(function (id) {
           return (
@@ -349,19 +378,37 @@
 
     var toggle = dock.querySelector(".cu-personas-dock-toggle");
     var panel = dock.querySelector(".cu-personas-dock-panel");
-    toggle.onclick = function () {
-      var open = panel.hidden;
-      panel.hidden = !open;
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      dock.classList.toggle("open", open);
+
+    function isOpen() {
+      return panel && !panel.hidden && panel.style.display !== "none";
+    }
+
+    toggle.onclick = function (e) {
+      e.stopPropagation();
+      if (isOpen()) closeDockPanel();
+      else openDockPanel();
     };
+
     dock.querySelectorAll("[data-role]").forEach(function (b) {
-      b.onclick = function () {
-        panel.hidden = true;
-        toggle.setAttribute("aria-expanded", "false");
-        dock.classList.remove("open");
+      b.onclick = function (e) {
+        e.stopPropagation();
+        closeDockPanel();
         openModal(b.getAttribute("data-role"));
       };
+    });
+
+    /* outside click closes panel */
+    document.addEventListener(
+      "click",
+      function (e) {
+        if (!dock.contains(e.target)) closeDockPanel();
+      },
+      true
+    );
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeDockPanel();
+      }
     });
   }
 

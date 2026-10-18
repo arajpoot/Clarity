@@ -1,26 +1,20 @@
 
-/**
- * Map curriculum guard — Junior/college must not paint on /campus/ map
- */
 (function(){
   if (window.__CU_MAP_CURRICULUM_GUARD__) return;
   window.__CU_MAP_CURRICULUM_GUARD__ = true;
   var p = (location.pathname || "").replace(/\/+$/, "") || "/";
-  var isMap = p === "/campus" || p === "/campus/";
-  if (!isMap) return;
-  /* neutralize accidental college render hooks */
-  var noop = function(){};
-  try {
-    if (window.ClarityCollegeSeeker && window.ClarityCollegeSeeker.render) {
-      window.ClarityCollegeSeeker.render = noop;
-    }
-  } catch(e) {}
-  /* remove junior blocks if injected */
+  if (p !== "/campus" && p !== "/campus/") return;
   function strip(){
-    document.querySelectorAll(".junior-curriculum, #junior-root, .college-seeker-root").forEach(function(n){
+    document.querySelectorAll(".junior-curriculum, #junior-root, .college-seeker-root, .mv-junior").forEach(function(n){
       try { n.remove(); } catch(e) {}
     });
+    /* if stage host appeared on map, clear it */
+    var st = document.getElementById("cu-stage");
+    if (st && /Junior curriculum/i.test(st.textContent || "")) {
+      try { st.innerHTML = ""; } catch(e) {}
+    }
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(strip, 300); setTimeout(strip, 1200); });
-  else { setTimeout(strip, 300); setTimeout(strip, 1200); }
+  setTimeout(strip, 200);
+  setTimeout(strip, 1000);
+  setTimeout(strip, 2500);
 })();
