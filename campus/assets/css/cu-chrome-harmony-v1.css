@@ -141,3 +141,7 @@ body:not(.cu-page) main,
 body[data-phase-room] .cu-topstrip{display:none!important}
 body[data-phase-room] .cu-ui-chrome-extra-themes,
 body[data-phase-room] .cu-theme-bar{display:none!important}
+
+/* PR4 global: never show topstrip when banner present */
+body.cu-page .cu-topstrip{display:none!important}
+body.cu-page .cu-ui-chrome-extra-themes,body.cu-page .cu-theme-bar{display:none!important}
