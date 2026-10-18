@@ -1,33 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-campus-page="charter" data-mahtaab="1">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Clarity University · Charter & Admission</title>
-<meta name="description" content="Clarity University landing — charter, on-device admission, then desk learning. Educational only."/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Scheherazade+New:wght@600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018P3P10"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018P3P10"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018P3P10"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018P3P10"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-admit-v1.css?v=20261018P3P10"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-student-spine-v1.css?v=20261018P3P10?v=20261018P3P10"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018P3P10"></script>
-<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261018P3P10"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018P3P10"></script>
+<meta name="description" content="Charter, on-device admission, desk learning. Educational only."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-harmony-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-admit-v1.css?v=20261018CH6"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-student-spine-v1.css?v=20261018CH6"/>
+
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018CH6"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018CH6"></script>
 </head>
 <body class="cu-page" data-campus-page="charter">
-<div class="cu-topstrip">
-  <div class="cu-top-links">
-    <span>University</span>
-    <a href="/charter/">Charter</a>
-    <a href="/campus/">Map</a>
-    <a href="/campus/desk/seeker/">Desk</a>
-    <a href="/lab/">Lab</a>
-    <a href="/library/">Library</a>
-  </div>
-  <div class="cu-top-links"><a href="/">Companion home</a></div>
-</div>
 <header class="cu-banner">
   <a class="cu-brand" href="/charter/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
@@ -41,17 +31,11 @@
   </div>
 </header>
 <main class="cu-wrap">
-<nav class="cu-pills" aria-label="Campus">
-  <a href="/charter/" class="here">Charter</a>
-  <a href="/campus/">Map</a>
-  <a href="/campus/desk/">Desk</a>
-  <a href="/lab/">Lab</a>
-  <a href="/library/">Library</a>
-  <a href="/vault/">Vault</a>
-</nav>
+
+<nav class="cu-pills" aria-label="Campus"><a href="/charter/" class="here" aria-current="page">Charter</a><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a><a href="/library/">Library</a><a href="/campus/buddy/">Buddy</a><a href="/vault/">Vault</a></nav>
 
 <article class="cu-charter-landing">
-  <h1>University Charter</h1>
+  <h1 class="cu-h1">University Charter</h1>
   <p class="cu-lead">
     Structured learning beside Companion. Progress stays on this device.
     Primary texts stay with the ummah’s free libraries. Educational only — not a fatwa service.
@@ -95,48 +79,40 @@
     <p style="font-size:.88rem;margin:.4rem 0 0">After each module: understand → one practice → Lab → optional Library.</p>
   </div>
 
-  
-<div id="cu-orient" hidden></div>
-<div id="cu-welcome-back" class="cu-plaque cu-welcome"></div>
-<div id="cu-study-circle" class="cu-plaque"></div>
-<div class="cu-plaque">
-  <h2>Student tools</h2>
-  <div class="cu-row">
-    <a href="/campus/transcript/">Transcript</a>
-    <a href="/campus/assignments/">Assignments</a>
-    <a href="/campus/schedule/">Schedule</a>
-    <a href="/campus/diploma/">Diploma Hall</a>
-  </div>
-</div>
+  <!-- CH3 diet: tools collapsed; no auto Welcome/Next15 stack -->
+  <details class="cu-plaque cu-map-tools">
+    <summary>Student tools · transcript · schedule · diploma</summary>
+    <div class="cu-row" style="margin-top:.5rem">
+      <a href="/campus/transcript/">Transcript</a>
+      <a href="/campus/assignments/">Assignments</a>
+      <a href="/campus/schedule/">Schedule</a>
+      <a href="/campus/diploma/">Diploma Hall</a>
+      <a href="/campus/buddy/">Study Buddy</a>
+    </div>
+  </details>
 
-  <!-- P1 Admission -->
   <div class="cu-charter-card" id="admission">
     <h2>Admission · on this device</h2>
     <p id="cu-admit-status" style="font-size:.88rem;opacity:.85;margin:0 0 .5rem"></p>
-
     <div id="cu-admit-gate">
       <form id="cu-admit-form" class="cu-admit-form" autocomplete="name">
         <label for="cu-admit-name">Name or kunya (shown on local certificates only)</label>
         <input id="cu-admit-name" type="text" maxlength="80" placeholder="e.g. Yusuf, Umm Sarah" required />
-
         <label>Intended start</label>
         <div class="cu-admit-intents">
           <label><input type="radio" name="cu-intent" value="seeker" checked /> Seeker</label>
           <label><input type="radio" name="cu-intent" value="returning" /> Returning</label>
         </div>
-
         <label class="cu-admit-check">
           <input id="cu-admit-accept" type="checkbox" required />
           <span>I understand this path is educational only — not a fatwa service, not an ijāzah, and not affiliated with Al-Azhar or Madinah University.</span>
         </label>
-
         <p id="cu-admit-error" class="cu-admit-error" hidden></p>
         <div class="cu-admit-actions">
           <button type="submit">Complete admission</button>
         </div>
       </form>
     </div>
-
     <div id="cu-admit-done" hidden>
       <p style="font-size:.92rem;margin:0 0 .5rem">You are admitted on <strong>this device</strong>. Continue when your heart is present.</p>
       <div class="cu-admit-actions">
@@ -145,7 +121,6 @@
         <button type="button" class="ghost" id="cu-admit-reset">Reset admission</button>
       </div>
     </div>
-
     <div id="cu-admit-letter" class="cu-admit-letter" hidden></div>
   </div>
 
@@ -156,19 +131,17 @@
       <li><strong>University</strong> — this charter, Map, Desk, Lab, Library, Vault.</li>
     </ul>
   </div>
-
   <p style="font-size:.8rem;opacity:.75;margin:1rem 0">
     Not affiliated with Al-Azhar, Madinah University, or any seminary.
     Verify with Qurʾān, Sunnah, and a local scholar.
   </p>
 </article>
+
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. University landing · on-device admission · desk learning</footer>
-<script src="/campus/assets/js/cu-admit-v1.js?v=20261018P3P10"></script>
-<script src="/campus/assets/js/cu-transcript-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-schedule-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-assign-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-continue-v1.js?v=20261018P3P10" defer></script>
-<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261018P3P10" defer></script>
+<footer class="cu-foot">Educational only — not a fatwa.</footer>
+<script src="/campus/assets/js/cu-chrome-harmony-v1.js?v=20261018CH6" defer></script>
+<script src="/campus/assets/js/cu-personas-rp6.js?v=20261018CH6" defer></script>
+<script src="/campus/assets/js/cu-admit-v1.js?v=20261018CH6" defer></script>
+<script src="/campus/assets/js/cu-continue-v1.js?v=20261018CH6" defer></script>
 </body>
 </html>
