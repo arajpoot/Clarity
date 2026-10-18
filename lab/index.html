@@ -3,21 +3,16 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Craft Laboratory · Lab · Clarity University</title>
-<meta name="description" content="Educational practice studios."/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261017HARM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261017HARM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-chrome-lock-v1.css?v=20261017HARM"/>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261017HARM"></script>
+<title>Craft Laboratory · Clarity University</title>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261017UI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-ui-revamp-v1.css?v=20261017UI"/>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261017UI"></script>
+<script src="/campus/assets/js/cu-ui-chrome-v1.js?v=20261017UI"></script>
 </head>
-<body class="cu-page lab-surface" data-campus-page="lab">
+<body class="cu-page" data-campus-page="lab">
 <div class="cu-topstrip">
   <div class="cu-top-links"><span>Campus</span>
-    <a href="/campus/">Map</a>
-    <a href="/campus/desk/seeker/">Desk</a>
-    <a href="/lab/">Lab</a>
-    <a href="/library/">Library</a>
-    <a href="/charter/">Charter</a>
+    <a href="/campus/">Map</a> <a href="/campus/desk/">Desk</a> <a href="/lab/">Lab</a> <a href="/library/">Library</a>
   </div>
   <div class="cu-top-links"><a href="/">Companion home</a></div>
 </div>
@@ -33,19 +28,27 @@
     <a class="cu-main-link" href="/">← Companion</a>
   </div>
 </header>
-<nav class="cu-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" class="here" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/vault/">Vault</a><a href="/charter/">Charter</a></nav>
-<main class="cu-wrap lab-main">
-<h1 style="color:var(--lab-gold);font-size:1.3rem">Craft Laboratory</h1>
-<p style="color:var(--lab-muted)">Educational practice. On-device. Not a fatwa.</p>
-<div style="display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:1rem 0">
-<a style="display:block;padding:.9rem;border:1px solid var(--lab-line);border-radius:16px;text-decoration:none;color:inherit;background:var(--lab-panel)" href="/lab/arabic/"><strong style="color:var(--lab-gold)">Arabic</strong><br/><span style="font-size:.78rem;color:var(--lab-muted)">Vocab · MCQ · Hajj Jumlah</span></a>
-<a style="display:block;padding:.9rem;border:1px solid var(--lab-line);border-radius:16px;text-decoration:none;color:inherit;background:var(--lab-panel)" href="/lab/tajweed/"><strong style="color:var(--lab-gold)">Tajweed</strong><br/><span style="font-size:.78rem;color:var(--lab-muted)">Listen · Match · Record</span></a>
-<a style="display:block;padding:.9rem;border:1px solid var(--lab-line);border-radius:16px;text-decoration:none;color:inherit;background:var(--lab-panel)" href="/lab/recite/"><strong style="color:var(--lab-gold)">Recite</strong><br/><span style="font-size:.78rem;color:var(--lab-muted)">114 sūrahs · Hear</span></a>
-<a style="display:block;padding:.9rem;border:1px solid var(--lab-line);border-radius:16px;text-decoration:none;color:inherit;background:var(--lab-panel)" href="/lab/hifz/"><strong style="color:var(--lab-gold)">Hifz</strong><br/><span style="font-size:.78rem;color:var(--lab-muted)">Hide · recall</span></a>
-<a style="display:block;padding:.9rem;border:1px solid var(--lab-line);border-radius:16px;text-decoration:none;color:inherit;background:var(--lab-panel)" href="/lab/calligraphy/"><strong style="color:var(--lab-gold)">Calligraphy</strong><br/><span style="font-size:.78rem;color:var(--lab-muted)">Letter craft</span></a>
-<a style="display:block;padding:.9rem;border:1px solid var(--lab-line);border-radius:16px;text-decoration:none;color:inherit;background:var(--lab-panel)" href="/lab/media/"><strong style="color:var(--lab-gold)">Media</strong><br/><span style="font-size:.78rem;color:var(--lab-muted)">Āyah cards</span></a>
-</div>
-<p class="lab-foot">Educational only — not a fatwa. · Surface · 20261017TQ</p>
+<nav class="cu-pills cu-dock" aria-label="Campus">
+  <a href="/campus/"><span class="ico">◫</span>Map</a>
+  <a href="/campus/desk/"><span class="ico">▦</span>Desk</a>
+  <a href="/lab/" class="here" aria-current="page"><span class="ico">◈</span>Lab</a>
+  <a href="/library/"><span class="ico">☰</span>Library</a>
+  <a href="/vault/"><span class="ico">◇</span>Vault</a>
+  <a href="/charter/"><span class="ico">✦</span>Charter</a>
+</nav>
+<main class="cu-wrap">
+  <h1 class="cu-h1">Craft Laboratory</h1>
+  <p class="cu-lead">Skills practice on-device. One studio at a time. Educational only — not a fatwa.</p>
+  <div class="lab-card-grid">
+    <a class="lab-card" href="/lab/arabic/"><span class="cu-badge">STUDIO</span><strong>Arabic</strong><span>Vocab · MCQ · Jumlah · Hajj stay</span></a>
+    <a class="lab-card" href="/lab/tajweed/"><span class="cu-badge">STUDIO</span><strong>Tajweed</strong><span>Listen · Match · Record · score</span></a>
+    <a class="lab-card" href="/lab/recite/"><span class="cu-badge">STUDIO</span><strong>Recite</strong><span>114 sūrahs · Hear · hide text</span></a>
+    <a class="lab-card" href="/lab/hifz/"><span class="cu-badge">STUDIO</span><strong>Hifz</strong><span>Hear · hide · recall</span></a>
+    <a class="lab-card" href="/lab/calligraphy/"><span class="cu-badge">STUDIO</span><strong>Calligraphy</strong><span>Letter craft</span></a>
+    <a class="lab-card" href="/lab/media/"><span class="cu-badge">STUDIO</span><strong>Media</strong><span>Āyah card tools</span></a>
+    <a class="lab-card" href="/lab/arabic/library/"><span class="cu-badge">LIBRARY</span><strong>Arabic library</strong><span>Letters · words · Hajj stay Jumlah</span></a>
+  </div>
+  <p class="cu-foot">Educational only — not a fatwa. · 20261017UI</p>
 </main>
 </body>
 </html>
