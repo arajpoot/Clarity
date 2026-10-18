@@ -9,7 +9,7 @@
   if (g.__CU_PERSONAS_RP6__) return;
   g.__CU_PERSONAS_RP6__ = true;
 
-  var VER = "20261018RP6";
+  var VER = "20261018R2R3";
   var TIPS_URL = "/campus/assets/data/persona-tips-v1.json?v=" + VER;
   var tipsCache = null;
   var tipIx = {};
@@ -171,7 +171,7 @@
   function openModal(roleId) {
     var role = ROLES[roleId];
     if (!role) return;
-    try { closeDockPanel(); } catch (e) {}
+    try { closeDockPanel(); } catch (e0) {}
     closeModal();
     ensureCss();
 
@@ -314,6 +314,7 @@
   }
 
   /* RP4 — floating dock */
+  
   function closeDockPanel() {
     var dock = document.getElementById("cu-personas-dock");
     if (!dock) return;
@@ -327,7 +328,6 @@
     if (toggle) toggle.setAttribute("aria-expanded", "false");
     dock.classList.remove("open");
   }
-
   function openDockPanel() {
     var dock = document.getElementById("cu-personas-dock");
     if (!dock) return;
@@ -380,10 +380,11 @@
     var panel = dock.querySelector(".cu-personas-dock-panel");
 
     function isOpen() {
-      return panel && !panel.hidden && panel.style.display !== "none";
+      return !!(panel && !panel.hidden && panel.style.display !== "none");
     }
 
     toggle.onclick = function (e) {
+      e.preventDefault();
       e.stopPropagation();
       if (isOpen()) closeDockPanel();
       else openDockPanel();
@@ -391,13 +392,13 @@
 
     dock.querySelectorAll("[data-role]").forEach(function (b) {
       b.onclick = function (e) {
+        e.preventDefault();
         e.stopPropagation();
         closeDockPanel();
         openModal(b.getAttribute("data-role"));
       };
     });
 
-    /* outside click closes panel */
     document.addEventListener(
       "click",
       function (e) {
@@ -408,6 +409,7 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
         closeDockPanel();
+        closeModal();
       }
     });
   }
