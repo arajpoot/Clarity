@@ -9,7 +9,7 @@
 
   var STATION = {
     media: { href: "/lab/media/", label: "Lab · Media" },
-    tajweed: { href: "/lab/tajweed/", label: "Lab · Tajweed" },
+    tajweed: { href: "/lab/recite/", label: "Lab · Recite (tajweed practice)" },
     callig: { href: "/lab/calligraphy/", label: "Lab · Calligraphy" },
     calligraphy: { href: "/lab/calligraphy/", label: "Lab · Calligraphy" },
     arabic: { href: "/lab/arabic/?deck=everyday", label: "Lab · Arabic flash" },
@@ -26,8 +26,8 @@
       practiceHint: "Write one honest line: what changes if Allah is One?"
     },
     practice: {
-      labHref: "/lab/tajweed/",
-      labLabel: "Lab · Tajweed",
+      labHref: "/lab/recite/",
+      labLabel: "Lab · Recite (tajweed practice)",
       labHref2: "/lab/arabic/?deck=salah",
       labLabel2: "Arabic · ṣalāh words",
       libHref: "/library/#fiqh",
@@ -184,6 +184,45 @@
     });
     obs.observe(main, { childList: true, subtree: true });
   }
+
+
+  /* U-B: stronger handoff strip when phase room stage is live */
+  function paintLabHandoffStrip() {
+    try {
+      var stage = document.getElementById("cu-stage");
+      if (!stage) return;
+      if (document.getElementById("cu-ub-lab-handoff")) return;
+      var phase = (document.body && document.body.getAttribute("data-phase-room")) || "seeker";
+      var conf = PHASE[phase] || PHASE.seeker;
+      var strip = document.createElement("div");
+      strip.id = "cu-ub-lab-handoff";
+      strip.className = "cu-plaque";
+      strip.setAttribute("style", "margin:0.75rem 0;padding:0.75rem 0.9rem;border:1px solid rgba(15,76,58,0.25);border-radius:12px;background:rgba(15,76,58,0.06)");
+      strip.innerHTML =
+        "<strong>After this module · skill in the Lab</strong>" +
+        "<p style=\"margin:0.35rem 0 0.55rem;font-size:0.88rem;opacity:0.9\">Desk teaches. Lab practices. One short station — no second streak.</p>" +
+        "<div class=\"cu-row\" style=\"flex-wrap:wrap;gap:0.4rem\">" +
+        "<a class=\"cu-main-link\" href=\"" + (conf.labHref || "/lab/") + "\">" + (conf.labLabel || "Open Lab") + "</a>" +
+        (conf.labHref2
+          ? "<a href=\"" + conf.labHref2 + "\">" + (conf.labLabel2 || "More lab") + "</a>"
+          : "") +
+        (conf.libHref
+          ? "<a href=\"" + conf.libHref + "\">" + (conf.libLabel || "Library") + "</a>"
+          : "") +
+        "<a href=\"/campus/buddy/\">Ask Buddy</a>" +
+        "</div>" +
+        (conf.practiceHint
+          ? "<p style=\"margin:0.5rem 0 0;font-size:0.82rem;opacity:0.85\">" + conf.practiceHint + "</p>"
+          : "");
+      stage.parentNode.insertBefore(strip, stage.nextSibling);
+    } catch (e) {}
+  }
+
+  var _runOrig = run;
+  run = function () {
+    _runOrig();
+    paintLabHandoffStrip();
+  };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", observe);
   else observe();
