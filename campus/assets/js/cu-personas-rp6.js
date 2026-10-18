@@ -96,6 +96,55 @@
     }
   };
 
+  var STUDENT_ROLES = {
+    buddy: {
+      icon: "✦",
+      title: "Study Buddy",
+      blurb: "Ask about a module in plain language.",
+      interview: "On-device help — educational only.",
+      steps: ["Open Buddy from the campus map or desk.", "Ask about the unit you are studying.", "Verify sources on Quran.com / Sunnah.com."],
+      actions: [{ label: "Open Buddy", href: "/campus/buddy/" }, { label: "Map", href: "/campus/" }]
+    },
+    desk: {
+      icon: "◎",
+      title: "Desk · Modules",
+      blurb: "One module at a time.",
+      interview: "Return to your phase room.",
+      steps: ["Seeker for foundations.", "Practice after the phase quiz.", "Lab practices skill; Desk teaches."],
+      actions: [{ label: "Seeker desk", href: "/campus/desk/seeker/" }, { label: "Map", href: "/campus/" }]
+    },
+    lab: {
+      icon: "▣",
+      title: "Lab · Practice",
+      blurb: "Arabic, recite, calligraphy.",
+      interview: "Short craft sessions.",
+      steps: ["Pick one studio for five minutes.", "Language packs are not ritual guides.", "Hard-refresh if the lab looks stale."],
+      actions: [{ label: "Arabic", href: "/lab/arabic/" }, { label: "Recite", href: "/lab/recite/" }, { label: "All labs", href: "/lab/" }]
+    },
+    charter: {
+      icon: "◇",
+      title: "Charter · Limits",
+      blurb: "What this path is and is not.",
+      interview: "Educational only — not a fatwa.",
+      steps: ["Read the charter before relying on any tool.", "Ask a local teacher for rulings.", "Vault and notes stay on your device."],
+      actions: [{ label: "Charter", href: "/charter/" }, { label: "Library", href: "/library/" }]
+    }
+  };
+
+  function isStaffPage() {
+    try {
+      var p = location.pathname || "";
+      return /faculty|grading|bots|phase-desk|registrar|security|\/admin/i.test(p);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function roleSource() {
+    return isStaffPage() ? ROLES : STUDENT_ROLES;
+  }
+
+
   function pathName() {
     return (location.pathname || "").replace(/\/+$/, "") || "/";
   }
@@ -259,7 +308,7 @@
     box.innerHTML =
       '<p class="cu-roles-lead">Tap a role for a guide card with interview tips. On-device only.</p>' +
       '<div class="cu-roles-row" role="toolbar">' +
-      Object.keys(ROLES)
+      Object.keys(roleSource())
         .map(function (id) {
           var r = ROLES[id];
           return (
@@ -432,15 +481,13 @@
     var pref = "faculty";
     if (p.indexOf("/lab") === 0) pref = "it";
     if (p.indexOf("/vault") === 0) pref = "security";
+    /* Student surface: no Faculty / IT / O&M / Security chrome */
     el.innerHTML =
       '<span>Need a guide?</span> ' +
-      '<button type="button" class="cu-roles-btn" data-role="' +
-      pref +
-      '">' +
-      (ROLES[pref].icon + " " + ROLES[pref].title.split("·")[0].trim()) +
-      "</button> " +
-      '<button type="button" class="cu-roles-btn" data-role="om">◇ O&amp;M</button> ' +
-      '<button type="button" class="cu-roles-btn" data-role="faculty">◈ Faculty</button>';
+      '<a class="cu-roles-btn" href="/campus/buddy/">✦ Buddy</a> ' +
+      '<a class="cu-roles-btn" href="/campus/desk/">Desk</a> ' +
+      '<a class="cu-roles-btn" href="/library/">Library</a> ' +
+      '<a class="cu-roles-btn" href="/charter/">Charter</a>';
     main.appendChild(el);
     el.querySelectorAll("[data-role]").forEach(function (b) {
       b.onclick = function () {
