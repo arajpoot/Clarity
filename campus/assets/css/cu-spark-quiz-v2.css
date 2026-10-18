@@ -1,0 +1,24 @@
+
+.clarity-spark-quiz-modal{position:fixed;inset:0;z-index:12000;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.55)}
+.clarity-spark-quiz-modal[hidden]{display:none!important}
+.clarity-spark-quiz-modal.show{display:flex}
+@media(min-width:720px){.clarity-spark-quiz-modal{align-items:center}}
+.csq-card{width:100%;max-width:28rem;max-height:min(90vh,42rem);overflow:auto;background:#12201a;color:#f3ead0;border:1px solid rgba(201,162,39,.5);border-radius:18px 18px 0 0;padding:1.1rem 1.15rem 1.25rem;position:relative}
+@media(min-width:720px){.csq-card{border-radius:18px}}
+html[data-theme=light] .csq-card{background:#fffef9;color:#1a2a22}
+.csq-x{position:absolute;top:.45rem;right:.55rem;width:2.25rem;height:2.25rem;border:0;border-radius:999px;background:rgba(201,162,39,.15);color:inherit;font-size:1.35rem;cursor:pointer}
+.csq-spark{font-size:1.4rem;color:#c9a227}
+.csq-lead{font-size:.88rem;opacity:.9;margin:.25rem 0 .6rem}
+.csq-adab{margin:0 0 .75rem;padding:.65rem .75rem;border-radius:12px;border:1px solid rgba(201,162,39,.4);background:rgba(70,124,69,.12)}
+.csq-adab strong{display:block;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:#c9a227;margin-bottom:.25rem}
+.csq-adab p{margin:0 0 .45rem;font-size:.9rem;line-height:1.45;font-style:italic}
+.csq-adab-check{display:flex;align-items:flex-start;gap:.4rem;font-size:.8rem;font-weight:600}
+.csq-q{margin:0 0 .65rem;padding:.5rem;border:1px solid rgba(201,162,39,.25);border-radius:10px}
+.csq-q legend{font-size:.85rem;font-weight:700;padding:0 .25rem}
+.csq-opt{display:flex;gap:.4rem;align-items:flex-start;font-size:.82rem;margin:.3rem 0;cursor:pointer}
+.csq-submit{min-height:44px;padding:.5rem 1rem;border-radius:999px;border:0;background:#467C45;color:#fff;font-weight:800;cursor:pointer;width:100%}
+.csq-result{font-size:.85rem;margin:.55rem 0 0}
+.csq-result.pass{color:#8dcf8a}
+.csq-result.fail{color:#e0a3a3}
+html[data-theme=light] .csq-result.pass{color:#2d6a2d}
+html[data-theme=light] .csq-result.fail{color:#8b2e2e}
