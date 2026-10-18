@@ -1,125 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-campus-page="lab">
+<html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Craft Laboratory · Clarity University</title>
-<link rel="stylesheet" href="/assets/curriculum/vault/admin/lab/cu-lab-shell-v1.css?v=20261016HARMONY"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-
-<style id="cu-empty-host-hide">
-#clarity-how-phases-slot:empty,#clarity-phase-plaque-host:empty,#clarity-name-plaque-rail:empty{display:none!important}
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261017LABF"/>
+<style>
+.lab-grid{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:1rem 0}
+.lab-card{display:block;text-decoration:none;color:inherit;border:1px solid var(--lab-line);border-radius:16px;padding:.9rem 1rem;background:var(--lab-panel)}
+.lab-card strong{display:block;color:var(--lab-gold);margin-bottom:.2rem}
+.lab-card span{font-size:.78rem;color:var(--lab-muted)}
 </style>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261016HARMONY"/>
-<script src="/campus/assets/js/cu-campus-surface-v1.js?v=20261016HARMONY"></script>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261016HARMONY"/>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261016HARMONY"></script>
 </head>
-<body class="cu-mahtaab-on cu-page" data-campus-page="lab">
-<div class="cu-topstrip">
-  <div class="cu-top-links">
-    <span>Campus</span>
+<body class="lab-surface" data-campus-page="lab">
+<div class="lab-topstrip">
+  <div><span>Campus</span>
     <a href="/campus/">University map</a>
-    <a href="/campus/desk/seeker/">Desk</a>
-    <a href="/lab/tajweed/">Tajweed studio</a>
-    <a href="/lab/arabic/">Arabic studio</a>
-    <a href="/library/">Library</a>
-  </div>
-  <div class="cu-top-links">
-    <a href="/">Companion home</a>
-  </div>
-</div>
-<header class="cu-banner">
-  <a class="cu-brand" href="/campus/">
-    <img src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" alt=""/>
-    <div><small>University</small><strong>Clarity University</strong></div>
-  </a>
-  <div class="cu-banner-actions"><button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button><button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button><button type="button" class="cu-theme-pill" data-cu-theme="system">System</button><a class="cu-main-link" href="/">← Companion</a></div>
-</header>
-<main class="cu-wrap">
-  <nav class="cu-pills" aria-label="Campus">
-    <a href="/campus/">Map</a>
     <a href="/campus/desk/">Desk</a>
-    <a href="/lab/" class="here">Lab</a>
-    <a href="/library/">Library</a>
-    <a href="/vault/">Vault</a>
-    <a href="/charter/">Charter</a>
-  </nav>
-
-  <h1 class="lab-h1">Craft Laboratory</h1>
-  <p class="lab-lead" data-mahtaab="crescent">Practice doors for the University path. Progress stays on this device. Educational only — not an ijāzah.</p>
-
-  <div class="lab-hub-spread">
-  <section class="lab-policy card">
-    <h2>Lab adab · L0</h2>
-    <ol>
-      <li><strong>Intention</strong> — practice to please Allah, not to perform for the screen.</li>
-      <li><strong>Hear before speak</strong> — master audio first; your recording is optional.</li>
-      <li><strong>Mic is consent</strong> — recording starts only after you tap Record; nothing is uploaded.</li>
-      <li><strong>Scores are helpers</strong> — alignment meters guide practice; they are not a qāriʾ’s judgment.</li>
-      <li><strong>Desk ↔ Lab</strong> — lessons on the Desk can open a station here to practice.</li>
-    </ol>
-  </section>
-
-  <div class="cu-rich-grid lab-grid">
-    <a class="lab-card" href="/lab/tajweed/">
-      <span class="lab-card-ico">📖</span>
-      <strong>Tajweed</strong>
-      <span>Listen · match · record · rule audio</span>
-    </a>
-    <a class="lab-card lab-card-hot" href="/lab/arabic/">
-      <span class="lab-card-ico">🔤</span>
-      <strong>Arabic</strong>
-      <span>Fātiḥah &amp; short sūrahs · AV path</span>
-    </a>
-    <a class="lab-card lab-card-hot" href="/lab/recite/">
-      <span class="lab-card-ico">🎧</span>
-      <strong>Recitation</strong>
-      <span>Master speaker · whisper · score</span>
-    </a>
-    <a class="lab-card" href="/lab/calligraphy/">
-      <span class="lab-card-ico">✒️</span>
-      <strong>Calligraphy</strong>
-      <span>Trace &amp; ink (pad)</span>
-    </a>
-    <a class="lab-card lab-card-hot" href="/lab/media/">
-      <span class="lab-card-ico">🖼️</span>
-      <strong>Media · Reminder</strong>
-      <span>Āyah card · hear · PNG on-device</span>
-    </a>
-    <a class="lab-card" href="/lab/hifz/">
-      <span class="lab-card-ico">🧠</span>
-      <strong>Hifz</strong>
-      <span>One āyah · then recall</span>
-    </a>
+    <a href="/lab/arabic/">Arabic</a>
+    <a href="/lab/tajweed/">Tajweed</a>
   </div>
+  <div><a href="/">Companion home</a></div>
+</div>
+<header class="lab-banner">
+  <a class="lab-brand" href="/campus/">
+    <span class="lab-brand-mark" aria-hidden="true">ن</span>
+    <span><small>UNIVERSITY</small><strong>Clarity University</strong></span>
+  </a>
+  <div class="lab-banner-actions">
+    <button type="button" class="lab-theme-pill" data-lab-theme="light">Day</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="dark">Night</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="system">System</button>
+    <a class="lab-link" href="/">Companion</a>
+  </div>
+</header>
+<nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/vault/">Vault</a><a href="/charter/">Charter</a></nav>
 
-  <section class="lab-av-demo card">
-    <h2>Shared AV · quick hear</h2>
-    <p class="lab-micro">Try master audio without opening a full studio (Ḥuṣarī via EveryAyah when online).</p>
-    <div class="lab-av-row">
-      <button type="button" class="lab-btn" data-lab-quick="1:1">▶ Al-Fātiḥah 1</button>
-      <button type="button" class="lab-btn" data-lab-quick="112:1">▶ Al-Ikhlāṣ 1</button>
-      <button type="button" class="lab-btn" data-lab-quick-stop>Stop</button>
-    </div>
-    <audio id="lab-hub-audio" preload="none"></audio>
-  </section>
-<p class="lab-micro bi-next-strip" style="text-align:center;margin:1rem auto;max-width:min(96rem,100%)">Next step: open <a href="/lab/tajweed/">Tajweed</a> or <a href="/lab/arabic/">Arabic</a> · hear master before you record.</p>
+<main class="lab-main">
+  <h1 style="color:var(--lab-gold);font-size:1.3rem;margin:0 0 .35rem">Craft Laboratory</h1>
+  <p style="color:var(--lab-muted);font-size:.9rem">Educational practice studios. On-device. Not a fatwa.</p>
+  <div class="lab-grid">
+    <a class="lab-card" href="/lab/arabic/"><strong>Arabic</strong><span>Vocab · MCQ · Jumlah</span></a>
+    <a class="lab-card" href="/lab/tajweed/"><strong>Tajweed</strong><span>Recitation rules practice</span></a>
+    <a class="lab-card" href="/lab/hifz/"><strong>Hifz</strong><span>Hear · see · recall</span></a>
+    <a class="lab-card" href="/lab/recite/"><strong>Recite</strong><span>Guided recitation</span></a>
+    <a class="lab-card" href="/lab/calligraphy/"><strong>Calligraphy</strong><span>Letter craft</span></a>
+    <a class="lab-card" href="/lab/media/"><strong>Media</strong><span>Āyah card tools</span></a>
+  </div>
+  <p class="lab-foot">Educational only — not a fatwa. · Surface lab hub · 20261017LABF</p>
 </main>
-<footer class="cu-foot">Educational practice only — not a fatwa.</footer>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-av-v1.js?v=20261016HARMONY" defer></script>
-<script src="/assets/curriculum/vault/admin/lab/cu-lab-depth-v1.js?v=20261016HARMONY" defer></script>
-
-<script src="/campus/assets/js/cu-flash-core-v1.js?v=20261016HARMONY" defer></script>
-<script src="/campus/assets/js/cu-flash-wings-v1.js?v=20261016HARMONY" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/campus/assets/js/cu-mahtaab-hydrate-v1.js?v=20261016HARMONY" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-</body></html>
+<script src="/lab/shared/lab-theme.js?v=20261017LABF" defer></script>
+</body>
+</html>
