@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-mahtaab="1">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Study Buddy · Clarity University</title>
-<meta name="description" content="On-device study helper. Educational only."/>
+<meta name="description" content="On-device study helper. Educational only — not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018CH6"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018CH6"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018CH6"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018CH6"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-chrome-harmony-v1.css?v=20261018CH6"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-buddy-v1.css?v=20261018CH6"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-student-spine-v1.css?v=20261018CH6"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018CH6"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018CH6"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018REBUILD"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261018REBUILD"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018REBUILD"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018REBUILD"></script>
 <script src="/campus/assets/js/cu-chrome-canonical-v1.js?v=20261018CANON"></script>
+
+<link rel="stylesheet" href="/campus/assets/css/cu-buddy-v1.css?v=20261018REBUILD"/>
 </head>
-<body class="cu-page" data-campus-page="buddy">
+<body class="cu-page cu-mahtaab-on" data-campus-page="buddy">
 <header class="cu-banner">
   <a class="cu-brand" href="/charter/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
-    <div><small>University · Helper</small><strong>Clarity University</strong></div>
+    <div><small>University</small><strong>Clarity University</strong></div>
   </a>
   <div class="cu-banner-actions">
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
@@ -33,47 +34,53 @@
 </header>
 <main class="cu-wrap">
 <nav class="cu-pills" aria-label="Campus"><a href="/charter/">Charter</a><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a><a href="/library/">Library</a><a href="/campus/buddy/" class="here" aria-current="page">Buddy</a><a href="/vault/">Vault</a></nav>
+<article class="cu-student" style="width:100%;max-width:42rem;margin:0 auto">
+  <h1 class="cu-h1">Study Buddy</h1>
+  <p class="cu-lead">Educational helper only. Search finds campus tools and trusted external libraries. Chat answers with on-device guidance and links — not a mufti, not a fatwa, not a replacement for a teacher.</p>
 
+  <section class="cu-plaque">
+    <strong>Search</strong>
+    <p style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0">
+      <input id="cu-buddy-q" type="search" placeholder="e.g. tajweed, transcript, nawawi, admission" style="flex:1;min-width:12rem;min-height:42px;padding:.45rem .65rem;border-radius:10px;border:1px solid rgba(201,162,39,.4);background:transparent;color:inherit"/>
+      <button type="button" id="cu-buddy-search" class="primary" style="min-height:42px;padding:.4rem .9rem;border-radius:999px;border:0;background:#467C45;color:#fff;font-weight:700">Search</button>
+    </p>
+    <div id="cu-buddy-results"></div>
+  </section>
 
-
-<article class="cu-buddy">
-  <h1>Study Buddy</h1>
-  <div class="cu-buddy-disc">
-    <strong>Educational helper only.</strong> Search finds campus tools and trusted external libraries.
-    Chat answers with on-device guidance and links — <em>not a mufti, not a fatwa, not a replacement for a teacher</em>.
-    Optional remote model: set <code>localStorage.cu_buddy_endpoint_v1</code> to your HTTPS API if you add one later.
-  </div>
-
-  <h2 style="font-family:Cormorant Garamond,serif;color:#c9a227;font-size:1.15rem;margin:0 0 .4rem">Search</h2>
-  <div class="cu-buddy-search">
-    <input id="cu-buddy-q" type="search" placeholder="e.g. tajweed, transcript, nawawi, admission" enterkeyhint="search" />
-    <button type="button" id="cu-buddy-search-btn">Search</button>
-  </div>
-  <div id="cu-buddy-hits" class="cu-buddy-hits"></div>
-
-  <h2 style="font-family:Cormorant Garamond,serif;color:#c9a227;font-size:1.15rem;margin:0 0 .4rem">Chat</h2>
-  <div class="cu-buddy-chips">
-    <button type="button" data-buddy-chip="Where should a new seeker start?">New seeker start</button>
-    <button type="button" data-buddy-chip="How do I practise tajweed on campus?">Tajweed</button>
-    <button type="button" data-buddy-chip="Show me the library and Quran.com">Library</button>
-    <button type="button" data-buddy-chip="What is the completion contract after a module?">After a module</button>
-  </div>
-  <div class="cu-buddy-chat">
-    <div id="cu-buddy-log" class="cu-buddy-log" aria-live="polite"></div>
-    <div class="cu-buddy-compose">
-      <input id="cu-buddy-input" type="text" maxlength="500" placeholder="Ask where to study — not for personal rulings" enterkeyhint="send" />
-      <button type="button" id="cu-buddy-send">Send</button>
+  <section class="cu-plaque">
+    <strong>Campus doors</strong>
+    <div id="cu-buddy-doors" style="display:flex;flex-direction:column;gap:.45rem;margin-top:.5rem">
+      <a class="cu-plaque" href="/charter/" style="text-decoration:none;color:inherit"><strong>Charter &amp; admission</strong><br/><span class="cu-meta">Who the path is for, what it never does, on-device admission.</span></a>
+      <a class="cu-plaque" href="/campus/" style="text-decoration:none;color:inherit"><strong>Journey Map</strong><br/><span class="cu-meta">Campus directory after admission.</span></a>
+      <a class="cu-plaque" href="/campus/desk/seeker/" style="text-decoration:none;color:inherit"><strong>Seeker desk</strong><br/><span class="cu-meta">Belief foundations — one module at a time.</span></a>
+      <a class="cu-plaque" href="/campus/desk/practice/" style="text-decoration:none;color:inherit"><strong>Practice desk</strong><br/><span class="cu-meta">Skills path after the Seeker phase quiz.</span></a>
+      <a class="cu-plaque" href="/campus/desk/consistency/" style="text-decoration:none;color:inherit"><strong>Consistency desk</strong><br/><span class="cu-meta">Steady craft and review.</span></a>
+      <a class="cu-plaque" href="/lab/tajweed/" style="text-decoration:none;color:inherit"><strong>Tajweed lab</strong><br/><span class="cu-meta">Listen · Match · Record — practice helper only.</span></a>
+      <a class="cu-plaque" href="/library/" style="text-decoration:none;color:inherit"><strong>Library</strong><br/><span class="cu-meta">Primary-text shelves and outward pointers.</span></a>
     </div>
-  </div>
-  <p style="margin:.5rem 0 0;font-size:.78rem;opacity:.8">
-    <button type="button" id="cu-buddy-clear" style="background:transparent;border:1px solid rgba(201,162,39,.4);border-radius:999px;padding:.3rem .7rem;cursor:pointer;color:inherit;font-weight:700">Clear chat</button>
-    · Verify on Quran.com / Sunnah.com · Ask a local scholar for rulings
-  </p>
+  </section>
+
+  <section class="cu-plaque">
+    <strong>Chat</strong>
+    <p class="cu-meta">Quick prompts</p>
+    <p class="cu-row" style="flex-wrap:wrap;gap:.35rem">
+      <button type="button" class="cu-buddy-prompt" data-prompt="Where should a new seeker start?">New seeker start</button>
+      <button type="button" class="cu-buddy-prompt" data-prompt="How do I use Tajweed lab?">Tajweed</button>
+      <button type="button" class="cu-buddy-prompt" data-prompt="Where is the Library?">Library</button>
+      <button type="button" class="cu-buddy-prompt" data-prompt="What do I do after a module?">After a module</button>
+    </p>
+    <div id="cu-buddy-chat" class="cu-plaque" style="min-height:8rem;margin:.5rem 0"></div>
+    <p style="display:flex;flex-wrap:wrap;gap:.4rem">
+      <input id="cu-buddy-input" type="text" placeholder="Ask where to study — not for personal rulings" style="flex:1;min-width:12rem;min-height:42px;padding:.45rem .65rem;border-radius:10px;border:1px solid rgba(201,162,39,.4);background:transparent;color:inherit"/>
+      <button type="button" id="cu-buddy-send" style="min-height:42px;padding:.4rem .9rem;border-radius:999px;border:0;background:#467C45;color:#fff;font-weight:700">Send</button>
+    </p>
+    <p class="cu-meta"><button type="button" id="cu-buddy-clear">Clear chat</button> · Verify on Quran.com / Sunnah.com · Ask a local scholar for rulings</p>
+  </section>
 </article>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa.</footer>
-<script src="/campus/assets/js/cu-chrome-harmony-v1.js?v=20261018CH6" defer></script>
-<script src="/campus/assets/js/cu-personas-rp6.js?v=20261018CH6" defer></script>
-<script src="/campus/assets/js/cu-buddy-v1.js?v=20261018CH6" defer></script>
+<footer class="cu-foot">Educational only — not a fatwa. Progress stays on this device.</footer>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261018REBUILD" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261018REBUILD" defer></script>
+<script src="/campus/assets/js/cu-buddy-surface-v1.js?v=20261018REBUILD" defer></script>
 </body>
 </html>
