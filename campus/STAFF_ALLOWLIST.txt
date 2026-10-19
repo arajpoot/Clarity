@@ -13,3 +13,9 @@ Staff pages (faculty.html, bots.html, grading.html) may load ONE path each:
 Desk rooms: keep QUARANTINE_DESK.txt — never boot.js all-colleges.
 Quarantine folder remains a parts bin, not auto-load.
 Companion root: do not touch.
+
+CLEAN 20261018 — dual staff controllers (do not dual-load on one page)
+  IT: use assets/curriculum/vault/admin/it/* only (not faculty/it/*)
+  Registrar: use admin/registrar/* only (not security/registrar/*)
+  boot.js: desk rooms must never load foundation/boot.js (QUARANTINE_DESK)
+  studio.js basename per lab is intentional (arabic/tajweed/recite differ)
