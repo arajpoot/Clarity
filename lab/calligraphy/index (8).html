@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-mahtaab="1">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Calligraphy studio · Clarity University</title>
+<meta name="description" content="Calligraphy studio. Educational only — not a fatwa."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/lab/calligraphy/studio.css?v=20261019UNI"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019UNI"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019UNI"></script>
+<style>
+.lab-station-nav{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .9rem;padding:.4rem .5rem;border-radius:999px;border:1px solid rgba(201,162,39,.25);background:rgba(15,40,30,.08)}
+.lab-station-nav a{text-decoration:none;color:inherit;font-size:.8rem;font-weight:700;padding:.35rem .7rem;border-radius:999px}
+.lab-station-nav a:hover,.lab-station-nav a.here{background:rgba(201,162,39,.15)}
+.lab-studio-body{width:100%;max-width:40rem;margin:0 auto;padding:0 .75rem 1.5rem}
+.lab-chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.lab-chip{min-width:2.2rem;min-height:2.2rem;border-radius:10px;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.7);cursor:pointer;font-size:1.1rem}
+.lab-chip.on{background:#2d6a4f;color:#fff;border-color:#2d6a4f}
+.cu-callig-tip-bar{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.5rem 0 .75rem;padding:.45rem .55rem;border-radius:12px;border:1px solid rgba(201,162,39,.28);background:rgba(255,255,255,.45)}
+.cu-callig-tip-bar .cct-lab{font-size:.72rem;opacity:.85;margin-right:.25rem}
+.cu-callig-tip-bar button[data-tip]{border-radius:999px;padding:.28rem .65rem;font-size:.75rem;border:1px solid rgba(45,106,79,.3);background:rgba(255,255,255,.7);cursor:pointer}
+.cu-callig-tip-bar button[data-tip].on{background:linear-gradient(135deg,#2d6a4f,#1b4332);color:#fff}
+.cu-callig-tip-bar .cct-msg{flex:1 1 100%;font-size:.8rem;opacity:.9;margin-top:.2rem}
+.cu-callig-viewport{display:inline-flex;gap:.3rem;margin-left:.35rem;vertical-align:middle}
+.cu-callig-viewport button{border-radius:8px;padding:.25rem .5rem;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.8);cursor:pointer}
+.callig-stage{position:relative;max-width:min(100%,500px);margin:0 auto;overflow-x:auto;border-radius:14px;border:1px solid rgba(201,162,39,.25);background:#faf8f2}
+.callig-stage canvas{display:block;width:100%;max-width:500px;margin:0 auto;touch-action:none}
+.callig-tools{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.55rem 0}
+.callig-tools button{border-radius:999px;padding:.35rem .75rem;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.75);cursor:pointer;font-size:.8rem}
+</style>
+</head>
+<body class="cu-page cu-mahtaab-on">
+<header class="cu-banner">
+  <a class="cu-brand" href="/charter/">
+    <span class="cu-brand-mark" aria-hidden="true">ن</span>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
+  <div class="cu-banner-actions">
+    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
+    <a class="cu-companion-link" href="/">← Companion</a>
+  </div>
+</header>
+
+<main>
+<nav class="cu-pills" aria-label="Campus">
+  <a href="/charter/">Charter</a>
+  <a href="/campus/">Map</a>
+  <a href="/campus/desk/">Desk</a>
+  <a href="/lab/" class="here" aria-current="page">Lab</a>
+  <a href="/library/">Library</a>
+  <a href="/campus/buddy/">Buddy</a>
+  <a href="/vault/">Vault</a>
+</nav>
+<nav class="lab-station-nav" aria-label="Lab stations">
+  <a href="/lab/">Hub</a>
+  <a href="/lab/arabic/">Arabic</a>
+  <a href="/lab/tajweed/">Tajweed</a>
+  <a href="/lab/recite/">Recite</a>
+  <a href="/lab/calligraphy/" class="here">Calligraphy</a>
+  <a href="/lab/hifz/">Hifz</a>
+  <a href="/lab/media/">Media</a>
+</nav>
+
+<div class="lab-studio-body">
+  <h1 class="lab-h1">Calligraphy studio</h1>
+  <p class="lab-lead">Trace a letter with calm. On-device pad — nothing is uploaded. Practice for beauty and remembrance, not display.</p>
+
+  <div class="cu-callig-tip-bar" id="cu-callig-tip-bar">
+    <span class="cct-lab">Writing tip</span>
+    <button type="button" data-tip="finger" class="on">Finger</button>
+    <button type="button" data-tip="stylus">Stylus</button>
+    <button type="button" data-tip="qalam">Qalam</button>
+    <button type="button" data-tip="blunt">Blunt</button>
+    <span class="cct-msg" id="cu-callig-tip-msg">Finger: soft pressure, slower lifts. Learn the letter shape first.</span>
+  </div>
+
+  <section class="card lab-policy">
+    <h2>Letters</h2>
+    <div class="lab-chips" id="callig-letters">
+      <button type="button" class="lab-chip on" data-letter="ا">ا</button>
+      <button type="button" class="lab-chip" data-letter="ب">ب</button>
+      <button type="button" class="lab-chip" data-letter="ت">ت</button>
+      <button type="button" class="lab-chip" data-letter="ث">ث</button>
+      <button type="button" class="lab-chip" data-letter="ج">ج</button>
+      <button type="button" class="lab-chip" data-letter="ح">ح</button>
+      <button type="button" class="lab-chip" data-letter="خ">خ</button>
+      <button type="button" class="lab-chip" data-letter="س">س</button>
+      <button type="button" class="lab-chip" data-letter="ل">ل</button>
+      <button type="button" class="lab-chip" data-letter="م">م</button>
+      <button type="button" class="lab-chip" data-letter="ه">ه</button>
+      <button type="button" class="lab-chip" data-letter="و">و</button>
+      <button type="button" class="lab-chip" data-letter="ي">ي</button>
+      <button type="button" class="lab-chip" data-letter="لا">لا</button>
+      <button type="button" class="lab-chip" data-letter="الله">الله</button>
+    </div>
+  </section>
+
+  <p style="font-size:.85rem;opacity:.9;margin:.5rem 0">Tap a letter · trace over the ghost · Clear to retry.</p>
+
+  <div class="callig-stage" id="callig-stage">
+    <canvas id="callig-ghost" width="500" height="320" aria-hidden="true" style="position:absolute;left:0;top:0;opacity:.22;pointer-events:none;width:100%;height:auto"></canvas>
+    <canvas id="callig-pad" width="500" height="320" aria-label="Calligraphy practice pad"></canvas>
+  </div>
+
+  <div class="callig-tools" id="callig-tools">
+    <button type="button" id="callig-clear">Clear</button>
+    <button type="button" id="callig-save">Save mark (device)</button>
+    <span class="cu-callig-viewport">
+      <button type="button" data-vp="in" title="Zoom in">＋</button>
+      <button type="button" data-vp="out" title="Zoom out">－</button>
+      <button type="button" data-vp="reset" title="Reset view">⟲ View</button>
+    </span>
+  </div>
+  <p id="callig-status" style="font-size:.78rem;opacity:.8"></p>
+</div>
+</main>
+
+<footer class="cu-foot">
+  <p>Educational only — not a fatwa. · Surface lab · 20261019UNI</p>
+</footer>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019UNI"></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019UNI"></script>
+<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019UNI"></script>
+<script>
+(function (g) {
+  "use strict";
+  if (g.__CU_LAB_CALLIG_V2__) return;
+  g.__CU_LAB_CALLIG_V2__ = true;
+
+  var letter = "ا";
+  var scale = 1;
+  var tips = {
+    finger: "Finger: soft pressure, slower lifts. Learn the letter shape first.",
+    stylus: "Stylus: steadier line; keep the angle consistent through the stroke.",
+    qalam: "Qalam: thicker on downward pressure, thinner on release — classic naskh feel.",
+    blunt: "Blunt tip: even width; focus on proportion and baseline alignment."
+  };
+
+  function $(id) { return document.getElementById(id); }
+
+  function drawGhost() {
+    var c = $("callig-ghost");
+    if (!c) return;
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.fillStyle = "#1e7d5e";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = "bold 160px serif";
+    ctx.fillText(letter, c.width / 2, c.height / 2 + 8);
+  }
+
+  function clearPad() {
+    var c = $("callig-pad");
+    if (!c) return;
+    c.getContext("2d").clearRect(0, 0, c.width, c.height);
+    var st = $("callig-status");
+    if (st) st.textContent = "";
+  }
+
+  function wirePad() {
+    var c = $("callig-pad");
+    if (!c) return;
+    var ctx = c.getContext("2d");
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "#2a2319";
+    ctx.lineWidth = 4;
+    var drawing = false;
+    function pos(e) {
+      var r = c.getBoundingClientRect();
+      var t = e.touches ? e.touches[0] : e;
+      return {
+        x: ((t.clientX - r.left) / r.width) * c.width,
+        y: ((t.clientY - r.top) / r.height) * c.height
+      };
+    }
+    function start(e) {
+      e.preventDefault();
+      drawing = true;
+      var p = pos(e);
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+    }
+    function move(e) {
+      if (!drawing) return;
+      e.preventDefault();
+      var p = pos(e);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+    }
+    function end() { drawing = false; }
+    c.addEventListener("mousedown", start);
+    c.addEventListener("mousemove", move);
+    window.addEventListener("mouseup", end);
+    c.addEventListener("touchstart", start, { passive: false });
+    c.addEventListener("touchmove", move, { passive: false });
+    c.addEventListener("touchend", end);
+  }
+
+  function boot() {
+    drawGhost();
+    wirePad();
+
+    document.querySelectorAll("#callig-letters [data-letter]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        letter = b.getAttribute("data-letter") || "ا";
+        document.querySelectorAll("#callig-letters [data-letter]").forEach(function (x) {
+          x.classList.toggle("on", x === b);
+        });
+        clearPad();
+        drawGhost();
+      });
+    });
+
+    var clearBtn = $("callig-clear");
+    if (clearBtn) clearBtn.addEventListener("click", clearPad);
+
+    var saveBtn = $("callig-save");
+    if (saveBtn) saveBtn.addEventListener("click", function () {
+      try {
+        var key = "cu_callig_marks_v1";
+        var list = JSON.parse(localStorage.getItem(key) || "[]") || [];
+        var c = $("callig-pad");
+        list.unshift({ letter: letter, at: Date.now(), data: c ? c.toDataURL("image/png") : "" });
+        localStorage.setItem(key, JSON.stringify(list.slice(0, 20)));
+        var st = $("callig-status");
+        if (st) st.textContent = "Saved on this device (" + letter + ")";
+      } catch (e) {
+        var st2 = $("callig-status");
+        if (st2) st2.textContent = "Could not save";
+      }
+    });
+
+    var tipBar = $("cu-callig-tip-bar");
+    if (tipBar) {
+      tipBar.addEventListener("click", function (ev) {
+        var t = ev.target.closest("[data-tip]");
+        if (!t) return;
+        tipBar.querySelectorAll("[data-tip]").forEach(function (b) {
+          b.classList.toggle("on", b === t);
+        });
+        var msg = $("cu-callig-tip-msg");
+        if (msg) msg.textContent = tips[t.getAttribute("data-tip")] || "";
+      });
+    }
+
+    var stage = $("callig-stage");
+    var pad = $("callig-pad");
+    document.querySelectorAll("[data-vp]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var act = b.getAttribute("data-vp");
+        if (act === "in") scale = Math.min(1.75, scale + 0.12);
+        if (act === "out") scale = Math.max(0.55, scale - 0.12);
+        if (act === "reset") scale = 1;
+        if (pad) {
+          pad.style.transform = "scale(" + scale + ")";
+          pad.style.transformOrigin = "center top";
+        }
+        if (stage) stage.scrollLeft = Math.max(0, (stage.scrollWidth - stage.clientWidth) / 2);
+      });
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})(typeof window !== "undefined" ? window : this);
+</script>
+</body>
+</html>
