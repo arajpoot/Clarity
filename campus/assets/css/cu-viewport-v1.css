@@ -1,0 +1,72 @@
+
+/* University full-width viewport + hide guides dock */
+html, body.cu-page {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+main.cu-wrap {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-left: max(0.75rem, env(safe-area-inset-left));
+  padding-right: max(0.75rem, env(safe-area-inset-right));
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (min-width: 900px) {
+  main.cu-wrap {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+/* Kill guides bubble / personas dock on student surfaces */
+#cu-personas-dock,
+.cu-personas-dock,
+.cu-personas-embed,
+#cu-personas-embed {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+/* Seeker surface modules */
+.cu-seek-wrap { width: 100%; max-width: 42rem; margin: 0 auto; }
+@media (min-width: 768px) {
+  .cu-seek-wrap { max-width: 48rem; }
+}
+.cu-seek-head { margin: 0.5rem 0 1rem; }
+.cu-seek-head h1 { font-size: 1.35rem; margin: 0 0 0.35rem; color: #c9a227; }
+.cu-seek-meta { font-size: 0.88rem; opacity: 0.9; margin: 0.25rem 0; }
+.cu-seek-progress {
+  height: 6px; border-radius: 99px; background: rgba(201,162,39,0.15);
+  overflow: hidden; margin: 0.5rem 0 1rem;
+}
+.cu-seek-progress > span {
+  display: block; height: 100%; background: #467C45; border-radius: 99px;
+}
+.cu-seek-unit { margin: 1.25rem 0; }
+.cu-seek-unit h2 { font-size: 1.05rem; margin: 0 0 0.25rem; color: #e8d5a3; }
+.cu-seek-unit .goal { font-size: 0.9rem; opacity: 0.9; margin: 0 0 0.75rem; }
+.cu-seek-lesson {
+  border: 1px solid rgba(201,162,39,0.28);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  margin: 0.65rem 0;
+  background: rgba(15,40,30,0.35);
+}
+html[data-theme="light"] .cu-seek-lesson { background: #fffef9; color: #1a2a22; }
+.cu-seek-lesson.locked { opacity: 0.55; }
+.cu-seek-lesson h3 { font-size: 0.98rem; margin: 0 0 0.35rem; }
+.cu-seek-lesson .adab { font-style: italic; font-size: 0.88rem; opacity: 0.9; margin: 0.35rem 0; }
+.cu-seek-lesson .body p { font-size: 0.92rem; line-height: 1.5; margin: 0.4rem 0; }
+.cu-seek-lesson ul { margin: 0.4rem 0 0.4rem 1.1rem; font-size: 0.9rem; }
+.cu-seek-lesson .ayah { font-size: 0.88rem; margin: 0.5rem 0; padding: 0.5rem 0.65rem; border-left: 3px solid #467C45; }
+.cu-seek-lesson .practice { font-size: 0.88rem; margin: 0.45rem 0; }
+.cu-seek-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.65rem; }
+.cu-seek-actions button, .cu-seek-actions a {
+  min-height: 40px; padding: 0.4rem 0.85rem; border-radius: 999px;
+  border: 1px solid rgba(201,162,39,0.4); background: transparent; color: inherit;
+  font-weight: 700; font-size: 0.8rem; cursor: pointer; text-decoration: none;
+}
+.cu-seek-actions button.primary { background: #467C45; color: #fff; border-color: #467C45; }
+.cu-seek-actions button:disabled { opacity: 0.45; cursor: not-allowed; }
+.cu-seek-disc { font-size: 0.78rem; opacity: 0.85; margin: 1rem 0; }
