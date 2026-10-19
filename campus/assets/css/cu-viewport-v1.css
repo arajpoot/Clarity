@@ -70,3 +70,18 @@ html[data-theme="light"] .cu-seek-lesson { background: #fffef9; color: #1a2a22; 
 .cu-seek-actions button.primary { background: #467C45; color: #fff; border-color: #467C45; }
 .cu-seek-actions button:disabled { opacity: 0.45; cursor: not-allowed; }
 .cu-seek-disc { font-size: 0.78rem; opacity: 0.85; margin: 1rem 0; }
+
+/* REBUILD guides kill */
+body.cu-page #cu-personas-dock,
+body.cu-page .cu-personas-dock,
+body.cu-page .cu-personas-embed,
+body.cu-page #cu-personas-embed,
+body .cu-personas-dock-toggle {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
