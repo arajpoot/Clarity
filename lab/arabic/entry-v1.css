@@ -1,0 +1,45 @@
+/* Arabic entry gate · 20261019AR */
+.ar-wrap{width:100%;max-width:48rem;margin:0 auto;padding:0 .85rem 2rem;box-sizing:border-box}
+.ar-h1{margin:.35rem 0 .3rem;font-size:1.35rem;color:#c9a227}
+.ar-h2{margin:0 0 .4rem;font-size:1.1rem;color:#c9a227}
+.ar-lead{font-size:.9rem;line-height:1.5;opacity:.9;margin:0 0 1rem}
+.ar-muted{font-size:.82rem;opacity:.88;line-height:1.45;margin:.25rem 0}
+.ar-gate{
+  border:1px solid rgba(201,162,39,.4);border-radius:18px;padding:1.1rem 1.15rem;
+  margin:0 0 1rem;background:rgba(45,106,79,.12)
+}
+.ar-badge{
+  display:inline-block;font-size:.65rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:.18rem .55rem;border-radius:999px;background:#2d6a4f;color:#fff;margin-bottom:.4rem
+}
+.ar-gate h2{margin:0 0 .35rem;font-size:1.15rem;color:#c9a227}
+.ar-levels{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fill,minmax(13.5rem,1fr));margin:.75rem 0}
+.ar-level{
+  border:1px solid rgba(201,162,39,.28);border-radius:14px;padding:.85rem .9rem;
+  background:rgba(255,255,255,.06)
+}
+html[data-theme="light"] .ar-level{background:rgba(255,255,255,.75)}
+.ar-level.on{border-color:#2d6a4f;box-shadow:0 0 0 1px rgba(45,106,79,.35)}
+.ar-level h3{margin:0 0 .3rem;font-size:.95rem;color:#c9a227}
+.ar-level p{margin:0 0 .5rem;font-size:.8rem;line-height:1.45;opacity:.9}
+.ar-level-actions,.ar-skip-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
+.ar-btn{
+  display:inline-flex;align-items:center;min-height:40px;padding:.35rem .85rem;border-radius:999px;
+  background:#2d6a4f;color:#fff;font-weight:700;font-size:.78rem;border:0;cursor:pointer;text-decoration:none
+}
+.ar-btn.ghost{background:transparent;color:inherit;border:1px solid rgba(201,162,39,.35)}
+.ar-assign{
+  border:1px solid rgba(201,162,39,.28);border-radius:16px;padding:1rem 1.05rem;
+  margin:0 0 .85rem;background:rgba(255,255,255,.06)
+}
+html[data-theme="light"] .ar-assign{background:rgba(255,255,255,.75)}
+.ar-assign h2{margin:0 0 .35rem;font-size:1rem;color:#c9a227}
+.ar-card{
+  border:1px solid rgba(201,162,39,.28);border-radius:16px;padding:1rem 1.05rem;
+  margin:0 0 .85rem;background:rgba(255,255,255,.06)
+}
+html[data-theme="light"] .ar-card{background:rgba(255,255,255,.75)}
+.ar-studio-shell{margin:1rem 0}
+.ar-links{font-size:.8rem;margin:.5rem 0 0}
+.ar-links a{color:inherit;font-weight:700}
+.ar-ol{margin:.35rem 0 0;padding-left:1.15rem;font-size:.88rem;line-height:1.55}
