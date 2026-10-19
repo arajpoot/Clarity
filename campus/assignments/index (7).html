@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-mahtaab="1">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Assignments · Clarity University</title>
+<meta name="description" content="Optional phase-aware study prompts. Educational only — not graded īmān."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019UNI"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019UNI"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019UNI"></script>
+<script src="/campus/assets/js/cu-chrome-canonical-v1.js?v=20261018CANON"></script>
+<style>
+.as-wrap{width:100%;max-width:42rem;margin:0 auto;padding:0 .75rem 1.75rem}
+.as-phase-bar{display:flex;flex-wrap:wrap;gap:.35rem;margin:.65rem 0 1rem}
+.as-phase-bar button{
+  border-radius:999px;padding:.35rem .8rem;font-size:.78rem;font-weight:700;cursor:pointer;
+  border:1px solid rgba(201,162,39,.35);background:rgba(255,255,255,.55);color:inherit
+}
+.as-phase-bar button.on{background:#2d6a4f;color:#fff;border-color:#2d6a4f}
+.as-card{border:1px solid rgba(201,162,39,.28);border-radius:14px;padding:1rem 1.1rem;margin:.65rem 0;background:rgba(255,255,255,.5)}
+.as-card h2{margin:0 0 .45rem;font-size:1.05rem;color:#8a6a18}
+.as-card ul{margin:.35rem 0 0;padding-left:1.15rem;font-size:.88rem;line-height:1.55}
+.as-task{display:flex;align-items:flex-start;gap:.5rem;margin:.45rem 0;font-size:.88rem;line-height:1.45}
+.as-task input{margin-top:.2rem;flex-shrink:0}
+.as-task a{color:#2d6a4f;font-weight:600}
+.as-meta{font-size:.78rem;opacity:.85;margin-top:.75rem}
+.as-note{font-size:.8rem;opacity:.88;margin:.4rem 0 0;line-height:1.45}
+.as-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.55rem}
+.as-row a,.as-btn{
+  border-radius:999px;padding:.35rem .75rem;font-size:.78rem;font-weight:700;text-decoration:none;
+  border:1px solid rgba(45,106,79,.3);background:#2d6a4f;color:#fff;cursor:pointer
+}
+.as-row a.ghost,.as-btn.ghost{background:transparent;color:inherit}
+.as-status{font-size:.75rem;opacity:.8;margin-left:.25rem}
+</style>
+</head>
+<body class="cu-page cu-mahtaab-on">
+<header class="cu-banner">
+  <a class="cu-brand" href="/charter/">
+    <span class="cu-brand-mark" aria-hidden="true">ن</span>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
+  <div class="cu-banner-actions">
+    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
+    <a class="cu-companion-link" href="/">← Companion</a>
+  </div>
+</header>
+
+<main>
+<nav class="cu-pills" aria-label="Campus">
+  <a href="/charter/"><span class="cu-pill-ico" aria-hidden="true">◇</span> Charter</a>
+  <a href="/campus/"><span class="cu-pill-ico" aria-hidden="true">▣</span> Map</a>
+  <a href="/campus/desk/" class="here" aria-current="page"><span class="cu-pill-ico" aria-hidden="true">☰</span> Desk</a>
+  <a href="/lab/"><span class="cu-pill-ico" aria-hidden="true">◈</span> Lab</a>
+  <a href="/library/"><span class="cu-pill-ico" aria-hidden="true">▦</span> Library</a>
+  <a href="/campus/buddy/"><span class="cu-pill-ico" aria-hidden="true">✦</span> Buddy</a>
+  <a href="/vault/"><span class="cu-pill-ico" aria-hidden="true">◎</span> Vault</a>
+</nav>
+
+<div class="as-wrap">
+  <h1 class="cu-h1">Assignments</h1>
+  <p class="cu-lead">Optional prompts tied to your phase. Check them off on this device — not graded īmān, not a fatwa.</p>
+
+  <div class="as-phase-bar" id="as-phase-bar" role="tablist" aria-label="Phase">
+    <button type="button" data-phase="seeker" class="on">Seeker</button>
+    <button type="button" data-phase="practice">Practice</button>
+    <button type="button" data-phase="consistency">Consistency</button>
+    <button type="button" data-phase="transmission">Transmission</button>
+  </div>
+
+  <section class="as-card" id="as-week">
+    <h2>This week · <span id="as-phase-label">Seeker</span></h2>
+    <div id="as-task-list"></div>
+    <div class="as-row">
+      <a id="as-desk-link" href="/campus/desk/seeker/">Open desk →</a>
+      <a class="ghost" href="/lab/">Lab hub</a>
+      <a class="ghost" href="/vault/">Pin a source</a>
+      <button type="button" class="as-btn ghost" id="as-reset">Clear checks</button>
+      <span class="as-status" id="as-status"></span>
+    </div>
+  </section>
+
+  <section class="as-card">
+    <h2>Standing habits (all phases)</h2>
+    <div id="as-standing"></div>
+    <p class="as-note">Small and steady beats long irregular sessions. Verify verses on Quran.com / Sunnah.com. Ask a local teacher for rulings.</p>
+  </section>
+
+  <section class="as-card">
+    <h2>After you finish a module</h2>
+    <ul>
+      <li>Write one honest practice line (University Vault study note).</li>
+      <li>Open one Lab station once (Tajweed, Recite, or Calligraphy).</li>
+      <li>Optional: pin one primary source in the Vault.</li>
+    </ul>
+    <div class="as-row">
+      <a href="/campus/buddy/">Ask Study Buddy</a>
+      <a class="ghost" href="/campus/">Journey Map</a>
+      <a class="ghost" href="/library/">Library</a>
+    </div>
+  </section>
+
+  <p class="as-meta">Progress keys stay on this device (<code>cu_assign_*</code>). Companion Amanah vault is separate.</p>
+</div>
+</main>
+
+<footer class="cu-foot">
+  <p>Educational only — not a fatwa. Progress stays on this device.</p>
+</footer>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019UNI"></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019UNI"></script>
+<script>
+(function () {
+  "use strict";
+  var KEY = "cu_assign_checks_v1";
+  var PHASE_KEY = "cu_assign_phase_v1";
+
+  var PHASES = {
+    seeker: {
+      label: "Seeker",
+      desk: "/campus/desk/seeker/",
+      tasks: [
+        { id: "s1", text: "Open Seeker desk and complete the current unlocked module.", href: "/campus/desk/seeker/" },
+        { id: "s2", text: "Junior practice: say Bismillāh before one ordinary task today." },
+        { id: "s3", text: "Read Qurʾān 112 (Al-Ikhlāṣ) once with meaning — verify on Quran.com.", href: "https://quran.com/112" },
+        { id: "s4", text: "Lab once: open Calligraphy or Recite for 5–10 calm minutes.", href: "/lab/calligraphy/" },
+        { id: "s5", text: "Write one line in University Vault: “What I learned about tawḥīd this week.”", href: "/vault/" }
+      ]
+    },
+    practice: {
+      label: "Practice",
+      desk: "/campus/desk/practice/",
+      tasks: [
+        { id: "p1", text: "Finish the open Practice module on your desk.", href: "/campus/desk/practice/" },
+        { id: "p2", text: "Guard one ṣalāh on time today — outline only; ask a teacher for details." },
+        { id: "p3", text: "Lab: Tajweed Listen · Match once (practice helper, not a qāriʾ verdict).", href: "/lab/tajweed/" },
+        { id: "p4", text: "Speech check: one screen session without gossip or mockery." },
+        { id: "p5", text: "Vault: pin a ṭahārah or ṣalāh source you trust.", href: "/vault/" }
+      ]
+    },
+    consistency: {
+      label: "Consistency",
+      desk: "/campus/desk/consistency/",
+      tasks: [
+        { id: "c1", text: "Complete the open Consistency module.", href: "/campus/desk/consistency/" },
+        { id: "c2", text: "Review one earlier Seeker or Practice unit (5–10 min).", href: "/campus/desk/seeker/" },
+        { id: "c3", text: "Lab: Recite or Hifz — short measured session.", href: "/lab/recite/" },
+        { id: "c4", text: "Weekly review: list three deeds you want to keep, one to improve." },
+        { id: "c5", text: "Library: open one shelf and pin a primary text pointer.", href: "/library/" }
+      ]
+    },
+    transmission: {
+      label: "Transmission",
+      desk: "/campus/desk/transmission/",
+      tasks: [
+        { id: "t1", text: "Complete the open Transmission module.", href: "/campus/desk/transmission/" },
+        { id: "t2", text: "Share one benefit with adab — name the source (Qurʾān / hadith / teacher)." },
+        { id: "t3", text: "Media lab: craft one reminder; no free-typed scripture; watermark honesty.", href: "/lab/media/" },
+        { id: "t4", text: "Buddy: ask where a new seeker should start — then verify the door yourself.", href: "/campus/buddy/" },
+        { id: "t5", text: "Vault: pin the source you cited when sharing.", href: "/vault/" }
+      ]
+    }
+  };
+
+  var STANDING = [
+    { id: "st1", text: "One desk module or review block this week." },
+    { id: "st2", text: "One Lab station visit (even 5 minutes)." },
+    { id: "st3", text: "One honest note or pin in University Vault." }
+  ];
+
+  function readChecks() {
+    try {
+      var o = JSON.parse(localStorage.getItem(KEY) || "{}");
+      return o && typeof o === "object" ? o : {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function writeChecks(o) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(o));
+    } catch (e) {}
+  }
+  function getPhase() {
+    try {
+      var p = localStorage.getItem(PHASE_KEY) || "seeker";
+      return PHASES[p] ? p : "seeker";
+    } catch (e) {
+      return "seeker";
+    }
+  }
+  function setPhase(p) {
+    if (!PHASES[p]) return;
+    try {
+      localStorage.setItem(PHASE_KEY, p);
+    } catch (e) {}
+  }
+
+  function taskRow(task, checks) {
+    var id = task.id;
+    var checked = !!checks[id];
+    var link = task.href
+      ? ' <a href="' + task.href + '"' + (task.href.indexOf("http") === 0 ? ' target="_blank" rel="noopener noreferrer"' : "") + ">Open</a>"
+      : "";
+    return (
+      '<label class="as-task">' +
+      '<input type="checkbox" data-id="' + id + '"' + (checked ? " checked" : "") + "/>" +
+      "<span>" + task.text + link + "</span></label>"
+    );
+  }
+
+  function render() {
+    var phase = getPhase();
+    var conf = PHASES[phase];
+    var checks = readChecks();
+    var list = document.getElementById("as-task-list");
+    var standing = document.getElementById("as-standing");
+    var label = document.getElementById("as-phase-label");
+    var desk = document.getElementById("as-desk-link");
+    if (label) label.textContent = conf.label;
+    if (desk) desk.href = conf.desk;
+    if (list) list.innerHTML = conf.tasks.map(function (t) { return taskRow(t, checks); }).join("");
+    if (standing) standing.innerHTML = STANDING.map(function (t) { return taskRow(t, checks); }).join("");
+
+    document.querySelectorAll("#as-phase-bar [data-phase]").forEach(function (b) {
+      b.classList.toggle("on", b.getAttribute("data-phase") === phase);
+    });
+  }
+
+  function boot() {
+    render();
+    document.getElementById("as-phase-bar").addEventListener("click", function (ev) {
+      var b = ev.target.closest("[data-phase]");
+      if (!b) return;
+      setPhase(b.getAttribute("data-phase"));
+      render();
+    });
+    document.querySelector(".as-wrap").addEventListener("change", function (ev) {
+      var t = ev.target;
+      if (!t.matches('input[type="checkbox"][data-id]')) return;
+      var checks = readChecks();
+      if (t.checked) checks[t.getAttribute("data-id")] = true;
+      else delete checks[t.getAttribute("data-id")];
+      writeChecks(checks);
+      var st = document.getElementById("as-status");
+      if (st) st.textContent = "Saved on this device";
+    });
+    var reset = document.getElementById("as-reset");
+    if (reset) {
+      reset.addEventListener("click", function () {
+        writeChecks({});
+        render();
+        var st = document.getElementById("as-status");
+        if (st) st.textContent = "Checks cleared";
+      });
+    }
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+</script>
+</body>
+</html>
