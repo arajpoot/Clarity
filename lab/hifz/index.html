@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Hifz · Clarity University</title>
-<meta name="description" content="Memorisation support on this device. Educational only."/>
+<title>Hifz studio · Clarity University</title>
+<meta name="description" content="Hifz studio. Educational only — not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018R36"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018R36"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018R36"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018R36"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018LABUI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018LABUI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018LABUI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018LABUI"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261018R36"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261018R36"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018R36"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018R36"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261018LABUI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261018LABUI"/>
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261018LABUI"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018LABUI"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018LABUI"></script>
 <script src="/campus/assets/js/cu-chrome-canonical-v1.js?v=20261018CANON"></script>
 
 
@@ -23,7 +24,7 @@
 <header class="cu-banner">
   <a class="cu-brand" href="/charter/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
-    <div><small>University</small><strong>Clarity University</strong></div>
+    <div><small>University · Lab</small><strong>Clarity University</strong></div>
   </a>
   <div class="cu-banner-actions">
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
@@ -33,19 +34,63 @@
   </div>
 </header>
 <main class="cu-wrap">
-<nav class="cu-pills" aria-label="Campus"><a href="/charter/">Charter</a><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" class="here" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/campus/buddy/">Buddy</a><a href="/vault/">Vault</a></nav>
-<div style="width:100%;max-width:48rem;margin:0 auto">
+<nav class="cu-pills" aria-label="Campus">
+  <a href="/charter/">Charter</a>
+  <a href="/campus/">Map</a>
+  <a href="/campus/desk/">Desk</a>
+  <a href="/lab/" class="here" aria-current="page">Lab</a>
+  <a href="/library/">Library</a>
+  <a href="/campus/buddy/">Buddy</a>
+  <a href="/vault/">Vault</a>
+</nav>
+<nav class="lab-station-nav" aria-label="Lab stations" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .85rem">
+  <a href="/lab/">Hub</a>
+  <a href="/lab/arabic/">Arabic</a>
+  <a href="/lab/tajweed/">Tajweed</a>
+  <a href="/lab/recite/">Recite</a>
+  <a href="/lab/calligraphy/">Calligraphy</a>
+  <a href="/lab/hifz/">Hifz</a>
+  <a href="/lab/media/">Media</a>
+</nav>
+<div class="lab-studio-body" style="width:100%;max-width:48rem;margin:0 auto;padding-bottom:2rem">
+<nav class="lab-station-nav" aria-label="Lab stations">
+    <a href="/lab/">Hub</a>
+    <a href="/lab/tajweed/">Tajweed</a>
+    <a href="/lab/arabic/">Arabic</a>
+    <a href="/lab/recite/">Recitation</a>
+    <a href="/lab/media/">Media</a>
+    <a href="/lab/calligraphy/">Calligraphy</a>
+    <a href="/lab/hifz/" class=here>Hifz</a>
+  </nav>
 
-<h1 class="cu-h1">Hifz</h1>
-<p class="cu-lead">Memorisation support on this device. Educational only.</p>
-<div id="studio-mount"></div>
-<p class="cu-meta" style="margin-top:1rem"><a href="/lab/">← All labs</a> · <a href="/campus/">Map</a></p>
-
+  <h1 class="lab-h1">Hifz studio</h1>
+  <p class="lab-lead">One āyah: hear · see · hide · recall. Self-check only — not a teacher’s verdict.</p>
+  <section class="card" style="max-width:40rem;margin:0 auto;padding:1rem" id="hifz-root">
+    <div class="lab-chips">
+      <button type="button" class="lab-chip" data-hifz="1:1">Al-Fātiḥah 1</button>
+      <button type="button" class="lab-chip" data-hifz="1:2">Al-Fātiḥah 2</button>
+      <button type="button" class="lab-chip" data-hifz="112:1">Al-Ikhlāṣ 1</button>
+      <button type="button" class="lab-chip" data-hifz="112:2">Al-Ikhlāṣ 2</button>
+      <button type="button" class="lab-chip" data-hifz="103:1">Al-ʿAṣr 1</button>
+    </div>
+    <p class="lab-micro" id="hifz-meta">Choose an āyah</p>
+    <p class="hifz-ar" id="hifz-ar" dir="rtl" lang="ar">…</p>
+    <p class="hifz-en" id="hifz-en">…</p>
+    <div class="lab-av-row">
+      <button type="button" class="lab-btn lab-btn-primary" id="hifz-hear">Hear</button>
+      <button type="button" class="lab-btn" id="hifz-hide">Hide text</button>
+      <button type="button" class="lab-btn" id="hifz-show">Show text</button>
+      <button type="button" class="lab-btn" id="hifz-mark">Mark practiced</button>
+    </div>
+    <p class="lab-micro" id="hifz-status"></p>
+  </section>
+<p class="lab-foot">Educational only — not a fatwa. · Surface lab · 20261017PORT</p>
 </div>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. Progress stays on this device.</footer>
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261018R36" defer></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261018R36" defer></script>
-
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261018LABUI" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261018LABUI" defer></script>
+<script src="/lab/shared/lab-av.js?v=20261018LABUI" defer></script>
+<script src="/lab/hifz/studio.js?v=20261018LABUI" defer></script>
 </body>
 </html>
