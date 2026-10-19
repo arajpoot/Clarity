@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-mahtaab="1">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Hifz studio · Clarity University</title>
+<meta name="description" content="One āyah: hear · echo · hide · recall. Spaced self-check on this device. Educational only — not a teacher’s verdict."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019HFZ"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019HFZ"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019HFZ"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019HFZ"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019HFZ"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019HFZ"/>
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261019HFZ"/>
+<link rel="stylesheet" href="/lab/shared/lab-station-bar.css?v=20261019L2"/>
+<link rel="stylesheet" href="/lab/hifz/studio-v2.css?v=20261019HFZ"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019HFZ"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019HFZ"></script>
+</head>
+<body class="cu-page cu-mahtaab-on" data-campus-page="lab-hifz">
+<header class="cu-banner">
+  <a class="cu-brand" href="/charter/">
+    <span class="cu-brand-mark" aria-hidden="true">ن</span>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
+  <div class="cu-banner-actions">
+    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
+    <a class="cu-companion-link" href="/">← Companion</a>
+  </div>
+</header>
+
+<main>
+<nav class="cu-pills" aria-label="Campus">
+  <a href="/charter/">Charter</a>
+  <a href="/campus/">Map</a>
+  <a href="/campus/desk/">Desk</a>
+  <a href="/lab/" class="here" aria-current="page">Lab</a>
+  <a href="/library/">Library</a>
+  <a href="/campus/buddy/">Buddy</a>
+  <a href="/vault/">Vault</a>
+</nav>
+<nav class="lab-station-nav" data-lab-bar="1" aria-label="Lab stations">
+  <a href="/lab/">Hub</a>
+  <a href="/lab/arabic/">Arabic</a>
+  <a href="/lab/tajweed/">Tajweed</a>
+  <a href="/lab/recite/">Recite</a>
+  <a href="/lab/calligraphy/">Calligraphy</a>
+  <a href="/lab/hifz/" class="here" aria-current="page">Hifz</a>
+  <a href="/lab/media/">Media</a>
+</nav>
+
+<div class="hf-wrap">
+  <h1 class="hf-h1">Hifz studio</h1>
+  <p class="hf-lead">One āyah at a time: <strong>hear · echo · hide · recall</strong>. Self-check only — not a teacher’s verdict. Progress stays on this device.</p>
+
+  <!-- Practice coach: Sabaq pattern -->
+  <section class="hf-card">
+    <h2>Practice coach · Sabaq session</h2>
+    <p class="hf-muted">Research-backed flow: small quota · listen first · active recall (hide) · mark for spaced review. Murajaʿah still needs a teacher for certification.</p>
+    <div class="hf-coach" id="hf-coach">
+      <button type="button" class="hf-step on" data-step="listen">1 · Listen<span>Master audio</span></button>
+      <button type="button" class="hf-step" data-step="echo">2 · Echo<span>Text visible</span></button>
+      <button type="button" class="hf-step" data-step="hide">3 · Hide<span>Active recall</span></button>
+      <button type="button" class="hf-step" data-step="mark">4 · Mark<span>Spaced list</span></button>
+    </div>
+    <p class="hf-tip" id="hf-coach-msg">Pull or tap a chip, then press <strong>Hear</strong> 2–3 times before you speak.</p>
+  </section>
+
+  <!-- Three jobs of a session -->
+  <section class="hf-card">
+    <h2>Three jobs (classic Hifz rhythm)</h2>
+    <div class="hf-jobs">
+      <div><strong>Sabaq</strong><span>New lesson — tiny quota you can finish on a hard day</span></div>
+      <div><strong>Sabqi</strong><span>Recent memory — still consolidating (review often)</span></div>
+      <div><strong>Manzil</strong><span>Older stock — longer intervals, still retrieve aloud</span></div>
+    </div>
+  </section>
+
+  <!-- Main practice desk — preserve IDs for studio.js -->
+  <section class="hf-card" id="hifz-root">
+    <h2>Āyah desk</h2>
+    <div class="hf-chips" id="hf-chips">
+      <button type="button" class="hf-pill" data-hifz="1:1">Al-Fātiḥah 1</button>
+      <button type="button" class="hf-pill" data-hifz="1:2">Al-Fātiḥah 2</button>
+      <button type="button" class="hf-pill" data-hifz="1:7">Al-Fātiḥah 7</button>
+      <button type="button" class="hf-pill" data-hifz="112:1">Al-Ikhlāṣ 1</button>
+      <button type="button" class="hf-pill" data-hifz="112:2">Al-Ikhlāṣ 2</button>
+      <button type="button" class="hf-pill" data-hifz="112:3">Al-Ikhlāṣ 3</button>
+      <button type="button" class="hf-pill" data-hifz="103:1">Al-ʿAṣr 1</button>
+      <button type="button" class="hf-pill" data-hifz="103:2">Al-ʿAṣr 2</button>
+      <button type="button" class="hf-pill" data-hifz="67:1">Al-Mulk 1</button>
+      <button type="button" class="hf-pill" data-hifz="36:1">Yā-Sīn 1</button>
+    </div>
+
+    <div class="hf-controls">
+      <label>Sūrah <select id="hifz-surah"><option value="1">1 · Al-Fātiḥah</option></select></label>
+      <label>Āyah <input id="hifz-ayah" type="number" min="1" value="1" style="width:4rem"/></label>
+      <button type="button" class="hf-btn" id="hifz-pull">Pull āyah</button>
+    </div>
+
+    <p class="hf-meta" id="hifz-meta">Qurʾān 1:1</p>
+    <p class="hf-ar" id="hifz-ar" dir="rtl" lang="ar">—</p>
+    <p class="hf-en" id="hifz-en">Choose a chip or pull an āyah.</p>
+
+    <div class="hf-controls">
+      <button type="button" class="hf-btn" id="hifz-hear">▶ Hear</button>
+      <button type="button" class="hf-btn ghost" id="hifz-hide">Hide text</button>
+      <button type="button" class="hf-btn ghost" id="hifz-show">Show text</button>
+      <button type="button" class="hf-btn ghost" id="hifz-mark">Mark practiced</button>
+    </div>
+    <p class="hf-meta" id="hifz-status">Ready · self-check only</p>
+    <p class="hf-links">
+      <a href="/lab/recite/">Recite studio</a> ·
+      <a href="/lab/tajweed/">Tajweed LMR</a> ·
+      <a id="hifz-quran" href="https://quran.com/1" target="_blank" rel="noopener noreferrer">Quran.com</a>
+    </p>
+  </section>
+
+  <!-- Spaced review list (on-device) -->
+  <section class="hf-card">
+    <h2>Spaced list (this device)</h2>
+    <p class="hf-muted">Simple tiers: new · weak · steady. Not Anki-grade SRS — a honest notebook on your phone. Keys: <code>cu_hifz_marks_v1</code>.</p>
+    <div class="hf-controls">
+      <button type="button" class="hf-btn ghost" id="hf-refresh-list">Refresh list</button>
+      <button type="button" class="hf-btn ghost" id="hf-clear-weak">Clear weak tags</button>
+    </div>
+    <ul class="hf-list" id="hf-spaced-list"></ul>
+  </section>
+
+  <!-- Session tips -->
+  <section class="hf-card">
+    <h2>Session tips</h2>
+    <ul class="hf-tips">
+      <li>Quota small enough for your hardest day.</li>
+      <li>Same reciter voice when possible (ear memory).</li>
+      <li>Hide text only after you can echo with text visible.</li>
+      <li>Review recent (sabqi) before piling new sabaq.</li>
+      <li>Tajweed errors: fix in <a href="/lab/tajweed/">Tajweed lab</a> before they harden.</li>
+      <li>A living teacher still hears you for real progress.</li>
+    </ul>
+  </section>
+
+  <section class="hf-card">
+    <h2>Desk doors</h2>
+    <div class="hf-desk">
+      <a href="/campus/desk/seeker/"><strong>Seeker</strong><span>Short foundation āyāt</span></a>
+      <a href="/campus/desk/practice/"><strong>Practice</strong><span>Ṣalāh-linked portions</span></a>
+      <a href="/campus/desk/consistency/"><strong>Consistency</strong><span>Weekly murajaʿah habit</span></a>
+      <a href="/library/"><strong>Library</strong><span>Primary shelves + AV</span></a>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer class="cu-foot">
+  <p>Educational only — not a fatwa. · Hifz studio 20261019HFZ · on-device marks</p>
+</footer>
+
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019HFZ"></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019HFZ"></script>
+<script src="/lab/shared/lab-station-bar.js?v=20261019L2" defer></script>
+<script src="/lab/shared/verse-practice.js?v=20261019HFZ"></script>
+<script src="/lab/shared/lab-av.js?v=20261019HFZ"></script>
+<script src="/lab/hifz/studio.js?v=20261019HFZ"></script>
+<script src="/lab/hifz/studio-enrich.js?v=20261019HFZ"></script>
+</body>
+</html>
