@@ -483,3 +483,57 @@ html[data-theme="light"] [class*="daily-drill"] {
   opacity: 1 !important;
   visibility: visible !important;
 }
+
+/* Do this today · centered title between salah & tasbeeh · 20261020NUR */
+.cph-headline-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  margin-bottom: 0.55rem;
+}
+.cph-title-center {
+  margin: 0 !important;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Amiri", Georgia, serif !important;
+  font-size: clamp(1.2rem, 2.8vw, 1.55rem) !important;
+  font-weight: 700 !important;
+  color: var(--nuros-gold, #c9a84c) !important;
+  letter-spacing: 0.02em;
+  justify-self: center;
+}
+.cph-headline-row .cph-salah {
+  justify-self: start;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--nuros-green-deep, #0f5c42);
+}
+.cph-headline-row .cph-tasbeeh {
+  justify-self: end;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.3rem;
+}
+.cph-headline-row .nuros-icon {
+  color: var(--nuros-green, #1e7d5e);
+}
+.cph-tas-btn .nuros-icon {
+  color: #fff;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.cph-tas-btn.ghost .nuros-icon {
+  color: inherit;
+}
+@media (max-width: 520px) {
+  .cph-headline-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "salah tas";
+  }
+  .cph-title-center { grid-area: title; }
+  .cph-headline-row .cph-salah { grid-area: salah; }
+  .cph-headline-row .cph-tasbeeh { grid-area: tas; }
+}

@@ -6,7 +6,7 @@
 (function (g) {
   "use strict";
   /* allow re-boot after label upgrades */
-  g.__CLARITY_COMPANION_PROVISION_V1__ = "20261020ANCHOR";
+  g.__CLARITY_COMPANION_PROVISION_V1__ = "20261020NUR";
 
   var KEY_CONT = "clarity_continue_v1";
   var KEY_PROV = "clarity_provision_day_v1";
@@ -126,14 +126,14 @@
 
     return (
       '<div class="cph-card cph-provision">' +
-      '<div class="cph-top-meta">' +
-      '<span class="cph-salah" id="cph-next-salah">' + nextLabel + "</span>" +
+      '<div class="cph-headline-row">' +
+      '<span class="cph-salah" id="cph-next-salah"><i class="nuros-icon nuros-icon-salah" aria-hidden="true"></i> ' + nextLabel + "</span>" +
+      '<h2 class="cph-title-center">Do this today</h2>' +
       '<span class="cph-tasbeeh" id="cph-tasbeeh-wrap">' +
-      '<button type="button" class="cph-tas-btn" id="cph-tas-inc" aria-label="Tasbeeh +1">✦</button>' +
+      '<button type="button" class="cph-tas-btn" id="cph-tas-inc" aria-label="Tasbeeh +1"><i class="nuros-icon nuros-icon-tasbih" aria-hidden="true"></i></button>' +
       '<span id="cph-tas-count">' + (tas.count || 0) + "</span>" +
       '<button type="button" class="cph-tas-btn ghost" id="cph-tas-reset" aria-label="Reset tasbeeh">↺</button>' +
       "</span></div>" +
-      "<h2>Do this today</h2>" +
       '<p class="cph-lane">' + (prov.lane || "provision") + "</p>" +
       "<p>" + prov.text + "</p>" +
       '<p class="cph-note">Toward ongoing good, beneficial knowledge, and a life that invites duʿāʾ — acceptance is with Allah.</p>' +

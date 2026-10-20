@@ -1,0 +1,18 @@
+/**
+ * NurOS campus context · link from /campus pages
+ * Desk=quran · Lab=tajweed · Vault=vault · Library=quran · Portal=campus
+ */
+@import url("/assets/nuros-icons-v1.css");
+.cu-desk-nav a[href*="seeker"]::before,
+.cu-desk-nav a[href*="practice"]::before,
+.lab-station-bar a[href*="tajweed"]::before {
+  content: "";
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-inline-end: 0.3rem;
+  vertical-align: -0.15em;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.75'%3E%3Cpath d='M9 18V6l10 6-10 6z'/%3E%3Cpath d='M5 6v12'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.75'%3E%3Cpath d='M9 18V6l10 6-10 6z'/%3E%3Cpath d='M5 6v12'/%3E%3C/svg%3E") center / contain no-repeat;
+}
