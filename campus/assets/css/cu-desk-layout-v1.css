@@ -1,124 +1,138 @@
 
-/* Desk module layout — full viewport · elegant gold borders */
+/* Desk layout v2 — full width · gold borders · fixed tools · verse on top */
 :root {
   --desk-gold: #c9a84c;
-  --desk-gold-border: rgba(201, 168, 76, 0.42);
+  --desk-gold-border: rgba(201, 168, 76, 0.48);
   --desk-max: min(72rem, 100%);
+  --desk-tools-h: 3.75rem;
+}
+
+body[data-phase-room] {
+  padding-bottom: calc(var(--desk-tools-h) + env(safe-area-inset-bottom) + 0.5rem);
 }
 
 body[data-phase-room] main.cu-wrap {
   max-width: var(--desk-max) !important;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0.5rem max(0.75rem, env(safe-area-inset-left)) 5.5rem max(0.75rem, env(safe-area-inset-right));
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0.6rem max(0.85rem, env(safe-area-inset-left)) 1.25rem max(0.85rem, env(safe-area-inset-right)) !important;
   box-sizing: border-box;
 }
 
-/* Order is HTML order: verse → pills → status → stage */
-
+/* Verse — first content under banner */
 body[data-phase-room] .cu-desk-verse {
+  display: block !important;
   max-width: var(--desk-max);
   width: 100%;
-  margin: 0.5rem auto 0.75rem;
-  padding: 1rem 1.15rem;
+  margin: 0.35rem auto 0.85rem;
+  padding: 1.05rem 1.2rem;
   border-radius: 18px;
   border: 1px solid var(--desk-gold-border);
-  box-shadow:
-    0 0 0 1px rgba(201, 168, 76, 0.08),
-    0 10px 28px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.1), 0 10px 28px rgba(0, 0, 0, 0.16);
   text-align: center;
   box-sizing: border-box;
+  order: 1;
 }
 body[data-phase-room] .cu-desk-verse .ar {
   font-family: "Amiri", "Noto Naskh Arabic", serif;
   direction: rtl;
   unicode-bidi: isolate;
-  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-size: clamp(1.3rem, 4.2vw, 1.85rem);
   line-height: 1.7;
   color: var(--desk-gold);
   margin: 0;
   font-weight: 700;
 }
 body[data-phase-room] .cu-desk-verse .en {
-  margin: 0.45rem 0 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
+  margin: 0.5rem 0 0;
+  font-size: 0.92rem;
+  opacity: 0.92;
   line-height: 1.45;
 }
 body[data-phase-room] .cu-desk-verse .ref {
   margin: 0.35rem 0 0;
   font-size: 0.75rem;
   opacity: 0.75;
-  letter-spacing: 0.03em;
 }
 
 body[data-phase-room] .cu-pills {
   max-width: var(--desk-max);
   width: 100%;
-  margin: 0.35rem auto 0.75rem;
+  margin: 0 auto 0.75rem;
   box-sizing: border-box;
   border: 1px solid var(--desk-gold-border);
+  order: 2;
 }
 
 body[data-phase-room] .cu-student-status {
   max-width: var(--desk-max);
   width: 100%;
-  margin: 0.35rem auto 0.85rem;
+  margin: 0 auto 0.85rem;
   box-sizing: border-box;
   border: 1px solid var(--desk-gold-border);
+  order: 3;
 }
 
-/* Module stage full width */
 body[data-phase-room] #cu-stage,
 body[data-phase-room] [data-shell-stage] {
-  max-width: var(--desk-max);
+  max-width: var(--desk-max) !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  box-sizing: border-box;
+  order: 4;
+}
+
+/* Widen module cards inside stage */
+body[data-phase-room] #cu-stage > * {
+  max-width: 100% !important;
   width: 100%;
-  margin: 0 auto;
+  box-sizing: border-box;
+}
+body[data-phase-room] #cu-stage .cu-plaque,
+body[data-phase-room] #cu-stage section,
+body[data-phase-room] #cu-stage article,
+body[data-phase-room] #cu-stage [class*="card"],
+body[data-phase-room] #cu-stage [class*="module"] {
+  border-color: var(--desk-gold-border) !important;
+  max-width: 100% !important;
   box-sizing: border-box;
 }
 
-/* Gold border language on module cards inside stage */
-body[data-phase-room] #cu-stage .cu-plaque,
-body[data-phase-room] #cu-stage .module-card,
-body[data-phase-room] #cu-stage article,
-body[data-phase-room] #cu-stage section.unit,
-body[data-phase-room] #cu-stage [class*="module"],
-body[data-phase-room] #cu-stage [class*="card"] {
-  border-color: var(--desk-gold-border) !important;
-}
-
-/* Bottom desk tools — after content, sticky */
+/* Fixed bottom tools — always at viewport bottom, never in document flow top */
 .cu-desk-bottom-nav {
-  position: sticky;
-  bottom: 0;
-  z-index: 50;
-  display: flex;
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: auto !important;
+  z-index: 200 !important;
+  display: flex !important;
   flex-wrap: wrap;
   gap: 0.4rem;
   justify-content: center;
-  padding: 0.7rem 0.75rem calc(0.7rem + env(safe-area-inset-bottom));
-  margin: 1.25rem auto 0;
-  max-width: var(--desk-max);
+  align-items: center;
+  padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom));
+  margin: 0 !important;
   width: 100%;
+  max-width: none !important;
   box-sizing: border-box;
-  border: 1px solid var(--desk-gold-border);
-  border-bottom: none;
-  border-radius: 18px 18px 0 0;
-  background: rgba(12, 22, 18, 0.94);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--desk-gold-border);
+  border-radius: 0;
+  background: rgba(10, 18, 14, 0.96) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.35);
 }
 html[data-theme="light"] .cu-desk-bottom-nav {
-  background: rgba(255, 252, 245, 0.96);
+  background: rgba(255, 252, 245, 0.97) !important;
 }
 .cu-desk-bottom-nav a {
-  min-height: 42px;
-  padding: 0.4rem 0.95rem;
+  min-height: 40px;
+  padding: 0.35rem 0.9rem;
   border-radius: 999px;
   text-decoration: none;
   color: inherit;
   font-weight: 700;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   border: 1px solid var(--desk-gold-border);
   display: inline-flex;
   align-items: center;
@@ -130,7 +144,6 @@ html[data-theme="light"] .cu-desk-bottom-nav {
   border-color: transparent;
 }
 
-/* Never show continue-to-self on desk */
 body[data-phase-room] .cu-continue,
 body[data-phase-room] #cu-continue {
   display: none !important;
