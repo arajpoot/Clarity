@@ -3,40 +3,32 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Admission · Clarity University</title>
-<meta name="description" content="On-device educational path. Charter, declaration, registration, orientation. Not a physical university."/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019ADM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019ADM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019ADM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019ADM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019ADM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261019ADM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-admit-v1.css?v=20261019ADM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261019ADM"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019ADM"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019ADM"></script>
+<title>Clarity University · Admission</title>
+<meta name="description" content="On-device educational path. Bismillah. Not a physical university."/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019UI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019UI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019UI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019UI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261019UI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261019UI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261019UI"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019UI"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019UI"></script>
 <style>
 .adm-wrap{max-width:min(42rem,100%);margin:0 auto;padding:0 0 2.5rem}
-.adm-hero{text-align:center;margin:1rem 0 1.25rem}
-.adm-hero h1{font-size:clamp(1.45rem,4vw,1.85rem);color:#e8d5a3;margin:0 0 .5rem}
-html[data-theme=light] .adm-hero h1{color:#6b5a1e}
-.adm-steps{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin:0 0 1.25rem}
-.adm-steps button{min-height:36px;padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(212,180,90,.35);background:transparent;color:inherit;font-weight:700;font-size:.78rem;cursor:pointer}
-.adm-steps button.on{background:rgba(30,125,94,.35);border-color:rgba(30,125,94,.55)}
-.adm-panel{display:none;padding:1rem 1.1rem;border-radius:16px;border:1px solid rgba(212,180,90,.32);background:rgba(12,22,18,.88);margin-bottom:1rem}
-html[data-theme=light] .adm-panel{background:#fffef8;color:#13201a}
+.adm-steps{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin:0 0 1.1rem}
+.adm-steps button{min-height:36px;padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(201,168,76,.35);background:transparent;color:inherit;font-weight:700;font-size:.75rem;cursor:pointer}
+.adm-panel{display:none;padding:1.05rem 1.15rem;margin-bottom:1rem}
 .adm-panel.on{display:block}
-.adm-panel h2{margin:0 0 .5rem;font-size:1.1rem;color:#e8d5a3}
-html[data-theme=light] .adm-panel h2{color:#6b5a1e}
-.adm-panel ul{margin:.4rem 0 .6rem 1.1rem}
+.adm-panel h2{margin:0 0 .5rem;font-family:"Cormorant Garamond",serif;font-size:1.25rem;color:var(--cu-gold,#c9a84c)}
+.adm-panel ul,.adm-panel ol{margin:.4rem 0 .6rem 1.15rem}
 .adm-actions{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.85rem}
-.adm-actions button,.adm-actions a.btn{min-height:44px;padding:.45rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer}
-.adm-actions button.ghost,.adm-actions a.ghost{background:transparent;color:inherit;border:1px solid rgba(212,180,90,.4)}
-.adm-input{width:100%;min-height:44px;padding:.5rem .75rem;border-radius:12px;border:1px solid rgba(212,180,90,.4);background:transparent;color:inherit;box-sizing:border-box;margin:.35rem 0}
+.adm-actions button,.adm-actions a.btn{min-height:44px;padding:.45rem 1.05rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer}
+.adm-actions button.ghost,.adm-actions a.ghost{background:transparent;color:inherit;border:1px solid rgba(201,168,76,.4)}
+.adm-input{width:100%;min-height:44px;padding:.5rem .75rem;border-radius:12px;border:1px solid rgba(201,168,76,.4);background:transparent;color:inherit;box-sizing:border-box;margin:.35rem 0}
 .adm-check{display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;font-size:.92rem}
-.adm-note{font-size:.8rem;opacity:.85;margin-top:.75rem;line-height:1.4}
-.adm-returning{text-align:center;margin:1rem 0;padding:.85rem;border-radius:14px;border:1px dashed rgba(212,180,90,.35)}
+.adm-note{font-size:.8rem;opacity:.85;margin-top:.75rem;line-height:1.45}
+.adm-returning{text-align:center;margin:0 0 1rem;padding:.95rem;border-radius:18px;border:1px dashed rgba(201,168,76,.4);background:var(--cu-panel,#fffcf5)}
 </style>
 </head>
 <body class="cu-page" data-campus-page="admit">
@@ -54,10 +46,12 @@ html[data-theme=light] .adm-panel h2{color:#6b5a1e}
 </header>
 <main class="cu-wrap">
 <div class="adm-wrap">
-  <div class="adm-hero">
-    <h1>Admission</h1>
-    <p class="cu-lead">A structured educational path on this device — not a physical university, not affiliated with Al-Azhar or any campus abroad, not a fatwa, not a grade of īmān.</p>
-  </div>
+
+  <header class="cu-bismillah-hero" aria-label="Bismillah">
+    <p class="cu-bismillah" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+    <p class="cu-rabbi" lang="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</p>
+    <p class="cu-rabbi-en">My Lord, increase me in knowledge · Ṭā Hā 20:114</p>
+  </header>
 
   <div class="adm-returning" id="adm-returning" hidden>
     <p><strong>Welcome back</strong> · <span id="adm-returning-name"></span></p>
@@ -75,83 +69,72 @@ html[data-theme=light] .adm-panel h2{color:#6b5a1e}
     <button type="button" data-step="4">5 · Orientation</button>
   </nav>
 
-  <!-- 0 Welcome -->
-  <section class="adm-panel on" data-panel="0">
+  <section class="adm-panel on cu-plaque" data-panel="0">
     <h2>Welcome, seeker</h2>
-    <p>This path mirrors the <em>shape</em> of serious study — stages, practice halls, records, adab — while remaining a private, on-device tool.</p>
+    <p>This path mirrors the <em>shape</em> of serious study — stages, practice halls, records, adab — as a private tool on this device.</p>
     <ul>
-      <li><strong>Academics</strong> — four sequenced desks (Seeker → Transmission)</li>
+      <li><strong>Academics</strong> — Seeker → Practice → Consistency → Transmission</li>
       <li><strong>Practice halls</strong> — Arabic, Tajweed, Recite, Calligraphy…</li>
       <li><strong>Services</strong> — Buddy, Transcript, Schedule, Assignments</li>
-      <li><strong>Sources</strong> — Library pointers; Vault for study notes</li>
+      <li><strong>Sources</strong> — Library · Vault notes · Companion Amanah for private trusts</li>
     </ul>
-    <p class="adm-note">No tuition · no certificate from Cairo or Madinah · progress stays in your browser storage.</p>
+    <p class="adm-note">No tuition · no foreign campus certificate · progress stays in your browser.</p>
     <div class="adm-actions">
       <button type="button" data-next="1">Begin admission →</button>
       <a class="ghost btn" href="/campus/portal/">I already registered</a>
     </div>
   </section>
 
-  <!-- 1 Charter -->
-  <section class="adm-panel" data-panel="1">
+  <section class="adm-panel cu-plaque" data-panel="1">
     <h2>Charter · limits</h2>
-    <p>Before a name is stored, know what this never is:</p>
     <ul>
       <li>Not a physical university or accredited degree</li>
       <li>Not affiliated with Al-Azhar, Madinah, IIUM, or any institution</li>
       <li>Not a fatwa service · not a substitute for a living teacher</li>
-      <li>Not a grade of īmān or public ranking of piety</li>
-      <li>Not legal advice for wills, inheritance, or courts (see Companion Amanah for private tools)</li>
+      <li>Not a grade of īmān</li>
+      <li>Not legal advice for courts or estates</li>
     </ul>
-    <p>Full text remains on the <a href="/charter/">Charter page</a>.</p>
+    <p>Full text: <a href="/charter/">Charter page</a>.</p>
     <div class="adm-actions">
       <button type="button" class="ghost" data-next="0">← Back</button>
       <button type="button" data-next="2">I understand →</button>
     </div>
   </section>
 
-  <!-- 2 Declaration -->
-  <section class="adm-panel" data-panel="2">
+  <section class="adm-panel cu-plaque" data-panel="2">
     <h2>Declaration</h2>
-    <p>Please confirm each point:</p>
     <label class="adm-check"><input type="checkbox" id="adm-d1"/> I will use this for education and practice only.</label>
-    <label class="adm-check"><input type="checkbox" id="adm-d2"/> I will ask a trusted local teacher for personal rulings and situations.</label>
-    <label class="adm-check"><input type="checkbox" id="adm-d3"/> I understand progress is stored only on this device (unless I back it up myself).</label>
-    <label class="adm-check"><input type="checkbox" id="adm-d4"/> I will not present any local “diploma” or transcript as an official ijāzah or university credential.</label>
-    <p id="adm-decl-err" class="adm-note" style="color:#e88" hidden>Please check all four declarations.</p>
+    <label class="adm-check"><input type="checkbox" id="adm-d2"/> I will ask a trusted local teacher for personal rulings.</label>
+    <label class="adm-check"><input type="checkbox" id="adm-d3"/> I understand progress is stored only on this device.</label>
+    <label class="adm-check"><input type="checkbox" id="adm-d4"/> I will not present local “diploma” or transcript as official ijāzah or university credential.</label>
+    <p id="adm-decl-err" class="adm-note" style="color:#c44" hidden>Please check all four declarations.</p>
     <div class="adm-actions">
       <button type="button" class="ghost" data-next="1">← Back</button>
       <button type="button" id="adm-decl-next">Sign &amp; continue →</button>
     </div>
   </section>
 
-  <!-- 3 Register -->
-  <section class="adm-panel" data-panel="3">
+  <section class="adm-panel cu-plaque" data-panel="3">
     <h2>Registration</h2>
-    <p>A preferred name for your local transcript and soft milestones. Optional second field for intention.</p>
-    <label class="cu-meta">Full name or preferred name</label>
+    <label class="cu-meta">Preferred name</label>
     <input class="adm-input" id="adm-name" type="text" autocomplete="name" placeholder="e.g. Momin" maxlength="80"/>
-    <label class="cu-meta">One-line intention (optional)</label>
+    <label class="cu-meta">Intention (optional)</label>
     <input class="adm-input" id="adm-intent" type="text" placeholder="e.g. Steady foundations with adab" maxlength="120"/>
-    <p class="adm-note">Saved as <code>cu_uni_admit_v1</code> on this device only.</p>
+    <p class="adm-note">Saved on this device only · <code>cu_uni_admit_v1</code></p>
     <div class="adm-actions">
       <button type="button" class="ghost" data-next="2">← Back</button>
       <button type="button" id="adm-register">Register on this device →</button>
     </div>
   </section>
 
-  <!-- 4 Orientation -->
-  <section class="adm-panel" data-panel="4">
+  <section class="adm-panel cu-plaque" data-panel="4">
     <h2>Orientation</h2>
-    <p>How students walk the path:</p>
     <ol>
-      <li><strong>Today on the path</strong> — one desk module · one lab station · seal with adab.</li>
-      <li><strong>Seeker first</strong> — foundations before rushing Transmission.</li>
-      <li><strong>Lab after lesson</strong> — practice halls reinforce the desk.</li>
-      <li><strong>Buddy</strong> — ask where to go next; never for personal fatwa.</li>
-      <li><strong>Transcript</strong> — your local academic ledger.</li>
+      <li><strong>Today on the path</strong> — one desk module · one lab · seal with adab.</li>
+      <li><strong>Seeker first</strong> — foundations before Transmission.</li>
+      <li><strong>Lab after lesson</strong> — practice reinforces the desk.</li>
+      <li><strong>Buddy</strong> — where to go next; never personal fatwa.</li>
     </ol>
-    <p class="adm-note">Optional helpers: orientation bot (educational routes only).</p>
     <div class="adm-actions">
       <button type="button" class="ghost" data-next="3">← Back</button>
       <a class="btn" href="/campus/portal/">Enter student portal →</a>
@@ -159,13 +142,13 @@ html[data-theme=light] .adm-panel h2{color:#6b5a1e}
     </div>
   </section>
 
-  <p class="adm-note" style="text-align:center">Educational only · Companion remains separate · <a href="/">Return to Companion</a></p>
+  <p class="adm-note" style="text-align:center">Educational only · <a href="/">Companion</a> · <a href="/charter/">Charter</a></p>
 </div>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa · not a physical university · progress stays on this device.</footer>
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019ADM" defer></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261019ADM" defer></script>
-<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019ADM" defer></script>
-<script src="/campus/assets/js/cu-admission-flow-v1.js?v=20261019ADM" defer></script>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019UI" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019UI" defer></script>
+<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019UI" defer></script>
+<script src="/campus/assets/js/cu-admission-flow-v1.js?v=20261019UI" defer></script>
 </body>
 </html>
