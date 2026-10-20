@@ -4,134 +4,107 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Study Buddy · Clarity University</title>
-<meta name="description" content="On-device study helper. Educational only — not a mufti."/>
+<meta name="description" content="On-device study helper. Educational only — not a fatwa."/>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019L2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019L2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019L2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019L2"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019E36"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019E36"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019E36"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019E36"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019L2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019L2"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019L2"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019L2"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019E36"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019E36"/>
+
+<link rel="stylesheet" href="/campus/assets/css/cu-ui-revamp-v1.css?v=20261019E36"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019E36"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-viewport-v1.css?v=20261019E36"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-page-enrich-v1.css?v=20261019E36"/>
+
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019E36"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019E36"></script>
+
 <style>
-.cu-content{width:100%;max-width:40rem;margin:0 auto;padding:0 .85rem 2rem;box-sizing:border-box}
-.cu-h1{margin:.35rem 0 .35rem;font-size:1.45rem}
-.cu-lead{font-size:.9rem;opacity:.9;line-height:1.5;margin:0 0 1rem}
-.bu-card{border:1px solid rgba(201,162,39,.28);border-radius:16px;padding:1rem 1.05rem;margin:0 0 .85rem;background:rgba(255,255,255,.06)}
-html[data-theme="light"] .bu-card{background:rgba(255,255,255,.72)}
-.bu-card h2{margin:0 0 .55rem;font-size:.95rem;font-weight:800;color:#c9a227}
-.bu-doors{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
-@media(max-width:420px){.bu-doors{grid-template-columns:1fr}}
-.bu-doors a{display:block;padding:.55rem .7rem;border-radius:12px;border:1px solid rgba(201,162,39,.22);text-decoration:none;color:inherit;font-size:.84rem;font-weight:600;background:rgba(0,0,0,.12)}
-html[data-theme="light"] .bu-doors a{background:rgba(255,255,255,.65)}
-.bu-search{display:flex;flex-wrap:wrap;gap:.45rem}
-.bu-search input{flex:1 1 12rem;min-height:44px;padding:.5rem .7rem;border-radius:12px;border:1px solid rgba(201,162,39,.35);background:transparent;color:inherit}
-.bu-search button,.bu-send button{min-height:44px;padding:.45rem 1rem;border-radius:999px;border:0;background:#2d6a4f;color:#fff;font-weight:700;cursor:pointer}
-.bu-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin:.35rem 0 .65rem}
-.bu-chips button{border-radius:999px;padding:.35rem .7rem;font-size:.75rem;font-weight:600;cursor:pointer;border:1px solid rgba(201,162,39,.3);background:rgba(255,255,255,.08);color:inherit}
-.cu-buddy-reply{margin-top:.5rem;padding:.75rem .85rem;border-radius:12px;border:1px solid rgba(201,162,39,.25);background:rgba(0,0,0,.18);font-size:.88rem;line-height:1.5}
-html[data-theme="light"] .cu-buddy-reply{background:rgba(255,255,255,.55)}
-.cu-buddy-reply a{color:#7dcea0;font-weight:600}
-html[data-theme="light"] .cu-buddy-reply a{color:#2d6a4f}
-.bu-send{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.55rem}
-.bu-send input{flex:1 1 12rem;min-height:44px;padding:.5rem .7rem;border-radius:12px;border:1px solid rgba(201,162,39,.35);background:transparent;color:inherit}
-.bu-foot{font-size:.75rem;opacity:.8;margin-top:.55rem}
+.cu-rich-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))!important;gap:.75rem!important;max-width:min(72rem,100%);margin:.75rem auto 1.25rem}
+.cu-rich-card{display:block;text-decoration:none;color:inherit;padding:.9rem 1rem;border-radius:16px;min-height:5.5rem;border:1px solid rgba(212,180,90,.32);background:rgba(12,22,18,.85)}
+html[data-theme=light] .cu-rich-card{background:#fff;color:#13201a}
+.cu-rich-card strong{display:block;font-size:1.02rem;margin:.2rem 0 .35rem;color:#e8d5a3}
+html[data-theme=light] .cu-rich-card strong{color:#6b5a1e}
+.cu-rich-card .desc{font-size:.86rem;opacity:.9;line-height:1.35}
+.cu-badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:999px;border:1px solid rgba(212,180,90,.4)}
+.cu-badge.open{background:rgba(30,125,94,.25)}
+.cu-section-title{max-width:min(72rem,100%);margin:1.1rem auto .35rem;color:#d4b45a}
+
+.bu-wrap{max-width:min(56rem,100%);margin:0 auto}
+.bu-search{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.bu-search input{flex:1;min-width:12rem;min-height:42px;padding:.45rem .65rem;border-radius:10px;border:1px solid rgba(212,180,90,.4);background:transparent;color:inherit}
+.bu-search button,.bu-chat-row button,.cu-buddy-prompt{min-height:42px;padding:.4rem .85rem;border-radius:999px;border:1px solid rgba(212,180,90,.35);background:transparent;color:inherit;font-weight:700;cursor:pointer}
+.bu-search button.primary,#cu-buddy-send{background:#1e7d5e;color:#fff;border:0}
+#cu-buddy-chat{min-height:8rem;max-height:16rem;overflow:auto;margin:.5rem 0}
 </style>
 </head>
-<body class="cu-page cu-mahtaab-on">
-<header class="cu-banner">
-  <a class="cu-brand" href="/charter/"><span class="cu-brand-mark" aria-hidden="true">ن</span><div><small>University</small><strong>Clarity University</strong></div></a>
+<body class="cu-page cu-mahtaab-on" data-campus-page="buddy">
+<header class="cu-banner" id="cu-banner">
+  <a class="cu-brand" href="/charter/">
+    <span class="cu-brand-mark" aria-hidden="true">ن</span>
+    <div><small>University</small><strong>Clarity University</strong></div>
+  </a>
   <div class="cu-banner-actions">
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
-    <a class="cu-companion-link" href="/">← Companion</a>
+    <a class="cu-main-link" href="/">← Companion</a>
   </div>
 </header>
-<main>
-<nav class="cu-pills" aria-label="Campus">
-  <a href="/charter/">Charter</a><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a><a href="/library/">Library</a>
-  <a href="/campus/buddy/" class="here" aria-current="page">Buddy</a><a href="/vault/">Vault</a>
-</nav>
-<div class="cu-content">
+<main class="cu-wrap">
+<nav class="cu-pills" aria-label="Campus"><a href="/charter/">Charter</a><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/">Lab</a><a href="/library/">Library</a><a href="/campus/buddy/" class="here" aria-current="page">Buddy</a><a href="/vault/">Vault</a></nav>
+<div class="bu-wrap">
   <h1 class="cu-h1">Study Buddy</h1>
-  <p class="cu-lead">Educational helper only. Search campus tools and ask where to study next — not a mufti, not a fatwa.</p>
-  <section class="bu-card"><h2>Search</h2>
+  <p class="cu-lead">Educational helper only. Search campus tools and ask where to study next — not a mufti, not a fatwa, not a teacher replacement.</p>
+
+  <section class="cu-plaque">
+    <strong>Search</strong>
     <div class="bu-search">
-      <input id="cu-buddy-q" type="search" placeholder="e.g. tajweed, seeker, vault, calligraphy" autocomplete="off"/>
-      <button type="button" id="cu-buddy-search">Search</button>
+      <input id="cu-buddy-q" type="search" placeholder="e.g. tajweed, seeker, transcript, arabic" />
+      <button type="button" class="primary" id="cu-buddy-search">Search</button>
     </div>
     <div id="cu-buddy-results"></div>
   </section>
-  <section class="bu-card"><h2>Campus doors</h2>
-    <div class="bu-doors">
-      <a href="/charter/">Charter &amp; admission</a><a href="/campus/">Journey Map</a>
-      <a href="/campus/desk/seeker/">Seeker desk</a><a href="/campus/desk/practice/">Practice desk</a>
-      <a href="/campus/desk/consistency/">Consistency desk</a><a href="/campus/desk/transmission/">Transmission desk</a>
-      <a href="/lab/tajweed/">Tajweed lab</a><a href="/lab/calligraphy/">Calligraphy studio</a>
-      <a href="/library/">Library</a><a href="/vault/">University Vault</a>
-    </div>
-  </section>
-  <section class="bu-card"><h2>Chat</h2>
-    <p style="font-size:.8rem;opacity:.85;margin:0 0 .35rem">Quick prompts</p>
-    <div class="bu-chips">
-      <button type="button" data-prompt="New seeker start">New seeker start</button>
-      <button type="button" data-prompt="Tajweed">Tajweed</button>
-      <button type="button" data-prompt="Library">Library</button>
-      <button type="button" data-prompt="After a module">After a module</button>
-      <button type="button" data-prompt="Calligraphy">Calligraphy</button>
-      <button type="button" data-prompt="Vault">Vault</button>
-    </div>
-    <div id="cu-buddy-log"><div class="cu-buddy-reply"><p>Assalamu alaykum. Search campus tools or ask where to study next. I point to modules and libraries — I do not issue fatwas.</p><p><a href="/charter/">Charter</a> · <a href="/campus/desk/seeker/">Seeker</a></p></div></div>
-    <div class="bu-send">
-      <input id="cu-buddy-chat" type="text" placeholder="Ask where to study — not for personal rulings" autocomplete="off"/>
+
+  <p class="cu-section-title"><strong>Campus doors</strong></p>
+  <div class="cu-rich-grid" id="cu-buddy-doors">
+    <a class="cu-rich-card" href="/charter/"><span class="cu-badge">Limits</span><strong>Charter &amp; admission</strong><span class="desc">Who the path is for · on-device admission</span></a>
+    <a class="cu-rich-card" href="/campus/"><span class="cu-badge open">Map</span><strong>Journey Map</strong><span class="desc">Phases · tools · lab · library</span></a>
+    <a class="cu-rich-card" href="/campus/desk/seeker/"><span class="cu-badge open">Phase 1</span><strong>Seeker desk</strong><span class="desc">Belief foundations · one module at a time</span></a>
+    <a class="cu-rich-card" href="/campus/desk/practice/"><span class="cu-badge">Phase 2</span><strong>Practice desk</strong><span class="desc">Skills after Seeker foundations</span></a>
+    <a class="cu-rich-card" href="/lab/tajweed/"><span class="cu-badge open">Lab</span><strong>Tajweed</strong><span class="desc">Listen · Match · Record — practice helper</span></a>
+    <a class="cu-rich-card" href="/lab/arabic/"><span class="cu-badge open">Lab</span><strong>Arabic · translate</strong><span class="desc">EN ↔ AR packs · conversation practice</span></a>
+    <a class="cu-rich-card" href="/library/"><span class="cu-badge open">Sources</span><strong>Library</strong><span class="desc">Qurʾān · Hadith pointers</span></a>
+    <a class="cu-rich-card" href="/vault/"><span class="cu-badge">Notes</span><strong>University Vault</strong><span class="desc">Study notes · Companion Amanah link</span></a>
+  </div>
+
+  <section class="cu-plaque">
+    <strong>Chat</strong>
+    <p class="cu-meta">Quick prompts</p>
+    <p style="display:flex;flex-wrap:wrap;gap:.35rem">
+      <button type="button" class="cu-buddy-prompt" data-prompt="Where should a new seeker start?">New seeker start</button>
+      <button type="button" class="cu-buddy-prompt" data-prompt="How do I use Tajweed lab?">Tajweed</button>
+      <button type="button" class="cu-buddy-prompt" data-prompt="What do I do after a module?">After a module</button>
+      <button type="button" class="cu-buddy-prompt" data-prompt="Where is Arabic translate?">Arabic translate</button>
+      <button type="button" class="cu-buddy-prompt" data-prompt="Where is the Library?">Library</button>
+    </p>
+    <div id="cu-buddy-chat"></div>
+    <p class="bu-chat-row" style="display:flex;flex-wrap:wrap;gap:.4rem">
+      <input id="cu-buddy-input" type="text" placeholder="Ask where to study — not for personal rulings" style="flex:1;min-width:12rem;min-height:42px;padding:.45rem .65rem;border-radius:10px;border:1px solid rgba(212,180,90,.4);background:transparent;color:inherit"/>
       <button type="button" id="cu-buddy-send">Send</button>
-    </div>
-    <p class="bu-foot">Verify on <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> / <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a></p>
+    </p>
+    <p class="cu-meta"><button type="button" id="cu-buddy-clear" style="min-height:36px;padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(212,180,90,.3);background:transparent;color:inherit">Clear chat</button> · Verify on Quran.com / Sunnah.com · Ask a local scholar for rulings</p>
   </section>
 </div>
 </main>
-<footer class="cu-foot"><p>Educational only — not a fatwa. Progress stays on this device.</p></footer>
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019L2"></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261019L2"></script>
-<script>
-(function(){"use strict";
-var ROUTES=[
-{k:/tajweed|makhraj|qalqalah|ghunnah/i,href:"/lab/tajweed/",label:"Tajweed lab"},
-{k:/callig|naskh|letter|qalam/i,href:"/lab/calligraphy/",label:"Calligraphy studio"},
-{k:/arabic|hajj.?2027/i,href:"/lab/arabic/",label:"Arabic studio"},
-{k:/recite|tilawa/i,href:"/lab/recite/",label:"Recite lab"},
-{k:/hifz|memor/i,href:"/lab/hifz/",label:"Hifz lab"},
-{k:/meme|media/i,href:"/lab/media/",label:"Media lab"},
-{k:/seeker|tawhid|foundation|new seeker/i,href:"/campus/desk/seeker/",label:"Seeker desk"},
-{k:/practice|salah|wudu|purif|after a module/i,href:"/campus/desk/practice/",label:"Practice desk"},
-{k:/consistency|weekly|review/i,href:"/campus/desk/consistency/",label:"Consistency desk"},
-{k:/transmission|dawah|share|da.?i/i,href:"/campus/desk/transmission/",label:"Transmission desk"},
-{k:/library|quran|sunnah|source/i,href:"/library/",label:"Library"},
-{k:/vault|pin|note/i,href:"/vault/",label:"University vault"},
-{k:/assign/i,href:"/campus/assignments/",label:"Assignments"},
-{k:/map|journey|campus|admission|charter/i,href:"/campus/",label:"Journey map"}
-];
-function answer(q){q=String(q||"").trim();
-if(!q)return{text:"Assalamu alaykum. Name a tool or phase. I point to campus doors — not fatwas.",links:[{href:"/campus/desk/seeker/",label:"Seeker desk"},{href:"/lab/tajweed/",label:"Tajweed lab"}]};
-var hits=[];ROUTES.forEach(function(r){if(r.k.test(q))hits.push({href:r.href,label:r.label});});
-if(!hits.length)return{text:"No exact match. Try: Seeker, Tajweed, Calligraphy, Library, Vault.",links:[{href:"/campus/",label:"Journey map"},{href:"/library/",label:"Library"}]};
-return{text:"Here is where that lives on campus. Educational only — not a fatwa.",links:hits.slice(0,5)};}
-function show(host,ans,asLog){if(!host)return;var links=(ans.links||[]).map(function(l){return'<a href="'+l.href+'">'+l.label+"</a>";}).join(" · ");
-var html="<p>"+ans.text+"</p><p>"+links+"</p>";
-if(asLog){var d=document.createElement("div");d.className="cu-buddy-reply";d.innerHTML=html;host.appendChild(d);}
-else host.innerHTML='<div class="cu-buddy-reply">'+html+"</div>";}
-function boot(){var q=document.getElementById("cu-buddy-q"),chat=document.getElementById("cu-buddy-chat");
-var res=document.getElementById("cu-buddy-results"),log=document.getElementById("cu-buddy-log");
-document.getElementById("cu-buddy-search").addEventListener("click",function(){show(res,answer(q&&q.value));});
-q.addEventListener("keydown",function(e){if(e.key==="Enter")show(res,answer(q.value));});
-document.getElementById("cu-buddy-send").addEventListener("click",function(){show(log,answer(chat&&chat.value),true);if(chat)chat.value="";});
-chat.addEventListener("keydown",function(e){if(e.key==="Enter"){show(log,answer(chat.value),true);chat.value="";}});
-document.querySelectorAll("[data-prompt]").forEach(function(b){b.addEventListener("click",function(){show(log,answer(b.getAttribute("data-prompt")),true);});});}
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
-})();
-</script>
+<footer class="cu-foot">Educational only — not a fatwa. Progress stays on this device.</footer>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019E36" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019E36" defer></script>
+<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019E36" defer></script>
+<script src="/campus/assets/js/cu-buddy-surface-v1.js?v=20261019E36" defer></script>
 </body>
 </html>
