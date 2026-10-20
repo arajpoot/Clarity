@@ -291,3 +291,189 @@ html[data-theme="light"] .cu-rich-card strong {
     grid-template-columns: 1fr !important;
   }
 }
+
+
+
+/* —— Bismillah calligraphy strength —— */
+.cu-bismillah-hero {
+  text-align: center;
+  padding: 1.75rem 1rem 1.25rem;
+  max-width: min(36rem, 100%);
+  margin: 0.25rem auto 1.25rem;
+  position: relative;
+}
+.cu-bismillah-hero::before,
+.cu-bismillah-hero::after {
+  content: "";
+  display: block;
+  height: 1px;
+  max-width: 12rem;
+  margin: 0.65rem auto;
+  background: linear-gradient(90deg, transparent, var(--cu-gold, #c9a84c), transparent);
+  opacity: 0.55;
+}
+.cu-bismillah {
+  font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif !important;
+  font-size: clamp(1.75rem, 6.5vw, 2.75rem) !important;
+  line-height: 1.7 !important;
+  color: var(--cu-gold, #d4b45a) !important;
+  font-weight: 700 !important;
+  direction: rtl !important;
+  unicode-bidi: isolate;
+  margin: 0.35rem 0 !important;
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 0 24px rgba(201, 168, 76, 0.22),
+    0 2px 0 rgba(0, 0, 0, 0.25);
+}
+html[data-theme="light"] .cu-bismillah {
+  text-shadow:
+    0 1px 0 #fff,
+    0 2px 4px rgba(100, 70, 10, 0.18);
+}
+.cu-rabbi {
+  font-family: "Amiri", "Noto Naskh Arabic", serif !important;
+  font-size: clamp(1.2rem, 3.8vw, 1.55rem) !important;
+  direction: rtl !important;
+  unicode-bidi: isolate;
+  color: var(--cu-ink, #e8efe9) !important;
+  margin: 0.45rem 0 0.2rem !important;
+  font-weight: 400 !important;
+  opacity: 0.95;
+}
+.cu-rabbi-en {
+  font-size: 0.8rem !important;
+  color: var(--cu-muted, #a8b5ad) !important;
+  margin: 0.15rem 0 0 !important;
+  font-style: italic;
+}
+
+/* Admission page uses wider stage */
+.adm-stage {
+  max-width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 0 0.5rem 2.5rem;
+}
+.adm-main-col {
+  max-width: min(40rem, 100%);
+  margin: 0 auto;
+}
+.adm-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.75rem;
+  max-width: min(72rem, 100%);
+  margin: 1.25rem auto 0;
+}
+
+
+
+/* —— Interactive plaque & tile hover —— */
+@media (hover: hover) and (pointer: fine) {
+  .cu-plaque,
+  .cu-info-plaque,
+  .adm-panel.cu-plaque {
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      border-color 0.22s ease,
+      background 0.22s ease;
+  }
+  .cu-plaque:hover,
+  .cu-info-plaque:hover,
+  .adm-panel.cu-plaque:hover {
+    transform: translateY(-3px);
+    border-color: rgba(30, 125, 94, 0.55);
+    box-shadow:
+      0 14px 36px rgba(0, 0, 0, 0.22),
+      0 0 0 1px rgba(201, 168, 76, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  html[data-theme="light"] .cu-plaque:hover,
+  html[data-theme="light"] .cu-info-plaque:hover,
+  html[data-theme="light"] .adm-panel.cu-plaque:hover {
+    box-shadow:
+      0 14px 32px rgba(60, 50, 20, 0.14),
+      0 0 0 1px rgba(30, 125, 94, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .cu-rich-card,
+  .cu-tile {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+  .cu-rich-card:hover,
+  .cu-tile:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: rgba(30, 125, 94, 0.6);
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.28),
+      0 0 24px rgba(30, 125, 94, 0.12),
+      inset 0 1px 0 rgba(232, 213, 163, 0.12);
+  }
+  html[data-theme="light"] .cu-rich-card:hover,
+  html[data-theme="light"] .cu-tile:hover {
+    box-shadow:
+      0 16px 36px rgba(40, 50, 40, 0.14),
+      0 0 20px rgba(30, 125, 94, 0.1),
+      inset 0 1px 0 #fff;
+  }
+  .cu-rich-card:hover strong,
+  .cu-tile:hover strong {
+    color: #f0e0a8;
+  }
+  html[data-theme="light"] .cu-rich-card:hover strong,
+  html[data-theme="light"] .cu-tile:hover strong {
+    color: #1e7d5e;
+  }
+  .cu-rich-card:hover .cu-badge.open,
+  .cu-tile:hover .cu-badge.open {
+    background: rgba(30, 125, 94, 0.45);
+  }
+
+  .cu-phase-icon {
+    transition: transform 0.18s ease, opacity 0.18s ease;
+  }
+  .cu-phase-icon:hover {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+  .cu-phase-icon:hover span {
+    border-color: rgba(30, 125, 94, 0.55);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(30, 125, 94, 0.15);
+  }
+
+  .cu-student-status:hover,
+  .cu-day-panel:hover {
+    border-color: rgba(201, 168, 76, 0.5);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+  }
+
+  .cu-pills a:hover {
+    background: rgba(30, 125, 94, 0.2);
+  }
+  .cu-pills a.here:hover,
+  .cu-pills a[aria-current="page"]:hover {
+    background: #186b50;
+  }
+}
+
+/* Focus-visible for keyboard (same lift language) */
+.cu-rich-card:focus-visible,
+.cu-tile:focus-visible,
+.cu-phase-icon:focus-visible {
+  outline: 2px solid rgba(30, 125, 94, 0.7);
+  outline-offset: 3px;
+  transform: translateY(-2px);
+}
+
+/* Active press */
+.cu-rich-card:active,
+.cu-tile:active {
+  transform: translateY(-1px) scale(0.99);
+}
