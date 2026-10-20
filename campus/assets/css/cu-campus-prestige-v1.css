@@ -477,3 +477,162 @@ html[data-theme="light"] .cu-bismillah {
 .cu-tile:active {
   transform: translateY(-1px) scale(0.99);
 }
+
+
+
+/* —— Dual embossed Bismillah / duʿā plaques + insignia —— */
+.cu-open-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.75rem;
+  max-width: min(44rem, 100%);
+  margin: 0.75rem auto 1.15rem;
+  padding: 0 0.5rem;
+}
+.cu-insignia {
+  flex: 0 0 auto;
+  width: 4.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cu-insignia-mark {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  border: 2px solid rgba(201, 168, 76, 0.55);
+  display: grid;
+  place-items: center;
+  font-family: "Amiri", serif;
+  font-size: 1.85rem;
+  color: var(--cu-gold, #d4b45a);
+  background: radial-gradient(circle at 35% 30%, rgba(232, 213, 163, 0.2), transparent 55%),
+    var(--cu-tile, rgba(16, 28, 22, 0.95));
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.cu-open-plaques {
+  flex: 1 1 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.cu-verse-plaque {
+  text-align: center;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--cu-border, rgba(201, 168, 76, 0.32));
+  background: var(--cu-plaque, linear-gradient(160deg, rgba(28, 44, 36, 0.95), rgba(14, 26, 20, 0.98)));
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+}
+html[data-theme="light"] .cu-verse-plaque {
+  background: linear-gradient(160deg, #f7f1e4, #ebe3d2);
+}
+.cu-verse-plaque .ar {
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: clamp(1.15rem, 3.5vw, 1.55rem);
+  line-height: 1.65;
+  color: var(--cu-gold, #d4b45a);
+  margin: 0;
+  font-weight: 700;
+}
+.cu-verse-plaque .en {
+  font-size: 0.8rem;
+  color: var(--cu-muted, #a8b5ad);
+  margin: 0.35rem 0 0;
+  line-height: 1.4;
+}
+.cu-verse-plaque.bismillah .ar {
+  font-size: clamp(1.35rem, 4.5vw, 1.95rem);
+}
+.cu-verse-plaque.dua .ar {
+  font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+  color: var(--cu-ink, #e8efe9);
+  font-weight: 400;
+}
+html[data-theme="light"] .cu-verse-plaque.dua .ar {
+  color: #13201a;
+}
+
+/* Desk module top verse (replaces Continue · Seeker) */
+.cu-desk-verse {
+  max-width: min(48rem, 100%);
+  margin: 0.65rem auto 1rem;
+  padding: 1rem 1.15rem;
+  border-radius: 18px;
+  border: 1px solid var(--cu-border, rgba(201, 168, 76, 0.35));
+  background: var(--cu-plaque);
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+.cu-desk-verse .ar {
+  font-family: "Amiri", serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: clamp(1.2rem, 3.8vw, 1.65rem);
+  line-height: 1.7;
+  color: var(--cu-gold, #d4b45a);
+  margin: 0;
+  font-weight: 700;
+}
+.cu-desk-verse .en {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: var(--cu-muted);
+  line-height: 1.45;
+}
+.cu-desk-verse .ref {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  letter-spacing: 0.04em;
+}
+
+/* Bottom desk navigation — leave module */
+.cu-desk-bottom-nav {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  padding: 0.65rem 0.75rem calc(0.65rem + env(safe-area-inset-bottom));
+  margin: 1.5rem auto 0;
+  max-width: min(72rem, 100%);
+  background: var(--cu-panel, rgba(12, 22, 18, 0.94));
+  border-top: 1px solid var(--cu-border, rgba(201, 168, 76, 0.3));
+  backdrop-filter: blur(8px);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
+}
+.cu-desk-bottom-nav a {
+  min-height: 42px;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  font-size: 0.84rem;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+}
+.cu-desk-bottom-nav a.primary {
+  background: #1e7d5e;
+  color: #fff !important;
+  border-color: transparent;
+}
+
+/* Hide redundant continue-to-self bars on desk pages */
+body[data-phase-room] .cu-continue,
+body[data-phase-room] #cu-continue,
+body[data-campus-page="desk"] .cu-map-continue {
+  display: none !important;
+}
