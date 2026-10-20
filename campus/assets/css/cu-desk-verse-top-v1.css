@@ -1,105 +1,72 @@
-/**
- * Desk learning modules · verse at top · campus nav at bottom · 20261020VT
- */
+/* Desk layout sequence · 20261020P2 */
+.cu-desk-main {
+  width: 100%;
+  max-width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 0 0.85rem 1.5rem;
+  box-sizing: border-box;
+}
 .cu-desk-verse {
   display: block;
-  order: -1;
-  margin: 0.5rem auto 1rem;
-  max-width: min(28rem, 100%);
+  margin: 0.65rem auto 1rem;
+  max-width: min(32rem, 100%);
   text-align: center;
-  padding: 0.85rem 1.1rem;
+  padding: 0.9rem 1.15rem;
   border-radius: 16px;
   border: 1px solid rgba(201, 168, 76, 0.55);
   background: linear-gradient(180deg, #fffef9, #f3ebdc);
-  box-shadow:
-    0 0 0 1px rgba(201, 168, 76, 0.12),
-    0 1px 0 rgba(255, 255, 255, 0.85) inset,
-    0 8px 24px rgba(19, 32, 26, 0.06);
+  box-shadow: 0 0 0 1px rgba(201,168,76,0.12), 0 1px 0 rgba(255,255,255,0.85) inset, 0 8px 24px rgba(19,32,26,0.06);
 }
 html[data-theme="dark"] .cu-desk-verse {
-  background: linear-gradient(180deg, rgba(28, 42, 34, 0.95), rgba(14, 24, 18, 0.98));
-  box-shadow: 0 1px 0 rgba(201, 168, 76, 0.1) inset, 0 10px 28px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(180deg, rgba(28,42,34,0.95), rgba(14,24,18,0.98));
+  box-shadow: 0 1px 0 rgba(201,168,76,0.1) inset, 0 10px 28px rgba(0,0,0,0.35);
 }
 .cu-desk-verse .ar {
   font-family: "Amiri", "Traditional Arabic", serif;
-  font-size: 1.35rem;
-  line-height: 1.85;
+  font-size: 1.4rem;
+  line-height: 1.9;
   color: #e4c76a;
   margin: 0 0 0.35rem;
 }
 html[data-theme="light"] .cu-desk-verse .ar { color: #8b6f3f; }
-.cu-desk-verse .en {
-  font-size: 0.88rem;
-  margin: 0 0 0.25rem;
-  opacity: 0.92;
-}
-.cu-desk-verse .ref {
-  font-size: 0.72rem;
-  opacity: 0.75;
-  margin: 0;
-}
+.cu-desk-verse .en { font-size: 0.9rem; margin: 0 0 0.25rem; opacity: 0.92; }
+.cu-desk-verse .ref { font-size: 0.72rem; opacity: 0.75; margin: 0; }
 
-/* Campus pills after modules — not competing at top */
-main.cu-wrap + nav.cu-pills,
-nav.cu-pills.cu-pills-foot {
-  margin: 1.25rem auto 0.5rem;
-}
-
-/* Student desk tools stay at bottom */
-nav.cu-desk-bottom-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  justify-content: center;
-  margin: 0.75rem auto 1.25rem;
-  max-width: 36rem;
-  padding: 0.4rem;
+nav.cu-pills {
+  display: flex; flex-wrap: wrap; gap: 0.2rem; justify-content: center;
+  max-width: 40rem; margin: 0 auto 1rem; padding: 0.32rem 0.4rem;
   border-radius: 999px;
-  border: 1px solid rgba(201, 168, 76, 0.35);
-  background: linear-gradient(180deg, rgba(16, 28, 22, 0.9), rgba(12, 22, 18, 0.95));
-  position: relative;
-  top: auto !important;
-  bottom: auto !important;
+  background: linear-gradient(180deg, #fffef9, #f5efe3);
+  border: 1px solid rgba(201,168,76,0.45);
+}
+html[data-theme="dark"] nav.cu-pills {
+  background: linear-gradient(180deg, rgba(28,42,34,0.95), rgba(14,24,18,0.98));
+}
+nav.cu-pills a {
+  border-radius: 999px; padding: 0.4rem 0.85rem; font-size: 0.78rem; font-weight: 700;
+  text-decoration: none; color: inherit; opacity: 0.88;
+}
+nav.cu-pills a.here, nav.cu-pills a[aria-current="page"] {
+  background: #1e7d5e; color: #fff !important; opacity: 1;
+}
+
+nav.cu-desk-bottom-nav {
+  display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center;
+  margin: 1rem auto 1.5rem; max-width: 36rem; padding: 0.4rem;
+  border-radius: 999px; border: 1px solid rgba(201,168,76,0.35);
+  position: relative !important; top: auto !important; bottom: auto !important;
+  background: linear-gradient(180deg, rgba(16,28,22,0.9), rgba(12,22,18,0.95));
 }
 html[data-theme="light"] nav.cu-desk-bottom-nav {
   background: linear-gradient(180deg, #fffef9, #f0e9db);
 }
 nav.cu-desk-bottom-nav a {
-  border-radius: 999px;
-  padding: 0.4rem 0.85rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 999px; padding: 0.4rem 0.85rem; font-size: 0.75rem; font-weight: 700;
+  text-decoration: none; color: inherit; border: 1px solid rgba(201,168,76,0.25);
 }
 nav.cu-desk-bottom-nav a.primary {
-  background: #1e7d5e;
-  color: #fff !important;
-  border-color: transparent;
+  background: #1e7d5e; color: #fff !important; border-color: transparent;
 }
 
-/* Kill any sticky top relocation of bottom nav */
-nav.cu-desk-bottom-nav[style*="position"],
-nav.cu-desk-bottom-nav.sticky,
-nav.cu-desk-bottom-nav.is-top {
-  position: relative !important;
-  top: auto !important;
-  inset: auto !important;
-}
-
-/* Verse must not sink under stage */
-main.cu-wrap .cu-desk-verse {
-  position: relative;
-  z-index: 2;
-}
-#cu-stage {
-  position: relative;
-  z-index: 1;
-}
-
-/* Hide duplicate verse plaques injected at end of stage if any */
-#cu-stage .cu-desk-verse:not(:first-child),
-#cu-stage > .cu-desk-verse {
-  display: none !important;
-}
+/* Hide duplicate verse injected inside stage */
+#cu-stage .cu-desk-verse { display: none !important; }
