@@ -1,10 +1,6 @@
-/**
- * companion-meme-hide-v1 · 20261020CRAFT
- * Reveal استوديو التبليغ only on Action tab
- */
 (function (g) {
   "use strict";
-  g.__CU_MEME_HIDE_V1__ = "20261020CRAFT";
+  g.__CU_MEME_HIDE_V1__ = "20261020ANCHOR";
   function onAction() {
     try {
       return (document.body.getAttribute("data-active-tab") || "") === "action";
@@ -13,32 +9,24 @@
     }
   }
   function apply() {
-    try {
-      var card = document.getElementById("meme-card");
-      if (!card) return;
-      if (!onAction()) {
-        card.setAttribute("hidden", "");
-        card.setAttribute("aria-hidden", "true");
-        card.style.setProperty("display", "none", "important");
-        card.style.setProperty("visibility", "hidden", "important");
-        return;
-      }
-      card.style.removeProperty("display");
-      card.style.removeProperty("visibility");
-      card.removeAttribute("hidden");
-      card.setAttribute("aria-hidden", "false");
-    } catch (e) {}
+    var card = document.getElementById("meme-card");
+    if (!card) return;
+    if (!onAction()) {
+      card.setAttribute("hidden", "");
+      card.style.setProperty("display", "none", "important");
+      return;
+    }
+    card.removeAttribute("hidden");
+    card.style.removeProperty("display");
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
-  else apply();
-  setTimeout(apply, 200);
+  document.addEventListener("DOMContentLoaded", apply);
+  setTimeout(apply, 300);
   setTimeout(apply, 1200);
-  var prev = g.switchTab;
-  if (typeof prev === "function") {
+  var p = g.switchTab;
+  if (typeof p === "function") {
     g.switchTab = function () {
-      var r = prev.apply(this, arguments);
+      var r = p.apply(this, arguments);
       setTimeout(apply, 0);
-      setTimeout(apply, 150);
       return r;
     };
   }

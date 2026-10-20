@@ -208,26 +208,30 @@
 
   function revealDrills() {
     try {
-      var onAction = (document.body.getAttribute("data-active-tab") || "") === "action";
-      var ids = ["meme-card","callig-lab-card","tajweed-live-card","tajweed-path-card","tj-deep-studio","tweet-desk-card","facebook-desk-card"];
-      ids.forEach(function (id) {
+      var tab = (document.body.getAttribute("data-active-tab") || "");
+      var actionIds = ["meme-card","callig-lab-card","tweet-desk-card","facebook-desk-card"];
+      var reminderIds = ["tajweed-live-card","tajweed-path-card","tj-deep-studio"];
+      actionIds.forEach(function (id) {
         var el = document.getElementById(id);
         if (!el) return;
-        if (!onAction) {
+        if (tab !== "action") {
           el.setAttribute("hidden", "");
-          el.setAttribute("aria-hidden", "true");
-          try {
-            el.style.setProperty("display", "none", "important");
-            el.style.setProperty("visibility", "hidden", "important");
-          } catch (e) {}
-          return;
-        }
-        el.removeAttribute("hidden");
-        el.setAttribute("aria-hidden", "false");
-        try {
+          el.style.setProperty("display", "none", "important");
+        } else {
+          el.removeAttribute("hidden");
           el.style.removeProperty("display");
-          el.style.removeProperty("visibility");
-        } catch (e) {}
+        }
+      });
+      reminderIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (tab !== "reminder") {
+          el.setAttribute("hidden", "");
+          el.style.setProperty("display", "none", "important");
+        } else {
+          el.removeAttribute("hidden");
+          el.style.removeProperty("display");
+        }
       });
     } catch (e) {}
   }
