@@ -319,3 +319,167 @@ footer + nav,
     padding-right: clamp(0.75rem, 2vw, 1.5rem);
   }
 }
+
+/* —— Day theme readability · 20261020DAY —— */
+html[data-theme="light"] body,
+body:not(.dark):not([data-theme="dark"]),
+html[data-theme="light"] {
+  --cph-text: #1a2e24;
+  --cph-muted: #3d5348;
+  --cph-card-bg: linear-gradient(155deg, #fffefb 0%, #f5efe3 55%, #ebe2d0 100%);
+  --cph-border: rgba(139, 111, 63, 0.4);
+}
+html[data-theme="light"] .cph-card,
+body:not(.dark) .cph-card {
+  background: var(--cph-card-bg, linear-gradient(155deg, #fffefb, #f5efe3)) !important;
+  color: #1a2e24 !important;
+  border-color: rgba(139, 111, 63, 0.4) !important;
+  box-shadow: 0 1px 0 #fff inset, 0 8px 28px rgba(26, 46, 36, 0.07) !important;
+}
+html[data-theme="light"] .cph-card h2 {
+  color: #7a5c2e !important;
+}
+html[data-theme="light"] .cph-lane {
+  color: #8b6f3f !important;
+}
+html[data-theme="light"] .cph-note,
+html[data-theme="light"] .cph-mirror {
+  color: #3d5348 !important;
+  opacity: 1 !important;
+}
+html[data-theme="light"] .cph-chip {
+  background: linear-gradient(180deg, #fffef9, #f0e8d8) !important;
+  color: #1a2e24 !important;
+  border-color: rgba(139, 111, 63, 0.45) !important;
+}
+html[data-theme="light"] .cph-btn.ghost {
+  color: #1a2e24 !important;
+  border-color: rgba(139, 111, 63, 0.4) !important;
+}
+html[data-theme="light"] .cph-tab-hint {
+  background: rgba(255, 252, 245, 0.95) !important;
+  color: #1a2e24 !important;
+}
+/* Section-wide day readability for cards */
+html[data-theme="light"] .tab-panel .card,
+html[data-theme="light"] .rrra-hub-hero,
+html[data-theme="light"] .rrra-hub-summary,
+html[data-theme="light"] .dual-tile {
+  color: #1a2e24;
+}
+html[data-theme="light"] .rrra-hub-sub,
+html[data-theme="light"] .td-src {
+  color: #3d5348 !important;
+  opacity: 1 !important;
+}
+html[data-theme="light"] .mv-chip,
+html[data-theme="light"] .btn-soft {
+  color: #1a2e24 !important;
+  background: linear-gradient(180deg, #fffefb, #f3ebe0) !important;
+  border-color: rgba(139, 111, 63, 0.35) !important;
+}
+
+/* Tasbeeh + next salah on provision card */
+.cph-top-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+.cph-salah {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #1e7d5e;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 125, 94, 0.35);
+  background: rgba(30, 125, 94, 0.08);
+}
+html[data-theme="light"] .cph-salah {
+  color: #0f5c42;
+  background: rgba(30, 125, 94, 0.1);
+}
+.cph-tasbeeh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+.cph-tas-btn {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  background: #1e7d5e;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.cph-tas-btn.ghost {
+  background: transparent;
+  color: inherit;
+  font-size: 0.85rem;
+}
+#cph-tas-count {
+  min-width: 1.75rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Day: un-grey city temps & muted chrome · 20261020ANCHOR */
+html[data-theme="light"] #hijri-temps,
+html[data-theme="light"] .hijri-temps,
+html[data-theme="light"] #hijri-temps .ht-item,
+html[data-theme="light"] #temp-makkah,
+html[data-theme="light"] #temp-madinah,
+html[data-theme="light"] .temp-live,
+html[data-theme="light"] #place-temp {
+  color: #1a2e24 !important;
+  opacity: 1 !important;
+  font-weight: 700;
+}
+html[data-theme="light"] #clarity-top-duo,
+html[data-theme="light"] .banner-overlay,
+html[data-theme="light"] .salah-box,
+html[data-theme="light"] .hijri-cal-meta {
+  color: #1a2e24 !important;
+}
+html[data-theme="light"] .salah-box,
+html[data-theme="light"] [class*="salah"] {
+  opacity: 1 !important;
+}
+html[data-theme="light"] .salah-box span,
+html[data-theme="light"] .salah-box strong,
+html[data-theme="light"] .salah-box div {
+  color: #1a2e24 !important;
+  opacity: 1 !important;
+}
+/* One daily drill grey box on day — readable */
+html[data-theme="light"] #clarity-one-daily-drill,
+html[data-theme="light"] .one-daily-drill,
+html[data-theme="light"] [class*="daily-drill"] {
+  background: linear-gradient(160deg, #1e3d32, #152e26) !important;
+  color: #f5f0e6 !important;
+  opacity: 1 !important;
+}
+/* Provision meta always visible */
+.cph-top-meta {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 0.65rem 0 !important;
+  min-height: 2.2rem;
+}
+.cph-salah,
+.cph-tasbeeh {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
