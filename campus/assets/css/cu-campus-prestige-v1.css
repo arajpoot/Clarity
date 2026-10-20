@@ -1,0 +1,293 @@
+
+/**
+ * Clarity University — prestige visual layer
+ * Inspired by prior Journey Map plaques/tiles · day & night · full viewport
+ * Educational only · not a physical university
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap");
+
+:root {
+  --cu-gold: #c9a84c;
+  --cu-gold-soft: rgba(201, 168, 76, 0.28);
+  --cu-teal: #1e7d5e;
+  --cu-teal-deep: #0f4d3a;
+  --cu-ink: #13201a;
+  --cu-cream: #f6f1e6;
+  --cu-panel: #fffcf5;
+  --cu-muted: #5c6b63;
+  --cu-radius: 18px;
+  --cu-max: min(72rem, 100%);
+  --cu-read: min(44rem, 100%);
+}
+
+html[data-theme="dark"],
+html:not([data-theme="light"]) {
+  --cu-bg: #0b1410;
+  --cu-panel: rgba(16, 28, 22, 0.92);
+  --cu-ink: #e8efe9;
+  --cu-muted: #a8b5ad;
+  --cu-border: rgba(201, 168, 76, 0.32);
+  --cu-tile: linear-gradient(145deg, rgba(22, 38, 30, 0.95), rgba(12, 22, 18, 0.98));
+  --cu-plaque: linear-gradient(160deg, rgba(28, 44, 36, 0.95), rgba(14, 26, 20, 0.98));
+}
+
+html[data-theme="light"] {
+  --cu-bg: #efe8da;
+  --cu-panel: #fffcf5;
+  --cu-ink: #13201a;
+  --cu-muted: #5c6b63;
+  --cu-border: rgba(160, 130, 60, 0.28);
+  --cu-tile: linear-gradient(145deg, #fffef9, #f3ede0);
+  --cu-plaque: linear-gradient(160deg, #e8e2d4, #d9d2c2);
+}
+
+body.cu-page {
+  background: var(--cu-bg, #0b1410);
+  color: var(--cu-ink);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+main.cu-wrap {
+  max-width: var(--cu-max) !important;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: max(0.75rem, env(safe-area-inset-left));
+  padding-right: max(0.75rem, env(safe-area-inset-right));
+  box-sizing: border-box;
+}
+
+/* —— Bismillah hero —— */
+.cu-bismillah-hero {
+  text-align: center;
+  padding: 1.25rem 0.75rem 1rem;
+  max-width: var(--cu-read);
+  margin: 0.5rem auto 1rem;
+}
+.cu-bismillah {
+  font-family: "Amiri", "Traditional Arabic", serif;
+  font-size: clamp(1.55rem, 5.5vw, 2.35rem);
+  line-height: 1.55;
+  color: var(--cu-gold);
+  font-weight: 700;
+  direction: rtl;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  margin: 0;
+}
+html[data-theme="light"] .cu-bismillah {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8), 0 1px 2px rgba(120, 90, 20, 0.2);
+}
+.cu-rabbi {
+  font-family: "Amiri", serif;
+  font-size: clamp(1.05rem, 3.2vw, 1.35rem);
+  direction: rtl;
+  color: var(--cu-ink);
+  opacity: 0.92;
+  margin: 0.55rem 0 0.25rem;
+  font-weight: 400;
+}
+.cu-rabbi-en {
+  font-size: 0.78rem;
+  color: var(--cu-muted);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* —— Embossed section titles —— */
+.cu-zone-label,
+.cu-emboss {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cu-gold);
+  margin: 1.35rem auto 0.5rem;
+  max-width: var(--cu-max);
+}
+.cu-emboss-sub {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  opacity: 0.75;
+  margin-left: 0.35rem;
+}
+
+/* —— Plaques (how phases work style) —— */
+.cu-plaque,
+.cu-info-plaque {
+  background: var(--cu-plaque);
+  border: 1px solid var(--cu-border);
+  border-radius: var(--cu-radius);
+  padding: 0.95rem 1.1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  max-width: var(--cu-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+html[data-theme="light"] .cu-plaque,
+html[data-theme="light"] .cu-info-plaque {
+  box-shadow: 0 6px 18px rgba(80, 60, 20, 0.08);
+}
+
+/* —— Tiles / rich cards —— */
+.cu-rich-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)) !important;
+  gap: 0.85rem !important;
+  max-width: var(--cu-max);
+  margin: 0.65rem auto 1.25rem;
+}
+.cu-rich-card,
+.cu-tile {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--cu-tile);
+  border: 1px solid var(--cu-border);
+  border-radius: var(--cu-radius);
+  padding: 1rem 1.05rem;
+  min-height: 6rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+html[data-theme="light"] .cu-rich-card,
+html[data-theme="light"] .cu-tile {
+  box-shadow: 0 8px 20px rgba(60, 50, 20, 0.1);
+}
+.cu-rich-card:hover,
+.cu-tile:hover {
+  transform: translateY(-2px);
+  border-color: rgba(30, 125, 94, 0.45);
+}
+.cu-rich-card strong,
+.cu-tile strong {
+  display: block;
+  font-size: 1.05rem;
+  margin: 0.25rem 0 0.35rem;
+  color: var(--cu-gold);
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+}
+html[data-theme="light"] .cu-rich-card strong {
+  color: #6b5a1e;
+}
+.cu-rich-card .desc,
+.cu-tile .desc {
+  font-size: 0.86rem;
+  color: var(--cu-muted);
+  line-height: 1.4;
+}
+.cu-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-border);
+  background: rgba(201, 168, 76, 0.12);
+}
+.cu-badge.open {
+  background: rgba(30, 125, 94, 0.28);
+  border-color: rgba(30, 125, 94, 0.45);
+  color: inherit;
+}
+
+/* —— Soft continue / status bars —— */
+.cu-student-status,
+.cu-day-panel,
+.cu-map-continue {
+  border-radius: var(--cu-radius) !important;
+  border: 1px solid var(--cu-border) !important;
+  background: var(--cu-panel) !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+/* —— Phase icon row (portal optional) —— */
+.cu-phase-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem auto;
+  max-width: var(--cu-max);
+}
+.cu-phase-icon {
+  width: 4.25rem;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.9;
+}
+.cu-phase-icon span {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0 auto 0.35rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-border);
+  background: var(--cu-tile);
+  font-size: 1.25rem;
+}
+
+/* —— Pills soft bar —— */
+.cu-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  padding: 0.4rem 0.5rem;
+  margin: 0.5rem auto 0.75rem;
+  max-width: var(--cu-max);
+  border-radius: 999px;
+  background: var(--cu-panel);
+  border: 1px solid var(--cu-border);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+.cu-pills a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+}
+.cu-pills a.here,
+.cu-pills a[aria-current="page"] {
+  background: var(--cu-teal);
+  color: #fff !important;
+}
+
+/* —— Admission panels prestige —— */
+.adm-panel {
+  background: var(--cu-panel) !important;
+  border: 1px solid var(--cu-border) !important;
+  border-radius: var(--cu-radius) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+.adm-steps button.on {
+  background: var(--cu-teal) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.cu-foot {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--cu-muted);
+  padding: 1.5rem 1rem 2rem;
+  max-width: var(--cu-max);
+  margin: 0 auto;
+}
+
+@media (max-width: 520px) {
+  .cu-rich-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
