@@ -1,0 +1,414 @@
+/*! Clarity Amana Vault CSS — ISOLATED
+ * Scope: #tab-notes, #amana-vault-gate, #amana-vault-interior only.
+ * Do not import path-rail / meme / curriculum rules here.
+ */
+#tab-notes.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 40vh !important;
+}
+#tab-notes.active.amana-locked #amana-vault-gate,
+#amana-vault-gate:not([hidden]) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 6 !important;
+  margin: 1rem auto !important;
+  max-width: 28rem !important;
+  width: calc(100% - 1.25rem) !important;
+}
+#amana-vault-gate input,
+#amana-vault-gate button,
+#amana-btn-unlock,
+#amana-btn-create,
+#amana-btn-have,
+#amana-btn-back-create,
+#amana-btn-lock {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+#tab-notes.active.amana-unlocked #amana-vault-interior {
+  display: flex !important;
+  flex-direction: column !important;
+  visibility: visible !important;
+}
+#tab-notes.active.amana-unlocked #amana-vault-gate {
+  display: none !important;
+}
+/* Protect vault from accidental strip-nuke / path-rail hide */
+#amana-vault-gate,
+#amana-vault-interior,
+#tab-notes {
+  content-visibility: visible !important;
+}
+
+/* VAULT FORTIFY — no black void above gate */
+#tab-notes.active {
+  min-height: 0 !important;
+  padding-top: 0.25rem !important;
+  margin-top: 0 !important;
+  background: transparent !important;
+}
+#tab-notes.active > *:first-child {
+  margin-top: 0.25rem !important;
+}
+#amana-vault-gate {
+  margin-top: 0.35rem !important;
+  margin-bottom: 1rem !important;
+  padding: 1rem 1rem 1.1rem !important;
+  border-radius: 16px !important;
+  background: linear-gradient(165deg, rgba(18,28,22,0.98), rgba(12,20,16,0.96)) !important;
+  border: 1px solid rgba(212,180,90,0.35) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.28) !important;
+}
+#amana-vault-gate .av-brand {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: #d4b45a !important;
+  margin-bottom: 0.5rem !important;
+}
+/* Hide empty spacer siblings that create black bands */
+#tab-notes.active .notes-shell:not(.amana-visible) {
+  /* notes shell only after unlock typically */
+}
+html[data-active-tab="notes"] #clarity-campus-stage,
+html[data-active-tab="notes"] #campus-stage-body {
+  /* stage can shrink when vault focused */
+  min-height: 0 !important;
+}
+/* When vault tab active, pull content up under chrome */
+html[data-active-tab="notes"] #main-application-workspace {
+  padding-top: 0.25rem !important;
+}
+html[data-active-tab="notes"] #tab-notes {
+  scroll-margin-top: calc(var(--clarity-nav-h, 48px) + 0.5rem);
+}
+#amana-vault-gate {
+  scroll-margin-top: calc(var(--clarity-nav-h, 48px) + var(--clarity-banner-h, 0px) + 0.5rem);
+}
+
+
+/* ---- Phase 1–2 bridge fortify (20261016BRIDGE) ---- */
+#amana-fiqh-host[hidden],
+#amana-fiqh-host[aria-hidden="true"] {
+  display: none !important;
+}
+#amana-fiqh-host.amana-estate-open,
+html[data-amana-session="open"] #amana-fiqh-host {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+html[data-amana-session="locked"] #user-family-tree-card,
+html[data-amana-session="locked"] #faraid-card,
+html[data-amana-session="locked"] #wasiyyah-card,
+html[data-amana-session="locked"] #fiqh-workflow-card {
+  display: none !important;
+}
+html[data-amana-session="open"] #user-family-tree-card,
+html[data-amana-session="open"] #faraid-card,
+html[data-amana-session="open"] #wasiyyah-card,
+html[data-amana-session="open"] #fiqh-workflow-card {
+  display: block !important;
+  visibility: visible !important;
+}
+#p5-vault-card {
+  max-width: 36rem;
+  margin: 0.75rem auto 1rem;
+  position: relative;
+  z-index: 5;
+}
+#tab-notes.amana-locked #amana-fiqh-host {
+  display: none !important;
+}
+
+/* Phase 3 path focus */
+.fiqh-path-focus {
+  outline: 2px solid rgba(212,180,90,.55);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(31,166,122,.12);
+}
+.fiqh-step-btn.on {
+  background: rgba(31,166,122,.35) !important;
+  border-color: rgba(212,180,90,.5) !important;
+  font-weight: 700;
+}
+#fiqh-path-checklist li.on {
+  color: var(--gold, #d4b45a);
+  font-weight: 650;
+}
+
+/* Phase C–D interior */
+#tab-notes.amana-unlocked #amana-vault-gate { display: none !important; }
+#tab-notes.amana-unlocked #amana-vault-interior,
+#tab-notes.amana-unlocked #amana-vault-interior:not([hidden]) {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+#tab-notes.amana-locked #amana-vault-interior { display: none !important; }
+#tab-notes.amana-locked #amana-vault-gate { display: block !important; }
+
+
+/* VIEWPORT RESTORE 20261016PAD — narrow side chrome so zoomed pedigree can edge-scroll */
+#tab-notes.active.amana-unlocked #amana-vault-host,
+#tab-notes.amana-unlocked #amana-vault-host {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.25rem 0.15rem 1rem !important;
+  box-sizing: border-box !important;
+}
+#tab-notes.active.amana-unlocked #amana-vault-interior,
+#tab-notes.amana-unlocked #amana-vault-interior {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.15rem 0.1rem 1rem !important;
+  box-sizing: border-box !important;
+}
+#tab-notes.active.amana-unlocked #amana-fiqh-tools-wrap,
+#tab-notes.amana-unlocked #amana-fiqh-tools-wrap,
+#tab-notes.active.amana-unlocked #user-family-tree-card,
+#tab-notes.amana-unlocked #user-family-tree-card,
+#tab-notes.active.amana-unlocked #faraid-card,
+#tab-notes.amana-unlocked #faraid-card,
+#tab-notes.active.amana-unlocked #wasiyyah-card,
+#tab-notes.amana-unlocked #wasiyyah-card {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0.2rem !important;
+  padding-right: 0.2rem !important;
+  box-sizing: border-box !important;
+}
+#tab-notes.active.amana-unlocked #uft-stage,
+#tab-notes.amana-unlocked #uft-stage,
+#tab-notes.active.amana-unlocked .uft-viewport,
+#tab-notes.amana-unlocked .uft-viewport,
+#tab-notes.active.amana-unlocked [class*="uft-stage"],
+#tab-notes.amana-unlocked [class*="family-tree"] {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  touch-action: pan-x pan-y !important;
+}
+/* Heir bar can stay slightly inset; tree needs the edges */
+#tab-notes.active.amana-unlocked .amana-session-bar {
+  margin-left: 0.15rem !important;
+  margin-right: 0.15rem !important;
+}
+/* Gate stays narrow when locked — do not widen lock card */
+#tab-notes.amana-locked #amana-vault-gate,
+#tab-notes.active.amana-locked #amana-vault-gate {
+  max-width: 28rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+/* Worksheet + quick note 20261016WS */
+.amana-quick-note {
+  margin: 0.75rem 0 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212,180,90,0.28);
+  background: rgba(0,0,0,0.18);
+}
+.amana-quick-note .aw-label,
+.amana-worksheet-body .aw-label { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #d4b45a; }
+.amana-quick-note input,
+.amana-quick-note textarea,
+.amana-worksheet-body input,
+.amana-worksheet-body textarea,
+.aw-select {
+  width: 100%; box-sizing: border-box;
+  margin: 0.25rem 0;
+  padding: 0.45rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.25);
+  color: inherit;
+  font: inherit;
+}
+.aw-muted { opacity: 0.75; font-weight: 400; font-size: 0.75rem; }
+.aw-stage-preview { margin-top: 0.4rem; font-size: 0.75rem; opacity: 0.9; }
+.aw-stage-row { padding: 0.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.amana-worksheet-dd {
+  margin: 0.5rem 0.1rem 0.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(0,0,0,0.15);
+  padding: 0.25rem 0.65rem 0.65rem;
+}
+.amana-worksheet-dd > summary {
+  cursor: pointer; font-weight: 700; color: #d4b45a; padding: 0.45rem 0;
+}
+.aw-detail-wrap { margin: 0.5rem 0; min-height: 2rem; font-size: 0.85rem; }
+.aw-detail .aw-meta { font-size: 0.75rem; opacity: 0.85; margin-bottom: 0.35rem; }
+.aw-badge { background: rgba(212,180,90,0.2); padding: 0.1rem 0.35rem; border-radius: 6px; }
+.aw-detail-actions { margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.aw-btn {
+  border-radius: 999px; padding: 0.3rem 0.7rem; font-size: 0.78rem; cursor: pointer;
+  border: 1px solid rgba(212,180,90,0.35); background: rgba(31,166,122,0.2); color: inherit;
+}
+.aw-btn.aw-danger { border-color: rgba(196,92,62,0.45); background: rgba(196,92,62,0.15); }
+.aw-compose { margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+.aw-actions { margin-top: 0.35rem; }
+
+
+/* VAULT FOCUS MODE — hide chrome when unlocked for noise-free worksheet/tree */
+html[data-active-tab="notes"] #tab-notes.amana-unlocked ~ * { }
+body[data-active-tab="notes"] #tab-notes.amana-unlocked {
+  /* flag for children */
+}
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) .banner,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) #clarity-top-duo,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) .path-duo,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) #companion-university-duo,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) .track-strip,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) #clarity-path-track,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) .phased-learning-bar,
+html[data-active-tab="notes"]:has(#tab-notes.amana-unlocked) #clarity-visit-pill-bar {
+  display: none !important;
+}
+/* fallback without :has */
+#tab-notes.amana-unlocked {
+  --amana-focus: 1;
+}
+body.amana-vault-focus .banner,
+body.amana-vault-focus #clarity-top-duo,
+body.amana-vault-focus .path-duo,
+body.amana-vault-focus #companion-university-duo,
+body.amana-vault-focus .track-strip,
+body.amana-vault-focus #clarity-path-track,
+body.amana-vault-focus #clarity-visit-pill-bar {
+  display: none !important;
+}
+/* Worksheet always visible block inside interior */
+#tab-notes.amana-unlocked #amana-worksheet-dd {
+  display: block !important;
+  visibility: visible !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0.35rem 0.1rem 0.85rem !important;
+  padding: 0.35rem 0.5rem 0.75rem !important;
+  border: 1px solid rgba(212,180,90,0.4) !important;
+  background: rgba(0,0,0,0.22) !important;
+}
+#tab-notes.amana-unlocked #amana-worksheet-select {
+  display: block !important;
+  width: 100% !important;
+  min-height: 2.4rem !important;
+  font-size: 0.9rem !important;
+}
+#tab-notes.amana-unlocked #cu-companion-notes-pad {
+  /* keep pad but quieter when unlocked — worksheet is primary */
+  opacity: 0.92;
+  max-width: none;
+  margin: 0.5rem 0.1rem 1rem;
+}
+
+
+/* WS3 UI — passphrase full width, no Notes pad, focus mode, worksheet */
+#amana-vault-gate,
+#tab-notes.amana-locked #amana-vault-gate,
+#tab-notes.active.amana-locked #amana-vault-gate {
+  max-width: min(36rem, 100%) !important;
+  width: calc(100% - 0.5rem) !important;
+  box-sizing: border-box !important;
+}
+#amana-vault-gate input[type="password"],
+#amana-pass-new,
+#amana-pass-confirm,
+#amana-pass-unlock {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 2.75rem !important;
+  font-size: 1rem !important;
+}
+#amana-vault-gate .av-field {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+/* Remove companion Notes pad everywhere */
+#cu-companion-notes-pad {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+/* Strong focus mode when vault open */
+body.amana-vault-focus .banner,
+body.amana-vault-focus #clarity-top-duo,
+body.amana-vault-focus .banner-overlay,
+body.amana-vault-focus .path-duo,
+body.amana-vault-focus #companion-university-duo,
+body.amana-vault-focus [class*="path-card"],
+body.amana-vault-focus .track-strip,
+body.amana-vault-focus #clarity-path-track,
+body.amana-vault-focus #clarity-visit-pill-bar,
+body.amana-vault-focus .phased-learning-bar,
+body.amana-vault-focus #phased-learning,
+body.amana-vault-focus .rrra-intro-strip {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+body.amana-vault-focus #main-application-workspace,
+body.amana-vault-focus .page-wrapper {
+  padding-top: 0.25rem !important;
+}
+/* Worksheet hero inside vault */
+#tab-notes.amana-unlocked #amana-worksheet-dd {
+  display: block !important;
+  order: -1;
+  border: 1px solid rgba(212,180,90,0.45) !important;
+  background: rgba(0,20,12,0.35) !important;
+  margin: 0.4rem 0.05rem 0.9rem !important;
+  padding: 0.4rem 0.55rem 0.8rem !important;
+}
+#tab-notes.amana-unlocked #amana-worksheet-select {
+  width: 100% !important;
+  min-height: 2.6rem !important;
+  font-size: 0.95rem !important;
+}
+#tab-notes.amana-unlocked .amana-session-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(8,24,18,0.94);
+}
+/* Quick note intro */
+.amana-quick-note .aw-intro {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.9;
+  margin: 0 0 0.45rem;
+}
+
+html.amana-vault-focus .banner,
+html.amana-vault-focus #clarity-top-duo,
+html.amana-vault-focus .path-duo,
+html.amana-vault-focus #companion-university-duo,
+html.amana-vault-focus .track-strip,
+html.amana-vault-focus #clarity-path-track,
+html.amana-vault-focus #clarity-visit-pill-bar {
+  display: none !important;
+}

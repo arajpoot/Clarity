@@ -1,0 +1,44 @@
+/**
+ * Craft Action-only CSS · 20261020CRAFT
+ * Hard-hide craft on every tab except Action
+ */
+body:not([data-active-tab="action"]) #meme-card,
+body:not([data-active-tab="action"]) #tweet-desk-card,
+body:not([data-active-tab="action"]) #facebook-desk-card,
+body:not([data-active-tab="action"]) #callig-lab-card,
+body:not([data-active-tab="action"]) #tajweed-live-card,
+body:not([data-active-tab="action"]) #tajweed-path-card,
+body:not([data-active-tab="action"]) #tj-deep-studio,
+body:not([data-active-tab="action"]) .meme-studio,
+body:not([data-active-tab="action"]) .meme-card-realigned,
+body:not([data-active-tab="action"]) #callig-stage-wrap,
+body:not([data-active-tab="action"]) #tj-deep-studio,
+/* never inside vault */
+#tab-notes #meme-card,
+#tab-notes #callig-lab-card,
+#tab-notes #tajweed-live-card,
+#tab-notes #tajweed-path-card,
+#tab-notes #tj-deep-studio,
+#tab-notes #tweet-desk-card,
+#tab-notes #facebook-desk-card,
+#amana-vault-host #meme-card,
+#amana-vault-host #callig-lab-card,
+#amana-vault-interior #meme-card,
+#tab-reminder #meme-card,
+#tab-reality #meme-card,
+#tab-reflection #meme-card,
+#tab-reminder #callig-lab-card,
+#tab-reality #callig-lab-card,
+#tab-reflection #callig-lab-card {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}

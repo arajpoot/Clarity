@@ -1,0 +1,432 @@
+/**
+ * Companion surface · full viewport harmony · 20261020WIDE
+ * Educational only — not a fatwa.
+ */
+
+/* —— Full-bleed shell —— */
+.clarity-provision-home,
+#clarity-provision-home {
+  width: 100%;
+  max-width: none !important;
+  margin: 0.5rem 0 0.85rem;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+}
+
+/* Prefer fluid page content under banner */
+#main-application-workspace,
+.main-application-workspace,
+#clarity-app-root,
+.rrra-hub-body,
+.tab-panel.rrra-hub,
+.tab-panel.active,
+.tab-panel.is-active {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+/* Cards & sections span viewport with soft side inset */
+.tab-panel .card,
+.rrra-hub-body .card,
+#meme-card,
+#callig-lab-card,
+#tajweed-live-card,
+#tj-deep-studio,
+#tajweed-path-card,
+.rrra-hub-hero,
+.rrra-hub-summary {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Dual path tiles full width */
+.dual-tiles {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.75rem !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0.75rem 0 1rem !important;
+  padding: 0 0.75rem !important;
+  box-sizing: border-box;
+}
+@media (max-width: 520px) {
+  .dual-tiles {
+    grid-template-columns: 1fr !important;
+  }
+}
+.dual-tile {
+  border-radius: 16px;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.dual-tile:hover {
+  border-color: rgba(30, 125, 94, 0.55);
+  transform: translateY(-1px);
+}
+
+/* —— Provision card (Do this today) —— */
+.cph-card {
+  width: 100%;
+  max-width: none;
+  border-radius: 18px;
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  background: linear-gradient(
+    145deg,
+    rgba(22, 38, 30, 0.96) 0%,
+    rgba(12, 22, 18, 0.98) 100%
+  );
+  padding: 1.05rem 1.25rem 1.15rem;
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.1),
+    0 1px 0 rgba(201, 168, 76, 0.12) inset,
+    0 12px 32px rgba(0, 0, 0, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+.cph-card::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  opacity: 0.85;
+  pointer-events: none;
+}
+html[data-theme="light"] .cph-card,
+body:not(.dark)[data-theme="light"] .cph-card {
+  background: linear-gradient(145deg, #fffefb 0%, #f7f0e4 55%, #efe6d6 100%);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 8px 28px rgba(19, 32, 26, 0.06);
+  color: #13201a;
+}
+.cph-card h2 {
+  margin: 0 0 0.35rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  font-weight: 700;
+  color: #e4c76a;
+  letter-spacing: 0.02em;
+}
+html[data-theme="light"] .cph-card h2 {
+  color: #8b6f3f;
+}
+.cph-lane {
+  margin: 0 0 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  opacity: 0.95;
+}
+.cph-card > p {
+  font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+  line-height: 1.55;
+  margin: 0.25rem 0;
+}
+.cph-note,
+.cph-mirror {
+  font-size: 0.78rem;
+  opacity: 0.82;
+  margin: 0.5rem 0 0;
+  line-height: 1.45;
+}
+
+/* Primary action row — full width flex */
+.cph-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+  width: 100%;
+}
+.cph-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: min(9.5rem, 100%);
+  min-height: 44px;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  background: #1e7d5e;
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 0.86rem;
+  text-decoration: none;
+  border: 0;
+  box-shadow: 0 2px 12px rgba(30, 125, 94, 0.3);
+  transition: filter 0.15s ease, transform 0.12s ease;
+}
+.cph-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.cph-btn.ghost {
+  background: transparent;
+  color: inherit !important;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  box-shadow: none;
+}
+
+/* Drill chips — span full row evenly */
+.cph-drills {
+  margin-top: 0.45rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  width: 100%;
+}
+.cph-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 6.5rem;
+  min-height: 38px;
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit !important;
+  border: 1px solid rgba(201, 168, 76, 0.42);
+  background: linear-gradient(180deg, rgba(28, 44, 36, 0.9), rgba(14, 26, 20, 0.95));
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.cph-chip:hover {
+  border-color: rgba(30, 125, 94, 0.55);
+  background: rgba(30, 125, 94, 0.2);
+}
+html[data-theme="light"] .cph-chip {
+  background: linear-gradient(180deg, #fffef9, #f0e9db);
+}
+
+/* Tab hints */
+.cph-tab-hint {
+  font-size: 0.82rem;
+  opacity: 0.88;
+  margin: 0.5rem 0 0.85rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 12px;
+  border-left: 3px solid rgba(201, 168, 76, 0.6);
+  background: rgba(16, 28, 22, 0.45);
+  width: 100%;
+  box-sizing: border-box;
+}
+html[data-theme="light"] .cph-tab-hint {
+  background: rgba(255, 252, 245, 0.85);
+}
+
+/* Bottom tab bar — full viewport width */
+.clarity-bottom-tabs,
+#clarity-bottom-tabs,
+nav.tab-bar,
+.tab-bar-bottom,
+.mobile-tab-bar,
+[class*="bottom-tab"] {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
+}
+/* Common bottom nav pattern on this SPA */
+body > nav[aria-label*="tab" i],
+footer + nav,
+.clarity-tab-nav {
+  width: 100% !important;
+}
+
+/* Gate / track pills — stretch across content width */
+.clarity-gate-switcher,
+.cgp-track-plaque,
+.cgp-track-row,
+.adm-steps {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+.cgp-track-row {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: stretch;
+}
+.cgp-track-row .cgs-btn,
+.cgp-track-row button {
+  flex: 1 1 auto;
+  min-width: 4.5rem;
+  justify-content: center;
+}
+
+/* Phased learning strip full width */
+[class*="phase"],
+.phased-learning,
+#clarity-phase-plaque-rail {
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Meme / studios fluid */
+#meme-stage-wrap,
+#meme-stage,
+#callig-stage-wrap,
+#callig-canvas {
+  max-width: 100% !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Hijri temps readable */
+#hijri-temps,
+.hijri-temps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+  font-size: 0.78rem;
+}
+#hijri-temps .ht-item strong {
+  font-weight: 800;
+}
+
+/* Scroll margin for drill targets */
+#meme-card,
+#callig-lab-card,
+#tajweed-live-card,
+#tj-deep-studio {
+  scroll-margin-top: 5rem;
+}
+
+/* Side padding only — no artificial 40rem cage for main flow */
+@media (min-width: 900px) {
+  .clarity-provision-home,
+  .tab-panel.rrra-hub .rrra-hub-body,
+  .dual-tiles {
+    padding-left: clamp(0.75rem, 2vw, 1.5rem);
+    padding-right: clamp(0.75rem, 2vw, 1.5rem);
+  }
+}
+
+/* —— Day theme readability · 20261020DAY —— */
+html[data-theme="light"] body,
+body:not(.dark):not([data-theme="dark"]),
+html[data-theme="light"] {
+  --cph-text: #1a2e24;
+  --cph-muted: #3d5348;
+  --cph-card-bg: linear-gradient(155deg, #fffefb 0%, #f5efe3 55%, #ebe2d0 100%);
+  --cph-border: rgba(139, 111, 63, 0.4);
+}
+html[data-theme="light"] .cph-card,
+body:not(.dark) .cph-card {
+  background: var(--cph-card-bg, linear-gradient(155deg, #fffefb, #f5efe3)) !important;
+  color: #1a2e24 !important;
+  border-color: rgba(139, 111, 63, 0.4) !important;
+  box-shadow: 0 1px 0 #fff inset, 0 8px 28px rgba(26, 46, 36, 0.07) !important;
+}
+html[data-theme="light"] .cph-card h2 {
+  color: #7a5c2e !important;
+}
+html[data-theme="light"] .cph-lane {
+  color: #8b6f3f !important;
+}
+html[data-theme="light"] .cph-note,
+html[data-theme="light"] .cph-mirror {
+  color: #3d5348 !important;
+  opacity: 1 !important;
+}
+html[data-theme="light"] .cph-chip {
+  background: linear-gradient(180deg, #fffef9, #f0e8d8) !important;
+  color: #1a2e24 !important;
+  border-color: rgba(139, 111, 63, 0.45) !important;
+}
+html[data-theme="light"] .cph-btn.ghost {
+  color: #1a2e24 !important;
+  border-color: rgba(139, 111, 63, 0.4) !important;
+}
+html[data-theme="light"] .cph-tab-hint {
+  background: rgba(255, 252, 245, 0.95) !important;
+  color: #1a2e24 !important;
+}
+/* Section-wide day readability for cards */
+html[data-theme="light"] .tab-panel .card,
+html[data-theme="light"] .rrra-hub-hero,
+html[data-theme="light"] .rrra-hub-summary,
+html[data-theme="light"] .dual-tile {
+  color: #1a2e24;
+}
+html[data-theme="light"] .rrra-hub-sub,
+html[data-theme="light"] .td-src {
+  color: #3d5348 !important;
+  opacity: 1 !important;
+}
+html[data-theme="light"] .mv-chip,
+html[data-theme="light"] .btn-soft {
+  color: #1a2e24 !important;
+  background: linear-gradient(180deg, #fffefb, #f3ebe0) !important;
+  border-color: rgba(139, 111, 63, 0.35) !important;
+}
+
+/* Tasbeeh + next salah on provision card */
+.cph-top-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+.cph-salah {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #1e7d5e;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 125, 94, 0.35);
+  background: rgba(30, 125, 94, 0.08);
+}
+html[data-theme="light"] .cph-salah {
+  color: #0f5c42;
+  background: rgba(30, 125, 94, 0.1);
+}
+.cph-tasbeeh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+.cph-tas-btn {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  background: #1e7d5e;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.cph-tas-btn.ghost {
+  background: transparent;
+  color: inherit;
+  font-size: 0.85rem;
+}
+#cph-tas-count {
+  min-width: 1.75rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
