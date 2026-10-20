@@ -10,6 +10,7 @@
     {q:["practice","new muslim","phase 2"], a:"Practice desk opens after Seeker foundations and the phase quiz when shown. It is skills after foundations — not a fatwa track.", links:[["/campus/desk/practice/","Practice"]]},
     {q:["transcript","progress"], a:"Transcript is a local learning record on this device only — not a public grade of īmān.", links:[["/campus/transcript/","Transcript"]]},
     {q:["fatwa","ruling","halal","haram"], a:"I do not issue fatwas or personal rulings. Ask a qualified local scholar. This path is educational only.", links:[["/charter/","Charter"]]},
+    {q:["arabic","translate","lingua","urdu"], a:"Arabic studio has EN ↔ AR offline packs and conversation practice. Open Lab → Arabic.", links:[["/lab/arabic/","Arabic studio"],["/lab/arabic/hajj2027/","Hajj phrases"]]},
     {q:["map","campus"], a:"Journey Map lists Seeker, Practice, Consistency, Transmission, Lab, and Library.", links:[["/campus/","Map"]]}
   ];
   function reply(text){

@@ -13,7 +13,7 @@
     try { phase = localStorage.getItem("clarity_curriculum_phase_v1") || "seeker"; } catch(e){}
     var p = PHASES[0];
     for (var i=0;i<PHASES.length;i++) if (PHASES[i].id===phase) p = PHASES[i];
-    var strong = document.querySelector("#cu-continue strong");
+    var strong = document.getElementById("cu-map-continue-title") || document.querySelector("#cu-continue strong");
     var hint = document.getElementById("cu-map-continue-hint");
     var a = document.getElementById("cu-map-continue-href");
     if (strong) strong.textContent = "Continue · " + p.label;
