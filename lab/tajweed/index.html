@@ -3,25 +3,29 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Tajweed studio · Clarity University</title>
-<meta name="description" content="Listen · Match · Record with visual rule shelves. Educational only — not a qāriʾ verdict. Nothing is uploaded."/>
+<title>Tajweed Studio · Clarity University</title>
+<meta name="description" content="Listen · Match · Record. Practice helper only — not a qāriʾ verdict. Educational only."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019TJ"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019TJ"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019TJ"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019TJ"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261018REBUILD"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019TJ"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019TJ"/>
-<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261019TJ"/>
-<link rel="stylesheet" href="/lab/shared/lab-station-bar.css?v=20261019L2"/>
-<link rel="stylesheet" href="/lab/tajweed/studio.css?v=20261019TJ"/>
-<link rel="stylesheet" href="/lab/tajweed/studio-v2.css?v=20261019TJ"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019TJ"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019TJ"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261018REBUILD"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261018REBUILD"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261018REBUILD"></script>
 <script src="/campus/assets/js/cu-chrome-canonical-v1.js?v=20261018CANON"></script>
+
+<link rel="stylesheet" href="/lab/tajweed/studio.css?v=20261018REBUILD"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-viewport-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-page-enrich-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-ui-revamp-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-student-status-v1.css?v=20261019FF"/>
 </head>
-<body class="cu-page cu-mahtaab-on" data-campus-page="lab-tajweed">
+<body class="cu-page cu-mahtaab-on" data-campus-page="lab">
 <header class="cu-banner">
   <a class="cu-brand" href="/charter/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
@@ -31,264 +35,144 @@
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
-    <a class="cu-companion-link" href="/">← Companion</a>
+    <a class="cu-main-link" href="/">← Companion</a>
   </div>
 </header>
+<main class="cu-wrap">
+<nav class="cu-pills" aria-label="Campus"><a href="/charter/">Charter</a><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/lab/" class="here" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/campus/buddy/">Buddy</a><a href="/vault/">Vault</a></nav>
+<div data-cu-student-status></div>
+<div style="width:100%;max-width:48rem;margin:0 auto">
 
-<main>
-<nav class="cu-pills" aria-label="Campus">
-  <a href="/charter/">◇ Charter</a>
-  <a href="/campus/">▣ Map</a>
-  <a href="/campus/desk/">☰ Desk</a>
-  <a href="/lab/" class="here" aria-current="page">◈ Lab</a>
-  <a href="/library/">▦ Library</a>
-  <a href="/campus/buddy/">✦ Buddy</a>
-  <a href="/vault/">◎ Vault</a>
-</nav>
-<nav class="lab-station-nav" data-lab-bar="1" aria-label="Lab stations">
-  <a href="/lab/">Hub</a>
-  <a href="/lab/arabic/">Arabic</a>
-  <a href="/lab/tajweed/" class="here" aria-current="page">Tajweed</a>
-  <a href="/lab/recite/">Recite</a>
-  <a href="/lab/calligraphy/">Calligraphy</a>
-  <a href="/lab/hifz/">Hifz</a>
-  <a href="/lab/media/">Media</a>
-</nav>
 
-<div class="tj-wrap">
-  <h1 class="tj-h1">Tajweed studio</h1>
-  <p class="tj-lead">Listen · Match · Record. Visual rule shelves + on-device practice. Score is a helper — not a qāriʾ verdict. Nothing is uploaded. A teacher still leads.</p>
+<h1 style="color:var(--lab-gold);font-size:1.25rem;margin:0 0 .35rem">Tajweed studio</h1>
+<p style="color:var(--lab-muted);font-size:.9rem;margin:0 0 1rem">Listen · Match · Record. Score is a practice helper, not a qāriʾ verdict. Nothing is uploaded.</p>
 
-  <!-- Static coach: always under title -->
-  <section class="tj-card" id="tj-coach-panel" aria-label="Practice coach">
-    <h2>Practice coach</h2>
-    <p class="tj-muted">Slow listen → visible echo → self-record → one rule focus. Same pattern as strong digital aids; apps support drill, teachers certify.</p>
-    <div class="tj-coach-row" id="tj-coach-row">
-      <button type="button" class="tj-pill on" data-tip="listen">Listen first</button>
-      <button type="button" class="tj-pill" data-tip="match">Match gently</button>
-      <button type="button" class="tj-pill" data-tip="record">Record for you only</button>
-      <button type="button" class="tj-pill" data-tip="loop">Loop the hard bar</button>
+<section style="margin-bottom:1rem">
+  <h2 style="font-size:1rem;color:var(--lab-gold);margin:0 0 .5rem">Rule focus (examples)</h2>
+  <div class="lab-chips" style="display:flex;flex-wrap:wrap;gap:.35rem">
+    <button type="button" class="lab-chip" data-lab-load="1:1">Istiʿādhah path · 1:1</button>
+    <button type="button" class="lab-chip" data-lab-load="1:7">Madd example · 1:7</button>
+    <button type="button" class="lab-chip" data-lab-load="112:1">Qalqalah-ready · 112:1</button>
+    <button type="button" class="lab-chip" data-lab-load="103:1">Ghunnah path · 103:1</button>
+  </div>
+  <p style="font-size:.75rem;color:var(--lab-muted);margin:.4rem 0 0">Educational examples only — not a qāriʾ certification.</p>
+</section>
+
+<details class="tj-tool-panel" id="tj-lmr-panel" open>
+  <summary>🎧 Listen · Match · Record</summary>
+  <div class="tj-practice-loop" id="tj-lmr">
+
+    <div class="tj-lmr-mode-row" role="group" style="display:flex;gap:.35rem;flex-wrap:wrap;margin:.5rem 0">
+      <button type="button" class="tj-lmr-mode active" data-mode="verse">📖 Verse practice</button>
+      <button type="button" class="tj-lmr-mode" data-mode="rule">📐 Rule audio practice</button>
     </div>
-    <p class="tj-tip" id="tj-coach-msg">Play the master example 2–3 times. Slow attention beats fast imitation.</p>
-    <p class="tj-links"><a href="/lab/recite/">← Recite studio</a> · <a href="/library/">Library AV</a> · <a href="https://quran.com" target="_blank" rel="noopener noreferrer">Quran.com</a></p>
-  </section>
 
-  <!-- Visual rule modules -->
-  <section class="tj-card">
-    <h2>Rule shelves (visual)</h2>
-    <p class="tj-muted">Color legend used in many mushaf overlays — for recognition while practicing, not a fatwa.</p>
-    <div class="tj-legend">
-      <span><i class="c-madd"></i> Madd</span>
-      <span><i class="c-ghunnah"></i> Ghunnah / Ikhfāʾ</span>
-      <span><i class="c-qalqalah"></i> Qalqalah</span>
-      <span><i class="c-idgham"></i> Idghām</span>
-      <span><i class="c-izhar"></i> Iẓhār</span>
+    <div class="tj-lmr-toolbar" id="tj-lmr-toolbar-verse" style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.5rem 0">
+      <label>Sūrah <select id="tj-lmr-surah"></select></label>
+      <label>Āyah <input type="number" id="tj-lmr-ayah" min="1" value="1" style="width:4rem"/></label>
+      <button type="button" class="lab-btn" id="tj-lmr-fetch">Pull āyah</button>
+      <button type="button" class="lab-btn" id="tj-lmr-random">Random</button>
     </div>
-    <div class="tj-rule-grid">
-      <article class="tj-rule" data-rule="noon">
-        <h3>Nūn sākinah &amp; tanwīn</h3>
-        <ul>
-          <li><strong>Iẓhār</strong> — clear · ء ه ع ح غ خ</li>
-          <li><strong>Idghām</strong> — merge · ي ر م ل و ن</li>
-          <li><strong>Iqlāb</strong> — to mīm · ب</li>
-          <li><strong>Ikhfāʾ</strong> — hide + ghunnah · remaining</li>
-        </ul>
-        <button type="button" class="tj-pill" data-lab-load="103:1">Practice · 103:1</button>
-      </article>
-      <article class="tj-rule" data-rule="meem">
-        <h3>Mīm sākinah</h3>
-        <ul>
-          <li><strong>Ikhfāʾ shafawī</strong> · ب</li>
-          <li><strong>Idghām shafawī</strong> · م</li>
-          <li><strong>Iẓhār shafawī</strong> · other letters</li>
-        </ul>
-        <button type="button" class="tj-pill" data-lab-load="1:7">Practice · 1:7</button>
-      </article>
-      <article class="tj-rule" data-rule="qalqalah">
-        <h3>Qalqalah · قطب جد</h3>
-        <ul>
-          <li>Letters: <strong>ق ط ب ج د</strong></li>
-          <li>Echo when sākin · stronger at stop</li>
-        </ul>
-        <button type="button" class="tj-pill" data-lab-load="112:1">Practice · 112:1</button>
-      </article>
-      <article class="tj-rule" data-rule="madd">
-        <h3>Madd (elongation)</h3>
-        <ul>
-          <li>Natural ~2 counts</li>
-          <li>Connected / separate longer</li>
-          <li>Hear duration on master audio</li>
-        </ul>
-        <button type="button" class="tj-pill" data-lab-load="1:7">Practice · 1:7</button>
-      </article>
-    </div>
-  </section>
 
-  <!-- Makharij zones (educational grid, not medical) -->
-  <section class="tj-card">
-    <h2>Makhārij zones (overview)</h2>
-    <p class="tj-muted">Five broad regions — learn names, then hear a teacher. This grid is a memory aid only.</p>
-    <div class="tj-makh-grid">
-      <div class="tj-makh"><strong>Ḥalq</strong><span>Throat · ء ه ع ح غ خ</span></div>
-      <div class="tj-makh"><strong>Lisān</strong><span>Tongue · largest set of letters</span></div>
-      <div class="tj-makh"><strong>Shafatān</strong><span>Lips · ب م و ف</span></div>
-      <div class="tj-makh"><strong>Khayshūm</strong><span>Nasal · ghunnah</span></div>
-      <div class="tj-makh"><strong>Jawf</strong><span>Hollow · madd letters</span></div>
+    <div id="tj-lmr-toolbar-rule" hidden style="margin:.5rem 0">
+      <label>Rule
+        <select id="tj-lmr-rule">
+          <option value="makharij">Makhārij</option>
+          <option value="izhar">Iẓhār</option>
+          <option value="ikhfa">Ikhfāʾ</option>
+          <option value="idgham">Idghām</option>
+          <option value="iqlab">Iqlāb</option>
+          <option value="qalqalah">Qalqalah</option>
+          <option value="ghunnah">Ghunnah</option>
+          <option value="madd">Madd</option>
+          <option value="waqf">Waqf</option>
+        </select>
+      </label>
+      <button type="button" class="lab-btn" id="tj-lmr-fetch-rule">Load rule example</button>
+      <button type="button" class="lab-btn" id="tj-lmr-rule-next">Next example</button>
     </div>
-    <p class="tj-links">
-      <a href="https://quran.com" target="_blank" rel="noopener noreferrer">Color mushaf · Quran.com</a> ·
-      <a href="/library/">Library shelves</a>
-    </p>
-  </section>
 
-  <!-- Quick rule chips (existing studio expects data-lab-load) -->
-  <section class="tj-card">
-    <h2>Rule focus (examples)</h2>
-    <div class="tj-chips">
-      <button type="button" class="tj-pill" data-lab-load="1:1">Istiʿādhah path · 1:1</button>
-      <button type="button" class="tj-pill" data-lab-load="1:7">Madd example · 1:7</button>
-      <button type="button" class="tj-pill" data-lab-load="112:1">Qalqalah-ready · 112:1</button>
-      <button type="button" class="tj-pill" data-lab-load="103:1">Ghunnah path · 103:1</button>
-    </div>
-    <p class="tj-muted">Educational examples only — not a qāriʾ certification.</p>
-  </section>
+    <p id="tj-lmr-meta" style="font-size:.78rem;color:var(--lab-muted)"></p>
+    <p id="tj-lmr-ar" dir="rtl" lang="ar" style="font-size:1.35rem;line-height:1.9"></p>
+    <p id="tj-lmr-en" style="font-size:.9rem;color:var(--lab-muted)"></p>
+    <audio id="tj-lmr-master-audio" preload="none"></audio>
+    <audio id="tj-lmr-user-audio" preload="none"></audio>
 
-  <!-- LMR panel — preserve IDs for tajweed-lmr.js -->
-  <details class="tj-tool-panel tj-card" id="tj-lmr-panel" open>
-    <summary>🎧 Listen · Match · Record</summary>
-    <div class="tj-practice-loop" id="tj-lmr">
-      <div class="tj-lmr-mode-row" role="group">
-        <button type="button" class="tj-lmr-mode active" data-mode="verse">📖 Verse practice</button>
-        <button type="button" class="tj-lmr-mode" data-mode="rule">📐 Rule audio practice</button>
+    <!-- Step 1 Listen -->
+    <div class="tj-lmr-step" id="tj-lmr-step" data-step="1" style="margin:.75rem 0;padding:.6rem;border:1px solid var(--lab-line);border-radius:12px">
+      <strong>1 · Listen</strong>
+      <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem">
+        <button type="button" class="lab-btn lab-btn-primary" id="tj-lmr-play-master">▶ Play master (Ḥuṣarī)</button>
+        <a id="tj-lmr-quran-link" href="https://quran.com/1/1" target="_blank" rel="noopener">Open on Quran.com ↗</a>
       </div>
+    </div>
 
-      <div class="tj-lmr-toolbar" id="tj-lmr-toolbar-verse">
-        <label>Sūrah <select id="tj-lmr-surah"><option value="1">1 · Al-Fātiḥah</option></select></label>
-        <label>Āyah <input id="tj-lmr-ayah" type="number" min="1" value="1" style="width:4rem"/></label>
-        <button type="button" class="tj-btn" id="tj-lmr-fetch">Pull āyah</button>
-        <button type="button" class="tj-btn ghost" id="tj-lmr-random">Random</button>
+    <!-- Step 2 Match / read-along -->
+    <div class="tj-lmr-step" id="tj-lmr-step2" data-step="2" style="margin:.75rem 0;padding:.6rem;border:1px solid var(--lab-line);border-radius:12px">
+      <strong>2 · Match · read along</strong>
+      <p id="tj-lmr-meta-read" style="font-size:.75rem;color:var(--lab-muted)"></p>
+      <p id="tj-lmr-ar-read" dir="rtl" lang="ar" style="font-size:1.2rem;line-height:1.85"></p>
+      <p id="tj-lmr-en-read" style="font-size:.85rem;color:var(--lab-muted)"></p>
+      <button type="button" class="lab-btn" id="tj-lmr-play-master2">▶ Play while reading</button>
+    </div>
+
+    <!-- Step 3 Record -->
+    <div class="tj-lmr-step" id="tj-lmr-step3" data-step="3" style="margin:.75rem 0;padding:.6rem;border:1px solid var(--lab-line);border-radius:12px">
+      <strong>3 · Record</strong>
+      <p id="tj-lmr-ar2" dir="rtl" lang="ar" style="font-size:1.1rem"></p>
+      <div class="tj-lmr-live-meter" style="height:8px;background:rgba(255,255,255,.08);border-radius:4px;margin:.5rem 0;overflow:hidden">
+        <div id="tj-lmr-meter-fill" style="height:100%;width:0;background:#1e7d5e"></div>
       </div>
-
-      <div class="tj-lmr-toolbar" id="tj-lmr-toolbar-rule" hidden>
-        <label>Rule
-          <select id="tj-lmr-rule">
-            <option value="madd">Madd</option>
-            <option value="qalqalah">Qalqalah</option>
-            <option value="ghunnah">Ghunnah</option>
-            <option value="idgham">Idghām</option>
-          </select>
-        </label>
-        <button type="button" class="tj-btn" id="tj-lmr-fetch-rule">Load example</button>
-        <button type="button" class="tj-btn ghost" id="tj-lmr-rule-next">Next</button>
+      <div style="display:flex;flex-wrap:wrap;gap:.35rem">
+        <button type="button" class="lab-btn lab-btn-primary" id="tj-lmr-rec-btn">● Record</button>
+        <button type="button" class="lab-btn" id="tj-lmr-rec-stop">Stop</button>
+        <button type="button" class="lab-btn" id="tj-lmr-rec-play">Play my take</button>
+        <button type="button" class="lab-btn" id="tj-lmr-play-master3">▶ Master again</button>
       </div>
+      <p id="tj-lmr-rec-status" style="font-size:.75rem;color:var(--lab-muted);margin-top:.35rem"></p>
+    </div>
 
-      <p class="tj-meta" id="tj-lmr-meta">Qurʾān —</p>
-      <div class="tj-ar" id="tj-lmr-ar" dir="rtl" lang="ar">—</div>
-      <div class="tj-en" id="tj-lmr-en">Pull an āyah to begin.</div>
-      <button type="button" class="tj-btn ghost" id="lab-tts-en">Speak translation</button>
-
-      <div class="tj-step">
-        <h3>1 · Listen</h3>
-        <audio id="tj-lmr-master-audio" controls preload="none" style="width:100%;max-width:24rem"></audio>
-        <div class="tj-row">
-          <button type="button" class="tj-btn" id="tj-lmr-play-master">▶ Play master (Ḥuṣarī)</button>
-          <a class="tj-btn ghost" id="tj-lmr-quran-link" href="https://quran.com" target="_blank" rel="noopener noreferrer">Open on Quran.com</a>
+    <!-- Step 4 Focus + Score -->
+    <div class="tj-lmr-step" data-step="4" style="margin:.75rem 0;padding:.6rem;border:1px solid var(--lab-line);border-radius:12px">
+      <strong>4 · Focus · practice score</strong>
+      <div id="tj-lmr-focus-chips" style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0"></div>
+      <p id="tj-lmr-focus-note" style="font-size:.78rem;color:var(--lab-muted)"></p>
+      <div id="tj-lmr-score-card" style="margin-top:.5rem;padding:.6rem;border-radius:12px;background:rgba(30,125,94,.15)">
+        <div style="display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap">
+          <span id="tj-lmr-score-val" style="font-size:1.5rem;font-weight:800;color:var(--lab-gold)">—</span>
+          <button type="button" class="lab-btn" id="tj-lmr-score-btn">Score this take</button>
+          <button type="button" class="lab-btn" id="tj-lmr-mark-done">Mark practiced</button>
+        </div>
+        <p id="tj-lmr-score-note" style="font-size:.75rem;color:var(--lab-muted);margin:.35rem 0 0">Practice helper only — not a qāriʾ verdict.</p>
+        <div style="margin-top:.5rem;font-size:.72rem;color:var(--lab-muted)">
+          <div>Energy <span id="tj-lmr-bar-energy">—</span></div>
+          <div>Length <span id="tj-lmr-bar-len">—</span></div>
+          <div>Timing <span id="tj-lmr-bar-time">—</span></div>
         </div>
       </div>
-
-      <div class="tj-step" id="tj-lmr-step2">
-        <h3>2 · Match · read along</h3>
-        <p class="tj-meta" id="tj-lmr-meta-read">—</p>
-        <button type="button" class="tj-btn" id="tj-lmr-play-read">▶ Play while reading</button>
-      </div>
-
-      <div class="tj-step">
-        <h3>3 · Record</h3>
-        <p class="tj-muted">On-device only. Allow microphone when asked.</p>
-        <div class="tj-meter" id="tj-lmr-meter" aria-hidden="true"><span id="tj-lmr-meter-bar"></span></div>
-        <div class="tj-row">
-          <button type="button" class="tj-btn" id="tj-lmr-rec">● Record</button>
-          <button type="button" class="tj-btn ghost" id="tj-lmr-stop">Stop</button>
-          <button type="button" class="tj-btn ghost" id="tj-lmr-play-user">Play my take</button>
-          <button type="button" class="tj-btn ghost" id="tj-lmr-master-again">▶ Master again</button>
-        </div>
-        <audio id="tj-lmr-user-audio" controls preload="none" style="width:100%;max-width:24rem;margin-top:.4rem"></audio>
-      </div>
-
-      <div class="tj-step">
-        <h3>4 · Focus · practice score</h3>
-        <div class="tj-row">
-          <button type="button" class="tj-btn" id="tj-lmr-score">Score this take</button>
-          <button type="button" class="tj-btn ghost" id="tj-lmr-mark">Mark practiced</button>
-        </div>
-        <p class="tj-meta" id="tj-lmr-step">Practice helper only — not a qāriʾ verdict</p>
-      </div>
+      <p id="tj-lmr-loop-stat" style="font-size:.72rem;color:var(--lab-muted);margin-top:.4rem"></p>
     </div>
-  </details>
 
-  <!-- Desk module injection map -->
-  <section class="tj-card">
-    <h2>Where this fits on the Desk</h2>
-    <p class="tj-muted">Open the module first, then return here for one short LMR drill.</p>
-    <div class="tj-desk-map">
-      <a href="/campus/desk/seeker/"><strong>Seeker</strong><span>Foundations · short āyah drills</span></a>
-      <a href="/campus/desk/practice/"><strong>Practice</strong><span>Ṣalāh-related careful reading</span></a>
-      <a href="/campus/desk/consistency/"><strong>Consistency</strong><span>Weekly review loop</span></a>
-      <a href="/campus/desk/transmission/"><strong>Transmission</strong><span>Cite sources; adab in sharing</span></a>
+    <div style="margin-top:.75rem">
+      <h3 style="font-size:.9rem;color:var(--lab-gold)">Session log</h3>
+      <ul id="tj-lmr-log-list" style="font-size:.78rem;color:var(--lab-muted);padding-left:1.1rem"></ul>
+      <p id="tj-lmr-log-when" style="font-size:.7rem;color:var(--lab-muted)"></p>
+      <p id="tj-lmr-log-item" hidden></p>
     </div>
-  </section>
+  </div>
+</details>
+
+<p class="lab-foot">Educational only — not a fatwa. · Surface · 20261017LIB</p>
+
 </div>
 </main>
-
-<footer class="cu-foot">
-  <p>Educational only — not a fatwa. · Tajweed studio 20261019TJ · on-device LMR</p>
-</footer>
-
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019TJ"></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261019TJ"></script>
-<script src="/lab/shared/lab-station-bar.js?v=20261019L2" defer></script>
-<script src="/lab/shared/verse-practice.js?v=20261019TJ"></script>
-<script src="/lab/shared/lab-av.js?v=20261019TJ"></script>
-<script src="/lab/shared/tajweed-lmr.js?v=20261019TJ"></script>
-<script src="/lab/tajweed/studio.js?v=20261019TJ"></script>
-<script>
-(function(){
-  "use strict";
-  var tips = {
-    listen: "Play the master example 2–3 times. Slow attention beats fast imitation.",
-    match: "Echo with the text visible. One rule focus per session (madd, qalqalah, ghunnah…).",
-    record: "Recording stays on this device. Score is a practice helper — not a qāriʾ verdict.",
-    loop: "Repeat the difficult phrase before the full āyah — A–B style focus."
-  };
-  var row = document.getElementById("tj-coach-row");
-  var msg = document.getElementById("tj-coach-msg");
-  if (row) {
-    row.addEventListener("click", function(ev){
-      var b = ev.target.closest("[data-tip]");
-      if (!b) return;
-      row.querySelectorAll("[data-tip]").forEach(function(x){ x.classList.toggle("on", x === b); });
-      if (msg) msg.textContent = tips[b.getAttribute("data-tip")] || "";
-    });
-  }
-  /* Rule shelf practice buttons → same data-lab-load path as chips */
-  document.querySelectorAll(".tj-rule [data-lab-load]").forEach(function(b){
-    b.addEventListener("click", function(){
-      var chip = document.querySelector('.tj-chips [data-lab-load="'+b.getAttribute("data-lab-load")+'"]');
-      if (chip) chip.click();
-      else {
-        var parts = (b.getAttribute("data-lab-load")||"").split(":");
-        var s = document.getElementById("tj-lmr-surah");
-        var a = document.getElementById("tj-lmr-ayah");
-        var f = document.getElementById("tj-lmr-fetch");
-        if (s && parts[0]) s.value = parts[0];
-        if (a && parts[1]) a.value = parts[1];
-        if (f) f.click();
-        var panel = document.getElementById("tj-lmr-panel");
-        if (panel) panel.open = true;
-      }
-    });
-  });
-})();
-</script>
+<footer class="cu-foot">Educational only — not a fatwa. Progress stays on this device.</footer>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261018REBUILD" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261018REBUILD" defer></script>
+<script src="/lab/shared/verse-practice.js?v=20261018REBUILD" defer></script>
+<script src="/lab/shared/lab-av.js?v=20261018REBUILD" defer></script>
+<script src="/lab/shared/tajweed-lmr.js?v=20261018REBUILD" defer></script>
+<script src="/lab/tajweed/studio.js?v=20261018REBUILD" defer></script>
+<script src="/campus/assets/js/cu-student-status-v1.js?v=20261019FF" defer></script>
 </body>
 </html>
