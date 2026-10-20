@@ -1,58 +1,28 @@
 
-/* Desk layout v2 — full width · gold borders · fixed tools · verse on top */
+/* Desk layout — no verse · full viewport · fixed tools · gold borders */
 :root {
   --desk-gold: #c9a84c;
   --desk-gold-border: rgba(201, 168, 76, 0.48);
   --desk-max: min(72rem, 100%);
-  --desk-tools-h: 3.75rem;
+  --desk-tools-h: 3.6rem;
 }
 
 body[data-phase-room] {
-  padding-bottom: calc(var(--desk-tools-h) + env(safe-area-inset-bottom) + 0.5rem);
+  padding-bottom: calc(var(--desk-tools-h) + env(safe-area-inset-bottom) + 0.75rem) !important;
 }
 
 body[data-phase-room] main.cu-wrap {
   max-width: var(--desk-max) !important;
   width: 100% !important;
   margin: 0 auto !important;
-  padding: 0.6rem max(0.85rem, env(safe-area-inset-left)) 1.25rem max(0.85rem, env(safe-area-inset-right)) !important;
-  box-sizing: border-box;
+  padding: 0.65rem max(0.85rem, env(safe-area-inset-left)) 1rem max(0.85rem, env(safe-area-inset-right)) !important;
+  box-sizing: border-box !important;
 }
 
-/* Verse — first content under banner */
-body[data-phase-room] .cu-desk-verse {
-  display: block !important;
-  max-width: var(--desk-max);
-  width: 100%;
-  margin: 0.35rem auto 0.85rem;
-  padding: 1.05rem 1.2rem;
-  border-radius: 18px;
-  border: 1px solid var(--desk-gold-border);
-  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.1), 0 10px 28px rgba(0, 0, 0, 0.16);
-  text-align: center;
-  box-sizing: border-box;
-  order: 1;
-}
-body[data-phase-room] .cu-desk-verse .ar {
-  font-family: "Amiri", "Noto Naskh Arabic", serif;
-  direction: rtl;
-  unicode-bidi: isolate;
-  font-size: clamp(1.3rem, 4.2vw, 1.85rem);
-  line-height: 1.7;
-  color: var(--desk-gold);
-  margin: 0;
-  font-weight: 700;
-}
-body[data-phase-room] .cu-desk-verse .en {
-  margin: 0.5rem 0 0;
-  font-size: 0.92rem;
-  opacity: 0.92;
-  line-height: 1.45;
-}
-body[data-phase-room] .cu-desk-verse .ref {
-  margin: 0.35rem 0 0;
-  font-size: 0.75rem;
-  opacity: 0.75;
+/* Kill any residual verse */
+body[data-phase-room] .cu-desk-verse,
+body[data-phase-room] [data-desk-verse] {
+  display: none !important;
 }
 
 body[data-phase-room] .cu-pills {
@@ -61,7 +31,6 @@ body[data-phase-room] .cu-pills {
   margin: 0 auto 0.75rem;
   box-sizing: border-box;
   border: 1px solid var(--desk-gold-border);
-  order: 2;
 }
 
 body[data-phase-room] .cu-student-status {
@@ -70,7 +39,6 @@ body[data-phase-room] .cu-student-status {
   margin: 0 auto 0.85rem;
   box-sizing: border-box;
   border: 1px solid var(--desk-gold-border);
-  order: 3;
 }
 
 body[data-phase-room] #cu-stage,
@@ -78,16 +46,15 @@ body[data-phase-room] [data-shell-stage] {
   max-width: var(--desk-max) !important;
   width: 100% !important;
   margin: 0 auto !important;
-  box-sizing: border-box;
-  order: 4;
+  box-sizing: border-box !important;
 }
 
-/* Widen module cards inside stage */
 body[data-phase-room] #cu-stage > * {
   max-width: 100% !important;
-  width: 100%;
-  box-sizing: border-box;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
+
 body[data-phase-room] #cu-stage .cu-plaque,
 body[data-phase-room] #cu-stage section,
 body[data-phase-room] #cu-stage article,
@@ -95,10 +62,9 @@ body[data-phase-room] #cu-stage [class*="card"],
 body[data-phase-room] #cu-stage [class*="module"] {
   border-color: var(--desk-gold-border) !important;
   max-width: 100% !important;
-  box-sizing: border-box;
 }
 
-/* Fixed bottom tools — always at viewport bottom, never in document flow top */
+/* Fixed bottom tools */
 .cu-desk-bottom-nav {
   position: fixed !important;
   left: 0 !important;
@@ -111,13 +77,12 @@ body[data-phase-room] #cu-stage [class*="module"] {
   gap: 0.4rem;
   justify-content: center;
   align-items: center;
-  padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom));
+  padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom));
   margin: 0 !important;
   width: 100%;
   max-width: none !important;
   box-sizing: border-box;
   border-top: 1px solid var(--desk-gold-border);
-  border-radius: 0;
   background: rgba(10, 18, 14, 0.96) !important;
   backdrop-filter: blur(12px);
   box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.35);
