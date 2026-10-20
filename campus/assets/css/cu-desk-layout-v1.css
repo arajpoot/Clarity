@@ -1,12 +1,13 @@
 
-/* Desk layout — no verse · full viewport · fixed tools · gold borders */
+/* Desk layout — compact mobile · centered desktop · fixed tools */
 :root {
   --desk-gold: #c9a84c;
-  --desk-gold-border: rgba(201, 168, 76, 0.48);
-  --desk-max: min(72rem, 100%);
-  --desk-tools-h: 3.6rem;
+  --desk-gold-border: rgba(201, 168, 76, 0.42);
+  --desk-max: min(48rem, 100%);
+  --desk-tools-h: 3.25rem;
 }
 
+/* Center page column */
 body[data-phase-room] {
   padding-bottom: calc(var(--desk-tools-h) + env(safe-area-inset-bottom) + 0.75rem) !important;
 }
@@ -14,94 +15,147 @@ body[data-phase-room] {
 body[data-phase-room] main.cu-wrap {
   max-width: var(--desk-max) !important;
   width: 100% !important;
-  margin: 0 auto !important;
-  padding: 0.65rem max(0.85rem, env(safe-area-inset-left)) 1rem max(0.85rem, env(safe-area-inset-right)) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0.5rem max(0.75rem, env(safe-area-inset-left)) 0.75rem max(0.75rem, env(safe-area-inset-right)) !important;
   box-sizing: border-box !important;
 }
 
-/* Kill any residual verse */
 body[data-phase-room] .cu-desk-verse,
 body[data-phase-room] [data-desk-verse] {
   display: none !important;
 }
 
+/* —— Pills: compact row, not giant circles —— */
 body[data-phase-room] .cu-pills {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 0.3rem !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
   max-width: var(--desk-max);
   width: 100%;
-  margin: 0 auto 0.75rem;
+  margin: 0.35rem auto 0.65rem !important;
+  padding: 0.35rem 0.4rem !important;
   box-sizing: border-box;
   border: 1px solid var(--desk-gold-border);
+  border-radius: 999px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  background: rgba(16, 28, 22, 0.55);
+}
+html[data-theme="light"] body[data-phase-room] .cu-pills {
+  background: rgba(255, 252, 245, 0.95);
+}
+body[data-phase-room] .cu-pills::-webkit-scrollbar {
+  display: none;
+}
+body[data-phase-room] .cu-pills a {
+  flex: 0 0 auto !important;
+  min-height: 34px !important;
+  height: auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 0.3rem 0.7rem !important;
+  border-radius: 999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  text-align: center;
+  border: 1px solid transparent;
+  box-shadow: none !important;
+}
+body[data-phase-room] .cu-pills a.here,
+body[data-phase-room] .cu-pills a[aria-current="page"] {
+  background: #1e7d5e !important;
+  color: #fff !important;
 }
 
+/* Status — compact */
 body[data-phase-room] .cu-student-status {
   max-width: var(--desk-max);
   width: 100%;
-  margin: 0 auto 0.85rem;
+  margin: 0 auto 0.65rem;
   box-sizing: border-box;
   border: 1px solid var(--desk-gold-border);
+  border-radius: 14px;
+  padding: 0.55rem 0.75rem !important;
+  font-size: 0.85rem;
 }
 
+/* Stage content centered column */
 body[data-phase-room] #cu-stage,
 body[data-phase-room] [data-shell-stage] {
   max-width: var(--desk-max) !important;
   width: 100% !important;
-  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   box-sizing: border-box !important;
 }
-
 body[data-phase-room] #cu-stage > * {
   max-width: 100% !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
-
-body[data-phase-room] #cu-stage .cu-plaque,
-body[data-phase-room] #cu-stage section,
-body[data-phase-room] #cu-stage article,
 body[data-phase-room] #cu-stage [class*="card"],
-body[data-phase-room] #cu-stage [class*="module"] {
+body[data-phase-room] #cu-stage section,
+body[data-phase-room] #cu-stage article {
   border-color: var(--desk-gold-border) !important;
   max-width: 100% !important;
 }
 
-/* Fixed bottom tools */
+/* Fixed bottom tools — compact, single row scroll */
 .cu-desk-bottom-nav {
   position: fixed !important;
-  left: 0 !important;
-  right: 0 !important;
+  left: 50% !important;
+  right: auto !important;
   bottom: 0 !important;
   top: auto !important;
+  transform: translateX(-50%);
   z-index: 200 !important;
   display: flex !important;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  flex-wrap: nowrap !important;
+  gap: 0.3rem;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom));
+  padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom));
   margin: 0 !important;
-  width: 100%;
-  max-width: none !important;
+  width: min(var(--desk-max), 100%);
+  max-width: 100%;
   box-sizing: border-box;
   border-top: 1px solid var(--desk-gold-border);
+  border-radius: 16px 16px 0 0;
   background: rgba(10, 18, 14, 0.96) !important;
   backdrop-filter: blur(12px);
-  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.28);
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 html[data-theme="light"] .cu-desk-bottom-nav {
   background: rgba(255, 252, 245, 0.97) !important;
 }
+.cu-desk-bottom-nav::-webkit-scrollbar { display: none; }
 .cu-desk-bottom-nav a {
-  min-height: 40px;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
+  flex: 0 0 auto;
+  min-height: 36px !important;
+  height: auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 0.3rem 0.75rem !important;
+  border-radius: 999px !important;
   text-decoration: none;
   color: inherit;
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.75rem !important;
+  white-space: nowrap;
   border: 1px solid var(--desk-gold-border);
   display: inline-flex;
   align-items: center;
   background: transparent;
+  box-shadow: none !important;
 }
 .cu-desk-bottom-nav a.primary {
   background: #1e7d5e;
@@ -112,4 +166,34 @@ html[data-theme="light"] .cu-desk-bottom-nav {
 body[data-phase-room] .cu-continue,
 body[data-phase-room] #cu-continue {
   display: none !important;
+}
+
+/* Desktop: slightly wider reading column, still centered */
+@media (min-width: 768px) {
+  :root {
+    --desk-max: min(52rem, 100%);
+  }
+  body[data-phase-room] main.cu-wrap {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+  body[data-phase-room] .cu-pills {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    overflow-x: visible !important;
+  }
+  body[data-phase-room] .cu-pills a {
+    min-height: 36px !important;
+    font-size: 0.8rem !important;
+    padding: 0.35rem 0.85rem !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  body[data-phase-room] .cu-pills a,
+  .cu-desk-bottom-nav a {
+    font-size: 0.7rem !important;
+    padding: 0.28rem 0.55rem !important;
+  }
 }
