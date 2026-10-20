@@ -636,16 +636,3 @@ body[data-phase-room] #cu-continue,
 body[data-campus-page="desk"] .cu-map-continue {
   display: none !important;
 }
-
-
-/* desk mobile compact override — kill giant circle pills on phase rooms */
-body[data-phase-room] .cu-pills a {
-  width: auto !important;
-  height: auto !important;
-  min-width: 0 !important;
-  border-radius: 999px !important;
-}
-body[data-phase-room] .cu-pills {
-  border-radius: 999px !important;
-  flex-wrap: nowrap;
-}
