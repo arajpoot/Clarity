@@ -1,104 +1,133 @@
 /**
- * University surface unify · 20261019UI
- * Matches Map / Desk plaques, cream day, teal/gold night, white pill nav feel.
+ * University surface · golden-edge shine · 20261020GOLD
+ * Matches Journey Map plaques, stage cards, Desk modules.
  * Educational only — not a physical university.
  */
+
 :root {
   --cu-gold: #c9a84c;
+  --cu-gold-bright: #e4c76a;
+  --cu-gold-edge: rgba(201, 168, 76, 0.55);
+  --cu-gold-soft: rgba(201, 168, 76, 0.22);
   --cu-teal: #1e7d5e;
   --cu-teal-deep: #0f4d3a;
   --cu-cream: #f6f1e6;
-  --cu-panel-light: #fffcf5;
+  --cu-panel: #fffcf5;
   --cu-radius: 18px;
+  --cu-radius-sm: 14px;
 }
 
 /* Typography */
-.cu-page h1, .lab-h1, .ar-h1, .hf-h1, .h27-h1, .ed-h1,
-.cu-h1 {
+.cu-page h1,
+.lab-h1, .ar-h1, .hf-h1, .h27-h1, .ed-h1, .cu-h1 {
   font-family: "Cormorant Garamond", Georgia, serif !important;
   font-weight: 700;
-  letter-spacing: 0.01em;
-  color: var(--cu-gold, #c9a84c);
+  letter-spacing: 0.02em;
+  color: var(--cu-gold-bright, #e4c76a) !important;
+}
+html[data-theme="light"] .cu-page h1,
+html[data-theme="light"] .lab-h1,
+html[data-theme="light"] .ar-h1,
+html[data-theme="light"] .hf-h1,
+html[data-theme="light"] .h27-h1,
+html[data-theme="light"] .ed-h1,
+html[data-theme="light"] .cu-h1 {
+  color: #8b6f3f !important;
 }
 .cu-page, .lab-wrap, .ar-wrap, .hf-wrap, .h27-wrap, .ed-wrap {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 }
-[dir="rtl"], .hf-ar, .hifz-ar, .ed-ar, .ar-ar {
+[dir="rtl"], .hf-ar, .hifz-ar, .ed-ar, .ar-ar, .cu-verse-plaque {
   font-family: "Amiri", "Traditional Arabic", serif;
 }
+html[data-theme="light"] body.cu-page {
+  background: #efe8da;
+  color: #13201a;
+}
 
-/* Campus pill row — white capsule feel (Map screenshot) */
+/* White capsule nav */
 nav.cu-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  gap: 0.2rem;
   justify-content: center;
   align-items: center;
   max-width: 36rem;
-  margin: 0.5rem auto 0.85rem;
-  padding: 0.35rem;
+  margin: 0.55rem auto 0.9rem;
+  padding: 0.32rem 0.4rem;
   border-radius: 999px;
-  background: rgba(255, 252, 245, 0.92);
-  border: 1px solid rgba(201, 168, 76, 0.22);
-  box-shadow: 0 4px 18px rgba(19, 32, 26, 0.06);
+  background: linear-gradient(180deg, #fffef9, #f5efe3);
+  border: 1px solid var(--cu-gold-edge);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 6px 22px rgba(19, 32, 26, 0.07);
 }
 html[data-theme="dark"] nav.cu-pills {
-  background: rgba(16, 28, 22, 0.92);
-  border-color: rgba(201, 168, 76, 0.28);
+  background: linear-gradient(180deg, rgba(28, 42, 34, 0.95), rgba(14, 24, 18, 0.98));
+  border-color: var(--cu-gold-edge);
+  box-shadow: 0 1px 0 rgba(201, 168, 76, 0.12) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 nav.cu-pills a {
   border-radius: 999px;
-  padding: 0.4rem 0.85rem;
+  padding: 0.42rem 0.9rem;
   font-size: 0.78rem;
   font-weight: 700;
   text-decoration: none;
   color: inherit;
-  opacity: 0.85;
+  opacity: 0.88;
 }
 nav.cu-pills a.here,
 nav.cu-pills a[aria-current="page"] {
-  background: var(--cu-teal, #1e7d5e);
+  background: var(--cu-teal);
   color: #fff !important;
   opacity: 1;
+  box-shadow: 0 2px 10px rgba(30, 125, 94, 0.35);
 }
 
-/* Lab station bar — centered plaques */
 nav.lab-station-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  gap: 0.35rem;
   justify-content: center;
-  margin: 0 auto 1rem;
-  max-width: 42rem;
-  padding: 0.25rem;
+  margin: 0 auto 1.1rem;
+  max-width: 44rem;
 }
 nav.lab-station-nav a {
   border-radius: 999px;
-  padding: 0.38rem 0.75rem;
+  padding: 0.4rem 0.8rem;
   font-size: 0.72rem;
   font-weight: 700;
   text-decoration: none;
   color: inherit;
-  border: 1px solid rgba(201, 168, 76, 0.28);
-  background: rgba(255, 252, 245, 0.55);
+  border: 1px solid var(--cu-gold-edge);
+  background: linear-gradient(160deg, #fffef9, #efe8da);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
 }
 html[data-theme="dark"] nav.lab-station-nav a {
-  background: rgba(16, 28, 22, 0.75);
+  background: linear-gradient(160deg, rgba(28, 44, 36, 0.95), rgba(14, 26, 20, 0.98));
+  box-shadow: none;
 }
 nav.lab-station-nav a.here,
 nav.lab-station-nav a[aria-current="page"] {
-  background: var(--cu-teal, #1e7d5e);
+  background: var(--cu-teal);
   color: #fff;
   border-color: transparent;
 }
 
-/* Cards / plaques */
-.lab-card, .ar-card, .hf-card, .h27-card, .ed-card, .ar-gate, .lab-assign,
-.ar-level, .cu-rich-card {
+/* Golden-edge plaques */
+.lab-card, .ar-card, .hf-card, .h27-card, .ed-card,
+.ar-gate, .lab-assign, .ar-level, .ar-assign,
+.cu-rich-card, .cu-plaque, .cu-info-plaque,
+.hf-jobs div {
+  position: relative;
   border-radius: var(--cu-radius) !important;
-  border: 1px solid rgba(201, 168, 76, 0.28);
-  background: linear-gradient(145deg, #fffef9, #f3ede0);
-  box-shadow: 0 6px 20px rgba(19, 32, 26, 0.05);
+  border: 1px solid var(--cu-gold-edge) !important;
+  background:
+    linear-gradient(145deg, #fffefb 0%, #f7f0e4 55%, #efe6d6 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 8px 28px rgba(19, 32, 26, 0.06) !important;
 }
 html[data-theme="dark"] .lab-card,
 html[data-theme="dark"] .ar-card,
@@ -107,29 +136,73 @@ html[data-theme="dark"] .h27-card,
 html[data-theme="dark"] .ed-card,
 html[data-theme="dark"] .ar-gate,
 html[data-theme="dark"] .lab-assign,
-html[data-theme="dark"] .ar-level {
-  background: linear-gradient(145deg, rgba(22, 38, 30, 0.95), rgba(12, 22, 18, 0.98));
-  box-shadow: none;
+html[data-theme="dark"] .ar-level,
+html[data-theme="dark"] .ar-assign,
+html[data-theme="dark"] .cu-rich-card,
+html[data-theme="dark"] .cu-plaque,
+html[data-theme="dark"] .cu-info-plaque,
+html[data-theme="dark"] .hf-jobs div {
+  background:
+    linear-gradient(155deg, rgba(32, 48, 40, 0.98) 0%, rgba(14, 24, 18, 0.99) 100%) !important;
+  border-color: var(--cu-gold-edge) !important;
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.08),
+    0 1px 0 rgba(201, 168, 76, 0.1) inset,
+    0 12px 32px rgba(0, 0, 0, 0.35) !important;
 }
 
-/* Primary teal buttons */
-.lab-btn, .ar-btn, .hf-btn, .ed-btn, .h27-pill-primary,
-button.lab-btn, a.lab-btn {
-  background: var(--cu-teal, #1e7d5e) !important;
+.ar-gate::before,
+.lab-assign::before,
+.cu-info-plaque::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--cu-gold), transparent);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.lab-card strong, .lab-card h2,
+.ar-card h2, .hf-card h2, .h27-card h2, .ed-card h2,
+.ar-gate h2, .lab-assign h2 {
+  color: var(--cu-gold) !important;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 700;
+}
+html[data-theme="light"] .lab-card strong,
+html[data-theme="light"] .ar-card h2,
+html[data-theme="light"] .hf-card h2,
+html[data-theme="light"] .h27-card h2 {
+  color: #8b6f3f !important;
+}
+
+.lab-btn, .ar-btn, .hf-btn, .ed-btn,
+a.lab-btn, button.lab-btn {
+  background: var(--cu-teal) !important;
   color: #fff !important;
   border: 0 !important;
   border-radius: 999px !important;
   font-weight: 700;
+  box-shadow: 0 2px 12px rgba(30, 125, 94, 0.28);
 }
 .lab-btn.ghost, .ar-btn.ghost, .hf-btn.ghost, .ed-btn.ghost {
   background: transparent !important;
   color: inherit !important;
-  border: 1px solid rgba(201, 168, 76, 0.35) !important;
+  border: 1px solid var(--cu-gold-edge) !important;
+  box-shadow: none !important;
+}
+.h27-util a.h27-pill-primary {
+  background: var(--cu-teal) !important;
+  color: #fff !important;
+  border-color: transparent !important;
 }
 
-/* Badges */
-.lab-assign .badge, .ar-badge {
-  background: var(--cu-teal, #1e7d5e) !important;
+.lab-assign .badge, .ar-badge, .cu-badge.open {
+  background: var(--cu-teal) !important;
   color: #fff !important;
   border-radius: 999px;
   font-size: 0.65rem;
@@ -137,32 +210,70 @@ button.lab-btn, a.lab-btn {
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+.cu-badge {
+  border: 1px solid var(--cu-gold-edge);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
 
-/* Phase-style icon row helper */
 .cu-phase-icons {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  margin: 0.75rem 0;
+  margin: 0.85rem 0;
 }
 .cu-phase-icon {
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 3.4rem;
+  height: 3.4rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, #e8e2d4, #d9d2c2);
-  border: 1px solid rgba(201, 168, 76, 0.3);
+  background: linear-gradient(160deg, #f5efe3, #e2d9c6);
+  border: 1px solid var(--cu-gold-edge);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 4px 14px rgba(19, 32, 26, 0.08);
   font-size: 1.25rem;
 }
 html[data-theme="dark"] .cu-phase-icon {
   background: linear-gradient(160deg, rgba(28, 44, 36, 0.95), rgba(14, 26, 20, 0.98));
 }
 
-/* Soft page body day */
-html[data-theme="light"] body.cu-page {
-  background: #efe8da;
-  color: #13201a;
+.cu-verse-plaque {
+  border-radius: var(--cu-radius-sm);
+  border: 1px solid var(--cu-gold-edge);
+  background: linear-gradient(180deg, #fffef9, #f3ebdc);
+  padding: 0.65rem 1rem;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  text-align: center;
+}
+html[data-theme="dark"] .cu-verse-plaque {
+  background: linear-gradient(180deg, rgba(28, 42, 34, 0.95), rgba(14, 24, 18, 0.98));
+}
+
+.lab-grid .lab-card:hover,
+.hf-desk a:hover {
+  border-color: rgba(30, 125, 94, 0.45) !important;
+  transform: translateY(-1px);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.lab-section h2,
+.ar-studio-shell .ar-h2 {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--cu-gold) !important;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif !important;
+  opacity: 0.9;
+}
+
+.cu-foot {
+  opacity: 0.75;
+  font-size: 0.78rem;
+  text-align: center;
+  margin-top: 1.5rem;
 }
