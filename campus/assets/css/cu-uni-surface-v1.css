@@ -1,0 +1,168 @@
+/**
+ * University surface unify · 20261019UI
+ * Matches Map / Desk plaques, cream day, teal/gold night, white pill nav feel.
+ * Educational only — not a physical university.
+ */
+:root {
+  --cu-gold: #c9a84c;
+  --cu-teal: #1e7d5e;
+  --cu-teal-deep: #0f4d3a;
+  --cu-cream: #f6f1e6;
+  --cu-panel-light: #fffcf5;
+  --cu-radius: 18px;
+}
+
+/* Typography */
+.cu-page h1, .lab-h1, .ar-h1, .hf-h1, .h27-h1, .ed-h1,
+.cu-h1 {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--cu-gold, #c9a84c);
+}
+.cu-page, .lab-wrap, .ar-wrap, .hf-wrap, .h27-wrap, .ed-wrap {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+[dir="rtl"], .hf-ar, .hifz-ar, .ed-ar, .ar-ar {
+  font-family: "Amiri", "Traditional Arabic", serif;
+}
+
+/* Campus pill row — white capsule feel (Map screenshot) */
+nav.cu-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 36rem;
+  margin: 0.5rem auto 0.85rem;
+  padding: 0.35rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 245, 0.92);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  box-shadow: 0 4px 18px rgba(19, 32, 26, 0.06);
+}
+html[data-theme="dark"] nav.cu-pills {
+  background: rgba(16, 28, 22, 0.92);
+  border-color: rgba(201, 168, 76, 0.28);
+}
+nav.cu-pills a {
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.85;
+}
+nav.cu-pills a.here,
+nav.cu-pills a[aria-current="page"] {
+  background: var(--cu-teal, #1e7d5e);
+  color: #fff !important;
+  opacity: 1;
+}
+
+/* Lab station bar — centered plaques */
+nav.lab-station-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  max-width: 42rem;
+  padding: 0.25rem;
+}
+nav.lab-station-nav a {
+  border-radius: 999px;
+  padding: 0.38rem 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  background: rgba(255, 252, 245, 0.55);
+}
+html[data-theme="dark"] nav.lab-station-nav a {
+  background: rgba(16, 28, 22, 0.75);
+}
+nav.lab-station-nav a.here,
+nav.lab-station-nav a[aria-current="page"] {
+  background: var(--cu-teal, #1e7d5e);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* Cards / plaques */
+.lab-card, .ar-card, .hf-card, .h27-card, .ed-card, .ar-gate, .lab-assign,
+.ar-level, .cu-rich-card {
+  border-radius: var(--cu-radius) !important;
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  background: linear-gradient(145deg, #fffef9, #f3ede0);
+  box-shadow: 0 6px 20px rgba(19, 32, 26, 0.05);
+}
+html[data-theme="dark"] .lab-card,
+html[data-theme="dark"] .ar-card,
+html[data-theme="dark"] .hf-card,
+html[data-theme="dark"] .h27-card,
+html[data-theme="dark"] .ed-card,
+html[data-theme="dark"] .ar-gate,
+html[data-theme="dark"] .lab-assign,
+html[data-theme="dark"] .ar-level {
+  background: linear-gradient(145deg, rgba(22, 38, 30, 0.95), rgba(12, 22, 18, 0.98));
+  box-shadow: none;
+}
+
+/* Primary teal buttons */
+.lab-btn, .ar-btn, .hf-btn, .ed-btn, .h27-pill-primary,
+button.lab-btn, a.lab-btn {
+  background: var(--cu-teal, #1e7d5e) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  font-weight: 700;
+}
+.lab-btn.ghost, .ar-btn.ghost, .hf-btn.ghost, .ed-btn.ghost {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid rgba(201, 168, 76, 0.35) !important;
+}
+
+/* Badges */
+.lab-assign .badge, .ar-badge {
+  background: var(--cu-teal, #1e7d5e) !important;
+  color: #fff !important;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Phase-style icon row helper */
+.cu-phase-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 0.75rem 0;
+}
+.cu-phase-icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #e8e2d4, #d9d2c2);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  font-size: 1.25rem;
+}
+html[data-theme="dark"] .cu-phase-icon {
+  background: linear-gradient(160deg, rgba(28, 44, 36, 0.95), rgba(14, 26, 20, 0.98));
+}
+
+/* Soft page body day */
+html[data-theme="light"] body.cu-page {
+  background: #efe8da;
+  color: #13201a;
+}
