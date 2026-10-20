@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019HRM"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261019HRM"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261019HRM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261019EMB"/>
 <script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019HRM"></script>
 <script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019HRM"></script>
 <style>
@@ -55,11 +55,20 @@ html[data-theme=light] .adm-returning{background:#fffcf5}
 <main class="cu-wrap adm-stage">
 
   <!-- Guided hero: Bismillah + Rabbi zidni — no English "Admission" title -->
-  <header class="cu-bismillah-hero" aria-label="Opening">
-    <p class="cu-bismillah" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
-    <p class="cu-rabbi" lang="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</p>
-    <p class="cu-rabbi-en">My Lord, increase me in knowledge · Ṭā Hā 20:114</p>
-  </header>
+    <div class="cu-open-row" aria-label="Opening">
+    <div class="cu-insignia" aria-hidden="true">
+      <div class="cu-insignia-mark" title="Clarity University">ن</div>
+    </div>
+    <div class="cu-open-plaques">
+      <div class="cu-verse-plaque bismillah">
+        <p class="ar" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+      </div>
+      <div class="cu-verse-plaque dua">
+        <p class="ar" lang="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</p>
+        <p class="en">My Lord, increase me in knowledge · Ṭā Hā 20:114</p>
+      </div>
+    </div>
+  </div>
 
   <div class="adm-returning" id="adm-returning" hidden>
     <p><strong>Welcome back</strong> · <span id="adm-returning-name"></span></p>
