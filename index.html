@@ -399,6 +399,32 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 /* bottom nav full width when present */
 .clarity-mobile-nav,nav.clarity-tabs,#clarity-tab-dock{width:100%!important;max-width:100vw!important}
 </style>
+
+<style id="cu-icon-harmony-v1">
+/* Companion section-wide chip / icon harmony · 20261020HARM */
+.mv-chip,.btn-soft,.cgs-btn,.cph-chip,.cph-btn{
+  border-radius:999px!important;
+  font-weight:650;
+  letter-spacing:.01em;
+}
+.mv-chip,.btn-soft{
+  border:1px solid rgba(201,168,76,.35)!important;
+  background:linear-gradient(180deg,rgba(255,252,245,.06),rgba(0,0,0,.04))!important;
+  min-height:2.15rem;
+  padding:.28rem .75rem!important;
+}
+.card.tweet-desk,.card.facebook-desk,#meme-card{
+  border-radius:18px;
+  border:1px solid rgba(201,168,76,.32);
+}
+#tweet-desk-card textarea,#facebook-desk-card textarea,#td-text,#fb-compose{
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+/* Hide any leftover duplicate compose if scripts inject */
+#td-compose{display:none!important;height:0!important;overflow:hidden!important;position:absolute!important}
+.td-row{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+</style>
 </head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
@@ -1692,21 +1718,17 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </div>
 </div>
 </div>
+
 <div data-rrra="action" class="card tweet-desk" id="tweet-desk-card" data-dai-ready="1" data-min-i="2" data-curriculum-folder="daily">
   <h2>𝕏 Tweet desk</h2>
-  <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
-  <div class="td-row">
-    <input type="text" id="td-handle" placeholder="@your_handle" autocomplete="username" style="min-width:10rem;padding:.4rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-elevated);color:var(--text)">
+  <p class="td-src">Pull Arabic + English + reference from <strong>استوديو التبليغ</strong>. One draft only · opens X when you post. Educational only — verify before sharing.</p>
+  <div class="td-row" style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.45rem 0">
+    <input type="text" id="td-handle" placeholder="@your_handle" autocomplete="username" style="min-width:9rem;padding:.4rem .65rem;border-radius:999px;border:1px solid rgba(201,168,76,.35);background:var(--bg-elevated,rgba(0,0,0,.08));color:inherit">
     <button type="button" class="btn-soft" onclick="tdSaveHandle()">Save handle</button>
     <button type="button" class="btn-secondary" onclick="tdConnectX()">Open X login</button>
-  <div class="td-row" style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0">
-    <button type="button" class="mv-chip" onclick="shareDesksPullFromStudio('x')">↙ From Tablīgh studio</button>
-    <button type="button" class="mv-chip" onclick="tweetDeskPost()">Post on X</button>
   </div>
-  <textarea id="td-compose" rows="4" style="width:100%;box-sizing:border-box;border-radius:12px;padding:.65rem" placeholder="Tweet text…"></textarea>
-  <p id="td-preview" class="td-src" style="font-size:.8rem"></p>
-</div>
-  <div class="td-row" role="group" aria-label="Section drafts">
+  <div class="td-row" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:.35rem 0" role="group" aria-label="Draft sources">
+    <button type="button" class="mv-chip" onclick="shareDesksPullFromStudio('x')">↙ From استوديو التبليغ</button>
     <button type="button" class="btn-soft" onclick="tdDraft('verse')">🧭 Journey</button>
     <button type="button" class="btn-soft" onclick="tdDraft('commands')">📜 Commands</button>
     <button type="button" class="btn-soft" onclick="tdDraft('grave')">🌙 Grave</button>
@@ -1714,20 +1736,19 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
     <button type="button" class="btn-soft" onclick="tdDraft('seerah')">🕊 Seerah</button>
     <button type="button" class="btn-soft" onclick="tdDraft('sami')">⚖ Samiʿnā</button>
     <button type="button" class="btn-soft" onclick="tdDraft('tajweed')">🔤 Tajweed</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('quiz')">🧠 Quiz win</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('meme')">🎨 Meme</button>
-    <button type="button" onclick="tdDraft('surprise')" onclick="claritySurpriseMe()">✨ Surprise me</button>
-    <button type="button" class="btn-soft" onclick="tdRefreshOnline()">↻ Refresh live</button>
-    <button type="button" class="btn-soft" onclick="tdSendToMeme()">🎨 To Meme Studio</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('surprise')">✨ Surprise</button>
+    <button type="button" class="btn-soft" onclick="tdRefreshOnline()">↻ Refresh</button>
+    <button type="button" class="btn-soft" onclick="tdSendToMeme()">↗ To استوديو التبليغ</button>
   </div>
-  <textarea id="td-text" maxlength="280" rows="8" placeholder="﴿ Arabic ﴾&#10;English&#10;https://clarity-dawah.fyi/#journey" oninput="tdCount()"></textarea>
-  <div class="td-meta" id="td-meta"><span id="td-count">0 / 280</span><span id="td-status">Ready</span></div>
-  <div class="td-row">
+  <textarea id="td-text" maxlength="280" rows="7" placeholder="One draft · Arabic + English + short ref…" oninput="tdCount()" style="width:100%;box-sizing:border-box;border-radius:14px;padding:.75rem;font-size:.92rem;line-height:1.45"></textarea>
+  <div class="td-meta" id="td-meta" style="display:flex;justify-content:space-between;gap:.5rem;font-size:.78rem;opacity:.85;margin:.35rem 0"><span id="td-count">0 / 280</span><span id="td-status">Ready</span></div>
+  <div class="td-row" style="display:flex;flex-wrap:wrap;gap:.4rem">
     <button type="button" onclick="tdPost()">Post on X</button>
     <button type="button" class="btn-secondary" onclick="tdCopy()">Copy draft</button>
     <button type="button" class="btn-soft" onclick="tdRemind()">Daily reminder</button>
   </div>
 </div>
+
 
 <div data-rrra="action" class="card tweet-desk facebook-desk" id="facebook-desk-card" data-min-i="2" data-curriculum-folder="daily" data-dai-ready="1">
   <h2>📘 Facebook desk</h2>
@@ -1772,7 +1793,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
       <button type="button" class="btn-soft" id="callig-translate-btn" onclick="calligTranslateToArabic()">🌐 EN→AR</button>
       <button type="button" class="btn-soft" onclick="calligSendEnglishToCanvas()">✏️ EN</button>
       <button type="button" class="btn-soft" onclick="calligPlaceArabicOnCanvas()">📥 AR</button>
-      <button type="button" class="btn-secondary" onclick="calligSendEnglishToMeme()">🎨 Meme</button>
+      <button type="button" class="btn-secondary" onclick="calligSendEnglishToMeme()">🎨 تبليغ</button>
     </div>
 
     <div class="ct-row" id="callig-top-extra-row" style="margin-top:0.3rem">
@@ -2259,7 +2280,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <div class="av-status" id="amana-gate-status"></div>
 </div>
 
-<div class="amana-vault-interior" id="amana-vault-interior" class="amana-fortress-capsule" hidden inert aria-hidden="true" data-amana-sealed="1">
+<div id="amana-vault-interior" class="amana-vault-interior amana-fortress-capsule" hidden inert aria-hidden="true" data-amana-sealed="1">
   <div class="amana-session-bar">
     <span>● Vault open this session</span>
     <button type="button" class="lock-btn" id="amana-btn-lock">🔒 Lock now</button>
@@ -2781,6 +2802,10 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <script src="/assets/clarity-meme-bg-fetch-v1.js?v=20261020TABLIGH" defer></script>
 <script src="/assets/clarity-share-desks-v1.js?v=20261020TABLIGH" defer></script>
+
+<link rel="stylesheet" href="/assets/clarity-amana-vault-isolate-v1.css?v=20261020VAULT"/>
+<script src="/assets/clarity-amana-vault-isolate-v1.js?v=20261020VAULT" defer></script>
+
 
 
 </body>
