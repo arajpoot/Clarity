@@ -120,6 +120,23 @@
     document.querySelectorAll("[data-cu-student-status]").forEach(renderInto);
   }
 
+  
+  function refineContinueLinks(){
+    try {
+      var path = location.pathname.replace(/\/$/, "") || "/";
+      document.querySelectorAll(".cu-st-go").forEach(function(a){
+        var href = (a.getAttribute("href") || "").replace(/\/$/, "");
+        if (href && path.indexOf(href) === 0) {
+          a.textContent = "On this desk";
+          a.setAttribute("aria-current", "page");
+          a.style.opacity = "0.85";
+        }
+      });
+    } catch (e) {}
+  }
+  var _boot = boot;
+  boot = function(){ _boot(); refineContinueLinks(); };
+
   g.CuStudentStatus = {
     get: getStatus,
     render: renderInto,
