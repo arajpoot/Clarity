@@ -31,8 +31,8 @@
 
   g.memeSendToTweetDesk = function () {
     var t = packText(260);
-    var inp = document.getElementById("td-compose");
-    if (inp) inp.value = t;
+    var inp = document.getElementById("td-text") || document.getElementById("td-compose");
+    if (inp) { inp.value = t; try { if (typeof tdCount === "function") tdCount(); } catch (e) {} }
     var card = document.getElementById("tweet-desk-card");
     if (card) {
       card.removeAttribute("hidden");
@@ -62,7 +62,7 @@
   };
 
   g.tweetDeskPost = function () {
-    var text = (document.getElementById("td-compose") || {}).value || packText(260);
+    var text = ((document.getElementById("td-text") || document.getElementById("td-compose") || {}).value) || packText(260);
     var url =
       "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text);
     g.open(url, "_blank", "noopener,noreferrer");
@@ -84,3 +84,10 @@
     else g.memeSendToTweetDesk();
   };
 })(typeof window !== "undefined" ? window : this);
+
+  g.tdPost = g.tdPost || function () { return g.tweetDeskPost(); };
+  g.tweetDeskPost = function () {
+    var el = document.getElementById("td-text") || document.getElementById("td-compose");
+    var text = (el && el.value) || packText(260);
+    g.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text), "_blank", "noopener,noreferrer");
+  };

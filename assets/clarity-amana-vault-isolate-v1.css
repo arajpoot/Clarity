@@ -1,0 +1,44 @@
+/**
+ * Amana Vault visual + layout isolation · 20261020VAULT
+ */
+/* When not on notes, vault host and interior never paint */
+body:not([data-active-tab="notes"]) #tab-notes,
+body:not([data-active-tab="notes"]) #amana-vault-host,
+body:not([data-active-tab="notes"]) #amana-vault-interior {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* On notes, never show Action craft tools inside vault surface */
+body[data-active-tab="notes"] #meme-card,
+body[data-active-tab="notes"] #tweet-desk-card,
+body[data-active-tab="notes"] #facebook-desk-card,
+body[data-active-tab="notes"] #callig-lab-card,
+body[data-active-tab="notes"] #tajweed-live-card,
+body[data-active-tab="notes"] #tajweed-path-card,
+body[data-active-tab="notes"] #tj-deep-studio,
+body[data-active-tab="notes"] #tab-action {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Sealed interior default */
+#amana-vault-interior[data-amana-sealed="1"],
+#amana-vault-interior[hidden],
+#amana-vault-interior[inert] {
+  display: none !important;
+}
+
+/* Gate is public checklist surface only */
+#amana-vault-gate {
+  isolation: isolate;
+}
+.amana-fortress-capsule {
+  contain: layout style;
+}
