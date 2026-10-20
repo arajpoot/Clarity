@@ -188,3 +188,30 @@ html[data-theme="light"] .cu-pills a.here {
       linear-gradient(180deg, #f0ebe0 0%, #ebe4d4 40%, #e5dcc8 100%) !important;
   }
 }
+
+
+/* E0 content column inside wide wrap */
+.cu-content-col,
+.cu-seek-wrap,
+.cu-student {
+  width: 100%;
+  max-width: min(48rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+.cu-hub-wide,
+.cu-map-grid,
+.lab-hub-grid,
+.cu-rich-grid {
+  width: 100%;
+  max-width: min(72rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+.lab-studio-body,
+.lab-stage-wide {
+  width: 100%;
+  max-width: min(64rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
