@@ -99,11 +99,11 @@
       '<a class="cph-btn ghost" href="#notes" data-cph-tonight="1">Prepare tonight</a>' +
       "</div>" +
       '<div class="cph-row cph-drills">' +
-      '<a class="cph-chip" href="#action" data-cph-tab="action" data-cph-scroll="meme-card">Meme studio</a>' +
+      '<a class="cph-chip" href="#action" data-cph-tab="action" data-cph-scroll="meme-card">استوديو التبليغ</a>' +
       '<a class="cph-chip" href="#action" data-cph-tab="action" data-cph-scroll="tajweed-live-card">Tajweed</a>' +
       '<a class="cph-chip" href="#action" data-cph-tab="action" data-cph-scroll="callig-lab-card">Calligraphy</a>' +
       "</div>" +
-      '<p class="cph-mirror">Streak is a mirror, not a scoreboard. Daily &amp; daʿī-ready drills live under Action. Educational only — not a fatwa.</p>';
+      '<p class="cph-mirror">Streak is a mirror, not a scoreboard. Tablīgh · Tajweed · Calligraphy — tools at the foot of Action (daily &amp; daʿī). Educational only — not a fatwa.</p>';
 
     // insert after banner / visit pills if possible
     var after =
