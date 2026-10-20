@@ -1,0 +1,137 @@
+
+/* Desk module layout — full viewport · elegant gold borders */
+:root {
+  --desk-gold: #c9a84c;
+  --desk-gold-border: rgba(201, 168, 76, 0.42);
+  --desk-max: min(72rem, 100%);
+}
+
+body[data-phase-room] main.cu-wrap {
+  max-width: var(--desk-max) !important;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem max(0.75rem, env(safe-area-inset-left)) 5.5rem max(0.75rem, env(safe-area-inset-right));
+  box-sizing: border-box;
+}
+
+/* Order is HTML order: verse → pills → status → stage */
+
+body[data-phase-room] .cu-desk-verse {
+  max-width: var(--desk-max);
+  width: 100%;
+  margin: 0.5rem auto 0.75rem;
+  padding: 1rem 1.15rem;
+  border-radius: 18px;
+  border: 1px solid var(--desk-gold-border);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.08),
+    0 10px 28px rgba(0, 0, 0, 0.14);
+  text-align: center;
+  box-sizing: border-box;
+}
+body[data-phase-room] .cu-desk-verse .ar {
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  line-height: 1.7;
+  color: var(--desk-gold);
+  margin: 0;
+  font-weight: 700;
+}
+body[data-phase-room] .cu-desk-verse .en {
+  margin: 0.45rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.45;
+}
+body[data-phase-room] .cu-desk-verse .ref {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  opacity: 0.75;
+  letter-spacing: 0.03em;
+}
+
+body[data-phase-room] .cu-pills {
+  max-width: var(--desk-max);
+  width: 100%;
+  margin: 0.35rem auto 0.75rem;
+  box-sizing: border-box;
+  border: 1px solid var(--desk-gold-border);
+}
+
+body[data-phase-room] .cu-student-status {
+  max-width: var(--desk-max);
+  width: 100%;
+  margin: 0.35rem auto 0.85rem;
+  box-sizing: border-box;
+  border: 1px solid var(--desk-gold-border);
+}
+
+/* Module stage full width */
+body[data-phase-room] #cu-stage,
+body[data-phase-room] [data-shell-stage] {
+  max-width: var(--desk-max);
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Gold border language on module cards inside stage */
+body[data-phase-room] #cu-stage .cu-plaque,
+body[data-phase-room] #cu-stage .module-card,
+body[data-phase-room] #cu-stage article,
+body[data-phase-room] #cu-stage section.unit,
+body[data-phase-room] #cu-stage [class*="module"],
+body[data-phase-room] #cu-stage [class*="card"] {
+  border-color: var(--desk-gold-border) !important;
+}
+
+/* Bottom desk tools — after content, sticky */
+.cu-desk-bottom-nav {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  padding: 0.7rem 0.75rem calc(0.7rem + env(safe-area-inset-bottom));
+  margin: 1.25rem auto 0;
+  max-width: var(--desk-max);
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--desk-gold-border);
+  border-bottom: none;
+  border-radius: 18px 18px 0 0;
+  background: rgba(12, 22, 18, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.2);
+}
+html[data-theme="light"] .cu-desk-bottom-nav {
+  background: rgba(255, 252, 245, 0.96);
+}
+.cu-desk-bottom-nav a {
+  min-height: 42px;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  font-size: 0.84rem;
+  border: 1px solid var(--desk-gold-border);
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+}
+.cu-desk-bottom-nav a.primary {
+  background: #1e7d5e;
+  color: #fff !important;
+  border-color: transparent;
+}
+
+/* Never show continue-to-self on desk */
+body[data-phase-room] .cu-continue,
+body[data-phase-room] #cu-continue {
+  display: none !important;
+}
