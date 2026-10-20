@@ -1,0 +1,92 @@
+
+/**
+ * Clarity University form-factor v1
+ * Digital echo of campus portals (zones, dashboard, halls)
+ * Not affiliated with any physical university · educational only
+ */
+
+:root {
+  --cu-ff-gold: #d4b45a;
+  --cu-ff-teal: #1e7d5e;
+  --cu-ff-max: min(72rem, 100%);
+  --cu-ff-read: min(48rem, 100%);
+  --cu-ff-radius: 16px;
+}
+
+/* Portal zone labels (Map / tools) */
+.cu-zone-label {
+  max-width: var(--cu-ff-max);
+  margin: 1.35rem auto 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cu-ff-gold);
+  opacity: 0.95;
+}
+.cu-zone-label span {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  opacity: 0.75;
+  margin-left: 0.35rem;
+}
+
+/* Dashboard strip under chrome */
+.cu-portal-dash {
+  max-width: var(--cu-ff-max);
+  margin: 0.5rem auto 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.45rem;
+}
+.cu-portal-dash a {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.55rem 0.4rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(12, 22, 18, 0.55);
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html[data-theme="light"] .cu-portal-dash a {
+  background: #fff;
+  color: #13201a;
+}
+.cu-portal-dash a:hover {
+  border-color: rgba(30, 125, 94, 0.55);
+}
+
+/* Hall grouping already uses cu-rich-grid — tighten */
+.cu-hall-note {
+  max-width: var(--cu-ff-max);
+  margin: 0 auto 0.35rem;
+  font-size: 0.84rem;
+  opacity: 0.88;
+}
+
+/* Desk stage readability */
+.cu-desk-stage,
+[data-phase-room] {
+  max-width: var(--cu-ff-read);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Single disclaimer chip */
+.cu-ff-disclaimer {
+  max-width: var(--cu-ff-max);
+  margin: 1rem auto 0.5rem;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+/* Reduce double-chrome paint */
+body.cu-page header.cu-banner ~ header.cu-banner { display: none !important; }
