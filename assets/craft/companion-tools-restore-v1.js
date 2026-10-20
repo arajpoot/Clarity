@@ -206,12 +206,23 @@
   });
 })(typeof window !== "undefined" ? window : this);
 
-  /* Ensure Action drills visible for daily + dai paths */
+  /* Ensure Action drills visible ONLY off vault/notes */
   function revealDrills() {
     try {
-      ["meme-card", "callig-lab-card", "tajweed-live-card", "tajweed-path-card", "tj-deep-studio"].forEach(function (id) {
+      var onNotes = (document.body.getAttribute("data-active-tab") || "") === "notes";
+      var ids = ["meme-card", "callig-lab-card", "tajweed-live-card", "tajweed-path-card", "tj-deep-studio", "tweet-desk-card", "facebook-desk-card"];
+      ids.forEach(function (id) {
         var el = document.getElementById(id);
         if (!el) return;
+        if (onNotes) {
+          el.setAttribute("hidden", "");
+          el.setAttribute("aria-hidden", "true");
+          try {
+            el.style.setProperty("display", "none", "important");
+            el.style.setProperty("visibility", "hidden", "important");
+          } catch (e) {}
+          return;
+        }
         el.style.removeProperty("display");
         el.style.removeProperty("visibility");
         el.removeAttribute("hidden");
@@ -220,6 +231,8 @@
       });
     } catch (e) {}
   }
-  afterDiet(revealDrills);
+  if (typeof afterDiet === "function") afterDiet(revealDrills);
+  setTimeout(revealDrills, 400);
   setTimeout(revealDrills, 1500);
+  setTimeout(revealDrills, 3200);
 
