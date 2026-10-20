@@ -1,27 +1,22 @@
 /**
- * companion-meme-hide-v1 — 20261020VAULT2
- * Reveal Tablīgh (#meme-card) only outside Amana Vault / notes tab.
+ * companion-meme-hide-v1 · 20261020CRAFT
+ * Reveal استوديو التبليغ only on Action tab
  */
 (function (g) {
   "use strict";
-  if (g.__CU_MEME_HIDE_V1__) {
-    /* allow upgrade */
-  }
-  g.__CU_MEME_HIDE_V1__ = true;
-
-  function onNotes() {
+  g.__CU_MEME_HIDE_V1__ = "20261020CRAFT";
+  function onAction() {
     try {
-      return (document.body.getAttribute("data-active-tab") || "") === "notes";
+      return (document.body.getAttribute("data-active-tab") || "") === "action";
     } catch (e) {
       return false;
     }
   }
-
-  function reveal() {
+  function apply() {
     try {
       var card = document.getElementById("meme-card");
       if (!card) return;
-      if (onNotes()) {
+      if (!onAction()) {
         card.setAttribute("hidden", "");
         card.setAttribute("aria-hidden", "true");
         card.style.setProperty("display", "none", "important");
@@ -30,27 +25,21 @@
       }
       card.style.removeProperty("display");
       card.style.removeProperty("visibility");
-      card.style.removeProperty("height");
       card.removeAttribute("hidden");
       card.setAttribute("aria-hidden", "false");
-      var dead = document.getElementById("cu-meme-hide-css");
-      if (dead) dead.remove();
     } catch (e) {}
   }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", reveal);
-  else reveal();
-  setTimeout(reveal, 200);
-  setTimeout(reveal, 1200);
-  g.addEventListener("clarity-tab-change", reveal);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
+  else apply();
+  setTimeout(apply, 200);
+  setTimeout(apply, 1200);
   var prev = g.switchTab;
-  if (typeof prev === "function" && !prev.__memeVaultGuard) {
+  if (typeof prev === "function") {
     g.switchTab = function () {
       var r = prev.apply(this, arguments);
-      setTimeout(reveal, 0);
-      setTimeout(reveal, 150);
+      setTimeout(apply, 0);
+      setTimeout(apply, 150);
       return r;
     };
-    g.switchTab.__memeVaultGuard = true;
   }
 })(typeof window !== "undefined" ? window : this);
