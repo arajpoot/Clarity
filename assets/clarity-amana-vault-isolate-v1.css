@@ -1,7 +1,6 @@
 /**
- * Amana Vault visual + layout isolation · 20261020VAULT
+ * Amana Vault isolation · 20261020VAULT2 · meme/tabligh must never paint in vault
  */
-/* When not on notes, vault host and interior never paint */
 body:not([data-active-tab="notes"]) #tab-notes,
 body:not([data-active-tab="notes"]) #amana-vault-host,
 body:not([data-active-tab="notes"]) #amana-vault-interior {
@@ -14,7 +13,7 @@ body:not([data-active-tab="notes"]) #amana-vault-interior {
   left: -9999px !important;
 }
 
-/* On notes, never show Action craft tools inside vault surface */
+/* Notes / vault viewport: ban all craft + tabligh + share desks */
 body[data-active-tab="notes"] #meme-card,
 body[data-active-tab="notes"] #tweet-desk-card,
 body[data-active-tab="notes"] #facebook-desk-card,
@@ -22,23 +21,31 @@ body[data-active-tab="notes"] #callig-lab-card,
 body[data-active-tab="notes"] #tajweed-live-card,
 body[data-active-tab="notes"] #tajweed-path-card,
 body[data-active-tab="notes"] #tj-deep-studio,
-body[data-active-tab="notes"] #tab-action {
+body[data-active-tab="notes"] #tab-action,
+body[data-active-tab="notes"] #clarity-provision-home .cph-drills,
+#amana-vault-host #meme-card,
+#amana-vault-host #tweet-desk-card,
+#amana-vault-host #facebook-desk-card,
+#amana-vault-interior #meme-card,
+#tab-notes #meme-card,
+#tab-notes [id^="meme-"],
+#tab-notes .meme-studio,
+#tab-notes .meme-card-realigned {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
 }
 
-/* Sealed interior default */
 #amana-vault-interior[data-amana-sealed="1"],
 #amana-vault-interior[hidden],
 #amana-vault-interior[inert] {
   display: none !important;
 }
-
-/* Gate is public checklist surface only */
-#amana-vault-gate {
-  isolation: isolate;
-}
-.amana-fortress-capsule {
-  contain: layout style;
-}
+#amana-vault-gate { isolation: isolate; }
+.amana-fortress-capsule { contain: layout style; }

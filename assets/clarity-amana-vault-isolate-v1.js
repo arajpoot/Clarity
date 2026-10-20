@@ -104,7 +104,29 @@
     }
   }
 
+  
+  function ejectCraftFromVault() {
+    var host = document.getElementById("amana-vault-host") || document.getElementById("tab-notes");
+    if (!host) return;
+    ACTION_IDS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (host.contains(el)) {
+        /* move back under action hub if possible */
+        var action = document.getElementById("rrra-hub-body-action") || document.getElementById("tab-action");
+        if (action && el.parentNode !== action) {
+          try { action.appendChild(el); } catch (e) {}
+        }
+        el.setAttribute("hidden", "");
+        try {
+          el.style.setProperty("display", "none", "important");
+        } catch (e2) {}
+      }
+    });
+  }
+
   function enforce() {
+    ejectCraftFromVault();
     try {
       hideSensitiveOutsideNotes();
       isolateVaultHost();
