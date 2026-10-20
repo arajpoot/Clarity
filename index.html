@@ -846,36 +846,7 @@ html[data-theme="dark"] .dual-name{color:#f3e6c0}
 </details>
 </div>
 
-<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card" data-min-i="2" data-curriculum-folder="daily">
-  <h2>𝕏 Tweet desk</h2>
-  <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
-  <div class="td-row">
-    <input type="text" id="td-handle" placeholder="@your_handle" autocomplete="username" style="min-width:10rem;padding:.4rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-elevated);color:var(--text)">
-    <button type="button" class="btn-soft" onclick="tdSaveHandle()">Save handle</button>
-    <button type="button" class="btn-secondary" onclick="tdConnectX()">Open X login</button>
-  </div>
-  <div class="td-row" role="group" aria-label="Section drafts">
-    <button type="button" class="btn-soft" onclick="tdDraft('verse')">🧭 Journey</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('commands')">📜 Commands</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('grave')">🌙 Grave</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('tafseer')">📖 Tafseer</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('seerah')">🕊 Seerah</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('sami')">⚖ Samiʿnā</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('tajweed')">🔤 Tajweed</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('quiz')">🧠 Quiz win</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('meme')">🎨 Meme</button>
-    <button type="button" onclick="tdDraft('surprise')" onclick="claritySurpriseMe()">✨ Surprise me</button>
-    <button type="button" class="btn-soft" onclick="tdRefreshOnline()">↻ Refresh live</button>
-    <button type="button" class="btn-soft" onclick="tdSendToMeme()">🎨 To Meme Studio</button>
-  </div>
-  <textarea id="td-text" maxlength="280" rows="8" placeholder="﴿ Arabic ﴾&#10;English&#10;https://clarity-dawah.fyi/#journey" oninput="tdCount()"></textarea>
-  <div class="td-meta" id="td-meta"><span id="td-count">0 / 280</span><span id="td-status">Ready</span></div>
-  <div class="td-row">
-    <button type="button" onclick="tdPost()">Post on X</button>
-    <button type="button" class="btn-secondary" onclick="tdCopy()">Copy draft</button>
-    <button type="button" class="btn-soft" onclick="tdRemind()">Daily reminder</button>
-  </div>
-</div>
+
 
 
 </div></div>
@@ -1255,8 +1226,361 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <div class="rrra-hub-summary" role="note">Tajweed · calligraphy · hifz · search · Hajj · Sharia IQ · notes tools · household deeds.</div>
 <div class="rrra-hub-body" id="rrra-hub-body-action">
 <!-- Companion drills: meme + calligraphy reassigned to Action (daily + dai-ready) -->
+
+
+
+
+<div data-rrra="action" class="card card-commands hell-warn" id="hell-sins-card" data-min-i="0" data-curriculum-folder="seeker"><h2>🔥 Warnings of the Fire< deeds Allah linked to severe punishment</h2><p style="font-size:0.92rem;margin-bottom:0.65rem;">
+ This is a reminder, not a fatwa. The Prophet ﷺ named <strong>seven destructive sins</strong> (<em>al-mūbiqāt</em>) in a report agreed upon by al-Bukhārī and Muslim.
+ Other verses and ṣaḥīḥ reports also attach a warning of the Fire to specific crimes. A believer who dies upon unrepented <em>shirk</em> is not forgiven; other major sins are under Allah’s will — He may punish or pardon — and <strong>sincere tawbah</strong> is accepted before death.
+ Verify personal cases with a trusted scholar.
+ </p><p class="hell-src">Core ḥadīth: Abū Hurayrah reported that the Messenger of Allah ﷺ said: “Avoid the seven destructive sins.” They asked, “What are they, O Messenger of Allah?” He said: “Associating partners with Allah; sorcery; killing a soul Allah has forbidden except by right; consuming ribā; consuming an orphan’s wealth; fleeing the battlefield; and slandering chaste, believing women who are unaware.” — Ṣaḥīḥ al-Bukhārī 2766 / 6857, Ṣaḥīḥ Muslim 89.</p><div id="hell-sins-list"></div><h3 style="margin:1rem 0 0.4rem;font-size:1.05rem;">How scholars describe tawbah (repentance)</h3><p style="font-size:0.92rem;">Imām al-Nawawī (Riyāḍ al-Ṣāliḥīn) and the majority: tawbah is obligatory from every sin. If the sin is only between the servant and Allah, three conditions; if it violates a human right, a fourth is added.</p><div class="tawbah-grid"><div><strong>1. Iqlaʿ</strong><br>Stop the sin at once.</div><div><strong>2. Nadam</strong><br>Feel genuine remorse.</div><div><strong>3. ʿAzm</strong><br>Resolve never to return.</div><div><strong>4. Ḥaqq al-ādamī</strong><br>Return wealth, honour, or seek pardon if a person was wronged.</div></div><p style="font-size:0.9rem;margin-top:0.7rem;">
+ Window of acceptance: before the soul reaches the throat, and before the sun rises from the west (ḥadīth in Muslim and others).
+ Allah says: <em>“Say: O My servants who have transgressed against themselves, do not despair of the mercy of Allah. Indeed Allah forgives all sins. He is the Forgiving, the Merciful.”</em> (al-Zumar 39:53).
+ And: <em>“…except those who repent, believe, and do righteous deeds — for them Allah will replace their evil deeds with good deeds.”</em> (al-Furqān 25:70).
+ </p><p class="hell-src">Also: Anas reported the qudsī ḥadīth: “O son of Ādam, were you to come to Me with an earthful of sins and then meet Me without having associated anything with Me, I would come to you with an earthful of pardon.” (al-Tirmidhī 3540; graded ḥasan by many, including al-Albānī). Ibn al-Qayyim: tawbah is not a phrase on the tongue only — it is leaving, regretting, and replacing harm with obedience.</p></div>
+<div data-rrra="action" class="card card-hifz"><h2 data-i18n="hifz_title">📗 Quran Memorization (Hifz)< Light for the Grave</h2>
+<div class="deep-learn"><strong>📚 Hifẓ helpers</strong>
+<div class="res-stack">
+<a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>
+<a href="https://everyayah.com" target="_blank" rel="noopener">EveryAyah audio</a>
+<a href="https://islamqa.info/en/search?q=memorizing+quran" target="_blank" rel="noopener">IslamQA — Hifẓ</a>
+</div></div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
+ Memorising the Quran is among the greatest provisions for the grave. Set a daily goal, mark what you memorized, and practice recall. Progress + streak saved on this device.
+ </p><div class="hifz-controls"><div><label style="font-size:0.88rem; color:#555;">Surah</label><select id="hifz-surah" onchange="loadHifzAyah()" style="max-width:100%;"><option value="1">1. Al-Fatihah</option><option value="2">2. Al-Baqarah</option><option value="3">3. Aal-Imran</option><option value="4">4. An-Nisa</option><option value="5">5. Al-Ma'idah</option><option value="6">6. Al-An'am</option><option value="7">7. Al-A'raf</option><option value="8">8. Al-Anfal</option><option value="9">9. At-Tawbah</option><option value="10">10. Yunus</option><option value="11">11. Hud</option><option value="12">12. Yusuf</option><option value="13">13. Ar-Ra'd</option><option value="14">14. Ibrahim</option><option value="15">15. Al-Hijr</option><option value="16">16. An-Nahl</option><option value="17">17. Al-Isra</option><option value="18">18. Al-Kahf</option><option value="19">19. Maryam</option><option value="20">20. Ta-Ha</option><option value="21">21. Al-Anbiya</option><option value="22">22. Al-Hajj</option><option value="23">23. Al-Mu'minun</option><option value="24">24. An-Nur</option><option value="25">25. Al-Furqan</option><option value="26">26. Ash-Shu'ara</option><option value="27">27. An-Naml</option><option value="28">28. Al-Qasas</option><option value="29">29. Al-Ankabut</option><option value="30">30. Ar-Rum</option><option value="31">31. Luqman</option><option value="32">32. As-Sajdah</option><option value="33">33. Al-Ahzab</option><option value="34">34. Saba</option><option value="35">35. Fatir</option><option value="36">36. Ya-Sin</option><option value="37">37. As-Saffat</option><option value="38">38. Sad</option><option value="39">39. Az-Zumar</option><option value="40">40. Ghafir</option><option value="41">41. Fussilat</option><option value="42">42. Ash-Shura</option><option value="43">43. Az-Zukhruf</option><option value="44">44. Ad-Dukhan</option><option value="45">45. Al-Jathiyah</option><option value="46">46. Al-Ahqaf</option><option value="47">47. Muhammad</option><option value="48">48. Al-Fath</option><option value="49">49. Al-Hujurat</option><option value="50">50. Qaf</option><option value="51">51. Adh-Dhariyat</option><option value="52">52. At-Tur</option><option value="53">53. An-Najm</option><option value="54">54. Al-Qamar</option><option value="55">55. Ar-Rahman</option><option value="56">56. Al-Waqi'ah</option><option value="57">57. Al-Hadid</option><option value="58">58. Al-Mujadila</option><option value="59">59. Al-Hashr</option><option value="60">60. Al-Mumtahanah</option><option value="61">61. As-Saff</option><option value="62">62. Al-Jumu'ah</option><option value="63">63. Al-Munafiqun</option><option value="64">64. At-Taghabun</option><option value="65">65. At-Talaq</option><option value="66">66. At-Tahrim</option><option value="67">67. Al-Mulk</option><option value="68">68. Al-Qalam</option><option value="69">69. Al-Haqqah</option><option value="70">70. Al-Ma'arij</option><option value="71">71. Nuh</option><option value="72">72. Al-Jinn</option><option value="73">73. Al-Muzzammil</option><option value="74">74. Al-Muddaththir</option><option value="75">75. Al-Qiyamah</option><option value="76">76. Al-Insan</option><option value="77">77. Al-Mursalat</option><option value="78">78. An-Naba</option><option value="79">79. An-Nazi'at</option><option value="80">80. Abasa</option><option value="81">81. At-Takwir</option><option value="82">82. Al-Infitar</option><option value="83">83. Al-Mutaffifin</option><option value="84">84. Al-Inshiqaq</option><option value="85">85. Al-Buruj</option><option value="86">86. At-Tariq</option><option value="87">87. Al-A'la</option><option value="88">88. Al-Ghashiyah</option><option value="89">89. Al-Fajr</option><option value="90">90. Al-Balad</option><option value="91">91. Ash-Shams</option><option value="92">92. Al-Layl</option><option value="93">93. Ad-Duha</option><option value="94">94. Ash-Sharh</option><option value="95">95. At-Tin</option><option value="96">96. Al-Alaq</option><option value="97">97. Al-Qadr</option><option value="98">98. Al-Bayyinah</option><option value="99">99. Az-Zalzalah</option><option value="100">100. Al-Adiyat</option><option value="101">101. Al-Qari'ah</option><option value="102">102. At-Takathur</option><option value="103">103. Al-Asr</option><option value="104">104. Al-Humazah</option><option value="105">105. Al-Fil</option><option value="106">106. Quraysh</option><option value="107">107. Al-Ma'un</option><option value="108">108. Al-Kawthar</option><option value="109">109. Al-Kafirun</option><option value="110">110. An-Nasr</option><option value="111">111. Al-Masad</option><option value="112">112. Al-Ikhlas</option><option value="113">113. Al-Falaq</option><option value="114">114. An-Nas</option></select></div><div><label style="font-size:0.88rem; color:#555;">Ayah number</label><input type="number" id="hifz-ayah-num" min="1" value="1" onchange="loadHifzAyah()" oninput="saveHifzSelection()"></div></div><div class="hifz-progress"><strong>Today’s goal:</strong><input type="number" id="hifz-goal" min="1" max="20" value="3" style="width:65px; display:inline-block; margin:0 0.35rem;">
+ ayahs<br><span id="hifz-today-count" style="display:inline-block; margin-top:0.35rem;">Memorized today: 0</span><button type="button" onclick="markMemorized()" class="btn-soft" style="margin-top:0.55rem; padding:0.35rem 0.95rem; font-size:0.88rem;">Mark as Memorized</button></div><div id="hifz-display" class="hifz-ayah"><div class="arabic-calligraphy" id="hifz-arabic">Select a Surah & Ayah</div><button type="button" class="ayah-audio-btn clarity-stream-btn" id="hifz-audio-btn" onclick="playHifzAudio()">🔊 Listen</button><p id="hifz-translation" style="margin-top:0.55rem;"></p><div id="hifz-tafseer" class="ponder-box" style="display:none; margin-top:0.75rem;"></div><div id="hifz-tafseer-full" class="ponder-box" style="display:none; margin-top:0.65rem; border-left-color:#7ec9a8;"></div><div class="recall-btns"><button type="button" onclick="toggleRecall()" class="btn-secondary">Hide Meaning (Recall)</button><button type="button" onclick="nextHifzAyah()">Next Ayah</button></div></div></div>
+<div data-rrra="action" class="card card-seerah"><h2 data-i18n="capture_seerah">📖 Capture a seerah lesson</h2><div class="deep-learn"><strong>Seerah paths:</strong><a href="https://www.youtube.com/@YasirQadhi" target="_blank" rel="noopener">Yasir Qadhi Seerah</a> ·
+ <a href="https://www.kalamullah.com/books.html" target="_blank" rel="noopener">Kalamullah books</a> ·
+ <a href="https://sunnah.com" target="_blank" rel="noopener">primary reports</a>.</div><p style="font-size:0.92rem;" data-i18n="capture_seerah_desc">After reading a moment from the Prophet’s life ﷺ, write one lesson and one action.</p><button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Seerah','Seerah lesson')">＋ Note from Seerah</button></div>
+<div data-rrra="action" class="card card-seerah"><h2>🌳 Family tree — from Ismāʿīl عليه السلام to the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.65rem;">A simplified lineage for orientation (not every generation is listed). Classical nasab runs through ʿAdnān to ʿAbd al-Muṭṭalib.</p><div class="family-tree" id="family-tree"><div class="ft-node ft-root">Ismāʿīl <span class="ft-as">عليه السلام</span><div class="ft-note">Son of Ibrāhīm عليه السلام · ancestor of the Arabs of Ḥijāz</div></div><div class="ft-line"></div><div class="ft-node">… generations of his descendants in Arabia …</div><div class="ft-line"></div><div class="ft-node">ʿAdnān <div class="ft-note">Agreed early ancestor in the Prophet’s nasab</div></div><div class="ft-line"></div><div class="ft-node">… including Niẓār, Muḍar, Fihr (Quraysh) …</div><div class="ft-line"></div><div class="ft-node">Quṣayy b. Kilāb <div class="ft-note">United Quraysh around the Kaʿbah</div></div><div class="ft-line"></div><div class="ft-node">ʿAbd Manāf → Hāshim → ʿAbd al-Muṭṭalib</div><div class="ft-line"></div><div class="ft-branch"><div class="ft-node">ʿAbdullāh <div class="ft-note">Father of the Prophet ﷺ</div></div><div class="ft-node">Abū Ṭālib <div class="ft-note">Uncle &amp; protector</div></div><div class="ft-node">Other sons of ʿAbd al-Muṭṭalib</div></div><div class="ft-line"></div><div class="ft-node ft-prophet">Muḥammad ﷺ <div class="ft-note">Born to Āminah bint Wahb · Quraysh, Banū Hāshim</div></div><div class="ft-line"></div><div class="ft-branch ft-children"><div class="ft-node">Al-Qāsim · ʿAbdullāh · Ibrāhīm <div class="ft-note">Sons (died young)</div></div><div class="ft-node">Zaynab · Ruqayyah · Umm Kulthūm · Fāṭimah <div class="ft-note">Daughters · Fāṭimah رضي الله عنها mother of al-Ḥasan &amp; al-Ḥusayn</div></div></div></div><p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.65rem;">For detailed nasab charts see classical works (e.g. Ibn Hishām) and reputable educational sites. This tree is a learning aid only.</p></div>
+<div data-rrra="action" class="card card-seerah" id="seerah-mirror-card" style="border-top:3px solid var(--sky,#3d8ab5)" data-min-i="2" data-curriculum-folder="daily">
+  <h2>🪞 Seerah Mirror Walk — character in motion</h2>
+  <p class="td-src" style="font-size:.82rem;margin:.2rem 0 .5rem">Deep learning: one Prophetic quality per step. Read the moment, then answer the mirror prompt in Notes. Progress saved on this device only.</p>
+  <div id="seerah-mirror-body">
+    <p style="font-weight:700;color:var(--gold);margin:0 0 .25rem" id="sm-step-label">Step 1 of 7</p>
+    <h3 style="font-size:1.05rem;margin:.15rem 0" id="sm-title">Loading…</h3>
+    <p style="font-size:.92rem;line-height:1.5" id="sm-moment"></p>
+    <p class="td-src" id="sm-src"></p>
+    <div class="ponder-box" style="margin-top:.5rem">
+      <strong>Mirror prompt</strong>
+      <p style="margin:.25rem 0 0;font-size:.9rem" id="sm-prompt"></p>
+    </div>
+  </div>
+  <div style="margin-top:.65rem;display:flex;flex-wrap:wrap;gap:.4rem">
+    <button type="button" class="btn" onclick="claritySeerahMirrorDone()">Mark step done</button>
+    <button type="button" class="btn-soft" onclick="claritySeerahMirrorNext()">Next step →</button>
+    <button type="button" class="btn-soft" onclick="claritySeerahMirrorNote()">＋ Note my mirror</button>
+    <a id="sm-link" href="https://sunnah.com" target="_blank" rel="noopener" class="btn-soft" style="display:inline-flex;align-items:center;text-decoration:none">Open source</a>
+  </div>
+  <div class="path-prog" style="margin-top:.65rem"><div class="fill" id="sm-prog-fill" style="width:0%"></div></div>
+  <p style="font-size:.78rem;color:var(--text-muted);margin-top:.35rem" id="sm-progress-text">0 / 7 steps on this device</p>
+</div>
+
+
+
+<div data-rrra="action" class="tj-lmr-ayah-card">
+          
+          
+          
+          <div class="tj-lmr-audio-row">
+            
+            
+            
+          </div>
+        </div>
+
+<div data-rrra="action" class="card card-search hajj-guide-card" id="hajj-guide-card" data-min-i="1" data-curriculum-folder="new-muslim">
+<h2>🕋 Hajj Ritual Guide</h2>
+<p style="font-size:.86rem;margin:0 0 .4rem">Step-by-step rites with fiqh notes, Sunnah, and duʿāʾ from mainstream Sunni sources (IslamQA, Qurʾān, Ṣaḥīḥ reports, haj.gov.sa). Each slide pairs authentic guidance with a visual from the Ḥaramayn. Progress stays on this device only.</p>
+<div class="hajj-type-row"><label for="hajj-nusk">Type</label>
+<select id="hajj-nusk"><option value="tamattu">Tamattuʿ</option><option value="qiran">Qirān</option><option value="ifrad">Ifrād</option></select></div>
+<div class="hajj-type-row"><label for="hajj-step-select">Step</label>
+<select id="hajj-step-select" onchange="hajjShowStep(this.value)"></select></div>
+<div class="hajj-progress" id="hajj-progress"></div>
+<div class="hajj-panel" id="hajj-panel"><p>Choose a step to open detailed guidance.</p></div>
+<div class="hajj-actions">
+<button type="button" class="btn-secondary" onclick="hajjMarkDone()">✓ Done</button>
+<button type="button" class="btn-secondary" onclick="hajjMarkUndone()">Undo</button>
+<button type="button" class="btn-secondary" onclick="hajjPrintChecklist()">🖨️ Print</button>
+<button type="button" class="btn-secondary" onclick="hajjWhereAmI()">🧭 Where am I?</button><button type="button" class="btn-secondary" onclick="var el=document.getElementById('hajj-checklist-card');if(el){el.scrollIntoView({behavior:'smooth'});var d=document.getElementById('hajj-checklist-details');if(d)d.open=true;try{hajjChecklistRender()}catch(e){}}">✅ Open checklist</button>
+</div>
+<div class="hajj-talbiyah-wrap">
+<strong>Talbiyah</strong>
+<div class="dua-ar" style="margin:.25rem 0;font-family:'Scheherazade New','Amiri',serif;direction:rtl;font-size:1.15rem;line-height:1.9">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ</div>
+<div class="talbiyah-counter"><button type="button" onclick="hajjTalbiyah(-1)">−</button><span id="hajj-talbiyah-count">0</span><button type="button" onclick="hajjTalbiyah(1)">＋ Labbayk</button><button type="button" class="hajj-audio-btn" onclick="hajjPlayTalbiyah()">🔊</button></div>
+</div>
+<div class="hajj-video-wrap">
+<strong style="color:#f5e6b8;display:block;margin-bottom:.35rem">🎧 Hajj video series — Ustazah Najiha Hashmi</strong>
+<div class="hajj-type-row" style="margin:.25rem 0 .45rem">
+<label for="hajj-ep" style="color:#e8d48b!important">Episode</label>
+<select id="hajj-ep" onchange="hajjLoadEpisode(this.value)" style="flex:1 1 14rem">
+<option value="MUDNDj4n7I4">Featured session (shared link)</option>
+<option value="o0jb120gXUA">Ep 02 — Types of Hajj, Mīqāt, Iḥrām</option>
+<option value="j0u2gfRd8IM">Ep 03 — Ṭawāf &amp; Saʿī issues</option>
+<option value="NSX2DOrdopM">Ep 04 — How to perform ʿUmrah</option>
+<option value="v7uNDDHbGx0">Intentions — Tamattuʿ &amp; Qirān</option>
+<option value="Di4Ok_9mNDQ">Prohibitions of iḥrām for women</option>
+<option value="hIc7-uaOrfg">Muzdalifah to Farewell ṭawāf</option>
+<option value="SPSQmE_a0vg">Reward of an accepted Hajj</option>
+<option value="CWC-d5CdNqw">Hajj workshop (full)</option>
+<option value="DZGhQDID-oI">Zilhajj special — Day 1 (2026)</option>
+<option value="17ZpIUsBCKw">Zilhajj special — Day 4 (2026)</option>
+</select>
+</div>
+<div class="hajj-video-frame">
+<details class="clarity-embed-fold" data-embed-id="hajj-yt-frame"><summary>▶ Open Hajj video <span class="cef-title">Hajj series — Ustazah Najiha Hashmi</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/MUDNDj4n7I4?rel=0" src="about:blank" id="hajj-yt-frame-x1" title="Hajj series — Ustazah Najiha Hashmi" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></details>
+</div>
+<p style="font-size:.74rem;opacity:.85;margin-top:.3rem">
+<a href="https://www.youtube.com/playlist?list=PL98jztrfutUSLooSrRiIWraakYkDGVgzd" target="_blank" rel="noopener">Open full playlist</a>
+ · <a href="https://www.youtube.com/@ArRahmahIslamicInstitute" target="_blank" rel="noopener">ArRahmah</a>
+ · <a id="hajj-yt-open" href="https://youtu.be/MUDNDj4n7I4" target="_blank" rel="noopener">This episode on YouTube</a>
+</p>
+</div>
+<p class="hajj-disclaimer"><strong>Not a fatwa.</strong> Confirm details with your scholar · <a href="https://haj.gov.sa/en/Hajj" target="_blank" rel="noopener">haj.gov.sa</a> · <a href="https://islamqa.info/en/answers/31822" target="_blank" rel="noopener">IslamQA 31822</a> · <a href="https://islamweb.net/en/article/134409/hajj-a-comprehensive-guide" target="_blank" rel="noopener">Islamweb</a></p>
+</div>
+<div data-rrra="action" class="card card-search" id="hajj-checklist-card" style="border-top:3px solid var(--gold,#b8922a)" data-min-i="2" data-curriculum-folder="daily">
+<details id="hajj-checklist-details">
+<summary style="cursor:pointer;font-weight:700;color:var(--accent);font-size:1.05rem;list-style:none">▸ ✅ Hajj checklist manager</summary>
+<p style="font-size:.88rem;color:var(--text-muted);margin:.45rem 0">Tracks steps marked done in the Hajj Ritual Guide above. Same progress on this device.</p>
+<div class="hajj-type-row" style="margin:.35rem 0">
+<label for="hajj-check-nusk" style="color:var(--accent)">Nusk</label>
+<select id="hajj-check-nusk" onchange="hajjChecklistSetNusk(this.value)" style="background:var(--card-bg);color:var(--text);border:1px solid var(--border);padding:.4rem .55rem;border-radius:10px">
+<option value="tamattu">Tamattuʿ</option>
+<option value="qiran">Qirān</option>
+<option value="ifrad">Ifrād</option>
+</select>
+</div>
+<div id="hajj-checklist-progress" style="font-size:.88rem;margin:.4rem 0;color:var(--text)"></div>
+<div id="hajj-checklist-list" style="display:flex;flex-direction:column;gap:.35rem"></div>
+<div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.65rem">
+<button type="button" class="btn-soft" onclick="var el=document.getElementById('hajj-guide-card');if(el)el.scrollIntoView({behavior:'smooth'})">🕋 Jump to guide</button>
+<button type="button" class="btn-secondary" onclick="hajjChecklistPrint()">🖨️ Print</button>
+<button type="button" class="btn-secondary" onclick="hajjChecklistReset()">Reset all</button>
+</div>
+<p style="font-size:.78rem;color:var(--text-muted);margin-top:.5rem">Educational tracker only — not a fatwa.</p>
+</details>
+</div>
+<div data-rrra="action" class="card card-search vt-card" id="voice-translator-card" data-min-i="3" data-curriculum-folder="dai">
+  <h2>🎙️ Voice Translator</h2>
+  <p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .55rem">
+    Speech → text with <strong>Whisper-tiny (quantized)</strong>, then <strong>Google Translate</strong>.
+    Model files are written to the <strong>browser Cache API</strong> on first download and reused offline after that.
+  </p>
+  <div class="vt-cache-bar" id="vt-cache-bar">
+    <span id="vt-cache-badge" class="vt-cache-badge">Cache: checking…</span>
+    <button type="button" class="btn-secondary" id="vt-cache-refresh" onclick="vtRefreshCacheStatus()">↻ Status</button>
+  </div>
+  <div class="vt-grid">
+    <label class="vt-lab">From
+      <select id="vt-from" onchange="vtOnLangChange()">
+        <option value="en">English</option>
+        <option value="ar">Arabic</option>
+        <option value="ur">Urdu</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="tr">Turkish</option>
+        <option value="id">Indonesian</option>
+        <option value="hi">Hindi</option>
+        <option value="de">German</option>
+        <option value="auto">Auto-detect</option>
+      </select>
+    </label>
+    <button type="button" class="btn-soft vt-swap" id="vt-swap" onclick="vtSwapLangs()" title="Swap">⇄</button>
+    <label class="vt-lab">To
+      <select id="vt-to" onchange="vtOnLangChange()">
+        <option value="ar" selected>Arabic</option>
+        <option value="en">English</option>
+        <option value="ur">Urdu</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="tr">Turkish</option>
+        <option value="id">Indonesian</option>
+        <option value="hi">Hindi</option>
+        <option value="de">German</option>
+        <option value="zh-CN">Chinese</option>
+      </select>
+    </label>
+  </div>
+  <div class="vt-presets">
+    <button type="button" class="vt-chip" onclick="vtPreset('en','ar')">EN → AR</button>
+    <button type="button" class="vt-chip" onclick="vtPreset('ar','en')">AR → EN</button>
+    <button type="button" class="vt-chip" onclick="vtPreset('en','ur')">EN → UR</button>
+    <button type="button" class="vt-chip" onclick="vtPreset('fr','ar')">FR → AR</button>
+    <button type="button" class="vt-chip" onclick="vtSurprise()">✨ Surprise</button>
+  </div>
+  <div class="vt-actions">
+    <button type="button" class="btn-soft" id="vt-load-model" onclick="vtEnsureWhisper(true)">⬇ Install Whisper to device cache</button>
+    <button type="button" class="btn-soft" id="vt-mic" onclick="vtToggleRecord()">🎤 Start recording</button>
+    <button type="button" class="btn-soft" id="vt-translate-btn" onclick="vtTranslateNow()">🌐 Translate</button>
+    <button type="button" class="btn-soft" id="vt-hear-btn" onclick="vtSpeakOut()">🔊 Hear</button>
+    <button type="button" class="btn-secondary" id="vt-copy-btn" onclick="vtCopyOut()">📋 Copy</button>
+    <button type="button" class="btn-secondary" id="vt-clear-btn" onclick="vtClear()">Clear</button>
+    <button type="button" class="btn-secondary" id="vt-unload-btn" onclick="vtUnloadWhisper()" title="Free RAM; files stay in device cache">⏏ Unload from RAM</button>
+  </div>
+  <div class="vt-status" id="vt-status">Ready — install Whisper once (saved on this device), then record</div>
+  <div class="vt-progress-wrap" id="vt-progress-wrap" hidden>
+    <div class="vt-progress-bar"><div class="vt-progress-fill" id="vt-progress-fill"></div></div>
+    <div class="vt-progress-label" id="vt-progress-label">Preparing…</div>
+  </div>
+  <div class="vt-io">
+    <div>
+      <label class="vt-cap" for="vt-in">Input (transcript / type)</label>
+      <textarea id="vt-in" rows="4" placeholder="Recorded speech or type here…" oninput="vtScheduleTranslate()"></textarea>
+    </div>
+    <div>
+      <label class="vt-cap" for="vt-out">Translation</label>
+      <textarea id="vt-out" rows="4" placeholder="Translation appears here…"></textarea>
+    </div>
+  </div>
+  <p class="notes-hint" style="margin-top:.55rem;font-size:.8rem">
+    <strong>Audited path:</strong> Hugging Face <code>Xenova/whisper-tiny</code> quantized ONNX → browser <strong>Cache API</strong>
+    (<code>transformers-cache</code>). First visit needs network; later visits read cache only.
+    Use <em>Unload from RAM</em> after recording to keep memory light — cache files remain.
+    Speak 2–12 seconds clearly. Chrome / Edge recommended.
+  </p>
+</div>
+<div data-rrra="action" class="card" id="guidance-learn-strip" style="border-top:3px solid var(--sky,#2a5f7a)">
+  <h2>🔍 Guided search</h2>
+  <p style="font-size:.86rem;color:var(--text-muted);margin:0;line-height:1.45">
+    Type a <strong>theme</strong> or tap <strong>🎤</strong> to speak. Results pull related āyāt and reports — not only exact words.
+    Use <strong>Clear</strong> to reset. Cross-check on Qurʾān.com / Sunnah.com. Educational only.
+  </p>
+  <p id="voice-search-status" style="font-size:.8rem;margin:.35rem 0 0;color:var(--accent);min-height:1.2em"></p>
+</div>
+<div data-rrra="action" class="card card-search"><h2>🤲 Search Masnūn Supplications</h2><div class="deep-learn"><strong>Research stack:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a> ·
+ <a href="https://corpus.quran.com" target="_blank" rel="noopener">Corpus</a> ·
+ <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a> ·
+ <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance</a>.</div><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">Authentic / widely taught duʿās from Qurʾān and Sunnah — Arabic, English, and Urdu. Educational wording; schools may differ slightly.</p><div class="search-row"><input type="text" id="dua-search" placeholder="forgiveness, morning, anxiety, parents, travel…" onkeydown="if(event.key==='Enter')searchMasnoonDua()" /><button type="button" class="btn-voice-search" id="voice-btn-dua-search" data-voice-input="dua-search" data-voice-fn="searchMasnoonDua" title="Voice search (Whisper) — tap to record, tap again to search" aria-label="Voice search with Whisper"><span class="voice-mic-icon">🎤</span><span class="voice-mic-label">Voice</span></button><button type="button" onclick="searchMasnoonDua()">Search</button><button type="button" class="btn-secondary" onclick="try{clarityClearSearch('dua-search','dua-results')}catch(e){var i=document.getElementById('dua-search');if(i)i.value='';var r=document.getElementById('dua-results');if(r)r.innerHTML='<p class=\'search-empty\'>Results cleared. Theme chips stay above.</p>'}">Clear</button></div><div class="search-theme-chips" id="dua-theme-chips">
+  <span class="chip-label">Duʿā themes</span>
+  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='forgiveness';searchMasnoonDua()">🤲 Forgiveness</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='morning';searchMasnoonDua()">🌅 Morning</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='anxiety';searchMasnoonDua()">💧 Anxiety</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='parents';searchMasnoonDua()">👨‍👩‍👧 Parents</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='travel';searchMasnoonDua()">✈️ Travel</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='protection';searchMasnoonDua()">🛡️ Protection</button>
+</div><div id="dua-results"></div></div>
+<div data-rrra="action" class="card card-search"><h2 data-i18n-html="search_quran">📖 Search the Quran</h2><p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.45rem;">Theme search via AlQuran.cloud and Quran.com — related verses, not only the exact word.</p><div class="search-row"><input type="text" id="quran-search" placeholder="a theme — e.g. patience, sabr, hope, parents…" onkeydown="if(event.key==='Enter')searchQuran()" /><button type="button" class="btn-voice-search" id="voice-btn-quran-search" data-voice-input="quran-search" data-voice-fn="searchQuran" title="Voice search (Whisper) — tap to record, tap again to search" aria-label="Voice search with Whisper"><span class="voice-mic-icon">🎤</span><span class="voice-mic-label">Voice</span></button><button type="button" onclick="searchQuran()">Search</button><button type="button" class="btn-secondary" onclick="try{clarityClearSearch('quran-search','quran-results')}catch(e){var i=document.getElementById('quran-search');if(i)i.value='';var r=document.getElementById('quran-results');if(r)r.innerHTML='<p class=\'search-empty\'>Results cleared. Theme chips stay above.</p>'}">Clear</button></div>
+<div class="search-theme-chips" id="quran-theme-chips">
+  <span class="chip-label">Deep themes</span>
+  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='patience';searchQuran()">🌱 Patience</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='hope';searchQuran()">✨ Hope</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='parents';searchQuran()">👨‍👩‍👧 Parents</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='forgiveness';searchQuran()">🤲 Forgiveness</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='prayer';searchQuran()">🕌 Prayer</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='gratitude';searchQuran()">🙏 Gratitude</button>
+</div>
+<div id="quran-results"></div></div>
+<div data-rrra="action" class="card card-search"><h2 data-i18n-html="search_hadith">📚 Search Authentic Hadith</h2><p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.45rem;">Related-meaning search across collections. Cross-check wording on Sunnah.com.</p><div class="search-row"><input type="text" id="hadith-search" placeholder="mercy, anger, charity, neighbors, prayer…" onkeydown="if(event.key==='Enter')searchHadith()" /><button type="button" class="btn-voice-search" id="voice-btn-hadith-search" data-voice-input="hadith-search" data-voice-fn="searchHadith" title="Voice search (Whisper) — tap to record, tap again to search" aria-label="Voice search with Whisper"><span class="voice-mic-icon">🎤</span><span class="voice-mic-label">Voice</span></button><button type="button" onclick="searchHadith()">Search</button><button type="button" class="btn-secondary" onclick="try{clarityClearSearch('hadith-search','hadith-results')}catch(e){var i=document.getElementById('hadith-search');if(i)i.value='';var r=document.getElementById('hadith-results');if(r)r.innerHTML='<p class=\'search-empty\'>Results cleared. Theme chips stay above.</p>'}">Clear</button></div>
+<div class="search-theme-chips" id="hadith-theme-chips">
+  <span class="chip-label">Deep themes</span>
+  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='mercy';searchHadith()">💚 Mercy</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='anger';searchHadith()">🕊️ Anger</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='charity';searchHadith()">🎁 Charity</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='neighbors';searchHadith()">🏠 Neighbors</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='truthfulness';searchHadith()">💎 Truth</button>
+</div>
+<div id="hadith-results"></div><p style="font-size:0.84rem; color:#666; margin-top:0.55rem;">
+ Deeper research: <a href="https://sunnah.com" target="_blank" rel="noopener">sunnah.com</a></p></div>
+<div data-rrra="action" class="card card-search"><h2 data-i18n-html="search_life">🧭 Search Life Events / Hadith</h2><div class="search-row"><input type="text" id="life-search" placeholder="patience, anger, charity, parents…" onkeydown="if(event.key==='Enter')searchLifeOrHadith()" /><button type="button" class="btn-voice-search" id="voice-btn-life-search" data-voice-input="life-search" data-voice-fn="searchLifeOrHadith" title="Voice search (Whisper) — tap to record, tap again to search" aria-label="Voice search with Whisper"><span class="voice-mic-icon">🎤</span><span class="voice-mic-label">Voice</span></button><button type="button" onclick="searchLifeOrHadith()">Search</button><button type="button" class="btn-secondary" onclick="try{clarityClearSearch('life-search','life-results')}catch(e){var i=document.getElementById('life-search');if(i)i.value='';var r=document.getElementById('life-results');if(r)r.innerHTML='<p class=\'search-empty\'>Results cleared. Theme chips stay above.</p>'}">Clear</button></div><div class="search-theme-chips" id="life-theme-chips">
+  <span class="chip-label">Life themes</span>
+  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='patience';searchLifeOrHadith()">🌱 Patience</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='anger';searchLifeOrHadith()">🕊️ Anger</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='charity';searchLifeOrHadith()">🎁 Charity</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='parents';searchLifeOrHadith()">👨‍👩‍👧 Parents</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='marriage';searchLifeOrHadith()">💍 Marriage</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='death';searchLifeOrHadith()">🌙 Death</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='work';searchLifeOrHadith()">💼 Work</button>
+  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='anxiety';searchLifeOrHadith()">💧 Anxiety</button>
+</div><div id="life-results"></div></div>
+<div data-rrra="action" class="card card-grok"><h2 data-i18n-html="ask_grok">✨ Ask Grok</h2><p>Ask about life events, previous nations, or any sincere question.</p><div class="grok-box"><textarea id="grok-question" placeholder="Example: What is the Islamic guidance when a child is born?"></textarea><button type="button" onclick="askGrok()">Open in Grok with my question</button><p class="grok-note">Your question is copied. Paste it when Grok opens.</p></div></div>
+<div data-rrra="action" class="card card-tools siq-suite" id="fiqh-quiz-card" data-disc="1" style="border-top:3px solid var(--gold,#d4b45a)" data-min-i="1" data-curriculum-folder="new-muslim">
+  <div class="siq-hero">
+    <div class="siq-hero-text">
+      <h2 style="margin:0;color:var(--gold)">🧠 Sharia IQ &amp; Daily Fiqh</h2>
+      <p class="td-src" style="font-size:.8rem;margin:.25rem 0 0"><strong>Educational only — not a fatwa.</strong> Self-check quizzes; verify every answer with authentic sources.</p>
+      <p class="siq-sub">Train the heart and mind · authentic sources · new draw every day</p>
+    </div>
+    <div class="siq-hero-glow" aria-hidden="true">✦</div>
+  </div>
+  <div id="clarity-daily-deep" class="clarity-daily-deep" aria-live="polite"></div>
+
+  <div class="siq-tabs" role="tablist">
+    <button type="button" class="siq-tab active" data-siq="daily" onclick="siqShow('daily')">📚 Daily Fiqh</button>
+    <button type="button" class="siq-tab" data-siq="iq" onclick="siqShow('iq')">🎯 Sharia IQ Test</button>
+  </div>
+
+  <!-- DAILY FIQH -->
+  <div id="siq-panel-daily" class="siq-panel active">
+    <div class="fq-stats" id="fq-stats">
+      <span class="fq-pill gold" id="fq-streak">🔥 Streak 0</span>
+      <span class="fq-pill" id="fq-today">Today 0/10</span>
+      <span class="fq-pill green" id="fq-best">Best 0</span>
+      <span class="fq-pill" id="fq-total">All-time 0</span>
+    </div>
+    <div class="fq-level-row" role="group" aria-label="Level" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0">
+      <button type="button" class="btn-soft fq-lvl" data-lvl="beginner" onclick="fqSetLevel('beginner')">Beginner</button>
+      <button type="button" class="btn-soft fq-lvl" data-lvl="intermediate" onclick="fqSetLevel('intermediate')">Intermediate</button>
+      <button type="button" class="btn-soft fq-lvl" data-lvl="advanced" onclick="fqSetLevel('advanced')">Advanced</button>
+      <button type="button" class="btn-soft" onclick="fqForceNewDeck()" title="New unused cards">↻ New unused deck</button>
+    <button type="button" class="btn-soft" onclick="fqResetSeenDecks()" title="Clear memory and shuffle everything">↺ Reset seen cards</button>
+    </div>
+    <div class="fq-topic-row" role="group" aria-label="Topic" style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.25rem 0 .4rem">
+      <button type="button" class="btn-soft fq-topic on" data-topic="all" onclick="fqSetTopic('all')">All</button>
+      <button type="button" class="btn-soft fq-topic" data-topic="Tafseer" onclick="fqSetTopic('Tafseer')">📖 Tafseer</button>
+      <button type="button" class="btn-soft fq-topic" data-topic="Seerah" onclick="fqSetTopic('Seerah')">🕊 Seerah</button>
+      <button type="button" class="btn-soft fq-topic" data-topic="Daily" onclick="fqSetTopic('Daily')">🏠 Daily life</button>
+      <button type="button" class="btn-soft fq-topic" data-topic="Fiqh" onclick="fqSetTopic('Fiqh')">⚖️ Fiqh</button>
+    </div>
+    <div class="fq-online-bar" id="fq-online-bar">
+      <button type="button" class="fq-fetch-btn" onclick="fqFetchOnlineDeck()" title="Pull fresh questions from Qur’an &amp; Hadith APIs, fallback to stored bank">
+        <span style="font-size:1.1rem;line-height:1">☁</span> Fetch online deck
+      </button>
+      <button type="button" class="fq-stored-btn" onclick="fqUseStoredOnly()" title="Use only on-device bank">📦 Stored only</button>
+      <span id="fq-online-status" style="color:var(--text-muted);font-size:.78rem;flex:1;min-width:8rem">Offline bank ready · online optional</span>
+    </div>
+    <div class="fq-extra-controls" style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.35rem 0 .5rem">
+      <label style="display:inline-flex;align-items:center;gap:.35rem;font-size:.85rem;cursor:pointer" title="Off by default: correctly answered cards stay hidden for the day">
+        <input type="checkbox" id="fq-show-correct" onchange="fqToggleShowCorrect(this.checked)"> Show correctly answered cards
+      </label>
+      <button type="button" class="btn-soft" onclick="fqLogDailyProgress()" title="Save today score for this level">📝 Log this level</button>
+      <button type="button" class="btn-secondary" onclick="fqShowDailyLog()" title="View per-level daily log">View log</button>
+    </div>
+    <div id="fq-daily-log-panel" hidden style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:.65rem .8rem;margin-bottom:.55rem;font-size:.86rem;max-height:220px;overflow:auto"></div>
+    <div id="fq-stage" class="fq-stage"></div>
+    <div class="fq-actions" style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem">
+      <button type="button" class="btn-soft" id="fq-next-btn" onclick="fqNext()">Next →</button>
+      <button type="button" class="btn-secondary" onclick="fqResetToday()">Reset today</button>
+    </div>
+    <p class="siq-foot">Educational only · not a fatwa · verify on Sunnah.com / IslamQA / Quran.com</p>
+  </div>
+
+  <!-- SHARIA IQ TEST -->
+  <div id="siq-panel-iq" class="siq-panel" hidden>
+    <div class="siq-iq-intro" id="siq-iq-intro">
+      <p>Modeled on structured aptitude tests: <strong>15 questions</strong>, rising difficulty, mixed domains (ʿaqīdah, fiqh, Qurʾān, seerah, character). Score is a <em>Sharia practice index</em> — not a secular IQ number.</p>
+      <div class="siq-iq-opts" style="display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center">
+        <label class="siq-check"><input type="checkbox" id="siq-timed" checked> Timed (60s / question)</label>
+        <label class="siq-check"><input type="checkbox" id="siq-hide-correct" checked> Hide correctly answered (default)</label>
+        <label class="siq-check"><input type="checkbox" id="siq-online-fetch" checked> Fetch deeper questions online</label>
+      </div>
+      <div class="td-row" style="margin-top:.55rem;flex-wrap:wrap;gap:.4rem">
+        <button type="button" class="btn-soft siq-start-btn" onclick="siqStart()">Begin Sharia IQ Test</button>
+        <button type="button" class="btn-soft" onclick="siqFetchOnlineBank(true)">↻ Refresh online bank</button>
+        <button type="button" class="btn-soft" onclick="siqShowDailyLog()">📋 Daily IQ log</button>
+      </div>
+      <p id="siq-online-status" class="td-src" style="margin-top:.4rem;font-size:.82rem"></p>
+      <div id="siq-daily-log" class="siq-daily-log" hidden style="margin-top:.5rem;padding:.5rem .65rem;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);font-size:.85rem"></div>
+    </div>
+    <div id="siq-iq-stage" class="siq-iq-stage" hidden></div>
+    <div id="siq-iq-result" class="siq-iq-result" hidden></div>
+  </div>
+</div>
+<div data-rrra="action" class="card card-notes"><h2 data-i18n="notes_title">📝 Clarity Notes</h2><p style="font-size:0.94rem; margin-bottom:0.75rem;" data-i18n="notes_desc">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p><div class="notes-shell" id="notes-shell" data-min-i="0" data-always="1" data-curriculum-folder="shared"><div class="notes-list-pane" id="notes-list-pane"><div class="notes-list-toolbar"><input type="text" class="notes-search" id="notes-search" placeholder="Search notes… (/ )" autocomplete="off" oninput="notesSetQuery(this.value)"><div class="notes-toolbar-row"><button type="button" onclick="notesCreate()">＋ New</button><button type="button" class="btn-secondary" onclick="notesExport()" title="Download notes JSON">⬇ Export</button><button type="button" class="btn-secondary" onclick="document.getElementById('notes-import-file').click()" title="Import notes JSON">⬆ Import</button><input type="file" id="notes-import-file" accept="application/json,.json" hidden onchange="notesImport(event)"><button type="button" class="btn-secondary" onclick="notesRestoreSeed()" title="Restore starter library">↺ Seed</button></div></div><div class="notes-tag-filter" id="notes-tag-filter"></div><div class="notes-list" id="notes-list" role="listbox" aria-label="Notes"></div></div><div class="notes-editor-pane" id="notes-editor-pane"><div id="notes-editor-empty" class="notes-empty" style="display:none"><div style="font-size:2rem">✒️</div><p><strong>No note selected</strong></p><p>Create a new note or pick one from the list.<br>Tip: press <kbd>Ctrl</kbd>+<kbd>N</kbd> for a blank page.</p><button type="button" onclick="notesCreate()">New note</button></div><div id="notes-editor-active" style="display:none; flex-direction:column; flex:1; min-height:0;"><div class="notes-editor-toolbar"><div class="notes-view-toggle" role="group" aria-label="View mode"><button type="button" id="nv-edit" onclick="notesSetView('edit')">Edit</button><button type="button" id="nv-split" onclick="notesSetView('split')">Split</button><button type="button" id="nv-preview" onclick="notesSetView('preview')">Preview</button></div><select id="notes-tag-select" onchange="notesUpdateField('tag', this.value)" title="Section tag"><option value="">Tag…</option><option value="Guide">Guide</option><option value="Journey">Journey</option><option value="Commands">Commands</option><option value="Quran">Quran</option><option value="Tafseer">Tafseer</option><option value="Tajweed">Tajweed</option><option value="Seerah">Seerah</option><option value="Lectures">Lectures</option><option value="Grave">Grave</option><option value="Practice">Practice</option><option value="Guidance">Guidance</option><option value="Reflection">Reflection</option></select><button type="button" class="btn-soft" onclick="notesToggleGrave()" id="notes-grave-btn" title="Mark as light for the grave">🌙 Grave</button><button type="button" class="btn-secondary" onclick="notesRequestDelete()" title="Delete note">🗑</button></div><input type="text" class="notes-title-input" id="notes-title" placeholder="Title" oninput="notesUpdateField('title', this.value)"><div class="notes-body-area edit-only" id="notes-body-area"><textarea class="notes-body-input" id="notes-body" placeholder="Write in Markdown… reflections, ayat, goals for the day." oninput="notesUpdateField('body', this.value)"></textarea><div class="notes-md-preview" id="notes-preview" aria-live="polite"></div></div><div class="notes-status"><span id="notes-save-status">Ready · stays on this device</span><span id="notes-char-count"></span><button type="button" class="notes-save-now" id="notes-save-now" onclick="notesSaveNow()">Save note</button><span id="notes-grave-status"></span></div></div></div></div><p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>Ctrl/⌘ S</kbd> save · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device. Tasks on Today can open a dated deed note here.</p></div>
+</div></div>
+
+<!-- Path tools · bottom of Action · daily + dai -->
 <div class="card card-tools meme-card-realigned" id="meme-card" data-rrra="action" data-rrra-pin="action" style="border-top:3px solid var(--gold,#b8922a)" data-min-i="2" data-curriculum-folder="daily" data-dai-ready="1">
-<h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 Clarity Meme Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
+<h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 استوديو التبليغ · Tablīgh Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
 <p id="meme-fetch-status" style="font-size:.7rem;color:var(--accent);min-height:.85em;margin:0 0 .25rem"></p>
 
 <div id="meme-studio-root" class="meme-studio meme-realign">
@@ -1294,7 +1618,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
         <div class="meme-text-box top" id="meme-box-top" data-which="top"><div class="meme-drag-handle">Top</div></div>
         <div class="meme-text-box middle" id="meme-box-mid" data-which="mid"><div class="meme-drag-handle">Mid</div></div>
         <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom"><div class="meme-drag-handle">Bot</div></div>
-        <a id="meme-wm-link" href="https://clarity-dawah.fyi/#meme" target="_blank" rel="noopener noreferrer" title="Open Meme Studio"><span class="wm-hit-label">clarity-dawah.fyi/#meme</span></a>
+        <a id="meme-wm-link" href="https://clarity-dawah.fyi/#meme" target="_blank" rel="noopener noreferrer" title="Open Tablīgh Studio"><span class="wm-hit-label">clarity-dawah.fyi/#meme</span></a>
       </div>
       <div id="meme-palette" class="meme-palette" ></div>
       <input type="color" id="meme-blank-custom" style="display:none" onchange="memeSetBlankColor&&memeSetBlankColor(this.value)">
@@ -1307,6 +1631,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
       <div class="meme-chip-row meme-size-row-h" id="meme-line-sizes">
 <button type="button" class="mv-chip" onclick="memeAutoScaleLines()">⬚ Auto-scale</button>
 <button type="button" class="mv-chip" onclick="memeSendToTweetDesk()">↗ Tweet Desk</button>
+      <button type="button" class="mv-chip" onclick="memeSendToFacebookDesk()">↗ Facebook Desk</button>
 
         <label>Top <input type="range" id="meme-size-top" min="14" max="72" value="42" oninput="memeOnLineSize('top',this.value)"><b id="meme-size-top-val">42</b></label>
         <label>Mid <input type="range" id="meme-size-mid" min="14" max="72" value="42" oninput="memeOnLineSize('mid',this.value)"><b id="meme-size-mid-val">42</b></label>
@@ -1367,6 +1692,54 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   </div>
 </div>
 </div>
+<div data-rrra="action" class="card tweet-desk" id="tweet-desk-card" data-dai-ready="1" data-min-i="2" data-curriculum-folder="daily">
+  <h2>𝕏 Tweet desk</h2>
+  <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
+  <div class="td-row">
+    <input type="text" id="td-handle" placeholder="@your_handle" autocomplete="username" style="min-width:10rem;padding:.4rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-elevated);color:var(--text)">
+    <button type="button" class="btn-soft" onclick="tdSaveHandle()">Save handle</button>
+    <button type="button" class="btn-secondary" onclick="tdConnectX()">Open X login</button>
+  <div class="td-row" style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0">
+    <button type="button" class="mv-chip" onclick="shareDesksPullFromStudio('x')">↙ From Tablīgh studio</button>
+    <button type="button" class="mv-chip" onclick="tweetDeskPost()">Post on X</button>
+  </div>
+  <textarea id="td-compose" rows="4" style="width:100%;box-sizing:border-box;border-radius:12px;padding:.65rem" placeholder="Tweet text…"></textarea>
+  <p id="td-preview" class="td-src" style="font-size:.8rem"></p>
+</div>
+  <div class="td-row" role="group" aria-label="Section drafts">
+    <button type="button" class="btn-soft" onclick="tdDraft('verse')">🧭 Journey</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('commands')">📜 Commands</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('grave')">🌙 Grave</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('tafseer')">📖 Tafseer</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('seerah')">🕊 Seerah</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('sami')">⚖ Samiʿnā</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('tajweed')">🔤 Tajweed</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('quiz')">🧠 Quiz win</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('meme')">🎨 Meme</button>
+    <button type="button" onclick="tdDraft('surprise')" onclick="claritySurpriseMe()">✨ Surprise me</button>
+    <button type="button" class="btn-soft" onclick="tdRefreshOnline()">↻ Refresh live</button>
+    <button type="button" class="btn-soft" onclick="tdSendToMeme()">🎨 To Meme Studio</button>
+  </div>
+  <textarea id="td-text" maxlength="280" rows="8" placeholder="﴿ Arabic ﴾&#10;English&#10;https://clarity-dawah.fyi/#journey" oninput="tdCount()"></textarea>
+  <div class="td-meta" id="td-meta"><span id="td-count">0 / 280</span><span id="td-status">Ready</span></div>
+  <div class="td-row">
+    <button type="button" onclick="tdPost()">Post on X</button>
+    <button type="button" class="btn-secondary" onclick="tdCopy()">Copy draft</button>
+    <button type="button" class="btn-soft" onclick="tdRemind()">Daily reminder</button>
+  </div>
+</div>
+
+<div data-rrra="action" class="card tweet-desk facebook-desk" id="facebook-desk-card" data-min-i="2" data-curriculum-folder="daily" data-dai-ready="1">
+  <h2>📘 Facebook desk</h2>
+  <p class="td-src">Pull Arabic + English + reference from <strong>استوديو التبليغ</strong>. Opens Facebook share with your text. Educational only — verify before posting.</p>
+  <div class="td-row" style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0">
+    <button type="button" class="mv-chip" onclick="shareDesksPullFromStudio('fb')">↙ From Tablīgh studio</button>
+    <button type="button" class="mv-chip" onclick="facebookDeskPost()">Share on Facebook</button>
+  </div>
+  <textarea id="fb-compose" rows="5" style="width:100%;box-sizing:border-box;border-radius:12px;padding:.65rem;font-size:.9rem" placeholder="Text for Facebook…"></textarea>
+  <p class="td-src" style="font-size:.78rem;opacity:.85;margin-top:.4rem">No auto-post. You confirm in Facebook. Watermark clarity-dawah.fyi stays educational.</p>
+</div>
+
 <div data-rrra="action" data-rrra-pin="action" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)" data-min-i="2" data-curriculum-folder="daily" data-dai-ready="1">
 <h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
 <p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
@@ -1434,53 +1807,6 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
     <p class="callig-mic-help">Whisper-tiny on-device · tap Start, speak, tap Stop · online only for AR translate.</p>
   </div>
   <div id="callig-translate-preview"></div>
-</div>
-
-
-<div data-rrra="action" class="card card-commands hell-warn" id="hell-sins-card" data-min-i="0" data-curriculum-folder="seeker"><h2>🔥 Warnings of the Fire< deeds Allah linked to severe punishment</h2><p style="font-size:0.92rem;margin-bottom:0.65rem;">
- This is a reminder, not a fatwa. The Prophet ﷺ named <strong>seven destructive sins</strong> (<em>al-mūbiqāt</em>) in a report agreed upon by al-Bukhārī and Muslim.
- Other verses and ṣaḥīḥ reports also attach a warning of the Fire to specific crimes. A believer who dies upon unrepented <em>shirk</em> is not forgiven; other major sins are under Allah’s will — He may punish or pardon — and <strong>sincere tawbah</strong> is accepted before death.
- Verify personal cases with a trusted scholar.
- </p><p class="hell-src">Core ḥadīth: Abū Hurayrah reported that the Messenger of Allah ﷺ said: “Avoid the seven destructive sins.” They asked, “What are they, O Messenger of Allah?” He said: “Associating partners with Allah; sorcery; killing a soul Allah has forbidden except by right; consuming ribā; consuming an orphan’s wealth; fleeing the battlefield; and slandering chaste, believing women who are unaware.” — Ṣaḥīḥ al-Bukhārī 2766 / 6857, Ṣaḥīḥ Muslim 89.</p><div id="hell-sins-list"></div><h3 style="margin:1rem 0 0.4rem;font-size:1.05rem;">How scholars describe tawbah (repentance)</h3><p style="font-size:0.92rem;">Imām al-Nawawī (Riyāḍ al-Ṣāliḥīn) and the majority: tawbah is obligatory from every sin. If the sin is only between the servant and Allah, three conditions; if it violates a human right, a fourth is added.</p><div class="tawbah-grid"><div><strong>1. Iqlaʿ</strong><br>Stop the sin at once.</div><div><strong>2. Nadam</strong><br>Feel genuine remorse.</div><div><strong>3. ʿAzm</strong><br>Resolve never to return.</div><div><strong>4. Ḥaqq al-ādamī</strong><br>Return wealth, honour, or seek pardon if a person was wronged.</div></div><p style="font-size:0.9rem;margin-top:0.7rem;">
- Window of acceptance: before the soul reaches the throat, and before the sun rises from the west (ḥadīth in Muslim and others).
- Allah says: <em>“Say: O My servants who have transgressed against themselves, do not despair of the mercy of Allah. Indeed Allah forgives all sins. He is the Forgiving, the Merciful.”</em> (al-Zumar 39:53).
- And: <em>“…except those who repent, believe, and do righteous deeds — for them Allah will replace their evil deeds with good deeds.”</em> (al-Furqān 25:70).
- </p><p class="hell-src">Also: Anas reported the qudsī ḥadīth: “O son of Ādam, were you to come to Me with an earthful of sins and then meet Me without having associated anything with Me, I would come to you with an earthful of pardon.” (al-Tirmidhī 3540; graded ḥasan by many, including al-Albānī). Ibn al-Qayyim: tawbah is not a phrase on the tongue only — it is leaving, regretting, and replacing harm with obedience.</p></div>
-<div data-rrra="action" class="card card-hifz"><h2 data-i18n="hifz_title">📗 Quran Memorization (Hifz)< Light for the Grave</h2>
-<div class="deep-learn"><strong>📚 Hifẓ helpers</strong>
-<div class="res-stack">
-<a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>
-<a href="https://everyayah.com" target="_blank" rel="noopener">EveryAyah audio</a>
-<a href="https://islamqa.info/en/search?q=memorizing+quran" target="_blank" rel="noopener">IslamQA — Hifẓ</a>
-</div></div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
- Memorising the Quran is among the greatest provisions for the grave. Set a daily goal, mark what you memorized, and practice recall. Progress + streak saved on this device.
- </p><div class="hifz-controls"><div><label style="font-size:0.88rem; color:#555;">Surah</label><select id="hifz-surah" onchange="loadHifzAyah()" style="max-width:100%;"><option value="1">1. Al-Fatihah</option><option value="2">2. Al-Baqarah</option><option value="3">3. Aal-Imran</option><option value="4">4. An-Nisa</option><option value="5">5. Al-Ma'idah</option><option value="6">6. Al-An'am</option><option value="7">7. Al-A'raf</option><option value="8">8. Al-Anfal</option><option value="9">9. At-Tawbah</option><option value="10">10. Yunus</option><option value="11">11. Hud</option><option value="12">12. Yusuf</option><option value="13">13. Ar-Ra'd</option><option value="14">14. Ibrahim</option><option value="15">15. Al-Hijr</option><option value="16">16. An-Nahl</option><option value="17">17. Al-Isra</option><option value="18">18. Al-Kahf</option><option value="19">19. Maryam</option><option value="20">20. Ta-Ha</option><option value="21">21. Al-Anbiya</option><option value="22">22. Al-Hajj</option><option value="23">23. Al-Mu'minun</option><option value="24">24. An-Nur</option><option value="25">25. Al-Furqan</option><option value="26">26. Ash-Shu'ara</option><option value="27">27. An-Naml</option><option value="28">28. Al-Qasas</option><option value="29">29. Al-Ankabut</option><option value="30">30. Ar-Rum</option><option value="31">31. Luqman</option><option value="32">32. As-Sajdah</option><option value="33">33. Al-Ahzab</option><option value="34">34. Saba</option><option value="35">35. Fatir</option><option value="36">36. Ya-Sin</option><option value="37">37. As-Saffat</option><option value="38">38. Sad</option><option value="39">39. Az-Zumar</option><option value="40">40. Ghafir</option><option value="41">41. Fussilat</option><option value="42">42. Ash-Shura</option><option value="43">43. Az-Zukhruf</option><option value="44">44. Ad-Dukhan</option><option value="45">45. Al-Jathiyah</option><option value="46">46. Al-Ahqaf</option><option value="47">47. Muhammad</option><option value="48">48. Al-Fath</option><option value="49">49. Al-Hujurat</option><option value="50">50. Qaf</option><option value="51">51. Adh-Dhariyat</option><option value="52">52. At-Tur</option><option value="53">53. An-Najm</option><option value="54">54. Al-Qamar</option><option value="55">55. Ar-Rahman</option><option value="56">56. Al-Waqi'ah</option><option value="57">57. Al-Hadid</option><option value="58">58. Al-Mujadila</option><option value="59">59. Al-Hashr</option><option value="60">60. Al-Mumtahanah</option><option value="61">61. As-Saff</option><option value="62">62. Al-Jumu'ah</option><option value="63">63. Al-Munafiqun</option><option value="64">64. At-Taghabun</option><option value="65">65. At-Talaq</option><option value="66">66. At-Tahrim</option><option value="67">67. Al-Mulk</option><option value="68">68. Al-Qalam</option><option value="69">69. Al-Haqqah</option><option value="70">70. Al-Ma'arij</option><option value="71">71. Nuh</option><option value="72">72. Al-Jinn</option><option value="73">73. Al-Muzzammil</option><option value="74">74. Al-Muddaththir</option><option value="75">75. Al-Qiyamah</option><option value="76">76. Al-Insan</option><option value="77">77. Al-Mursalat</option><option value="78">78. An-Naba</option><option value="79">79. An-Nazi'at</option><option value="80">80. Abasa</option><option value="81">81. At-Takwir</option><option value="82">82. Al-Infitar</option><option value="83">83. Al-Mutaffifin</option><option value="84">84. Al-Inshiqaq</option><option value="85">85. Al-Buruj</option><option value="86">86. At-Tariq</option><option value="87">87. Al-A'la</option><option value="88">88. Al-Ghashiyah</option><option value="89">89. Al-Fajr</option><option value="90">90. Al-Balad</option><option value="91">91. Ash-Shams</option><option value="92">92. Al-Layl</option><option value="93">93. Ad-Duha</option><option value="94">94. Ash-Sharh</option><option value="95">95. At-Tin</option><option value="96">96. Al-Alaq</option><option value="97">97. Al-Qadr</option><option value="98">98. Al-Bayyinah</option><option value="99">99. Az-Zalzalah</option><option value="100">100. Al-Adiyat</option><option value="101">101. Al-Qari'ah</option><option value="102">102. At-Takathur</option><option value="103">103. Al-Asr</option><option value="104">104. Al-Humazah</option><option value="105">105. Al-Fil</option><option value="106">106. Quraysh</option><option value="107">107. Al-Ma'un</option><option value="108">108. Al-Kawthar</option><option value="109">109. Al-Kafirun</option><option value="110">110. An-Nasr</option><option value="111">111. Al-Masad</option><option value="112">112. Al-Ikhlas</option><option value="113">113. Al-Falaq</option><option value="114">114. An-Nas</option></select></div><div><label style="font-size:0.88rem; color:#555;">Ayah number</label><input type="number" id="hifz-ayah-num" min="1" value="1" onchange="loadHifzAyah()" oninput="saveHifzSelection()"></div></div><div class="hifz-progress"><strong>Today’s goal:</strong><input type="number" id="hifz-goal" min="1" max="20" value="3" style="width:65px; display:inline-block; margin:0 0.35rem;">
- ayahs<br><span id="hifz-today-count" style="display:inline-block; margin-top:0.35rem;">Memorized today: 0</span><button type="button" onclick="markMemorized()" class="btn-soft" style="margin-top:0.55rem; padding:0.35rem 0.95rem; font-size:0.88rem;">Mark as Memorized</button></div><div id="hifz-display" class="hifz-ayah"><div class="arabic-calligraphy" id="hifz-arabic">Select a Surah & Ayah</div><button type="button" class="ayah-audio-btn clarity-stream-btn" id="hifz-audio-btn" onclick="playHifzAudio()">🔊 Listen</button><p id="hifz-translation" style="margin-top:0.55rem;"></p><div id="hifz-tafseer" class="ponder-box" style="display:none; margin-top:0.75rem;"></div><div id="hifz-tafseer-full" class="ponder-box" style="display:none; margin-top:0.65rem; border-left-color:#7ec9a8;"></div><div class="recall-btns"><button type="button" onclick="toggleRecall()" class="btn-secondary">Hide Meaning (Recall)</button><button type="button" onclick="nextHifzAyah()">Next Ayah</button></div></div></div>
-<div data-rrra="action" class="card card-seerah"><h2 data-i18n="capture_seerah">📖 Capture a seerah lesson</h2><div class="deep-learn"><strong>Seerah paths:</strong><a href="https://www.youtube.com/@YasirQadhi" target="_blank" rel="noopener">Yasir Qadhi Seerah</a> ·
- <a href="https://www.kalamullah.com/books.html" target="_blank" rel="noopener">Kalamullah books</a> ·
- <a href="https://sunnah.com" target="_blank" rel="noopener">primary reports</a>.</div><p style="font-size:0.92rem;" data-i18n="capture_seerah_desc">After reading a moment from the Prophet’s life ﷺ, write one lesson and one action.</p><button type="button" class="quick-note-btn" onclick="notesQuickFromSection('Seerah','Seerah lesson')">＋ Note from Seerah</button></div>
-<div data-rrra="action" class="card card-seerah"><h2>🌳 Family tree — from Ismāʿīl عليه السلام to the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.65rem;">A simplified lineage for orientation (not every generation is listed). Classical nasab runs through ʿAdnān to ʿAbd al-Muṭṭalib.</p><div class="family-tree" id="family-tree"><div class="ft-node ft-root">Ismāʿīl <span class="ft-as">عليه السلام</span><div class="ft-note">Son of Ibrāhīm عليه السلام · ancestor of the Arabs of Ḥijāz</div></div><div class="ft-line"></div><div class="ft-node">… generations of his descendants in Arabia …</div><div class="ft-line"></div><div class="ft-node">ʿAdnān <div class="ft-note">Agreed early ancestor in the Prophet’s nasab</div></div><div class="ft-line"></div><div class="ft-node">… including Niẓār, Muḍar, Fihr (Quraysh) …</div><div class="ft-line"></div><div class="ft-node">Quṣayy b. Kilāb <div class="ft-note">United Quraysh around the Kaʿbah</div></div><div class="ft-line"></div><div class="ft-node">ʿAbd Manāf → Hāshim → ʿAbd al-Muṭṭalib</div><div class="ft-line"></div><div class="ft-branch"><div class="ft-node">ʿAbdullāh <div class="ft-note">Father of the Prophet ﷺ</div></div><div class="ft-node">Abū Ṭālib <div class="ft-note">Uncle &amp; protector</div></div><div class="ft-node">Other sons of ʿAbd al-Muṭṭalib</div></div><div class="ft-line"></div><div class="ft-node ft-prophet">Muḥammad ﷺ <div class="ft-note">Born to Āminah bint Wahb · Quraysh, Banū Hāshim</div></div><div class="ft-line"></div><div class="ft-branch ft-children"><div class="ft-node">Al-Qāsim · ʿAbdullāh · Ibrāhīm <div class="ft-note">Sons (died young)</div></div><div class="ft-node">Zaynab · Ruqayyah · Umm Kulthūm · Fāṭimah <div class="ft-note">Daughters · Fāṭimah رضي الله عنها mother of al-Ḥasan &amp; al-Ḥusayn</div></div></div></div><p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.65rem;">For detailed nasab charts see classical works (e.g. Ibn Hishām) and reputable educational sites. This tree is a learning aid only.</p></div>
-<div data-rrra="action" class="card card-seerah" id="seerah-mirror-card" style="border-top:3px solid var(--sky,#3d8ab5)" data-min-i="2" data-curriculum-folder="daily">
-  <h2>🪞 Seerah Mirror Walk — character in motion</h2>
-  <p class="td-src" style="font-size:.82rem;margin:.2rem 0 .5rem">Deep learning: one Prophetic quality per step. Read the moment, then answer the mirror prompt in Notes. Progress saved on this device only.</p>
-  <div id="seerah-mirror-body">
-    <p style="font-weight:700;color:var(--gold);margin:0 0 .25rem" id="sm-step-label">Step 1 of 7</p>
-    <h3 style="font-size:1.05rem;margin:.15rem 0" id="sm-title">Loading…</h3>
-    <p style="font-size:.92rem;line-height:1.5" id="sm-moment"></p>
-    <p class="td-src" id="sm-src"></p>
-    <div class="ponder-box" style="margin-top:.5rem">
-      <strong>Mirror prompt</strong>
-      <p style="margin:.25rem 0 0;font-size:.9rem" id="sm-prompt"></p>
-    </div>
-  </div>
-  <div style="margin-top:.65rem;display:flex;flex-wrap:wrap;gap:.4rem">
-    <button type="button" class="btn" onclick="claritySeerahMirrorDone()">Mark step done</button>
-    <button type="button" class="btn-soft" onclick="claritySeerahMirrorNext()">Next step →</button>
-    <button type="button" class="btn-soft" onclick="claritySeerahMirrorNote()">＋ Note my mirror</button>
-    <a id="sm-link" href="https://sunnah.com" target="_blank" rel="noopener" class="btn-soft" style="display:inline-flex;align-items:center;text-decoration:none">Open source</a>
-  </div>
-  <div class="path-prog" style="margin-top:.65rem"><div class="fill" id="sm-prog-fill" style="width:0%"></div></div>
-  <p style="font-size:.78rem;color:var(--text-muted);margin-top:.35rem" id="sm-progress-text">0 / 7 steps on this device</p>
 </div>
 <div data-rrra="action" class="card card-tajweed" id="tajweed-live-card" data-dai-ready="1" style="border-top:3px solid var(--gold)" data-min-i="2" data-curriculum-folder="daily">
   <h2>📡 Daily tajweed module</h2>
@@ -1800,305 +2126,6 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
  <a href="https://www.youtube.com/playlist?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT" target="_blank" rel="noopener">Golden Tajweed Series</a> ·
  <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a></p></div>
 
-<div data-rrra="action" class="tj-lmr-ayah-card">
-          
-          
-          
-          <div class="tj-lmr-audio-row">
-            
-            
-            
-          </div>
-        </div>
-
-<div data-rrra="action" class="card card-search hajj-guide-card" id="hajj-guide-card" data-min-i="1" data-curriculum-folder="new-muslim">
-<h2>🕋 Hajj Ritual Guide</h2>
-<p style="font-size:.86rem;margin:0 0 .4rem">Step-by-step rites with fiqh notes, Sunnah, and duʿāʾ from mainstream Sunni sources (IslamQA, Qurʾān, Ṣaḥīḥ reports, haj.gov.sa). Each slide pairs authentic guidance with a visual from the Ḥaramayn. Progress stays on this device only.</p>
-<div class="hajj-type-row"><label for="hajj-nusk">Type</label>
-<select id="hajj-nusk"><option value="tamattu">Tamattuʿ</option><option value="qiran">Qirān</option><option value="ifrad">Ifrād</option></select></div>
-<div class="hajj-type-row"><label for="hajj-step-select">Step</label>
-<select id="hajj-step-select" onchange="hajjShowStep(this.value)"></select></div>
-<div class="hajj-progress" id="hajj-progress"></div>
-<div class="hajj-panel" id="hajj-panel"><p>Choose a step to open detailed guidance.</p></div>
-<div class="hajj-actions">
-<button type="button" class="btn-secondary" onclick="hajjMarkDone()">✓ Done</button>
-<button type="button" class="btn-secondary" onclick="hajjMarkUndone()">Undo</button>
-<button type="button" class="btn-secondary" onclick="hajjPrintChecklist()">🖨️ Print</button>
-<button type="button" class="btn-secondary" onclick="hajjWhereAmI()">🧭 Where am I?</button><button type="button" class="btn-secondary" onclick="var el=document.getElementById('hajj-checklist-card');if(el){el.scrollIntoView({behavior:'smooth'});var d=document.getElementById('hajj-checklist-details');if(d)d.open=true;try{hajjChecklistRender()}catch(e){}}">✅ Open checklist</button>
-</div>
-<div class="hajj-talbiyah-wrap">
-<strong>Talbiyah</strong>
-<div class="dua-ar" style="margin:.25rem 0;font-family:'Scheherazade New','Amiri',serif;direction:rtl;font-size:1.15rem;line-height:1.9">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ</div>
-<div class="talbiyah-counter"><button type="button" onclick="hajjTalbiyah(-1)">−</button><span id="hajj-talbiyah-count">0</span><button type="button" onclick="hajjTalbiyah(1)">＋ Labbayk</button><button type="button" class="hajj-audio-btn" onclick="hajjPlayTalbiyah()">🔊</button></div>
-</div>
-<div class="hajj-video-wrap">
-<strong style="color:#f5e6b8;display:block;margin-bottom:.35rem">🎧 Hajj video series — Ustazah Najiha Hashmi</strong>
-<div class="hajj-type-row" style="margin:.25rem 0 .45rem">
-<label for="hajj-ep" style="color:#e8d48b!important">Episode</label>
-<select id="hajj-ep" onchange="hajjLoadEpisode(this.value)" style="flex:1 1 14rem">
-<option value="MUDNDj4n7I4">Featured session (shared link)</option>
-<option value="o0jb120gXUA">Ep 02 — Types of Hajj, Mīqāt, Iḥrām</option>
-<option value="j0u2gfRd8IM">Ep 03 — Ṭawāf &amp; Saʿī issues</option>
-<option value="NSX2DOrdopM">Ep 04 — How to perform ʿUmrah</option>
-<option value="v7uNDDHbGx0">Intentions — Tamattuʿ &amp; Qirān</option>
-<option value="Di4Ok_9mNDQ">Prohibitions of iḥrām for women</option>
-<option value="hIc7-uaOrfg">Muzdalifah to Farewell ṭawāf</option>
-<option value="SPSQmE_a0vg">Reward of an accepted Hajj</option>
-<option value="CWC-d5CdNqw">Hajj workshop (full)</option>
-<option value="DZGhQDID-oI">Zilhajj special — Day 1 (2026)</option>
-<option value="17ZpIUsBCKw">Zilhajj special — Day 4 (2026)</option>
-</select>
-</div>
-<div class="hajj-video-frame">
-<details class="clarity-embed-fold" data-embed-id="hajj-yt-frame"><summary>▶ Open Hajj video <span class="cef-title">Hajj series — Ustazah Najiha Hashmi</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/MUDNDj4n7I4?rel=0" src="about:blank" id="hajj-yt-frame-x1" title="Hajj series — Ustazah Najiha Hashmi" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></details>
-</div>
-<p style="font-size:.74rem;opacity:.85;margin-top:.3rem">
-<a href="https://www.youtube.com/playlist?list=PL98jztrfutUSLooSrRiIWraakYkDGVgzd" target="_blank" rel="noopener">Open full playlist</a>
- · <a href="https://www.youtube.com/@ArRahmahIslamicInstitute" target="_blank" rel="noopener">ArRahmah</a>
- · <a id="hajj-yt-open" href="https://youtu.be/MUDNDj4n7I4" target="_blank" rel="noopener">This episode on YouTube</a>
-</p>
-</div>
-<p class="hajj-disclaimer"><strong>Not a fatwa.</strong> Confirm details with your scholar · <a href="https://haj.gov.sa/en/Hajj" target="_blank" rel="noopener">haj.gov.sa</a> · <a href="https://islamqa.info/en/answers/31822" target="_blank" rel="noopener">IslamQA 31822</a> · <a href="https://islamweb.net/en/article/134409/hajj-a-comprehensive-guide" target="_blank" rel="noopener">Islamweb</a></p>
-</div>
-<div data-rrra="action" class="card card-search" id="hajj-checklist-card" style="border-top:3px solid var(--gold,#b8922a)" data-min-i="2" data-curriculum-folder="daily">
-<details id="hajj-checklist-details">
-<summary style="cursor:pointer;font-weight:700;color:var(--accent);font-size:1.05rem;list-style:none">▸ ✅ Hajj checklist manager</summary>
-<p style="font-size:.88rem;color:var(--text-muted);margin:.45rem 0">Tracks steps marked done in the Hajj Ritual Guide above. Same progress on this device.</p>
-<div class="hajj-type-row" style="margin:.35rem 0">
-<label for="hajj-check-nusk" style="color:var(--accent)">Nusk</label>
-<select id="hajj-check-nusk" onchange="hajjChecklistSetNusk(this.value)" style="background:var(--card-bg);color:var(--text);border:1px solid var(--border);padding:.4rem .55rem;border-radius:10px">
-<option value="tamattu">Tamattuʿ</option>
-<option value="qiran">Qirān</option>
-<option value="ifrad">Ifrād</option>
-</select>
-</div>
-<div id="hajj-checklist-progress" style="font-size:.88rem;margin:.4rem 0;color:var(--text)"></div>
-<div id="hajj-checklist-list" style="display:flex;flex-direction:column;gap:.35rem"></div>
-<div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.65rem">
-<button type="button" class="btn-soft" onclick="var el=document.getElementById('hajj-guide-card');if(el)el.scrollIntoView({behavior:'smooth'})">🕋 Jump to guide</button>
-<button type="button" class="btn-secondary" onclick="hajjChecklistPrint()">🖨️ Print</button>
-<button type="button" class="btn-secondary" onclick="hajjChecklistReset()">Reset all</button>
-</div>
-<p style="font-size:.78rem;color:var(--text-muted);margin-top:.5rem">Educational tracker only — not a fatwa.</p>
-</details>
-</div>
-<div data-rrra="action" class="card card-search vt-card" id="voice-translator-card" data-min-i="3" data-curriculum-folder="dai">
-  <h2>🎙️ Voice Translator</h2>
-  <p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .55rem">
-    Speech → text with <strong>Whisper-tiny (quantized)</strong>, then <strong>Google Translate</strong>.
-    Model files are written to the <strong>browser Cache API</strong> on first download and reused offline after that.
-  </p>
-  <div class="vt-cache-bar" id="vt-cache-bar">
-    <span id="vt-cache-badge" class="vt-cache-badge">Cache: checking…</span>
-    <button type="button" class="btn-secondary" id="vt-cache-refresh" onclick="vtRefreshCacheStatus()">↻ Status</button>
-  </div>
-  <div class="vt-grid">
-    <label class="vt-lab">From
-      <select id="vt-from" onchange="vtOnLangChange()">
-        <option value="en">English</option>
-        <option value="ar">Arabic</option>
-        <option value="ur">Urdu</option>
-        <option value="fr">French</option>
-        <option value="es">Spanish</option>
-        <option value="tr">Turkish</option>
-        <option value="id">Indonesian</option>
-        <option value="hi">Hindi</option>
-        <option value="de">German</option>
-        <option value="auto">Auto-detect</option>
-      </select>
-    </label>
-    <button type="button" class="btn-soft vt-swap" id="vt-swap" onclick="vtSwapLangs()" title="Swap">⇄</button>
-    <label class="vt-lab">To
-      <select id="vt-to" onchange="vtOnLangChange()">
-        <option value="ar" selected>Arabic</option>
-        <option value="en">English</option>
-        <option value="ur">Urdu</option>
-        <option value="fr">French</option>
-        <option value="es">Spanish</option>
-        <option value="tr">Turkish</option>
-        <option value="id">Indonesian</option>
-        <option value="hi">Hindi</option>
-        <option value="de">German</option>
-        <option value="zh-CN">Chinese</option>
-      </select>
-    </label>
-  </div>
-  <div class="vt-presets">
-    <button type="button" class="vt-chip" onclick="vtPreset('en','ar')">EN → AR</button>
-    <button type="button" class="vt-chip" onclick="vtPreset('ar','en')">AR → EN</button>
-    <button type="button" class="vt-chip" onclick="vtPreset('en','ur')">EN → UR</button>
-    <button type="button" class="vt-chip" onclick="vtPreset('fr','ar')">FR → AR</button>
-    <button type="button" class="vt-chip" onclick="vtSurprise()">✨ Surprise</button>
-  </div>
-  <div class="vt-actions">
-    <button type="button" class="btn-soft" id="vt-load-model" onclick="vtEnsureWhisper(true)">⬇ Install Whisper to device cache</button>
-    <button type="button" class="btn-soft" id="vt-mic" onclick="vtToggleRecord()">🎤 Start recording</button>
-    <button type="button" class="btn-soft" id="vt-translate-btn" onclick="vtTranslateNow()">🌐 Translate</button>
-    <button type="button" class="btn-soft" id="vt-hear-btn" onclick="vtSpeakOut()">🔊 Hear</button>
-    <button type="button" class="btn-secondary" id="vt-copy-btn" onclick="vtCopyOut()">📋 Copy</button>
-    <button type="button" class="btn-secondary" id="vt-clear-btn" onclick="vtClear()">Clear</button>
-    <button type="button" class="btn-secondary" id="vt-unload-btn" onclick="vtUnloadWhisper()" title="Free RAM; files stay in device cache">⏏ Unload from RAM</button>
-  </div>
-  <div class="vt-status" id="vt-status">Ready — install Whisper once (saved on this device), then record</div>
-  <div class="vt-progress-wrap" id="vt-progress-wrap" hidden>
-    <div class="vt-progress-bar"><div class="vt-progress-fill" id="vt-progress-fill"></div></div>
-    <div class="vt-progress-label" id="vt-progress-label">Preparing…</div>
-  </div>
-  <div class="vt-io">
-    <div>
-      <label class="vt-cap" for="vt-in">Input (transcript / type)</label>
-      <textarea id="vt-in" rows="4" placeholder="Recorded speech or type here…" oninput="vtScheduleTranslate()"></textarea>
-    </div>
-    <div>
-      <label class="vt-cap" for="vt-out">Translation</label>
-      <textarea id="vt-out" rows="4" placeholder="Translation appears here…"></textarea>
-    </div>
-  </div>
-  <p class="notes-hint" style="margin-top:.55rem;font-size:.8rem">
-    <strong>Audited path:</strong> Hugging Face <code>Xenova/whisper-tiny</code> quantized ONNX → browser <strong>Cache API</strong>
-    (<code>transformers-cache</code>). First visit needs network; later visits read cache only.
-    Use <em>Unload from RAM</em> after recording to keep memory light — cache files remain.
-    Speak 2–12 seconds clearly. Chrome / Edge recommended.
-  </p>
-</div>
-<div data-rrra="action" class="card" id="guidance-learn-strip" style="border-top:3px solid var(--sky,#2a5f7a)">
-  <h2>🔍 Guided search</h2>
-  <p style="font-size:.86rem;color:var(--text-muted);margin:0;line-height:1.45">
-    Type a <strong>theme</strong> or tap <strong>🎤</strong> to speak. Results pull related āyāt and reports — not only exact words.
-    Use <strong>Clear</strong> to reset. Cross-check on Qurʾān.com / Sunnah.com. Educational only.
-  </p>
-  <p id="voice-search-status" style="font-size:.8rem;margin:.35rem 0 0;color:var(--accent);min-height:1.2em"></p>
-</div>
-<div data-rrra="action" class="card card-search"><h2>🤲 Search Masnūn Supplications</h2><div class="deep-learn"><strong>Research stack:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a> ·
- <a href="https://corpus.quran.com" target="_blank" rel="noopener">Corpus</a> ·
- <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a> ·
- <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance</a>.</div><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">Authentic / widely taught duʿās from Qurʾān and Sunnah — Arabic, English, and Urdu. Educational wording; schools may differ slightly.</p><div class="search-row"><input type="text" id="dua-search" placeholder="forgiveness, morning, anxiety, parents, travel…" onkeydown="if(event.key==='Enter')searchMasnoonDua()" /><button type="button" class="btn-voice-search" id="voice-btn-dua-search" data-voice-input="dua-search" data-voice-fn="searchMasnoonDua" title="Voice search (Whisper) — tap to record, tap again to search" aria-label="Voice search with Whisper"><span class="voice-mic-icon">🎤</span><span class="voice-mic-label">Voice</span></button><button type="button" onclick="searchMasnoonDua()">Search</button><button type="button" class="btn-secondary" onclick="try{clarityClearSearch('dua-search','dua-results')}catch(e){var i=document.getElementById('dua-search');if(i)i.value='';var r=document.getElementById('dua-results');if(r)r.innerHTML='<p class=\'search-empty\'>Results cleared. Theme chips stay above.</p>'}">Clear</button></div><div class="search-theme-chips" id="dua-theme-chips">
-  <span class="chip-label">Duʿā themes</span>
-  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='forgiveness';searchMasnoonDua()">🤲 Forgiveness</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='morning';searchMasnoonDua()">🌅 Morning</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='anxiety';searchMasnoonDua()">💧 Anxiety</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='parents';searchMasnoonDua()">👨‍👩‍👧 Parents</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='travel';searchMasnoonDua()">✈️ Travel</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('dua-search').value='protection';searchMasnoonDua()">🛡️ Protection</button>
-</div><div id="dua-results"></div></div>
-<div data-rrra="action" class="card card-search"><h2 data-i18n-html="search_quran">📖 Search the Quran</h2><p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.45rem;">Theme search via AlQuran.cloud and Quran.com — related verses, not only the exact word.</p><div class="search-row"><input type="text" id="quran-search" placeholder="a theme — e.g. patience, sabr, hope, parents…" onkeydown="if(event.key==='Enter')searchQuran()" /><button type="button" class="btn-voice-search" id="voice-btn-quran-search" data-voice-input="quran-search" data-voice-fn="searchQuran" title="Voice search (Whisper) — tap to record, tap again to search" aria-label="Voice search with Whisper"><span class="voice-mic-icon">🎤</span><span class="voice-mic-label">Voice</span></button><button type="button" onclick="searchQuran()">Search</button><button type="button" class="btn-secondary" onclick="try{clarityClearSearch('quran-search','quran-results')}catch(e){var i=document.getElementById('quran-search');if(i)i.value='';var r=document.getElementById('quran-results');if(r)r.innerHTML='<p class=\'search-empty\'>Results cleared. Theme chips stay above.</p>'}">Clear</button></div>
-<div class="search-theme-chips" id="quran-theme-chips">
-  <span class="chip-label">Deep themes</span>
-  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='patience';searchQuran()">🌱 Patience</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='hope';searchQuran()">✨ Hope</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='parents';searchQuran()">👨‍👩‍👧 Parents</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='forgiveness';searchQuran()">🤲 Forgiveness</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='prayer';searchQuran()">🕌 Prayer</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('quran-search').value='gratitude';searchQuran()">🙏 Gratitude</button>
-</div>
-<div id="quran-results"></div></div>
-<div data-rrra="action" class="card card-search"><h2 data-i18n-html="search_hadith">📚 Search Authentic Hadith</h2><p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.45rem;">Related-meaning search across collections. Cross-check wording on Sunnah.com.</p><div class="search-row"><input type="text" id="hadith-search" placeholder="mercy, anger, charity, neighbors, prayer…" onkeydown="if(event.key==='Enter')searchHadith()" /><button type="button" class="btn-voice-search" id="voice-btn-hadith-search" data-voice-input="hadith-search" data-voice-fn="searchHadith" title="Voice search (Whisper) — tap to record, tap again to search" aria-label="Voice search with Whisper"><span class="voice-mic-icon">🎤</span><span class="voice-mic-label">Voice</span></button><button type="button" onclick="searchHadith()">Search</button><button type="button" class="btn-secondary" onclick="try{clarityClearSearch('hadith-search','hadith-results')}catch(e){var i=document.getElementById('hadith-search');if(i)i.value='';var r=document.getElementById('hadith-results');if(r)r.innerHTML='<p class=\'search-empty\'>Results cleared. Theme chips stay above.</p>'}">Clear</button></div>
-<div class="search-theme-chips" id="hadith-theme-chips">
-  <span class="chip-label">Deep themes</span>
-  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='mercy';searchHadith()">💚 Mercy</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='anger';searchHadith()">🕊️ Anger</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='charity';searchHadith()">🎁 Charity</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='neighbors';searchHadith()">🏠 Neighbors</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('hadith-search').value='truthfulness';searchHadith()">💎 Truth</button>
-</div>
-<div id="hadith-results"></div><p style="font-size:0.84rem; color:#666; margin-top:0.55rem;">
- Deeper research: <a href="https://sunnah.com" target="_blank" rel="noopener">sunnah.com</a></p></div>
-<div data-rrra="action" class="card card-search"><h2 data-i18n-html="search_life">🧭 Search Life Events / Hadith</h2><div class="search-row"><input type="text" id="life-search" placeholder="patience, anger, charity, parents…" onkeydown="if(event.key==='Enter')searchLifeOrHadith()" /><button type="button" class="btn-voice-search" id="voice-btn-life-search" data-voice-input="life-search" data-voice-fn="searchLifeOrHadith" title="Voice search (Whisper) — tap to record, tap again to search" aria-label="Voice search with Whisper"><span class="voice-mic-icon">🎤</span><span class="voice-mic-label">Voice</span></button><button type="button" onclick="searchLifeOrHadith()">Search</button><button type="button" class="btn-secondary" onclick="try{clarityClearSearch('life-search','life-results')}catch(e){var i=document.getElementById('life-search');if(i)i.value='';var r=document.getElementById('life-results');if(r)r.innerHTML='<p class=\'search-empty\'>Results cleared. Theme chips stay above.</p>'}">Clear</button></div><div class="search-theme-chips" id="life-theme-chips">
-  <span class="chip-label">Life themes</span>
-  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='patience';searchLifeOrHadith()">🌱 Patience</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='anger';searchLifeOrHadith()">🕊️ Anger</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='charity';searchLifeOrHadith()">🎁 Charity</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='parents';searchLifeOrHadith()">👨‍👩‍👧 Parents</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='marriage';searchLifeOrHadith()">💍 Marriage</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='death';searchLifeOrHadith()">🌙 Death</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='work';searchLifeOrHadith()">💼 Work</button>
-  <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='anxiety';searchLifeOrHadith()">💧 Anxiety</button>
-</div><div id="life-results"></div></div>
-<div data-rrra="action" class="card card-grok"><h2 data-i18n-html="ask_grok">✨ Ask Grok</h2><p>Ask about life events, previous nations, or any sincere question.</p><div class="grok-box"><textarea id="grok-question" placeholder="Example: What is the Islamic guidance when a child is born?"></textarea><button type="button" onclick="askGrok()">Open in Grok with my question</button><p class="grok-note">Your question is copied. Paste it when Grok opens.</p></div></div>
-<div data-rrra="action" class="card card-tools siq-suite" id="fiqh-quiz-card" data-disc="1" style="border-top:3px solid var(--gold,#d4b45a)" data-min-i="1" data-curriculum-folder="new-muslim">
-  <div class="siq-hero">
-    <div class="siq-hero-text">
-      <h2 style="margin:0;color:var(--gold)">🧠 Sharia IQ &amp; Daily Fiqh</h2>
-      <p class="td-src" style="font-size:.8rem;margin:.25rem 0 0"><strong>Educational only — not a fatwa.</strong> Self-check quizzes; verify every answer with authentic sources.</p>
-      <p class="siq-sub">Train the heart and mind · authentic sources · new draw every day</p>
-    </div>
-    <div class="siq-hero-glow" aria-hidden="true">✦</div>
-  </div>
-  <div id="clarity-daily-deep" class="clarity-daily-deep" aria-live="polite"></div>
-
-  <div class="siq-tabs" role="tablist">
-    <button type="button" class="siq-tab active" data-siq="daily" onclick="siqShow('daily')">📚 Daily Fiqh</button>
-    <button type="button" class="siq-tab" data-siq="iq" onclick="siqShow('iq')">🎯 Sharia IQ Test</button>
-  </div>
-
-  <!-- DAILY FIQH -->
-  <div id="siq-panel-daily" class="siq-panel active">
-    <div class="fq-stats" id="fq-stats">
-      <span class="fq-pill gold" id="fq-streak">🔥 Streak 0</span>
-      <span class="fq-pill" id="fq-today">Today 0/10</span>
-      <span class="fq-pill green" id="fq-best">Best 0</span>
-      <span class="fq-pill" id="fq-total">All-time 0</span>
-    </div>
-    <div class="fq-level-row" role="group" aria-label="Level" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0">
-      <button type="button" class="btn-soft fq-lvl" data-lvl="beginner" onclick="fqSetLevel('beginner')">Beginner</button>
-      <button type="button" class="btn-soft fq-lvl" data-lvl="intermediate" onclick="fqSetLevel('intermediate')">Intermediate</button>
-      <button type="button" class="btn-soft fq-lvl" data-lvl="advanced" onclick="fqSetLevel('advanced')">Advanced</button>
-      <button type="button" class="btn-soft" onclick="fqForceNewDeck()" title="New unused cards">↻ New unused deck</button>
-    <button type="button" class="btn-soft" onclick="fqResetSeenDecks()" title="Clear memory and shuffle everything">↺ Reset seen cards</button>
-    </div>
-    <div class="fq-topic-row" role="group" aria-label="Topic" style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.25rem 0 .4rem">
-      <button type="button" class="btn-soft fq-topic on" data-topic="all" onclick="fqSetTopic('all')">All</button>
-      <button type="button" class="btn-soft fq-topic" data-topic="Tafseer" onclick="fqSetTopic('Tafseer')">📖 Tafseer</button>
-      <button type="button" class="btn-soft fq-topic" data-topic="Seerah" onclick="fqSetTopic('Seerah')">🕊 Seerah</button>
-      <button type="button" class="btn-soft fq-topic" data-topic="Daily" onclick="fqSetTopic('Daily')">🏠 Daily life</button>
-      <button type="button" class="btn-soft fq-topic" data-topic="Fiqh" onclick="fqSetTopic('Fiqh')">⚖️ Fiqh</button>
-    </div>
-    <div class="fq-online-bar" id="fq-online-bar">
-      <button type="button" class="fq-fetch-btn" onclick="fqFetchOnlineDeck()" title="Pull fresh questions from Qur’an &amp; Hadith APIs, fallback to stored bank">
-        <span style="font-size:1.1rem;line-height:1">☁</span> Fetch online deck
-      </button>
-      <button type="button" class="fq-stored-btn" onclick="fqUseStoredOnly()" title="Use only on-device bank">📦 Stored only</button>
-      <span id="fq-online-status" style="color:var(--text-muted);font-size:.78rem;flex:1;min-width:8rem">Offline bank ready · online optional</span>
-    </div>
-    <div class="fq-extra-controls" style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.35rem 0 .5rem">
-      <label style="display:inline-flex;align-items:center;gap:.35rem;font-size:.85rem;cursor:pointer" title="Off by default: correctly answered cards stay hidden for the day">
-        <input type="checkbox" id="fq-show-correct" onchange="fqToggleShowCorrect(this.checked)"> Show correctly answered cards
-      </label>
-      <button type="button" class="btn-soft" onclick="fqLogDailyProgress()" title="Save today score for this level">📝 Log this level</button>
-      <button type="button" class="btn-secondary" onclick="fqShowDailyLog()" title="View per-level daily log">View log</button>
-    </div>
-    <div id="fq-daily-log-panel" hidden style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:.65rem .8rem;margin-bottom:.55rem;font-size:.86rem;max-height:220px;overflow:auto"></div>
-    <div id="fq-stage" class="fq-stage"></div>
-    <div class="fq-actions" style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem">
-      <button type="button" class="btn-soft" id="fq-next-btn" onclick="fqNext()">Next →</button>
-      <button type="button" class="btn-secondary" onclick="fqResetToday()">Reset today</button>
-    </div>
-    <p class="siq-foot">Educational only · not a fatwa · verify on Sunnah.com / IslamQA / Quran.com</p>
-  </div>
-
-  <!-- SHARIA IQ TEST -->
-  <div id="siq-panel-iq" class="siq-panel" hidden>
-    <div class="siq-iq-intro" id="siq-iq-intro">
-      <p>Modeled on structured aptitude tests: <strong>15 questions</strong>, rising difficulty, mixed domains (ʿaqīdah, fiqh, Qurʾān, seerah, character). Score is a <em>Sharia practice index</em> — not a secular IQ number.</p>
-      <div class="siq-iq-opts" style="display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center">
-        <label class="siq-check"><input type="checkbox" id="siq-timed" checked> Timed (60s / question)</label>
-        <label class="siq-check"><input type="checkbox" id="siq-hide-correct" checked> Hide correctly answered (default)</label>
-        <label class="siq-check"><input type="checkbox" id="siq-online-fetch" checked> Fetch deeper questions online</label>
-      </div>
-      <div class="td-row" style="margin-top:.55rem;flex-wrap:wrap;gap:.4rem">
-        <button type="button" class="btn-soft siq-start-btn" onclick="siqStart()">Begin Sharia IQ Test</button>
-        <button type="button" class="btn-soft" onclick="siqFetchOnlineBank(true)">↻ Refresh online bank</button>
-        <button type="button" class="btn-soft" onclick="siqShowDailyLog()">📋 Daily IQ log</button>
-      </div>
-      <p id="siq-online-status" class="td-src" style="margin-top:.4rem;font-size:.82rem"></p>
-      <div id="siq-daily-log" class="siq-daily-log" hidden style="margin-top:.5rem;padding:.5rem .65rem;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);font-size:.85rem"></div>
-    </div>
-    <div id="siq-iq-stage" class="siq-iq-stage" hidden></div>
-    <div id="siq-iq-result" class="siq-iq-result" hidden></div>
-  </div>
-</div>
-<div data-rrra="action" class="card card-notes"><h2 data-i18n="notes_title">📝 Clarity Notes</h2><p style="font-size:0.94rem; margin-bottom:0.75rem;" data-i18n="notes_desc">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p><div class="notes-shell" id="notes-shell" data-min-i="0" data-always="1" data-curriculum-folder="shared"><div class="notes-list-pane" id="notes-list-pane"><div class="notes-list-toolbar"><input type="text" class="notes-search" id="notes-search" placeholder="Search notes… (/ )" autocomplete="off" oninput="notesSetQuery(this.value)"><div class="notes-toolbar-row"><button type="button" onclick="notesCreate()">＋ New</button><button type="button" class="btn-secondary" onclick="notesExport()" title="Download notes JSON">⬇ Export</button><button type="button" class="btn-secondary" onclick="document.getElementById('notes-import-file').click()" title="Import notes JSON">⬆ Import</button><input type="file" id="notes-import-file" accept="application/json,.json" hidden onchange="notesImport(event)"><button type="button" class="btn-secondary" onclick="notesRestoreSeed()" title="Restore starter library">↺ Seed</button></div></div><div class="notes-tag-filter" id="notes-tag-filter"></div><div class="notes-list" id="notes-list" role="listbox" aria-label="Notes"></div></div><div class="notes-editor-pane" id="notes-editor-pane"><div id="notes-editor-empty" class="notes-empty" style="display:none"><div style="font-size:2rem">✒️</div><p><strong>No note selected</strong></p><p>Create a new note or pick one from the list.<br>Tip: press <kbd>Ctrl</kbd>+<kbd>N</kbd> for a blank page.</p><button type="button" onclick="notesCreate()">New note</button></div><div id="notes-editor-active" style="display:none; flex-direction:column; flex:1; min-height:0;"><div class="notes-editor-toolbar"><div class="notes-view-toggle" role="group" aria-label="View mode"><button type="button" id="nv-edit" onclick="notesSetView('edit')">Edit</button><button type="button" id="nv-split" onclick="notesSetView('split')">Split</button><button type="button" id="nv-preview" onclick="notesSetView('preview')">Preview</button></div><select id="notes-tag-select" onchange="notesUpdateField('tag', this.value)" title="Section tag"><option value="">Tag…</option><option value="Guide">Guide</option><option value="Journey">Journey</option><option value="Commands">Commands</option><option value="Quran">Quran</option><option value="Tafseer">Tafseer</option><option value="Tajweed">Tajweed</option><option value="Seerah">Seerah</option><option value="Lectures">Lectures</option><option value="Grave">Grave</option><option value="Practice">Practice</option><option value="Guidance">Guidance</option><option value="Reflection">Reflection</option></select><button type="button" class="btn-soft" onclick="notesToggleGrave()" id="notes-grave-btn" title="Mark as light for the grave">🌙 Grave</button><button type="button" class="btn-secondary" onclick="notesRequestDelete()" title="Delete note">🗑</button></div><input type="text" class="notes-title-input" id="notes-title" placeholder="Title" oninput="notesUpdateField('title', this.value)"><div class="notes-body-area edit-only" id="notes-body-area"><textarea class="notes-body-input" id="notes-body" placeholder="Write in Markdown… reflections, ayat, goals for the day." oninput="notesUpdateField('body', this.value)"></textarea><div class="notes-md-preview" id="notes-preview" aria-live="polite"></div></div><div class="notes-status"><span id="notes-save-status">Ready · stays on this device</span><span id="notes-char-count"></span><button type="button" class="notes-save-now" id="notes-save-now" onclick="notesSaveNow()">Save note</button><span id="notes-grave-status"></span></div></div></div></div><p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>Ctrl/⌘ S</kbd> save · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device. Tasks on Today can open a dated deed note here.</p></div>
-</div></div>
 <div id="tab-notes" class="tab-panel amana-locked" data-amana-local="1" hidden aria-hidden="true">
   <div id="amana-vault-host">
 <div class="amana-vault-gate" id="amana-vault-gate" role="region" aria-label="Amana Vault login">
@@ -2751,6 +2778,10 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <script src="/assets/clarity-haramain-temps-repair-v1.js?v=20261020CH" defer></script>
 <script src="/assets/clarity-companion-provision-v1.js?v=20261020CH" defer></script>
+
+<script src="/assets/clarity-meme-bg-fetch-v1.js?v=20261020TABLIGH" defer></script>
+<script src="/assets/clarity-share-desks-v1.js?v=20261020TABLIGH" defer></script>
+
 
 </body>
 
