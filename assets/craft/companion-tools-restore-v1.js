@@ -205,3 +205,21 @@
     }
   });
 })(typeof window !== "undefined" ? window : this);
+
+  /* Ensure Action drills visible for daily + dai paths */
+  function revealDrills() {
+    try {
+      ["meme-card", "callig-lab-card", "tajweed-live-card", "tajweed-path-card", "tj-deep-studio"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.style.removeProperty("display");
+        el.style.removeProperty("visibility");
+        el.removeAttribute("hidden");
+        el.setAttribute("aria-hidden", "false");
+        if (!el.getAttribute("data-rrra")) el.setAttribute("data-rrra", "action");
+      });
+    } catch (e) {}
+  }
+  afterDiet(revealDrills);
+  setTimeout(revealDrills, 1500);
+
