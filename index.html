@@ -346,7 +346,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 #cu-lab-craft-hint{display:none!important}
 </style>
 <style id="cu-tools-restore-css">
-#callig-lab-card,#tajweed-live-card,#tajweed-path-card{display:block!important;visibility:visible!important}
+#meme-card,#callig-lab-card,#tajweed-live-card,#tajweed-path-card,#tj-deep-studio{display:block!important;visibility:visible!important}
 #callig-canvas{max-width:100%;height:auto;touch-action:none}
 #cu-companion-notes-pad{display:block!important}
 </style>
@@ -389,6 +389,7 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(function(n)
 .clarity-gate-switcher { min-height: 2.75rem; }
 #main-application-workspace { min-height: 40vh; }
 </style>
+<link rel="stylesheet" href="/assets/clarity-companion-surface-v1.css?v=20261020CH"/>
 </head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
@@ -835,118 +836,7 @@ html[data-theme="dark"] .dual-name{color:#f3e6c0}
 </div>
 </details>
 </div>
-<div class="card card-tools meme-card-realigned" id="meme-card" data-rrra="reminder" data-rrra-pin="reminder" style="border-top:3px solid var(--gold,#b8922a)" data-min-i="2" data-curriculum-folder="daily">
-<h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 Clarity Meme Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
-<p id="meme-fetch-status" style="font-size:.7rem;color:var(--accent);min-height:.85em;margin:0 0 .25rem"></p>
 
-<div id="meme-studio-root" class="meme-studio meme-realign">
-
-  <!-- 1. BACKGROUND CHIPS ON TOP -->
-  <div class="meme-bar meme-bar-bg">
-    <div class="meme-tool-label">Background</div>
-    <div class="meme-chip-row">
-      <button type="button" class="mv-chip" onclick="memeFetchBg('nature')">🌿 Nature</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('flickr')" title="Flickr public photostream + free Shariah-leaning nature/architecture (no figurative stock lists)">📸 Flickr</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('flowers')">🌸 Flowers</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('holy')">🕌 Holy</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Free online: Wikimedia · Picsum · Flickr public · Shariah-leaning nature/architecture">📷 Free photos</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Next free-catalogue image">↻ Next free</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('spirit')">✨ Spirit</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('night')">🌙 Night</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('water')">💧 Water</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('dynamic')">🎬 Dynamic</button>
-      <button type="button" class="mv-chip" onclick="memeShowBlankPalette()">⬛ Blank</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('mosque')}catch(e){}">🕌 Décor</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('geometry')}catch(e){}">◈ Pattern</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeAiBg('ai')}catch(e){memeFetchBg('ai')}">✨ AI scene</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeAiBg('ai-geo')}catch(e){memeFetchBg('ai-geo')}">◈ AI geometry</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeAiBg('ai-nature')}catch(e){memeFetchBg('ai-nature')}">🌿 AI nature</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeAiBg('ai-night')}catch(e){memeFetchBg('ai-night')}">🌙 AI night</button>
-
-
-    </div>
-  </div>
-
-  <div class="meme-preview-only">
-    <div id="meme-stage-wrap" class="meme-stage-wrap" data-ratio="twitter">
-      <div id="meme-stage" class="meme-stage" data-ratio="twitter" style="aspect-ratio:16/9">
-        <canvas id="meme-canvas" width="1200" height="675" aria-label="Meme canvas"></canvas>
-        <div class="meme-text-box top" id="meme-box-top" data-which="top"><div class="meme-drag-handle">Top</div></div>
-        <div class="meme-text-box middle" id="meme-box-mid" data-which="mid"><div class="meme-drag-handle">Mid</div></div>
-        <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom"><div class="meme-drag-handle">Bot</div></div>
-        <a id="meme-wm-link" href="https://clarity-dawah.fyi/#meme" target="_blank" rel="noopener noreferrer" title="Open Meme Studio"><span class="wm-hit-label">clarity-dawah.fyi/#meme</span></a>
-      </div>
-      <div id="meme-palette" class="meme-palette" hidden></div>
-      <input type="color" id="meme-blank-custom" style="display:none" onchange="memeSetBlankColor&&memeSetBlankColor(this.value)">
-    </div>
-  </div>
-
-  <!-- 3. CONTROLS BELOW PREVIEW -->
-  <div class="meme-below"><div class="meme-bar meme-bar-scale">
-      <div class="meme-tool-label">Scale · outline</div>
-      <div class="meme-chip-row meme-size-row-h" id="meme-line-sizes">
-<button type="button" class="mv-chip" onclick="memeAutoScaleLines()">⬚ Auto-scale</button>
-<button type="button" class="mv-chip" onclick="memeSendToTweetDesk()">↗ Tweet Desk</button>
-
-        <label>Top <input type="range" id="meme-size-top" min="14" max="72" value="42" oninput="memeOnLineSize('top',this.value)"><b id="meme-size-top-val">42</b></label>
-        <label>Mid <input type="range" id="meme-size-mid" min="14" max="72" value="42" oninput="memeOnLineSize('mid',this.value)"><b id="meme-size-mid-val">42</b></label>
-        <label>Bot <input type="range" id="meme-size-bottom" min="14" max="72" value="36" oninput="memeOnLineSize('bottom',this.value)"><b id="meme-size-bottom-val">36</b></label>
-        <label>All <input type="range" id="meme-size" min="14" max="72" value="42" oninput="memeOnSize&&memeOnSize(this.value)"><b id="meme-size-val">42</b></label>
-        <label>Outline <input type="range" id="meme-outline" min="0" max="12" value="4" oninput="memeOnOutline?memeOnOutline(this.value):(memeState.outline=+this.value,memeDraw())"><b id="meme-outline-val">4</b></label>
-      </div>
-    </div>
-
-    <div class="meme-bar" id="meme-rrra-fetch-bar">
-      <div class="meme-tool-label">Fetch · verse &amp; ḥadīth (auto · no typing)</div>
-      <div class="meme-chip-row" role="group" aria-label="Fetch by learning category">
-        <button type="button" class="mv-chip mv-accent" data-rrra="reminder" onclick="memeFetchRrra('reminder')" title="Reminder — what Allah commanded">✦ Reminder</button>
-        <button type="button" class="mv-chip" data-rrra="reality" onclick="memeFetchRrra('reality')" title="Reality — what happened">◉ Reality</button>
-        <button type="button" class="mv-chip" data-rrra="reflection" onclick="memeFetchRrra('reflection')" title="Reflection — ponder the sign">☾ Reflection</button>
-        <button type="button" class="mv-chip" data-rrra="action" onclick="memeFetchRrra('action')" title="Action — do this next">➤ Action</button>
-        <button type="button" class="mv-chip" onclick="memeFetchRrra(null)" title="Random category">✨ Surprise</button>
-
-<button type="button" class="mv-chip" onclick="memeDailyVerse()">📖 Daily verse</button>
-<button type="button" class="mv-chip" onclick="memeFromJourney()">🧭 Journey</button>
-<button type="button" class="mv-chip" onclick="memeFromCommand()">📜 Command</button>
-<button type="button" class="mv-chip" onclick="memeMasnunDua()">🤲 Masnūn duʿā</button>
-<button type="button" class="mv-chip" onclick="memeNightQuote()">🌙 Night</button>
-<button type="button" class="mv-chip" onclick="memeFetchUrduDua()" title="Arabic + English only">✨ Duʿā pack</button>
-<button type="button" class="mv-chip" onclick="memeApplyUrduDua()">Apply duʿā</button>
-<button type="button" class="mv-chip" onclick="memeApplyUrduDua(true)">Apply + bg</button>
-      </div>
-      <p id="meme-rrra-status" style="font-size:.72rem;color:var(--text-muted);margin:.35rem 0 0;line-height:1.4">Tap a category — Arabic + English from Qur’an.com / authentic ḥadīth packs. No manual text or mic.</p>
-
-      <input type="hidden" id="meme-top-input" value="">
-      <input type="hidden" id="meme-mid-input" value="">
-      <input type="hidden" id="meme-bottom-input" value="">
-    </div>
-
-    
-    <div class="meme-bar">
-      <div class="meme-tool-label">Format · export</div>
-      <div class="meme-chip-row">
-        <select id="meme-ratio" onchange="memeSetRatio(this.value)" title="Canvas size"><option value="twitter" selected>X / Twitter · 16:9</option><option value="1:1">Instagram · 1:1</option><option value="facebook">Facebook · 1.91:1</option><option value="4:5">Portrait · 4:5</option></select>
-        <select id="meme-font" onchange="memeState.font=this.value;memeDraw()" title="Font style"><option value="impact">Impact</option><option value="serif">Serif</option><option value="naskh">Naskh</option><option value="sans">Sans</option><option value="arabic">Arabic</option></select>
-        <button type="button" class="mv-chip" onclick="memeDownload()">⬇ PNG</button>
-        <button type="button" class="mv-chip" onclick="memeSharePng()">📤 Share</button>
-        <button type="button" class="mv-chip" onclick="memeCopyPng()">📋 Copy</button>
-        <button type="button" class="mv-chip" onclick="try{memeState.top=memeState.mid=memeState.bottom='';['meme-top-input','meme-mid-input','meme-bottom-input'].forEach(function(id){var e=document.getElementById(id);if(e)e.value=''});memeDraw()}catch(e){}">↺ Clear</button>
-      </div>
-    </div>
-
-    <div id="meme-urdu-preview" style="display:none"></div>
-    <input type="url" id="meme-urdu-img-url" style="display:none">
-    <p id="meme-audio-status" style="font-size:.68rem;color:var(--text-muted);margin:.15rem 0 0">Watermark: clarity-dawah.fyi · text from sources only (no mic / no free-type)</p>
-    <details class="meme-tutorial-compact" id="meme-tutorial" style="margin-top:.35rem;font-size:.78rem;line-height:1.4;background:var(--accent-soft);border-radius:10px;padding:.3rem .6rem;border:1px solid var(--border)">
-      <summary style="cursor:pointer;font-weight:600;color:var(--gold);list-style:none">💡 How to · quick guide</summary>
-      <ol style="margin:.3rem 0 0;padding-left:1.1rem">
-        <li>Pick a background · tap ✦ Reminder / ◉ Reality / ☾ Reflection / ➤ Action for a verse or ḥadīth.</li>
-        <li>No typing or mic — drag text boxes on the preview · Download PNG. Educational only.</li>
-      </ol>
-    </details>
-  </div>
-</div>
-</div>
 <div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card" data-min-i="2" data-curriculum-folder="daily">
   <h2>𝕏 Tweet desk</h2>
   <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
@@ -977,74 +867,7 @@ html[data-theme="dark"] .dual-name{color:#f3e6c0}
     <button type="button" class="btn-soft" onclick="tdRemind()">Daily reminder</button>
   </div>
 </div>
-<div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)" data-min-i="2" data-curriculum-folder="daily">
-<h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
-<p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
-<div class="callig-stylus-hint" id="callig-stylus-hint">
-  <span class="callig-mode-badge" id="callig-mode-badge">Naskh · finger</span>
-  <span>One finger. Lift to end a stroke. <strong>Auto-enhance</strong> shapes ink after each stroke.</span>
-</div>
-<p id="callig-tajweed-tip" style="font-size:.84rem;color:var(--accent);margin:.3rem 0;min-height:1.2em">Select a letter, then Pronounce for tajweed-style tips.</p>
 
-<div class="callig-stage-wrap callig-lab-stage" id="callig-stage-wrap">
-  <span class="callig-live-pill" id="callig-live-pill" aria-hidden="true">Listening…</span>
-  <canvas id="callig-canvas" width="900" height="420" aria-label="Calligraphy practice pad"></canvas>
-</div>
-<div class="callig-pad-control-bar" id="callig-pad-control-bar" style="display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.45rem 0 .55rem">
-  <button type="button" class="btn-soft" onclick="try{calligClear()}catch(e){}">⌫ Clear</button>
-  <button type="button" class="btn-soft" onclick="try{if(calligState&&calligState.strokes){calligState.strokes.pop();calligDrawGuide();}}catch(e){}">↶ Undo</button>
-  <button type="button" class="btn-soft" onclick="try{calligDownload()}catch(e){}">⬇ PNG</button>
-  <button type="button" class="btn-soft" onclick="try{calligAutoEnhanceAll&&calligAutoEnhanceAll()}catch(e){}">✨ Enhance</button>
-  <button type="button" class="btn-soft" onclick="try{calligMarkPracticed&&calligMarkPracticed()}catch(e){}">✓ Practiced</button>
-  <label style="font-size:.72rem;display:inline-flex;align-items:center;gap:.25rem">
-    Size <input type="range" min="40" max="160" value="100" oninput="try{calligState.scale=+this.value;calligDrawGuide()}catch(e){}" style="width:5rem">
-  </label>
-</div>
-
-<div class="callig-topbar">
-  <div class="callig-canvas-tools" id="callig-canvas-tools">
-    <div class="ct-title">Type · translate · place</div>
-    <div class="ct-row">
-      <input type="text" id="callig-english-input" placeholder="Type English…" autocomplete="off" oninput="calligLiveTranslateFromInput()" onkeydown="if(event.key==='Enter'){event.preventDefault();calligTranslateToArabic();}">
-      <button type="button" class="btn-soft" id="callig-translate-btn" onclick="calligTranslateToArabic()">🌐 EN→AR</button>
-      <button type="button" class="btn-soft" onclick="calligSendEnglishToCanvas()">✏️ EN</button>
-      <button type="button" class="btn-soft" onclick="calligPlaceArabicOnCanvas()">📥 AR</button>
-      <button type="button" class="btn-secondary" onclick="calligSendEnglishToMeme()">🎨 Meme</button>
-    </div>
-
-    <div class="ct-row" id="callig-top-extra-row" style="margin-top:0.3rem">
-      <button type="button" class="btn-soft" onclick="calligSurprise && calligSurprise()" title="Puts your EN→AR phrase on the pad, or a practice letter if empty">✨ On pad</button>
-    </div>
-  </div>
-
-  </div>
-  <div class="callig-mic-panel" id="callig-mic-panel">
-    <div class="callig-mic-head">
-      <div class="ct-title">Speak → Whisper → Arabic</div>
-      <span class="callig-voice-status" id="callig-voice-status">Mic ready</span>
-    </div>
-    <div class="ct-row callig-voice-bar">
-      <button type="button" class="btn-soft" id="callig-mic-btn" onclick="calligMicToggle()">🎤 Start</button>
-      <button type="button" id="callig-mic-stop" class="btn-secondary" onclick="calligMicStop()" type="button">⏹ Stop</button>
-      <button type="button" class="btn-soft" onclick="calligMicPlaceEnglish()">EN→canvas</button>
-      <button type="button" class="btn-soft" onclick="calligMicPlaceArabic()">AR→canvas</button>
-      <label class="callig-live-toggle"><input type="checkbox" id="callig-live-ar" checked> Live AR</label>
-      <span class="wsp-badge" id="callig-wsp-badge">Whisper-tiny</span>
-    </div>
-    <div class="callig-live-grid">
-      <div>
-        <label class="callig-mic-capture-label" for="callig-voice-text">English</label>
-        <textarea id="callig-voice-text" class="callig-voice-text" rows="2" placeholder="Speech…" oninput="calligLiveTranslateFromCapture()"></textarea>
-      </div>
-      <div>
-        <label class="callig-mic-capture-label" for="callig-voice-ar">Arabic</label>
-        <textarea id="callig-voice-ar" class="callig-voice-text callig-voice-ar" rows="2" placeholder="الترجمة…" dir="rtl" lang="ar"></textarea>
-      </div>
-    </div>
-    <p class="callig-mic-help">Whisper-tiny on-device · tap Start, speak, tap Stop · online only for AR translate.</p>
-  </div>
-  <div id="callig-translate-preview"></div>
-</div>
 
 </div></div>
 <div id="tab-reality" class="tab-panel rrra-hub" data-rrra-hub="reality" aria-hidden="true" style="display:none">
@@ -1422,6 +1245,188 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <div class="rrra-hub-meta">24 sections</div></div>
 <div class="rrra-hub-summary" role="note">Tajweed · calligraphy · hifz · search · Hajj · Sharia IQ · notes tools · household deeds.</div>
 <div class="rrra-hub-body" id="rrra-hub-body-action">
+<!-- Companion drills: meme + calligraphy reassigned to Action (daily + dai-ready) -->
+<div class="card card-tools meme-card-realigned" id="meme-card" data-rrra="action" data-rrra-pin="action" style="border-top:3px solid var(--gold,#b8922a)" data-min-i="2" data-curriculum-folder="daily" data-dai-ready="1">
+<h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 Clarity Meme Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
+<p id="meme-fetch-status" style="font-size:.7rem;color:var(--accent);min-height:.85em;margin:0 0 .25rem"></p>
+
+<div id="meme-studio-root" class="meme-studio meme-realign">
+
+  <!-- 1. BACKGROUND CHIPS ON TOP -->
+  <div class="meme-bar meme-bar-bg">
+    <div class="meme-tool-label">Background</div>
+    <div class="meme-chip-row">
+      <button type="button" class="mv-chip" onclick="memeFetchBg('nature')">🌿 Nature</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('flickr')" title="Flickr public photostream + free Shariah-leaning nature/architecture (no figurative stock lists)">📸 Flickr</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('flowers')">🌸 Flowers</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('holy')">🕌 Holy</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Free online: Wikimedia · Picsum · Flickr public · Shariah-leaning nature/architecture">📷 Free photos</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Next free-catalogue image">↻ Next free</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('spirit')">✨ Spirit</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('night')">🌙 Night</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('water')">💧 Water</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('dynamic')">🎬 Dynamic</button>
+      <button type="button" class="mv-chip" onclick="memeShowBlankPalette()">⬛ Blank</button>
+      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('mosque')}catch(e){}">🕌 Décor</button>
+      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('geometry')}catch(e){}">◈ Pattern</button>
+      <button type="button" class="mv-chip" onclick="try{clarityMemeAiBg('ai')}catch(e){memeFetchBg('ai')}">✨ AI scene</button>
+      <button type="button" class="mv-chip" onclick="try{clarityMemeAiBg('ai-geo')}catch(e){memeFetchBg('ai-geo')}">◈ AI geometry</button>
+      <button type="button" class="mv-chip" onclick="try{clarityMemeAiBg('ai-nature')}catch(e){memeFetchBg('ai-nature')}">🌿 AI nature</button>
+      <button type="button" class="mv-chip" onclick="try{clarityMemeAiBg('ai-night')}catch(e){memeFetchBg('ai-night')}">🌙 AI night</button>
+
+
+    </div>
+  </div>
+
+  <div class="meme-preview-only">
+    <div id="meme-stage-wrap" class="meme-stage-wrap" data-ratio="twitter">
+      <div id="meme-stage" class="meme-stage" data-ratio="twitter" style="aspect-ratio:16/9">
+        <canvas id="meme-canvas" width="1200" height="675" aria-label="Meme canvas"></canvas>
+        <div class="meme-text-box top" id="meme-box-top" data-which="top"><div class="meme-drag-handle">Top</div></div>
+        <div class="meme-text-box middle" id="meme-box-mid" data-which="mid"><div class="meme-drag-handle">Mid</div></div>
+        <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom"><div class="meme-drag-handle">Bot</div></div>
+        <a id="meme-wm-link" href="https://clarity-dawah.fyi/#meme" target="_blank" rel="noopener noreferrer" title="Open Meme Studio"><span class="wm-hit-label">clarity-dawah.fyi/#meme</span></a>
+      </div>
+      <div id="meme-palette" class="meme-palette" ></div>
+      <input type="color" id="meme-blank-custom" style="display:none" onchange="memeSetBlankColor&&memeSetBlankColor(this.value)">
+    </div>
+  </div>
+
+  <!-- 3. CONTROLS BELOW PREVIEW -->
+  <div class="meme-below"><div class="meme-bar meme-bar-scale">
+      <div class="meme-tool-label">Scale · outline</div>
+      <div class="meme-chip-row meme-size-row-h" id="meme-line-sizes">
+<button type="button" class="mv-chip" onclick="memeAutoScaleLines()">⬚ Auto-scale</button>
+<button type="button" class="mv-chip" onclick="memeSendToTweetDesk()">↗ Tweet Desk</button>
+
+        <label>Top <input type="range" id="meme-size-top" min="14" max="72" value="42" oninput="memeOnLineSize('top',this.value)"><b id="meme-size-top-val">42</b></label>
+        <label>Mid <input type="range" id="meme-size-mid" min="14" max="72" value="42" oninput="memeOnLineSize('mid',this.value)"><b id="meme-size-mid-val">42</b></label>
+        <label>Bot <input type="range" id="meme-size-bottom" min="14" max="72" value="36" oninput="memeOnLineSize('bottom',this.value)"><b id="meme-size-bottom-val">36</b></label>
+        <label>All <input type="range" id="meme-size" min="14" max="72" value="42" oninput="memeOnSize&&memeOnSize(this.value)"><b id="meme-size-val">42</b></label>
+        <label>Outline <input type="range" id="meme-outline" min="0" max="12" value="4" oninput="memeOnOutline?memeOnOutline(this.value):(memeState.outline=+this.value,memeDraw())"><b id="meme-outline-val">4</b></label>
+      </div>
+    </div>
+
+    <div class="meme-bar" id="meme-rrra-fetch-bar">
+      <div class="meme-tool-label">Fetch · verse &amp; ḥadīth (auto · no typing)</div>
+      <div class="meme-chip-row" role="group" aria-label="Fetch by learning category">
+        <button type="button" class="mv-chip mv-accent" data-rrra="reminder" onclick="memeFetchRrra('reminder')" title="Reminder — what Allah commanded">✦ Reminder</button>
+        <button type="button" class="mv-chip" data-rrra="reality" onclick="memeFetchRrra('reality')" title="Reality — what happened">◉ Reality</button>
+        <button type="button" class="mv-chip" data-rrra="reflection" onclick="memeFetchRrra('reflection')" title="Reflection — ponder the sign">☾ Reflection</button>
+        <button type="button" class="mv-chip" data-rrra="action" onclick="memeFetchRrra('action')" title="Action — do this next">➤ Action</button>
+        <button type="button" class="mv-chip" onclick="memeFetchRrra(null)" title="Random category">✨ Surprise</button>
+
+<button type="button" class="mv-chip" onclick="memeDailyVerse()">📖 Daily verse</button>
+<button type="button" class="mv-chip" onclick="memeFromJourney()">🧭 Journey</button>
+<button type="button" class="mv-chip" onclick="memeFromCommand()">📜 Command</button>
+<button type="button" class="mv-chip" onclick="memeMasnunDua()">🤲 Masnūn duʿā</button>
+<button type="button" class="mv-chip" onclick="memeNightQuote()">🌙 Night</button>
+<button type="button" class="mv-chip" onclick="memeFetchUrduDua()" title="Arabic + English only">✨ Duʿā pack</button>
+<button type="button" class="mv-chip" onclick="memeApplyUrduDua()">Apply duʿā</button>
+<button type="button" class="mv-chip" onclick="memeApplyUrduDua(true)">Apply + bg</button>
+      </div>
+      <p id="meme-rrra-status" style="font-size:.72rem;color:var(--text-muted);margin:.35rem 0 0;line-height:1.4">Tap a category — Arabic + English from Qur’an.com / authentic ḥadīth packs. No manual text or mic.</p>
+
+      <input type=" " id="meme-top-input" value="">
+      <input type=" " id="meme-mid-input" value="">
+      <input type=" " id="meme-bottom-input" value="">
+    </div>
+
+    
+    <div class="meme-bar">
+      <div class="meme-tool-label">Format · export</div>
+      <div class="meme-chip-row">
+        <select id="meme-ratio" onchange="memeSetRatio(this.value)" title="Canvas size"><option value="twitter" selected>X / Twitter · 16:9</option><option value="1:1">Instagram · 1:1</option><option value="facebook">Facebook · 1.91:1</option><option value="4:5">Portrait · 4:5</option></select>
+        <select id="meme-font" onchange="memeState.font=this.value;memeDraw()" title="Font style"><option value="impact">Impact</option><option value="serif">Serif</option><option value="naskh">Naskh</option><option value="sans">Sans</option><option value="arabic">Arabic</option></select>
+        <button type="button" class="mv-chip" onclick="memeDownload()">⬇ PNG</button>
+        <button type="button" class="mv-chip" onclick="memeSharePng()">📤 Share</button>
+        <button type="button" class="mv-chip" onclick="memeCopyPng()">📋 Copy</button>
+        <button type="button" class="mv-chip" onclick="try{memeState.top=memeState.mid=memeState.bottom='';['meme-top-input','meme-mid-input','meme-bottom-input'].forEach(function(id){var e=document.getElementById(id);if(e)e.value=''});memeDraw()}catch(e){}">↺ Clear</button>
+      </div>
+    </div>
+
+    <div id="meme-urdu-preview" style="display:none"></div>
+    <input type="url" id="meme-urdu-img-url" style="display:none">
+    <p id="meme-audio-status" style="font-size:.68rem;color:var(--text-muted);margin:.15rem 0 0">Watermark: clarity-dawah.fyi · text from sources only (no mic / no free-type)</p>
+    <details class="meme-tutorial-compact" id="meme-tutorial" style="margin-top:.35rem;font-size:.78rem;line-height:1.4;background:var(--accent-soft);border-radius:10px;padding:.3rem .6rem;border:1px solid var(--border)">
+      <summary style="cursor:pointer;font-weight:600;color:var(--gold);list-style:none">💡 How to · quick guide</summary>
+      <ol style="margin:.3rem 0 0;padding-left:1.1rem">
+        <li>Pick a background · tap ✦ Reminder / ◉ Reality / ☾ Reflection / ➤ Action for a verse or ḥadīth.</li>
+        <li>No typing or mic — drag text boxes on the preview · Download PNG. Educational only.</li>
+      </ol>
+    </details>
+  </div>
+</div>
+</div>
+<div data-rrra="action" data-rrra-pin="action" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)" data-min-i="2" data-curriculum-folder="daily" data-dai-ready="1">
+<h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
+<p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
+<div class="callig-stylus-hint" id="callig-stylus-hint">
+  <span class="callig-mode-badge" id="callig-mode-badge">Naskh · finger</span>
+  <span>One finger. Lift to end a stroke. <strong>Auto-enhance</strong> shapes ink after each stroke.</span>
+</div>
+<p id="callig-tajweed-tip" style="font-size:.84rem;color:var(--accent);margin:.3rem 0;min-height:1.2em">Select a letter, then Pronounce for tajweed-style tips.</p>
+
+<div class="callig-stage-wrap callig-lab-stage" id="callig-stage-wrap">
+  <span class="callig-live-pill" id="callig-live-pill" aria- ="true">Listening…</span>
+  <canvas id="callig-canvas" width="900" height="420" aria-label="Calligraphy practice pad"></canvas>
+</div>
+<div class="callig-pad-control-bar" id="callig-pad-control-bar" style="display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.45rem 0 .55rem">
+  <button type="button" class="btn-soft" onclick="try{calligClear()}catch(e){}">⌫ Clear</button>
+  <button type="button" class="btn-soft" onclick="try{if(calligState&&calligState.strokes){calligState.strokes.pop();calligDrawGuide();}}catch(e){}">↶ Undo</button>
+  <button type="button" class="btn-soft" onclick="try{calligDownload()}catch(e){}">⬇ PNG</button>
+  <button type="button" class="btn-soft" onclick="try{calligAutoEnhanceAll&&calligAutoEnhanceAll()}catch(e){}">✨ Enhance</button>
+  <button type="button" class="btn-soft" onclick="try{calligMarkPracticed&&calligMarkPracticed()}catch(e){}">✓ Practiced</button>
+  <label style="font-size:.72rem;display:inline-flex;align-items:center;gap:.25rem">
+    Size <input type="range" min="40" max="160" value="100" oninput="try{calligState.scale=+this.value;calligDrawGuide()}catch(e){}" style="width:5rem">
+  </label>
+</div>
+
+<div class="callig-topbar">
+  <div class="callig-canvas-tools" id="callig-canvas-tools">
+    <div class="ct-title">Type · translate · place</div>
+    <div class="ct-row">
+      <input type="text" id="callig-english-input" placeholder="Type English…" autocomplete="off" oninput="calligLiveTranslateFromInput()" onkeydown="if(event.key==='Enter'){event.preventDefault();calligTranslateToArabic();}">
+      <button type="button" class="btn-soft" id="callig-translate-btn" onclick="calligTranslateToArabic()">🌐 EN→AR</button>
+      <button type="button" class="btn-soft" onclick="calligSendEnglishToCanvas()">✏️ EN</button>
+      <button type="button" class="btn-soft" onclick="calligPlaceArabicOnCanvas()">📥 AR</button>
+      <button type="button" class="btn-secondary" onclick="calligSendEnglishToMeme()">🎨 Meme</button>
+    </div>
+
+    <div class="ct-row" id="callig-top-extra-row" style="margin-top:0.3rem">
+      <button type="button" class="btn-soft" onclick="calligSurprise && calligSurprise()" title="Puts your EN→AR phrase on the pad, or a practice letter if empty">✨ On pad</button>
+    </div>
+  </div>
+
+  </div>
+  <div class="callig-mic-panel" id="callig-mic-panel">
+    <div class="callig-mic-head">
+      <div class="ct-title">Speak → Whisper → Arabic</div>
+      <span class="callig-voice-status" id="callig-voice-status">Mic ready</span>
+    </div>
+    <div class="ct-row callig-voice-bar">
+      <button type="button" class="btn-soft" id="callig-mic-btn" onclick="calligMicToggle()">🎤 Start</button>
+      <button type="button" id="callig-mic-stop" class="btn-secondary" onclick="calligMicStop()" type="button">⏹ Stop</button>
+      <button type="button" class="btn-soft" onclick="calligMicPlaceEnglish()">EN→canvas</button>
+      <button type="button" class="btn-soft" onclick="calligMicPlaceArabic()">AR→canvas</button>
+      <label class="callig-live-toggle"><input type="checkbox" id="callig-live-ar" checked> Live AR</label>
+      <span class="wsp-badge" id="callig-wsp-badge">Whisper-tiny</span>
+    </div>
+    <div class="callig-live-grid">
+      <div>
+        <label class="callig-mic-capture-label" for="callig-voice-text">English</label>
+        <textarea id="callig-voice-text" class="callig-voice-text" rows="2" placeholder="Speech…" oninput="calligLiveTranslateFromCapture()"></textarea>
+      </div>
+      <div>
+        <label class="callig-mic-capture-label" for="callig-voice-ar">Arabic</label>
+        <textarea id="callig-voice-ar" class="callig-voice-text callig-voice-ar" rows="2" placeholder="الترجمة…" dir="rtl" lang="ar"></textarea>
+      </div>
+    </div>
+    <p class="callig-mic-help">Whisper-tiny on-device · tap Start, speak, tap Stop · online only for AR translate.</p>
+  </div>
+  <div id="callig-translate-preview"></div>
+</div>
+
 
 <div data-rrra="action" class="card card-commands hell-warn" id="hell-sins-card" data-min-i="0" data-curriculum-folder="seeker"><h2>🔥 Warnings of the Fire< deeds Allah linked to severe punishment</h2><p style="font-size:0.92rem;margin-bottom:0.65rem;">
  This is a reminder, not a fatwa. The Prophet ﷺ named <strong>seven destructive sins</strong> (<em>al-mūbiqāt</em>) in a report agreed upon by al-Bukhārī and Muslim.
@@ -1468,7 +1473,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <div class="path-prog" style="margin-top:.65rem"><div class="fill" id="sm-prog-fill" style="width:0%"></div></div>
   <p style="font-size:.78rem;color:var(--text-muted);margin-top:.35rem" id="sm-progress-text">0 / 7 steps on this device</p>
 </div>
-<div data-rrra="action" class="card card-tajweed" id="tajweed-live-card" style="border-top:3px solid var(--gold)" data-min-i="2" data-curriculum-folder="daily">
+<div data-rrra="action" class="card card-tajweed" id="tajweed-live-card" data-dai-ready="1" style="border-top:3px solid var(--gold)" data-min-i="2" data-curriculum-folder="daily">
   <h2>📡 Daily tajweed module</h2>
   <p class="td-src">A short rule for today. Tweet desk uses this line + the Tajweed tab link.</p>
   <p id="tajweed-live-title" style="font-weight:700;color:var(--gold);margin:.25rem 0"></p>
@@ -1476,7 +1481,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
   <p id="tajweed-live-src" class="td-src"> <button type="button" class="btn-soft" style="font-size:.72rem;padding:.2rem .5rem;margin-left:.35rem" onclick="clarityRefreshSection('tajweed')">☁ Online</button></p>
   <button type="button" class="btn-soft" onclick="clarityLiveTajweed(true)">↻ New module</button>
 </div>
-<div data-rrra="action" class="card card-tajweed" id="tajweed-path-card" data-min-i="2" data-curriculum-folder="daily"><h2 data-i18n="tajweed_title">🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2><div class="deep-learn"><strong>Tajweed practice:</strong><a href="https://www.abouttajweed.com" target="_blank" rel="noopener">AboutTajweed</a> ·
+<div data-rrra="action" class="card card-tajweed" id="tajweed-path-card" data-dai-ready="1" data-min-i="2" data-curriculum-folder="daily"><h2 data-i18n="tajweed_title">🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2><div class="deep-learn"><strong>Tajweed practice:</strong><a href="https://www.abouttajweed.com" target="_blank" rel="noopener">AboutTajweed</a> ·
  <a href="https://www.youtube.com/@ayahs" target="_blank" rel="noopener">slow recitation</a> ·
  <a href="https://quran.com" target="_blank" rel="noopener">listen &amp; repeat on Quran.com</a>.</div><p style="margin-bottom:0.85rem; font-size:0.94rem;">
  Structured path from beginner to advanced, based on common free curricula
@@ -1490,7 +1495,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
  width="100%" height="280" frameborder="0" allowfullscreen
  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe></div></details></div><p class="lecture-note"><a href="https://www.youtube.com/playlist?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" target="_blank" rel="noopener">Full English playlist</a>
  · <a href="https://www.youtube.com/watch?v=dyliFOsUPkU" target="_blank" rel="noopener">Lesson 1a · Introduction</a></p></div>
-<div class="card card-tajweed" id="tj-deep-studio" style="border-top:3px solid var(--gold)" data-min-i="2" data-curriculum-folder="daily">
+<div class="card card-tajweed" id="tj-deep-studio" data-rrra="action" data-rrra-pin="action" data-dai-ready="1" style="border-top:3px solid var(--gold)" data-min-i="2" data-curriculum-folder="daily">
   <h2>🎯 Tajweed Deep Studio</h2>
   <p style="font-size:0.92rem;margin-bottom:0.75rem;color:var(--text-muted)">Visual rules, makhārij map, drills and self-check tools — practice with adab, then seek a teacher for correction.</p>
 
@@ -2734,6 +2739,10 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="/assets/clarity-pack-extend-v1.js?v=20261017FINAL" defer></script>
 
 <script defer src="/assets/clarity-perf-loader-v1.js?v=20261018PERF"></script>
+
+<script src="/assets/clarity-haramain-temps-repair-v1.js?v=20261020CH" defer></script>
+<script src="/assets/clarity-companion-provision-v1.js?v=20261020CH" defer></script>
+
 </body>
 
 </html>
