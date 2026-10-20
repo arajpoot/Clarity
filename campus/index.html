@@ -3,65 +3,44 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Journey Map · Clarity University</title>
-<meta name="description" content="Clarity University map — desk, lab, library, tools. Educational only — not a fatwa."/>
+<title>Campus · Clarity University</title>
+<meta name="description" content="Student campus map — academics, practice halls, services. Educational path only. Not a physical university."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019E01"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019E01"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019E01"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019E01"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019FF"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019E01"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019E01"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-ui-revamp-v1.css?v=20261019E01"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019E01"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-viewport-v1.css?v=20261019E01"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-page-enrich-v1.css?v=20261019E01"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019E01"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019E01"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-ui-revamp-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-viewport-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-page-enrich-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-student-status-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-day-flow-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261019FF"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019FF"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019FF"></script>
 <style>
-.cu-map-continue {
-  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.75rem;
-  margin:0.75rem auto 1rem; padding:0.85rem 1rem; border-radius:16px;
-  border:1px solid rgba(212,180,90,.35); background:rgba(15,40,30,.4);
-  max-width:min(72rem,100%);
-}
-html[data-theme=light] .cu-map-continue { background:#fffef9; color:#1a2a22; }
-.cu-map-continue a.cu-go {
-  min-height:42px; padding:.45rem 1rem; border-radius:999px; text-decoration:none;
-  background:#1e7d5e; color:#fff; font-weight:700; display:inline-flex; align-items:center;
-}
-.cu-rich-grid {
-  display:grid !important;
-  grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)) !important;
-  gap:.75rem !important;
-  max-width:min(72rem,100%);
-  margin:.75rem auto 1.25rem;
-}
-.cu-rich-card {
-  display:block; text-decoration:none; color:inherit;
-  padding:.9rem 1rem; border-radius:16px; min-height:5.75rem;
-  border:1px solid rgba(212,180,90,.32); background:rgba(12,22,18,.85);
-}
-html[data-theme=light] .cu-rich-card { background:#fff; color:#13201a; }
-.cu-rich-card strong { display:block; font-size:1.05rem; margin:.2rem 0 .35rem; color:#e8d5a3; }
-html[data-theme=light] .cu-rich-card strong { color:#6b5a1e; }
-.cu-rich-card .desc { font-size:.86rem; opacity:.9; line-height:1.35; }
-.cu-rich-card .cu-badge {
-  display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.04em;
-  padding:.2rem .55rem; border-radius:999px; border:1px solid rgba(212,180,90,.4);
-}
-.cu-rich-card .cu-badge.open { background:rgba(30,125,94,.25); }
-.cu-section-title { max-width:min(72rem,100%); margin:1.25rem auto .4rem; font-size:1rem; color:#d4b45a; }
-.cu-lead-wide { max-width:min(72rem,100%); margin:0 auto .5rem; opacity:.9; }
+.cu-rich-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))!important;gap:.75rem!important;max-width:min(72rem,100%);margin:.5rem auto 1rem}
+.cu-rich-card{display:block;text-decoration:none;color:inherit;padding:.9rem 1rem;border-radius:16px;min-height:5.5rem;border:1px solid rgba(212,180,90,.32);background:rgba(12,22,18,.85)}
+html[data-theme=light] .cu-rich-card{background:#fff;color:#13201a}
+.cu-rich-card strong{display:block;font-size:1.02rem;margin:.2rem 0 .35rem;color:#e8d5a3}
+html[data-theme=light] .cu-rich-card strong{color:#6b5a1e}
+.cu-rich-card .desc{font-size:.86rem;opacity:.9;line-height:1.35}
+.cu-badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:999px;border:1px solid rgba(212,180,90,.4)}
+.cu-badge.open{background:rgba(30,125,94,.25)}
+.cu-map-continue{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin:.75rem auto;padding:.85rem 1rem;border-radius:16px;border:1px solid rgba(212,180,90,.35);background:rgba(15,40,30,.4);max-width:min(72rem,100%)}
+html[data-theme=light] .cu-map-continue{background:#fffef9;color:#1a2a22}
+.cu-map-continue a.cu-go{min-height:42px;padding:.45rem 1rem;border-radius:999px;text-decoration:none;background:#1e7d5e;color:#fff;font-weight:700;display:inline-flex;align-items:center}
 </style>
-<link rel="stylesheet" href="/campus/assets/css/cu-day-flow-v1.css?v=20261019DAY"/>
 </head>
 <body class="cu-page cu-mahtaab-on" data-campus-page="map">
 <header class="cu-banner" id="cu-banner">
   <a class="cu-brand" href="/charter/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
-    <div><small>University</small><strong>Clarity University</strong></div>
+    <div><small>On-device campus</small><strong>Clarity University</strong></div>
   </a>
   <div class="cu-banner-actions">
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
@@ -81,8 +60,19 @@ html[data-theme=light] .cu-rich-card strong { color:#6b5a1e; }
   <a href="/vault/">Vault</a>
 </nav>
 
-<div id="cu-day-flow"></div>
+<div data-cu-student-status></div>
 
+<!-- Portal quick nav — digital echo of student dashboard modules -->
+<nav class="cu-portal-dash" aria-label="Campus zones">
+  <a href="/charter/">Admission</a>
+  <a href="/campus/desk/">Academics</a>
+  <a href="/lab/">Practice halls</a>
+  <a href="/campus/buddy/">Services</a>
+  <a href="/campus/transcript/">Records</a>
+  <a href="/library/">Library</a>
+  <a href="/vault/">Papers</a>
+  <a href="/campus/diploma/">Milestones</a>
+</nav>
 
 <div class="cu-map-continue" id="cu-continue">
   <div>
@@ -92,55 +82,55 @@ html[data-theme=light] .cu-rich-card strong { color:#6b5a1e; }
   <a class="cu-go" id="cu-map-continue-href" href="/campus/desk/seeker/">Open →</a>
 </div>
 
+<div id="cu-day-flow"></div>
+
 <header class="cu-page-hero" style="text-align:left;max-width:min(72rem,100%);margin:0.5rem auto 0.75rem">
-  <h1 class="cu-h1" style="margin:0 0 .35rem">Journey Map</h1>
-  <p class="cu-lead cu-lead-wide" style="margin:0">Lessons on the Desk · skills in the Lab · sources in the Library · private notes in the Vault. Educational only — not a fatwa.</p>
+  <h1 class="cu-h1" style="margin:0 0 .35rem">Campus map</h1>
+  <p class="cu-lead" style="margin:0;max-width:40rem">A structured on-device path: admission · sequenced desks · practice halls · student services · sources. Educational only — not a physical university, not affiliated with Al-Azhar or any campus abroad, not a fatwa.</p>
 </header>
 
-<p class="cu-section-title"><strong>Student tools</strong></p>
-<div class="cu-rich-grid" id="cu-ua-tools-strip" aria-label="Student tools">
-  <a class="cu-rich-card" href="/campus/buddy/"><span class="cu-badge open">Help</span><strong>Study Buddy</strong><span class="desc">Search campus doors · ask where to study next</span></a>
-  <a class="cu-rich-card" href="/campus/transcript/"><span class="cu-badge">Record</span><strong>Transcript</strong><span class="desc">Local learning record on this device</span></a>
-  <a class="cu-rich-card" href="/campus/assignments/"><span class="cu-badge">Practice</span><strong>Assignments</strong><span class="desc">Optional weekly prompts</span></a>
-  <a class="cu-rich-card" href="/campus/schedule/"><span class="cu-badge">Rhythm</span><strong>Schedule</strong><span class="desc">Gentle study rhythm · local only</span></a>
-  <a class="cu-rich-card" href="/campus/mirath/"><span class="cu-badge">Study</span><strong>Mīrāth</strong><span class="desc">Educational inheritance themes — not a fatwa</span></a>
-  <a class="cu-rich-card" href="/campus/diploma/"><span class="cu-badge">Milestone</span><strong>Diploma hall</strong><span class="desc">Educational milestone only · not accredited</span></a>
-  <a class="cu-rich-card" href="/vault/"><span class="cu-badge open">Notes</span><strong>University Vault</strong><span class="desc">Study notes · link to Companion Amanah</span></a>
-  <a class="cu-rich-card" href="/lab/"><span class="cu-badge open">Lab</span><strong>Lab hub</strong><span class="desc">Arabic · Tajweed · Recite · Calligraphy · more</span></a>
+<p class="cu-zone-label">Academics <span>sequenced desks · like year stages</span></p>
+<div class="cu-rich-grid" aria-label="Phase desks">
+  <a class="cu-rich-card" href="/campus/desk/seeker/"><span class="cu-badge open">Stage 1</span><strong>Seeker</strong><span class="desc">Belief foundations. One module at a time.</span></a>
+  <a class="cu-rich-card" href="/campus/desk/practice/"><span class="cu-badge">Stage 2</span><strong>Practice</strong><span class="desc">Skills after foundations.</span></a>
+  <a class="cu-rich-card" href="/campus/desk/consistency/"><span class="cu-badge">Stage 3</span><strong>Consistency</strong><span class="desc">Steady craft and review.</span></a>
+  <a class="cu-rich-card" href="/campus/desk/transmission/"><span class="cu-badge">Stage 4</span><strong>Transmission</strong><span class="desc">Share with adab and clear sources.</span></a>
 </div>
 
-<p class="cu-section-title"><strong>Phase desks</strong></p>
-<div class="cu-rich-grid" aria-label="Phase rooms">
-  <a class="cu-rich-card" href="/campus/desk/seeker/"><span class="cu-badge open">Phase 1</span><strong>Seeker</strong><span class="desc">Belief foundations. One module at a time.</span></a>
-  <a class="cu-rich-card" href="/campus/desk/practice/"><span class="cu-badge">Phase 2</span><strong>Practice</strong><span class="desc">Skills after Seeker foundations.</span></a>
-  <a class="cu-rich-card" href="/campus/desk/consistency/"><span class="cu-badge">Phase 3</span><strong>Consistency</strong><span class="desc">Steady craft and review.</span></a>
-  <a class="cu-rich-card" href="/campus/desk/transmission/"><span class="cu-badge">Phase 4</span><strong>Transmission</strong><span class="desc">Share with adab and clear sources.</span></a>
-</div>
-
-<p class="cu-section-title"><strong>Sources &amp; craft</strong></p>
+<p class="cu-zone-label">Practice halls <span>language · Qurʾān craft · expression</span></p>
+<p class="cu-hall-note">Use after a desk module — one station.</p>
 <div class="cu-rich-grid">
-  <a class="cu-rich-card" href="/lab/"><span class="cu-badge open">Lab</span><strong>Craft Laboratory</strong><span class="desc">Arabic · Tajweed · Recite · Calligraphy · Hifz · Media</span></a>
-  <a class="cu-rich-card" href="/library/"><span class="cu-badge open">Open</span><strong>Source shelves</strong><span class="desc">Qurʾān · Hadith · pointers outward</span></a>
-  <a class="cu-rich-card" href="/charter/"><span class="cu-badge">Limits</span><strong>University Charter</strong><span class="desc">Who it is for · what it never does · admission</span></a>
+  <a class="cu-rich-card" href="/lab/"><span class="cu-badge open">Hub</span><strong>Lab floor</strong><span class="desc">Arabic · Tajweed · Recite · Calligraphy · Hifz · Media</span></a>
+  <a class="cu-rich-card" href="/lab/arabic/"><span class="cu-badge open">Language</span><strong>Arabic studio</strong><span class="desc">Packs · translate · conversation</span></a>
+  <a class="cu-rich-card" href="/lab/tajweed/"><span class="cu-badge open">Qurʾān</span><strong>Tajweed</strong><span class="desc">Listen · Match · Record</span></a>
+  <a class="cu-rich-card" href="/lab/calligraphy/"><span class="cu-badge open">Expression</span><strong>Calligraphy</strong><span class="desc">One letter · calm stroke</span></a>
 </div>
 
-<section class="cu-plaque" style="max-width:min(72rem,100%);margin:1rem auto 1.5rem">
-  <strong>How to walk</strong>
-  <ol style="margin:.4rem 0 0 1.1rem">
-    <li><strong>Seeker</strong> — foundations; one module open.</li>
-    <li><strong>Practice</strong> — skills after foundations.</li>
-    <li><strong>Consistency</strong> — steady craft and review.</li>
-    <li><strong>Transmission</strong> — share with adab and clear sources.</li>
-  </ol>
-  <p class="cu-meta" style="margin:.5rem 0 0">After each module: understand → one practice → Lab → optional Library.</p>
-</section>
+<p class="cu-zone-label">Student services <span>guidance · record · week · milestone</span></p>
+<div class="cu-rich-grid">
+  <a class="cu-rich-card" href="/campus/buddy/"><span class="cu-badge open">Help</span><strong>Study Buddy</strong><span class="desc">Orientation · where to study next</span></a>
+  <a class="cu-rich-card" href="/campus/transcript/"><span class="cu-badge">Record</span><strong>Transcript</strong><span class="desc">Local academic ledger</span></a>
+  <a class="cu-rich-card" href="/campus/schedule/"><span class="cu-badge">Week</span><strong>Schedule</strong><span class="desc">Gentle rhythm</span></a>
+  <a class="cu-rich-card" href="/campus/assignments/"><span class="cu-badge">Week</span><strong>Assignments</strong><span class="desc">Optional prompts</span></a>
+  <a class="cu-rich-card" href="/campus/diploma/"><span class="cu-badge">Milestone</span><strong>Diploma hall</strong><span class="desc">Not ijāzah · local only</span></a>
+  <a class="cu-rich-card" href="/campus/mirath/"><span class="cu-badge">Elective</span><strong>Mīrāth study</strong><span class="desc">Themes only · not a fatwa</span></a>
+</div>
+
+<p class="cu-zone-label">Resources <span>sources · papers · limits</span></p>
+<div class="cu-rich-grid">
+  <a class="cu-rich-card" href="/library/"><span class="cu-badge open">Sources</span><strong>Library</strong><span class="desc">Qurʾān · Hadith pointers outward</span></a>
+  <a class="cu-rich-card" href="/vault/"><span class="cu-badge open">Papers</span><strong>University Vault</strong><span class="desc">Study notes · pins · Amanah link</span></a>
+  <a class="cu-rich-card" href="/charter/"><span class="cu-badge">Admission</span><strong>Charter</strong><span class="desc">Who it is for · what it never does</span></a>
+</div>
+
+<p class="cu-ff-disclaimer">Clarity University is an on-device educational path. It is not a campus, not accredited, not affiliated with Al-Azhar, Madinah, IIUM, or any other institution. Progress stays on this device. Not a fatwa.</p>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. Progress stays on this device.</footer>
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019E01" defer></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261019E01" defer></script>
-<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019E01" defer></script>
-<script src="/campus/assets/js/cu-map-continue-v1.js?v=20261019E01" defer></script>
-<script src="/campus/assets/js/cu-student-status-v1.js?v=20261019DAY" defer></script>
-<script src="/campus/assets/js/cu-day-flow-v1.js?v=20261019DAY" defer></script>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019FF" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019FF" defer></script>
+<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019FF" defer></script>
+<script src="/campus/assets/js/cu-student-status-v1.js?v=20261019FF" defer></script>
+<script src="/campus/assets/js/cu-day-flow-v1.js?v=20261019FF" defer></script>
+<script src="/campus/assets/js/cu-map-continue-v1.js?v=20261019FF" defer></script>
 </body>
 </html>
