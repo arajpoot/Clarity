@@ -537,3 +537,76 @@ html[data-theme="light"] [class*="daily-drill"] {
   .cph-headline-row .cph-salah { grid-area: salah; }
   .cph-headline-row .cph-tasbeeh { grid-area: tas; }
 }
+
+/* Inline SVG icons · large impact · 20261020NUR2 */
+.cph-salah .nuros-svg,
+.cph-tas-btn .nuros-svg {
+  display: inline-block !important;
+  width: 1.65rem !important;
+  height: 1.65rem !important;
+  min-width: 1.65rem;
+  min-height: 1.65rem;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.cph-salah {
+  color: #0f5c42 !important;
+  font-size: 0.88rem !important;
+  font-weight: 800 !important;
+  gap: 0.4rem !important;
+  padding: 0.35rem 0.75rem !important;
+  border: 1px solid rgba(30, 125, 94, 0.4) !important;
+  border-radius: 999px !important;
+  background: rgba(30, 125, 94, 0.1) !important;
+}
+.cph-salah .nuros-svg { color: #1e7d5e; }
+.cph-tas-btn {
+  width: 2.55rem !important;
+  height: 2.55rem !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+}
+.cph-tas-btn .nuros-svg {
+  color: #fff !important;
+  width: 1.45rem !important;
+  height: 1.45rem !important;
+}
+#cph-tas-count {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  min-width: 2rem;
+}
+.cph-headline-row {
+  display: grid !important;
+  grid-template-columns: minmax(5.5rem, 1fr) auto minmax(5.5rem, 1fr) !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  width: 100% !important;
+}
+.cph-title-center {
+  text-align: center !important;
+  margin: 0 !important;
+  line-height: 1.15 !important;
+}
+@media (max-width: 560px) {
+  .cph-headline-row {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas:
+      "title title"
+      "salah tas" !important;
+  }
+  .cph-title-center { grid-area: title !important; width: 100%; }
+  .cph-headline-row .cph-salah { grid-area: salah !important; justify-self: start !important; }
+  .cph-headline-row .cph-tasbeeh { grid-area: tas !important; justify-self: end !important; }
+  .cph-salah .nuros-svg,
+  .cph-tas-btn .nuros-svg {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+  .cph-tas-btn {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+}

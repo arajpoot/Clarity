@@ -6,7 +6,7 @@
 (function (g) {
   "use strict";
   /* allow re-boot after label upgrades */
-  g.__CLARITY_COMPANION_PROVISION_V1__ = "20261020NUR";
+  g.__CLARITY_COMPANION_PROVISION_V1__ = "20261020NUR22";
 
   var KEY_CONT = "clarity_continue_v1";
   var KEY_PROV = "clarity_provision_day_v1";
@@ -113,6 +113,7 @@
     return m + "m " + sec + "s";
   }
 
+  
   function buildHTML() {
     var prov = todayProvision();
     var cont = readJSON(KEY_CONT) || {};
@@ -124,35 +125,63 @@
     var next = readNextSalah();
     var nextLabel = next ? next.name + " · " + formatCountdown(next) : "Next ṣalāh · …";
 
+    var iconSalah =
+      '<svg class="nuros-svg nuros-svg-salah" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">' +
+      '<path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M6 20V10l6-4 6 4v10M12 20v-6"/>' +
+      '<circle cx="12" cy="8.2" r="1.4" fill="currentColor" stroke="none"/>' +
+      "</svg>";
+    var iconTasbih =
+      '<svg class="nuros-svg nuros-svg-tasbih" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">' +
+      '<g fill="none" stroke="currentColor" stroke-width="1.9">' +
+      '<circle cx="12" cy="5" r="1.85"/><circle cx="7.6" cy="8.4" r="1.6"/><circle cx="16.4" cy="8.4" r="1.6"/>' +
+      '<circle cx="6.2" cy="13" r="1.6"/><circle cx="17.8" cy="13" r="1.6"/>' +
+      '<circle cx="8.8" cy="17.3" r="1.55"/><circle cx="15.2" cy="17.3" r="1.55"/>' +
+      '<circle cx="12" cy="20.6" r="1.45"/>' +
+      "</g></svg>";
+
     return (
       '<div class="cph-card cph-provision">' +
       '<div class="cph-headline-row">' +
-      '<span class="cph-salah" id="cph-next-salah"><i class="nuros-icon nuros-icon-salah" aria-hidden="true"></i> ' + nextLabel + "</span>" +
+      '<span class="cph-salah" id="cph-next-salah">' +
+      iconSalah +
+      ' <span class="cph-salah-txt">' +
+      nextLabel +
+      "</span></span>" +
       '<h2 class="cph-title-center">Do this today</h2>' +
       '<span class="cph-tasbeeh" id="cph-tasbeeh-wrap">' +
-      '<button type="button" class="cph-tas-btn" id="cph-tas-inc" aria-label="Tasbeeh +1"><i class="nuros-icon nuros-icon-tasbih" aria-hidden="true"></i></button>' +
-      '<span id="cph-tas-count">' + (tas.count || 0) + "</span>" +
+      '<button type="button" class="cph-tas-btn" id="cph-tas-inc" aria-label="Tasbeeh +1">' +
+      iconTasbih +
+      "</button>" +
+      '<span id="cph-tas-count">' +
+      (tas.count || 0) +
+      "</span>" +
       '<button type="button" class="cph-tas-btn ghost" id="cph-tas-reset" aria-label="Reset tasbeeh">↺</button>' +
       "</span></div>" +
-      '<p class="cph-lane">' + (prov.lane || "provision") + "</p>" +
-      "<p>" + prov.text + "</p>" +
+      '<p class="cph-lane">' +
+      (prov.lane || "provision") +
+      "</p>" +
+      "<p>" +
+      prov.text +
+      "</p>" +
       '<p class="cph-note">Toward ongoing good, beneficial knowledge, and a life that invites duʿāʾ — acceptance is with Allah.</p>' +
       "</div>" +
       '<div class="cph-row">' +
-      '<a class="cph-btn" href="#reminder" data-cph-tab="reminder">' + contLabel + "</a>" +
+      '<a class="cph-btn" href="#reminder" data-cph-tab="reminder">' +
+      contLabel +
+      "</a>" +
       '<a class="cph-btn ghost" href="#action" data-cph-tab="action">Action drills</a>' +
       '<a class="cph-btn ghost" href="#notes" data-cph-tonight="1">Prepare tonight</a>' +
       "</div>" +
       '<div class="cph-row cph-drills">' +
       '<a class="cph-chip" href="#action" data-cph-tab="action" data-cph-scroll="meme-card">استوديو التبليغ</a>' +
-      '<a class="cph-chip" href="#action" data-cph-tab="reminder" data-cph-scroll="tajweed-live-card">Tajweed</a>' +
+      '<a class="cph-chip" href="#reminder" data-cph-tab="reminder" data-cph-scroll="tajweed-live-card">Tajweed</a>' +
       '<a class="cph-chip" href="#action" data-cph-tab="action" data-cph-scroll="callig-lab-card">Calligraphy</a>' +
       "</div>" +
-      '<p class="cph-mirror">Streak is a mirror, not a scoreboard. Tablīgh · Tajweed · Calligraphy under Action. Educational only — not a fatwa.</p>'
+      '<p class="cph-mirror">Streak is a mirror, not a scoreboard. Tablīgh · Tajweed · Calligraphy by section. Educational only — not a fatwa.</p>'
     );
   }
 
-  function wire(wrap) {
+function wire(wrap) {
     wrap.querySelectorAll("[data-cph-tab]").forEach(function (a) {
       a.addEventListener("click", function (ev) {
         var tab = a.getAttribute("data-cph-tab");
