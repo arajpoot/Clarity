@@ -1,0 +1,100 @@
+/* Companion provision surface · 20261020CH · Gate-on clarity */
+.clarity-provision-home {
+  max-width: min(40rem, 100%);
+  margin: 0.65rem auto 1rem;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+}
+.cph-card {
+  border-radius: 16px;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  background: linear-gradient(145deg, #fffefb, #f3ebdc);
+  padding: 0.9rem 1.05rem;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.85) inset, 0 8px 22px rgba(19,32,26,0.06);
+}
+html[data-theme="dark"] .cph-card,
+body.dark .cph-card {
+  background: linear-gradient(155deg, rgba(28,42,34,0.95), rgba(14,24,18,0.98));
+}
+.cph-card h2 {
+  margin: 0 0 0.35rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  color: #c9a84c;
+}
+.cph-lane {
+  margin: 0 0 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.cph-note, .cph-mirror {
+  font-size: 0.78rem;
+  opacity: 0.8;
+  margin: 0.45rem 0 0;
+}
+.cph-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+.cph-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: #1e7d5e;
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 0.84rem;
+  text-decoration: none;
+  border: 0;
+}
+.cph-btn.ghost {
+  background: transparent;
+  color: inherit !important;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+}
+.cph-tab-hint {
+  font-size: 0.8rem;
+  opacity: 0.85;
+  margin: 0.35rem 0 0.75rem;
+  padding: 0.45rem 0.65rem;
+  border-left: 3px solid rgba(201, 168, 76, 0.55);
+}
+/* Keep hijri temps readable */
+#hijri-temps, .hijri-temps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+  font-size: 0.78rem;
+}
+#hijri-temps .ht-item strong {
+  font-weight: 800;
+}
+
+/* Action drill chips on provision home */
+.cph-drills { margin-top: 0.35rem; }
+.cph-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit !important;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  background: rgba(255, 252, 245, 0.5);
+}
+html[data-theme="dark"] .cph-chip,
+body.dark .cph-chip {
+  background: rgba(16, 28, 22, 0.75);
+}
+#meme-card, #callig-lab-card, #tajweed-live-card, #tj-deep-studio {
+  scroll-margin-top: 5rem;
+}
