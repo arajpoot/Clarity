@@ -823,6 +823,52 @@ html[data-theme="dark"] .dual-name{color:#f3e6c0}
 <div class="rrra-hub-meta">8 sections</div></div>
 <div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · استوديو التبليغ (auto verse/ḥadīth) · deepen-study links.</div>
 <div class="rrra-hub-body" id="rrra-hub-body-reminder">
+<div data-rrra="reminder" class="card card-commands" id="commands-card" data-min-i="0" data-curriculum-folder="seeker"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
+ <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
+ <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a>.</div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
+ Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
+ </p><div class="command-box" id="command-box"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.75rem;"><button type="button" onclick="prevCommand()" class="btn-secondary">← Previous</button><button type="button" onclick="nextCommand()">Next Command →</button></div></div>
+<div data-rrra="reminder" class="card card-commands" id="samina-verse-card" style="border-top:3px solid var(--gold)" data-min-i="0" data-curriculum-folder="seeker">
+  <h2>📜 Daily command-verse — Samiʿnā wa aṭaʿnā</h2>
+  <p class="td-src">Verses that call believers to submit to Allāh ﷻ and follow the Messenger ﷺ. Educational reflection only.</p>
+  <p id="samina-verse-ref" style="font-weight:700;color:var(--gold);margin:.3rem 0"></p>
+  <div class="arabic" id="samina-verse-ar" dir="rtl" lang="ar" style="font-size:1.2rem;margin:.35rem 0;line-height:1.85"></div>
+  <p id="samina-verse-en" class="verse-en" style="font-size:.95rem;line-height:1.55"></p>
+  <p id="samina-verse-note" class="td-src" style="font-size:.85rem"></p>
+  <div class="td-row" style="flex-wrap:wrap;gap:.4rem">
+    <button type="button" class="btn-soft" onclick="clarityDailySaminaVerse(true)">↻ Another verse</button>
+    <a id="samina-verse-link" href="https://quran.com/4/59" target="_blank" rel="noopener">Open on Quran.com</a>
+  </div>
+</div>
+<div data-rrra="reminder" class="card card-hadith"><h2 data-i18n="hadith_title">A Saying of the Prophet ﷺ</h2>
+<p class="td-src clarity-disc" style="font-size:.82rem;margin:.25rem 0 .4rem"><strong>Educational only — not a fatwa.</strong> This card prefers <strong>ṣaḥīḥ</strong> reports and shows <strong>grade · collection · number</strong> on every item. Prefer ṣaḥīḥ collections; grades and context matter — check Sunnah.com / a scholar.</p>
+<div class="deep-learn"><strong>📚 Verify &amp; study the ḥadīth</strong>
+<div class="res-stack">
+<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
+<a href="https://dorar.net/en" target="_blank" rel="noopener">Dorar (Arabic)</a>
+<a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a>
+</div></div><div id="hadith"><div class="loading-msg">Loading…</div></div><button type="button" onclick="loadHadith()">Another hadith</button></div>
+<div data-rrra="reminder" class="card card-seerah"><h2>🕊️ Daily Name of the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">One name each day from the Qurʾān and authentic hadith — with meaning and blessing. Educational; not a fixed “99” in every narration.</p><div class="asma-box" id="prophet-name-box"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"> <button type="button" class="btn-secondary" onclick="loadProphetName(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadProphetName(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllProphetNames()">Show all names</button><input type="search" id="prophet-names-search" placeholder="Search a name…" oninput="filterProphetNames(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="prophet-names-list" class="prophet-names-grid" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div></div>
+
+<div data-rrra="reminder" class="card card-tools" id="ilm-pathway-card" style="border-top:3px solid var(--accent)" data-min-i="0" data-curriculum-folder="seeker">
+<details id="ilm-pathway-details" class="ilm-pathway-details">
+<summary class="ilm-pathway-summary">
+  <span class="ilm-sum-icon" aria-hidden="true">🗺️</span>
+  <span class="ilm-sum-text">
+    <strong>Ilm Pathway — 7-day starter</strong>
+    <span class="ilm-sum-meta" id="ilm-pathway-summary-meta">Tap to open · one focus per day</span>
+  </span>
+  <span class="ilm-sum-chevron" aria-hidden="true">▾</span>
+</summary>
+<div class="ilm-pathway-body">
+  <p style="font-size:.88rem;color:var(--text-muted);margin:0 0 .5rem">A light weekly path: one focus per day. Mark done on this device. Pairs with the stack above.</p>
+  <div id="ilm-pathway-list"></div>
+  <button type="button" class="btn-soft" style="margin-top:.5rem" onclick="ilmPathwayReset()">Reset week</button>
+</div>
+</details>
+</div>
+
+<!-- Tajweed after Ilm pathways · 20261021ORD -->
 <!-- Tajweed anchored to Reminder · 20261020ANCHOR -->
 <div data-rrra="reminder" class="card card-tajweed" id="tajweed-live-card" data-rrra="reminder" data-dai-ready="1" style="border-top:3px solid var(--gold)" data-min-i="2" data-curriculum-folder="daily">
   <h2>📡 Daily tajweed module</h2>
@@ -1141,50 +1187,6 @@ html[data-theme="dark"] .dual-name{color:#f3e6c0}
  <a href="https://www.youtube.com/playlist?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" target="_blank" rel="noopener">Learn Tajweed the Easy Way (English)</a> ·
  <a href="https://www.youtube.com/playlist?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT" target="_blank" rel="noopener">Golden Tajweed Series</a> ·
  <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a></p></div>
-<div data-rrra="reminder" class="card card-commands" id="commands-card" data-min-i="0" data-curriculum-folder="seeker"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
- <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
- <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a>.</div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
- Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
- </p><div class="command-box" id="command-box"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.75rem;"><button type="button" onclick="prevCommand()" class="btn-secondary">← Previous</button><button type="button" onclick="nextCommand()">Next Command →</button></div></div>
-<div data-rrra="reminder" class="card card-commands" id="samina-verse-card" style="border-top:3px solid var(--gold)" data-min-i="0" data-curriculum-folder="seeker">
-  <h2>📜 Daily command-verse — Samiʿnā wa aṭaʿnā</h2>
-  <p class="td-src">Verses that call believers to submit to Allāh ﷻ and follow the Messenger ﷺ. Educational reflection only.</p>
-  <p id="samina-verse-ref" style="font-weight:700;color:var(--gold);margin:.3rem 0"></p>
-  <div class="arabic" id="samina-verse-ar" dir="rtl" lang="ar" style="font-size:1.2rem;margin:.35rem 0;line-height:1.85"></div>
-  <p id="samina-verse-en" class="verse-en" style="font-size:.95rem;line-height:1.55"></p>
-  <p id="samina-verse-note" class="td-src" style="font-size:.85rem"></p>
-  <div class="td-row" style="flex-wrap:wrap;gap:.4rem">
-    <button type="button" class="btn-soft" onclick="clarityDailySaminaVerse(true)">↻ Another verse</button>
-    <a id="samina-verse-link" href="https://quran.com/4/59" target="_blank" rel="noopener">Open on Quran.com</a>
-  </div>
-</div>
-<div data-rrra="reminder" class="card card-hadith"><h2 data-i18n="hadith_title">A Saying of the Prophet ﷺ</h2>
-<p class="td-src clarity-disc" style="font-size:.82rem;margin:.25rem 0 .4rem"><strong>Educational only — not a fatwa.</strong> This card prefers <strong>ṣaḥīḥ</strong> reports and shows <strong>grade · collection · number</strong> on every item. Prefer ṣaḥīḥ collections; grades and context matter — check Sunnah.com / a scholar.</p>
-<div class="deep-learn"><strong>📚 Verify &amp; study the ḥadīth</strong>
-<div class="res-stack">
-<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
-<a href="https://dorar.net/en" target="_blank" rel="noopener">Dorar (Arabic)</a>
-<a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a>
-</div></div><div id="hadith"><div class="loading-msg">Loading…</div></div><button type="button" onclick="loadHadith()">Another hadith</button></div>
-<div data-rrra="reminder" class="card card-seerah"><h2>🕊️ Daily Name of the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">One name each day from the Qurʾān and authentic hadith — with meaning and blessing. Educational; not a fixed “99” in every narration.</p><div class="asma-box" id="prophet-name-box"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"> <button type="button" class="btn-secondary" onclick="loadProphetName(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadProphetName(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllProphetNames()">Show all names</button><input type="search" id="prophet-names-search" placeholder="Search a name…" oninput="filterProphetNames(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="prophet-names-list" class="prophet-names-grid" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div></div>
-
-<div data-rrra="reminder" class="card card-tools" id="ilm-pathway-card" style="border-top:3px solid var(--accent)" data-min-i="0" data-curriculum-folder="seeker">
-<details id="ilm-pathway-details" class="ilm-pathway-details">
-<summary class="ilm-pathway-summary">
-  <span class="ilm-sum-icon" aria-hidden="true">🗺️</span>
-  <span class="ilm-sum-text">
-    <strong>Ilm Pathway — 7-day starter</strong>
-    <span class="ilm-sum-meta" id="ilm-pathway-summary-meta">Tap to open · one focus per day</span>
-  </span>
-  <span class="ilm-sum-chevron" aria-hidden="true">▾</span>
-</summary>
-<div class="ilm-pathway-body">
-  <p style="font-size:.88rem;color:var(--text-muted);margin:0 0 .5rem">A light weekly path: one focus per day. Mark done on this device. Pairs with the stack above.</p>
-  <div id="ilm-pathway-list"></div>
-  <button type="button" class="btn-soft" style="margin-top:.5rem" onclick="ilmPathwayReset()">Reset week</button>
-</div>
-</details>
-</div>
 <div data-rrra="reminder" class="card card-tafseer" id="tafseer-resources-card" data-min-i="2" data-curriculum-folder="daily">
   <h2 data-i18n="tafseer_res">Tafseer Resources</h2>
   <div class="deep-learn"><strong>Tafsīr libraries</strong>
