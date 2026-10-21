@@ -87,4 +87,3 @@
     return typeof g.tweetDeskPost === "function" ? g.tweetDeskPost() : null;
   };
 })(typeof window !== "undefined" ? window : this);
-
