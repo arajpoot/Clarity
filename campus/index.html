@@ -37,6 +37,7 @@ html[data-theme=light] .adm-input{background:#fff}
 html[data-theme=light] .adm-returning{background:#fffcf5}
 .cu-info-plaque{max-width:40rem;margin:0 auto 1.25rem;font-size:.9rem;line-height:1.45}
 </style>
+<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261021SEQ"/>
 </head>
 <body class="cu-page" data-campus-page="admit">
 <header class="cu-banner" id="cu-banner">
@@ -69,6 +70,12 @@ html[data-theme=light] .adm-returning{background:#fffcf5}
       </div>
     </div>
   </div>
+
+  
+  <div id="seq-continue-slot" aria-label="Continue learning"></div>
+  <h2 class="cu-h2" style="margin-top:1.25rem">Learning stages</h2>
+  <p class="cu-meta">Hard sequence: Seeker → Practice → Consistency → Transmission. Later stages stay locked until the previous stage is complete on this device.</p>
+  <div id="seq-stage-map" class="seq-stage-map"></div>
 
   <div class="adm-returning" id="adm-returning" hidden>
     <p><strong>Welcome back</strong> · <span id="adm-returning-name"></span></p>
@@ -254,5 +261,9 @@ html[data-theme=light] .adm-returning{background:#fffcf5}
   else paint();
 })();
 </script>
+<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261021SEQ"></script>
+<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261021SEQ"></script>
+<script src="/campus/assets/js/cu-seq-campus-v1.js?v=20261021SEQ"></script>
+<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261021SEQ"></script>
 </body>
 </html>

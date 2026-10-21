@@ -1,45 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mahtaab="1">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Campus bots · Clarity University</title>
-<meta name="description" content="On-device IT, Security, and O&M study aids. Not real system administration."/>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261020F"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261020F"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261020F"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261020F"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261020F"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261020F"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261020F"></script>
-<style>
-.bot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(12rem,1fr));gap:.65rem;max-width:min(52rem,100%);margin:0 auto .85rem}
-.bot-card{border:1px solid rgba(201,168,76,.4);border-radius:16px;padding:.9rem 1rem;background:rgba(16,28,22,.92);cursor:pointer;text-align:left;color:inherit;font:inherit}
-html[data-theme=light] .bot-card{background:#fffcf5;color:#13201a}
-.bot-card strong{display:block;color:#e8d5a3;font-family:Cormorant Garamond,serif;margin-bottom:.25rem}
-html[data-theme=light] .bot-card strong{color:#6b5a1e}
-.bot-card span{font-size:.82rem;opacity:.88}
-.bot-flow{display:none;max-width:min(40rem,100%);margin:0 auto 1rem;padding:1rem 1.1rem;border-radius:16px;border:1px solid rgba(201,168,76,.4);background:rgba(16,28,22,.95)}
-html[data-theme=light] .bot-flow{background:#fffcf5}
-.bot-flow.on{display:block}
-.bot-flow h2{margin:0 0 .5rem;font-family:Cormorant Garamond,serif;color:#e8d5a3;font-size:1.15rem}
-html[data-theme=light] .bot-flow h2{color:#6b5a1e}
-.bot-flow label{display:flex;gap:.5rem;align-items:flex-start;margin:.4rem 0;font-size:.9rem}
-.bot-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
-.bot-actions button{min-height:42px;padding:.4rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer}
-.bot-actions button.ghost{background:transparent;color:inherit;border:1px solid rgba(201,168,76,.4)}
-.bot-log{max-width:min(52rem,100%);margin:0 auto 1rem;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(201,168,76,.3);font-size:.82rem;min-height:3rem;line-height:1.45}
-.bot-log div{margin:.25rem 0;opacity:.9}
-.bot-note{text-align:center;font-size:.8rem;opacity:.85;max-width:40rem;margin:.5rem auto 1rem}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Bots · Clarity University</title>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261021SEQ"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261021SEQ"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261021SEQ"></script>
 </head>
 <body class="cu-page" data-campus-page="bots">
-<header class="cu-banner" id="cu-banner">
-  <a class="cu-brand" href="/campus/">
-    <span class="cu-brand-mark" aria-hidden="true">ن</span>
-    <div><small>On-device campus</small><strong>Clarity University</strong></div>
-  </a>
+<header class="cu-banner">
+  <a class="cu-brand" href="/charter/"><span class="cu-brand-mark">ن</span><div><small>University</small><strong>Clarity University</strong></div></a>
   <div class="cu-banner-actions">
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
@@ -47,139 +18,21 @@ html[data-theme=light] .bot-flow h2{color:#6b5a1e}
     <a class="cu-main-link" href="/">← Companion</a>
   </div>
 </header>
-<main class="cu-wrap" style="max-width:min(52rem,100%);margin:0 auto;padding:.75rem">
-<nav class="cu-pills" aria-label="Campus">
-  <a href="/charter/">Charter</a>
-  <a href="/campus/">Admission</a>
-  <a href="/campus/portal/">Portal</a>
-  <a href="/campus/desk/">Desk</a>
-  <a href="/campus/faculty.html">Faculty</a>
-  <a href="/campus/bots.html" class="here" aria-current="page">Bots</a>
+<main class="cu-wrap">
+<nav class="cu-pills">
+  <a href="/charter/">Charter</a><a href="/campus/">Campus</a><a href="/campus/desk/">Desk</a>
+  <a href="/campus/faculty.html">Faculty</a><a href="/campus/bots.html" class="here">Bots</a>
   <a href="/campus/grading.html">Progress</a>
-  <a href="/lab/">Lab</a>
 </nav>
-
-<p class="bot-note">This is a study aid, not a real system admin or security service. All checks stay on this device.</p>
-
-<div class="bot-grid">
-  <button type="button" class="bot-card" data-bot="security"><strong>Security</strong><span>Confirm this device only</span></button>
-  <button type="button" class="bot-card" data-bot="it"><strong>IT</strong><span>Offline pack / progress status</span></button>
-  <button type="button" class="bot-card" data-bot="om"><strong>O&amp;M</strong><span>Mark one phase step done</span></button>
-</div>
-
-<section class="bot-flow" id="bot-security">
-  <h2>Security bot</h2>
-  <p style="font-size:.9rem;line-height:1.45">Confirm the following. Nothing is uploaded.</p>
-  <label><input type="checkbox" id="sec-1"/> Progress and notes stay in this browser’s local storage.</label>
-  <label><input type="checkbox" id="sec-2"/> I will not treat campus markers as a grade of īmān or public ranking.</label>
-  <label><input type="checkbox" id="sec-3"/> I understand there is no remote “campus account” — registration is on this device only.</label>
-  <p id="sec-msg" class="bot-note" style="text-align:left"></p>
-  <div class="bot-actions">
-    <button type="button" id="sec-confirm">Confirm checklist</button>
-    <button type="button" class="ghost" data-close>Close</button>
-  </div>
-</section>
-
-<section class="bot-flow" id="bot-it">
-  <h2>IT bot · offline pack</h2>
-  <p style="font-size:.9rem;line-height:1.45">Reads University keys on this device only.</p>
-  <pre id="it-report" style="white-space:pre-wrap;font-size:.84rem;margin:.5rem 0;opacity:.95">Tap “Run status check”.</pre>
-  <div class="bot-actions">
-    <button type="button" id="it-run">Run status check</button>
-    <button type="button" class="ghost" data-close>Close</button>
-  </div>
-</section>
-
-<section class="bot-flow" id="bot-om">
-  <h2>O&amp;M bot · one step</h2>
-  <p style="font-size:.9rem;line-height:1.45">Mark one quiet phase step for the campus progress mirror. This is a study marker, not a certificate.</p>
-  <p class="bot-note" style="text-align:left">Steps marked: <strong id="om-count">0</strong></p>
-  <div class="bot-actions">
-    <button type="button" id="om-mark">Mark one step done</button>
-    <button type="button" class="ghost" data-close>Close</button>
-  </div>
-</section>
-
-<section class="bot-log" id="bot-log" aria-live="polite">Workers idle.</section>
-<p class="bot-note">Interactive on this device · progress saved locally</p>
+<h1>Progress helpers</h1>
+<p class="cu-meta">All state is local. No external calls from these helpers.</p>
+<section id="seq-bot-security" style="margin:1rem 0"></section>
+<section id="seq-bot-it" style="margin:1rem 0"></section>
+<section id="seq-bot-om" style="margin:1rem 0"></section>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. Not a grade of īmān. Last reviewed October 2026 · Quran.com / Sunnah.com.</footer>
-<script src="/campus/assets/js/cu-campus-progress-v1.js?v=20261020F"></script>
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261020F" defer></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261020F" defer></script>
-<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261020F" defer></script>
-<script>
-(function(){
-  var P = window.CuCampusProgress;
-  function hideFlows(){
-    document.querySelectorAll(".bot-flow").forEach(function(el){ el.classList.remove("on"); });
-  }
-  function showLog(){
-    var box = document.getElementById("bot-log");
-    if (!box || !P) return;
-    var s = P.botsState();
-    var log = (s.log || []).slice(0, 8);
-    if (!log.length) { box.textContent = "Workers idle."; return; }
-    box.innerHTML = log.map(function(e){
-      var t = (e.t || "").slice(11, 19);
-      return "<div>["+t+"] "+(e.m||"")+"</div>";
-    }).join("");
-  }
-  function refreshOm(){
-    var el = document.getElementById("om-count");
-    if (el && P) el.textContent = String(P.omStepCount());
-  }
-
-  document.querySelectorAll("[data-bot]").forEach(function(btn){
-    btn.onclick = function(){
-      hideFlows();
-      var id = "bot-" + btn.getAttribute("data-bot");
-      var el = document.getElementById(id);
-      if (el) el.classList.add("on");
-    };
-  });
-  document.querySelectorAll("[data-close]").forEach(function(b){
-    b.onclick = hideFlows;
-  });
-
-  document.getElementById("sec-confirm").onclick = function(){
-    var ok = ["sec-1","sec-2","sec-3"].every(function(id){
-      var el = document.getElementById(id); return el && el.checked;
-    });
-    var msg = document.getElementById("sec-msg");
-    if (!ok) { msg.textContent = "Please check all three items."; return; }
-    P.setSecurityConfirmed();
-    msg.textContent = "Confirmed on this device. No data left this browser.";
-    showLog();
-  };
-  document.getElementById("it-run").onclick = function(){
-    var r = P.runItCheck();
-    document.getElementById("it-report").textContent =
-      "Offline pack status\n" +
-      "· Desk modules done: " + r.deskModules + "\n" +
-      "· Faculty lessons: " + r.facultyLessons + "\n" +
-      "· Registered name: " + (r.registered ? r.name : "(not registered)") + "\n" +
-      "· Checked: " + (r.at || "").replace("T", " ").slice(0, 19) + "\n" +
-      "Educational only — local keys only.";
-    showLog();
-  };
-  document.getElementById("om-mark").onclick = function(){
-    P.markOmStep();
-    refreshOm();
-    showLog();
-  };
-
-  function boot(){
-    refreshOm();
-    showLog();
-    var s = P.botsState();
-    if (s.security && s.security.confirmed) {
-      document.getElementById("sec-msg").textContent = "Already confirmed on this device.";
-    }
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-})();
-</script>
+<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261021SEQ"></script>
+<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261021SEQ"></script>
+<script src="/campus/assets/js/cu-seq-bots-v1.js?v=20261021SEQ"></script>
+<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261021SEQ"></script>
 </body>
 </html>
