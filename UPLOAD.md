@@ -1,16 +1,23 @@
-# Adhkār Companion inject · 20261020ADH
+# Companion perf essentials · Phases A–G · 20261021PERF
 
-## Upload
-1. Folder `adhkar/` at site root (data + landing + README)
-2. `assets/clarity-adhkar-v1.js` and `assets/clarity-adhkar-v1.css`
-3. Ensure root `index.html` includes:
-   - `<link rel="stylesheet" href="/assets/clarity-adhkar-v1.css?v=20261020ADH"/>`
-   - `<script src="/assets/clarity-adhkar-v1.js?v=20261020ADH" defer></script>`
-4. Cloudflare purge `/adhkar/*` and `/assets/clarity-adhkar*`
+## What changed
+- A: Deduped stylesheet links; provision/share **v2 only**
+- B: `clarity-critical-af-v1.css` + deferred heavy CSS (`media=print` onload)
+- C: Heavy packs stay idle-only; `clarity-perf-idle-v2.js`
+- D: min-heights for provision + adhkār (CLS shells)
+- E: `clarity-gate-flow-v1.js` collapses bulky strips when Gate on
+- F: light whitespace trim on index
+- G: this essentials pack
 
-## Behaviour
-- Card under Do this today
-- Morning list after Fajr (soft after sunrise until ʿAṣr)
-- Evening list after ʿAṣr
-- One dhikr at a time · Next/Prev · Count with tasbeeh
-- Educational only — not a fatwa
+## Vault / banner
+Isolate + secure stack included. Banner CSS/JS included. Do not delete campus from live site separately unless intentional.
+
+## Deploy
+1. Upload `index.html` (root)
+2. Merge `assets/*` (new + updated files)
+3. Keep full vault files already on host if not in this zip
+4. CF purge `/` and `/assets/*`
+5. Re-run PageSpeed mobile
+
+## Note
+Full live site still needs remaining assets (chunk-8 via idle, curriculum, etc.). This pack is the **perf-critical Companion slice** + index.
