@@ -1,44 +1,14 @@
 {
-  "ver": "20261017FINAL",
-  "smoke": {
-    "no_companion_index": true,
-    "map_has_mobile_css": true,
-    "map_idle_roles": true,
-    "seeker_no_full_boot": true,
-    "seeker_surface_loader": true,
-    "transmission_surface_loader": true,
-    "seeker_not_transmission_chain": true,
-    "transmission_not_seeker_chain": true,
-    "day_css_light_force": true,
-    "continue_js": true,
-    "inject_js": true,
-    "phase_room": true,
-    "charter": true,
-    "library": true,
-    "vault": true,
-    "manifest": true,
-    "all_required": true,
-    "map_default_light": true,
-    "transmission_no_boot": true
+  "modules_per_stage": {
+    "seeker": 6,
+    "practice": 6,
+    "consistency": 6,
+    "transmission": 6
   },
-  "missing": [],
-  "platforms": {
-    "iOS_Safari": [
-      "early theme script",
-      "mobile day css",
-      "no backdrop-filter required",
-      "default light",
-      "idle noncritical JS"
-    ],
-    "Android_Chrome": [
-      "same CSS vars",
-      "viewport meta expected in pages",
-      "touch targets pills"
-    ],
-    "Desktop": [
-      "full bi-shell",
-      "continue card",
-      "theme pills Day/Night/System"
-    ]
-  }
+  "lock_chain": true,
+  "errors": [],
+  "progress_syntax": "ok",
+  "modules_syntax": "ok",
+  "node_sim": "{\n  \"ok\": true,\n  \"log\": [\n    \"practice locked OK\",\n    \"seeker complete OK\",\n    \"practice unlocked OK\",\n    \"transmission locked OK\",\n    \"next={\\\"stage\\\":\\\"practice\\\",\\\"moduleId\\\":\\\"practice.m1\\\"}\"\n  ],\n  \"counts\": {\n    \"seeker\": {\n      \"done\": 6,\n      \"total\": 6,\n      \"complete\": true,\n      \"unlocked\": true\n    },\n    \"practice\": {\n      \"done\": 0,\n      \"total\": 6,\n      \"complete\": false,\n      \"unlocked\": true\n    },\n    \"consistency\": {\n      \"done\": 0,\n      \"total\": 6,\n      \"complete\": false,\n      \"unlocked\": false\n    },\n    \"transmission\": {\n      \"done\": 0,\n      \"total\": 6,\n      \"complete\": false,\n      \"unlocked\": false\n    }\n  }\n}\n",
+  "node_ok": true
 }

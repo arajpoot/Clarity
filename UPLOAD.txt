@@ -1,19 +1,22 @@
-Spark adab v2 + map guard (20261018ADAB)
+Clarity University sequential learning U-SEQ-0..8 (20261021SEQ)
 
-1. Replace foundation spark-quiz (fixes bank path + adab gate in modal):
-   assets/curriculum/vault/foundation/spark-quiz.js
+COMPANION UNTOUCHED — no files outside campus/ (and shared css under campus/assets).
 
-2. Optional style:
-   campus/assets/css/cu-spark-quiz-v2.css
-   (link on seeker if modal looks unstyled)
+Upload preserving paths:
+  campus/assets/js/cu-seq-*.js
+  campus/assets/css/cu-seq-v1.css
+  campus/index.html
+  campus/desk/index.html
+  campus/desk/seeker|practice|consistency|transmission/index.html
+  campus/faculty.html
+  campus/bots.html
+  campus/grading.html
 
-3. Adab note on desk rooms:
-   campus/assets/js/cu-adab-v1.js
+Purge CF cache for /campus/
 
-4. Map guard (Junior must not paint on /campus/):
-   campus/assets/js/cu-map-curriculum-guard-v1.js
-   Add to campus/index.html before flash-core:
-   <script src="/campus/assets/js/cu-map-curriculum-guard-v1.js?v=20261018ADAB"></script>
-
-Prove it modal now shows lesson.adab + checkbox before unlock.
-Companion frozen.
+Smoke:
+1. /campus/ → Continue + stage map
+2. Open Seeker → modules 1..6 → Mark done (answer quiz)
+3. Refresh → next advances
+4. Practice still locked until all Seeker done
+5. Faculty/Bots/Grading same counts
