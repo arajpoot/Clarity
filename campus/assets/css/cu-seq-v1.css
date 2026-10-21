@@ -56,3 +56,9 @@ html[data-theme=light] .seq-detail{background:rgba(255,254,249,.95)}
   margin:2rem 0 1rem;padding:1rem;font-size:.78rem;opacity:.9;line-height:1.45;
   border-top:1px solid rgba(201,162,39,.3)
 }
+
+.seq-explain{margin:.65rem 0;padding:.65rem .75rem;border-radius:12px;border:1px solid rgba(201,162,39,.28);background:rgba(0,0,0,.12);font-size:.9rem;line-height:1.5}
+html[data-theme=light] .seq-explain{background:rgba(255,252,245,.95)}
+.seq-explain p{margin:.35rem 0 0}
+.seq-points{margin:.4rem 0 .6rem 1.1rem;padding:0;font-size:.86rem;line-height:1.45}
+.seq-points li{margin:.2rem 0}
