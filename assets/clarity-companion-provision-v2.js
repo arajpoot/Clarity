@@ -283,14 +283,28 @@
     wrap.className = "clarity-provision-home";
     wrap.setAttribute("aria-label", "Today’s companion surface");
     wrap.innerHTML = buildHTML();
-    var after =
-      document.getElementById("clarity-visit-pill-bar") ||
-      document.getElementById("clarity-top-duo");
-    if (after && after.parentNode) {
-      if (after.nextSibling) after.parentNode.insertBefore(wrap, after.nextSibling);
-      else after.parentNode.appendChild(wrap);
+    /* PERF4b: always after .banner so calendar/salah stay on top */
+    var banner = document.querySelector("#clarity-top-duo .banner, .banner");
+    var after = null;
+    if (banner) {
+      after = banner;
+      /* if banner is inside top-duo, insert after banner still inside parent */
+      if (banner.parentNode) {
+        if (banner.nextSibling) banner.parentNode.insertBefore(wrap, banner.nextSibling);
+        else banner.parentNode.appendChild(wrap);
+      } else {
+        host.appendChild(wrap);
+      }
     } else {
-      host.insertBefore(wrap, host.firstChild);
+      after =
+        document.getElementById("clarity-visit-pill-bar") ||
+        document.getElementById("clarity-top-duo");
+      if (after && after.parentNode) {
+        if (after.nextSibling) after.parentNode.insertBefore(wrap, after.nextSibling);
+        else after.parentNode.appendChild(wrap);
+      } else {
+        host.appendChild(wrap);
+      }
     }
     wire(wrap);
   }
@@ -326,7 +340,7 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  setTimeout(boot, 600);
-  setTimeout(boot, 2000);
+  setTimeout(boot, 400);
+  /* PERF4 removed stacked boot */
   setInterval(tickSalah, 1000);
 })(typeof window !== "undefined" ? window : this);

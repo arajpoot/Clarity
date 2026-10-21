@@ -1,12 +1,13 @@
-/* AF CLS lock · 20261021PERF4 */
-.banner,.clarity-banner,#clarity-top-duo,.banner-triple{
+/* AF layout order · banner first · 20261021PERF4b */
+#clarity-top-duo{
+  display:flex;
+  flex-direction:column;
+}
+#clarity-top-duo .banner{order:1}
+#clarity-provision-home,.clarity-provision-home{order:2;min-height:13rem;contain:layout}
+#clarity-adhkar-daily,.clarity-adhkar-daily{order:3;min-height:11rem;contain:layout}
+.banner,.clarity-banner{
   min-height:11rem;contain:layout style;
-}
-#clarity-provision-home,.clarity-provision-home{
-  min-height:13rem;contain:layout;
-}
-#clarity-adhkar-daily,.clarity-adhkar-daily{
-  min-height:11rem;contain:layout;
 }
 .cph-card,.cad-card{box-sizing:border-box;width:100%}
 body{margin:0}
