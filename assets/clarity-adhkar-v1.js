@@ -5,8 +5,8 @@
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_ADHKAR_V1__ === "20261020ADH") return;
-  w.__CLARITY_ADHKAR_V1__ = "20261020ADH";
+  if (w.__CLARITY_ADHKAR_V1__ === "20261020ADH2") return;
+  w.__CLARITY_ADHKAR_V1__ = "20261020ADH2";
 
   var KEY_PROG = "clarity_adhkar_progress_v1";
   var KEY_TAS = "clarity_cph_tasbeeh_v1";
@@ -64,32 +64,62 @@
     var asr = hmToToday(map.Asr);
     var maghrib = hmToToday(map.Maghrib);
     var isha = hmToToday(map.Isha);
+    var dhuhr = hmToToday(map.Dhuhr);
+
+    function pack(id, preferred, label, label_ar, endsAt, endsLabel) {
+      return {
+        id: id,
+        preferred: preferred,
+        label: label,
+        label_ar: label_ar,
+        endsAt: endsAt || null,
+        endsLabel: endsLabel || ""
+      };
+    }
 
     if (fajr && sunrise && now >= fajr && now < sunrise) {
-      return { id: "morning", preferred: true, label: "Morning adhkār", label_ar: "أذكار الصباح" };
+      return pack("morning", true, "Morning adhkār", "أذكار الصباح", sunrise, "until sunrise");
     }
-    if (fajr && asr && now >= fajr && now < asr && (!sunrise || now < sunrise || now < asr)) {
-      /* after sunrise until Asr: still allow morning list as soft */
-      if (sunrise && now >= sunrise) {
-        return { id: "morning", preferred: false, label: "Morning adhkār (soft window)", label_ar: "أذكار الصباح" };
-      }
+    if (sunrise && asr && now >= sunrise && now < asr) {
+      return pack("morning", false, "Morning adhkār (soft window)", "أذكار الصباح", asr, "until ʿAṣr");
+    }
+    if (fajr && !sunrise && asr && now >= fajr && now < asr) {
+      return pack("morning", true, "Morning adhkār", "أذكار الصباح", asr, "until ʿAṣr");
     }
     if (asr && maghrib && now >= asr && now < maghrib) {
-      return { id: "evening", preferred: true, label: "Evening adhkār", label_ar: "أذكار المساء" };
+      return pack("evening", true, "Evening adhkār", "أذكار المساء", maghrib, "until Maghrib");
     }
     if (maghrib && isha && now >= maghrib && now < isha) {
-      return { id: "evening", preferred: false, label: "Evening adhkār (soft window)", label_ar: "أذكار المساء" };
+      return pack("evening", false, "Evening adhkār (soft window)", "أذكار المساء", isha, "until ʿIshāʾ");
     }
     if (isha && now >= isha) {
-      return { id: "evening", preferred: false, label: "Evening adhkār (night)", label_ar: "أذكار المساء" };
+      var nextFajr = fajr ? new Date(fajr.getTime() + 24 * 3600 * 1000) : null;
+      if (fajr && now < fajr) nextFajr = fajr;
+      return pack("evening", false, "Evening adhkār (night)", "أذكار المساء", nextFajr, "until Fajr");
     }
     if (fajr && now < fajr) {
-      return { id: "evening", preferred: false, label: "Evening adhkār (before Fajr)", label_ar: "أذكار المساء" };
+      return pack("evening", false, "Evening adhkār (before Fajr)", "أذكار المساء", fajr, "until Fajr");
     }
-    /* clock fallback if salah times missing */
     var h = now.getHours();
-    if (h >= 4 && h < 12) return { id: "morning", preferred: false, label: "Morning adhkār", label_ar: "أذكار الصباح" };
-    return { id: "evening", preferred: false, label: "Evening adhkār", label_ar: "أذكار المساء" };
+    if (h >= 4 && h < 12) {
+      var end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
+      return pack("morning", false, "Morning adhkār", "أذكار الصباح", end, "until midday");
+    }
+    var endE = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 4, 0, 0);
+    return pack("evening", false, "Evening adhkār", "أذكار المساء", endE, "until pre-dawn");
+  }
+
+  function formatWindowLeft(endsAt) {
+    if (!endsAt) return "";
+    var ms = endsAt - new Date();
+    if (ms <= 0) return "window ended";
+    var s = Math.floor(ms / 1000);
+    var h = Math.floor(s / 3600);
+    var m = Math.floor((s % 3600) / 60);
+    var sec = s % 60;
+    if (h > 0) return h + "h " + m + "m left";
+    if (m > 0) return m + "m " + sec + "s left";
+    return sec + "s left";
   }
 
   function fetchPack(which) {
@@ -185,7 +215,12 @@
       }
     }
 
-    var soft = win.preferred ? "" : '<span class="cad-soft">Preferred window may have passed — still beneficial to remember Allah.</span>';
+    var soft = win.preferred
+      ? ""
+      : '<span class="cad-soft">Preferred window may have passed — still beneficial to remember Allah.</span>';
+    var cdClass = "cad-countdown" + (win.preferred ? "" : " is-soft");
+    var cdText =
+      (win.endsLabel ? win.endsLabel + " · " : "") + formatWindowLeft(win.endsAt);
     root.innerHTML =
       '<div class="cad-card">' +
       '<div class="cad-head">' +
@@ -199,8 +234,17 @@
       " / " +
       items.length +
       "</span></div>" +
+      '<div class="' +
+      cdClass +
+      '" id="cad-window-cd" data-ends="' +
+      (win.endsAt ? win.endsAt.getTime() : "") +
+      '" data-label="' +
+      (win.endsLabel || "").replace(/"/g, "") +
+      '">⏱ ' +
+      cdText +
+      "</div>" +
       soft +
-      '<p class="cad-ar" dir="rtl" lang="ar">' +
+      '<p class="cad-ar arabic rabbana-arabic" dir="rtl" lang="ar">' +
       (item.ar || "") +
       "</p>" +
       '<p class="cad-en">' +
@@ -260,6 +304,20 @@
     }
   }
 
+
+  function tickWindowCd() {
+    var el = document.getElementById("cad-window-cd");
+    if (!el) return;
+    var ends = parseInt(el.getAttribute("data-ends") || "0", 10);
+    var label = el.getAttribute("data-label") || "";
+    if (!ends) {
+      el.textContent = "⏱ window";
+      return;
+    }
+    var left = formatWindowLeft(new Date(ends));
+    el.textContent = "⏱ " + (label ? label + " · " : "") + left;
+  }
+
   function boot() {
     try {
       var win = resolveWindow();
@@ -282,4 +340,5 @@
   setInterval(function () {
     if (!document.getElementById("clarity-adhkar-daily")) boot();
   }, 15000);
+  setInterval(tickWindowCd, 1000);
 })(typeof window !== "undefined" ? window : this);
