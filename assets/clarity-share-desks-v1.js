@@ -83,11 +83,8 @@
     if (which === "fb") g.memeSendToFacebookDesk();
     else g.memeSendToTweetDesk();
   };
+  g.tdPost = g.tdPost || function () {
+    return typeof g.tweetDeskPost === "function" ? g.tweetDeskPost() : null;
+  };
 })(typeof window !== "undefined" ? window : this);
 
-  g.tdPost = g.tdPost || function () { return g.tweetDeskPost(); };
-  g.tweetDeskPost = function () {
-    var el = document.getElementById("td-text") || document.getElementById("td-compose");
-    var text = (el && el.value) || packText(260);
-    g.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text), "_blank", "noopener,noreferrer");
-  };

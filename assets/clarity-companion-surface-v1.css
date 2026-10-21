@@ -610,3 +610,133 @@ html[data-theme="light"] [class*="daily-drill"] {
     height: 2.75rem !important;
   }
 }
+
+/* —— 20261020FIX: paired icons + solar date + top symmetry —— */
+.cph-headline-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.1fr) auto minmax(0, 1.1fr) !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+}
+.cph-title-block {
+  text-align: center;
+  justify-self: center;
+}
+.cph-title-center {
+  margin: 0 !important;
+  font-size: clamp(1.15rem, 3vw, 1.5rem) !important;
+  color: #c9a84c !important;
+}
+.cph-solar-date {
+  margin: 0.15rem 0 0 !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  color: #3d5348 !important;
+  opacity: 1 !important;
+  letter-spacing: 0.02em;
+}
+html[data-theme="dark"] .cph-solar-date,
+body.dark .cph-solar-date {
+  color: #a8bdb0 !important;
+}
+.cph-ico {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 1.85rem !important;
+  height: 1.85rem !important;
+  min-width: 1.85rem;
+  min-height: 1.85rem;
+  font-size: 1.45rem !important;
+  line-height: 1 !important;
+  flex-shrink: 0;
+}
+.cph-ico-emoji { display: inline-block !important; }
+.cph-ico-svg { display: none !important; } /* emoji first for mobile reliability */
+.cph-salah {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  font-size: 0.86rem !important;
+  font-weight: 800 !important;
+  padding: 0.4rem 0.8rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(30, 125, 94, 0.4) !important;
+  background: rgba(30, 125, 94, 0.12) !important;
+  color: #0f5c42 !important;
+}
+.cph-tas-btn {
+  width: 2.85rem !important;
+  height: 2.85rem !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #1e7d5e !important;
+  border: none !important;
+  color: #fff !important;
+  padding: 0 !important;
+  font-size: 1.35rem !important;
+}
+.cph-tas-btn .cph-ico { font-size: 1.35rem !important; }
+.cph-tas-btn.ghost {
+  width: 2rem !important;
+  height: 2rem !important;
+  background: transparent !important;
+  color: inherit !important;
+  font-size: 1rem !important;
+}
+.cph-tas-count {
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  min-width: 1.75rem;
+  text-align: center;
+}
+@media (max-width: 560px) {
+  .cph-headline-row {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas:
+      "title title"
+      "salah tas" !important;
+  }
+  .cph-title-block { grid-area: title !important; }
+  .cph-headline-row .cph-salah { grid-area: salah !important; }
+  .cph-headline-row .cph-tasbeeh { grid-area: tas !important; justify-self: end !important; }
+  .cph-ico { width: 2rem !important; height: 2rem !important; font-size: 1.55rem !important; }
+  .cph-tas-btn { width: 3rem !important; height: 3rem !important; }
+}
+
+/* Top chrome symmetry */
+#clarity-top-duo,
+.clarity-top-duo,
+.banner-triple {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr) !important;
+  gap: 0.55rem !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+#clarity-top-duo > *,
+.banner-triple > * {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 720px) {
+  #clarity-top-duo,
+  .clarity-top-duo,
+  .banner-triple {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* Theme pills row balance */
+.theme-switcher,
+.clarity-theme-row,
+header .theme-pills {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+}
