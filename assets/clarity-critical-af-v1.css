@@ -1,13 +1,7 @@
-/* AF layout order · banner first · 20261021PERF4b */
-#clarity-top-duo{
-  display:flex;
-  flex-direction:column;
-}
-#clarity-top-duo .banner{order:1}
-#clarity-provision-home,.clarity-provision-home{order:2;min-height:13rem;contain:layout}
-#clarity-adhkar-daily,.clarity-adhkar-daily{order:3;min-height:11rem;contain:layout}
-.banner,.clarity-banner{
-  min-height:11rem;contain:layout style;
-}
-.cph-card,.cad-card{box-sizing:border-box;width:100%}
+/* R1/R4 order + CLS · 20261021R */
+#clarity-top-duo{display:flex;flex-direction:column}
+#clarity-top-duo .banner,.banner{order:0;min-height:11rem;contain:layout style}
+#clarity-provision-home,.clarity-provision-home{order:1;min-height:13rem;contain:layout;width:100%}
+#clarity-adhkar-daily,.clarity-adhkar-daily{order:2;min-height:11rem;contain:layout;width:100%}
+.cph-card,.cad-card,.cph-adhkar{box-sizing:border-box;width:100%}
 body{margin:0}

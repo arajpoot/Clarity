@@ -231,6 +231,6 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  setTimeout(boot, 800);
-  setTimeout(boot, 2000);
+  setTimeout(boot, 400);
+  /* PERF4 removed stacked boot */
 })(typeof window !== "undefined" ? window : this);

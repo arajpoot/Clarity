@@ -1,90 +1,24 @@
-/**
- * Landing gate · Today + Adhkār + routines as first surface · 20261021LAND
- */
-.clarity-landing-host {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 0.5rem 0 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
+/* Landing R3 · 20261021R */
+.clarity-landing-pill{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;
+  margin:.6rem 0 0;padding:.55rem .85rem;border-radius:999px;
+  border:1px solid rgba(201,168,76,.45);background:rgba(15,40,30,.94);color:#e8f0ea;
+  position:sticky;bottom:4.6rem;z-index:45;
 }
-.clarity-landing-pill {
-  position: sticky;
-  bottom: 4.5rem;
-  z-index: 40;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin: 0.35rem 0 0;
-  padding: 0.55rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid rgba(201, 168, 76, 0.45);
-  background: rgba(15, 40, 30, 0.92);
-  color: #e8f0ea;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(8px);
+html[data-theme="light"] .clarity-landing-pill,body:not(.dark):not([data-theme="dark"]) .clarity-landing-pill{
+  background:rgba(255,253,248,.97);color:#1a2e24;
 }
-html[data-theme="light"] .clarity-landing-pill,
-body:not(.dark):not([data-theme="dark"]) .clarity-landing-pill {
-  background: rgba(255, 253, 248, 0.96);
-  color: #1a2e24;
-  box-shadow: 0 8px 24px rgba(26, 46, 36, 0.12);
-}
-.clp-label {
-  font-size: 0.86rem;
-  font-weight: 650;
-}
-.clp-label strong {
-  color: #c9a84c;
-  font-variant-numeric: tabular-nums;
-}
-.clp-actions {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-.clp-btn {
-  border: 1px solid rgba(201, 168, 76, 0.4);
-  background: transparent;
-  color: inherit;
-  border-radius: 999px;
-  padding: 0.4rem 0.9rem;
-  font-weight: 700;
-  font-size: 0.84rem;
-  cursor: pointer;
-}
-.clp-btn.primary {
-  background: #1e7d5e;
-  border-color: #1e7d5e;
-  color: #fff;
-}
-
-/* While landing active: dim/hide heavy main chrome below */
+.clp-label{font-size:.86rem;font-weight:650}
+.clp-label strong{color:#c9a84c;font-variant-numeric:tabular-nums}
+.clp-actions{display:flex;gap:.4rem}
+.clp-btn{border:1px solid rgba(201,168,76,.4);background:transparent;color:inherit;border-radius:999px;padding:.4rem .9rem;font-weight:700;font-size:.84rem;cursor:pointer}
+.clp-btn.primary{background:#1e7d5e;border-color:#1e7d5e;color:#fff}
+/* Dim only main workspace + path chrome, not banner/today */
 html.clarity-landing-active #main-application-workspace,
-html.clarity-landing-active .page-wrapper,
-html.clarity-landing-active .phased-learning-strip,
-html.clarity-landing-active #phased-learning,
-html.clarity-landing-active .dual-path-tiles {
-  opacity: 0.22;
-  pointer-events: none;
-  max-height: 40vh;
-  overflow: hidden;
-}
-html.clarity-landing-active .banner,
-html.clarity-landing-active #clarity-top-duo .banner {
-  /* banner stays visible above landing */
-  opacity: 1;
-  pointer-events: auto;
-  max-height: none;
+html.clarity-landing-active .page-wrapper{
+  opacity:.25;pointer-events:none;max-height:36vh;overflow:hidden;
 }
 html.clarity-landing-done #main-application-workspace,
-html.clarity-landing-done .page-wrapper {
-  opacity: 1;
-  pointer-events: auto;
-  max-height: none;
-  overflow: visible;
+html.clarity-landing-done .page-wrapper{
+  opacity:1;pointer-events:auto;max-height:none;overflow:visible;
 }
