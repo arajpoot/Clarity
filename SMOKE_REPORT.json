@@ -1,14 +1,27 @@
 {
-  "modules_per_stage": {
-    "seeker": 6,
-    "practice": 6,
-    "consistency": 6,
-    "transmission": 6
-  },
-  "lock_chain": true,
   "errors": [],
-  "progress_syntax": "ok",
-  "modules_syntax": "ok",
-  "node_sim": "{\n  \"ok\": true,\n  \"log\": [\n    \"practice locked OK\",\n    \"seeker complete OK\",\n    \"practice unlocked OK\",\n    \"transmission locked OK\",\n    \"next={\\\"stage\\\":\\\"practice\\\",\\\"moduleId\\\":\\\"practice.m1\\\"}\"\n  ],\n  \"counts\": {\n    \"seeker\": {\n      \"done\": 6,\n      \"total\": 6,\n      \"complete\": true,\n      \"unlocked\": true\n    },\n    \"practice\": {\n      \"done\": 0,\n      \"total\": 6,\n      \"complete\": false,\n      \"unlocked\": true\n    },\n    \"consistency\": {\n      \"done\": 0,\n      \"total\": 6,\n      \"complete\": false,\n      \"unlocked\": false\n    },\n    \"transmission\": {\n      \"done\": 0,\n      \"total\": 6,\n      \"complete\": false,\n      \"unlocked\": false\n    }\n  }\n}\n",
-  "node_ok": true
+  "pages": {
+    "campus/assets/js/cu-seq-progress-v1.js": 6246,
+    "campus/assets/js/cu-seq-modules-v1.js": 17100,
+    "campus/assets/js/cu-seq-desk-v1.js": 7640,
+    "campus/assets/js/cu-seq-campus-v1.js": 2234,
+    "campus/assets/js/cu-seq-faculty-v1.js": 2035,
+    "campus/assets/js/cu-seq-bots-v1.js": 2958,
+    "campus/assets/js/cu-seq-grading-v1.js": 2054,
+    "campus/assets/js/cu-seq-footer-v1.js": 1151,
+    "campus/assets/js/cu-seq-status-v1.js": 1486,
+    "campus/assets/js/cu-campus-progress-v1.js": 5639,
+    "campus/assets/css/cu-seq-v1.css": 2935,
+    "campus/index.html": 14632,
+    "campus/desk/index.html": 8305,
+    "campus/faculty.html": 10769,
+    "campus/bots.html": 9897,
+    "campus/grading.html": 6818,
+    "campus/desk/seeker/index.html": 4829,
+    "campus/desk/practice/index.html": 4803,
+    "campus/desk/consistency/index.html": 4844,
+    "campus/desk/transmission/index.html": 4868
+  },
+  "node_ok": true,
+  "node": "{\"ok\":true,\"log\":[\"next={\\\"stage\\\":\\\"practice\\\",\\\"moduleId\\\":\\\"practice.m1\\\"}\"],\"counts\":{\"seeker\":{\"done\":6,\"total\":6,\"complete\":true,\"unlocked\":true},\"practice\":{\"done\":0,\"total\":6,\"complete\":false,\"unlocked\":true},\"consistency\":{\"done\":0,\"total\":6,\"complete\":false,\"unlocked\":false},\"transmission\":{\"done\":0,\"total\":6,\"complete\":false,\"unlocked\":false}}}"
 }
