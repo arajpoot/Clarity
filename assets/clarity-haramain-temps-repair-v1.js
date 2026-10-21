@@ -1,3 +1,20 @@
+/* PERF3_GEO_DELAY — do not prompt geolocation on first paint */
+(function(w){
+  try {
+    var g = navigator.geolocation;
+    if (!g || g.__clarityDelayed) return;
+    var orig = g.getCurrentPosition.bind(g);
+    g.getCurrentPosition = function(success, error, opts) {
+      var go = function(){ try { orig(success, error, opts); } catch(e){ if (error) error(e); } };
+      if (w.__CLARITY_ALLOW_GEO__) { go(); return; }
+      var start = function(){ setTimeout(go, 10000); };
+      if (document.readyState === "complete") start();
+      else w.addEventListener("load", start, { once: true });
+    };
+    g.__clarityDelayed = true;
+  } catch (e) {}
+})(typeof window !== "undefined" ? window : this);
+
 /**
  * Haramain + local temp repair · Companion · 20261020CH
  * Ensures Makkah/Madinah and place-temp fill even if idle-deferred fetch lags.
