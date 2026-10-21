@@ -1,7 +1,18 @@
-/* R1/R4 order + CLS · 20261021R */
-#clarity-top-duo{display:flex;flex-direction:column}
-#clarity-top-duo .banner,.banner{order:0;min-height:11rem;contain:layout style}
-#clarity-provision-home,.clarity-provision-home{order:1;min-height:13rem;contain:layout;width:100%}
-#clarity-adhkar-daily,.clarity-adhkar-daily{order:2;min-height:11rem;contain:layout;width:100%}
-.cph-card,.cad-card,.cph-adhkar{box-sizing:border-box;width:100%}
+/* R1 order + tight gaps · 20261021L5 */
+#clarity-top-duo{display:flex;flex-direction:column;gap:0}
+#clarity-top-duo .banner,.banner{order:0;min-height:10rem;contain:layout style;margin-bottom:0}
+#clarity-provision-home,.clarity-provision-home{
+  order:1;min-height:0;contain:layout;width:100%;
+  margin:0.35rem 0 0.25rem;padding:0;
+}
+#clarity-adhkar-daily,.clarity-adhkar-daily{
+  order:2;min-height:0;contain:layout;width:100%;
+  margin:0.15rem 0 0.35rem;padding:0;
+}
+.cph-card,.cad-card,.cph-adhkar{box-sizing:border-box;width:100%;margin-top:0}
+/* tighten space before path / main chrome */
+#clarity-adhkar-daily + *,
+.clarity-provision-home + .clarity-gate-switcher,
+#main-application-workspace{margin-top:0.25rem}
+#main-application-workspace .page-wrapper{padding-top:0.25rem}
 body{margin:0}
