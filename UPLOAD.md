@@ -1,23 +1,20 @@
-# Companion perf essentials · Phases A–G · 20261021PERF
+# Companion restore R1–R6 · 20261021R
 
-## What changed
-- A: Deduped stylesheet links; provision/share **v2 only**
-- B: `clarity-critical-af-v1.css` + deferred heavy CSS (`media=print` onload)
-- C: Heavy packs stay idle-only; `clarity-perf-idle-v2.js`
-- D: min-heights for provision + adhkār (CLS shells)
-- E: `clarity-gate-flow-v1.js` collapses bulky strips when Gate on
-- F: light whitespace trim on index
-- G: this essentials pack
+## Order (canonical)
+1. Banner (calendar / Rabbana / salah)
+2. Do this today
+3. Adhkār
+4. Path / phased chrome
+5. Main tabs
 
-## Vault / banner
-Isolate + secure stack included. Banner CSS/JS included. Do not delete campus from live site separately unless intentional.
+## Landing
+- Pill under Today: Stay | Skip to main | countdown 12s
+- Once per local day (localStorage `clarity_landing_gate_v1`)
+- Force show: `?landing=1` · force skip: `?landing=0`
+- Reset: `localStorage.removeItem('clarity_landing_gate_v1')`
+
+## Adhkār
+- Single module: `clarity-adhkar-card-v1.js` only
 
 ## Deploy
-1. Upload `index.html` (root)
-2. Merge `assets/*` (new + updated files)
-3. Keep full vault files already on host if not in this zip
-4. CF purge `/` and `/assets/*`
-5. Re-run PageSpeed mobile
-
-## Note
-Full live site still needs remaining assets (chunk-8 via idle, curriculum, etc.). This pack is the **perf-critical Companion slice** + index.
+Upload all files in this zip to site root / assets. CF purge. Hard refresh.
