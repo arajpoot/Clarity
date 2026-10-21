@@ -1,5 +1,5 @@
 /**
- * Daily adhkār · banner Scheherazade New match · window countdown · 20261020ADH2
+ * Daily adhkār card · match Do this today provision surface · 20261020ADH
  */
 .clarity-adhkar-daily {
   width: 100%;
@@ -31,7 +31,7 @@ body.dark .cad-card {
   justify-content: space-between;
   align-items: center;
   gap: 0.35rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.45rem;
 }
 .cad-window {
   font-weight: 800;
@@ -48,62 +48,23 @@ body.dark .cad-window {
   font-weight: 700;
   opacity: 0.75;
 }
-.cad-countdown {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin: 0 0 0.55rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  color: #0f5c42;
-  background: rgba(30, 125, 94, 0.12);
-  border: 1px solid rgba(30, 125, 94, 0.35);
-}
-html[data-theme="dark"] .cad-countdown,
-body.dark .cad-countdown {
-  color: #7dcea0;
-  background: rgba(30, 125, 94, 0.18);
-}
-.cad-countdown.is-soft {
-  color: #6b5a2e;
-  background: rgba(201, 168, 76, 0.12);
-  border-color: rgba(201, 168, 76, 0.4);
-}
-html[data-theme="dark"] .cad-countdown.is-soft,
-body.dark .cad-countdown.is-soft {
-  color: #e4c76a;
-}
 .cad-soft {
   display: block;
   font-size: 0.78rem;
   margin: 0 0 0.5rem;
   color: #3d5348;
+  opacity: 0.95;
 }
 html[data-theme="dark"] .cad-soft,
 body.dark .cad-soft {
   color: #a8bdb0;
 }
-/* Same stack as banner .arabic / .rabbana-arabic (masnūn duʿāʾ) */
-.cad-ar,
-.cad-ar.arabic,
-.cad-ar.rabbana-arabic {
-  font-family: "Scheherazade New", Amiri, "Noto Naskh Arabic", Lateef, "Traditional Arabic", serif !important;
-  direction: rtl;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  line-height: 2.15;
-  font-size: clamp(1.25rem, 3.6vw, 1.65rem);
+.cad-ar {
+  font-size: clamp(1.15rem, 3.2vw, 1.45rem);
+  line-height: 1.85;
   margin: 0.35rem 0 0.55rem;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
   color: inherit;
-}
-html[data-theme="light"] .cad-ar,
-body:not(.dark):not([data-theme="dark"]) .cad-ar {
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6), 0 1.5px 2px rgba(0, 0, 0, 0.08);
 }
 .cad-en {
   font-size: 0.92rem;
@@ -130,7 +91,7 @@ body.dark .cad-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  margin: 0.35rem 0;
+  margin: 0.35rem 0 0.35rem;
 }
 .cad-btn {
   border: none;
@@ -158,4 +119,11 @@ body.dark .cad-btn.ghost {
   font-size: 0.72rem;
   margin: 0.5rem 0 0;
   opacity: 0.8;
+}
+/* full viewport width harmony with provision */
+.clarity-provision-home,
+.clarity-adhkar-daily {
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 0;
 }
