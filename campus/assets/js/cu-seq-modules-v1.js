@@ -1,305 +1,348 @@
 /**
- * cu-seq-modules-v1.js — Ordered modules for four University stages
- * Educational only — not a fatwa. Prefer Qurʾān + ṣaḥīḥ; where text does not settle, stop.
+ * cu-seq-modules-v1.js — Deep sequential modules (20261021DEPTH)
+ * Seeker: on-device Seeker unit prose (original educational wording).
+ * Prefer Qurʾān + ṣaḥīḥ; outward links. Educational only — not a fatwa.
  */
 (function (g) {
   "use strict";
-  if (g.CU_SEQ_MODULES) return;
-
-  function q(ref, en, href) {
-    return { type: "quran", ref: ref, en: en, href: href };
-  }
-  function h(ref, en, href) {
-    return { type: "hadith", ref: ref, en: en, href: href || "https://sunnah.com/" };
-  }
-
   g.CU_SEQ_MODULES = {
-    version: 1,
+    version: 2,
     stages: {
       seeker: {
         id: "seeker",
         title: "Seeker · Essentials",
-        aim: "Belief, basic worship awareness, character, one short Qurʾān practice.",
+        aim: "Īmān, short Qurʾān practice, character, messenger, hereafter.",
         modules: [
-          {
-            id: "seeker.m1",
-            title: "Allah is One",
-            aim: "Hold tawḥīd: Allah alone creates and deserves worship.",
-            source: q("Qurʾān 112:1–4", "Say: He is Allah, One…", "https://quran.com/112"),
-            adab: "Sit with a calm heart. This is knowledge of Allah — not debate sport.",
-            action: "Before one ordinary task today, say Bismillāh and intend it for Allah alone.",
-            quiz: [
-              { q: "Tawḥīd means primarily:", opts: ["Allah is One, without partner in lordship and worship", "A cultural slogan", "A political party"], a: 0 }
-            ]
-          },
-          {
-            id: "seeker.m2",
-            title: "Allah sees and knows",
-            aim: "Live with sincerity: He knows what is shown and what is hidden.",
-            source: q("Qurʾān 67:13–14", "Whether you conceal speech or declare it…", "https://quran.com/67/13"),
-            adab: "Let this soften the tongue — He hears every word.",
-            action: "Pause once today before speaking; ask if the words are true and kind.",
-            quiz: [
-              { q: "Allah’s knowledge:", opts: ["Includes what we hide and what we show", "Only covers public acts", "Is like human guessing"], a: 0 }
-            ]
-          },
-          {
-            id: "seeker.m3",
-            title: "Worship is for Him alone",
-            aim: "Direct duʿāʾ and dependence to Allah alone.",
-            source: q("Qurʾān 1:5", "You alone we worship, and You alone we ask for help.", "https://quran.com/1/5"),
-            adab: "Duʿāʾ is conversation with the Lord, not performance.",
-            action: "Make one private duʿāʾ today asking only Allah for help in a real need.",
-            quiz: [
-              { q: "Seeking help in worship and need is directed:", opts: ["To Allah alone", "To the creation first", "Only to public rituals"], a: 0 }
-            ]
-          },
-          {
-            id: "seeker.m4",
-            title: "Character: truth and kindness",
-            aim: "Faith shows in manners — truthfulness and restraint of harm.",
-            source: h("See Bukhārī / Muslim on truthfulness", "Truthfulness leads to righteousness…", "https://sunnah.com/bukhari:6094"),
-            adab: "Correct yourself before correcting others.",
-            action: "Choose one conversation today to speak only what is true and needed.",
-            quiz: [
-              { q: "A sign of sincere faith includes:", opts: ["Truthfulness and avoiding harm to others", "Winning arguments online", "Collecting slogans"], a: 0 }
-            ]
-          },
-          {
-            id: "seeker.m5",
-            title: "Prayer awareness",
-            aim: "Know that ṣalāh is a pillar — learn its place with humility.",
-            source: q("Qurʾān 2:238", "Be watchful over the prayers…", "https://quran.com/2/238"),
-            adab: "This is awareness and encouragement — not a personal ruling on your past.",
-            action: "Note the next prayer time in your area and prepare for it calmly.",
-            quiz: [
-              { q: "Regarding ṣalāh, a seeker should:", opts: ["Treat it as a central daily duty and learn with a teacher when unsure", "Ignore it until later years", "Replace it with opinions"], a: 0 }
-            ]
-          },
-          {
-            id: "seeker.m6",
-            title: "Short Qurʾān practice",
-            aim: "Read or listen to a short sūrah with meaning — not race.",
-            source: q("Qurʾān 96:1", "Read in the name of your Lord who created.", "https://quran.com/96"),
-            adab: "Recitation is worship; do not rush for a score.",
-            action: "Read or listen to Sūrat al-Ikhlāṣ once with its meaning today.",
-            quiz: [
-              { q: "Short Qurʾān practice is meant to:", opts: ["Connect heart and tongue with revelation", "Finish a leaderboard", "Replace learning with a teacher"], a: 0 }
-            ]
-          }
+{
+          id: "seeker.m1",
+          title: "Allah is One",
+          aim: "Allah alone is the Creator of the heavens and the earth.",
+          adab: "Sit with a calm heart. This is knowledge of Allah — not debate sport.",
+          explanation: "The first truth a seeker holds is tawḥīd: Allah is One. He alone creates, sustains, and deserves worship. Nothing shares His lordship or His right to be worshipped. When we say «Allāhu aḥad», we are not inventing a slogan — we are affirming what revelation taught. Creation points to a Creator; the heart finds rest when it stops assigning partners to Him. Practice for this lesson is small and honest: before your next task, say Bismillāh and intend the act for Allah alone.",
+          action: "Write one sentence: what does «Allah is One» change in how you speak today?",
+          points: ["Allah alone is the Creator of the heavens and the earth.", "Nothing is like Him — He is unique (laysa ka-mithlihi shayʾ).", "Worship is for Him alone (tawḥīd al-ulūhiyyah).", "Junior practice: Bismillāh before one ordinary task today."],
+          source: { type: "quran", ref: "Qurʾān 112:1–4", en: "Say: He is Allah, One. Allah, the Self-Sufficient. He neither begets nor is begotten. And there is none comparable to Him.", href: "https://quran.com/112" },
+          quiz: [{"q": "This lesson emphasizes:", "opts": ["Allah alone is the Creator of the heavens and the earth.", "Winning online arguments", "Collecting slogans without practice"], "a": 0}],
+          goDeeper: { label: "Go deeper", href: "https://quran.com/112" },
+        },
+{
+          id: "seeker.m2",
+          title: "Allah sees and knows",
+          aim: "Allah knows the open and the secret.",
+          adab: "Let this lesson soften the tongue — He hears every word.",
+          explanation: "Allah’s knowledge is not like ours. He knows what we show and what we hide. Nothing escapes His awareness — yet His knowledge is paired with mercy for the one who turns back. The Qurʾān reminds us that He is closer in knowledge and care than we imagine. That is not an invitation to casualness; it is an invitation to sincerity (ikhlāṣ). When you are alone, you are still with the One who sees. That is a door to both awe and hope.",
+          action: "One private moment today: whisper a short istighfār with presence.",
+          points: ["Allah knows the open and the secret.", "Awareness of His seeing trains honesty.", "Hope: He accepts repentance from those who return.", "Junior practice: pause before a private action — remember He sees."],
+          source: { type: "quran", ref: "Qurʾān 50:16", en: "We created the human being and We know what his soul whispers to him; We are closer to him than his jugular vein.", href: "https://quran.com/67/13" },
+          quiz: [{"q": "This lesson emphasizes:", "opts": ["Allah knows the open and the secret.", "Winning online arguments", "Collecting slogans without practice"], "a": 0}],
+          goDeeper: { label: "Go deeper", href: "https://quran.com/67" },
+        },
+{
+          id: "seeker.m3",
+          title: "Belief map (overview)",
+          aim: "Six: Allah · angels · books · messengers · Last Day · qadar.",
+          adab: "Īmān grows with knowledge and action — not with haste.",
+          explanation: "Classical teaching lists six articles of faith: belief in Allah, His angels, His books, His messengers, the Last Day, and divine decree (qadar) — its good and its bitter. This unit is a map, not a full theology course. A seeker learns the names of the pillars so the heart has somewhere to hang later lessons. Each pillar will return in later units with more detail. Today: know the six, and ask Allah for firmness.",
+          action: "Without looking, write the six pillars; check; correct gently.",
+          points: ["Six: Allah · angels · books · messengers · Last Day · qadar.", "Īmān is belief in the heart, speech, and action — according to Ahl al-Sunnah teaching in educational summary.", "We do not argue strangers into faith; we learn and live.", "Junior practice: list the six from memory once."],
+          source: { type: "quran", ref: "Qurʾān 4:136", en: "O you who believe: believe in Allah and His Messenger and the Book He sent down to His Messenger…", href: "https://quran.com/2/285" },
+          quiz: [{"q": "This lesson emphasizes:", "opts": ["Six: Allah · angels · books · messengers · Last Day · qadar.", "Winning online arguments", "Collecting slogans without practice"], "a": 0}],
+          goDeeper: { label: "Go deeper", href: "https://quran.com/2/285" },
+        },
+{
+          id: "seeker.m4",
+          title: "Messengers and the Last Day (gentle)",
+          aim: "Messengers are chosen servants — not divine.",
+          adab: "Speak of the prophets with ṣalawāt and respect.",
+          explanation: "Allah sent messengers as bringers of good news and warners. The final messenger is Muḥammad ﷺ — mercy to the worlds. Belief in him includes belief in those sent before him. The Last Day is real: standing, judgment, and the meeting with Allah. Remembering it is not meant to freeze the heart — it is meant to straighten the walk. Keep this gentle: hope and fear together. Do not use the ākhirah to crush a learner; use it to wake sincerity.",
+          action: "Send ṣalāh ten times slowly; notice the heart.",
+          points: ["Messengers are chosen servants — not divine.", "Muḥammad ﷺ is the Seal of the Prophets.", "The Last Day organises priorities.", "Junior practice: one ṣalāh upon the Prophet ﷺ with presence."],
+          source: { type: "quran", ref: "Qurʾān 33:56", en: "Allah and His angels send blessings upon the Prophet. O you who believe, send blessings upon him and salute him with peace.", href: "https://quran.com/4/136" },
+          quiz: [{"q": "This lesson emphasizes:", "opts": ["Messengers are chosen servants — not divine.", "Winning online arguments", "Collecting slogans without practice"], "a": 0}],
+          goDeeper: { label: "Go deeper", href: "https://quran.com/4/136" },
+        },
+{
+          id: "seeker.m5",
+          title: "From shahādah to ḥajj (map)",
+          aim: "Shahādah · ṣalāh · zakāh · ṣawm · ḥajj.",
+          adab: "Pillars are gifts of structure; learn them with gratitude.",
+          explanation: "Islām is built on five: the testimony of faith, prayer, zakāh, fasting Ramaḍān, and ḥajj for those who can. This is a famous educational frame from the Sunnah. Shahādah is the door. Ṣalāh is the daily spine. Zakāh purifies wealth and community. Ṣawm trains the soul. Ḥajj gathers the ummah in response to Allah’s call. You are not asked to master fiqh today. You are asked to know the five by name and meaning at a seeker level.",
+          action: "Choose one pillar to understand better this week with a reliable teacher or class.",
+          points: ["Shahādah · ṣalāh · zakāh · ṣawm · ḥajj.", "Each pillar has conditions taught by scholars — seek local teachers for rulings.", "Junior practice: name the five aloud once with calm.", "Educational only — not a personal fatwa."],
+          source: { type: "quran", ref: "Qurʾān 2:183", en: "O you who believe: fasting is prescribed for you as it was prescribed for those before you — that you may gain taqwā.", href: "https://quran.com/2/183" },
+          quiz: [{"q": "This lesson emphasizes:", "opts": ["Shahādah · ṣalāh · zakāh · ṣawm · ḥajj.", "Winning online arguments", "Collecting slogans without practice"], "a": 0}],
+          goDeeper: { label: "Go deeper", href: "https://quran.com/2/183" },
+        },
+{
+          id: "seeker.m6",
+          title: "Who is Muḥammad ﷺ?",
+          aim: "Final messenger — Seal of the Prophets.",
+          adab: "When his name is mentioned, send ṣalāh. Speak of him with love, not slogans.",
+          explanation: "Muḥammad ﷺ is the final messenger and a mercy to the worlds. He did not speak from desire in matters of revelation; his character was described as the Qurʾān lived. Believing in him includes believing in the messengers before him. We do not raise him above the station of prophethood, and we do not neglect the rights of his message. A seeker’s first manners with the Prophet ﷺ: learn a little of his life, send ṣalāh, and try one sunnah of kindness today.",
+          action: "Send ṣalāh ten times slowly; read one short sīrah paragraph from a reliable source.",
+          points: ["Final messenger — Seal of the Prophets.", "Mercy to the worlds; best example in character.", "Ṣalāh upon him is a daily courtesy of īmān.", "Junior practice: ten ṣalawāt with presence."],
+          source: { type: "quran", ref: "Qurʾān 21:107", en: "And We have not sent you except as a mercy to the worlds.", href: "https://quran.com/21/107" },
+          quiz: [{"q": "This lesson emphasizes:", "opts": ["Final messenger — Seal of the Prophets.", "Winning online arguments", "Collecting slogans without practice"], "a": 0}],
+          goDeeper: { label: "Go deeper", href: "https://quran.com/33/56" },
+        },
+{
+          id: "seeker.m7",
+          title: "Truth, kindness, clean tongue",
+          aim: "Safety of tongue and hand is a definition taught in the Sunnah.",
+          adab: "The tongue is a small organ with a large account.",
+          explanation: "A Muslim is one from whose tongue and hand people are safe. Truthfulness is a mark of īmān; lying opens doors that are hard to close. Kindness is not weakness. A smile, a greeting of salām, and keeping promises are small deeds with heavy weight. Clean the tongue of mockery, gossip, and cruelty — especially online, where harm travels far.",
+          action: "One kind word + one held tongue today.",
+          points: ["Safety of tongue and hand is a definition taught in the Sunnah.", "Salām, smile, kept promises.", "Junior deed: one kind word to someone who does not expect it.", "Pause before posting."],
+          source: { type: "quran", ref: "Qurʾān 49:11", en: "O you who believe: let not a people ridicule another people… and do not insult one another by nicknames.", href: "https://sunnah.com/bukhari:6094" },
+          quiz: [{"q": "This lesson emphasizes:", "opts": ["Safety of tongue and hand is a definition taught in the Sunnah.", "Winning online arguments", "Collecting slogans without practice"], "a": 0}],
+          goDeeper: { label: "Go deeper", href: "https://sunnah.com/bukhari/78" },
+        },
+{
+          id: "seeker.m8",
+          title: "Death is a door — hope and work",
+          aim: "Death is certain; preparation is daily.",
+          adab: "Junior tone: hope and responsibility, not despair or scare-theatre.",
+          explanation: "Everyone will taste death. The grave is a station on a longer journey. Remembering death is meant to soften the heart and straighten priorities — not to freeze the learner in fear. Send light ahead with small sincere deeds: prayer, charity, kind speech, seeking knowledge for Allah. Balance khawf and rajāʾ — fear that restrains wrong, and hope that keeps you walking.",
+          action: "One quiet deed for Allah before night.",
+          points: ["Death is certain; preparation is daily.", "Small sincere deeds matter.", "Avoid despair — Allah’s mercy is vast.", "Junior practice: one deed «sent ahead» today."],
+          source: { type: "quran", ref: "Qurʾān 67:2", en: "He who created death and life to test you as to which of you is best in deed.", href: "https://quran.com/3/185" },
+          quiz: [{"q": "This lesson emphasizes:", "opts": ["Death is certain; preparation is daily.", "Winning online arguments", "Collecting slogans without practice"], "a": 0}],
+          goDeeper: { label: "Go deeper", href: "https://quran.com/3/185" },
+        }
         ]
       },
       practice: {
         id: "practice",
         title: "Practice · Foundations",
-        aim: "Purification and prayer essentials, one ḥadīth practice, simple Arabic reading.",
+        aim: "Purity, prayer map, intention, ḥadīth, Arabic, duʿāʾ.",
         modules: [
-          {
-            id: "practice.m1",
-            title: "Purity: wuḍūʾ awareness",
-            aim: "Know that prayer needs purity; learn the steps with a reliable teacher when unsure.",
-            source: q("Qurʾān 5:6", "When you rise to prayer, wash your faces and your hands…", "https://quran.com/5/6"),
-            adab: "Educational outline only — verify details with a living teacher.",
-            action: "Review the main limbs of wuḍūʾ once from a trusted basic text or teacher.",
-            quiz: [
-              { q: "Wuḍūʾ is:", opts: ["A condition related to prayer taught in the Qurʾān and Sunnah", "Optional decoration", "Replaced by intention alone in all cases"], a: 0 }
-            ]
-          },
-          {
-            id: "practice.m2",
-            title: "Prayer: structure in brief",
-            aim: "Recognize the main parts of ṣalāh without inventing rulings.",
-            source: h("Prophetic prayer described in ṣaḥīḥ collections", "Pray as you have seen me pray.", "https://sunnah.com/bukhari:631"),
-            adab: "Where details differ, ask a teacher — this page does not settle disputes.",
-            action: "Name the main pillars you know (standing, recitation, rukūʿ, sujūd) and note one gap to ask a teacher.",
-            quiz: [
-              { q: "When a detail of prayer is unclear:", opts: ["Ask a qualified teacher; do not invent from a webpage", "Invent from social media", "Ignore the prayer"], a: 0 }
-            ]
-          },
-          {
-            id: "practice.m3",
-            title: "One ḥadīth practice",
-            aim: "Act on one short authentic reminder about manners.",
-            source: h("Muslim / Bukhārī — religion is sincere advice", "The religion is naṣīḥah…", "https://sunnah.com/muslim:55"),
-            adab: "Naṣīḥah begins with sincerity to Allah, then care for people.",
-            action: "Give one gentle, sincere advice only if asked — or improve yourself silently.",
-            quiz: [
-              { q: "Naṣīḥah is best practiced as:", opts: ["Sincerity to Allah and sincere care, not harsh exposure", "Public shaming", "Empty slogans"], a: 0 }
-            ]
-          },
-          {
-            id: "practice.m4",
-            title: "Simple Arabic reading",
-            aim: "Read a few letters or a short word with Lab Arabic — pattern practice only.",
-            source: q("Qurʾān 12:2", "We have sent it down as an Arabic Qurʾān…", "https://quran.com/12/2"),
-            adab: "Not a grammar fatwa. Lab is practice, not certification.",
-            action: "Open Lab → Arabic and complete five flashcards of Everyday words.",
-            quiz: [
-              { q: "Arabic lab practice is:", opts: ["A learning aid — verify serious study with a teacher", "A substitute for scholars", "A certificate of fluency"], a: 0 }
-            ],
-            labLink: "/lab/arabic/"
-          },
-          {
-            id: "practice.m5",
-            title: "Daily rhythm",
-            aim: "Tie knowledge to a small daily return — one prayer, one dhikr, one kind act.",
-            source: q("Qurʾān 73:8", "And remember the name of your Lord…", "https://quran.com/73/8"),
-            adab: "Consistency beats intensity that dies in a week.",
-            action: "Choose one fixed slot tomorrow for a short dhikr after a prayer.",
-            quiz: [
-              { q: "A sustainable practice looks like:", opts: ["Small daily return you can keep", "One long night then nothing", "Only public posts"], a: 0 }
-            ]
-          },
-          {
-            id: "practice.m6",
-            title: "Foundations check",
-            aim: "Review: tawḥīd, purity awareness, prayer duty, one ḥadīth, one Arabic step.",
-            source: q("Qurʾān 2:177", "Righteousness is not that you turn your faces…", "https://quran.com/2/177"),
-            adab: "Self-check is not a grade of īmān.",
-            action: "Write three lines: what is clearer now, what still needs a teacher.",
-            quiz: [
-              { q: "This stage is complete when you have:", opts: ["Honestly worked the modules and know what to ask a teacher", "Defeated others in debate", "Collected certificates"], a: 0 }
-            ]
-          }
+{
+          id: "practice.m1",
+          title: "Purity: wuḍūʾ awareness",
+          aim: "Know that prayer is tied to purity; verify details with a teacher.",
+          adab: "The text does not settle disputed details here. Ask a trusted teacher. This page does not issue a verdict.",
+          explanation: "The Qurʾān links rising to prayer with washing the face and hands and related limbs. Wuḍūʾ is part of how the believer approaches ṣalāh. A short page cannot replace a living teacher for edge cases or differences of school. Start with the clear outline, then ask.",
+          action: "Review the main limbs of wuḍūʾ once from a trusted basic text or local teacher.",
+          source: { type: "quran", ref: "Qurʾān 5:6", en: "When you rise to prayer, wash your faces and your hands to the elbows…", href: "https://quran.com/5/6" },
+          quiz: [{"q": "When a detail of purity is unclear:", "opts": ["Ask a qualified teacher; this page does not issue a verdict", "Invent from social media", "Skip prayer entirely"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 5:6", href: "https://quran.com/5/6" },
+        },
+{
+          id: "practice.m2",
+          title: "Prayer essentials",
+          aim: "Recognize the main structure of ṣalāh and the duty to learn it carefully.",
+          adab: "Where details differ, the text does not settle this. Ask a trusted teacher.",
+          explanation: "The Prophet ﷺ taught prayer by practice and instruction. This module only maps the main parts — standing, recitation, rukūʿ, sujūd — so you know what to learn next with a teacher. It is not a certificate and not a fatwa on your past prayers.",
+          action: "List the main parts of prayer you know and one gap to ask a teacher about.",
+          source: { type: "hadith", ref: "Bukhārī 631", en: "Pray as you have seen me pray.", href: "https://sunnah.com/bukhari:631" },
+          quiz: [{"q": "This page’s role on prayer is:", "opts": ["A learning map — verify details with a teacher", "A final legal verdict", "A replacement for ṣalāh"], "a": 0}],
+          goDeeper: { label: "Go deeper · Bukhārī 631", href: "https://sunnah.com/bukhari:631" },
+        },
+{
+          id: "practice.m3",
+          title: "Intention (niyyah)",
+          aim: "Hold that actions are by intentions — sincerity before performance.",
+          explanation: "A ṣaḥīḥ report teaches that actions are by intentions, and each person has what they intended. Begin prayer and good deeds for Allah, not for show. Intention is in the heart; this page does not invent complex legal cases.",
+          action: "Before one prayer or good act today, renew intention for Allah alone.",
+          source: { type: "hadith", ref: "Bukhārī 1", en: "Actions are but by intention…", href: "https://sunnah.com/bukhari:1" },
+          quiz: [{"q": "Niyyah in this educational sense is:", "opts": ["Sincerity of purpose for Allah", "A public slogan", "Optional always"], "a": 0}],
+          goDeeper: { label: "Go deeper · Bukhārī 1", href: "https://sunnah.com/bukhari:1" },
+        },
+{
+          id: "practice.m4",
+          title: "One ḥadīth — religion is sincere counsel",
+          aim: "Practice naṣīḥah as sincerity to Allah and gentle care for people.",
+          explanation: "The religion includes sincere counsel. That begins with sincerity to Allah, then honesty toward people — not harsh exposure or ego debate.",
+          action: "Give advice only if asked — or improve yourself silently today.",
+          source: { type: "hadith", ref: "Muslim 55", en: "The religion is naṣīḥah…", href: "https://sunnah.com/muslim:55" },
+          quiz: [{"q": "Naṣīḥah is closest to:", "opts": ["Sincerity and sincere care", "Public shaming", "Empty slogans"], "a": 0}],
+          goDeeper: { label: "Go deeper · Muslim 55", href: "https://sunnah.com/muslim:55" },
+        },
+{
+          id: "practice.m5",
+          title: "Simple Arabic reading",
+          aim: "Take a short pattern-practice step in Lab Arabic — not a grammar fatwa.",
+          explanation: "The Qurʾān was sent down in Arabic. A few minutes of letter or word practice builds familiarity. The Lab is a practice aid; fluency and tajwīd still need teachers.",
+          action: "Open Lab → Arabic and complete five Everyday flashcards.",
+          source: { type: "quran", ref: "Qurʾān 12:2", en: "We have sent it down as an Arabic Qurʾān…", href: "https://quran.com/12/2" },
+          quiz: [{"q": "Arabic lab practice is:", "opts": ["A learning aid — serious study still needs teachers", "A certificate of fluency", "A fatwa service"], "a": 0}],
+          goDeeper: { label: "Open Arabic lab", href: "/lab/arabic/" },
+          labLink: "/lab/arabic/",
+        },
+{
+          id: "practice.m6",
+          title: "Essential duʿāʾ posture",
+          aim: "Ask Allah alone for help — short, honest duʿāʾ.",
+          explanation: "Worship and seeking help are directed to Allah. After studying essentials, turn to Allah with need. Keep duʿāʾ simple and private when you can.",
+          action: "Make one private duʿāʾ today for guidance and steadfastness.",
+          source: { type: "quran", ref: "Qurʾān 1:5", en: "You alone we worship, and You alone we ask for help.", href: "https://quran.com/1/5" },
+          quiz: [{"q": "Seeking help in worship is directed:", "opts": ["To Allah alone", "To the creation as gods", "Only through public display"], "a": 0}],
+          goDeeper: { label: "Go deeper · Al-Fātiḥah", href: "https://quran.com/1" },
+        },
+{
+          id: "practice.m7",
+          title: "Foundations review",
+          aim: "Confirm purity, prayer map, intention, one ḥadīth, and one Arabic step.",
+          explanation: "Righteousness is wider than a single motion. Ask honestly: what is clearer, and what still needs a teacher? This is not a grade of īmān.",
+          action: "Write three lines: clearer now / still need a teacher / one next step.",
+          source: { type: "quran", ref: "Qurʾān 2:177", en: "Righteousness is not that you turn your faces…", href: "https://quran.com/2/177" },
+          quiz: [{"q": "Completing this stage means:", "opts": ["Honest work and knowing what to ask a teacher", "Defeating others in debate", "Automatic piety"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 2:177", href: "https://quran.com/2/177" },
+        }
         ]
       },
       consistency: {
         id: "consistency",
         title: "Consistency",
-        aim: "Review essentials and add one deeper module (light tafsīr or sīrah).",
+        aim: "Review + light tafsīr/sīrah + short sūrah + return.",
         modules: [
-          {
-            id: "consistency.m1",
-            title: "Review: tawḥīd in daily speech",
-            aim: "Return to “Allah is One” in how you speak about power and praise.",
-            source: q("Qurʾān 3:26", "Say: O Allah, Owner of dominion…", "https://quran.com/3/26"),
-            action: "Catch one moment of attributing success only to creation; correct it gently.",
-            quiz: [
-              { q: "Consistency in tawḥīd includes:", opts: ["Speech and heart returning to Allah’s oneness", "Repeating slogans only", "Ignoring manners"], a: 0 }
-            ]
-          },
-          {
-            id: "consistency.m2",
-            title: "Review: prayer presence",
-            aim: "One practical step toward calmer ṣalāh.",
-            source: q("Qurʾān 23:1–2", "Successful are the believers who are humble in their prayers.", "https://quran.com/23/1"),
-            action: "In one prayer today, slow the first takbīr and the first sitting.",
-            quiz: [
-              { q: "Khushūʿ is helped by:", opts: ["Presence and humility, learned over time", "Speed only", "Showing off"], a: 0 }
-            ]
-          },
-          {
-            id: "consistency.m3",
-            title: "Light tafsīr: Sūrat al-Fātiḥah",
-            aim: "Know the main themes of al-Fātiḥah as guidance and dependence.",
-            source: q("Qurʾān 1:1–7", "In the name of Allah… Guide us to the straight path.", "https://quran.com/1"),
-            adab: "Brief meanings only — full tafsīr is with qualified teachers.",
-            action: "After reading the meaning once, make duʿāʾ for guidance in your own words.",
-            quiz: [
-              { q: "Al-Fātiḥah centers on:", opts: ["Praise of Allah, worship, and asking for guidance", "History only", "Politics only"], a: 0 }
-            ]
-          },
-          {
-            id: "consistency.m4",
-            title: "Light sīrah: mercy of the Prophet ﷺ",
-            aim: "Recall that his mission is mercy — manners follow knowledge.",
-            source: q("Qurʾān 21:107", "We have not sent you except as a mercy to the worlds.", "https://quran.com/21/107"),
-            adab: "Educational reminder — not a full sīrah course.",
-            action: "Choose one act of mercy today (family, neighbor, or silence from harm).",
-            quiz: [
-              { q: "Following the Prophet ﷺ includes:", opts: ["Mercy and good character alongside belief", "Harshness in every debate", "Ignoring the vulnerable"], a: 0 }
-            ]
-          },
-          {
-            id: "consistency.m5",
-            title: "Review loop",
-            aim: "Revisit one incomplete habit from Seeker or Practice.",
-            source: q("Qurʾān 94:5–6", "With hardship comes ease…", "https://quran.com/94"),
-            action: "Pick one missed small practice and do it once without guilt-spiral.",
-            quiz: [
-              { q: "Consistency means:", opts: ["Returning after slipping, with hope", "Never slipping", "Public perfection"], a: 0 }
-            ]
-          },
-          {
-            id: "consistency.m6",
-            title: "Stage seal",
-            aim: "Confirm review + one deeper reading before Transmission.",
-            source: q("Qurʾān 16:125", "Invite to the way of your Lord with wisdom…", "https://quran.com/16/125"),
-            adab: "Invitation comes after grounding — nothing before its time.",
-            action: "List what you will not teach others until a teacher confirms it.",
-            quiz: [
-              { q: "Before sharing advanced claims you should:", opts: ["Be grounded and verify with knowledge and teachers", "Post first", "Copy viral claims"], a: 0 }
-            ]
-          }
+{
+          id: "consistency.m1",
+          title: "Review: tawḥīd in speech",
+          aim: "Return dominion and praise to Allah in daily speech.",
+          explanation: "Consistency means the tawḥīd you studied in Seeker shows up when you speak about success and fear. Gently correct the heart when you attribute everything to creation alone.",
+          action: "Once today, thank Allah aloud for a blessing.",
+          source: { type: "quran", ref: "Qurʾān 3:26", en: "Say: O Allah, Owner of dominion…", href: "https://quran.com/3/26" },
+          quiz: [{"q": "Consistency in tawḥīd includes:", "opts": ["Speech and heart returning to Allah’s oneness", "Slogans only", "Ignoring manners"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 3:26", href: "https://quran.com/3/26" },
+        },
+{
+          id: "consistency.m2",
+          title: "Review: calmer prayer",
+          aim: "Take one practical step toward presence in ṣalāh.",
+          explanation: "Believers are described as humble in their prayers. Presence grows slowly. One slowed takbīr is a truthful step — not a claim of finished khushūʿ.",
+          action: "In one prayer today, slow the opening takbīr.",
+          source: { type: "quran", ref: "Qurʾān 23:1–2", en: "Successful are the believers who are humble in their prayers.", href: "https://quran.com/23/1" },
+          quiz: [{"q": "Khushūʿ is helped by:", "opts": ["Presence and humility over time", "Speed only", "Showing off"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 23:1–2", href: "https://quran.com/23/1" },
+        },
+{
+          id: "consistency.m3",
+          title: "Light tafsīr: Al-Fātiḥah",
+          aim: "Know the main themes of Al-Fātiḥah: praise, worship, guidance.",
+          explanation: "Al-Fātiḥah is prayed daily. Its meanings center on Allah’s mercy, worship and seeking help, and the straight path. Full tafsīr is wider than this page — use teachers and outward study for depth.",
+          action: "Read a short meaning of Al-Fātiḥah, then make duʿāʾ for guidance.",
+          source: { type: "quran", ref: "Qurʾān 1:1–7", en: "In the name of Allah… Guide us to the straight path.", href: "https://quran.com/1" },
+          quiz: [{"q": "Al-Fātiḥah centers on:", "opts": ["Praise, worship, and asking for guidance", "History only", "Politics only"], "a": 0}],
+          goDeeper: { label: "Go deeper · Quran.com · Al-Fātiḥah", href: "https://quran.com/1" },
+        },
+{
+          id: "consistency.m4",
+          title: "Light sīrah: mercy of the Prophet ﷺ",
+          aim: "Recall that his mission is mercy — manners follow knowledge.",
+          explanation: "The Qurʾān describes the Prophet ﷺ as a mercy to the worlds. This is not a full sīrah course. Let one act of mercy follow the reminder.",
+          action: "Choose one act of mercy today.",
+          source: { type: "quran", ref: "Qurʾān 21:107", en: "We have not sent you except as a mercy to the worlds.", href: "https://quran.com/21/107" },
+          quiz: [{"q": "Following the Prophet ﷺ includes:", "opts": ["Mercy and good character with belief", "Harshness in every debate", "Ignoring the vulnerable"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 21:107", href: "https://quran.com/21/107" },
+        },
+{
+          id: "consistency.m5",
+          title: "Short sūrah practice",
+          aim: "Connect tongue and heart with one short sūrah and its meaning.",
+          explanation: "Short sūrahs are a mercy for daily practice. Read or listen once with meaning — not as a race.",
+          action: "Read or listen to Al-Ikhlāṣ once with its meaning.",
+          source: { type: "quran", ref: "Qurʾān 112", en: "Say: He is Allah, One…", href: "https://quran.com/112" },
+          quiz: [{"q": "Short sūrah practice should be:", "opts": ["Calm and meaningful", "Only for speed scores", "Ignored"], "a": 0}],
+          goDeeper: { label: "Go deeper · Al-Ikhlāṣ", href: "https://quran.com/112" },
+        },
+{
+          id: "consistency.m6",
+          title: "Return after slipping",
+          aim: "Consistency includes returning after a miss — without despair.",
+          explanation: "Hardship is paired with ease. When a habit slips, return honestly. Guilt that stops action is not the goal.",
+          action: "Pick one missed small practice and do it once today.",
+          source: { type: "quran", ref: "Qurʾān 94:5–6", en: "So truly with hardship comes ease.", href: "https://quran.com/94" },
+          quiz: [{"q": "Consistency means:", "opts": ["Returning after slipping, with hope", "Never slipping", "Public perfection"], "a": 0}],
+          goDeeper: { label: "Go deeper · Ash-Sharḥ", href: "https://quran.com/94" },
+        },
+{
+          id: "consistency.m7",
+          title: "Stage seal — before Transmission",
+          aim: "Be grounded before sharing advanced claims.",
+          explanation: "Invitation needs wisdom. List what you will not teach others until a teacher confirms it. Nothing before its proper time.",
+          action: "Write three topics you will not teach from a webpage alone.",
+          source: { type: "quran", ref: "Qurʾān 16:125", en: "Invite to the way of your Lord with wisdom…", href: "https://quran.com/16/125" },
+          quiz: [{"q": "Before sharing advanced claims:", "opts": ["Be grounded; verify with teachers", "Post first", "Copy viral claims"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 16:125", href: "https://quran.com/16/125" },
+        }
         ]
       },
       transmission: {
         id: "transmission",
         title: "Transmission",
-        aim: "Source hygiene, adab of sharing, and stopping where the text does not settle the point.",
+        aim: "Source hygiene, adab, knowing when text does not settle a point.",
         modules: [
-          {
-            id: "transmission.m1",
-            title: "Source hygiene",
-            aim: "Prefer Qurʾān and ṣaḥīḥ; name the collection when citing ḥadīth.",
-            source: h("Discipline of narration", "Convey from me even a verse… (with integrity of transmission)", "https://sunnah.com/bukhari:3461"),
-            adab: "Do not attribute to the Prophet ﷺ what you have not verified.",
-            action: "Find one Islamic claim you shared before; check if it has a clear source.",
-            quiz: [
-              { q: "Source hygiene means:", opts: ["Verify and name sources; avoid weak viral claims", "Share first, check never", "Only use anonymous posts"], a: 0 }
-            ]
-          },
-          {
-            id: "transmission.m2",
-            title: "Adab of sharing",
-            aim: "Share to benefit, not to win; privacy and fairness matter.",
-            source: q("Qurʾān 49:12", "Avoid much suspicion… and do not spy or backbite…", "https://quran.com/49/12"),
-            action: "Delete or withhold one post that exposes someone’s fault without need.",
-            quiz: [
-              { q: "Adab of sharing includes:", opts: ["Avoiding backbiting and needless exposure", "Screenshotting private mistakes", "Mocking seekers"], a: 0 }
-            ]
-          },
-          {
-            id: "transmission.m3",
-            title: "Text does not settle this",
-            aim: "Stop when a page cannot answer a detailed ruling — refer to a teacher.",
-            source: q("Qurʾān 16:43", "Ask the people of knowledge if you do not know.", "https://quran.com/16/43"),
-            adab: "This University is educational only — not a fatwa service.",
-            action: "Write one question you will take to a living teacher, not to a comment section.",
-            quiz: [
-              { q: "When a webpage cannot settle a ruling:", opts: ["Stop and ask a qualified teacher", "Invent an answer", "Follow the loudest account"], a: 0 }
-            ]
-          },
-          {
-            id: "transmission.m4",
-            title: "Wisdom in invitation",
-            aim: "Invite with wisdom and gentle preaching; no compulsion in the faith’s acceptance.",
-            source: q("Qurʾān 16:125", "Invite to the way of your Lord with wisdom and good instruction…", "https://quran.com/16/125"),
-            action: "If you share one reminder today, keep it short, sourced, and kind.",
-            quiz: [
-              { q: "Daʿwah on this path emphasizes:", opts: ["Wisdom, good instruction, and patience", "Force and mockery", "Debating for ego"], a: 0 }
-            ]
-          },
-          {
-            id: "transmission.m5",
-            title: "Limits of this University",
-            aim: "State clearly: not accredited, not a grade of īmān, not a seminary.",
-            source: q("Qurʾān 17:36", "Do not pursue that of which you have no knowledge…", "https://quran.com/17/36"),
-            action: "Read the Charter footer once and accept the limits before teaching others from these pages.",
-            quiz: [
-              { q: "Clarity University markers are:", opts: ["Study aids on this device — not faith grades or accreditation", "Official seminary degrees", "Fatwa certificates"], a: 0 }
-            ]
-          },
-          {
-            id: "transmission.m6",
-            title: "Transmission seal",
-            aim: "Carry essentials with adab; keep learning with people of knowledge.",
-            source: q("Qurʾān 20:114", "My Lord, increase me in knowledge.", "https://quran.com/20/114"),
-            action: "Plan one next step with a real teacher, class, or verified local resource.",
-            quiz: [
-              { q: "After these stages a student should:", opts: ["Continue with teachers and verified sources", "Stop all learning", "Declare themselves a mufti"], a: 0 }
-            ]
-          }
+{
+          id: "transmission.m1",
+          title: "Source hygiene",
+          aim: "Prefer Qurʾān and ṣaḥīḥ; name the collection when citing ḥadīth.",
+          explanation: "Conveying knowledge is a trust. Do not attribute to the Prophet ﷺ what you have not verified. Name the book and number when you can.",
+          action: "Find one Islamic claim you shared before; check its source.",
+          source: { type: "hadith", ref: "Bukhārī 3461", en: "Convey from me, even if a verse…", href: "https://sunnah.com/bukhari:3461" },
+          quiz: [{"q": "Source hygiene means:", "opts": ["Verify and name sources", "Share first, check never", "Only anonymous posts"], "a": 0}],
+          goDeeper: { label: "Go deeper · Sunnah.com", href: "https://sunnah.com/" },
+        },
+{
+          id: "transmission.m2",
+          title: "Adab of sharing",
+          aim: "Share to benefit, not to win; avoid needless exposure.",
+          explanation: "The Qurʾān warns against much suspicion, spying, and backbiting. Daʿwah that humiliates is not wisdom.",
+          action: "Withhold one post that exposes someone’s fault without need.",
+          source: { type: "quran", ref: "Qurʾān 49:12", en: "Avoid much suspicion… and do not spy or backbite…", href: "https://quran.com/49/12" },
+          quiz: [{"q": "Adab of sharing includes:", "opts": ["Avoiding backbiting and needless exposure", "Screenshotting private mistakes", "Mocking seekers"], "a": 0}],
+          goDeeper: { label: "Go deeper · Al-Ḥujurāt 12", href: "https://quran.com/49/12" },
+        },
+{
+          id: "transmission.m3",
+          title: "Text does not settle this",
+          aim: "Stop when a page cannot answer a detailed ruling — refer to a teacher.",
+          explanation: "Allah commands asking the people of knowledge when we do not know. This University is educational only. When the text does not settle a point: stop, and ask a trusted teacher. This page does not issue a verdict.",
+          action: "Write one question for a living teacher, not a comment section.",
+          source: { type: "quran", ref: "Qurʾān 16:43", en: "Ask the people of knowledge if you do not know.", href: "https://quran.com/16/43" },
+          quiz: [{"q": "When a webpage cannot settle a ruling:", "opts": ["Stop and ask a qualified teacher", "Invent an answer", "Follow the loudest account"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 16:43", href: "https://quran.com/16/43" },
+        },
+{
+          id: "transmission.m4",
+          title: "Wisdom in invitation",
+          aim: "Invite with wisdom and good instruction — not compulsion or mockery.",
+          explanation: "The Qurʾān sets the tone: wisdom, good instruction, and arguing in the best way when needed. Ego debate is not the path of mercy.",
+          action: "If you share one reminder today, keep it short, sourced, and kind.",
+          source: { type: "quran", ref: "Qurʾān 16:125", en: "Invite to the way of your Lord with wisdom and good instruction…", href: "https://quran.com/16/125" },
+          quiz: [{"q": "Daʿwah on this path emphasizes:", "opts": ["Wisdom, good instruction, patience", "Force and mockery", "Debating for ego"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 16:125", href: "https://quran.com/16/125" },
+        },
+{
+          id: "transmission.m5",
+          title: "Do not pursue what you do not know",
+          aim: "Refuse to speak without knowledge — especially in public.",
+          explanation: "The Qurʾān forbids pursuing that of which you have no knowledge. Silence is better than a confident error.",
+          action: "Once today, refuse to answer a religious question you are not sure about.",
+          source: { type: "quran", ref: "Qurʾān 17:36", en: "Do not pursue that of which you have no knowledge…", href: "https://quran.com/17/36" },
+          quiz: [{"q": "Without knowledge you should:", "opts": ["Stop and refer to those who know", "Guess confidently", "Copy a viral post"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 17:36", href: "https://quran.com/17/36" },
+        },
+{
+          id: "transmission.m6",
+          title: "Limits of this University",
+          aim: "Not accredited, not a grade of īmān, not a seminary.",
+          explanation: "Markers on this device are study aids. They are not faith grades or fatwa certificates. Acceptance is with Allah.",
+          action: "Read the University footer once and accept the limits.",
+          source: { type: "quran", ref: "Qurʾān 20:114", en: "My Lord, increase me in knowledge.", href: "https://quran.com/20/114" },
+          quiz: [{"q": "Clarity University markers are:", "opts": ["Study aids — not accreditation or faith grades", "Official seminary degrees", "Fatwa certificates"], "a": 0}],
+          goDeeper: { label: "University Charter", href: "/charter/" },
+        },
+{
+          id: "transmission.m7",
+          title: "Transmission seal",
+          aim: "Carry essentials with adab; keep learning with people of knowledge.",
+          explanation: "After hygiene, adab, and knowing when to stop, plan a real next step with a teacher or verified local resource. The path does not end on a webpage.",
+          action: "Plan one next step with a real teacher or verified local resource.",
+          source: { type: "quran", ref: "Qurʾān 20:114", en: "My Lord, increase me in knowledge.", href: "https://quran.com/20/114" },
+          quiz: [{"q": "After these stages a student should:", "opts": ["Continue with teachers and verified sources", "Stop all learning", "Declare themselves a mufti"], "a": 0}],
+          goDeeper: { label: "Go deeper · Qurʾān 20:114", href: "https://quran.com/20/114" },
+        }
         ]
       }
     }

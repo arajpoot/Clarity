@@ -161,6 +161,9 @@
         "</p>" +
         (mod.adab ? '<p class="seq-adab"><em>Adab · ' + esc(mod.adab) + "</em></p>" : "") +
         sourceHtml(mod.source) +
+        (mod.explanation ? '<div class="seq-explain"><strong>Learn</strong><p>' + esc(mod.explanation) + '</p></div>' : '') +
+        (mod.points && mod.points.length ? '<ul class="seq-points">' + mod.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('') + '</ul>' : '') +
+        (mod.goDeeper && mod.goDeeper.href ? '<p><a class="seq-btn" href="'+esc(mod.goDeeper.href)+'" target="_blank" rel="noopener">'+esc(mod.goDeeper.label||'Go deeper')+' →</a></p>' : '') +
         (mod.action ? "<p><strong>Action</strong> · " + esc(mod.action) + "</p>" : "") +
         quizHtml +
         (mod.labLink
