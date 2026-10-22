@@ -1,0 +1,46 @@
+/* Moon plaque · calendar · 20261021MOON */
+.banner-name-plaque.moon-plaque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.35rem 0.45rem 0.4rem;
+  border-radius: 999px;
+  min-width: 3.25rem;
+  min-height: 3.25rem;
+  border: 1.5px solid rgba(201, 168, 76, 0.5);
+  background: radial-gradient(circle at 35% 30%, #2a3344 0%, #12161f 70%);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  cursor: default;
+}
+.moon-plaque canvas {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+}
+.moon-plaque .moon-emoji {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.moon-plaque .moon-name {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  max-width: 4.8rem;
+  color: #d4c4a0;
+  line-height: 1.15;
+}
+/* Allah on salah side */
+.salah-times-section .banner-name-plaque.allah-plaque {
+  margin: 0 auto 0.35rem;
+}
+.salah-times-section .plaque-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+.moon-plaque canvas + .moon-emoji{display:none}

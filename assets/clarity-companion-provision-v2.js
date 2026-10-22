@@ -274,16 +274,22 @@
   function dayPeriodLabel() {
     var now = new Date();
     var h = now.getHours();
-    var period;
-    if (h >= 4 && h < 12) period = "Morning";
-    else if (h >= 12 && h < 15) period = "Afternoon";
-    else if (h >= 15 && h < 18) period = "Late afternoon";
-    else if (h >= 18 && h < 20) period = "Evening";
-    else period = "Night";
-    var opts = { hour: "numeric", minute: "2-digit" };
-    var clock = "";
-    try { clock = now.toLocaleTimeString(undefined, opts); } catch (e) {
-      clock = now.getHours() + ":" + String(now.getMinutes()).padStart(2, "0");
+    var period =
+      h >= 4 && h < 12
+        ? "Morning"
+        : h >= 12 && h < 15
+          ? "Afternoon"
+          : h >= 15 && h < 18
+            ? "Late afternoon"
+            : h >= 18 && h < 20
+              ? "Evening"
+              : "Night";
+    var clock;
+    try {
+      clock = now.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+    } catch (e) {
+      var m = now.getMinutes();
+      clock = now.getHours() + ":" + (m < 10 ? "0" : "") + m;
     }
     return period + " · " + clock;
   }
