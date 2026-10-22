@@ -1,20 +1,14 @@
-# Companion restore R1–R6 · 20261021R
+# Companion Phase 1–7 · 20261021P7
 
-## Order (canonical)
-1. Banner (calendar / Rabbana / salah)
-2. Do this today
-3. Adhkār
-4. Path / phased chrome
-5. Main tabs
+## Surfaces
+- **Landing** (`clarity-landing-active`): Banner + Do this today + Adhkār + chips. Paths/tabs dimmed. Pill: Stay | Skip to main (no countdown).
+- **Main** (`clarity-landing-done` + `clarity-main-active`): Banner + learning paths + tabs. Day stack hidden.
 
-## Landing
-- Pill under Today: Stay | Skip to main | countdown 12s
-- Once per local day (localStorage `clarity_landing_gate_v1`)
-- Force show: `?landing=1` · force skip: `?landing=0`
-- Reset: `localStorage.removeItem('clarity_landing_gate_v1')`
+## Test
+- `?landing=1` → force landing
+- `?main=1` → force main
+- Clear: `localStorage.removeItem('clarity_landing_gate_v1')`
+- Stay → remains on day surface; Skip → main; **Day surface** button re-opens landing
 
-## Adhkār
-- Single module: `clarity-adhkar-card-v1.js` only
-
-## Deploy
-Upload all files in this zip to site root / assets. CF purge. Hard refresh.
+## Upload
+index.html + assets listed. CF purge. Hard refresh.
