@@ -1,12 +1,12 @@
 /**
- * Phase A — tab spine · 20261022AB
+ * Phase A — tab spine · 20261022SCROLL
  * Guarantees switchTab + hash tabs before chunk-8 idle load.
  * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
   if (w.__CLARITY_TAB_SPINE_V1__) return;
-  w.__CLARITY_TAB_SPINE_V1__ = "20261022AB";
+  w.__CLARITY_TAB_SPINE_V1__ = "20261022SCROLL";
 
   var TABS = ["reminder", "reality", "reflection", "action", "notes"];
 
@@ -70,10 +70,16 @@
     tab = normalize(tab);
     showTab(tab);
     try {
-      if (w.history && w.history.replaceState) {
-        w.history.replaceState(null, "", "#" + tab);
-      } else {
-        w.location.hash = tab;
+      var landing = false;
+      try {
+        landing = document.documentElement.classList.contains("clarity-landing-active");
+      } catch (eL) {}
+      if (!landing) {
+        if (w.history && w.history.replaceState) {
+          w.history.replaceState(null, "", "#" + tab);
+        } else {
+          w.location.hash = tab;
+        }
       }
     } catch (e) {}
     if (scrollId) scrollToId(scrollId);
@@ -99,7 +105,12 @@
 
   function fromHash() {
     var h = (w.location.hash || "").replace(/^#/, "");
-    if (h && TABS.indexOf(normalize(h)) >= 0) showTab(h);
+    if (!h) return;
+    /* On landing, ignore hash so browser does not jump to #reminder etc. */
+    try {
+      if (document.documentElement.classList.contains("clarity-landing-active")) return;
+    } catch (e) {}
+    if (TABS.indexOf(normalize(h)) >= 0) showTab(h);
   }
 
   if (document.readyState === "loading") {

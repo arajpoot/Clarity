@@ -1,12 +1,12 @@
 /**
- * Companion landing · four path doors + Stay · 20261022STICKY
+ * Companion landing · four path doors + Stay · 20261022SCROLL2
  * Skip-to-main replaced by choosing a learning gate.
  * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_LANDING_GATE_V1__ === "20261022STICKY") return;
-  w.__CLARITY_LANDING_GATE_V1__ = "20261022STICKY";
+  if (w.__CLARITY_LANDING_GATE_V1__ === "20261022SCROLL2") return;
+  w.__CLARITY_LANDING_GATE_V1__ = "20261022SCROLL2";
 
   var KEY = "clarity_landing_gate_v1";
 
@@ -221,6 +221,10 @@
   function showDoors() {
     var host = ensureDoors();
     host.style.display = "";
+    try {
+      if (typeof w.clarityArmScrollLock === "function") w.clarityArmScrollLock(3500);
+      else if (typeof w.clarityPinTop === "function") w.clarityPinTop();
+    } catch (e) {}
   }
 
   function ensureOpenDayBtn() {
@@ -255,8 +259,12 @@
     var mode = resolveMode();
     setMode(mode);
     if (mode === "landing") {
-      removePill(); /* no skip pill */
+      removePill();
       showDoors();
+      try {
+        if (typeof w.clarityArmScrollLock === "function") w.clarityArmScrollLock(3500);
+        else if (typeof w.clarityPinTop === "function") w.clarityPinTop();
+      } catch (eB) {}
     } else {
       hideDoors();
       ensureOpenDayBtn();
