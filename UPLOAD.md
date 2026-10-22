@@ -1,18 +1,12 @@
-# Companion Phases A–G · 20261022AB
+# Companion Phases 1–7 · 20261022P17
 
-## A Spine
-- `clarity-tab-spine-v1.js` — early `switchTab(tab, scrollId)`
+## Fixes
+1. Open Tajweed practice → **Reminder** + `#tajweed-live-card`
+2. New module button re-bound (click listener + fillTajweed)
+3. Section homes map: tajweed→reminder, meme/callig→action
+4. Daily drill loaded as defer script (not idle-only)
+5. Meme/callig Action-only CSS
+6. Provision Tajweed chip stays on reminder
 
-## B Meme strip
-- Day surface: no استوديو التبليغ chip
-- CSS: meme/tweet/fb/callig **Action tab only**
-
-## C Fetch
-- Single deferred `clarity-meme-bg-fetch-v1.js`
-
-## D–E
-- Link stubs; chips pass scroll id; share-desks + craft deferred
-
-## Upload
-All files in this zip. CF purge. Hard refresh.
-Test: landing chips Tajweed/Calligraphy; bottom tabs; Action still has studio.
+## Upload all files · CF purge · hard refresh
+Test: Reminder → Open Tajweed practice · New module · Action still has studios
