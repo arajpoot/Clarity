@@ -1,52 +1,41 @@
 /**
- * Companion surfaces · Phase 1–6 · 20261021P7
- * Landing: banner + day stack · Main: banner + paths + tabs
+ * Landing doors · four gates · 20261022GATES
  */
 
-/* --- MAIN mode: hide day stack so paths sit under banner --- */
+/* Hide old skip pill if any leftover */
+#clarity-landing-pill { display: none !important; }
+
 html.clarity-landing-done #clarity-provision-home,
 html.clarity-landing-done #clarity-adhkar-daily,
-html.clarity-landing-done .cph-adhkar,
+html.clarity-landing-done #clarity-landing-doors,
 html.clarity-main-active #clarity-provision-home,
-html.clarity-main-active #clarity-adhkar-daily {
+html.clarity-main-active #clarity-adhkar-daily,
+html.clarity-main-active #clarity-landing-doors {
   display: none !important;
 }
 
-/* --- LANDING mode: dim main chrome --- */
 html.clarity-landing-active #main-application-workspace,
 html.clarity-landing-active .page-wrapper,
 html.clarity-landing-active .main-content,
-html.clarity-landing-active .rrra-hub,
-html.clarity-landing-active .rrra-hub-hero {
+html.clarity-landing-active .rrra-hub {
   opacity: 0.18 !important;
   pointer-events: none !important;
-  max-height: 28vh;
+  max-height: 24vh;
   overflow: hidden;
-}
-html.clarity-landing-active .clarity-gate-switcher:not([style*="display: none"]),
-html.clarity-landing-active [class*="phased"],
-html.clarity-landing-active [class*="path-tile"],
-html.clarity-landing-active [class*="dual-path"] {
-  opacity: 0.15 !important;
-  pointer-events: none !important;
 }
 
 html.clarity-landing-active .banner,
-html.clarity-landing-active #clarity-top-duo .banner,
 html.clarity-landing-active #clarity-provision-home,
-html.clarity-landing-active #clarity-adhkar-daily {
+html.clarity-landing-active #clarity-adhkar-daily,
+html.clarity-landing-active #clarity-landing-doors {
   opacity: 1 !important;
   pointer-events: auto !important;
-  filter: none !important;
   max-height: none !important;
   overflow: visible !important;
   display: block !important;
 }
 
-/* Main mode full chrome */
 html.clarity-landing-done #main-application-workspace,
-html.clarity-landing-done .page-wrapper,
-html.clarity-landing-done .main-content,
 html.clarity-main-active #main-application-workspace {
   opacity: 1 !important;
   pointer-events: auto !important;
@@ -54,66 +43,105 @@ html.clarity-main-active #main-application-workspace {
   overflow: visible !important;
 }
 
-/* Tight gap under banner on main */
-html.clarity-landing-done #main-application-workspace,
-html.clarity-main-active #main-application-workspace {
-  margin-top: 0.2rem;
-}
-
-/* Fixed pill — no countdown */
-.clarity-landing-pill {
-  position: fixed !important;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
-  z-index: 99999 !important;
-  width: min(96vw, 520px);
+.clarity-landing-doors {
+  width: 100%;
   box-sizing: border-box;
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.65rem 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(201, 168, 76, 0.55);
-  background: rgba(12, 32, 24, 0.97);
+  margin: 0.5rem 0 1rem;
+  padding: 0.85rem 0.75rem 1rem;
+  border-radius: 1.15rem;
+  border: 1.5px solid rgba(201, 168, 76, 0.45);
+  background: linear-gradient(160deg, rgba(18, 36, 30, 0.97), rgba(12, 28, 22, 0.98));
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
   color: #e8f0ea;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
-  font-size: 0.9rem;
 }
-html.clarity-landing-done .clarity-landing-pill,
-html.clarity-main-active .clarity-landing-pill {
-  display: none !important;
+.cld-head h2 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.15rem, 4vw, 1.35rem);
+  font-weight: 800;
+  color: #e0c56a;
+  text-align: center;
 }
-html[data-theme="light"] .clarity-landing-pill,
-body:not([data-theme="dark"]):not(.dark) .clarity-landing-pill {
-  background: rgba(255, 253, 248, 0.98);
-  color: #1a2e24;
+.cld-sub {
+  margin: 0 0 0.85rem;
+  font-size: 0.88rem;
+  text-align: center;
+  opacity: 0.9;
+  line-height: 1.45;
 }
-.clp-label { font-weight: 650; }
-.clp-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.clp-btn {
+.cld-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+@media (max-width: 520px) {
+  .cld-grid { grid-template-columns: 1fr; }
+}
+.cld-door {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+.cld-door:hover,
+.cld-door:focus {
+  border-color: #c9a84c;
+  background: rgba(30, 125, 94, 0.22);
+  outline: none;
+}
+.cld-door:active { transform: scale(0.98); }
+.cld-ico { font-size: 1.35rem; line-height: 1; }
+.cld-title {
+  font-weight: 800;
+  font-size: clamp(0.92rem, 3.2vw, 1.02rem);
+  color: #e0c56a;
+}
+.cld-goal {
+  font-size: 0.84rem;
+  line-height: 1.4;
+  opacity: 0.95;
+}
+.cld-tag {
+  font-size: 0.72rem;
+  opacity: 0.75;
+  margin-top: 0.15rem;
+}
+.cld-foot {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+.cld-foot .clp-btn {
   border: 1px solid rgba(201, 168, 76, 0.45);
   background: transparent;
-  color: inherit;
+  color: #e8f0ea;
   border-radius: 999px;
-  padding: 0.45rem 0.95rem;
+  padding: 0.45rem 1rem;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   cursor: pointer;
 }
-.clp-btn.primary {
-  background: #1e7d5e;
-  border-color: #1e7d5e;
-  color: #fff;
+.cld-note {
+  margin: 0;
+  font-size: 0.78rem;
+  opacity: 0.8;
+  text-align: center;
+  max-width: 28rem;
 }
 
-/* Optional re-open day surface from main */
 .clarity-open-day-btn {
   display: none;
-  margin: 0.35rem auto;
   text-align: center;
+  margin: 0.35rem 0;
 }
 html.clarity-landing-done .clarity-open-day-btn,
 html.clarity-main-active .clarity-open-day-btn {
