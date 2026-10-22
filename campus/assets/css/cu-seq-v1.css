@@ -63,7 +63,17 @@ html[data-theme=light] .seq-explain{background:rgba(255,252,245,.95)}
 .seq-points{margin:.4rem 0 .6rem 1.1rem;padding:0;font-size:.86rem;line-height:1.45}
 .seq-points li{margin:.2rem 0}
 
+.seq-teacher{
+  margin:1rem 0;padding:.85rem 1rem;border-radius:14px;
+  border:1px solid rgba(70,124,69,.45);background:rgba(70,124,69,.12)
+}
+html[data-theme=light] .seq-teacher{background:rgba(70,124,69,.08)}
+.seq-teacher-head{color:#c9a227;margin-bottom:.25rem}
+.seq-teacher-role{font-size:.78rem;opacity:.85;margin:.15rem 0 .5rem}
+.seq-teacher-stop{font-size:.86rem;margin:.5rem 0;padding:.5rem;border-radius:10px;border:1px dashed rgba(201,162,39,.4)}
+.seq-teacher-actions{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.seq-wait{padding:1rem;opacity:.9}
+.seq-inline{margin-left:.25rem}
 .seq-static-outline{margin:1rem 0;padding:.75rem 1rem;border-radius:14px;border:1px solid rgba(201,162,39,.35)}
 .seq-static-list{margin:.5rem 0 0 1.1rem;padding:0;font-size:.88rem;line-height:1.45}
 .seq-static-list li{margin:.35rem 0}
-.cu-lead{font-size:.92rem;opacity:.92;line-height:1.45}
