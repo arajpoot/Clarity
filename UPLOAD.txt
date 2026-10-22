@@ -1,14 +1,18 @@
-Full sequential University (20261021FULL)
+Desk fix + live teacher guidance (20261021TEACH)
 
-Companion UNTOUCHED.
+Upload:
+  campus/desk/seeker|practice|consistency|transmission/index.html
+  campus/assets/js/cu-seq-desk-v1.js
+  campus/assets/js/cu-seq-modules-v1.js
+  campus/assets/js/cu-seq-progress-v1.js
+  campus/assets/css/cu-seq-v1.css
+  campus/assets/js/cu-seq-footer-v1.js
 
-1. Upload every file preserving paths under campus/
-2. Cloudflare Purge Everything
-3. Incognito: /campus/desk/seeker/?nocache=1
+Purge CF /campus/
+Incognito: /campus/desk/seeker/?v=20261021TEACH
 
-You must see:
-- Module path list in HTML (titles + aims)
-- Interactive panel with Learn / source / quiz / Mark done
-- Practice locked until Seeker complete
-
-Verify: campus Continue → mark done → refresh → advance → grading suggested next
+Expect:
+- Module path list in HTML
+- Interactive list + Learn text
+- Teacher guidance panel (persona tip + Faculty / Charter links)
+- Stage locks still work
