@@ -1,14 +1,18 @@
-# Companion Phase 1–7 · 20261021P7
+# Companion Phases A–G · 20261022AB
 
-## Surfaces
-- **Landing** (`clarity-landing-active`): Banner + Do this today + Adhkār + chips. Paths/tabs dimmed. Pill: Stay | Skip to main (no countdown).
-- **Main** (`clarity-landing-done` + `clarity-main-active`): Banner + learning paths + tabs. Day stack hidden.
+## A Spine
+- `clarity-tab-spine-v1.js` — early `switchTab(tab, scrollId)`
 
-## Test
-- `?landing=1` → force landing
-- `?main=1` → force main
-- Clear: `localStorage.removeItem('clarity_landing_gate_v1')`
-- Stay → remains on day surface; Skip → main; **Day surface** button re-opens landing
+## B Meme strip
+- Day surface: no استوديو التبليغ chip
+- CSS: meme/tweet/fb/callig **Action tab only**
+
+## C Fetch
+- Single deferred `clarity-meme-bg-fetch-v1.js`
+
+## D–E
+- Link stubs; chips pass scroll id; share-desks + craft deferred
 
 ## Upload
-index.html + assets listed. CF purge. Hard refresh.
+All files in this zip. CF purge. Hard refresh.
+Test: landing chips Tajweed/Calligraphy; bottom tabs; Action still has studio.

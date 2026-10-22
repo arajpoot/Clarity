@@ -26,6 +26,8 @@
   } catch(e) {}
 })();
 </script>
+<script src="/assets/clarity-tab-spine-v1.js?v=20261022AB"></script>
+<script src="/assets/clarity-link-stubs-v1.js?v=20261022AB"></script>
 
 <style id="clarity-paint-shell">
 html{background:#f6f1e7;color:#1c2a22}
@@ -464,6 +466,40 @@ body[data-active-tab="reminder"] #tajweed-live-card,body[data-active-tab="remind
 <link rel="stylesheet" href="/assets/clarity-landing-gate-v1.css?v=20261021P7"/>
 <link rel="stylesheet" href="/assets/clarity-day-surface-ui-v1.css?v=20261021MOON2"/>
 <link rel="stylesheet" href="/assets/clarity-moon-phase-v1.css?v=20261021MOON2"/>
+
+<style id="cu-meme-action-only-override">
+/* Phase B — meme / tabligh studio Action only · 20261022AB */
+#meme-card,
+.meme-card-realigned,
+[id="meme-card"] {
+  /* default: do not force show on every tab */
+}
+body:not([data-active-tab="action"]) #meme-card,
+html:not([data-active-tab="action"]) #meme-card,
+body:not([data-active-tab="action"]) #tweet-desk-card,
+body:not([data-active-tab="action"]) #facebook-desk-card,
+body:not([data-active-tab="action"]) #callig-lab-card {
+  display: none !important;
+  visibility: hidden !important;
+}
+body[data-active-tab="action"] #meme-card,
+body[data-active-tab="action"] #tweet-desk-card,
+body[data-active-tab="action"] #facebook-desk-card,
+body[data-active-tab="action"] #callig-lab-card {
+  display: block !important;
+  visibility: visible !important;
+}
+/* neutralize old restore rules that pinned meme to reminder */
+#cu-meme-restore-css { }
+body[data-active-tab="reminder"] #meme-card,
+body[data-active-tab="reality"] #meme-card,
+body[data-active-tab="reflection"] #meme-card,
+body[data-active-tab="notes"] #meme-card {
+  display: none !important;
+  visibility: hidden !important;
+}
+</style>
+
 </head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
@@ -830,7 +866,7 @@ html[data-theme="dark"] .dual-name{color:#f3e6c0}
 <div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
 <div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
 <div class="rrra-hub-meta">8 sections</div></div>
-<div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · استوديو التبليغ (auto verse/ḥadīth) · deepen-study links.</div>
+<div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · deepen-study links.</div>
 <div class="rrra-hub-body" id="rrra-hub-body-reminder">
 <div data-rrra="reminder" class="card card-commands" id="commands-card" data-min-i="0" data-curriculum-folder="seeker"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
  <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
@@ -2833,18 +2869,14 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script defer src="/assets/clarity-perf-loader-v1.js?v=20261018PERF"></script>
 
 <script src="/assets/clarity-haramain-temps-repair-v1.js?v=20261020CH" defer></script>
-<script src="/assets/clarity-companion-provision-v2.js?v=20261021MOON" defer></script>
+<script src="/assets/clarity-companion-provision-v2.js?v=20261022AB" defer></script>
 <script src="/assets/clarity-adhkar-card-v1.js?v=20261020ADH" defer></script>
-<!-- idle:clarity-meme-bg-fetch-v1.js -->
-
-<!-- idle:clarity-share-desks-v2.js -->
 
 
 <link rel="stylesheet" media="print" onload="this.media='all'" href="/assets/clarity-amana-vault-isolate-v1.css?v=20261020VAULT2"/>
 <script src="/assets/clarity-amana-vault-isolate-v1.js?v=20261020VAULT2" defer></script>
 
 <link rel="stylesheet" media="print" onload="this.media='all'" href="/assets/clarity-craft-action-only-v1.css?v=20261020ANCHOR"/>
-<!-- idle:clarity-craft-action-only-v1.js -->
 
 
 <script>
@@ -2867,6 +2899,9 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <script defer src="/assets/clarity-landing-gate-v1.js?v=20261021P7"></script>
 <script defer src="/assets/clarity-moon-phase-v1.js?v=20261021MOON2"></script>
+<script defer src="/assets/clarity-meme-bg-fetch-v1.js?v=20261022AB"></script>
+<script defer src="/assets/clarity-craft-action-only-v1.js?v=20261022AB"></script>
+<script defer src="/assets/clarity-share-desks-v2.js?v=20261022AB"></script>
 </body>
 
 </html>
