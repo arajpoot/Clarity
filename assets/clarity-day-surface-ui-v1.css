@@ -1,0 +1,269 @@
+/**
+ * Day surface plaques · Today + Adhkār · 20261021UI
+ * Readable type · gold-edge plaques · NurOS harmony
+ */
+
+#clarity-provision-home,
+#clarity-adhkar-daily {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 0.35rem;
+}
+
+/* ---- Do this today plaque ---- */
+#clarity-provision-home .cph-card,
+#clarity-provision-home .cph-provision {
+  border-radius: 1.15rem;
+  border: 1.5px solid rgba(201, 168, 76, 0.55);
+  background:
+    linear-gradient(145deg, rgba(255, 252, 245, 0.98) 0%, rgba(244, 236, 214, 0.95) 100%);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.2),
+    0 10px 28px rgba(20, 40, 30, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  padding: 1rem 1.1rem 1.05rem;
+  color: #1a2e24;
+}
+html[data-theme="dark"] #clarity-provision-home .cph-card,
+html[data-theme="dark"] #clarity-provision-home .cph-provision,
+body.dark #clarity-provision-home .cph-card {
+  background: linear-gradient(155deg, rgba(28, 48, 40, 0.95) 0%, rgba(18, 34, 28, 0.98) 100%);
+  border-color: rgba(201, 168, 76, 0.4);
+  color: #e8f0ea;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(201, 168, 76, 0.12);
+}
+
+.cph-headline-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin-bottom: 0.55rem;
+}
+.cph-title-block {
+  flex: 1 1 10rem;
+  text-align: center;
+  min-width: 0;
+}
+.cph-title-center,
+#clarity-provision-home h2.cph-title-center {
+  margin: 0;
+  font-size: clamp(1.25rem, 4.2vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #b8860b;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+html[data-theme="dark"] .cph-title-center,
+body.dark .cph-title-center {
+  color: #e0c56a;
+  text-shadow: none;
+}
+
+/* Date + time of day — readable */
+.cph-solar-date,
+#cph-solar-date {
+  margin: 0.2rem 0 0;
+  font-size: clamp(0.95rem, 3.2vw, 1.08rem);
+  font-weight: 650;
+  opacity: 0.92;
+}
+.cph-period,
+#cph-period {
+  display: block !important;
+  margin: 0.15rem 0 0;
+  font-size: clamp(0.88rem, 3vw, 1rem);
+  font-weight: 700;
+  color: #1e7d5e;
+  letter-spacing: 0.01em;
+}
+html[data-theme="dark"] .cph-period,
+body.dark .cph-period {
+  color: #7dcea0;
+}
+
+.cph-salah,
+.cph-tasbeeh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: clamp(0.88rem, 2.8vw, 1rem);
+  font-weight: 700;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  background: rgba(255, 255, 255, 0.35);
+}
+html[data-theme="dark"] .cph-salah,
+html[data-theme="dark"] .cph-tasbeeh,
+body.dark .cph-salah,
+body.dark .cph-tasbeeh {
+  background: rgba(0, 0, 0, 0.25);
+}
+.cph-lane {
+  display: inline-block;
+  margin: 0.35rem 0 0.4rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(30, 125, 94, 0.15);
+  color: #1e7d5e;
+  border: 1px solid rgba(30, 125, 94, 0.35);
+}
+#clarity-provision-home .cph-card > p,
+#clarity-provision-home .cph-provision > p {
+  font-size: clamp(1rem, 3.4vw, 1.12rem);
+  line-height: 1.55;
+  margin: 0.35rem 0;
+}
+#clarity-provision-home .cph-note {
+  font-size: clamp(0.88rem, 2.8vw, 0.98rem);
+  opacity: 0.88;
+  line-height: 1.45;
+  border-top: 1px solid rgba(201, 168, 76, 0.25);
+  padding-top: 0.55rem;
+  margin-top: 0.55rem;
+}
+
+/* Routine chips as mini-plaques */
+.cph-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+.cph-btn,
+.cph-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-size: clamp(0.82rem, 2.6vw, 0.92rem);
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  background: rgba(30, 125, 94, 0.12);
+  color: inherit;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.cph-btn:not(.ghost) {
+  background: #1e7d5e;
+  color: #fff;
+  border-color: #1e7d5e;
+}
+.cph-btn.ghost,
+.cph-chip {
+  background: rgba(255, 255, 255, 0.4);
+}
+html[data-theme="dark"] .cph-btn.ghost,
+html[data-theme="dark"] .cph-chip,
+body.dark .cph-btn.ghost,
+body.dark .cph-chip {
+  background: rgba(255, 255, 255, 0.06);
+}
+.cph-btn:active,
+.cph-chip:active {
+  transform: scale(0.98);
+}
+
+/* ---- Adhkār plaque ---- */
+#clarity-adhkar-daily,
+.cph-adhkar,
+#clarity-provision-home .cph-adhkar {
+  border-radius: 1.15rem;
+  border: 1.5px solid rgba(201, 168, 76, 0.45);
+  background:
+    linear-gradient(160deg, rgba(22, 48, 38, 0.97) 0%, rgba(14, 32, 26, 0.98) 100%);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.15),
+    0 12px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(201, 168, 76, 0.1);
+  padding: 1.05rem 1.1rem 1.1rem;
+  color: #e8f0ea;
+  margin-top: 0.45rem;
+}
+html[data-theme="light"] #clarity-adhkar-daily,
+html[data-theme="light"] .cph-adhkar {
+  background: linear-gradient(160deg, #1a3d30 0%, #122820 100%);
+  color: #e8f0ea;
+}
+
+.cph-adhkar h3,
+#clarity-adhkar-daily h3 {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.02rem, 3.4vw, 1.18rem);
+  font-weight: 800;
+  color: #e0c56a;
+  letter-spacing: 0.01em;
+}
+
+/* Arabic — large, clear, banner-family */
+.cph-adh-ar,
+#clarity-adhkar-daily .cph-adh-ar,
+#clarity-adhkar-daily [lang="ar"] {
+  font-family: "Scheherazade New", "Amiri", "Noto Naskh Arabic", serif !important;
+  font-size: clamp(1.45rem, 5.5vw, 1.85rem) !important;
+  line-height: 1.75 !important;
+  font-weight: 700;
+  text-align: center;
+  direction: rtl;
+  margin: 0.55rem 0 0.75rem;
+  padding: 0.65rem 0.5rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  color: #f5f0e6;
+}
+
+.cph-adh-en {
+  font-size: clamp(1rem, 3.3vw, 1.12rem) !important;
+  line-height: 1.55 !important;
+  margin: 0.35rem 0;
+  opacity: 0.95;
+}
+.cph-adh-ref {
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  opacity: 0.8;
+  margin: 0.4rem 0 0.65rem;
+}
+
+.cph-adh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+}
+.cph-adh-actions button,
+.cph-adh-actions a {
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  font-size: clamp(0.82rem, 2.6vw, 0.92rem);
+  font-weight: 700;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  background: rgba(30, 125, 94, 0.85);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+.cph-adh-actions button.ghost,
+.cph-adh-actions a.ghost {
+  background: transparent;
+  color: #e8f0ea;
+}
+
+/* Small gold corner accents */
+#clarity-provision-home .cph-card::before,
+.cph-adhkar::before {
+  content: "";
+  display: block;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  margin: -1.05rem -1.1rem 0.85rem;
+  background: linear-gradient(90deg, transparent, #c9a84c 20%, #e0c56a 50%, #c9a84c 80%, transparent);
+}

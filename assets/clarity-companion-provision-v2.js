@@ -167,7 +167,7 @@
       "</p>" +
       '<p class="cph-period" id="cph-period">' +
       dayPeriodLabel() +
-      " · local time</p></div>" +
+      "</p></div>" +
       '<span class="cph-tasbeeh" id="cph-tasbeeh-wrap">' +
       '<button type="button" class="cph-tas-btn" id="cph-tas-inc" aria-label="Tasbeeh +1">' +
       iconTasbihHtml() +
@@ -272,12 +272,20 @@
 
   
   function dayPeriodLabel() {
-    var h = new Date().getHours();
-    if (h >= 4 && h < 12) return "Morning";
-    if (h >= 12 && h < 15) return "Afternoon";
-    if (h >= 15 && h < 18) return "Late afternoon";
-    if (h >= 18 && h < 20) return "Evening";
-    return "Night";
+    var now = new Date();
+    var h = now.getHours();
+    var period;
+    if (h >= 4 && h < 12) period = "Morning";
+    else if (h >= 12 && h < 15) period = "Afternoon";
+    else if (h >= 15 && h < 18) period = "Late afternoon";
+    else if (h >= 18 && h < 20) period = "Evening";
+    else period = "Night";
+    var opts = { hour: "numeric", minute: "2-digit" };
+    var clock = "";
+    try { clock = now.toLocaleTimeString(undefined, opts); } catch (e) {
+      clock = now.getHours() + ":" + String(now.getMinutes()).padStart(2, "0");
+    }
+    return period + " · " + clock;
   }
 
   function ensureSurface() {
@@ -356,4 +364,10 @@
   setTimeout(boot, 400);
   /* PERF4 removed stacked boot */
   setInterval(tickSalah, 1000);
+  setInterval(function () {
+    try {
+      var el = document.getElementById("cph-period");
+      if (el) el.textContent = dayPeriodLabel();
+    } catch (e) {}
+  }, 30000);
 })(typeof window !== "undefined" ? window : this);
