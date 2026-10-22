@@ -521,7 +521,7 @@ body[data-active-tab="notes"] #meme-card {
 }
 </style>
 
-<link rel="stylesheet" href="/assets/clarity-tajweed-restore-v1.css?v=20261022TJ"/>
+<link rel="stylesheet" href="/assets/clarity-tajweed-restore-v1.css?v=20261022TJ2"/>
 </head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
@@ -945,20 +945,57 @@ html[data-theme="dark"] .dual-name{color:#f3e6c0}
   <p id="tajweed-live-src" class="td-src"> <button type="button" class="btn-soft" style="font-size:.72rem;padding:.2rem .5rem;margin-left:.35rem" onclick="clarityRefreshSection('tajweed')">☁ Online</button></p>
   <button type="button" class="btn-soft" onclick="clarityLiveTajweed(true)">↻ New module</button>
 </div>
-<div data-rrra="reminder" class="card card-tajweed" id="tajweed-path-card" data-rrra="reminder" data-dai-ready="1" data-min-i="2" data-curriculum-folder="daily"><h2 data-i18n="tajweed_title">🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2><div class="deep-learn"><strong>Tajweed practice:</strong><a href="https://www.abouttajweed.com" target="_blank" rel="noopener">AboutTajweed</a> ·
- <a href="https://www.youtube.com/@ayahs" target="_blank" rel="noopener">slow recitation</a> ·
- <a href="https://quran.com" target="_blank" rel="noopener">listen &amp; repeat on Quran.com</a>.</div><p style="margin-bottom:0.85rem; font-size:0.94rem;">
+<div data-rrra="reminder" class="card card-tajweed" id="tajweed-path-card" data-rrra="reminder" data-dai-ready="1" data-min-i="2" data-curriculum-folder="daily"><h2 data-i18n="tajweed_title">🔤 Tajweed Learning Path (Hafs ʿan ʿĀṣim)</h2><div class="deep-learn tj-practice-links"><strong>Practice toolkit (free):</strong>
+ <a href="https://www.abouttajweed.com" target="_blank" rel="noopener">AboutTajweed rules</a> ·
+ <a href="https://quran.com" target="_blank" rel="noopener" title="Use 0.75× / 0.5× speed">Quran.com · slow playback</a> ·
+ <a href="https://tajweed.me" target="_blank" rel="noopener">Tajweed.me lessons</a> ·
+ <a href="https://quranicaudio.com" target="_blank" rel="noopener">QuranicAudio (Ḥuṣarī &amp; more)</a> ·
+ <a href="https://download.understandquran.com/fileadmin/user_upload/courses/tajweed/english/Tajweed_English_Full_Pack_Master_Sheet.pdf" target="_blank" rel="noopener">Master sheet PDF</a>
+</div>
+<p class="td-src" style="font-size:.85rem;margin:.35rem 0 .5rem">Tip: on Quran.com open any āyah → play a verified qāriʾ → set speed to <strong>0.75×</strong> or <strong>0.5×</strong> for slow follow-along. Educational only — seek a teacher for correction.</p><p style="margin-bottom:0.85rem; font-size:0.94rem;">
  Structured path from beginner to advanced, based on common free curricula
  (makhārij → ṣifāt → nūn/mīm sākinah → madd → waqf).
  Check off lessons as you complete them — progress is saved on this device.
  Pair with a teacher when you can for live correction and eventual <em>ijāzah</em>.
- </p><div class="tj-progress-bar" id="tj-overall-progress"><div class="row"><span><strong>Overall progress</strong></span><span id="tj-overall-label">0 / 0 lessons</span></div><div class="track"><div class="fill" id="tj-overall-fill"></div></div></div><div class="lecture-box" style="margin-bottom:1.1rem;"><h3>▶️ Learn Tajweed – the Easy Way (English)</h3><p style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--text-muted);">
- Understand Al-Quran Academy playlist — clear short lessons for adults.
- </p><div class="hajj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f0f0f" style="background:#0f0f0f;"><details class="clarity-embed-fold" data-embed-id="tajweed-player"><summary>▶ Open lecture video <span class="cef-title">tajweed-player</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/videoseries?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" src="about:blank" id="tajweed-player-x1"
-
- width="100%" height="280" frameborder="0" allowfullscreen
- allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe></div></details></div><p class="lecture-note"><a href="https://www.youtube.com/playlist?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" target="_blank" rel="noopener">Full English playlist</a>
- · <a href="https://www.youtube.com/watch?v=dyliFOsUPkU" target="_blank" rel="noopener">Lesson 1a · Introduction</a></p></div>
+ </p><div class="tj-progress-bar" id="tj-overall-progress"><div class="row"><span><strong>Overall progress</strong></span><span id="tj-overall-label">0 / 0 lessons</span></div><div class="track"><div class="fill" id="tj-overall-fill"></div></div></div><div class="lecture-box tj-lecture-enriched" style="margin-bottom:1.1rem;">
+<h3>▶️ Learn Tajweed – the Easy Way (English)</h3>
+<p style="font-size:0.9rem; margin-bottom:0.55rem; color:var(--text-muted);">
+Understand Al-Quran Academy (Dr. Abdulazeez) — short adult lessons. Embed uses a single starter video (playlist embeds often fail with Error 153).
+</p>
+<label class="tj-lesson-pick-label" for="tj-lesson-pick">Lesson library</label>
+<select id="tj-lesson-pick" class="tj-lesson-pick" aria-label="Choose a Tajweed lesson">
+  <option value="dyliFOsUPkU">1a · Introduction</option>
+  <option value="MSoSb4oHCsA">1b · Introduction continued</option>
+  <option value="zJ8pEHHTFJM">2a · Makhraj of م · ب</option>
+  <option value="cIEEV-lFeFo">2b · Practice أعوذ بالله</option>
+  <option value="kkWA06uwdnU">Full course 1–15 (1h42 · FreeQuranEducation)</option>
+</select>
+<div class="hajj-video-frame tj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f0f0f;margin-top:.5rem">
+<iframe id="tajweed-player-x1" title="Learn Tajweed the Easy Way"
+  src="https://www.youtube-nocookie.com/embed/dyliFOsUPkU?rel=0&amp;modestbranding=1"
+  data-base="https://www.youtube-nocookie.com/embed/"
+  style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+  referrerpolicy="strict-origin-when-cross-origin"
+  loading="lazy"></iframe>
+</div>
+<p class="lecture-note" style="margin-top:.55rem;font-size:.88rem">
+<a id="tj-yt-open" href="https://www.youtube.com/watch?v=dyliFOsUPkU" target="_blank" rel="noopener">Open on YouTube</a>
+ · <a href="https://www.youtube.com/playlist?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg" target="_blank" rel="noopener">Full English playlist</a>
+ · <a href="https://understandquran.com" target="_blank" rel="noopener">UnderstandQuran.com</a>
+</p>
+<div class="tj-path-stages" style="margin-top:.75rem">
+<strong style="font-size:.9rem;color:var(--accent,#c9a84c)">Suggested path</strong>
+<ol style="margin:.35rem 0 0;padding-left:1.2rem;font-size:.88rem;line-height:1.5">
+<li>Letters &amp; makhārij (lessons 1–5) — mirror mouth shape; record yourself</li>
+<li>Nūn / mīm sākinah &amp; tanwīn rules — mark one page of Muṣḥaf</li>
+<li>Madd family — count on fingers while listening at 0.75×</li>
+<li>Qalqalah &amp; waqf — short sūrahs (Ikhlāṣ, Falaq, Nās)</li>
+<li>Weekly review with a teacher when you can — online tools are aids, not ijāzah</li>
+</ol>
+</div>
+</div>
 <div class="card card-tajweed" id="tj-deep-studio" data-rrra="reminder" data-rrra-pin="reminder" data-dai-ready="1" style="border-top:3px solid var(--gold)" data-min-i="2" data-curriculum-folder="daily">
   <h2>🎯 Tajweed Deep Studio</h2>
   <p style="font-size:0.92rem;margin-bottom:0.75rem;color:var(--text-muted)">Visual rules, makhārij map, drills and self-check tools — practice with adab, then seek a teacher for correction.</p>
@@ -2924,7 +2961,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script defer src="/assets/clarity-meme-bg-fetch-v1.js?v=20261022AB"></script>
 <script defer src="/assets/clarity-craft-action-only-v1.js?v=20261022AB"></script>
 <script defer src="/assets/clarity-share-desks-v2.js?v=20261022AB"></script>
-<script defer src="/assets/clarity-tajweed-restore-v1.js?v=20261022TJ"></script>
+<script defer src="/assets/clarity-tajweed-restore-v1.js?v=20261022TJ2"></script>
 </body>
 
 </html>
