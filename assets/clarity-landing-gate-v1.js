@@ -1,15 +1,14 @@
 /**
- * Landing L5 · works with early head class · 20261021L5
+ * Companion landing / main surfaces · Phase 1–7 · 20261021P7
+ * No auto-countdown. Stay | Skip to main.
+ * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_LANDING_GATE_V1__ === "20261021L5") return;
-  w.__CLARITY_LANDING_GATE_V1__ = "20261021L5";
+  if (w.__CLARITY_LANDING_GATE_V1__ === "20261021P7") return;
+  w.__CLARITY_LANDING_GATE_V1__ = "20261021P7";
 
   var KEY = "clarity_landing_gate_v1";
-  var SEC = 12;
-  var timer = null;
-  var left = SEC;
 
   function day() {
     var d = new Date();
@@ -28,18 +27,31 @@
     } catch (e) {}
   }
 
-  function exit(reason) {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
+  function setMode(mode) {
+    var root = document.documentElement;
+    var body = document.body;
+    root.classList.remove("clarity-landing-active", "clarity-landing-done", "clarity-main-active");
+    if (body) body.classList.remove("clarity-landing-active", "clarity-landing-done", "clarity-main-active");
+    if (mode === "landing") {
+      root.classList.add("clarity-landing-active");
+      if (body) body.classList.add("clarity-landing-active");
+    } else {
+      root.classList.add("clarity-landing-done", "clarity-main-active");
+      if (body) body.classList.add("clarity-landing-done", "clarity-main-active");
     }
+  }
+
+  function resolveMode() {
+    var q = w.location.search || "";
+    if (/[?&]main=1(?:&|$)/.test(q) || /[?&]landing=0(?:&|$)/.test(q)) return "main";
+    if (/[?&]landing=1(?:&|$)/.test(q)) return "landing";
     var s = read();
-    if (reason === "stay") s.stayDay = day();
-    else s.skipDay = day();
-    write(s);
-    document.documentElement.classList.remove("clarity-landing-active");
-    document.body.classList.remove("clarity-landing-active");
-    document.documentElement.classList.add("clarity-landing-done");
+    if (s.skipDay === day()) return "main";
+    if (s.stayDay === day()) return "landing";
+    return "landing"; /* first open of day */
+  }
+
+  function removePill() {
     var pill = document.getElementById("clarity-landing-pill");
     if (pill) pill.remove();
   }
@@ -49,54 +61,98 @@
     var pill = document.createElement("div");
     pill.id = "clarity-landing-pill";
     pill.className = "clarity-landing-pill";
+    pill.setAttribute("role", "dialog");
+    pill.setAttribute("aria-label", "Main Companion");
     pill.innerHTML =
-      '<span class="clp-label">Opening main page in <strong id="clp-count">' +
-      SEC +
-      "</strong>s</span>" +
+      '<span class="clp-label">Main Companion page</span>' +
       '<div class="clp-actions">' +
       '<button type="button" class="clp-btn" id="clp-stay">Stay</button>' +
       '<button type="button" class="clp-btn primary" id="clp-skip">Skip to main</button>' +
       "</div>";
     document.body.appendChild(pill);
     document.getElementById("clp-stay").onclick = function () {
-      exit("stay");
+      stay();
     };
     document.getElementById("clp-skip").onclick = function () {
-      exit("skip");
+      skipToMain();
     };
   }
 
-  function tick() {
-    var el = document.getElementById("clp-count");
-    if (el) el.textContent = String(Math.max(0, left));
-    if (left <= 0) {
-      exit("auto");
-      return;
+  function ensureOpenDayBtn() {
+    if (document.getElementById("clarity-open-day-wrap")) return;
+    var banner = document.querySelector("#clarity-top-duo .banner, .banner");
+    var wrap = document.createElement("div");
+    wrap.id = "clarity-open-day-wrap";
+    wrap.className = "clarity-open-day-btn";
+    wrap.innerHTML =
+      '<button type="button" id="clarity-open-day-btn" title="Do this today &amp; adhkār">☀ Day surface</button>';
+    if (banner && banner.parentNode) {
+      if (banner.nextSibling) banner.parentNode.insertBefore(wrap, banner.nextSibling);
+      else banner.parentNode.appendChild(wrap);
+    } else {
+      document.body.appendChild(wrap);
     }
-    left -= 1;
+    document.getElementById("clarity-open-day-btn").onclick = function () {
+      openLanding();
+    };
   }
 
-  function run() {
-    if (!document.documentElement.classList.contains("clarity-landing-active")) {
-      if (!document.documentElement.classList.contains("clarity-landing-done")) {
-        document.documentElement.classList.add("clarity-landing-done");
-      }
-      return;
-    }
-    document.body.classList.add("clarity-landing-active");
+  function stay() {
+    var s = read();
+    s.stayDay = day();
+    if (s.skipDay === day()) delete s.skipDay;
+    write(s);
+    setMode("landing");
     ensurePill();
-    left = SEC;
-    if (timer) clearInterval(timer);
-    timer = setInterval(tick, 1000);
-    tick();
+  }
+
+  function skipToMain() {
+    var s = read();
+    s.skipDay = day();
+    write(s);
+    setMode("main");
+    removePill();
+    ensureOpenDayBtn();
+    try {
+      w.dispatchEvent(new CustomEvent("clarity-landing-done", { detail: { reason: "skip" } }));
+    } catch (e) {}
+  }
+
+  function openLanding() {
+    var s = read();
+    s.stayDay = day();
+    if (s.skipDay === day()) delete s.skipDay;
+    write(s);
+    setMode("landing");
+    ensurePill();
+    try {
+      w.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (e) {
+      w.scrollTo(0, 0);
+    }
+  }
+
+  function boot() {
+    var mode = resolveMode();
+    setMode(mode);
+    if (mode === "landing") {
+      ensurePill();
+    } else {
+      removePill();
+      ensureOpenDayBtn();
+    }
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", run);
-  } else run();
+    document.addEventListener("DOMContentLoaded", boot);
+  } else boot();
   w.addEventListener("load", function () {
     if (document.documentElement.classList.contains("clarity-landing-active") && !document.getElementById("clarity-landing-pill")) {
-      run();
+      ensurePill();
     }
   });
+
+  w.clarityLandingStay = stay;
+  w.clarityLandingSkip = skipToMain;
+  w.clarityOpenDaySurface = openLanding;
 })(typeof window !== "undefined" ? window : this);

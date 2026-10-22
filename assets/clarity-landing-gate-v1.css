@@ -1,47 +1,131 @@
-/* Landing L5 · 20261021L5 */
-.clarity-landing-pill{
-  position:fixed!important;left:50%;transform:translateX(-50%);
-  bottom:calc(4.75rem + env(safe-area-inset-bottom,0px));
-  z-index:99999!important;width:min(96vw,520px);box-sizing:border-box;
-  display:flex!important;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;
-  padding:.65rem 1rem;border-radius:999px;
-  border:1px solid rgba(201,168,76,.55);background:rgba(12,32,24,.97);color:#e8f0ea;
-  box-shadow:0 12px 36px rgba(0,0,0,.4);font-size:.9rem;
-}
-html[data-theme="light"] .clarity-landing-pill,
-body:not([data-theme="dark"]):not(.dark) .clarity-landing-pill{
-  background:rgba(255,253,248,.98);color:#1a2e24;
-}
-.clp-label{font-weight:650}
-.clp-label strong{color:#c9a84c;font-variant-numeric:tabular-nums}
-.clp-actions{display:flex;gap:.4rem}
-.clp-btn{border:1px solid rgba(201,168,76,.45);background:transparent;color:inherit;border-radius:999px;padding:.45rem .95rem;font-weight:700;font-size:.85rem;cursor:pointer}
-.clp-btn.primary{background:#1e7d5e;border-color:#1e7d5e;color:#fff}
+/**
+ * Companion surfaces · Phase 1–6 · 20261021P7
+ * Landing: banner + day stack · Main: banner + paths + tabs
+ */
 
-/* Dim main app chrome during landing */
+/* --- MAIN mode: hide day stack so paths sit under banner --- */
+html.clarity-landing-done #clarity-provision-home,
+html.clarity-landing-done #clarity-adhkar-daily,
+html.clarity-landing-done .cph-adhkar,
+html.clarity-main-active #clarity-provision-home,
+html.clarity-main-active #clarity-adhkar-daily {
+  display: none !important;
+}
+
+/* --- LANDING mode: dim main chrome --- */
 html.clarity-landing-active #main-application-workspace,
 html.clarity-landing-active .page-wrapper,
 html.clarity-landing-active .main-content,
 html.clarity-landing-active .rrra-hub,
-html.clarity-landing-active .rrra-hub-hero{
-  opacity:.18!important;pointer-events:none!important;
+html.clarity-landing-active .rrra-hub-hero {
+  opacity: 0.18 !important;
+  pointer-events: none !important;
+  max-height: 28vh;
+  overflow: hidden;
 }
-/* Path / phased blocks often injected inside main or after adhkar */
-html.clarity-landing-active #main-application-workspace [class*="path"],
-html.clarity-landing-active #main-application-workspace [class*="phased"],
-html.clarity-landing-active #main-application-workspace [class*="TRACK"],
-html.clarity-landing-active .clarity-gate-switcher{
-  opacity:.15!important;pointer-events:none!important;
+html.clarity-landing-active .clarity-gate-switcher:not([style*="display: none"]),
+html.clarity-landing-active [class*="phased"],
+html.clarity-landing-active [class*="path-tile"],
+html.clarity-landing-active [class*="dual-path"] {
+  opacity: 0.15 !important;
+  pointer-events: none !important;
 }
+
 html.clarity-landing-active .banner,
+html.clarity-landing-active #clarity-top-duo .banner,
 html.clarity-landing-active #clarity-provision-home,
-html.clarity-landing-active #clarity-adhkar-daily,
-html.clarity-landing-active .cph-adhkar{
-  opacity:1!important;pointer-events:auto!important;filter:none!important;
+html.clarity-landing-active #clarity-adhkar-daily {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  filter: none !important;
+  max-height: none !important;
+  overflow: visible !important;
+  display: block !important;
 }
+
+/* Main mode full chrome */
 html.clarity-landing-done #main-application-workspace,
-html.clarity-landing-done .page-wrapper{
-  opacity:1!important;pointer-events:auto!important;
+html.clarity-landing-done .page-wrapper,
+html.clarity-landing-done .main-content,
+html.clarity-main-active #main-application-workspace {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
 }
-/* tighter default spacing */
-#clarity-provision-home,#clarity-adhkar-daily{margin-bottom:.35rem}
+
+/* Tight gap under banner on main */
+html.clarity-landing-done #main-application-workspace,
+html.clarity-main-active #main-application-workspace {
+  margin-top: 0.2rem;
+}
+
+/* Fixed pill — no countdown */
+.clarity-landing-pill {
+  position: fixed !important;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  z-index: 99999 !important;
+  width: min(96vw, 520px);
+  box-sizing: border-box;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 168, 76, 0.55);
+  background: rgba(12, 32, 24, 0.97);
+  color: #e8f0ea;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+}
+html.clarity-landing-done .clarity-landing-pill,
+html.clarity-main-active .clarity-landing-pill {
+  display: none !important;
+}
+html[data-theme="light"] .clarity-landing-pill,
+body:not([data-theme="dark"]):not(.dark) .clarity-landing-pill {
+  background: rgba(255, 253, 248, 0.98);
+  color: #1a2e24;
+}
+.clp-label { font-weight: 650; }
+.clp-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.clp-btn {
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.clp-btn.primary {
+  background: #1e7d5e;
+  border-color: #1e7d5e;
+  color: #fff;
+}
+
+/* Optional re-open day surface from main */
+.clarity-open-day-btn {
+  display: none;
+  margin: 0.35rem auto;
+  text-align: center;
+}
+html.clarity-landing-done .clarity-open-day-btn,
+html.clarity-main-active .clarity-open-day-btn {
+  display: block;
+}
+.clarity-open-day-btn button {
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  cursor: pointer;
+}

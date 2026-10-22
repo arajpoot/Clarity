@@ -164,7 +164,10 @@
       '<h2 class="cph-title-center">Do this today</h2>' +
       '<p class="cph-solar-date" id="cph-solar-date">' +
       solar +
-      "</p></div>" +
+      "</p>" +
+      '<p class="cph-period" id="cph-period">' +
+      dayPeriodLabel() +
+      " · local time</p></div>" +
       '<span class="cph-tasbeeh" id="cph-tasbeeh-wrap">' +
       '<button type="button" class="cph-tas-btn" id="cph-tas-inc" aria-label="Tasbeeh +1">' +
       iconTasbihHtml() +
@@ -265,6 +268,16 @@
       var last = nodes[nodes.length - 1];
       if (last && last.nodeType === 3) last.textContent = " " + label;
     }
+  }
+
+  
+  function dayPeriodLabel() {
+    var h = new Date().getHours();
+    if (h >= 4 && h < 12) return "Morning";
+    if (h >= 12 && h < 15) return "Afternoon";
+    if (h >= 15 && h < 18) return "Late afternoon";
+    if (h >= 18 && h < 20) return "Evening";
+    return "Night";
   }
 
   function ensureSurface() {
