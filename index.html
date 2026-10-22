@@ -1,24 +1,43 @@
 <!DOCTYPE html><html data-amana-session="locked" data-theme="light" lang="en"><head>
 <script>
-/* Landing top-lock · 20261022STICKY */
-(function(){
+/* Landing top-lock · 20261022SCROLL2 · mobile+desktop */
+(function () {
   try {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   } catch (e) {}
-  function topLock(){
-    try {
-      if (document.documentElement.classList.contains("clarity-landing-active") ||
-          /[?&]landing=1(?:&|$)/.test(location.search||"")) {
-        window.scrollTo(0, 0);
+  try {
+    if (location.hash && location.hash.length > 1) {
+      var KEY = "clarity_landing_gate_v1";
+      var d = new Date();
+      var day = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      var s = {};
+      try { s = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e0) {}
+      var forceMain = /[?&]main=1(?:&|$)/.test(location.search || "") || /[?&]landing=0(?:&|$)/.test(location.search || "");
+      var isMain = forceMain || s.skipDay === day;
+      if (!isMain) {
+        if (history.replaceState) history.replaceState(null, "", location.pathname + location.search);
       }
+    }
+  } catch (e1) {}
+  function pin() {
+    try {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
     } catch (e2) {}
   }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", topLock);
-  }
-  window.addEventListener("load", function(){ setTimeout(topLock, 0); });
+  pin();
+  document.addEventListener("DOMContentLoaded", pin);
+  window.addEventListener("load", function () {
+    pin();
+    setTimeout(pin, 50);
+    setTimeout(pin, 250);
+  });
 })();
 </script>
+
+<script src="/assets/clarity-scroll-lock-v1.js?v=20261022SCROLL2"></script>
+
 
 <script>
 /* P7 early surface class · 20261021P7 */
@@ -47,7 +66,7 @@
   } catch(e) {}
 })();
 </script>
-<script src="/assets/clarity-tab-spine-v1.js?v=20261022AB"></script>
+<script src="/assets/clarity-tab-spine-v1.js?v=20261022SCROLL"></script>
 <script src="/assets/clarity-link-stubs-v1.js?v=20261022AB"></script>
 
 <style id="clarity-paint-shell">
@@ -484,7 +503,7 @@ body[data-active-tab="reminder"] #tajweed-live-card,body[data-active-tab="remind
 <!-- idle:nuros-icons-apply-v1.js -->
 
 <noscript><link rel="stylesheet" href="/assets/clarity-css-patches-v1.css"/></noscript>
-<link rel="stylesheet" href="/assets/clarity-landing-gate-v1.css?v=20261022STICKY"/>
+<link rel="stylesheet" href="/assets/clarity-landing-gate-v1.css?v=20261022SCROLL"/>
 <link rel="stylesheet" href="/assets/clarity-day-surface-ui-v1.css?v=20261021MOON2"/>
 <link rel="stylesheet" href="/assets/clarity-moon-phase-v1.css?v=20261021MOON2"/>
 
@@ -522,6 +541,24 @@ body[data-active-tab="notes"] #meme-card {
 </style>
 
 <link rel="stylesheet" href="/assets/clarity-tajweed-restore-v1.css?v=20261022TJ2"/>
+
+<style id="cu-scroll-lock-v1">
+html.clarity-landing-active, html.clarity-landing-active body {
+  scroll-behavior: auto !important;
+  overflow-anchor: none !important;
+  scroll-padding-top: 0 !important;
+}
+#clarity-top-duo, #clarity-top-duo .banner, .banner {
+  position: sticky;
+  top: 0;
+  z-index: 400;
+}
+#clarity-landing-doors, #clarity-provision-home, #clarity-adhkar-daily {
+  scroll-margin-top: 0 !important;
+  overflow-anchor: none;
+}
+</style>
+
 </head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="./assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
@@ -2956,7 +2993,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <script defer src="/assets/clarity-perf-boot-quiet-v1.js?v=20261021R2"></script>
 
-<script defer src="/assets/clarity-landing-gate-v1.js?v=20261022STICKY"></script>
+<script defer src="/assets/clarity-landing-gate-v1.js?v=20261022SCROLL"></script>
 <script defer src="/assets/clarity-moon-phase-v1.js?v=20261021MOON2"></script>
 <script defer src="/assets/clarity-meme-bg-fetch-v1.js?v=20261022AB"></script>
 <script defer src="/assets/clarity-craft-action-only-v1.js?v=20261022AB"></script>
