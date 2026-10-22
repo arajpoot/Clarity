@@ -193,7 +193,6 @@
       '<a class="cph-btn ghost" href="#notes" data-cph-tonight="1">Prepare tonight</a>' +
       "</div>" +
       '<div class="cph-row cph-drills">' +
-      '<a class="cph-chip" href="#action" data-cph-tab="action" data-cph-scroll="meme-card">استوديو التبليغ</a>' +
       '<a class="cph-chip" href="#reminder" data-cph-tab="reminder" data-cph-scroll="tajweed-live-card">Tajweed</a>' +
       '<a class="cph-chip" href="#action" data-cph-tab="action" data-cph-scroll="callig-lab-card">Calligraphy</a>' +
       "</div>" +
@@ -209,15 +208,14 @@
         var sid = a.getAttribute("data-cph-scroll");
         if (tab && typeof w.switchTab === "function") {
           ev.preventDefault();
-          w.switchTab(tab);
-        }
-        if (sid) {
+          w.switchTab(tab, sid || undefined);
+        } else if (sid) {
           setTimeout(function () {
             var el = document.getElementById(sid);
             if (el) {
               el.removeAttribute("hidden");
               el.style.removeProperty("display");
-              el.scrollIntoView({ behavior: "smooth", block: "start" });
+              try { el.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { el.scrollIntoView(true); }
             }
           }, 220);
         }
