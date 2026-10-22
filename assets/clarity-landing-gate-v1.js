@@ -1,12 +1,12 @@
 /**
- * Companion landing · four path doors + Stay · 20261022GATES
+ * Companion landing · four path doors + Stay · 20261022STICKY
  * Skip-to-main replaced by choosing a learning gate.
  * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_LANDING_GATE_V1__ === "20261022GATES") return;
-  w.__CLARITY_LANDING_GATE_V1__ = "20261022GATES";
+  if (w.__CLARITY_LANDING_GATE_V1__ === "20261022STICKY") return;
+  w.__CLARITY_LANDING_GATE_V1__ = "20261022STICKY";
 
   var KEY = "clarity_landing_gate_v1";
 
@@ -201,11 +201,7 @@
         new CustomEvent("clarity-landing-done", { detail: { reason: "gate", gate: gate } })
       );
     } catch (e2) {}
-    try {
-      w.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (e3) {
-      w.scrollTo(0, 0);
-    }
+    /* no auto-scroll — keep top (banner) in view */
   }
 
   function stayOnLanding() {
@@ -252,11 +248,7 @@
     setMode("landing");
     removePill();
     showDoors();
-    try {
-      w.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (e) {
-      w.scrollTo(0, 0);
-    }
+    /* no auto-scroll — keep top (banner) in view */
   }
 
   function boot() {

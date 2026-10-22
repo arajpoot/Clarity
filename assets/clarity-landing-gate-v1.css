@@ -157,3 +157,37 @@ html.clarity-main-active .clarity-open-day-btn {
   font-weight: 650;
   cursor: pointer;
 }
+
+
+/* Sticky banner · companion + landing · 20261022STICKY */
+#clarity-top-duo,
+.banner,
+#clarity-top-duo .banner {
+  position: sticky;
+  top: 0;
+  z-index: 400;
+}
+/* Ensure sticky works: no overflow:hidden on parents that breaks it for banner path */
+html.clarity-landing-active #clarity-top-duo,
+html.clarity-main-active #clarity-top-duo,
+html.clarity-landing-done #clarity-top-duo {
+  position: sticky;
+  top: 0;
+  z-index: 400;
+}
+/* Slight solid backdrop so content doesn’t show through while scrolling */
+#clarity-top-duo .banner,
+.banner {
+  background-color: rgba(12, 28, 22, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+html[data-theme="light"] #clarity-top-duo .banner,
+html[data-theme="light"] .banner,
+body:not([data-theme="dark"]):not(.dark) .banner {
+  background-color: rgba(255, 252, 245, 0.94);
+}
+/* Doors stay in normal flow below day stack — no scrollIntoView */
+#clarity-landing-doors {
+  scroll-margin-top: 0;
+}
