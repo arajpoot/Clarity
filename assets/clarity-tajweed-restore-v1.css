@@ -1,0 +1,31 @@
+/* Tajweed restore UI · 20261022TJ */
+.tj-rule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.5rem;
+  margin: 0.35rem 0 0.85rem;
+}
+.tj-rule-tile {
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 0.75rem;
+  padding: 0.35rem 0.55rem;
+  background: rgba(13, 79, 60, 0.08);
+}
+.tj-rule-tile summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--accent, #c9a84c);
+  font-size: 0.92rem;
+}
+.tj-rule-tile p {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0.4rem 0 0.2rem;
+}
+.tj-lmr-mode.active {
+  background: #1e7d5e !important;
+  color: #fff !important;
+}
+details.clarity-embed-fold[open] .clarity-embed-body {
+  min-height: 200px;
+}
