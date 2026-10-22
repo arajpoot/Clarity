@@ -1,5 +1,5 @@
 /**
- * Tajweed + Samina restore · 20261022TJ
+ * Tajweed + Samina restore · 20261022TJ2
  * - Boot daily samina verse + daily tajweed module on load
  * - Rule tiles for deep studio
  * - Embed-fold video: load iframe data-src on open
@@ -10,7 +10,7 @@
 (function (w) {
   "use strict";
   if (w.__CLARITY_TAJWEED_RESTORE_V1__) return;
-  w.__CLARITY_TAJWEED_RESTORE_V1__ = "20261022TJ";
+  w.__CLARITY_TAJWEED_RESTORE_V1__ = "20261022TJ2";
 
   var RULES = [
     { t: "Izhār (إظهار)", b: "Nūn sākinah or tanwīn before ء ه ع ح غ خ: keep the nūn clear — no ghunnah merge." },
@@ -111,6 +111,23 @@
     });
   }
 
+  
+  function wireLessonPick() {
+    var sel = document.getElementById("tj-lesson-pick");
+    var iframe = document.getElementById("tajweed-player-x1");
+    var open = document.getElementById("tj-yt-open");
+    if (!sel || !iframe) return;
+    if (sel.__wired) return;
+    sel.__wired = true;
+    sel.addEventListener("change", function () {
+      var id = sel.value;
+      if (!id) return;
+      var base = iframe.getAttribute("data-base") || "https://www.youtube-nocookie.com/embed/";
+      iframe.src = base + id + "?rel=0&modestbranding=1";
+      if (open) open.href = "https://www.youtube.com/watch?v=" + id;
+    });
+  }
+
   function wireEmbedFolds() {
     document.querySelectorAll("details.clarity-embed-fold").forEach(function (det) {
       if (det.__clarityEmbedWired) return;
@@ -206,6 +223,7 @@
     fillTajweed(false);
     fillRuleGrid();
     wireEmbedFolds();
+    wireLessonPick();
     wireLmr();
   }
 
