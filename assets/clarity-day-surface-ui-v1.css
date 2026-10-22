@@ -267,3 +267,30 @@ html[data-theme="light"] .cph-adhkar {
   margin: -1.05rem -1.1rem 0.85rem;
   background: linear-gradient(90deg, transparent, #c9a84c 20%, #e0c56a 50%, #c9a84c 80%, transparent);
 }
+
+/* Larger next-salah + tasbeeh pills · 20261021MOON2 */
+#clarity-provision-home .cph-salah,
+#clarity-provision-home .cph-tasbeeh {
+  font-size: clamp(1rem, 3.4vw, 1.15rem) !important;
+  font-weight: 800 !important;
+  padding: 0.5rem 0.75rem !important;
+  gap: 0.45rem !important;
+  min-height: 2.65rem;
+  border-width: 1.5px !important;
+}
+#clarity-provision-home .cph-salah-txt,
+#clarity-provision-home .cph-tas-count {
+  font-size: clamp(1rem, 3.4vw, 1.18rem) !important;
+  font-weight: 800 !important;
+}
+#clarity-provision-home .cph-tas-btn {
+  width: 2.15rem !important;
+  height: 2.15rem !important;
+  min-width: 2.15rem;
+  font-size: 1.15rem !important;
+}
+#clarity-provision-home .cph-salah svg,
+#clarity-provision-home .cph-tasbeeh svg {
+  width: 1.35rem !important;
+  height: 1.35rem !important;
+}

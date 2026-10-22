@@ -1,46 +1,32 @@
-/* Moon plaque · calendar · 20261021MOON */
+/* Moon plaque — visual only · 20261021MOON2 */
 .banner-name-plaque.moon-plaque {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
-  padding: 0.35rem 0.45rem 0.4rem;
-  border-radius: 999px;
-  min-width: 3.25rem;
-  min-height: 3.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  min-width: 3.5rem;
+  min-height: 3.5rem;
+  padding: 0.25rem;
+  border-radius: 50%;
   border: 1.5px solid rgba(201, 168, 76, 0.5);
-  background: radial-gradient(circle at 35% 30%, #2a3344 0%, #12161f 70%);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  cursor: default;
+  background: radial-gradient(circle at 40% 35%, #2a3548 0%, #0e1218 75%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  margin: 0 auto 0.35rem;
+  overflow: hidden;
 }
 .moon-plaque canvas {
-  width: 2.35rem;
-  height: 2.35rem;
-  border-radius: 50%;
+  display: block;
+  width: 48px;
+  height: 48px;
 }
+.moon-plaque .moon-name,
 .moon-plaque .moon-emoji {
-  font-size: 1.35rem;
-  line-height: 1;
+  display: none !important;
 }
-.moon-plaque .moon-name {
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-align: center;
-  max-width: 4.8rem;
-  color: #d4c4a0;
-  line-height: 1.15;
-}
-/* Allah on salah side */
 .salah-times-section .banner-name-plaque.allah-plaque {
-  margin: 0 auto 0.35rem;
+  margin: 0 auto 0.4rem;
 }
-.salah-times-section .plaque-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  margin-bottom: 0.25rem;
+.salah-times-section .masjid-plaque {
+  display: none !important;
 }
-.moon-plaque canvas + .moon-emoji{display:none}
