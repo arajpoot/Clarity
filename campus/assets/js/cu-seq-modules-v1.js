@@ -1,5 +1,5 @@
 /**
- * cu-seq-modules-v1.js — Deep sequential modules (20261021FULL)
+ * cu-seq-modules-v1.js — Deep sequential modules (20261021TEACH)
  * Seeker: on-device Seeker unit prose (original educational wording).
  * Prefer Qurʾān + ṣaḥīḥ; outward links. Educational only — not a fatwa.
  */

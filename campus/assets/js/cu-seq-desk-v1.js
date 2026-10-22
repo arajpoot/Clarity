@@ -1,13 +1,46 @@
 /**
- * cu-seq-desk-v1.js — Desk sequence UI: You are here, module list, mark done, locks
- * Educational only — not a fatwa.
+ * cu-seq-desk-v1.js — Desk modules + live teacher guidance
+ * Educational personas only — not living scholars or fatwa service.
  */
 (function (g) {
   "use strict";
   if (g.__CU_SEQ_DESK_V1__) return;
   g.__CU_SEQ_DESK_V1__ = true;
 
-  function $(id) { return document.getElementById(id); }
+  var GUIDE = {
+    seeker: {
+      name: "Essentials guide",
+      role: "Educational persona for Seeker stage",
+      tips: {
+        default: "Hold tawḥīd first. Small sincere practice beats long debate. When unsure of a ruling, stop and ask a living teacher."
+      }
+    },
+    practice: {
+      name: "Foundations guide",
+      role: "Educational persona for Practice stage",
+      tips: {
+        default: "Map the outward acts carefully. This page does not settle disputed details of purity or prayer — verify with a trusted teacher."
+      }
+    },
+    consistency: {
+      name: "Consistency guide",
+      role: "Educational persona for Consistency stage",
+      tips: {
+        default: "Return after you slip. Review what you already know before adding more. Mercy and presence matter more than speed."
+      }
+    },
+    transmission: {
+      name: "Transmission guide",
+      role: "Educational persona for Transmission stage",
+      tips: {
+        default: "Name your sources. Do not share what you cannot verify. When the text does not settle a point, ask a trusted teacher — this page issues no verdict."
+      }
+    }
+  };
+
+  function $(id) {
+    return document.getElementById(id);
+  }
 
   function stageFromPage() {
     var b = document.body;
@@ -35,7 +68,7 @@
   function sourceHtml(src) {
     if (!src) return "";
     var link = src.href
-      ? ' <a href="' + esc(src.href) + '" target="_blank" rel="noopener">Open source</a>'
+      ? ' <a class="seq-inline" href="' + esc(src.href) + '" target="_blank" rel="noopener">Open source</a>'
       : "";
     return (
       '<p class="seq-source"><strong>Source</strong> · ' +
@@ -46,17 +79,58 @@
     );
   }
 
+  function teacherHtml(stage, mod) {
+    var g0 = GUIDE[stage] || GUIDE.seeker;
+    var tip = (mod && mod.adab) || g0.tips.default;
+    var extra =
+      stage === "transmission" || (mod && /settle|teacher|verdict/i.test(mod.explanation || ""))
+        ? '<p class="seq-teacher-stop"><strong>Limit</strong> · The text does not settle disputed rulings here. Ask a trusted teacher. This page does not issue a verdict.</p>'
+        : "";
+    return (
+      '<aside class="seq-teacher" aria-label="Teacher guidance">' +
+      '<div class="seq-teacher-head">' +
+      "<strong>Teacher guidance</strong> · " +
+      esc(g0.name) +
+      "</div>" +
+      '<p class="seq-teacher-role">' +
+      esc(g0.role) +
+      " — not a living scholar or fatwa service.</p>" +
+      "<p>" +
+      esc(tip) +
+      "</p>" +
+      extra +
+      '<p class="seq-teacher-actions">' +
+      '<a class="seq-btn" href="/campus/faculty.html">Faculty guides</a> ' +
+      '<a class="seq-btn" href="/charter/">Charter limits</a>' +
+      "</p>" +
+      "</aside>"
+    );
+  }
+
   function render() {
     var root = $("seq-desk-root");
-    if (!root || !g.CuSeq || !g.CU_SEQ_MODULES) return;
+    if (!root) return;
+
+    if (!g.CuSeq || !g.CU_SEQ_MODULES) {
+      root.innerHTML =
+        '<p class="seq-wait">Loading modules…</p>';
+      return false;
+    }
 
     var stage = stageFromPage();
     var unlocked = g.CuSeq.isStageUnlocked(stage);
-    var mods = g.CuSeq.modulesFor(stage);
+    var mods = g.CuSeq.modulesFor(stage) || [];
     var next = g.CuSeq.getNext();
     var focus = hashModule();
+
+    if (!mods.length) {
+      root.innerHTML =
+        '<p class="seq-wait">No modules found for this stage. Check that <code>cu-seq-modules-v1.js</code> loaded.</p>';
+      return true;
+    }
+
     if (!focus && next && next.stage === stage) focus = next.moduleId;
-    if (!focus && mods[0]) focus = mods[0].id;
+    if (!focus) focus = mods[0].id;
 
     var status =
       '<div class="seq-status" role="status">' +
@@ -65,7 +139,13 @@
       "</div>" +
       "<div><strong>Next required</strong> · " +
       (next && next.moduleId
-        ? esc((mods.filter(function (m) { return m.id === next.moduleId; })[0] || {}).title || next.moduleId) +
+        ? esc(
+            (
+              (g.CuSeq.modulesFor(next.stage) || []).filter(function (m) {
+                return m.id === next.moduleId;
+              })[0] || {}
+            ).title || next.moduleId
+          ) +
           (next.stage !== stage
             ? ' <a href="' + esc(g.CuSeq.deskHref(next.stage, next.moduleId)) + '">Open →</a>'
             : "")
@@ -85,8 +165,9 @@
         '<p><a class="seq-btn primary" href="' +
         esc(g.CuSeq.deskHref(prev)) +
         '">Open previous stage →</a></p>' +
+        teacherHtml(stage, null) +
         "</div>";
-      return;
+      return true;
     }
 
     var list =
@@ -116,68 +197,87 @@
         .join("") +
       "</ol>";
 
-    var mod = mods.filter(function (m) { return m.id === focus; })[0] || mods[0];
-    var detail = "";
-    if (mod) {
-      var done = g.CuSeq.isModuleDone(mod.id);
-      var quizHtml = "";
-      if (mod.quiz && mod.quiz.length) {
-        quizHtml =
-          '<div class="seq-quiz">' +
-          mod.quiz
-            .map(function (item, qi) {
-              return (
-                "<fieldset data-qi=\"" +
-                qi +
-                '"><legend>' +
-                esc(item.q) +
-                "</legend>" +
-                (item.opts || [])
-                  .map(function (opt, oi) {
-                    return (
-                      '<label><input type="radio" name="sq-' +
-                      qi +
-                      '" value="' +
-                      oi +
-                      '"/> ' +
-                      esc(opt) +
-                      "</label>"
-                    );
-                  })
-                  .join("") +
-                "</fieldset>"
-              );
+    var mod = mods.filter(function (m) {
+      return m.id === focus;
+    })[0] || mods[0];
+
+    var quizHtml = "";
+    if (mod.quiz && mod.quiz.length) {
+      quizHtml =
+        '<div class="seq-quiz">' +
+        mod.quiz
+          .map(function (item, qi) {
+            return (
+              '<fieldset data-qi="' +
+              qi +
+              '"><legend>' +
+              esc(item.q) +
+              "</legend>" +
+              (item.opts || [])
+                .map(function (opt, oi) {
+                  return (
+                    '<label><input type="radio" name="sq-' +
+                    qi +
+                    '" value="' +
+                    oi +
+                    '"/> ' +
+                    esc(opt) +
+                    "</label>"
+                  );
+                })
+                .join("") +
+              "</fieldset>"
+            );
+          })
+          .join("") +
+        "</div>";
+    }
+
+    var done = g.CuSeq.isModuleDone(mod.id);
+    var detail =
+      '<article class="seq-detail" id="seq-detail">' +
+      "<h2>" +
+      esc(mod.title) +
+      "</h2>" +
+      '<p class="seq-aim"><strong>Aim</strong> · ' +
+      esc(mod.aim) +
+      "</p>" +
+      sourceHtml(mod.source) +
+      (mod.explanation
+        ? '<div class="seq-explain"><strong>Learn</strong><p>' +
+          esc(mod.explanation) +
+          "</p></div>"
+        : "") +
+      (mod.points && mod.points.length
+        ? '<ul class="seq-points">' +
+          mod.points
+            .map(function (p) {
+              return "<li>" + esc(p) + "</li>";
             })
             .join("") +
-          "</div>";
-      }
-      detail =
-        '<article class="seq-detail" id="seq-detail">' +
-        "<h2>" +
-        esc(mod.title) +
-        "</h2>" +
-        '<p class="seq-aim"><strong>Aim</strong> · ' +
-        esc(mod.aim) +
-        "</p>" +
-        (mod.adab ? '<p class="seq-adab"><em>Adab · ' + esc(mod.adab) + "</em></p>" : "") +
-        sourceHtml(mod.source) +
-        (mod.explanation ? '<div class="seq-explain"><strong>Learn</strong><p>' + esc(mod.explanation) + '</p></div>' : '') +
-        (mod.points && mod.points.length ? '<ul class="seq-points">' + mod.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('') + '</ul>' : '') +
-        (mod.goDeeper && mod.goDeeper.href ? '<p><a class="seq-btn" href="'+esc(mod.goDeeper.href)+'" target="_blank" rel="noopener">'+esc(mod.goDeeper.label||'Go deeper')+' →</a></p>' : '') +
-        (mod.action ? "<p><strong>Action</strong> · " + esc(mod.action) + "</p>" : "") +
-        quizHtml +
-        (mod.labLink
-          ? '<p><a class="seq-btn" href="' + esc(mod.labLink) + '">Open related lab →</a></p>'
-          : "") +
-        '<div class="seq-actions">' +
-        (done
-          ? '<span class="seq-done-label">Marked done on this device ✓</span>'
-          : '<button type="button" class="seq-btn primary" id="seq-mark">Mark done</button>') +
-        '<button type="button" class="seq-btn" id="seq-next">Next module</button>' +
-        "</div>" +
-        '<p class="seq-foot">Educational only — not a fatwa. Not a grade of īmān.</p>' +
-        "</article>";
-    }
+          "</ul>"
+        : "") +
+      (mod.action ? "<p><strong>Action</strong> · " + esc(mod.action) + "</p>" : "") +
+      (mod.goDeeper && mod.goDeeper.href
+        ? '<p><a class="seq-btn" href="' +
+          esc(mod.goDeeper.href) +
+          '" target="_blank" rel="noopener">' +
+          esc(mod.goDeeper.label || "Go deeper") +
+          " →</a></p>"
+        : "") +
+      quizHtml +
+      (mod.labLink
+        ? '<p><a class="seq-btn" href="' + esc(mod.labLink) + '">Open related lab →</a></p>'
+        : "") +
+      teacherHtml(stage, mod) +
+      '<div class="seq-actions">' +
+      (done
+        ? '<span class="seq-done-label">Marked done on this device ✓</span>'
+        : '<button type="button" class="seq-btn primary" id="seq-mark">Mark done</button>') +
+      '<button type="button" class="seq-btn" id="seq-next">Next module</button>' +
+      "</div>" +
+      '<p class="seq-foot">Educational only — not a fatwa. Not a grade of īmān.</p>' +
+      "</article>";
 
     root.innerHTML = status + '<div class="seq-grid">' + list + detail + "</div>";
 
@@ -223,13 +323,26 @@
         }
       };
     }
+    return true;
   }
 
   function boot() {
-    if (!document.getElementById("seq-desk-root")) return;
-    render();
-    window.addEventListener("hashchange", render);
-    document.addEventListener("cu-seq-progress", render);
+    if (!$("seq-desk-root")) return;
+    var tries = 0;
+    function attempt() {
+      tries++;
+      var ok = render();
+      if (!ok && tries < 25) {
+        setTimeout(attempt, 80);
+      }
+    }
+    attempt();
+    window.addEventListener("hashchange", function () {
+      render();
+    });
+    document.addEventListener("cu-seq-progress", function () {
+      render();
+    });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
