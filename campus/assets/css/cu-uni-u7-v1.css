@@ -1,0 +1,32 @@
+:root{--gold:#c9a84c;--green:#1e7d5e;--bg:#0c1c16;--text:#e8f0ea}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+a{color:#e0c56a}
+.cu-shell{max-width:52rem;margin:0 auto;padding:0 .85rem 2.5rem}
+.cu-top{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;padding:.65rem 0;border-bottom:1px solid rgba(201,168,76,.25)}
+.cu-brand{font-weight:800;color:var(--gold);text-decoration:none;font-size:1rem}
+.cu-nav{display:flex;flex-wrap:wrap;gap:.35rem}
+.cu-nav a{font-size:.78rem;padding:.3rem .65rem;border-radius:999px;border:1px solid rgba(201,168,76,.35);text-decoration:none;color:inherit}
+.cu-verse{margin:1rem 0;padding:1rem 1.1rem;border-radius:1rem;border:1.5px solid rgba(201,168,76,.4);background:rgba(30,125,94,.12)}
+.cu-verse .ar{font-family:Amiri,serif;font-size:1.25rem;direction:rtl;text-align:right;line-height:1.9;margin:.35rem 0}
+.cu-verse .en{font-size:.92rem;opacity:.95}
+.cu-verse .src{font-size:.78rem;color:var(--gold);margin-top:.35rem}
+.cu-disc{font-size:.75rem;opacity:.8;margin:.5rem 0 0}
+.cu-hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(1.5rem,5vw,2rem);color:#e8d5a3;margin:.5rem 0}
+.cu-grid{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));margin:1rem 0}
+.cu-card{display:block;text-decoration:none;color:inherit;padding:1rem 1.05rem;border-radius:1rem;border:1px solid rgba(201,168,76,.32);background:rgba(255,255,255,.05)}
+.cu-card:hover{border-color:var(--gold);background:rgba(30,125,94,.15)}
+.cu-card .badge{display:inline-block;font-size:.65rem;font-weight:800;letter-spacing:.04em;padding:.15rem .5rem;border-radius:999px;background:var(--green);color:#fff;margin-bottom:.35rem}
+.cu-card h2{margin:.2rem 0;font-size:1.05rem;color:var(--gold)}
+.cu-card p{margin:0;font-size:.84rem;opacity:.9}
+.cu-phase{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}
+.cu-phase a{padding:.4rem .85rem;border-radius:999px;border:1px solid rgba(201,168,76,.35);text-decoration:none;color:inherit;font-size:.8rem;font-weight:700}
+.cu-phase a.on{background:var(--green);color:#fff;border-color:transparent}
+.cu-plaque{padding:1rem;border-radius:1rem;border:1px solid rgba(201,168,76,.28);margin:1rem 0;background:rgba(255,255,255,.04)}
+.cu-plaque h2{margin:0 0 .4rem;color:var(--gold);font-size:1.05rem}
+.cu-btn{display:inline-flex;align-items:center;padding:.5rem 1.1rem;border-radius:999px;background:var(--green);color:#fff;text-decoration:none;font-weight:700;border:0;cursor:pointer;font-size:.88rem}
+.cu-btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
+.cu-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(201,168,76,.2);font-size:.78rem;opacity:.85}
+html[data-theme=light] body{background:#f7f3e8;color:#1a2e24}
+html[data-theme=light] .cu-card{background:#fff}
+html[data-theme=light] .cu-verse{background:#eef6f1}
