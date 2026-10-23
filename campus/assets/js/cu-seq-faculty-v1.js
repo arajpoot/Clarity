@@ -1,3 +1,4 @@
+/* 20261023CLEAN cleanse */
 /**
  * cu-seq-faculty-v1.js — Educational personas → sequential modules
  * Not living scholars or fatwa service.

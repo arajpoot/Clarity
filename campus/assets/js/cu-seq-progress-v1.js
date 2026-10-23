@@ -1,3 +1,4 @@
+/* 20261023CLEAN cleanse */
 /**
  * cu-seq-progress-v1.js — University sequential progress bus
  * Stages: seeker → practice → consistency → transmission

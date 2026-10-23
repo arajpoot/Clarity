@@ -1,3 +1,4 @@
+/* 20261023CLEAN cleanse */
 /**
  * cu-seq-desk-v1.js — Desk modules + live teacher guidance
  * Educational personas only — not living scholars or fatwa service.

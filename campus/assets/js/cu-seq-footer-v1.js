@@ -1,3 +1,4 @@
+/* 20261023CLEAN cleanse */
 /**
  * cu-seq-footer-v1.js — University limits footer
  */

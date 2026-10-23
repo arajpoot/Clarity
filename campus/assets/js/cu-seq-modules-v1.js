@@ -1,3 +1,4 @@
+/* 20261023CLEAN cleanse */
 /* 20261023DESK */
 /**
  * cu-seq-modules-v1.js — Deep sequential modules (20261021TEACH)
