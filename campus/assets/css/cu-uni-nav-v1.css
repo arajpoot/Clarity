@@ -1,0 +1,98 @@
+
+/* cu-uni-nav-v1.css — University path harmony */
+.cu-uni-path {
+  max-width: min(56rem, 100%);
+  margin: .35rem auto .5rem;
+  padding: 0 .75rem;
+}
+.cu-uni-path-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  align-items: center;
+  justify-content: center;
+  padding: .45rem .55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201,162,39,.35);
+  background: rgba(16,28,22,.06);
+}
+html[data-theme=light] .cu-uni-path-rail {
+  background: rgba(255,252,245,.92);
+}
+.cu-uni-path-rail a {
+  display: inline-flex;
+  align-items: center;
+  gap: .2rem;
+  padding: .32rem .7rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: inherit;
+  opacity: .88;
+  border: 1px solid transparent;
+}
+.cu-uni-path-rail a:hover {
+  opacity: 1;
+  border-color: rgba(201,162,39,.45);
+}
+.cu-uni-path-rail a[aria-current="page"] {
+  background: linear-gradient(135deg, rgba(201,162,39,.28), rgba(70,124,69,.2));
+  border-color: rgba(201,162,39,.55);
+  opacity: 1;
+  box-shadow: 0 0 0 1px rgba(201,162,39,.15);
+}
+.cu-uni-stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  justify-content: center;
+  margin: .35rem auto .15rem;
+  max-width: min(56rem, 100%);
+  padding: 0 .75rem;
+}
+.cu-uni-stages a {
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .28rem .65rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(201,162,39,.28);
+  opacity: .85;
+}
+.cu-uni-stages a[aria-current="page"] {
+  background: rgba(70,124,69,.22);
+  border-color: rgba(70,124,69,.5);
+  opacity: 1;
+}
+.cu-uni-stages a.is-locked {
+  opacity: .45;
+}
+.cu-uni-crumb {
+  text-align: center;
+  font-size: .72rem;
+  opacity: .75;
+  margin: .25rem auto .5rem;
+  max-width: 40rem;
+  line-height: 1.35;
+}
+.cu-uni-journey {
+  max-width: min(52rem, 100%);
+  margin: 1rem auto;
+  padding: .85rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(201,162,39,.35);
+}
+.cu-uni-journey ol {
+  margin: .4rem 0 0 1.1rem;
+  padding: 0;
+  font-size: .9rem;
+  line-height: 1.45;
+}
+.cu-uni-journey li { margin: .35rem 0; }
+.cu-uni-journey a { font-weight: 700; }
+@media (max-width: 640px) {
+  .cu-uni-path-rail a { font-size: .72rem; padding: .28rem .55rem; }
+}
