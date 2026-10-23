@@ -1,24 +1,19 @@
-U0–U4 University interactive package
-====================================
-Companion untouched. Upload under repo root as:
+Desk render complete (20261023DESK)
 
-  campus/assets/js/cu-campus-progress-v1.js
-  campus/faculty.html
-  campus/bots.html
-  campus/grading.html
+CRITICAL: Upload ALL files. Previous live desk HTML had NO seq scripts.
 
-Optional U4 landing links:
-  Paste CAMPUS_LANDING_SNIPPET.html content into campus/index.html
-  (services area). Or rely on existing Faculty link + pills on the three pages.
+1. Upload entire campus/ tree from this zip
+2. Cloudflare Purge Everything
+3. Incognito: https://clarity-dawah.fyi/campus/desk/seeker/#m=seeker.m1
 
-Smoke tests
------------
-U0  Open faculty.html console: typeof CuCampusProgress === "object"
-U1  Faculty → Start guided lesson → Mark done → count +1 → refresh → holds
-U2  Bots → Security (all 3) Confirm → IT Run status → O&M Mark step → log updates
-U3  Grading → faculty + om counts → Mark review → refresh → holds · suggestion shows
-U4  /campus/ links Faculty · Bots · Progress work; Companion / unchanged
+Verify:
+- Module path (8) visible
+- Allah is One opens with Learn + source + quiz + Go deeper + Teacher guidance
+- Mark done → refresh → progress
+- /campus/desk/practice/ locked until Seeker complete
+- /campus/ Continue card
+- Faculty Start guided lesson → unfinished module
+- Bots O&M Mark one step
+- Grading counts + Everyday return
 
-Footer on all three pages:
-  Educational only — not a fatwa. Not a grade of īmān.
-  Last reviewed October 2026 · Quran.com / Sunnah.com.
+Companion untouched.
