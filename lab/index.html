@@ -4,44 +4,73 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Lab · Clarity University</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-
-<meta name="description" content="Skill halls — language, Qurʾān craft, expression."/>
-
+<meta name="description" content="Practical stations for desk modules. One short lab assignment at a time. Educational only — not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019T07"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019T07"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019T07"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019T07"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019LAB"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019LAB"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261019LAB"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261019LAB"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261018CANON"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019HRM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019T07"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-ui-revamp-v1.css?v=20261019FF"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019HRM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-viewport-v1.css?v=20261019FF"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-page-enrich-v1.css?v=20261019FF"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-student-status-v1.css?v=20261019FF"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019HRM"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019HRM"></script>
-
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019LAB"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019LAB"/>
+<link rel="stylesheet" href="/lab/shared/lab-shell.css?v=20261019LAB"/>
+<link rel="stylesheet" href="/lab/shared/lab-station-bar.css?v=20261019L2"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019LAB"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019LAB"></script>
 <style>
-.cu-rich-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))!important;gap:.75rem!important;max-width:min(72rem,100%);margin:.75rem auto 1.25rem}
-.cu-rich-card{display:block;text-decoration:none;color:inherit;padding:.9rem 1rem;border-radius:16px;min-height:5.5rem;border:1px solid rgba(212,180,90,.32);background:rgba(12,22,18,.85)}
-html[data-theme=light] .cu-rich-card{background:#fff;color:#13201a}
-.cu-rich-card strong{display:block;font-size:1.02rem;margin:.2rem 0 .35rem;color:#e8d5a3}
-html[data-theme=light] .cu-rich-card strong{color:#6b5a1e}
-.cu-rich-card .desc{font-size:.86rem;opacity:.9;line-height:1.35}
-.cu-badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:999px;border:1px solid rgba(212,180,90,.4)}
-.cu-badge.open{background:rgba(30,125,94,.25)}
+.lab-wrap{width:100%;max-width:48rem;margin:0 auto;padding:0 .85rem 2.25rem;box-sizing:border-box}
+.lab-h1{margin:.35rem 0 .3rem;font-size:1.4rem;color:#c9a227}
+.lab-lead{font-size:.9rem;line-height:1.5;opacity:.9;margin:0 0 1rem}
+.lab-assign{
+  border:1px solid rgba(201,162,39,.4);border-radius:18px;padding:1.1rem 1.15rem;
+  margin:0 0 1rem;background:rgba(45,106,79,.14)
+}
+.lab-assign .badge{
+  display:inline-block;font-size:.65rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:.18rem .55rem;border-radius:999px;background:#2d6a4f;color:#fff;margin-bottom:.45rem
+}
+.lab-assign h2{margin:0 0 .35rem;font-size:1.15rem;color:#c9a227}
+.lab-assign p{margin:0 0 .55rem;font-size:.88rem;line-height:1.5;opacity:.92}
+.lab-assign .why{font-size:.8rem;opacity:.85;margin-bottom:.65rem}
+.lab-assign-actions{display:flex;flex-wrap:wrap;gap:.4rem}
+.lab-btn{
+  display:inline-flex;align-items:center;min-height:42px;padding:.4rem 1rem;border-radius:999px;
+  background:#2d6a4f;color:#fff;font-weight:700;font-size:.84rem;text-decoration:none;border:0;cursor:pointer
+}
+.lab-btn.ghost{background:transparent;color:inherit;border:1px solid rgba(201,162,39,.35)}
+.lab-card{
+  display:block;text-decoration:none;color:inherit;
+  border:1px solid rgba(201,162,39,.28);border-radius:16px;padding:1rem 1.05rem;
+  margin:0 0 .55rem;background:rgba(255,255,255,.06)
+}
+html[data-theme="light"] .lab-card{background:rgba(255,255,255,.75)}
+.lab-card strong{display:block;font-size:1rem;color:#c9a227;margin-bottom:.2rem}
+.lab-card span{font-size:.84rem;opacity:.9;line-height:1.45}
+.lab-card .meta{display:block;margin-top:.4rem;font-size:.72rem;opacity:.8}
+.lab-grid{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));margin:1rem 0}
+.lab-section{margin:1.15rem 0}
+.lab-section h2{margin:0 0 .5rem;font-size:1.05rem;color:#c9a227}
+.lab-muted{font-size:.82rem;opacity:.88;line-height:1.45}
+.lab-circuit{display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0}
+.lab-circuit button{
+  border-radius:999px;padding:.35rem .75rem;font-size:.75rem;font-weight:700;cursor:pointer;
+  border:1px solid rgba(201,162,39,.3);background:rgba(255,255,255,.08);color:inherit
+}
+.lab-circuit button.on{background:#2d6a4f;color:#fff;border-color:#2d6a4f}
+html[data-theme="light"] .lab-circuit button{background:rgba(255,255,255,.8)}
+.lab-util{
+  display:grid;gap:.45rem;grid-template-columns:repeat(auto-fill,minmax(10rem,1fr));margin:.5rem 0
+}
+.lab-util a{
+  text-align:center;padding:.65rem .5rem;border-radius:12px;text-decoration:none;color:inherit;
+  border:1px solid rgba(201,162,39,.25);font-size:.8rem;font-weight:700;background:rgba(0,0,0,.1)
+}
+html[data-theme="light"] .lab-util a{background:rgba(255,255,255,.7)}
 </style>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261019HRM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261019HRM"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-surface-v1.css?v=20261020P3"/>
 </head>
-<body class="cu-page cu-mahtaab-on" data-campus-page="lab">
-<header class="cu-banner" id="cu-banner">
+<body class="cu-page cu-mahtaab-on" data-campus-page="lab-hub">
+<header class="cu-banner">
   <a class="cu-brand" href="/charter/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
     <div><small>University</small><strong>Clarity University</strong></div>
@@ -50,41 +79,270 @@ html[data-theme=light] .cu-rich-card strong{color:#6b5a1e}
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
-    <a class="cu-main-link" href="/">← Companion</a>
+    <a class="cu-companion-link" href="/">← Companion</a>
   </div>
 </header>
-<main class="cu-wrap">
-<nav class="cu-pills" aria-label="Campus"><a href="/charter/">Charter</a><a href="/campus/portal/">Portal</a><a href="/campus/desk/">Desk</a><a href="/lab/" class="here" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/campus/buddy/">Buddy</a><a href="/vault/">Vault</a></nav>
-<div data-cu-student-status></div>
-<div style="max-width:min(72rem,100%);margin:0 auto">
-  <h1 class="cu-h1">Craft Laboratory</h1>
-  <p class="cu-lead">Skill halls after desk study. One station · no second streak. Educational only — not a fatwa · not affiliated with Al-Azhar.</p>
 
-  <p style="color:#d4b45a;margin:1rem 0 .35rem"><strong>Language hall</strong></p>
-  <div class="cu-rich-grid">
-    <a class="cu-rich-card" href="/lab/arabic/"><span class="cu-badge open">Studio</span><strong>Arabic</strong><span class="desc">Packs · EN↔AR · conversation</span></a>
-    <a class="cu-rich-card" href="/lab/arabic/hajj2027/"><span class="cu-badge">Travel</span><strong>Hajj phrases</strong><span class="desc">Everyday Arabic · not a ritual guide</span></a>
-  </div>
+<main>
+<nav class="cu-pills" aria-label="Campus">
+  <a href="/charter/">◇ Charter</a>
+  <a href="/campus/">▣ Map</a>
+  <a href="/campus/desk/">☰ Desk</a>
+  <a href="/lab/" class="here" aria-current="page">◈ Lab</a>
+  <a href="/library/">▦ Library</a>
+  <a href="/campus/buddy/">✦ Buddy</a>
+  <a href="/vault/">◎ Vault</a>
+</nav>
+<nav class="lab-station-nav" data-lab-bar="1" aria-label="Lab stations">
+  <a href="/lab/" class="here" aria-current="page">Hub</a>
+  <a href="/lab/arabic/">Arabic</a>
+  <a href="/lab/tajweed/">Tajweed</a>
+  <a href="/lab/recite/">Recite</a>
+  <a href="/lab/calligraphy/">Calligraphy</a>
+  <a href="/lab/hifz/">Hifz</a>
+  <a href="/lab/media/">Media</a>
+</nav>
 
-  <p style="color:#d4b45a;margin:1rem 0 .35rem"><strong>Qurʾān craft hall</strong></p>
-  <div class="cu-rich-grid">
-    <a class="cu-rich-card" href="/lab/tajweed/"><span class="cu-badge open">Studio</span><strong>Tajweed</strong><span class="desc">Listen · Match · Record</span></a>
-    <a class="cu-rich-card" href="/lab/recite/"><span class="cu-badge open">Studio</span><strong>Recite</strong><span class="desc">Measured ayah practice</span></a>
-    <a class="cu-rich-card" href="/lab/hifz/"><span class="cu-badge open">Studio</span><strong>Hifz</strong><span class="desc">Memorisation support</span></a>
-  </div>
+<div class="lab-wrap">
+  <h1 class="lab-h1">Lab hub</h1>
+  <p class="lab-lead">Practical stations for desk learning — not a second curriculum. One short assignment at a time. Educational only — not a fatwa.</p>
 
-  <p style="color:#d4b45a;margin:1rem 0 .35rem"><strong>Expression hall</strong></p>
-  <div class="cu-rich-grid">
-    <a class="cu-rich-card" href="/lab/calligraphy/"><span class="cu-badge open">Studio</span><strong>Calligraphy</strong><span class="desc">One letter · calm stroke</span></a>
-    <a class="cu-rich-card" href="/lab/media/"><span class="cu-badge open">Studio</span><strong>Media</strong><span class="desc">Reminder craft · source honesty</span></a>
-  </div>
-  <p class="cu-meta">Use after a desk module. <a href="/campus/desk/seeker/">Seeker desk</a> · <a href="/campus/portal/">Portal</a></p>
+  <!-- Surprise: Weekly Lab Circuit assignment -->
+  <section class="lab-assign" id="lab-today" aria-labelledby="lab-today-h">
+    <span class="badge" id="lab-today-badge">Today’s lab assignment</span>
+    <h2 id="lab-today-h">Loading…</h2>
+    <p id="lab-today-task">—</p>
+    <p class="why" id="lab-today-why">—</p>
+    <div class="lab-assign-actions">
+      <a class="lab-btn" id="lab-today-go" href="/lab/tajweed/">Open station →</a>
+      <button type="button" class="lab-btn ghost" id="lab-today-done">Mark done (this device)</button>
+      <a class="lab-btn ghost" href="/campus/desk/">← Desk modules</a>
+    </div>
+    <p class="lab-muted" id="lab-today-status" style="margin-top:.55rem"></p>
+  </section>
+
+  <section class="lab-section">
+    <h2>Pick a circuit</h2>
+    <p class="lab-muted">Rotate by phase so Lab stays tied to what you study on the Desk — learning-station style, one skill focus.</p>
+    <div class="lab-circuit" id="lab-circuit" role="group" aria-label="Phase circuit">
+      <button type="button" data-phase="auto" class="on">Auto (weekday)</button>
+      <button type="button" data-phase="seeker">Seeker</button>
+      <button type="button" data-phase="practice">Practice</button>
+      <button type="button" data-phase="consistency">Consistency</button>
+      <button type="button" data-phase="transmission">Transmission</button>
+    </div>
+  </section>
+
+  <section class="lab-section">
+    <h2>Utility cluster</h2>
+    <div class="lab-util">
+      <a href="/campus/assignments/">Assignments</a>
+      <a href="/vault/">Vault pins</a>
+      <a href="/library/">Library shelves</a>
+      <a href="/campus/buddy/">Study buddy</a>
+      <a href="/lab/recite/">Recite</a>
+      <a href="/lab/tajweed/">Tajweed</a>
+    </div>
+  </section>
+
+  <section class="lab-section">
+    <h2>All stations</h2>
+    <div class="lab-grid">
+      <a class="lab-card" href="/lab/arabic/">
+        <strong>Arabic</strong>
+        <span>Letters, reading path, and language drills for desk units.</span>
+        <span class="meta">~10–15 min · Seeker / Practice</span>
+      </a>
+      <a class="lab-card" href="/lab/tajweed/">
+        <strong>Tajweed</strong>
+        <span>Listen · Match · Record · rule shelves. On-device only.</span>
+        <span class="meta">LMR · visual rules</span>
+      </a>
+      <a class="lab-card" href="/lab/recite/">
+        <strong>Recite</strong>
+        <span>Guided āyah: hear · echo · hide · refine in Tajweed.</span>
+        <span class="meta">Coach · all 114 sūrahs</span>
+      </a>
+      <a class="lab-card" href="/lab/calligraphy/">
+        <strong>Calligraphy</strong>
+        <span>Trace with presence — beauty as remembrance, not display.</span>
+        <span class="meta">Slow hand · one letter</span>
+      </a>
+      <a class="lab-card" href="/lab/hifz/">
+        <strong>Hifz</strong>
+        <span>Sabaq rhythm · hide · mark spaced list on this device.</span>
+        <span class="meta">One āyah · murajaʿah helper</span>
+      </a>
+      <a class="lab-card" href="/lab/media/">
+        <strong>Media</strong>
+        <span>Honest reminder craft — sources clear, no free-typed scripture as authority.</span>
+        <span class="meta">Transmission adab</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="lab-section">
+    <h2>How Lab serves the Desk</h2>
+    <p class="lab-muted">Desk = knowledge path. Lab = short practical after (or between) modules. Do not replace desk reading with endless lab loops.</p>
+    <ol class="lab-muted" style="padding-left:1.15rem">
+      <li>Open the current desk module.</li>
+      <li>Take <strong>today’s lab assignment</strong> (10–15 min).</li>
+      <li>Optional: pin a source in Vault.</li>
+      <li>Return to desk when the module asks for more reading.</li>
+    </ol>
+  </section>
 </div>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa · not affiliated with Al-Azhar · progress stays on this device.</footer>
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019HRM" defer></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261019HRM" defer></script>
-<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019HRM" defer></script>
-<script src="/campus/assets/js/cu-student-status-v1.js?v=20261019T07" defer></script>
+
+<footer class="cu-foot">
+  <p>Educational only — not a fatwa. · Lab hub 20261019LAB · on-device assignment marks</p>
+</footer>
+
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019LAB"></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019LAB"></script>
+<script src="/lab/shared/lab-station-bar.js?v=20261019L2" defer></script>
+<script>
+(function(){
+  "use strict";
+  var KEY_PHASE = "cu_lab_circuit_phase_v1";
+  var KEY_DONE = "cu_lab_assign_done_v1";
+
+  /* Circuit bank: phase → weekday-rotated assignments */
+  var BANK = {
+    seeker: [
+      { day:0, title:"Arabic · letter presence", task:"Open Arabic lab. Trace or review 3 letters slowly.", why:"Supports Seeker foundations — sound before speed.", href:"/lab/arabic/" },
+      { day:1, title:"Recite · one āyah", task:"Pull Al-Fātiḥah 1. Hear twice · echo · hide once.", why:"Desk belief modules need living sound of the Book.", href:"/lab/recite/" },
+      { day:2, title:"Tajweed · listen first", task:"LMR on 1:1. Play master 3× before recording.", why:"Correct hearing protects meaning.", href:"/lab/tajweed/" },
+      { day:3, title:"Calligraphy · one letter", task:"One letter, slow strokes. Presence over polish.", why:"Hand memory aids adab and attention.", href:"/lab/calligraphy/" },
+      { day:4, title:"Hifz · short sabaq", task:"Mark Al-Ikhlāṣ 1 on spaced list after hide-recall.", why:"Tiny quota builds habit without burnout.", href:"/lab/hifz/" },
+      { day:5, title:"Tajweed · qalqalah path", task:"Rule chip 112:1 · one LMR loop.", why:"Practice one rule, not ten.", href:"/lab/tajweed/" },
+      { day:6, title:"Recite · review", task:"Return to yesterday’s āyah. Hide text · check once.", why:"Sabqi before new pile.", href:"/lab/recite/" }
+    ],
+    practice: [
+      { day:0, title:"Tajweed · ṣalāh care", task:"LMR on 1:7. Focus madd duration by ear.", why:"Prayer recitation benefits from slow listen.", href:"/lab/tajweed/" },
+      { day:1, title:"Recite · wuḍūʾ āyah", task:"Open 5:6 on Recite (or Quran.com link from Library).", why:"Practice phase ties text to action.", href:"/lab/recite/" },
+      { day:2, title:"Arabic · reading path", task:"One short reading drill in Arabic lab.", why:"Reading supports independent desk work.", href:"/lab/arabic/" },
+      { day:3, title:"Hifz · short portion", task:"Hide-recall one practiced āyah; mark steady or weak.", why:"Skills need retention, not only first look.", href:"/lab/hifz/" },
+      { day:4, title:"Calligraphy · basmalah focus", task:"Slow practice of a familiar phrase shape.", why:"Beauty with humility.", href:"/lab/calligraphy/" },
+      { day:5, title:"Tajweed · match gently", task:"Verse practice · play while reading · no rush score.", why:"Match before measure.", href:"/lab/tajweed/" },
+      { day:6, title:"Library · primary pin", task:"From Library Primary, open Quran.com · pin in Vault.", why:"Practice modules need cited sources.", href:"/library/" }
+    ],
+    consistency: [
+      { day:0, title:"Hifz · sabqi", task:"Open spaced list · review one weak tag.", why:"Consistency is review, not only new.", href:"/lab/hifz/" },
+      { day:1, title:"Recite · familiar sūrah", task:"One āyah you already know · hide first.", why:"Active recall beats re-reading only.", href:"/lab/recite/" },
+      { day:2, title:"Tajweed · loop hard bar", task:"Repeat difficult phrase before full āyah.", why:"A–B focus from digital pedagogy.", href:"/lab/tajweed/" },
+      { day:3, title:"Calligraphy · weekly letter", task:"Same letter as last week · cleaner intention.", why:"Steady craft.", href:"/lab/calligraphy/" },
+      { day:4, title:"Arabic · light drill", task:"5–10 min only — protect energy for desk.", why:"Sustainable rhythm.", href:"/lab/arabic/" },
+      { day:5, title:"Media · honest share draft", task:"One reminder idea with source named (no free-typed āyah as authority).", why:"Consistency in adab of speech.", href:"/lab/media/" },
+      { day:6, title:"Vault · pin cleanup", task:"Review pins · remove one unused.", why:"Clear locker supports steady study.", href:"/vault/" }
+    ],
+    transmission: [
+      { day:0, title:"Media · source-first", task:"Craft only with a link to Quran.com or Sunnah.com.", why:"Transmission without clear source harms trust.", href:"/lab/media/" },
+      { day:1, title:"Library · cite carefully", task:"Phase 4 shelf · open one primary · pin title + URL.", why:"Teach-back needs verifiable refs.", href:"/library/" },
+      { day:2, title:"Recite · accuracy", task:"One āyah · show text · do not improvise wording.", why:"Sharing requires precision.", href:"/lab/recite/" },
+      { day:3, title:"Tajweed · teacher humility", task:"LMR score as helper only — write ‘ask teacher’ if unsure.", why:"No self-issued qāriʾ claims.", href:"/lab/tajweed/" },
+      { day:4, title:"Buddy · adab check", task:"Open Buddy · one kind accountability note to self.", why:"Transmission is relational.", href:"/campus/buddy/" },
+      { day:5, title:"Hifz · short teach-back", task:"Recite one marked āyah to yourself as if teaching a child — slow.", why:"Clarity over performance.", href:"/lab/hifz/" },
+      { day:6, title:"Assignments · log", task:"Open Assignments · tick one honest practice.", why:"Close the loop with Desk.", href:"/campus/assignments/" }
+    ]
+  };
+
+  function phaseFromStorage() {
+    try {
+      return localStorage.getItem(KEY_PHASE) || "auto";
+    } catch (e) {
+      return "auto";
+    }
+  }
+  function resolvePhase(p) {
+    if (p && p !== "auto") return p;
+    try {
+      var desk = localStorage.getItem("cu_assign_phase_v1") || localStorage.getItem("clarity_path");
+      if (desk && BANK[desk]) return desk;
+    } catch (e) {}
+    var d = new Date().getDay(); /* 0 Sun … 6 Sat */
+    var map = ["seeker", "practice", "consistency", "transmission", "seeker", "practice", "consistency"];
+    return map[d] || "seeker";
+  }
+
+  function pick(phase) {
+    var list = BANK[phase] || BANK.seeker;
+    var day = new Date().getDay();
+    var item = list.filter(function (x) { return x.day === day; })[0] || list[0];
+    return { phase: phase, item: item };
+  }
+
+  function doneKey(phase, title) {
+    var d = new Date();
+    return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + "|" + phase + "|" + title;
+  }
+
+  function isDone(phase, title) {
+    try {
+      var o = JSON.parse(localStorage.getItem(KEY_DONE) || "{}");
+      return !!o[doneKey(phase, title)];
+    } catch (e) {
+      return false;
+    }
+  }
+  function setDone(phase, title) {
+    try {
+      var o = JSON.parse(localStorage.getItem(KEY_DONE) || "{}");
+      o[doneKey(phase, title)] = Date.now();
+      localStorage.setItem(KEY_DONE, JSON.stringify(o));
+    } catch (e) {}
+  }
+
+  function render(phasePref) {
+    var phase = resolvePhase(phasePref);
+    var pack = pick(phase);
+    var it = pack.item;
+    var h = document.getElementById("lab-today-h");
+    var t = document.getElementById("lab-today-task");
+    var w = document.getElementById("lab-today-why");
+    var g = document.getElementById("lab-today-go");
+    var b = document.getElementById("lab-today-badge");
+    var st = document.getElementById("lab-today-status");
+    if (h) h.textContent = it.title;
+    if (t) t.textContent = it.task;
+    if (w) w.textContent = "Why: " + it.why + " · Circuit: " + pack.phase;
+    if (g) g.href = it.href;
+    if (b) b.textContent = "Today’s lab assignment · " + pack.phase;
+    if (st) {
+      st.textContent = isDone(pack.phase, it.title)
+        ? "Marked done for today on this device. You may still re-open the station."
+        : "About 10–15 minutes. One station is enough.";
+    }
+    window.__labToday = { phase: pack.phase, item: it };
+  }
+
+  document.getElementById("lab-circuit").addEventListener("click", function (ev) {
+    var btn = ev.target.closest("[data-phase]");
+    if (!btn) return;
+    document.querySelectorAll("#lab-circuit [data-phase]").forEach(function (x) {
+      x.classList.toggle("on", x === btn);
+    });
+    var p = btn.getAttribute("data-phase");
+    try {
+      localStorage.setItem(KEY_PHASE, p);
+    } catch (e) {}
+    render(p);
+  });
+
+  document.getElementById("lab-today-done").addEventListener("click", function () {
+    var cur = window.__labToday;
+    if (!cur) return;
+    setDone(cur.phase, cur.item.title);
+    render(phaseFromStorage());
+  });
+
+  /* restore circuit button */
+  var pref = phaseFromStorage();
+  document.querySelectorAll("#lab-circuit [data-phase]").forEach(function (x) {
+    x.classList.toggle("on", x.getAttribute("data-phase") === pref);
+  });
+  render(pref);
+})();
+</script>
 </body>
 </html>
