@@ -1,33 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light" data-mahtaab="1">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Student desk · Clarity University</title>
-<meta name="description" content="Student desk — four Islamic learning phases. Educational only."/>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-u7-v1.css?v=20261022U7"/>
-<script src="/campus/assets/js/cu-uni-u7-v1.js?v=20261022U7"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Academics · Clarity University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+<meta name="description" content="Sequenced desks — Seeker to Transmission. Educational only."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-student-status-v1.css?v=20261019FF"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261019HRM"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019HRM"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019HRM"></script>
+<style>
+.cu-rich-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.75rem;max-width:min(72rem,100%);margin:.75rem auto}
+.cu-rich-card{display:block;text-decoration:none;color:inherit;padding:.9rem 1rem;border-radius:16px;border:1px solid rgba(212,180,90,.32);background:rgba(12,22,18,.85);min-height:5.5rem}
+html[data-theme=light] .cu-rich-card{background:#fff;color:#13201a}
+.cu-rich-card strong{display:block;margin:.25rem 0;color:#e8d5a3}
+html[data-theme=light] .cu-rich-card strong{color:#6b5a1e}
+</style>
+<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261019HRM"/>
 </head>
-<body>
-<div class="cu-shell">
-  <header class="cu-top">
-    <a class="cu-brand" href="/campus/">Clarity University</a>
-    <nav class="cu-nav">
-      <a href="/campus/">Campus</a>
-      <a href="/campus/assignments/">Assignments</a>
-      <a href="/">Companion</a>
-    </nav>
-  </header>
-  <h1 style="font-family:Cormorant Garamond,serif;color:#e8d5a3">Student desk</h1>
-  <p>Continue where the path is clear. One phase at a time.</p>
-  <div class="cu-grid">
-    <a class="cu-card" href="/campus/desk/foundation/"><span class="badge">1</span><h2>Foundation of Īmān</h2><p>Belief and beginnings</p></a>
-    <a class="cu-card" href="/campus/desk/pillars/"><span class="badge">2</span><h2>Pillars of practice</h2><p>Worship foundations</p></a>
-    <a class="cu-card" href="/campus/desk/ihsan/"><span class="badge">3</span><h2>Path of iḥsān</h2><p>Craft and character</p></a>
-    <a class="cu-card" href="/campus/desk/amanah/"><span class="badge">4</span><h2>Amānah of knowledge</h2><p>Transmit with adab</p></a>
+<body class="cu-page">
+<header class="cu-banner" id="cu-banner">
+  <a class="cu-brand" href="/charter/"><span class="cu-brand-mark" aria-hidden="true">ن</span><div><small>Academics</small><strong>Clarity University</strong></div></a>
+  <div class="cu-banner-actions">
+    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
+    <a class="cu-main-link" href="/">← Companion</a>
   </div>
-  <footer class="cu-footer">Educational only — not a fatwa · not a degree</footer>
+</header>
+<main class="cu-wrap">
+<nav class="cu-pills" aria-label="Campus">
+  <a href="/charter/">Charter</a>
+  <a href="/campus/portal/">Portal</a>
+  <a href="/campus/desk/" class="here" aria-current="page">Desk</a>
+  <a href="/lab/">Lab</a>
+  <a href="/library/">Library</a>
+  <a href="/campus/buddy/">Buddy</a>
+  <a href="/vault/">Vault</a>
+</nav>
+<div data-cu-student-status></div>
+<div style="max-width:min(72rem,100%);margin:0 auto">
+  <h1 class="cu-h1">Academics</h1>
+  <p class="cu-lead">Four sequenced stages. Finish foundations before rushing ahead. Educational only — not a physical faculty.</p>
+  <div class="cu-rich-grid">
+    <a class="cu-rich-card" href="/campus/desk/seeker/"><strong>Seeker</strong><span class="desc">Stage 1 · foundations</span></a>
+    <a class="cu-rich-card" href="/campus/desk/practice/"><strong>Practice</strong><span class="desc">Stage 2 · skills</span></a>
+    <a class="cu-rich-card" href="/campus/desk/consistency/"><strong>Consistency</strong><span class="desc">Stage 3 · steady craft</span></a>
+    <a class="cu-rich-card" href="/campus/desk/transmission/"><strong>Transmission</strong><span class="desc">Stage 4 · share with adab</span></a>
+  </div>
+  <p class="cu-meta"><a href="/campus/">← Campus map</a> · <a href="/lab/">Practice halls</a></p>
 </div>
+</main>
+<footer class="cu-foot">Educational only — not a fatwa · not affiliated with any physical university.</footer>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019HRM" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019HRM" defer></script>
+<script src="/campus/assets/js/cu-student-status-v1.js?v=20261019FF" defer></script>
+<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019HRM" defer></script>
+
+<section id="cu-desk-dual" style="max-width:48rem;margin:1rem auto;padding:0 1rem">
+  <h2 style="color:#c9a227">Islamic phases</h2>
+  <p><a href="/campus/desk/foundation/">Foundation</a> · <a href="/campus/desk/pillars/">Pillars</a> · <a href="/campus/desk/ihsan/">Iḥsān</a> · <a href="/campus/desk/amanah/">Amānah</a></p>
+  <h2 style="color:#c9a227">Classic modules</h2>
+  <p><a href="/campus/desk/seeker/">Seeker</a> · <a href="/campus/desk/practice/">Practice</a> · <a href="/campus/desk/consistency/">Consistency</a> · <a href="/campus/desk/transmission/">Transmission</a></p>
+  <h2 style="color:#c9a227">Labs</h2>
+  <p><a href="/lab/tajweed/">Tajweed</a> · <a href="/lab/hifz/">Hifz</a> · <a href="/lab/arabic/">Arabic</a> · <a href="/lab/calligraphy/">Calligraphy</a> · <a href="/library/">Library</a></p>
+</section>
+
 </body>
 </html>
