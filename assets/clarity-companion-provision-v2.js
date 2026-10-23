@@ -206,9 +206,35 @@
       a.addEventListener("click", function (ev) {
         var tab = a.getAttribute("data-cph-tab");
         var sid = a.getAttribute("data-cph-scroll");
-        if (tab && typeof w.switchTab === "function") {
+        if (tab) {
           ev.preventDefault();
-          w.switchTab(tab, sid || undefined);
+          var landing = false;
+          try {
+            landing = document.documentElement.classList.contains("clarity-landing-active");
+          } catch (eL) {}
+          if (landing) {
+            try {
+              if (typeof w.clarityLandingEnterGate === "function") {
+                w.clarityLandingEnterGate(
+                  (function () {
+                    try {
+                      return (JSON.parse(localStorage.getItem("clarity_landing_gate_v1") || "{}") || {}).lastGate || "seeker";
+                    } catch (e) {
+                      return "seeker";
+                    }
+                  })()
+                );
+              } else {
+                document.documentElement.classList.remove("clarity-landing-active");
+                document.documentElement.classList.add("clarity-landing-done", "clarity-main-active");
+              }
+            } catch (e2) {}
+            setTimeout(function () {
+              if (typeof w.switchTab === "function") w.switchTab(tab, sid || undefined);
+            }, 100);
+            return;
+          }
+          if (typeof w.switchTab === "function") w.switchTab(tab, sid || undefined);
         } else if (sid) {
           setTimeout(function () {
             var el = document.getElementById(sid);
