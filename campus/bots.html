@@ -4,15 +4,26 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Campus bots · Clarity University</title>
-<meta name="description" content="On-device IT, Security, and O&M study aids. Not real system administration."/>
+<meta name="description" content="On-device IT, Security, and O&M study aids."/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023U"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023U"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261023U"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261023U"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261023U"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023U"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023U"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-student-status-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-day-flow-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261023FULL"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261023FULL"/>
+
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023FULL"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023FULL"></script>
+<script src="/campus/assets/js/cu-chrome-canonical-v1.js?v=20261023FULL"></script>
+
 <style>
 .bot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(12rem,1fr));gap:.65rem;max-width:min(52rem,100%);margin:0 auto .85rem}
 .bot-card{border:1px solid rgba(201,168,76,.4);border-radius:16px;padding:.9rem 1rem;background:rgba(16,28,22,.92);cursor:pointer;text-align:left;color:inherit;font:inherit}
@@ -34,9 +45,9 @@ html[data-theme=light] .bot-flow h2{color:#6b5a1e}
 .bot-note{text-align:center;font-size:.8rem;opacity:.85;max-width:40rem;margin:.5rem auto 1rem}
 </style>
 </head>
-<body class="cu-page" data-campus-page="bots">
+<body class="cu-page cu-mahtaab-on" data-campus-page="bots">
 <header class="cu-banner" id="cu-banner">
-  <a class="cu-brand" href="/campus/">
+  <a class="cu-brand" href="/campus/portal/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
     <div><small>On-device campus</small><strong>Clarity University</strong></div>
   </a>
@@ -60,16 +71,16 @@ html[data-theme=light] .bot-flow h2{color:#6b5a1e}
   <a href="/lab/arabic/hajj2027/">Hajj 2027</a>
   <a href="/library/">Library</a>
   <a href="/campus/buddy/">Buddy</a>
+  <a href="/vault/">Vault</a>
 </nav>
 
+<div data-cu-student-status></div>
 <p class="bot-note">This is a study aid, not a real system admin or security service. All checks stay on this device.</p>
-
 <div class="bot-grid">
   <button type="button" class="bot-card" data-bot="security"><strong>Security</strong><span>Confirm this device only</span></button>
   <button type="button" class="bot-card" data-bot="it"><strong>IT</strong><span>Offline pack / progress status</span></button>
   <button type="button" class="bot-card" data-bot="om"><strong>O&amp;M</strong><span>Mark one phase step done</span></button>
 </div>
-
 <section class="bot-flow" id="bot-security">
   <h2>Security bot</h2>
   <p style="font-size:.9rem;line-height:1.45">Confirm the following. Nothing is uploaded.</p>
@@ -82,7 +93,6 @@ html[data-theme=light] .bot-flow h2{color:#6b5a1e}
     <button type="button" class="ghost" data-close>Close</button>
   </div>
 </section>
-
 <section class="bot-flow" id="bot-it">
   <h2>IT bot · offline pack</h2>
   <p style="font-size:.9rem;line-height:1.45">Reads University keys on this device only.</p>
@@ -92,7 +102,6 @@ html[data-theme=light] .bot-flow h2{color:#6b5a1e}
     <button type="button" class="ghost" data-close>Close</button>
   </div>
 </section>
-
 <section class="bot-flow" id="bot-om">
   <h2>O&amp;M bot · one step</h2>
   <p style="font-size:.9rem;line-height:1.45">Mark one quiet phase step for the campus progress mirror. This is a study marker, not a certificate.</p>
@@ -102,14 +111,17 @@ html[data-theme=light] .bot-flow h2{color:#6b5a1e}
     <button type="button" class="ghost" data-close>Close</button>
   </div>
 </section>
-
 <section class="bot-log" id="bot-log" aria-live="polite">Workers idle.</section>
 <p class="bot-note">Interactive on this device · progress saved locally</p>
+
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. Not a grade of īmān. Last reviewed October 2026 · Quran.com / Sunnah.com.</footer>
-<script src="/campus/assets/js/cu-campus-progress-v1.js?v=20261023U0"></script>
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261023U" defer></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261023U" defer></script>
+<script src="/campus/assets/js/cu-campus-progress-v1.js?v=20261023FULL"></script>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261023FULL" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261023FULL" defer></script>
+<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261023FULL" defer></script>
+<script src="/campus/assets/js/cu-student-status-v1.js?v=20261023FULL" defer></script>
+
 <script>
 (function(){
   var P = window.CuCampusProgress;
