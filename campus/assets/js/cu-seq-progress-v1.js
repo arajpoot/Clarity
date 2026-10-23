@@ -1,3 +1,4 @@
+/* 20261023P1P3 */
 /* 20261023C4 */
 /* 20261023CLEAN cleanse */
 /**
@@ -212,4 +213,53 @@
     modulesFor: modulesFor,
     lastCompletedModule: lastCompletedModule
   };
+})(typeof window !== "undefined" ? window : this);
+
+
+/* P1-P3 spaced return — non-breaking append */
+(function (g) {
+  "use strict";
+  if (!g.CuSeq || g.CuSeq.__returnHooked) return;
+  function scheduleReturn(moduleId) {
+    try {
+      var key = "cu_uni_return_v1";
+      var raw = localStorage.getItem(key);
+      var o = raw ? JSON.parse(raw) : { items: [] };
+      if (!Array.isArray(o.items)) o.items = [];
+      var now = Date.now();
+      o.items.push({ id: moduleId, due3: now + 3 * 864e5, due7: now + 7 * 864e5 });
+      if (o.items.length > 40) o.items = o.items.slice(-40);
+      localStorage.setItem(key, JSON.stringify(o));
+    } catch (e) {}
+  }
+  function dueReturns() {
+    try {
+      var key = "cu_uni_return_v1";
+      var raw = localStorage.getItem(key);
+      if (!raw) return [];
+      var o = JSON.parse(raw);
+      var now = Date.now();
+      var out = [];
+      (o.items || []).forEach(function (it) {
+        if (it.due3 && now >= it.due3 && !it.done3) out.push({ id: it.id, kind: "3-day" });
+        else if (it.due7 && now >= it.due7 && !it.done7) out.push({ id: it.id, kind: "7-day" });
+      });
+      return out;
+    } catch (e) {
+      return [];
+    }
+  }
+  g.CuSeq.scheduleReturn = scheduleReturn;
+  g.CuSeq.dueReturns = dueReturns;
+  var orig = g.CuSeq.markModuleDone;
+  if (typeof orig === "function") {
+    g.CuSeq.__returnHooked = true;
+    g.CuSeq.markModuleDone = function (id) {
+      var r = orig.call(g.CuSeq, id);
+      try {
+        scheduleReturn(id);
+      } catch (e) {}
+      return r;
+    };
+  }
 })(typeof window !== "undefined" ? window : this);

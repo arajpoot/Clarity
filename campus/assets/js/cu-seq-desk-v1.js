@@ -245,6 +245,12 @@
       esc(mod.aim) +
       "</p>" +
       sourceHtml(mod.source) +
+        (mod.source && mod.source.audio
+          ? '<p class="seq-audio"><audio controls preload="none" src="' +
+            esc(mod.source.audio) +
+            '"></audio> <span class="seq-audio-label">Listen (source)</span></p>'
+          : '') +
+        (mod.minutes ? '<p class="seq-mins">About ' + esc(String(mod.minutes)) + ' minutes</p>' : '') +
       (mod.explanation
         ? '<div class="seq-explain"><strong>Learn</strong><p>' +
           esc(mod.explanation) +

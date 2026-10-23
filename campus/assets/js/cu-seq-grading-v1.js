@@ -94,3 +94,34 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(typeof window !== "undefined" ? window : this);
+
+(function (g) {
+  function paintReturns() {
+    if (!g.CuSeq || !g.CuSeq.dueReturns) return;
+    var host = document.getElementById("seq-grading-root") || document.getElementById("gr-suggest");
+    if (!host) return;
+    var due = g.CuSeq.dueReturns();
+    if (!due.length) return;
+    var box = document.getElementById("seq-spaced-return");
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "seq-spaced-return";
+      box.className = "seq-everyday";
+      host.appendChild(box);
+    }
+    box.innerHTML =
+      "<strong>Spaced return</strong> (3- or 7-day review)<ul>" +
+      due
+        .slice(0, 5)
+        .map(function (d) {
+          var parts = String(d.id).split(".");
+          var st = parts[0];
+          var href = g.CuSeq.deskHref(st, d.id);
+          return "<li>" + d.kind + " · <a href=\"" + href + "\">" + d.id + "</a></li>";
+        })
+        .join("") +
+      "</ul>";
+  }
+  document.addEventListener("DOMContentLoaded", paintReturns);
+  document.addEventListener("cu-seq-progress", paintReturns);
+})(typeof window !== "undefined" ? window : this);
