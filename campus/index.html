@@ -8,15 +8,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023P1P3"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023P1P3"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261023P1P3"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261023P1P3"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261023P1P3"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261023P1P3"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261023P1P3"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023P1P3"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023P1P3"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023HK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023HK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261023HK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261023HK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261023HK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261023HK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261023HK"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023HK"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023HK"></script>
 <style>
 .adm-steps{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 auto 1rem;max-width:40rem}
 .adm-steps button{min-height:38px;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(201,168,76,.35);background:rgba(12,22,18,.5);color:inherit;font-weight:700;font-size:.75rem;cursor:pointer}
@@ -37,8 +37,31 @@ html[data-theme=light] .adm-input{background:#fff}
 html[data-theme=light] .adm-returning{background:#fffcf5}
 .cu-info-plaque{max-width:40rem;margin:0 auto 1.25rem;font-size:.9rem;line-height:1.45}
 </style>
-<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261023P1P3"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261023P1P3"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261023HK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261023HK"/>
+<style>
+
+/* Landing polish 20261023HK */
+.cu-landing{max-width:min(52rem,100%);margin:0 auto;padding:.75rem 1rem 2.5rem}
+.cu-hero{text-align:center;padding:1.35rem 1.1rem 1.15rem;border-radius:20px;border:1px solid rgba(201,162,39,.42);
+  background:linear-gradient(165deg,rgba(16,28,22,.94),rgba(12,22,18,.78));margin-bottom:1rem}
+html[data-theme=light] .cu-hero{background:linear-gradient(165deg,#fffcf5,#f5efe0)}
+.cu-hero .bismillah{font-family:Amiri,serif;font-size:1.4rem;color:#c9a227;margin:0 0 .35rem}
+.cu-hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(1.65rem,4vw,2.15rem);margin:.15rem 0 .4rem;color:#e8d5a3}
+html[data-theme=light] .cu-hero h1{color:#4a3d14}
+.cu-hero .lead{font-size:.95rem;line-height:1.5;opacity:.92;max-width:36rem;margin:0 auto}
+.cu-hero .limits{font-size:.78rem;opacity:.82;margin-top:.65rem}
+.cu-quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.2rem,1fr));gap:.5rem;margin:.85rem 0 1.1rem}
+.cu-quick a{display:flex;flex-direction:column;gap:.12rem;padding:.72rem .85rem;border-radius:14px;
+  border:1px solid rgba(201,162,39,.35);text-decoration:none;color:inherit;background:rgba(0,0,0,.12);min-height:4rem}
+html[data-theme=light] .cu-quick a{background:#fffcf5}
+.cu-quick a:hover{border-color:#c9a227;background:rgba(30,125,94,.12)}
+.cu-quick a strong{font-size:.9rem;color:#c9a227}
+.cu-quick a span{font-size:.74rem;opacity:.85;line-height:1.3}
+.cu-section-title{font-family:"Cormorant Garamond",serif;font-size:1.22rem;color:#e8d5a3;margin:1.2rem 0 .45rem}
+html[data-theme=light] .cu-section-title{color:#6b5a1e}
+
+</style>
 </head>
 <body class="cu-page" data-campus-page="admit">
 <header class="cu-banner" id="cu-banner">
@@ -55,6 +78,26 @@ html[data-theme=light] .adm-returning{background:#fffcf5}
 </header>
 
 <main class="cu-wrap adm-stage">
+
+<div class="cu-landing">
+  <section class="cu-hero" aria-label="University welcome">
+    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ</p>
+    <h1>Clarity University</h1>
+    <p class="lead">On-device sequential path: Seeker → Practice → Consistency → Transmission. Sources linked. Progress stays on this device.</p>
+    <p class="limits">Educational only — not a fatwa · not a grade of īmān · not a seminary</p>
+  </section>
+  <nav class="cu-quick" aria-label="Quick links">
+    <a href="/campus/desk/seeker/"><strong>Desk · Seeker</strong><span>Essentials modules</span></a>
+    <a href="/campus/desk/"><strong>All stages</strong><span>Map & continue</span></a>
+    <a href="/campus/faculty.html"><strong>Faculty</strong><span>Guided lesson</span></a>
+    <a href="/campus/grading.html"><strong>Progress</strong><span>Study mirror</span></a>
+    <a href="/lab/"><strong>Lab</strong><span>Arabic · tools</span></a>
+    <a href="/library/"><strong>Library</strong><span>Shelves</span></a>
+    <a href="/charter/"><strong>Charter</strong><span>Limits</span></a>
+    <a href="/"><strong>Companion</strong><span>Daily path</span></a>
+  </nav>
+  <h2 class="cu-section-title">Your place in the path</h2>
+
 <div id="seq-continue-slot"></div>
 <div id="seq-stage-map" class="seq-stage-map"></div>
 
@@ -242,9 +285,10 @@ html[data-theme=light] .adm-returning{background:#fffcf5}
   </p>
 
 <section id="seq-after-clarity" aria-label="After Clarity paths"></section>
+</div>
 </main>
 <footer class="cu-foot">Educational only — not a fatwa. Not a grade of īmān. Last reviewed October 2026 · Quran.com / Sunnah.com.</footer>
-<script src="/campus/assets/js/cu-admission-flow-v1.js?v=20261023P1P3" defer></script>
+<script src="/campus/assets/js/cu-admission-flow-v1.js?v=20261023HK" defer></script>
 <script>
 (function(){
   function paint(){
@@ -255,13 +299,12 @@ html[data-theme=light] .adm-returning{background:#fffcf5}
   else paint();
 })();
 </script>
-<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261023P1P3"></script>
-<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261023P1P3"></script>
-<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261023P1P3"></script>
-<script src="/campus/assets/js/cu-seq-campus-v1.js?v=20261023P1P3"></script>
-<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261023P1P3"></script>
+<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261023HK"></script>
+<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261023HK"></script>
+<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261023HK"></script>
+<script src="/campus/assets/js/cu-seq-campus-v1.js?v=20261023HK"></script>
+<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261023HK"></script>
 
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
