@@ -1,0 +1,127 @@
+{
+  "phase": "C0\u2013C3 University cleanse",
+  "orphans_to_delete_from_github": [
+    "campus/assets/js/cu-seq-status-v1.js",
+    "campus/assets/js/cu-campus-progress-v1.js",
+    "campus/assets/js/cu-seeker-units-v1.js",
+    "campus/assets/js/cu-seeker-surface-v1.js",
+    "campus/assets/js/cu-uni-progress-v1.js",
+    "campus/assets/js/cu-personas-rp6.js",
+    "campus/assets/css/cu-personas-dock-v1.css",
+    "campus/assets/curriculum/seeker.js"
+  ],
+  "keep_core": [
+    "campus/assets/js/cu-seq-modules-v1.js",
+    "campus/assets/js/cu-seq-progress-v1.js",
+    "campus/assets/js/cu-seq-desk-v1.js",
+    "campus/assets/js/cu-seq-campus-v1.js",
+    "campus/assets/js/cu-seq-faculty-v1.js",
+    "campus/assets/js/cu-seq-bots-v1.js",
+    "campus/assets/js/cu-seq-grading-v1.js",
+    "campus/assets/js/cu-seq-footer-v1.js",
+    "campus/assets/css/cu-seq-v1.css",
+    "campus/assets/js/cu-theme-early-v1.js",
+    "campus/assets/js/cu-uni-theme-v1.js",
+    "campus/assets/js/cu-uni-nav-v1.js",
+    "campus/assets/js/cu-admission-flow-v1.js"
+  ],
+  "optional_keep_if_still_linked": [
+    "campus/assets/js/cu-shell-n1.js",
+    "campus/assets/js/cu-dedupe-chrome-v1.js",
+    "campus/assets/js/cu-no-guides-v1.js",
+    "campus/assets/js/cu-student-status-v1.js",
+    "campus/assets/js/cu-admit-surface-v1.js",
+    "campus/assets/js/cu-returner-portal-v1.js"
+  ],
+  "page_stats": {
+    "campus/index.html": {
+      "before": 15345,
+      "after": 14577,
+      "beacons": "3->1",
+      "js_count": 9,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/desk/index.html": {
+      "before": 9536,
+      "after": 8766,
+      "beacons": "3->1",
+      "js_count": 9,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/desk/seeker/index.html": {
+      "before": 5556,
+      "after": 4796,
+      "beacons": "3->1",
+      "js_count": 8,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/desk/practice/index.html": {
+      "before": 5535,
+      "after": 4775,
+      "beacons": "3->1",
+      "js_count": 8,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/desk/consistency/index.html": {
+      "before": 5501,
+      "after": 4741,
+      "beacons": "3->1",
+      "js_count": 8,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/desk/transmission/index.html": {
+      "before": 5547,
+      "after": 4787,
+      "beacons": "3->1",
+      "js_count": 8,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/faculty.html": {
+      "before": 12502,
+      "after": 11724,
+      "beacons": "3->1",
+      "js_count": 8,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/bots.html": {
+      "before": 11725,
+      "after": 10947,
+      "beacons": "3->1",
+      "js_count": 8,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/grading.html": {
+      "before": 8714,
+      "after": 7936,
+      "beacons": "3->1",
+      "js_count": 8,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    },
+    "campus/portal/index.html": {
+      "before": 12154,
+      "after": 11370,
+      "beacons": "3->1",
+      "js_count": 8,
+      "orphan_refs": [],
+      "has_seq_modules": true
+    }
+  },
+  "smoke_ok": true,
+  "smoke": "{\"ok\":true,\"seeker\":8,\"practice\":7,\"next\":{\"stage\":\"practice\",\"moduleId\":\"practice.m1\"}}",
+  "notes": [
+    "Triple Cloudflare beacon scripts reduced to one per cleaned page",
+    "Orphan progress buses (cu-uni-progress, cu-campus-progress, seeker-units) listed for deletion",
+    "cu-personas-rp6 not linked on University pages \u2014 delete or quarantine",
+    "Do not delete Companion root files",
+    "Form factor: seq modules, desk, campus continue, faculty/bots/grading preserved"
+  ]
+}

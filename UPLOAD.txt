@@ -1,14 +1,13 @@
-University UI harmony (20261023HARMONY)
+University cleanse 20261023CLEAN
 
-Unified path rail on every University surface page:
-  Charter · Campus · Desk · Faculty · Bots · Progress · Lab · Library · Companion
-Stage rail:
-  Seeker · Practice · Consistency · Transmission (lock class when CuSeq present)
-Campus journey card injected on /campus/
-Old competing cu-pills rows soft-hidden (lab station pills kept)
+1. Upload all campus/ files in this zip
+2. Delete paths listed in DELETE_FROM_GITHUB.txt from the repo
+3. Cloudflare Purge /campus/
+4. Smoke:
+   - /campus/desk/seeker/#m=seeker.m1 → enriched module
+   - Mark Seeker complete → Practice unlocks
+   - /campus/ Continue card
+   - Faculty / Bots / Grading still work
+   - Companion home unchanged
 
-1. Upload all files
-2. Purge CF
-3. Walk: Charter → Campus → Seeker → Faculty → Progress → Lab → Companion
-
-Companion files not modified except the link out.
+Companion untouched.
