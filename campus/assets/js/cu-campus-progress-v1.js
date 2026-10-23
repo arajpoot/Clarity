@@ -1,16 +1,17 @@
 /**
- * cu-campus-progress-v1.js — R1 bridge: Faculty/Bots/Grading → CuSeq single bus
- * If CuSeq present, module/stage truth is cu_uni_seq_v1 only.
- * Educational only — not a grade of īmān. Never Companion streaks.
+ * University progress bus — Faculty · Bots · Grading
+ * Keys: cu_uni_* only. Never Companion streaks.
+ * Educational only — not a grade of īmān.
  */
 (function (g) {
   "use strict";
   if (g.__CU_CAMPUS_PROGRESS_V1__) return;
-  g.__CU_CAMPUS_PROGRESS_V1__ = true;
+  g.__CU_CAMPUS_PROGRESS_V1__ = "20261023U0";
 
   var FACULTY_KEY = "cu_uni_faculty_v1";
   var BOTS_KEY = "cu_uni_bots_v1";
   var REVIEW_KEY = "cu_uni_review_v1";
+  var OM_STEPS_KEY = "cu_uni_om_steps_v1";
 
   function load(key, fallback) {
     try {
@@ -28,53 +29,29 @@
     } catch (e) {}
   }
 
-  function facultyDoneCount() {
-    if (g.CuSeq && g.CuSeq.counts) {
-      var c = g.CuSeq.counts();
-      var n = 0;
-      Object.keys(c).forEach(function (k) { n += c[k].done || 0; });
-      return n;
-    }
-    var s = load(FACULTY_KEY, { lessons: {} });
-    var n = 0;
-    if (s.lessons) Object.keys(s.lessons).forEach(function (k) {
-      if (s.lessons[k] && s.lessons[k].done) n++;
-    });
-    return n;
+  function facultyState() {
+    return load(FACULTY_KEY, { lessons: {} });
   }
-
   function markFacultyLesson(id) {
-    if (g.CuSeq && g.CuSeq.markModuleDone) {
-      /* map fac-* to stage first module if needed */
-      var map = {
-        "fac-seeker": "seeker.m1",
-        "fac-practice": "practice.m1",
-        "fac-consistency": "consistency.m1",
-        "fac-transmission": "transmission.m1"
-      };
-      var mid = map[id] || id;
-      if (String(mid).indexOf(".") >= 0) g.CuSeq.markModuleDone(mid);
-    }
-    var s = load(FACULTY_KEY, { lessons: {} });
+    var s = facultyState();
     if (!s.lessons) s.lessons = {};
     s.lessons[id] = { done: true, at: new Date().toISOString() };
     save(FACULTY_KEY, s);
     return s;
   }
-
   function isFacultyDone(id) {
-    if (g.CuSeq && g.CuSeq.isModuleDone) {
-      var map = {
-        "fac-seeker": "seeker.m1",
-        "fac-practice": "practice.m1",
-        "fac-consistency": "consistency.m1",
-        "fac-transmission": "transmission.m1"
-      };
-      var mid = map[id] || id;
-      if (String(mid).indexOf(".") >= 0) return g.CuSeq.isModuleDone(mid);
-    }
-    var s = load(FACULTY_KEY, { lessons: {} });
+    var s = facultyState();
     return !!(s.lessons && s.lessons[id] && s.lessons[id].done);
+  }
+  function facultyDoneCount() {
+    var s = facultyState();
+    var n = 0;
+    if (s.lessons) {
+      Object.keys(s.lessons).forEach(function (k) {
+        if (s.lessons[k] && s.lessons[k].done) n++;
+      });
+    }
+    return n;
   }
 
   function botsState() {
@@ -96,83 +73,139 @@
     return s;
   }
   function runItCheck() {
-    var lines = [];
-    if (g.CuSeq && g.CuSeq.counts) {
-      var c = g.CuSeq.counts();
-      var next = g.CuSeq.getNext();
-      Object.keys(c).forEach(function (st) {
-        lines.push(st + ": " + c[st].done + "/" + c[st].total + (c[st].unlocked ? "" : " (locked)"));
-      });
-      if (next && next.moduleId) lines.push("Next: " + next.moduleId);
-      else lines.push("Sequence complete on this device");
-    } else {
-      lines.push("Sequential bus not loaded — open a desk page once.");
-    }
+    var desk = 0;
+    try {
+      var p = JSON.parse(localStorage.getItem("clarity_junior_progress_v1") || "{}");
+      if (p && p.modules) {
+        desk = Object.keys(p.modules).filter(function (k) {
+          return p.modules[k] && (p.modules[k] === true || p.modules[k].done);
+        }).length;
+      }
+    } catch (e) {}
+    var fac = facultyDoneCount();
+    var admit = null;
+    try {
+      admit = JSON.parse(localStorage.getItem("cu_uni_admit_v1") || "null");
+    } catch (e) {}
+    var report = {
+      at: new Date().toISOString(),
+      deskModules: desk,
+      facultyLessons: fac,
+      registered: !!(admit && admit.name),
+      name: (admit && admit.name) || null
+    };
     var s = botsState();
-    s.it = { at: new Date().toISOString(), lines: lines };
+    s.it = report;
     save(BOTS_KEY, s);
-    pushLog("IT: checked sequential progress");
-    return s;
+    pushLog("IT: offline pack — desk " + desk + ", faculty " + fac);
+    return report;
   }
   function markOmStep() {
-    if (g.CuSeq && g.CuSeq.getNext && g.CuSeq.markModuleDone) {
-      var n = g.CuSeq.getNext();
-      if (n && n.moduleId) {
-        g.CuSeq.markModuleDone(n.moduleId);
-        pushLog("O&M: marked " + n.moduleId);
-        var s = botsState();
-        s.om = { at: new Date().toISOString(), last: n.moduleId };
-        save(BOTS_KEY, s);
-        return { ok: true, id: n.moduleId };
+    var steps = load(OM_STEPS_KEY, { count: 0, last: null });
+    steps.count = (steps.count || 0) + 1;
+    steps.last = new Date().toISOString();
+    save(OM_STEPS_KEY, steps);
+    var s = botsState();
+    s.om = { count: steps.count, at: steps.last };
+    save(BOTS_KEY, s);
+    pushLog("O&M: phase step marked (" + steps.count + ")");
+    return steps;
+  }
+  function omStepCount() {
+    return (load(OM_STEPS_KEY, { count: 0 }).count) || 0;
+  }
+
+  function reviewState() {
+    return load(REVIEW_KEY, { items: {}, last: null });
+  }
+  function markReview(id) {
+    var s = reviewState();
+    if (!s.items) s.items = {};
+    s.items[id] = { done: true, at: new Date().toISOString() };
+    s.last = id;
+    save(REVIEW_KEY, s);
+    return s;
+  }
+  function reviewDoneCount() {
+    var s = reviewState();
+    var n = 0;
+    if (s.items) {
+      Object.keys(s.items).forEach(function (k) {
+        if (s.items[k] && s.items[k].done) n++;
+      });
+    }
+    return n;
+  }
+
+  function currentStage() {
+    try {
+      var ph = localStorage.getItem("clarity_curriculum_phase_v1") || "seeker";
+      var map = {
+        seeker: "Seeker · Foundations",
+        practice: "Practice",
+        consistency: "Consistency",
+        transmission: "Transmission"
+      };
+      return map[ph] || "Seeker · Foundations";
+    } catch (e) {
+      return "Seeker · Foundations";
+    }
+  }
+
+  function campusProgressPercent() {
+    var fac = facultyDoneCount();
+    var om = omStepCount();
+    var rev = reviewDoneCount();
+    var desk = 0;
+    try {
+      var p = JSON.parse(localStorage.getItem("clarity_junior_progress_v1") || "{}");
+      if (p && p.modules) {
+        desk = Object.keys(p.modules).filter(function (k) {
+          return p.modules[k] && (p.modules[k] === true || p.modules[k].done);
+        }).length;
       }
-      return { ok: false, reason: "no next module" };
-    }
-    return { ok: false, reason: "seq bus missing" };
+    } catch (e) {}
+    return Math.min(100, fac * 12 + om * 8 + rev * 10 + Math.min(desk, 6) * 5);
   }
 
-  function reviewItem() {
-    if (g.CuSeq && g.CuSeq.lastCompletedModule) {
-      var last = g.CuSeq.lastCompletedModule();
-      if (last && last.module)
-        return {
-          title: last.module.title || last.module.id,
-          action: last.module.action || "Revisit the aim once today.",
-          stage: last.stage
-        };
+  function suggestedNext() {
+    if (!isFacultyDone("fac-tawhid")) {
+      return { label: "Faculty · Tawḥīd orientation", href: "/campus/faculty.html#fac-tawhid" };
     }
-    return { title: "Seeker essentials", action: "Open Seeker and begin the first module.", stage: "seeker" };
-  }
-
-  function suggestNext() {
-    if (g.CuSeq && g.CuSeq.getNext) {
-      var n = g.CuSeq.getNext();
-      if (n && n.moduleId)
-        return {
-          id: n.moduleId,
-          href: g.CuSeq.deskHref(n.stage, n.moduleId),
-          label: n.moduleId
-        };
-      return { id: null, href: "/campus/grading.html", label: "Sequence complete" };
+    if (!isFacultyDone("fac-practice")) {
+      return { label: "Faculty · One skill drill", href: "/campus/faculty.html#fac-practice" };
     }
-    return { id: null, href: "/campus/desk/seeker/", label: "Start Seeker" };
-  }
-
-  function stageSnapshot() {
-    if (g.CuSeq && g.CuSeq.counts) return g.CuSeq.counts();
-    return {};
+    var desk = 0;
+    try {
+      var p = JSON.parse(localStorage.getItem("clarity_junior_progress_v1") || "{}");
+      if (p && p.modules) {
+        desk = Object.keys(p.modules).filter(function (k) {
+          return p.modules[k] && (p.modules[k] === true || p.modules[k].done);
+        }).length;
+      }
+    } catch (e) {}
+    if (desk < 1) {
+      return { label: "Seeker desk · first module", href: "/campus/desk/seeker/" };
+    }
+    return { label: "Lab · one short station", href: "/lab/" };
   }
 
   g.CuCampusProgress = {
-    facultyDoneCount: facultyDoneCount,
+    facultyState: facultyState,
     markFacultyLesson: markFacultyLesson,
     isFacultyDone: isFacultyDone,
+    facultyDoneCount: facultyDoneCount,
+    botsState: botsState,
     setSecurityConfirmed: setSecurityConfirmed,
     runItCheck: runItCheck,
     markOmStep: markOmStep,
-    botsState: botsState,
+    omStepCount: omStepCount,
     pushLog: pushLog,
-    reviewItem: reviewItem,
-    suggestNext: suggestNext,
-    stageSnapshot: stageSnapshot
+    markReview: markReview,
+    reviewDoneCount: reviewDoneCount,
+    reviewState: reviewState,
+    currentStage: currentStage,
+    campusProgressPercent: campusProgressPercent,
+    suggestedNext: suggestedNext
   };
-})(typeof window !== "undefined" ? window : this);
+})(window);
