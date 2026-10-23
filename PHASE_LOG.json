@@ -2,39 +2,31 @@
   {
     "phase": "P1 spine",
     "ok": true,
-    "detail": "{\"ok\":true,\"seeker\":8,\"next\":{\"stage\":\"practice\",\"moduleId\":\"practice.m1\"},\"thick\":454,\"audio\":true}"
+    "detail": "{\"ok\":true,\"seeker\":8,\"next\":{\"stage\":\"practice\",\"moduleId\":\"practice.m1\"},\"thick\":true}"
   },
   {
-    "phase": "P2 dedupe+wiring",
+    "phase": "P2 clean+wiring",
     "ok": true,
     "detail": "clean"
   },
   {
     "phase": "P3 landing",
     "ok": true,
-    "detail": "hero+dedupe"
+    "detail": "hero+quick+continue"
   },
   {
-    "phase": "P4 second cycle",
+    "phase": "P4 syntax",
     "ok": true,
-    "detail": {
-      "junk": [],
-      "miss": []
-    }
+    "detail": "all ok"
   },
   {
-    "phase": "P5 syntax",
+    "phase": "P5 second cycle",
     "ok": true,
-    "detail": "ok"
+    "detail": "no junk"
   },
   {
     "phase": "P6 final smoke",
     "ok": true,
-    "detail": "{\"ok\":true,\"seeker\":8,\"next\":{\"stage\":\"practice\",\"moduleId\":\"practice.m1\"},\"thick\":454,\"audio\":true}"
-  },
-  {
-    "phase": "P7 empty cycle",
-    "ok": true,
-    "detail": "nothing to obliterate"
+    "detail": "{\"ok\":true,\"seeker\":8,\"next\":{\"stage\":\"practice\",\"moduleId\":\"practice.m1\"},\"thick\":true}"
   }
 ]
