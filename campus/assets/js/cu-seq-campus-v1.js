@@ -1,3 +1,4 @@
+/* 20261023HK2 */
 /**
  * cu-seq-campus-v1.js — Continue · Today 10 min · stage map · after-Clarity paths
  */
