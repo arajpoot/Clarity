@@ -1,0 +1,32 @@
+<!--
+  U4 — paste this block on /campus/ index (admission landing), e.g. near stages / services.
+  Do NOT put under Companion root index.html.
+-->
+<section class="cu-uni-services" style="max-width:min(52rem,100%);margin:1.25rem auto;padding:0 .75rem">
+  <p style="text-align:center;font-weight:700;margin:0 0 .5rem">Services</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.65rem">
+    <a href="/campus/faculty.html" style="display:block;padding:.9rem 1rem;border-radius:16px;border:1px solid rgba(201,168,76,.4);text-decoration:none;color:inherit">
+      <strong>Faculty</strong>
+      <span style="display:block;font-size:.85rem;opacity:.9;margin-top:.25rem">Guided lessons · <span id="cu-fac-landing-count">0</span> completed</span>
+    </a>
+    <a href="/campus/bots.html" style="display:block;padding:.9rem 1rem;border-radius:16px;border:1px solid rgba(201,168,76,.4);text-decoration:none;color:inherit">
+      <strong>Bots</strong>
+      <span style="display:block;font-size:.85rem;opacity:.9;margin-top:.25rem">Security · IT · O&amp;M</span>
+    </a>
+    <a href="/campus/grading.html" style="display:block;padding:.9rem 1rem;border-radius:16px;border:1px solid rgba(201,168,76,.4);text-decoration:none;color:inherit">
+      <strong>Progress</strong>
+      <span style="display:block;font-size:.85rem;opacity:.9;margin-top:.25rem">Campus mirror · not a grade of īmān</span>
+    </a>
+  </div>
+</section>
+<script src="/campus/assets/js/cu-campus-progress-v1.js?v=20261023U0"></script>
+<script>
+(function(){
+  function paint(){
+    var el = document.getElementById("cu-fac-landing-count");
+    if (el && window.CuCampusProgress) el.textContent = String(CuCampusProgress.facultyDoneCount());
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paint);
+  else paint();
+})();
+</script>
