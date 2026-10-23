@@ -1,51 +1,78 @@
 /**
- * cu-seq-faculty-v1.js — Faculty personas map to stages
+ * cu-seq-faculty-v1.js — Educational personas → sequential modules
+ * Not living scholars or fatwa service.
  */
 (function (g) {
   "use strict";
   if (g.__CU_SEQ_FACULTY_V1__) return;
   g.__CU_SEQ_FACULTY_V1__ = true;
 
-  var MAP = [
-    { id: "fac-seeker", stage: "seeker", title: "Essentials guide", blurb: "Belief, worship awareness, character." },
-    { id: "fac-practice", stage: "practice", title: "Foundations guide", blurb: "Purity, prayer, ḥadīth, Arabic step." },
-    { id: "fac-consistency", stage: "consistency", title: "Consistency guide", blurb: "Review, light tafsīr, sīrah mercy." },
-    { id: "fac-transmission", stage: "transmission", title: "Transmission guide", blurb: "Sources, adab of sharing, knowing when to stop." }
-  ];
-
-  function boot() {
-    if (!g.CuSeq) return;
-    var root = document.getElementById("seq-faculty-root");
-    if (!root) return;
-    var counts = g.CuSeq.counts();
-    var doneMods = 0;
-    Object.keys(counts).forEach(function (k) { doneMods += counts[k].done; });
-    var countEl = document.getElementById("fac-count-num");
-    if (countEl) countEl.textContent = String(doneMods);
-
-    root.innerHTML = MAP.map(function (f) {
-      var unlocked = g.CuSeq.isStageUnlocked(f.stage);
-      var next = g.CuSeq.getNext();
-      var href = unlocked ? g.CuSeq.deskHref(f.stage, next && next.stage === f.stage ? next.moduleId : null) : "#";
-      return (
-        '<article class="seq-stage-card' +
-        (unlocked ? "" : " locked") +
-        '">' +
-        "<strong>" +
-        f.title +
-        "</strong>" +
-        "<p>" +
-        f.blurb +
-        "</p>" +
-        "<p class=\"cu-meta\">Educational persona — not a living scholar or fatwa service.</p>" +
-        (unlocked
-          ? '<a class="seq-btn primary" href="' + href + '">Start guided lesson →</a>'
-          : "<p>Stage locked until previous is complete.</p>") +
-        "</article>"
-      );
-    }).join("");
+  function esc(s) {
+    return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
   }
 
+  function paintCount() {
+    var el = document.getElementById("fac-count-num") || document.getElementById("fac-count");
+    if (!el || !g.CuSeq) return;
+    var c = g.CuSeq.counts(), n = 0;
+    Object.keys(c).forEach(function (k) { n += c[k].done || 0; });
+    if (el.id === "fac-count-num") el.textContent = String(n);
+    else el.innerHTML = "Modules marked done: <strong id=\"fac-count-num\">" + n + "</strong> · Educational personas — not living scholars";
+  }
+
+  function wireButtons() {
+    if (!g.CuSeq) return;
+    document.querySelectorAll("[data-start-guided], .fac-card button, #fac-next").forEach(function (btn) {
+      if (btn.__seqWired) return;
+      btn.__seqWired = true;
+      btn.addEventListener("click", function (e) {
+        // Prefer sequential next unfinished module
+        var next = g.CuSeq.getNext();
+        if (next && next.moduleId) {
+          e.preventDefault();
+          location.href = g.CuSeq.deskHref(next.stage, next.moduleId);
+        }
+      });
+    });
+    // Dedicated button if present
+    var start = document.getElementById("seq-start-guided");
+    if (start && !start.__seqWired) {
+      start.__seqWired = true;
+      start.addEventListener("click", function () {
+        var next = g.CuSeq.getNext();
+        if (next && next.moduleId) location.href = g.CuSeq.deskHref(next.stage, next.moduleId);
+        else alert("All sequential modules marked on this device.");
+      });
+    }
+  }
+
+  function renderRoot() {
+    var root = document.getElementById("seq-faculty-root");
+    if (!root || !g.CuSeq) return;
+    var next = g.CuSeq.getNext();
+    var c = g.CuSeq.counts();
+    var map = g.CuSeq.STAGES.map(function (st) {
+      var x = c[st] || { done: 0, total: 0 };
+      return "<li><strong>" + esc(g.CuSeq.stageLabel(st)) + "</strong> · " + x.done + "/" + x.total + "</li>";
+    }).join("");
+    root.innerHTML =
+      '<p class="seq-persona-note">Educational personas only — not living scholars or a fatwa service.</p>' +
+      "<ul>" + map + "</ul>" +
+      (next && next.moduleId
+        ? '<p><button type="button" class="seq-btn primary" id="seq-start-guided">Start guided lesson →</button></p>'
+        : "<p>Sequence complete on this device.</p>");
+    wireButtons();
+  }
+
+  function boot() {
+    paintCount();
+    renderRoot();
+    wireButtons();
+    document.addEventListener("cu-seq-progress", function () {
+      paintCount();
+      renderRoot();
+    });
+  }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(typeof window !== "undefined" ? window : this);

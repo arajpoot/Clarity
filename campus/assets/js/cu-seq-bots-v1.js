@@ -1,84 +1,71 @@
 /**
- * cu-seq-bots-v1.js — Security / IT / O&M from sequential progress
+ * cu-seq-bots-v1.js — IT incomplete + O&M mark one step (same progress bus)
+ * All local. Educational only.
  */
 (function (g) {
   "use strict";
   if (g.__CU_SEQ_BOTS_V1__) return;
   g.__CU_SEQ_BOTS_V1__ = true;
 
-  function boot() {
-    if (!g.CuSeq) return;
-    var sec = document.getElementById("seq-bot-security");
-    var it = document.getElementById("seq-bot-it");
-    var om = document.getElementById("seq-bot-om");
-    var next = g.CuSeq.getNext();
-    var counts = g.CuSeq.counts();
-
-    if (sec) {
-      sec.innerHTML =
-        "<p><strong>Security</strong> · Progress is stored only in this browser (localStorage). Nothing is uploaded by this sequence tool.</p>" +
-        '<button type="button" class="seq-btn" id="seq-sec-ok">Confirm local-only checklist</button>' +
-        '<p id="seq-sec-msg" class="cu-meta"></p>';
-      var b = document.getElementById("seq-sec-ok");
-      if (b)
-        b.onclick = function () {
-          try {
-            localStorage.setItem("cu_uni_seq_security_v1", JSON.stringify({ ok: true, at: new Date().toISOString() }));
-          } catch (e) {}
-          var m = document.getElementById("seq-sec-msg");
-          if (m) m.textContent = "Confirmed on this device.";
-        };
-    }
-
-    if (it) {
-      var lines = g.CuSeq.STAGES.map(function (st) {
-        var c = counts[st];
-        return (
-          "<li>" +
-          g.CuSeq.stageLabel(st) +
-          ": " +
-          c.done +
-          "/" +
-          c.total +
-          (c.unlocked ? "" : " (locked)") +
-          "</li>"
-        );
-      });
-      it.innerHTML =
-        "<p><strong>IT</strong> · Incomplete work on this device:</p><ul>" +
-        lines.join("") +
-        "</ul>" +
-        (next && next.moduleId
-          ? "<p>Next required: <a href=\"" +
-            g.CuSeq.deskHref(next.stage, next.moduleId) +
-            '">' +
-            next.moduleId +
-            "</a></p>"
-          : "<p>Sequence complete on this device.</p>");
-    }
-
-    if (om) {
-      om.innerHTML =
-        "<p><strong>O&amp;M</strong> · Mark one quiet step only if it matches the next required module.</p>" +
-        '<button type="button" class="seq-btn primary" id="seq-om-step">Mark one quiet step</button>' +
-        '<p id="seq-om-msg" class="cu-meta"></p>';
-      var ob = document.getElementById("seq-om-step");
-      if (ob)
-        ob.onclick = function () {
-          var n = g.CuSeq.getNext();
-          var msg = document.getElementById("seq-om-msg");
-          if (!n || !n.moduleId) {
-            if (msg) msg.textContent = "No next module — sequence complete on this device.";
-            return;
-          }
-          g.CuSeq.markModuleDone(n.moduleId);
-          if (msg)
-            msg.textContent =
-              "Marked " + n.moduleId + " done (educational only). Refresh desk to see advance.";
-        };
-    }
+  function esc(s) {
+    return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
   }
 
+  function itReport() {
+    if (!g.CuSeq) return ["Sequential bus not loaded."];
+    var c = g.CuSeq.counts();
+    var lines = [];
+    g.CuSeq.STAGES.forEach(function (st) {
+      var x = c[st] || { done: 0, total: 0, unlocked: false };
+      lines.push(
+        g.CuSeq.stageLabel(st) + ": " + x.done + "/" + x.total +
+        (x.unlocked ? (x.done >= x.total ? " complete" : "") : " (locked)")
+      );
+    });
+    var n = g.CuSeq.getNext();
+    if (n && n.moduleId) lines.push("Next unfinished: " + n.moduleId);
+    else lines.push("No unfinished sequential module on this device.");
+    return lines;
+  }
+
+  function paintIt() {
+    var el = document.getElementById("it-report") || document.getElementById("seq-bot-it");
+    if (!el) return;
+    el.innerHTML = "<ul>" + itReport().map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ul>";
+  }
+
+  function wireOm() {
+    var btn = document.getElementById("om-mark") || document.getElementById("seq-om-mark");
+    if (!btn || btn.__seqWired) return;
+    btn.__seqWired = true;
+    btn.addEventListener("click", function () {
+      if (!g.CuSeq) return;
+      var n = g.CuSeq.getNext();
+      if (!n || !n.moduleId) {
+        alert("No unfinished module. Sequence complete on this device.");
+        return;
+      }
+      g.CuSeq.markModuleDone(n.moduleId);
+      paintIt();
+      alert("O&M marked one step: " + n.moduleId + " (local only).");
+    });
+  }
+
+  function wireIt() {
+    var btn = document.getElementById("it-run");
+    if (!btn || btn.__seqWired) return;
+    btn.__seqWired = true;
+    btn.addEventListener("click", function () {
+      paintIt();
+    });
+  }
+
+  function boot() {
+    paintIt();
+    wireOm();
+    wireIt();
+    document.addEventListener("cu-seq-progress", paintIt);
+  }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(typeof window !== "undefined" ? window : this);
