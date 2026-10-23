@@ -60,6 +60,9 @@ html[data-theme=light]
   <a href="/charter/">Charter</a>
   <a href="/campus/portal/" class="here" aria-current="page">Portal</a>
   <a href="/campus/desk/">Desk</a>
+  <a href="/campus/faculty.html">Faculty</a>
+  <a href="/campus/bots.html">Bots</a>
+  <a href="/campus/grading.html">Progress</a>
   <a href="/lab/">Lab</a>
   <a href="/library/">Library</a>
   <a href="/campus/buddy/">Buddy</a>
@@ -106,6 +109,9 @@ html[data-theme=light]
 <p class="cu-zone-label cu-emboss">Student services <span>guidance · record · week · milestone</span></p>
 <div class="cu-rich-grid">
   <a class="cu-rich-card" href="/campus/buddy/"><span class="cu-badge open">Help</span><strong>Study Buddy</strong><span class="desc">Orientation · where to study next</span></a>
+  <a class="cu-rich-card" href="/campus/faculty.html"><span class="cu-badge open">Faculty</span><strong>Guided lessons</strong><span class="desc"><span id="cu-fac-portal-count">0</span> completed on this device</span></a>
+  <a class="cu-rich-card" href="/campus/bots.html"><span class="cu-badge open">Bots</span><strong>Security · IT · O&amp;M</strong><span class="desc">Local study-aid checks</span></a>
+  <a class="cu-rich-card" href="/campus/grading.html"><span class="cu-badge open">Progress</span><strong>Campus mirror</strong><span class="desc">Not a grade of īmān</span></a>
   <a class="cu-rich-card" href="/campus/transcript/"><span class="cu-badge">Record</span><strong>Transcript</strong><span class="desc">Local academic ledger</span></a>
   <a class="cu-rich-card" href="/campus/schedule/"><span class="cu-badge">Week</span><strong>Schedule</strong><span class="desc">Gentle rhythm</span></a>
   <a class="cu-rich-card" href="/campus/assignments/"><span class="cu-badge">Week</span><strong>Assignments</strong><span class="desc">Optional prompts</span></a>
@@ -122,11 +128,22 @@ html[data-theme=light]
 
 <p class="cu-ff-disclaimer">Clarity University is an on-device educational path. It is not a campus, not accredited, not affiliated with Al-Azhar, Madinah, IIUM, or any other institution. Progress stays on this device. Not a fatwa.</p>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. Progress stays on this device.</footer>
+<footer class="cu-foot">Educational only — not a fatwa. Not a grade of īmān. Last reviewed October 2026 · Quran.com / Sunnah.com.</footer>
+<script src="/campus/assets/js/cu-campus-progress-v1.js?v=20261020F"></script>
 <script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019HRM" defer></script>
 <script src="/campus/assets/js/cu-shell-n1.js?v=20261019HRM" defer></script>
 <script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019HRM" defer></script>
 <script src="/campus/assets/js/cu-student-status-v1.js?v=20261019FF" defer></script>
 <script src="/campus/assets/js/cu-day-flow-v1.js?v=20261019FF" defer></script>
+<script>
+(function(){
+  function paint(){
+    var el = document.getElementById("cu-fac-portal-count");
+    if (el && window.CuCampusProgress) el.textContent = String(CuCampusProgress.facultyDoneCount());
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paint);
+  else paint();
+})();
+</script>
 </body>
 </html>
