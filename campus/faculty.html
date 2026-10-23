@@ -1,18 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Faculty · Clarity University</title>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-u7-v1.css?v=20261022U7"/>
+<meta name="description" content="Clarity University — educational on-ramp and guided desk learning. Not a fatwa."/>
+<meta name="theme-color" content="#0a1210"/>
+<link rel="stylesheet" href="/campus/campus.css?v=20261017GUIDE"/>
 </head>
 <body>
-<div class="cu-shell">
-  <header class="cu-top"><a class="cu-brand" href="/campus/">Clarity University</a></header>
-  <h1 style="color:#e8d5a3">Faculty orientation</h1>
-  <p>Educational curation only. Seek living scholars for formal study. This site organizes paths — it does not grant ijāzah.</p>
-  <p><a class="cu-btn" href="/campus/desk/">Student desk</a></p>
-  <footer class="cu-footer">Not a fatwa · not a degree</footer>
-</div>
+<nav class="cu-shell-nav" aria-label="University">
+  <a class="cu-shell-brand" href="/campus/"><span>ن</span><span><small>UNIVERSITY</small>Clarity University</span></a>
+  <div class="cu-shell-links"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/campus/faculty.html" aria-current="page">Faculty</a><a href="/campus/bots.html">Bots</a><a href="/campus/grading.html">Progress</a><a href="/">Companion</a></div>
+</nav>
+<main class="cu-main">
+
+<header class="cu-hero">
+  <div class="cu-pill">Advisors · Umadaʾ</div>
+  <h1>Faculty</h1>
+  <p>Your phase advisor offers a short guided line, then the desk classroom. Educational personas — not a living scholar replacement.</p>
+</header>
+<section class="cu-panel">
+  <div class="cu-section-label" style="margin-top:0">Your advisor now</div>
+  <p class="cu-note"><strong data-cu-advisor-name>—</strong> · <span data-cu-phase-label>—</span></p>
+  <div class="cu-advisor" data-cu-advisor-line>—</div>
+  <p style="margin:.65rem 0 0">
+    <a class="cu-btn" data-cu-continue-href href="/campus/desk/seeker/">Enter their classroom →</a>
+    <button type="button" class="cu-btn soft" data-cu-register="1">Open / refresh campus record</button>
+  </p>
+</section>
+<div class="cu-staff-row" id="cu-faculty-host"><p class="cu-note">Loading roster…</p></div>
+
+<p class="cu-foot">Educational only — not a fatwa. Last reviewed October 2026 · Quran.com / Sunnah.com.<br/>
+<a href="/">Companion home</a> · On-device campus record only (<code>cu_uni_*</code>) · not an official enrollment.</p>
+</main>
+<script src="/campus/campus.js?v=20261017GUIDE" defer></script>
+
+<section style="max-width:40rem;margin:1.5rem auto;padding:1rem">
+  <h2>Campus stations</h2>
+  <ul>
+    <li><a href="/lab/tajweed/">Tajweed lab</a></li>
+    <li><a href="/lab/recite/">Recitation lab</a></li>
+    <li><a href="/lab/hifz/">Hifz lab</a></li>
+    <li><a href="/lab/arabic/">Arabic lab</a></li>
+    <li><a href="/lab/calligraphy/">Calligraphy lab</a></li>
+    <li><a href="/library/">Digital library</a></li>
+    <li><a href="/campus/desk/">Student desk</a></li>
+  </ul>
+  <p style="font-size:.8rem">Educational curation only — not ijāzah, not a fatwa.</p>
+</section>
 </body>
 </html>

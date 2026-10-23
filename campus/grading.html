@@ -1,122 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mahtaab="1">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Progress mirror · Clarity University</title>
-<meta name="description" content="On-device study mirror. Not a grade of īmān. Acceptance is with Allah."/>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261021FULL"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261021FULL"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261021FULL"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261021FULL"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261021FULL"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261021FULL"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261021FULL"></script>
-<style>
-.gr-panel{max-width:min(40rem,100%);margin:0 auto 1rem;padding:1rem 1.1rem;border-radius:16px;border:1px solid rgba(201,168,76,.4);background:rgba(16,28,22,.92)}
-html[data-theme=light] .gr-panel{background:#fffcf5;color:#13201a}
-.gr-panel h2{margin:0 0 .5rem;font-family:Cormorant Garamond,serif;color:#e8d5a3;font-size:1.15rem}
-html[data-theme=light] .gr-panel h2{color:#6b5a1e}
-.gr-bar{height:10px;border-radius:999px;background:rgba(201,168,76,.15);overflow:hidden;margin:.5rem 0 .75rem}
-.gr-bar > i{display:block;height:100%;background:#1e7d5e;border-radius:999px;width:0;transition:width .25s ease}
-.gr-row{font-size:.9rem;margin:.35rem 0;line-height:1.4}
-.gr-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
-.gr-actions button,.gr-actions a{min-height:42px;padding:.4rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer;font-size:.84rem}
-.gr-actions button.ghost,.gr-actions a.ghost{background:transparent;color:inherit;border:1px solid rgba(201,168,76,.4)}
-.gr-disclaimer{text-align:center;font-size:.85rem;line-height:1.45;max-width:36rem;margin:.75rem auto;opacity:.9}
-.gr-verify{text-align:center;font-size:.78rem;opacity:.85;margin:1rem auto}
-</style>
-<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261021FULL"/>
+<meta name="description" content="University progress mirror and diploma hall link. Educational only — not a fatwa."/>
+<meta name="theme-color" content="#0a1210"/>
+<link rel="stylesheet" href="/campus/campus.css?v=20261017GUIDE"/>
+<link rel="stylesheet" href="/assets/curriculum/vault/foundation/phase-plaque.css?v=20261017GUIDE"/>
 </head>
-<body class="cu-page" data-campus-page="grading">
-<header class="cu-banner" id="cu-banner">
-  <a class="cu-brand" href="/campus/">
-    <span class="cu-brand-mark" aria-hidden="true">ن</span>
-    <div><small>On-device campus</small><strong>Clarity University</strong></div>
-  </a>
-  <div class="cu-banner-actions">
-    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
-    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
-    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
-    <a class="cu-main-link" href="/">← Companion</a>
+<body>
+<nav class="cu-shell-nav" aria-label="University">
+  <a class="cu-shell-brand" href="/campus/"><span>ن</span><span><small>UNIVERSITY</small>Clarity University</span></a>
+  <div class="cu-shell-links">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/campus/faculty.html">Faculty</a>
+    <a href="/campus/bots.html">Bots</a>
+    <a href="/campus/grading.html" aria-current="page">Progress</a>
+    <a href="/">Companion</a>
   </div>
-</header>
-<main class="cu-wrap" style="max-width:min(52rem,100%);margin:0 auto;padding:.75rem">
-<nav class="cu-pills" aria-label="Campus">
-  <a href="/charter/">Charter</a>
-  <a href="/campus/">Admission</a>
-  <a href="/campus/portal/">Portal</a>
-  <a href="/campus/desk/">Desk</a>
-  <a href="/campus/faculty.html">Faculty</a>
-  <a href="/campus/bots.html">Bots</a>
-  <a href="/campus/grading.html" class="here" aria-current="page">Progress</a>
-  <a href="/lab/">Lab</a>
 </nav>
+<main class="cu-main">
+<header class="cu-hero">
+  <div class="cu-pill">Mirror · not scoreboard</div>
+  <h1>University progress</h1>
+  <p>Acceptance is with Allah. This page mirrors on-device study marks only.</p>
+</header>
 
-<p class="gr-disclaimer"><strong>This is a study mirror, not a grade of īmān. Acceptance is with Allah.</strong></p>
-
-<section class="gr-panel">
-  <h2>Campus progress</h2>
-  <p class="gr-row">Current stage: <strong id="gr-stage">—</strong></p>
-  <div class="gr-bar" aria-hidden="true"><i id="gr-bar"></i></div>
-  <p class="gr-row">Faculty lessons completed: <strong id="gr-faculty">0</strong></p>
-  <p class="gr-row">Phase steps marked (O&amp;M / quiet steps): <strong id="gr-om">0</strong></p>
-  <p class="gr-row">Review items marked: <strong id="gr-review">0</strong></p>
-  <p class="gr-row">Campus marker: <strong id="gr-pct">0</strong>%</p>
-  <div class="gr-actions">
-    <button type="button" id="gr-mark-review">Mark a review item done</button>
-    <a class="ghost" href="/campus/desk/seeker/">Enter classroom →</a>
-  </div>
+<section class="cu-panel">
+  <div class="cu-section-label" style="margin-top:0">Campus marker (<code>cu_uni_*</code>)</div>
+  <p class="cu-note" data-cu-reg-status>—</p>
+  <p class="cu-note"><strong data-cu-phase-label>—</strong></p>
+  <div class="cu-progress"><i data-cu-progress-bar style="width:8%"></i></div>
+  <p class="cu-note">Steps: <strong data-cu-steps>0</strong> · Updated: <span data-cu-last>—</span></p>
+  <p class="cu-note">Advisor: <strong data-cu-advisor-name>—</strong></p>
+  <div class="cu-advisor" data-cu-advisor-line>—</div>
+  <p style="margin:.75rem 0 0">
+    <a class="cu-btn" data-cu-continue-href href="/campus/desk/seeker/">Enter classroom →</a>
+    <button type="button" class="cu-btn soft" data-cu-mark-step>Mark a quiet step</button>
+  </p>
 </section>
 
-<section class="gr-panel">
-  <h2>Everyday return</h2>
-  <p class="gr-row">Suggested next: <strong id="gr-suggest">—</strong></p>
-  <div class="gr-actions">
-    <a id="gr-suggest-link" href="/campus/desk/seeker/">Open suggestion →</a>
-    <a class="ghost" href="/campus/faculty.html">Faculty</a>
-    <a class="ghost" href="/campus/bots.html">Bots</a>
-  </div>
+<section class="cu-panel" id="cu-diploma-bridge">
+  <div class="cu-section-label" style="margin-top:0">Diploma ledger · Hall of Records</div>
+  <p class="cu-note">When foundation diplomas are loaded, you can open the local Hall of Records (certificates on this device only).</p>
+  <div id="clarity-name-plaque-slot"></div>
+  <p id="cu-hall-status" class="cu-note">Checking diploma scripts…</p>
+  <p style="margin:.65rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem">
+    <button type="button" class="cu-btn" id="cu-open-hall" disabled>Open Hall of Records</button>
+    <button type="button" class="cu-btn soft" id="cu-refresh-ledger">Refresh ledger summary</button>
+  </p>
+  <pre id="cu-ledger-summary" class="cu-bot-log" style="margin-top:0.75rem;min-height:3rem">—</pre>
 </section>
 
-<p class="gr-verify">Interactive on this device · progress saved locally · one University marker only (not a Companion streak)</p>
-<div id="seq-grading-root"></div>
+<section class="cu-panel">
+  <div class="cu-section-label" style="margin-top:0">Today’s campus note</div>
+  <p class="cu-note" data-cu-today-note>—</p>
+</section>
+
+<p class="cu-foot">Educational only — not a fatwa. Last reviewed October 2026 · Quran.com / Sunnah.com.<br/>
+<a href="/">Companion home</a> · Not an official transcript.</p>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. Not a grade of īmān. Last reviewed October 2026 · Quran.com / Sunnah.com.</footer>
-<script src="/campus/assets/js/cu-campus-progress-v1.js?v=20261021FULL"></script>
-<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261021FULL" defer></script>
-<script src="/campus/assets/js/cu-shell-n1.js?v=20261021FULL" defer></script>
-<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261021FULL" defer></script>
+<script src="/campus/campus.js?v=20261017GUIDE" defer></script>
+<script src="/assets/curriculum/vault/foundation/diplomas.js?v=20261017GUIDE" defer></script>
 <script>
 (function(){
-  var P = window.CuCampusProgress;
-  function paint(){
-    if (!P) return;
-    document.getElementById("gr-stage").textContent = P.currentStage();
-    document.getElementById("gr-faculty").textContent = String(P.facultyDoneCount());
-    document.getElementById("gr-om").textContent = String(P.omStepCount());
-    document.getElementById("gr-review").textContent = String(P.reviewDoneCount());
-    var pct = P.campusProgressPercent();
-    document.getElementById("gr-pct").textContent = String(pct);
-    document.getElementById("gr-bar").style.width = pct + "%";
-    var sug = P.suggestedNext();
-    document.getElementById("gr-suggest").textContent = sug.label;
-    document.getElementById("gr-suggest-link").href = sug.href;
+  function summary(){
+    var el = document.getElementById("cu-ledger-summary");
+    var st = document.getElementById("cu-hall-status");
+    var btn = document.getElementById("cu-open-hall");
+    var U = window.ClarityUniversity;
+    if (!U) {
+      st.textContent = "Diploma scripts not available offline yet — campus marker above still works.";
+      btn.disabled = true;
+      el.textContent = "No diploma ledger loaded.";
+      return;
+    }
+    st.textContent = "Diploma ledger ready on this device.";
+    btn.disabled = false;
+    try {
+      var dips = (U.getDiplomas && U.getDiplomas()) || [];
+      var ledger = (U.getLedger && U.getLedger()) || [];
+      var name = (U.getName && U.getName()) || "(name not set)";
+      el.textContent = "Learner: " + name + "\nDiplomas: " + (Array.isArray(dips) ? dips.length : 0) +
+        "\nLedger entries: " + (Array.isArray(ledger) ? ledger.length : 0) +
+        "\nEducational recognition only — not an ijāzah.";
+    } catch (e) {
+      el.textContent = "Ledger readable with limited fields.";
+    }
   }
-  document.getElementById("gr-mark-review").onclick = function(){
-    var id = "review-" + Date.now();
-    P.markReview(id);
-    paint();
-  };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paint);
-  else paint();
+  function bind(){
+    var btn = document.getElementById("cu-open-hall");
+    var ref = document.getElementById("cu-refresh-ledger");
+    if (btn) btn.onclick = function(){
+      try {
+        if (window.ClarityUniversity && ClarityUniversity.openHall) ClarityUniversity.openHall();
+        else alert("Hall of Records is not mounted yet.");
+      } catch (e) { alert("Could not open Hall."); }
+    };
+    if (ref) ref.onclick = summary;
+    summary();
+    setTimeout(summary, 800);
+    setTimeout(summary, 2000);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
+  else bind();
 })();
 </script>
-<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261021FULL"></script>
-<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261021FULL"></script>
-<script src="/campus/assets/js/cu-seq-grading-v1.js?v=20261021FULL"></script>
-<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261021FULL"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>

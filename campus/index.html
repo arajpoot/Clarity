@@ -1,81 +1,262 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-mahtaab="1">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Clarity University · On-device educational path</title>
-<meta name="description" content="Bismillah. Clarity University — educational Islamic learning path on this device. Not a physical university, not a fatwa service, not an accredited degree."/>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-u7-v1.css?v=20261022U7"/>
-<script src="/campus/assets/js/cu-uni-u7-v1.js?v=20261022U7"></script>
+<title>Clarity University</title>
+<meta name="description" content="Bismillah. On-device educational path. Not a physical university."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261019UI2"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261019UI2"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261019HRM"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261019EMB"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261019HRM"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261019HRM"></script>
+<style>
+.adm-steps{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 auto 1rem;max-width:40rem}
+.adm-steps button{min-height:38px;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(201,168,76,.35);background:rgba(12,22,18,.5);color:inherit;font-weight:700;font-size:.75rem;cursor:pointer}
+.adm-steps button.on{background:#1e7d5e;color:#fff;border-color:transparent}
+.adm-panel{display:none;padding:1.15rem 1.2rem;margin:0 auto 1rem;max-width:40rem}
+.adm-panel.on{display:block}
+.adm-panel h2{margin:0 0 .55rem;font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:#e8d5a3}
+html[data-theme=light] .adm-panel h2{color:#6b5a1e}
+.adm-panel ul,.adm-panel ol{margin:.45rem 0 .65rem 1.15rem;line-height:1.5}
+.adm-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+.adm-actions button,.adm-actions a.btn{min-height:46px;padding:.5rem 1.15rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer}
+.adm-actions button.ghost,.adm-actions a.ghost{background:transparent;color:inherit;border:1px solid rgba(201,168,76,.45)}
+.adm-input{width:100%;min-height:46px;padding:.55rem .8rem;border-radius:12px;border:1px solid rgba(201,168,76,.4);background:rgba(0,0,0,.15);color:inherit;box-sizing:border-box;margin:.4rem 0}
+html[data-theme=light] .adm-input{background:#fff}
+.adm-check{display:flex;gap:.55rem;align-items:flex-start;margin:.55rem 0;font-size:.92rem}
+.adm-note{font-size:.8rem;opacity:.88;margin-top:.75rem;line-height:1.45}
+.adm-returning{text-align:center;margin:0 auto 1.1rem;padding:1rem;border-radius:18px;border:1px dashed rgba(201,168,76,.4);max-width:40rem;background:rgba(16,28,22,.9)}
+html[data-theme=light] .adm-returning{background:#fffcf5}
+.cu-info-plaque{max-width:40rem;margin:0 auto 1.25rem;font-size:.9rem;line-height:1.45}
+</style>
 </head>
-<body>
-<div class="cu-shell">
-  <header class="cu-top">
-    <a class="cu-brand" href="/campus/">Clarity University</a>
-    <nav class="cu-nav">
-      <a href="/campus/desk/">Student desk</a>
-      <a href="/campus/assignments/">Assignments</a>
-      <a href="/campus/buddy/">Buddy</a>
-      <a href="/campus/charter/">Charter</a>
-      <a href="/campus/vault/">Vault</a>
-      <a href="/">Companion</a>
-    </nav>
-  </header>
+<body class="cu-page" data-campus-page="admit">
+<header class="cu-banner" id="cu-banner">
+  <a class="cu-brand" href="/campus/">
+    <span class="cu-brand-mark" aria-hidden="true">ن</span>
+    <div><small>On-device campus</small><strong>Clarity University</strong></div>
+  </a>
+  <div class="cu-banner-actions">
+    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
+    <a class="cu-main-link" href="/">← Companion</a>
+  </div>
+</header>
 
-  <section class="cu-hero">
-    <p style="font-size:.8rem;opacity:.85;margin:0">Bismillāh · On-device · Educational only</p>
-    <h1>Seek knowledge with adab</h1>
-    <p style="max-width:36rem">A structured path from foundation of īmān to the amānah of transmitting knowledge. Not a physical university. Not a fatwa. Acceptance is with Allah.</p>
-  </section>
+<main class="cu-wrap adm-stage">
 
-  <div class="cu-verse">
-    <div class="ar">يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ</div>
-    <div class="en">Allah will raise those who have believed among you and those who were given knowledge, by degrees.</div>
-    <div class="src">Al-Mujādilah 58:11</div>
-    <p class="cu-disc"><strong>Prophetic teaching (educational wording):</strong> Whoever travels a path seeking knowledge, Allah makes easy for him a path to Paradise. — reported in Muslim; confirm exact number with a teacher.</p>
-    <p class="cu-disc">Educational only — not a fatwa.</p>
+  <!-- Guided hero: Bismillah + Rabbi zidni — no English "Admission" title -->
+    <div class="cu-open-row" aria-label="Opening">
+    <div class="cu-insignia" aria-hidden="true">
+      <div class="cu-insignia-mark" title="Clarity University">ن</div>
+    </div>
+    <div class="cu-open-plaques">
+      <div class="cu-verse-plaque bismillah">
+        <p class="ar" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+      </div>
+      <div class="cu-verse-plaque dua">
+        <p class="ar" lang="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</p>
+        <p class="en">My Lord, increase me in knowledge · Ṭā Hā 20:114</p>
+      </div>
+    </div>
   </div>
 
-  <h2 style="color:#e8d5a3;font-family:Cormorant Garamond,serif">Four learning phases</h2>
-  <p style="font-size:.9rem;opacity:.9">Aligned with Islam · Īmān · Iḥsān, then amānah of knowledge — in the spirit of classical progressive study (personally essential first).</p>
-
-  <div class="cu-grid">
-    <a class="cu-card" href="/campus/desk/foundation/">
-      <span class="badge">Phase 1</span>
-      <h2>Foundation of Īmān</h2>
-      <p>Tawḥīd, pillars of faith, short sūrahs with meaning. Wake the heart with clarity.</p>
-    </a>
-    <a class="cu-card" href="/campus/desk/pillars/">
-      <span class="badge">Phase 2</span>
-      <h2>Pillars of practice</h2>
-      <p>Ṭahārah, ṣalāh, overview of ṣawm and zakāh. Stability before volume.</p>
-    </a>
-    <a class="cu-card" href="/campus/desk/ihsan/">
-      <span class="badge">Phase 3</span>
-      <h2>Path of iḥsān</h2>
-      <p>Qur’an craft, sīrah as example, character, weekly review.</p>
-    </a>
-    <a class="cu-card" href="/campus/desk/amanah/">
-      <span class="badge">Phase 4</span>
-      <h2>Amānah of knowledge</h2>
-      <p>Teach with wisdom. Guard sources. Leave beneficial knowledge.</p>
-    </a>
-  </div>
-
-  <div class="cu-plaque">
-    <h2>Student tools</h2>
-    <p style="font-size:.9rem;margin:0 0 .75rem">Desk hub, assignments as ʿamal, study buddy, local vault note. Companion remains a separate daily surface.</p>
-    <p>
-      <a class="cu-btn" href="/campus/desk/">Open desk</a>
-      <a class="cu-btn ghost" href="/campus/assignments/">Assignments</a>
-      <a class="cu-btn ghost" href="/campus/buddy/">Buddy</a>
+  <div class="adm-returning" id="adm-returning" hidden>
+    <p><strong>Welcome back</strong> · <span id="adm-returning-name"></span></p>
+    <p class="adm-actions" style="justify-content:center">
+      <a class="btn" href="/campus/portal/">Enter student portal →</a>
+      <button type="button" class="ghost" id="adm-reset">Start admission again</button>
     </p>
   </div>
 
-  <footer class="cu-footer">
-    Clarity University · educational path on this device · not accredited · not a fatwa service · Companion section untouched by this campus package
-  </footer>
-</div>
+  <nav class="adm-steps" aria-label="Admission steps" id="adm-steps">
+    <button type="button" data-step="0" class="on">1 · Welcome</button>
+    <button type="button" data-step="1">2 · Charter</button>
+    <button type="button" data-step="2">3 · Declaration</button>
+    <button type="button" data-step="3">4 · Register</button>
+    <button type="button" data-step="4">5 · Orientation</button>
+  </nav>
+
+  <section class="adm-panel on cu-plaque" data-panel="0">
+    <h2>Welcome, seeker</h2>
+    <p>This path mirrors the <em>shape</em> of serious study — stages, practice halls, records, adab — as a private tool on this device.</p>
+    <ul>
+      <li><strong>Academics</strong> — Seeker → Practice → Consistency → Transmission</li>
+      <li><strong>Practice halls</strong> — Arabic, Tajweed, Recite, Calligraphy…</li>
+      <li><strong>Services</strong> — Buddy, Transcript, Schedule, Assignments</li>
+      <li><strong>Sources</strong> — Library · Vault notes · Companion Amanah for private trusts</li>
+    </ul>
+    <p class="adm-note">No tuition · no foreign campus certificate · progress stays in your browser.</p>
+    <div class="adm-actions">
+      <button type="button" data-next="1">Begin admission →</button>
+      <a class="ghost btn" href="/campus/portal/">I already registered</a>
+    </div>
+  </section>
+
+  <section class="adm-panel cu-plaque" data-panel="1">
+    <h2>Charter · limits</h2>
+    <ul>
+      <li>Not a physical university or accredited degree</li>
+      <li>Not affiliated with Al-Azhar, Madinah, IIUM, or any institution</li>
+      <li>Not a fatwa service · not a substitute for a living teacher</li>
+      <li>Not a grade of īmān</li>
+      <li>Not legal advice for courts or estates</li>
+    </ul>
+    <p>Full text: <a href="/charter/">Charter page</a>.</p>
+    <div class="adm-actions">
+      <button type="button" class="ghost" data-next="0">← Back</button>
+      <button type="button" data-next="2">I understand →</button>
+    </div>
+  </section>
+
+  <section class="adm-panel cu-plaque" data-panel="2">
+    <h2>Declaration</h2>
+    <label class="adm-check"><input type="checkbox" id="adm-d1"/> I will use this for education and practice only.</label>
+    <label class="adm-check"><input type="checkbox" id="adm-d2"/> I will ask a trusted local teacher for personal rulings.</label>
+    <label class="adm-check"><input type="checkbox" id="adm-d3"/> I understand progress is stored only on this device.</label>
+    <label class="adm-check"><input type="checkbox" id="adm-d4"/> I will not present local “diploma” or transcript as official ijāzah or university credential.</label>
+    <p id="adm-decl-err" class="adm-note" style="color:#e88" hidden>Please check all four declarations.</p>
+    <div class="adm-actions">
+      <button type="button" class="ghost" data-next="1">← Back</button>
+      <button type="button" id="adm-decl-next">Sign &amp; continue →</button>
+    </div>
+  </section>
+
+  <section class="adm-panel cu-plaque" data-panel="3">
+    <h2>Registration</h2>
+    <label class="cu-meta">Preferred name</label>
+    <input class="adm-input" id="adm-name" type="text" autocomplete="name" placeholder="e.g. Momin" maxlength="80"/>
+    <label class="cu-meta">Intention (optional)</label>
+    <input class="adm-input" id="adm-intent" type="text" placeholder="e.g. Steady foundations with adab" maxlength="120"/>
+    <p class="adm-note">Saved on this device only.</p>
+    <div class="adm-actions">
+      <button type="button" class="ghost" data-next="2">← Back</button>
+      <button type="button" id="adm-register">Register on this device →</button>
+    </div>
+  </section>
+
+  <section class="adm-panel cu-plaque" data-panel="4">
+    <h2>Orientation</h2>
+    <ol>
+      <li><strong>Today on the path</strong> — one desk module · one lab · seal with adab.</li>
+      <li><strong>Seeker first</strong> — foundations before Transmission.</li>
+      <li><strong>Lab after lesson</strong> — practice reinforces the desk.</li>
+      <li><strong>Buddy</strong> — where to go next; never personal fatwa.</li>
+    </ol>
+    <div class="adm-actions">
+      <button type="button" class="ghost" data-next="3">← Back</button>
+      <a class="btn" href="/campus/portal/">Enter student portal →</a>
+      <a class="ghost btn" href="/campus/orientation/">Orientation desk</a>
+    </div>
+  </section>
+
+  <!-- How phases work — plaque from prior build language -->
+  <aside class="cu-info-plaque cu-plaque" aria-label="How phases work">
+    <strong style="color:#e8d5a3">How phases work</strong>
+    <ol style="margin:.45rem 0 0 1.1rem;padding:0">
+      <li>One module open — only the current lesson is unlocked.</li>
+      <li>Spark quiz — answer correctly to open the next module.</li>
+      <li>All modules complete — then a short phase check.</li>
+      <li>Pass the check — unlock the next phase (no skipping ahead).</li>
+    </ol>
+  </aside>
+
+  <p class="cu-emboss">Academic precinct · journey preview</p>
+
+  <!-- Rich tiles like previous Journey Map -->
+  <div class="adm-preview-grid cu-rich-grid" style="max-width:min(72rem,100%)">
+    <a class="cu-rich-card" href="/campus/desk/seeker/">
+      <span class="cu-badge open">Stage 1 · Open</span>
+      <strong>Seeker · Foundations</strong>
+      <span class="desc">Belief foundations. One module at a time.</span>
+    </a>
+    <a class="cu-rich-card" href="/campus/desk/practice/">
+      <span class="cu-badge">Stage 2</span>
+      <strong>Practice</strong>
+      <span class="desc">Skills after foundations.</span>
+    </a>
+    <a class="cu-rich-card" href="/campus/desk/consistency/">
+      <span class="cu-badge">Stage 3</span>
+      <strong>Consistency</strong>
+      <span class="desc">Steady craft and review.</span>
+    </a>
+    <a class="cu-rich-card" href="/campus/desk/transmission/">
+      <span class="cu-badge">Stage 4</span>
+      <strong>Transmission</strong>
+      <span class="desc">Share with adab and clear sources.</span>
+    </a>
+    <a class="cu-rich-card" href="/lab/">
+      <span class="cu-badge open">Lab</span>
+      <strong>Craft Laboratory</strong>
+      <span class="desc">Arabic · Tajweed · Recite · Calligraphy · Hifz · Media</span>
+    </a>
+    <a class="cu-rich-card" href="/library/">
+      <span class="cu-badge open">Library</span>
+      <strong>Source shelves</strong>
+      <span class="desc">Qurʾān · Sunnah pointers outward.</span>
+    </a>
+  </div>
+
+  <nav class="cu-phase-icons" aria-label="Stages at a glance">
+    <a class="cu-phase-icon" href="/campus/desk/seeker/"><span>📖</span>Foundations</a>
+    <a class="cu-phase-icon" href="/campus/desk/practice/"><span>🕌</span>Practice</a>
+    <a class="cu-phase-icon" href="/campus/desk/consistency/"><span>🎧</span>Consistency</a>
+    <a class="cu-phase-icon" href="/campus/desk/transmission/"><span>🕊️</span>Transmission</a>
+  </nav>
+
+  <p class="adm-note" style="text-align:center;max-width:40rem;margin:1.25rem auto">
+    Foundations → Practice → Consistency → Transmission. Not affiliated with Al-Azhar or Madinah University.
+    <a href="/charter/">Charter</a> · <a href="/">Companion</a>
+  </p>
+
+</main>
+<footer class="cu-foot">Educational only — not a fatwa · not a physical university · progress stays on this device.</footer>
+<script src="/campus/assets/js/cu-no-guides-v1.js?v=20261019HRM" defer></script>
+<script src="/campus/assets/js/cu-shell-n1.js?v=20261019HRM" defer></script>
+<script src="/campus/assets/js/cu-dedupe-chrome-v1.js?v=20261019HRM" defer></script>
+<script src="/campus/assets/js/cu-admission-flow-v1.js?v=20261019UI2" defer></script>
+
+<!-- U7 restore · Islamic paths + labs · 20261022RESTORE -->
+<section id="cu-restore-paths" class="adm-panel on" style="display:block;max-width:48rem;margin:1rem auto;padding:1rem">
+  <h2 style="font-family:Cormorant Garamond,serif;color:#e8d5a3">Learning paths (Islamic outlook)</h2>
+  <p style="font-size:.88rem;opacity:.9">Educational only — not a fatwa. Classic desk rooms remain linked below.</p>
+  <div style="display:grid;gap:.55rem;grid-template-columns:repeat(auto-fill,minmax(12rem,1fr));margin:.75rem 0">
+    <a href="/campus/desk/foundation/" style="padding:.75rem;border-radius:12px;border:1px solid rgba(201,168,76,.35);text-decoration:none;color:inherit">Foundation of Īmān</a>
+    <a href="/campus/desk/pillars/" style="padding:.75rem;border-radius:12px;border:1px solid rgba(201,168,76,.35);text-decoration:none;color:inherit">Pillars of practice</a>
+    <a href="/campus/desk/ihsan/" style="padding:.75rem;border-radius:12px;border:1px solid rgba(201,168,76,.35);text-decoration:none;color:inherit">Path of iḥsān</a>
+    <a href="/campus/desk/amanah/" style="padding:.75rem;border-radius:12px;border:1px solid rgba(201,168,76,.35);text-decoration:none;color:inherit">Amānah of knowledge</a>
+  </div>
+  <h2 style="font-family:Cormorant Garamond,serif;color:#e8d5a3;margin-top:1rem">Classic desk modules</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0">
+    <a href="/campus/desk/seeker/">Seeker</a> ·
+    <a href="/campus/desk/practice/">Practice</a> ·
+    <a href="/campus/desk/consistency/">Consistency</a> ·
+    <a href="/campus/desk/transmission/">Transmission</a>
+  </div>
+  <h2 style="font-family:Cormorant Garamond,serif;color:#e8d5a3;margin-top:1rem">Labs &amp; library</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0">
+    <a href="/lab/">Lab hub</a>
+    <a href="/lab/tajweed/">Tajweed lab</a>
+    <a href="/lab/recite/">Recite</a>
+    <a href="/lab/hifz/">Hifz</a>
+    <a href="/lab/arabic/">Arabic</a>
+    <a href="/lab/calligraphy/">Calligraphy</a>
+    <a href="/lab/media/">Media</a>
+    <a href="/library/">Library</a>
+    <a href="/campus/faculty.html">Faculty</a>
+    <a href="/campus/charter/">Charter</a>
+  </div>
+  <p style="font-size:.78rem;opacity:.8;margin-top:.75rem">Companion section is separate and untouched by this campus package.</p>
+</section>
+
 </body>
 </html>
