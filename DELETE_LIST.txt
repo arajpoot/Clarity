@@ -1,29 +1,38 @@
-# University junk / dead skeletons — SAFE TO DELETE from GitHub (Companion untouched)
-# Verified zero HTML references on live campus desk/faculty/bots/grading (2026-10-23)
+# University junk / orphan obliteration list
+# Safe to DELETE from GitHub repo (not referenced by live University HTML scan 2026-10-23)
+# Companion section: DO NOT TOUCH
 
-## Phase C1 — Zero-ref JS (content already in cu-seq-modules or superseded)
-campus/assets/js/cu-seeker-units-v1.js
+## Phase C1 — Orphan JS (on disk, zero page references)
 campus/assets/js/cu-seeker-surface-v1.js
 campus/assets/js/cu-uni-progress-v1.js
+campus/assets/js/cu-campus-progress-v1.js
 campus/assets/js/cu-seq-status-v1.js
 campus/assets/js/cu-personas-rp6.js
 campus/assets/js/cu-guides-close-r2.js
 campus/assets/curriculum/seeker.js
-campus/assets/curriculum/data/seeker.meta.json
 
-## Phase C2 — Orphan CSS (not linked from current desk/campus seq pages)
-campus/assets/css/cu-personas-dock-v1.css
-# Optional later (still linked from some prestige pages — only delete if no HTML href):
-# campus/assets/css/cu-uni-surface-v1.css
-# campus/assets/css/cu-campus-form-v1.css
-# campus/assets/css/cu-layout-wide-v1.css
-# campus/assets/css/cu-viewport-v1.css
-# campus/assets/css/cu-campus-prestige-v1.css
+## Phase C1b — Already 404 (confirm gone / remove from git if still tracked)
+campus/assets/js/cu-seeker-units-v1.js
+campus/assets/js/college-seeker.js
+campus/assets/js/cu-stage.js
+campus/assets/js/phase-room.js
+campus/assets/js/cu-flash-core.js
+campus/assets/js/cu-mahtaab.js
+campus/assets/js/cu-spark-adab-v1.js
 
-## Phase C3 — Vault-adjacent (only if Mīrāth lives elsewhere; do NOT delete if vault page still loads it)
-# campus/assets/js/cu-mirath-desk-v1.js
+## Phase C2 — Competing progress bus (MUST stay deleted)
+# cu-uni-progress-v1.js and cu-campus-progress-v1.js fight cu-seq-progress-v1.js
+# Single bus: cu_uni_seq_v1 via cu-seq-progress-v1.js only
 
-## DO NOT DELETE (active sequential spine)
+## Phase C3 — Optional CSS diet (referenced but overlapping; remove only after visual smoke)
+# Do NOT batch-delete without checking portal/lab/library look:
+# campus/assets/css/cu-page-enrich-v1.css
+# campus/assets/css/cu-ui-revamp-v1.css
+# campus/assets/css/cu-uni-viewport-v1.css
+# campus/assets/css/cu-css-reconcile-v1.css
+# Prefer keep: cu-shell-n1, cu-campus-critical, cu-seq-v1, cu-uni-nav, cu-desk-*
+
+## KEEP — sequential spine (do not delete)
 campus/assets/js/cu-seq-modules-v1.js
 campus/assets/js/cu-seq-progress-v1.js
 campus/assets/js/cu-seq-desk-v1.js
@@ -35,4 +44,5 @@ campus/assets/js/cu-seq-footer-v1.js
 campus/assets/css/cu-seq-v1.css
 campus/assets/js/cu-theme-early-v1.js
 campus/assets/js/cu-uni-theme-v1.js
+campus/assets/js/cu-uni-nav-v1.js
 campus/assets/js/cu-admission-flow-v1.js

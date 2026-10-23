@@ -1,23 +1,32 @@
-# University clean plan (20261023NUKE)
+# University deep-clean plan (Companion frozen)
 
-## Findings
-1. Duplicate Cloudflare beacon scripts (2–3×) on campus/desk/faculty/bots/grading → extra free loader noise.
-2. Zero-ref dead JS still on origin: seeker-units, seeker-surface, uni-progress, personas-rp6, guides-close, seq-status, curriculum/seeker.js.
-3. Portal still on old HRM loaders (campus-progress, student-status, day-flow, shell, dedupe) while desk uses seq spine.
-4. Orientation loads no-guides + dedupe without seq value.
-5. Dual progress largely gone on faculty (good); campus uses seq only (good).
+## Scan summary (live 2026-10-23)
+- Sequential spine IS wired on desk/faculty/bots/grading/campus (v=20261023C4).
+- Seeker has seq-desk-root + Module path — form factor intact.
+- Orphan JS still on disk can compete if ever re-linked.
 
-## Phases (implemented in this package)
-| Phase | Action | Smoke |
-|-------|--------|-------|
-| C1 | Dedupe Cloudflare beacons on all shipped HTML | Pages load once |
-| C2 | Strip dead script tags if any remain | No 404 console spam |
-| C3 | Portal: drop legacy progress/shell/day-flow; attach seq Continue | Portal shows Continue |
-| C4 | Orientation: drop no-guides/dedupe noise | Theme only |
-| C5 | Keep seq spine + desk modules intact | #m=seeker.m1 works; locks hold |
+## Phase C0 — Inventory (done)
+List page-referenced vs orphan assets.
 
-## User deletes on GitHub (DELETE_LIST.txt)
-Files listed are not required by current desk form factor.
+## Phase C1 — Obliterate orphans (this package documents DELETE_LIST.txt)
+Delete orphan progress/seeker/persona files from GitHub so they cannot be re-linked.
+Smoke: campus → desk seeker → #m=seeker.m1 → mark done → practice lock.
 
-## Companion
-Untouched — no root index or companion assets in package.
+## Phase C2 — Single progress bus
+Ensure only cu-seq-progress-v1.js writes module progress.
+No cu-uni-progress / cu-campus-progress on any University page.
+
+## Phase C3 — HTML script hygiene (this package)
+Strip junk script tags if present; ensure seq scripts + mounts on every desk/faculty/bots/grading/campus page.
+Cache-bust ?v=20261023CLEAN
+
+## Phase C4 — CSS diet (optional later)
+Collapse overlapping enrich/revamp/viewport after visual smoke on portal/lab/library.
+Do not strip desk shell CSS.
+
+## Phase C5 — Final smoke
+- /campus/ Continue + stage map
+- /campus/desk/seeker/#m=seeker.m1 enriched module
+- Practice locked until Seeker complete
+- Faculty guided lesson + Bots O&M + Grading everyday return
+- Companion home unchanged

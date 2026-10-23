@@ -1,13 +1,13 @@
-C4 single-beacon + final orphans (20261023C4)
+University clean C1–C3 (20261023CLEAN)
 
-1. Upload all campus/ HTML + assets in this zip
-2. Delete the 4 paths in DELETE_FROM_GITHUB.txt from the repo
-3. Cloudflare: Purge /campus/
-   Optional: if CF Web Analytics still injects a beacon, that is edge-side (one is OK).
-   This package removes ALL beacons from page source so you do not get 2–3 from HTML.
+1. Upload all campus/ files from this zip (overwrites pages + spine assets)
+2. From DELETE_LIST.txt — delete Phase C1 orphan files from GitHub
+3. Cloudflare Purge Everything
 4. Smoke Incognito:
+   /campus/
    /campus/desk/seeker/#m=seeker.m1
-   View Source → search "beacon" → should be 0 in HTML (CF may still inject 1 at runtime)
-   Practice locked until Seeker complete
+   /campus/desk/practice/ (locked until Seeker done)
+   /campus/faculty.html · bots.html · grading.html
+5. Companion home: confirm unchanged
 
-Companion untouched.
+Do NOT delete KEEP spine files.
