@@ -1,0 +1,23 @@
+# University clean plan (20261023NUKE)
+
+## Findings
+1. Duplicate Cloudflare beacon scripts (2–3×) on campus/desk/faculty/bots/grading → extra free loader noise.
+2. Zero-ref dead JS still on origin: seeker-units, seeker-surface, uni-progress, personas-rp6, guides-close, seq-status, curriculum/seeker.js.
+3. Portal still on old HRM loaders (campus-progress, student-status, day-flow, shell, dedupe) while desk uses seq spine.
+4. Orientation loads no-guides + dedupe without seq value.
+5. Dual progress largely gone on faculty (good); campus uses seq only (good).
+
+## Phases (implemented in this package)
+| Phase | Action | Smoke |
+|-------|--------|-------|
+| C1 | Dedupe Cloudflare beacons on all shipped HTML | Pages load once |
+| C2 | Strip dead script tags if any remain | No 404 console spam |
+| C3 | Portal: drop legacy progress/shell/day-flow; attach seq Continue | Portal shows Continue |
+| C4 | Orientation: drop no-guides/dedupe noise | Theme only |
+| C5 | Keep seq spine + desk modules intact | #m=seeker.m1 works; locks hold |
+
+## User deletes on GitHub (DELETE_LIST.txt)
+Files listed are not required by current desk form factor.
+
+## Companion
+Untouched — no root index or companion assets in package.
