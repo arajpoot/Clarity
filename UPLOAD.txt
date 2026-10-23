@@ -1,13 +1,15 @@
-University clean C1–C3 (20261023CLEAN)
+Deep clean + polished University landing (20261023POLISH)
 
-1. Upload all campus/ files from this zip (overwrites pages + spine assets)
-2. From DELETE_LIST.txt — delete Phase C1 orphan files from GitHub
-3. Cloudflare Purge Everything
-4. Smoke Incognito:
-   /campus/
-   /campus/desk/seeker/#m=seeker.m1
-   /campus/desk/practice/ (locked until Seeker done)
-   /campus/faculty.html · bots.html · grading.html
-5. Companion home: confirm unchanged
+Phases completed (see PHASE_LOG.json):
+P1 spine smoke · P4 page wiring · P5 second-cycle junk scan · P6 final smoke
 
-Do NOT delete KEEP spine files.
+Upload all campus/ files. Delete orphans in DELETE_LIST.txt. Purge CF.
+
+Incognito checks:
+1. /campus/ — hero, quick links, Continue, stage map, admission
+2. /campus/desk/seeker/#m=seeker.m1 — enriched module
+3. Practice locked until Seeker complete
+4. Faculty / Bots / Grading same progress bus
+5. Companion / unchanged
+
+Companion untouched.
