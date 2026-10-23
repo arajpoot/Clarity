@@ -1,48 +1,8 @@
-# University junk / orphan obliteration list
-# Safe to DELETE from GitHub repo (not referenced by live University HTML scan 2026-10-23)
-# Companion section: DO NOT TOUCH
-
-## Phase C1 — Orphan JS (on disk, zero page references)
-campus/assets/js/cu-seeker-surface-v1.js
+# Delete from GitHub (orphans on disk, not page-linked)
 campus/assets/js/cu-uni-progress-v1.js
 campus/assets/js/cu-campus-progress-v1.js
-campus/assets/js/cu-seq-status-v1.js
+campus/assets/js/cu-seeker-surface-v1.js
 campus/assets/js/cu-personas-rp6.js
 campus/assets/js/cu-guides-close-r2.js
+campus/assets/js/cu-seq-status-v1.js
 campus/assets/curriculum/seeker.js
-
-## Phase C1b — Already 404 (confirm gone / remove from git if still tracked)
-campus/assets/js/cu-seeker-units-v1.js
-campus/assets/js/college-seeker.js
-campus/assets/js/cu-stage.js
-campus/assets/js/phase-room.js
-campus/assets/js/cu-flash-core.js
-campus/assets/js/cu-mahtaab.js
-campus/assets/js/cu-spark-adab-v1.js
-
-## Phase C2 — Competing progress bus (MUST stay deleted)
-# cu-uni-progress-v1.js and cu-campus-progress-v1.js fight cu-seq-progress-v1.js
-# Single bus: cu_uni_seq_v1 via cu-seq-progress-v1.js only
-
-## Phase C3 — Optional CSS diet (referenced but overlapping; remove only after visual smoke)
-# Do NOT batch-delete without checking portal/lab/library look:
-# campus/assets/css/cu-page-enrich-v1.css
-# campus/assets/css/cu-ui-revamp-v1.css
-# campus/assets/css/cu-uni-viewport-v1.css
-# campus/assets/css/cu-css-reconcile-v1.css
-# Prefer keep: cu-shell-n1, cu-campus-critical, cu-seq-v1, cu-uni-nav, cu-desk-*
-
-## KEEP — sequential spine (do not delete)
-campus/assets/js/cu-seq-modules-v1.js
-campus/assets/js/cu-seq-progress-v1.js
-campus/assets/js/cu-seq-desk-v1.js
-campus/assets/js/cu-seq-campus-v1.js
-campus/assets/js/cu-seq-faculty-v1.js
-campus/assets/js/cu-seq-bots-v1.js
-campus/assets/js/cu-seq-grading-v1.js
-campus/assets/js/cu-seq-footer-v1.js
-campus/assets/css/cu-seq-v1.css
-campus/assets/js/cu-theme-early-v1.js
-campus/assets/js/cu-uni-theme-v1.js
-campus/assets/js/cu-uni-nav-v1.js
-campus/assets/js/cu-admission-flow-v1.js

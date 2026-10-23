@@ -1,15 +1,11 @@
-Deep clean + polished University landing (20261023POLISH)
+Housekeeping + polished landing (20261023HK)
 
-Phases completed (see PHASE_LOG.json):
-P1 spine smoke · P4 page wiring · P5 second-cycle junk scan · P6 final smoke
+Phases: P1 spine · P2 CF dedupe + wiring · P3 landing · P4 second cycle · P5 syntax · P6 smoke · P7 empty cycle
 
-Upload all campus/ files. Delete orphans in DELETE_LIST.txt. Purge CF.
-
-Incognito checks:
-1. /campus/ — hero, quick links, Continue, stage map, admission
-2. /campus/desk/seeker/#m=seeker.m1 — enriched module
-3. Practice locked until Seeker complete
-4. Faculty / Bots / Grading same progress bus
-5. Companion / unchanged
+1. Upload all campus/ files
+2. Delete orphans in DELETE_LIST.txt from GitHub
+3. Cloudflare Purge Everything
+4. Incognito /campus/ — hero, quick links, Today Continue, single beacon
+5. /campus/desk/seeker/#m=seeker.m1
 
 Companion untouched.
