@@ -1,0 +1,21 @@
+/* Arabic library · 20261017LIB */
+.ar-lib-tabs,.ar-lib-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .75rem}
+.ar-lib-tabs button,.ar-lib-chip{
+  border:1px solid var(--lab-line);background:transparent;color:inherit;border-radius:999px;
+  padding:.35rem .7rem;font-weight:700;font-size:.78rem;cursor:pointer;font:inherit
+}
+.ar-lib-tabs button.here,.ar-lib-chip.here{background:#1e7d5e;color:#fff;border-color:#1e7d5e}
+.ar-lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(3.4rem,1fr));gap:.35rem}
+.ar-lib-letter{
+  border:1px solid var(--lab-line);background:var(--lab-panel);color:inherit;border-radius:12px;
+  padding:.45rem;cursor:pointer
+}
+.ar-lib-letter span{font-size:1.35rem;display:block}
+.ar-lib-letter small{font-size:.65rem;opacity:.75}
+.ar-lib-row{
+  display:flex;justify-content:space-between;align-items:center;gap:.5rem;
+  padding:.55rem 0;border-bottom:1px solid var(--lab-line)
+}
+.ar-lib-ar{font-size:1.15rem;font-weight:700}
+.ar-lib-en{font-size:.85rem;opacity:.85}
+.ar-lib-note{font-size:.78rem;color:var(--lab-muted);margin-top:.75rem}
