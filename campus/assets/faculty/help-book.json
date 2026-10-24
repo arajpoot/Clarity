@@ -1,26 +1,123 @@
 {
-  "version": 1,
+  "version": 2,
   "defaultCooldownSec": 90,
+  "disclaimer": "Educational guidance only. Not a fatwa. Verify with a local teacher.",
   "byPhase": {
     "1": [
-      "Read the points slowly. Tawḥīd is not a slogan — it is loyalty of the heart.",
-      "If a verse is quoted, open it and sit with one line.",
-      "You do not need to finish fast. You need to finish sincere."
+      {
+        "id": "p1a",
+        "aim": "Foundations",
+        "tip": "Read slowly. Tawḥīd is loyalty of the heart, not a slogan.",
+        "tryInternal": "/campus/desk/seeker/",
+        "goOutward": [
+          "quran-fatiha"
+        ]
+      },
+      {
+        "id": "p1b",
+        "aim": "Qur'an adab",
+        "tip": "If a verse is quoted, open it and sit with one line.",
+        "tryInternal": "/campus/lab/arabic/",
+        "goOutward": [
+          "quran-com"
+        ]
+      },
+      {
+        "id": "p1c",
+        "aim": "Pace",
+        "tip": "You do not need to finish fast. You need to finish sincere.",
+        "tryInternal": "/campus/journey/",
+        "goOutward": [
+          "seekers-home"
+        ]
+      }
     ],
     "2": [
-      "For prayer and purity, use this module as a map — confirm steps with a local teacher.",
-      "Mistakes in practice are part of learning when sincerity is present.",
-      "Write one small action you will try today."
+      {
+        "id": "p2a",
+        "aim": "Practice map",
+        "tip": "For prayer and purity, use modules as a map — confirm steps with a local teacher.",
+        "tryInternal": "/campus/desk/practice/",
+        "goOutward": [
+          "begin-islam"
+        ]
+      },
+      {
+        "id": "p2b",
+        "aim": "Action",
+        "tip": "Write one small action you will try today. Mistakes with sincerity are part of learning.",
+        "tryInternal": "/campus/desk/practice/",
+        "goOutward": [
+          "sunnah-com"
+        ]
+      },
+      {
+        "id": "p2c",
+        "aim": "New confidence",
+        "tip": "Ask your local community for prayer details; this desk will not replace them.",
+        "tryInternal": "/campus/lab/arabic/everyday/",
+        "goOutward": [
+          "seekers-home"
+        ]
+      }
     ],
     "3": [
-      "One tajweed rule applied well beats ten rules memorized in haste.",
-      "Weekly review is honesty, not self-punishment.",
-      "Craft beauty without inventing meanings."
+      {
+        "id": "p3a",
+        "aim": "Tajweed",
+        "tip": "One rule applied well beats ten memorized in haste.",
+        "tryInternal": "/campus/lab/tajweed/",
+        "goOutward": [
+          "quran-com"
+        ]
+      },
+      {
+        "id": "p3b",
+        "aim": "Consistency",
+        "tip": "Weekly review is honesty, not self-punishment.",
+        "tryInternal": "/campus/desk/consistency/",
+        "goOutward": [
+          "yaqeen"
+        ]
+      },
+      {
+        "id": "p3c",
+        "aim": "Craft",
+        "tip": "Craft beauty without inventing meanings.",
+        "tryInternal": "/campus/lab/calligraphy/",
+        "goOutward": [
+          "sunnah-com"
+        ]
+      }
     ],
     "4": [
-      "Before teaching others, ask: is my source clear?",
-      "Adab is part of the message.",
-      "If unsure of a ruling, pause and ask qualified scholarship."
+      {
+        "id": "p4a",
+        "aim": "Sources",
+        "tip": "Before teaching others, ask: is my source clear?",
+        "tryInternal": "/campus/desk/transmission/",
+        "goOutward": [
+          "seekers-home"
+        ]
+      },
+      {
+        "id": "p4b",
+        "aim": "Adab",
+        "tip": "Adab is part of the message.",
+        "tryInternal": "/campus/library/",
+        "goOutward": [
+          "yaqeen"
+        ]
+      },
+      {
+        "id": "p4c",
+        "aim": "Limits",
+        "tip": "If unsure of a ruling, pause and ask qualified scholarship.",
+        "tryInternal": "/campus/charter/",
+        "goOutward": [
+          "islamqa"
+        ]
+      }
     ]
   }
 }
