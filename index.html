@@ -1361,6 +1361,110 @@ html[data-theme="dark"] #callig-lab-card div[style*="background: linear"] {
 </style>
 
 <link rel="stylesheet" href="assets/nuros-shariah-palette-collapse-v1.css" />
+
+<style id="clarity-landing-arch-css">
+html[data-shell-mode="landing"] #path-board,
+html[data-shell-mode="landing"] .path-board,
+html[data-shell-mode="landing"] [data-path-board],
+html[data-shell-mode="landing"] .shell-landing-hide {
+  display: none !important;
+  visibility: hidden !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* Shell modes: landing (daily) vs companion (deep learning) */
+html[data-shell-mode="landing"] .shell-landing-hide,
+body[data-shell-mode="landing"] .shell-landing-hide {
+  display: none !important;
+}
+#clarity-daily-routines {
+  margin: 0.5rem 0.55rem 1rem;
+  display: grid;
+  gap: 0.55rem;
+}
+#clarity-daily-routines .cdr-head h2 {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+#clarity-daily-routines .cdr-sub {
+  margin: 0 0 0.45rem;
+  opacity: 0.8;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.cdr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.55rem;
+}
+.cdr-card {
+  border-radius: 14px;
+  border: 1px solid rgba(184,146,42,0.32);
+  background: linear-gradient(165deg, rgba(15,36,28,0.96), rgba(10,24,18,0.99));
+  color: #e8f0ea;
+  padding: 0.75rem 0.85rem;
+}
+html[data-theme="light"] .cdr-card,
+html[data-theme="day"] .cdr-card {
+  background: linear-gradient(165deg, #f4faf6, #e8f3ec);
+  color: #0c1a14;
+  border-color: #a8c9b6;
+}
+.cdr-card h3 { margin: 0 0 0.35rem; font-size: 0.95rem; font-weight: 800; }
+.cdr-card p { margin: 0 0 0.55rem; font-size: 0.82rem; line-height: 1.4; opacity: 0.92; }
+.cdr-cta {
+  border: 1px solid rgba(212,180,90,0.45);
+  background: rgba(212,180,90,0.12);
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+html[data-shell-mode="companion"] #clarity-day-landing,
+html[data-shell-mode="companion"] #clarity-daily-routines {
+  display: none !important;
+}
+#clarity-reopen-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.35rem 0.55rem;
+  padding: 0.35rem 0.45rem;
+  border-radius: 12px;
+  border: 1px solid rgba(184,146,42,0.28);
+  background: rgba(15,36,28,0.06);
+}
+html[data-theme="dark"] #clarity-reopen-bar {
+  background: rgba(255,255,255,0.04);
+}
+.crb-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.75; }
+.crb-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.4);
+  background: rgba(212,180,90,0.15);
+  color: inherit;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.crb-btn.crb-open { background: rgba(13,79,60,0.85); color: #f5faf7; border-color: rgba(13,79,60,0.9); }
+html[data-theme="light"] .crb-btn.crb-open,
+html[data-theme="day"] .crb-btn.crb-open {
+  background: #0d4f3c;
+  color: #fff;
+}
+.crb-hint { font-size: 0.72rem; opacity: 0.65; }
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
@@ -9770,6 +9874,8 @@ html[data-theme="light"] #clarity-reopen-bar, html[data-theme="day"] #clarity-re
 </style>
 <script id="clarity-landing-day-js" src="assets/companion-inline/inline-clarity-landing-day-js.js" defer></script>
 <script src="assets/companion-inline/inline-clarity-dhikr-rail-v2.js" defer></script>
+<script src="assets/companion-inline/inline-clarity-landing-arch-v1.js" defer></script>
+
 
 
 
