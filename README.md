@@ -1,25 +1,22 @@
-# Clarity Companion · lite (~500KB HTML)
+# Clarity Companion · essentials (smoked)
 
-Bismillah. Scripts/styles offloaded to `assets/` like prior builds.
+Bismillah. Local-first educational companion — not a fatwa.
 
-## Size
-- `index.html` ≈ 513–525 KB (was ~2.1 MB monolith)
-- `assets/` holds large JS/CSS modules
-
-## Deploy
-Upload `index.html` + entire `assets/` folder keeping relative paths:
+## Layout (GitHub root)
 ```
 index.html
-assets/clarity-core-block-8.js
-assets/clarity-uft-full-restore-v1.js
-assets/*.css
-...
+robots.txt
+sitemap.xml
+assets/
+  clarity-core-block-8.js
+  clarity-uft-full-restore-v1.js
+  *.css
+  companion-inline/
+    inline-*.js   # small patches / feature modules
 ```
 
-## Integrity
-- Day landing + dual paths (Companion / University campus link)
-- ALLOW boot shim + gate guards
-- Welcome track stubs
-- Simulation: landing, dual, switchTab, ALLOW.seeker OK
+## Deploy
+Upload entire tree keeping relative paths. Campus `/campus/` is separate — not in this package.
 
-University `/campus/` not in this package — leave production campus untouched.
+## Smoke
+See SMOKE_REPORT.md

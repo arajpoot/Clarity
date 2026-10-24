@@ -1,23 +1,18 @@
-# Smoked essentials · companion
+# Smoke · multi-cycle (notesLoad hard fix)
 
-Bismillah. Sandbox simulation 2026-10-23.
+## Cycles
+1. Cold + tab sweep: caught=[] notesLoad=function
+2. Early boot + notes tab: caught=[] notesLoad=function
+3. Package integrity: missing asset refs=0
 
-## Desktop
-- Landing ×1, reopen ×1, dual paths, adhkār, do-this-today
-- ALLOW.seeker, switchTab, door, printPack, clearSearch, uftZoomFit, memeFetch
-- Tabs: reminder, reality, reflection, action, notes — all ok
-- Security audit ok: passphrase not in storage, AES-GCM path present
-- runtimeErrors: []
-- Console: SW soft-fail only
+## Fix layers
+1. Head stub: window.notesLoad always defined
+2. clarity-core-block-8.js top harden (CLARITY_NOTESLOAD_HARDEN)
+3. Call sites guarded with typeof checks
+4. notes-recovery sets __notesLoadReal + window.notesLoad
 
-## Mobile
-- Banner position: relative (not sticky)
-- body overflow-y: auto
-- canScroll: true
+## Deploy note
+Live clarity-dawah.fyi still shows old core error until this package is uploaded
+(assets/clarity-core-block-8.js + index.html). Hard-refresh / clear SW after deploy.
 
-## Package
-- index.html ~517 KB
-- assets/ (32 modules)
-- robots.txt, sitemap.xml
-
-University /campus/ not modified in this package (link only).
+Campus /campus/ not included.
