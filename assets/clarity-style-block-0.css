@@ -2612,3 +2612,14 @@ html[data-theme="dark"] .cw-name-gate input{background:#152019;color:#e7efe9;bor
 .notes-body-input,textarea.notes-body-input,#notes-body{overflow-y:auto !important;-webkit-overflow-scrolling:touch;max-height:min(52vh,480px);min-height:180px;resize:vertical}
 #notes-save-now,button.notes-save-now{display:inline-flex !important;align-items:center;background:var(--accent,#1fa67a) !important;color:var(--accent-fg,#061510) !important;font-weight:700;border:none;padding:0.5rem 1rem;border-radius:10px;cursor:pointer}
 .notes-meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:0.45rem;margin-top:0.5rem;padding-top:0.45rem;border-top:1px solid var(--border)}
+
+@media (max-width: 900px) {
+  .banner, #clarity-top-duo, .global-nav, nav.global-nav {
+    position: relative !important;
+    top: auto !important;
+  }
+  html, body {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+}
