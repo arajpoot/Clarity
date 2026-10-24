@@ -10,7 +10,7 @@
 
   var KEY = "cu_lab_ar_progress_v1";
   var KEY_BANK = "cu_lab_ar_bank_v1";
-  var VER = "20261024CAMP2";
+  var VER = "20261024FULL";
   var NEW_CAP = 10;
   var ALLOW_FETCH = false; /* S0: offline first; expand uses local bank JSON */
 

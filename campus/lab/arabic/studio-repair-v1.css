@@ -1,0 +1,70 @@
+
+/* AR0–AR3 Arabic studio repair */
+.ar-btn, .ar-deck-btn, .ar-mode-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.45rem 0.85rem !important;
+  touch-action: manipulation;
+  position: relative;
+  z-index: 2;
+}
+.ar-session-bar, .ar-decks, .ar-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+.ar-status-line {
+  font-size: 0.84rem;
+  opacity: 0.9;
+  margin: 0 0 0.5rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 12px;
+  border: 1px solid rgba(201,162,39,.35);
+  background: rgba(70,124,69,.1);
+}
+.ar-speak-path {
+  margin: 0 0 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 16px;
+  border: 1px solid rgba(201,162,39,.45);
+  background: rgba(255,254,249,.06);
+}
+html[data-theme=light] .ar-speak-path {
+  background: rgba(255,254,249,.95);
+  color: #1a2a22;
+}
+.ar-speak-head { display: flex; flex-direction: column; gap: 0.15rem; margin-bottom: 0.45rem; }
+.ar-speak-head strong { color: #c9a227; }
+.ar-speak-sub { font-size: 0.78rem; opacity: 0.8; }
+.ar-speak-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.ar-speak-line {
+  margin: 0.5rem 0 0;
+  font-size: 1.15rem;
+  text-align: right;
+  line-height: 1.6;
+  color: #c9a227;
+}
+.ar-repair-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 5.5rem;
+  transform: translateX(-50%) translateY(120%);
+  background: #1a2a22;
+  color: #f5f0e6;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  z-index: 9999;
+  opacity: 0;
+  transition: transform .25s ease, opacity .25s ease;
+  border: 1px solid rgba(201,162,39,.5);
+  max-width: 90vw;
+  text-align: center;
+  pointer-events: none;
+}
+.ar-repair-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

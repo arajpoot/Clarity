@@ -1,0 +1,24 @@
+
+/* Arabic video module */
+.ar-video-mod{margin:0.75rem 0 1.25rem}
+.ar-video-mod h2{font-size:1.1rem;margin:0 0 0.35rem;color:#c9a227}
+.ar-video-disc{font-size:0.82rem;line-height:1.45;opacity:0.9;margin:0 0 0.65rem}
+.ar-video-grid{display:grid;gap:0.5rem}
+@media(min-width:640px){.ar-video-grid{grid-template-columns:1fr 1fr}}
+.ar-video-card{
+  display:flex;flex-direction:column;gap:0.25rem;text-decoration:none;color:inherit;
+  padding:0.75rem 0.85rem;border-radius:14px;border:1px solid rgba(201,162,39,0.4);
+  background:rgba(70,124,69,0.12);min-height:5.5rem
+}
+.ar-video-card strong{font-size:0.95rem}
+.ar-video-card span{font-size:0.8rem;opacity:0.9}
+.ar-video-card em{font-size:0.75rem;font-style:normal;color:#c9a227;margin-top:auto}
+html[data-theme=light] .ar-video-card{background:#fffef9;color:#1a2a22}
+.ar-mode-tab.on{background:#467C45;color:#fff;border-color:#467C45}
+#hajj27-root,#ar-studio-root{min-height:12rem}
+.h27-card,.ar-card{max-width:40rem}
+.cu-personas-embed{margin:0.75rem 0;padding:0.5rem 0.65rem;border-radius:12px;border:1px solid rgba(201,162,39,0.25);font-size:0.85rem}
+.cu-personas-embed .cu-roles-btn,.cu-personas-embed a.cu-roles-btn{
+  display:inline-block;margin:0.15rem 0.2rem;padding:0.35rem 0.65rem;border-radius:999px;
+  border:1px solid rgba(201,162,39,0.4);text-decoration:none;color:inherit;font-size:0.78rem;font-weight:700
+}

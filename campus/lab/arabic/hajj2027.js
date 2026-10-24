@@ -9,7 +9,7 @@
   if (g.__CU_HAJJ27_V1__) return;
   g.__CU_HAJJ27_V1__ = true;
 
-  var VER = "20261018STABLE";
+  var VER = "20261024FULL";
   var SCORE_KEY = "cu_hajj27_score_v1";
   var CAT_KEY = "cu_hajj27_cat_v1";
   var bank = null;
