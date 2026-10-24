@@ -1,0 +1,29 @@
+/* Faculty lifecycle R0–R9 · 20261024R9 */
+.cu-res-rail{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.cu-res-chip{display:flex;flex-direction:column;gap:.15rem;max-width:14rem;padding:.55rem .7rem;border-radius:12px;border:1px solid rgba(201,162,39,.35);text-decoration:none;color:inherit;background:rgba(255,255,255,.04);font-size:.8rem}
+.cu-res-chip strong{color:#d4b45a;font-size:.82rem}
+.cu-res-empty{font-size:.8rem;opacity:.8}
+.cu-mentor-strip,.cu-adm-fac{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;padding:.55rem .85rem;border-radius:12px;border:1px solid rgba(201,162,39,.3);margin:0 0 1rem;font-size:.88rem;background:rgba(30,125,94,.1)}
+.cu-mentor-strip .pulse{width:.5rem;height:.5rem;border-radius:50%;background:#1e7d5e;animation:facPulse 1.6s infinite}
+@keyframes facPulse{0%{box-shadow:0 0 0 0 rgba(30,125,94,.45)}70%{box-shadow:0 0 0 8px transparent}}
+.cu-mentor-strip button,.cu-tutor-btn,#cu-tutor-fab,.cu-life-btn,.fac-ask{border-radius:999px;padding:.35rem .8rem;border:1px solid rgba(30,125,94,.4);background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;font-size:.8rem}
+.cu-tutor-btn{margin-top:.4rem;display:inline-block}
+#cu-tutor-fab{position:fixed;bottom:1.1rem;right:1.1rem;z-index:40;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+#cu-life-pop,#cu-assess-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:9999;padding:1rem}
+#cu-life-pop[hidden]{display:none!important}
+.cu-life-card{max-width:24rem;width:100%;border-radius:18px;padding:1.1rem 1.15rem;background:#101c16;color:#e8efe9;border:1px solid rgba(201,168,76,.45);position:relative}
+html[data-theme=light] .cu-life-card{background:#fffcf5;color:#13201a}
+.cu-life-x{position:absolute;top:.35rem;right:.5rem;border:0;background:transparent;color:inherit;font-size:1.25rem;cursor:pointer}
+.cu-life-aim{font-size:.78rem;opacity:.85;margin:0 0 .35rem}
+.cu-life-foot{font-size:.72rem;opacity:.75}
+.cu-life-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.cu-assess-q{display:block;margin:.5rem 0;font-size:.88rem}
+.cu-assess-q select{display:block;width:100%;margin-top:.25rem;padding:.4rem;border-radius:8px}
+.cu-staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(12rem,1fr));gap:.5rem}
+.cu-staff-card{border:1px solid rgba(201,162,39,.28);border-radius:12px;padding:.65rem;font-size:.8rem}
+.cu-staff-card strong{display:block;color:#d4b45a;margin:.2rem 0}
+.fac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.75rem}
+.fac-card{border:1px solid rgba(201,168,76,.35);border-radius:16px;padding:1rem;background:rgba(16,28,22,.9)}
+html[data-theme=light] .fac-card{background:#fffcf5}
+.fac-card .role{font-size:.72rem;opacity:.85}
+.fac-card strong{display:block;color:#e8d5a3;margin:.25rem 0}
