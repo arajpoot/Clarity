@@ -67,6 +67,8 @@ html[data-theme=light] .uni-grid a,html[data-theme=light] .uni-card{background:#
 
 <link rel="stylesheet" href="/campus/assets/css/cu-faculty-live-v1.css?v=20261024FAC"/>
 <link rel="stylesheet" href="/campus/assets/faculty/faculty.css?v=20261024FAC"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-faculty-lifecycle-v1.css?v=20261024R9"/>
+<link rel="stylesheet" href="/campus/assets/faculty/faculty.css?v=20261024R9"/>
 </head>
 <body class="cu-page" data-campus-page="faculty">
 <header class="cu-banner" id="cu-banner">
@@ -106,6 +108,18 @@ html[data-theme=light] .uni-grid a,html[data-theme=light] .uni-card{background:#
       <button type="button" id="fac-close">Close</button>
     </p>
   </section>
+  
+<div id="cu-staff-strip" class="cu-staff-strip"></div>
+<div id="cu-assign-slot" class="uni-card"></div>
+<div id="cu-mirror-line" class="uni-note"></div>
+<div id="cu-seal-slot" class="uni-card"></div>
+<div id="cu-grad-slot" class="uni-card"></div>
+<div class="cu-res-rail" data-cu-resources data-phase="1" data-limit="6"></div>
+<script src="/campus/assets/faculty/faculty-controller-v1.js?v=20261024R9" defer></script>
+<script src="/campus/assets/staff/staff-librarian-v1.js?v=20261024R9" defer></script>
+<script src="/campus/assets/staff/staff-resource-scout-v1.js?v=20261024R9" defer></script>
+<script src="/campus/assets/js/cu-faculty-lifecycle-v1.js?v=20261024R9" defer></script>
+
   <div id="seq-faculty-root"></div>
   <p class="uni-note">Progress is local only · study mirror — not a grade of īmān.</p>
 </main>
