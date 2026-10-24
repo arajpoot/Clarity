@@ -36283,320 +36283,6 @@ html[data-theme="day"] .meter-track {
 </style>
 
 
-<style id="clarity-landing-day-css">
-#clarity-day-landing {
-  margin: 0.45rem 0.65rem 0.85rem;
-  display: grid;
-  gap: 0.65rem;
-  position: relative;
-  z-index: 12;
-}
-#clarity-day-landing .cdl-card {
-  border-radius: 16px;
-  border: 1px solid rgba(184,146,42,0.35);
-  background: linear-gradient(165deg, rgba(15,36,28,0.96), rgba(10,24,18,0.98));
-  color: #e8f0ea;
-  padding: 0.85rem 1rem;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
-}
-html[data-theme="light"] #clarity-day-landing .cdl-card,
-html[data-theme="day"] #clarity-day-landing .cdl-card {
-  background: linear-gradient(165deg, #f3faf6, #e7f3ec);
-  color: #0c1a14;
-  border-color: #a8c9b6;
-}
-.cdl-head {
-  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
-  flex-wrap: wrap; margin-bottom: 0.45rem;
-}
-.cdl-head h2 {
-  margin: 0; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.01em;
-}
-.cdl-period {
-  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.06em; color: var(--gold, #d4b45a);
-  padding: 0.15rem 0.5rem; border-radius: 999px;
-  border: 1px solid rgba(212,180,90,0.35);
-}
-.cdl-row {
-  display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;
-}
-.cdl-salah, .cdl-tas {
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  padding: 0.35rem 0.55rem; border-radius: 12px;
-  background: rgba(255,255,255,0.06); font-size: 0.85rem;
-}
-html[data-theme="light"] .cdl-salah, html[data-theme="day"] .cdl-salah,
-html[data-theme="light"] .cdl-tas, html[data-theme="day"] .cdl-tas {
-  background: rgba(13,79,60,0.08);
-}
-.cdl-lane {
-  display: inline-block; font-size: 0.68rem; font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--gold, #d4b45a); margin: 0.35rem 0 0.15rem;
-}
-.cdl-deed { margin: 0; line-height: 1.45; font-size: 0.95rem; }
-.cdl-note { margin: 0.35rem 0 0; font-size: 0.72rem; opacity: 0.78; }
-.cdl-tas button {
-  border: 0; border-radius: 10px; padding: 0.35rem 0.55rem;
-  background: rgba(212,180,90,0.2); color: inherit; cursor: pointer; font-weight: 700;
-}
-.cdl-adhkar-ar {
-  font-size: 1.25rem; line-height: 1.7; direction: rtl; text-align: right;
-  margin: 0.4rem 0; font-family: "Noto Naskh Arabic", "Scheherazade New", serif;
-}
-.cdl-adhkar-en { margin: 0.25rem 0; font-size: 0.9rem; opacity: 0.92; }
-.cdl-adhkar-ref { font-size: 0.72rem; opacity: 0.7; margin: 0.2rem 0 0.5rem; }
-.cdl-pills {
-  display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem;
-}
-.cdl-pills button, .cdl-pills a {
-  border-radius: 999px; border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.07); color: inherit;
-  padding: 0.28rem 0.65rem; font-size: 0.75rem; cursor: pointer;
-  text-decoration: none; font-weight: 600;
-}
-html[data-theme="light"] .cdl-pills button,
-html[data-theme="day"] .cdl-pills button {
-  border-color: #a8c9b6; background: rgba(13,79,60,0.07); color: #0c1a14;
-}
-#clarity-reopen-bar {
-  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
-  margin: 0 0.65rem 0.55rem; padding: 0.4rem 0.65rem;
-  border-radius: 12px; border: 1px dashed rgba(184,146,42,0.4);
-  background: rgba(15,36,28,0.55); font-size: 0.8rem; color: #e8f0ea;
-  z-index: 12; position: relative;
-}
-html[data-theme="light"] #clarity-reopen-bar,
-html[data-theme="day"] #clarity-reopen-bar {
-  background: rgba(232,245,238,0.9); color: #0c1a14; border-color: #a8c9b6;
-}
-#clarity-reopen-bar button {
-  border: 0; border-radius: 999px; padding: 0.25rem 0.65rem;
-  background: var(--gold, #b8922a); color: #0c1a14; font-weight: 700; cursor: pointer;
-}
-.cdl-count-btn {
-  border: 0; border-radius: 10px; padding: 0.4rem 0.75rem;
-  background: linear-gradient(90deg, #1a6b52, #b8922a); color: #fff;
-  font-weight: 700; cursor: pointer;
-}
-#amana-note-registry-wrap {
-  margin-top: 0.75rem; padding: 0.65rem 0.75rem;
-  border-radius: 12px; border: 1px solid rgba(184,146,42,0.3);
-  background: rgba(0,0,0,0.18);
-}
-#amana-note-registry-wrap h3 { margin: 0 0 0.35rem; font-size: 0.9rem; }
-#amana-note-text {
-  width: 100%; min-height: 4.5rem; border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.25);
-  color: inherit; padding: 0.5rem; box-sizing: border-box; resize: vertical;
-}
-#amana-note-registry-wrap .row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.4rem; }
-#amana-note-registry-wrap button {
-  border: 0; border-radius: 999px; padding: 0.35rem 0.7rem;
-  background: rgba(212,180,90,0.25); color: inherit; font-weight: 700; cursor: pointer;
-}
-#amana-note-list { margin: 0.5rem 0 0; padding: 0; list-style: none; max-height: 10rem; overflow: auto; font-size: 0.78rem; }
-#amana-note-list li {
-  padding: 0.35rem 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-</style>
-<script id="clarity-landing-day-js">
-(function(){
-  "use strict";
-  if (window.__CLARITY_LANDING_DAY_V1__) return;
-  window.__CLARITY_LANDING_DAY_V1__ = true;
-
-  var KEY_PROV = "clarity_provision_day_v1";
-  var KEY_TAS = "clarity_cph_tasbeeh_v1";
-  var KEY_CONT = "clarity_continue_v1";
-  var KEY_LAND_HIDE = "clarity_day_landing_collapsed_v1";
-
-  var PROVISIONS = [
-    { lane: "jariyah", text: "Do one small ongoing good: teach something useful, water a plant, or give a quiet ṣadaqah." },
-    { lane: "knowledge", text: "Learn or share one beneficial sentence from Qur’ān or Sunnah with sincerity." },
-    { lane: "duʿāʾ", text: "Make duʿāʾ for your parents or a deceased relative; ask Allah to make you a source of ongoing good." },
-    { lane: "rights", text: "Settle or note one right: a debt, a trust, or an apology you still owe." },
-    { lane: "ṣalāh", text: "Pray the next ṣalāh on time with presence; say Bismillāh before your next ordinary task." },
-    { lane: "character", text: "Guard the tongue for one hour: no mockery, no gossip; replace with istighfār." }
-  ];
-
-  var ADHKAR = {
-    morning: [
-      { ar: "اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",
-        en: "O Allah, by You we enter the morning and by You the evening, by You we live and die, and to You is the resurrection.",
-        ref: "Tirmidhī 3391 · educational — confirm with a teacher", target: 1 },
-      { ar: "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
-        en: "In the name of Allah, with whose name nothing on earth or in the heaven can cause harm, and He is the All-Hearing, the All-Knowing.",
-        ref: "Abū Dāwūd 5088 · often 3× · educational", target: 3 }
-    ],
-    evening: [
-      { ar: "اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ",
-        en: "O Allah, by You we enter the evening and by You the morning, by You we live and die, and to You is the return.",
-        ref: "Tirmidhī 3391 · educational", target: 1 },
-      { ar: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
-        en: "I seek refuge in the perfect words of Allah from the evil of what He created.",
-        ref: "Muslim 2708 · educational", target: 3 }
-    ]
-  };
-
-  function todayKey(){
-    var d = new Date();
-    return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-  }
-  function readJSON(k){ try { return JSON.parse(localStorage.getItem(k)||"null"); } catch(e){ return null; } }
-  function writeJSON(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
-  function hash(s){ var h=0; for(var i=0;i<s.length;i++) h=((h<<5)-h)+s.charCodeAt(i); return h; }
-
-  function dayPeriod(){
-    var h = new Date().getHours();
-    if (h < 5) return "Night";
-    if (h < 12) return "Morning";
-    if (h < 15) return "Midday";
-    if (h < 18) return "Afternoon";
-    if (h < 21) return "Evening";
-    return "Night";
-  }
-  function isEveningWindow(){
-    var h = new Date().getHours();
-    return h >= 15 || h < 5;
-  }
-
-  function todayProvision(){
-    var day = todayKey();
-    var saved = readJSON(KEY_PROV);
-    if (saved && saved.day === day && saved.text) return saved;
-    var idx = Math.abs(hash(day)) % PROVISIONS.length;
-    var pick = PROVISIONS[idx];
-    var out = { day: day, lane: pick.lane, text: pick.text };
-    writeJSON(KEY_PROV, out);
-    return out;
-  }
-  function tasState(){
-    var day = todayKey();
-    var s = readJSON(KEY_TAS) || {};
-    if (s.day !== day) s = { day: day, count: 0 };
-    return s;
-  }
-  function trackContinue(action, detail){
-    writeJSON(KEY_CONT, { action: action||"landing", detail: detail||"", ts: Date.now(), path: localStorage.getItem("clarity_path_focus")||"seeker" });
-  }
-
-  function openTab(id){
-    try {
-      if (typeof switchTab === "function") switchTab(id);
-      else if (typeof clarityOpenSectionDoor === "function") clarityOpenSectionDoor(id);
-      else if (typeof clarityCompanionShowTab === "function") clarityCompanionShowTab(id);
-    } catch(e){}
-    trackContinue(id, "tab-"+id);
-  }
-
-  function buildLanding(){
-    if (document.getElementById("clarity-day-landing")) return;
-    var prov = todayProvision();
-    var tas = tasState();
-    var pack = isEveningWindow() ? ADHKAR.evening : ADHKAR.morning;
-    var dh = pack[Math.abs(hash(todayKey()+"dh")) % pack.length];
-    var period = dayPeriod();
-
-    var wrap = document.createElement("section");
-    wrap.id = "clarity-day-landing";
-    wrap.setAttribute("aria-label", "Today provision");
-    wrap.innerHTML =
-      '<div class="cdl-card" id="cdl-today">' +
-        '<div class="cdl-head"><h2>Do this today</h2><span class="cdl-period" id="cdl-period">'+period+'</span></div>' +
-        '<div class="cdl-row">' +
-          '<span class="cdl-salah" title="Next ṣalāh from banner when available">🕌 <span id="cdl-salah-txt">Next ṣalāh · see banner times</span></span>' +
-          '<span class="cdl-tas">📿 <strong id="cdl-tas-count">'+ (tas.count||0) +'</strong>' +
-            ' <button type="button" id="cdl-tas-inc" aria-label="Tasbeeh +1">+1</button>' +
-            ' <button type="button" id="cdl-tas-reset" aria-label="Reset count">↺</button></span>' +
-        '</div>' +
-        '<div class="cdl-lane">'+ (prov.lane||"provision") +'</div>' +
-        '<p class="cdl-deed">'+ prov.text +'</p>' +
-        '<p class="cdl-note">Toward ongoing good, beneficial knowledge, and a heart ready for the long stay. Educational only — not a fatwa.</p>' +
-      '</div>' +
-      '<div class="cdl-card" id="cdl-adhkar">' +
-        '<div class="cdl-head"><h2>Adhkār · '+ (isEveningWindow()?"evening":"morning") +'</h2>' +
-          '<button type="button" class="cdl-count-btn" id="cdl-adhkar-count">Count 0 / '+ dh.target +'</button></div>' +
-        '<p class="cdl-adhkar-ar">'+ dh.ar +'</p>' +
-        '<p class="cdl-adhkar-en">'+ dh.en +'</p>' +
-        '<p class="cdl-adhkar-ref">'+ dh.ref +'</p>' +
-        '<div class="cdl-pills" role="navigation" aria-label="Quick doors">' +
-          '<button type="button" data-cdl-tab="reminder">✦ Reminder</button>' +
-          '<button type="button" data-cdl-tab="reality">◉ Reality</button>' +
-          '<button type="button" data-cdl-tab="reflection">☾ Reflection</button>' +
-          '<button type="button" data-cdl-tab="action">➤ Action</button>' +
-          '<button type="button" data-cdl-tab="notes">🏦 Amana Vault</button>' +
-        '</div>' +
-      '</div>';
-
-    var reopen = document.createElement("div");
-    reopen.id = "clarity-reopen-bar";
-    reopen.innerHTML = '<span>Day landing</span> <button type="button" id="cdl-reopen-show">Open Do this today</button> <button type="button" id="cdl-reopen-hide">Hide for now</button> <span id="cdl-reopen-hint" style="opacity:.75">Revisit any time today</span>';
-
-    var host = document.getElementById("clarity-visit-pill-bar") ||
-               document.getElementById("clarity-top-duo") ||
-               document.getElementById("main-application-workspace") ||
-               document.body;
-    if (host && host.parentNode) {
-      if (host.nextSibling) host.parentNode.insertBefore(wrap, host.nextSibling);
-      else host.parentNode.appendChild(wrap);
-      if (wrap.nextSibling) wrap.parentNode.insertBefore(reopen, wrap.nextSibling);
-      else wrap.parentNode.appendChild(reopen);
-    } else {
-      document.body.insertBefore(wrap, document.body.firstChild);
-      document.body.insertBefore(reopen, wrap.nextSibling);
-    }
-
-    // collapse state
-    function applyCollapse(){
-      var hide = localStorage.getItem(KEY_LAND_HIDE) === todayKey();
-      wrap.style.display = hide ? "none" : "grid";
-    }
-    applyCollapse();
-
-    document.getElementById("cdl-reopen-hide").onclick = function(){
-      localStorage.setItem(KEY_LAND_HIDE, todayKey());
-      applyCollapse();
-      trackContinue("landing-hide");
-    };
-    document.getElementById("cdl-reopen-show").onclick = function(){
-      localStorage.removeItem(KEY_LAND_HIDE);
-      applyCollapse();
-      wrap.scrollIntoView({ behavior: "smooth", block: "start" });
-      trackContinue("landing");
-    };
-
-    document.getElementById("cdl-tas-inc").onclick = function(){
-      var s = tasState(); s.count = (s.count||0)+1; writeJSON(KEY_TAS, s);
-      document.getElementById("cdl-tas-count").textContent = s.count;
-    };
-    document.getElementById("cdl-tas-reset").onclick = function(){
-      var s = { day: todayKey(), count: 0 }; writeJSON(KEY_TAS, s);
-      document.getElementById("cdl-tas-count").textContent = 0;
-    };
-
-    var adhCount = 0;
-    document.getElementById("cdl-adhkar-count").onclick = function(){
-      adhCount++;
-      var t = dh.target || 1;
-      this.textContent = "Count " + adhCount + " / " + t;
-      if (adhCount >= t) this.textContent = "Done ✓ · " + adhCount;
-    };
-
-    wrap.querySelectorAll("[data-cdl-tab]").forEach(function(btn){
-      btn.addEventListener("click", function(){ openTab(btn.getAttribute("data-cdl-tab")); });
-    });
-
-    trackContinue("landing");
-  }
-
-  function boot(){ try { buildLanding(); } catch(e){ console.warn("[landing]", e); } }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 180); });
-  else setTimeout(boot, 180);
-  window.addEventListener("load", function(){ setTimeout(boot, 500); });
-})();
-</script>
 <script id="clarity-vault-note-registry-js">
 (function(){
   "use strict";
@@ -36694,6 +36380,252 @@ html[data-theme="day"] #clarity-reopen-bar {
     var t = ev.target && ev.target.closest && ev.target.closest("[data-rail-tab='notes'], [data-cdl-tab='notes']");
     if (t) setTimeout(boot, 200);
   }, true);
+})();
+</script>
+
+
+<style id="clarity-landing-day-css">
+/* Day landing sits ABOVE Reminder hub — not buried */
+#clarity-day-landing {
+  order: -1;
+  margin: 0.4rem 0.55rem 0.75rem;
+  display: grid;
+  gap: 0.55rem;
+  position: relative;
+  z-index: 18;
+}
+#clarity-day-landing .cdl-card {
+  border-radius: 16px;
+  border: 1px solid rgba(184,146,42,0.35);
+  background: linear-gradient(165deg, rgba(15,36,28,0.97), rgba(10,24,18,0.99));
+  color: #e8f0ea;
+  padding: 0.8rem 0.95rem;
+}
+html[data-theme="light"] #clarity-day-landing .cdl-card,
+html[data-theme="day"] #clarity-day-landing .cdl-card {
+  background: linear-gradient(165deg, #f3faf6, #e7f3ec);
+  color: #0c1a14;
+  border-color: #a8c9b6;
+}
+.cdl-head { display:flex; align-items:center; justify-content:space-between; gap:.5rem; flex-wrap:wrap; margin-bottom:.4rem; }
+.cdl-head h2 { margin:0; font-size:1.02rem; font-weight:800; }
+.cdl-period { font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--gold,#d4b45a); padding:.12rem .45rem; border-radius:999px; border:1px solid rgba(212,180,90,.35); }
+.cdl-row { display:flex; align-items:center; gap:.55rem; flex-wrap:wrap; }
+.cdl-salah, .cdl-tas { display:inline-flex; align-items:center; gap:.3rem; padding:.3rem .5rem; border-radius:12px; background:rgba(255,255,255,.06); font-size:.82rem; }
+.cdl-lane { font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--gold,#d4b45a); margin:.3rem 0 .1rem; }
+.cdl-deed { margin:0; line-height:1.45; font-size:.92rem; }
+.cdl-note { margin:.3rem 0 0; font-size:.7rem; opacity:.78; }
+.cdl-tas button { border:0; border-radius:10px; padding:.3rem .5rem; background:rgba(212,180,90,.2); color:inherit; cursor:pointer; font-weight:700; }
+.cdl-adhkar-ar { font-size:1.2rem; line-height:1.7; direction:rtl; text-align:right; margin:.35rem 0; font-family:"Noto Naskh Arabic","Scheherazade New",serif; }
+.cdl-adhkar-en { margin:.2rem 0; font-size:.88rem; opacity:.92; }
+.cdl-adhkar-ref { font-size:.7rem; opacity:.7; margin:.15rem 0 .4rem; }
+.cdl-pills { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.3rem; }
+.cdl-pills button { border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.07);
+  color:inherit; padding:.26rem .6rem; font-size:.74rem; cursor:pointer; font-weight:600; }
+html[data-theme="light"] .cdl-pills button, html[data-theme="day"] .cdl-pills button {
+  border-color:#a8c9b6; background:rgba(13,79,60,.07); color:#0c1a14;
+}
+.cdl-count-btn { border:0; border-radius:10px; padding:.35rem .7rem; background:linear-gradient(90deg,#1a6b52,#b8922a); color:#fff; font-weight:700; cursor:pointer; }
+/* Two paths — Companion + University */
+.dual-tiles {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  margin: 0.15rem 0 0.35rem;
+}
+@media (max-width: 520px) { .dual-tiles { grid-template-columns: 1fr; } }
+.dual-tile {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  padding: 0.85rem 0.9rem; border-radius: 16px; text-decoration: none; color: inherit;
+  border: 1px solid rgba(212,180,90,0.35);
+  background: linear-gradient(165deg, rgba(18,28,22,.95), rgba(10,16,13,.98));
+  transition: transform .15s ease, border-color .15s ease;
+}
+.dual-tile:hover { transform: translateY(-2px); border-color: rgba(212,180,90,.55); }
+.dual-tile-university { border-color: rgba(212,180,90,.5); }
+.dual-ico { font-size: 1.2rem; }
+.dual-name { font-weight: 800; font-size: 0.95rem; }
+.dual-tile small { opacity: .85; font-size: .75rem; line-height: 1.35; }
+html[data-theme="light"] .dual-tile, html[data-theme="day"] .dual-tile {
+  background: linear-gradient(165deg, #f7fbf8, #eaf5ef); color: #0c1a14; border-color: #a8c9b6;
+}
+#clarity-reopen-bar {
+  display: flex; align-items: center; gap: .45rem; flex-wrap: wrap;
+  margin: 0 .55rem .5rem; padding: .35rem .6rem; border-radius: 12px;
+  border: 1px dashed rgba(184,146,42,.4); background: rgba(15,36,28,.55);
+  font-size: .78rem; color: #e8f0ea; z-index: 18; position: relative;
+}
+html[data-theme="light"] #clarity-reopen-bar, html[data-theme="day"] #clarity-reopen-bar {
+  background: rgba(232,245,238,.92); color: #0c1a14; border-color: #a8c9b6;
+}
+#clarity-reopen-bar button {
+  border: 0; border-radius: 999px; padding: .22rem .6rem;
+  background: var(--gold,#b8922a); color: #0c1a14; font-weight: 700; cursor: pointer;
+}
+/* Keep landing above main workspace content */
+#main-application-workspace { display: flex; flex-direction: column; }
+#clarity-day-landing { flex-shrink: 0; }
+</style>
+<script id="clarity-landing-day-js">
+(function(){
+  "use strict";
+  if (window.__CLARITY_LANDING_DAY_V2__) return;
+  window.__CLARITY_LANDING_DAY_V2__ = true;
+
+  var KEY_PROV = "clarity_provision_day_v1";
+  var KEY_TAS = "clarity_cph_tasbeeh_v1";
+  var KEY_CONT = "clarity_continue_v1";
+  var KEY_LAND_HIDE = "clarity_day_landing_collapsed_v1";
+
+  var PROVISIONS = [
+    { lane: "jariyah", text: "Do one small ongoing good: teach something useful, water a plant, or give a quiet ṣadaqah." },
+    { lane: "knowledge", text: "Learn or share one beneficial sentence from Qur’ān or Sunnah with sincerity." },
+    { lane: "duʿāʾ", text: "Make duʿāʾ for your parents or a deceased relative; ask Allah to make you a source of ongoing good." },
+    { lane: "rights", text: "Settle or note one right: a debt, a trust, or an apology you still owe." },
+    { lane: "ṣalāh", text: "Pray the next ṣalāh on time with presence; say Bismillāh before your next ordinary task." },
+    { lane: "character", text: "Guard the tongue for one hour: no mockery, no gossip; replace with istighfār." }
+  ];
+  var ADHKAR = {
+    morning: [
+      { ar: "اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",
+        en: "O Allah, by You we enter the morning and by You the evening, by You we live and die, and to You is the resurrection.",
+        ref: "Tirmidhī 3391 · educational", target: 1 },
+      { ar: "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
+        en: "In the name of Allah, with whose name nothing on earth or in the heaven can cause harm, and He is the All-Hearing, the All-Knowing.",
+        ref: "Abū Dāwūd 5088 · often 3× · educational", target: 3 }
+    ],
+    evening: [
+      { ar: "اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ",
+        en: "O Allah, by You we enter the evening and by You the morning, by You we live and die, and to You is the return.",
+        ref: "Tirmidhī 3391 · educational", target: 1 },
+      { ar: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+        en: "I seek refuge in the perfect words of Allah from the evil of what He created.",
+        ref: "Muslim 2708 · educational", target: 3 }
+    ]
+  };
+
+  function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function readJSON(k){ try{return JSON.parse(localStorage.getItem(k)||"null");}catch(e){return null;} }
+  function writeJSON(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
+  function hash(s){ var h=0; for(var i=0;i<s.length;i++) h=((h<<5)-h)+s.charCodeAt(i); return h; }
+  function dayPeriod(){ var h=new Date().getHours(); if(h<5)return "Night"; if(h<12)return "Morning"; if(h<15)return "Midday"; if(h<18)return "Afternoon"; if(h<21)return "Evening"; return "Night"; }
+  function isEvening(){ var h=new Date().getHours(); return h>=15||h<5; }
+  function todayProvision(){
+    var day=todayKey(), saved=readJSON(KEY_PROV);
+    if(saved&&saved.day===day&&saved.text) return saved;
+    var pick=PROVISIONS[Math.abs(hash(day))%PROVISIONS.length];
+    var out={day:day,lane:pick.lane,text:pick.text}; writeJSON(KEY_PROV,out); return out;
+  }
+  function tasState(){ var day=todayKey(), s=readJSON(KEY_TAS)||{}; if(s.day!==day) s={day:day,count:0}; return s; }
+  function trackContinue(a,d){ writeJSON(KEY_CONT,{action:a||"landing",detail:d||"",ts:Date.now()}); }
+  function openTab(id){
+    try{ if(typeof switchTab==="function") switchTab(id);
+      else if(typeof clarityOpenSectionDoor==="function") clarityOpenSectionDoor(id);
+      else if(typeof clarityCompanionShowTab==="function") clarityCompanionShowTab(id);
+    }catch(e){}
+    trackContinue(id,"tab-"+id);
+  }
+
+  function buildLanding(){
+    /* Dedup: only one landing */
+    document.querySelectorAll("#clarity-day-landing").forEach(function(el,i){ if(i>0) el.remove(); });
+    document.querySelectorAll("#clarity-reopen-bar").forEach(function(el,i){ if(i>0) el.remove(); });
+    if (document.getElementById("clarity-day-landing")) return;
+
+    var prov=todayProvision(), tas=tasState();
+    var pack=isEvening()?ADHKAR.evening:ADHKAR.morning;
+    var dh=pack[Math.abs(hash(todayKey()+"dh"))%pack.length];
+
+    var wrap=document.createElement("section");
+    wrap.id="clarity-day-landing";
+    wrap.setAttribute("aria-label","Today provision and paths");
+    wrap.innerHTML=
+      '<div class="dual-tiles" role="navigation" aria-label="Companion or University">' +
+        '<a class="dual-tile dual-tile-companion" href="#main-content" id="dual-path-companion">' +
+          '<span class="dual-ico" aria-hidden="true">🏠</span>' +
+          '<span class="dual-name">Companion path</span>' +
+          '<small>Reminder · Reality · Reflection · Action · tools on this page</small>' +
+        '</a>' +
+        '<a class="dual-tile dual-tile-university" href="https://clarity-dawah.fyi/campus/" id="dual-path-university" target="_blank" rel="noopener">' +
+          '<span class="dual-ico" aria-hidden="true">🎓</span>' +
+          '<span class="dual-name">University path</span>' +
+          '<small>Four colleges · phase desk · Faculty · Security · IT — on Campus pages</small>' +
+        '</a>' +
+      '</div>' +
+      '<div class="cdl-card" id="cdl-today">' +
+        '<div class="cdl-head"><h2>Do this today</h2><span class="cdl-period" id="cdl-period">'+dayPeriod()+'</span></div>' +
+        '<div class="cdl-row">' +
+          '<span class="cdl-salah">🕌 <span id="cdl-salah-txt">Next ṣalāh · see banner</span></span>' +
+          '<span class="cdl-tas">📿 <strong id="cdl-tas-count">'+(tas.count||0)+'</strong> ' +
+            '<button type="button" id="cdl-tas-inc">+1</button> ' +
+            '<button type="button" id="cdl-tas-reset">↺</button></span>' +
+        '</div>' +
+        '<div class="cdl-lane">'+(prov.lane||"provision")+'</div>' +
+        '<p class="cdl-deed">'+prov.text+'</p>' +
+        '<p class="cdl-note">Educational only — not a fatwa. Acceptance is with Allah.</p>' +
+      '</div>' +
+      '<div class="cdl-card" id="cdl-adhkar">' +
+        '<div class="cdl-head"><h2>Adhkār · '+(isEvening()?"evening":"morning")+'</h2>' +
+          '<button type="button" class="cdl-count-btn" id="cdl-adhkar-count">Count 0 / '+dh.target+'</button></div>' +
+        '<p class="cdl-adhkar-ar">'+dh.ar+'</p>' +
+        '<p class="cdl-adhkar-en">'+dh.en+'</p>' +
+        '<p class="cdl-adhkar-ref">'+dh.ref+'</p>' +
+        '<div class="cdl-pills">' +
+          '<button type="button" data-cdl-tab="reminder">✦ Reminder</button>' +
+          '<button type="button" data-cdl-tab="reality">◉ Reality</button>' +
+          '<button type="button" data-cdl-tab="reflection">☾ Reflection</button>' +
+          '<button type="button" data-cdl-tab="action">➤ Action</button>' +
+          '<button type="button" data-cdl-tab="notes">🏦 Vault</button>' +
+        '</div>' +
+      '</div>';
+
+    var reopen=document.createElement("div");
+    reopen.id="clarity-reopen-bar";
+    reopen.innerHTML='<span>Day landing</span> <button type="button" id="cdl-reopen-show">Open Do this today</button> <button type="button" id="cdl-reopen-hide">Hide for now</button> <span style="opacity:.75">Revisit any time today</span>';
+
+    /* Insert as FIRST child of main workspace, or right after visit bar — never below Reminder */
+    var main = document.getElementById("main-application-workspace") || document.querySelector(".main-content");
+    var visit = document.getElementById("clarity-visit-pill-bar");
+    var duo = document.getElementById("clarity-top-duo");
+
+    if (main) {
+      main.insertBefore(wrap, main.firstChild);
+      main.insertBefore(reopen, wrap.nextSibling);
+    } else if (visit && visit.parentNode) {
+      if (visit.nextSibling) visit.parentNode.insertBefore(wrap, visit.nextSibling);
+      else visit.parentNode.appendChild(wrap);
+      wrap.parentNode.insertBefore(reopen, wrap.nextSibling);
+    } else if (duo && duo.parentNode) {
+      if (duo.nextSibling) duo.parentNode.insertBefore(wrap, duo.nextSibling);
+      else duo.parentNode.appendChild(wrap);
+      wrap.parentNode.insertBefore(reopen, wrap.nextSibling);
+    } else {
+      document.body.appendChild(wrap);
+      document.body.appendChild(reopen);
+    }
+
+    function applyCollapse(){
+      var hide = localStorage.getItem(KEY_LAND_HIDE) === todayKey();
+      wrap.style.display = hide ? "none" : "grid";
+    }
+    applyCollapse();
+    document.getElementById("cdl-reopen-hide").onclick=function(){ localStorage.setItem(KEY_LAND_HIDE, todayKey()); applyCollapse(); };
+    document.getElementById("cdl-reopen-show").onclick=function(){ localStorage.removeItem(KEY_LAND_HIDE); applyCollapse(); wrap.scrollIntoView({behavior:"smooth",block:"start"}); };
+    document.getElementById("cdl-tas-inc").onclick=function(){ var s=tasState(); s.count=(s.count||0)+1; writeJSON(KEY_TAS,s); document.getElementById("cdl-tas-count").textContent=s.count; };
+    document.getElementById("cdl-tas-reset").onclick=function(){ writeJSON(KEY_TAS,{day:todayKey(),count:0}); document.getElementById("cdl-tas-count").textContent=0; };
+    var adhCount=0;
+    document.getElementById("cdl-adhkar-count").onclick=function(){ adhCount++; var t=dh.target||1; this.textContent = adhCount>=t ? ("Done ✓ · "+adhCount) : ("Count "+adhCount+" / "+t); };
+    wrap.querySelectorAll("[data-cdl-tab]").forEach(function(btn){ btn.addEventListener("click", function(){ openTab(btn.getAttribute("data-cdl-tab")); }); });
+    var comp = document.getElementById("dual-path-companion");
+    if (comp) comp.addEventListener("click", function(ev){ ev.preventDefault(); openTab("reminder"); var t=document.getElementById("tab-reminder")||document.getElementById("main-content"); if(t) t.scrollIntoView({behavior:"smooth"}); });
+    trackContinue("landing");
+  }
+
+  function boot(){ try{ buildLanding(); }catch(e){ console.warn("[landing]",e); } }
+  if (document.readyState==="loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot,120); });
+  else setTimeout(boot,120);
+  window.addEventListener("load", function(){ setTimeout(boot,400); });
 })();
 </script>
 
