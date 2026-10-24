@@ -1,0 +1,63 @@
+/* Tajweed studio v2 · 20261024FULL */
+.tj-wrap{width:100%;max-width:48rem;margin:0 auto;padding:0 .85rem 2rem;box-sizing:border-box}
+.tj-h1{margin:.35rem 0 .3rem;font-size:1.3rem;color:#c9a227}
+.tj-lead{font-size:.9rem;line-height:1.5;opacity:.9;margin:0 0 1rem}
+.tj-card{
+  border:1px solid rgba(201,162,39,.3);border-radius:16px;
+  padding:1rem 1.05rem;margin:0 0 .85rem;background:rgba(255,255,255,.06)
+}
+html[data-theme="light"] .tj-card{background:rgba(255,255,255,.78)}
+.tj-card h2{margin:0 0 .4rem;font-size:1.02rem;color:#c9a227}
+.tj-card h3{margin:.15rem 0 .35rem;font-size:.92rem}
+.tj-muted,.tj-tip,.tj-meta{font-size:.82rem;opacity:.88;line-height:1.45;margin:.25rem 0}
+.tj-links{font-size:.8rem;margin:.45rem 0 0}
+.tj-links a{color:inherit;font-weight:700}
+.tj-coach-row,.tj-chips,.tj-row{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0}
+.tj-pill{
+  border-radius:999px;padding:.35rem .75rem;font-size:.75rem;font-weight:700;cursor:pointer;
+  border:1px solid rgba(201,162,39,.3);background:rgba(255,255,255,.1);color:inherit
+}
+.tj-pill.on{background:#2d6a4f;color:#fff;border-color:#2d6a4f}
+.tj-btn{
+  min-height:40px;padding:.4rem .85rem;border-radius:999px;border:0;
+  background:#2d6a4f;color:#fff;font-weight:700;font-size:.8rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center
+}
+.tj-btn.ghost{background:transparent;color:inherit;border:1px solid rgba(201,162,39,.35)}
+.tj-legend{display:flex;flex-wrap:wrap;gap:.55rem;font-size:.75rem;margin:.4rem 0 .65rem}
+.tj-legend i{display:inline-block;width:.7rem;height:.7rem;border-radius:3px;margin-right:.25rem;vertical-align:middle}
+.c-madd{background:#5b8def}.c-ghunnah{background:#2d6a4f}.c-qalqalah{background:#c9a227}
+.c-idgham{background:#9b59b6}.c-izhar{background:#7f8c8d}
+.tj-rule-grid{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr))}
+.tj-rule{border:1px solid rgba(201,162,39,.22);border-radius:12px;padding:.7rem .8rem;background:rgba(0,0,0,.12)}
+html[data-theme="light"] .tj-rule{background:rgba(255,255,255,.7)}
+.tj-rule ul{margin:.25rem 0 .5rem;padding-left:1.05rem;font-size:.8rem;line-height:1.45}
+.tj-makh-grid{display:grid;gap:.4rem;grid-template-columns:repeat(auto-fill,minmax(10rem,1fr));margin:.4rem 0}
+.tj-makh{border-radius:12px;padding:.55rem .65rem;border:1px solid rgba(201,162,39,.22);font-size:.8rem}
+.tj-makh strong{display:block;color:#c9a227;margin-bottom:.15rem}
+.tj-ar{font-size:1.5rem;line-height:1.85;text-align:right;direction:rtl;margin:.5rem 0;min-height:2.2rem}
+.tj-en{font-size:.9rem;opacity:.9;margin:0 0 .45rem}
+.tj-step{margin:1rem 0;padding-top:.55rem;border-top:1px solid rgba(255,255,255,.08)}
+html[data-theme="light"] .tj-step{border-top-color:rgba(0,0,0,.08)}
+.tj-step h3{margin:0 0 .4rem;font-size:.9rem;color:#c9a227}
+.tj-lmr-mode-row{display:flex;gap:.35rem;flex-wrap:wrap;margin:.5rem 0}
+.tj-lmr-mode{
+  border-radius:999px;padding:.35rem .7rem;font-size:.78rem;font-weight:700;cursor:pointer;
+  border:1px solid rgba(201,162,39,.3);background:rgba(255,255,255,.08);color:inherit
+}
+.tj-lmr-mode.active{background:#2d6a4f;color:#fff;border-color:#2d6a4f}
+.tj-lmr-toolbar{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.5rem 0}
+.tj-lmr-toolbar select,.tj-lmr-toolbar input{
+  min-height:38px;padding:.3rem .45rem;border-radius:10px;
+  border:1px solid rgba(201,162,39,.35);background:transparent;color:inherit
+}
+.tj-meter{height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin:.35rem 0}
+.tj-meter span{display:block;height:100%;width:0;background:#2d6a4f;transition:width .08s linear}
+.tj-desk-map{display:grid;gap:.45rem;grid-template-columns:repeat(auto-fill,minmax(12rem,1fr))}
+.tj-desk-map a{
+  display:block;text-decoration:none;color:inherit;padding:.65rem .75rem;border-radius:12px;
+  border:1px solid rgba(201,162,39,.25);background:rgba(0,0,0,.1)
+}
+html[data-theme="light"] .tj-desk-map a{background:rgba(255,255,255,.7)}
+.tj-desk-map strong{display:block;color:#c9a227;margin-bottom:.15rem}
+.tj-desk-map span{font-size:.78rem;opacity:.88}
+.tj-tool-panel summary{cursor:pointer;font-weight:700;color:#c9a227;margin-bottom:.35rem}

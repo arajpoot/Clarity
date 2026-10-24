@@ -1,5 +1,5 @@
 /**
- * Tajweed surface bridge · 20261024CAMP2
+ * Tajweed surface bridge · 20261024FULL
  * Rule chips + URL deep-link; LMR owns fetch/record/score/read-along
  */
 (function () {
