@@ -1,0 +1,63 @@
+{
+  "build": "20261024JOURNEY",
+  "journey_is_campus": true,
+  "errs": [],
+  "err_count": 0,
+  "http_ok": 10,
+  "redirect_rules": 60,
+  "file_count": 96,
+  "legacy_delete_candidates": [
+    {
+      "folder": "craft/",
+      "ok": true,
+      "when": "After _redirects + HTML stubs live",
+      "note": "Lab double; redirects to campus/lab"
+    },
+    {
+      "folder": "lab/ station HTML only",
+      "ok": "partial",
+      "when": "Stubs already replace index.html; keep until traffic zero",
+      "note": "Assets may still be requested until splat redirects fully active"
+    },
+    {
+      "folder": "journey/",
+      "ok": true,
+      "when": "After redirect live",
+      "note": "Imported to campus/journey"
+    },
+    {
+      "folder": "library/ (root)",
+      "ok": true,
+      "when": "After confirm no Companion deep-link to /library/",
+      "note": "campus/library is richer; root is stub"
+    },
+    {
+      "folder": "charter/ (root)",
+      "ok": true,
+      "when": "Optional; same thin as campus/charter",
+      "note": "Keep one public URL"
+    }
+  ],
+  "legacy_keep": [
+    {
+      "folder": "vault/",
+      "ok": false,
+      "note": "Companion / Amana \u2014 do not delete"
+    },
+    {
+      "folder": "assets/",
+      "ok": false,
+      "note": "Companion + campus shared assets"
+    },
+    {
+      "folder": "index.html (root)",
+      "ok": false,
+      "note": "Companion"
+    },
+    {
+      "folder": "adhkar/, hajj-checklist/, debts-and-trusts/, etc.",
+      "ok": false,
+      "note": "Companion path pages"
+    }
+  ]
+}
