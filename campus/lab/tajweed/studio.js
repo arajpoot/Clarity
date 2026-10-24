@@ -1,6 +1,6 @@
 /**
- * Tajweed surface bridge · 20261017LIB
- * Fills surah list; rule chips set surah/ayah; LMR owns fetch/score/record
+ * Tajweed surface bridge · 20261024CAMP2
+ * Rule chips + URL deep-link; LMR owns fetch/record/score/read-along
  */
 (function () {
   "use strict";
@@ -8,6 +8,7 @@
   function boot() {
     var VP = window.CuVersePractice;
     if (VP && $("tj-lmr-surah")) VP.fillSurahSelect($("tj-lmr-surah"));
+
     document.querySelectorAll("[data-lab-load]").forEach(function (b) {
       b.addEventListener("click", function () {
         var parts = (b.getAttribute("data-lab-load") || "1:1").split(":");
@@ -17,7 +18,7 @@
         if (fetchBtn) fetchBtn.click();
       });
     });
-    // URL params from Recite deep-link
+
     try {
       var q = new URLSearchParams(location.search);
       if (q.get("surah") && $("tj-lmr-surah")) {
@@ -26,7 +27,7 @@
         setTimeout(function () {
           var fetchBtn = $("tj-lmr-fetch");
           if (fetchBtn) fetchBtn.click();
-        }, 400);
+        }, 450);
       }
     } catch (e) {}
   }

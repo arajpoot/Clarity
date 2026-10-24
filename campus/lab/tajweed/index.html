@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Tajweed studio · Lab · Clarity University</title>
 <meta name="description" content="Listen · Match · Record with practice score."/>
-<link rel="stylesheet" href="/campus/lab/shared/lab-shell.css?v=20261024NEST"/>
-<link rel="stylesheet" href="/campus/lab/tajweed/studio.css?v=20261024NEST"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-hybrid-v1.css?v=20261024NEST"/>
+<link rel="stylesheet" href="/campus/lab/shared/lab-shell.css?v=20261024CAMP2"/>
+<link rel="stylesheet" href="/campus/lab/tajweed/studio.css?v=20261024CAMP2"/>
 </head>
 <body class="lab-surface" data-campus-page="lab">
 <div class="lab-topstrip">
@@ -25,7 +24,7 @@
     <a class="lab-link" href="/">Companion</a>
   </div>
 </header>
-<nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/campus/lab/" aria-current="page">Lab</a><a href="/campus/library/">Library</a><a href="/campus/vault/">Vault</a><a href="/campus/charter/">Charter</a></nav>
+<nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/campus/lab/" aria-current="page">Lab</a><a href="/library/">Library</a><a href="/vault/">Vault</a><a href="/charter/">Charter</a></nav>
 
 <main class="lab-main">
 
@@ -77,6 +76,14 @@
       <button type="button" class="lab-btn" id="tj-lmr-rule-next">Next example</button>
     </div>
 
+    
+    <div class="tj-lmr-step-nav" id="tj-lmr-step-nav" role="group" aria-label="Practice steps" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:.6rem 0">
+      <button type="button" class="tj-lmr-step lab-btn active" data-step="1">1 · Listen</button>
+      <button type="button" class="tj-lmr-step lab-btn" data-step="2">2 · Match</button>
+      <button type="button" class="tj-lmr-step lab-btn" data-step="3">3 · Record</button>
+      <button type="button" class="tj-lmr-step lab-btn" data-step="4">4 · Score</button>
+    </div>
+
     <p id="tj-lmr-meta" style="font-size:.78rem;color:var(--lab-muted)"></p>
     <p id="tj-lmr-ar" dir="rtl" lang="ar" style="font-size:1.35rem;line-height:1.9"></p>
     <p id="tj-lmr-en" style="font-size:.9rem;color:var(--lab-muted)"></p>
@@ -84,7 +91,7 @@
     <audio id="tj-lmr-user-audio" preload="none"></audio>
 
     <!-- Step 1 Listen -->
-    <div class="tj-lmr-step" id="tj-lmr-step" data-step="1" style="margin:.75rem 0;padding:.6rem;border:1px solid var(--lab-line);border-radius:12px">
+    <div class="tj-lmr-step" id="tj-lmr-step1" data-step="1" style="margin:.75rem 0;padding:.6rem;border:1px solid var(--lab-line);border-radius:12px">
       <strong>1 · Listen</strong>
       <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem">
         <button type="button" class="lab-btn lab-btn-primary" id="tj-lmr-play-master">▶ Play master (Ḥuṣarī)</button>
@@ -118,7 +125,7 @@
     </div>
 
     <!-- Step 4 Focus + Score -->
-    <div class="tj-lmr-step" data-step="4" style="margin:.75rem 0;padding:.6rem;border:1px solid var(--lab-line);border-radius:12px">
+    <div class="tj-lmr-step" id="tj-lmr-step4" data-step="4" style="margin:.75rem 0;padding:.6rem;border:1px solid var(--lab-line);border-radius:12px">
       <strong>4 · Focus · practice score</strong>
       <div id="tj-lmr-focus-chips" style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0"></div>
       <p id="tj-lmr-focus-note" style="font-size:.78rem;color:var(--lab-muted)"></p>
@@ -147,12 +154,12 @@
   </div>
 </details>
 
-<p class="lab-foot">Educational only — not a fatwa. · Surface · 20261017LIB</p>
+<p class="lab-foot">Educational only — not a fatwa. · Surface · 20261024CAMP2</p>
 </main>
-<script src="/campus/lab/shared/lab-theme.js?v=20261024NEST" defer></script>
-<script src="/campus/lab/shared/verse-practice.js?v=20261024NEST" defer></script>
-<script src="/campus/lab/shared/lab-av.js?v=20261024NEST" defer></script>
-<script src="/campus/lab/shared/tajweed-lmr.js?v=20261024NEST" defer></script>
-<script src="/campus/lab/tajweed/studio.js?v=20261024NEST" defer></script>
+<script src="/campus/lab/shared/lab-theme.js?v=20261024CAMP2" defer></script>
+<script src="/campus/lab/shared/verse-practice.js?v=20261024CAMP2" defer></script>
+<script src="/campus/lab/shared/lab-av.js?v=20261024CAMP2" defer></script>
+<script src="/campus/lab/shared/tajweed-lmr.js?v=20261024CAMP2" defer></script>
+<script src="/campus/lab/tajweed/studio.js?v=20261024CAMP2" defer></script>
 </body>
 </html>
