@@ -1,0 +1,43 @@
+/* University Vault + Library · 20261024VAULT */
+:root{
+  --v-bg:#0a1210;--v-panel:rgba(14,24,20,.95);--v-text:#e8f0ea;--v-muted:rgba(232,240,234,.72);
+  --v-gold:#d4b45a;--v-teal:#1fa67a;--v-line:rgba(212,180,90,.22);--v-radius:16px;--v-max:52rem;
+}
+@media(prefers-color-scheme:light){
+  :root{--v-bg:#f3f7f5;--v-panel:#fff;--v-text:#13201a;--v-muted:rgba(19,32,26,.7);--v-line:rgba(45,90,70,.18)}
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(900px 400px at 50% -10%,rgba(31,166,122,.1),transparent 55%),var(--v-bg);color:var(--v-text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+a{color:var(--v-gold)}
+.v-nav{position:sticky;top:0;z-index:40;display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;justify-content:space-between;padding:.55rem 1rem;background:rgba(8,14,12,.92);border-bottom:1px solid var(--v-line);backdrop-filter:blur(10px)}
+@media(prefers-color-scheme:light){.v-nav{background:rgba(255,255,255,.94)}}
+.v-brand{color:var(--v-gold);font-weight:800;text-decoration:none;font-size:.95rem}
+.v-brand small{display:block;font-size:.62rem;color:var(--v-muted);letter-spacing:.06em}
+.v-pills{display:flex;flex-wrap:wrap;gap:.2rem}
+.v-pills a{text-decoration:none;color:var(--v-muted);font-size:.72rem;font-weight:650;padding:.3rem .55rem;border-radius:999px;border:1px solid transparent}
+.v-pills a:hover,.v-pills a[aria-current="page"]{color:var(--v-gold);border-color:var(--v-line)}
+.v-pills a[aria-current="page"]{background:rgba(212,180,90,.12)}
+.v-main{max-width:var(--v-max);margin:0 auto;padding:1.2rem 1rem 3.5rem}
+.v-hero h1{margin:0 0 .35rem;font-size:clamp(1.3rem,3vw,1.7rem);color:var(--v-gold);font-weight:800}
+.v-hero p{margin:0;color:var(--v-muted);font-size:.9rem;max-width:38rem}
+.v-pill{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .5rem;border-radius:999px;background:rgba(31,166,122,.16);color:#8fdfc0;margin-bottom:.4rem}
+.v-grid{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:1rem 0}
+.v-card{display:block;text-decoration:none;color:inherit;border:1px solid rgba(255,255,255,.08);border-radius:var(--v-radius);padding:.9rem 1rem;background:linear-gradient(165deg,rgba(20,32,28,.96),rgba(10,16,14,.93))}
+@media(prefers-color-scheme:light){.v-card{background:#fff;border-color:var(--v-line)}}
+.v-card strong{display:block;color:var(--v-gold);font-size:.9rem;margin-bottom:.2rem}
+.v-card span{font-size:.76rem;color:var(--v-muted);line-height:1.35}
+.v-label{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--v-gold);margin:1.25rem 0 .5rem}
+.v-panel{border:1px solid var(--v-line);border-radius:var(--v-radius);padding:1rem 1.05rem;background:var(--v-panel);margin:.7rem 0}
+.v-btn{display:inline-flex;align-items:center;gap:.35rem;padding:.45rem .9rem;border-radius:999px;border:1px solid rgba(212,180,90,.35);background:linear-gradient(135deg,#0d4f3c,#1a6b52);color:#f0e6c8;font-weight:700;font-size:.8rem;cursor:pointer;text-decoration:none;font-family:inherit}
+.v-btn.soft{background:transparent;color:var(--v-gold)}
+.v-btn:disabled{opacity:.45;cursor:not-allowed}
+.v-note{font-size:.88rem;line-height:1.5;color:var(--v-muted)}.v-note strong{color:var(--v-text)}
+.v-warn{border:1px solid rgba(184,166,135,.35);background:rgba(30,125,94,.1);border-radius:14px;padding:.85rem 1rem;font-size:.88rem;line-height:1.45;margin:1rem 0}
+.v-foot{text-align:center;font-size:.72rem;color:var(--v-muted);margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--v-line)}
+.v-shelf{scroll-margin-top:4.5rem}
+.v-pin{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem .85rem;margin:.45rem 0}
+.v-pin h3{margin:0 0 .25rem;font-size:.9rem;color:var(--v-gold)}
+.v-input,textarea.v-input{width:100%;padding:.5rem .65rem;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.25);color:var(--v-text);font:inherit;margin:.3rem 0}
+@media(prefers-color-scheme:light){.v-input,textarea.v-input{background:#f8faf9;border-color:var(--v-line)}}
+.v-list{list-style:none;padding:0;margin:.5rem 0}
+.v-list li{margin:.35rem 0;font-size:.88rem}
