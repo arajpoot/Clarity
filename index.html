@@ -7257,14 +7257,28 @@ function ensureBar(){
 }
 
 function placeBar(bar){
-  /* Keep stitched to lower edge INSIDE .banner */
-  var banner = document.querySelector("#clarity-top-duo .banner, .banner");
-  if (banner) {
-    if (bar.parentNode !== banner) banner.appendChild(bar);
+  /* UNDER banner, ABOVE dual-path / day landing — not inside banner */
+  var banner = document.querySelector("#clarity-top-duo .banner, .banner, #clarity-top-duo");
+  var landing = document.getElementById("clarity-day-landing");
+  if (banner && banner.parentNode) {
+    if (landing && landing.parentNode === banner.parentNode) {
+      banner.parentNode.insertBefore(bar, landing);
+    } else if (banner.nextSibling) {
+      banner.parentNode.insertBefore(bar, banner.nextSibling);
+    } else {
+      banner.parentNode.appendChild(bar);
+    }
     return;
   }
   var duo = document.getElementById("clarity-top-duo");
-  if (duo) { duo.appendChild(bar); return; }
+  if (duo && duo.parentNode) {
+    if (duo.nextSibling) duo.parentNode.insertBefore(bar, duo.nextSibling);
+    else duo.parentNode.appendChild(bar);
+    return;
+  }
+  var main = document.getElementById("main-content") || document.body;
+  if (landing && landing.parentNode) landing.parentNode.insertBefore(bar, landing);
+  else main.insertBefore(bar, main.firstChild);
 }
 
 function render(){
@@ -10102,5 +10116,95 @@ html, body {
   }
 }
 </style>
+
+
+<style id="clarity-visit-bar-stack-fix">
+/* Last-visited bar: under banner, above dual paths / day landing */
+#clarity-visit-pill-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.3rem !important;
+  position: relative !important;
+  z-index: 12 !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0.35rem 0.55rem 0.45rem !important;
+  padding: 0.35rem 0.45rem !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
+  clear: both !important;
+  float: none !important;
+  /* not fixed over dual tiles */
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+}
+.banner #clarity-visit-pill-bar {
+  /* if still inside banner, force out of absolute overlay */
+  position: relative !important;
+  margin-top: 0.35rem !important;
+}
+#clarity-day-landing {
+  order: 2;
+  clear: both !important;
+}
+#clarity-visit-pill-bar {
+  order: 1;
+}
+</style>
+
+
+
+<script id="clarity-visit-bar-rehome-js">
+(function(){
+  "use strict";
+  if (window.__CLARITY_VISIT_BAR_REHOME_V2__) return;
+  window.__CLARITY_VISIT_BAR_REHOME_V2__ = true;
+
+  function rehome(){
+    var bar = document.getElementById("clarity-visit-pill-bar");
+    if (!bar) return;
+    var banner = document.querySelector("#clarity-top-duo .banner, .banner");
+    var duo = document.getElementById("clarity-top-duo");
+    var landing = document.getElementById("clarity-day-landing");
+    var anchor = duo || banner;
+    if (!anchor || !anchor.parentNode) return;
+
+    // Always place as sibling AFTER duo/banner, BEFORE landing
+    var parent = anchor.parentNode;
+    if (landing && landing.parentNode === parent) {
+      if (bar.parentNode !== parent || bar.nextSibling !== landing) {
+        parent.insertBefore(bar, landing);
+      }
+    } else {
+      if (bar.parentNode !== parent || anchor.nextSibling !== bar) {
+        if (anchor.nextSibling) parent.insertBefore(bar, anchor.nextSibling);
+        else parent.appendChild(bar);
+      }
+    }
+    bar.style.position = "relative";
+    bar.style.top = "auto";
+    bar.style.zIndex = "12";
+  }
+
+  // Override placeBar if section pills defines it later
+  function patchPlaceBar(){
+    try {
+      // wrap ensure by observing DOM
+      var obs = new MutationObserver(function(){ rehome(); });
+      obs.observe(document.documentElement, { childList: true, subtree: true });
+    } catch(e){}
+    rehome();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", patchPlaceBar);
+  else patchPlaceBar();
+  window.addEventListener("load", function(){ rehome(); setTimeout(rehome, 300); setTimeout(rehome, 1000); setTimeout(rehome, 2500); });
+  setInterval(rehome, 2000);
+})();
+</script>
 
 </html>
