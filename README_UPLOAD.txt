@@ -1,16 +1,19 @@
-Faculty resurrect · 20261024FAC
+Faculty lifecycle R0–R9 · 20261024R9
 
-Buried wing restored to surface:
-  /campus/assets/faculty/  ← roster, help-book, faculty-controller, IT wing
-  /campus/assets/js/cu-faculty-live-v1.js  ← paints cards + Ask advisor popover
-  /campus/faculty.html  ← wired
+R0 resource-map.json + chips
+R1 welcome soft assess
+R2 admission Faculty strip
+R3 mentor strip
+R4 Ask advisor / tutor FAB on desk
+R5 soft weekly assignment
+R6 mirror line
+R7 seal guidance
+R8 graduation outward blurb
+R9 staff: Librarian + Scout + Ops + Authenticity (staff-roster)
 
-Experience:
-  • Four phase advisors (Amid / Amidah) from roster
-  • "On duty now" pulse strip for current phase
-  • Ask advisor → popover tip from help-book (+ ClarityFaculty.offerHelp when loaded)
-  • Phase desk deep-links
-  • Local help log clarity_faculty_help_log_v1
+Surface paths:
+  /campus/assets/faculty/
+  /campus/assets/staff/
+  /campus/assets/js/cu-faculty-lifecycle-v1.js
 
-Educational personas only — not living scholars, not fatwa.
-Extract at main root. Hard-refresh /campus/faculty.html
+Extract at main root. Hard-refresh /campus/faculty.html and /campus/
