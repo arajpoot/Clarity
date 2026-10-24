@@ -1,5 +1,5 @@
 /**
- * Shared verse practice · 20261017TQ
+ * Shared verse practice · 20261024CAMP2
  * Fetch Arabic/EN from AlQuran.cloud · audio EveryAyah Ḥuṣarī
  * Used by Recite + optional Tajweed fill
  */
@@ -149,6 +149,6 @@
     playAudio: playAudio,
     speakAr: speakAr,
     speakEn: speakEn,
-    VER: "20261017TQ"
+    VER: "20261024CAMP2"
   };
 })(typeof globalThis !== "undefined" ? globalThis : (typeof window !== "undefined" ? window : this));

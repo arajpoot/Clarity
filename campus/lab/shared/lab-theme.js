@@ -1,5 +1,5 @@
 /**
- * Lab surface theme · 20261017LABF
+ * Lab surface theme · 20261024CAMP2
  * Day / Night / System — local only, key cu_lab_theme_v1
  */
 (function (g) {
