@@ -1,0 +1,194 @@
+
+/* CLARITY SCROLL FORTRESS v8 — no blank flash + no empty section gaps */
+html {
+  height: auto !important;
+  min-height: 100% !important;
+  background-color: #0b1f1a !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+body {
+  height: auto !important;
+  min-height: 100% !important;
+  min-height: 100dvh !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  overscroll-behavior-y: none;
+  background-color: #0b1f1a !important;
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] {
+  background-color: #0c1410 !important;
+}
+html[data-theme="dark"] body {
+  background-attachment: scroll !important;
+  background-size: cover !important;
+}
+body::before {
+  pointer-events: none !important;
+  z-index: -2 !important;
+  opacity: 0.3 !important;
+}
+
+.page-wrapper,
+.main-content,
+#main-content {
+  min-height: 0 !important; /* was 55vh — caused empty middle gap */
+  height: auto !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 1 !important;
+  contain: none !important;
+}
+
+/* Tabs: no forced 45vh void */
+.tab-panel {
+  display: none !important;
+  visibility: hidden !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+  left: auto !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  content-visibility: visible !important;
+}
+.tab-panel.active,
+.tab-panel.is-active {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  position: relative !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  content-visibility: visible !important;
+}
+.tab-panel.active[hidden],
+.tab-panel.is-active[hidden] {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Daily Muslim / path board must show when managed */
+#path-board.path-board-managed:not([hidden]) {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+  margin: 0.15rem 0 1.1rem !important;
+  min-height: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#clarity-learn-os:not(.hidden) {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
+  opacity: 1 !important;
+}
+#clarity-learn-os:not(.hidden) .clarity-dashboard,
+#clarity-learn-os:not(.hidden) .daily-micro-card,
+#clarity-learn-os:not(.hidden) .path-card,
+#clarity-learn-os:not(.hidden) .path-switch-bar {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  opacity: 1 !important;
+}
+#clarity-learn-os:not(.hidden) .path-mods,
+#clarity-learn-os:not(.hidden) .path-mods-active {
+  display: block !important;
+  visibility: visible !important;
+}
+#clarity-today-surface:not(.hidden) {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  opacity: 1 !important;
+}
+
+/* Do not hide path board globally while learn-os is the home surface */
+html:not([data-section-mode="1"]) #clarity-learn-os .path-board.path-board-managed {
+  display: flex !important;
+}
+
+/* viewport about-gates NUKED */
+
+.spotify-player-wrap {
+  min-height: 152px !important;
+  background: #0f0f0f !important;
+  overflow: hidden;
+}
+.spotify-player-wrap iframe,
+iframe[src*="open.spotify.com"] {
+  display: block !important;
+  width: 100% !important;
+  min-height: 152px !important;
+  height: 152px !important;
+  border: 0 !important;
+  background: #0f0f0f !important;
+}
+@media (min-width: 480px) {
+  .spotify-player-wrap iframe,
+  iframe[src*="open.spotify.com"] {
+    min-height: 0 !important;
+    height: 232px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-wrapper {
+    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .mobile-bottom-nav { z-index: 200 !important; }
+  .scroll-top-btn {
+    bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  /* remove large ::after spacer that added empty gap */
+  .main-content::after {
+    content: none !important;
+    display: none !important;
+    height: 0 !important;
+  }
+}
+
+footer {
+  position: relative !important;
+  z-index: 2 !important;
+  clear: both !important;
+  min-height: 3rem;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.banner-media, .banner-live { pointer-events: none !important; }
+.banner-overlay, .banner-tools, .stream-controls { pointer-events: auto !important; }
+
+#clarity-welcome:not(.show) {
+  display: none !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+/* Path module list — ensure items not collapsed */
+.path-mods, .path-mods-active, ul.path-mods {
+  display: block !important;
+  list-style: none !important;
+  margin: 0.5rem 0 0 !important;
+  padding: 0 !important;
+}
+.path-mods > li, .path-mods-active > li {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 2.5rem !important;
+  margin-bottom: 0.45rem !important;
+}
