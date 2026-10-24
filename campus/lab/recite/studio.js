@@ -1,5 +1,5 @@
 /**
- * Recite studio · 20261017TQ
+ * Recite studio · 20261024CAMP2
  * 114 sūrahs via CuVersePractice · Hear · hide/show · link to Tajweed LMR
  */
 (function () {
