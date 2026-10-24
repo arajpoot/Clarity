@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mahtaab="1">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Campus bots · Clarity University</title>
 <meta name="description" content="On-device IT, Security, and O&M study aids."/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-student-status-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-day-flow-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261023HK2"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-student-status-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-day-flow-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261023UNI"/>
 
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023HK2"></script>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023UNI"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023UNI"></script>
 <style>
 .bot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(12rem,1fr));gap:.65rem;max-width:min(52rem,100%);margin:0 auto .85rem}
 .bot-card{border:1px solid rgba(201,168,76,.4);border-radius:16px;padding:.9rem 1rem;background:rgba(16,28,22,.92);cursor:pointer;text-align:left;color:inherit;font:inherit}
@@ -42,10 +42,29 @@ html[data-theme=light] .bot-flow h2{color:#6b5a1e}
 .bot-log div{margin:.25rem 0;opacity:.9}
 .bot-note{text-align:center;font-size:.8rem;opacity:.85;max-width:40rem;margin:.5rem auto 1rem}
 </style>
-<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261023HK2"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261023UNI"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261023UNI"/>
+
+<style>
+/* Uni page shell 20261023UNI */
+.uni-clean{max-width:min(42rem,100%);margin:0 auto;padding:.75rem 1rem 2.5rem}
+.uni-clean h1{font-family:"Cormorant Garamond",serif;font-size:1.6rem;color:#c9a227;margin:.15rem 0 .35rem}
+html[data-theme=light] .uni-clean h1{color:#6b5a1e}
+.uni-clean .lead{font-size:.9rem;line-height:1.45;opacity:.9;margin:0 0 1rem}
+.uni-nav{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .9rem}
+.uni-nav a{font-size:.75rem;padding:.3rem .65rem;border-radius:999px;border:1px solid rgba(201,162,39,.32);text-decoration:none;color:inherit}
+.uni-nav a.here{background:#1e7d5e;color:#fff;border-color:transparent}
+.uni-note{font-size:.78rem;opacity:.85;margin:1rem 0 .5rem;line-height:1.4}
+.uni-grid{display:grid;gap:.5rem;margin:.75rem 0}
+.uni-grid a,.uni-card{display:block;padding:.8rem 1rem;border-radius:14px;border:1px solid rgba(201,162,39,.35);text-decoration:none;color:inherit;background:rgba(0,0,0,.05)}
+html[data-theme=light] .uni-grid a,html[data-theme=light] .uni-card{background:#fffcf5}
+.uni-grid a:hover{border-color:#c9a227}
+.uni-grid strong{display:block;color:#c9a227;margin-bottom:.2rem}
+.uni-grid span.desc{font-size:.82rem;opacity:.9;line-height:1.35}
+</style>
+
 </head>
-<body class="cu-page cu-mahtaab-on" data-campus-page="bots">
+<body class="cu-page" data-campus-page="bots">
 <header class="cu-banner" id="cu-banner">
   <a class="cu-brand" href="/campus/portal/">
     <span class="cu-brand-mark" aria-hidden="true">ن</span>
@@ -58,143 +77,55 @@ html[data-theme=light] .bot-flow h2{color:#6b5a1e}
     <a class="cu-main-link" href="/">← Companion</a>
   </div>
 </header>
-<main class="cu-wrap" style="max-width:min(52rem,100%);margin:0 auto;padding:.75rem">
-<nav class="cu-pills" aria-label="Campus">
-  <a href="/charter/">Charter</a>
-  <a href="/campus/">Admission</a>
-  <a href="/campus/portal/">Portal</a>
+<main class="uni-clean">
+  <nav class="uni-nav" aria-label="University">
+  <a href="/campus/">Campus</a>
   <a href="/campus/desk/">Desk</a>
   <a href="/campus/faculty.html">Faculty</a>
   <a href="/campus/bots.html" class="here" aria-current="page">Bots</a>
   <a href="/campus/grading.html">Progress</a>
   <a href="/lab/">Lab</a>
-  <a href="/lab/arabic/hajj2027/">Hajj 2027</a>
   <a href="/library/">Library</a>
-  <a href="/campus/buddy/">Buddy</a>
-  <a href="/vault/">Vault</a>
+  <a href="/charter/">Charter</a>
+  <a href="/">Companion</a>
 </nav>
+  <h1>Campus bots</h1>
+  <p class="lead">Local helpers only. Security checklist · IT incomplete-module report · O&amp;M marks one real progress step. No external calls for core flow.</p>
 
-<div data-cu-student-status></div>
-<p class="bot-note">This is a study aid, not a real system admin or security service. All checks stay on this device.</p>
-<div class="bot-grid">
-  <button type="button" class="bot-card" data-bot="security"><strong>Security</strong><span>Confirm this device only</span></button>
-  <button type="button" class="bot-card" data-bot="it"><strong>IT</strong><span>Offline pack / progress status</span></button>
-  <button type="button" class="bot-card" data-bot="om"><strong>O&amp;M</strong><span>Mark one phase step done</span></button>
-</div>
-<section class="bot-flow" id="bot-security">
-  <h2>Security bot</h2>
-  <p style="font-size:.9rem;line-height:1.45">Confirm the following. Nothing is uploaded.</p>
-  <label><input type="checkbox" id="sec-1"/> Progress and notes stay in this browser’s local storage.</label>
-  <label><input type="checkbox" id="sec-2"/> I will not treat campus markers as a grade of īmān or public ranking.</label>
-  <label><input type="checkbox" id="sec-3"/> I understand there is no remote “campus account” — registration is on this device only.</label>
-  <p id="sec-msg" class="bot-note" style="text-align:left"></p>
-  <div class="bot-actions">
-    <button type="button" id="sec-confirm">Confirm checklist</button>
-    <button type="button" class="ghost" data-close>Close</button>
-  </div>
-</section>
-<section class="bot-flow" id="bot-it">
-  <h2>IT bot · offline pack</h2>
-  <p style="font-size:.9rem;line-height:1.45">Reads University keys on this device only.</p>
-  <pre id="it-report" style="white-space:pre-wrap;font-size:.84rem;margin:.5rem 0;opacity:.95">Tap “Run status check”.</pre>
-  <div class="bot-actions">
-    <button type="button" id="it-run">Run status check</button>
-    <button type="button" class="ghost" data-close>Close</button>
-  </div>
-</section>
-<section class="bot-flow" id="bot-om">
-  <h2>O&amp;M bot · one step</h2>
-  <p style="font-size:.9rem;line-height:1.45">Mark one quiet phase step for the campus progress mirror. This is a study marker, not a certificate.</p>
-  <p class="bot-note" style="text-align:left">Steps marked: <strong id="om-count">0</strong></p>
-  <div class="bot-actions">
-    <button type="button" id="om-mark">Mark one step done</button>
-    <button type="button" class="ghost" data-close>Close</button>
-  </div>
-</section>
-<section class="bot-log" id="bot-log" aria-live="polite">Workers idle.</section>
-<p class="bot-note">Interactive on this device · progress saved locally</p>
+  <section class="uni-card" id="bot-security" style="margin-bottom:.65rem">
+    <strong>Security · on-device</strong>
+    <p class="desc" style="margin:.35rem 0">Confirm your study stays private on this browser.</p>
+    <label><input type="checkbox" id="sec-1"/> I understand progress is stored only on this device.</label><br/>
+    <label><input type="checkbox" id="sec-2"/> I will not treat bot output as a fatwa.</label><br/>
+    <label><input type="checkbox" id="sec-3"/> I know this is educational, not a grade of īmān.</label>
+    <p id="sec-msg" class="uni-note"></p>
+    <button type="button" id="sec-confirm">Confirm</button>
+  </section>
 
-<div id="seq-bot-it"></div>
+  <section class="uni-card" id="bot-it" style="margin-bottom:.65rem">
+    <strong>IT · incomplete module</strong>
+    <p class="desc" style="margin:.35rem 0">Shows the next unfinished stage/module from local progress.</p>
+    <div id="it-report" class="uni-note">—</div>
+    <button type="button" id="it-run">Refresh report</button>
+  </section>
+
+  <section class="uni-card" id="bot-om">
+    <strong>O&amp;M · mark one step</strong>
+    <p class="desc" style="margin:.35rem 0">Advances only the current stage’s next module (same bus as Desk).</p>
+    <p class="uni-note">Steps marked this session: <span id="om-count">0</span></p>
+    <button type="button" id="om-mark">Mark one step</button>
+  </section>
+
+  <div id="seq-bots-root"></div>
+  <p class="uni-note">All local · educational only.</p>
 </main>
-<footer class="cu-foot">Educational only — not a fatwa. Not a grade of īmān. Last reviewed October 2026 · Quran.com / Sunnah.com.</footer>
-<script>
-(function(){
-  var P = window.CuCampusProgress;
-  function hideFlows(){
-    document.querySelectorAll(".bot-flow").forEach(function(el){ el.classList.remove("on"); });
-  }
-  function showLog(){
-    var box = document.getElementById("bot-log");
-    if (!box || !P) return;
-    var s = P.botsState();
-    var log = (s.log || []).slice(0, 8);
-    if (!log.length) { box.textContent = "Workers idle."; return; }
-    box.innerHTML = log.map(function(e){
-      var t = (e.t || "").slice(11, 19);
-      return "<div>["+t+"] "+(e.m||"")+"</div>";
-    }).join("");
-  }
-  function refreshOm(){
-    var el = document.getElementById("om-count");
-    if (el && P) el.textContent = String(P.omStepCount());
-  }
-
-  document.querySelectorAll("[data-bot]").forEach(function(btn){
-    btn.onclick = function(){
-      hideFlows();
-      var id = "bot-" + btn.getAttribute("data-bot");
-      var el = document.getElementById(id);
-      if (el) el.classList.add("on");
-    };
-  });
-  document.querySelectorAll("[data-close]").forEach(function(b){
-    b.onclick = hideFlows;
-  });
-
-  document.getElementById("sec-confirm").onclick = function(){
-    var ok = ["sec-1","sec-2","sec-3"].every(function(id){
-      var el = document.getElementById(id); return el && el.checked;
-    });
-    var msg = document.getElementById("sec-msg");
-    if (!ok) { msg.textContent = "Please check all three items."; return; }
-    P.setSecurityConfirmed();
-    msg.textContent = "Confirmed on this device. No data left this browser.";
-    showLog();
-  };
-  document.getElementById("it-run").onclick = function(){
-    var r = P.runItCheck();
-    document.getElementById("it-report").textContent =
-      "Offline pack status\n" +
-      "· Desk modules done: " + r.deskModules + "\n" +
-      "· Faculty lessons: " + r.facultyLessons + "\n" +
-      "· Registered name: " + (r.registered ? r.name : "(not registered)") + "\n" +
-      "· Checked: " + (r.at || "").replace("T", " ").slice(0, 19) + "\n" +
-      "Educational only — local keys only.";
-    showLog();
-  };
-  document.getElementById("om-mark").onclick = function(){
-    P.markOmStep();
-    refreshOm();
-    showLog();
-  };
-
-  function boot(){
-    refreshOm();
-    showLog();
-    var s = P.botsState();
-    if (s.security && s.security.confirmed) {
-      document.getElementById("sec-msg").textContent = "Already confirmed on this device.";
-    }
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-})();
-</script>
-<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-bots-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261023HK2"></script>
-
+<footer class="cu-foot"><p>Educational only — not a fatwa. Not a grade of īmān. Not affiliated with any seminary. Last reviewed October 2026 · Quran.com / Sunnah.com.</p></footer>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023UNI"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023UNI"></script>
+<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261023UNI"></script>
+<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261023UNI"></script>
+<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261023UNI"></script>
+<script src="/campus/assets/js/cu-seq-bots-v1.js?v=20261023UNI"></script>
+<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261023UNI"></script>
 </body>
 </html>
