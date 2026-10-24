@@ -1,19 +1,22 @@
-Faculty lifecycle R0–R9 · 20261024R9
+Companion FINAL polished · 20261024FINAL
 
-R0 resource-map.json + chips
-R1 welcome soft assess
-R2 admission Faculty strip
-R3 mentor strip
-R4 Ask advisor / tutor FAB on desk
-R5 soft weekly assignment
-R6 mirror line
-R7 seal guidance
-R8 graduation outward blurb
-R9 staff: Librarian + Scout + Ops + Authenticity (staff-roster)
+Includes:
+- Lean index (inlines → companion-inline)
+- Dedupe: packs replace 10 overlapping inlines + 4 redundant externals
+- Packs after core: runtime-overlays, aux, path, feature
+- Companion guide C0–C10 (Map, path interest, tools, vault daily note)
+- Vault script tags preserved
+- University /campus/ not in this package
 
-Surface paths:
-  /campus/assets/faculty/
-  /campus/assets/staff/
-  /campus/assets/js/cu-faculty-lifecycle-v1.js
+Upload to main root:
+  index.html
+  assets/companion-inline/* (kept files)
+  assets/clarity-companion-guide-v1.js
+  assets/clarity-companion-guide-v1.css
+Packs already live on GitHub under /assets/ — only need index refs.
 
-Extract at main root. Hard-refresh /campus/faculty.html and /campus/
+Before: ~526KB / 10060 lines
+Lean: ~352KB / ~5500 lines
+Final: see SMOKE_FINAL.json
+
+Hard-refresh Companion home. Test: doors, vault unlock, tajweed, meme, Map FAB.
