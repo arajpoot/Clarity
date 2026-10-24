@@ -1,4 +1,4 @@
-# Clarity · merged _redirects · 20261024JOURNEY
+# Clarity · merged _redirects · 20261024CHARTER
 # Preserves companion + campus rules from live root _redirects
 # Updates /lab and /craft → /campus/lab (University surface)
 # /vault and companion paths unchanged
@@ -21,8 +21,7 @@
 /lab/  /campus/lab/  301
 /library  /library/  301
 /vault  /vault/  301
-/charter  /charter/  301
-
+/charter  /campus/charter/  301
 /campus/desk/seeker  /campus/desk/seeker/  301
 /campus/desk/practice  /campus/desk/practice/  301
 /campus/desk/consistency  /campus/desk/consistency/  301
@@ -38,7 +37,7 @@
 /transcript  /campus/transcript/  301
 /diploma  /campus/diploma/  301
 
-# --- Lab → campus/lab expansions · 20261024JOURNEY ---
+# --- Lab → campus/lab expansions · 20261024CHARTER ---
 /lab/index.html  /campus/lab/  301
 /lab/arabic  /campus/lab/arabic/  301
 /lab/arabic/  /campus/lab/arabic/  301
@@ -72,7 +71,11 @@
 /craft/calligraphy  /campus/lab/calligraphy/  301
 /craft/*  /campus/lab/:splat  301
 
-# Journey → campus · 20261024JOURNEY
+# Journey → campus · 20261024CHARTER
 /journey  /campus/journey/  301
 /journey/  /campus/journey/  301
 /journey/index.html  /campus/journey/  301
+# Charter · 20261024CHARTER
+/charter  /campus/charter/  301
+/charter/  /campus/charter/  301
+/charter/index.html  /campus/charter/  301
