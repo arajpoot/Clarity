@@ -1,0 +1,6 @@
+# Vault freeze fix · 20261024VAULT
+# ROOT CAUSE: campus/vault AND vault both redirected to /campus/vault/ (infinite loop)
+# FIX: campus/vault = real University locker; /vault = one-hop bridge
+/vault  /campus/vault/  301
+/vault/  /campus/vault/  301
+/vault/index.html  /campus/vault/  301

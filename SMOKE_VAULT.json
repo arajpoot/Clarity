@@ -1,0 +1,11 @@
+{
+  "build": "20261024VAULT",
+  "root_cause": "infinite redirect: both /vault and /campus/vault stubs \u2192 /campus/vault/",
+  "errs": [],
+  "err_count": 0,
+  "campus_bytes": 8529,
+  "hops": [
+    "/vault/",
+    "/campus/vault/"
+  ]
+}
