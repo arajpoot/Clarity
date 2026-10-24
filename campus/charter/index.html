@@ -1,15 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8"/>
-<meta http-equiv="refresh" content="0;url=/campus/charter/"/>
-<link rel="canonical" href="/campus/charter/"/>
-<title>Moved · Charter</title>
-<script>location.replace("/campus/charter/");</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Charter · Clarity University</title>
+<meta name="description" content="Educational limits of Clarity University. Not a fatwa. Not an accredited degree."/>
+<meta name="theme-color" content="#0a1210"/>
+<style>
+:root {
+  --bg: #0a1210; --panel: rgba(255,255,255,.04); --line: rgba(212,180,90,.28);
+  --gold: #d4b45a; --text: #e8efe9; --muted: #9aa7a0; --green: #1e7d5e;
+}
+html[data-theme="light"] {
+  --bg: #f4f1e8; --panel: #fff; --line: rgba(30,80,60,.2);
+  --gold: #8a6a20; --text: #1a221c; --muted: #5a6a60;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: system-ui, "Segoe UI", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55;
+}
+a { color: var(--gold); }
+.top {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem;
+  padding: .65rem 1rem; border-bottom: 1px solid var(--line); font-size: .82rem;
+}
+.top a { color: inherit; text-decoration: none; margin-right: .65rem; }
+.banner {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: .75rem; padding: .85rem 1rem; border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; gap: .6rem; align-items: center; text-decoration: none; color: inherit; }
+.brand-mark {
+  width: 2rem; height: 2rem; border-radius: 50%; background: var(--green);
+  color: #fff; display: grid; place-items: center; font-weight: 800;
+}
+.brand small { display: block; font-size: .65rem; color: var(--muted); letter-spacing: .04em; }
+.brand strong { color: var(--gold); }
+.pills {
+  display: flex; flex-wrap: wrap; gap: .35rem; padding: .65rem 1rem;
+  border-bottom: 1px solid var(--line); font-size: .82rem;
+}
+.pills a {
+  text-decoration: none; color: inherit; border: 1px solid var(--line);
+  border-radius: 999px; padding: .25rem .7rem;
+}
+.pills a[aria-current="page"] { background: rgba(30,125,94,.3); border-color: var(--green); }
+main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+h1 { color: var(--gold); font-size: 1.35rem; margin: 0 0 .35rem; }
+.lead { color: var(--muted); margin: 0 0 1.25rem; }
+.card {
+  border: 1px solid var(--line); border-radius: 16px; padding: 1rem 1.1rem;
+  background: var(--panel); margin: 0 0 1rem;
+}
+.card h2 { font-size: 1rem; color: var(--gold); margin: 0 0 .5rem; }
+.card ul { margin: 0; padding-left: 1.15rem; }
+.card li { margin: .35rem 0; }
+.note {
+  font-size: .85rem; color: var(--muted); border-left: 3px solid var(--green);
+  padding: .5rem .75rem; margin: 1rem 0;
+}
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+.btn {
+  display: inline-block; text-decoration: none; border-radius: 999px;
+  padding: .45rem .9rem; font-weight: 650; border: 1px solid var(--line); color: inherit;
+}
+.btn-primary { background: var(--green); border-color: var(--green); color: #fff; }
+.foot { font-size: .75rem; color: var(--muted); margin-top: 2rem; text-align: center; }
+.theme-row { display: flex; gap: .35rem; flex-wrap: wrap; }
+.theme-row button {
+  border: 1px solid var(--line); background: transparent; color: inherit;
+  border-radius: 999px; padding: .25rem .6rem; cursor: pointer; font: inherit; font-size: .78rem;
+}
+</style>
 </head>
 <body>
-<p>Charter now lives under Campus.</p>
-<p><a href="/campus/charter/">Continue → /campus/charter/</a></p>
-<p style="font-size:.8rem;opacity:.75">Bridge stub · 20261024NEST · safe to remove root folder after deploy settles.</p>
+<div class="top">
+  <div>
+    <span>Campus</span>
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/campus/lab/">Lab</a>
+    <a href="/campus/journey/">Journey</a>
+  </div>
+  <div><a href="/">Companion home</a></div>
+</div>
+<header class="banner">
+  <a class="brand" href="/campus/">
+    <span class="brand-mark" aria-hidden="true">ن</span>
+    <span><small>UNIVERSITY</small><strong>Clarity University</strong></span>
+  </a>
+  <div class="theme-row" role="group" aria-label="Theme">
+    <button type="button" data-theme-set="light">Day</button>
+    <button type="button" data-theme-set="dark">Night</button>
+    <button type="button" data-theme-set="system">System</button>
+  </div>
+</header>
+<nav class="pills" aria-label="Campus">
+  <a href="/campus/">Map</a>
+  <a href="/campus/desk/">Desk</a>
+  <a href="/campus/lab/">Lab</a>
+  <a href="/campus/library/">Library</a>
+  <a href="/campus/journey/">Journey</a>
+  <a href="/campus/charter/" aria-current="page">Charter</a>
+  <a href="/vault/">Vault</a>
+</nav>
+
+<main>
+  <h1>University Charter</h1>
+  <p class="lead">Limits first. This is a private educational tool on your device — not a physical campus and not a ruling body.</p>
+
+  <section class="card">
+    <h2>What this is</h2>
+    <ul>
+      <li>A <strong>local-first</strong> learning path: Seeker → Practice → Consistency → Transmission</li>
+      <li>Practice halls (Lab): Arabic, Tajweed, Recite, Hifz, Calligraphy, Media</li>
+      <li>Study markers on this browser only — a <em>mirror</em>, not a scoreboard of īmān</li>
+      <li>Pointers to Qurʾān and Sunnah sources for further reading</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>What this is not</h2>
+    <ul>
+      <li><strong>Not</strong> a physical university or accredited degree</li>
+      <li><strong>Not</strong> affiliated with Al-Azhar, Madinah, IIUM, or any institution</li>
+      <li><strong>Not</strong> a fatwa service · not a substitute for a living teacher</li>
+      <li><strong>Not</strong> a grade of īmān or a certificate of scholarship</li>
+      <li><strong>Not</strong> legal advice for courts, estates, or wills</li>
+      <li><strong>Not</strong> a replacement for your local masjid, scholar, or community</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>How to use it with adab</h2>
+    <ul>
+      <li>Verify important matters with Qurʾān, Sunnah, and a trusted teacher</li>
+      <li>Follow your group’s guide for Ḥajj and ritual practice</li>
+      <li>Progress and notes stay on <strong>this device</strong> unless you copy them</li>
+      <li>Nothing is uploaded for “scoring” or institutional credit</li>
+    </ul>
+  </section>
+
+  <p class="note">Educational only — not a fatwa. Last reviewed Oct 2026 · Quran.com / Sunnah.com as reading aids.</p>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="/campus/#admission">Begin admission on Map →</a>
+    <a class="btn" href="/campus/desk/seeker/">Seeker desk</a>
+    <a class="btn" href="/campus/journey/">Journey roadmap</a>
+    <a class="btn" href="/campus/lab/">Lab</a>
+  </div>
+
+  <p class="foot">Clarity University · Charter · 20261024CHARTER<br/>Companion Amanah vault remains at <a href="/vault/">/vault/</a> (private trusts).</p>
+</main>
+<script>
+(function(){
+  var KEY = "cu_lab_theme_v1";
+  function apply(t){
+    t = t || localStorage.getItem(KEY) || "system";
+    var root = document.documentElement;
+    if (t === "system") {
+      var dark = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+      root.setAttribute("data-theme", dark ? "dark" : "light");
+    } else root.setAttribute("data-theme", t);
+    try { localStorage.setItem(KEY, t); } catch (e) {}
+  }
+  document.querySelectorAll("[data-theme-set]").forEach(function(b){
+    b.addEventListener("click", function(){ apply(b.getAttribute("data-theme-set")); });
+  });
+  apply();
+})();
+</script>
 </body>
 </html>
