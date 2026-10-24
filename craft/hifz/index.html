@@ -1,30 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Hifz · Clarity University</title>
-<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
-</head>
-<body class="cu-addon">
-<header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
-  <a class="cu-main-link" href="/">← Companion</a>
-</header>
-<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="here">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
-<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
-<main class="cu-wrap">
-
-<h1>Hifz</h1>
-<p class="muted">One ayah, then hide and recall. <a href="https://quran.com/1">Al-Fātiḥah</a></p>
-<div class="card studio-stage"><p class="ar" id="ayah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-<p id="en">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
-<button id="hide">Hide meaning</button> <button id="mark">Mark reviewed</button>
-<p class="muted" id="c"></p></div>
-
-</main>
-<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
-<script>
-var hidden=false;
-document.getElementById("hide").onclick=function(){hidden=!hidden;document.getElementById("en").style.visibility=hidden?"hidden":"visible";this.textContent=hidden?"Show meaning":"Hide meaning"};
-function count(){document.getElementById("c").textContent="Reviewed: "+(localStorage.getItem("clarity_lab_hifz")||"0")}
-document.getElementById("mark").onclick=function(){var n=parseInt(localStorage.getItem("clarity_lab_hifz")||"0",10)+1;localStorage.setItem("clarity_lab_hifz",String(n));count()};
-count();
-</script>
-</body></html>
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>hifz · moved</title>
+<meta http-equiv="refresh" content="0;url=/campus/lab/hifz/"/>
+<link rel="canonical" href="/campus/lab/hifz/"/>
+<script>location.replace("/campus/lab/hifz/");</script>
+<style>body{font-family:system-ui,sans-serif;background:#0a1210;color:#e8efe9;padding:2rem}
+a{color:#d4b45a}.box{max-width:28rem;margin:2rem auto;padding:1.25rem;border:1px solid rgba(212,180,90,.3);border-radius:16px}
+.muted{color:#9aa7a0;font-size:.9rem}</style>
+</head><body><main class="box">
+<h1 style="font-size:1.15rem;color:#d4b45a">This station moved</h1>
+<p class="muted">University labs: <code>/campus/lab/</code></p>
+<p><a href="/campus/lab/hifz/">Continue →</a></p>
+<p class="muted" style="font-size:.75rem">20261024FULL</p>
+</main></body></html>
