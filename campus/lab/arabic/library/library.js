@@ -1,5 +1,5 @@
 /**
- * Arabic library · 20261024CAMP2
+ * Arabic library · 20261024FULL
  * Letters · Words · Jumlah · Hajj stay — browse & open in Lab
  */
 (function () {
@@ -66,7 +66,7 @@
   }
 
   function renderLetters() {
-    loadJSON("/campus/lab/arabic/library/data/letters.json?v=20261024CAMP2").then(function (arr) {
+    loadJSON("/campus/lab/arabic/library/data/letters.json?v=20261024FULL").then(function (arr) {
       if (!arr || !Array.isArray(arr)) { stage.innerHTML = "<p>Could not load letters.</p>"; return; }
       stage.innerHTML = '<div class="ar-lib-grid">' + arr.map(cardLetter).join("") + '</div>';
       bindHear(stage);
@@ -74,7 +74,7 @@
   }
 
   function renderWords() {
-    loadJSON("/campus/lab/arabic/library/data/words.json?v=20261024CAMP2").then(function (packs) {
+    loadJSON("/campus/lab/arabic/library/data/words.json?v=20261024FULL").then(function (packs) {
       if (!packs || typeof packs !== "object") { stage.innerHTML = "<p>Could not load words.</p>"; return; }
       var html = "";
       Object.keys(packs).forEach(function (k) {
@@ -88,7 +88,7 @@
   }
 
   function renderJumlah(key) {
-    loadJSON("/campus/lab/arabic/library/data/jumlah.json?v=20261024CAMP2").then(function (packs) {
+    loadJSON("/campus/lab/arabic/library/data/jumlah.json?v=20261024FULL").then(function (packs) {
       if (!packs || typeof packs !== "object") { stage.innerHTML = "<p>Could not load Jumlah.</p>"; return; }
       var list = packs[key] || packs.everyday || [];
       if (!Array.isArray(list)) list = [];
