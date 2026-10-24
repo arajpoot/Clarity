@@ -29,7 +29,7 @@
     if (document.querySelector('link[data-lab-station-bar]')) return;
     var l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/campus/lab/shared/lab-station-bar.css?v=20261024NEST";
+    l.href = "/campus/lab/shared/lab-station-bar.css?v=20261019L2";
     l.setAttribute("data-lab-station-bar", "1");
     document.head.appendChild(l);
   }
