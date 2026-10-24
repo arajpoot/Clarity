@@ -1,0 +1,44 @@
+/* Lab station bar — centered plaques · 20261019L2 */
+.lab-station-nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:.4rem;
+  width:100%;
+  max-width:48rem;
+  margin:.35rem auto .95rem;
+  padding:.45rem .55rem;
+  box-sizing:border-box;
+  border-radius:999px;
+  border:1px solid rgba(201,162,39,.32);
+  background:rgba(15,40,30,.28);
+}
+html[data-theme="light"] .lab-station-nav{
+  background:rgba(255,255,255,.7);
+}
+.lab-station-nav a{
+  text-decoration:none;
+  color:inherit;
+  font-size:.78rem;
+  font-weight:700;
+  padding:.4rem .85rem;
+  border-radius:999px;
+  border:1px solid rgba(201,162,39,.22);
+  background:rgba(255,255,255,.08);
+  line-height:1.2;
+  white-space:nowrap;
+}
+html[data-theme="light"] .lab-station-nav a{
+  background:rgba(255,255,255,.85);
+}
+.lab-station-nav a:hover{
+  border-color:rgba(201,162,39,.5);
+  background:rgba(201,162,39,.12);
+}
+.lab-station-nav a.here,
+.lab-station-nav a[aria-current="page"]{
+  background:#2d6a4f;
+  color:#fff;
+  border-color:#2d6a4f;
+}
