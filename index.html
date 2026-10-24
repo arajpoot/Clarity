@@ -10058,4 +10058,47 @@ html, body {
 })();
 </script>
 
+
+<style id="clarity-dual-stack-fix">
+/* Dual path tiles ABOVE Do this today — no overlap */
+#clarity-day-landing {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 0.65rem !important;
+  position: relative !important;
+  z-index: 5 !important;
+  margin: 0.5rem 0.55rem 0.85rem !important;
+  overflow: visible !important;
+  clear: both !important;
+}
+#clarity-day-landing .dual-tiles {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.55rem !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 2 !important;
+  margin: 0 0 0.15rem 0 !important;
+  float: none !important;
+  clear: both !important;
+}
+#clarity-day-landing .cdl-card,
+#clarity-day-landing #cdl-today,
+#clarity-day-landing #cdl-adhkar {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-top: 0 !important;
+  clear: both !important;
+  float: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 640px) {
+  #clarity-day-landing .dual-tiles {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
 </html>
