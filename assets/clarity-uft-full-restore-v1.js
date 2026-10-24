@@ -1,11 +1,9 @@
-/* 20261024UFT — fix duplicate Identifier UFT_KEY */
-(function(g){
-"use strict";
-if(g.__CLARITY_UFT_FULL_RESTORE_V1__) return;
-g.__CLARITY_UFT_FULL_RESTORE_V1__ = true;
-try {
 
 /* Full family-tree + farāʾiḍ module restored from working Clarity build */
+(function(){
+if (window.__CLARITY_UFT_FULL_RESTORE_V1__) return;
+window.__CLARITY_UFT_FULL_RESTORE_V1__ = true;
+})();
 if (typeof window.clarityLS === "undefined" || !window.clarityLS) {
   window.clarityLS = {
     getItem: function(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
@@ -13,8 +11,8 @@ if (typeof window.clarityLS === "undefined" || !window.clarityLS) {
     removeItem: function(k){ try { localStorage.removeItem(k); } catch(e){} }
   };
 }
-window.UFT_KEY = window.UFT_KEY || "clarity_user_family_tree_v1";
-var UFT_KEY = window.UFT_KEY;
+window.UFT_KEY = "clarity_user_family_tree_v1";
+const UFT_KEY = 'clarity_user_family_tree_v1';
     let uftView = 'pedigree';
     function uftRead() {
       try { return JSON.parse(clarityLS.getItem(UFT_KEY) || '{}'); }
@@ -6314,6 +6312,3 @@ window.uftView = (typeof uftView !== "undefined") ? uftView : "pedigree";
     }
   } catch(e){}
 })();
-
-} catch (e) { try { console.warn("UFT restore", e); } catch (e2) {} }
-})(typeof window !== "undefined" ? window : this);
