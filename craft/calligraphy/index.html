@@ -1,31 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Calligraphy · Clarity University</title>
-<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
-</head>
-<body class="cu-addon">
-<header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
-  <a class="cu-main-link" href="/">← Companion</a>
-</header>
-<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="">Guide</a><a href="/lab/" class="here">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
-<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
-<main class="cu-wrap">
-
-<h1>Calligraphy</h1>
-<p class="muted">Trace the letter from the page you recited. <a href="https://quran.com/1">Qur’an 1</a></p>
-<div class="card studio-stage"><p class="ar" style="font-size:4rem;text-align:center">ا</p>
-<canvas id="pad" width="640" height="220" style="width:100%;border:1px dashed rgba(212,180,90,.35);border-radius:12px;background:#0c1410"></canvas>
-<p><button id="clear">Clear</button> <button id="save">Save practice</button></p><p class="muted" id="msg"></p></div>
-
-</main>
-<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
-<script>
-var c=document.getElementById("pad"),x=c.getContext("2d"),d=false;
-function pos(e){var r=c.getBoundingClientRect(),p=e.touches?e.touches[0]:e;return{x:(p.clientX-r.left)*(c.width/r.width),y:(p.clientY-r.top)*(c.height/r.height)}}
-c.addEventListener("pointerdown",function(e){d=true;var p=pos(e);x.strokeStyle="#e0c56a";x.beginPath();x.moveTo(p.x,p.y)});
-c.addEventListener("pointermove",function(e){if(!d)return;var p=pos(e);x.lineTo(p.x,p.y);x.stroke()});
-window.addEventListener("pointerup",function(){d=false});
-document.getElementById("clear").onclick=function(){x.clearRect(0,0,c.width,c.height)};
-document.getElementById("save").onclick=function(){var n=parseInt(localStorage.getItem("clarity_lab_calligraphy")||"0",10)+1;localStorage.setItem("clarity_lab_calligraphy",String(n));document.getElementById("msg").textContent="Saved · "+n};
-</script>
-</body></html>
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>calligraphy · moved</title>
+<meta http-equiv="refresh" content="0;url=/campus/lab/calligraphy/"/>
+<link rel="canonical" href="/campus/lab/calligraphy/"/>
+<script>location.replace("/campus/lab/calligraphy/");</script>
+<style>body{font-family:system-ui,sans-serif;background:#0a1210;color:#e8efe9;padding:2rem}
+a{color:#d4b45a}.box{max-width:28rem;margin:2rem auto;padding:1.25rem;border:1px solid rgba(212,180,90,.3);border-radius:16px}
+.muted{color:#9aa7a0;font-size:.9rem}</style>
+</head><body><main class="box">
+<h1 style="font-size:1.15rem;color:#d4b45a">This station moved</h1>
+<p class="muted">University labs: <code>/campus/lab/</code></p>
+<p><a href="/campus/lab/calligraphy/">Continue →</a></p>
+<p class="muted" style="font-size:.75rem">20261024FULL</p>
+</main></body></html>
