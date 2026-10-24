@@ -1,16 +1,62 @@
 {
   "everyday": [
     {
-      "ar": "هَذَا كِتَابٌ.",
-      "en": "This is a book."
-    },
-    {
       "ar": "أَنَا طَالِبٌ.",
       "en": "I am a student."
     },
     {
+      "ar": "هَذَا كِتَابٌ.",
+      "en": "This is a book."
+    },
+    {
+      "ar": "أَيْنَ الْبَيْتُ؟",
+      "en": "Where is the house?"
+    },
+    {
       "ar": "عِنْدِي سُؤَالٌ.",
       "en": "I have a question."
+    },
+    {
+      "ar": "أُرِيدُ مَاءً.",
+      "en": "I want water."
+    },
+    {
+      "ar": "مَا اسْمُكَ؟",
+      "en": "What is your name?"
+    },
+    {
+      "ar": "كَيْفَ حَالُكَ؟",
+      "en": "How are you?"
+    },
+    {
+      "ar": "الْحَمْدُ لِلَّهِ.",
+      "en": "All praise is for Allah."
+    },
+    {
+      "ar": "أَنَا مِنْ …",
+      "en": "I am from …"
+    },
+    {
+      "ar": "هَلْ تَتَكَلَّمُ الْعَرَبِيَّةَ؟",
+      "en": "Do you speak Arabic?"
+    }
+  ],
+  "salah": [
+    {
+      "ar": "أَيْنَ الْمَسْجِدُ؟",
+      "en": "Where is the mosque?"
+    },
+    {
+      "ar": "مَتَى صَلَاةُ الْفَجْرِ؟",
+      "en": "When is Fajr prayer?"
+    },
+    {
+      "ar": "أُرِيدُ أَنْ أُصَلِّيَ.",
+      "en": "I want to pray."
+    },
+    {
+      "ar": "أَيْنَ الْقِبْلَةُ؟",
+      "en": "Where is the qiblah?"
     }
   ],
   "hajj_stay": [
@@ -23,56 +69,93 @@
       "en": "I am in Madinah."
     },
     {
-      "ar": "أَيْنَ الْمَسْجِدُ؟",
-      "en": "Where is the mosque?"
-    },
-    {
       "ar": "أَيْنَ الْكَعْبَةُ؟",
       "en": "Where is the Kaʿbah?"
     },
     {
-      "ar": "أُرِيدُ مَاءً.",
-      "en": "I want water."
+      "ar": "أَيْنَ الْمَسْجِدُ الْحَرَامُ؟",
+      "en": "Where is al-Masjid al-Ḥarām?"
+    },
+    {
+      "ar": "أَيْنَ مَسْجِدُ النَّبِيِّ؟",
+      "en": "Where is the Prophet's Mosque?"
+    },
+    {
+      "ar": "أُرِيدُ مَاءَ زَمْزَمَ.",
+      "en": "I want Zamzam water."
     },
     {
       "ar": "عِنْدِي مَاءُ زَمْزَمَ.",
       "en": "I have Zamzam water."
     },
     {
-      "ar": "السَّلَامُ عَلَيْكُمْ.",
-      "en": "Peace be upon you."
+      "ar": "أَيْنَ الْفُنْدُقُ؟",
+      "en": "Where is the hotel?"
+    },
+    {
+      "ar": "كَيْفَ أَذْهَبُ إِلَى مِنًى؟",
+      "en": "How do I go to Minā?"
+    },
+    {
+      "ar": "هَذَا الطَّرِيقُ إِلَى عَرَفَةَ؟",
+      "en": "Is this the road to ʿArafah?"
+    },
+    {
+      "ar": "أَيْنَ الْحَمَّامُ؟",
+      "en": "Where is the restroom?"
+    },
+    {
+      "ar": "كَمْ هَذَا؟",
+      "en": "How much is this?"
+    },
+    {
+      "ar": "هَلْ تَتَكَلَّمُ الْإِنْجِلِيزِيَّةَ؟",
+      "en": "Do you speak English?"
+    },
+    {
+      "ar": "أَنَا ضَائِعٌ.",
+      "en": "I am lost."
+    },
+    {
+      "ar": "هَلْ تُسَاعِدُنِي مِنْ فَضْلِكَ؟",
+      "en": "Can you help me, please?"
+    },
+    {
+      "ar": "أَيْنَ مَحَطَّةُ الْحَافِلَاتِ؟",
+      "en": "Where is the bus station?"
+    },
+    {
+      "ar": "مَتَى صَلَاةُ الْعَصْرِ؟",
+      "en": "When is ʿAṣr prayer?"
+    },
+    {
+      "ar": "أُرِيدُ طَعَامًا.",
+      "en": "I want food."
+    },
+    {
+      "ar": "الْيَمِينِ مِنْ فَضْلِكَ.",
+      "en": "To the right, please."
+    },
+    {
+      "ar": "الْيَسَارِ مِنْ فَضْلِكَ.",
+      "en": "To the left, please."
+    },
+    {
+      "ar": "مُسْتَقِيمًا.",
+      "en": "Straight ahead."
     },
     {
       "ar": "جَزَاكَ اللَّهُ خَيْرًا.",
       "en": "May Allah reward you with good."
     },
     {
-      "ar": "أَيْنَ الْفُنْدُقُ؟",
-      "en": "Where is the hotel?"
+      "ar": "أَيْنَ بَابُ السَّلَامِ؟",
+      "en": "Where is Bāb as-Salām?"
     },
     {
-      "ar": "مِنْ فَضْلِكَ.",
-      "en": "Please / if you please."
-    },
-    {
-      "ar": "الْيَمِينُ.",
-      "en": "The right (side)."
-    },
-    {
-      "ar": "الْيَسَارُ.",
-      "en": "The left (side)."
-    },
-    {
-      "ar": "مَتَى الصَّلَاةُ؟",
-      "en": "When is the prayer?"
-    },
-    {
-      "ar": "بَعْدَ صَلَاةِ الْعَصْرِ.",
-      "en": "After ʿAṣr prayer."
-    },
-    {
-      "ar": "هَلْ تَتَكَلَّمُ الْإِنْجِلِيزِيَّةَ؟",
-      "en": "Do you speak English?"
+      "ar": "أَنَا مَعَ مَجْمُوعَةِ الْحَجِّ.",
+      "en": "I am with the Ḥajj group."
     }
-  ]
+  ],
+  "disclaimer": "Educational language practice only. Follow your group's guide and a trusted teacher. Not a fatwa."
 }
