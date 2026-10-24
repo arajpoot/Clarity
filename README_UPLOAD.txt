@@ -1,22 +1,13 @@
-Companion FINAL polished · 20261024FINAL
+Companion clean cycle · 20261024UFT
 
-Includes:
-- Lean index (inlines → companion-inline)
-- Dedupe: packs replace 10 overlapping inlines + 4 redundant externals
-- Packs after core: runtime-overlays, aux, path, feature
-- Companion guide C0–C10 (Map, path interest, tools, vault daily note)
-- Vault script tags preserved
-- University /campus/ not in this package
+CRITICAL FIX: Uncaught SyntaxError Identifier UFT_KEY already declared
+File: assets/clarity-uft-full-restore-v1.js
+- Removed top-level const UFT_KEY
+- Use window.UFT_KEY + var UFT_KEY inside guarded IIFE
 
-Upload to main root:
-  index.html
-  assets/companion-inline/* (kept files)
-  assets/clarity-companion-guide-v1.js
-  assets/clarity-companion-guide-v1.css
-Packs already live on GitHub under /assets/ — only need index refs.
+Also includes prior lean + dedupe + companion guide.
 
-Before: ~526KB / 10060 lines
-Lean: ~352KB / ~5500 lines
-Final: see SMOKE_FINAL.json
+Upload at minimum:
+  assets/clarity-uft-full-restore-v1.js
 
-Hard-refresh Companion home. Test: doors, vault unlock, tajweed, meme, Map FAB.
+Full package: index.html + assets/ as in zip.
