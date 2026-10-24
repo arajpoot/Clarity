@@ -1,9 +1,11 @@
-Campus nested hybrid · 20261024NEST
+Clarity University · campus/lab · 20261024CAMP2
 
-Source of truth:
-  /campus/lab/  /campus/library/  /campus/vault/  /campus/charter/
+Sandbox-sim repaired:
+- Added campus/lab/shared/flash.css (was 404 on Hifz/Media)
+- Fixed class="here" typo on Hifz station nav
+- Paths: all /campus/lab/...
+- LMR step hosts + score/read-along present
 
-Root /lab /library /vault /charter = redirect stubs only.
-
-Read SAFE_DELETE_ROOT_FOLDERS.md before deleting root folders.
-Extract at GitHub main root.
+Extract at main root → campus/lab/...
+Hard-refresh /campus/lab/tajweed/ /campus/lab/arabic/ /campus/lab/arabic/library/
+Companion untouched.
