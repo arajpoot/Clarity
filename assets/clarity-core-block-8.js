@@ -3187,7 +3187,7 @@ function memeSurpriseMe(){
     if(!el) return;
     el.classList.add('show');
     el.setAttribute('aria-hidden','false');
-    document.documentElement.style.overflowY = 'hidden';
+    /* scroll lock disabled — page must remain scrollable under welcome */
     var chip = document.getElementById('clarity-start-chip');
     if(chip) chip.classList.remove('show');
   }
@@ -3196,7 +3196,7 @@ function memeSurpriseMe(){
     if(!el) return;
     el.classList.remove('show');
     el.setAttribute('aria-hidden','true');
-    document.documentElement.style.overflowY = 'scroll';
+    document.documentElement.style.setProperty('overflow-y','auto','important'); document.body.style.setProperty('overflow-y','auto','important');
   }
   window.clarityShowWelcome = function(){ show(); };
   window.clarityFinishWelcome = function(goJourney){
