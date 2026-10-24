@@ -1,4 +1,6 @@
-
+/*CLARITY_NOTESLOAD_HARDEN*/
+(function(){"use strict";if(typeof window.notesLoad!=="function"){window.notesLoad=function(){try{if(typeof window.__notesLoadReal==="function")return window.__notesLoadReal.apply(this,arguments);}catch(e){}};}})();
+/*END_NOTESLOAD_HARDEN*/
 var VERSE_POOL=window.VERSE_POOL||[];
 
 var UFT_KEY=window.UFT_KEY||"clarity_user_family_tree_v1";
