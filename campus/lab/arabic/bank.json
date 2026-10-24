@@ -1,0 +1,358 @@
+{
+  "version": "20261017SENT",
+  "disclaimer": "Educational only — not a fatwa. Hajj phrases are language practice; follow your group's guide and a trusted teacher.",
+  "packs": {
+    "everyday_plus": [
+      {
+        "id": "ep1",
+        "ar": "مَدْرَسَة",
+        "en": "school",
+        "tr": "madrasah",
+        "emoji": "🏫",
+        "example": "هَذِهِ مَدْرَسَةٌ."
+      },
+      {
+        "id": "ep2",
+        "ar": "طَالِب",
+        "en": "student (m)",
+        "tr": "ṭālib",
+        "emoji": "👨‍🎓",
+        "example": "أَنَا طَالِبٌ."
+      },
+      {
+        "id": "ep3",
+        "ar": "مُعَلِّم",
+        "en": "teacher (m)",
+        "tr": "muʿallim",
+        "emoji": "👨‍🏫",
+        "example": "هَذَا مُعَلِّمٌ."
+      },
+      {
+        "id": "ep4",
+        "ar": "صَدِيق",
+        "en": "friend",
+        "tr": "ṣadīq",
+        "emoji": "🤝",
+        "example": "هَذَا صَدِيقٌ."
+      },
+      {
+        "id": "ep5",
+        "ar": "كِتَابَة",
+        "en": "writing",
+        "tr": "kitābah",
+        "emoji": "✍️",
+        "example": "أُحِبُّ الْكِتَابَةَ."
+      }
+    ],
+    "salah_plus": [
+      {
+        "id": "sp1",
+        "ar": "أَذَان",
+        "en": "call to prayer",
+        "tr": "adhān",
+        "emoji": "📢"
+      },
+      {
+        "id": "sp2",
+        "ar": "تَكْبِير",
+        "en": "saying Allāhu akbar",
+        "tr": "takbīr",
+        "emoji": "☝️"
+      },
+      {
+        "id": "sp3",
+        "ar": "تَشَهُّد",
+        "en": "testification in prayer",
+        "tr": "tashahhud",
+        "emoji": "🤲"
+      },
+      {
+        "id": "sp4",
+        "ar": "تَسْلِيم",
+        "en": "ending salām of prayer",
+        "tr": "taslīm",
+        "emoji": "🕊️"
+      }
+    ],
+    "haramayn_hajj": [
+      {
+        "id": "hj1",
+        "ar": "لَبَّيْكَ",
+        "en": "Here I am (at Your service)",
+        "tr": "labbayk",
+        "emoji": "🕋",
+        "example": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ."
+      },
+      {
+        "id": "hj2",
+        "ar": "حَجّ",
+        "en": "pilgrimage (Ḥajj)",
+        "tr": "ḥajj",
+        "emoji": "🕌"
+      },
+      {
+        "id": "hj3",
+        "ar": "عُمْرَة",
+        "en": "lesser pilgrimage",
+        "tr": "ʿumrah",
+        "emoji": "🌙"
+      },
+      {
+        "id": "hj4",
+        "ar": "طَوَاف",
+        "en": "circumambulation",
+        "tr": "ṭawāf",
+        "emoji": "🔄"
+      },
+      {
+        "id": "hj5",
+        "ar": "سَعْي",
+        "en": "Saʿy between Ṣafā and Marwah",
+        "tr": "saʿy",
+        "emoji": "🚶"
+      },
+      {
+        "id": "hj6",
+        "ar": "مِنًى",
+        "en": "Minā",
+        "tr": "minā",
+        "emoji": "⛺"
+      },
+      {
+        "id": "hj7",
+        "ar": "عَرَفَة",
+        "en": "ʿArafah",
+        "tr": "ʿarafah",
+        "emoji": "⛰️"
+      },
+      {
+        "id": "hj8",
+        "ar": "مُزْدَلِفَة",
+        "en": "Muzdalifah",
+        "tr": "muzdalifah",
+        "emoji": "🌌"
+      },
+      {
+        "id": "hj9",
+        "ar": "كَعْبَة",
+        "en": "the Kaʿbah",
+        "tr": "kaʿbah",
+        "emoji": "🕋"
+      },
+      {
+        "id": "hj10",
+        "ar": "مَسْجِد",
+        "en": "mosque",
+        "tr": "masjid",
+        "emoji": "🕌",
+        "example": "هَذَا مَسْجِدٌ."
+      },
+      {
+        "id": "hj11",
+        "ar": "زَمْزَم",
+        "en": "Zamzam water",
+        "tr": "zamzam",
+        "emoji": "💧"
+      },
+      {
+        "id": "hj12",
+        "ar": "مَدِينَة",
+        "en": "Madinah",
+        "tr": "madīnah",
+        "emoji": "💚"
+      }
+    ]
+  },
+  "sentences": {
+    "1": [
+      {
+        "id": "j1a",
+        "pattern": "nominal",
+        "ar": "هَذَا كِتَابٌ.",
+        "en": "This is a book.",
+        "slots": [
+          "هَذَا",
+          "كِتَابٌ"
+        ],
+        "mcq": "This is a book."
+      },
+      {
+        "id": "j1b",
+        "pattern": "nominal",
+        "ar": "الْبَيْتُ كَبِيرٌ.",
+        "en": "The house is big.",
+        "slots": [
+          "الْبَيْتُ",
+          "كَبِيرٌ"
+        ],
+        "mcq": "The house is big."
+      },
+      {
+        "id": "j1c",
+        "pattern": "nominal",
+        "ar": "هَذِهِ مَدْرَسَةٌ.",
+        "en": "This is a school.",
+        "slots": [
+          "هَذِهِ",
+          "مَدْرَسَةٌ"
+        ],
+        "mcq": "This is a school."
+      },
+      {
+        "id": "j1d",
+        "pattern": "nominal",
+        "ar": "الْقَلَمُ جَدِيدٌ.",
+        "en": "The pen is new.",
+        "slots": [
+          "الْقَلَمُ",
+          "جَدِيدٌ"
+        ],
+        "mcq": "The pen is new."
+      }
+    ],
+    "2": [
+      {
+        "id": "j2a",
+        "pattern": "template",
+        "ar": "عِنْدِي كِتَابٌ.",
+        "en": "I have a book.",
+        "frame": "عِنْدِي ___."
+      },
+      {
+        "id": "j2b",
+        "pattern": "template",
+        "ar": "أَنَا طَالِبٌ.",
+        "en": "I am a student.",
+        "frame": "أَنَا ___."
+      },
+      {
+        "id": "j2c",
+        "pattern": "template",
+        "ar": "أُحِبُّ الصَّلَاةَ.",
+        "en": "I love the prayer.",
+        "frame": "أُحِبُّ ___."
+      },
+      {
+        "id": "j2d",
+        "pattern": "template",
+        "ar": "عِنْدِي سُؤَالٌ.",
+        "en": "I have a question.",
+        "frame": "عِنْدِي ___."
+      }
+    ],
+    "3": [
+      {
+        "id": "j3a",
+        "pattern": "vso",
+        "ar": "كَتَبَ الطَّالِبُ الدَّرْسَ.",
+        "en": "The student wrote the lesson.",
+        "parts": {
+          "verb": "كَتَبَ",
+          "subject": "الطَّالِبُ",
+          "object": "الدَّرْسَ"
+        }
+      },
+      {
+        "id": "j3b",
+        "pattern": "vso",
+        "ar": "قَرَأَ الْوَلَدُ الْكِتَابَ.",
+        "en": "The boy read the book.",
+        "parts": {
+          "verb": "قَرَأَ",
+          "subject": "الْوَلَدُ",
+          "object": "الْكِتَابَ"
+        }
+      },
+      {
+        "id": "j3c",
+        "pattern": "vso",
+        "ar": "شَرِبَ الرَّجُلُ الْمَاءَ.",
+        "en": "The man drank the water.",
+        "parts": {
+          "verb": "شَرِبَ",
+          "subject": "الرَّجُلُ",
+          "object": "الْمَاءَ"
+        }
+      },
+      {
+        "id": "j3d",
+        "pattern": "vso",
+        "ar": "سَمِعَتِ الْبِنْتُ الْأَذَانَ.",
+        "en": "The girl heard the call to prayer.",
+        "parts": {
+          "verb": "سَمِعَتِ",
+          "subject": "الْبِنْتُ",
+          "object": "الْأَذَانَ"
+        }
+      }
+    ],
+    "4": [
+      {
+        "id": "j4a",
+        "pattern": "cloze",
+        "ar": "الْعِلْمُ نُورٌ.",
+        "en": "Knowledge is light.",
+        "blank": "نُورٌ",
+        "options": [
+          "نُورٌ",
+          "بَيْتٌ",
+          "قَلَمٌ",
+          "بَابٌ"
+        ]
+      },
+      {
+        "id": "j4b",
+        "pattern": "cloze",
+        "ar": "الصِّدْقُ مَنْجَاةٌ.",
+        "en": "Truthfulness is salvation.",
+        "blank": "مَنْجَاةٌ",
+        "options": [
+          "مَنْجَاةٌ",
+          "مَاءٌ",
+          "قَمَرٌ",
+          "بَابٌ"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "id": "hj1a",
+        "pattern": "template",
+        "ar": "أَنَا فِي مَكَّةَ.",
+        "en": "I am in Makkah.",
+        "frame": "أَنَا فِي ___."
+      },
+      {
+        "id": "hj1b",
+        "pattern": "template",
+        "ar": "أَنَا فِي الْمَدِينَةِ.",
+        "en": "I am in Madinah.",
+        "frame": "أَنَا فِي ___."
+      },
+      {
+        "id": "hj1c",
+        "pattern": "nominal",
+        "ar": "هَذَا الْمَسْجِدُ كَبِيرٌ.",
+        "en": "This mosque is large.",
+        "slots": [
+          "هَذَا الْمَسْجِدُ",
+          "كَبِيرٌ"
+        ]
+      },
+      {
+        "id": "hj1d",
+        "pattern": "template",
+        "ar": "أَيْنَ الْكَعْبَةُ؟",
+        "en": "Where is the Kaʿbah?",
+        "frame": "أَيْنَ ___؟"
+      },
+      {
+        "id": "hj1e",
+        "pattern": "template",
+        "ar": "عِنْدِي مَاءُ زَمْزَمَ.",
+        "en": "I have Zamzam water.",
+        "frame": "عِنْدِي ___."
+      }
+    ]
+  }
+}
