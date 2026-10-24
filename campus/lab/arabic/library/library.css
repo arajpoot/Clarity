@@ -1,21 +1,28 @@
-/* Arabic library · 20261017LIB */
-.ar-lib-tabs,.ar-lib-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .75rem}
-.ar-lib-tabs button,.ar-lib-chip{
-  border:1px solid var(--lab-line);background:transparent;color:inherit;border-radius:999px;
-  padding:.35rem .7rem;font-weight:700;font-size:.78rem;cursor:pointer;font:inherit
+/* Arabic library · 20261024CAMP2 */
+.ar-lib-tabs { display:flex; flex-wrap:wrap; gap:.35rem; margin:0 0 1rem; }
+.ar-lib-tabs button {
+  border:1px solid var(--lab-line,rgba(212,180,90,.25));
+  background:transparent; color:inherit; border-radius:999px;
+  padding:.35rem .75rem; cursor:pointer; font:inherit; font-weight:650;
 }
-.ar-lib-tabs button.here,.ar-lib-chip.here{background:#1e7d5e;color:#fff;border-color:#1e7d5e}
-.ar-lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(3.4rem,1fr));gap:.35rem}
-.ar-lib-letter{
-  border:1px solid var(--lab-line);background:var(--lab-panel);color:inherit;border-radius:12px;
-  padding:.45rem;cursor:pointer
+.ar-lib-tabs button.here { background:rgba(30,125,94,.3); border-color:#1e7d5e; }
+.ar-lib-grid {
+  display:grid; gap:.55rem;
+  grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));
 }
-.ar-lib-letter span{font-size:1.35rem;display:block}
-.ar-lib-letter small{font-size:.65rem;opacity:.75}
-.ar-lib-row{
-  display:flex;justify-content:space-between;align-items:center;gap:.5rem;
-  padding:.55rem 0;border-bottom:1px solid var(--lab-line)
+.ar-lib-card {
+  border:1px solid var(--lab-line); border-radius:14px;
+  padding:.7rem; background:var(--lab-panel,rgba(255,255,255,.03));
 }
-.ar-lib-ar{font-size:1.15rem;font-weight:700}
-.ar-lib-en{font-size:.85rem;opacity:.85}
-.ar-lib-note{font-size:.78rem;color:var(--lab-muted);margin-top:.75rem}
+.ar-lib-ar { font-size:1.15rem; line-height:1.7; }
+.ar-lib-ar.big { font-size:2rem; text-align:center; }
+.ar-lib-en { font-size:.82rem; color:var(--lab-muted); margin-top:.25rem; }
+.ar-lib-tr { opacity:.85; }
+.ar-lib-acts { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.45rem; }
+.ar-lib-acts button, .ar-lib-acts a {
+  font-size:.72rem; border:1px solid var(--lab-line); border-radius:999px;
+  padding:.2rem .55rem; background:transparent; color:inherit;
+  text-decoration:none; cursor:pointer; font:inherit;
+}
+.ar-lib-h { color:var(--lab-gold); font-size:.95rem; margin:1rem 0 .4rem; text-transform:capitalize; }
+.ar-lib-note { font-size:.78rem; color:var(--lab-muted); margin:0 0 .75rem; }

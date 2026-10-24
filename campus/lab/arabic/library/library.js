@@ -1,98 +1,124 @@
 /**
- * Arabic Library · 20261017LIB
- * Letters · Words · Jumlah · Hajj stay
+ * Arabic library · 20261024CAMP2
+ * Letters · Words · Jumlah · Hajj stay — browse & open in Lab
  */
 (function () {
   "use strict";
-  var state = { tab: "letters", wordsKey: "everyday", jumlahKey: "hajj_stay" };
-  var data = { letters: [], words: {}, jumlah: {} };
+  var stage, tab = "letters";
+  var cache = {};
+
   function $(id) { return document.getElementById(id); }
-  function speak(ar) {
+
+  function loadJSON(path) {
+    if (cache[path]) return Promise.resolve(cache[path]);
+    return fetch(path).then(function (r) { return r.json(); }).then(function (d) {
+      cache[path] = d; return d;
+    }).catch(function () { return null; });
+  }
+
+  function speakAr(text) {
     try {
       if (!window.speechSynthesis) return;
-      speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(ar);
-      u.lang = "ar-SA"; u.rate = 0.85;
-      speechSynthesis.speak(u);
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "ar-SA";
+      u.rate = 0.85;
+      window.speechSynthesis.speak(u);
     } catch (e) {}
   }
-  function loadAll(cb) {
-    Promise.all([
-      fetch("/campus/lab/arabic/library/data/letters.json?v=20261024NEST").then(function (r) { return r.json(); }),
-      fetch("/campus/lab/arabic/library/data/words.json?v=20261024NEST").then(function (r) { return r.json(); }),
-      fetch("/campus/lab/arabic/library/data/jumlah.json?v=20261024NEST").then(function (r) { return r.json(); })
-    ]).then(function (arr) {
-      data.letters = arr[0]; data.words = arr[1]; data.jumlah = arr[2];
-      cb();
-    }).catch(function () {
-      data.letters = [{ ar: "ا", name: "alif" }];
-      cb();
-    });
+
+  function cardWord(w) {
+    return '<article class="ar-lib-card">' +
+      '<div class="ar-lib-ar" dir="rtl" lang="ar">' + (w.ar || "") + '</div>' +
+      '<div class="ar-lib-en">' + (w.en || "") + (w.tr ? ' · <span class="ar-lib-tr">' + w.tr + '</span>' : '') + '</div>' +
+      '<div class="ar-lib-acts">' +
+      '<button type="button" data-say="' + encodeURIComponent(w.ar || "") + '">Hear</button>' +
+      '<a href="/campus/lab/arabic/?mode=flash">Open in Lab</a>' +
+      '</div></article>';
   }
-  function render() {
-    var host = $("ar-lib-stage");
-    if (!host) return;
-    document.querySelectorAll("[data-lib-tab]").forEach(function (b) {
-      b.classList.toggle("here", b.getAttribute("data-lib-tab") === state.tab);
-    });
-    if (state.tab === "letters") {
-      host.innerHTML = '<div class="ar-lib-grid">' + data.letters.map(function (L) {
-        return '<button type="button" class="ar-lib-letter" data-say="' + L.ar + '"><span dir="rtl" lang="ar">' +
-          L.ar + '</span><small>' + L.name + '</small></button>';
-      }).join("") + '</div><p class="ar-lib-note">Tap to hear. <a href="/campus/lab/arabic/?mode=letters">Practice in Lab → Letters</a></p>';
-    } else if (state.tab === "words") {
-      var keys = Object.keys(data.words);
-      var chips = keys.map(function (k) {
-        return '<button type="button" class="ar-lib-chip' + (state.wordsKey === k ? ' here' : '') +
-          '" data-words="' + k + '">' + k + '</button>';
-      }).join("");
-      var list = (data.words[state.wordsKey] || []).map(function (w) {
-        return '<div class="ar-lib-row"><span dir="rtl" lang="ar" class="ar-lib-ar">' + w.ar +
-          '</span><span>' + w.en + '</span><button type="button" class="ar-lib-chip" data-say="' + w.ar +
-          '">Hear</button></div>';
-      }).join("");
-      host.innerHTML = '<div class="ar-lib-chips">' + chips + '</div>' + list +
-        '<p class="ar-lib-note"><a href="/campus/lab/arabic/?deck=' +
-        (state.wordsKey === "haramayn" ? "haramayn" : state.wordsKey === "salah" ? "salah" : "everyday") +
-        '">Study in Lab Flash</a></p>';
-    } else if (state.tab === "jumlah" || state.tab === "hajj_stay") {
-      var jk = state.tab === "hajj_stay" ? "hajj_stay" : state.jumlahKey;
-      if (state.tab === "hajj_stay") jk = "hajj_stay";
-      var jchips = Object.keys(data.jumlah).map(function (k) {
-        return '<button type="button" class="ar-lib-chip' + (jk === k ? ' here' : '') +
-          '" data-jumlah="' + k + '">' + (k === "hajj_stay" ? "Hajj stay" : k) + '</button>';
-      }).join("");
-      var jlist = (data.jumlah[jk] || []).map(function (s) {
-        return '<div class="ar-lib-row"><div><div dir="rtl" lang="ar" class="ar-lib-ar">' + s.ar +
-          '</div><div class="ar-lib-en">' + s.en + '</div></div>' +
-          '<button type="button" class="ar-lib-chip" data-say="' + s.ar.replace(/"/g, '') +
-          '">Hear</button></div>';
-      }).join("");
-      host.innerHTML = '<div class="ar-lib-chips">' + jchips + '</div>' +
-        (jk === "hajj_stay" ?
-          '<p class="ar-lib-note">Everyday phrases for stay in Makkah/Madinah. Language practice only — follow your group’s guide. Not a fatwa.</p>' : '') +
-        jlist +
-        '<p class="ar-lib-note"><a href="/campus/lab/arabic/?deck=haramayn&mode=jumlah">Practice Jumlah in Lab</a></p>';
-    }
-    host.querySelectorAll("[data-say]").forEach(function (b) {
-      b.onclick = function () { speak(b.getAttribute("data-say")); };
-    });
-    host.querySelectorAll("[data-words]").forEach(function (b) {
-      b.onclick = function () { state.wordsKey = b.getAttribute("data-words"); render(); };
-    });
-    host.querySelectorAll("[data-jumlah]").forEach(function (b) {
+
+  function cardJumlah(j) {
+    return '<article class="ar-lib-card">' +
+      '<div class="ar-lib-ar" dir="rtl" lang="ar">' + (j.ar || "") + '</div>' +
+      '<div class="ar-lib-en">' + (j.en || "") + '</div>' +
+      '<div class="ar-lib-acts">' +
+      '<button type="button" data-say="' + encodeURIComponent(j.ar || "") + '">Hear</button>' +
+      '<a href="/campus/lab/arabic/?mode=jumlah&deck=haramayn">Practice Jumlah</a>' +
+      '</div></article>';
+  }
+
+  function cardLetter(L) {
+    return '<article class="ar-lib-card ar-lib-letter">' +
+      '<div class="ar-lib-ar big" dir="rtl" lang="ar">' + L.ar + '</div>' +
+      '<div class="ar-lib-en">' + L.name + '</div>' +
+      '<div class="ar-lib-acts">' +
+      '<button type="button" data-say="' + encodeURIComponent(L.ar) + '">Hear</button>' +
+      '<a href="/campus/lab/arabic/?mode=letters">Letters in Lab</a>' +
+      '</div></article>';
+  }
+
+  function bindHear(root) {
+    root.querySelectorAll("[data-say]").forEach(function (b) {
       b.onclick = function () {
-        state.jumlahKey = b.getAttribute("data-jumlah");
-        state.tab = state.jumlahKey === "hajj_stay" ? "hajj_stay" : "jumlah";
-        render();
+        try { speakAr(decodeURIComponent(b.getAttribute("data-say") || "")); } catch (e) {}
       };
     });
   }
-  function boot() {
-    document.querySelectorAll("[data-lib-tab]").forEach(function (b) {
-      b.onclick = function () { state.tab = b.getAttribute("data-lib-tab"); render(); };
+
+  function renderLetters() {
+    loadJSON("/campus/lab/arabic/library/data/letters.json?v=20261024CAMP2").then(function (arr) {
+      if (!arr || !Array.isArray(arr)) { stage.innerHTML = "<p>Could not load letters.</p>"; return; }
+      stage.innerHTML = '<div class="ar-lib-grid">' + arr.map(cardLetter).join("") + '</div>';
+      bindHear(stage);
     });
-    loadAll(render);
+  }
+
+  function renderWords() {
+    loadJSON("/campus/lab/arabic/library/data/words.json?v=20261024CAMP2").then(function (packs) {
+      if (!packs || typeof packs !== "object") { stage.innerHTML = "<p>Could not load words.</p>"; return; }
+      var html = "";
+      Object.keys(packs).forEach(function (k) {
+        html += '<h2 class="ar-lib-h">' + k + '</h2><div class="ar-lib-grid">';
+        (packs[k] || []).forEach(function (w) { html += cardWord(w); });
+        html += "</div>";
+      });
+      stage.innerHTML = html;
+      bindHear(stage);
+    });
+  }
+
+  function renderJumlah(key) {
+    loadJSON("/campus/lab/arabic/library/data/jumlah.json?v=20261024CAMP2").then(function (packs) {
+      if (!packs || typeof packs !== "object") { stage.innerHTML = "<p>Could not load Jumlah.</p>"; return; }
+      var list = packs[key] || packs.everyday || [];
+      if (!Array.isArray(list)) list = [];
+      var note = key === "hajj_stay"
+        ? '<p class="ar-lib-note">Everyday speech during stay in Makkah &amp; Madinah. Follow your group\'s guide. Educational only — not a fatwa.</p>'
+        : (packs.disclaimer ? '<p class="ar-lib-note">' + packs.disclaimer + '</p>' : '');
+      stage.innerHTML = note + '<div class="ar-lib-grid">' + list.map(cardJumlah).join("") + '</div>';
+      bindHear(stage);
+    });
+  }
+
+  function show(name) {
+    tab = name;
+    document.querySelectorAll("[data-lib-tab]").forEach(function (b) {
+      b.classList.toggle("here", b.getAttribute("data-lib-tab") === name);
+    });
+    if (name === "letters") renderLetters();
+    else if (name === "words") renderWords();
+    else if (name === "jumlah") renderJumlah("everyday");
+    else if (name === "hajj_stay") renderJumlah("hajj_stay");
+    else if (name === "salah") renderJumlah("salah");
+  }
+
+  function boot() {
+    stage = $("ar-lib-stage");
+    if (!stage) return;
+    document.querySelectorAll("[data-lib-tab]").forEach(function (b) {
+      b.addEventListener("click", function () { show(b.getAttribute("data-lib-tab")); });
+    });
+    show("letters");
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
