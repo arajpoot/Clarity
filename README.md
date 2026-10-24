@@ -1,41 +1,17 @@
-# Clarity – Furnish Your Grave
+# Companion day landing · restored
 
-Local-first Islamic **educational** companion (NurOS).
+From Clarity-main (13) provision + adhkār patterns.
 
-Path: **Seeker → New Muslim → Daily → Da'i**
+## First screen of the day
+- **Do this today** — one daily provision (local, rotates by date)
+- **Adhkār** — morning/evening window auto-pick + count
+- **Pills rail** — Reminder · Reality · Reflection · Action · Amana Vault
+- **Reopen bar** — Hide for now / Open Do this today (any time same day)
 
-> Not a fatwa service. Verify with Qur'an, Sunnah, and a local scholar.
+## Amana note registry
+On vault / notes surface:
+- Text note → **Save to registry** (timestamped)
+- **Export Excel/CSV** (UTF-8 BOM, opens in Excel)
+- Clear list (this device only)
 
-## Live
-
-https://clarity-dawah.fyi/
-
-## Section paths (SEO)
-
-- `/journey` `/seerah` `/grave` `/janazah-prayer`
-- `/tafseer` `/tajweed` `/lectures`
-- `/fiqh-tools` `/meme` `/notes` `/commands` `/about`
-
-## Deploy
-
-See `PUBLISH_STEPS.md`. Upload `index.html`, `robots.txt`, `sitemap.xml`.
-
-## Privacy
-
-Vault & notes stay on-device (localStorage). Educational tools only.
-
-
-## Curriculum management (20261006PH)
-
-Four pathways live under `assets/curriculum/{seeker,new-muslim,daily,dai}/`.
-Runtime uses **Pathway Hydrator** for progressive script loading and live on/off flags.
-See `CURRICULUM_MANAGER.md` and `PERFORMANCE_V2.md`.
-
-
-## Performance release 20261006PH
-
-Full phased upgrade: minified payloads, on-demand vault stack, pathway hydrator, non-blocking CSS, Seeker-first service worker.
-See `PERFORMANCE_V2.md` and `CURRICULUM_MANAGER.md`.
-
-
-> Educational only — not a fatwa. Verify with Qur'an, Sunnah, and a local scholar.
+University `/campus/` not modified.
