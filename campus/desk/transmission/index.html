@@ -1,70 +1,88 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-mahtaab="1">
+<html lang="en" data-theme="light" data-seq-stage="transmission">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Transmission · Clarity University</title>
+<title>Seeker · Essentials · Clarity University</title>
 <meta name="description" content="Sequential desk — educational only, not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-desk-verse-top-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-desk-layout-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261023HK2"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023HK2"></script>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261023HK2"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-desk-verse-top-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-desk-layout-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261023DESK"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023DESK"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-surface-v1.css?v=20261023DESK"/>
+
+<style>
+/* Clean desk 20261023DESK */
+.desk-clean{max-width:min(42rem,100%);margin:0 auto;padding:.75rem 1rem 2.5rem}
+.desk-clean h1{font-family:"Cormorant Garamond",serif;font-size:1.75rem;color:#c9a227;margin:.2rem 0 .35rem}
+html[data-theme=light] .desk-clean h1{color:#6b5a1e}
+.desk-clean .lead{font-size:.9rem;line-height:1.45;opacity:.9;margin:0 0 1rem}
+.desk-stages{display:grid;gap:.55rem;margin:0 0 1.25rem}
+.desk-stages a{display:block;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(201,162,39,.35);text-decoration:none;color:inherit;background:rgba(0,0,0,.06)}
+html[data-theme=light] .desk-stages a{background:#fffcf5}
+.desk-stages a:hover{border-color:#c9a227}
+.desk-stages .badge{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#0c1612;background:#c9a227;padding:.15rem .45rem;border-radius:999px;margin-bottom:.35rem}
+.desk-stages h2{margin:0 0 .25rem;font-size:1.1rem;font-family:"Cormorant Garamond",serif;color:#e8d5a3}
+html[data-theme=light] .desk-stages h2{color:#4a3d14}
+.desk-stages p{margin:0;font-size:.84rem;line-height:1.4;opacity:.9}
+.desk-stages .meta{font-size:.75rem;opacity:.8;margin-top:.35rem}
+.desk-stages a.locked{opacity:.72}
+.desk-note{font-size:.8rem;opacity:.85;margin:1rem 0;line-height:1.4}
+.desk-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin:.75rem 0 0}
+.desk-tools a{font-size:.78rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(201,162,39,.35);text-decoration:none;color:inherit}
+/* Stage page */
+.stage-clean{max-width:min(42rem,100%);margin:0 auto;padding:.5rem 1rem 2.5rem}
+.stage-clean h1{font-family:"Cormorant Garamond",serif;font-size:1.55rem;color:#c9a227;margin:.35rem 0}
+html[data-theme=light] .stage-clean h1{color:#6b5a1e}
+.stage-clean .lead{font-size:.88rem;opacity:.9;margin:0 0 .75rem}
+.stage-nav{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .85rem}
+.stage-nav a{font-size:.75rem;padding:.3rem .65rem;border-radius:999px;border:1px solid rgba(201,162,39,.3);text-decoration:none;color:inherit}
+.stage-nav a.here{background:#1e7d5e;color:#fff;border-color:transparent}
+/* Hide legacy static outline when JS paints */
+.seq-static-outline{display:none}
+</style>
+
 </head>
-<body class="cu-page cu-mahtaab-on" data-campus-page="desk" data-phase-room="transmission">
+<body class="cu-page" data-campus-page="desk-transmission" data-seq-stage="transmission">
 <header class="cu-banner">
-  <a class="cu-brand" href="/campus/">
-    <span class="cu-brand-mark" aria-hidden="true">ن</span>
-    <div><small>University · Desk</small><strong>Clarity University</strong></div>
-  </a>
+  <a class="cu-brand" href="/charter/"><span class="cu-brand-mark" aria-hidden="true">ن</span><div><small>University</small><strong>Clarity University</strong></div></a>
   <div class="cu-banner-actions">
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
-    <a class="cu-main-link" href="/">← Companion</a>
+    <a class="cu-companion-link" href="/">← Companion</a>
   </div>
 </header>
-<main class="cu-wrap cu-desk-main">
-  <section class="cu-desk-verse">
-    <p class="ar" lang="ar" dir="rtl">ٱدْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِٱلْحِكْمَةِ</p>
-    <p class="en">Invite to the way of your Lord with wisdom.</p>
-    <p class="ref">An-Naḥl 16:125 · Educational reminder only — not a fatwa</p>
-  </section>
-  <nav class="cu-pills" aria-label="Campus">
-    <a href="/charter/">Charter</a>
-    <a href="/campus/">Campus</a>
-    <a href="/campus/desk/" class="here">Desk</a>
-    <a href="/campus/faculty.html">Faculty</a>
-    <a href="/campus/bots.html">Bots</a>
+<main class="stage-clean">
+  <nav class="stage-nav" aria-label="Stages">
+    <a href="/campus/desk/">Desk hub</a>
+    <a href="/campus/desk/seeker/" class="">Seeker</a>
+    <a href="/campus/desk/practice/" class="">Practice</a>
+    <a href="/campus/desk/consistency/" class="">Consistency</a>
+    <a href="/campus/desk/transmission/" class="here">Transmission</a>
     <a href="/campus/grading.html">Progress</a>
-    <a href="/lab/">Lab</a>
-    <a href="/library/">Library</a>
   </nav>
   <h1>Transmission</h1>
-  <p class="cu-lead">Ordered modules with sources · mark done on this device · later stages locked until this stage is complete.</p>
-  <section class="seq-static-outline">
-    <h2 style="font-size:1rem;color:#c9a227">Module path (7)</h2>
-    <ol class="seq-static-list">
-    <li><a href="#m=transmission.m1"><strong>Source hygiene</strong></a> — Prefer Qurʾān and ṣaḥīḥ; name the collection when citing ḥadīth.</li>
-    <li><a href="#m=transmission.m2"><strong>Adab of sharing</strong></a> — Share to benefit, not to win; avoid needless exposure.</li>
-    <li><a href="#m=transmission.m3"><strong>Text does not settle this</strong></a> — Stop when a page cannot answer a detailed ruling — refer to a teacher.</li>
-    <li><a href="#m=transmission.m4"><strong>Wisdom in invitation</strong></a> — Invite with wisdom and good instruction — not compulsion or mockery.</li>
-    <li><a href="#m=transmission.m5"><strong>Do not pursue what you do not know</strong></a> — Refuse to speak without knowledge — especially in public.</li>
-    <li><a href="#m=transmission.m6"><strong>Limits of this University</strong></a> — Not accredited, not a grade of īmān, not a seminary.</li>
-    <li><a href="#m=transmission.m7"><strong>Transmission seal</strong></a> — Carry essentials with adab; keep learning with people of knowledge.</li>
-    </ol>
-  </section>
-  <div id="seq-desk-root"><p class="seq-wait">Loading interactive modules…</p></div>
+  <p class="lead">Share with adab and clear sources. Unlocks after Consistency is complete.</p>
+  <div id="seq-desk-root" data-stage="transmission"></div>
 </main>
-<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-desk-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261023HK2"></script>
-
+<footer class="cu-foot"><p>Educational only — not a fatwa. Progress stays on this device.</p></footer>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-seq-desk-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261023DESK"></script>
 </body>
 </html>
