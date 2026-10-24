@@ -1,47 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-mahtaab="1">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Desk · Clarity University</title>
-<meta name="description" content="Four phase rooms. Choose a desk. Educational only — not a fatwa."/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261023HK2"/>
-<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023HK2"></script>
+<title>Seeker · Essentials · Clarity University</title>
+<meta name="description" content="Sequential desk — educational only, not a fatwa."/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-desk-verse-top-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-desk-layout-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261023DESK"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023DESK"></script>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-harmony-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-bi-shell-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-mobile-day-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-chrome-canonical-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261023DESK"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-surface-v1.css?v=20261023DESK"/>
+
 <style>
-.desk-wrap{width:100%;max-width:48rem;margin:0 auto;padding:0 .85rem 2rem;box-sizing:border-box}
-.desk-continue{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.65rem;margin:.5rem 0 1rem;padding:.85rem 1rem;border-radius:16px;border:1px solid rgba(201,162,39,.35);background:rgba(45,106,79,.12)}
-.desk-continue strong{display:block;font-size:.95rem}
-.desk-continue span{font-size:.8rem;opacity:.88}
-.desk-continue a{border-radius:999px;padding:.45rem 1rem;background:#2d6a4f;color:#fff;text-decoration:none;font-weight:700;font-size:.82rem}
-.desk-grid{display:grid;gap:.7rem;margin:1rem 0;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr))}
-.desk-card{display:block;text-decoration:none;color:inherit;border:1px solid rgba(201,162,39,.3);border-radius:16px;padding:1rem 1.05rem;background:rgba(255,255,255,.06)}
-html[data-theme="light"] .desk-card{background:rgba(255,255,255,.75)}
-.desk-badge{display:inline-block;font-size:.65rem;font-weight:800;letter-spacing:.04em;padding:.18rem .5rem;border-radius:999px;background:#2d6a4f;color:#fff;margin-bottom:.4rem}
-.desk-card h2{margin:.15rem 0 .3rem;font-size:1.1rem;color:#c9a227}
-.desk-card p{margin:0;font-size:.84rem;opacity:.9;line-height:1.45}
-.desk-card .desk-meta-line{margin-top:.45rem;font-size:.75rem;opacity:.8}
-.desk-plaque{border:1px solid rgba(201,162,39,.28);border-radius:16px;padding:1rem 1.1rem;margin:1rem 0;background:rgba(255,255,255,.05)}
-html[data-theme="light"] .desk-plaque{background:rgba(255,255,255,.7)}
-.desk-plaque h2{margin:0 0 .4rem;font-size:1rem;color:#c9a227}
-.desk-plaque ol{margin:.35rem 0 0;padding-left:1.15rem;font-size:.88rem;line-height:1.55}
-.desk-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.55rem}
-.desk-tools a{border-radius:999px;padding:.35rem .75rem;font-size:.78rem;font-weight:700;text-decoration:none;color:inherit;border:1px solid rgba(201,162,39,.3);background:rgba(255,255,255,.08)}
-html[data-theme="light"] .desk-tools a{background:rgba(255,255,255,.8)}
-.desk-foot{font-size:.82rem;margin-top:1rem}
+/* Clean desk 20261023DESK */
+.desk-clean{max-width:min(42rem,100%);margin:0 auto;padding:.75rem 1rem 2.5rem}
+.desk-clean h1{font-family:"Cormorant Garamond",serif;font-size:1.75rem;color:#c9a227;margin:.2rem 0 .35rem}
+html[data-theme=light] .desk-clean h1{color:#6b5a1e}
+.desk-clean .lead{font-size:.9rem;line-height:1.45;opacity:.9;margin:0 0 1rem}
+.desk-stages{display:grid;gap:.55rem;margin:0 0 1.25rem}
+.desk-stages a{display:block;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(201,162,39,.35);text-decoration:none;color:inherit;background:rgba(0,0,0,.06)}
+html[data-theme=light] .desk-stages a{background:#fffcf5}
+.desk-stages a:hover{border-color:#c9a227}
+.desk-stages .badge{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#0c1612;background:#c9a227;padding:.15rem .45rem;border-radius:999px;margin-bottom:.35rem}
+.desk-stages h2{margin:0 0 .25rem;font-size:1.1rem;font-family:"Cormorant Garamond",serif;color:#e8d5a3}
+html[data-theme=light] .desk-stages h2{color:#4a3d14}
+.desk-stages p{margin:0;font-size:.84rem;line-height:1.4;opacity:.9}
+.desk-stages .meta{font-size:.75rem;opacity:.8;margin-top:.35rem}
+.desk-stages a.locked{opacity:.72}
+.desk-note{font-size:.8rem;opacity:.85;margin:1rem 0;line-height:1.4}
+.desk-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin:.75rem 0 0}
+.desk-tools a{font-size:.78rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(201,162,39,.35);text-decoration:none;color:inherit}
+/* Stage page */
+.stage-clean{max-width:min(42rem,100%);margin:0 auto;padding:.5rem 1rem 2.5rem}
+.stage-clean h1{font-family:"Cormorant Garamond",serif;font-size:1.55rem;color:#c9a227;margin:.35rem 0}
+html[data-theme=light] .stage-clean h1{color:#6b5a1e}
+.stage-clean .lead{font-size:.88rem;opacity:.9;margin:0 0 .75rem}
+.stage-nav{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .85rem}
+.stage-nav a{font-size:.75rem;padding:.3rem .65rem;border-radius:999px;border:1px solid rgba(201,162,39,.3);text-decoration:none;color:inherit}
+.stage-nav a.here{background:#1e7d5e;color:#fff;border-color:transparent}
+/* Hide legacy static outline when JS paints */
+.seq-static-outline{display:none}
 </style>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-surface-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261023HK2"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261023HK2"/>
+
 </head>
-<body class="cu-page cu-mahtaab-on" data-campus-page="desk">
+<body class="cu-page" data-campus-page="desk">
 <header class="cu-banner">
   <a class="cu-brand" href="/charter/"><span class="cu-brand-mark" aria-hidden="true">ن</span><div><small>University</small><strong>Clarity University</strong></div></a>
   <div class="cu-banner-actions">
@@ -51,68 +63,57 @@ html[data-theme="light"] .desk-tools a{background:rgba(255,255,255,.8)}
     <a class="cu-companion-link" href="/">← Companion</a>
   </div>
 </header>
-<main>
-<nav class="cu-pills" aria-label="Campus">
-  <a href="/charter/">◇ Charter</a><a href="/campus/">▣ Map</a>
-  <a href="/campus/desk/" class="here" aria-current="page">☰ Desk</a>
-  <a href="/lab/">◈ Lab</a><a href="/library/">▦ Library</a>
-  <a href="/campus/buddy/">✦ Buddy</a><a href="/vault/">◎ Vault</a>
-</nav>
-<div class="desk-wrap">
-  <h1 class="cu-h1">Desk</h1>
-  <p class="cu-lead">Four phase rooms. One module open at a time. Educational only — not a fatwa.</p>
-  <div class="desk-continue">
-    <div><strong id="desk-cont-title">Continue · Seeker</strong><span id="desk-cont-hint">Foundations · open the next unlocked module</span></div>
-    <a id="desk-cont-href" href="/campus/desk/seeker/">Open desk →</a>
+<main class="desk-clean">
+  <h1>Desk</h1>
+  <p class="lead">Four stages. One module at a time. Progress stays on this device. Educational only — not a fatwa.</p>
+
+  <div id="seq-continue-slot"></div>
+  <div id="seq-stage-map" class="seq-stage-map"></div>
+
+  <div class="desk-stages" aria-label="Stage rooms">
+    <a href="/campus/desk/seeker/">
+      <span class="badge">Stage 1 · Seeker</span>
+      <h2>Seeker · Essentials</h2>
+      <p>Tawḥīd, īmān map, pillars, Messenger ﷺ, character, hereafter.</p>
+      <div class="meta">8 modules · foundations first</div>
+    </a>
+    <a href="/campus/desk/practice/" class="locked">
+      <span class="badge">Stage 2 · Practice</span>
+      <h2>Practice · Foundations</h2>
+      <p>Purification, prayer essentials, ḥalāl map, seerah into action.</p>
+      <div class="meta">7 modules · unlocks after Seeker</div>
+    </a>
+    <a href="/campus/desk/consistency/" class="locked">
+      <span class="badge">Stage 3 · Consistency</span>
+      <h2>Consistency</h2>
+      <p>Steady habits, review, deepen what you began.</p>
+      <div class="meta">7 modules · unlocks after Practice</div>
+    </a>
+    <a href="/campus/desk/transmission/" class="locked">
+      <span class="badge">Stage 4 · Transmission</span>
+      <h2>Transmission</h2>
+      <p>Share with adab and clear sources — teach-back, not arguing.</p>
+      <div class="meta">7 modules · unlocks after Consistency</div>
+    </a>
   </div>
-  <div class="desk-grid">
-    <a class="desk-card" href="/campus/desk/seeker/"><span class="desk-badge">PHASE 1</span><h2>Seeker</h2><p>Belief foundations — tawḥīd, īmān, pillars, Messenger ﷺ, adab.</p><div class="desk-meta-line">~12 modules · junior track</div></a>
-    <a class="desk-card" href="/campus/desk/practice/"><span class="desk-badge">PHASE 2</span><h2>Practice</h2><p>Skills after foundations — ṭahārah, ṣalāh, ḥalāl map, seerah into action.</p><div class="desk-meta-line">~13 modules · junior high</div></a>
-    <a class="desk-card" href="/campus/desk/consistency/"><span class="desk-badge">PHASE 3</span><h2>Consistency</h2><p>Steady craft and review — weekly habits, revisit, deepen.</p><div class="desk-meta-line">Steady track</div></a>
-    <a class="desk-card" href="/campus/desk/transmission/"><span class="desk-badge">PHASE 4</span><h2>Transmission</h2><p>Share with adab and clear sources — teach-back, not arguing.</p><div class="desk-meta-line">Daʿwah craft · educational</div></a>
+
+  <p class="desk-note"><strong>How a session works:</strong> Open the current unlocked module only → read and practice → mark done when honest → later stages stay locked until the previous stage is complete.</p>
+  <div class="desk-tools">
+    <a href="/campus/faculty.html">Faculty</a>
+    <a href="/campus/grading.html">Progress</a>
+    <a href="/lab/">Lab</a>
+    <a href="/library/">Library</a>
+    <a href="/campus/">Campus map</a>
+    <a href="/">Companion</a>
   </div>
-  <section class="desk-plaque">
-    <h2>How a desk session works</h2>
-    <ol>
-      <li>Open the current unlocked module only.</li>
-      <li>Read · one small practice · mark complete when honest.</li>
-      <li>Optional: one Lab station (Tajweed, Recite, Calligraphy).</li>
-      <li>Optional: pin a source or write a line in University Vault.</li>
-    </ol>
-  </section>
-  <section class="desk-plaque">
-    <h2>Student tools near the desk</h2>
-    <div class="desk-tools">
-      <a href="/campus/assignments/">Assignments</a>
-      <a href="/campus/buddy/">Study Buddy</a>
-      <a href="/lab/">Lab hub</a>
-      <a href="/library/">Library</a>
-      <a href="/vault/">University Vault</a>
-      <a href="/campus/transcript/">Transcript</a>
-    </div>
-  </section>
-  <p class="desk-foot"><a href="/campus/">← Journey Map</a> · Progress stays on this device · not graded īmān</p>
-</div>
-<div id="seq-continue-slot"></div>
-<div id="seq-stage-map"></div>
-<div id="seq-desk-root"><p class="seq-wait">Loading modules…</p></div>
 </main>
 <footer class="cu-foot"><p>Educational only — not a fatwa. Progress stays on this device.</p></footer>
-<script>
-(function(){try{
-  var phase=localStorage.getItem("cu_assign_phase_v1")||"seeker";
-  var map={seeker:{t:"Continue · Seeker",h:"Foundations · open the next unlocked module",href:"/campus/desk/seeker/"},practice:{t:"Continue · Practice",h:"Skills after foundations",href:"/campus/desk/practice/"},consistency:{t:"Continue · Consistency",h:"Steady craft and review",href:"/campus/desk/consistency/"},transmission:{t:"Continue · Transmission",h:"Share with adab and clear sources",href:"/campus/desk/transmission/"}};
-  var m=map[String(phase).toLowerCase()]||map.seeker;
-  var a=document.getElementById("desk-cont-title"),b=document.getElementById("desk-cont-hint"),c=document.getElementById("desk-cont-href");
-  if(a)a.textContent=m.t;if(b)b.textContent=m.h;if(c)c.href=m.href;
-}catch(e){}})();
-</script>
-<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-campus-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261023HK2"></script>
-<script src="/campus/assets/js/cu-seq-desk-v1.js?v=20261023HK2"></script>
-
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-seq-campus-v1.js?v=20261023DESK"></script>
+<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261023DESK"></script>
 </body>
 </html>
