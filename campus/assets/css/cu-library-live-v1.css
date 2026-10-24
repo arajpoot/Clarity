@@ -1,0 +1,27 @@
+/* Library live · 20261024LIB */
+.lib-hero{margin:0 0 1rem}
+.lib-hero h1{color:#c9a227;font-size:1.4rem;margin:0 0 .35rem}
+.lib-lead{opacity:.9;font-size:.92rem;line-height:1.5}
+.lib-staff{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.6rem;margin:0 0 1.25rem}
+.lib-staff-card{border:1px solid rgba(201,162,39,.3);border-radius:14px;padding:.75rem;background:rgba(255,255,255,.04)}
+.lib-staff-card .badge{font-size:1.1rem}
+.lib-staff-card strong{display:block;color:#d4b45a;margin:.2rem 0}
+.lib-staff-card p{font-size:.8rem;margin:0;opacity:.9}
+.lib-scout-card{border:1px solid rgba(30,125,94,.4);border-radius:16px;padding:1rem;margin:0 0 1.25rem;background:rgba(30,125,94,.1)}
+.lib-scout-card .eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;opacity:.8;margin:0}
+.lib-scout-card h3{margin:.25rem 0;color:#e8d5a3}
+.lib-btn{display:inline-block;border-radius:999px;padding:.35rem .8rem;background:#1e7d5e;color:#fff;text-decoration:none;border:none;font-weight:700;font-size:.8rem;cursor:pointer}
+.lib-btn.ghost{background:transparent;color:inherit;border:1px solid rgba(201,162,39,.4)}
+.lib-shelf{margin:0 0 1.25rem;padding:1rem;border-radius:14px;border:1px solid rgba(201,162,39,.28)}
+.lib-shelf h2{font-size:1rem;color:#c9a227;margin:0 0 .5rem}
+.lib-shelf ul{margin:0;padding-left:1.1rem}
+.lib-shelf li{margin:.35rem 0;font-size:.88rem}
+.lib-shelf .tag{font-size:.7rem;opacity:.7;margin-left:.25rem}
+.lib-pin{margin-left:.35rem;font-size:.72rem;border-radius:999px;border:1px solid rgba(201,162,39,.35);background:transparent;color:inherit;cursor:pointer;padding:.15rem .45rem}
+.lib-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:1rem 0}
+.lib-chip{display:flex;flex-direction:column;max-width:13rem;padding:.5rem .65rem;border-radius:12px;border:1px solid rgba(201,162,39,.3);text-decoration:none;color:inherit;font-size:.78rem;background:rgba(255,255,255,.04)}
+.lib-chip strong{color:#d4b45a}
+.lib-muted{font-size:.78rem;opacity:.8}
+.cu-pills,.uni-nav{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .9rem}
+.cu-pills a,.uni-nav a{font-size:.75rem;padding:.3rem .65rem;border-radius:999px;border:1px solid rgba(201,162,39,.32);text-decoration:none;color:inherit}
+.cu-pills a.here,.uni-nav a.here{background:#1e7d5e;color:#fff;border-color:transparent}
