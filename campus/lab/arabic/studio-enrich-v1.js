@@ -5,7 +5,7 @@
   "use strict";
   if (g.__CU_AR_ENRICH_V1__) return;
   g.__CU_AR_ENRICH_V1__ = true;
-  var VER = "20261024FULL";
+  var VER = "20261024ARABIC";
   var MERGED_KEY = "cu_lab_ar_merged_packs_v1";
   var SESSION_KEY = "cu_lab_ar_session_v1";
   var busy = false;

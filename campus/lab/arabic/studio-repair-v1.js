@@ -6,7 +6,7 @@
   if (g.__CU_AR_REPAIR_V1__) return;
   g.__CU_AR_REPAIR_V1__ = true;
 
-  var VER = "20261024FULL";
+  var VER = "20261024ARABIC";
   var DAY_KEY = "cu_lab_ar_day_v1";
   var SPEAK_KEY = "cu_lab_ar_speak_ticks_v1";
   var decorating = false;

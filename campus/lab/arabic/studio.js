@@ -10,7 +10,7 @@
 
   var KEY = "cu_lab_ar_progress_v1";
   var KEY_BANK = "cu_lab_ar_bank_v1";
-  var VER = "20261024FULL";
+  var VER = "20261024ARABIC";
   var NEW_CAP = 10;
   var ALLOW_FETCH = false; /* S0: offline first; expand uses local bank JSON */
 
@@ -501,9 +501,9 @@
       '<div class="ar-session-bar">' +
       '<button type="button" class="ar-btn primary" data-mode="reviews">Due (' + dueN + ")</button>" +
       '<button type="button" class="ar-btn" id="ar-expand">Expand bank</button>' +
-      '<a class="ar-btn" href="/campus/desk/seeker/">Desk</a>' +
-      '<a class="ar-btn" href="/vault/#locker">Vault</a>' +
-      '<a class="ar-btn" href="/campus/lab/tajweed/">Tajweed</a></div>';
+      '<a class="ar-btn ar-btn-link" href="/campus/desk/seeker/">Desk</a>' +
+      '<a class="ar-btn ar-btn-link" href="/vault/#locker">Vault</a>' +
+      '<a class="ar-btn ar-btn-link" href="/campus/lab/tajweed/">Tajweed</a></div>';
 
     var modes = ["flash", "match", "learn", "test", "listen", "sentence", "type", "letters"];
     var modeBar =
@@ -545,13 +545,40 @@
     else if (state.mode === "type") body = renderType();
     else if (state.mode === "letters") body = renderLetters();
 
-    root.innerHTML =
-      '' +
-      pathNote + session + deckBar + modeBar +
-      '<div class="ar-stage">' + body + "</div>" +
-      '<p class="ar-note">On-device · <code>cu_lab_ar_*</code> · Pattern practice is not a grammar fatwa. Verify with a trusted teacher.</p>';
+    try {
+      if (!pathNote) pathNote = "";
+      if (!session) session = "";
+      if (!deckBar) deckBar = "";
+      if (!modeBar) modeBar = "";
+      if (!body) body = '<p class="ar-note">Loading cards…</p>';
+      root.innerHTML =
+        pathNote +
+        session +
+        deckBar +
+        modeBar +
+        '<div class="ar-stage">' +
+        body +
+        "</div>" +
+        '<p class="ar-note">On-device · <code>cu_lab_ar_*</code> · Pattern practice is not a grammar fatwa. Verify with a trusted teacher.</p>';
+    } catch (err) {
+      root.innerHTML =
+        '<p class="ar-note">Studio UI error — retry. Educational only.</p>' +
+        pathNote +
+        session +
+        deckBar +
+        modeBar;
+      try {
+        console.error("[CuLabArabic render]", err);
+      } catch (e2) {}
+    }
 
-    bind();
+    try {
+      bind();
+    } catch (e3) {
+      try {
+        console.error("[CuLabArabic bind]", e3);
+      } catch (e4) {}
+    }
   }
 
   function answerMcq(mode, choice) {
@@ -765,8 +792,14 @@
       if (main) main.appendChild(host);
       else document.body.appendChild(host);
     }
-    loadBank(function () {
+    /* paint shell immediately so L1–L5 + modes never disappear */
+    try {
       render();
+    } catch (e) {}
+    loadBank(function () {
+      try {
+        render();
+      } catch (e2) {}
     });
   }
 
