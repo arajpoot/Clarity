@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Calligraphy studio · Lab · Clarity University</title>
+<meta name="description" content="Letter craft laboratory. Educational only."/>
+<meta name="theme-color" content="#0a1210"/>
+<link rel="stylesheet" href="/campus/lab/shared/lab-shell.css?v=20261024NEST"/>
+<link rel="stylesheet" href="/campus/lab/calligraphy/studio.css?v=20261024NEST"/>
+
+<link rel="stylesheet" href="/campus/assets/css/cu-hybrid-v1.css?v=20261024NEST"/>
+</head>
+<body class="lab-surface" data-campus-page="lab">
+<div class="lab-topstrip">
+  <div><span>Campus</span>
+    <a href="/campus/">University map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/campus/lab/arabic/">Arabic</a>
+    <a href="/campus/lab/tajweed/">Tajweed</a>
+  </div>
+  <div><a href="/">Companion home</a></div>
+</div>
+<header class="lab-banner">
+  <a class="lab-brand" href="/campus/">
+    <span class="lab-brand-mark" aria-hidden="true">ن</span>
+    <span><small>UNIVERSITY</small><strong>Clarity University</strong></span>
+  </a>
+  <div class="lab-banner-actions">
+    <button type="button" class="lab-theme-pill" data-lab-theme="light">Day</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="dark">Night</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="system">System</button>
+    <a class="lab-link" href="/">Companion</a>
+  </div>
+</header>
+<nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/campus/lab/" aria-current="page">Lab</a><a href="/campus/library/">Library</a><a href="/campus/vault/">Vault</a><a href="/campus/charter/">Charter</a></nav>
+
+<main class="lab-main">
+<nav class="cu-pills" aria-label="Campus">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/campus/lab/" class="here">Lab</a>
+    <a href="/campus/vault/">Vault</a>
+    <a href="/journey/">Journey</a>
+    <a href="/campus/charter/">Charter</a>
+  </nav>
+
+  <nav class="lab-station-nav" aria-label="Lab stations">
+    <a href="/campus/lab/">Hub</a>
+    <a href="/campus/lab/tajweed/">Tajweed</a>
+    <a href="/campus/lab/arabic/">Arabic</a>
+    <a href="/campus/lab/recite/">Recitation</a>
+    <a href="/campus/lab/media/">Media</a>
+    <a href="/campus/lab/calligraphy/" class=here>Calligraphy</a>
+    <a href="/campus/lab/hifz/">Hifz</a>
+  </nav>
+
+  <h1 class="lab-h1">Calligraphy studio</h1>
+  <p class="lab-lead">Trace a letter with calm. On-device pad — nothing is uploaded. Practice for beauty and remembrance, not display.</p>
+  <section class="card lab-policy" style="max-width:40rem;margin:0 auto 1rem">
+    <h2>Letters</h2>
+    <div class="lab-chips" id="callig-letters">
+      <button type="button" class="lab-chip" data-letter="ا">ا</button>
+      <button type="button" class="lab-chip" data-letter="ب">ب</button>
+      <button type="button" class="lab-chip" data-letter="ت">ت</button>
+      <button type="button" class="lab-chip" data-letter="ث">ث</button>
+      <button type="button" class="lab-chip" data-letter="ج">ج</button>
+      <button type="button" class="lab-chip" data-letter="ح">ح</button>
+      <button type="button" class="lab-chip" data-letter="خ">خ</button>
+      <button type="button" class="lab-chip" data-letter="س">س</button>
+      <button type="button" class="lab-chip" data-letter="ل">ل</button>
+      <button type="button" class="lab-chip" data-letter="م">م</button>
+      <button type="button" class="lab-chip" data-letter="ه">ه</button>
+      <button type="button" class="lab-chip" data-letter="و">و</button>
+      <button type="button" class="lab-chip" data-letter="ي">ي</button>
+      <button type="button" class="lab-chip" data-letter="لا">لا</button>
+      <button type="button" class="lab-chip" data-letter="الله">الله</button>
+    </div>
+  </section>
+  <section class="card" style="max-width:40rem;margin:0 auto;padding:1rem">
+    <p class="lab-micro" id="callig-guide">Tap a letter · trace over the ghost · Clear to retry.</p>
+    <div class="callig-stage">
+      <canvas id="callig-ghost" width="720" height="360" aria-hidden="true"></canvas>
+      <canvas id="callig-pad" width="720" height="360" aria-label="Trace pad"></canvas>
+    </div>
+    <div class="lab-av-row" style="margin-top:0.75rem">
+      <button type="button" class="lab-btn" id="callig-clear">Clear</button>
+      <button type="button" class="lab-btn lab-btn-primary" id="callig-save">Save mark (device)</button>
+    </div>
+  </section>
+<p class="lab-foot">Educational only — not a fatwa. · Surface lab · 20261017PORT</p>
+</main>
+<script src="/campus/lab/shared/lab-theme.js?v=20261024NEST" defer></script>
+<script src="/campus/lab/calligraphy/studio.js?v=20261024NEST" defer></script>
+</body>
+</html>
