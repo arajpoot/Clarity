@@ -1,0 +1,55 @@
+.media-chip-rail {
+  margin: 0.65rem 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(184, 166, 135, 0.4);
+  background: rgba(255, 254, 248, 0.75);
+}
+html[data-theme="dark"] .media-chip-rail {
+  background: rgba(0, 0, 0, 0.28);
+  border-color: rgba(212, 180, 90, 0.28);
+}
+.media-tool-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8b6f3f;
+  margin-bottom: 0.4rem;
+}
+.media-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.mv-chip {
+  min-height: 40px;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 125, 94, 0.3);
+  background: rgba(30, 125, 94, 0.1);
+  color: inherit;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.mv-chip:hover {
+  border-color: #1e7d5e;
+}
+.media-range {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  margin-top: 0.45rem;
+}
+.media-range input[type="range"] { flex: 1; }
+#media-canvas {
+  width: 100%;
+  max-width: 24rem;
+  height: auto;
+  display: block;
+  margin: 1rem auto 0;
+  border-radius: 12px;
+  border: 1px solid rgba(184, 166, 135, 0.45);
+}

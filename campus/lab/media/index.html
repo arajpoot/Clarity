@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Media studio · Lab · Clarity University</title>
+<meta name="description" content="Āyah card and media tools. Educational only."/>
+<meta name="theme-color" content="#0a1210"/>
+<link rel="stylesheet" href="/campus/lab/shared/lab-shell.css?v=20261024NEST"/>
+<link rel="stylesheet" href="/campus/lab/media/studio.css?v=20261024NEST"/>
+<link rel="stylesheet" href="/campus/lab/shared/flash.css?v=20261024NEST"/>
+
+<link rel="stylesheet" href="/campus/assets/css/cu-hybrid-v1.css?v=20261024NEST"/>
+</head>
+<body class="lab-surface" data-campus-page="lab">
+<div class="lab-topstrip">
+  <div><span>Campus</span>
+    <a href="/campus/">University map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/campus/lab/arabic/">Arabic</a>
+    <a href="/campus/lab/tajweed/">Tajweed</a>
+  </div>
+  <div><a href="/">Companion home</a></div>
+</div>
+<header class="lab-banner">
+  <a class="lab-brand" href="/campus/">
+    <span class="lab-brand-mark" aria-hidden="true">ن</span>
+    <span><small>UNIVERSITY</small><strong>Clarity University</strong></span>
+  </a>
+  <div class="lab-banner-actions">
+    <button type="button" class="lab-theme-pill" data-lab-theme="light">Day</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="dark">Night</button>
+    <button type="button" class="lab-theme-pill" data-lab-theme="system">System</button>
+    <a class="lab-link" href="/">Companion</a>
+  </div>
+</header>
+<nav class="lab-pills" aria-label="Campus"><a href="/campus/">Map</a><a href="/campus/desk/">Desk</a><a href="/campus/lab/" aria-current="page">Lab</a><a href="/campus/library/">Library</a><a href="/campus/vault/">Vault</a><a href="/campus/charter/">Charter</a></nav>
+
+<main class="lab-main">
+<nav class="cu-pills" aria-label="Campus">
+    <a href="/campus/">Map</a>
+    <a href="/campus/desk/">Desk</a>
+    <a href="/campus/lab/" class="here">Lab</a>
+    <a href="/campus/vault/">Vault</a>
+    <a href="/journey/">Journey</a>
+    <a href="/campus/charter/">Charter</a>
+  </nav>
+  <nav class="lab-station-nav">
+    <a href="/campus/lab/">Hub</a>
+    <a href="/campus/lab/tajweed/">Tajweed</a>
+    <a href="/campus/lab/arabic/">Arabic</a>
+    <a href="/campus/lab/recite/">Recitation</a>
+    <a href="/campus/lab/media/" class="here">Media</a>
+  </nav>
+
+  <h1 class="lab-h1">Media · Reminder studio</h1>
+  <p class="lab-lead">Craft a calm, shareable reminder — āyah + short reflection. On-device canvas. Educational daʿwah craft, not entertainment excess.</p>
+
+  <section class="media-studio card" id="media-studio-root">
+    <label class="vault-field"><span>Āyah reference</span>
+      <select id="media-ref">
+        <option value="112:1">Al-Ikhlāṣ 112:1</option>
+        <option value="112:1-4">Al-Ikhlāṣ 112:1–4</option>
+        <option value="2:255">Āyat al-Kursī (open online)</option>
+        <option value="103:1-3">Al-ʿAṣr</option>
+        <option value="1:1">Al-Fātiḥah 1:1</option>
+      </select>
+    </label>
+    <label class="vault-field"><span>Arabic (edit if needed)</span>
+      <textarea id="media-ar" rows="2" dir="rtl" class="arabic">قُلْ هُوَ ٱللَّهُ أَحَدٌ</textarea>
+    </label>
+    <label class="vault-field"><span>English reflection line</span>
+      <textarea id="media-en" rows="2">Say: He is Allah, One.</textarea>
+    </label>
+    <label class="vault-field"><span>Background tone</span>
+      <select id="media-bg">
+        <option value="night">Night green</option>
+        <option value="gold">Soft gold</option>
+        <option value="parchment">Parchment</option>
+        <option value="deep">Deep teal</option>
+      </select>
+    </label>
+    <div class="lab-av-row">
+      <button type="button" class="lab-btn lab-btn-primary" id="media-render">Render card</button>
+      <button type="button" class="lab-btn" id="media-hear">Hear āyah</button>
+      <button type="button" class="lab-btn" id="media-download">Download PNG</button>
+    </div>
+    <canvas id="media-canvas" width="1080" height="1350" aria-label="Reminder canvas"></canvas>
+    <p class="lab-micro">Nothing is uploaded. Share only what you would stand by before Allah. Not a fatwa.</p>
+  </section>
+<p class="lab-foot">Educational only — not a fatwa. · Surface lab · 20261017PORT</p>
+</main>
+<script src="/campus/lab/shared/lab-theme.js?v=20261024NEST" defer></script>
+<script src="/campus/lab/shared/lab-av.js?v=20261024NEST" defer></script>
+<script src="/campus/lab/media/studio.js?v=20261024NEST" defer></script>
+</body>
+</html>
