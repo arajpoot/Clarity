@@ -1,0 +1,73 @@
+{
+  "office": "Idarat al-Khidmat \u2014 Support Services",
+  "version": 1,
+  "motto": "Smooth study \u00b7 authentic tone \u00b7 living sources \u00b7 educational only",
+  "disclaimer": "Staff scripts assist learning hygiene on-device. They do not issue fatwas or replace qualified scholars.",
+  "workers": [
+    {
+      "id": "ops",
+      "name": "Nazir al-Tashghil (Ops Steward)",
+      "role": "Monitor swift smooth operation of module controllers",
+      "script": "staff-ops-monitor-v1.js",
+      "badge": "\u2699",
+      "title": "Nazir al-Tashghil"
+    },
+    {
+      "id": "fiqh",
+      "name": "Katib al-Tawthiq (Authenticity Clerk)",
+      "role": "Ensure modules stay educational and fiqh-safe in tone",
+      "script": "staff-fiqh-authenticity-v1.js",
+      "badge": "\u2696",
+      "title": "Katib al-Tawthiq al-Tarbawi"
+    },
+    {
+      "id": "scout",
+      "name": "Kashshaf al-Masadir (Resource Scout)",
+      "role": "Crawl allowlisted authentic resources; propose daily module upgrades",
+      "script": "staff-resource-scout-v1.js",
+      "badge": "\u25c8",
+      "title": "Kashshaf al-Masadir"
+    },
+    {
+      "id": "librarian",
+      "name": "Amin al-Maktabah (Vault Librarian)",
+      "role": "Gather scout findings + authenticity notes; curriculum backup; issue rotation briefs to Ops & Scout",
+      "script": "staff-librarian-v1.js",
+      "badge": "\ud83d\udcda",
+      "title": "Amin al-Maktabah"
+    }
+  ],
+  "allowlistHosts": [
+    "quran.com",
+    "www.quran.com",
+    "sunnah.com",
+    "www.sunnah.com",
+    "seekersguidance.org",
+    "www.seekersguidance.org",
+    "islamqa.info",
+    "www.islamqa.info",
+    "yaqeeninstitute.org",
+    "www.yaqeeninstitute.org",
+    "beginislam.org",
+    "www.beginislam.org",
+    "www.youtube.com",
+    "youtube.com",
+    "www.youtube-nocookie.com"
+  ],
+  "library": {
+    "path": "library/",
+    "shelves": "library/shelves.json",
+    "playbook": "library/rotation-playbook.json",
+    "storage": {
+      "stacks": "clarity_librarian_stacks_v1",
+      "backup": "clarity_librarian_curriculum_backup_v1",
+      "issues": "clarity_librarian_issues_v1"
+    }
+  },
+  "journeyDuty": {
+    "ops": "Campus desk \u2014 keep modules flowing",
+    "fiqh": "Campus + Library \u2014 educational tone",
+    "scout": "Library \u2014 reference proposals",
+    "librarian": "Library \u2014 shelves & rotation briefs"
+  }
+}
