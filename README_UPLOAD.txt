@@ -1,13 +1,12 @@
-Vault freeze fix · 20261024VAULT
+Arabic lab enrich · 20261024ARABIC
 
-ROOT CAUSE: Same as charter — both /vault/ and /campus/vault/ were stubs:
-  location.replace("/campus/vault/") → infinite loop.
+After craft/ delete, campus Arabic looked thin because index only loaded studio.js.
+Root lab/arabic/index.html is already a redirect stub — richness was never there post-redirect.
 
-FIX:
-- campus/vault/index.html + vault.js + vault.css = University study locker (from index-old-html)
-- Keys: cu_vault_* only (not Companion Amana)
-- vault/index.html = one-hop bridge only
-- _redirects: /vault → /campus/vault/ (never redirect campus/vault to itself)
+This package:
+- Larger studio.js from root lab (31KB)
+- Wires lingua stack + panel + enrich/repair/video + station bar
+- Full station nav (Hub · Arabic · Tajweed · Hajj 2027 · …)
 
-Companion Amanah private unlock remains on Companion home — not this page.
-Extract at main root. Hard-refresh /campus/vault/
+Extract at main root → overwrites campus/lab/arabic/* and related shared files.
+Hard-refresh /campus/lab/arabic/
