@@ -10,7 +10,7 @@
 
   var KEY = "cu_lab_ar_progress_v1";
   var KEY_BANK = "cu_lab_ar_bank_v1";
-  var VER = "20261017TQ";
+  var VER = "20261024CAMP2";
   var NEW_CAP = 10;
   var ALLOW_FETCH = false; /* S0: offline first; expand uses local bank JSON */
 
@@ -502,7 +502,7 @@
       '<button type="button" class="ar-btn primary" data-mode="reviews">Due (' + dueN + ")</button>" +
       '<button type="button" class="ar-btn" id="ar-expand">Expand bank</button>' +
       '<a class="ar-btn" href="/campus/desk/seeker/">Desk</a>' +
-      '<a class="ar-btn" href="/campus/vault/#locker">Vault</a>' +
+      '<a class="ar-btn" href="/vault/#locker">Vault</a>' +
       '<a class="ar-btn" href="/campus/lab/tajweed/">Tajweed</a></div>';
 
     var modes = ["flash", "match", "learn", "test", "listen", "sentence", "type", "letters"];
