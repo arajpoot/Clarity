@@ -1,4 +1,4 @@
-/* Inject centered lab station bar if missing · 20261019L2 */
+/* Inject centered lab station bar if missing · 20261024FULL */
 (function () {
   "use strict";
   if (window.__LAB_STATION_BAR_V1__) return;
@@ -29,7 +29,7 @@
     if (document.querySelector('link[data-lab-station-bar]')) return;
     var l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/campus/lab/shared/lab-station-bar.css?v=20261019L2";
+    l.href = "/campus/lab/shared/lab-station-bar.css?v=20261024FULL";
     l.setAttribute("data-lab-station-bar", "1");
     document.head.appendChild(l);
   }
