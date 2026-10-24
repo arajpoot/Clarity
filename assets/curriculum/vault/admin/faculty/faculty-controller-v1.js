@@ -8,7 +8,7 @@
   if (g.__CLARITY_FACULTY_WING__) return;
   g.__CLARITY_FACULTY_WING__ = true;
 
-  var BASE = "/assets/curriculum/vault/admin/faculty/";
+  var BASE = "/campus/assets/faculty/";
   var SIG_KEY = "clarity_faculty_signatures_v1";
   var ENROLL_KEY = "clarity_faculty_enrollment_v1";
   var HELP_KEY = "clarity_faculty_help_log_v1";
@@ -587,7 +587,7 @@
   }
 
   g.addEventListener("clarity-vault-ready", function () {
-    setTimeout(boot, 400);
+    setTimeout(boot, 80);
   });
   g.addEventListener("clarity-staff-ready", function () {
     setTimeout(hookController, 200);
@@ -595,7 +595,7 @@
   });
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
-      setTimeout(boot, 2000);
+      setTimeout(boot, 120);
     });
-  } else setTimeout(boot, 2000);
+  } else setTimeout(boot, 120);
 })(typeof window !== "undefined" ? window : this);
