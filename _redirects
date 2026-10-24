@@ -1,33 +1,73 @@
+# Clarity · merged _redirects · 20261024H27R2
+# Preserves companion + campus rules from live root _redirects
+# Updates /lab and /craft → /campus/lab (University surface)
+# /vault and companion paths unchanged
+
 # Clarity University — Cloudflare Pages redirects
 # P0: University landing is Charter
 
-/university          /charter/     301
-/university/         /charter/     301
-/uni                 /charter/     301
-/admit               /charter/#admission  302
-/admission           /charter/#admission  302
+/university  /charter/  301
+/university/  /charter/  301
+/uni  /charter/  301
+/admit  /charter/#admission  302
+/admission  /charter/#admission  302
 
 # Legacy campus entry
-/campus-index.html   /campus/      301
-/campus-index        /campus/      301
+/campus-index.html  /campus/  301
+/campus-index  /campus/  301
 
-/campus/desk         /campus/desk/ 301
-/lab                 /lab/         301
-/library             /library/     301
-/vault               /vault/       301
-/charter             /charter/     301
+/campus/desk  /campus/desk/  301
+/lab  /campus/lab/  301
+/lab/  /campus/lab/  301
+/library  /library/  301
+/vault  /vault/  301
+/charter  /charter/  301
 
-/campus/desk/seeker       /campus/desk/seeker/       301
-/campus/desk/practice     /campus/desk/practice/     301
+/campus/desk/seeker  /campus/desk/seeker/  301
+/campus/desk/practice  /campus/desk/practice/  301
 /campus/desk/consistency  /campus/desk/consistency/  301
-/campus/desk/transmission /campus/desk/transmission/ 301
+/campus/desk/transmission  /campus/desk/transmission/  301
 
-/craft  /lab/  301
-/craft/ /lab/  301
+/craft  /campus/lab/  301
+/craft/  /campus/lab/  301
 
-/campus/transcript   /campus/transcript/   301
+/campus/transcript  /campus/transcript/  301
 /campus/assignments  /campus/assignments/  301
-/campus/schedule     /campus/schedule/     301
-/campus/diploma      /campus/diploma/      301
-/transcript          /campus/transcript/   301
-/diploma             /campus/diploma/      301
+/campus/schedule  /campus/schedule/  301
+/campus/diploma  /campus/diploma/  301
+/transcript  /campus/transcript/  301
+/diploma  /campus/diploma/  301
+
+# --- Lab → campus/lab expansions · 20261024H27R2 ---
+/lab/index.html  /campus/lab/  301
+/lab/arabic  /campus/lab/arabic/  301
+/lab/arabic/  /campus/lab/arabic/  301
+/lab/arabic/index.html  /campus/lab/arabic/  301
+/lab/arabic/hajj2027  /campus/lab/arabic/hajj2027/  301
+/lab/arabic/hajj2027/  /campus/lab/arabic/hajj2027/  301
+/lab/arabic/hajj2027/index.html  /campus/lab/arabic/hajj2027/  301
+/lab/arabic/library  /campus/lab/arabic/library/  301
+/lab/arabic/library/  /campus/lab/arabic/library/  301
+/lab/arabic/library/index.html  /campus/lab/arabic/library/  301
+/lab/arabic/packs/*  /campus/lab/arabic/packs/:splat  301
+/lab/tajweed  /campus/lab/tajweed/  301
+/lab/tajweed/  /campus/lab/tajweed/  301
+/lab/tajweed/index.html  /campus/lab/tajweed/  301
+/lab/recite  /campus/lab/recite/  301
+/lab/recite/  /campus/lab/recite/  301
+/lab/hifz  /campus/lab/hifz/  301
+/lab/hifz/  /campus/lab/hifz/  301
+/lab/calligraphy  /campus/lab/calligraphy/  301
+/lab/calligraphy/  /campus/lab/calligraphy/  301
+/lab/media  /campus/lab/media/  301
+/lab/media/  /campus/lab/media/  301
+/lab/shared/*  /campus/lab/shared/:splat  301
+/lab/*  /campus/lab/:splat  301
+/craft/arabic  /campus/lab/arabic/  301
+/craft/arabic/  /campus/lab/arabic/  301
+/craft/tajweed  /campus/lab/tajweed/  301
+/craft/tajweed/  /campus/lab/tajweed/  301
+/craft/recite  /campus/lab/recite/  301
+/craft/hifz  /campus/lab/hifz/  301
+/craft/calligraphy  /campus/lab/calligraphy/  301
+/craft/*  /campus/lab/:splat  301

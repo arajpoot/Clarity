@@ -1,16 +1,13 @@
-Clarity University · Hajj2027 safe import · 20261024H27
+Clarity · MERGED _redirects · 20261024H27R2
 
-Phase H1 (this package):
-- Import lab/arabic/hajj2027 → campus/lab/arabic/hajj2027/
-- Import packs (hajj2027, family, greetings, travel, salah_plus)
-- Import lingua-* shared scripts
-- Path rewrite /lab/ → /campus/lab/
-- Hub + Arabic studio + library link to Hajj 2027 station
+IMPORTANT: The previous clarity-lab-redirects.zip _redirects file did NOT include
+existing companion/campus rules from live root _redirects.
 
-NOT done (later phases):
-- Delete root lab/ craft/
-- Redirects from /lab/* 
-- Companion vault untouched
+This package is the merge:
+- Keeps /university → /charter/, desk phases, transcript, diploma, /vault, /charter, /library
+- Updates /lab and /craft → /campus/lab/
+- Adds lab station splat rules to /campus/lab/
 
-Extract at main root.
-Hard-refresh /campus/lab/arabic/hajj2027/
+Replace root _redirects with this file (do not overwrite with the lab-only version).
+
+Companion /vault/ preserved.
