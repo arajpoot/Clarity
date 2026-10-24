@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "office": "Clarity University Library",
+  "motto": "Gather · verify · backup · issue on rotation",
+  "disclaimer": "Reference shelves are educational pointers only — not fatwas. Prefer local teachers for rulings.",
+  "shelves": [
+    {
+      "id": "aqidah-foundations",
+      "phase": 1,
+      "title": "Belief foundations",
+      "refs": [
+        {
+          "title": "Qur'an 112 — Al-Ikhlas",
+          "url": "https://quran.com/112",
+          "tag": "tawhid"
+        },
+        {
+          "title": "Qur'an 1 — Al-Fatiha",
+          "url": "https://quran.com/1",
+          "tag": "daily"
+        }
+      ]
+    },
+    {
+      "id": "practice-pillars",
+      "phase": 2,
+      "title": "Practice & purification",
+      "refs": [
+        {
+          "title": "Qur'an 2:286",
+          "url": "https://quran.com/2/286",
+          "tag": "capacity"
+        },
+        {
+          "title": "SeekersGuidance",
+          "url": "https://seekersguidance.org/",
+          "tag": "institute"
+        },
+        {
+          "title": "BeginIslam",
+          "url": "https://beginislam.org/",
+          "tag": "new-muslim"
+        }
+      ]
+    },
+    {
+      "id": "consistency-craft",
+      "phase": 3,
+      "title": "Consistency & craft",
+      "refs": [
+        {
+          "title": "Yaqeen Institute",
+          "url": "https://yaqeeninstitute.org/",
+          "tag": "research"
+        },
+        {
+          "title": "Qur'an — measured recitation reminder 73:4",
+          "url": "https://quran.com/73/4",
+          "tag": "tajweed"
+        }
+      ]
+    },
+    {
+      "id": "transmission",
+      "phase": 4,
+      "title": "Transmission with adab",
+      "refs": [
+        {
+          "title": "Qur'an 16:125",
+          "url": "https://quran.com/16/125",
+          "tag": "dawah"
+        },
+        {
+          "title": "Sunnah.com",
+          "url": "https://sunnah.com/",
+          "tag": "hadith"
+        }
+      ]
+    }
+  ],
+  "uxPrinciples": [
+    "One module visible at a time reduces overwhelm",
+    "Spark quiz + celebration beats empty checkmarks",
+    "Disclaimers stay visible without shaming the learner",
+    "Offline-first: backups and inbox live on device",
+    "Scout proposes; librarian curates; human deploys",
+    "Staff never rewrite sealed foundation"
+  ]
+}
