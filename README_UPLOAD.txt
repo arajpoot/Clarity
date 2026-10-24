@@ -1,13 +1,14 @@
-Clarity · MERGED _redirects · 20261024H27R2
+Clarity University · full day package · 20261024FULL
 
-IMPORTANT: The previous clarity-lab-redirects.zip _redirects file did NOT include
-existing companion/campus rules from live root _redirects.
+Includes:
+- campus/lab surface (Tajweed LMR, Arabic, library, Recite, Hifz, …)
+- Hajj2027 station + packs + lingua
+- Enrichment: practice-coach, hifz enrich, calligraphy enhance, everyday, studio-enrich/repair/video
+- campus/index.html (map), campus/library, campus/charter, campus/vault shell
+- MERGED root _redirects (companion + campus preserved; /lab /craft → /campus/lab)
+- HTML stubs under lab/ and craft/
 
-This package is the merge:
-- Keeps /university → /charter/, desk phases, transcript, diploma, /vault, /charter, /library
-- Updates /lab and /craft → /campus/lab/
-- Adds lab station splat rules to /campus/lab/
-
-Replace root _redirects with this file (do not overwrite with the lab-only version).
-
-Companion /vault/ preserved.
+Extract at MAIN ROOT of arajpoot/Clarity.
+Hard-refresh /campus/lab/ and /campus/lab/arabic/hajj2027/
+Do NOT delete root vault/.
+Companion index not modified.
