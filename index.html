@@ -1361,6 +1361,87 @@ html[data-theme="dark"] #callig-lab-card div[style*="background: linear"] {
 <link rel="stylesheet" href="assets/nuros-shariah-palette-collapse-v1.css" />
 
 <style id="clarity-shell-v2-css">
+html[data-shell-mode="landing"] #clarity-door-rail,
+html[data-shell-mode="landing"] .clarity-door-rail,
+html[data-shell-mode="landing"] #one-action-strip,
+html[data-shell-mode="landing"] .one-action-strip,
+html[data-shell-mode="landing"] .daily-dock-toggle,
+html[data-shell-mode="landing"] #clarity-oath-strip,
+html[data-shell-mode="landing"] .tab-panel,
+html[data-shell-mode="landing"] .rrra-hub,
+html[data-shell-mode="landing"] .rrra-hub-hero,
+html[data-shell-mode="landing"] [data-tab-panel] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+html[data-shell-mode="companion"] #clarity-door-rail {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Landing = routines only: hide companion chrome */
+html[data-shell-mode="landing"] .shell-landing-hide,
+html[data-shell-mode="landing"] [data-shell-hidden="1"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+html[data-shell-mode="landing"] .bottom-nav,
+html[data-shell-mode="landing"] .nav-rail,
+html[data-shell-mode="landing"] #bottom-nav,
+html[data-shell-mode="landing"] [data-bottom-nav],
+html[data-shell-mode="landing"] .global-nav-bottom,
+html[data-shell-mode="landing"] .tab-bar,
+html[data-shell-mode="landing"] .rrra-tabs,
+html[data-shell-mode="landing"] #main-tab-bar,
+html[data-shell-mode="landing"] .clarity-bottom-nav,
+html[data-shell-mode="landing"] [role="tablist"],
+html[data-shell-mode="landing"] .quick-access,
+html[data-shell-mode="landing"] .quick-access-bar,
+html[data-shell-mode="landing"] #quick-access,
+html[data-shell-mode="landing"] nav.bottom,
+html[data-shell-mode="landing"] .app-bottom-nav,
+html[data-shell-mode="landing"] .footer-nav {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+/* Keep landing pieces visible */
+html[data-shell-mode="landing"] #clarity-day-landing,
+html[data-shell-mode="landing"] #clarity-daily-routines,
+html[data-shell-mode="landing"] #clarity-reopen-bar,
+html[data-shell-mode="landing"] #clarity-visit-pill-bar,
+html[data-shell-mode="landing"] #clarity-top-duo,
+html[data-shell-mode="landing"] .banner {
+  display: revert !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  height: auto !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing {
+  display: flex !important;
+  flex-direction: column !important;
+}
+html[data-shell-mode="landing"] #clarity-daily-routines {
+  display: grid !important;
+}
+html[data-shell-mode="landing"] #clarity-reopen-bar {
+  display: flex !important;
+}
+
 /* Dual shell — careful, no content reordering */
 html[data-shell-mode="landing"] .shell-landing-hide {
   display: none !important;
@@ -1463,6 +1544,40 @@ html[data-theme="dark"] #clarity-daily-routines .cdr-card {
 }
 #clarity-daily-routines .cdr-card.is-done {
   outline: 1px solid rgba(107,196,154,0.5);
+}
+</style>
+
+
+<style id="clarity-landing-hide-rail-force">
+html[data-shell-mode="landing"] #clarity-door-rail,
+html[data-shell-mode="landing"] body #clarity-door-rail,
+html.body[data-shell-mode="landing"] #clarity-door-rail,
+html[data-shell-mode="landing"] #clarity-door-rail.clarity-door-rail {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  transform: translateY(120%) !important;
+  z-index: -1 !important;
+}
+html[data-shell-mode="companion"] #clarity-door-rail {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  transform: none !important;
+  z-index: 500 !important;
+}
+html[data-shell-mode="landing"] .tab-panel,
+html[data-shell-mode="landing"] .rrra-hub,
+html[data-shell-mode="landing"] .rrra-hub-hero {
+  display: none !important;
 }
 </style>
 
