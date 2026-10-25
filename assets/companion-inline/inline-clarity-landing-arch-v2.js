@@ -1,6 +1,8 @@
 /**
- * Clarity Landing Architecture v2 — careful, integrity-preserving
- * Landing vs Companion shells. Educational only — not a fatwa.
+ * Clarity Landing Architecture v2.1 — integrity-preserving
+ * Landing = daily routines only (no door rail / section panels)
+ * Companion = path + sections + door rail
+ * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
@@ -35,7 +37,6 @@
         '<button type="button" class="crb-btn crb-open" data-crb="open">Open daily routines</button>' +
         '<button type="button" class="crb-btn crb-hide" data-crb="hide">Hide for now</button>' +
         '<span class="crb-hint">Return anytime · on this device</span>';
-      // Place AFTER visit bar or AFTER banner — never inside content sections
       var visit = document.getElementById("clarity-visit-pill-bar");
       var duo = document.getElementById("clarity-top-duo");
       var banner = document.querySelector(".banner, #banner, [data-banner]");
@@ -55,7 +56,6 @@
         if (before) host.insertBefore(bar, before);
         else host.appendChild(bar);
       } else {
-        // fallback: after body first child cluster
         document.body.appendChild(bar);
       }
       bar.addEventListener("click", function (ev) {
@@ -89,7 +89,6 @@
         } else document.body.appendChild(land);
       }
     }
-    // Dual tiles at top of landing if missing
     if (!document.getElementById("dual-path-companion")) {
       var dual = document.createElement("div");
       dual.className = "dual-tiles";
@@ -116,6 +115,21 @@
     }
   }
 
+  function applyDoorRail(m) {
+    var door = document.getElementById("clarity-door-rail");
+    if (!door) return;
+    if (m === "landing") {
+      door.style.setProperty("display", "none", "important");
+      door.style.setProperty("visibility", "hidden", "important");
+      door.setAttribute("aria-hidden", "true");
+    } else {
+      door.style.setProperty("display", "flex", "important");
+      door.style.setProperty("visibility", "visible", "important");
+      door.style.removeProperty("opacity");
+      door.removeAttribute("aria-hidden");
+    }
+  }
+
   function apply() {
     var m = mode();
     document.documentElement.setAttribute("data-shell-mode", m);
@@ -134,14 +148,36 @@
       if (routines) { routines.hidden = false; routines.style.removeProperty("display"); }
       if (openBtn) openBtn.style.display = "none";
       if (hideBtn) hideBtn.style.display = "";
-      // Soft-hide path overview only (by heading), do NOT touch section content
+
+      document.querySelectorAll(
+        "#clarity-door-rail, .clarity-door-rail, .bottom-nav, .nav-rail, #bottom-nav, " +
+        "[data-bottom-nav], .global-nav-bottom, .tab-bar, .rrra-tabs, #main-tab-bar, " +
+        ".clarity-bottom-nav, [role='tablist'], .quick-access, .quick-access-bar, #quick-access"
+      ).forEach(function (el) {
+        el.classList.add("shell-landing-hide");
+        el.setAttribute("data-shell-hidden", "1");
+      });
+
+      document.querySelectorAll(
+        ".tab-panel, .rrra-hub, .rrra-hub-hero, [data-tab-panel], " +
+        "#reminder, #reality, #reflection, #action, #notes, " +
+        ".reminder-panel, .reality-panel, .reflection-panel, .action-panel, .notes-panel"
+      ).forEach(function (el) {
+        if (el.closest && (el.closest("#clarity-day-landing") || el.closest("#clarity-daily-routines"))) return;
+        el.classList.add("shell-landing-hide");
+        el.setAttribute("data-shell-hidden", "1");
+      });
+
       document.querySelectorAll("h2, h3").forEach(function (h) {
         var t = h.textContent || "";
-        if (/Path to furnish the grave|Phased learning — start/i.test(t)) {
-          var box = h.closest("section, article, .card, .panel");
-          if (box && box.id !== "clarity-day-landing" && box.id !== "clarity-daily-routines") {
-            box.classList.add("shell-landing-hide");
-          }
+        if (/Path to furnish|Phased learning|\bTRACK\b|Reminder|Reality|Reflection|\bAction\b|Amanah Vault|Allah's Commands/i.test(t)) {
+          var box = h.closest("section, article, .card, .panel, .hub, div");
+          if (!box) return;
+          if (box.id === "clarity-day-landing" || box.id === "clarity-daily-routines") return;
+          if (box.closest && (box.closest("#clarity-day-landing") || box.closest("#clarity-daily-routines"))) return;
+          if (box.classList.contains("banner") || box.id === "clarity-top-duo") return;
+          box.classList.add("shell-landing-hide");
+          box.setAttribute("data-shell-hidden", "1");
         }
       });
     } else {
@@ -149,10 +185,13 @@
       if (routines) { routines.hidden = true; routines.style.display = "none"; }
       if (openBtn) openBtn.style.display = "";
       if (hideBtn) hideBtn.style.display = "none";
-      document.querySelectorAll(".shell-landing-hide").forEach(function (el) {
+      document.querySelectorAll(".shell-landing-hide, [data-shell-hidden='1']").forEach(function (el) {
         el.classList.remove("shell-landing-hide");
+        el.removeAttribute("data-shell-hidden");
       });
     }
+
+    applyDoorRail(m);
   }
 
   function boot() {
@@ -168,5 +207,5 @@
     setTimeout(apply, 1200);
   });
 
-  w.ClarityShell = { mode: mode, setMode: setMode, apply: apply, version: "20261024ARCH2" };
+  w.ClarityShell = { mode: mode, setMode: setMode, apply: apply, version: "20261024ARCH21" };
 })(typeof window !== "undefined" ? window : this);
