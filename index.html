@@ -1576,6 +1576,100 @@ html[data-companion-loading="1"] #main-content::before {
 }
 </style>
 
+
+<style id="clarity-ribbon-always">
+#clarity-reopen-bar {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 60 !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.4rem 0.55rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 12px;
+  border: 1px solid rgba(184,146,42,0.35);
+  background: rgba(13,79,60,0.12);
+}
+html[data-theme="dark"] #clarity-reopen-bar,
+html[data-theme="night"] #clarity-reopen-bar {
+  background: rgba(13,79,60,0.88);
+  color: #f5faf7;
+}
+#clarity-reopen-bar .crb-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.45);
+  background: rgba(212,180,90,0.18);
+  color: inherit;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+#clarity-reopen-bar .crb-open {
+  background: #c9a227 !important;
+  color: #0c1a14 !important;
+  border-color: #c9a227 !important;
+}
+#clarity-reopen-bar .crb-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+</style>
+
+
+<style id="clarity-landing-isolate-v32">
+html[data-shell-mode="landing"] #main-content,
+html[data-shell-mode="landing"] .main-content,
+html[data-shell-mode="landing"] #main-application-workspace > .tab-panel,
+html[data-shell-mode="landing"] .tab-panel,
+html[data-shell-mode="landing"] .rrra-hub,
+html[data-shell-mode="landing"] .rrra-hub-hero,
+html[data-shell-mode="landing"] #clarity-door-rail,
+html[data-shell-mode="landing"] .path-board,
+html[data-shell-mode="landing"] .phased-track,
+html[data-shell-mode="landing"] [data-path-board],
+html[data-shell-mode="landing"] .shell-landing-hide {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+/* Path board often sits outside main — hide by heading parent on landing via JS class */
+html[data-shell-mode="landing"] .path-to-grave,
+html[data-shell-mode="landing"] #path-board,
+html[data-shell-mode="landing"] .four-doors {
+  display: none !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing {
+  display: flex !important;
+  flex-direction: column !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing .dual-tile {
+  min-height: 4.5rem;
+}
+html[data-shell-mode="landing"] #clarity-day-landing .dual-tile strong,
+html[data-shell-mode="landing"] #clarity-day-landing .dual-tile small {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: inherit !important;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
