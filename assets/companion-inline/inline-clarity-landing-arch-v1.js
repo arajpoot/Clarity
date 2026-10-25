@@ -66,21 +66,6 @@
 
   function ensureRibbon() {
     var bar = document.getElementById("clarity-reopen-bar");
-    if (bar && bar.getAttribute("data-permanent") === "1") {
-      /* permanent skip — keep markup, only place + bind */
-      try { placeRibbon(bar); } catch (e) {}
-      if (!bar.__archBound) {
-        bar.__archBound = true;
-        bar.addEventListener("click", function (ev) {
-          var t = ev.target && ev.target.closest && ev.target.closest("[data-crb]");
-          if (!t) return;
-          var act = t.getAttribute("data-crb");
-          if (act === "open") setMode("landing");
-          if (act === "hide") setMode("companion");
-        });
-      }
-      return bar;
-    }
     if (!bar) {
       bar = document.createElement("div");
       bar.id = "clarity-reopen-bar";
@@ -214,7 +199,7 @@
         var hideBtn2 = ribbon.querySelector('[data-crb="hide"]');
         var openBtn2 = ribbon.querySelector('[data-crb="open"]');
         if (hideBtn2) hideBtn2.style.display = "none";
-        if (openBtn2) { openBtn2.style.display = "inline-flex"; openBtn2.textContent = "Open daily routines"; }
+        if (openBtn2) openBtn2.style.display = "";
       }
       document.querySelectorAll(".shell-landing-hide").forEach(function (el) {
         el.classList.remove("shell-landing-hide");
