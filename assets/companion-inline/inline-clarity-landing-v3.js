@@ -116,8 +116,7 @@
   }
 
   function build() {
-    if (w.__CDL_V3_BUILT__ && !w.__CDL_V3_FORCE__) return;
-    w.__CDL_V3_FORCE__ = false;
+    if (w.__CDL_V3_BUILT__) return;
     // Remove any prior incomplete landings
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -217,12 +216,10 @@
       comp.addEventListener("click", function (ev) {
         ev.preventDefault();
         if (w.ClarityShell) w.ClarityShell.setMode("companion");
-        else if (typeof w.ClarityLoadCompanion === "function") {
-          w.ClarityLoadCompanion().then(function(){
-            document.documentElement.setAttribute("data-shell-mode", "companion");
-            try { localStorage.setItem("clarity_shell_mode_v1", "companion"); } catch(e){}
-          });
-        }
+        try {
+          var mc = document.getElementById("main-content");
+          if (mc) mc.scrollIntoView({ behavior: "smooth", block: "start" });
+        } catch (e) {}
       });
     }
 
@@ -239,10 +236,4 @@
   window.addEventListener("load", function () {
     if (!w.__CDL_V3_BUILT__) setTimeout(boot, 80);
   });
-w.ClarityLandingRebuild = function () {
-    w.__CDL_V3_BUILT__ = false;
-    w.__CDL_V3_FORCE__ = true;
-    try { build(); } catch (e) { console.warn("[landing-rebuild]", e); w.__CDL_V3_BUILT__ = false; }
-  };
 })(typeof window !== "undefined" ? window : this);
-
