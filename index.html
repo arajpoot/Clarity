@@ -1492,6 +1492,60 @@ html[data-theme="day"] .crb-btn.crb-open {
 .crb-hint { font-size: 0.72rem; opacity: 0.65; }
 </style>
 
+
+<style id="clarity-reopen-ribbon-fix">
+/* Always-available return to daily landing */
+#clarity-reopen-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  position: relative !important;
+  z-index: 40 !important;
+  margin: 0.4rem 0.55rem 0.55rem !important;
+  padding: 0.45rem 0.55rem !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(184,146,42,0.4) !important;
+  background: linear-gradient(165deg, rgba(13,79,60,0.12), rgba(15,36,28,0.08)) !important;
+  clear: both !important;
+  order: 0 !important;
+}
+html[data-theme="dark"] #clarity-reopen-bar {
+  background: linear-gradient(165deg, rgba(13,79,60,0.35), rgba(10,24,18,0.5)) !important;
+  border-color: rgba(212,180,90,0.45) !important;
+}
+html[data-shell-mode="companion"] #clarity-reopen-bar {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+html[data-shell-mode="companion"] #clarity-reopen-bar .crb-open {
+  display: inline-flex !important;
+  background: #0d4f3c !important;
+  color: #fff !important;
+  border-color: #0d4f3c !important;
+  font-weight: 800 !important;
+  padding: 0.35rem 0.85rem !important;
+}
+html[data-shell-mode="companion"] #clarity-reopen-bar .crb-hide {
+  display: none !important;
+}
+html[data-shell-mode="landing"] #clarity-reopen-bar .crb-open {
+  display: none !important;
+}
+html[data-shell-mode="landing"] #clarity-reopen-bar .crb-hide {
+  display: inline-flex !important;
+}
+/* Path tiles must not cover ribbon */
+html[data-shell-mode="companion"] .shell-landing-hide { display: none !important; }
+#clarity-reopen-bar .crb-label { font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.7rem; opacity: 0.85; }
+#clarity-reopen-bar .crb-hint { font-size: 0.75rem; opacity: 0.7; }
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
