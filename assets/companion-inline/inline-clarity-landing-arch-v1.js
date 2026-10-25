@@ -31,6 +31,39 @@
     apply();
   }
 
+  
+  function placeRibbon(bar) {
+    var visit = document.getElementById("clarity-visit-pill-bar");
+    var duo = document.getElementById("clarity-top-duo");
+    var banner = document.querySelector(".banner");
+    var land = document.getElementById("clarity-day-landing");
+    var parent = null;
+    var before = null;
+    if (visit && visit.parentNode) {
+      parent = visit.parentNode;
+      before = visit.nextSibling;
+    } else if (duo && duo.parentNode) {
+      parent = duo.parentNode;
+      before = duo.nextSibling;
+    } else if (banner && banner.parentNode) {
+      parent = banner.parentNode;
+      before = banner.nextSibling;
+    }
+    if (parent) {
+      if (before) parent.insertBefore(bar, before);
+      else parent.appendChild(bar);
+    } else {
+      document.body.insertBefore(bar, document.body.firstChild);
+    }
+    // On companion, keep before path boards
+    if (document.documentElement.getAttribute("data-shell-mode") === "companion") {
+      var path = document.querySelector("[data-path-board], #path-board, .path-board");
+      if (path && path.parentNode && bar.parentNode === path.parentNode) {
+        path.parentNode.insertBefore(bar, path);
+      }
+    }
+  }
+
   function ensureRibbon() {
     var bar = document.getElementById("clarity-reopen-bar");
     if (!bar) {
@@ -38,18 +71,13 @@
       bar.id = "clarity-reopen-bar";
       bar.setAttribute("role", "toolbar");
       bar.setAttribute("aria-label", "Day landing controls");
+      /*clarity-reopen-bar-v2*/
       bar.innerHTML =
         '<span class="crb-label">Day landing</span>' +
-        '<button type="button" class="crb-btn crb-open" data-crb="open">Open Do this today</button>' +
+        '<button type="button" class="crb-btn crb-open" data-crb="open">Open daily routines</button>' +
         '<button type="button" class="crb-btn crb-hide" data-crb="hide">Hide for now</button>' +
-        '<span class="crb-hint">Revisit any time today</span>';
-      var anchor = document.getElementById("clarity-visit-pill-bar") ||
-        document.querySelector("#clarity-top-duo") ||
-        document.body;
-      if (anchor && anchor.parentNode) {
-        if (anchor.nextSibling) anchor.parentNode.insertBefore(bar, anchor.nextSibling);
-        else anchor.parentNode.appendChild(bar);
-      } else document.body.appendChild(bar);
+        '<span class="crb-hint">Return anytime · on this device</span>';
+      placeRibbon(bar);
       bar.addEventListener("click", function (ev) {
         var t = ev.target && ev.target.closest && ev.target.closest("[data-crb]");
         if (!t) return;
