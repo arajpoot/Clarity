@@ -262,67 +262,7 @@
 #clarity-grave-path-strip,#grave-path-card{display:block;margin:.6rem auto;max-width:42rem;padding:.8rem 1rem;border-radius:14px;border:1px solid rgba(212,180,90,.35);background:rgba(21,32,25,.92);color:#e7efe9}
 #clarity-grave-path-strip h2,#grave-path-card h2{color:#f3e6c0;font-size:1.15rem;margin:.2rem 0}
 </style>
-<link rel="stylesheet" href="assets/clarity-adhkar-v1.css"/>
-
-<style id="cmp-fix">
-#clarity-first-gate[hidden],#clarity-first-gate.cfg-off{display:none!important}
-.cmp-strip{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center;justify-content:center;padding:.45rem .6rem;background:#0c1410;border-bottom:1px solid rgba(212,180,90,.28)}
-.cmp-strip button,.cmp-strip a{border:1px solid rgba(212,180,90,.35);background:#152019;color:#f3e6c0;border-radius:999px;padding:.35rem .75rem;font-weight:700;text-decoration:none;cursor:pointer}
-</style>
-
-<style id="cmp-fix2">
-.cmp-card{position:relative;z-index:5;max-width:42rem;margin:.6rem auto;padding:.8rem 1rem;background:#152019;border:1px solid rgba(212,180,90,.4);border-radius:16px;color:#e7efe9}
-.cmp-kicker{margin:0 0 .5rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#d4b45a}
-.cmp-row{display:grid;gap:.5rem}
-@media(min-width:720px){.cmp-row{grid-template-columns:1fr 1fr 1fr}}
-.cmp-row button,.cmp-uni{display:block;text-align:left;background:#0c1410;color:#e7efe9;border:1px solid rgba(212,180,90,.3);border-radius:12px;padding:.7rem .8rem;text-decoration:none;cursor:pointer}
-.cmp-row strong{display:block;color:#f3e6c0}
-.cmp-row small{opacity:.8}
-.cmp-uni{background:#0d4f3c}
-#clarity-grave-path-strip{position:relative;z-index:1;margin-top:.4rem}
-</style>
-
-<style id="landing-clean">
-body{padding-top:0}
-.cmp-card{position:relative;z-index:6;margin:.75rem auto}
-#clarity-grave-path-strip,#grave-path-card{position:relative;z-index:1;clear:both;margin:.5rem auto}
-</style>
 </head><body data-active-tab="journey" data-section-fortress="1">
-
-<div id="clarity-first-gate" class="cfg-overlay" hidden>
-  <div class="cfg-card">
-    <p class="cfg-kicker">First step · this device only</p>
-    <h1>Furnish the grave. Choose a door.</h1>
-    <p class="cfg-lead">Two paths. You can change later. Not a fatwa.</p>
-    <div class="cfg-grid">
-      <button type="button" class="cfg-door" data-path="seeker">
-        <span>🔍</span>
-        <strong>I am curious about Islam</strong>
-        <small>Who Allah is, the testimony, why we are here.</small>
-      </button>
-      <button type="button" class="cfg-door" data-path="practicing">
-        <span>📿</span>
-        <strong>I am already Muslim</strong>
-        <small>Daily salah, adhkār, and the learning path.</small>
-      </button>
-    </div>
-    <button type="button" id="cfg-skip" class="cfg-skip">Skip to the learning path</button>
-  </div>
-</div>
-<style id="cfg-css">
-.cfg-overlay{display:none!important}.cfg-overlay.cfg-on{position:fixed;inset:0;z-index:80;background:rgba(8,14,12,.92);display:flex!important;align-items:center;justify-content:center;padding:1rem}
-.cfg-card{max-width:36rem;background:#152019;border:1px solid rgba(212,180,90,.35);border-radius:18px;padding:1.1rem 1.2rem;color:#e7efe9}
-.cfg-kicker{letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;color:#d4b45a;margin:0}
-.cfg-card h1{font-size:1.35rem;color:#f3e6c0;margin:.35rem 0}
-.cfg-lead{opacity:.85;margin:0 0 .8rem}
-.cfg-grid{display:grid;gap:.6rem}
-@media(min-width:640px){.cfg-grid{grid-template-columns:1fr 1fr}}
-.cfg-door{text-align:left;background:#0c1410;color:#e7efe9;border:1px solid rgba(212,180,90,.3);border-radius:14px;padding:.8rem;cursor:pointer}
-.cfg-door strong{display:block;margin:.2rem 0}
-.cfg-door small{opacity:.8}
-.cfg-skip{margin-top:.8rem;background:transparent;color:#e0c56a;border:0;font-weight:700;cursor:pointer}
-</style>
-
 
 <script id="nuros-null-guard-js" src="assets/companion-inline/inline-nuros-null-guard-js.js" defer></script>
 
@@ -339,12 +279,9 @@ body{padding-top:0}
     <div class="nav-buttons">
         <button type="button" onclick="typeof clarityPrintLegacyPack==='function'?clarityPrintLegacyPack():window.print()" title="Print educational legacy outline">🖨 Legacy pack</button>
         <button type="button" id="amana-top-print-btn" onclick="clarityAmanaPrintPack()" title="Amana Vault pack — unlock required">🏦 Print vault pack</button>
-        <a href="/campus/" style="color:#f3e6c0;font-weight:700;text-decoration:none;padding:.35rem .6rem">University</a>
         <button type="button" onclick="resetToGateView()">🔄 Gate mode</button>
     </div>
 </nav>
-
-
 
 <div id="clarity-top-duo">
 <div class="banner">
@@ -352,11 +289,9 @@ body{padding-top:0}
       <iframe id="banner-live" class="banner-live-iframe" title="Haramain live" hidden
         allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
         allowfullscreen playsinline></iframe>
-      <img id="banner-img" class="banner-still-img" fetchpriority="high" decoding="async"
+      <img loading="lazy" decoding="async" id="banner-img" class="banner-still-img"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg"
-        srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/320px-Kaaba_Masjid_Haraam_Makkah.jpg 320w, https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg 640w"
-        sizes="(max-width:600px) 100vw, 640px"
-        alt="Masjid al-Haram, Makkah"
+        alt="Masjid al-Haram"
         decoding="async"
         onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg';">
     </div>
@@ -532,23 +467,6 @@ body{padding-top:0}
         </footer>
     </div>
 </div>
-
-
-
-
-<section id="clarity-main-paths" class="cmp-card">
-  <p class="cmp-kicker">Choose a path · then the learning doors</p>
-  <div class="cmp-row">
-    <button type="button" data-main-path="seeker"><strong>Curious about Islam</strong><small>Who Allah is, the testimony, why we are here.</small></button>
-    <button type="button" data-main-path="practicing"><strong>Already Muslim</strong><small>Daily salah, adhkār, and the path.</small></button>
-    <a class="cmp-uni" href="/campus/"><strong>University</strong><small>Campus map, desk, lab.</small></a>
-  </div>
-</section>
-
-<section id="clarity-provision-home" class="clarity-provision-home" aria-label="Today companion surface"></section>
-<section id="clarity-adhkar-daily" class="clarity-adhkar-daily" aria-label="Daily adhkar">
-  <p class="muted" style="text-align:center;font-size:.8rem;opacity:.7">Adhkār · morning or evening from this device</p>
-</section>
 
 <nav id="clarity-door-rail" class="door-rail-bottom door-rail-rrra5" aria-label="Learn as — Reminder, Reality, Reflection, Action, Amana Vault">
   <button type="button" class="door-rail-btn rrra-rail-rem" data-rail-tab="reminder" data-rrra="reminder" onclick="clarityOpenSectionDoor('reminder')"><span class="dr-ico">✦</span><span class="dr-label">Reminder</span><span class="dr-count" id="rrra-count-reminder"></span></button>
@@ -2340,38 +2258,6 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 <script src="assets/clarity-path-progress-v1.js" defer></script>
 <script src="assets/clarity-grave-path-curriculum-js.js" defer></script>
-<script src="assets/clarity-adhkar-card-v1.js" defer></script>
-
-<script id="clarity-first-gate-js">
-(function(){
-  var KEY="clarity_landing_gate_v1";
-  var el=document.getElementById("clarity-first-gate");
-  function read(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}}
-  function committed(){
-    try{return localStorage.getItem("clarity_committed_path")||document.documentElement.getAttribute("data-clarity-path")||"";}catch(e){return "";}
-  }
-  function save(path){
-    var o=read(); o.path=path; o.at=Date.now();
-    try{localStorage.setItem(KEY, JSON.stringify(o)); localStorage.setItem("clarity_committed_path", path);}catch(e){}
-    document.documentElement.setAttribute("data-clarity-path", path);
-    if(el){el.hidden=true; el.classList.remove("cfg-on"); el.style.display="none";}
-  }
-  if(el){
-    if(read().path || committed()){ el.hidden=true; el.style.display="none"; }
-    else { el.hidden=false; el.classList.add("cfg-on"); }
-    el.addEventListener("click", function(e){
-      var b=e.target.closest("[data-path]");
-      if(b) save(b.getAttribute("data-path"));
-      if(e.target.id==="cfg-skip") save(committed()||"seeker");
-    });
-  }
-  document.addEventListener("click", function(e){
-    var b=e.target.closest("[data-main-path]");
-    if(!b) return;
-    save(b.getAttribute("data-main-path"));
-  });
-})();
-</script>
 </body>
 </html>
 <script id="clarity-surah-continue-v1" src="assets/companion-inline/inline-clarity_surah_cont.js" defer></script>
