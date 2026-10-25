@@ -262,7 +262,7 @@
       "  font-weight:800;font-size:0.8rem;background:linear-gradient(135deg,#0f4c3a,#1a6b52);color:#f7f3eb;}",
       "#clarity-day-landing .cdl-step strong{display:block;font-size:0.88rem;}",
       "#clarity-day-landing .cdl-step span{font-size:0.78rem;opacity:0.85;}",
-      "#clarity-day-landing details.cdl-fold{margin-bottom:0.65rem;}",
+      "#clarity-day-landing .cdl-expand-btn{display:flex;align-items:center;justify-content:space-between;width:100%;gap:0.5rem;border:none;background:transparent;color:inherit;font:inherit;font-weight:700;cursor:pointer;padding:0.15rem 0;text-align:left;}#clarity-day-landing .cdl-expand-btn .cdl-chev{transition:transform 0.15s ease;font-size:0.9rem;opacity:0.8;}#clarity-day-landing .cdl-expand-btn[aria-expanded=true] .cdl-chev{transform:rotate(180deg);}#clarity-day-landing .cdl-fold-body{padding:0.45rem 0 0.15rem;}#clarity-day-landing .cdl-expand-card{position:relative;z-index:2;}#clarity-day-landing details.cdl-fold{margin-bottom:0.65rem;}",
       "#clarity-day-landing details.cdl-fold>summary{cursor:pointer;font-weight:700;padding:0.65rem 0.85rem;border-radius:14px;",
       "  background:linear-gradient(145deg,rgba(15,76,58,0.1),rgba(15,76,58,0.03));border:1px solid rgba(15,76,58,0.18);list-style:none;}",
       "#clarity-day-landing details.cdl-fold>summary::-webkit-details-marker{display:none;}",
@@ -393,15 +393,20 @@
         '<p class="cdl-sub">When ready, add from authentic collections: <strong>Āyat al-Kursī</strong>, the three Quls (Ikhlāṣ, Falaq, Nās) often 3×, and Sayyid al-istighfār. Start small; consistency is furniture for the heart.</p>' +
         '<p class="cdl-sub">Hisn-style practice · educational · learn full wording with a teacher</p></div>' +
 
-      /* Phase C — wuḍūʾ */
-      '<details class="cdl-fold" id="cdl-wudu"><summary>💧 Wuḍūʾ steps · illustrated outline (tap to expand)</summary>' +
-        '<div class="cdl-fold-body"><div class="cdl-steps">' + stepsHtml(WUDU_STEPS) + "</div>" +
-        '<p class="cdl-sub">Educational outline — schools differ on details. Learn with a local teacher.</p></div></details>' +
+      /* Phase C/D — explicit expand pills (no native details) */
+      '<div class="cdl-card cdl-expand-card" id="cdl-wudu">' +
+        '<button type="button" class="cdl-expand-btn" id="cdl-wudu-btn" aria-expanded="false" aria-controls="cdl-wudu-body">' +
+          "💧 Wuḍūʾ steps · illustrated outline <span class=\"cdl-chev\">▾</span></button>" +
+        '<div class="cdl-fold-body" id="cdl-wudu-body" hidden>' +
+          '<div class="cdl-steps">' + stepsHtml(WUDU_STEPS) + "</div>" +
+          '<p class="cdl-sub">Educational outline — schools differ on details. Learn with a local teacher.</p></div></div>' +
 
-      /* Phase D — prayer */
-      '<details class="cdl-fold" id="cdl-salah-steps"><summary>🕌 Prayer steps · simple unit (tap to expand)</summary>' +
-        '<div class="cdl-fold-body"><div class="cdl-steps">' + stepsHtml(SALAH_STEPS) + "</div>" +
-        '<p class="cdl-sub">Simplified teaching path — not a full fiqh manual. Pillars first; verify with a teacher.</p></div></details>' +
+      '<div class="cdl-card cdl-expand-card" id="cdl-salah-steps">' +
+        '<button type="button" class="cdl-expand-btn" id="cdl-salah-btn" aria-expanded="false" aria-controls="cdl-salah-body">' +
+          "🕌 Prayer steps · simple unit <span class=\"cdl-chev\">▾</span></button>" +
+        '<div class="cdl-fold-body" id="cdl-salah-body" hidden>' +
+          '<div class="cdl-steps">' + stepsHtml(SALAH_STEPS) + "</div>" +
+          '<p class="cdl-sub">Simplified teaching path — not a full fiqh manual. Pillars first; verify with a teacher.</p></div></div>' +
 
       /* Phase E — send light ahead */
       '<div class="cdl-card"><div class="cdl-head"><h2>Send light ahead today</h2></div>' +
@@ -483,6 +488,24 @@
         } catch (e) {}
       });
     }
+
+
+    function bindExpand(btnId, bodyId) {
+      var btn = document.getElementById(btnId);
+      var body = document.getElementById(bodyId);
+      if (!btn || !body) return;
+      btn.onclick = function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        var open = btn.getAttribute("aria-expanded") === "true";
+        open = !open;
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) body.removeAttribute("hidden");
+        else body.setAttribute("hidden", "");
+      };
+    }
+    bindExpand("cdl-wudu-btn", "cdl-wudu-body");
+    bindExpand("cdl-salah-btn", "cdl-salah-body");
 
     updateSalahTile();
     if (countdownTimer) clearInterval(countdownTimer);

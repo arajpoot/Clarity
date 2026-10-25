@@ -103,7 +103,7 @@
     "  background:linear-gradient(to bottom,rgba(8,28,22,0.08),rgba(8,28,22,0.18))!important;}",
     ".tab-panel.active{animation:clarityTabIn 0.16s ease both;}",
     "@keyframes clarityTabIn{from{opacity:0.55;transform:translateY(5px)}to{opacity:1;transform:none}}",
-    "#clarity-day-landing~#clarity-day-landing{display:none!important;}",
+    "#clarity-day-landing~#clarity-day-landing{display:none!important;}/* Keep floating quick-access from blocking expand pills */.quick-access,button.quick-access,#quick-access,[class*="quick-access"]{z-index:5!important;}#clarity-day-landing .cdl-expand-card,#clarity-day-landing .cdl-steps{position:relative;z-index:6!important;}",
     "/* Neutralize legacy float / absolute that break symmetry */",
     "#main-content .card{float:none!important;}",
     ".path-to-grave .door{float:none!important;}"
