@@ -1,18 +1,19 @@
-# Smoke · Phase 0–4 + dual shell · final
+# Dual-shell recheck · confirmed
 
-## Static
-- syntax OK · missing assets 0 · notesLoad hardened
+## Landing (mode=landing)
+- Banner · LAST · dual paths · Do this today · Adhkār
+- Daily routines: 10 phases · 40 cards (P0–P9)
+- Path bars HIDDEN
+- DOM order: visit-bar → day-landing → daily-routines → reopen-bar
 
-## Runtime
-- caught: []
-- phases: 5 · cards: 20
-- ClarityRoutines90 + ClarityShell + DhikrRail + notesLoad: OK
-- tabs: all ok
-- companion hides routines: true
-- soft streak + mark done: verified (Phase 0 card · done)
+## Companion (mode=companion)
+- Landing + routines HIDDEN
+- Path bars + RRRA visible
+- Ribbon: Open Do this today
 
-## Shells
-- Landing: banner · LAST · dual · Do this today · Adhkār · Phase 0–4 cards
-- Companion: path bars · RRRA · ribbon reopen
+## Smoke
+- scripts: landing-day, landing-arch, routines-90d loaded
+- phases 10 · cards 40 · pathVisibleOnLanding false
 
-Campus untouched. Educational only — not a fatwa.
+Subtitle updated to Phase 0–9.
+Educational only — not a fatwa.
