@@ -1,27 +1,24 @@
 {
-  "errors": [],
-  "pages": {
-    "campus/assets/js/cu-seq-progress-v1.js": 6246,
-    "campus/assets/js/cu-seq-modules-v1.js": 17100,
-    "campus/assets/js/cu-seq-desk-v1.js": 7640,
-    "campus/assets/js/cu-seq-campus-v1.js": 2234,
-    "campus/assets/js/cu-seq-faculty-v1.js": 2035,
-    "campus/assets/js/cu-seq-bots-v1.js": 2958,
-    "campus/assets/js/cu-seq-grading-v1.js": 2054,
-    "campus/assets/js/cu-seq-footer-v1.js": 1151,
-    "campus/assets/js/cu-seq-status-v1.js": 1486,
-    "campus/assets/js/cu-campus-progress-v1.js": 5639,
-    "campus/assets/css/cu-seq-v1.css": 2935,
-    "campus/index.html": 14632,
-    "campus/desk/index.html": 8305,
-    "campus/faculty.html": 10769,
-    "campus/bots.html": 9897,
-    "campus/grading.html": 6818,
-    "campus/desk/seeker/index.html": 4829,
-    "campus/desk/practice/index.html": 4803,
-    "campus/desk/consistency/index.html": 4844,
-    "campus/desk/transmission/index.html": 4868
+  "build": "20261025-companion-final-polished",
+  "campus_touched": false,
+  "js_files_syntax_checked": 71,
+  "js_syntax_errors": 0,
+  "smokes": {
+    "theme_stub_day_night_system": "PASS",
+    "meme_surah_early_stubs_no_throw": "PASS",
+    "core_block_load_on_demand": "PASS",
+    "lazy_queue_batch_load": "PASS",
+    "phase2_4_guards_polish": "PASS",
+    "core_asset_present": "PASS",
+    "campus_not_in_package": "PASS"
   },
-  "node_ok": true,
-  "node": "{\"ok\":true,\"log\":[\"next={\\\"stage\\\":\\\"practice\\\",\\\"moduleId\\\":\\\"practice.m1\\\"}\"],\"counts\":{\"seeker\":{\"done\":6,\"total\":6,\"complete\":true,\"unlocked\":true},\"practice\":{\"done\":0,\"total\":6,\"complete\":false,\"unlocked\":true},\"consistency\":{\"done\":0,\"total\":6,\"complete\":false,\"unlocked\":false},\"transmission\":{\"done\":0,\"total\":6,\"complete\":false,\"unlocked\":false}}}"
+  "errors_fixed": [
+    "claritySetThemeMode is not defined (early stub + core earlier)",
+    "memeFetchRrra / surah select throw before lazy load",
+    "Commands/Salah stuck Loading until idle core — core now DOMContentLoaded",
+    "Silent lazy failures — logged",
+    "Duplicate path-progress in queue — removed",
+    "Meme layout order",
+    "Live overlay / plaques / brand surface polish"
+  ]
 }
