@@ -1,18 +1,5 @@
 <!DOCTYPE html><html data-theme="light" lang="en"><head>
 
-<script id="clarity-shell-mode-early">
-(function(){
-  try {
-    var m = localStorage.getItem("clarity_shell_mode_v1");
-    if (m !== "landing" && m !== "companion") m = "landing";
-    document.documentElement.setAttribute("data-shell-mode", m);
-  } catch (e) {
-    document.documentElement.setAttribute("data-shell-mode", "landing");
-  }
-})();
-</script>
-
-
 <script id="clarity-lite-boot-shim">
 (function(){
   "use strict";
@@ -1373,261 +1360,100 @@ html[data-theme="dark"] #callig-lab-card div[style*="background: linear"] {
 
 <link rel="stylesheet" href="assets/nuros-shariah-palette-collapse-v1.css" />
 
-<style id="clarity-shell-v2-css">
-html[data-shell-mode="landing"] #clarity-door-rail,
-html[data-shell-mode="landing"] .clarity-door-rail,
-html[data-shell-mode="landing"] #one-action-strip,
-html[data-shell-mode="landing"] .one-action-strip,
-html[data-shell-mode="landing"] .daily-dock-toggle,
-html[data-shell-mode="landing"] #clarity-oath-strip,
-html[data-shell-mode="landing"] .tab-panel,
-html[data-shell-mode="landing"] .rrra-hub,
-html[data-shell-mode="landing"] .rrra-hub-hero,
-html[data-shell-mode="landing"] [data-tab-panel] {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  height: 0 !important;
-  max-height: 0 !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
+
+<style id="clarity-shell-landing-v3">
+html[data-shell-mode="landing"] .shell-landing-hide { display: none !important; }
+html[data-shell-mode="companion"] #clarity-day-landing { display: none !important; }
+html[data-shell-mode="landing"] #clarity-door-rail {
+  display: none !important; visibility: hidden !important; pointer-events: none !important;
 }
 html[data-shell-mode="companion"] #clarity-door-rail {
-  display: flex !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  opacity: 1 !important;
-  height: auto !important;
-  max-height: none !important;
-}
-
-/* Landing = routines only: hide companion chrome */
-html[data-shell-mode="landing"] .shell-landing-hide,
-html[data-shell-mode="landing"] [data-shell-hidden="1"] {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-html[data-shell-mode="landing"] .bottom-nav,
-html[data-shell-mode="landing"] .nav-rail,
-html[data-shell-mode="landing"] #bottom-nav,
-html[data-shell-mode="landing"] [data-bottom-nav],
-html[data-shell-mode="landing"] .global-nav-bottom,
-html[data-shell-mode="landing"] .tab-bar,
-html[data-shell-mode="landing"] .rrra-tabs,
-html[data-shell-mode="landing"] #main-tab-bar,
-html[data-shell-mode="landing"] .clarity-bottom-nav,
-html[data-shell-mode="landing"] [role="tablist"],
-html[data-shell-mode="landing"] .quick-access,
-html[data-shell-mode="landing"] .quick-access-bar,
-html[data-shell-mode="landing"] #quick-access,
-html[data-shell-mode="landing"] nav.bottom,
-html[data-shell-mode="landing"] .app-bottom-nav,
-html[data-shell-mode="landing"] .footer-nav {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-/* Keep landing pieces visible */
-html[data-shell-mode="landing"] #clarity-day-landing,
-html[data-shell-mode="landing"] #clarity-daily-routines,
-html[data-shell-mode="landing"] #clarity-reopen-bar,
-html[data-shell-mode="landing"] #clarity-visit-pill-bar,
-html[data-shell-mode="landing"] #clarity-top-duo,
-html[data-shell-mode="landing"] .banner {
-  display: revert !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  opacity: 1 !important;
-  height: auto !important;
-}
-html[data-shell-mode="landing"] #clarity-day-landing {
-  display: flex !important;
-  flex-direction: column !important;
-}
-html[data-shell-mode="landing"] #clarity-daily-routines {
-  display: grid !important;
-}
-html[data-shell-mode="landing"] #clarity-reopen-bar {
-  display: flex !important;
-}
-
-/* Dual shell — careful, no content reordering */
-html[data-shell-mode="landing"] .shell-landing-hide {
-  display: none !important;
-}
-html[data-shell-mode="companion"] #clarity-day-landing,
-html[data-shell-mode="companion"] #clarity-daily-routines {
-  display: none !important;
+  display: flex !important; visibility: visible !important;
 }
 #clarity-reopen-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem;
-  margin: 0.4rem 0.55rem;
-  padding: 0.4rem 0.55rem;
-  border-radius: 12px;
-  border: 1px solid rgba(184,146,42,0.35);
-  background: rgba(13,79,60,0.9);
-  color: #f5faf7;
-  z-index: 40;
-  position: relative;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem;
+  margin: 0.4rem 0.55rem; padding: 0.4rem 0.55rem; border-radius: 12px;
+  border: 1px solid rgba(184,146,42,0.35); background: rgba(13,79,60,0.1);
 }
-html[data-shell-mode="landing"] #clarity-reopen-bar {
-  background: rgba(13,79,60,0.08);
-  color: inherit;
+html[data-theme="dark"] #clarity-reopen-bar, html[data-theme="night"] #clarity-reopen-bar {
+  background: rgba(13,79,60,0.85); color: #f5faf7;
 }
-#clarity-reopen-bar .crb-label {
-  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.85;
-}
+#clarity-reopen-bar .crb-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.85; }
 #clarity-reopen-bar .crb-btn {
-  border-radius: 999px;
-  border: 1px solid rgba(212,180,90,0.45);
-  background: rgba(212,180,90,0.2);
-  color: inherit;
-  padding: 0.28rem 0.7rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  cursor: pointer;
+  border-radius: 999px; border: 1px solid rgba(212,180,90,0.45);
+  background: rgba(212,180,90,0.18); color: inherit;
+  padding: 0.28rem 0.7rem; font-size: 0.78rem; font-weight: 700; cursor: pointer;
 }
-#clarity-reopen-bar .crb-open {
-  background: #c9a227;
-  color: #0c1a14;
-  border-color: #c9a227;
-}
+#clarity-reopen-bar .crb-open { background: #c9a227; color: #0c1a14; border-color: #c9a227; }
 #clarity-reopen-bar .crb-hint { font-size: 0.72rem; opacity: 0.75; }
+
+#clarity-day-landing {
+  display: flex; flex-direction: column; gap: 0.55rem;
+  margin: 0.35rem 0.55rem 1rem;
+}
 .dual-tiles {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.55rem;
-  margin: 0.35rem 0 0.55rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
 }
-@media (max-width: 700px) {
-  .dual-tiles { grid-template-columns: 1fr; }
-}
+@media (max-width: 700px) { .dual-tiles { grid-template-columns: 1fr; } }
 .dual-tile {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border-radius: 14px;
-  border: 1px solid rgba(184,146,42,0.28);
-  background: linear-gradient(165deg, rgba(244,250,246,0.95), rgba(232,243,236,0.98));
+  display: block; text-decoration: none; color: inherit;
+  border-radius: 14px; border: 1px solid rgba(184,146,42,0.3);
+  background: linear-gradient(165deg, rgba(244,250,246,0.96), rgba(232,243,236,0.98));
   padding: 0.75rem 0.85rem;
 }
-html[data-theme="dark"] .dual-tile,
-html[data-theme="night"] .dual-tile {
-  background: linear-gradient(165deg, rgba(15,36,28,0.95), rgba(10,24,18,0.98));
-  color: #e8f0ea;
+html[data-theme="dark"] .dual-tile, html[data-theme="night"] .dual-tile {
+  background: linear-gradient(165deg, rgba(15,36,28,0.96), rgba(10,24,18,0.99)); color: #e8f0ea;
 }
-.dual-tile strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
-.dual-tile span:last-child { font-size: 0.8rem; opacity: 0.85; line-height: 1.35; }
-#clarity-daily-routines {
-  margin: 0.5rem 0.55rem 1rem;
+.dual-tile strong { display: block; font-size: 0.95rem; margin: 0.15rem 0; }
+.dual-tile small { font-size: 0.8rem; opacity: 0.85; line-height: 1.35; }
+
+.cdl-card {
+  border-radius: 14px; border: 1px solid rgba(184,146,42,0.3);
+  padding: 0.75rem 0.9rem;
+  background: linear-gradient(165deg, rgba(244,250,246,0.96), rgba(232,243,236,0.98));
+  color: #0c1a14;
 }
-#clarity-daily-routines .cdr-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 0.5rem;
+html[data-theme="dark"] .cdl-card, html[data-theme="night"] .cdl-card {
+  background: linear-gradient(165deg, rgba(15,36,28,0.96), rgba(10,24,18,0.99)); color: #e8f0ea;
 }
-#clarity-daily-routines .cdr-card {
-  border-radius: 12px;
-  border: 1px solid rgba(184,146,42,0.28);
-  padding: 0.65rem 0.75rem;
-  background: rgba(15,36,28,0.04);
+.cdl-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
+.cdl-head h2 { margin: 0; font-size: 1.05rem; font-weight: 800; }
+.cdl-period, .cdl-count-btn {
+  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem; border-radius: 999px;
+  border: 1px solid rgba(13,79,60,0.25); background: rgba(13,79,60,0.1); color: inherit; cursor: pointer;
 }
-html[data-theme="dark"] #clarity-daily-routines .cdr-card {
-  background: rgba(255,255,255,0.04);
-  color: #e8f0ea;
+.cdl-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.35rem; font-size: 0.88rem; }
+.cdl-lane { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.2rem; }
+.cdl-deed { margin: 0 0 0.35rem; font-size: 0.9rem; line-height: 1.45; }
+.cdl-note { margin: 0 0 0.45rem; font-size: 0.75rem; opacity: 0.7; }
+.cdl-adhkar-ar {
+  font-size: 1.25rem; line-height: 1.65; margin: 0.35rem 0;
+  font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
 }
-#clarity-daily-routines .cdr-phase-head {
-  display: flex; gap: 0.5rem; align-items: flex-start; margin: 0.6rem 0 0.35rem;
+.cdl-adhkar-en { margin: 0 0 0.25rem; font-size: 0.88rem; }
+.cdl-adhkar-ref { margin: 0 0 0.45rem; font-size: 0.72rem; opacity: 0.7; }
+.cdl-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.cdl-btn {
+  border-radius: 999px; border: 1px solid rgba(212,180,90,0.45);
+  background: rgba(212,180,90,0.15); color: inherit;
+  padding: 0.3rem 0.75rem; font-size: 0.8rem; font-weight: 700; cursor: pointer;
 }
-#clarity-daily-routines .cdr-phase-num {
-  font-size: 0.7rem; font-weight: 800; padding: 0.15rem 0.4rem;
-  border-radius: 6px; background: #0d4f3c; color: #fff;
-}
-#clarity-daily-routines .cdr-cta {
-  border-radius: 999px; border: 1px solid rgba(212,180,90,0.4);
-  background: rgba(212,180,90,0.12); padding: 0.25rem 0.6rem;
-  font-size: 0.75rem; font-weight: 700; cursor: pointer; color: inherit;
-}
-#clarity-daily-routines .cdr-card.is-done {
-  outline: 1px solid rgba(107,196,154,0.5);
-}
+.cdl-btn.cdl-plus, .cdl-mini { background: #0d4f3c; color: #fff; border-color: #0d4f3c; }
+.cdl-mini { padding: 0.15rem 0.45rem; font-size: 0.75rem; border-radius: 6px; cursor: pointer; border: none; }
+.cdl-streak { font-size: 0.75rem; opacity: 0.75; }
 </style>
 
 
-<style id="clarity-landing-hide-rail-force">
-html[data-shell-mode="landing"] #clarity-door-rail,
-html[data-shell-mode="landing"] body #clarity-door-rail,
-html.body[data-shell-mode="landing"] #clarity-door-rail,
-html[data-shell-mode="landing"] #clarity-door-rail.clarity-door-rail {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  height: 0 !important;
-  max-height: 0 !important;
-  min-height: 0 !important;
-  overflow: hidden !important;
-  transform: translateY(120%) !important;
-  z-index: -1 !important;
-}
-html[data-shell-mode="companion"] #clarity-door-rail {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  height: auto !important;
-  max-height: none !important;
-  transform: none !important;
-  z-index: 500 !important;
-}
-html[data-shell-mode="landing"] .tab-panel,
-html[data-shell-mode="landing"] .rrra-hub,
-html[data-shell-mode="landing"] .rrra-hub-hero {
-  display: none !important;
-}
-</style>
-
-
-
-<style id="clarity-landing-fouc-guard">
-/* Prevent double-paint flash on refresh */
-#clarity-day-landing:not([data-ready="1"]) .cdl-card,
-#clarity-practical-daily:not([data-ready="1"]) {
-  /* allow first paint once ready */
-}
-html:not([data-shell-mode]) #clarity-door-rail {
-  visibility: hidden !important;
-}
-/* Stabilize adhkar card — no second rewrite flash */
-#clarity-day-landing .cdl-adhkar,
-#clarity-day-landing [data-adhkar-card] {
-  contain: layout style;
-}
-</style>
-
-
-<style id="clarity-landing-stable">
-/* Hide incomplete landing (dual-only) until Do this today exists — stops adhkār flash */
-#clarity-day-landing:not(:has(#cdl-today)) {
-  opacity: 0;
-  pointer-events: none;
-}
-#clarity-day-landing:has(#cdl-today) {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 0.15s ease;
-}
-@supports not (selector(:has(*))) {
-  #clarity-day-landing { opacity: 1; }
-}
-</style>
+<script id="clarity-shell-mode-early">
+(function(){
+  try {
+    var m = localStorage.getItem("clarity_shell_mode_v1");
+    if (m !== "landing" && m !== "companion") m = "landing";
+    document.documentElement.setAttribute("data-shell-mode", m);
+  } catch (e) { document.documentElement.setAttribute("data-shell-mode", "landing"); }
+})();
+</script>
 
 </head><body data-active-tab="journey" data-section-fortress="1">
 
@@ -5845,7 +5671,10 @@ html[data-theme="dark"] #tab-reminder.active #callig-lab-card h2::after { conten
 <script src="assets/clarity-seerah-revamp-js.js" defer></script>
 <script src="assets/nuros-amana-vault-js.js" defer></script>
 
-<script src="assets/companion-inline/inline-clarity-landing-arch-v2.js" defer></script>
+
+<script src="assets/companion-inline/inline-clarity-shell-v3.js" defer></script>
+<script src="assets/companion-inline/inline-clarity-landing-v3.js" defer></script>
+
 </body>
 </html>
 <script id="clarity-surah-continue-v1">
@@ -10023,9 +9852,6 @@ html[data-theme="light"] #clarity-reopen-bar, html[data-theme="day"] #clarity-re
 #main-application-workspace { display: flex; flex-direction: column; }
 #clarity-day-landing { flex-shrink: 0; }
 </style>
-<script id="clarity-landing-day-js" src="assets/clarity-landing-day-js.js" defer></script>
-
-
 <style id="clarity-mobile-unstick-banner">
 /* Mobile: never stick banner/nav — free page scroll */
 @media (max-width: 900px) {

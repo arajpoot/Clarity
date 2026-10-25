@@ -1,9 +1,10 @@
-# Dual shell v2 (integrity-preserving)
+# Landing rebuild v3
 
-## Landing
-Banner · LAST · dual paths · Do this today · Adhkār · Phase 0–9 cards · ribbon Hide
+## Single source of truth
+- `inline-clarity-shell-v3.js` — mode + ribbon + door rail only
+- `inline-clarity-landing-v3.js` — one paint: dual · Do this today · Adhkār
 
-## Companion
-Banner · LAST · ribbon Open daily routines · path bars · RRRA sections
+## No competing builders
+Old arch/day/practical modules removed from page load.
 
-JS-only placement — no permanent HTML surgery into content sections.
+Campus untouched. Educational only — not a fatwa.
