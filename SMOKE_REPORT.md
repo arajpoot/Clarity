@@ -1,19 +1,18 @@
-# Dual-shell recheck · confirmed
+# Smoke · integrity restore + dual shell v2
 
-## Landing (mode=landing)
-- Banner · LAST · dual paths · Do this today · Adhkār
-- Daily routines: 10 phases · 40 cards (P0–P9)
-- Path bars HIDDEN
-- DOM order: visit-bar → day-landing → daily-routines → reopen-bar
+Base: clarity-live-fix (clean companion)
+Added carefully (JS-only, no HTML surgery into sections):
+- inline-clarity-landing-arch-v2.js
+- inline-clarity-routines-90d-v1.js (Phase 0–9 · 40 cards)
 
-## Companion (mode=companion)
-- Landing + routines HIDDEN
-- Path bars + RRRA visible
-- Ribbon: Open Do this today
+## Landing
+- dual paths · Phase cards · Hide for now ribbon
+- disarrayAtTop: false · caught: []
 
-## Smoke
-- scripts: landing-day, landing-arch, routines-90d loaded
-- phases 10 · cards 40 · pathVisibleOnLanding false
+## Companion
+- Open daily routines ribbon visible
+- Reminder + track intact
+- landing/routines hidden
+- no SCALE/FORMAT export tools at top
 
-Subtitle updated to Phase 0–9.
-Educational only — not a fatwa.
+Campus untouched. Educational only — not a fatwa.

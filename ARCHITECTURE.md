@@ -1,20 +1,9 @@
-# Clarity shell architecture · 20261024
+# Dual shell v2 (integrity-preserving)
 
-## Landing (daily routines)
-1. Banner
-2. LAST visit bar
-3. Dual paths (Companion | University)
-4. Do this today
-5. Adhkār
-6. Daily return routine cards (Seeker / New Muslim / Daily / Daʿī / Review / Legacy)
-7. Ribbon: Hide for now → companion
+## Landing
+Banner · LAST · dual paths · Do this today · Adhkār · Phase 0–9 cards · ribbon Hide
 
-## Companion (deep learning)
-1. Banner
-2. LAST bar
-3. Ribbon: Open Do this today → landing
-4. Four learning path bars + RRRA sections + tools
+## Companion
+Banner · LAST · ribbon Open daily routines · path bars · RRRA sections
 
-Mode stored on-device: `clarity_shell_mode_v1` = landing | companion
-
-Campus `/campus/` linked only from University tile.
+JS-only placement — no permanent HTML surgery into content sections.

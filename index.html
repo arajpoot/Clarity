@@ -1,6 +1,4 @@
 <!DOCTYPE html><html data-theme="light" lang="en"><head>
-<script id="clarity-notesload-stub">window.notesLoad=window.notesLoad||function(){try{if(typeof window.__notesLoadReal==="function")return window.__notesLoadReal.apply(this,arguments);}catch(e){}};</script>
-
 
 <script id="clarity-lite-boot-shim">
 (function(){
@@ -1362,97 +1360,10 @@ html[data-theme="dark"] #callig-lab-card div[style*="background: linear"] {
 
 <link rel="stylesheet" href="assets/nuros-shariah-palette-collapse-v1.css" />
 
-<style id="clarity-landing-arch-css">
-#clarity-daily-routines .cdr-phase {
-  margin: 0.65rem 0 0.9rem;
-  padding: 0.55rem 0.15rem 0.15rem;
-  border-top: 1px solid rgba(184,146,42,0.22);
-}
-#clarity-daily-routines .cdr-phase:first-of-type { border-top: 0; }
-.cdr-phase-head {
-  display: flex; align-items: flex-start; gap: 0.55rem;
-  margin: 0 0 0.45rem;
-}
-.cdr-phase-num {
-  flex: 0 0 auto;
-  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
-  padding: 0.2rem 0.45rem; border-radius: 8px;
-  background: rgba(13,79,60,0.9); color: #f5faf7;
-}
-html[data-theme="light"] .cdr-phase-num,
-html[data-theme="day"] .cdr-phase-num { background: #0d4f3c; color: #fff; }
-.cdr-phase-meta { font-size: 0.78rem; opacity: 0.78; line-height: 1.35; margin-top: 0.15rem; }
-.cdr-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem; }
-.cdr-ref { font-size: 0.68rem; opacity: 0.65; }
-.cdr-card.is-done {
-  outline: 1px solid rgba(107,196,154,0.55);
-  box-shadow: inset 0 0 0 1px rgba(107,196,154,0.2);
-}
-.cdr-card.is-done h3::after { content: " · done"; font-size: 0.72rem; opacity: 0.7; font-weight: 600; }
-
-html[data-shell-mode="landing"] #path-board,
-html[data-shell-mode="landing"] .path-board,
-html[data-shell-mode="landing"] [data-path-board],
+<style id="clarity-shell-v2-css">
+/* Dual shell — careful, no content reordering */
 html[data-shell-mode="landing"] .shell-landing-hide {
   display: none !important;
-  visibility: hidden !important;
-  max-height: 0 !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-}
-
-/* Shell modes: landing (daily) vs companion (deep learning) */
-html[data-shell-mode="landing"] .shell-landing-hide,
-body[data-shell-mode="landing"] .shell-landing-hide {
-  display: none !important;
-}
-#clarity-daily-routines {
-  margin: 0.5rem 0.55rem 1rem;
-  display: grid;
-  gap: 0.55rem;
-}
-#clarity-daily-routines .cdr-head h2 {
-  margin: 0 0 0.2rem;
-  font-size: 1.05rem;
-  font-weight: 800;
-}
-#clarity-daily-routines .cdr-sub {
-  margin: 0 0 0.45rem;
-  opacity: 0.8;
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-.cdr-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 0.55rem;
-}
-.cdr-card {
-  border-radius: 14px;
-  border: 1px solid rgba(184,146,42,0.32);
-  background: linear-gradient(165deg, rgba(15,36,28,0.96), rgba(10,24,18,0.99));
-  color: #e8f0ea;
-  padding: 0.75rem 0.85rem;
-}
-html[data-theme="light"] .cdr-card,
-html[data-theme="day"] .cdr-card {
-  background: linear-gradient(165deg, #f4faf6, #e8f3ec);
-  color: #0c1a14;
-  border-color: #a8c9b6;
-}
-.cdr-card h3 { margin: 0 0 0.35rem; font-size: 0.95rem; font-weight: 800; }
-.cdr-card p { margin: 0 0 0.55rem; font-size: 0.82rem; line-height: 1.4; opacity: 0.92; }
-.cdr-cta {
-  border: 1px solid rgba(212,180,90,0.45);
-  background: rgba(212,180,90,0.12);
-  color: inherit;
-  border-radius: 999px;
-  padding: 0.28rem 0.7rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  cursor: pointer;
 }
 html[data-shell-mode="companion"] #clarity-day-landing,
 html[data-shell-mode="companion"] #clarity-daily-routines {
@@ -1462,88 +1373,97 @@ html[data-shell-mode="companion"] #clarity-daily-routines {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem;
-  margin: 0.35rem 0.55rem;
-  padding: 0.35rem 0.45rem;
+  gap: 0.4rem;
+  margin: 0.4rem 0.55rem;
+  padding: 0.4rem 0.55rem;
   border-radius: 12px;
-  border: 1px solid rgba(184,146,42,0.28);
-  background: rgba(15,36,28,0.06);
+  border: 1px solid rgba(184,146,42,0.35);
+  background: rgba(13,79,60,0.9);
+  color: #f5faf7;
+  z-index: 40;
+  position: relative;
 }
-html[data-theme="dark"] #clarity-reopen-bar {
-  background: rgba(255,255,255,0.04);
-}
-.crb-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.75; }
-.crb-btn {
-  border-radius: 999px;
-  border: 1px solid rgba(212,180,90,0.4);
-  background: rgba(212,180,90,0.15);
+html[data-shell-mode="landing"] #clarity-reopen-bar {
+  background: rgba(13,79,60,0.08);
   color: inherit;
-  padding: 0.25rem 0.65rem;
+}
+#clarity-reopen-bar .crb-label {
+  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.85;
+}
+#clarity-reopen-bar .crb-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.45);
+  background: rgba(212,180,90,0.2);
+  color: inherit;
+  padding: 0.28rem 0.7rem;
   font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
 }
-.crb-btn.crb-open { background: rgba(13,79,60,0.85); color: #f5faf7; border-color: rgba(13,79,60,0.9); }
-html[data-theme="light"] .crb-btn.crb-open,
-html[data-theme="day"] .crb-btn.crb-open {
-  background: #0d4f3c;
-  color: #fff;
+#clarity-reopen-bar .crb-open {
+  background: #c9a227;
+  color: #0c1a14;
+  border-color: #c9a227;
 }
-.crb-hint { font-size: 0.72rem; opacity: 0.65; }
-</style>
-
-
-<style id="clarity-reopen-ribbon-fix">
-/* Always-available return to daily landing */
-#clarity-reopen-bar {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  gap: 0.4rem !important;
-  position: relative !important;
-  z-index: 40 !important;
-  margin: 0.4rem 0.55rem 0.55rem !important;
-  padding: 0.45rem 0.55rem !important;
-  border-radius: 14px !important;
-  border: 1px solid rgba(184,146,42,0.4) !important;
-  background: linear-gradient(165deg, rgba(13,79,60,0.12), rgba(15,36,28,0.08)) !important;
-  clear: both !important;
-  order: 0 !important;
+#clarity-reopen-bar .crb-hint { font-size: 0.72rem; opacity: 0.75; }
+.dual-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  margin: 0.35rem 0 0.55rem;
 }
-html[data-theme="dark"] #clarity-reopen-bar {
-  background: linear-gradient(165deg, rgba(13,79,60,0.35), rgba(10,24,18,0.5)) !important;
-  border-color: rgba(212,180,90,0.45) !important;
+@media (max-width: 700px) {
+  .dual-tiles { grid-template-columns: 1fr; }
 }
-html[data-shell-mode="companion"] #clarity-reopen-bar {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 50 !important;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+.dual-tile {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 14px;
+  border: 1px solid rgba(184,146,42,0.28);
+  background: linear-gradient(165deg, rgba(244,250,246,0.95), rgba(232,243,236,0.98));
+  padding: 0.75rem 0.85rem;
 }
-html[data-shell-mode="companion"] #clarity-reopen-bar .crb-open {
-  display: inline-flex !important;
-  background: #0d4f3c !important;
-  color: #fff !important;
-  border-color: #0d4f3c !important;
-  font-weight: 800 !important;
-  padding: 0.35rem 0.85rem !important;
+html[data-theme="dark"] .dual-tile,
+html[data-theme="night"] .dual-tile {
+  background: linear-gradient(165deg, rgba(15,36,28,0.95), rgba(10,24,18,0.98));
+  color: #e8f0ea;
 }
-html[data-shell-mode="companion"] #clarity-reopen-bar .crb-hide {
-  display: none !important;
+.dual-tile strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.dual-tile span:last-child { font-size: 0.8rem; opacity: 0.85; line-height: 1.35; }
+#clarity-daily-routines {
+  margin: 0.5rem 0.55rem 1rem;
 }
-html[data-shell-mode="landing"] #clarity-reopen-bar .crb-open {
-  display: none !important;
+#clarity-daily-routines .cdr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.5rem;
 }
-html[data-shell-mode="landing"] #clarity-reopen-bar .crb-hide {
-  display: inline-flex !important;
+#clarity-daily-routines .cdr-card {
+  border-radius: 12px;
+  border: 1px solid rgba(184,146,42,0.28);
+  padding: 0.65rem 0.75rem;
+  background: rgba(15,36,28,0.04);
 }
-/* Path tiles must not cover ribbon */
-html[data-shell-mode="companion"] .shell-landing-hide { display: none !important; }
-#clarity-reopen-bar .crb-label { font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.7rem; opacity: 0.85; }
-#clarity-reopen-bar .crb-hint { font-size: 0.75rem; opacity: 0.7; }
+html[data-theme="dark"] #clarity-daily-routines .cdr-card {
+  background: rgba(255,255,255,0.04);
+  color: #e8f0ea;
+}
+#clarity-daily-routines .cdr-phase-head {
+  display: flex; gap: 0.5rem; align-items: flex-start; margin: 0.6rem 0 0.35rem;
+}
+#clarity-daily-routines .cdr-phase-num {
+  font-size: 0.7rem; font-weight: 800; padding: 0.15rem 0.4rem;
+  border-radius: 6px; background: #0d4f3c; color: #fff;
+}
+#clarity-daily-routines .cdr-cta {
+  border-radius: 999px; border: 1px solid rgba(212,180,90,0.4);
+  background: rgba(212,180,90,0.12); padding: 0.25rem 0.6rem;
+  font-size: 0.75rem; font-weight: 700; cursor: pointer; color: inherit;
+}
+#clarity-daily-routines .cdr-card.is-done {
+  outline: 1px solid rgba(107,196,154,0.5);
+}
 </style>
 
 </head><body data-active-tab="journey" data-section-fortress="1">
@@ -3707,7 +3627,99 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </div><!-- /tab-notes -->
 </main></div>
 
- <script src="assets/clarity-core-block-8.js" defer></script>
+ <script src="assets/clarity-core-block-8.js" defer></script>      try {
+            if (open) sessionStorage.setItem("nuros_daily_open", "1");
+            else sessionStorage.removeItem("nuros_daily_open");
+          } catch(e){}
+          relocate(open);
+        });
+      }
+
+      /* restore session */
+      try {
+        if (sessionStorage.getItem("nuros_daily_open") === "1") {
+          dock.classList.add("open");
+          if (tog) tog.setAttribute("aria-expanded", "true");
+          var ch = document.getElementById("daily-dock-chevron");
+          if (ch) ch.textContent = "▾";
+        }
+      } catch(e){}
+    } catch(e){ console.warn("placeChrome", e); }
+  }
+
+  function relocate(forceOpen){
+    var dock = document.getElementById("nuros-daily-dock");
+    var body = document.getElementById("nuros-daily-body");
+    if (!dock || !body) return;
+    var open = forceOpen === true || (forceOpen !== false && dock.classList.contains("open"));
+
+    DAILY_IDS.forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (el.parentNode !== body) {
+        try { body.appendChild(el); } catch(e){}
+      }
+      if (open) {
+        el.classList.remove("hidden");
+        el.removeAttribute("hidden");
+        el.style.cssText = "display:block!important;visibility:visible!important;position:relative!important;left:auto!important;width:100%!important;height:auto!important;opacity:1!important;pointer-events:auto!important;overflow:visible!important;max-height:none!important;";
+      } else {
+        el.classList.add("hidden");
+        el.style.cssText = "display:none!important;visibility:hidden!important;position:absolute!important;left:-9999px!important;height:0!important;opacity:0!important;pointer-events:none!important;";
+      }
+    });
+
+    /* hide clones left in tabs */
+    document.querySelectorAll(".tab-panel #clarity-today-surface, .tab-panel #clarity-learn-os, .tab-panel #path-board").forEach(function(n){
+      if (n.parentNode !== body) n.style.display = "none";
+    });
+  }
+
+  function applyThemeTokens(){
+    try {
+      var t = document.documentElement.getAttribute("data-theme");
+      if (!t || t === "system") {
+        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      }
+    } catch(e){}
+  }
+
+  function boot(){
+    applyThemeTokens();
+    placeChrome();
+    relocate(document.getElementById("nuros-daily-dock") && document.getElementById("nuros-daily-dock").classList.contains("open"));
+  }
+
+  function multi(){
+    boot();
+    [60, 180, 400, 900, 1800].forEach(function(ms){ setTimeout(boot, ms); });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", multi);
+  else multi();
+  window.addEventListener("load", function(){ setTimeout(boot, 120); });
+
+  try {
+    var mo = new MutationObserver(function(){
+      var dock = document.getElementById("nuros-daily-dock");
+      if (!dock || dock.classList.contains("open")) return;
+      DAILY_IDS.forEach(function(id){
+        var el = document.getElementById(id);
+        if (!el) return;
+        var body = document.getElementById("nuros-daily-body");
+        if (body && el.parentNode !== body) {
+          try { body.appendChild(el); } catch(e){}
+        }
+        if (getComputedStyle(el).display !== "none") {
+          el.style.display = "none";
+        }
+      });
+    });
+    mo.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ["class", "style"] });
+  } catch(e){}
+})();
+</script>
 
 <style id="nx-min">
 #banner-live-chip{position:absolute;top:.4rem;right:.45rem;z-index:8;background:#c81e1e;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.2rem .65rem;font-size:.72rem;font-weight:700;display:inline-flex;align-items:center;gap:.25rem}
@@ -3720,7 +3732,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </style>
 
 <link id="nx-tajweed-deep-studio-v1" rel="stylesheet" href="assets/nx-tajweed-deep-studio-v1.css" />
-<script id="nx-tajweed-deep-studio-js-v1" src="assets/companion-inline/inline-nx-tajweed-deep-studio-js-v1.js" defer></script>
+<script id="nx-tajweed-deep-studio-js-v1" src="assets/nx-tajweed-deep-studio-js-v1.js" defer></script>
 
 <style id="nx-tj-rule-media-v1">
 .tj-media-row {
@@ -3828,7 +3840,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 html[data-theme="dark"] .tj-lmr-ayah-card { background: rgba(0,0,0,0.22); }
 html[data-theme="dark"] .tj-lmr-step { background: rgba(255,255,255,0.06) !important; }
 </style>
-<script id="nx-tj-lmr-js-v1" src="assets/companion-inline/nx-tj-lmr-js-v1.js" defer></script>
+<script id="nx-tj-lmr-js-v1" src="assets/nx-tj-lmr-js-v1.js" defer></script>
 
 <style id="nx-tj-lmr-score-v1">
 .tj-lmr-mode-row {
@@ -3929,7 +3941,7 @@ html[data-theme="dark"] .callig-text-bridge-solid input[type="text"]{
 .tj-lmr-live-meter .meter-fill{height:100%;width:0%;background:linear-gradient(90deg,#0d4f3c,#1fa67a,#7dff9a);border-radius:999px;transition:width 0.08s linear}
 .tj-lmr-live-meter.recording .meter-label{color:#c81e1e}
 </style>
-<script id="nuros-bridge-enrich-js" src="assets/companion-inline/inline-nuros-bridge-enrich-js.js" defer></script>
+<script id="nuros-bridge-enrich-js" src="assets/nuros-bridge-enrich-js.js" defer></script>
 
 <style id="nuros-pad-layout-v1">
 #callig-top-audio-row{display:flex;flex-wrap:wrap;gap:0.35rem;align-items:center}
@@ -4865,7 +4877,7 @@ iframe#banner-live {
 })();
 </script>
 
-<script id="clarity-full-surah-recitation-v1" src="assets/companion-inline/inline-clarity-full-surah-recitation-v1.js" defer></script>
+<script id="clarity-full-surah-recitation-v1" src="assets/clarity-full-surah-recitation-v1.js" defer></script>
 
 <script id="clarity-embed-fold-viewport-v1">
 (function(){
@@ -5174,7 +5186,7 @@ iframe#banner-live {
 })();
 </script>
 
-<script id="clarity-amana-vault-gate-js-v1" src="assets/companion-inline/inline-clarity-amana-vault-gate-js-v1.js" defer></script>
+<script id="clarity-amana-vault-gate-js-v1" src="assets/clarity-amana-vault-gate-js-v1.js" defer></script>
 
 <script id="clarity-tab-persist-v1">
 (function(){
@@ -5759,9 +5771,13 @@ html[data-theme="dark"] #tab-reminder.active #callig-lab-card h2::after { conten
 })();
 </script>
 
-<script src="assets/companion-inline/inline-clarity-track-os-v3.js" defer></script>
-<script src="assets/companion-inline/inline-clarity-seerah-revamp-js.js" defer></script>
-<script src="assets/companion-inline/inline-nuros-amana-vault-js.js" defer></script>
+<script src="assets/clarity-track-os-v3.js" defer></script>
+<script src="assets/clarity-seerah-revamp-js.js" defer></script>
+<script src="assets/nuros-amana-vault-js.js" defer></script>
+
+<script src="assets/companion-inline/inline-clarity-landing-arch-v2.js" defer></script>
+<script src="assets/companion-inline/inline-clarity-routines-90d-v1.js" defer></script>
+
 </body>
 </html>
 <script id="clarity-surah-continue-v1">
@@ -5895,7 +5911,7 @@ html[data-theme="dark"] #meme-studio-root .meme-bar-bg {
 
 </body>
 
-<script id="clarity-meme-canvas-clean-v1" src="assets/companion-inline/inline-clarity-meme-canvas-clean-v1.js" defer></script>
+<script id="clarity-meme-canvas-clean-v1" src="assets/clarity-meme-canvas-clean-v1.js" defer></script>
 
 <script id="clarity-meme-push-cards-v1">
 (function(){
@@ -5985,7 +6001,7 @@ html[data-theme="dark"] #meme-studio-root .meme-bar-bg {
 })();
 </script>
 
-<script id="clarity-amana-vault-secure-login-v1" src="assets/companion-inline/inline-clarity-amana-vault-secure-login-v1.js" defer></script>
+<script id="clarity-amana-vault-secure-login-v1" src="assets/clarity-amana-vault-secure-login-v1.js" defer></script>
 
 <script id="clarity-amana-backup-guidance-v1">
 (function(){
@@ -6753,7 +6769,7 @@ body.amana-unlocked #uft-stage,
   });
 })();
 </script>
-<script id="clarity-notes-recovery-v1" src="assets/companion-inline/clarity-notes-recovery-v1.js" defer></script>
+<script id="clarity-notes-recovery-v1" src="assets/clarity-notes-recovery-v1.js" defer></script>
 
 <script id="clarity-uft-full-restore-v1" src="assets/clarity-uft-full-restore-v1.js" defer></script>
 
@@ -6807,7 +6823,7 @@ body.amana-unlocked #uft-stage,
 })();
 </script>
 
-<script id="clarity-meme-online-bg-v1" src="assets/companion-inline/inline-clarity-meme-online-bg-v1.js" defer></script>
+<script id="clarity-meme-online-bg-v1" src="assets/clarity-meme-online-bg-v1.js" defer></script>
 
 <script id="clarity-online-sitewide-v1">
 (function(){
@@ -7442,28 +7458,14 @@ function ensureBar(){
 }
 
 function placeBar(bar){
-  /* UNDER banner, ABOVE dual-path / day landing — not inside banner */
-  var banner = document.querySelector("#clarity-top-duo .banner, .banner, #clarity-top-duo");
-  var landing = document.getElementById("clarity-day-landing");
-  if (banner && banner.parentNode) {
-    if (landing && landing.parentNode === banner.parentNode) {
-      banner.parentNode.insertBefore(bar, landing);
-    } else if (banner.nextSibling) {
-      banner.parentNode.insertBefore(bar, banner.nextSibling);
-    } else {
-      banner.parentNode.appendChild(bar);
-    }
+  /* Keep stitched to lower edge INSIDE .banner */
+  var banner = document.querySelector("#clarity-top-duo .banner, .banner");
+  if (banner) {
+    if (bar.parentNode !== banner) banner.appendChild(bar);
     return;
   }
   var duo = document.getElementById("clarity-top-duo");
-  if (duo && duo.parentNode) {
-    if (duo.nextSibling) duo.parentNode.insertBefore(bar, duo.nextSibling);
-    else duo.parentNode.appendChild(bar);
-    return;
-  }
-  var main = document.getElementById("main-content") || document.body;
-  if (landing && landing.parentNode) landing.parentNode.insertBefore(bar, landing);
-  else main.insertBefore(bar, main.firstChild);
+  if (duo) { duo.appendChild(bar); return; }
 }
 
 function render(){
@@ -7701,7 +7703,7 @@ html[data-theme="dark"] .banner #clarity-visit-pill-bar {
   background: rgba(10,24,18,0.95);
 }
 </style>
-<script id="clarity-gate-switcher-js-v1" src="assets/companion-inline/inline-clarity-gate-switcher-js-v1.js" defer></script>
+<script id="clarity-gate-switcher-js-v1" src="assets/clarity-gate-switcher-js-v1.js" defer></script>
 
 <script id="clarity-final-security-sweep-v1">
 (function(){
@@ -7857,9 +7859,9 @@ html[data-theme="dark"] #clarity-path-quiz-modal .cpq-opt {
 .cgs-btn.path-locked { opacity: 0.5; }
 .cgs-btn.path-locked::after { content: " 🔒"; font-size: 0.65rem; }
 </style>
-<script id="clarity-path-progress-v1" src="assets/companion-inline/inline-clarity-path-progress-v1.js" defer></script>
+<script id="clarity-path-progress-v1" src="assets/clarity-path-progress-v1.js" defer></script>
 
-<script id="clarity-modules-repair-v1" src="assets/companion-inline/inline-clarity-modules-repair-v1.js" defer></script>
+<script id="clarity-modules-repair-v1" src="assets/clarity-modules-repair-v1.js" defer></script>
 
 
 <script id="clarity-vault-tree-security-v1">
@@ -9070,7 +9072,7 @@ html[data-theme="dark"] #dai-transmit-card {
 html[data-theme="dark"] .gpc-note { background: rgba(40,36,24,0.9); color: #e8e0d0; border-color: rgba(212,180,90,0.3); }
 html[data-theme="dark"] .gpc-links a { background: rgba(212,180,90,0.12); color: #e8d48a; border-color: rgba(212,180,90,0.3); }
 </style>
-<script id="clarity-grave-path-curriculum-js" src="assets/companion-inline/inline-clarity-grave-path-curriculum-js.js" defer></script>
+<script id="clarity-grave-path-curriculum-js" src="assets/clarity-grave-path-curriculum-js.js" defer></script>
 
 
 <style id="clarity-banner-nuclear-css">
@@ -9456,7 +9458,7 @@ html[data-theme="day"] .meter-track {
   font-weight: 600;
 }
 </style>
-<script id="clarity-tj-meme-tweet-revamp-js" src="assets/companion-inline/inline-clarity-tj-meme-tweet-revamp-js.js" defer></script>
+<script id="clarity-tj-meme-tweet-revamp-js" src="assets/clarity-tj-meme-tweet-revamp-js.js" defer></script>
 
 
 <style id="clarity-companion-polish-v1">
@@ -9953,13 +9955,7 @@ html[data-theme="light"] #clarity-reopen-bar, html[data-theme="day"] #clarity-re
 #main-application-workspace { display: flex; flex-direction: column; }
 #clarity-day-landing { flex-shrink: 0; }
 </style>
-<script id="clarity-landing-day-js" src="assets/companion-inline/inline-clarity-landing-day-js.js" defer></script>
-<script src="assets/companion-inline/inline-clarity-dhikr-rail-v2.js" defer></script>
-<script src="assets/companion-inline/inline-clarity-landing-arch-v1.js" defer></script>
-<script src="assets/companion-inline/inline-clarity-routines-90d-v1.js" defer></script>
-
-
-
+<script id="clarity-landing-day-js" src="assets/clarity-landing-day-js.js" defer></script>
 
 
 <style id="clarity-mobile-unstick-banner">
@@ -10188,211 +10184,6 @@ html[data-theme="light"] #clarity-reopen-bar, html[data-theme="day"] #clarity-re
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
   window.addEventListener("load", function(){ setTimeout(boot, 400); });
-})();
-</script>
-
-
-<style id="clarity-scroll-unlock-v2">
-/* Nuclear: page always scrolls */
-html, body {
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  height: auto !important;
-  min-height: 100% !important;
-  max-height: none !important;
-  position: static !important;
-  overscroll-behavior-y: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  touch-action: pan-y !important;
-}
-#clarity-welcome.show,
-#clarity-welcome[aria-hidden="false"] {
-  /* modal can cover, but body still scrolls underneath if needed */
-  pointer-events: auto;
-}
-#main-application-workspace,
-.main-content,
-#main-content,
-.page-wrapper,
-#clarity-app-root {
-  overflow: visible !important;
-  height: auto !important;
-  max-height: none !important;
-  min-height: 0 !important;
-}
-</style>
-<script id="clarity-scroll-unlock-js-v2">
-(function(){
-  "use strict";
-  if (window.__CLARITY_SCROLL_UNLOCK_V2__) return;
-  window.__CLARITY_SCROLL_UNLOCK_V2__ = true;
-
-  function unlock(){
-    try {
-      var root = document.documentElement;
-      var body = document.body;
-      if (!body) return;
-      root.style.setProperty("overflow-y", "auto", "important");
-      root.style.setProperty("overflow-x", "hidden", "important");
-      root.style.setProperty("height", "auto", "important");
-      root.style.setProperty("position", "static", "important");
-      body.style.setProperty("overflow-y", "auto", "important");
-      body.style.setProperty("overflow-x", "hidden", "important");
-      body.style.setProperty("height", "auto", "important");
-      body.style.setProperty("position", "static", "important");
-      body.style.removeProperty("touch-action");
-      // Dismiss stuck welcome if already seen
-      try {
-        var seen = localStorage.getItem("clarity_welcome_seen_v2");
-        var wel = document.getElementById("clarity-welcome");
-        if (seen === "1" && wel) {
-          wel.classList.remove("show");
-          wel.setAttribute("aria-hidden", "true");
-          wel.style.display = "none"; wel.style.pointerEvents = "none";
-        }
-      } catch(e){}
-    } catch(e){}
-  }
-
-  unlock();
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", unlock);
-  window.addEventListener("load", unlock);
-  setInterval(unlock, 2000);
-  // Re-unlock after any potential modal open
-  document.addEventListener("click", function(){ setTimeout(unlock, 50); }, true);
-})();
-</script>
-
-
-<style id="clarity-dual-stack-fix">
-/* Dual path tiles ABOVE Do this today — no overlap */
-#clarity-day-landing {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  gap: 0.65rem !important;
-  position: relative !important;
-  z-index: 5 !important;
-  margin: 0.5rem 0.55rem 0.85rem !important;
-  overflow: visible !important;
-  clear: both !important;
-}
-#clarity-day-landing .dual-tiles {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 0.55rem !important;
-  width: 100% !important;
-  position: relative !important;
-  z-index: 2 !important;
-  margin: 0 0 0.15rem 0 !important;
-  float: none !important;
-  clear: both !important;
-}
-#clarity-day-landing .cdl-card,
-#clarity-day-landing #cdl-today,
-#clarity-day-landing #cdl-adhkar {
-  position: relative !important;
-  z-index: 1 !important;
-  margin-top: 0 !important;
-  clear: both !important;
-  float: none !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-@media (max-width: 640px) {
-  #clarity-day-landing .dual-tiles {
-    grid-template-columns: 1fr !important;
-  }
-}
-</style>
-
-
-<style id="clarity-visit-bar-stack-fix">
-/* Last-visited bar: under banner, above dual paths / day landing */
-#clarity-visit-pill-bar {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  gap: 0.3rem !important;
-  position: relative !important;
-  z-index: 12 !important;
-  width: auto !important;
-  max-width: 100% !important;
-  margin: 0.35rem 0.55rem 0.45rem !important;
-  padding: 0.35rem 0.45rem !important;
-  border-radius: 12px !important;
-  box-sizing: border-box !important;
-  clear: both !important;
-  float: none !important;
-  /* not fixed over dual tiles */
-  top: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-  right: auto !important;
-  transform: none !important;
-}
-.banner #clarity-visit-pill-bar {
-  /* if still inside banner, force out of absolute overlay */
-  position: relative !important;
-  margin-top: 0.35rem !important;
-}
-#clarity-day-landing {
-  order: 2;
-  clear: both !important;
-}
-#clarity-visit-pill-bar {
-  order: 1;
-}
-</style>
-
-
-
-<script id="clarity-visit-bar-rehome-js">
-(function(){
-  "use strict";
-  if (window.__CLARITY_VISIT_BAR_REHOME_V2__) return;
-  window.__CLARITY_VISIT_BAR_REHOME_V2__ = true;
-
-  function rehome(){
-    var bar = document.getElementById("clarity-visit-pill-bar");
-    if (!bar) return;
-    var banner = document.querySelector("#clarity-top-duo .banner, .banner");
-    var duo = document.getElementById("clarity-top-duo");
-    var landing = document.getElementById("clarity-day-landing");
-    var anchor = duo || banner;
-    if (!anchor || !anchor.parentNode) return;
-
-    // Always place as sibling AFTER duo/banner, BEFORE landing
-    var parent = anchor.parentNode;
-    if (landing && landing.parentNode === parent) {
-      if (bar.parentNode !== parent || bar.nextSibling !== landing) {
-        parent.insertBefore(bar, landing);
-      }
-    } else {
-      if (bar.parentNode !== parent || anchor.nextSibling !== bar) {
-        if (anchor.nextSibling) parent.insertBefore(bar, anchor.nextSibling);
-        else parent.appendChild(bar);
-      }
-    }
-    bar.style.position = "relative";
-    bar.style.top = "auto";
-    bar.style.zIndex = "12";
-  }
-
-  // Override placeBar if section pills defines it later
-  function patchPlaceBar(){
-    try {
-      // wrap ensure by observing DOM
-      var obs = new MutationObserver(function(){ rehome(); });
-      obs.observe(document.documentElement, { childList: true, subtree: true });
-    } catch(e){}
-    rehome();
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", patchPlaceBar);
-  else patchPlaceBar();
-  window.addEventListener("load", function(){ rehome(); setTimeout(rehome, 300); setTimeout(rehome, 1000); setTimeout(rehome, 2500); });
-  setInterval(rehome, 2000);
 })();
 </script>
 
