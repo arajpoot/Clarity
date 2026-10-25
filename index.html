@@ -1562,6 +1562,20 @@ html { font-display: swap; }
 img { max-width: 100%; height: auto; }
 </style>
 
+
+<style id="clarity-companion-loading-css">
+html[data-companion-loading="1"] #main-content::before {
+  content: "Loading companion tools…";
+  display: block;
+  padding: 1rem 1.1rem;
+  margin: 0.5rem 0.55rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(184,146,42,0.4);
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
@@ -3723,7 +3737,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </div><!-- /tab-notes -->
 </main></div>
 
- <!-- lazy:assets/clarity-core-block-8.js -->
+ 
 <style id="nx-min">
 #banner-live-chip{position:absolute;top:.4rem;right:.45rem;z-index:8;background:#c81e1e;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.2rem .65rem;font-size:.72rem;font-weight:700;display:inline-flex;align-items:center;gap:.25rem}
 .banner-tools{position:relative}
@@ -5774,7 +5788,7 @@ html[data-theme="dark"] #tab-reminder.active #callig-lab-card h2::after { conten
 })();
 </script>
 
-<!-- lazy:assets/clarity-track-os-v3.js -->
+
 <!-- lazy:assets/clarity-seerah-revamp-js.js -->
 <!-- lazy:assets/nuros-amana-vault-js.js -->
 
@@ -5800,19 +5814,25 @@ html[data-theme="dark"] #tab-reminder.active #callig-lab-card h2::after { conten
 </script>
 
 
+
+<script src="assets/clarity-core-block-8.js" defer></script>
+<script src="assets/clarity-track-os-v3.js" defer></script>
+<script src="assets/clarity-modules-repair-v1.js" defer></script>
+<script src="assets/clarity-path-progress-v1.js" defer></script>
+<script src="assets/clarity-gate-switcher-js-v1.js" defer></script>
 <script id="clarity-perf-loader-v1">
 (function(){
   "use strict";
   if (window.__CLARITY_PERF_LOADER__) return;
   window.__CLARITY_PERF_LOADER__ = true;
+
   var QUEUE = [
-  "assets/clarity-core-block-8.js",
+  "assets/clarity-grave-path-curriculum-js.js",
   "assets/nx-tajweed-deep-studio-js-v1.js",
   "assets/nx-tj-lmr-js-v1.js",
   "assets/nuros-bridge-enrich-js.js",
   "assets/clarity-full-surah-recitation-v1.js",
   "assets/clarity-amana-vault-gate-js-v1.js",
-  "assets/clarity-track-os-v3.js",
   "assets/clarity-seerah-revamp-js.js",
   "assets/nuros-amana-vault-js.js",
   "assets/clarity-meme-canvas-clean-v1.js",
@@ -5820,43 +5840,81 @@ html[data-theme="dark"] #tab-reminder.active #callig-lab-card h2::after { conten
   "assets/clarity-notes-recovery-v1.js",
   "assets/clarity-uft-full-restore-v1.js",
   "assets/clarity-meme-online-bg-v1.js",
-  "assets/clarity-gate-switcher-js-v1.js",
-  "assets/clarity-path-progress-v1.js",
-  "assets/clarity-modules-repair-v1.js",
-  "assets/clarity-grave-path-curriculum-js.js",
   "assets/clarity-tj-meme-tweet-revamp-js.js"
-  ];
-  var loaded = false;
+];
+  var state = "idle"; // idle | loading | ready
+  var waiters = [];
+
   function loadOne(src){
     return new Promise(function(resolve){
+      // skip if already present
+      var existing = document.querySelector('script[src="' + src + '"]');
+      if (existing) { resolve(); return; }
       var s = document.createElement("script");
       s.src = src;
-      s.async = true;
-      s.onload = s.onerror = function(){ resolve(); };
+      s.async = false; // preserve order for core deps
+      s.onload = function(){ resolve(); };
+      s.onerror = function(){ resolve(); };
       document.head.appendChild(s);
     });
   }
+
+  function afterReady(){
+    state = "ready";
+    try {
+      document.documentElement.setAttribute("data-companion-ready", "1");
+      document.dispatchEvent(new CustomEvent("clarity:companion-ready"));
+    } catch (e) {}
+    try {
+      if (window.ClarityShell && typeof ClarityShell.apply === "function") ClarityShell.apply();
+    } catch (e) {}
+    try {
+      var main = document.getElementById("main-content");
+      if (main) {
+        main.style.setProperty("display", "block", "important");
+        main.removeAttribute("aria-hidden");
+      }
+      // If core is present, open reminder hub so content is visible
+      if (typeof window.switchTab === "function") {
+        try { window.switchTab("reminder"); } catch (e2) {}
+      }
+    } catch (e) {}
+    waiters.splice(0).forEach(function(fn){ try { fn(); } catch (e) {} });
+  }
+
   function loadAll(){
-    if (loaded) return Promise.resolve();
-    loaded = true;
+    if (state === "ready") return Promise.resolve();
+    if (state === "loading") {
+      return new Promise(function(resolve){ waiters.push(resolve); });
+    }
+    state = "loading";
+    document.documentElement.setAttribute("data-companion-ready", "0");
     var chain = Promise.resolve();
     QUEUE.forEach(function(src){
       chain = chain.then(function(){ return loadOne(src); });
     });
-    return chain;
+    return chain.then(function(){
+      afterReady();
+    });
   }
-  // Expose for shell when opening companion
+
   window.ClarityLoadCompanion = loadAll;
-  // After first paint + idle, start loading heavy modules in background
+  window.ClarityCompanionReady = function(){ return state === "ready"; };
+
+  // Background warm on idle (optional)
   function schedule(){
-    if (window.requestIdleCallback) {
-      requestIdleCallback(function(){ loadAll(); }, { timeout: 4000 });
-    } else {
-      setTimeout(loadAll, 2500);
-    }
+    var warm = function(){
+      // only warm if still on landing after a few seconds
+      try {
+        if (document.documentElement.getAttribute("data-shell-mode") === "companion") loadAll();
+        else if (window.requestIdleCallback) requestIdleCallback(function(){ loadAll(); }, { timeout: 8000 });
+        else setTimeout(loadAll, 5000);
+      } catch (e) { setTimeout(loadAll, 5000); }
+    };
+    if (document.readyState === "complete") warm();
+    else window.addEventListener("load", warm);
   }
-  if (document.readyState === "complete") schedule();
-  else window.addEventListener("load", schedule);
+  schedule();
 })();
 </script>
 
@@ -7789,7 +7847,7 @@ html[data-theme="dark"] .banner #clarity-visit-pill-bar {
   background: rgba(10,24,18,0.95);
 }
 </style>
-<!-- lazy:assets/clarity-gate-switcher-js-v1.js -->
+
 
 <script id="clarity-final-security-sweep-v1">
 (function(){
@@ -7945,9 +8003,9 @@ html[data-theme="dark"] #clarity-path-quiz-modal .cpq-opt {
 .cgs-btn.path-locked { opacity: 0.5; }
 .cgs-btn.path-locked::after { content: " 🔒"; font-size: 0.65rem; }
 </style>
-<!-- lazy:assets/clarity-path-progress-v1.js -->
 
-<!-- lazy:assets/clarity-modules-repair-v1.js -->
+
+
 
 
 <script id="clarity-vault-tree-security-v1">
