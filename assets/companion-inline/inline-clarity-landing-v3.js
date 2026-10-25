@@ -29,13 +29,16 @@
 
   var ADHKAR = {
     morning: [
+      { ar: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذَا الْيَوْمِ فَتْحَهُ وَنَصْرَهُ وَنُورَهُ وَبَرَكَتَهُ وَهُدَاهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهِ وَشَرِّ مَا بَعْدَهُ",
+        en: "We have entered the morning and the dominion belongs to Allah, Lord of the worlds. O Allah, I ask You for the good of this day—its opening, victory, light, blessing, and guidance—and I seek refuge in You from the evil in it and the evil after it.",
+        ref: "Abū Dāwūd 5084 · educational wording; verify full isnād", target: 1 },
       { ar: "اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",
         en: "O Allah, by You we enter the morning and by You the evening, by You we live and die, and to You is the resurrection.",
-        ref: "Tirmidhī 3391 · educational", target: 1 },
+        ref: "Tirmidhī 3391 · Abū Dāwūd 5068 · educational", target: 1 },
       { ar: "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
         en: "In the name of Allah, with whose name nothing on earth or in the heaven can cause harm, and He is the All-Hearing, the All-Knowing.",
-        ref: "Abū Dāwūd 5088 · often 3× · educational", target: 3 },
-      { ar: "رَضِيتُ بِاللَّهِ رَبًّا وَبِالْإِسْلَامِ دِينًا وَبِمُحَمَّدٍ ﷺ نَبِيًّا",
+        ref: "Abū Dāwūd 5088 · Tirmidhī 3388 · often 3× · educational", target: 3 },
+      { ar: "رَضِيتُ بِاللَّهِ رَبًّا وَبِالْإِسْلَامِ دِينًا وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا",
         en: "I am pleased with Allah as Lord, with Islam as religion, and with Muhammad ﷺ as Prophet.",
         ref: "Abū Dāwūd 5072 · educational", target: 3 },
       { ar: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
@@ -43,9 +46,15 @@
         ref: "Muslim 2691 · often 100× · educational", target: 100 },
       { ar: "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",
         en: "I seek Allah’s forgiveness and turn to Him in repentance.",
-        ref: "Bukhārī 6307 · educational", target: 100 }
+        ref: "Bukhārī 6307 · educational", target: 100 },
+      { ar: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+        en: "O Allah, You are my Lord; there is no god but You. You created me and I am Your servant. I try to keep Your covenant and promise as much as I can. I seek refuge in You from the evil of what I have done. I acknowledge Your favour on me and I acknowledge my sin, so forgive me, for none forgives sins but You.",
+        ref: "Bukhārī 6306 · Sayyid al-istighfār · educational", target: 1 }
     ],
     evening: [
+      { ar: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذِهِ اللَّيْلَةِ فَتَهَا وَنَصْرَهَا وَنُورَهَا وَبَرَكَتَهَا وَهُدَاهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهَا وَشَرِّ مَا بَعْدَهَا",
+        en: "We have entered the evening and the dominion belongs to Allah, Lord of the worlds. O Allah, I ask You for the good of this night—its opening, victory, light, blessing, and guidance—and I seek refuge in You from the evil in it and the evil after it.",
+        ref: "Abū Dāwūd 5084 · educational wording; verify full isnād", target: 1 },
       { ar: "اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ",
         en: "O Allah, by You we enter the evening and by You the morning, by You we live and die, and to You is the return.",
         ref: "Tirmidhī 3391 · educational", target: 1 },
@@ -60,7 +69,10 @@
         ref: "Muslim 2691 · educational", target: 100 },
       { ar: "اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ",
         en: "O Allah, protect me from Your punishment on the Day You resurrect Your servants.",
-        ref: "Abū Dāwūd 5045 · educational", target: 3 }
+        ref: "Abū Dāwūd 5045 · educational", target: 3 },
+      { ar: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+        en: "O Allah, You are my Lord; there is no god but You. You created me and I am Your servant… forgive me, for none forgives sins but You.",
+        ref: "Bukhārī 6306 · Sayyid al-istighfār · educational", target: 1 }
     ]
   };
 
