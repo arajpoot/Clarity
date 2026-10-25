@@ -94,6 +94,9 @@
       });
     }
     applyDoorRail(m);
+    if (m === "companion" && typeof window.ClarityLoadCompanion === "function") {
+      try { window.ClarityLoadCompanion(); } catch (e) {}
+    }
     // main-content-hide
     var main = document.getElementById("main-content") || document.querySelector(".main-content");
     if (main) {
