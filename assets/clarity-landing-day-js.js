@@ -3,6 +3,7 @@
   "use strict";
   if (window.__CLARITY_LANDING_DAY_V2__) return;
   window.__CLARITY_LANDING_DAY_V2__ = true;
+  var __landPainted = false;
 
   var KEY_PROV = "clarity_provision_day_v1";
   var KEY_TAS = "clarity_cph_tasbeeh_v1";
@@ -58,11 +59,18 @@
     trackContinue(id,"tab-"+id);
   }
 
-  function buildLanding(){
+  function buildLanding(force){
     /* Dedup: only one landing */
     document.querySelectorAll("#clarity-day-landing").forEach(function(el,i){ if(i>0) el.remove(); });
     document.querySelectorAll("#clarity-reopen-bar").forEach(function(el,i){ if(i>0) el.remove(); });
-    if (document.getElementById("clarity-day-landing")) return;
+    var _ex = document.getElementById("clarity-day-landing");
+    if (_ex && _ex.querySelector("#cdl-today") && _ex.querySelector("#cdl-adhkar")) {
+      window.__CDL_BUILT__ = true;
+      return;
+    }
+    if (_ex && !_ex.querySelector("#cdl-today")) { try { _ex.remove(); } catch(e) {} }
+    if (window.__CDL_BUILT__ && !force) return;
+    window.__CDL_BUILT__ = true;
 
     var prov=todayProvision(), tas=tasState();
     var pack=isEvening()?ADHKAR.evening:ADHKAR.morning;
@@ -154,7 +162,8 @@
   }
 
   function boot(){ try{ buildLanding(); }catch(e){ console.warn("[landing]",e); } }
-  if (document.readyState==="loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot,120); });
-  else setTimeout(boot,120);
-  window.addEventListener("load", function(){ setTimeout(boot,400); });
+  if (document.readyState==="loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 80); });
+  else setTimeout(boot, 80);
+  /* single load fallback only if not built */
+  window.addEventListener("load", function(){ if (!window.__CDL_BUILT__) setTimeout(boot, 100); });
 })();
