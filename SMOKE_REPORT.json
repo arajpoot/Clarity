@@ -1,16 +1,19 @@
 {
-  "build": "20261025-final-smoked-polished",
+  "build": "20261025-final-sim-g",
   "js_syntax_errors": 0,
-  "js_files": 72,
+  "js_files": 73,
   "script_refs_missing": 0,
   "campus_touched": false,
   "smokes": {
+    "files_present": "PASS",
+    "js_syntax": "PASS",
     "theme_stub": "PASS",
-    "shariah_guard_block_allow": "PASS",
-    "core_early_load": "PASS",
-    "landing_v5_markers": "PASS",
-    "centering_css": "PASS",
-    "campus_isolation": "PASS",
-    "final_sandbox": "PASS"
+    "shariah_guard": "PASS",
+    "core_load": "PASS",
+    "moon_module": "PASS",
+    "salah_parse_asr_1545": "PASS",
+    "no_fake_1630_fallback": "PASS",
+    "path_icons": "PASS",
+    "landing_v5": "PASS"
   }
 }
