@@ -263,7 +263,42 @@
 #clarity-grave-path-strip h2,#grave-path-card h2{color:#f3e6c0;font-size:1.15rem;margin:.2rem 0}
 </style>
 <link rel="stylesheet" href="assets/clarity-adhkar-v1.css"/>
-</head><body data-active-tab="journey" data-section-fortress="1">
+</head><body>
+
+<div id="clarity-first-gate" class="cfg-overlay" hidden>
+  <div class="cfg-card">
+    <p class="cfg-kicker">First step · this device only</p>
+    <h1>Furnish the grave. Choose a door.</h1>
+    <p class="cfg-lead">Two paths. You can change later. Not a fatwa.</p>
+    <div class="cfg-grid">
+      <button type="button" class="cfg-door" data-path="seeker">
+        <span>🔍</span>
+        <strong>I am curious about Islam</strong>
+        <small>Who Allah is, the testimony, why we are here.</small>
+      </button>
+      <button type="button" class="cfg-door" data-path="practicing">
+        <span>📿</span>
+        <strong>I am already Muslim</strong>
+        <small>Daily salah, adhkār, and the learning path.</small>
+      </button>
+    </div>
+    <button type="button" id="cfg-skip" class="cfg-skip">Skip to the learning path</button>
+  </div>
+</div>
+<style id="cfg-css">
+.cfg-overlay{position:fixed;inset:0;z-index:80;background:rgba(8,14,12,.92);display:flex;align-items:center;justify-content:center;padding:1rem}
+.cfg-card{max-width:36rem;background:#152019;border:1px solid rgba(212,180,90,.35);border-radius:18px;padding:1.1rem 1.2rem;color:#e7efe9}
+.cfg-kicker{letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;color:#d4b45a;margin:0}
+.cfg-card h1{font-size:1.35rem;color:#f3e6c0;margin:.35rem 0}
+.cfg-lead{opacity:.85;margin:0 0 .8rem}
+.cfg-grid{display:grid;gap:.6rem}
+@media(min-width:640px){.cfg-grid{grid-template-columns:1fr 1fr}}
+.cfg-door{text-align:left;background:#0c1410;color:#e7efe9;border:1px solid rgba(212,180,90,.3);border-radius:14px;padding:.8rem;cursor:pointer}
+.cfg-door strong{display:block;margin:.2rem 0}
+.cfg-door small{opacity:.8}
+.cfg-skip{margin-top:.8rem;background:transparent;color:#e0c56a;border:0;font-weight:700;cursor:pointer}
+</style>
+ data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js" src="assets/companion-inline/inline-nuros-null-guard-js.js" defer></script>
 
@@ -2268,6 +2303,28 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="assets/clarity-path-progress-v1.js" defer></script>
 <script src="assets/clarity-grave-path-curriculum-js.js" defer></script>
 <script src="assets/clarity-adhkar-card-v1.js" defer></script>
+
+<script id="clarity-first-gate-js">
+(function(){
+  var KEY="clarity_landing_gate_v1";
+  var el=document.getElementById("clarity-first-gate");
+  if(!el) return;
+  function read(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}}
+  function save(path){
+    var o=read(); o.path=path; o.at=Date.now();
+    try{localStorage.setItem(KEY, JSON.stringify(o)); localStorage.setItem("clarity_committed_path", path);}catch(e){}
+    document.documentElement.setAttribute("data-clarity-path", path);
+    el.hidden=true;
+  }
+  if(read().path){ el.hidden=true; return; }
+  el.hidden=false;
+  el.addEventListener("click", function(e){
+    var b=e.target.closest("[data-path]");
+    if(b) save(b.getAttribute("data-path"));
+    if(e.target.id==="cfg-skip") save("seeker");
+  });
+})();
+</script>
 </body>
 </html>
 <script id="clarity-surah-continue-v1" src="assets/companion-inline/inline-clarity_surah_cont.js" defer></script>
