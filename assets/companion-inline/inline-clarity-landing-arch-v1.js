@@ -62,11 +62,13 @@
   }
 
   function ensureRoutineStrip() {
+    if (window.ClarityRoutines90) return document.getElementById("clarity-daily-routines");
     var strip = document.getElementById("clarity-daily-routines");
     if (strip) return strip;
     strip = document.createElement("section");
     strip.id = "clarity-daily-routines";
     strip.setAttribute("aria-label", "Daily return routines");
+    if (strip.querySelector(".cdr-phase")) return strip;
     strip.innerHTML =
       '<div class="cdr-head"><h2>Daily return routines</h2>' +
       '<p class="cdr-sub">Small, finishable steps — educational only. Path-aware when you set a track.</p></div>' +
