@@ -1363,6 +1363,33 @@ html[data-theme="dark"] #callig-lab-card div[style*="background: linear"] {
 <link rel="stylesheet" href="assets/nuros-shariah-palette-collapse-v1.css" />
 
 <style id="clarity-landing-arch-css">
+#clarity-daily-routines .cdr-phase {
+  margin: 0.65rem 0 0.9rem;
+  padding: 0.55rem 0.15rem 0.15rem;
+  border-top: 1px solid rgba(184,146,42,0.22);
+}
+#clarity-daily-routines .cdr-phase:first-of-type { border-top: 0; }
+.cdr-phase-head {
+  display: flex; align-items: flex-start; gap: 0.55rem;
+  margin: 0 0 0.45rem;
+}
+.cdr-phase-num {
+  flex: 0 0 auto;
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
+  padding: 0.2rem 0.45rem; border-radius: 8px;
+  background: rgba(13,79,60,0.9); color: #f5faf7;
+}
+html[data-theme="light"] .cdr-phase-num,
+html[data-theme="day"] .cdr-phase-num { background: #0d4f3c; color: #fff; }
+.cdr-phase-meta { font-size: 0.78rem; opacity: 0.78; line-height: 1.35; margin-top: 0.15rem; }
+.cdr-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem; }
+.cdr-ref { font-size: 0.68rem; opacity: 0.65; }
+.cdr-card.is-done {
+  outline: 1px solid rgba(107,196,154,0.55);
+  box-shadow: inset 0 0 0 1px rgba(107,196,154,0.2);
+}
+.cdr-card.is-done h3::after { content: " · done"; font-size: 0.72rem; opacity: 0.7; font-weight: 600; }
+
 html[data-shell-mode="landing"] #path-board,
 html[data-shell-mode="landing"] .path-board,
 html[data-shell-mode="landing"] [data-path-board],
@@ -9875,6 +9902,8 @@ html[data-theme="light"] #clarity-reopen-bar, html[data-theme="day"] #clarity-re
 <script id="clarity-landing-day-js" src="assets/companion-inline/inline-clarity-landing-day-js.js" defer></script>
 <script src="assets/companion-inline/inline-clarity-dhikr-rail-v2.js" defer></script>
 <script src="assets/companion-inline/inline-clarity-landing-arch-v1.js" defer></script>
+<script src="assets/companion-inline/inline-clarity-routines-90d-v1.js" defer></script>
+
 
 
 

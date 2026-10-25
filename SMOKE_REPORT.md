@@ -1,32 +1,18 @@
-# Smoke report · final · 20261024
+# Smoke · Phase 0–4 + dual shell · final
 
 ## Static
-- duplicate ids: 0
-- missing assets: 0
-- JS syntax: 0
-- JS text leak: 0
-- notesLoad stub + core harden: present
+- syntax OK · missing assets 0 · notesLoad hardened
 
-## Cycle desktop (landing + tabs)
+## Runtime
 - caught: []
-- notesLoad, switchTab, ClarityShell, ClarityDhikrRail: OK
-- tabs reminder→notes: all ok
-- companion toggle: true
-- overflow-y: auto
+- phases: 5 · cards: 20
+- ClarityRoutines90 + ClarityShell + DhikrRail + notesLoad: OK
+- tabs: all ok
+- companion hides routines: true
+- soft streak + mark done: verified (Phase 0 card · done)
 
-## Cycle mobile (companion)
-- landing/routines hidden: true
-- canScroll: true
-- banner position: relative
-- caught: []
+## Shells
+- Landing: banner · LAST · dual · Do this today · Adhkār · Phase 0–4 cards
+- Companion: path bars · RRRA · ribbon reopen
 
-## Console
-- SW soft-fail only (sandbox offline)
-
-## Architecture
-- Landing: dual paths · Do this today · Adhkār · daily routine cards
-- Companion: path bars · RRRA sections
-- Ribbon open/hide day landing
-- Campus: not in package (University link only)
-
-No hard errors found. Educational only — not a fatwa.
+Campus untouched. Educational only — not a fatwa.
