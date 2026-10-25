@@ -1455,6 +1455,90 @@ html[data-theme="dark"] .cdl-card, html[data-theme="night"] .cdl-card {
 })();
 </script>
 
+
+<style id="clarity-landing-isolate-v3">
+/* === LANDING: only banner + ribbon + day landing visible === */
+html[data-shell-mode="landing"] #main-content,
+html[data-shell-mode="landing"] .main-content,
+html[data-shell-mode="landing"] .tab-panel,
+html[data-shell-mode="landing"] .rrra-hub,
+html[data-shell-mode="landing"] .rrra-hub-hero,
+html[data-shell-mode="landing"] [data-tab-panel],
+html[data-shell-mode="landing"] #clarity-door-rail,
+html[data-shell-mode="landing"] .shell-landing-hide {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* Scroll must always work */
+html, body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100% !important;
+  overscroll-behavior-y: auto !important;
+  touch-action: pan-x pan-y pinch-zoom !important;
+}
+html[data-shell-mode="landing"] body,
+html[data-shell-mode="landing"],
+html[data-shell-mode="companion"] body,
+html[data-shell-mode="companion"] {
+  overflow-y: auto !important;
+  height: auto !important;
+  position: static !important;
+}
+
+/* Keep landing chrome visible */
+html[data-shell-mode="landing"] #clarity-day-landing,
+html[data-shell-mode="landing"] #clarity-reopen-bar,
+html[data-shell-mode="landing"] #clarity-visit-pill-bar,
+html[data-shell-mode="landing"] #clarity-top-duo,
+html[data-shell-mode="landing"] .banner {
+  display: revert !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing {
+  display: flex !important;
+  flex-direction: column !important;
+}
+html[data-shell-mode="landing"] #clarity-reopen-bar {
+  display: flex !important;
+}
+
+/* Companion: restore main + rail */
+html[data-shell-mode="companion"] #main-content,
+html[data-shell-mode="companion"] .main-content {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+html[data-shell-mode="companion"] #clarity-door-rail {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  pointer-events: auto !important;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js">
@@ -5675,6 +5759,28 @@ html[data-theme="dark"] #tab-reminder.active #callig-lab-card h2::after { conten
 <script src="assets/companion-inline/inline-clarity-shell-v3.js" defer></script>
 <script src="assets/companion-inline/inline-clarity-landing-v3.js" defer></script>
 
+
+
+<script id="clarity-scroll-unlock-v3">
+(function(){
+  function unlock(){
+    try {
+      document.documentElement.style.setProperty("overflow-y", "auto", "important");
+      document.documentElement.style.setProperty("height", "auto", "important");
+      document.body.style.setProperty("overflow-y", "auto", "important");
+      document.body.style.setProperty("height", "auto", "important");
+      document.body.style.setProperty("position", "static", "important");
+      document.documentElement.style.touchAction = "pan-x pan-y pinch-zoom";
+      document.body.style.touchAction = "pan-x pan-y pinch-zoom";
+    } catch (e) {}
+  }
+  unlock();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", unlock);
+  window.addEventListener("load", unlock);
+  setInterval(unlock, 2500);
+})();
+</script>
+
 </body>
 </html>
 <script id="clarity-surah-continue-v1">
@@ -5805,6 +5911,7 @@ html[data-theme="dark"] #meme-studio-root .meme-bar-bg {
   align-items: center;
 }
 </style>
+
 
 </body>
 
@@ -8546,6 +8653,7 @@ setInterval(function(){
 window.clarityPathNuclear = { run: run, populate: populate };
 })();
 </script>
+
 
 </body>
 
