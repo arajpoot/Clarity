@@ -216,10 +216,12 @@
       comp.addEventListener("click", function (ev) {
         ev.preventDefault();
         if (w.ClarityShell) w.ClarityShell.setMode("companion");
-        try {
-          var mc = document.getElementById("main-content");
-          if (mc) mc.scrollIntoView({ behavior: "smooth", block: "start" });
-        } catch (e) {}
+        else if (typeof w.ClarityLoadCompanion === "function") {
+          w.ClarityLoadCompanion().then(function(){
+            document.documentElement.setAttribute("data-shell-mode", "companion");
+            try { localStorage.setItem("clarity_shell_mode_v1", "companion"); } catch(e){}
+          });
+        }
       });
     }
 

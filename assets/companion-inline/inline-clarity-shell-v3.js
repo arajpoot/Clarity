@@ -20,7 +20,23 @@
   function setMode(m) {
     if (m !== "landing" && m !== "companion") return;
     try { localStorage.setItem(KEY, m); } catch (e) {}
-    apply();
+    if (m === "companion" && typeof window.ClarityLoadCompanion === "function") {
+      document.documentElement.setAttribute("data-companion-loading", "1");
+      apply(); // show companion chrome immediately
+      window.ClarityLoadCompanion().then(function(){
+        document.documentElement.removeAttribute("data-companion-loading");
+        apply();
+        try {
+          var main = document.getElementById("main-content");
+          if (main) {
+            main.style.setProperty("display", "block", "important");
+            main.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        } catch (e) {}
+      });
+    } else {
+      apply();
+    }
   }
 
   function ensureRibbon() {
