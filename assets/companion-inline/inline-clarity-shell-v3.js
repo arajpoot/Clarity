@@ -94,6 +94,26 @@
       });
     }
     applyDoorRail(m);
+    // main-content-hide
+    var main = document.getElementById("main-content") || document.querySelector(".main-content");
+    if (main) {
+      if (m === "landing") {
+        main.style.setProperty("display", "none", "important");
+        main.setAttribute("aria-hidden", "true");
+      } else {
+        main.style.setProperty("display", "block", "important");
+        main.style.removeProperty("visibility");
+        main.style.removeProperty("height");
+        main.style.removeProperty("opacity");
+        main.removeAttribute("aria-hidden");
+      }
+    }
+    // scroll unlock
+    try {
+      document.documentElement.style.setProperty("overflow-y", "auto", "important");
+      document.body.style.setProperty("overflow-y", "auto", "important");
+      document.body.style.setProperty("height", "auto", "important");
+    } catch (e) {}
   }
 
   function boot() {
