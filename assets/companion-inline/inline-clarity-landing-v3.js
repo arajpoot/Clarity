@@ -116,7 +116,8 @@
   }
 
   function build() {
-    if (w.__CDL_V3_BUILT__) return;
+    if (w.__CDL_V3_BUILT__ && !w.__CDL_V3_FORCE__) return;
+    w.__CDL_V3_FORCE__ = false;
     // Remove any prior incomplete landings
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -238,4 +239,10 @@
   window.addEventListener("load", function () {
     if (!w.__CDL_V3_BUILT__) setTimeout(boot, 80);
   });
+w.ClarityLandingRebuild = function () {
+    w.__CDL_V3_BUILT__ = false;
+    w.__CDL_V3_FORCE__ = true;
+    try { build(); } catch (e) { console.warn("[landing-rebuild]", e); w.__CDL_V3_BUILT__ = false; }
+  };
 })(typeof window !== "undefined" ? window : this);
+
