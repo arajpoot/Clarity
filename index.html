@@ -1,5 +1,18 @@
 <!DOCTYPE html><html data-theme="light" lang="en"><head>
 
+<script id="clarity-shell-mode-early">
+(function(){
+  try {
+    var m = localStorage.getItem("clarity_shell_mode_v1");
+    if (m !== "landing" && m !== "companion") m = "landing";
+    document.documentElement.setAttribute("data-shell-mode", m);
+  } catch (e) {
+    document.documentElement.setAttribute("data-shell-mode", "landing");
+  }
+})();
+</script>
+
+
 <script id="clarity-lite-boot-shim">
 (function(){
   "use strict";
@@ -1582,59 +1595,38 @@ html[data-shell-mode="landing"] .rrra-hub-hero {
 </style>
 
 
-<style id="clarity-day-practical-css">
-.clarity-practical-daily {
-  display: grid;
-  gap: 0.65rem;
-  margin: 0.45rem 0 0.75rem;
+
+<style id="clarity-landing-fouc-guard">
+/* Prevent double-paint flash on refresh */
+#clarity-day-landing:not([data-ready="1"]) .cdl-card,
+#clarity-practical-daily:not([data-ready="1"]) {
+  /* allow first paint once ready */
 }
-.cdl-card {
-  border-radius: 14px;
-  border: 1px solid rgba(184,146,42,0.3);
-  padding: 0.75rem 0.9rem;
-  background: linear-gradient(165deg, rgba(244,250,246,0.96), rgba(232,243,236,0.98));
-  color: #0c1a14;
+html:not([data-shell-mode]) #clarity-door-rail {
+  visibility: hidden !important;
 }
-html[data-theme="dark"] .cdl-card,
-html[data-theme="night"] .cdl-card {
-  background: linear-gradient(165deg, rgba(15,36,28,0.96), rgba(10,24,18,0.99));
-  color: #e8f0ea;
+/* Stabilize adhkar card — no second rewrite flash */
+#clarity-day-landing .cdl-adhkar,
+#clarity-day-landing [data-adhkar-card] {
+  contain: layout style;
 }
-.cdl-card-head {
-  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
-  margin-bottom: 0.35rem;
+</style>
+
+
+<style id="clarity-landing-stable">
+/* Hide incomplete landing (dual-only) until Do this today exists — stops adhkār flash */
+#clarity-day-landing:not(:has(#cdl-today)) {
+  opacity: 0;
+  pointer-events: none;
 }
-.cdl-card-head h2 { margin: 0; font-size: 1.05rem; font-weight: 800; }
-.cdl-pill, .cdl-count {
-  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em;
-  padding: 0.2rem 0.5rem; border-radius: 999px;
-  background: rgba(13,79,60,0.12); border: 1px solid rgba(13,79,60,0.25);
+#clarity-day-landing:has(#cdl-today) {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.15s ease;
 }
-.cdl-tag {
-  font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em;
-  opacity: 0.7; margin-bottom: 0.2rem;
+@supports not (selector(:has(*))) {
+  #clarity-day-landing { opacity: 1; }
 }
-.cdl-card h3 { margin: 0 0 0.35rem; font-size: 0.95rem; }
-.cdl-card p { margin: 0 0 0.45rem; font-size: 0.88rem; line-height: 1.45; }
-.cdl-note { font-size: 0.75rem !important; opacity: 0.7; }
-.cdl-ar {
-  font-size: 1.35rem; line-height: 1.6; margin: 0.35rem 0;
-  font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
-}
-.cdl-steps { margin: 0.35rem 0 0.55rem; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.5; }
-.cdl-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
-.cdl-btn {
-  border-radius: 999px; border: 1px solid rgba(212,180,90,0.45);
-  background: rgba(212,180,90,0.15); color: inherit;
-  padding: 0.3rem 0.75rem; font-size: 0.8rem; font-weight: 700; cursor: pointer;
-}
-.cdl-btn.cdl-plus { background: #0d4f3c; color: #fff; border-color: #0d4f3c; }
-.cdl-btn.cdl-ghost { background: transparent; }
-.cdl-streak { font-size: 0.75rem; opacity: 0.75; }
-.cdr-compact { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.35rem; }
-.cdr-hint { font-size: 0.78rem; opacity: 0.7; }
-/* Hide old heavy phase grids if any linger */
-html[data-shell-mode="landing"] #clarity-daily-routines .cdr-phase { display: none !important; }
 </style>
 
 </head><body data-active-tab="journey" data-section-fortress="1">
@@ -5854,8 +5846,6 @@ html[data-theme="dark"] #tab-reminder.active #callig-lab-card h2::after { conten
 <script src="assets/nuros-amana-vault-js.js" defer></script>
 
 <script src="assets/companion-inline/inline-clarity-landing-arch-v2.js" defer></script>
-<script src="assets/companion-inline/inline-clarity-day-practical-v1.js" defer></script>
-
 </body>
 </html>
 <script id="clarity-surah-continue-v1">
