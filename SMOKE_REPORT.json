@@ -1,31 +1,16 @@
 {
-  "build": "20261025-landing-v4-revamp",
-  "campus_touched": false,
-  "js_files_syntax_checked": 71,
+  "build": "20261025-final-smoked-polished",
   "js_syntax_errors": 0,
+  "js_files": 72,
+  "script_refs_missing": 0,
+  "campus_touched": false,
   "smokes": {
-    "theme_stub_day_night_system": "PASS",
-    "meme_surah_early_stubs_no_throw": "PASS",
-    "core_block_load_on_demand": "PASS",
-    "lazy_queue_batch_load": "PASS",
-    "phase2_4_guards_polish": "PASS",
-    "core_asset_present": "PASS",
-    "campus_not_in_package": "PASS",
-    "landing_v4_build": "PASS",
-    "salah_countdown_tile": "PASS",
-    "tasbeeh_tile": "PASS",
-    "adhkar_next_cycle": "PASS"
-  },
-  "errors_fixed": [
-    "claritySetThemeMode is not defined (early stub + core earlier)",
-    "memeFetchRrra / surah select throw before lazy load",
-    "Commands/Salah stuck Loading until idle core \u2014 core now DOMContentLoaded",
-    "Silent lazy failures \u2014 logged",
-    "Duplicate path-progress in queue \u2014 removed",
-    "Meme layout order",
-    "Live overlay / plaques / brand surface polish",
-    "Landing freeze-safe rebuild v4",
-    "Symmetric Do this today / Next salah countdown / Tasbeeh",
-    "Adhkar Next pill cycles window list"
-  ]
+    "theme_stub": "PASS",
+    "shariah_guard_block_allow": "PASS",
+    "core_early_load": "PASS",
+    "landing_v5_markers": "PASS",
+    "centering_css": "PASS",
+    "campus_isolation": "PASS",
+    "final_sandbox": "PASS"
+  }
 }
