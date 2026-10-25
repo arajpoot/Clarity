@@ -151,44 +151,56 @@
   }
 
   function parseNextSalah() {
-    var names = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    var order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
     var found = [];
     try {
-      var root = document.querySelector(".salah-times-section") || document;
-      root.querySelectorAll("tr, .salah-row, li, div").forEach(function (row) {
-        var t = (row.textContent || "").replace(/\s+/g, " ").trim();
-        names.forEach(function (n) {
-          if (new RegExp("\\b" + n + "\\b", "i").test(t)) {
-            var m = t.match(/(\d{1,2}):(\d{2})\s*(am|pm)?/i);
-            if (m) {
-              var hh = parseInt(m[1], 10), mm = parseInt(m[2], 10);
-              var ap = (m[3] || "").toLowerCase();
-              if (ap === "pm" && hh < 12) hh += 12;
-              if (ap === "am" && hh === 12) hh = 0;
-              found.push({ name: n, h: hh, m: mm, skip: n === "Sunrise" });
-            }
+      var list = document.getElementById("salah-times-list") ||
+        document.querySelector("#clarity-top-duo .salah-times-list, .salah-times-section ul");
+      if (list) {
+        list.querySelectorAll("li").forEach(function (li) {
+          var nameEl = li.querySelector(".salah-name");
+          var timeEl = li.querySelector(".salah-time");
+          var name = (nameEl ? nameEl.textContent : li.textContent || "").replace(/\s+/g, " ").trim();
+          var time = (timeEl ? timeEl.textContent : "").replace(/\s+/g, " ").trim();
+          if (!time) {
+            var m0 = (li.textContent || "").match(/(\d{1,2}):(\d{2})/);
+            if (m0) time = m0[0];
+          }
+          var base = "";
+          order.forEach(function (n) {
+            if (new RegExp("^" + n + "\\b", "i").test(name) || name.toLowerCase() === n.toLowerCase()) base = n;
+          });
+          if (!base) {
+            order.forEach(function (n) {
+              if (new RegExp("\\b" + n + "\\b", "i").test(name)) base = n;
+            });
+          }
+          var m = String(time).match(/(\d{1,2}):(\d{2})\s*(am|pm)?/i);
+          if (base && m) {
+            var hh = parseInt(m[1], 10), mm = parseInt(m[2], 10);
+            var ap = (m[3] || "").toLowerCase();
+            if (ap === "pm" && hh < 12) hh += 12;
+            if (ap === "am" && hh === 12) hh = 0;
+            // Banner uses 24h when no am/pm — keep as-is if hour > 12 or explicit
+            found.push({ name: base, h: hh, m: mm, skip: base === "Sunrise" });
           }
         });
-      });
+      }
     } catch (e) {}
-    if (!found.length) {
-      found = [
-        { name: "Fajr", h: 5, m: 30 }, { name: "Dhuhr", h: 13, m: 15 },
-        { name: "Asr", h: 16, m: 30 }, { name: "Maghrib", h: 18, m: 45 },
-        { name: "Isha", h: 20, m: 15 }
-      ];
-    }
+    // Do not invent times if list empty — wait for banner
+    if (!found.length) return { next: null, at: null };
     var now = new Date(), next = null, nextDate = null;
     for (var dayAdd = 0; dayAdd <= 1 && !next; dayAdd++) {
       for (var i = 0; i < found.length; i++) {
         var f = found[i];
         if (f.skip) continue;
         var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + dayAdd, f.h, f.m, 0, 0);
-        if (d.getTime() > now.getTime() + 30000) { next = f; nextDate = d; break; }
+        if (d.getTime() > now.getTime() + 15000) { next = f; nextDate = d; break; }
       }
     }
-    return { next: next, at: nextDate };
+    return { next: next, at: nextDate, all: found };
   }
+
   function formatCountdown(ms) {
     if (ms < 0) ms = 0;
     var s = Math.floor(ms / 1000);
@@ -210,7 +222,7 @@
       "#clarity-day-landing .dual-tile{display:block;text-decoration:none;color:inherit;border-radius:14px;padding:0.75rem 0.85rem;",
       "  border:1px solid rgba(15,76,58,0.2);background:linear-gradient(135deg,#f7f3eb,#eef6f1);}",
       "html[data-theme=dark] #clarity-day-landing .dual-tile{background:linear-gradient(135deg,#12241c,#0c1a14);border-color:rgba(212,180,90,0.25);}",
-      "#clarity-day-landing .dual-tile strong{display:block;font-size:1rem;}",
+      "#clarity-day-landing .dual-ico{font-size:1.25rem;display:block;margin-bottom:0.2rem;}#clarity-day-landing .dual-tile strong{display:block;font-size:1rem;}",
       "#clarity-day-landing .dual-tile small{display:block;opacity:0.75;font-size:0.78rem;margin-top:0.2rem;}",
       "#clarity-day-landing .cdl-hero{display:grid;gap:0.65rem;grid-template-columns:1fr;margin-bottom:0.75rem;}",
       "@media(min-width:720px){#clarity-day-landing .cdl-hero{grid-template-columns:1.2fr 1fr 0.9fr;}}",
@@ -336,9 +348,9 @@
     wrap.setAttribute("aria-label", "Daily landing — furnish your grave");
     wrap.innerHTML =
       '<div class="dual-tiles" role="navigation">' +
-        '<a class="dual-tile" href="#main-content" id="dual-path-companion"><strong>Companion path</strong>' +
+        '<a class="dual-tile" href="#main-content" id="dual-path-companion"><span class="dual-ico" aria-hidden="true">🏠</span><strong>Companion path</strong>' +
           "<small>Reminder · Reality · Reflection · Action — tools on this page</small></a>" +
-        '<a class="dual-tile" href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener"><strong>University path</strong>' +
+        '<a class="dual-tile" href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener"><span class="dual-ico" aria-hidden="true">🎓</span><strong>University path</strong>' +
           "<small>Campus desk · four stages · Faculty</small></a></div>" +
 
       '<div class="cdl-hero" role="region" aria-label="Today at a glance">' +
@@ -507,5 +519,20 @@
   });
   document.addEventListener("clarity-core-ready", function () {
     try { updateSalahTile(); } catch (e) {}
+    setTimeout(function(){ try { updateSalahTile(); } catch (e) {} }, 1500);
   });
+  // Poll until banner list has real times
+  var _salahPoll = 0;
+  var _salahTimer = setInterval(function () {
+    _salahPoll++;
+    try {
+      var list = document.getElementById("salah-times-list");
+      var txt = list ? list.textContent || "" : "";
+      if (txt && txt.indexOf("Loading") < 0 && /\d:\d{2}/.test(txt)) {
+        updateSalahTile();
+        if (_salahPoll > 8) clearInterval(_salahTimer);
+      }
+      if (_salahPoll > 40) clearInterval(_salahTimer);
+    } catch (e) { clearInterval(_salahTimer); }
+  }, 1000);
 })(typeof window !== "undefined" ? window : this);
