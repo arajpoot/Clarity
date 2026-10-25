@@ -257,6 +257,12 @@
 
 
 <link rel="stylesheet" href="assets/companion-inline/companion-lean-styles.css"/>
+
+<style id="furnish-critical">
+#clarity-grave-path-strip,#grave-path-card{display:block;margin:.6rem auto;max-width:42rem;padding:.8rem 1rem;border-radius:14px;border:1px solid rgba(212,180,90,.35);background:rgba(21,32,25,.92);color:#e7efe9}
+#clarity-grave-path-strip h2,#grave-path-card h2{color:#f3e6c0;font-size:1.15rem;margin:.2rem 0}
+</style>
+<link rel="stylesheet" href="assets/clarity-adhkar-v1.css"/>
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <script id="nuros-null-guard-js" src="assets/companion-inline/inline-nuros-null-guard-js.js" defer></script>
@@ -284,9 +290,11 @@
       <iframe id="banner-live" class="banner-live-iframe" title="Haramain live" hidden
         allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
         allowfullscreen playsinline></iframe>
-      <img loading="lazy" decoding="async" id="banner-img" class="banner-still-img"
+      <img id="banner-img" class="banner-still-img" fetchpriority="high" decoding="async"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg"
-        alt="Masjid al-Haram"
+        srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/320px-Kaaba_Masjid_Haraam_Makkah.jpg 320w, https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg 640w"
+        sizes="(max-width:600px) 100vw, 640px"
+        alt="Masjid al-Haram, Makkah"
         decoding="async"
         onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg';">
     </div>
@@ -462,6 +470,12 @@
         </footer>
     </div>
 </div>
+
+
+<section id="clarity-provision-home" class="clarity-provision-home" aria-label="Today companion surface"></section>
+<section id="clarity-adhkar-daily" class="clarity-adhkar-daily" aria-label="Daily adhkar">
+  <p class="muted" style="text-align:center;font-size:.8rem;opacity:.7">Adhkār · morning or evening from this device</p>
+</section>
 
 <nav id="clarity-door-rail" class="door-rail-bottom door-rail-rrra5" aria-label="Learn as — Reminder, Reality, Reflection, Action, Amana Vault">
   <button type="button" class="door-rail-btn rrra-rail-rem" data-rail-tab="reminder" data-rrra="reminder" onclick="clarityOpenSectionDoor('reminder')"><span class="dr-ico">✦</span><span class="dr-label">Reminder</span><span class="dr-count" id="rrra-count-reminder"></span></button>
@@ -2250,6 +2264,10 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="assets/companion-inline/inline-clarity-shell-v3.js" defer></script>
 <script src="assets/companion-inline/inline-clarity-landing-v3.js" defer></script>
 
+
+<script src="assets/clarity-path-progress-v1.js" defer></script>
+<script src="assets/clarity-grave-path-curriculum-js.js" defer></script>
+<script src="assets/clarity-adhkar-card-v1.js" defer></script>
 </body>
 </html>
 <script id="clarity-surah-continue-v1" src="assets/companion-inline/inline-clarity_surah_cont.js" defer></script>
