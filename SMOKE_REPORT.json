@@ -1,5 +1,5 @@
 {
-  "build": "20261025-companion-final-polished",
+  "build": "20261025-landing-v4-revamp",
   "campus_touched": false,
   "js_files_syntax_checked": 71,
   "js_syntax_errors": 0,
@@ -10,15 +10,22 @@
     "lazy_queue_batch_load": "PASS",
     "phase2_4_guards_polish": "PASS",
     "core_asset_present": "PASS",
-    "campus_not_in_package": "PASS"
+    "campus_not_in_package": "PASS",
+    "landing_v4_build": "PASS",
+    "salah_countdown_tile": "PASS",
+    "tasbeeh_tile": "PASS",
+    "adhkar_next_cycle": "PASS"
   },
   "errors_fixed": [
     "claritySetThemeMode is not defined (early stub + core earlier)",
     "memeFetchRrra / surah select throw before lazy load",
-    "Commands/Salah stuck Loading until idle core — core now DOMContentLoaded",
-    "Silent lazy failures — logged",
-    "Duplicate path-progress in queue — removed",
+    "Commands/Salah stuck Loading until idle core \u2014 core now DOMContentLoaded",
+    "Silent lazy failures \u2014 logged",
+    "Duplicate path-progress in queue \u2014 removed",
     "Meme layout order",
-    "Live overlay / plaques / brand surface polish"
+    "Live overlay / plaques / brand surface polish",
+    "Landing freeze-safe rebuild v4",
+    "Symmetric Do this today / Next salah countdown / Tasbeeh",
+    "Adhkar Next pill cycles window list"
   ]
 }

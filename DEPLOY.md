@@ -30,3 +30,19 @@ This package also mirrors other `assets/` + `companion-inline/` files fetched fo
 ## Smoke
 
 See `SMOKE_REPORT.json` — all sandbox checks PASS; 71 JS files syntax-clean.
+
+## Landing revamp (v4) — this build
+
+Overwrite especially:
+
+- `assets/companion-inline/inline-clarity-landing-v3.js` (v4 logic, same filename)
+
+After deploy you should see a **3-tile strip**:
+
+1. **Do this today** (period + deed + Mark done)
+2. **Next ṣalāh** (name + live countdown + clock time from banner schedule)
+3. **Tasbeeh today** (+1 / reset)
+
+Adhkār card: **Next dhikr →** cycles all masnūn entries for the morning/evening window.
+
+If the old landing freezes on refresh: hard-purge `inline-clarity-landing-v3.js` and hard-refresh.
