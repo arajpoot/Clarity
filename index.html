@@ -263,6 +263,12 @@
 #clarity-grave-path-strip h2,#grave-path-card h2{color:#f3e6c0;font-size:1.15rem;margin:.2rem 0}
 </style>
 <link rel="stylesheet" href="assets/clarity-adhkar-v1.css"/>
+
+<style id="cmp-fix">
+#clarity-first-gate[hidden],#clarity-first-gate.cfg-off{display:none!important}
+.cmp-strip{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center;justify-content:center;padding:.45rem .6rem;background:#0c1410;border-bottom:1px solid rgba(212,180,90,.28)}
+.cmp-strip button,.cmp-strip a{border:1px solid rgba(212,180,90,.35);background:#152019;color:#f3e6c0;border-radius:999px;padding:.35rem .75rem;font-weight:700;text-decoration:none;cursor:pointer}
+</style>
 </head><body>
 
 <div id="clarity-first-gate" class="cfg-overlay" hidden>
@@ -286,7 +292,7 @@
   </div>
 </div>
 <style id="cfg-css">
-.cfg-overlay{position:fixed;inset:0;z-index:80;background:rgba(8,14,12,.92);display:flex;align-items:center;justify-content:center;padding:1rem}
+.cfg-overlay{display:none!important}.cfg-overlay.cfg-on{position:fixed;inset:0;z-index:80;background:rgba(8,14,12,.92);display:flex!important;align-items:center;justify-content:center;padding:1rem}
 .cfg-card{max-width:36rem;background:#152019;border:1px solid rgba(212,180,90,.35);border-radius:18px;padding:1.1rem 1.2rem;color:#e7efe9}
 .cfg-kicker{letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;color:#d4b45a;margin:0}
 .cfg-card h1{font-size:1.35rem;color:#f3e6c0;margin:.35rem 0}
@@ -315,9 +321,18 @@
     <div class="nav-buttons">
         <button type="button" onclick="typeof clarityPrintLegacyPack==='function'?clarityPrintLegacyPack():window.print()" title="Print educational legacy outline">🖨 Legacy pack</button>
         <button type="button" id="amana-top-print-btn" onclick="clarityAmanaPrintPack()" title="Amana Vault pack — unlock required">🏦 Print vault pack</button>
+        <a href="/campus/" style="color:#f3e6c0;font-weight:700;text-decoration:none;padding:.35rem .6rem">Campus</a>
         <button type="button" onclick="resetToGateView()">🔄 Gate mode</button>
     </div>
 </nav>
+
+
+<div id="clarity-main-paths" class="cmp-strip">
+  <span>Path</span>
+  <button type="button" data-main-path="seeker">Curious about Islam</button>
+  <button type="button" data-main-path="practicing">Already Muslim</button>
+  <a href="/campus/">Campus</a>
+</div>
 
 <div id="clarity-top-duo">
 <div class="banner">
@@ -2308,20 +2323,29 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 (function(){
   var KEY="clarity_landing_gate_v1";
   var el=document.getElementById("clarity-first-gate");
-  if(!el) return;
   function read(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}}
+  function committed(){
+    try{return localStorage.getItem("clarity_committed_path")||document.documentElement.getAttribute("data-clarity-path")||"";}catch(e){return "";}
+  }
   function save(path){
     var o=read(); o.path=path; o.at=Date.now();
     try{localStorage.setItem(KEY, JSON.stringify(o)); localStorage.setItem("clarity_committed_path", path);}catch(e){}
     document.documentElement.setAttribute("data-clarity-path", path);
-    el.hidden=true;
+    if(el){el.hidden=true; el.classList.remove("cfg-on"); el.style.display="none";}
   }
-  if(read().path){ el.hidden=true; return; }
-  el.hidden=false;
-  el.addEventListener("click", function(e){
-    var b=e.target.closest("[data-path]");
-    if(b) save(b.getAttribute("data-path"));
-    if(e.target.id==="cfg-skip") save("seeker");
+  if(el){
+    if(read().path || committed()){ el.hidden=true; el.style.display="none"; }
+    else { el.hidden=false; el.classList.add("cfg-on"); }
+    el.addEventListener("click", function(e){
+      var b=e.target.closest("[data-path]");
+      if(b) save(b.getAttribute("data-path"));
+      if(e.target.id==="cfg-skip") save(committed()||"seeker");
+    });
+  }
+  document.addEventListener("click", function(e){
+    var b=e.target.closest("[data-main-path]");
+    if(!b) return;
+    save(b.getAttribute("data-main-path"));
   });
 })();
 </script>
