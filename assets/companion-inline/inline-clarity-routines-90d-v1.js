@@ -114,6 +114,68 @@
         { id: "p4-legacy", title: "Send light ahead", body: "Istighfār · ṣalawāt · small ṣadaqah intention. Consistency over intensity.", cta: "Mark done", tab: null, ref: "Furnish the grave" }
       ]
     }
+    ,
+    {
+      phase: 5,
+      title: "Phase 5 · Qur’an companionship",
+      weeks: "Weeks 14–18",
+      goal: "A steady, small daily relationship with the Book — not a race.",
+      cards: [
+        { id: "p5-ayah", title: "One āyah today", body: "Read or listen to one āyah with meaning. Prefer presence over volume.", cta: "Open Reminder", tab: "reminder", ref: "Quran.com optional" },
+        { id: "p5-listen", title: "Listen with the banner", body: "Use banner recitation once with intention. Stills or live as available.", cta: "Stay on banner", tab: null, ref: "On-device audio" },
+        { id: "p5-reflect", title: "One reflection line", body: "Write one private line: what this āyah asks of you today.", cta: "Open Reflection", tab: "reflection", ref: "Not a tafsīr claim" },
+        { id: "p5-share-care", title: "Share carefully", body: "If you share, share the āyah text accurately — no invented meanings.", cta: "Open Action", tab: "action", ref: "Adab of transmission" }
+      ]
+    },
+    {
+      phase: 6,
+      title: "Phase 6 · Ṣalāh presence",
+      weeks: "Weeks 19–23",
+      goal: "Protect the next prayer; build calm around the five.",
+      cards: [
+        { id: "p6-next", title: "Next ṣalāh on time", body: "Aim for the next prayer with presence. Use banner times as a reminder only.", cta: "See banner times", tab: null, ref: "Local times vary" },
+        { id: "p6-wudu", title: "Wuḍūʾ awareness", body: "One careful wuḍūʾ today — unhurried, with basmalah.", cta: "Open Reality", tab: "reality", ref: "New Muslim / Daily" },
+        { id: "p6-sunnah", title: "Two rakʿahs extra", body: "If able, two rakʿahs of sunnah or gratitude — optional, no guilt.", cta: "Mark done", tab: null, ref: "Voluntary" },
+        { id: "p6-after", title: "After-ṣalāh adhkār", body: "Count the evening/morning adhkār card once after a prayer.", cta: "Use Adhkār card", tab: null, ref: "Landing adhkār" }
+      ]
+    },
+    {
+      phase: 7,
+      title: "Phase 7 · Character & rights",
+      weeks: "Weeks 24–30",
+      goal: "Knowledge that reaches the limbs and the rights of others.",
+      cards: [
+        { id: "p7-tongue", title: "Guard the tongue", body: "One hour without mockery or gossip; replace with istighfār.", cta: "Mark done", tab: null, ref: "Character lane" },
+        { id: "p7-right", title: "Settle one right", body: "Debt, trust, or apology — note it or begin to settle it.", cta: "Do this today", tab: null, ref: "Rights first" },
+        { id: "p7-family", title: "Mercy at home", body: "One gentle word or act of service for family today.", cta: "Open Vault", tab: "notes", ref: "Private intention" },
+        { id: "p7-sadaqah", title: "Quiet ṣadaqah", body: "A small ongoing good: water, teach, or give quietly.", cta: "Mark done", tab: null, ref: "Jāriyah intention" }
+      ]
+    },
+    {
+      phase: 8,
+      title: "Phase 8 · Craft & skill",
+      weeks: "Weeks 31–40",
+      goal: "One skill line: tajweed, Arabic letter, or calligraphy — tiny daily units.",
+      cards: [
+        { id: "p8-tajweed", title: "One tajweed unit", body: "One letter, rule, or short line — not a full session.", cta: "Open Action", tab: "action", ref: "Tajweed lab" },
+        { id: "p8-letter", title: "One Arabic letter", body: "Form or recognize one letter with care.", cta: "Open Action", tab: "action", ref: "Arabic craft" },
+        { id: "p8-callig", title: "One calligraphy stroke", body: "One calm line in the calligraphy lab — beauty with sincerity.", cta: "Open Action", tab: "action", ref: "Calligraphy lab" },
+        { id: "p8-review", title: "Review last unit", body: "Repeat yesterday’s tiny unit before adding new.", cta: "Open LAST", tab: "reminder", ref: "Spaced craft" }
+      ]
+    },
+    {
+      phase: 9,
+      title: "Phase 9 · Transmission & trust",
+      weeks: "Weeks 41–52+",
+      goal: "Carry light carefully. Teach only what you know with sources.",
+      cards: [
+        { id: "p9-source", title: "Source before speech", body: "Before explaining a ruling or story, note the source or stay silent.", cta: "Open Reflection", tab: "reflection", ref: "Daʿī adab" },
+        { id: "p9-adab", title: "Adab of daʿwah", body: "Wisdom, patience, and no compulsion — one reminder to self.", cta: "Open Reflection", tab: "reflection", ref: "Qur’an 16:125 educational" },
+        { id: "p9-campus", title: "Structured study", body: "Use University / Campus for long courses; keep companion for daily return.", cta: "University tile", tab: "university", ref: "campus/" },
+        { id: "p9-legacy", title: "Annual light check", body: "Istighfār · ṣalawāt · parents · one right · one small jāriyah intention.", cta: "Open Vault", tab: "notes", ref: "Furnish the grave" }
+      ]
+    }
+
   ];
 
   function go(tab) {
@@ -150,7 +212,7 @@
     var html = "";
     html += '<div class="cdr-head">';
     html += "<h2>Daily return · 90-day path</h2>";
-    html += '<p class="cdr-sub">Phase 0–4 on this landing page. Soft streak: <strong>' + streak + "</strong> day(s). Educational only — not a fatwa.</p>";
+    html += '<p class="cdr-sub">Phase 0–9 on this landing page. Soft streak: <strong>' + streak + "</strong> day(s). Educational only — not a fatwa.</p>";
     html += "</div>";
 
     PHASES.forEach(function (ph) {
