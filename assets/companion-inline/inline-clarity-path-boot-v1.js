@@ -1,0 +1,1 @@
+(function(){try{var g=localStorage.getItem("clarity_committed_path")||localStorage.getItem("clarity_path_override")||"seeker";document.documentElement.setAttribute("data-clarity-path",g);}catch(e){}})();
