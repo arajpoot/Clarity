@@ -1493,57 +1493,65 @@ html[data-theme="day"] .crb-btn.crb-open {
 </style>
 
 
+
 <style id="clarity-reopen-ribbon-fix">
-/* Always-available return to daily landing */
 #clarity-reopen-bar {
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center !important;
-  gap: 0.4rem !important;
-  position: relative !important;
-  z-index: 40 !important;
-  margin: 0.4rem 0.55rem 0.55rem !important;
-  padding: 0.45rem 0.55rem !important;
+  gap: 0.45rem !important;
+  width: auto !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0.45rem 0.55rem !important;
+  padding: 0.5rem 0.65rem !important;
   border-radius: 14px !important;
-  border: 1px solid rgba(184,146,42,0.4) !important;
-  background: linear-gradient(165deg, rgba(13,79,60,0.12), rgba(15,36,28,0.08)) !important;
+  border: 1px solid rgba(212,180,90,0.5) !important;
+  background: #0d4f3c !important;
+  color: #f5faf7 !important;
+  position: relative !important;
+  z-index: 60 !important;
   clear: both !important;
-  order: 0 !important;
-}
-html[data-theme="dark"] #clarity-reopen-bar {
-  background: linear-gradient(165deg, rgba(13,79,60,0.35), rgba(10,24,18,0.5)) !important;
-  border-color: rgba(212,180,90,0.45) !important;
+  float: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 2.5rem !important;
 }
 html[data-shell-mode="companion"] #clarity-reopen-bar {
   display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
   position: sticky !important;
   top: 0 !important;
-  z-index: 50 !important;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  z-index: 80 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25) !important;
 }
+html[data-shell-mode="landing"] #clarity-reopen-bar {
+  background: rgba(13,79,60,0.1) !important;
+  color: inherit !important;
+  border-color: rgba(184,146,42,0.35) !important;
+}
+html[data-shell-mode="landing"] #clarity-reopen-bar .crb-open { display: none !important; }
+html[data-shell-mode="landing"] #clarity-reopen-bar .crb-hide { display: inline-flex !important; }
 html[data-shell-mode="companion"] #clarity-reopen-bar .crb-open {
   display: inline-flex !important;
-  background: #0d4f3c !important;
-  color: #fff !important;
-  border-color: #0d4f3c !important;
+  background: #c9a227 !important;
+  color: #0c1a14 !important;
+  border: none !important;
   font-weight: 800 !important;
-  padding: 0.35rem 0.85rem !important;
+  padding: 0.4rem 0.9rem !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
 }
-html[data-shell-mode="companion"] #clarity-reopen-bar .crb-hide {
-  display: none !important;
+html[data-shell-mode="companion"] #clarity-reopen-bar .crb-hide { display: none !important; }
+#clarity-reopen-bar .crb-label {
+  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.05em;
+  text-transform: uppercase; opacity: 0.9;
 }
-html[data-shell-mode="landing"] #clarity-reopen-bar .crb-open {
-  display: none !important;
+#clarity-reopen-bar .crb-hint { font-size: 0.75rem; opacity: 0.8; }
+#clarity-reopen-bar .crb-btn {
+  border-radius: 999px; border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.12); color: inherit;
+  padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 700; cursor: pointer;
 }
-html[data-shell-mode="landing"] #clarity-reopen-bar .crb-hide {
-  display: inline-flex !important;
-}
-/* Path tiles must not cover ribbon */
-html[data-shell-mode="companion"] .shell-landing-hide { display: none !important; }
-#clarity-reopen-bar .crb-label { font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.7rem; opacity: 0.85; }
-#clarity-reopen-bar .crb-hint { font-size: 0.75rem; opacity: 0.7; }
 </style>
 
 </head><body data-active-tab="journey" data-section-fortress="1">
@@ -2065,142 +2073,15 @@ var claritySession=(function(){var m={},f={getItem:function(k){return Object.pro
 window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot-err");if(!d){d=document.createElement("div");d.id="clarity-boot-err";d.style.cssText="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#7f1d1d;color:#fff;padding:8px;font:13px system-ui";(document.body||document.documentElement).appendChild(d)}d.textContent=String(msg)+(l?" @"+l:"")}catch(e){}};
 </script><audio id="quran-audio-dup1" preload="none" crossorigin="anonymous"></audio><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
 
-<div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
-<div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
-<div class="rrra-hub-meta">8 sections</div></div>
-<div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · Meme Studio (auto verse/ḥadīth) · deepen-study links.</div>
-<div class="clarity-gate-switcher rrra-sitewide" role="group" aria-label="Learning track — switch anytime">
-  <span class="cgs-label">Track</span>
-  <button type="button" class="cgs-btn cgs-seeker" data-gate="seeker" onclick="claritySwitchGate('seeker')" title="Curious Seeker — purpose, prophecy, Qur’an, next life"><span class="cgs-ico" aria-hidden="true">🔭</span><span class="cgs-txt"><span class="cgs-num">1</span> Seeker</span></button>
-  <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="claritySwitchGate('new_muslim')" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
-  <button type="button" class="cgs-btn cgs-daily" data-gate="practicing" onclick="claritySwitchGate('practicing')" title="Daily Muslim — streaks, tajweed, light legacy"><span class="cgs-ico" aria-hidden="true">📿</span><span class="cgs-txt"><span class="cgs-num">3</span> Daily</span></button>
-  <button type="button" class="cgs-btn cgs-dai" data-gate="dai" onclick="claritySwitchGate('dai')" title="Aspiring Da’i — sincerity, sources, calm dawah"><span class="cgs-ico" aria-hidden="true">🕊️</span><span class="cgs-txt"><span class="cgs-num">4</span> Da’i</span></button>
-  <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn" title="Reset progress to Seeker level (optional)" onclick="clarityPathResetToSeeker()">
-    <span class="cgs-ico" aria-hidden="true">↺</span><span class="cgs-txt">Reset</span>
-  </button>
-</div>
-<div class="rrra-hub-body" id="rrra-hub-body-reminder"><div data-rrra="reminder" class="card card-commands" id="commands-card"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
- <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
- <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a>.</div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
- Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
- </p><div class="command-box" id="command-box"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.75rem;"><button type="button" onclick="prevCommand()" class="btn-secondary">← Previous</button><button type="button" onclick="nextCommand()">Next Command →</button></div></div>
-<div data-rrra="reminder" class="card card-commands" id="samina-verse-card" style="border-top:3px solid var(--gold)">
-  <h2>📜 Daily command-verse — Samiʿnā wa aṭaʿnā</h2>
-  <p class="td-src">Verses that call believers to submit to Allāh ﷻ and follow the Messenger ﷺ. Educational reflection only.</p>
-  <p id="samina-verse-ref" style="font-weight:700;color:var(--gold);margin:.3rem 0"></p>
-  <div class="arabic" id="samina-verse-ar" dir="rtl" lang="ar" style="font-size:1.2rem;margin:.35rem 0;line-height:1.85"></div>
-  <p id="samina-verse-en" class="verse-en" style="font-size:.95rem;line-height:1.55"></p>
-  <p id="samina-verse-note" class="td-src" style="font-size:.85rem"></p>
-  <div class="td-row" style="flex-wrap:wrap;gap:.4rem">
-    <button type="button" class="btn-soft" onclick="clarityDailySaminaVerse(true)">↻ Another verse</button>
-    <a id="samina-verse-link" href="https://quran.com/4/59" target="_blank" rel="noopener">Open on Quran.com</a>
-  </div>
-</div>
-<div data-rrra="reminder" class="card card-hadith"><h2 data-i18n="hadith_title">A Saying of the Prophet ﷺ</h2>
-<p class="td-src clarity-disc" style="font-size:.82rem;margin:.25rem 0 .4rem"><strong>Educational only — not a fatwa.</strong> This card prefers <strong>ṣaḥīḥ</strong> reports and shows <strong>grade · collection · number</strong> on every item. Prefer ṣaḥīḥ collections; grades and context matter — check Sunnah.com / a scholar.</p>
-<div class="deep-learn"><strong>📚 Verify &amp; study the ḥadīth</strong>
-<div class="res-stack">
-<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
-<a href="https://dorar.net/en" target="_blank" rel="noopener">Dorar (Arabic)</a>
-<a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a>
-</div></div><div id="hadith"><div class="loading-msg">Loading…</div></div><button type="button" onclick="loadHadith()">Another hadith</button></div>
-<div data-rrra="reminder" class="card card-seerah"><h2>🕊️ Daily Name of the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">One name each day from the Qurʾān and authentic hadith — with meaning and blessing. Educational; not a fixed “99” in every narration.</p><div class="asma-box" id="prophet-name-box"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"> <button type="button" class="btn-secondary" onclick="loadProphetName(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadProphetName(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllProphetNames()">Show all names</button><input type="search" id="prophet-names-search" placeholder="Search a name…" oninput="filterProphetNames(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="prophet-names-list" class="prophet-names-grid" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div></div>
-
-<div data-rrra="reminder" class="card card-tools" id="ilm-pathway-card" style="border-top:3px solid var(--accent)">
-<details id="ilm-pathway-details" class="ilm-pathway-details">
-<summary class="ilm-pathway-summary">
-  <span class="ilm-sum-icon" aria-hidden="true">🗺️</span>
-  <span class="ilm-sum-text">
-    <strong>Ilm Pathway — 7-day starter</strong>
-    <span class="ilm-sum-meta" id="ilm-pathway-summary-meta">Tap to open · one focus per day</span>
-  </span>
-  <span class="ilm-sum-chevron" aria-hidden="true">▾</span>
-</summary>
-<div class="ilm-pathway-body">
-  <p style="font-size:.88rem;color:var(--text-muted);margin:0 0 .5rem">A light weekly path: one focus per day. Mark done on this device. Pairs with the stack above.</p>
-  <div id="ilm-pathway-list"></div>
-  <button type="button" class="btn-soft" style="margin-top:.5rem" onclick="ilmPathwayReset()">Reset week</button>
-</div>
-</details>
-</div>
-<div data-rrra="reminder" class="card card-tafseer" id="tafseer-resources-card">
-  <h2 data-i18n="tafseer_res">Tafseer Resources</h2>
-  <div class="deep-learn"><strong>Tafsīr libraries</strong>
-  <a href="https://corpus.quran.com" target="_blank" rel="noopener">word grammar</a> ·
-  <a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a> ·
-  <a href="https://islamqa.info" target="_blank" rel="noopener">fiqh of the ayah</a>.
-  </div>
-  <p class="td-src" style="font-size:.82rem;margin:.4rem 0 0">Educational only — verify with a local scholar. Ustazah Najiha lessons sit in the card below.</p>
+<div id="clarity-reopen-bar" role="toolbar" aria-label="Day landing controls" data-permanent="1">
+  <span class="crb-label">Day landing</span>
+  <button type="button" class="crb-btn crb-open" data-crb="open">Open daily routines</button>
+  <button type="button" class="crb-btn crb-hide" data-crb="hide">Hide for now</button>
+  <span class="crb-hint">Return anytime · on this device</span>
 </div>
 
-<div data-rrra="reminder" class="card card-tafseer" id="najiha-tafseer-card">
-<details id="najiha-tafseer-details">
-<summary>
-  <h2 style="display:inline;font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--accent);margin:0">Tafseer by Ustazah Najiha Hashmi</h2>
-  <span style="font-weight:600;opacity:.8;font-size:.8em;margin-left:.35rem">(tap to expand)</span>
-</summary>
-<div class="najiha-body">
-<p style="margin-bottom:0.75rem;font-size:0.94rem">
- From <strong>ArRahmah Islamic Institute</strong>. Track the lessons you study. Progress is saved only on this device.
-</p>
-<div class="tafseer-progress"><strong>Lessons studied:</strong> <span id="tafseer-count">0</span><br>
-<span id="tafseer-last" style="font-size:0.86rem;color:#666;"></span></div>
-<div style="margin-bottom:0.85rem;">
-<label style="font-size:0.88rem;color:#555;">Select a lesson:</label>
-<select id="tafseer-select" onchange="focusTafseerLesson(this.value)" style="margin-top:0.35rem;">
-<option value="all">Show all lessons</option>
-</select>
-</div>
-<div id="tafseer-list"></div>
-<p style="margin-top:0.95rem;font-size:0.86rem;color:#555;">
- Full courses &amp; live classes: <a href="https://www.arrahmah.org/" target="_blank" rel="noopener">arrahmah.org</a> ·
- <a href="https://www.youtube.com/c/arrahmahislamicinstitute" target="_blank" rel="noopener">YouTube Channel</a>
-</p>
-</div>
-</details>
-</div>
-<div class="card card-tools meme-card-realigned" id="meme-card" data-rrra="reminder" data-rrra-pin="reminder" style="border-top:3px solid var(--gold,#b8922a)">
-<h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 Clarity Meme Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
-<p id="meme-fetch-status" style="font-size:.7rem;color:var(--accent);min-height:.85em;margin:0 0 .25rem"></p>
 
-<div id="meme-studio-root" class="meme-studio meme-realign">
-
-  <!-- 1. BACKGROUND CHIPS ON TOP -->
-  <div class="meme-bar meme-bar-bg">
-    <div class="meme-tool-label">Background</div>
-    <div class="meme-chip-row">
-      <button type="button" class="mv-chip" onclick="memeFetchBg('nature')">🌿 Nature</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('flickr')" title="Flickr public photostream + free Shariah-leaning nature/architecture (no figurative stock lists)">📸 Flickr</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('flowers')">🌸 Flowers</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('holy')">🕌 Holy</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Free online: Wikimedia · Picsum · Flickr public · Shariah-leaning nature/architecture">📷 Free photos</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Next free-catalogue image">↻ Next free</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('spirit')">✨ Spirit</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('night')">🌙 Night</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('water')">💧 Water</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('dynamic')">🎬 Dynamic</button>
-      <button type="button" class="mv-chip" onclick="memeShowBlankPalette()">⬛ Blank</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('mosque')}catch(e){}">🕌 Décor</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('geometry')}catch(e){}">◈ Pattern</button>
-
-    </div>
-  </div>
-
-  <div class="meme-preview-only">
-    <div id="meme-stage-wrap" class="meme-stage-wrap" data-ratio="twitter">
-      <div id="meme-stage" class="meme-stage" data-ratio="twitter" style="aspect-ratio:16/9">
-        <canvas id="meme-canvas" width="1200" height="675" aria-label="Meme canvas"></canvas>
-        <div class="meme-text-box top" id="meme-box-top" data-which="top"><div class="meme-drag-handle">Top</div></div>
-        <div class="meme-text-box middle" id="meme-box-mid" data-which="mid"><div class="meme-drag-handle">Mid</div></div>
-        <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom"><div class="meme-drag-handle">Bot</div></div>
-        <a id="meme-wm-link" href="https://clarity-dawah.fyi/#meme" target="_blank" rel="noopener noreferrer" title="Open Meme Studio"><span class="wm-hit-label">clarity-dawah.fyi/#meme</span></a>
-      </div>
-      <div id="meme-palette" class="meme-palette" hidden></div>
-      <input type="color" id="meme-blank-custom" style="display:none" onchange="memeSetBlankColor&&memeSetBlankColor(this.value)">
-    </div>
-  </div>
-
-  <!-- 3. CONTROLS BELOW PREVIEW -->
+<!-- 3. CONTROLS BELOW PREVIEW -->
   <div class="meme-below">
     <div class="meme-bar" id="meme-rrra-fetch-bar">
       <div class="meme-tool-label">Fetch · verse &amp; ḥadīth (auto · no typing)</div>
@@ -5762,6 +5643,44 @@ html[data-theme="dark"] #tab-reminder.active #callig-lab-card h2::after { conten
 <script src="assets/companion-inline/inline-clarity-track-os-v3.js" defer></script>
 <script src="assets/companion-inline/inline-clarity-seerah-revamp-js.js" defer></script>
 <script src="assets/companion-inline/inline-nuros-amana-vault-js.js" defer></script>
+
+<script id="clarity-reopen-boot">
+(function(){
+  function bind(){
+    var bar = document.getElementById("clarity-reopen-bar");
+    if (!bar || bar.__bound) return;
+    bar.__bound = true;
+    bar.addEventListener("click", function(ev){
+      var t = ev.target && ev.target.closest && ev.target.closest("[data-crb]");
+      if (!t) return;
+      var act = t.getAttribute("data-crb");
+      try {
+        if (window.ClarityShell && typeof ClarityShell.setMode === "function") {
+          ClarityShell.setMode(act === "open" ? "landing" : "companion");
+        } else {
+          document.documentElement.setAttribute("data-shell-mode", act === "open" ? "landing" : "companion");
+          document.body.setAttribute("data-shell-mode", act === "open" ? "landing" : "companion");
+          try { localStorage.setItem("clarity_shell_mode_v1", act === "open" ? "landing" : "companion"); } catch(e){}
+          var land = document.getElementById("clarity-day-landing");
+          var rout = document.getElementById("clarity-daily-routines");
+          if (act === "open") {
+            if (land) { land.hidden = false; land.style.display = ""; }
+            if (rout) { rout.hidden = false; rout.style.display = ""; }
+          } else {
+            if (land) { land.hidden = true; land.style.display = "none"; }
+            if (rout) { rout.hidden = true; rout.style.display = "none"; }
+          }
+        }
+      } catch(e) {}
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
+  else bind();
+  setTimeout(bind, 500);
+  setTimeout(bind, 2000);
+})();
+</script>
+
 </body>
 </html>
 <script id="clarity-surah-continue-v1">
