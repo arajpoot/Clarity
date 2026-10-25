@@ -269,6 +269,18 @@
 .cmp-strip{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center;justify-content:center;padding:.45rem .6rem;background:#0c1410;border-bottom:1px solid rgba(212,180,90,.28)}
 .cmp-strip button,.cmp-strip a{border:1px solid rgba(212,180,90,.35);background:#152019;color:#f3e6c0;border-radius:999px;padding:.35rem .75rem;font-weight:700;text-decoration:none;cursor:pointer}
 </style>
+
+<style id="cmp-fix2">
+.cmp-card{position:relative;z-index:5;max-width:42rem;margin:.6rem auto;padding:.8rem 1rem;background:#152019;border:1px solid rgba(212,180,90,.4);border-radius:16px;color:#e7efe9}
+.cmp-kicker{margin:0 0 .5rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#d4b45a}
+.cmp-row{display:grid;gap:.5rem}
+@media(min-width:720px){.cmp-row{grid-template-columns:1fr 1fr 1fr}}
+.cmp-row button,.cmp-uni{display:block;text-align:left;background:#0c1410;color:#e7efe9;border:1px solid rgba(212,180,90,.3);border-radius:12px;padding:.7rem .8rem;text-decoration:none;cursor:pointer}
+.cmp-row strong{display:block;color:#f3e6c0}
+.cmp-row small{opacity:.8}
+.cmp-uni{background:#0d4f3c}
+#clarity-grave-path-strip{position:relative;z-index:1;margin-top:.4rem}
+</style>
 </head><body>
 
 <div id="clarity-first-gate" class="cfg-overlay" hidden>
@@ -321,18 +333,12 @@
     <div class="nav-buttons">
         <button type="button" onclick="typeof clarityPrintLegacyPack==='function'?clarityPrintLegacyPack():window.print()" title="Print educational legacy outline">🖨 Legacy pack</button>
         <button type="button" id="amana-top-print-btn" onclick="clarityAmanaPrintPack()" title="Amana Vault pack — unlock required">🏦 Print vault pack</button>
-        <a href="/campus/" style="color:#f3e6c0;font-weight:700;text-decoration:none;padding:.35rem .6rem">Campus</a>
+        <a href="/campus/" style="color:#f3e6c0;font-weight:700;text-decoration:none;padding:.35rem .6rem">University</a>
         <button type="button" onclick="resetToGateView()">🔄 Gate mode</button>
     </div>
 </nav>
 
 
-<div id="clarity-main-paths" class="cmp-strip">
-  <span>Path</span>
-  <button type="button" data-main-path="seeker">Curious about Islam</button>
-  <button type="button" data-main-path="practicing">Already Muslim</button>
-  <a href="/campus/">Campus</a>
-</div>
 
 <div id="clarity-top-duo">
 <div class="banner">
@@ -521,6 +527,16 @@
     </div>
 </div>
 
+
+
+<section id="clarity-main-paths" class="cmp-card">
+  <p class="cmp-kicker">Choose a path · then the learning doors</p>
+  <div class="cmp-row">
+    <button type="button" data-main-path="seeker"><strong>Curious about Islam</strong><small>Who Allah is, the testimony, why we are here.</small></button>
+    <button type="button" data-main-path="practicing"><strong>Already Muslim</strong><small>Daily salah, adhkār, and the path.</small></button>
+    <a class="cmp-uni" href="/campus/"><strong>University</strong><small>Campus map, desk, lab.</small></a>
+  </div>
+</section>
 
 <section id="clarity-provision-home" class="clarity-provision-home" aria-label="Today companion surface"></section>
 <section id="clarity-adhkar-daily" class="clarity-adhkar-daily" aria-label="Daily adhkar">
