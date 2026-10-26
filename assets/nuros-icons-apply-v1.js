@@ -60,7 +60,8 @@
         var t = (h.textContent || "").trim();
         if (!t || t.length > 80) return;
         /* skip if already starts with emoji / symbol */
-        if (/^[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}𝕏✒️🎨]/test(t)) return;
+        var ch0 = t.charCodeAt(0);
+        if (ch0 > 255 || /^[𝕏✒️🎨🕌🌙💎🕋🛡️✨🕯️🌱]/.test(t)) return;
         for (var i = 0; i < SEC_MAP.length; i++) {
           if (SEC_MAP[i].match.test(t)) {
             decorate(h, SEC_MAP[i].icon);

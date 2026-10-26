@@ -50,7 +50,8 @@ html[data-theme="dark"] .theme-chip.active{background:#3d9b78;color:#fff;border-
   #clarity-global-nav .mode-badge{font-size:0.65rem;padding:3px 8px}
 }
 /* Keep welcome overlay as the only full entry portal */
-#clarity-three-doors{display:none !important}
+#clarity-three-doors.hidden{display:none !important}
+#clarity-three-doors:not(.hidden){display:flex !important}
 .cw-note{font-size:.72rem;color:var(--text-muted);margin-top:.85rem;line-height:1.4;opacity:.9}
 /* Start-here chip */
 .clarity-start-chip{position:fixed;bottom:calc(4.8rem + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%) translateY(12px);z-index:180;background:linear-gradient(135deg,#0f4c3a,#1a6b52);color:#f7f3eb;border:none;border-radius:999px;padding:.55rem 1.15rem;font-size:.82rem;font-weight:700;box-shadow:0 8px 24px rgba(15,76,58,.35);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap}
