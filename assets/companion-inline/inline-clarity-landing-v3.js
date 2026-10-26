@@ -408,7 +408,7 @@
   }
 
   function build() {
-    if (w.__CDL_V11_BUILT__) return;
+    if (w.__CDL_V12_BUILT__) return;
     injectCss();
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -561,25 +561,105 @@
 
 
 
-      '<section class="cdl-card cdl-plaque cdl-confidence" id="cdl-confidence" data-landing="confidence" aria-label="Why you can trust this companion">' +
-        '<div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🛡️</span> Built for trust · what this companion is</h2></div>' +
-        '<p class="cdl-sub"><strong>Educational companion only — not a fatwa, not legal advice, not a scholar.</strong> ' +
-          'For personal rulings and inheritance questions, consult a qualified local teacher and counsel.</p>' +
-        '<ul class="cdl-confidence-list">' +
-          '<li><strong>Sources in the open</strong> — verses and reports are pointed toward Quran.com and Sunnah.com where linked; wording stays educational.</li>' +
-          '<li><strong>On this device</strong> — Day progress, qaḍāʾ checks, and Amānah notes stay in your browser storage; Clarity does not run a cloud account for them.</li>' +
-          '<li><strong>Amānah vault</strong> — passphrase is never stored by the site; encrypted data stays local; heirs use Heir readiness after unlock.</li>' +
-          '<li><strong>Scholarly humility</strong> — where schools differ (e.g. long-term missed ṣalāh), both lines are named and you are sent to a teacher.</li>' +
-          '<li><strong>Calm doors</strong> — Day landing for daily light; Companion path for deeper tools; University campus for structured study.</li>' +
-          '<li><strong>Review posture</strong> — smoke-checked assets, mobile Day-landing default, no surprise geolocation until you calibrate; performance work continues.</li>' +
-        '</ul>' +
-        '<p class="cdl-sub">Furnish your grave with small, sincere steps. This app only holds the map — the walk is yours.</p>' +
-        '<p class="cdl-sub" style="opacity:.85">SEO and accessibility baselines are maintained for discoverability; always verify practice with people of knowledge near you.</p>' +
+      
+      '<section class="cdl-confidence-wrap" id="cdl-confidence" data-landing="confidence" aria-label="Why you can trust this companion">' +
+        '<div class="cdl-head" style="margin-bottom:0.55rem"><h2><span class="cdl-ico" aria-hidden="true">🛡️</span> Built for trust · review plaques</h2></div>' +
+        '<p class="cdl-sub" style="margin-bottom:0.65rem"><strong>Educational companion only — not a fatwa, not legal advice.</strong> For personal rulings, ask a qualified local teacher.</p>' +
+        '<div class="cdl-trust-grid" id="cdl-trust-grid">' +
+          '<article class="cdl-trust-plaque" data-trust="sources">' +
+            '<div class="cdl-trust-ico" aria-hidden="true">📖</div>' +
+            '<h3>Sources in the open</h3>' +
+            '<p>Verses and reports point to established libraries. Educational wording only.</p>' +
+            '<div class="cdl-trust-links">' +
+              '<a href="https://quran.com" target="_blank" rel="noopener">Quran.com ↗</a>' +
+              '<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com ↗</a>' +
+            '</div></article>' +
+          '<article class="cdl-trust-plaque" data-trust="device">' +
+            '<div class="cdl-trust-ico" aria-hidden="true">📱</div>' +
+            '<h3>On this device</h3>' +
+            '<p>Day progress, qaḍāʾ checks, and notes use browser storage — no Clarity cloud account for them.</p>' +
+            '<div class="cdl-trust-links"><span class="cdl-trust-tag">localStorage · private by default</span></div></article>' +
+          '<article class="cdl-trust-plaque" data-trust="amana">' +
+            '<div class="cdl-trust-ico" aria-hidden="true">🔐</div>' +
+            '<h3>Amānah vault</h3>' +
+            '<p>Passphrase is never kept by the site. Encrypted payload stays local; heirs use Heir readiness after unlock.</p>' +
+            '<div class="cdl-trust-links"><span class="cdl-trust-tag">AES-GCM on-device · not legal advice</span></div></article>' +
+          '<article class="cdl-trust-plaque" data-trust="fiqh">' +
+            '<div class="cdl-trust-ico" aria-hidden="true">⚖️</div>' +
+            '<h3>Scholarly humility</h3>' +
+            '<p>Where schools differ (e.g. long-term missed ṣalāh), both lines are named and you are sent to a teacher.</p>' +
+            '<div class="cdl-trust-links">' +
+              '<a href="https://islamqa.info/en/answers/111783" target="_blank" rel="noopener">Overview · missed prayer ↗</a>' +
+            '</div></article>' +
+          '<article class="cdl-trust-plaque" data-trust="doors">' +
+            '<div class="cdl-trust-ico" aria-hidden="true">🚪</div>' +
+            '<h3>Calm doors</h3>' +
+            '<p>Day landing for daily light · Companion for deeper tools · University campus for structured study.</p>' +
+            '<div class="cdl-trust-links">' +
+              '<a href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener">Campus ↗</a>' +
+            '</div></article>' +
+          '<article class="cdl-trust-plaque" data-trust="review" id="cdl-trust-review-plaque">' +
+            '<div class="cdl-trust-ico" aria-hidden="true">🔎</div>' +
+            '<h3>Auto review · this device</h3>' +
+            '<p id="cdl-trust-review-body">Tap below to re-check shell mode, Day landing, qaḍāʾ host, and trust plaques after a revamp.</p>' +
+            '<div class="cdl-trust-links">' +
+              '<button type="button" class="cdl-btn" id="cdl-trust-review-btn">Run trust check</button>' +
+              '<span class="cdl-trust-tag" id="cdl-trust-review-stamp">Not run yet</span>' +
+            '</div></article>' +
+        '</div>' +
+        '<p class="cdl-sub" style="margin-top:0.65rem">Furnish your grave with small, sincere steps. This app holds a map — the walk is yours.</p>' +
       '</section>' +
 
-      '<p class="cdl-foot">Furnish your grave · prepare for the long stay · educational companion · not a fatwa</p>';
+
+      '<footer class="cdl-copyright" role="contentinfo">' +
+        '<p class="cdl-copy-line">© Clarity Dawah · Educational companion</p>' +
+        '<p class="cdl-copy-sub">Furnish your grave · prepare for the long stay · not a fatwa · not legal advice</p>' +
+        '<p class="cdl-copy-links">' +
+          '<a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>' +
+          '<span aria-hidden="true"> · </span>' +
+          '<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>' +
+          '<span aria-hidden="true"> · </span>' +
+          '<a href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener">Campus</a>' +
+        '</p>' +
+      '</footer>';
+
 
     place(wrap);
+
+    (function bindTrustReview(){
+      var btn = document.getElementById("cdl-trust-review-btn");
+      var body = document.getElementById("cdl-trust-review-body");
+      var stamp = document.getElementById("cdl-trust-review-stamp");
+      if (!btn || btn.__trustBound) return;
+      btn.__trustBound = true;
+      btn.addEventListener("click", function () {
+        var checks = [];
+        var mode = document.documentElement.getAttribute("data-shell-mode") || "?";
+        checks.push("Shell mode: " + mode);
+        checks.push("Day landing: " + (document.getElementById("clarity-day-landing") ? "present" : "missing"));
+        checks.push("Path tiles: " + (document.querySelector("[data-landing=paths]") ? "present" : "missing"));
+        checks.push("Qaḍāʾ host: " + (document.getElementById("cdl-qada-root") ? "present" : "missing"));
+        checks.push("Trust plaques: " + document.querySelectorAll(".cdl-trust-plaque").length);
+        checks.push("Samina card: " + (document.getElementById("samina-verse-card") || document.getElementById("samina-verse-ar") ? "in DOM / companion" : "n/a on Day"));
+        if (body) body.innerHTML = checks.map(function (c) { return "• " + c; }).join("<br>");
+        if (stamp) {
+          try {
+            stamp.textContent = "Checked " + new Date().toLocaleString();
+          } catch (e) { stamp.textContent = "Checked"; }
+        }
+        try {
+          localStorage.setItem("clarity_trust_review_last_v1", JSON.stringify({ at: Date.now(), checks: checks }));
+        } catch (e2) {}
+      });
+      // Soft auto-run once per session after paint (no network)
+      try {
+        if (sessionStorage.getItem("clarity_trust_review_auto_v1") !== "1") {
+          sessionStorage.setItem("clarity_trust_review_auto_v1", "1");
+          setTimeout(function () { btn.click(); }, 900);
+        }
+      } catch (e3) {}
+    })();
+
 
     var dualComp = document.getElementById("dual-path-companion");
     if (dualComp && !dualComp.__bound) {

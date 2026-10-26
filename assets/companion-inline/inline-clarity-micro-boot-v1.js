@@ -79,7 +79,7 @@
   unlock();
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", unlock);
   window.addEventListener("load", unlock);
-  setInterval(unlock, 2500);
+  setInterval(unlock, 12000);
 })();
 
 
