@@ -1,13 +1,21 @@
 
-/* Primary doors · mobile tap fix */
+/* Primary doors · mobile + hard dismiss */
 #clarity-three-doors{
   z-index: 10060 !important;
-  pointer-events: auto !important;
 }
-#clarity-three-doors:not(.hidden){
+#clarity-three-doors.hidden,
+#clarity-three-doors[hidden],
+#clarity-three-doors[aria-hidden="true"]{
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+#clarity-three-doors:not(.hidden):not([hidden]){
   display: flex !important;
   align-items: center;
   justify-content: center;
+  pointer-events: auto !important;
 }
 #clarity-three-doors .td-wrap{
   pointer-events: auto !important;
@@ -21,19 +29,13 @@
   pointer-events: auto !important;
   cursor: pointer !important;
   touch-action: manipulation !important;
-  -webkit-tap-highlight-color: rgba(13,79,60,0.15);
+  -webkit-tap-highlight-color: rgba(13,79,60,0.18);
   user-select: none;
   -webkit-user-select: none;
   position: relative;
   z-index: 10062;
 }
 #clarity-three-doors .td-card *{
-  pointer-events: none; /* clicks hit card, not children */
+  pointer-events: none !important;
 }
-body.doors-open{
-  overflow: hidden;
-}
-/* Revamp had forced display:none — allow open state */
-#clarity-three-doors:not(.hidden){
-  display: flex !important;
-}
+body.doors-open{ overflow: hidden; }

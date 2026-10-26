@@ -157,6 +157,51 @@
       document.querySelectorAll(".shell-landing-hide").forEach(function (el) {
         el.classList.remove("shell-landing-hide");
       });
+      /* Reveal companion surface immediately — do not wait for refresh */
+      try {
+        var mainNow = document.getElementById("main-content") || document.querySelector(".main-content");
+        if (mainNow) {
+          mainNow.style.setProperty("display", "block", "important");
+          mainNow.style.setProperty("visibility", "visible", "important");
+          mainNow.removeAttribute("aria-hidden");
+          mainNow.hidden = false;
+        }
+        document.querySelectorAll("#main-content .tab-panel, #main-content .rrra-hub").forEach(function (el) {
+          el.classList.remove("shell-landing-hide");
+        });
+        var tabId = "reminder";
+        try {
+          var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
+          if (/^(reminder|reality|reflection|action|notes)$/.test(h)) tabId = h;
+          else {
+            var s = w.sessionStorage && w.sessionStorage.getItem("clarity_active_section_v1");
+            if (s && /^(reminder|reality|reflection|action|notes)$/.test(s)) tabId = s;
+          }
+        } catch (eTab) {}
+        document.querySelectorAll(".tab-panel").forEach(function (p) {
+          var on = p.id === ("tab-" + tabId);
+          p.classList.toggle("active", on);
+          if (on) {
+            p.hidden = false;
+            p.style.setProperty("display", "block", "important");
+            p.style.setProperty("visibility", "visible", "important");
+            p.style.setProperty("opacity", "1", "important");
+            p.setAttribute("aria-hidden", "false");
+            p.querySelectorAll(".card, [id$='-card'], .rrra-hub-hero, .rrra-hub-summary").forEach(function (c) {
+              c.classList.remove("gate-hidden", "shell-landing-hide");
+              c.hidden = false;
+              c.style.removeProperty("display");
+              c.style.removeProperty("visibility");
+              c.style.removeProperty("height");
+              c.style.removeProperty("max-height");
+              c.style.removeProperty("opacity");
+            });
+          }
+        });
+        if (typeof w.clarityOpenSectionDoor === "function") {
+          try { w.clarityOpenSectionDoor(tabId); } catch (eOpen) {}
+        }
+      } catch (eComp) {}
     }
     applyDoorRail(m);
 
@@ -167,7 +212,9 @@
         main.setAttribute("aria-hidden", "true");
       } else {
         main.style.setProperty("display", "block", "important");
+        main.style.setProperty("visibility", "visible", "important");
         main.removeAttribute("aria-hidden");
+        main.hidden = false;
       }
     }
 
