@@ -1,11 +1,17 @@
-# Clarity Companion — delta only
+# NurOS Icon Pack v2
 
-Replace **only** root `index.html` on GitHub Pages.
-All other `assets/` and `/campus/` stay as already published.
+## What changed
+- Gold-ring **plaque** icons (arch / lantern / mushaf geometry)
+- Clearer glyphs for Companion, Campus, RRRA tabs
+- **De-double**: strips emoji when NurOS icon is applied
+- Does not use figurative portraits
 
-## Fixes in this file
-1. Welcome track modal removed + kill switch
-2. clarityRequestPath re-entry guard
-3. Companion `#main-content` overflow clip fixed
+## Deploy (delta)
+```
+index.html                          # links v2
+assets/css/nuros-icons-v2.css
+assets/nuros-icons-apply-v2.js
+```
+Keep existing assets. Campus untouched.
 
-Hard-refresh after upload.
+Educational only — not a fatwa.
