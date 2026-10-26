@@ -65,3 +65,31 @@ html[data-theme=night] #cdl-qada-root .qada-stat {
   border-color: rgba(212,180,90,0.2);
   background: linear-gradient(160deg,rgba(212,180,90,0.08),rgba(12,28,22,0.5));
 }
+
+/* Landing: hide companion path strip (already on companion main) */
+html[data-shell-mode="landing"] .grave-path-strip {
+  display: none !important;
+}
+/* Full-width qaḍāʾ section */
+#clarity-day-landing .cdl-qada-section {
+  display: block;
+  width: 100%;
+  margin: 0.85rem 0 1.1rem;
+}
+#clarity-day-landing .cdl-qada-section #cdl-qada {
+  width: 100%;
+  max-width: 100%;
+}
+#clarity-day-landing .cdl-qada-section #cdl-qada-root .qada-prayers {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+}
+@media (max-width: 560px) {
+  #clarity-day-landing .cdl-qada-section #cdl-qada-root .qada-prayers {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+#clarity-day-landing .cdl-fold-body[hidden] {
+  display: none !important;
+}
