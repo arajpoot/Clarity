@@ -256,9 +256,10 @@
   }
 
   function injectCss() {
-    if (document.getElementById("cdl-v5-css")) return;
+    var _oldCdl = document.getElementById("cdl-v5-css"); if (_oldCdl) _oldCdl.remove();
+    if (document.getElementById("cdl-v6-css")) return;
     var s = document.createElement("style");
-    s.id = "cdl-v5-css";
+    s.id = "cdl-v6-css";
     s.textContent = [
       "#clarity-day-landing{width:100%;max-width:100%;box-sizing:border-box;padding:0.65rem 0.85rem 1rem;}",
       "@media(min-width:901px){#clarity-day-landing{padding:0.85rem 1.25rem 1.15rem;}}",
@@ -299,7 +300,7 @@
       "#clarity-day-landing .cdl-mini{border:1px solid rgba(15,76,58,0.3);background:rgba(15,76,58,0.08);border-radius:8px;padding:0.15rem 0.45rem;cursor:pointer;font-weight:700;}",
       /* Steps grid C/D */
       "#clarity-day-landing .cdl-steps{display:grid;gap:0.4rem;grid-template-columns:1fr;}",
-      "@media(min-width:640px){#clarity-day-landing .cdl-steps{grid-template-columns:1fr 1fr;}}",
+      "@media(min-width:640px){#clarity-day-landing .cdl-steps{grid-template-columns:1fr;}}",
       "#clarity-day-landing .cdl-step{display:flex;gap:0.55rem;align-items:flex-start;padding:0.45rem 0.5rem;border-radius:12px;",
       "  background:rgba(15,76,58,0.06);border:1px solid rgba(15,76,58,0.1);}",
       "html[data-theme=dark] #clarity-day-landing .cdl-step{background:rgba(212,180,90,0.06);border-color:rgba(212,180,90,0.12);}",
@@ -311,13 +312,36 @@
       "#clarity-day-landing details.cdl-fold>summary{cursor:pointer;font-weight:700;padding:0.65rem 0.85rem;border-radius:14px;",
       "  background:linear-gradient(145deg,rgba(15,76,58,0.1),rgba(15,76,58,0.03));border:1px solid rgba(15,76,58,0.18);list-style:none;}",
       "#clarity-day-landing details.cdl-fold>summary::-webkit-details-marker{display:none;}",
-      "#clarity-day-landing details.cdl-fold[open]>summary{margin-bottom:0.5rem;border-radius:14px 14px 0 0;}",
-      "#clarity-day-landing details.cdl-fold .cdl-fold-body{padding:0.25rem 0.15rem 0.5rem;}",
-      /* Phase E light row */
-      "#clarity-day-landing .cdl-light{display:grid;gap:0.45rem;grid-template-columns:1fr;margin-bottom:0.65rem;}",
-      "@media(min-width:700px){#clarity-day-landing .cdl-light{grid-template-columns:1fr 1fr 1fr;}}",
-      "#clarity-day-landing .cdl-light button{text-align:left;}",
-      "#clarity-day-landing .cdl-foot{font-size:0.72rem;opacity:0.75;text-align:center;margin-top:0.35rem;}"
+      "#clarity-day-landing details.cdl-fold[open]>summary{border-color:rgba(212,180,90,0.35);}",
+      "#clarity-day-landing .cdl-card{border-radius:18px;border:1px solid rgba(212,180,90,0.28);padding:0.85rem 1rem;margin-bottom:0.75rem;background:linear-gradient(145deg,rgba(255,255,255,0.05),rgba(15,76,58,0.07));box-shadow:inset 0 1px 0 rgba(255,255,255,0.07),0 8px 22px rgba(0,0,0,0.2);}",
+      "html[data-theme=light] #clarity-day-landing .cdl-card{background:linear-gradient(165deg,#fbf8f1,#eef5f0);box-shadow:inset 0 1px 0 #fff,0 6px 16px rgba(15,76,58,0.08);}",
+      "#clarity-day-landing .cdl-steps{display:flex!important;flex-direction:column!important;gap:0.25rem;}",
+      "#clarity-day-landing .cdl-step,#clarity-day-landing .cdl-step-rich{display:flex!important;width:100%!important;flex-direction:row;gap:0.65rem;padding:0.7rem 0.35rem;border-bottom:1px solid rgba(212,180,90,0.12);align-items:flex-start;box-sizing:border-box;grid-column:1/-1;}",
+      "#clarity-day-landing .cdl-step-num{flex:0 0 1.65rem;height:1.65rem;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;background:rgba(15,76,58,0.25);border:1px solid rgba(212,180,90,0.4);}",
+      "#clarity-day-landing .cdl-step-body{flex:1;min-width:0;}",
+      "#clarity-day-landing .cdl-step-body strong{display:block;font-size:0.92rem;}",
+      "#clarity-day-landing .cdl-step-d{display:block!important;font-size:0.82rem;line-height:1.45;margin-top:0.15rem;opacity:0.92;}",
+      "#clarity-day-landing .cdl-step-tip{display:block!important;margin:0.3rem 0 0;font-size:0.78rem;font-style:italic;opacity:0.82;line-height:1.4;}",
+      "#clarity-day-landing .cdl-step-src{display:block!important;margin:0.2rem 0 0;font-size:0.7rem;opacity:0.72;}",
+      "#clarity-day-landing .cdl-learn{display:inline-block!important;visibility:visible!important;margin:0.4rem 0.55rem 0 0;font-size:0.76rem;font-weight:700;color:#e8d48a!important;text-decoration:none;border-bottom:1px solid rgba(232,212,138,0.45);}",
+      "html[data-theme=light] #clarity-day-landing .cdl-learn{color:#0f4c3a!important;}",
+      "#clarity-day-landing .cdl-fold-body{display:block!important;max-height:none!important;overflow:visible!important;}",
+      "#clarity-day-landing .cdl-fold-body[hidden]{display:none!important;}",
+      "#clarity-day-landing .cdl-rakah-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.4rem;margin:0.65rem 0;}",
+      "@media(max-width:560px){#clarity-day-landing .cdl-rakah-grid{grid-template-columns:repeat(3,1fr);}}",
+      "#clarity-day-landing .cdl-rakah{text-align:center;padding:0.55rem 0.25rem;border-radius:14px;border:1px solid rgba(212,180,90,0.22);background:rgba(0,0,0,0.18);}",
+      "#clarity-day-landing .cdl-rakah-n{display:block;font-size:1.35rem;font-weight:800;color:#e8d48a;}",
+      "html[data-theme=light] #clarity-day-landing .cdl-rakah-n{color:#0f4c3a;}",
+      "#clarity-day-landing .cdl-rakah strong{display:block;font-size:0.78rem;}",
+      "#clarity-day-landing .cdl-rakah small{opacity:0.7;font-size:0.68rem;}",
+      "#clarity-day-landing .cdl-qibla-row{display:grid;grid-template-columns:130px 1fr;gap:0.85rem;align-items:center;margin-top:0.55rem;}",
+      "@media(max-width:560px){#clarity-day-landing .cdl-qibla-row{grid-template-columns:1fr;justify-items:center;text-align:center;}}",
+      "#clarity-day-landing .cdl-compass-dial{width:118px;height:118px;border-radius:50%;position:relative;border:2px solid rgba(212,180,90,0.45);background:radial-gradient(circle at 40% 35%,rgba(255,255,255,0.08),rgba(0,0,0,0.4));box-shadow:inset 0 0 18px rgba(0,0,0,0.35);}",
+      "#clarity-day-landing .cdl-compass-kaaba{position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:1rem;}",
+      "#clarity-day-landing .cdl-compass-needle{position:absolute;left:50%;top:50%;width:4px;height:46%;margin-left:-2px;margin-top:-46%;background:linear-gradient(180deg,#e8d48a,transparent);border-radius:2px;transform-origin:bottom center;transition:transform 0.2s ease-out;}",
+      "#clarity-day-landing .cdl-pillar-grid{display:grid;grid-template-columns:1fr;gap:0.65rem;}",
+      "@media(min-width:800px){#clarity-day-landing .cdl-pillar-grid{grid-template-columns:1fr 1fr 1fr;}}",
+      "#clarity-day-landing .cdl-ico{margin-right:0.35rem;}",
     ].join("\n");
     (document.head || document.documentElement).appendChild(s);
   }
@@ -384,7 +408,7 @@
   }
 
   function build() {
-    if (w.__CDL_V5_BUILT__) return;
+    if (w.__CDL_V6_BUILT__) return;
     injectCss();
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -435,15 +459,15 @@
 
       /* Phase A — oath plaque */
       '<div class="cdl-oath" role="region" aria-label="Furnish your grave">' +
-        '<div class="cdl-card cdl-oath-warn"><div class="cdl-head"><h2>Remember the long stay</h2></div>' +
+        '<div class="cdl-card cdl-oath-warn"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🕯️</span> Remember the long stay</h2></div>' +
           '<p class="cdl-sub">Family and wealth turn back at the grave; <strong>deeds stay with you</strong>. Prepare a home of light — not only a warning, an invitation to send good ahead today.</p>' +
           '<p class="cdl-sub">Educational reminder · not a fatwa</p></div>' +
-        '<div class="cdl-card cdl-oath-hope"><div class="cdl-head"><h2>Reward that may continue</h2></div>' +
+        '<div class="cdl-card cdl-oath-hope"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🌱</span> Reward that may continue</h2></div>' +
           '<p class="cdl-sub">When a person dies, deeds end except <strong>ongoing charity</strong>, <strong>beneficial knowledge</strong>, and a <strong>righteous child who prays</strong> for them.</p>' +
           '<p class="cdl-sub">Muslim 1631 · educational wording · verify with a scholar</p></div></div>' +
 
       /* Phase G — short protection note */
-      '<div class="cdl-card"><div class="cdl-head"><h2>Core protection set</h2></div>' +
+      '<div class="cdl-card"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🛡️</span> Core protection set</h2></div>' +
         '<p class="cdl-sub">When ready, add from authentic collections: <strong>Āyat al-Kursī</strong>, the three Quls (Ikhlāṣ, Falaq, Nās) often 3×, and Sayyid al-istighfār. Start small; consistency is furniture for the heart.</p>' +
         '<p class="cdl-sub">Hisn-style practice · educational · learn full wording with a teacher</p></div>' +
 
@@ -465,7 +489,7 @@
           '<p class="cdl-sub cdl-deep-strip">Deepen: <a href="https://quran.com/1" target="_blank" rel="noopener">Al-Fātiḥah</a> · <a href="https://quran.com/2/144" target="_blank" rel="noopener">Qiblah 2:144</a> · <a href="https://sunnah.com/search?q=prayer" target="_blank" rel="noopener">Sunnah.com · prayer</a> · not a fatwa</p></div></div>' +
 
       /* Phase E — send light ahead */
-      '<div class="cdl-card"><div class="cdl-head"><h2>Send light ahead today</h2></div>' +
+      '<div class="cdl-card"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">✨</span> Send light ahead today</h2></div>' +
         '<p class="cdl-sub">Three small intentions that echo ongoing reward themes (Muslim 1631 · educational).</p>' +
         '<div class="cdl-light">' +
           '<button type="button" class="cdl-btn secondary" data-light="knowledge" id="cdl-light-k">📖 Beneficial knowledge' +
@@ -476,9 +500,52 @@
             (light.dua ? " · ✓" : "") + "</button></div>" +
         '<p class="cdl-sub" id="cdl-light-msg">Tap to mark an intention on this device — act happens offline, with sincerity.</p></div>' +
 
+
+      '<div class="cdl-plaque cdl-card" id="cdl-rakahs">' +
+        '<div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🕌</span> Farḍ rakʿahs · daily map</h2></div>' +
+        '<p class="cdl-sub">Standard farḍ units taught widely — sunnah units vary by school. Educational map · not a fatwa.</p>' +
+        '<div class="cdl-rakah-grid">' +
+          '<div class="cdl-rakah"><span class="cdl-rakah-n">2</span><strong>Fajr</strong><small>Farḍ</small></div>' +
+          '<div class="cdl-rakah"><span class="cdl-rakah-n">4</span><strong>Dhuhr</strong><small>Farḍ</small></div>' +
+          '<div class="cdl-rakah"><span class="cdl-rakah-n">4</span><strong>ʿAṣr</strong><small>Farḍ</small></div>' +
+          '<div class="cdl-rakah"><span class="cdl-rakah-n">3</span><strong>Maghrib</strong><small>Farḍ</small></div>' +
+          '<div class="cdl-rakah"><span class="cdl-rakah-n">4</span><strong>ʿIshāʾ</strong><small>Farḍ</small></div>' +
+        '</div>' +
+        '<div class="cdl-qibla-row">' +
+          '<div class="cdl-compass" id="cdl-compass" aria-label="Qibla compass">' +
+            '<div class="cdl-compass-dial"><div class="cdl-compass-kaaba">🕋</div>' +
+            '<div class="cdl-compass-needle" id="cdl-compass-needle"></div></div>' +
+            '<p class="cdl-sub" id="cdl-qibla-label">Qibla helper · allow location / sensors</p></div>' +
+          '<div><p class="cdl-sub"><strong>Qiblah</strong> — toward al-Masjid al-Ḥarām (2:144). Helper only, not a certified instrument.</p>' +
+            '<a class="cdl-learn" href="https://quran.com/2/144" target="_blank" rel="noopener">Deepen · 2:144 ↗</a> ' +
+            '<button type="button" class="cdl-btn secondary" id="cdl-qibla-cal">Calibrate compass</button></div></div></div>' +
+
+      '<div class="cdl-pillar-grid">' +
+        '<article class="cdl-plaque cdl-card" id="cdl-fasting"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🌙</span> Ṣawm · fasting</h2></div>' +
+          '<p class="cdl-sub"><strong>Aim</strong> — Fast Ramaḍān when able; niyyah before dawn; abstain dawn to sunset.</p>' +
+          '<p class="cdl-step-tip">Fasting is prescribed for you… (2:183). Make-ups and fidyah: ask a teacher.</p>' +
+          '<p class="cdl-step-src">Qurʾān 2:183–185 · educational · not a fatwa</p>' +
+          '<a class="cdl-learn" href="https://quran.com/2/183" target="_blank" rel="noopener">Deepen · 2:183 ↗</a> ' +
+          '<a class="cdl-learn" href="https://sunnah.com/search?q=ramadan%20fast" target="_blank" rel="noopener">Sunnah · Ramaḍān ↗</a></article>' +
+
+        '<article class="cdl-plaque cdl-card" id="cdl-zakat"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">💎</span> Zakāt · purifying dues</h2></div>' +
+          '<p class="cdl-sub"><strong>Aim</strong> — When niṣāb and a lunar year pass, give the due share (9:60). No live calculator verdict here.</p>' +
+          '<p class="cdl-step-tip">Zakāt is worship and right of the poor — not optional charity branding.</p>' +
+          '<p class="cdl-step-src">Qurʾān 9:60 · 2:267 · educational · not a fatwa</p>' +
+          '<a class="cdl-learn" href="https://quran.com/9/60" target="_blank" rel="noopener">Deepen · 9:60 ↗</a> ' +
+          '<a class="cdl-learn" href="https://quran.com/2/267" target="_blank" rel="noopener">2:267 ↗</a></article>' +
+
+        '<article class="cdl-plaque cdl-card" id="cdl-hajj"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🕋</span> Ḥajj · pilgrimage</h2></div>' +
+          '<p class="cdl-sub"><strong>Aim</strong> — Once when able. Follow your group’s muṭawwif; this is a map, not manāsik fatwa.</p>' +
+          '<p class="cdl-step-tip">Ability includes safety, health, and means — sincerity before the crowd.</p>' +
+          '<p class="cdl-step-src">Qurʾān 3:97 · 22:27 · educational · not a fatwa</p>' +
+          '<a class="cdl-learn" href="https://quran.com/3/97" target="_blank" rel="noopener">Deepen · 3:97 ↗</a> ' +
+          '<a class="cdl-learn" href="https://sunnah.com/search?q=hajj" target="_blank" rel="noopener">Sunnah · ḥajj ↗</a></article></div>' +
+
       '<p class="cdl-foot">Furnish your grave · prepare for the long stay · educational companion · not a fatwa</p>';
 
     place(wrap);
+    w.__CDL_V6_BUILT__ = true;
     w.__CDL_V5_BUILT__ = true;
     w.__CDL_V4_BUILT__ = true;
     w.__CDL_V3_BUILT__ = true;
@@ -571,6 +638,49 @@
       var b = document.getElementById(id);
       if (b) b.setAttribute("aria-expanded", "true");
     });
+
+    (function initQibla(){
+      var needle = document.getElementById("cdl-compass-needle");
+      var label = document.getElementById("cdl-qibla-label");
+      var btn = document.getElementById("cdl-qibla-cal");
+      if (!needle) return;
+      var KAABA = { lat: 21.4225, lng: 39.8262 };
+      function toRad(d){ return d * Math.PI / 180; }
+      function toDeg(r){ return r * 180 / Math.PI; }
+      function bearing(lat1, lng1, lat2, lng2){
+        var φ1 = toRad(lat1), φ2 = toRad(lat2), Δλ = toRad(lng2 - lng1);
+        var y = Math.sin(Δλ) * Math.cos(φ2);
+        var x = Math.cos(φ1)*Math.sin(φ2) - Math.sin(φ1)*Math.cos(φ2)*Math.cos(Δλ);
+        return (toDeg(Math.atan2(y, x)) + 360) % 360;
+      }
+      var qiblaBearing = 0, heading = 0;
+      function paint(){ needle.style.transform = "rotate(" + (qiblaBearing - heading) + "deg)"; }
+      function setPos(lat, lng){
+        qiblaBearing = bearing(lat, lng, KAABA.lat, KAABA.lng);
+        if (label) label.textContent = "Qibla ≈ " + Math.round(qiblaBearing) + "° from north · educational";
+        paint();
+      }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(p){ setPos(p.coords.latitude, p.coords.longitude); },
+          function(){ if (label) label.textContent = "Location off — align needle with 🕋 as a gentle reminder"; },
+          { maximumAge: 600000, timeout: 8000 });
+      }
+      function onOrient(ev){
+        var h = ev.webkitCompassHeading;
+        if (typeof h !== "number" && ev.alpha != null) h = 360 - ev.alpha;
+        if (typeof h === "number" && !isNaN(h)) { heading = h; paint(); }
+      }
+      function bindOrient(){
+        if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === "function") {
+          DeviceOrientationEvent.requestPermission().then(function(s){
+            if (s === "granted") window.addEventListener("deviceorientation", onOrient, true);
+          }).catch(function(){});
+        } else window.addEventListener("deviceorientation", onOrient, true);
+      }
+      if (btn) btn.addEventListener("click", bindOrient);
+      bindOrient();
+    })();
+
 
     updateSalahTile();
     if (countdownTimer) clearInterval(countdownTimer);
