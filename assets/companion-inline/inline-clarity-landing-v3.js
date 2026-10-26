@@ -834,6 +834,7 @@
     if (countdownTimer) clearInterval(countdownTimer);
     var ticks = 0;
     countdownTimer = setInterval(function () {
+      if (document.hidden) return;
       ticks++;
       if (ticks % 30 === 0) updateSalahTile();
       else {
@@ -841,7 +842,7 @@
         var info = parseNextSalah();
         if (sub && info.at) sub.textContent = "in " + formatCountdown(info.at.getTime() - Date.now());
       }
-    }, 1000);
+    }, 5000);
 
     try { if (w.ClarityShell && typeof w.ClarityShell.apply === "function") w.ClarityShell.apply(); } catch (e) {}
   }
@@ -870,6 +871,7 @@
   // Poll until banner list has real times
   var _salahPoll = 0;
   var _salahTimer = setInterval(function () {
+    if (document.hidden) return;
     _salahPoll++;
     try {
       var list = document.getElementById("salah-times-list");
@@ -880,5 +882,5 @@
       }
       if (_salahPoll > 40) clearInterval(_salahTimer);
     } catch (e) { clearInterval(_salahTimer); }
-  }, 1000);
+  }, 5000);
 })(typeof window !== "undefined" ? window : this);

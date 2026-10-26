@@ -205,7 +205,7 @@
 
   function boot() {
     collapse();
-    setTimeout(collapse, 100);
+    setTimeout(collapse, 300);
     setTimeout(collapse, 400);
   }
   if (document.readyState === "loading")
@@ -997,7 +997,7 @@ window.memeBgIdx = g.memeBgIdx;
           clearInterval(timer);
         }
         if (tries > 40) clearInterval(timer); /* ~4s */
-      }, 100);
+      }, 250);
     }, false);
   }
 
@@ -1015,7 +1015,7 @@ window.memeBgIdx = g.memeBgIdx;
           clearInterval(timer);
         }
         if (tries > 40) clearInterval(timer);
-      }, 100);
+      }, 250);
     }, false);
   }
 
@@ -1089,8 +1089,8 @@ window.memeBgIdx = g.memeBgIdx;
     ensureNotesPanel();
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 100); });
-  else setTimeout(boot, 100);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 300); });
+  else setTimeout(boot, 300);
   window.addEventListener("load", function(){ setTimeout(boot, 300); });
 
   document.addEventListener("click", function(ev){

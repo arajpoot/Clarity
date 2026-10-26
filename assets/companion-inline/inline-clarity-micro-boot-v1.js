@@ -79,7 +79,8 @@
   unlock();
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", unlock);
   window.addEventListener("load", unlock);
-  setInterval(unlock, 12000);
+  /* PSI: no perpetual interval — unlock on show only */
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden) unlock(); });
 })();
 
 

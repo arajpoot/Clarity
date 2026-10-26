@@ -149,13 +149,17 @@ window.addEventListener("load", function(){ setTimeout(run, 900); setTimeout(run
 
 /* If stuck on Seeker visuals while path is Daily */
 setInterval(function(){
+  if (document.hidden) return;
+  try {
+    if (document.documentElement.getAttribute("data-shell-mode") === "landing") return;
+  } catch (e) {}
   var g = pathNow();
   if (g === "practicing" || g === "dai") {
     var m = document.getElementById("meme-card");
     if (m && (m.classList.contains("gate-hidden") || getComputedStyle(m).display==="none")) run();
   }
   dedupeBookmarks();
-}, 2500);
+}, 15000);
 
 window.clarityPathNuclear = { run: run, populate: populate };
 })();
