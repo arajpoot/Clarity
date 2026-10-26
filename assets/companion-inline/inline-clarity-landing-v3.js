@@ -408,7 +408,7 @@
   }
 
   function build() {
-    if (w.__CDL_V10_BUILT__) return;
+    if (w.__CDL_V11_BUILT__) return;
     injectCss();
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -425,6 +425,14 @@
     wrap.setAttribute("aria-label", "Daily landing — furnish your grave");
     wrap.setAttribute("data-landing-root", "1");
     wrap.innerHTML =
+      '<div class="dual-tiles" data-landing="paths" role="navigation" aria-label="Choose a path">' +
+        '<a class="dual-tile" href="#main-content" id="dual-path-companion">' +
+          '<span class="dual-ico" aria-hidden="true">🏠</span><strong>Companion path</strong>' +
+          '<small>Reminder · Reality · Reflection · Action — tools on this page</small></a>' +
+        '<a class="dual-tile" href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener" id="dual-path-university">' +
+          '<span class="dual-ico" aria-hidden="true">🎓</span><strong>University path</strong>' +
+          '<small>Campus desk · four stages · Faculty</small></a></div>' +
+
       '<div class="cdl-hero" data-landing="pulse" role="region" aria-label="Today at a glance">' +
         '<div class="cdl-tile"><h3>Do this today · ' + dayPeriod() + "</h3>" +
           '<div class="cdl-big" style="font-size:1.05rem">' + (prov.lane || "deed") + "</div>" +
@@ -551,9 +559,42 @@
       '</section>' +
 
 
+
+
+      '<section class="cdl-card cdl-plaque cdl-confidence" id="cdl-confidence" data-landing="confidence" aria-label="Why you can trust this companion">' +
+        '<div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🛡️</span> Built for trust · what this companion is</h2></div>' +
+        '<p class="cdl-sub"><strong>Educational companion only — not a fatwa, not legal advice, not a scholar.</strong> ' +
+          'For personal rulings and inheritance questions, consult a qualified local teacher and counsel.</p>' +
+        '<ul class="cdl-confidence-list">' +
+          '<li><strong>Sources in the open</strong> — verses and reports are pointed toward Quran.com and Sunnah.com where linked; wording stays educational.</li>' +
+          '<li><strong>On this device</strong> — Day progress, qaḍāʾ checks, and Amānah notes stay in your browser storage; Clarity does not run a cloud account for them.</li>' +
+          '<li><strong>Amānah vault</strong> — passphrase is never stored by the site; encrypted data stays local; heirs use Heir readiness after unlock.</li>' +
+          '<li><strong>Scholarly humility</strong> — where schools differ (e.g. long-term missed ṣalāh), both lines are named and you are sent to a teacher.</li>' +
+          '<li><strong>Calm doors</strong> — Day landing for daily light; Companion path for deeper tools; University campus for structured study.</li>' +
+          '<li><strong>Review posture</strong> — smoke-checked assets, mobile Day-landing default, no surprise geolocation until you calibrate; performance work continues.</li>' +
+        '</ul>' +
+        '<p class="cdl-sub">Furnish your grave with small, sincere steps. This app only holds the map — the walk is yours.</p>' +
+        '<p class="cdl-sub" style="opacity:.85">SEO and accessibility baselines are maintained for discoverability; always verify practice with people of knowledge near you.</p>' +
+      '</section>' +
+
       '<p class="cdl-foot">Furnish your grave · prepare for the long stay · educational companion · not a fatwa</p>';
 
     place(wrap);
+
+    var dualComp = document.getElementById("dual-path-companion");
+    if (dualComp && !dualComp.__bound) {
+      dualComp.__bound = true;
+      dualComp.addEventListener("click", function (ev) {
+        try {
+          if (w.ClarityShell && w.ClarityShell.setMode) {
+            ev.preventDefault();
+            w.ClarityShell.setMode("companion");
+            try { w.location.hash = "reminder"; } catch (e) {}
+          }
+        } catch (e2) {}
+      });
+    }
+
     w.__CDL_V9_BUILT__ = true;
     w.__CDL_V8_BUILT__ = true;
     w.__CDL_V7_BUILT__ = true;
