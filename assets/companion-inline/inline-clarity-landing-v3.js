@@ -408,7 +408,7 @@
   }
 
   function build() {
-    if (w.__CDL_V7_BUILT__) return;
+    if (w.__CDL_V8_BUILT__) return;
     injectCss();
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -534,6 +534,12 @@
           '<a class="cdl-learn" href="https://quran.com/2/183" target="_blank" rel="noopener">Deepen · 2:183 ↗</a> ' +
           '<a class="cdl-learn" href="https://sunnah.com/search?q=ramadan%20fast" target="_blank" rel="noopener">Sunnah · Ramaḍān ↗</a></article>' +
 
+      '<article class="cdl-card cdl-plaque" id="cdl-qada" data-landing="qada">' +
+        '<div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🕌</span> Making up missed ṣalāh · qaḍāʾ tracker</h2></div>' +
+        '<p class="cdl-sub">Educational companion only — <strong>not a fatwa</strong>. Missing prayer without excuse is a grave matter. Obligation begins at puberty (bulūgh). Scholars differ on make-up after deliberate neglect; ask a qualified local teacher for your case.</p>' +
+        '<div id="cdl-qada-root"></div></article>' +
+
+
         '<article class="cdl-plaque cdl-card" id="cdl-zakat"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">💎</span> Zakāt · purifying dues</h2></div>' +
           '<p class="cdl-sub"><strong>Aim</strong> — When niṣāb and a lunar year pass, give the due share (9:60). No live calculator verdict here.</p>' +
           '<p class="cdl-step-tip">Zakāt is worship and right of the poor — not optional charity branding.</p>' +
@@ -551,6 +557,7 @@
       '<p class="cdl-foot">Furnish your grave · prepare for the long stay · educational companion · not a fatwa</p>';
 
     place(wrap);
+    w.__CDL_V8_BUILT__ = true;
     w.__CDL_V7_BUILT__ = true;
     w.__CDL_V6_BUILT__ = true;
     w.__CDL_V5_BUILT__ = true;
