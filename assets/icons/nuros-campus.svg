@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="g" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#0a2f4a"/>
+      <stop offset="100%" stop-color="#145a7a"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0d78c"/>
+      <stop offset="50%" stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#a67c1a"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#g)"/>
+  <circle cx="32" cy="32" r="28.5" fill="none" stroke="url(#gold)" stroke-width="2.4"/>
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#f5e6b8" stroke-width="0.6" opacity="0.35"/>
+  
+    <!-- mosque dome + minaret -->
+    <path fill="none" stroke="#f5e6b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M16 46h32"/>
+    <path fill="none" stroke="#f5e6b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M22 46V32l10-9 10 9v14"/>
+    <path fill="none" stroke="#f5e6b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M30 46v-7h4v7"/>
+    <path fill="none" stroke="#f5e6b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M32 23V16"/>
+    <path fill="none" stroke="#f5e6b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M29 16h6"/>
+    <circle fill="#e8c65a" cx="32" cy="14" r="1.5"/>
+    <path fill="none" stroke="#f5e6b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M42 46V24"/>
+    <path fill="none" stroke="#f5e6b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M40 24h4"/>
+  
+</svg>
