@@ -408,7 +408,7 @@
   }
 
   function build() {
-    if (w.__CDL_V9b_BUILT__) return;
+    if (w.__CDL_V10_BUILT__) return;
     injectCss();
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -425,12 +425,6 @@
     wrap.setAttribute("aria-label", "Daily landing — furnish your grave");
     wrap.setAttribute("data-landing-root", "1");
     wrap.innerHTML =
-      '<div class="dual-tiles" data-landing="paths" role="navigation">' +
-        '<a class="dual-tile" href="#main-content" id="dual-path-companion"><span class="dual-ico" aria-hidden="true">🏠</span><strong>Companion path</strong>' +
-          "<small>Reminder · Reality · Reflection · Action — tools on this page</small></a>" +
-        '<a class="dual-tile" href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener"><span class="dual-ico" aria-hidden="true">🎓</span><strong>University path</strong>' +
-          "<small>Campus desk · four stages · Faculty</small></a></div>" +
-
       '<div class="cdl-hero" data-landing="pulse" role="region" aria-label="Today at a glance">' +
         '<div class="cdl-tile"><h3>Do this today · ' + dayPeriod() + "</h3>" +
           '<div class="cdl-big" style="font-size:1.05rem">' + (prov.lane || "deed") + "</div>" +
