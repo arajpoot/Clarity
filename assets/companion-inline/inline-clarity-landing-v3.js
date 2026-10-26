@@ -408,7 +408,7 @@
   }
 
   function build() {
-    if (w.__CDL_V6_BUILT__) return;
+    if (w.__CDL_V7_BUILT__) return;
     injectCss();
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -425,6 +425,12 @@
     wrap.setAttribute("aria-label", "Daily landing — furnish your grave");
     wrap.setAttribute("data-landing-root", "1");
     wrap.innerHTML =
+      '<div class="dual-tiles" data-landing="paths" role="navigation">' +
+        '<a class="dual-tile" href="#main-content" id="dual-path-companion"><span class="dual-ico" aria-hidden="true">🏠</span><strong>Companion path</strong>' +
+          "<small>Reminder · Reality · Reflection · Action — tools on this page</small></a>" +
+        '<a class="dual-tile" href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener"><span class="dual-ico" aria-hidden="true">🎓</span><strong>University path</strong>' +
+          "<small>Campus desk · four stages · Faculty</small></a></div>" +
+
       '<div class="cdl-hero" data-landing="pulse" role="region" aria-label="Today at a glance">' +
         '<div class="cdl-tile"><h3>Do this today · ' + dayPeriod() + "</h3>" +
           '<div class="cdl-big" style="font-size:1.05rem">' + (prov.lane || "deed") + "</div>" +
@@ -451,11 +457,11 @@
           '<button type="button" class="cdl-btn secondary" id="cdl-adhkar-next">Next dhikr →</button>' +
           '<button type="button" class="cdl-btn secondary" id="cdl-adhkar-reset">↺</button></div></article>' +
 
-      '<div class="dual-tiles" data-landing="paths" role="navigation">' +
-        '<a class="dual-tile" href="#main-content" id="dual-path-companion"><span class="dual-ico" aria-hidden="true">🏠</span><strong>Companion path</strong>' +
-          "<small>Reminder · Reality · Reflection · Action — tools on this page</small></a>" +
-        '<a class="dual-tile" href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener"><span class="dual-ico" aria-hidden="true">🎓</span><strong>University path</strong>' +
-          "<small>Campus desk · four stages · Faculty</small></a></div>" +
+      '<div class="cdl-card cdl-plaque" id="cdl-amana-note-host" data-landing="amana-note">' +
+        '<div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🔒</span> Vault note registry · on-device</h2></div>' +
+        '<p class="cdl-sub">Private notes with date/time. Same registry the Amānah vault uses — on this device only. Educational · not legal advice.</p>' +
+        '<div id="amana-note-registry-landing"></div></div>' +
+
 
       /* Phase A — oath plaque */
       '<div class="cdl-oath" role="region" aria-label="Furnish your grave">' +
@@ -545,6 +551,7 @@
       '<p class="cdl-foot">Furnish your grave · prepare for the long stay · educational companion · not a fatwa</p>';
 
     place(wrap);
+    w.__CDL_V7_BUILT__ = true;
     w.__CDL_V6_BUILT__ = true;
     w.__CDL_V5_BUILT__ = true;
     w.__CDL_V4_BUILT__ = true;
