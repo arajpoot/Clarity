@@ -677,10 +677,20 @@
         if (label) label.textContent = "Qibla ≈ " + Math.round(qiblaBearing) + "° from north · educational";
         paint();
       }
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(p){ setPos(p.coords.latitude, p.coords.longitude); },
-          function(){ if (label) label.textContent = "Location off — align needle with 🕋 as a gentle reminder"; },
-          { maximumAge: 600000, timeout: 8000 });
+      /* Performance: do not request geolocation on load — only on Calibrate */
+      if (label && !label.textContent) label.textContent = "Location off — tap Calibrate when you want a bearing (educational)";
+      if (btn && !btn.__geoBound) {
+        btn.__geoBound = true;
+        btn.addEventListener("click", function () {
+          if (!navigator.geolocation) {
+            if (label) label.textContent = "Geolocation not available on this device";
+            return;
+          }
+          if (label) label.textContent = "Requesting location…";
+          navigator.geolocation.getCurrentPosition(function(p){ setPos(p.coords.latitude, p.coords.longitude); },
+            function(){ if (label) label.textContent = "Location off — align needle with 🕋 as a gentle reminder"; },
+            { maximumAge: 600000, timeout: 8000 });
+        });
       }
       function onOrient(ev){
         var h = ev.webkitCompassHeading;

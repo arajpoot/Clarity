@@ -9,7 +9,16 @@
   try {
     var m = localStorage.getItem("clarity_shell_mode_v1");
     if (m !== "landing" && m !== "companion") m = "landing";
+    /* Mobile first paint: Day landing is default (companion only after explicit path) */
+    try {
+      var mobile = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+      var forceLand = sessionStorage.getItem("clarity_force_landing_once") === "1";
+      var userPicked = sessionStorage.getItem("clarity_shell_user_pick_v1") === "1";
+      if (mobile && !userPicked) m = "landing";
+      if (forceLand) m = "landing";
+    } catch (e2) {}
     document.documentElement.setAttribute("data-shell-mode", m);
+    try { if (m === "landing") localStorage.setItem("clarity_shell_mode_v1", "landing"); } catch (e3) {}
   } catch (e) { document.documentElement.setAttribute("data-shell-mode", "landing"); }
 })();
 

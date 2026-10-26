@@ -295,6 +295,25 @@
   }, true);
 
   function boot() {
+
+  /* MOBILE_LANDING_DEFAULT */
+  try {
+    if (window.matchMedia && window.matchMedia("(max-width: 900px)").matches) {
+      if (sessionStorage.getItem("clarity_shell_user_pick_v1") !== "1") {
+        try { localStorage.setItem("clarity_shell_mode_v1", "landing"); } catch (e) {}
+        try {
+          if (w.ClarityShell && w.ClarityShell.setMode) {
+            /* set without marking user pick — call apply path carefully */
+            localStorage.setItem("clarity_shell_mode_v1", "landing");
+            sessionStorage.removeItem("clarity_shell_user_pick_v1");
+          }
+        } catch (e2) {}
+        document.documentElement.setAttribute("data-shell-mode", "landing");
+        hardHideDoors();
+      }
+    }
+  } catch (e3) {}
+
     wireDoors();
     wrapFilter("applyAdditiveFilter");
     wrapFilter("applyGateSectionFilter");

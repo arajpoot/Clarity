@@ -21,6 +21,7 @@
   function setMode(m) {
     if (m !== "landing" && m !== "companion") return;
     try { localStorage.setItem(KEY, m); } catch (e) {}
+    try { sessionStorage.setItem("clarity_shell_user_pick_v1", "1"); } catch (e2) {}
     apply();
   }
 
@@ -222,6 +223,15 @@
       try { w.ClarityLoadCompanion(); } catch (e) {}
     }
   }
+
+  /* Mobile: ensure Day landing is first surface */
+  try {
+    if (window.matchMedia && window.matchMedia("(max-width: 900px)").matches) {
+      if (sessionStorage.getItem("clarity_shell_user_pick_v1") !== "1") {
+        try { localStorage.setItem(KEY, "landing"); } catch (e) {}
+      }
+    }
+  } catch (e) {}
 
   w.ClarityShell = { mode: mode, setMode: setMode, apply: apply };
 

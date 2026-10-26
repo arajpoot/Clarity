@@ -1,15 +1,12 @@
 /**
- * Qaḍāʾ tracker v2 — persistent cursor + progress
- * localStorage:
- *   clarity_qada_log_v1     { "YYYY-MM-DD": { fajr:1, ... }, ... }
- *   clarity_qada_cursor_v1  { y, m, d }  last day user is working on
+ * Qaḍāʾ tracker v3 — sticky working day + persistent checks
+ * clarity_qada_log_v1, clarity_qada_cursor_v1
  * Educational only — not a fatwa
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_QADA_TRACKER_V2__) return;
-  w.__CLARITY_QADA_TRACKER_V2__ = true;
-  w.__CLARITY_QADA_TRACKER_V1__ = true;
+  if (w.__CLARITY_QADA_TRACKER_V3__) return;
+  w.__CLARITY_QADA_TRACKER_V3__ = true;
 
   var KEY = "clarity_qada_log_v1";
   var CURSOR = "clarity_qada_cursor_v1";
@@ -24,101 +21,91 @@
   function readLog() {
     try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { return {}; }
   }
-  function writeLog(obj) {
-    try { localStorage.setItem(KEY, JSON.stringify(obj)); } catch (e) {}
+  function writeLog(o) {
+    try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
+  }
+  function pad(n) { n = +n; return (n < 10 ? "0" : "") + n; }
+  function dayKey(y, m, d) { return +y + "-" + pad(m) + "-" + pad(d); }
+  function parseKey(k) {
+    var p = String(k || "").split("-");
+    if (p.length !== 3) return null;
+    return { y: +p[0], m: +p[1], d: +p[2] };
   }
   function readCursor() {
     try {
       var c = JSON.parse(localStorage.getItem(CURSOR) || "null");
-      if (c && c.y && c.m && c.d) return { y: +c.y, m: +c.m, d: +c.d };
+      if (c && +c.y > 0 && +c.m >= 1 && +c.m <= 12 && +c.d >= 1) {
+        return { y: +c.y, m: +c.m, d: +c.d };
+      }
     } catch (e) {}
     return null;
   }
   function writeCursor(y, m, d) {
-    try {
-      localStorage.setItem(CURSOR, JSON.stringify({ y: +y, m: +m, d: +d }));
-    } catch (e) {}
+    y = +y; m = +m; d = +d;
+    if (!(y > 0 && m >= 1 && m <= 12 && d >= 1)) return;
+    try { localStorage.setItem(CURSOR, JSON.stringify({ y: y, m: m, d: d })); } catch (e) {}
   }
-  function pad(n) { n = +n; return n < 10 ? "0" + n : "" + n; }
-  function dayKey(y, m, d) { return +y + "-" + pad(m) + "-" + pad(d); }
-
+  function daysInMonth(y, m) { return new Date(+y, +m, 0).getDate(); }
+  function clampDay(y, m, d) {
+    var max = daysInMonth(y, m);
+    if (d > max) d = max;
+    if (d < 1) d = 1;
+    return d;
+  }
+  function toDateInput(y, m, d) { return dayKey(y, m, d); }
+  function fromDateInput(val) {
+    var p = parseKey(val);
+    if (!p || !p.y) return null;
+    p.d = clampDay(p.y, p.m, p.d);
+    return p;
+  }
   function stats(log) {
-    var days = Object.keys(log).length;
-    var done = 0;
+    var days = Object.keys(log).length, done = 0;
     Object.keys(log).forEach(function (k) {
       var row = log[k] || {};
       PRAYERS.forEach(function (pr) { if (row[pr.id]) done++; });
     });
-    return { days: days, done: done };
-  }
-
-  function yearsOptions(selected) {
-    var y = new Date().getFullYear();
-    var html = "";
-    for (var i = y; i >= y - 80; i--) {
-      html += "<option value=\"" + i + "\"" + (i === +selected ? " selected" : "") + ">" + i + "</option>";
-    }
-    return html;
-  }
-  function monthsOptions(selected) {
-    var names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    return names.map(function (n, i) {
-      var v = i + 1;
-      return "<option value=\"" + v + "\"" + (v === +selected ? " selected" : "") + ">" + n + "</option>";
-    }).join("");
-  }
-  function daysInMonth(y, m) { return new Date(+y, +m, 0).getDate(); }
-  function fillDays(sel, y, m, prefer) {
-    var n = daysInMonth(y, m);
-    var v = +prefer || +sel.value || 1;
-    if (v > n) v = n;
-    if (v < 1) v = 1;
-    var html = "";
-    for (var d = 1; d <= n; d++) {
-      html += "<option value=\"" + d + "\"" + (d === v ? " selected" : "") + ">" + d + "</option>";
-    }
-    sel.innerHTML = html;
-    sel.value = String(v);
+    return { days: days, done: done, pct: days ? Math.round((done / (days * 5)) * 100) : 0 };
   }
 
   function mount() {
     var root = document.getElementById("cdl-qada-root");
     if (!root) return;
 
-    // If already built, only re-bind if selects missing; do NOT reset to today
-    if (root.getAttribute("data-ready") === "1" && document.getElementById("qada-y")) {
-      return;
-    }
-    root.setAttribute("data-ready", "1");
-
     var now = new Date();
     var cur = readCursor();
     var y0 = cur ? cur.y : now.getFullYear();
     var m0 = cur ? cur.m : (now.getMonth() + 1);
     var d0 = cur ? cur.d : now.getDate();
-    // clamp day
-    var dim = daysInMonth(y0, m0);
-    if (d0 > dim) d0 = dim;
+    d0 = clampDay(y0, m0, d0);
 
+    // Rebuild UI every time root is empty; if ready and date input exists, just sync from cursor
+    if (root.getAttribute("data-ready") === "1" && document.getElementById("qada-date")) {
+      var existing = document.getElementById("qada-date");
+      var c2 = readCursor();
+      if (c2) existing.value = toDateInput(c2.y, c2.m, c2.d);
+      paint();
+      return;
+    }
+
+    root.setAttribute("data-ready", "1");
     root.innerHTML =
       "<div class=\"qada-guide\">" +
-        "<p><strong>Repentance includes repairing what can be repaired.</strong> Prayer is the covenant of the dīn. Neglect without excuse is a major sin among the Muslims.</p>" +
+        "<p><strong>Repentance includes repairing what can be repaired.</strong> Prayer is the covenant of the dīn.</p>" +
         "<ul>" +
-          "<li>Obligation starts at <strong>bulūgh</strong> (puberty) — not from early childhood.</li>" +
-          "<li>If you slept or forgot: the Prophet ﷺ said to pray it when you remember — there is no other kaffārah for that case (Bukhārī, Muslim).</li>" +
-          "<li>Many teachers of the four schools encourage steady <strong>qaḍāʾ</strong> of missed farḍ from puberty; estimate when unsure.</li>" +
+          "<li>Obligation from <strong>bulūgh</strong> (puberty).</li>" +
+          "<li>Forgot / slept: pray when you remember (Bukhārī, Muslim).</li>" +
+          "<li>Scholars differ on deliberate long neglect — ask a local teacher. This log is a private aid only.</li>" +
         "</ul>" +
-        "<div class=\"qada-diff\"><strong>Scholarly difference (know it, then ask):</strong> " +
-          "A strong view among later scholars (including reports from Ibn Taymiyyah, Ibn al-Qayyim, and some contemporary fatāwā) holds that deliberate abandonment is not “made up” like a forgotten prayer — rather sincere tawbah, never returning, and filling the scale with voluntary worship. " +
-          "The majority practice in the madhāhib is to make up. <em>This tracker is a private aid for whichever path your teacher confirms — not a ruling.</em></div>" +
-        "<p class=\"qada-cal-hint\">Your selected day is remembered on this device. Check off farḍ as you complete them; progress stays across visits.</p>" +
+        "<p class=\"qada-cal-hint\">Pick a working day once — it stays selected on this device while you check off farḍ.</p>" +
       "</div>" +
       "<div class=\"qada-stats\" id=\"qada-stats\"></div>" +
       "<div class=\"qada-pick\">" +
-        "<label>Year<select id=\"qada-y\">" + yearsOptions(y0) + "</select></label>" +
-        "<label>Month<select id=\"qada-m\">" + monthsOptions(m0) + "</select></label>" +
-        "<label>Day<select id=\"qada-d\"></select></label>" +
-        "<button type=\"button\" class=\"primary\" id=\"qada-open-day\">Open day</button>" +
+        "<label style=\"flex:1;min-width:11rem\">Working day" +
+          "<input type=\"date\" id=\"qada-date\" value=\"" + toDateInput(y0, m0, d0) + "\" max=\"" + toDateInput(now.getFullYear(), now.getMonth()+1, now.getDate()) + "\" />" +
+        "</label>" +
+        "<button type=\"button\" class=\"primary\" id=\"qada-prev-day\" title=\"Previous day\">←</button>" +
+        "<button type=\"button\" class=\"primary\" id=\"qada-next-day\" title=\"Next day\">→</button>" +
       "</div>" +
       "<p class=\"qada-cal-hint\" id=\"qada-day-label\"></p>" +
       "<div class=\"qada-prayers\" id=\"qada-prayers\"></div>" +
@@ -126,25 +113,31 @@
         "<button type=\"button\" class=\"primary\" id=\"qada-mark-all\">Mark all five</button>" +
         "<button type=\"button\" id=\"qada-clear-day\">Clear this day</button>" +
         "<button type=\"button\" id=\"qada-export\">Export CSV</button>" +
-      "</div>" +
-      "<p class=\"qada-deepen\" style=\"margin-top:0.55rem\">" +
-        "<a href=\"https://sunnah.com/bukhari:597\" target=\"_blank\" rel=\"noopener\">Deepen · forgetfulness ḥadīth (Bukhārī) ↗</a> · " +
-        "<a href=\"https://islamqa.info/en/answers/111783\" target=\"_blank\" rel=\"noopener\">Overview of views (IslamQA) ↗</a>" +
-      "</p>";
+      "</div>";
 
-    var ySel = document.getElementById("qada-y");
-    var mSel = document.getElementById("qada-m");
-    var dSel = document.getElementById("qada-d");
-    fillDays(dSel, y0, m0, d0);
-    ySel.value = String(y0);
-    mSel.value = String(m0);
+    var dateInp = document.getElementById("qada-date");
 
-    function currentParts() {
-      return { y: +ySel.value, m: +mSel.value, d: +dSel.value };
+    function current() {
+      var p = fromDateInput(dateInp && dateInp.value);
+      if (!p) {
+        var n = new Date();
+        p = { y: n.getFullYear(), m: n.getMonth() + 1, d: n.getDate() };
+      }
+      return p;
     }
-    function persistCursor() {
-      var p = currentParts();
+    function persist() {
+      var p = current();
       writeCursor(p.y, p.m, p.d);
+      return p;
+    }
+    function shiftDay(delta) {
+      var p = current();
+      var dt = new Date(p.y, p.m - 1, p.d);
+      dt.setDate(dt.getDate() + delta);
+      var y = dt.getFullYear(), m = dt.getMonth() + 1, d = dt.getDate();
+      dateInp.value = toDateInput(y, m, d);
+      writeCursor(y, m, d);
+      paint();
     }
     function refreshStats() {
       var st = stats(readLog());
@@ -153,90 +146,68 @@
       el.innerHTML =
         "<div class=\"qada-stat\"><b>" + st.days + "</b><span>days logged</span></div>" +
         "<div class=\"qada-stat\"><b>" + st.done + "</b><span>farḍ checked</span></div>" +
-        "<div class=\"qada-stat\"><b>" + (st.days ? Math.round((st.done / (st.days * 5)) * 100) : 0) + "%</b><span>fill rate</span></div>";
+        "<div class=\"qada-stat\"><b>" + st.pct + "%</b><span>fill rate</span></div>";
     }
-    function paintPrayers() {
-      persistCursor();
-      var p = currentParts();
+    function paint() {
+      var p = persist();
       var k = dayKey(p.y, p.m, p.d);
       var row = readLog()[k] || {};
       var label = document.getElementById("qada-day-label");
-      if (label) {
-        label.textContent = "Working on " + k + " — checks stay on this device. Change day anytime; progress is kept per date.";
-      }
+      if (label) label.textContent = "Working on " + k + " — progress is saved per date on this device.";
       var box = document.getElementById("qada-prayers");
+      if (!box) return;
       box.innerHTML = PRAYERS.map(function (pr) {
         var on = !!row[pr.id];
         return "<label class=\"qada-pray" + (on ? " on" : "") + "\" data-pr=\"" + pr.id + "\">" +
-          "<input type=\"checkbox\" " + (on ? "checked" : "") + " />" +
-          "<span>" + pr.label + "</span></label>";
+          "<input type=\"checkbox\" " + (on ? "checked" : "") + " /><span>" + pr.label + "</span></label>";
       }).join("");
       box.querySelectorAll(".qada-pray").forEach(function (lab) {
         lab.addEventListener("change", function () {
           var id = lab.getAttribute("data-pr");
           var inp = lab.querySelector("input");
+          var p2 = persist();
+          var key = dayKey(p2.y, p2.m, p2.d);
           var log = readLog();
-          var key = dayKey(currentParts().y, currentParts().m, currentParts().d);
           if (!log[key]) log[key] = {};
           if (inp.checked) log[key][id] = 1;
           else delete log[key][id];
           if (!Object.keys(log[key]).length) delete log[key];
           writeLog(log);
-          persistCursor();
-          lab.classList.toggle("on", inp.checked);
+          lab.classList.toggle("on", !!inp.checked);
           refreshStats();
         });
       });
       refreshStats();
     }
 
-    function onYmChange() {
-      var p = currentParts();
-      fillDays(dSel, p.y, p.m, p.d);
-      persistCursor();
-      paintPrayers();
-    }
-
-    ySel.addEventListener("change", onYmChange);
-    mSel.addEventListener("change", onYmChange);
-    dSel.addEventListener("change", function () {
-      persistCursor();
-      paintPrayers();
+    dateInp.addEventListener("change", function () {
+      var p = fromDateInput(dateInp.value);
+      if (p) writeCursor(p.y, p.m, p.d);
+      paint();
     });
-
-    var openBtn = document.getElementById("qada-open-day");
-    if (openBtn) {
-      openBtn.addEventListener("click", function () {
-        persistCursor();
-        paintPrayers();
-        openBtn.textContent = "Day open ✓";
-        setTimeout(function () { openBtn.textContent = "Open day"; }, 1200);
-      });
-    }
-
+    document.getElementById("qada-prev-day").onclick = function () { shiftDay(-1); };
+    document.getElementById("qada-next-day").onclick = function () { shiftDay(1); };
     document.getElementById("qada-mark-all").onclick = function () {
-      var p = currentParts();
+      var p = persist();
       var k = dayKey(p.y, p.m, p.d);
       var log = readLog();
       log[k] = { fajr: 1, dhuhr: 1, asr: 1, maghrib: 1, isha: 1 };
       writeLog(log);
-      persistCursor();
-      paintPrayers();
+      paint();
     };
     document.getElementById("qada-clear-day").onclick = function () {
-      var p = currentParts();
+      var p = persist();
       var log = readLog();
       delete log[dayKey(p.y, p.m, p.d)];
       writeLog(log);
-      persistCursor();
-      paintPrayers();
+      paint();
     };
     document.getElementById("qada-export").onclick = function () {
       var log = readLog();
       var lines = ["Date,Fajr,Dhuhr,Asr,Maghrib,Isha"];
       Object.keys(log).sort().forEach(function (k) {
         var r = log[k] || {};
-        lines.push([k, r.fajr ? 1 : 0, r.dhuhr ? 1 : 0, r.asr ? 1 : 0, r.maghrib ? 1 : 0, r.isha ? 1 : 0].join(","));
+        lines.push([k, r.fajr?1:0, r.dhuhr?1:0, r.asr?1:0, r.maghrib?1:0, r.isha?1:0].join(","));
       });
       var blob = new Blob(["\ufeff" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
       var a = document.createElement("a");
@@ -245,22 +216,18 @@
       document.body.appendChild(a); a.click(); a.remove();
     };
 
-    // initial paint with restored cursor
-    paintPrayers();
+    writeCursor(y0, m0, d0);
+    paint();
   }
 
   function boot() { try { mount(); } catch (e) {} }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 600); });
-  } else setTimeout(boot, 600);
-  w.addEventListener("load", function () { setTimeout(boot, 1200); });
-
-  // Only mount if root empty / not ready — never reset cursor
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 500); });
+  else setTimeout(boot, 500);
+  w.addEventListener("load", function () { setTimeout(boot, 1000); });
   var obs = new MutationObserver(function () {
     var root = document.getElementById("cdl-qada-root");
     if (root && root.getAttribute("data-ready") !== "1") boot();
   });
   try { obs.observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
-
   w.ClarityQada = { mount: mount, read: readLog, cursor: readCursor };
 })(typeof window !== "undefined" ? window : this);
