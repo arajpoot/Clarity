@@ -158,6 +158,8 @@
 #clarity-grave-path-strip,#grave-path-card{display:block;margin:.6rem auto;max-width:42rem;padding:.8rem 1rem;border-radius:14px;border:1px solid rgba(212,180,90,.35);background:rgba(21,32,25,.92);color:#e7efe9}
 #clarity-grave-path-strip h2,#grave-path-card h2{color:#f3e6c0;font-size:1.15rem;margin:.2rem 0}
 </style>
+<link rel="stylesheet" href="assets/nuros-icons-v1.css">
+<link rel="stylesheet" href="assets/companion-inline/companion-tweet-unbury-icons-v1.css">
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 
@@ -629,36 +631,6 @@
   </div>
 </div>
 </div>
-<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card">
-  <h2>𝕏 Tweet desk</h2>
-  <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
-  <div class="td-row">
-    <input type="text" id="td-handle" placeholder="@your_handle" autocomplete="username" style="min-width:10rem;padding:.4rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-elevated);color:var(--text)">
-    <button type="button" class="btn-soft" onclick="tdSaveHandle()">Save handle</button>
-    <button type="button" class="btn-secondary" onclick="tdConnectX()">Open X login</button>
-  </div>
-  <div class="td-row" role="group" aria-label="Section drafts">
-    <button type="button" class="btn-soft" onclick="tdDraft('verse')">🧭 Journey</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('commands')">📜 Commands</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('grave')">🌙 Grave</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('tafseer')">📖 Tafseer</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('seerah')">🕊 Seerah</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('sami')">⚖ Samiʿnā</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('tajweed')">🔤 Tajweed</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('quiz')">🧠 Quiz win</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('meme')">🎨 Meme</button>
-    <button type="button" onclick="tdDraft('surprise')" onclick="claritySurpriseMe()">✨ Surprise me</button>
-    <button type="button" class="btn-soft" onclick="tdRefreshOnline()">↻ Refresh live</button>
-    <button type="button" class="btn-soft" onclick="tdSendToMeme()">🎨 To Meme Studio</button>
-  </div>
-  <textarea id="td-text" maxlength="280" rows="8" placeholder="﴿ Arabic ﴾&#10;English&#10;https://clarity-dawah.fyi/#journey" oninput="tdCount()"></textarea>
-  <div class="td-meta" id="td-meta"><span id="td-count">0 / 280</span><span id="td-status">Ready</span></div>
-  <div class="td-row">
-    <button type="button" onclick="tdPost()">Post on X</button>
-    <button type="button" class="btn-secondary" onclick="tdCopy()">Copy draft</button>
-    <button type="button" class="btn-soft" onclick="tdRemind()">Daily reminder</button>
-  </div>
-</div>
 <div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)">
 <h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
 <p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
@@ -726,6 +698,36 @@
     <p class="callig-mic-help">Whisper-tiny on-device · tap Start, speak, tap Stop · online only for AR translate.</p>
   </div>
   <div id="callig-translate-preview"></div>
+</div>
+<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card">
+  <h2>𝕏 Tweet desk</h2>
+  <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
+  <div class="td-row">
+    <input type="text" id="td-handle" placeholder="@your_handle" autocomplete="username" style="min-width:10rem;padding:.4rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-elevated);color:var(--text)">
+    <button type="button" class="btn-soft" onclick="tdSaveHandle()">Save handle</button>
+    <button type="button" class="btn-secondary" onclick="tdConnectX()">Open X login</button>
+  </div>
+  <div class="td-row" role="group" aria-label="Section drafts">
+    <button type="button" class="btn-soft" onclick="tdDraft('verse')">🧭 Journey</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('commands')">📜 Commands</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('grave')">🌙 Grave</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('tafseer')">📖 Tafseer</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('seerah')">🕊 Seerah</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('sami')">⚖ Samiʿnā</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('tajweed')">🔤 Tajweed</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('quiz')">🧠 Quiz win</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('meme')">🎨 Meme</button>
+    <button type="button" onclick="tdDraft('surprise')" onclick="claritySurpriseMe()">✨ Surprise me</button>
+    <button type="button" class="btn-soft" onclick="tdRefreshOnline()">↻ Refresh live</button>
+    <button type="button" class="btn-soft" onclick="tdSendToMeme()">🎨 To Meme Studio</button>
+  </div>
+  <textarea id="td-text" maxlength="280" rows="8" placeholder="﴿ Arabic ﴾&#10;English&#10;https://clarity-dawah.fyi/#journey" oninput="tdCount()"></textarea>
+  <div class="td-meta" id="td-meta"><span id="td-count">0 / 280</span><span id="td-status">Ready</span></div>
+  <div class="td-row">
+    <button type="button" onclick="tdPost()">Post on X</button>
+    <button type="button" class="btn-secondary" onclick="tdCopy()">Copy draft</button>
+    <button type="button" class="btn-soft" onclick="tdRemind()">Daily reminder</button>
+  </div>
 </div>
 
 </div></div>
@@ -2482,6 +2484,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="clarity-vault-security-harden-v1" src="assets/companion-inline/inline-clarity_vault_harden_v1.js" defer></script>
 <script id="clarity-vault-note-registry-js" src="assets/companion-inline/inline-clarity_vault_note_registry.js" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script src="assets/nuros-icons-apply-v1.js"></script>
 </body>
 </html>
 

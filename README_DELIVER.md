@@ -1,26 +1,12 @@
-# Companion · day landing IA + rich wuḍūʾ/ṣalāh · 20261025
+# Companion polish · tweet desk · icons · rich steps · 20261025
 
 Bismillah. Campus untouched.
 
-## Information architecture (corrected)
+## Fixes
+1. **Tweet desk** — moved **after** calligraphy; CSS containment so the pad cannot cover it (`companion-tweet-unbury-icons-v1.css`).
+2. **NurOS icon pack** — `nuros-icons-v1.css` + expanded `nuros-icons-apply-v1.js` decorates tabs, dual path tiles, and section headings without icons (path, salah, quran, vault, tabligh, etc.).
+3. **Wuḍūʾ / ṣalāh deep steps** — folds **start open**; each step shows tip, source, and **Deepen · source** link (Quran.com / Sunnah.com).
 
-**Day landing stops at oath + study cards.**
+Day landing still stops at oath + study cards; Companion hubs via path tiles.
 
-1. Banner  
-2. Pill  
-3. Do this today (`pulse`)  
-4. Adhkār (`adhkar`)  
-5. Path tiles (`paths`) → Companion **main** · University `/campus/`  
-6. Oath cards  
-7. Study cards: Core protection · **Wuḍūʾ (8 rich steps)** · **Ṣalāh (7 rich steps)** · Send light  
-
-Reminder / companion hubs open only via **Companion path** tile (not stacked on day landing).
-
-## Wuḍūʾ & ṣalāh deep learning
-Each step now includes:
-- Expanded action text  
-- Reflective tip  
-- Source label (Qurʾān / ḥadīth pointer)  
-- **Deepen · source** link (Quran.com / Sunnah.com)  
-
-Educational outlines only — **not a fatwa**. Learn details with a local teacher.
+Educational only — not a fatwa.
