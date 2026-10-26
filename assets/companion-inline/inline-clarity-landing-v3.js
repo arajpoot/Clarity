@@ -408,7 +408,7 @@
   }
 
   function build() {
-    if (w.__CDL_V8_BUILT__) return;
+    if (w.__CDL_V9_BUILT__) return;
     injectCss();
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -479,17 +479,17 @@
 
       /* Phase C/D — explicit expand pills (no native details) */
       '<div class="cdl-card cdl-expand-card" id="cdl-wudu">' +
-        '<button type="button" class="cdl-expand-btn" id="cdl-wudu-btn" aria-expanded="true" aria-controls="cdl-wudu-body">' +
+        '<button type="button" class="cdl-expand-btn" id="cdl-wudu-btn" aria-expanded="false" aria-controls="cdl-wudu-body">' +
           "💧 Wuḍūʾ steps · illustrated outline <span class=\"cdl-chev\">▾</span></button>" +
-        '<div class="cdl-fold-body" id="cdl-wudu-body">' +
+        '<div class="cdl-fold-body" id="cdl-wudu-body" hidden>' +
           '<div class="cdl-steps">' + stepsHtml(WUDU_STEPS) + "</div>" +
           '<p class="cdl-sub">Educational outline — schools differ on details. Learn with a local teacher.</p>' +
           '<p class="cdl-sub cdl-deep-strip">Deepen: <a href="https://quran.com/5/6" target="_blank" rel="noopener">Qurʾān 5:6</a> · <a href="https://sunnah.com/search?q=wudu" target="_blank" rel="noopener">Sunnah.com · wuḍūʾ</a> · not a fatwa</p></div></div>' +
 
       '<div class="cdl-card cdl-expand-card" id="cdl-salah-steps">' +
-        '<button type="button" class="cdl-expand-btn" id="cdl-salah-btn" aria-expanded="true" aria-controls="cdl-salah-body">' +
+        '<button type="button" class="cdl-expand-btn" id="cdl-salah-btn" aria-expanded="false" aria-controls="cdl-salah-body">' +
           "🕌 Prayer steps · simple unit <span class=\"cdl-chev\">▾</span></button>" +
-        '<div class="cdl-fold-body" id="cdl-salah-body">' +
+        '<div class="cdl-fold-body" id="cdl-salah-body" hidden>' +
           '<div class="cdl-steps">' + stepsHtml(SALAH_STEPS) + "</div>" +
           '<p class="cdl-sub">Simplified teaching path — not a full fiqh manual. Pillars first; verify with a teacher.</p>' +
           '<p class="cdl-sub cdl-deep-strip">Deepen: <a href="https://quran.com/1" target="_blank" rel="noopener">Al-Fātiḥah</a> · <a href="https://quran.com/2/144" target="_blank" rel="noopener">Qiblah 2:144</a> · <a href="https://sunnah.com/search?q=prayer" target="_blank" rel="noopener">Sunnah.com · prayer</a> · not a fatwa</p></div></div>' +
@@ -534,11 +534,6 @@
           '<a class="cdl-learn" href="https://quran.com/2/183" target="_blank" rel="noopener">Deepen · 2:183 ↗</a> ' +
           '<a class="cdl-learn" href="https://sunnah.com/search?q=ramadan%20fast" target="_blank" rel="noopener">Sunnah · Ramaḍān ↗</a></article>' +
 
-      '<article class="cdl-card cdl-plaque" id="cdl-qada" data-landing="qada">' +
-        '<div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🕌</span> Making up missed ṣalāh · qaḍāʾ tracker</h2></div>' +
-        '<p class="cdl-sub">Educational companion only — <strong>not a fatwa</strong>. Missing prayer without excuse is a grave matter. Obligation begins at puberty (bulūgh). Scholars differ on make-up after deliberate neglect; ask a qualified local teacher for your case.</p>' +
-        '<div id="cdl-qada-root"></div></article>' +
-
 
         '<article class="cdl-plaque cdl-card" id="cdl-zakat"><div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">💎</span> Zakāt · purifying dues</h2></div>' +
           '<p class="cdl-sub"><strong>Aim</strong> — When niṣāb and a lunar year pass, give the due share (9:60). No live calculator verdict here.</p>' +
@@ -554,9 +549,18 @@
           '<a class="cdl-learn" href="https://quran.com/3/97" target="_blank" rel="noopener">Deepen · 3:97 ↗</a> ' +
           '<a class="cdl-learn" href="https://sunnah.com/search?q=hajj" target="_blank" rel="noopener">Sunnah · ḥajj ↗</a></article></div>' +
 
+      '<section class="cdl-qada-section" data-landing="qada" aria-label="Qaḍāʾ tracker">' +
+      '<article class="cdl-card cdl-plaque" id="cdl-qada" data-landing="qada">' +
+        '<div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🕌</span> Making up missed ṣalāh · qaḍāʾ tracker</h2></div>' +
+        '<p class="cdl-sub">Educational companion only — <strong>not a fatwa</strong>. Missing prayer without excuse is a grave matter. Obligation begins at puberty (bulūgh). Scholars differ on make-up after deliberate neglect; ask a qualified local teacher for your case.</p>' +
+        '<div id="cdl-qada-root"></div></article>' +
+      '</section>' +
+
+
       '<p class="cdl-foot">Furnish your grave · prepare for the long stay · educational companion · not a fatwa</p>';
 
     place(wrap);
+    w.__CDL_V9_BUILT__ = true;
     w.__CDL_V8_BUILT__ = true;
     w.__CDL_V7_BUILT__ = true;
     w.__CDL_V6_BUILT__ = true;
@@ -637,8 +641,13 @@
         var open = btn.getAttribute("aria-expanded") === "true";
         open = !open;
         btn.setAttribute("aria-expanded", open ? "true" : "false");
-        if (open) body.removeAttribute("hidden");
-        else body.setAttribute("hidden", "");
+        if (open) {
+          body.removeAttribute("hidden");
+          body.style.display = "block";
+        } else {
+          body.setAttribute("hidden", "");
+          body.style.display = "none";
+        }
       };
     }
     bindExpand("cdl-wudu-btn", "cdl-wudu-body");
@@ -646,11 +655,11 @@
     /* Deep-learning steps: start open so expand content is visible */
     ["cdl-wudu-body", "cdl-salah-body"].forEach(function (id) {
       var b = document.getElementById(id);
-      if (b) { b.removeAttribute("hidden"); b.style.display = "block"; }
+      if (b) { b.setAttribute("hidden", ""); b.style.display = "none"; }
     });
     ["cdl-wudu-btn", "cdl-salah-btn"].forEach(function (id) {
       var b = document.getElementById(id);
-      if (b) b.setAttribute("aria-expanded", "true");
+      if (b) b.setAttribute("aria-expanded", "false");
     });
 
     (function initQibla(){
