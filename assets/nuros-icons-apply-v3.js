@@ -1,3 +1,4 @@
+(function(g){g.__NUROS_ICONS_APPLY_V2__=true;g.__NUROS_ICONS_V2__=true;})(window);
 /**
  * NurOS v3 apply — color plaques, strip emoji doubles
  */
