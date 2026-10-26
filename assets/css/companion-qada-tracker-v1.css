@@ -1,0 +1,67 @@
+
+#cdl-qada, #cdl-qada-root { box-sizing: border-box; }
+#cdl-qada-root .qada-guide {
+  font-size: 0.82rem; line-height: 1.45; opacity: 0.92; margin: 0.35rem 0 0.65rem;
+}
+#cdl-qada-root .qada-guide ul { margin: 0.35rem 0 0.5rem 1.1rem; padding: 0; }
+#cdl-qada-root .qada-diff {
+  border-left: 3px solid rgba(212,180,90,0.55);
+  padding: 0.45rem 0.65rem; margin: 0.5rem 0 0.75rem;
+  background: rgba(15,76,58,0.08); border-radius: 0 10px 10px 0;
+  font-size: 0.78rem; line-height: 1.4;
+}
+#cdl-qada-root .qada-stats {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 0.4rem; margin: 0.5rem 0 0.75rem;
+}
+#cdl-qada-root .qada-stat {
+  text-align: center; padding: 0.45rem 0.3rem; border-radius: 12px;
+  border: 1px solid rgba(15,76,58,0.18);
+  background: linear-gradient(160deg,rgba(15,76,58,0.1),rgba(15,76,58,0.03));
+}
+#cdl-qada-root .qada-stat b { display:block; font-size: 1.15rem; color: #c9a84c; }
+#cdl-qada-root .qada-stat span { font-size: 0.7rem; opacity: 0.8; }
+#cdl-qada-root .qada-pick {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: flex-end; margin: 0.5rem 0;
+}
+#cdl-qada-root .qada-pick label {
+  display: flex; flex-direction: column; gap: 0.15rem; font-size: 0.72rem; opacity: 0.9;
+}
+#cdl-qada-root .qada-pick select, #cdl-qada-root .qada-pick input {
+  min-width: 4.5rem; padding: 0.35rem 0.45rem; border-radius: 8px;
+  border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.12); color: inherit;
+}
+#cdl-qada-root .qada-prayers {
+  display: grid; grid-template-columns: repeat(5,1fr); gap: 0.35rem; margin: 0.55rem 0;
+}
+@media(max-width:560px){
+  #cdl-qada-root .qada-prayers { grid-template-columns: repeat(3,1fr); }
+  #cdl-qada-root .qada-stats { grid-template-columns: 1fr 1fr 1fr; }
+}
+#cdl-qada-root .qada-pray {
+  display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  padding: 0.5rem 0.25rem; border-radius: 12px; cursor: pointer;
+  border: 1px solid rgba(15,76,58,0.2);
+  background: rgba(15,76,58,0.06); user-select: none;
+}
+#cdl-qada-root .qada-pray.on {
+  border-color: rgba(212,180,90,0.55);
+  background: linear-gradient(160deg,rgba(15,76,58,0.22),rgba(212,180,90,0.08));
+  box-shadow: inset 0 0 0 1px rgba(212,180,90,0.2);
+}
+#cdl-qada-root .qada-pray input { width: 1.1rem; height: 1.1rem; accent-color: #0f4c3a; }
+#cdl-qada-root .qada-pray span { font-size: 0.72rem; font-weight: 700; }
+#cdl-qada-root .qada-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
+#cdl-qada-root .qada-actions button {
+  padding: 0.4rem 0.75rem; border-radius: 999px; cursor: pointer; font-weight: 700; font-size: 0.78rem;
+  border: 1px solid rgba(212,180,90,0.35); background: transparent; color: inherit;
+}
+#cdl-qada-root .qada-actions button.primary {
+  background: #0f4c3a; color: #f5e6b8; border-color: transparent;
+}
+#cdl-qada-root .qada-cal-hint { font-size: 0.75rem; opacity: 0.8; margin: 0.35rem 0; }
+#cdl-qada-root .qada-deepen a { color: #c9a84c; font-size: 0.78rem; }
+html[data-theme=dark] #cdl-qada-root .qada-stat,
+html[data-theme=night] #cdl-qada-root .qada-stat {
+  border-color: rgba(212,180,90,0.2);
+  background: linear-gradient(160deg,rgba(212,180,90,0.08),rgba(12,28,22,0.5));
+}
