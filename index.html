@@ -158,7 +158,7 @@
 #clarity-grave-path-strip,#grave-path-card{display:block;margin:.6rem auto;max-width:42rem;padding:.8rem 1rem;border-radius:14px;border:1px solid rgba(212,180,90,.35);background:rgba(21,32,25,.92);color:#e7efe9}
 #clarity-grave-path-strip h2,#grave-path-card h2{color:#f3e6c0;font-size:1.15rem;margin:.2rem 0}
 </style>
-<link rel="stylesheet" href="assets/css/nuros-icons-v1.css"
+<link rel="stylesheet" href="assets/css/nuros-icons-v1.css">
 <link rel="stylesheet" href="assets/css/nuros-icons-v3.css">
 <link rel="stylesheet" href="assets/css/companion-tweet-unbury-icons-v1.css">
 <link rel="stylesheet" href="assets/css/companion-doors-mobile-v1.css">
@@ -234,6 +234,47 @@ html[data-shell-mode="landing"] #main-application-workspace .tab-panel {
   /* keep prior isolate rules; ensure no accidental clip on landing chrome */
 }
 </style>
+
+
+<style id="nuros-v3-harden">
+.nuros-icon[class*="nuros-icon-"], span.nuros-icon {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  background-color: transparent !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  width: var(--nuros-plaque-size, 2.35rem) !important;
+  height: var(--nuros-plaque-size, 2.35rem) !important;
+  border-radius: 50% !important;
+  color: transparent !important;
+}
+[data-nuros-iconized="1"] > .emoji,
+[data-nuros-iconized="1"] > .tile-emoji { display: none !important; }
+#clarity-door-rail button .nuros-icon {
+  width: 1.9rem !important; height: 1.9rem !important;
+  margin: 0 auto 0.15rem !important; display: block !important;
+}
+.dual-tile { display: flex; align-items: flex-start; gap: 0.65rem; }
+.dual-tile .nuros-icon { width: 2.6rem !important; height: 2.6rem !important; }
+</style>
+<script id="clarity-landing-first-paint">
+(function(){
+  try {
+    var k="clarity_shell_mode_v1";
+    var m=localStorage.getItem(k);
+    if(!m || m==="landing"){
+      localStorage.setItem(k,"landing");
+      document.documentElement.setAttribute("data-shell-mode","landing");
+    } else {
+      document.documentElement.setAttribute("data-shell-mode", m);
+    }
+  } catch(e) {
+    document.documentElement.setAttribute("data-shell-mode","landing");
+  }
+  window.__CLARITY_LANDING_FIRST__=true;
+})();
+</script>
 
 </head><body data-active-tab="journey" data-section-fortress="1">
 
@@ -2503,8 +2544,8 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="clarity-vault-security-harden-v1" src="assets/companion-inline/inline-clarity_vault_harden_v1.js" defer></script>
 <script id="clarity-vault-note-registry-js" src="assets/companion-inline/inline-clarity_vault_note_registry.js?v=20261026n" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="assets/nuros-icons-apply-v1.js"></script>
-<script src="assets/nuros-icons-apply-v2.js" defer></script>
+<!-- nuros-icons-apply-v1 DISABLED -->
+<!-- nuros-icons-apply-v2 DISABLED -->
 <script src="assets/nuros-icons-apply-v3.js" defer></script>
 <script src="assets/companion-inline/inline-bundle-meme-v1.js?v=20261026i"></script>
 <script src="assets/companion-inline/inline-bundle-security-v1.js?v=20261026i"></script>

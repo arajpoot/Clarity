@@ -1,13 +1,14 @@
-# NurOS Icon Pack v3 · color-rich plaques
+# Landing first + NurOS v3 harden
 
-Shariah-minded graphics: architecture, mushaf, lantern, crescent, lock — **no animate figures**.
+## Delta files
+- index.html — daily landing first paint; v1/v2 apply disabled; fixed CSS link; harden styles
+- assets/css/nuros-icons-v3.css — color gold-ring plaques
+- assets/nuros-icons-apply-v3.js — sole icon apply
+- assets/icons/*.svg — optional
 
-## Deploy delta
-```
-index.html
-assets/css/nuros-icons-v3.css
-assets/nuros-icons-apply-v3.js
-assets/icons/*.svg   (optional standalone copies)
-```
+## Smoke
+- mode landing on first paint
+- dual path plaques color-rich (data:image SVG)
+- mask:none (v1 skeleton suppressed)
 
-Hard-refresh after upload. Campus untouched.
+Campus untouched.
