@@ -165,6 +165,75 @@
 <link rel="stylesheet" href="assets/css/companion-qada-tracker-v1.css?v=20261026p">
 <link rel="stylesheet" href="assets/css/companion-hide-meme-icons-v1.css?v=20261026p">
 <link rel="stylesheet" href="assets/css/companion-trust-plaques-v1.css?v=20261026r">
+
+<style id="clarity-welcome-obliterate">
+.clarity-welcome-overlay,#clarity-welcome,#cw-card,#clarity-start-chip,.clarity-start-chip{
+  display:none!important;visibility:hidden!important;pointer-events:none!important;
+  width:0!important;height:0!important;overflow:hidden!important;
+  position:absolute!important;left:-9999px!important;
+}
+</style>
+<script id="clarity-welcome-obliterate-js">
+(function(){
+  if(window.__CLARITY_WELCOME_DEAD__)return;
+  window.__CLARITY_WELCOME_DEAD__=true;
+  try{
+    localStorage.setItem("clarity_welcome_seen_v1","1");
+    localStorage.setItem("clarity_welcome_dismissed_v1","1");
+    localStorage.setItem("cw_seen","1");
+  }catch(e){}
+  function nuke(){
+    ["clarity-welcome","cw-card","clarity-start-chip"].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el&&el.parentNode)el.parentNode.removeChild(el);
+    });
+    document.querySelectorAll(".clarity-welcome-overlay,.clarity-start-chip").forEach(function(el){
+      if(el.parentNode)el.parentNode.removeChild(el);
+    });
+  }
+  window.clarityShowWelcome=function(){nuke();return false;};
+  window.clarityWelcomePickTrack=function(t){
+    try{if(t)localStorage.setItem("clarity_track_v1",String(t));}catch(e){}
+    nuke();return false;
+  };
+  window.clarityWelcomeSkipToName=function(){nuke();return false;};
+  nuke();
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",nuke);
+  window.addEventListener("load",nuke);
+  setTimeout(nuke,0);setTimeout(nuke,400);
+})();
+</script>
+
+
+<style id="clarity-main-overflow-fix">
+/* Companion: page-wrapper must not clip tab panels */
+html[data-shell-mode="companion"] #main-content.page-wrapper,
+html[data-shell-mode="companion"] #main-content,
+html[data-shell-mode="companion"] #main-application-workspace {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+html[data-shell-mode="companion"] main.main-content,
+html[data-shell-mode="companion"] .tab-panel.active,
+html[data-shell-mode="companion"] .tab-panel.is-active {
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+/* Landing: still hide main workspace content */
+html[data-shell-mode="landing"] #main-content,
+html[data-shell-mode="landing"] #main-application-workspace .tab-panel {
+  /* keep prior isolate rules; ensure no accidental clip on landing chrome */
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 
@@ -402,37 +471,8 @@
 </noscript>
 
 <a href="#main-content" class="skip-link">Skip to content</a>
-<div class="clarity-welcome-overlay" id="clarity-welcome" role="dialog" aria-modal="true" aria-labelledby="cw-title" aria-hidden="true">
-  <div class="clarity-welcome-card" id="cw-card">
-    <h2 class="cw-title" id="cw-title"><span class="cw-moon" aria-hidden="true">🌙</span> Furnish Your Grave</h2>
-    <p class="cw-sub">Private companion for the heart &amp; grave — Qur’an, authentic ḥadīth, daily deeds. Educational only · not a fatwa.</p>
-    <p class="cw-track-kicker" id="cw-track-kicker">Choose a track</p>
-    <div class="cw-steps" role="list" id="cw-track-steps">
-      <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('seeker')">
-        <span class="cw-step-num">1</span>
-        <div><strong>Curious Seeker</strong> — purpose, prophecy, Qur’an, next life</div>
-      </button>
-      <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('new_muslim')">
-        <span class="cw-step-num">2</span>
-        <div><strong>New Muslim</strong> — shahada, prayer, character starter</div>
-      </button>
-      <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('practicing')">
-        <span class="cw-step-num">3</span>
-        <div><strong>Daily Muslim</strong> — streaks, tajweed, light legacy</div>
-      </button>
-      <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('dai')">
-        <span class="cw-step-num">4</span>
-        <div><strong>Aspiring Da’i</strong> — sincerity, sources, calm dawah</div>
-      </button>
-    </div>
-    <div class="cw-actions">
-      <button type="button" class="cw-primary" id="cw-begin" onclick="clarityWelcomePickTrack('seeker')">Begin as Seeker</button>
-      <button type="button" class="cw-ghost" onclick="clarityWelcomeSkipToName()">Skip — plant my name</button>
-    </div>
-    <p class="cw-note">On this device only · Quran.com / Sunnah.com · not a fatwa</p>
-  </div>
-</div>
-<button type="button" class="clarity-start-chip" id="clarity-start-chip" onclick="clarityShowWelcome()" aria-label="Show welcome guide">✨ Start here</button>
+<!-- welcome OBLITERATED -->
+<!-- start-chip OBLITERATED -->
 <audio id="quran-audio-dup1" preload="none" crossorigin="anonymous"></audio><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
 
 <div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
@@ -2468,12 +2508,62 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="assets/companion-inline/inline-clarity-qada-tracker-v1.js?v=20261026p"></script>
 <script src="assets/companion-inline/inline-clarity-samina-verse-v1.js?v=20261026p"></script>
 <script src="assets/companion-inline/inline-clarity-final-surface-v1.js?v=20261026p"></script>
+
+<script id="clarity-path-reentry-guard">
+(function(){
+  if (window.__CLARITY_PATH_REENTRY__) return;
+  window.__CLARITY_PATH_REENTRY__ = true;
+  var depth = 0;
+  function install(){
+    var fn = window.clarityRequestPath;
+    if (typeof fn !== "function" || fn.__reentryGuard) return;
+    window.clarityRequestPath = function(){
+      if (depth > 4) return { ok: false, reason: "reentry" };
+      depth++;
+      try { return fn.apply(this, arguments); }
+      catch (e) { return { ok: false, reason: "error" }; }
+      finally { depth--; }
+    };
+    window.clarityRequestPath.__reentryGuard = true;
+  }
+  install();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  window.addEventListener("load", function(){ setTimeout(install, 0); setTimeout(install, 500); setTimeout(install, 1500); });
+  setInterval(install, 3000);
+})();
+</script>
+
 </body>
 </html>
 
 
 
 
+
+
+<script id="clarity-path-reentry-guard">
+(function(){
+  if (window.__CLARITY_PATH_REENTRY__) return;
+  window.__CLARITY_PATH_REENTRY__ = true;
+  var depth = 0;
+  function install(){
+    var fn = window.clarityRequestPath;
+    if (typeof fn !== "function" || fn.__reentryGuard) return;
+    window.clarityRequestPath = function(){
+      if (depth > 4) return { ok: false, reason: "reentry" };
+      depth++;
+      try { return fn.apply(this, arguments); }
+      catch (e) { return { ok: false, reason: "error" }; }
+      finally { depth--; }
+    };
+    window.clarityRequestPath.__reentryGuard = true;
+  }
+  install();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  window.addEventListener("load", function(){ setTimeout(install, 0); setTimeout(install, 500); setTimeout(install, 1500); });
+  setInterval(install, 3000);
+})();
+</script>
 
 </body>
 
@@ -2569,6 +2659,31 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 
 
+
+
+<script id="clarity-path-reentry-guard">
+(function(){
+  if (window.__CLARITY_PATH_REENTRY__) return;
+  window.__CLARITY_PATH_REENTRY__ = true;
+  var depth = 0;
+  function install(){
+    var fn = window.clarityRequestPath;
+    if (typeof fn !== "function" || fn.__reentryGuard) return;
+    window.clarityRequestPath = function(){
+      if (depth > 4) return { ok: false, reason: "reentry" };
+      depth++;
+      try { return fn.apply(this, arguments); }
+      catch (e) { return { ok: false, reason: "error" }; }
+      finally { depth--; }
+    };
+    window.clarityRequestPath.__reentryGuard = true;
+  }
+  install();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  window.addEventListener("load", function(){ setTimeout(install, 0); setTimeout(install, 500); setTimeout(install, 1500); });
+  setInterval(install, 3000);
+})();
+</script>
 
 </body>
 
