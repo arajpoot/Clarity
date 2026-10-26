@@ -73,25 +73,70 @@
 
   /* Phase C — wuḍūʾ steps (educational outline) */
   var WUDU_STEPS = [
-    { n: 1, t: "Intention & Basmala", d: "Intend wuḍūʾ for ṣalāh; begin with Bismillāh." },
-    { n: 2, t: "Hands", d: "Wash both hands up to the wrists three times." },
-    { n: 3, t: "Mouth", d: "Rinse the mouth three times." },
-    { n: 4, t: "Nose", d: "Sniff water into the nose and expel, three times." },
-    { n: 5, t: "Face", d: "Wash the face three times (hairline to chin, ear to ear)." },
-    { n: 6, t: "Arms", d: "Wash right then left arm to the elbow, three times each." },
-    { n: 7, t: "Head", d: "Wipe the head once; wipe the ears." },
-    { n: 8, t: "Feet", d: "Wash right then left foot to the ankle, three times each." }
+    { n: 1, t: "Intention & Basmala", d: "Intend wuḍūʾ for ṣalāh; begin with Bismillāh when you start washing.",
+      tip: "Actions are by intentions — let the heart lead the limbs.",
+      src: "Bukhārī 1 · Muslim 1907 · educational",
+      learn: "https://sunnah.com/bukhari:1" },
+    { n: 2, t: "Hands to the wrists", d: "Wash both hands up to the wrists three times, including between the fingers.",
+      tip: "Start on the right when limbs come in pairs, as in the prophetic pattern.",
+      src: "Prophetic wuḍūʾ descriptions · educational outline",
+      learn: "https://sunnah.com/search?q=wudu" },
+    { n: 3, t: "Mouth", d: "Rinse the mouth three times — move water thoroughly, then expel.",
+      tip: "A small, calm rinse is enough; no waste of water.",
+      src: "Wuḍūʾ of the Prophet ﷺ · educational",
+      learn: "https://sunnah.com/search?q=rinsed%20mouth%20wudu" },
+    { n: 4, t: "Nose", d: "Sniff water into the nose and expel, three times.",
+      tip: "Gentle; do not harm yourself. Schools differ on details — learn with a teacher.",
+      src: "Same prophetic reports · educational",
+      learn: "https://sunnah.com/search?q=nose%20wudu" },
+    { n: 5, t: "Face", d: "Wash the face three times: hairline to chin, ear to ear.",
+      tip: "Cover the whole face surface; beard rules differ by school.",
+      src: "Qurʾān 5:6 — wash your faces · educational",
+      learn: "https://quran.com/5/6" },
+    { n: 6, t: "Arms to the elbows", d: "Wash the right arm to the elbow three times, then the left — include the elbows.",
+      tip: "Right then left. Elbows are part of the wash in the standard reading of 5:6.",
+      src: "Qurʾān 5:6 · educational",
+      learn: "https://quran.com/5/6" },
+    { n: 7, t: "Head & ears", d: "Wipe the head once; wipe the ears (inside and out as taught).",
+      tip: "Wiping is not the same as washing — follow what your teacher shows.",
+      src: "Qurʾān 5:6 — wipe your heads · educational",
+      learn: "https://quran.com/5/6" },
+    { n: 8, t: "Feet to the ankles", d: "Wash the right foot to the ankle three times, then the left — between the toes.",
+      tip: "Complete the limbs; then you may say the well-known shahāda after wuḍūʾ as taught.",
+      src: "Qurʾān 5:6 · post-wuḍūʾ dhikr reports · educational",
+      learn: "https://sunnah.com/search?q=wudu%20shahada" }
   ];
 
   /* Phase D — prayer steps (simplified educational unit) */
   var SALAH_STEPS = [
-    { n: 1, t: "Stand & face Qiblah", d: "Stand calmly facing the Qiblah if able." },
-    { n: 2, t: "Opening takbīr", d: "Raise hands and say Allāhu akbar; fold hands." },
-    { n: 3, t: "Al-Fātiḥah", d: "Recite Sūrat al-Fātiḥah (and more Qur’ān as taught)." },
-    { n: 4, t: "Rukūʿ", d: "Bow with back level; glorify Allah." },
-    { n: 5, t: "Stand", d: "Rise from bowing; praise Allah." },
-    { n: 6, t: "Sujūd", d: "Prostrate twice with a brief sit between." },
-    { n: 7, t: "Complete & salām", d: "Finish the required units; end with salām to the right then left." }
+    { n: 1, t: "Stand & face Qiblah", d: "Stand calmly facing the Qiblah if able; settle the heart before takbīr.",
+      tip: "Wherever you are, turn your face toward al-Masjid al-Ḥarām.",
+      src: "Qurʾān 2:144 · educational",
+      learn: "https://quran.com/2/144" },
+    { n: 2, t: "Opening takbīr", d: "Raise the hands and say Allāhu akbar; place the hands as taught in your school.",
+      tip: "The prayer opens with takbīr — leave side talk and focus.",
+      src: "Opening of ṣalāh reports · educational",
+      learn: "https://sunnah.com/search?q=allahu%20akbar%20prayer" },
+    { n: 3, t: "Al-Fātiḥah", d: "Recite Sūrat al-Fātiḥah; then further Qur’ān as taught for that unit.",
+      tip: "No prayer is complete without al-Fātiḥah in the standard ḥadīth teaching.",
+      src: "Bukhārī 756 · Muslim 394 · Qurʾān 1 · educational",
+      learn: "https://quran.com/1" },
+    { n: 4, t: "Rukūʿ", d: "Bow with the back level; hands on knees; glorify Allah (e.g. Subḥāna Rabbiyal-ʿAẓīm).",
+      tip: "Pause calmly — do not rush the bowing.",
+      src: "Prophetic rukūʿ descriptions · educational",
+      learn: "https://sunnah.com/search?q=ruku" },
+    { n: 5, t: "Stand from rukūʿ", d: "Rise saying Samiʿallāhu liman ḥamidah; stand straight; praise Allah.",
+      tip: "Let the spine settle upright before going to sujūd.",
+      src: "Prophetic transition phrases · educational",
+      learn: "https://sunnah.com/search?q=sami%20allahu" },
+    { n: 6, t: "Sujūd (twice)", d: "Prostrate so forehead, nose, hands, knees, and feet touch as taught; sit briefly; prostrate again.",
+      tip: "Closest is the servant to his Lord while prostrating — lengthen duʿāʾ if you wish.",
+      src: "Muslim 482 · educational wording",
+      learn: "https://sunnah.com/muslim:482" },
+    { n: 7, t: "Tashahhud, units & salām", d: "Complete the required units with tashahhud where taught; end with salām to the right then left.",
+      tip: "Learn the full tashahhud wording with a teacher; this card is only a map.",
+      src: "Prophetic tashahhud & salām · educational",
+      learn: "https://sunnah.com/search?q=tashahhud" }
   ];
 
   function todayKey() {
@@ -314,8 +359,16 @@
 
   function stepsHtml(list) {
     return list.map(function (s) {
-      return '<div class="cdl-step"><div class="cdl-step-num">' + s.n + "</div><div><strong>" + s.t +
-        "</strong><span>" + s.d + "</span></div></div>";
+      var learn = s.learn
+        ? '<a class="cdl-learn" href="' + s.learn + '" target="_blank" rel="noopener">Deepen · source ↗</a>'
+        : "";
+      var tip = s.tip ? '<p class="cdl-step-tip">' + s.tip + "</p>" : "";
+      var src = s.src ? '<p class="cdl-step-src">' + s.src + " · not a fatwa</p>" : "";
+      return '<div class="cdl-step cdl-step-rich">' +
+        '<div class="cdl-step-num">' + s.n + "</div>" +
+        '<div class="cdl-step-body"><strong>' + s.t + "</strong>" +
+        '<span class="cdl-step-d">' + s.d + "</span>" + tip + src + learn +
+        "</div></div>";
     }).join("");
   }
 
@@ -346,14 +399,9 @@
     var wrap = document.createElement("section");
     wrap.id = "clarity-day-landing";
     wrap.setAttribute("aria-label", "Daily landing — furnish your grave");
+    wrap.setAttribute("data-landing-root", "1");
     wrap.innerHTML =
-      '<div class="dual-tiles" role="navigation">' +
-        '<a class="dual-tile" href="#main-content" id="dual-path-companion"><span class="dual-ico" aria-hidden="true">🏠</span><strong>Companion path</strong>' +
-          "<small>Reminder · Reality · Reflection · Action — tools on this page</small></a>" +
-        '<a class="dual-tile" href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener"><span class="dual-ico" aria-hidden="true">🎓</span><strong>University path</strong>' +
-          "<small>Campus desk · four stages · Faculty</small></a></div>" +
-
-      '<div class="cdl-hero" role="region" aria-label="Today at a glance">' +
+      '<div class="cdl-hero" data-landing="pulse" role="region" aria-label="Today at a glance">' +
         '<div class="cdl-tile"><h3>Do this today · ' + dayPeriod() + "</h3>" +
           '<div class="cdl-big" style="font-size:1.05rem">' + (prov.lane || "deed") + "</div>" +
           '<div class="cdl-sub">' + prov.text + "</div>" +
@@ -367,17 +415,8 @@
           '<div class="cdl-actions"><button type="button" class="cdl-btn" id="cdl-tas-inc">+1</button>' +
           '<button type="button" class="cdl-btn secondary" id="cdl-tas-reset">↺</button></div></div></div>' +
 
-      /* Phase A — oath plaque */
-      '<div class="cdl-oath" role="region" aria-label="Furnish your grave">' +
-        '<div class="cdl-card cdl-oath-warn"><div class="cdl-head"><h2>Remember the long stay</h2></div>' +
-          '<p class="cdl-sub">Family and wealth turn back at the grave; <strong>deeds stay with you</strong>. Prepare a home of light — not only a warning, an invitation to send good ahead today.</p>' +
-          '<p class="cdl-sub">Educational reminder · not a fatwa</p></div>' +
-        '<div class="cdl-card cdl-oath-hope"><div class="cdl-head"><h2>Reward that may continue</h2></div>' +
-          '<p class="cdl-sub">When a person dies, deeds end except <strong>ongoing charity</strong>, <strong>beneficial knowledge</strong>, and a <strong>righteous child who prays</strong> for them.</p>' +
-          '<p class="cdl-sub">Muslim 1631 · educational wording · verify with a scholar</p></div></div>' +
-
       /* Adhkār */
-      '<article class="cdl-card" id="cdl-adhkar"><div class="cdl-head">' +
+      '<article class="cdl-card" id="cdl-adhkar" data-landing="adhkar"><div class="cdl-head">' +
         '<h2>Adhkār · ' + (isEvening() ? "evening" : "morning") + " window</h2>" +
         '<button type="button" class="cdl-mini" id="cdl-adhkar-count">Count 0 / ' + dh.target + "</button></div>" +
         '<p class="cdl-adhkar-ar" id="cdl-adhkar-ar" dir="rtl" lang="ar">' + dh.ar + "</p>" +
@@ -387,6 +426,21 @@
           '<button type="button" class="cdl-btn" id="cdl-adhkar-plus">+1 count</button>' +
           '<button type="button" class="cdl-btn secondary" id="cdl-adhkar-next">Next dhikr →</button>' +
           '<button type="button" class="cdl-btn secondary" id="cdl-adhkar-reset">↺</button></div></article>' +
+
+      '<div class="dual-tiles" data-landing="paths" role="navigation">' +
+        '<a class="dual-tile" href="#main-content" id="dual-path-companion"><span class="dual-ico" aria-hidden="true">🏠</span><strong>Companion path</strong>' +
+          "<small>Reminder · Reality · Reflection · Action — tools on this page</small></a>" +
+        '<a class="dual-tile" href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener"><span class="dual-ico" aria-hidden="true">🎓</span><strong>University path</strong>' +
+          "<small>Campus desk · four stages · Faculty</small></a></div>" +
+
+      /* Phase A — oath plaque */
+      '<div class="cdl-oath" role="region" aria-label="Furnish your grave">' +
+        '<div class="cdl-card cdl-oath-warn"><div class="cdl-head"><h2>Remember the long stay</h2></div>' +
+          '<p class="cdl-sub">Family and wealth turn back at the grave; <strong>deeds stay with you</strong>. Prepare a home of light — not only a warning, an invitation to send good ahead today.</p>' +
+          '<p class="cdl-sub">Educational reminder · not a fatwa</p></div>' +
+        '<div class="cdl-card cdl-oath-hope"><div class="cdl-head"><h2>Reward that may continue</h2></div>' +
+          '<p class="cdl-sub">When a person dies, deeds end except <strong>ongoing charity</strong>, <strong>beneficial knowledge</strong>, and a <strong>righteous child who prays</strong> for them.</p>' +
+          '<p class="cdl-sub">Muslim 1631 · educational wording · verify with a scholar</p></div></div>' +
 
       /* Phase G — short protection note */
       '<div class="cdl-card"><div class="cdl-head"><h2>Core protection set</h2></div>' +
@@ -399,14 +453,16 @@
           "💧 Wuḍūʾ steps · illustrated outline <span class=\"cdl-chev\">▾</span></button>" +
         '<div class="cdl-fold-body" id="cdl-wudu-body" hidden>' +
           '<div class="cdl-steps">' + stepsHtml(WUDU_STEPS) + "</div>" +
-          '<p class="cdl-sub">Educational outline — schools differ on details. Learn with a local teacher.</p></div></div>' +
+          '<p class="cdl-sub">Educational outline — schools differ on details. Learn with a local teacher.</p>' +
+          '<p class="cdl-sub cdl-deep-strip">Deepen: <a href="https://quran.com/5/6" target="_blank" rel="noopener">Qurʾān 5:6</a> · <a href="https://sunnah.com/search?q=wudu" target="_blank" rel="noopener">Sunnah.com · wuḍūʾ</a> · not a fatwa</p></div></div>' +
 
       '<div class="cdl-card cdl-expand-card" id="cdl-salah-steps">' +
         '<button type="button" class="cdl-expand-btn" id="cdl-salah-btn" aria-expanded="false" aria-controls="cdl-salah-body">' +
           "🕌 Prayer steps · simple unit <span class=\"cdl-chev\">▾</span></button>" +
         '<div class="cdl-fold-body" id="cdl-salah-body" hidden>' +
           '<div class="cdl-steps">' + stepsHtml(SALAH_STEPS) + "</div>" +
-          '<p class="cdl-sub">Simplified teaching path — not a full fiqh manual. Pillars first; verify with a teacher.</p></div></div>' +
+          '<p class="cdl-sub">Simplified teaching path — not a full fiqh manual. Pillars first; verify with a teacher.</p>' +
+          '<p class="cdl-sub cdl-deep-strip">Deepen: <a href="https://quran.com/1" target="_blank" rel="noopener">Al-Fātiḥah</a> · <a href="https://quran.com/2/144" target="_blank" rel="noopener">Qiblah 2:144</a> · <a href="https://sunnah.com/search?q=prayer" target="_blank" rel="noopener">Sunnah.com · prayer</a> · not a fatwa</p></div></div>' +
 
       /* Phase E — send light ahead */
       '<div class="cdl-card"><div class="cdl-head"><h2>Send light ahead today</h2></div>' +

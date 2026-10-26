@@ -50,7 +50,11 @@
       "#clarity-visit-pill-bar,.clarity-visit-strip,#clarity-visit-strip,",
       ".visit-strip[data-day-landing],.day-landing-footer-bar{",
       "  display:none!important;}",
-      ".shell-landing-hide{display:none!important;}"
+      ".shell-landing-hide{display:none!important;}",
+      "/* Restore first-landing overview when marked */",
+      "html[data-shell-mode=landing] #clarity-welcome,",
+      "html[data-shell-mode=landing] #clarity-three-doors,",
+      "html[data-shell-mode=landing] [data-landing-overview]{display:block!important;}"
     ].join("\n");
     (document.head || document.documentElement).appendChild(s);
   }
@@ -63,6 +67,7 @@
       bar.setAttribute("role", "toolbar");
       bar.setAttribute("aria-label", "Day landing and companion");
     }
+    bar.setAttribute("data-landing", "pill");
     bar.innerHTML =
       '<span class="crb-ico" aria-hidden="true">🏠</span>' +
       '<span class="crb-pill" id="crb-mode-pill">Day landing</span>' +
@@ -139,14 +144,9 @@
       if (hideBtn) hideBtn.style.display = "";
       if (compBtn) compBtn.style.display = "";
       if (pill) pill.textContent = "Day landing";
-      document.querySelectorAll(".tab-panel, .rrra-hub, .rrra-hub-hero").forEach(function (el) {
-        if (el.closest && el.closest("#clarity-day-landing")) return;
+      /* Day landing only through oath + study cards. Companion hubs via path tiles. */
+      document.querySelectorAll("#main-content .tab-panel, #main-content .rrra-hub, #main-content .rrra-hub-hero").forEach(function (el) {
         el.classList.add("shell-landing-hide");
-      });
-      document.querySelectorAll("h2, h3").forEach(function (h) {
-        if (!/Path to furnish|Phased learning/i.test(h.textContent || "")) return;
-        var box = h.closest("section, article, .card, .panel, div");
-        if (box && box.id !== "clarity-day-landing") box.classList.add("shell-landing-hide");
       });
     } else {
       if (land) { land.hidden = true; land.style.display = "none"; }
