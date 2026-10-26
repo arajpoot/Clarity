@@ -408,7 +408,7 @@
   }
 
   function build() {
-    if (w.__CDL_V9_BUILT__) return;
+    if (w.__CDL_V9b_BUILT__) return;
     injectCss();
     document.querySelectorAll("#clarity-day-landing").forEach(function (el) { el.remove(); });
 
@@ -459,7 +459,7 @@
 
       '<div class="cdl-card cdl-plaque" id="cdl-amana-note-host" data-landing="amana-note">' +
         '<div class="cdl-head"><h2><span class="cdl-ico" aria-hidden="true">🔒</span> Vault note registry · on-device</h2></div>' +
-        '<p class="cdl-sub">Private notes with date/time. Same registry the Amānah vault uses — on this device only. Educational · not legal advice.</p>' +
+        '<p class="cdl-sub">Write here only. Saved notes appear under Amānah Vault → Heir readiness (collapsed) — not listed on this page. On-device · educational · not legal advice.</p>' +
         '<div id="amana-note-registry-landing"></div></div>' +
 
 
