@@ -93,3 +93,8 @@ html[data-shell-mode="landing"] .grave-path-strip {
 #clarity-day-landing .cdl-fold-body[hidden] {
   display: none !important;
 }
+
+#cdl-qada-root #qada-open-day {
+  padding: 0.4rem 0.75rem; border-radius: 999px; border: none;
+  background: #0f4c3a; color: #f5e6b8; font-weight: 700; cursor: pointer; font-size: 0.78rem;
+}
