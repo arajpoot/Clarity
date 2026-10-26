@@ -1,17 +1,13 @@
-# NurOS Icon Pack v2
+# NurOS Icon Pack v3 · color-rich plaques
 
-## What changed
-- Gold-ring **plaque** icons (arch / lantern / mushaf geometry)
-- Clearer glyphs for Companion, Campus, RRRA tabs
-- **De-double**: strips emoji when NurOS icon is applied
-- Does not use figurative portraits
+Shariah-minded graphics: architecture, mushaf, lantern, crescent, lock — **no animate figures**.
 
-## Deploy (delta)
+## Deploy delta
 ```
-index.html                          # links v2
-assets/css/nuros-icons-v2.css
-assets/nuros-icons-apply-v2.js
+index.html
+assets/css/nuros-icons-v3.css
+assets/nuros-icons-apply-v3.js
+assets/icons/*.svg   (optional standalone copies)
 ```
-Keep existing assets. Campus untouched.
 
-Educational only — not a fatwa.
+Hard-refresh after upload. Campus untouched.
