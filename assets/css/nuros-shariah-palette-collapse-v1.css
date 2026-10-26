@@ -1,0 +1,220 @@
+
+/* ========== SHARIAH-COMPLIANT PALETTES ========== */
+/* Dark: deep garden green + soft gold (not grey sludge) */
+html[data-theme="dark"],
+html[data-theme="dark"] {
+  --bg: #061510 !important;
+  --bg-elevated: #0c241e !important;
+  --bg-soft: #123028 !important;
+  --text: #eaf6f0 !important;
+  --text-muted: #8fb5a6 !important;
+  --accent: #1fa67a !important;
+  --accent-light: #3dd4a0 !important;
+  --accent-fg: #04140f !important;
+  --accent-soft: rgba(31,166,122,0.2) !important;
+  --border: rgba(212,180,90,0.32) !important;
+  --card-bg: rgba(10,36,30,0.94) !important;
+  --banner: #072019 !important;
+  --gold: #d4b45a !important;
+  --gold-soft: rgba(212,180,90,0.2) !important;
+  --sky: #4a9ec4 !important;
+  --sky-soft: rgba(74,158,196,0.14) !important;
+  --accent: #9a8bc4 !important;
+  --grave: #0e2e26 !important;
+  --shadow: 0 10px 36px rgba(0,0,0,0.42) !important;
+  --glow: 0 0 48px rgba(31,166,122,0.14) !important;
+  color-scheme: dark !important;
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(31,166,122,0.22), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 30%, rgba(212,180,90,0.08), transparent 45%),
+    linear-gradient(168deg, #04120e 0%, #061510 35%, #0a1f18 100%) !important;
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .card {
+  background: var(--card-bg) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* Light: parchment + olive/teal (distinct from dark) */
+html[data-theme="light"] {
+  --bg: #f4f0e6 !important;
+  --bg-elevated: #fffdf8 !important;
+  --bg-soft: #ebe6d8 !important;
+  --text: #1a2e26 !important;
+  --text-muted: #4a6358 !important;
+  --accent: #0f6b4c !important;
+  --accent-light: #1a8f66 !important;
+  --accent-fg: #f7f3eb !important;
+  --accent-soft: rgba(15,107,76,0.12) !important;
+  --border: rgba(15,76,58,0.22) !important;
+  --card-bg: rgba(255,253,248,0.96) !important;
+  --banner: #0d4f3c !important;
+  --gold: #a8892e !important;
+  --gold-soft: rgba(168,137,46,0.18) !important;
+  --sky: #2a6f8f !important;
+  --sky-soft: rgba(42,111,143,0.12) !important;
+  --accent: #6b5b95 !important;
+  --grave: #e8f2ec !important;
+  --shadow: 0 8px 28px rgba(15,50,40,0.1) !important;
+  --glow: 0 0 36px rgba(15,107,76,0.08) !important;
+  color-scheme: light !important;
+}
+html[data-theme="light"] body {
+  background:
+    radial-gradient(ellipse 100% 60% at 50% -10%, rgba(15,107,76,0.08), transparent 50%),
+    linear-gradient(180deg, #f7f3eb 0%, #f0ebe0 50%, #eae4d6 100%) !important;
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+html[data-theme="light"] body::before {
+  background: transparent !important;
+}
+html[data-theme="light"] .card {
+  background: var(--card-bg) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+  box-shadow: var(--shadow) !important;
+}
+html[data-theme="light"] .nav-tabs {
+  background: rgba(13,79,60,0.96) !important;
+}
+html[data-theme="light"] #clarity-global-nav:not(.hidden) {
+  background: rgba(247,243,235,0.97) !important;
+  border-bottom-color: rgba(15,76,58,0.18) !important;
+  color: var(--text) !important;
+}
+
+/* ========== COLLAPSE: My Journey / Today / daily cards out of tabs ========== */
+#clarity-today-surface,
+#today-journey-plaque,
+#clarity-learn-os,
+#path-board {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+}
+/* Visible only inside open daily dock */
+#nuros-daily-dock.open #nuros-daily-body #clarity-today-surface,
+#nuros-daily-dock.open #nuros-daily-body #today-journey-plaque,
+#nuros-daily-dock.open #nuros-daily-body #clarity-learn-os,
+#nuros-daily-dock.open #nuros-daily-body #path-board,
+#nuros-daily-dock.open #nuros-daily-body .today-card,
+#nuros-daily-dock.open #nuros-daily-body .today-actions {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  left: auto !important;
+  width: 100% !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  margin: 0 0 0.5rem !important;
+  padding: 0.35rem !important;
+}
+.tab-panel #clarity-today-surface,
+.tab-panel #clarity-learn-os,
+.tab-panel #path-board {
+  display: none !important;
+}
+
+/* Daily dock + One action strip — below banner / oath */
+#nuros-daily-dock {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  border-bottom: 1px solid rgba(212,180,90,0.25) !important;
+  background: linear-gradient(180deg, rgba(12,36,30,0.55), rgba(8,24,20,0.35)) !important;
+  position: relative !important;
+  z-index: 88 !important;
+}
+html[data-theme="light"] #nuros-daily-dock {
+  background: linear-gradient(180deg, rgba(15,107,76,0.08), rgba(247,243,235,0.9)) !important;
+}
+#nuros-daily-dock .daily-dock-toggle {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.5rem !important;
+  padding: 0.45rem 0.75rem !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--text, #eaf6f0) !important;
+  font-size: 0.82rem !important;
+  font-weight: 650 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+}
+#nuros-daily-dock .daily-dock-toggle span:last-child {
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+#nuros-daily-body {
+  display: none !important;
+  padding: 0.35rem 0.65rem 0.65rem !important;
+}
+#nuros-daily-dock.open #nuros-daily-body {
+  display: block !important;
+}
+
+/* One action — sleek strip under oath / above or with dock */
+#one-action-strip {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem 0.55rem !important;
+  padding: 0.4rem 0.75rem !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  background: linear-gradient(90deg, rgba(31,166,122,0.22), rgba(12,40,32,0.4)) !important;
+  border-bottom: 1px solid rgba(212,180,90,0.22) !important;
+  font-size: 0.8rem !important;
+  position: relative !important;
+  z-index: 89 !important;
+}
+html[data-theme="light"] #one-action-strip {
+  background: linear-gradient(90deg, rgba(15,107,76,0.14), rgba(255,253,248,0.85)) !important;
+  color: var(--text) !important;
+}
+#one-action-strip .oa-label {
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  font-size: 0.68rem !important;
+  color: var(--gold, #d4b45a) !important;
+}
+#one-action-strip button {
+  border-radius: 999px !important;
+  padding: 0.28rem 0.65rem !important;
+  font-size: 0.72rem !important;
+  border: 1px solid rgba(212,180,90,0.35) !important;
+  background: rgba(31,166,122,0.25) !important;
+  color: inherit !important;
+  cursor: pointer !important;
+}
+html.door-rail-on #one-action-strip,
+html.door-rail-on #nuros-daily-dock,
+html.door-rail-on #clarity-oath-strip {
+  /* inherit content column; rail offset handled by page */
+}

@@ -1,0 +1,170 @@
+
+/* ============================================================
+   Day mode space + Shariah-calm palette lock
+   Modest: deep green · soft gold · parchment · earth
+   No rainbow / multi-pride decorative spectra
+   ============================================================ */
+:root {
+  --accent: #0f4c3a;
+  --gold: #9a7b24;
+  --rrra-reminder: #9a7b24;
+  --rrra-reminder-bg: rgba(154,123,36,.12);
+  --rrra-reality: #2f6b6f;
+  --rrra-reality-bg: rgba(47,107,111,.12);
+  --rrra-reflection: #2a6b4a;
+  --rrra-reflection-bg: rgba(42,107,74,.12);
+  --rrra-action: #a66b35;
+  --rrra-action-bg: rgba(166,107,53,.12);
+}
+
+/* --- Day / light surfaces --- */
+html[data-theme="light"],
+html[data-theme="day"] {
+  --bg: #f3efe6;
+  --bg-elevated: #fffcf6;
+  --card-bg: #ffffff;
+  --text: #1a2e26;
+  --text-muted: #55665c;
+  --border: rgba(15,76,58,0.13);
+  --accent: #0f4c3a;
+  --gold: #8f7020;
+  --shadow: 0 6px 20px rgba(20,40,32,0.07);
+  color-scheme: light;
+}
+html[data-theme="light"] body,
+html[data-theme="day"] body {
+  background: #f3efe6 !important;
+  background-image: none !important;
+  color: var(--text) !important;
+}
+
+/* Content breathing room under sticky banner */
+html[data-theme="light"] .page-wrapper,
+html[data-theme="day"] .page-wrapper,
+html[data-theme="light"] #main-content,
+html[data-theme="day"] #main-content,
+html[data-theme="light"] .main-content,
+html[data-theme="day"] .main-content,
+html[data-theme="light"] #main-application-workspace,
+html[data-theme="day"] #main-application-workspace {
+  margin-top: 0 !important;
+  padding-top: 0.55rem !important;
+  padding-left: 0.45rem !important;
+  padding-right: 0.45rem !important;
+  padding-bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)) !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+html[data-theme="light"] .tab-panel.rrra-hub,
+html[data-theme="day"] .tab-panel.rrra-hub,
+html[data-theme="light"] .rrra-hub-body,
+html[data-theme="day"] .rrra-hub-body {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+html[data-theme="light"] .tab-panel .card,
+html[data-theme="day"] .tab-panel .card {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Hub list cards — clear vertical rhythm */
+html[data-theme="light"] .tab-panel.rrra-hub,
+html[data-theme="day"] .tab-panel.rrra-hub {
+  padding: 0.35rem 0.15rem 1.5rem !important;
+  gap: 0.85rem;
+}
+html[data-theme="light"] .tab-panel .card,
+html[data-theme="day"] .tab-panel .card {
+  background: #ffffff !important;
+  color: #1a2e26 !important;
+  border: 1px solid rgba(15,76,58,0.12) !important;
+  border-radius: 16px !important;
+  margin: 0 0 0.85rem !important;
+  padding: 0.95rem 1rem !important;
+  box-shadow: 0 4px 16px rgba(20,40,32,0.06) !important;
+}
+html[data-theme="light"] .tab-panel .card h2,
+html[data-theme="day"] .tab-panel .card h2 {
+  color: #0f4c3a !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .rrra-hub-hero,
+html[data-theme="day"] .rrra-hub-hero {
+  margin-bottom: 0.75rem !important;
+  border-radius: 16px !important;
+}
+html[data-theme="light"] .rrra-hub-hero[data-rrra="reminder"],
+html[data-theme="day"] .rrra-hub-hero[data-rrra="reminder"] {
+  background: linear-gradient(135deg, #f7efd4, #f3efe6) !important;
+  color: #6e5714 !important;
+  border-color: rgba(154,123,36,0.35) !important;
+}
+html[data-theme="light"] .rrra-hub-hero[data-rrra="reality"],
+html[data-theme="day"] .rrra-hub-hero[data-rrra="reality"] {
+  background: linear-gradient(135deg, #e4f0f1, #f3efe6) !important;
+  color: #1f4f52 !important;
+  border-color: rgba(47,107,111,0.3) !important;
+}
+html[data-theme="light"] .rrra-hub-hero[data-rrra="reflection"],
+html[data-theme="day"] .rrra-hub-hero[data-rrra="reflection"] {
+  background: linear-gradient(135deg, #e2f2ea, #f3efe6) !important;
+  color: #1a4d35 !important;
+  border-color: rgba(42,107,74,0.3) !important;
+}
+html[data-theme="light"] .rrra-hub-hero[data-rrra="action"],
+html[data-theme="day"] .rrra-hub-hero[data-rrra="action"] {
+  background: linear-gradient(135deg, #f5e9dc, #f3efe6) !important;
+  color: #6a4218 !important;
+  border-color: rgba(166,107,53,0.3) !important;
+}
+html[data-theme="light"] .rrra-hub-summary,
+html[data-theme="day"] .rrra-hub-summary,
+html[data-theme="light"] .rrra-legend,
+html[data-theme="day"] .rrra-legend {
+  background: rgba(255,255,255,0.85) !important;
+  border-color: rgba(15,76,58,0.12) !important;
+  color: #55665c !important;
+}
+
+/* Top bar readable in day */
+html[data-theme="light"] #clarity-global-nav,
+html[data-theme="day"] #clarity-global-nav,
+html[data-theme="light"] nav.global-nav,
+html[data-theme="day"] nav.global-nav {
+  background: #fffcf6 !important;
+  border-bottom: 1px solid rgba(15,76,58,0.12) !important;
+  color: #1a2e26 !important;
+}
+
+/* Rail stays deep green (readable contrast on light page) */
+html[data-theme="light"] #clarity-door-rail.door-rail-rrra5,
+html[data-theme="day"] #clarity-door-rail.door-rail-rrra5 {
+  background: linear-gradient(180deg, #16352c, #0f241e) !important;
+}
+
+/* RRRA legend pills — solid single hues only (no spectrum bars) */
+.rrra-legend .lg-rem { background: rgba(154,123,36,.14) !important; color: #8f7020 !important; border-color: rgba(154,123,36,.35) !important; }
+.rrra-legend .lg-real { background: rgba(47,107,111,.14) !important; color: #2f6b6f !important; border-color: rgba(47,107,111,.35) !important; }
+.rrra-legend .lg-refl { background: rgba(42,107,74,.14) !important; color: #2a6b4a !important; border-color: rgba(42,107,74,.35) !important; }
+.rrra-legend .lg-act { background: rgba(166,107,53,.14) !important; color: #a66b35 !important; border-color: rgba(166,107,53,.35) !important; }
+
+/* Block decorative rainbow / 6+ stop pride-like gradients if any slipped into utility UI */
+.rainbow, .pride-bar, [class*="rainbow"], [class*="pride-flag"] {
+  background: var(--accent) !important;
+  background-image: none !important;
+}
+
+/* Soften any accidental hot pink / magenta accents */
+[style*="magenta"], [style*="hotpink"], [style*="#ff00ff"], [style*="#FF00FF"] {
+  color: var(--accent) !important;
+}
+.mv-chip.mv-accent {
+  background: rgba(154,123,36,.18) !important;
+  border-color: rgba(154,123,36,.4) !important;
+  color: #8f7020 !important;
+}

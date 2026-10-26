@@ -1,0 +1,199 @@
+
+#clarity-top-duo .brand-ondev {
+  font-size: 0.68rem !important; font-weight: 700 !important;
+  padding: 0.12rem 0.42rem !important; border-radius: 999px !important;
+  background: #0f4c3a !important; color: #7dff9a !important;
+  border: 1px solid rgba(125,255,154,0.4) !important;
+  display: inline-flex !important; align-items: center !important;
+}
+
+#clarity-top-duo .banner-overlay {
+  background: linear-gradient(to bottom, rgba(4,16,12,0.58), rgba(4,16,12,0.70)) !important;
+  display: flex !important; flex-direction: row !important; align-items: stretch !important;
+  justify-content: space-between !important; gap: 0.45rem !important;
+  padding: 0.38rem 0.5rem 0.42rem !important;
+}
+#clarity-top-duo .banner:has(.live-active) .banner-overlay {
+  background: linear-gradient(to bottom, rgba(4,16,12,0.52), rgba(4,16,12,0.65)) !important;
+}
+#clarity-top-duo .banner-side {
+  flex: 0 0 148px !important; width: 148px !important; max-width: 148px !important;
+  display: flex !important; flex-direction: column !important; justify-content: center !important;
+}
+#clarity-top-duo .banner-side.left { order: 1 !important; }
+#clarity-top-duo .banner-side.right { order: 3 !important; }
+#clarity-top-duo .banner-center {
+  order: 2 !important; flex: 1 1 auto !important; max-width: 520px !important;
+  margin: 0 auto !important; display: flex !important; flex-direction: column !important;
+  align-items: center !important; justify-content: center !important;
+}
+#clarity-top-duo .hijri-cal-section,
+#clarity-top-duo .salah-times-section {
+  background: linear-gradient(165deg, rgba(22,62,50,0.94), rgba(6,26,20,0.96)) !important;
+  border-radius: 14px !important;
+  box-shadow: inset 0 0 0 1.5px rgba(212,180,90,0.5), 0 6px 18px rgba(0,0,0,0.4) !important;
+  padding: 0.4rem 0.45rem !important; height: 100% !important; box-sizing: border-box !important;
+}
+#clarity-top-duo .rabbana-box {
+  background: rgba(4,18,14,0.7) !important; border: 1px solid rgba(212,180,90,0.28); border-radius: 12px !important;
+}
+#clarity-top-duo .hijri-cal-section *, #clarity-top-duo .salah-times-section * {
+  font-family: Inter, system-ui, sans-serif !important;
+}
+#clarity-top-duo .cal-title, #clarity-top-duo .salah-title { font-size: 0.62rem !important; font-weight: 700 !important; }
+#clarity-top-duo .hijri-cal-grid { font-size: 0.52rem !important; }
+#clarity-top-duo .salah-times-list { font-size: 0.58rem !important; }
+#clarity-top-duo .azan-toggle-row {
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  gap: 0.3rem !important; font-size: 0.58rem !important; font-weight: 500 !important;
+  margin-top: 0.12rem !important; padding-top: 0.1rem !important;
+  border-top: 1px solid rgba(255,255,255,0.12) !important; color: rgba(255,255,255,0.92) !important;
+}
+
+/* AV strip — wider, all pills visible, horizontal scroll if needed */
+#clarity-top-duo .stream-controls {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.28rem !important;
+  margin: 0.2rem auto 0 !important;
+  padding: 0.3rem 0.5rem !important;
+  width: 100% !important;
+  max-width: min(100%, 560px) !important;
+  box-sizing: border-box !important;
+  background: rgba(4,18,14,0.85) !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(212,180,90,0.3) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: thin;
+}
+#clarity-top-duo .stream-controls > * {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  height: 1.85rem !important;
+  min-height: 1.85rem !important;
+  max-height: 1.85rem !important;
+  box-sizing: border-box !important;
+  border-radius: 999px !important;
+  font-size: 0.66rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 0.5rem !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  white-space: nowrap !important;
+}
+#clarity-top-duo .stream-controls .live-haramain-btn {
+  background: #b91c1c !important; color: #fff !important; font-weight: 700 !important;
+  min-width: 3.6rem !important;
+}
+#clarity-top-duo .stream-controls .live-haramain-btn.on { background: #0d4f3c !important; }
+#clarity-top-duo .stream-controls select {
+  background: #0d4f3c !important; color: #f0faf4 !important;
+  max-width: 6.5rem !important; min-width: 4.5rem !important;
+  appearance: auto; -webkit-appearance: menulist;
+}
+#clarity-top-duo .stream-controls select option { color: #1a2a22 !important; background: #fff !important; }
+#clarity-top-duo .stream-controls .quran-stream-btn {
+  background: #fff !important; color: #0d4f3c !important; font-weight: 700 !important;
+  min-width: 4.2rem !important;
+}
+#clarity-top-duo .stream-controls .quran-stream-btn.playing { background: #0d4f3c !important; color: #fff !important; }
+#clarity-top-duo #surah-list-pill {
+  background: #c9a227 !important; color: #1a1508 !important; font-weight: 700 !important;
+  max-width: 6.8rem !important; min-width: 5rem !important;
+}
+#clarity-top-duo #surah-reciter-pill {
+  background: #1a5c48 !important; color: #e8f5ef !important;
+  max-width: 6.2rem !important; min-width: 4.5rem !important;
+}
+#clarity-top-duo #surah-surprise-pill {
+  background: #0d4f3c !important; color: #f5e6b8 !important; font-weight: 700 !important;
+  min-width: 2rem !important; border-color: rgba(212,180,90,0.45) !important;
+}
+#clarity-top-duo .stream-controls .volume-control {
+  background: rgba(255,255,255,0.15) !important; gap: 0.15rem !important; min-width: 4.5rem !important;
+}
+#clarity-top-duo .stream-controls .volume-control input[type="range"] { width: 40px !important; margin: 0 !important; }
+#clarity-top-duo .stream-controls .mute-btn {
+  height: auto !important; min-height: 0 !important; max-height: none !important;
+  padding: 0 !important; background: none !important; border: none !important; color: #fff !important;
+}
+@media (max-width: 900px) {
+  #clarity-top-duo .banner-side { display: none !important; }
+  #clarity-top-duo .banner-overlay { flex-direction: column !important; }
+  #clarity-top-duo .stream-controls {
+    max-width: 100% !important; border-radius: 16px !important; justify-content: flex-start !important;
+  }
+}
+
+/* Embeds: pull-down summary + FULL viewport when open */
+.clarity-embed-fold {
+  display: block !important; margin: 0.5rem 0 !important;
+  border: 1px solid var(--border, #e0d5c4) !important; border-radius: 12px !important;
+  background: var(--card-bg, #fffdf8) !important; overflow: hidden !important;
+}
+.clarity-embed-fold > summary {
+  display: block !important; cursor: pointer !important; padding: 0.65rem 0.9rem !important;
+  font-weight: 600 !important; font-size: 0.88rem !important; color: var(--accent, #0d4f3c) !important;
+  list-style: none !important; visibility: visible !important;
+}
+.clarity-embed-fold > summary::-webkit-details-marker { display: none; }
+.clarity-embed-fold > summary::before { content: "▸ "; opacity: 0.7; }
+.clarity-embed-fold[open] > summary::before { content: "▾ "; }
+.clarity-embed-fold > summary .cef-title { opacity: 0.65; font-weight: 500; font-size: 0.78rem; }
+
+.clarity-embed-fold:not([open]) > .clarity-embed-body {
+  display: none !important; height: 0 !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important;
+}
+.clarity-embed-fold:not([open]) iframe {
+  display: none !important; height: 0 !important; min-height: 0 !important;
+  position: absolute !important; left: -9999px !important;
+}
+
+/* OPEN = full width 16:9 viewport */
+.clarity-embed-fold[open] > .clarity-embed-body {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  padding: 0 !important;
+  background: #000 !important;
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+.clarity-embed-fold[open] iframe {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  pointer-events: auto !important;
+}
+.player-wrap:has(> .clarity-embed-fold:not([open])),
+.lecture-player-wrap:has(.clarity-embed-fold:not([open])),
+.hajj-video-frame:has(.clarity-embed-fold:not([open])),
+.spotify-player-wrap:has(.clarity-embed-fold:not([open])) {
+  padding-bottom: 0 !important; height: auto !important; min-height: 0 !important; aspect-ratio: unset !important;
+}
+.player-wrap:has(> .clarity-embed-fold[open]),
+.lecture-player-wrap:has(.clarity-embed-fold[open]),
+.hajj-video-frame:has(.clarity-embed-fold[open]) {
+  padding-bottom: 0 !important; height: auto !important; aspect-ratio: unset !important;
+}
+html[data-theme="dark"] .clarity-embed-fold {
+  background: rgba(20,30,25,0.96) !important; border-color: rgba(255,255,255,0.12) !important;
+}
+html[data-theme="dark"] .clarity-embed-fold > summary { color: #6bc49a !important; }

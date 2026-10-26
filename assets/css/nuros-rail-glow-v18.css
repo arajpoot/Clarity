@@ -1,0 +1,171 @@
+
+/* —— Bottom door rail: enriched + glow —— */
+#clarity-door-rail.door-rail-bottom,
+nav.door-rail-bottom {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 9990 !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: stretch !important;
+  gap: 0.2rem !important;
+  padding: 0.35rem 0.4rem calc(0.35rem + env(safe-area-inset-bottom, 0px)) !important;
+  background: linear-gradient(180deg, rgba(8,22,16,0.92), rgba(6,16,12,0.98)) !important;
+  border-top: 1px solid rgba(201,162,39,0.28) !important;
+  box-shadow: 0 -8px 28px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+#clarity-door-rail .door-rail-btn {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.12rem !important;
+  padding: 0.38rem 0.2rem 0.32rem !important;
+  border-radius: 14px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  color: rgba(230,240,234,0.72) !important;
+  font-family: "Cormorant Garamond", "Inter", system-ui, serif !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.15 !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.25s ease, border-color 0.2s ease, transform 0.15s ease !important;
+  position: relative !important;
+}
+#clarity-door-rail .door-rail-btn .dr-ico {
+  font-size: 1.05rem !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter 0.25s ease, transform 0.2s ease !important;
+}
+#clarity-door-rail .door-rail-btn .dr-label {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+}
+#clarity-door-rail .door-rail-btn .dr-count {
+  font-family: "Inter", system-ui, sans-serif !important;
+  font-size: 0.58rem !important;
+  font-weight: 700 !important;
+  opacity: 0.85 !important;
+  min-width: 1.1rem !important;
+  padding: 0.05rem 0.28rem !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.08) !important;
+}
+/* Active / selected — soft gold-emerald glow */
+#clarity-door-rail .door-rail-btn.active,
+#clarity-door-rail .door-rail-btn[aria-current="page"],
+#clarity-door-rail .door-rail-btn[data-active="1"] {
+  color: #f3e6b8 !important;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,162,39,0.22), rgba(15,76,58,0.35) 70%) !important;
+  border-color: rgba(201,162,39,0.45) !important;
+  box-shadow:
+    0 0 0 1px rgba(201,162,39,0.2),
+    0 0 18px rgba(201,162,39,0.35),
+    0 0 36px rgba(31,166,122,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.12) !important;
+  transform: translateY(-2px) !important;
+}
+#clarity-door-rail .door-rail-btn.active .dr-ico,
+#clarity-door-rail .door-rail-btn[aria-current="page"] .dr-ico,
+#clarity-door-rail .door-rail-btn[data-active="1"] .dr-ico {
+  filter: drop-shadow(0 0 6px rgba(201,162,39,0.75)) drop-shadow(0 0 12px rgba(31,166,122,0.4));
+  transform: scale(1.08);
+}
+#clarity-door-rail .door-rail-btn.active .dr-count,
+#clarity-door-rail .door-rail-btn[aria-current="page"] .dr-count,
+#clarity-door-rail .door-rail-btn[data-active="1"] .dr-count {
+  background: rgba(201,162,39,0.25) !important;
+  color: #f6efd0 !important;
+}
+#clarity-door-rail .door-rail-btn:hover {
+  color: #f0e8c8 !important;
+  background: rgba(255,255,255,0.05) !important;
+}
+/* Light theme rail */
+html[data-theme="light"] #clarity-door-rail.door-rail-bottom,
+html[data-theme="day"] #clarity-door-rail.door-rail-bottom {
+  background: linear-gradient(180deg, rgba(246,241,231,0.96), rgba(232,242,236,0.98)) !important;
+  border-top-color: rgba(13,79,60,0.18) !important;
+  box-shadow: 0 -6px 20px rgba(13,50,40,0.08) !important;
+}
+html[data-theme="light"] #clarity-door-rail .door-rail-btn,
+html[data-theme="day"] #clarity-door-rail .door-rail-btn {
+  color: rgba(28,42,34,0.72) !important;
+}
+html[data-theme="light"] #clarity-door-rail .door-rail-btn.active,
+html[data-theme="day"] #clarity-door-rail .door-rail-btn.active,
+html[data-theme="light"] #clarity-door-rail .door-rail-btn[aria-current="page"],
+html[data-theme="day"] #clarity-door-rail .door-rail-btn[aria-current="page"] {
+  color: #0d4f3c !important;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,162,39,0.2), rgba(13,79,60,0.1) 70%) !important;
+  border-color: rgba(13,79,60,0.28) !important;
+  box-shadow: 0 0 16px rgba(201,162,39,0.25), 0 0 28px rgba(13,79,60,0.1) !important;
+}
+
+/* —— Hub summary: hyperlink chips —— */
+.rrra-hub-summary {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem 0.4rem !important;
+  align-items: center !important;
+  line-height: 1.45 !important;
+}
+.rrra-hub-summary a.rrra-jump,
+a.rrra-jump {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.2rem !important;
+  padding: 0.22rem 0.55rem !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  font-family: "Inter", system-ui, sans-serif !important;
+  text-decoration: none !important;
+  color: #e8f0ea !important;
+  background: rgba(15,76,58,0.55) !important;
+  border: 1px solid rgba(201,162,39,0.28) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15) !important;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.rrra-hub-summary a.rrra-jump:hover,
+a.rrra-jump:hover {
+  background: rgba(26,107,82,0.75) !important;
+  border-color: rgba(201,162,39,0.55) !important;
+  transform: translateY(-1px);
+}
+.rrra-hub-summary a.rrra-jump:active {
+  transform: translateY(0);
+}
+html[data-theme="light"] .rrra-hub-summary a.rrra-jump,
+html[data-theme="day"] .rrra-hub-summary a.rrra-jump {
+  color: #0c1a14 !important;
+  background: rgba(230,242,236,0.95) !important;
+  border-color: rgba(13,79,60,0.22) !important;
+}
+/* scroll target highlight */
+.card.rrra-flash {
+  outline: 2px solid rgba(201,162,39,0.7) !important;
+  box-shadow: 0 0 0 4px rgba(201,162,39,0.2), 0 0 24px rgba(31,166,122,0.2) !important;
+  transition: outline 0.3s ease, box-shadow 0.3s ease !important;
+}
+/* room for fixed rail */
+body { padding-bottom: calc(4.2rem + env(safe-area-inset-bottom, 0px)) !important; }

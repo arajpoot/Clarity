@@ -1,0 +1,224 @@
+
+/* ===== Tajweed Deep Studio ===== */
+.tj-rule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.2rem, 1fr));
+  gap: 0.55rem;
+  margin: 0.35rem 0 1rem;
+}
+.tj-rule-tile {
+  border: 1px solid var(--border, #e0d5c4);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(255,253,248,0.98), rgba(232,245,236,0.9));
+  padding: 0.55rem 0.4rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s;
+  box-shadow: 0 2px 8px rgba(13,50,40,0.06);
+  min-height: 5.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.2rem;
+}
+html[data-theme="dark"] .tj-rule-tile {
+  background: linear-gradient(160deg, rgba(12,36,30,0.95), rgba(18,48,40,0.9));
+  border-color: rgba(212,180,90,0.28);
+}
+.tj-rule-tile:hover, .tj-rule-tile:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13,50,40,0.12);
+  border-color: var(--gold, #b8922a);
+  outline: none;
+}
+.tj-rule-tile.open {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(13,79,60,0.2);
+}
+.tj-rule-pic {
+  width: 2.6rem; height: 2.6rem;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 0.15rem;
+  background: rgba(13,79,60,0.1);
+}
+.tj-rule-tile[data-rule="izhar"] .tj-rule-pic { background: #e8f5ec; }
+.tj-rule-tile[data-rule="ikhfa"] .tj-rule-pic { background: #eef6fa; }
+.tj-rule-tile[data-rule="idgham"] .tj-rule-pic { background: #f5edd6; }
+.tj-rule-tile[data-rule="iqlab"] .tj-rule-pic { background: #f0e8f5; }
+.tj-rule-tile[data-rule="qalqalah"] .tj-rule-pic { background: #fce8e8; }
+.tj-rule-tile[data-rule="ghunnah"] .tj-rule-pic { background: #e8f0f8; }
+.tj-rule-tile[data-rule="madd"] .tj-rule-pic { background: #e8f8f0; }
+.tj-rule-tile[data-rule="waqf"] .tj-rule-pic { background: #f8f0e8; }
+.tj-rule-tile[data-rule="makharij"] .tj-rule-pic { background: #eef5e8; }
+.tj-rule-name {
+  font-size: 0.78rem; font-weight: 700; color: var(--accent);
+  line-height: 1.2;
+}
+.tj-rule-ar {
+  font-family: 'Scheherazade New', Amiri, serif;
+  direction: rtl;
+  font-size: 0.95rem;
+  color: var(--text);
+  opacity: 0.92;
+}
+.tj-rule-detail {
+  display: none;
+  grid-column: 1 / -1;
+  background: rgba(13,79,60,0.06);
+  border: 1px solid rgba(13,79,60,0.15);
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0.15rem 0 0.35rem;
+}
+.tj-rule-detail.show { display: block; }
+.tj-rule-detail strong { color: var(--accent); }
+.tj-rule-detail .tj-ex {
+  margin-top: 0.4rem;
+  padding: 0.4rem 0.55rem;
+  background: rgba(255,255,255,0.55);
+  border-radius: 8px;
+  font-size: 0.86rem;
+}
+html[data-theme="dark"] .tj-rule-detail .tj-ex { background: rgba(0,0,0,0.25); }
+
+.tj-tool-panel {
+  margin: 0.45rem 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255,253,248,0.7);
+  overflow: hidden;
+}
+html[data-theme="dark"] .tj-tool-panel { background: rgba(10,30,24,0.6); }
+.tj-tool-panel > summary {
+  cursor: pointer;
+  padding: 0.55rem 0.75rem;
+  font-weight: 650;
+  font-size: 0.92rem;
+  color: var(--accent);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.tj-tool-panel > summary::-webkit-details-marker { display: none; }
+.tj-tool-panel > summary::before {
+  content: "▸";
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+.tj-tool-panel[open] > summary::before { content: "▾"; }
+.tj-tool-panel > *:not(summary) {
+  padding: 0 0.75rem 0.75rem;
+}
+.tj-makharij-svg {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  display: block;
+  margin: 0.25rem auto;
+}
+.tj-tool-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+.tj-steps {
+  margin: 0.25rem 0 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.tj-steps li { margin-bottom: 0.3rem; }
+.tj-quick-links {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+}
+.tj-quick-links a {
+  text-decoration: none;
+  margin: 0 !important;
+  padding: 0.32rem 0.7rem !important;
+  font-size: 0.8rem !important;
+}
+.tj-flash-card {
+  min-height: 3.2rem;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(13,79,60,0.1), rgba(184,146,42,0.1));
+  font-weight: 650;
+  font-size: 1.05rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.tj-flash-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.tj-flash-tip {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(13,79,60,0.06);
+}
+.tj-challenge ul {
+  margin: 0.35rem 0 0.5rem 1.15rem;
+  font-size: 0.9rem;
+}
+.tj-challenge li { margin-bottom: 0.25rem; }
+
+/* Collapsible levels */
+.tj-level-collapse {
+  margin: 0.55rem 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card-bg, #fffdf8);
+  overflow: hidden;
+}
+.tj-level-summary {
+  cursor: pointer;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  list-style: none;
+  font-weight: 650;
+}
+.tj-level-summary::-webkit-details-marker { display: none; }
+.tj-level-summary::before {
+  content: "▸";
+  margin-right: 0.35rem;
+  opacity: 0.65;
+  font-size: 0.8rem;
+}
+.tj-level-collapse[open] > .tj-level-summary::before { content: "▾"; }
+.tj-level-sum-main { flex: 1 1 auto; min-width: 12rem; }
+.tj-level-sum-meta { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.tj-level-body { padding: 0 0.85rem 0.85rem; }
+.tj-level-collapse .level-goal { font-size: 0.88rem; margin-bottom: 0.5rem; }
+.tj-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(13,79,60,0.1);
+  color: var(--accent);
+}
+.tj-badge.complete {
+  background: rgba(31,166,122,0.2);
+  color: #0d6b4c;
+}
+html[data-theme="dark"] .tj-badge.complete { color: #7dff9a; }
+
+@media (max-width: 520px) {
+  .tj-rule-grid { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+  .tj-rule-tile { min-height: 5rem; padding: 0.4rem 0.25rem; }
+  .tj-rule-pic { width: 2.2rem; height: 2.2rem; font-size: 1.15rem; }
+  .tj-rule-name { font-size: 0.7rem; }
+}

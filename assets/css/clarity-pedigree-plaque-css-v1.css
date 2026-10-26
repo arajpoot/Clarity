@@ -1,0 +1,167 @@
+
+/* —— Nuke all decorative tree graphics —— */
+#uft-bg,
+svg.uft-bg,
+.uft-bg,
+.uft-stage > svg.uft-bg,
+#user-family-tree-card .uft-bg,
+#user-family-tree-card svg.uft-bg,
+.uft-bg .uft-branch,
+.uft-bg .uft-leaf,
+#uft-branches,
+#uft-leaves {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  animation: none !important;
+}
+
+/* —— Plaqued pedigree viewport —— */
+#user-family-tree-card .uft-stage {
+  position: relative !important;
+  overflow: visible !important;
+  background: linear-gradient(165deg, #0c241c 0%, #0a1a14 100%) !important;
+  border-radius: 18px !important;
+  padding: 0.55rem !important;
+  box-shadow: inset 0 0 0 1px rgba(201,162,39,0.18) !important;
+}
+
+#uft-preview.uft-tree,
+#user-family-tree-card #uft-preview {
+  /* The plaque: only this element scrolls/pans */
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: min(42vh, 22rem) !important;
+  max-height: min(58vh, 32rem) !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  scroll-behavior: auto !important; /* no smooth = less jerk mid-gesture */
+  touch-action: pan-x pan-y !important;
+  box-sizing: border-box !important;
+
+  /* Plaque border */
+  border: 2px solid rgba(212, 180, 90, 0.42) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent 40%),
+    linear-gradient(160deg, #0f2a22 0%, #0a1c16 55%, #071410 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    inset 0 0 0 1px rgba(0,0,0,0.25),
+    0 8px 24px rgba(0,0,0,0.28) !important;
+
+  /* Symmetric side buffers so you can scroll past content on BOTH edges */
+  scroll-padding-inline: 2.5rem !important;
+  scroll-padding-block: 1.25rem !important;
+  padding: 1rem 0 !important; /* vertical only; horizontal via spacer */
+}
+
+/* Horizontal scroll buffers (left + right) — equal both sides */
+#uft-preview .uft-zoom-sizer,
+#uft-zoom-sizer {
+  display: block !important;
+  box-sizing: border-box !important;
+  /* equal side gutters so content can center and scroll past either edge */
+  padding-left: 2.75rem !important;
+  padding-right: 2.75rem !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 1.25rem !important;
+  min-width: max(100%, max-content) !important;
+  width: max-content !important;
+  margin: 0 auto !important;
+}
+
+#uft-zoom-layer {
+  transform-origin: 0 0 !important;
+  will-change: transform !important;
+  /* kill transform transition during pan — major jerk source */
+  transition: none !important;
+  display: block !important;
+  width: max-content !important;
+  min-width: 100% !important;
+}
+
+/* Pedigree content inside plaque */
+#uft-preview .uft-vtree,
+#uft-preview .uft-band,
+#uft-preview .uft-cluster {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Branch panel also plaqued if open */
+#uft-branch-wrap .uft-branch-panel,
+#uft-branch-panel {
+  border: 1.5px solid rgba(212,180,90,0.35) !important;
+  border-radius: 14px !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  max-height: min(48vh, 26rem) !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  padding: 0.75rem 1.5rem !important;
+  scroll-padding-inline: 1.5rem !important;
+  background: rgba(8, 28, 22, 0.55) !important;
+}
+
+/* Day theme plaque */
+html[data-theme="light"] #uft-preview.uft-tree,
+html[data-theme="day"] #uft-preview.uft-tree,
+html[data-theme="light"] #user-family-tree-card #uft-preview,
+html[data-theme="day"] #user-family-tree-card #uft-preview {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.5), transparent 35%),
+    linear-gradient(160deg, #e8f5ee 0%, #d5ebe0 100%) !important;
+  border-color: #8fb89f !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    0 6px 18px rgba(12,50,35,0.1) !important;
+}
+html[data-theme="light"] #user-family-tree-card .uft-stage,
+html[data-theme="day"] #user-family-tree-card .uft-stage {
+  background: linear-gradient(165deg, #eef7f2, #e4f0ea) !important;
+}
+
+/* Soft edge fade hint (both sides) — pure CSS, no JS */
+#uft-preview.uft-tree::before,
+#uft-preview.uft-tree::after {
+  content: "";
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  width: 1.1rem;
+  pointer-events: none;
+  z-index: 4;
+  display: block;
+}
+#uft-preview.uft-tree::before {
+  float: left;
+  margin-left: -0.1rem;
+  background: linear-gradient(90deg, rgba(7,20,16,0.55), transparent);
+}
+#uft-preview.uft-tree::after {
+  float: right;
+  margin-right: -0.1rem;
+  background: linear-gradient(270deg, rgba(7,20,16,0.55), transparent);
+}
+html[data-theme="light"] #uft-preview.uft-tree::before,
+html[data-theme="day"] #uft-preview.uft-tree::before {
+  background: linear-gradient(90deg, rgba(220,238,228,0.85), transparent);
+}
+html[data-theme="light"] #uft-preview.uft-tree::after,
+html[data-theme="day"] #uft-preview.uft-tree::after {
+  background: linear-gradient(270deg, rgba(220,238,228,0.85), transparent);
+}
+
+/* Kill residual tree animations */
+@keyframes uftGrow { to { opacity: 1; } }
+@keyframes uftLeaf { to { opacity: 0.75; } }

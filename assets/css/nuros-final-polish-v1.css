@@ -1,0 +1,188 @@
+
+/* ========== FINAL POLISH v1 ========== */
+
+/* --- 1. 10-chip rail: expand to full width, snug --- */
+#clarity-door-rail,
+#clarity-door-rail.door-rail-bottom {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: stretch !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+  padding: 0.18rem 0.12rem calc(0.18rem + env(safe-area-inset-bottom, 0px)) !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+}
+#clarity-door-rail::-webkit-scrollbar { display: none !important; height: 0 !important; }
+
+#clarity-door-rail .door-rail-btn,
+#clarity-door-rail button.door-rail-btn {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  width: auto !important;
+  padding: 0.28rem 0.1rem 0.22rem !important;
+  margin: 0 !important;
+  gap: 0.06rem !important;
+  border-radius: 8px !important;
+  font-size: 0.55rem !important;
+}
+#clarity-door-rail .door-rail-btn .dr-ico {
+  font-size: 1.02rem !important;
+}
+#clarity-door-rail .door-rail-btn .dr-label {
+  font-size: 0.52rem !important;
+  letter-spacing: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+@media (min-width: 480px) {
+  #clarity-door-rail .door-rail-btn .dr-label { font-size: 0.58rem !important; }
+  #clarity-door-rail .door-rail-btn .dr-ico { font-size: 1.08rem !important; }
+}
+@media (min-width: 700px) {
+  #clarity-door-rail .door-rail-btn .dr-label { font-size: 0.64rem !important; }
+  #clarity-door-rail .door-rail-btn { padding: 0.32rem 0.15rem !important; }
+}
+
+/* --- 2. Meme studio: scaled viewport only (kill giant canvas fights) --- */
+#tab-about .meme-stage-wrap,
+#meme-studio-root .meme-stage-wrap,
+.meme-realign .meme-stage-wrap,
+#meme-stage-wrap {
+  width: 100% !important;
+  max-width: 340px !important;
+  margin: 0.35rem auto !important;
+  min-height: 0 !important;
+  max-height: 46vh !important;
+  overflow: hidden !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(13,79,60,0.2) !important;
+  background: #0a1210 !important;
+  box-sizing: border-box !important;
+}
+#tab-about .meme-stage,
+#meme-studio-root .meme-stage,
+.meme-realign .meme-stage,
+#meme-stage {
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: 46vh !important;
+  aspect-ratio:unset!important;
+  margin: 0 auto !important;
+  /* win over older 4/3 rules */
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: hidden !important;
+  background: #0d1512 !important;
+  border-radius: 11px !important;
+}
+#tab-about .meme-stage canvas,
+#meme-studio-root .meme-stage canvas,
+.meme-realign .meme-stage canvas,
+#meme-canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 46vh !important;
+  object-fit: contain !important;
+}
+/* Meme card itself shouldn't force huge min-heights */
+#meme-card, .card-meme, #tab-about .card-meme {
+  min-height: 0 !important;
+}
+#tab-about .meme-studio,
+#meme-studio-root {
+  max-width: 100% !important;
+}
+
+/* --- 3. Desktop: stitch banner under top bar, stay visible while scrolling --- */
+@media (min-width: 768px) {
+  #clarity-global-nav.global-nav,
+  nav.global-nav#clarity-global-nav,
+  nav#clarity-global-nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1400 !important;
+    background: var(--card-bg, #fffdf8) !important;
+    border-bottom: 1px solid var(--border, #e0d5c4) !important;
+  }
+  /* Stitch banner under top bar — desktop only */
+  html body #clarity-top-duo,
+  #clarity-top-duo {
+    position: sticky !important;
+    top: 2.65rem !important;
+    z-index: 1350 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-shadow: 0 4px 14px rgba(8,28,22,0.18) !important;
+  }
+  html body #clarity-top-duo .banner {
+    position: relative !important; /* keep internal layout */
+  }
+  html[data-theme="dark"] #clarity-global-nav.global-nav,
+  html[data-theme="dark"] nav.global-nav#clarity-global-nav {
+    background: #0c1814 !important;
+    border-bottom-color: rgba(212,180,90,0.25) !important;
+  }
+}
+@media (max-width: 767px) {
+  html body #clarity-top-duo,
+  #clarity-top-duo {
+    position: relative !important;
+    top: auto !important;
+    box-shadow: none !important;
+  }
+}
+
+/* --- 4. Content breathing room under sticky stack + rail --- */
+@media (min-width: 768px) {
+  html.door-rail-on #main-application-workspace,
+  html.door-rail-on .page-wrapper,
+  html.door-rail-on .main-content {
+    padding-top: 0.35rem !important;
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+@media (max-width: 767px) {
+  html.door-rail-on #main-application-workspace,
+  html.door-rail-on .main-content {
+    padding-bottom: calc(3.9rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* --- 5. Kill residual huge empty gaps under banner --- */
+#clarity-top-duo + *,
+.page-wrapper,
+#main-content {
+  margin-top: 0 !important;
+}
+.clarity-tab-disclaimer {
+  margin-top: 0.45rem !important;
+}
+
+/* --- 6. Ensure competing bottom nav stays off when rail is primary --- */
+html.door-rail-on .mobile-bottom-nav,
+html.door-rail-on .nav-tabs {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+/* Meme aspect: leave to memeSetRatio inline style */
+#tab-about .meme-stage,
+#meme-studio-root .meme-stage,
+.meme-realign .meme-stage,
+#meme-stage {
+  /* no forced aspect-ratio */
+}
