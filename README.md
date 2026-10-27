@@ -1,21 +1,10 @@
-# Clarity Companion · Phases A–E essentials
+# Restore 4 path tiles
 
-## Phase A — Single owners
-- Banner thrash intervals blocked; nuclear/repair/moon/live-harden disabled in index
-- Path: grave strip preferred over TRACK bar
-- Icons: NurOS v3 only
+Injects #clarity-grave-path-strip with Seeker / New Muslim / Daily / Da'i tiles.
+Wires claritySwitchGate on click. Hides redundant TRACK bar when strip is live.
 
-## Phase B — Dual paths
-- Stable #dual-path-university / #dual-path-companion
-- Force campus + companion plaques
-
-## Phase C — Workspace
-- Companion main overflow visible via CSS + JS
-
-## Phase D — Load hygiene
-- Competing scripts commented out in index
-
-## Phase E — Smoke
-- See SMOKE_AE.json after sim
-
-Campus untouched. Educational only — not a fatwa.
+Deploy:
+- index.html
+- assets/css/clarity-path-tiles-restore-v1.css
+- assets/companion-inline/inline-clarity-path-tiles-restore-v1.js
+(+ prior AE essentials if needed)
