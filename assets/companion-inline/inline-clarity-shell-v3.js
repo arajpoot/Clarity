@@ -241,6 +241,21 @@
       legacy.setAttribute("aria-hidden", "true");
     }
 
+
+    /* Confine 4-path / furnish strip to Companion only */
+    try {
+      var pathSel = document.querySelectorAll("#clarity-grave-path-strip,.grave-path-strip,#gps-path-strip,[data-path-tiles]");
+      pathSel.forEach(function (el) {
+        if (m === "landing") {
+          el.style.setProperty("display", "none", "important");
+          el.setAttribute("aria-hidden", "true");
+        } else {
+          el.style.removeProperty("display");
+          el.removeAttribute("aria-hidden");
+        }
+      });
+    } catch (ePath) {}
+
     if (m === "companion" && typeof w.ClarityLoadCompanion === "function") {
       try { w.ClarityLoadCompanion(); } catch (e) {}
     }
