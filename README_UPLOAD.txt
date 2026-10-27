@@ -1,10 +1,10 @@
-Banner symmetry · 20261026BANNER3
+Banner final fine-tune · 20261026BANNER4
 
-- Top moon graphic kept; phase WORDS removed (WANING GIBBOUS etc.)
-- Lower moon + label removed
-- Calendar & Ṣalāh columns widened symmetrically
-- Bismillah + Clarity each in own soft plaque
-- AV control strip with more room
+- Wider side plaques (1.12fr), tighter gap — more room for solar date
+- Center balanced; overlay padding-bottom so AV clears edge
+- Next ṣalāh row: gold/green vivid highlight + bright time
+- Solar date/month/year under Hijri meta
+- 24 duʿās retained; moon words still suppressed
 
 Upload:
   assets/clarity-banner-revamp-v1.js
