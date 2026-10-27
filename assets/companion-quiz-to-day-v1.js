@@ -1,77 +1,60 @@
 /**
- * companion-quiz-to-day-v1.js · 20261026NIGHT2
- * Full-width day section only; remove residual trust-grid quiz tile.
+ * companion-quiz-to-day-v1.js · 20261026FINAL
+ * Full-width quiz host · scrub residual trust tile
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_QUIZ_TO_DAY_V4__) return;
-  g.__CLARITY_QUIZ_TO_DAY_V4__ = true;
+  if (g.__CLARITY_QUIZ_TO_DAY_V5__) return;
+  g.__CLARITY_QUIZ_TO_DAY_V5__ = true;
 
-  function scrubTrustQuizTile() {
+  function scrub() {
     document.querySelectorAll(".cdl-trust-plaque, article").forEach(function (el) {
       var t = (el.textContent || "").toLowerCase();
-      if (t.indexOf("moved here for daily") >= 0 ||
-          (t.indexOf("daily quiz") >= 0 && t.indexOf("fiqh") >= 0 && t.indexOf("online fetch kept") >= 0 && el.closest(".cdl-trust-grid"))) {
-        if (el.parentNode) el.parentNode.removeChild(el);
-      }
+      if (t.indexOf("moved here for daily") >= 0) el.remove();
     });
   }
 
-  function ensureSection() {
-    var sec = document.getElementById("cdl-quiz-section");
+  function ensure() {
     var slot = document.getElementById("cdl-fiqh-quiz-slot");
-    if (sec && slot && !sec.closest(".cdl-trust-grid")) return slot;
-
+    var sec = document.getElementById("cdl-quiz-section");
+    if (slot && sec && !sec.closest(".cdl-trust-grid")) {
+      sec.style.width = "100%";
+      sec.style.maxWidth = "none";
+      return slot;
+    }
     var day = document.getElementById("clarity-day-landing");
     if (!day) return null;
-
-    var trust =
-      document.getElementById("cdl-trust-grid") ||
-      document.querySelector(".cdl-trust-grid") ||
-      document.getElementById("cdl-trust-review-plaque");
-
+    var trust = document.querySelector(".cdl-trust-grid") || document.getElementById("cdl-trust-review-plaque");
     if (!sec) {
       sec = document.createElement("section");
       sec.id = "cdl-quiz-section";
       sec.className = "cdl-block cdl-quiz-section";
-      sec.setAttribute("aria-label", "Daily quiz");
       sec.innerHTML =
-        '<div class="cdl-quiz-section-head">' +
-        '<h2 class="cdl-h">🧠 Daily quiz</h2>' +
-        '<p class="cdl-sub">Fiqh &amp; Sharia IQ · educational only — not a fatwa</p>' +
-        "</div>" +
+        '<div class="cdl-quiz-section-head"><h2 class="cdl-h">🧠 Daily quiz</h2>' +
+        '<p class="cdl-sub">Fiqh &amp; Sharia IQ · educational only — not a fatwa</p></div>' +
         '<div id="cdl-fiqh-quiz-slot" class="cdl-fiqh-quiz-slot"></div>';
     }
     if (trust) {
       var anchor = trust.closest("section") || trust;
-      if (anchor.parentNode) {
-        if (sec.parentNode !== anchor.parentNode || (trust.compareDocumentPosition && (sec.compareDocumentPosition(trust) & 4) === 0)) {
-          anchor.parentNode.insertBefore(sec, anchor);
-        }
-      }
-    } else if (!sec.parentNode) {
-      day.appendChild(sec);
-    }
+      if (anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor);
+    } else if (!sec.parentNode) day.appendChild(sec);
+    sec.style.width = "100%";
+    sec.style.maxWidth = "none";
     return document.getElementById("cdl-fiqh-quiz-slot");
   }
 
-  function moveQuiz() {
-    scrubTrustQuizTile();
+  function move() {
+    scrub();
     var card = document.getElementById("fiqh-quiz-card");
-    if (!card) return false;
-    var slot = ensureSection();
-    if (!slot) return false;
-    if (card.parentNode !== slot) slot.appendChild(card);
-    return true;
+    if (!card) return;
+    var slot = ensure();
+    if (slot && card.parentNode !== slot) slot.appendChild(card);
+    card.style.width = "100%";
+    card.style.maxWidth = "none";
   }
 
-  function boot() {
-    moveQuiz();
-    setTimeout(moveQuiz, 400);
-    setTimeout(moveQuiz, 1200);
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  g.addEventListener("load", function () { setTimeout(moveQuiz, 300); });
-  g.ClarityQuizToDay = { move: moveQuiz, scrub: scrubTrustQuizTile };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", move);
+  else move();
+  setTimeout(move, 400);
+  setTimeout(move, 1000);
 })(typeof window !== "undefined" ? window : this);

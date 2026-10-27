@@ -1,12 +1,12 @@
 /**
- * clarity-banner-revamp-v1.js · 20261026NIGHT2
- * Restore moon (#clarity-moon-phase) · fix Ṣalāh list · 24 duʿās · no lower duplicate moon
+ * clarity-banner-revamp-v1.js · 20261026FINAL
+ * Moon graphic only (no phase words) · fast ṣalāh/hijri · no lag loops
  * Educational only — not a fatwa.
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_BANNER_REVAMP_V7__) return;
-  g.__CLARITY_BANNER_REVAMP_V7__ = true;
+  if (g.__CLARITY_BANNER_REVAMP_V8__) return;
+  g.__CLARITY_BANNER_REVAMP_V8__ = true;
 
   var STILLS = [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg",
@@ -44,6 +44,7 @@
     { ar: "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى", en: "O Allah, I ask You for guidance, piety, chastity, and self-sufficiency.", ref: "Muslim (educational wording)" }
   ];
   var rabbanaIdx = 0;
+  var salahDone = false;
 
   function $(id) { return document.getElementById(id); }
 
@@ -135,17 +136,38 @@
     };
   }
 
-  /** Remove ONLY our secondary moon plaque — never touch #clarity-moon-phase */
-  function removeLowerMoon() {
-    var bad = $("clarity-banner-moon-plaque");
-    if (bad && bad.parentNode) bad.parentNode.removeChild(bad);
-    document.querySelectorAll(".banner-moon-plaque").forEach(function (el) {
-      if (el.id === "clarity-moon-phase" || el.closest("#clarity-moon-phase")) return;
-      if (el.parentNode) el.parentNode.removeChild(el);
-    });
+  /** Moon: keep disc graphic, HIDE all phase wording */
+  function polishMoon() {
+    var moon = $("clarity-moon-phase");
+    var lab = $("clarity-moon-label");
+    var disc = $("clarity-moon-disc");
+    if (moon) {
+      moon.classList.add("clarity-moon-card");
+      moon.style.setProperty("display", "flex", "important");
+      moon.style.setProperty("visibility", "visible", "important");
+    }
+    if (disc) {
+      disc.style.setProperty("display", "block", "important");
+      disc.style.setProperty("visibility", "visible", "important");
+    }
+    if (lab) {
+      lab.textContent = "";
+      lab.style.setProperty("display", "none", "important");
+      lab.setAttribute("aria-hidden", "true");
+    }
+    /* strip any visible phase text in calendar plaque */
+    var cal = document.querySelector(".hijri-cal-section");
+    if (cal) {
+      cal.querySelectorAll("#clarity-moon-label, .moon-lab, .moon-caption").forEach(function (n) {
+        n.style.setProperty("display", "none", "important");
+        n.textContent = "";
+      });
+      cal.querySelectorAll("#clarity-banner-moon-plaque, .banner-moon-plaque").forEach(function (n) {
+        if (n.id !== "clarity-moon-phase") n.remove();
+      });
+    }
   }
 
-  /** Ensure Allah seal on Ṣalāh top */
   function ensureAllahOnSalah() {
     var salah = document.querySelector(".salah-times-section");
     if (!salah) return;
@@ -155,148 +177,13 @@
       allah.className = "allah-circular-seal";
       allah.title = "Allah";
       allah.innerHTML = '<span class="arabic seal-ar">الله</span>';
-    }
-    if (salah.firstElementChild !== allah) salah.insertBefore(allah, salah.firstChild);
-  }
-
-  /** Force show official moon widget */
-  function restoreMoon() {
-    var moon = $("clarity-moon-phase");
-    var disc = $("clarity-moon-disc");
-    if (moon) {
-      moon.style.setProperty("display", "flex", "important");
-      moon.style.setProperty("visibility", "visible", "important");
-      moon.style.setProperty("opacity", "1", "important");
-    }
-    if (disc) {
-      disc.style.setProperty("display", "block", "important");
-      disc.style.setProperty("visibility", "visible", "important");
-    }
-    var lab = $("clarity-moon-label");
-    if (lab) {
-      lab.style.setProperty("display", "block", "important");
-      lab.style.setProperty("visibility", "visible", "important");
+      salah.insertBefore(allah, salah.firstChild);
     }
   }
 
-  function highlightNextSalah() {
-    var list = $("salah-times-list");
-    if (!list) return;
-    var items = list.querySelectorAll("li");
-    if (!items.length) return;
-    var now = new Date();
-    var mins = now.getHours() * 60 + now.getMinutes();
-    var best = null;
-    var bestDelta = 1e9;
-    items.forEach(function (li) {
-      li.classList.remove("is-next");
-      var tEl = li.querySelector(".salah-time, span:last-child");
-      if (!tEl) return;
-      var m = (tEl.textContent || "").match(/(\d{1,2}):(\d{2})/);
-      if (!m) return;
-      var hm = parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
-      var delta = hm - mins;
-      if (delta < -20) delta += 24 * 60;
-      if (delta >= 0 && delta < bestDelta) {
-        bestDelta = delta;
-        best = li;
-      }
-    });
-    if (best) best.classList.add("is-next");
-  }
-
-  function fillSalahList(timings, locLabel) {
-    var list = $("salah-times-list");
-    if (!list) return;
-    var order = [
-      ["Fajr", timings.Fajr],
-      ["Sunrise", timings.Sunrise],
-      ["Dhuhr", timings.Dhuhr],
-      ["Asr", timings.Asr],
-      ["Maghrib", timings.Maghrib],
-      ["Isha", timings.Isha]
-    ];
-    list.innerHTML = "";
-    order.forEach(function (pair) {
-      if (!pair[1]) return;
-      var li = document.createElement("li");
-      li.innerHTML =
-        '<span class="salah-name">' +
-        pair[0] +
-        '</span><span class="salah-time">' +
-        String(pair[1]).slice(0, 5) +
-        "</span>";
-      list.appendChild(li);
-    });
-    var title = $("salah-title");
-    if (title && locLabel) title.textContent = "Ṣalāh · " + locLabel;
-    highlightNextSalah();
-  }
-
-  function repairSalah() {
-    var list = $("salah-times-list");
-    if (!list) return;
-    var txt = (list.textContent || "").toLowerCase();
-    if (txt && !/loading|…|\.\.\./.test(txt) && /\d{1,2}:\d{2}/.test(txt)) {
-      highlightNextSalah();
-      return;
-    }
-    var city = "Edmonton";
-    var country = "Canada";
-    try {
-      var s = localStorage.getItem("clarity_salah_city");
-      if (s) city = s;
-    } catch (e) {}
-    var url =
-      "https://api.aladhan.com/v1/timingsByCity?city=" +
-      encodeURIComponent(city) +
-      "&country=" +
-      encodeURIComponent(country) +
-      "&method=2";
-    fetch(url, { credentials: "omit" })
-      .then(function (r) {
-        if (!r.ok) throw new Error("http");
-        return r.json();
-      })
-      .then(function (json) {
-        var t = (json.data && json.data.timings) || {};
-        fillSalahList(t, city);
-        var loc = $("hijri-local-loc");
-        if (loc) loc.textContent = city + (country ? ", " + country : "");
-      })
-      .catch(function () {
-        /* offline stub so UI is not stuck on Loading */
-        if (/loading/i.test(list.textContent || "")) {
-          list.innerHTML =
-            '<li><span class="salah-name">Fajr</span><span class="salah-time">—</span></li>' +
-            '<li><span class="salah-name">Dhuhr</span><span class="salah-time">—</span></li>' +
-            '<li><span class="salah-name">Asr</span><span class="salah-time">—</span></li>' +
-            '<li><span class="salah-name">Maghrib</span><span class="salah-time">—</span></li>' +
-            '<li><span class="salah-name">Isha</span><span class="salah-time">—</span></li>';
-        }
-      });
-  }
-
-  function ensureClock() {
-    var el = $("hijri-local-time");
-    function tick() {
-      try {
-        if (el)
-          el.textContent = new Date().toLocaleTimeString(undefined, {
-            hour: "2-digit",
-            minute: "2-digit"
-          });
-      } catch (e) {}
-    }
-    tick();
-    if (!g.__clarityBannerClock) g.__clarityBannerClock = setInterval(tick, 30000);
-  }
-
-  
-  function formatHijriSolarLines() {
-    var meta = document.getElementById("hijri-cal-meta");
-    var title = document.getElementById("hijri-cal-title");
-    if (!meta) return;
+  function formatHijri() {
+    var meta = $("hijri-cal-meta");
+    var title = $("hijri-cal-title");
     try {
       var d = new Date();
       var jd = Math.floor((d.getTime() - Date.UTC(1970, 0, 1)) / 86400000) + 2440588;
@@ -320,24 +207,144 @@
       ];
       var month = months[(m - 1 + 12) % 12];
       var weekday = d.toLocaleDateString(undefined, { weekday: "short" });
-      /* Hijri only — no solar year line */
-      meta.textContent = "Today · " + day + " " + month + " · " + weekday + " · " + year + " AH";
       if (title) title.textContent = month + " " + year + " AH";
-      /* Remove any leftover solar-date nodes */
-      meta.querySelectorAll && meta.querySelectorAll(".solar-date").forEach(function (n) { n.remove(); });
+      if (meta) meta.textContent = "Today · " + day + " " + month + " · " + weekday + " · " + year + " AH";
+      /* kill solar remnants */
+      document.querySelectorAll(".solar-date").forEach(function (n) { n.remove(); });
     } catch (e) {}
   }
 
-  
-  function styleMoonPlaque() {
-    var moon = document.getElementById("clarity-moon-phase");
-    if (!moon) return;
-    moon.classList.add("clarity-moon-card");
-    moon.style.setProperty("display", "flex", "important");
-    /* remove plain duplicate discs outside official widget */
-    document.querySelectorAll(".hijri-cal-section > .banner-moon-plaque, #clarity-banner-moon-plaque").forEach(function (n) {
-      if (n.id !== "clarity-moon-phase") n.remove();
+  function highlightNextSalah() {
+    var list = $("salah-times-list");
+    if (!list) return;
+    var items = list.querySelectorAll("li");
+    var now = new Date();
+    var mins = now.getHours() * 60 + now.getMinutes();
+    var best = null;
+    var bestDelta = 1e9;
+    items.forEach(function (li) {
+      li.classList.remove("is-next");
+      var tEl = li.querySelector(".salah-time, span:last-child");
+      if (!tEl) return;
+      var m = (tEl.textContent || "").match(/(\d{1,2}):(\d{2})/);
+      if (!m) return;
+      var hm = parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+      var delta = hm - mins;
+      if (delta < -20) delta += 24 * 60;
+      if (delta >= 0 && delta < bestDelta) {
+        bestDelta = delta;
+        best = li;
+      }
     });
+    if (best) best.classList.add("is-next");
+  }
+
+  function fillSalah(timings, city) {
+    var list = $("salah-times-list");
+    if (!list) return;
+    var order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    list.innerHTML = "";
+    order.forEach(function (name) {
+      if (!timings[name]) return;
+      var li = document.createElement("li");
+      li.innerHTML =
+        '<span class="salah-name">' +
+        name +
+        '</span><span class="salah-time">' +
+        String(timings[name]).slice(0, 5) +
+        "</span>";
+      list.appendChild(li);
+    });
+    var title = $("salah-title");
+    if (title && city) title.textContent = "Ṣalāh · " + city;
+    salahDone = true;
+    highlightNextSalah();
+  }
+
+  function repairSalah() {
+    if (salahDone) return;
+    var list = $("salah-times-list");
+    if (!list) return;
+    var txt = list.textContent || "";
+    if (/\d{1,2}:\d{2}/.test(txt) && !/loading/i.test(txt)) {
+      salahDone = true;
+      highlightNextSalah();
+      return;
+    }
+    /* cache first */
+    try {
+      var cached = localStorage.getItem("clarity_salah_cache_v1");
+      if (cached) {
+        var obj = JSON.parse(cached);
+        if (obj && obj.t && obj.day === new Date().toDateString()) {
+          fillSalah(obj.t, obj.city || "Local");
+          return;
+        }
+      }
+    } catch (e) {}
+
+    var city = "Edmonton";
+    var country = "Canada";
+    try {
+      var s = localStorage.getItem("clarity_salah_city");
+      if (s) city = s;
+    } catch (e) {}
+
+    var url =
+      "https://api.aladhan.com/v1/timingsByCity?city=" +
+      encodeURIComponent(city) +
+      "&country=" +
+      encodeURIComponent(country) +
+      "&method=2";
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = setTimeout(function () {
+      if (ctrl) try { ctrl.abort(); } catch (e) {}
+      if (!salahDone && /loading/i.test(list.textContent || "")) {
+        list.innerHTML =
+          '<li><span class="salah-name">Fajr</span><span class="salah-time">—</span></li>' +
+          '<li><span class="salah-name">Dhuhr</span><span class="salah-time">—</span></li>' +
+          '<li><span class="salah-name">Asr</span><span class="salah-time">—</span></li>' +
+          '<li><span class="salah-name">Maghrib</span><span class="salah-time">—</span></li>' +
+          '<li><span class="salah-name">Isha</span><span class="salah-time">—</span></li>';
+      }
+    }, 4000);
+
+    fetch(url, { credentials: "omit", signal: ctrl && ctrl.signal })
+      .then(function (r) {
+        if (!r.ok) throw new Error("http");
+        return r.json();
+      })
+      .then(function (json) {
+        clearTimeout(timer);
+        var t = (json.data && json.data.timings) || {};
+        try {
+          localStorage.setItem(
+            "clarity_salah_cache_v1",
+            JSON.stringify({ t: t, city: city, day: new Date().toDateString() })
+          );
+        } catch (e) {}
+        fillSalah(t, city);
+        var loc = $("hijri-local-loc");
+        if (loc) loc.textContent = city + ", " + country;
+      })
+      .catch(function () {
+        clearTimeout(timer);
+      });
+  }
+
+  function ensureClock() {
+    var el = $("hijri-local-time");
+    function tick() {
+      try {
+        if (el)
+          el.textContent = new Date().toLocaleTimeString(undefined, {
+            hour: "2-digit",
+            minute: "2-digit"
+          });
+      } catch (e) {}
+    }
+    tick();
+    if (!g.__clarityBannerClock) g.__clarityBannerClock = setInterval(tick, 30000);
   }
 
   function boot() {
@@ -346,23 +353,21 @@
       if (!isNaN(saved)) rabbanaIdx = saved % RABBANA.length;
     } catch (e) {}
     paintRabbana();
-    removeLowerMoon();
-    restoreMoon();
-    styleMoonPlaque();
+    formatHijri();
+    polishMoon();
     ensureAllahOnSalah();
     ensureClock();
     repairSalah();
-    formatHijriSolarLines();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
   g.addEventListener("load", function () {
-    setTimeout(boot, 200);
-    setTimeout(restoreMoon, 500);
-    setTimeout(repairSalah, 600);
+    setTimeout(function () {
+      polishMoon();
+      if (!salahDone) repairSalah();
+    }, 300);
   });
-  setTimeout(boot, 1000);
 
-  g.ClarityBannerRevamp = { restoreMoon: restoreMoon, repairSalah: repairSalah, rabbanaCount: 24 };
+  g.ClarityBannerRevamp = { polishMoon: polishMoon, repairSalah: repairSalah, rabbanaCount: 24 };
 })(typeof window !== "undefined" ? window : this);
