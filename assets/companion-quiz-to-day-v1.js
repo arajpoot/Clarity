@@ -1,83 +1,56 @@
 /**
- * companion-quiz-to-day-v1.js · 20261026QUIZ2
- * Places #fiqh-quiz-card into its OWN Day landing section (#cdl-quiz-section),
- * not inside trust/review plaques grid.
+ * companion-quiz-to-day-v1.js · 20261026QUIZ
+ * Moves #fiqh-quiz-card into Day landing slot (before Auto review).
+ * DOM move preserves listeners / siq* online fetch. Campus untouched.
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_QUIZ_TO_DAY_V2__) return;
-  g.__CLARITY_QUIZ_TO_DAY_V2__ = true;
-
-  function ensureSection() {
-    var sec = document.getElementById("cdl-quiz-section");
-    var slot = document.getElementById("cdl-fiqh-quiz-slot");
-    if (sec && slot) return slot;
-
-    var day = document.getElementById("clarity-day-landing");
-    if (!day) return null;
-
-    /* Prefer insert before trust grid / review plaque — full width sibling */
-    var trust =
-      document.getElementById("cdl-trust-grid") ||
-      document.getElementById("cdl-trust-review-plaque") ||
-      day.querySelector(".cdl-trust-grid");
-
-    sec = document.createElement("section");
-    sec.id = "cdl-quiz-section";
-    sec.className = "cdl-block cdl-quiz-section";
-    sec.setAttribute("aria-label", "Daily quiz");
-    sec.innerHTML =
-      '<div class="cdl-quiz-section-head">' +
-      "<h2 class=\"cdl-h\">🧠 Daily quiz</h2>" +
-      '<p class="cdl-sub">Fiqh &amp; Sharia IQ · educational only — not a fatwa</p>' +
-      "</div>" +
-      '<div id="cdl-fiqh-quiz-slot" class="cdl-fiqh-quiz-slot"></div>';
-
-    if (trust) {
-      var anchor = trust.closest("section") || trust;
-      if (anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor);
-      else day.appendChild(sec);
-    } else {
-      day.appendChild(sec);
-    }
-    return document.getElementById("cdl-fiqh-quiz-slot");
-  }
+  if (g.__CLARITY_QUIZ_TO_DAY_V1__) return;
+  g.__CLARITY_QUIZ_TO_DAY_V1__ = true;
 
   function moveQuiz() {
     var card = document.getElementById("fiqh-quiz-card");
+    var slot = document.getElementById("cdl-fiqh-quiz-slot");
     if (!card) return false;
-    var slot = ensureSection();
-    if (!slot) return false;
-
-    /* If slot was wrongly inside trust grid, hoist section out */
-    var sec = document.getElementById("cdl-quiz-section");
-    var grid = document.getElementById("cdl-trust-grid") || document.querySelector(".cdl-trust-grid");
-    if (sec && grid && grid.contains(sec)) {
-      var anchor = grid.closest("section") || grid;
-      if (anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor);
+    if (!slot) {
+      /* create slot before review plaque if landing already painted */
+      var review = document.getElementById("cdl-trust-review-plaque");
+      if (review && review.parentNode) {
+        slot = document.createElement("section");
+        slot.id = "cdl-fiqh-quiz-slot";
+        slot.className = "cdl-block cdl-quiz-host";
+        slot.setAttribute("aria-label", "Daily Fiqh and Sharia IQ");
+        review.parentNode.insertBefore(slot, review);
+      } else {
+        /* fallback: append near day landing */
+        var day = document.getElementById("clarity-day-landing");
+        if (!day) return false;
+        slot = document.createElement("section");
+        slot.id = "cdl-fiqh-quiz-slot";
+        slot.className = "cdl-block cdl-quiz-host";
+        day.appendChild(slot);
+      }
     }
-
-    if (card.parentNode !== slot) {
-      slot.appendChild(card);
-    }
+    if (card.parentNode === slot) return true;
+    slot.appendChild(card); /* move node — keeps onclick / siq wiring */
+    card.style.marginTop = "0.75rem";
     try {
-      card.setAttribute("data-home", "day-quiz-section");
-      card.style.width = "100%";
-      card.style.maxWidth = "100%";
-      card.style.boxSizing = "border-box";
+      card.setAttribute("data-home", "day-landing");
     } catch (e) {}
     return true;
   }
 
   function boot() {
     moveQuiz();
-    setTimeout(moveQuiz, 350);
-    setTimeout(moveQuiz, 1000);
+    setTimeout(moveQuiz, 400);
+    setTimeout(moveQuiz, 1200);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  g.addEventListener("load", function () { setTimeout(moveQuiz, 250); });
+  g.addEventListener("load", function () { setTimeout(moveQuiz, 300); });
+
+  /* When shell switches to landing, ensure quiz is in place */
   try {
     var obs = new MutationObserver(function () {
       if (document.documentElement.getAttribute("data-shell-mode") === "landing") moveQuiz();
