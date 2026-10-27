@@ -1,11 +1,11 @@
-Quiz own section · 20261026QUIZ2
+Banner polished · 20261026BANNER2
 
-#cdl-quiz-section is a full-width Day landing block BEFORE trust/review plaques.
-#fiqh-quiz-card moves into #cdl-fiqh-quiz-slot inside that section.
-Not nested in Auto review / trust grid.
+- 24 masnūn / Qurʾānic duʿā cycle (‹ ›)
+- Moon phase plaque on TOP of Hijri calendar
+- Allah (الله) seal on TOP of Ṣalāh schedule
+- Simulation cycles passed for deployment
 
 Upload:
-  assets/companion-inline/inline-clarity-landing-v3.js
-  assets/companion-quiz-to-day-v1.js
-  assets/css/companion-quiz-to-day-v1.css
+  assets/clarity-banner-revamp-v1.js
+  assets/css/clarity-banner-revamp-v1.css
   index.html
