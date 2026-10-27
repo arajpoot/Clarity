@@ -1,18 +1,18 @@
-Integrity Scout · 20261026SCOUT
+Path track STABLE · 20261026PATH2
 
-Bound to Day landing plaque:
-  #cdl-trust-review-plaque
-  Button: #cdl-trust-review-btn → "Run Integrity Scout"
+Problem:
+- path-progress applyContent() called switchTab(hub) → track pills jumped RRRA sections
+- Competing integrity scripts + removeChild on rails felt like "HTML disintegrating"
 
-Auto-runs once per session; manual re-run anytime.
-Checks + repairs:
-  notesLoad · RRRA panels · door rail · vault cross-wire
-  path track visibility · path extent · shell · day landing · icons
-  soft pills sync · university glyph
+Fix:
+1. clarity-path-progress-v1.js (V5): NO switchTab after path change; no removeChild on path rail
+2. companion-path-track-stable-v1.js: gentle extent + mark active; no innerHTML/removeChild
+3. index: remove path-track-integrity; load stable AFTER path-progress
 
-Report renders inside the plaque. Log: localStorage clarity_integrity_scout_log_v1
-API: ClarityIntegrityScout.run() / .log()
-
-Upload:
-  assets/companion-integrity-scout-v1.js
+Upload ALL:
+  assets/clarity-path-progress-v1.js
+  assets/companion-path-track-stable-v1.js
+  assets/companion-inline/inline-clarity_path_plaques_v1.js
   index.html
+
+Hard-refresh (clear cache). Test Track 1–4: cards filter by path; bottom Reminder/Reality/… stay put.
