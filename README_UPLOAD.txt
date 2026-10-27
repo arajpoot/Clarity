@@ -1,9 +1,10 @@
-Banner polished · 20261026BANNER2
+Banner symmetry · 20261026BANNER3
 
-- 24 masnūn / Qurʾānic duʿā cycle (‹ ›)
-- Moon phase plaque on TOP of Hijri calendar
-- Allah (الله) seal on TOP of Ṣalāh schedule
-- Simulation cycles passed for deployment
+- Top moon graphic kept; phase WORDS removed (WANING GIBBOUS etc.)
+- Lower moon + label removed
+- Calendar & Ṣalāh columns widened symmetrically
+- Bismillah + Clarity each in own soft plaque
+- AV control strip with more room
 
 Upload:
   assets/clarity-banner-revamp-v1.js
