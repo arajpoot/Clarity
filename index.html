@@ -206,36 +206,6 @@
 </script>
 
 
-<style id="clarity-main-overflow-fix">
-/* Companion: page-wrapper must not clip tab panels */
-html[data-shell-mode="companion"] #main-content.page-wrapper,
-html[data-shell-mode="companion"] #main-content,
-html[data-shell-mode="companion"] #main-application-workspace {
-  height: auto !important;
-  max-height: none !important;
-  min-height: 0 !important;
-  overflow: visible !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-html[data-shell-mode="companion"] main.main-content,
-html[data-shell-mode="companion"] .tab-panel.active,
-html[data-shell-mode="companion"] .tab-panel.is-active {
-  display: block !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-/* Landing: still hide main workspace content */
-html[data-shell-mode="landing"] #main-content,
-html[data-shell-mode="landing"] #main-application-workspace .tab-panel {
-  /* keep prior isolate rules; ensure no accidental clip on landing chrome */
-}
-</style>
-
-
 <style id="nuros-v3-harden">
 .nuros-icon[class*="nuros-icon-"], span.nuros-icon {
   -webkit-mask-image: none !important;
@@ -275,6 +245,37 @@ html[data-shell-mode="landing"] #main-application-workspace .tab-panel {
   window.__CLARITY_LANDING_FIRST__=true;
 })();
 </script>
+
+
+<style id="clarity-main-overflow-fix">
+html[data-shell-mode="companion"] #main-content.page-wrapper,
+html[data-shell-mode="companion"] #main-content,
+html[data-shell-mode="companion"] #main-application-workspace {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+html[data-shell-mode="companion"] main.main-content,
+html[data-shell-mode="companion"] .tab-panel.active,
+html[data-shell-mode="companion"] .tab-panel.is-active {
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+html[data-shell-mode="companion"] #clarity-grave-path-strip,
+html[data-shell-mode="companion"] .grave-path-strip,
+html[data-shell-mode="companion"] .path-to-grave {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+</style>
 
 </head><body data-active-tab="journey" data-section-fortress="1">
 
