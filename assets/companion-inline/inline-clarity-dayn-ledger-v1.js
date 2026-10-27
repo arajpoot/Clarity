@@ -480,3 +480,25 @@
     obs.observe(document.body, { childList:true, subtree:true });
   }catch(e){}
 })(typeof window !== "undefined" ? window : this);
+
+
+/* prefer landing slot */
+(function(g){
+  "use strict";
+  if(g.__CLARITY_DAYN_SLOT_PREF__) return;
+  g.__CLARITY_DAYN_SLOT_PREF__ = true;
+  function moveToSlot(){
+    var host = document.getElementById("clarity-dayn-entry");
+    var slot = document.getElementById("clarity-landing-slot-dayn");
+    if(!host || !slot) return;
+    if(slot.contains(host)) return;
+    try { slot.appendChild(host); } catch(e) {}
+    host.hidden = false;
+    host.style.setProperty("display","block","important");
+  }
+  function boot(){ moveToSlot(); }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  [500,1500,3000,6000].forEach(function(ms){ setTimeout(boot, ms); });
+  document.addEventListener("clarity:landing-ready", boot);
+})(typeof window !== "undefined" ? window : this);
