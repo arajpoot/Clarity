@@ -1,13 +1,11 @@
-Final fix · 20261026FINAL
+Banner polished · 20261026BANNER2
 
-- Moon: gold disc card, phase WORDS hidden
-- Quiz: full width of day column
-- Salah: localStorage cache + 4s timeout (no Loading lag)
-- Hijri: no solar year
-- 24 duʿās
+- 24 masnūn / Qurʾānic duʿā cycle (‹ ›)
+- Moon phase plaque on TOP of Hijri calendar
+- Allah (الله) seal on TOP of Ṣalāh schedule
+- Simulation cycles passed for deployment
 
 Upload:
   assets/clarity-banner-revamp-v1.js
   assets/css/clarity-banner-revamp-v1.css
-  assets/companion-quiz-to-day-v1.js
   index.html

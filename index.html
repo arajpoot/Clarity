@@ -1,4 +1,9 @@
 <!DOCTYPE html><html data-theme="light" lang="en"><head>
+<script src="/assets/companion-freeze-guard-v1.js?v=20261026FREEZE"></script>
+
+<script src="/assets/companion-notesload-shim-v1.js?v=20261026FIX2"></script>
+<link rel="stylesheet" href="/assets/css/companion-track-tiles-restore-v1.css?v=20261026FIX2"/>
+
 <meta name="companion-phase-build" content="0-1-boot-20261025">
 
 
@@ -101,6 +106,7 @@
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 <link id="clarity-final-banner-controls-v2" rel="stylesheet" media="print" onload="this.media='all'" href="assets/css/clarity-final-banner-controls-v2.css" />
+<link rel="stylesheet" href="/assets/css/clarity-banner-revamp-v1.css?v=20261026BANNER2"/>
 
 
 
@@ -488,7 +494,7 @@ html[data-shell-mode="companion"] .path-to-grave {
   <button type="button" class="door-rail-btn rrra-rail-real" data-rail-tab="reality" data-rrra="reality" onclick="clarityOpenSectionDoor('reality')"><span class="dr-ico">◉</span><span class="dr-label">Reality</span><span class="dr-count" id="rrra-count-reality"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-refl" data-rail-tab="reflection" data-rrra="reflection" onclick="clarityOpenSectionDoor('reflection')"><span class="dr-ico">☾</span><span class="dr-label">Reflection</span><span class="dr-count" id="rrra-count-reflection"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-act" data-rail-tab="action" data-rrra="action" onclick="clarityOpenSectionDoor('action')"><span class="dr-ico">➤</span><span class="dr-label">Action</span><span class="dr-count" id="rrra-count-action"></span></button>
-  <button type="button" class="door-rail-btn rrra-rail-vault" data-rail-tab="notes" data-rrra="action" onclick="clarityOpenSectionDoor('notes')"><span class="dr-ico">🏦</span><span class="dr-label">Amana Vault</span></button>
+  <button type="button" class="door-rail-btn rrra-rail-vault" data-rail-tab="notes" data-rrra="notes" onclick="clarityOpenSectionDoor('notes')"><span class="dr-ico">🏦</span><span class="dr-label">Amana Vault</span></button>
 </nav>
 
 <noscript>
@@ -2503,14 +2509,16 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261026s"></script>
 <script src="assets/companion-inline/inline-bundle-nuros-v1.js?v=20261026i"></script>
 <script src="assets/companion-inline/inline-clarity-shell-v3.js?v=20261026p" defer></script>
-<script src="assets/companion-inline/inline-clarity-landing-v3.js?v=20261026s" defer></script>
+<script src="/assets/companion-inline/inline-clarity-landing-v3.js?v=20261026QUIZ2" defer></script>
 <script id="clarity-madinah-autoplay-v1" src="assets/companion-inline/inline-clarity_madinah_ap.js" defer></script>
-<!-- PhaseA disabled: inline-clarity_banner_repair.js -->
-<!-- PhaseA disabled: inline-clarity_banner_moon_v1.js -->
+<script id="clarity-banner-repair-v1" src="assets/companion-inline/inline-clarity_banner_repair.js" defer></script>
+<script src="assets/companion-inline/inline-clarity_banner_moon_v1.js?v=20261025h" defer></script>
 <script id="clarity-surah-continue-v1" src="assets/companion-inline/inline-clarity_surah_cont.js" defer></script>
-<!-- PhaseA disabled: inline-clarity-banner-nuclear-js.js -->
-<script src="assets/companion-inline/inline-clarity_path_plaques_v1.js?v=20261025m" defer></script>
-<script src="assets/clarity-path-progress-v1.js" defer></script>
+<script id="clarity-banner-nuclear-js" src="assets/companion-inline/inline-clarity-banner-nuclear-js.js" defer></script>
+<script src="/assets/companion-inline/inline-clarity_path_plaques_v1.js?v=20261026FREEZE" defer></script>
+<script src="/assets/clarity-path-progress-v1.js?v=20261026FREEZE" defer></script>
+<script src="/assets/companion-path-track-stable-v1.js?v=20261026FREEZE" defer></script>
+
 <script src="assets/clarity-grave-path-curriculum-js.js" defer></script>
 <script id="clarity-path-night-fix-v1" src="assets/companion-inline/inline-clarity_path_night_fix_v1.js" defer></script>
 <script id="clarity-path-reset-js-v1" src="assets/companion-inline/inline-clarity_path_reset_v1.js" defer></script>
@@ -2519,10 +2527,10 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="clarity-icons-links-polish-v1" src="assets/companion-inline/inline-clarity_icons_links_polish_v1.js" defer></script>
 <script id="clarity-companion-polish-v1-js" src="assets/companion-inline/inline-clarity_companion_polish_v1.js" defer></script>
 <script id="clarity-companion-repair-v1" src="assets/companion-inline/inline-clarity_companion_repair_v1.js" defer></script>
-<script id="clarity-lite-boot-shim" src="assets/companion-inline/inline-96908bb2ed.js?v=20261025b" defer></script>
+<script id="clarity-lite-boot-shim" src="/assets/companion-inline/inline-clarity-allow-boot-shim-v1.js?v=20261026HK" defer></script>
 <script src="assets/clarity-link-stubs-v1.js?v=20261025b"></script>
-<script id="nuros5-shariah-js-v2" src="assets/companion-inline/inline-42564f0868.js" defer></script>
-<script src="assets/companion-inline/inline-982b3dbd78.js" defer></script>
+<script id="nuros5-shariah-js-v2" src="/assets/companion-inline/inline-clarity-workspace-frame-v1.js?v=20261026HK" defer></script>
+<script src="/assets/companion-inline/inline-clarity-ls-memory-fallback-v1.js?v=20261026HK" defer></script>
 <script id="clarity-embed-fold-viewport-v1" src="assets/companion-inline/inline-clarity_embed_fold.js" defer></script>
 <script id="clarity-tajweed-read-sync-v1" src="assets/companion-inline/inline-clarity_lmr_read_sync.js" defer></script>
 <script id="clarity-quick-nav-v1" src="assets/companion-inline/inline-clarity_quick_nav.js" defer></script>
@@ -2532,11 +2540,10 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="clarity-online-sitewide-v1" src="assets/companion-inline/inline-clarity_online_sitewide_v1.js" defer></script>
 <script id="clarity-rrra5-legacy-cleanup-v1" src="assets/companion-inline/inline-clarity_rrra5_legacy_cleanup_v1.js" defer></script>
 <script id="clarity-section-pills-js-v1" src="assets/companion-inline/inline-clarity_section_pills_v2.js" defer></script>
-<!-- PhaseA disabled: path_nuclear -->
+<script id="clarity-path-nuclear-v1" src="assets/companion-inline/inline-clarity_path_nuclear_v1.js?v=20261026s" defer></script>
 <script id="clarity-pedigree-plaque-js-v1" src="assets/companion-inline/inline-clarity_pedigree_plaque_v1.js" defer></script>
 <script id="clarity-doors-flow-js-v1" src="assets/companion-inline/inline-clarity-doors-flow-js-v1.js" defer></script>
-<script id="clarity-allow-guard-v1" src="assets/companion-inline/inline-322398e3fd.js" defer></script>
-<!-- PhaseA disabled: inline-clarity_live_harden_v1.js -->
+<script id="clarity-live-harden-v1" src="assets/companion-inline/inline-clarity_live_harden_v1.js" defer></script>
 <script id="clarity-uft-viewport-recover-js-v1" src="assets/companion-inline/inline-clarity_uft_viewport_recover.js" defer></script>
 <script id="clarity-amana-backup-guidance-v1" src="assets/companion-inline/inline-clarity_amana_backup_guide.js" defer></script>
 <script id="clarity-amana-hardening-v1" src="assets/companion-inline/inline-clarity_amana_hardening.js" defer></script>
@@ -2585,11 +2592,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 <script src="assets/companion-inline/inline-clarity-banner-harden-v1.js"></script>
 
-<script src="assets/companion-inline/inline-clarity-phase-a-owners-v1.js"></script>
-<script src="assets/companion-inline/inline-clarity-phase-b-dual-v1.js"></script>
-<script src="assets/companion-inline/inline-clarity-phase-c-overflow-v1.js"></script>
-</body>
-</html>
+
 
 
 
@@ -2620,7 +2623,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 })();
 </script>
 
-</body>
+
 
 <!-- lazy:assets/clarity-meme-canvas-clean-v1.js -->
 
@@ -2740,7 +2743,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 })();
 </script>
 
-</body>
+
 
 <link id="clarity-pedigree-plaque-css-v1" rel="stylesheet" media="print" onload="this.media='all'" href="assets/css/clarity-pedigree-plaque-css-v1.css" />
 
@@ -2770,34 +2773,15 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 
 <!-- lazy:assets/clarity-tj-meme-tweet-revamp-js.js -->
+<script src="/assets/companion-icons-v3-boot-v1.js?v=20261026FIX2" defer></script>
+<script src="/assets/companion-track-unhide-v1.js?v=20261026FREEZE" defer></script>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<link rel="stylesheet" href="/assets/css/companion-pills-integrity-v1.css?v=20261026PILLS"/>
+<script src="/assets/companion-pills-integrity-v1.js?v=20261026PILLS" defer></script>
+<link rel="stylesheet" href="/assets/css/companion-quiz-to-day-v1.css?v=20261026QUIZ2"/>
+<script src="/assets/companion-quiz-to-day-v1.js?v=20261026QUIZ2" defer></script>
+<script src="/assets/clarity-banner-revamp-v1.js?v=20261026BANNER2" defer></script>
+</body>
 </html>
