@@ -1,23 +1,19 @@
-Banner + Day landing fix 20261027BAN1
+Layout Fortify 20261027LF1
 
-Upload:
-  index.html
-  assets/companion-inline/inline-clarity-banner-restore-v1.js
-  assets/companion-inline/inline-clarity-day-landing-layout-v2.js
-  assets/companion-inline/inline-clarity-shell-v3.js
-  assets/companion-inline/inline-clarity-day-first-v1.js
+Upload all files in zip to Companion root (not campus/).
 
-Fixes:
-  1) Hide Path-to-furnish-the-grave strip under banner on Day landing
-  2) Restore Companion path + University path dual tiles
-  3) Banner: AlAdhan salah + Hijri, Open-Meteo temps, Live button wires iframe
-  4) Banner controls CSS forced on (not print-deferred)
+Includes:
+  • Hijri calendar grid in banner
+  • 4 path tiles full width on Companion page
+  • Āyah strip below dual tiles, full width, auto re-mount
+  • Dayn moved above "Remember the long stay"
+  • Vault dayn line counter (#clarity-dayn-vault-ledger)
+  • Dayn CSS forced on; dayn JS kept on page
 
-Verify Incognito:
-  - No green "Path to furnish the grave" bar under banner
-  - Two path tiles visible
-  - Salah list fills (allow location or Edmonton fallback)
-  - Makkah/Madinah temps numbers
-  - Live button shows stream area
+Verify:
+  Day landing: dual tiles → verse strip → routines; dayn above long stay
+  Companion: 4 doors full width; RRRA works
+  Vault unlock: dayn count visible
+  Banner: hijri grid cells + today highlight
 
 Campus untouched. Educational only — not a fatwa.
