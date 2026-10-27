@@ -39,6 +39,12 @@
 
   function fillHijri(data) {
     try {
+      if (window.__CLARITY_LAYOUT_FORTIFY_V1__ && data && data.data && data.data.date) {
+        /* layout fortify will also render grid */
+      }
+    } catch (eH) {}
+
+    try {
       var h = data.data && data.data.date && data.data.date.hijri;
       if (!h) return;
       var line = (h.day || "") + " " + ((h.month && h.month.en) || "") + " " + (h.year || "") + " AH";
@@ -84,6 +90,7 @@
       if (!data || data.code !== 200 || !data.data) return;
       fillSalahList(data.data.timings, { loc: cityLabel || "" });
       fillHijri(data);
+      try { document.dispatchEvent(new CustomEvent('clarity-hijri-ready', { detail: data.data.date.hijri })); } catch(eHR) {}
       nextSalahName(data.data.timings);
       try {
         localStorage.setItem("clarity_banner_salah_v1", JSON.stringify({
