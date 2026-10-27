@@ -1,19 +1,15 @@
-Layout Fortify 20261027LF1
+Integrity Restore 20261027IR1 — smoked
 
-Upload all files in zip to Companion root (not campus/).
+Cause: layout-fortify + day-landing-layout observers fought the DOM.
 
-Includes:
-  • Hijri calendar grid in banner
-  • 4 path tiles full width on Companion page
-  • Āyah strip below dual tiles, full width, auto re-mount
-  • Dayn moved above "Remember the long stay"
-  • Vault dayn line counter (#clarity-dayn-vault-ledger)
-  • Dayn CSS forced on; dayn JS kept on page
+Fix: remove those script tags; single integrity-restore (no DOM observer loop).
 
-Verify:
-  Day landing: dual tiles → verse strip → routines; dayn above long stay
-  Companion: 4 doors full width; RRRA works
-  Vault unlock: dayn count visible
-  Banner: hijri grid cells + today highlight
+Upload:
+  index.html
+  assets/companion-inline/inline-clarity-integrity-restore-v1.js
+  assets/companion-inline/inline-clarity-shell-v3.js
+  assets/companion-inline/inline-clarity-day-first-v1.js
+  assets/companion-inline/inline-clarity-banner-restore-v1.js
 
-Campus untouched. Educational only — not a fatwa.
+Purge CF + Incognito hard refresh.
+Campus untouched.
