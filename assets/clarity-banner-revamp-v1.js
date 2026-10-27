@@ -1,12 +1,12 @@
 /**
- * clarity-banner-revamp-v1.js · 20261026FINAL
- * Moon graphic only (no phase words) · fast ṣalāh/hijri · no lag loops
- * Educational only — not a fatwa.
+ * clarity-banner-revamp-v1.js · 20261026BANNER2
+ * 24 masnūn / Qurʾānic duʿā collection · moon on calendar · Allah seal on Ṣalāh
+ * Educational only — not a fatwa. Campus untouched.
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_BANNER_REVAMP_V8__) return;
-  g.__CLARITY_BANNER_REVAMP_V8__ = true;
+  if (g.__CLARITY_BANNER_REVAMP_V2__) return;
+  g.__CLARITY_BANNER_REVAMP_V2__ = true;
 
   var STILLS = [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg",
@@ -44,17 +44,21 @@
     { ar: "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى", en: "O Allah, I ask You for guidance, piety, chastity, and self-sufficiency.", ref: "Muslim (educational wording)" }
   ];
   var rabbanaIdx = 0;
-  var salahDone = false;
 
   function $(id) { return document.getElementById(id); }
 
   function paintRabbana() {
     var d = RABBANA[rabbanaIdx % RABBANA.length];
-    if ($("rabbana-arabic")) $("rabbana-arabic").textContent = d.ar;
-    if ($("rabbana-english")) $("rabbana-english").textContent = d.en;
-    if ($("rabbana-ref")) $("rabbana-ref").textContent = d.ref;
-    if ($("rabbana-count")) $("rabbana-count").textContent = (rabbanaIdx % RABBANA.length) + 1 + " / " + RABBANA.length;
+    var ar = $("rabbana-arabic");
+    var en = $("rabbana-english");
+    var ref = $("rabbana-ref");
+    var cnt = $("rabbana-count");
+    if (ar) ar.textContent = d.ar;
+    if (en) en.textContent = d.en;
+    if (ref) ref.textContent = d.ref;
+    if (cnt) cnt.textContent = ((rabbanaIdx % RABBANA.length) + 1) + " / " + RABBANA.length;
   }
+
   g.cycleRabbana = function (dir) {
     rabbanaIdx = (rabbanaIdx + (dir || 1) + RABBANA.length * 20) % RABBANA.length;
     try { localStorage.setItem("clarity_rabbana_idx_v1", String(rabbanaIdx)); } catch (e) {}
@@ -94,7 +98,8 @@
       var sel = $("live-place-select");
       if (!iframe) return;
       if (iframe.hidden) {
-        iframe.src = LIVE[(sel && sel.value) || "madinah"] || LIVE.madinah;
+        var place = (sel && sel.value) || "madinah";
+        iframe.src = LIVE[place] || LIVE.madinah;
         iframe.hidden = false;
         if (img) img.style.opacity = "0";
         if (btn) btn.classList.add("is-live");
@@ -135,216 +140,173 @@
       }
     };
   }
-
-  /** Moon: keep disc graphic, HIDE all phase wording */
-  function polishMoon() {
-    var moon = $("clarity-moon-phase");
-    var lab = $("clarity-moon-label");
-    var disc = $("clarity-moon-disc");
-    if (moon) {
-      moon.classList.add("clarity-moon-card");
-      moon.style.setProperty("display", "flex", "important");
-      moon.style.setProperty("visibility", "visible", "important");
-    }
-    if (disc) {
-      disc.style.setProperty("display", "block", "important");
-      disc.style.setProperty("visibility", "visible", "important");
-    }
-    if (lab) {
-      lab.textContent = "";
-      lab.style.setProperty("display", "none", "important");
-      lab.setAttribute("aria-hidden", "true");
-    }
-    /* strip any visible phase text in calendar plaque */
-    var cal = document.querySelector(".hijri-cal-section");
-    if (cal) {
-      cal.querySelectorAll("#clarity-moon-label, .moon-lab, .moon-caption").forEach(function (n) {
-        n.style.setProperty("display", "none", "important");
-        n.textContent = "";
-      });
-      cal.querySelectorAll("#clarity-banner-moon-plaque, .banner-moon-plaque").forEach(function (n) {
-        if (n.id !== "clarity-moon-phase") n.remove();
-      });
-    }
+  if (typeof g.claritySurpriseSurahReciter !== "function") {
+    g.claritySurpriseSurahReciter = function () {
+      try { g.open("https://quran.com", "_blank", "noopener"); } catch (e) {}
+    };
   }
 
-  function ensureAllahOnSalah() {
+  /** Moon phase fraction 0–1 */
+  function moonPhase(date) {
+    var d = date || new Date();
+    var lp = 2551443; /* synodic month seconds approx */
+    var new_moon = Date.UTC(2001, 8, 12, 13, 3, 0) / 1000;
+    var now = d.getTime() / 1000;
+    var phase = ((now - new_moon) % lp) / lp;
+    if (phase < 0) phase += 1;
+    return phase;
+  }
+  function moonLabel(p) {
+    if (p < 0.03 || p > 0.97) return "New moon";
+    if (p < 0.22) return "Waxing crescent";
+    if (p < 0.28) return "First quarter";
+    if (p < 0.47) return "Waxing gibbous";
+    if (p < 0.53) return "Full moon";
+    if (p < 0.72) return "Waning gibbous";
+    if (p < 0.78) return "Last quarter";
+    return "Waning crescent";
+  }
+  function moonEmoji(p) {
+    if (p < 0.03 || p > 0.97) return "🌑";
+    if (p < 0.22) return "🌒";
+    if (p < 0.28) return "🌓";
+    if (p < 0.47) return "🌔";
+    if (p < 0.53) return "🌕";
+    if (p < 0.72) return "🌖";
+    if (p < 0.78) return "🌗";
+    return "🌘";
+  }
+
+  /** Place moon plaque on calendar; Allah seal on Ṣalāh */
+  function arrangePlaqueSeals() {
+    var cal = document.querySelector(".hijri-cal-section");
     var salah = document.querySelector(".salah-times-section");
-    if (!salah) return;
-    var allah = salah.querySelector(".allah-circular-seal");
+    if (!cal || !salah) return;
+
+    /* Remove misplaced seals */
+    var allah = cal.querySelector(".allah-circular-seal") || salah.querySelector(".allah-circular-seal");
+    var masjid = cal.querySelector(".masjid-circular-seal") || salah.querySelector(".masjid-circular-seal");
+    var moon = document.getElementById("clarity-banner-moon-plaque");
+
+    if (!moon) {
+      moon = document.createElement("div");
+      moon.id = "clarity-banner-moon-plaque";
+      moon.className = "banner-moon-plaque";
+      moon.setAttribute("title", "Moon phase · educational");
+    }
+    var p = moonPhase();
+    moon.innerHTML =
+      '<span class="moon-emoji" aria-hidden="true">' +
+      moonEmoji(p) +
+      "</span>" +
+      '<span class="moon-lab">' +
+      moonLabel(p) +
+      "</span>";
+
+    /* Moon on top of calendar */
+    if (moon.parentNode !== cal || cal.firstElementChild !== moon) {
+      cal.insertBefore(moon, cal.firstChild);
+    }
+    /* Hide old moon widgets inside cal if any from moon script */
+    cal.querySelectorAll(".banner-moon, .moon-phase-widget").forEach(function (el) {
+      if (el.id !== "clarity-banner-moon-plaque") el.style.display = "none";
+    });
+
+    /* Allah SWT seal on top of Salah */
     if (!allah) {
       allah = document.createElement("div");
       allah.className = "allah-circular-seal";
       allah.title = "Allah";
       allah.innerHTML = '<span class="arabic seal-ar">الله</span>';
+    }
+    if (allah.parentNode !== salah || salah.firstElementChild !== allah) {
       salah.insertBefore(allah, salah.firstChild);
     }
-  }
-
-  function formatHijri() {
-    var meta = $("hijri-cal-meta");
-    var title = $("hijri-cal-title");
-    try {
-      var d = new Date();
-      var jd = Math.floor((d.getTime() - Date.UTC(1970, 0, 1)) / 86400000) + 2440588;
-      var l = jd - 1948439 + 10632;
-      var n = Math.floor((l - 1) / 10631);
-      l = l - 10631 * n + 354;
-      var j =
-        Math.floor((10985 - l) / 5316) * Math.floor((50 * l) / 17719) +
-        Math.floor(l / 5670) * Math.floor((43 * l) / 15238);
-      l =
-        l -
-        Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50) -
-        Math.floor(j / 16) * Math.floor((15238 * j) / 43) +
-        29;
-      var m = Math.floor((24 * l) / 709);
-      var day = l - Math.floor((709 * m) / 24);
-      var year = 30 * n + j - 30;
-      var months = [
-        "Muḥarram","Ṣafar","Rabīʿ I","Rabīʿ II","Jumādā I","Jumādā II",
-        "Rajab","Shaʿbān","Ramaḍān","Shawwāl","Dhū al-Qaʿdah","Dhū al-Ḥijjah"
-      ];
-      var month = months[(m - 1 + 12) % 12];
-      var weekday = d.toLocaleDateString(undefined, { weekday: "short" });
-      if (title) title.textContent = month + " " + year + " AH";
-      if (meta) meta.textContent = "Today · " + day + " " + month + " · " + weekday + " · " + year + " AH";
-      /* kill solar remnants */
-      document.querySelectorAll(".solar-date").forEach(function (n) { n.remove(); });
-    } catch (e) {}
-  }
-
-  function highlightNextSalah() {
-    var list = $("salah-times-list");
-    if (!list) return;
-    var items = list.querySelectorAll("li");
-    var now = new Date();
-    var mins = now.getHours() * 60 + now.getMinutes();
-    var best = null;
-    var bestDelta = 1e9;
-    items.forEach(function (li) {
-      li.classList.remove("is-next");
-      var tEl = li.querySelector(".salah-time, span:last-child");
-      if (!tEl) return;
-      var m = (tEl.textContent || "").match(/(\d{1,2}):(\d{2})/);
-      if (!m) return;
-      var hm = parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
-      var delta = hm - mins;
-      if (delta < -20) delta += 24 * 60;
-      if (delta >= 0 && delta < bestDelta) {
-        bestDelta = delta;
-        best = li;
-      }
-    });
-    if (best) best.classList.add("is-next");
-  }
-
-  function fillSalah(timings, city) {
-    var list = $("salah-times-list");
-    if (!list) return;
-    var order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
-    list.innerHTML = "";
-    order.forEach(function (name) {
-      if (!timings[name]) return;
-      var li = document.createElement("li");
-      li.innerHTML =
-        '<span class="salah-name">' +
-        name +
-        '</span><span class="salah-time">' +
-        String(timings[name]).slice(0, 5) +
-        "</span>";
-      list.appendChild(li);
-    });
-    var title = $("salah-title");
-    if (title && city) title.textContent = "Ṣalāh · " + city;
-    salahDone = true;
-    highlightNextSalah();
-  }
-
-  function repairSalah() {
-    if (salahDone) return;
-    var list = $("salah-times-list");
-    if (!list) return;
-    var txt = list.textContent || "";
-    if (/\d{1,2}:\d{2}/.test(txt) && !/loading/i.test(txt)) {
-      salahDone = true;
-      highlightNextSalah();
-      return;
+    /* Hide masjid seal on salah or move away — prefer Allah only on top */
+    if (masjid && masjid.parentNode === salah) {
+      masjid.style.display = "none";
     }
-    /* cache first */
-    try {
-      var cached = localStorage.getItem("clarity_salah_cache_v1");
-      if (cached) {
-        var obj = JSON.parse(cached);
-        if (obj && obj.t && obj.day === new Date().toDateString()) {
-          fillSalah(obj.t, obj.city || "Local");
-          return;
-        }
-      }
-    } catch (e) {}
+    /* Remove Allah from calendar if still there */
+    cal.querySelectorAll(".allah-circular-seal").forEach(function (el) {
+      if (el.parentNode === cal) el.style.display = "none";
+    });
+  }
 
-    var city = "Edmonton";
-    var country = "Canada";
-    try {
-      var s = localStorage.getItem("clarity_salah_city");
-      if (s) city = s;
-    } catch (e) {}
+  function hijriApprox(d) {
+    d = d || new Date();
+    var jd = Math.floor((d.getTime() - Date.UTC(1970, 0, 1)) / 86400000) + 2440588;
+    var l = jd - 1948439 + 10632;
+    var n = Math.floor((l - 1) / 10631);
+    l = l - 10631 * n + 354;
+    var j =
+      Math.floor((10985 - l) / 5316) * Math.floor((50 * l) / 17719) +
+      Math.floor(l / 5670) * Math.floor((43 * l) / 15238);
+    l =
+      l -
+      Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50) -
+      Math.floor(j / 16) * Math.floor((15238 * j) / 43) +
+      29;
+    var m = Math.floor((24 * l) / 709);
+    var day = l - Math.floor((709 * m) / 24);
+    var year = 30 * n + j - 30;
+    var months = [
+      "Muḥarram","Ṣafar","Rabīʿ I","Rabīʿ II","Jumādā I","Jumādā II",
+      "Rajab","Shaʿbān","Ramaḍān","Shawwāl","Dhū al-Qaʿdah","Dhū al-Ḥijjah"
+    ];
+    return { day: day, month: months[(m - 1 + 12) % 12], year: year };
+  }
 
-    var url =
-      "https://api.aladhan.com/v1/timingsByCity?city=" +
-      encodeURIComponent(city) +
-      "&country=" +
-      encodeURIComponent(country) +
-      "&method=2";
-    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
-    var timer = setTimeout(function () {
-      if (ctrl) try { ctrl.abort(); } catch (e) {}
-      if (!salahDone && /loading/i.test(list.textContent || "")) {
-        list.innerHTML =
-          '<li><span class="salah-name">Fajr</span><span class="salah-time">—</span></li>' +
-          '<li><span class="salah-name">Dhuhr</span><span class="salah-time">—</span></li>' +
-          '<li><span class="salah-name">Asr</span><span class="salah-time">—</span></li>' +
-          '<li><span class="salah-name">Maghrib</span><span class="salah-time">—</span></li>' +
-          '<li><span class="salah-name">Isha</span><span class="salah-time">—</span></li>';
-      }
-    }, 4000);
-
-    fetch(url, { credentials: "omit", signal: ctrl && ctrl.signal })
-      .then(function (r) {
-        if (!r.ok) throw new Error("http");
-        return r.json();
-      })
-      .then(function (json) {
-        clearTimeout(timer);
-        var t = (json.data && json.data.timings) || {};
-        try {
-          localStorage.setItem(
-            "clarity_salah_cache_v1",
-            JSON.stringify({ t: t, city: city, day: new Date().toDateString() })
-          );
-        } catch (e) {}
-        fillSalah(t, city);
-        var loc = $("hijri-local-loc");
-        if (loc) loc.textContent = city + ", " + country;
-      })
-      .catch(function () {
-        clearTimeout(timer);
+  function ensureCalendar() {
+    var grid = $("hijri-cal-grid");
+    var title = $("hijri-cal-title");
+    var meta = $("hijri-cal-meta");
+    var h = hijriApprox();
+    if (title) title.textContent = h.month + " " + h.year + " AH";
+    if (meta) {
+      meta.textContent =
+        "Today · " + h.day + " " + h.month + " · " +
+        new Date().toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
+    }
+    if (grid && grid.children.length < 7) {
+      grid.innerHTML = "";
+      ["S","M","T","W","T","F","S"].forEach(function (l) {
+        var s = document.createElement("div");
+        s.className = "hc-day hc-lab";
+        s.textContent = l;
+        s.style.opacity = "0.55";
+        grid.appendChild(s);
       });
+      for (var d = 1; d <= 30; d++) {
+        var el = document.createElement("div");
+        el.className = "hc-day" + (d === h.day ? " is-today" : "");
+        el.textContent = String(d);
+        grid.appendChild(el);
+      }
+    }
   }
 
   function ensureClock() {
     var el = $("hijri-local-time");
+    var loc = $("hijri-local-loc");
     function tick() {
       try {
         if (el)
-          el.textContent = new Date().toLocaleTimeString(undefined, {
-            hour: "2-digit",
-            minute: "2-digit"
-          });
+          el.textContent = new Date().toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+        if (loc && (!loc.textContent || loc.textContent.indexOf("…") >= 0 || loc.textContent === "—"))
+          loc.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone || "Local";
       } catch (e) {}
     }
     tick();
     if (!g.__clarityBannerClock) g.__clarityBannerClock = setInterval(tick, 30000);
+  }
+
+  function dedupeAudio() {
+    var dup = $("quran-audio-dup1");
+    if (dup) {
+      try { dup.pause(); } catch (e) {}
+      dup.removeAttribute("src");
+      dup.setAttribute("aria-hidden", "true");
+    }
   }
 
   function boot() {
@@ -353,21 +315,20 @@
       if (!isNaN(saved)) rabbanaIdx = saved % RABBANA.length;
     } catch (e) {}
     paintRabbana();
-    formatHijri();
-    polishMoon();
-    ensureAllahOnSalah();
+    arrangePlaqueSeals();
+    ensureCalendar();
     ensureClock();
-    repairSalah();
+    dedupeAudio();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  g.addEventListener("load", function () {
-    setTimeout(function () {
-      polishMoon();
-      if (!salahDone) repairSalah();
-    }, 300);
-  });
+  g.addEventListener("load", function () { setTimeout(boot, 250); });
+  setTimeout(boot, 800);
 
-  g.ClarityBannerRevamp = { polishMoon: polishMoon, repairSalah: repairSalah, rabbanaCount: 24 };
+  g.ClarityBannerRevamp = {
+    rabbanaCount: RABBANA.length,
+    paintRabbana: paintRabbana,
+    arrangePlaqueSeals: arrangePlaqueSeals
+  };
 })(typeof window !== "undefined" ? window : this);
