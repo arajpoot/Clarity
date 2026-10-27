@@ -1,0 +1,9 @@
+{
+  "build": "20261026PATH",
+  "err_count": 0,
+  "errs": [],
+  "http_ok": 2,
+  "root_cause": "path-progress applyContent() called switchTab(hub) after every path change \u2014 cross-wired track pills into section pills",
+  "fix": "Path extent only; swallow section switch during path apply; re-apply additive filter + mark track UI",
+  "campus_untouched": true
+}

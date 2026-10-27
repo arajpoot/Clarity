@@ -1,20 +1,19 @@
-Pills integrity · 20261026PILLS
+Path track integrity · 20261026PATH
 
-CROSS-WIRE FOUND:
-  Amana Vault rail: data-rail-tab="notes" data-rrra="action"  ← wrong
-  Fixed to data-rrra="notes"
+PROBLEM:
+  clarity-path-progress-v1.js applyContent() did:
+    switchTab("reminder"|"action") after each Seeker/New Muslim/Daily/Da’i click
+  So track pills behaved like section pills instead of path-extent filters.
 
-INTEGRITY LAYER:
-  - mapHub aliases (vault/amana/journey/tajweed/…)
-  - showHub syncs all 5 tab panels + rail active state
-  - repairRailAttributes + bindRailClicks + wrapOpeners
-  - visit-pill bar click path
-  - hash route
-  - audit on window.__CLARITY_PILLS_AUDIT__
+FIX:
+  companion-path-track-integrity-v1.js
+  - Sets __clarityPathExtentOnly during path switches
+  - switchTab / clarityOpenSectionDoor swallow hub jumps while that flag is on
+  - Still runs clarityRequestPath (quiz/unlock) + applyGateSectionFilter (additive sections)
+  - Marks active .cgs-btn track pill
 
 Upload:
-  assets/companion-pills-integrity-v1.js
-  assets/css/companion-pills-integrity-v1.css
-  index.html (recommended)
+  assets/companion-path-track-integrity-v1.js
+  index.html (script after path-progress)
 
-Hard-refresh. Tap Reminder · Reality · Reflection · Action · Amana Vault — each should open matching panel.
+Hard-refresh. Tap Track 1–4: content cards should expand/collapse by path; bottom RRRA pills stay independent.
