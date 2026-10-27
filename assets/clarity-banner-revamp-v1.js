@@ -1,12 +1,12 @@
 /**
- * clarity-banner-revamp-v1.js · 20261026BANNER3
+ * clarity-banner-revamp-v1.js · 20261026BANNER4
  * 24 masnūn / Qurʾānic duʿā collection · moon on calendar · Allah seal on Ṣalāh
  * Educational only — not a fatwa. Campus untouched.
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_BANNER_REVAMP_V3__) return;
-  g.__CLARITY_BANNER_REVAMP_V3__ = true;
+  if (g.__CLARITY_BANNER_REVAMP_V4__) return;
+  g.__CLARITY_BANNER_REVAMP_V4__ = true;
 
   var STILLS = [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg",
@@ -342,6 +342,60 @@
     } catch (e) {}
   }
 
+  
+  function highlightNextSalah() {
+    var list = document.getElementById("salah-times-list");
+    if (!list) return;
+    var items = list.querySelectorAll("li");
+    if (!items.length) return;
+    var now = new Date();
+    var mins = now.getHours() * 60 + now.getMinutes();
+    var best = null;
+    var bestDelta = 1e9;
+    items.forEach(function (li) {
+      li.classList.remove("is-next", "is-past");
+      var tEl = li.querySelector(".salah-time, .time, span:last-child");
+      if (!tEl) return;
+      var raw = (tEl.textContent || "").trim();
+      var m = raw.match(/(\d{1,2}):(\d{2})/);
+      if (!m) return;
+      var hm = parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+      /* crude 24h; if all times look AM/PM site already set */
+      var delta = hm - mins;
+      if (delta < -30) delta += 24 * 60;
+      if (delta >= 0 && delta < bestDelta) {
+        bestDelta = delta;
+        best = li;
+      }
+    });
+    if (!best && items.length) {
+      /* fallback first future-looking or first item */
+      best = items[0];
+    }
+    if (best) best.classList.add("is-next");
+  }
+
+  function enrichSolarMeta() {
+    var meta = document.getElementById("hijri-cal-meta");
+    if (!meta) return;
+    try {
+      var d = new Date();
+      var solar = d.toLocaleDateString(undefined, {
+        weekday: "short",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+      var existing = (meta.textContent || "").trim();
+      /* Keep hijri today line; append solar if not present */
+      if (existing.indexOf(String(d.getFullYear())) < 0) {
+        meta.innerHTML =
+          (existing && existing.indexOf("…") < 0 ? existing + "<br>" : "") +
+          '<span class="solar-date">' + solar + "</span>";
+      }
+    } catch (e) {}
+  }
+
   function boot() {
     try {
       var saved = parseInt(localStorage.getItem("clarity_rabbana_idx_v1") || "0", 10);
@@ -352,6 +406,8 @@
     silenceMoonWording();
     ensureCalendar();
     ensureClock();
+    highlightNextSalah();
+    enrichSolarMeta();
     dedupeAudio();
   }
 
@@ -368,7 +424,7 @@
 })(typeof window !== "undefined" ? window : this);
 
 
-/* companion-banner-moon-clean-v1 · 20261026BANNER3 */
+/* companion-banner-moon-clean-v1 · 20261026BANNER4 */
 (function(){
   if (window.__CLARITY_BANNER_MOON_CLEAN_V1__) return;
   window.__CLARITY_BANNER_MOON_CLEAN_V1__ = true;
