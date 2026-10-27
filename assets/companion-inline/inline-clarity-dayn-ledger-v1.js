@@ -379,3 +379,104 @@
   document.addEventListener("clarity:landing-ready", boot);
   document.addEventListener("clarity:companion-ready", boot);
 })(typeof window !== "undefined" ? window : this);
+
+
+/* Dayn mount harden — survive landing-v3 repaint */
+(function(g){
+  "use strict";
+  if(g.__CLARITY_DAYN_MOUNT_HARDEN__) return;
+  g.__CLARITY_DAYN_MOUNT_HARDEN__ = true;
+
+  function place(host){
+    if(!host || host.isConnected) return host;
+    return null;
+  }
+
+  function ensureHost(){
+    var host = document.getElementById("clarity-dayn-entry");
+    if(host && host.isConnected) return host;
+    host = document.createElement("section");
+    host.id = "clarity-dayn-entry";
+    host.className = "clarity-dayn-entry card";
+    host.setAttribute("aria-label", "Qard Hasan dayn entry");
+
+    var anchors = [
+      document.querySelector(".dual-tiles"),
+      document.getElementById("dual-path-university"),
+      document.getElementById("dual-path-companion"),
+      document.querySelector("[data-shell-mode] .landing, #clarity-landing, .clarity-landing"),
+      document.querySelector(".cdl-card"),
+      document.getElementById("cdl-today"),
+      document.getElementById("cdl-adhkar"),
+      document.getElementById("main-content"),
+      document.body
+    ];
+    var inserted = false;
+    for(var i=0;i<anchors.length;i++){
+      var a = anchors[i];
+      if(!a || !a.parentNode) continue;
+      // prefer after dual-tiles
+      if(a.classList && a.classList.contains("dual-tiles")){
+        a.parentNode.insertBefore(host, a.nextSibling);
+        inserted = true;
+        break;
+      }
+      if(a.id === "dual-path-university" || a.id === "dual-path-companion"){
+        var row = a.closest(".dual-tiles") || a.parentNode;
+        if(row && row.parentNode){
+          row.parentNode.insertBefore(host, row.nextSibling);
+          inserted = true;
+          break;
+        }
+      }
+    }
+    if(!inserted){
+      var main = document.getElementById("main-content") || document.body;
+      main.appendChild(host);
+    }
+    return host;
+  }
+
+  function forceVisible(host){
+    if(!host) return;
+    host.hidden = false;
+    host.removeAttribute("hidden");
+    host.style.setProperty("display", "block", "important");
+    host.style.setProperty("visibility", "visible", "important");
+    host.style.setProperty("opacity", "1", "important");
+    // if parent shell hides landing content, still show when landing mode
+    var mode = document.documentElement.getAttribute("data-shell-mode");
+    if(mode === "companion"){
+      // keep available but can sit under ribbon; user asked landing primarily
+    }
+  }
+
+  function remount(){
+    try{
+      if(typeof g.__CLARITY_DAYN_LEDGER_V1__ === "undefined") return;
+      // call original boot path by dispatching
+      var host = ensureHost();
+      forceVisible(host);
+      // If empty shell, trigger full rebuild via click path on refresh button after boot fills
+      if(host && !host.querySelector("#dayn-save")){
+        // original script's boot should fill — dispatch event it listens
+        document.dispatchEvent(new CustomEvent("clarity:landing-ready"));
+      }
+      forceVisible(document.getElementById("clarity-dayn-entry"));
+    }catch(e){ console.warn("[Dayn harden]", e); }
+  }
+
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", remount);
+  else remount();
+  [600,1500,3000,5000,8000].forEach(function(ms){ setTimeout(remount, ms); });
+  document.addEventListener("clarity:landing-ready", remount);
+  document.addEventListener("clarity:companion-ready", remount);
+
+  try{
+    var obs = new MutationObserver(function(){
+      var h = document.getElementById("clarity-dayn-entry");
+      if(!h || !h.isConnected) remount();
+    });
+    obs.observe(document.body, { childList:true, subtree:true });
+  }catch(e){}
+})(typeof window !== "undefined" ? window : this);
