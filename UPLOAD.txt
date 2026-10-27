@@ -1,21 +1,15 @@
-Banner PREV restore 20261027BANNER-PREV
+Banner AV + Day fortify 20261027BANNER-AV
 
-Scraped unstable live banner markup.
-Imported banner construct from Clarity-main (10) previous good build.
+ROOT CAUSE: Banner markup had onclick handlers (toggleHaramainLive, cycleRabbana, surah pills…)
+but clarity-chunk-8.js / aux-pack / overlays were NOT linked after banner swap.
 
-Assets:
-  /assets/clarity-banner-day-v1.css
-  /assets/clarity-banner-stream-v1.css
-  /assets/clarity-banner-mobile-v1.css
-  /assets/clarity-banner-fix-v1.css
-  /assets/clarity-banner-restore-v1.css
-  /assets/clarity-banner-mobile-v1.js
+FIXED:
+  · Link chunk-8 + aux-pack + runtime-overlays + haramain-temps-repair
+  · Day room 3b: path strip Companion-only, Dayn slot, trust review, © Clarity plaque
+  · Banner CSS/JS from previous stable build included in zip
 
-Retired competing:
-  banner-restore-v1.js · nuclear · final-banner-controls
+Upload index.html + all assets in the zip (chunk-8 is large ~600KB — required for AV pills).
+Purge CF → Incognito. Test Live / Listen / Surah / Mute / volume.
+Scroll Day landing bottom for Dayn · review · copyright plaque.
 
-Day room / shell / Companion rooms left in place outside banner.
-
-Upload index.html + all assets/clarity-banner-* files.
-Purge CF → hard refresh.
 Campus untouched. Educational only — not a fatwa.
