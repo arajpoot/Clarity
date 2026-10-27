@@ -101,3 +101,30 @@ html[data-shell-mode="companion"] #main-content {
   max-height: none !important;
   overflow: visible !important;
 }
+
+/* dual-tile-stack-mobile: icon always visible on narrow screens */
+@media (max-width: 720px) {
+  .dual-tiles {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  .dual-tile, a.dual-tile, #dual-path-university, #dual-path-companion {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 0.65rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .dual-tile .nuros-icon,
+  #dual-path-university .nuros-icon-campus,
+  #dual-path-companion .nuros-icon {
+    display: inline-block !important;
+    width: 2.55rem !important;
+    height: 2.55rem !important;
+    flex-shrink: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
