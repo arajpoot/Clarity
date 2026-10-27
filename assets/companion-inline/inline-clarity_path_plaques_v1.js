@@ -1,11 +1,11 @@
 /**
- * Path plaques v1 — icons on path tiles, hide TRACK bar, compact single row
+ * Path plaques v2 · track tiles visible — icons on path tiles, hide TRACK bar, compact single row
  * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_PATH_PLAQUES_V1__) return;
-  w.__CLARITY_PATH_PLAQUES_V1__ = true;
+  if (w.__CLARITY_PATH_PLAQUES_V2__) return;
+  w.__CLARITY_PATH_PLAQUES_V2__ = true;
 
   var ICONS = {
     seeker: "🔭",
@@ -15,10 +15,8 @@
   };
 
   var CSS = [
-    "/* Hide TRACK / gate switcher — icons live on path plaques */",
-    ".clarity-gate-switcher,#clarity-path-rail,#clarity-path-intro,",
-    ".cgs-btn-row,[aria-label=\"Learning track — switch anytime\"]{",
-    "  display:none!important;}",
+    "/* Track tiles VISIBLE — plaques add icons only (20261026FIX) */",
+    ".clarity-gate-switcher,.cgs-btn-row{display:flex!important;flex-wrap:wrap!important;gap:.35rem!important;visibility:visible!important;opacity:1!important;}",
     "/* Path strip: full width centered */",
     "#clarity-grave-path-strip,.grave-path-strip,.path-to-grave{",
     "  width:100%!important;max-width:100%!important;margin:0.5rem auto 0.75rem!important;",
