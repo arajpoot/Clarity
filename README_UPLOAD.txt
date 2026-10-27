@@ -1,14 +1,14 @@
-Night polish · 20261026NIGHT
+Night2 · 20261026NIGHT2
 
-1) Remove residual "Daily quiz" tile from review/trust grid
-2) Hijri meta: Today · day month · weekday · YEAR AH
-3) Solar line: year only
-4) Banner restore (moon + salah) included
+- Premium moon card (gold disc + WANING GIBBOUS label) — secondary plain moon scraped
+- No solar year under calendar
+- Wider calendar/ṣalāh tiles (1.2fr)
+- Smaller ṣalāh time fonts for bottom fit
+- Quiz section centered & symmetrical
 
 Upload:
-  assets/companion-inline/inline-clarity-landing-v3.js
-  assets/companion-quiz-to-day-v1.js
-  assets/css/companion-quiz-to-day-v1.css
   assets/clarity-banner-revamp-v1.js
   assets/css/clarity-banner-revamp-v1.css
+  assets/companion-quiz-to-day-v1.js
+  assets/companion-inline/inline-clarity-landing-v3.js (if present)
   index.html
