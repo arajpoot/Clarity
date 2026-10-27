@@ -1,11 +1,12 @@
 /**
- * Clarity Shell v3.1 — single mode plaque under banner
+ * Clarity Shell v3.2 — single mode plaque under banner
  * One bar only: Companion ↔ Day landing. No double task bars.
  * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_SHELL_V3__) return;
+  if (w.__CLARITY_SHELL_V3_DF1__) return;
+  w.__CLARITY_SHELL_V3_DF1__ = true;
   w.__CLARITY_SHELL_V3__ = true;
 
   var KEY = "clarity_shell_mode_v1";
@@ -224,12 +225,12 @@
     }
   }
 
-  /* Mobile: ensure Day landing is first surface */
+  /* Day-first: every new session without explicit pick opens Day landing (all viewports).
+     User tap on Companion path sets clarity_shell_user_pick_v1 and is respected for the session. */
   try {
-    if (window.matchMedia && window.matchMedia("(max-width: 900px)").matches) {
-      if (sessionStorage.getItem("clarity_shell_user_pick_v1") !== "1") {
-        try { localStorage.setItem(KEY, "landing"); } catch (e) {}
-      }
+    if (sessionStorage.getItem("clarity_shell_user_pick_v1") !== "1") {
+      try { localStorage.setItem(KEY, "landing"); } catch (e) {}
+      try { document.documentElement.setAttribute("data-shell-mode", "landing"); } catch (e2) {}
     }
   } catch (e) {}
 
