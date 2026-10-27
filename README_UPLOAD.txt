@@ -1,14 +1,13 @@
-Night2 · 20261026NIGHT2
+Final fix · 20261026FINAL
 
-- Premium moon card (gold disc + WANING GIBBOUS label) — secondary plain moon scraped
-- No solar year under calendar
-- Wider calendar/ṣalāh tiles (1.2fr)
-- Smaller ṣalāh time fonts for bottom fit
-- Quiz section centered & symmetrical
+- Moon: gold disc card, phase WORDS hidden
+- Quiz: full width of day column
+- Salah: localStorage cache + 4s timeout (no Loading lag)
+- Hijri: no solar year
+- 24 duʿās
 
 Upload:
   assets/clarity-banner-revamp-v1.js
   assets/css/clarity-banner-revamp-v1.css
   assets/companion-quiz-to-day-v1.js
-  assets/companion-inline/inline-clarity-landing-v3.js (if present)
   index.html
