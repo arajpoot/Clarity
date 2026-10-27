@@ -1,8 +1,9 @@
+/* 20261026FREEZE freeze-safe */
 /* companion-track-unhide-v1.js · 20261026FIX2 — last-word track visibility */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_TRACK_UNHIDE_V1__) return;
-  g.__CLARITY_TRACK_UNHIDE_V1__ = true;
+  if (g.__CLARITY_TRACK_UNHIDE_V2__) return;
+  g.__CLARITY_TRACK_UNHIDE_V2__ = true;
 
   function force() {
     var sel = ".clarity-gate-switcher, .clarity-gate-switcher.rrra-sitewide, .cgs-btn-row";
@@ -55,5 +56,5 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
   else run();
   g.addEventListener("load", function () { run(); setTimeout(run, 500); setTimeout(run, 2000); });
-  setInterval(force, 3000);
+  /* FREEZE: no interval */
 })(typeof window !== "undefined" ? window : this);
