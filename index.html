@@ -100,12 +100,6 @@
 
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
-<link id="clarity-final-banner-controls-v2" rel="stylesheet" href="assets/css/clarity-final-banner-controls-v2.css" />
-
-
-
-
-
 <link id="clarity-amana-vault-gate-v1" rel="stylesheet" media="print" onload="this.media='all'" href="assets/css/clarity-amana-vault-gate-v1.css" />
 
 
@@ -288,7 +282,14 @@ html[data-shell-mode="companion"] .path-to-grave {
 #clarity-welcome-obliterate,.clarity-welcome-obliterate,[data-overlay="welcome"]{
 display:none!important;visibility:hidden!important;pointer-events:none!important;
 opacity:0!important;height:0!important;max-height:0!important;overflow:hidden!important;z-index:-1!important}
-</style></head><body data-active-tab="journey" data-section-fortress="1">
+</style>
+<link rel="stylesheet" href="/assets/clarity-banner-day-v1.css?v=20261027BANNER-PREV">
+<link rel="stylesheet" href="/assets/clarity-banner-stream-v1.css?v=20261027BANNER-PREV">
+<link rel="stylesheet" href="/assets/clarity-banner-mobile-v1.css?v=20261027BANNER-PREV">
+<link rel="stylesheet" href="/assets/clarity-banner-fix-v1.css?v=20261027BANNER-PREV">
+<link rel="stylesheet" href="/assets/clarity-banner-restore-v1.css?v=20261027BANNER-PREV">
+
+</head><body data-active-tab="journey" data-section-fortress="1">
 
 
 
@@ -312,20 +313,21 @@ opacity:0!important;height:0!important;max-height:0!important;overflow:hidden!im
 <div id="clarity-top-duo">
 <div class="banner">
     <div class="banner-media" id="banner-media" aria-hidden="true">
+      <img id="banner-img" class="banner-still-img" fetchpriority="high" decoding="async" width="480" height="270"
+        src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22320%22%3E%3Crect fill=%22%231a2a22%22 width=%22480%22 height=%22320%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23f3e6c0%22 font-size=%2220%22 text-anchor=%22middle%22%3EMakkah%3C/text%3E%3C/svg%3E"
+        srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/320px-Kaaba_Masjid_Haraam_Makkah.jpg 320w, data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22320%22%3E%3Crect fill=%22%231a2a22%22 width=%22480%22 height=%22320%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23f3e6c0%22 font-size=%2220%22 text-anchor=%22middle%22%3EMakkah%3C/text%3E%3C/svg%3E 480w, https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg 640w"
+        sizes="(max-width:600px) 100vw, 640px"
+        decoding="async" width="640" height="360" fetchpriority="high" loading="eager" alt="">
       <iframe id="banner-live" class="banner-live-iframe" title="Haramain live" hidden
-        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-        allowfullscreen playsinline></iframe>
-      <img loading="lazy" decoding="async" id="banner-img" class="banner-still-img"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg"
-        alt="Masjid al-Haram"
-        decoding="async"
-        onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg';">
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
     </div>
     <div class="banner-overlay">
       <!-- Calendar plaque -->
       <div class="banner-side left">
         <div class="hijri-cal-section">
-          <div class="allah-circular-seal" title="Allah"><span class="arabic seal-ar">الله</span></div>
+          <div class="banner-name-plaque allah-plaque" title="Allah">
+            <span class="arabic plaque-naskh" lang="ar">الله</span>
+          </div>
           <div class="cal-title" id="hijri-cal-title">Hijri · تقويم</div>
           <div class="hijri-cal-grid" id="hijri-cal-grid"></div>
           <div class="hijri-cal-meta" id="hijri-cal-meta">…</div>
@@ -351,15 +353,15 @@ opacity:0!important;height:0!important;max-height:0!important;overflow:hidden!im
           <div class="rabbana-english" id="rabbana-english"></div>
           <div class="rabbana-ref" id="rabbana-ref"></div>
         </div>
-        <div class="stream-controls">
+        <div class="stream-controls stream-controls-classic">
           <button type="button" class="live-haramain-btn" id="live-haramain-btn" onclick="toggleHaramainLive()" title="Haramain live as banner background">
             <span class="live-dot" aria-hidden="true"></span><span id="live-haramain-label">Live</span>
           </button>
           <select id="live-place-select" class="live-place-select stream-select" onchange="changeHaramainPlace()" aria-label="Live source">
-            <option value="madinah" selected>Madinah</option>
-            <option value="makkah">Makkah</option>
+            <option value="makkah" selected>Makkah</option>
+            <option value="madinah">Madinah</option>
           </select>
-          <select id="stream-select" class="stream-select" onchange="changeStream()" title="Qurʾān radio">
+          <select id="stream-select" class="stream-select" onchange="changeStream()" title="Qurʾān radio" aria-label="Qurʾān radio">
             <option value="https://qurango.net/radio/tarateel">Tarateel (Arabic)</option>
             <option value="https://backup.qurango.net/radio/tarateel">Tarateel Backup</option>
             <option value="https://qurango.net/radio/maher">Maher Al-Muaiqly</option>
@@ -376,7 +378,6 @@ opacity:0!important;height:0!important;max-height:0!important;overflow:hidden!im
           <select id="surah-list-pill" class="stream-select surah-dropdown" onchange="clarityPlaySurahFromSelect(this)" title="Full Surah list" aria-label="Play Surah">
             <option value="">📖 Surahs…</option>
           </select>
-
           <select id="surah-reciter-pill" class="stream-select" onchange="claritySetReciter(this.value)" title="Reciter" aria-label="Reciter">
             <option value="afs">Alafasy</option>
             <option value="basit">Abdul Basit</option>
@@ -390,10 +391,9 @@ opacity:0!important;height:0!important;max-height:0!important;overflow:hidden!im
             <option value="yasser">Yasser Dosari</option>
           </select>
           <button type="button" class="quran-stream-btn" id="surah-surprise-pill" onclick="claritySurpriseSurahReciter()" title="Open a Surah with a reciter">📖</button>
-
           <div class="volume-control">
             <button type="button" class="mute-btn" id="mute-btn" onclick="toggleMute()" title="Mute">🔊</button>
-            <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.85" oninput="setVolume(this.value)">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.85" oninput="setVolume(this.value)" aria-label="Volume">
           </div>
         </div>
         <audio id="quran-audio" preload="none" crossorigin="anonymous"></audio>
@@ -401,7 +401,9 @@ opacity:0!important;height:0!important;max-height:0!important;overflow:hidden!im
       <!-- Salah plaque -->
       <div class="banner-side right">
         <div class="salah-times-section">
-          <div class="masjid-circular-seal" title="Masjid an-Nabawi"><span class="seal-icon" aria-hidden="true">🕌</span></div>
+          <div class="banner-name-plaque masjid-plaque" title="Masjid">
+            <span class="plaque-icon" aria-hidden="true">🕌</span>
+          </div>
           <div class="salah-title" id="salah-title">Ṣalāh</div>
           <ul class="salah-times-list" id="salah-times-list">
             <li><span class="salah-name">Loading…</span><span class="salah-time">…</span></li>
@@ -2518,14 +2520,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script defer src="assets/companion-inline/inline-bundle-nuros-v1.js?v=20261026i"></script>
 <script src="assets/companion-inline/inline-clarity-shell-v3.js?v=20261027ROOM3b"></script>
 <script src="/assets/companion-inline/inline-clarity-day-room-v3.js?v=20261027ROOM3"></script>
-<script src="/assets/companion-inline/inline-clarity-day-room-3b.js?v=20261027ROOM3b"></script>
-<script src="/assets/companion-inline/inline-clarity-day-first-v1.js?v=20261027ROOM3"></script>
-<!-- retired inline-clarity-landing-v3.js -->
-<!-- PhaseA disabled: inline-clarity-banner-nuclear-js.js -->
-<!-- DLC lazy fight-stop: inline-clarity_path_plaques_v1 -->
-<script src="assets/clarity-path-progress-v1.js" defer></script>
-<!-- C3 lazy: clarity-grave-path-curriculum-js.js -->
-<script id="clarity-path-night-fix-v1" src="assets/companion-inline/inline-clarity_path_night_fix_v1.js" defer></script>
+<!-- BANNER-PREV retired banner-nuclear -->
 <script id="clarity-path-reset-js-v1" src="assets/companion-inline/inline-clarity_path_reset_v1.js" defer></script>
 <script id="clarity-perf-loader-v1" src="assets/companion-inline/inline-clarity-perf-loader-v1.js?v=20261025b" defer></script>
 <script id="clarity-surface-polish-v1" src="assets/companion-inline/inline-clarity_surface_polish_v1.js?v=20261025n" defer></script>
@@ -2603,6 +2598,8 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script defer src="/assets/companion-inline/inline-clarity-dayn-ledger-v1.js?v=20261027ROOM3b"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script defer src="/assets/clarity-banner-mobile-v1.js?v=20261027BANNER-PREV"></script>
 </body>
 </html>
 
@@ -2636,6 +2633,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 </script>
 
 <script defer src="/assets/companion-inline/inline-clarity-dayn-ledger-v1.js?v=20261027ROOM3b"></script>
+<script defer src="/assets/clarity-banner-mobile-v1.js?v=20261027BANNER-PREV"></script>
 </body>
 
 <!-- lazy:assets/clarity-meme-canvas-clean-v1.js -->
@@ -2757,6 +2755,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 </script>
 
 <script defer src="/assets/companion-inline/inline-clarity-dayn-ledger-v1.js?v=20261027ROOM3b"></script>
+<script defer src="/assets/clarity-banner-mobile-v1.js?v=20261027BANNER-PREV"></script>
 </body>
 
 <!-- C5 removed clarity-pedigree-plaque-css-v1.css -->
