@@ -1,12 +1,12 @@
 /**
- * clarity-banner-revamp-v1.js · 20261026NIGHT
+ * clarity-banner-revamp-v1.js · 20261026NIGHT2
  * Restore moon (#clarity-moon-phase) · fix Ṣalāh list · 24 duʿās · no lower duplicate moon
  * Educational only — not a fatwa.
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_BANNER_REVAMP_V6__) return;
-  g.__CLARITY_BANNER_REVAMP_V6__ = true;
+  if (g.__CLARITY_BANNER_REVAMP_V7__) return;
+  g.__CLARITY_BANNER_REVAMP_V7__ = true;
 
   var STILLS = [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg",
@@ -299,7 +299,6 @@
     if (!meta) return;
     try {
       var d = new Date();
-      /* lightweight hijri approx for year/day display if title already has month */
       var jd = Math.floor((d.getTime() - Date.UTC(1970, 0, 1)) / 86400000) + 2440588;
       var l = jd - 1948439 + 10632;
       var n = Math.floor((l - 1) / 10631);
@@ -321,15 +320,24 @@
       ];
       var month = months[(m - 1 + 12) % 12];
       var weekday = d.toLocaleDateString(undefined, { weekday: "short" });
-      /* First line: hijri day month · weekday · hijri year AH */
-      var line1 = "Today · " + day + " " + month + " · " + weekday + " · " + year + " AH";
-      /* Bottom: solar year only (enough) */
-      var line2 = String(d.getFullYear());
-      meta.innerHTML = line1 + '<br><span class="solar-date">' + line2 + "</span>";
-      if (title && (!title.textContent || title.textContent.indexOf("AH") < 0)) {
-        title.textContent = month + " " + year + " AH";
-      }
+      /* Hijri only — no solar year line */
+      meta.textContent = "Today · " + day + " " + month + " · " + weekday + " · " + year + " AH";
+      if (title) title.textContent = month + " " + year + " AH";
+      /* Remove any leftover solar-date nodes */
+      meta.querySelectorAll && meta.querySelectorAll(".solar-date").forEach(function (n) { n.remove(); });
     } catch (e) {}
+  }
+
+  
+  function styleMoonPlaque() {
+    var moon = document.getElementById("clarity-moon-phase");
+    if (!moon) return;
+    moon.classList.add("clarity-moon-card");
+    moon.style.setProperty("display", "flex", "important");
+    /* remove plain duplicate discs outside official widget */
+    document.querySelectorAll(".hijri-cal-section > .banner-moon-plaque, #clarity-banner-moon-plaque").forEach(function (n) {
+      if (n.id !== "clarity-moon-phase") n.remove();
+    });
   }
 
   function boot() {
@@ -340,6 +348,7 @@
     paintRabbana();
     removeLowerMoon();
     restoreMoon();
+    styleMoonPlaque();
     ensureAllahOnSalah();
     ensureClock();
     repairSalah();

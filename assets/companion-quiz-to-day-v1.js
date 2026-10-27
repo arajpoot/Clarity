@@ -1,11 +1,11 @@
 /**
- * companion-quiz-to-day-v1.js · 20261026NIGHT
+ * companion-quiz-to-day-v1.js · 20261026NIGHT2
  * Full-width day section only; remove residual trust-grid quiz tile.
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_QUIZ_TO_DAY_V3__) return;
-  g.__CLARITY_QUIZ_TO_DAY_V3__ = true;
+  if (g.__CLARITY_QUIZ_TO_DAY_V4__) return;
+  g.__CLARITY_QUIZ_TO_DAY_V4__ = true;
 
   function scrubTrustQuizTile() {
     document.querySelectorAll(".cdl-trust-plaque, article").forEach(function (el) {
