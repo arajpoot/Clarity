@@ -226,3 +226,57 @@
   var obs = new MutationObserver(function(){ boot(); });
   try{ obs.observe(document.documentElement, {attributes:true, attributeFilter:["data-shell-mode"]}); }catch(e){}
 })(typeof window!=="undefined"?window:this);
+
+
+/* Solid smoke: force main overflow + broader dual-path campus */
+(function(g){
+  "use strict";
+  if(g.__CLARITY_SOLID_OVERFLOW_V1__) return;
+  g.__CLARITY_SOLID_OVERFLOW_V1__ = true;
+  function openMain(){
+    if(document.documentElement.getAttribute("data-shell-mode")!=="companion") return;
+    ["main-content","main-application-workspace"].forEach(function(id){
+      var el=document.getElementById(id);
+      if(!el) return;
+      el.style.setProperty("height","auto","important");
+      el.style.setProperty("max-height","none","important");
+      el.style.setProperty("overflow","visible","important");
+      el.style.setProperty("opacity","1","important");
+      el.style.setProperty("visibility","visible","important");
+    });
+    document.querySelectorAll("main.main-content, .tab-panel.active, .tab-panel.is-active").forEach(function(el){
+      el.style.setProperty("display","block","important");
+      el.style.setProperty("height","auto","important");
+      el.style.setProperty("overflow","visible","important");
+    });
+  }
+  function campusEverywhere(){
+    document.querySelectorAll("a,button,div,section,article").forEach(function(tile){
+      if(tile.getAttribute("data-nuros-campus-forced")==="1") return;
+      var t=(tile.textContent||"").trim();
+      if(t.length>120) return;
+      if(!/^University path/i.test(t) && !/University path\s*Campus desk/i.test(t)) return;
+      // only leaf-ish cards
+      if(tile.querySelector(".dual-tile, [id*='dual']")) return;
+      tile.querySelectorAll(":scope > .nuros-icon").forEach(function(n){
+        if(!/campus/.test(n.className)) try{n.parentNode.removeChild(n);}catch(e){}
+      });
+      if(!tile.querySelector(".nuros-icon-campus")){
+        var el=document.createElement("span");
+        el.className="nuros-icon nuros-icon-campus";
+        el.setAttribute("aria-hidden","true");
+        tile.insertBefore(el, tile.firstChild);
+      }
+      tile.setAttribute("data-nuros-campus-forced","1");
+      tile.setAttribute("data-nuros-iconized","1");
+    });
+  }
+  function boot(){ openMain(); campusEverywhere(); }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  [300,800,1500,2800].forEach(function(ms){setTimeout(boot,ms);});
+  document.addEventListener("clarity:companion-ready", boot);
+  try{
+    new MutationObserver(function(){ openMain(); }).observe(document.documentElement,{attributes:true,attributeFilter:["data-shell-mode"]});
+  }catch(e){}
+})(typeof window!=="undefined"?window:this);
