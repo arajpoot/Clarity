@@ -563,13 +563,6 @@
 
       
       '<section class="cdl-confidence-wrap" id="cdl-confidence" data-landing="confidence" aria-label="Why you can trust this companion">' +
-        '<section class=\"cdl-block cdl-quiz-section\" id=\"cdl-quiz-section\" aria-label=\"Daily quiz\">' +
-          '<div class=\"cdl-quiz-section-head\">' +
-            '<h2 class=\"cdl-h\">🧠 Daily quiz</h2>' +
-            '<p class=\"cdl-sub\">Fiqh &amp; Sharia IQ · educational only — not a fatwa · on this device + optional online deck</p>' +
-          '</div>' +
-          '<div id=\"cdl-fiqh-quiz-slot\" class=\"cdl-fiqh-quiz-slot\"></div>' +
-        '</section>' +
         '<div class="cdl-head" style="margin-bottom:0.55rem"><h2><span class="cdl-ico" aria-hidden="true">🛡️</span> Built for trust · review plaques</h2></div>' +
         '<p class="cdl-sub" style="margin-bottom:0.65rem"><strong>Educational companion only — not a fatwa, not legal advice.</strong> For personal rulings, ask a qualified local teacher.</p>' +
         '<div class="cdl-trust-grid" id="cdl-trust-grid">' +
@@ -605,6 +598,11 @@
             '<div class="cdl-trust-links">' +
               '<a href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener">Campus ↗</a>' +
             '</div></article>' +
+          '<section class=\"cdl-block cdl-quiz-host\" id=\"cdl-fiqh-quiz-slot\" aria-label=\"Daily Fiqh and Sharia IQ\">' +
+            '<h2 class=\"cdl-h\" style=\"font-size:1rem;margin:0 0 0.35rem\">🧠 Daily quiz · Fiqh &amp; Sharia IQ</h2>' +
+            '<p class=\"cdl-sub\" style=\"margin:0 0 0.5rem\">Moved here for daily routine · educational only — not a fatwa · online fetch kept</p>' +
+            '<!-- fiqh-quiz-card moves here at runtime -->' +
+          '</section>' +
           '<article class="cdl-trust-plaque" data-trust="review" id="cdl-trust-review-plaque">' +
             '<div class="cdl-trust-ico" aria-hidden="true">🔎</div>' +
             '<h3>Auto review · this device</h3>' +
