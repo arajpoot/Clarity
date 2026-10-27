@@ -1,3 +1,4 @@
+/* 20261026FREEZE freeze-safe plaques */
 /**
  * Path plaques v3 · 20261026FIX2
  * Decorate path tiles with icons. NEVER hide .clarity-gate-switcher track row.
@@ -5,8 +6,8 @@
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_PATH_PLAQUES_V3__) return;
-  w.__CLARITY_PATH_PLAQUES_V3__ = true;
+  if (w.__CLARITY_PATH_PLAQUES_V4__) return;
+  w.__CLARITY_PATH_PLAQUES_V4__ = true;
 
   var ICONS = {
     seeker: "🔭",
@@ -131,11 +132,5 @@
   w.addEventListener("load", function () { setTimeout(decorate, 200); });
 
   /* Defeat any later script that hides track */
-  try {
-    var obs = new MutationObserver(function () {
-      var el = document.querySelector(".clarity-gate-switcher");
-      if (el && (el.style.display === "none" || el.hidden)) showTrack();
-    });
-    obs.observe(document.documentElement, { attributes: true, subtree: true, attributeFilter: ["style", "hidden", "class"] });
-  } catch (e) {}
+  /* FREEZE: MutationObserver removed — was looping with style writes */
 })(typeof window !== "undefined" ? window : this);
