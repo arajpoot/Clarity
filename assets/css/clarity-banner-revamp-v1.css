@@ -1,11 +1,11 @@
-/* clarity-banner-revamp-v1.css · 20261026BANNER3
- * Symmetry · wider side plaques · center brand plaque · moon graphic only
+/* clarity-banner-revamp-v1.css · 20261026BANNER4
+ * Final night fine-tune: wider sides, center balance, AV clear of edge, vivid next ṣalāh
  */
 #clarity-top-duo .banner {
   position: relative;
   overflow: hidden;
   border-radius: 0 0 20px 20px;
-  min-height: 240px;
+  min-height: 248px;
   isolation: isolate;
   box-shadow: 0 14px 42px rgba(0,0,0,.3);
 }
@@ -16,27 +16,28 @@
   content: "";
   position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(5,14,11,.5) 0%, rgba(5,14,11,.28) 42%, rgba(5,14,11,.78) 100%),
-    radial-gradient(ellipse at 50% 0%, rgba(212,180,90,.1), transparent 50%);
+    linear-gradient(180deg, rgba(5,14,11,.48) 0%, rgba(5,14,11,.26) 40%, rgba(5,14,11,.82) 100%);
   pointer-events: none;
 }
 
-/* Symmetric grid: sides wider, center snug */
+/* Sides wider, closer to center — snug symmetry */
 #clarity-top-duo .banner-overlay {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(168px, 1.05fr) minmax(200px, 1.15fr) minmax(168px, 1.05fr);
-  gap: 0.65rem;
-  padding: 0.7rem 0.8rem 0.9rem;
+  grid-template-columns: minmax(180px, 1.12fr) minmax(190px, 1.05fr) minmax(180px, 1.12fr);
+  gap: 0.5rem;
+  padding: 0.65rem 0.7rem 1.15rem; /* extra bottom so AV clears edge */
   align-items: stretch;
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 @media (max-width: 900px) {
   #clarity-top-duo .banner-overlay {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "left right" "center center";
+    padding-bottom: 1.2rem;
   }
   #clarity-top-duo .banner-side.left { grid-area: left; }
   #clarity-top-duo .banner-side.right { grid-area: right; }
@@ -46,51 +47,34 @@
   #clarity-top-duo .banner-overlay {
     grid-template-columns: 1fr;
     grid-template-areas: "center" "left" "right";
+    padding-bottom: 1.25rem;
   }
 }
 
 #clarity-top-duo .hijri-cal-section,
 #clarity-top-duo .salah-times-section {
-  background: linear-gradient(160deg, rgba(10,24,18,.88), rgba(6,16,12,.78));
-  border: 1px solid rgba(212,180,90,.3);
+  background: linear-gradient(160deg, rgba(10,24,18,.9), rgba(6,16,12,.8));
+  border: 1px solid rgba(212,180,90,.32);
   border-radius: 16px;
-  padding: 0.55rem 0.65rem 0.7rem;
+  padding: 0.5rem 0.7rem 0.75rem;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   color: #e8f0ea;
   height: 100%;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 8px 22px rgba(0,0,0,.22);
 }
 
-/* Moon: graphic only — hide all phase wording */
+/* Moon graphic only — no phase words */
+#clarity-banner-moon-plaque,
 #clarity-banner-moon-plaque .moon-lab,
 #clarity-top-duo .moon-lab,
-#clarity-top-duo .moon-caption,
-#clarity-top-duo .moon-name,
-#clarity-top-duo .hijri-cal-section .moon-phase-label {
+#clarity-top-duo .moon-caption {
   display: none !important;
-  font-size: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-}
-/* Keep top moon art; hide duplicate lower moon widgets */
-#clarity-top-duo .hijri-cal-section .banner-moon:not(:first-child),
-#clarity-top-duo .hijri-cal-section .moon-phase-widget,
-#clarity-top-duo .hijri-cal-section #clarity-banner-moon-plaque {
-  /* single top graphic preferred — if our plaque is second, hide it when legacy moon exists */
-}
-#clarity-banner-moon-plaque {
-  display: none !important; /* rely on existing beautiful top moon graphic from moon-v1 */
-}
-/* Strip text under top moon box without killing the graphic container */
-#clarity-top-duo .hijri-cal-section > div:nth-child(1) {
-  /* top moon card from moon script stays */
 }
 
 #clarity-top-duo .salah-times-section .allah-circular-seal {
-  width: 2.4rem;
-  height: 2.4rem;
-  margin: 0 auto 0.35rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  margin: 0 auto 0.3rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -100,24 +84,24 @@
 }
 #clarity-top-duo .seal-ar {
   font-family: "Amiri","Scheherazade New","Noto Naskh Arabic",serif;
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   color: #f0e2b0;
 }
 #clarity-top-duo .cal-title,
 #clarity-top-duo .salah-title {
   text-align: center;
   font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: rgba(212,180,90,.95);
-  margin-bottom: 0.28rem;
+  margin-bottom: 0.25rem;
   font-weight: 700;
 }
 #clarity-top-duo .hijri-cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
-  font-size: 0.64rem;
+  font-size: 0.66rem;
   text-align: center;
 }
 #clarity-top-duo .hijri-cal-grid .hc-day.is-today {
@@ -126,63 +110,115 @@
   font-weight: 700;
   border-radius: 5px;
 }
-#clarity-top-duo .salah-times-list { list-style: none; margin: 0; padding: 0; font-size: 0.74rem; }
+/* Solar date room */
+#clarity-top-duo .hijri-cal-meta,
+#clarity-top-duo .solar-date {
+  font-size: 0.7rem;
+  margin-top: 0.35rem;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0.95;
+}
+#clarity-top-duo .solar-date {
+  display: block;
+  margin-top: 0.2rem;
+  color: rgba(200, 220, 210, 0.95);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+#clarity-top-duo .hijri-temps {
+  font-size: 0.68rem;
+  margin-top: 0.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.55rem;
+  justify-content: center;
+}
+
+/* Ṣalāh list + VIVID next */
+#clarity-top-duo .salah-times-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.76rem;
+}
 #clarity-top-duo .salah-times-list li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 0.4rem;
-  padding: 0.2rem 0.25rem;
+  padding: 0.22rem 0.35rem;
   border-bottom: 1px solid rgba(255,255,255,.06);
+  border-radius: 8px;
+  transition: background 0.2s ease;
 }
 #clarity-top-duo .salah-times-list li.is-next {
-  background: rgba(212,180,90,.18);
-  border-radius: 6px;
-  font-weight: 700;
+  background: linear-gradient(90deg, rgba(212,180,90,.42), rgba(61,202,122,.22));
+  border: 1px solid rgba(212,180,90,.65);
+  border-bottom-color: rgba(212,180,90,.65);
+  box-shadow: 0 0 12px rgba(212,180,90,.25);
+  font-weight: 800;
+  color: #fff8e0;
+  transform: scale(1.02);
+}
+#clarity-top-duo .salah-times-list li.is-next .salah-name,
+#clarity-top-duo .salah-times-list li.is-next .salah-time {
+  color: #fff4c8;
+  text-shadow: 0 0 8px rgba(212,180,90,.35);
+}
+#clarity-top-duo .salah-times-list li.is-next .salah-time {
+  color: #7dffb0;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
 }
 #clarity-top-duo .hijri-local-time {
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.12rem;
   font-weight: 700;
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
   color: #f5e6b8;
   font-variant-numeric: tabular-nums;
 }
+#clarity-top-duo .hijri-local-loc {
+  text-align: center;
+  font-size: 0.66rem;
+  opacity: 0.85;
+}
 
-/* CENTER: own plaques for Bismillah + brand + rabbana + AV room */
+/* Center balanced — AV clear of bottom */
 #clarity-top-duo .banner-center {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
+  justify-content: flex-start;
+  gap: 0.35rem;
   text-align: center;
   color: #f2f7f3;
+  padding-bottom: 0.15rem;
+  min-height: 0;
 }
 #clarity-top-duo .banner-center .bismillah {
   font-family: "Amiri","Scheherazade New","Noto Naskh Arabic",serif;
-  font-size: clamp(1rem, 2.6vw, 1.35rem);
+  font-size: clamp(0.95rem, 2.4vw, 1.28rem);
   color: #f0e2b0;
   margin: 0;
-  padding: 0.35rem 0.85rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 999px;
   border: 1px solid rgba(212,180,90,.28);
   background: rgba(8,18,14,.55);
   backdrop-filter: blur(8px);
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 10px rgba(0,0,0,.4);
   width: fit-content;
   max-width: 100%;
 }
 #clarity-top-duo .banner-center .banner-brand {
   margin: 0;
-  padding: 0.4rem 0.9rem 0.45rem;
+  padding: 0.35rem 0.85rem 0.4rem;
   border-radius: 14px;
   border: 1px solid rgba(212,180,90,.32);
-  background: linear-gradient(165deg, rgba(12,28,22,.75), rgba(8,16,12,.65));
+  background: linear-gradient(165deg, rgba(12,28,22,.78), rgba(8,16,12,.68));
   backdrop-filter: blur(10px);
-  font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+  font-size: clamp(1.05rem, 2.6vw, 1.42rem);
   font-weight: 700;
-  box-shadow: 0 6px 18px rgba(0,0,0,.2);
   width: fit-content;
   max-width: 100%;
 }
@@ -193,61 +229,64 @@
   color: transparent;
 }
 #clarity-top-duo .brand-ondev {
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 600;
-  padding: 0.1rem 0.38rem;
+  padding: 0.08rem 0.35rem;
   border-radius: 99px;
   border: 1px solid rgba(120,200,160,.45);
   color: #b8e6c8;
-  margin-inline-start: 0.25rem;
+  margin-inline-start: 0.2rem;
   vertical-align: middle;
 }
 #clarity-top-duo .subtitle {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   opacity: 0.88;
   margin: 0;
 }
 #clarity-top-duo .rabbana-box {
-  width: min(100%, 26rem);
+  width: min(100%, 24.5rem);
   background: rgba(8,18,14,.58);
   border: 1px solid rgba(212,180,90,.24);
   border-radius: 14px;
-  padding: 0.45rem 0.6rem 0.55rem;
+  padding: 0.4rem 0.55rem 0.45rem;
   backdrop-filter: blur(8px);
 }
 #clarity-top-duo .rabbana-arabic {
   font-family: "Amiri","Scheherazade New","Noto Naskh Arabic",serif;
-  font-size: clamp(0.95rem, 2.3vw, 1.15rem);
-  line-height: 1.7;
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  line-height: 1.65;
   direction: rtl;
   color: #fff8e8;
 }
-#clarity-top-duo .rabbana-english { font-size: 0.76rem; opacity: 0.9; }
-#clarity-top-duo .rabbana-ref { font-size: 0.66rem; color: rgba(212,180,90,.95); }
+#clarity-top-duo .rabbana-english { font-size: 0.74rem; opacity: 0.9; }
+#clarity-top-duo .rabbana-ref { font-size: 0.64rem; color: rgba(212,180,90,.95); }
 
-/* AV strip — more room, clearer chips */
+/* AV strip — lifted from bottom edge */
 #clarity-top-duo .stream-controls {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  margin-top: 0.15rem;
-  padding: 0.4rem 0.55rem;
-  width: min(100%, 28rem);
-  background: rgba(5,14,11,.72);
-  border: 1px solid rgba(212,180,90,.26);
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.35rem;
+  padding: 0.38rem 0.5rem;
+  width: min(100%, 26rem);
+  background: rgba(5,14,11,.78);
+  border: 1px solid rgba(212,180,90,.28);
   border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0,0,0,.2);
+  box-shadow: 0 6px 16px rgba(0,0,0,.22);
+  position: relative;
+  z-index: 3;
 }
 #clarity-top-duo .stream-controls select,
 #clarity-top-duo .stream-controls button {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   border-radius: 99px;
   border: 1px solid rgba(212,180,90,.32);
   background: rgba(18,36,28,.95);
   color: #e8f0ea;
-  padding: 0.32rem 0.6rem;
+  padding: 0.3rem 0.55rem;
   cursor: pointer;
 }
 #clarity-top-duo .live-haramain-btn .live-dot {
@@ -259,5 +298,5 @@
   margin-inline-end: 0.2rem;
 }
 #clarity-top-duo .live-haramain-btn.is-live .live-dot { background: #3dca7a; }
-#clarity-top-duo #volume-slider { width: 4.8rem; accent-color: #d4b45a; }
+#clarity-top-duo #volume-slider { width: 4.5rem; accent-color: #d4b45a; }
 #quran-audio-dup1 { display: none !important; }
