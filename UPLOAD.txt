@@ -1,22 +1,23 @@
-Day Landing Clean 20261027DLC1
+Banner + Day landing fix 20261027BAN1
 
 Upload:
   index.html
-  assets/companion-inline/inline-clarity-day-landing-clean-v1.js  (new)
+  assets/companion-inline/inline-clarity-banner-restore-v1.js
+  assets/companion-inline/inline-clarity-day-landing-layout-v2.js
   assets/companion-inline/inline-clarity-shell-v3.js
   assets/companion-inline/inline-clarity-day-first-v1.js
 
 Fixes:
-  • Dual Companion/University path tiles removed from Day landing first screen
-  • Path-pill / doors-flow fight stopped on landing (no main flash)
-  • Shariah calm palette + source guard kept; data-shariah-calm asserted
-  • Banner soft nudge for Hijri/salah/temps stuck on Loading
-  • Meme shariah bg remains companion-lazy (canvas nature/architecture policy unchanged)
+  1) Hide Path-to-furnish-the-grave strip under banner on Day landing
+  2) Restore Companion path + University path dual tiles
+  3) Banner: AlAdhan salah + Hijri, Open-Meteo temps, Live button wires iframe
+  4) Banner controls CSS forced on (not print-deferred)
 
 Verify Incognito:
-  1) Day landing: no dual tiles under banner; routines only
-  2) Shell: Day landing | Companion path still works
-  3) Companion path: full RRRA + path tools return
-  4) Banner: salah/hijri should populate (may need location permission)
+  - No green "Path to furnish the grave" bar under banner
+  - Two path tiles visible
+  - Salah list fills (allow location or Edmonton fallback)
+  - Makkah/Madinah temps numbers
+  - Live button shows stream area
 
 Campus untouched. Educational only — not a fatwa.
