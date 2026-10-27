@@ -1,15 +1,4 @@
-Integrity Restore 20261027IR1 — smoked
+Day Room vault-pattern 20261027ROOM1
 
-Cause: layout-fortify + day-landing-layout observers fought the DOM.
-
-Fix: remove those script tags; single integrity-restore (no DOM observer loop).
-
-Upload:
-  index.html
-  assets/companion-inline/inline-clarity-integrity-restore-v1.js
-  assets/companion-inline/inline-clarity-shell-v3.js
-  assets/companion-inline/inline-clarity-day-first-v1.js
-  assets/companion-inline/inline-clarity-banner-restore-v1.js
-
-Purge CF + Incognito hard refresh.
-Campus untouched.
+Upload all 5 files. Purge CF. Incognito:
+  Day room on first visit · Companion path opens main · Vault unchanged
