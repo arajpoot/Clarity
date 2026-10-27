@@ -1,21 +1,31 @@
-CRITICAL FIX2 · 20261026FIX2
+Companion housekeeping · 20261026HK
 
-Root cause: path plaques JS still ran:
-  el.style.setProperty("display", "none", "important")
-on .clarity-gate-switcher — defeating CSS restore.
+SIMULATION FINDINGS (live clarity-dawah.fyi Companion):
+- 59 script tags, 0 HTTP missing, 0 src duplicates
+- 1 shared guard only: CLARITY_SECURITY_REPORT (micro-boot + security bundle — safe, both self-guard)
+- Path plaques v3 does NOT hide track (showTrack present)
+- notesLoad bare calls: none without define
+- const UFT_KEY: none
 
-Now:
-- plaques v3: showTrack() only, never hide
-- track-unhide-v1.js: MutationObserver + interval last word
-- university tile gets 🎓 / nuros-icon-campus
-- notesLoad shim v2 early in <head> (no defer)
+ACTIONS IN THIS PACKAGE:
+1. DROP from index: inline-322398e3fd.js (redundant late ALLOW soft-fill)
+2. RENAME hash ghosts → readable names:
+   - inline-96908bb2ed.js → inline-clarity-allow-boot-shim-v1.js
+   - inline-42564f0868.js → inline-clarity-workspace-frame-v1.js
+   - inline-982b3dbd78.js → inline-clarity-ls-memory-fallback-v1.js
+3. Single </body></html>
+4. Critical track/notes/icons hooks retained
 
-UPLOAD ALL of:
-  assets/companion-inline/inline-clarity_path_plaques_v1.js
-  assets/companion-track-unhide-v1.js
-  assets/companion-notesload-shim-v1.js
-  assets/companion-icons-v3-boot-v1.js
-  assets/css/companion-track-tiles-restore-v1.css
-  index.html (recommended)
+NOT dropped (need live UX pass):
+- path-progress + nuclear + grave curriculum (overlap but active)
+- polish + repair pair
+- security bundle (guards OK)
 
-Hard-refresh (or clear cache). Confirm Track: 1 Seeker · 2 New Muslim · 3 Daily · 4 Dai
+Campus /campus/ untouched.
+
+Upload:
+  index.html
+  assets/companion-inline/inline-clarity-allow-boot-shim-v1.js
+  assets/companion-inline/inline-clarity-workspace-frame-v1.js
+  assets/companion-inline/inline-clarity-ls-memory-fallback-v1.js
+Then optional delete old hash-named files on GitHub after verify.

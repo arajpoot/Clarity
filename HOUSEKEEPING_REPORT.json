@@ -1,0 +1,36 @@
+{
+  "build": "20261026HK",
+  "scripts_before": 59,
+  "scripts_after": 58,
+  "dropped_from_index": [
+    "assets/companion-inline/inline-322398e3fd.js"
+  ],
+  "renamed": [
+    {
+      "from": "assets/companion-inline/inline-96908bb2ed.js",
+      "to": "assets/companion-inline/inline-clarity-allow-boot-shim-v1.js",
+      "bytes": 4491
+    },
+    {
+      "from": "assets/companion-inline/inline-42564f0868.js",
+      "to": "assets/companion-inline/inline-clarity-workspace-frame-v1.js",
+      "bytes": 4743
+    },
+    {
+      "from": "assets/companion-inline/inline-982b3dbd78.js",
+      "to": "assets/companion-inline/inline-clarity-ls-memory-fallback-v1.js",
+      "bytes": 1283
+    }
+  ],
+  "duplicate_src_after": [],
+  "body_html_ok": true,
+  "campus_untouched": true,
+  "keep_list_policy": "Conservative: only drop proven redundant ALLOW soft-fill; rename hash ghosts; no campus files",
+  "recommend_monitor": [
+    "inline-bundle-security-v1.js vs micro-boot share CLARITY_SECURITY_REPORT (guards prevent double-run)",
+    "path-progress + path-nuclear + grave-path-curriculum \u2014 overlapping path UX; leave until next UX pass",
+    "companion_polish + companion_repair \u2014 sequential repairs; leave"
+  ],
+  "err_count": 0,
+  "errs": []
+}
