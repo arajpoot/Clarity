@@ -94,3 +94,10 @@ html[data-shell-mode="companion"] .path-to-grave {
 html[data-banner-hardened="1"] #banner-media {
   min-height: 12rem;
 }
+
+html[data-shell-mode="companion"] #main-content.page-wrapper,
+html[data-shell-mode="companion"] #main-content {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
