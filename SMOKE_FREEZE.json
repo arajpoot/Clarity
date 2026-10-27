@@ -1,0 +1,8 @@
+{
+  "build": "20261026FREEZE",
+  "err_count": 0,
+  "errs": [],
+  "cause": "MutationObserver on style + setInterval(force,3000) on track = style thrash freeze on refresh",
+  "fix": "Remove observer/interval; stable path binder without recursion storm; freeze-guard early",
+  "campus_untouched": true
+}

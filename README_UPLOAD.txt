@@ -1,18 +1,22 @@
-Path track STABLE · 20261026PATH2
+FREEZE FIX · 20261026FREEZE
 
-Problem:
-- path-progress applyContent() called switchTab(hub) → track pills jumped RRRA sections
-- Competing integrity scripts + removeChild on rails felt like "HTML disintegrating"
+Cause:
+- path plaques MutationObserver watched style/class on whole document
+- track-unhide setInterval(force, 3000) rewrote track styles
+- Together: infinite mutation → style → mutation loop → page freeze on refresh
 
 Fix:
-1. clarity-path-progress-v1.js (V5): NO switchTab after path change; no removeChild on path rail
-2. companion-path-track-stable-v1.js: gentle extent + mark active; no innerHTML/removeChild
-3. index: remove path-track-integrity; load stable AFTER path-progress
+1. plaques: MutationObserver removed
+2. track-unhide: setInterval removed
+3. path-track-stable: no intervals, single re-boot, applying lock
+4. freeze-guard early in <head>
 
 Upload ALL:
-  assets/clarity-path-progress-v1.js
-  assets/companion-path-track-stable-v1.js
+  assets/companion-freeze-guard-v1.js
+  assets/companion-track-unhide-v1.js
   assets/companion-inline/inline-clarity_path_plaques_v1.js
+  assets/companion-path-track-stable-v1.js
+  assets/clarity-path-progress-v1.js
   index.html
 
-Hard-refresh (clear cache). Test Track 1–4: cards filter by path; bottom Reminder/Reality/… stay put.
+Hard-refresh (or close tab and reopen). Page should paint without freeze.
