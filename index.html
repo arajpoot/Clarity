@@ -528,16 +528,7 @@ opacity:0!important;height:0!important;max-height:0!important;overflow:hidden!im
 <!-- welcome OBLITERATED -->
 <!-- start-chip OBLITERATED -->
 <audio id="quran-audio-dup1" preload="none" crossorigin="anonymous"></audio><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio>
-<section id="clarity-day-landing-room" class="clarity-room clarity-room-day" data-room="day-landing" aria-label="Day landing" hidden>
-  <div class="day-room-inner">
-    <div class="day-room-slot" data-day-slot="paths" id="day-slot-paths"></div>
-    <div class="day-room-slot" data-day-slot="verse" id="day-slot-verse"></div>
-    <div class="day-room-slot" data-day-slot="pulse" id="day-slot-pulse"></div>
-    <div class="day-room-slot" data-day-slot="adhkar" id="day-slot-adhkar"></div>
-    <div class="day-room-slot" data-day-slot="dayn" id="clarity-landing-slot-dayn"></div>
-    <div class="day-room-slot" data-day-slot="reminders" id="day-slot-reminders"></div>
-  </div>
-</section>
+<section id="clarity-day-landing-room" class="clarity-room clarity-room-day" data-room="day-landing" aria-label="Day landing" hidden><div class="day-room-inner"></div></section>
 
 <div id="main-application-workspace" class="">
 
@@ -2525,71 +2516,12 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 </script>
 <script src="assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261026s"></script>
 <script defer src="assets/companion-inline/inline-bundle-nuros-v1.js?v=20261026i"></script>
-<script src="assets/companion-inline/inline-clarity-shell-v3.js?v=20261027ROOM1"></script>
-<script src="/assets/companion-inline/inline-clarity-day-room-v1.js?v=20261027ROOM1"></script>
-<script src="/assets/companion-inline/inline-clarity-day-first-v1.js?v=20261027ROOM1"></script>
-<script src="/assets/companion-inline/inline-clarity-banner-restore-v1.js?v=20261027ROOM1"></script>
+<script src="assets/companion-inline/inline-clarity-shell-v3.js?v=20261027ROOM2"></script>
+<script src="/assets/companion-inline/inline-clarity-day-room-v2.js?v=20261027ROOM2"></script>
+<script src="/assets/companion-inline/inline-clarity-day-first-v1.js?v=20261027ROOM2"></script>
+<script src="/assets/companion-inline/inline-clarity-banner-restore-v1.js?v=20261027ROOM2"></script>
 
-<script>
-(function(w){
-  "use strict";
-  if (w.__CLARITY_COMPANION_LAZY_C8__) return;
-  w.__CLARITY_COMPANION_LAZY_C8__ = true;
-  var SRCS = ["assets/clarity-grave-path-curriculum-js.js", "assets/companion-inline/inline-96908bb2ed.js?v=20261025b", "assets/companion-inline/inline-42564f0868.js", "assets/companion-inline/inline-982b3dbd78.js", "assets/companion-inline/inline-clarity_callig_pad_boot.js", "assets/companion-inline/inline-clarity_online_sitewide_v1.js", "assets/companion-inline/inline-clarity_pedigree_plaque_v1.js", "assets/companion-inline/inline-322398e3fd.js", "assets/companion-inline/inline-clarity_uft_viewport_recover.js", "assets/companion-inline/inline-clarity_uft_print_fix_v2.js", "assets/companion-inline/inline-bundle-meme-v1.js?v=20261026i", "assets/companion-inline/inline-clarity-meme-shariah-bg-v1.js", "assets/companion-inline/inline-clarity-phase3-sources-v1.js", "assets/companion-inline/inline-clarity-phase-a-owners-v1.js", "assets/companion-inline/inline-clarity-phase-b-dual-v1.js", "assets/companion-inline/inline-clarity-phase-c-overflow-v1.js", "assets/companion-inline/inline-clarity-path-tiles-restore-v1.js", "assets/companion-inline/inline-clarity-shariah-obliterate-v1.js"];
-  var loaded = false;
-  function loadAll(){
-    if (loaded) return;
-    loaded = true;
-    SRCS.forEach(function(src){
-      try {
-        var s = document.createElement("script");
-        if (src.indexOf("http") === 0) s.src = src;
-        else if (src.charAt(0) === "/") s.src = src;
-        else s.src = "/" + src.replace(/^\//, "");
-        s.defer = true;
-        document.head.appendChild(s);
-      } catch (e) {}
-    });
-    ["/assets/css/nx-tajweed-deep-studio-v1.css","/assets/css/clarity-pedigree-plaque-css-v1.css"].forEach(function(href){
-      var leaf = href.split("/").pop();
-      if (document.querySelector('link[href*="'+leaf+'"]')) return;
-      var l = document.createElement("link");
-      l.rel = "stylesheet"; l.href = href;
-      document.head.appendChild(l);
-    });
-  }
-  function hook(){
-    try {
-      if (w.ClarityShell && w.ClarityShell.setMode && !w.ClarityShell.__lazyHooked) {
-        w.ClarityShell.__lazyHooked = true;
-        var _sm = w.ClarityShell.setMode.bind(w.ClarityShell);
-        w.ClarityShell.setMode = function(m){ _sm(m); if (m === "companion") loadAll(); };
-      }
-    } catch (e) {}
-  }
-  document.addEventListener("click", function(ev){
-    var t = ev.target, n = 0;
-    while (t && n < 5) {
-      var s = ((t.id||"")+" "+(t.className||"")+" "+(t.getAttribute&&t.getAttribute("data-crb")||"")).toLowerCase();
-      if (/companion|crb-comp|df-open|df-comp/.test(s)) { setTimeout(loadAll, 30); break; }
-      t = t.parentElement; n++;
-    }
-  }, true);
-  function boot(){
-    hook();
-    try {
-      if (localStorage.getItem("clarity_shell_mode_v1")==="companion" &&
-          sessionStorage.getItem("clarity_shell_user_pick_v1")==="1") loadAll();
-    } catch (e) {}
-  }
-  if (document.readyState==="loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot,60); });
-  else setTimeout(boot, 60);
-  w.addEventListener("load", function(){ setTimeout(hook, 100); });
-})(window);
-</script>
-
-<!-- ROOM1 retired: inline-clarity-landing-v3.js -->
-<script id="clarity-madinah-autoplay-v1" src="assets/companion-inline/inline-clarity_madinah_ap.js" defer></script>
+<!-- retired inline-clarity-landing-v3.js -->
 <!-- PhaseA disabled: inline-clarity_banner_repair.js -->
 <!-- PhaseA disabled: inline-clarity_banner_moon_v1.js -->
 <script id="clarity-surah-continue-v1" src="assets/companion-inline/inline-clarity_surah_cont.js" defer></script>
@@ -2668,17 +2600,10 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <!-- C3 lazy: inline-clarity-phase3-sources-v1.js -->
 <script src="assets/nuros-icons-apply-v3.js" defer></script>
 
-<script defer src="assets/companion-inline/inline-clarity-banner-harden-v1.js"></script>
-
-<!-- C3 lazy: inline-clarity-phase-a-owners-v1.js -->
-<!-- C3 lazy: inline-clarity-phase-b-dual-v1.js -->
-<!-- C3 lazy: inline-clarity-phase-c-overflow-v1.js -->
-<!-- C3 lazy: inline-clarity-path-tiles-restore-v1.js -->
-<!-- C3 lazy: inline-clarity-shariah-obliterate-v1.js -->
-<!-- ROOM1 retired: landing-v3-fortify -->
-<script defer src="assets/companion-inline/inline-clarity-dayn-ledger-v1.js?v=20261027LF1"></script>
+<!-- retired landing-v3-fortify -->
 <!-- CF beacon deduped -->
 <!-- CF beacon deduped -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
