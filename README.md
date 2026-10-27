@@ -1,21 +1,14 @@
-# Clarity Companion · Shariah phases 0–4
+# Restore University icon · path tracker · banner harden
 
-Delta package for companion only (campus untouched).
-
-## Contents
+## Delta
 - index.html
-- assets/css/nuros-icons-v3.css
-- assets/nuros-icons-apply-v3.js
-- assets/icons/*.svg
-- assets/companion-inline/inline-clarity-meme-shariah-bg-v1.js
-- assets/companion-inline/inline-clarity-phase3-sources-v1.js
-- SHARIAH_COMPANION_POLICY.md
+- assets/css/nuros-icons-v3.css (path strip + campus + banner contain)
+- assets/nuros-icons-apply-v3.js (force campus icon + restore 4 path tiles)
+- assets/companion-inline/inline-clarity-banner-harden-v1.js
+- assets/icons/* (incl. fixed campus mosque)
+- prior shariah meme lock scripts if present
 
-## Phases
-0 Icons campus fix + human emoji strip
-1 Meme BG lock
-2 Sitewide plaques
-3 Graded source helper
-4 Policy + smoke list
-
-Educational only — not a fatwa.
+## Fixes
+1. University dual-path icon forced (nuros-icon-campus)
+2. #clarity-grave-path-strip / 4 path tiles visible on companion
+3. Banner contain + stable attribute to reduce script flash
