@@ -1,19 +1,18 @@
-Path track integrity · 20261026PATH
+Integrity Scout · 20261026SCOUT
 
-PROBLEM:
-  clarity-path-progress-v1.js applyContent() did:
-    switchTab("reminder"|"action") after each Seeker/New Muslim/Daily/Da’i click
-  So track pills behaved like section pills instead of path-extent filters.
+Bound to Day landing plaque:
+  #cdl-trust-review-plaque
+  Button: #cdl-trust-review-btn → "Run Integrity Scout"
 
-FIX:
-  companion-path-track-integrity-v1.js
-  - Sets __clarityPathExtentOnly during path switches
-  - switchTab / clarityOpenSectionDoor swallow hub jumps while that flag is on
-  - Still runs clarityRequestPath (quiz/unlock) + applyGateSectionFilter (additive sections)
-  - Marks active .cgs-btn track pill
+Auto-runs once per session; manual re-run anytime.
+Checks + repairs:
+  notesLoad · RRRA panels · door rail · vault cross-wire
+  path track visibility · path extent · shell · day landing · icons
+  soft pills sync · university glyph
+
+Report renders inside the plaque. Log: localStorage clarity_integrity_scout_log_v1
+API: ClarityIntegrityScout.run() / .log()
 
 Upload:
-  assets/companion-path-track-integrity-v1.js
-  index.html (script after path-progress)
-
-Hard-refresh. Tap Track 1–4: content cards should expand/collapse by path; bottom RRRA pills stay independent.
+  assets/companion-integrity-scout-v1.js
+  index.html
