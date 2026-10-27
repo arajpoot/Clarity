@@ -113,3 +113,116 @@
   [300,900,1800,3200].forEach(function(ms){setTimeout(boot,ms);});
   document.addEventListener("clarity:companion-ready",boot);
 })(typeof window!=="undefined"?window:this);
+
+
+/* Restore: force dual-path campus icon + path strip visibility */
+(function(g){
+  "use strict";
+  if(g.__CLARITY_RESTORE_UI_V1__) return;
+  g.__CLARITY_RESTORE_UI_V1__ = true;
+
+  function forceCampusIcon(){
+    try{
+      var tiles = document.querySelectorAll(".dual-tile, [id*='dual-path'], [class*='dual-path']");
+      tiles.forEach(function(tile){
+        var t = (tile.textContent||"").toLowerCase();
+        if(!/university|campus/.test(t)) return;
+        // remove wrong icons
+        tile.querySelectorAll(":scope > .nuros-icon").forEach(function(n){
+          if(!/nuros-icon-campus/.test(n.className)) try{n.parentNode.removeChild(n);}catch(e){}
+        });
+        if(!tile.querySelector(".nuros-icon-campus")){
+          var el = document.createElement("span");
+          el.className = "nuros-icon nuros-icon-campus";
+          el.setAttribute("aria-hidden","true");
+          tile.insertBefore(el, tile.firstChild);
+          tile.setAttribute("data-nuros-iconized","1");
+        }
+      });
+    }catch(e){}
+  }
+
+  function restorePathTracker(){
+    try{
+      // Show grave path strip (4 path tiles)
+      var sels = [
+        "#clarity-grave-path-strip",
+        ".grave-path-strip",
+        ".path-to-grave",
+        "#clarity-path-rail",
+        ".gps-phases",
+        ".path-doors-grid"
+      ];
+      sels.forEach(function(sel){
+        document.querySelectorAll(sel).forEach(function(el){
+          el.style.setProperty("display", sel.indexOf("phases")>=0 || sel.indexOf("grid")>=0 ? "grid" : "block", "important");
+          el.style.setProperty("visibility", "visible", "important");
+          el.style.setProperty("opacity", "1", "important");
+          el.hidden = false;
+          el.removeAttribute("hidden");
+        });
+      });
+      // Gate switcher: keep as secondary if strip missing
+      var strip = document.querySelector("#clarity-grave-path-strip, .grave-path-strip, .path-to-grave");
+      var gate = document.querySelector(".clarity-gate-switcher");
+      if(gate){
+        if(strip && strip.offsetParent !== null && (strip.querySelectorAll(".gps-phase, .door, [data-gate]").length >= 3)){
+          // strip works — hide redundant TRACK bar
+          gate.style.setProperty("display","none","important");
+        } else {
+          // restore TRACK 4 buttons
+          gate.style.setProperty("display","flex","important");
+          gate.style.setProperty("visibility","visible","important");
+          gate.style.setProperty("opacity","1","important");
+          gate.hidden = false;
+        }
+      }
+      // companion mode: path tracker must show under hubs intro
+      if(document.documentElement.getAttribute("data-shell-mode")==="companion"){
+        if(strip){
+          strip.style.setProperty("display","block","important");
+        }
+      }
+    }catch(e){}
+  }
+
+  function hardenBanner(){
+    try{
+      var b = document.querySelector("#banner-media, .banner-media, #clarity-final-banner-controls-v2, [data-banner]");
+      if(!b) b = document.querySelector(".banner, #banner");
+      if(!b) return;
+      b.style.setProperty("contain","layout paint style");
+      b.style.setProperty("min-height", b.style.minHeight || "180px");
+      // prevent opacity thrash
+      var media = document.querySelector("#banner-media, #banner-live, #banner-img");
+      if(media){
+        media.style.setProperty("transition","opacity 0.25s ease");
+      }
+      // single still/live toggle: mark ready
+      document.documentElement.setAttribute("data-banner-hardened","1");
+    }catch(e){}
+  }
+
+  // Reduce banner script fighting: throttle live label updates
+  var _lastBannerTick = 0;
+  function throttleBanner(){
+    var now = Date.now();
+    if(now - _lastBannerTick < 800) return false;
+    _lastBannerTick = now;
+    return true;
+  }
+  g.__clarityBannerThrottle = throttleBanner;
+
+  function boot(){
+    forceCampusIcon();
+    restorePathTracker();
+    hardenBanner();
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  [200,600,1200,2000,3500].forEach(function(ms){ setTimeout(boot, ms); });
+  document.addEventListener("clarity:companion-ready", boot);
+  // On shell mode change
+  var obs = new MutationObserver(function(){ boot(); });
+  try{ obs.observe(document.documentElement, {attributes:true, attributeFilter:["data-shell-mode"]}); }catch(e){}
+})(typeof window!=="undefined"?window:this);
