@@ -1,12 +1,12 @@
 /**
- * clarity-banner-revamp-v1.js · 20261026BANNER2
+ * clarity-banner-revamp-v1.js · 20261026BANNER3
  * 24 masnūn / Qurʾānic duʿā collection · moon on calendar · Allah seal on Ṣalāh
  * Educational only — not a fatwa. Campus untouched.
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_BANNER_REVAMP_V2__) return;
-  g.__CLARITY_BANNER_REVAMP_V2__ = true;
+  if (g.__CLARITY_BANNER_REVAMP_V3__) return;
+  g.__CLARITY_BANNER_REVAMP_V3__ = true;
 
   var STILLS = [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg",
@@ -198,10 +198,9 @@
     moon.innerHTML =
       '<span class="moon-emoji" aria-hidden="true">' +
       moonEmoji(p) +
-      "</span>" +
-      '<span class="moon-lab">' +
-      moonLabel(p) +
       "</span>";
+    moon.setAttribute("aria-label", moonLabel(p));
+    moon.title = moonLabel(p);
 
     /* Moon on top of calendar */
     if (moon.parentNode !== cal || cal.firstElementChild !== moon) {
@@ -309,6 +308,40 @@
     }
   }
 
+  
+  function silenceMoonWording() {
+    try {
+      document.querySelectorAll(
+        ".banner-moon-plaque .moon-lab, #clarity-banner-moon-plaque .moon-lab, .hijri-cal-section .moon-lab"
+      ).forEach(function (el) { el.style.display = "none"; el.textContent = ""; });
+      /* Hide secondary moon widgets + their captions under the top graphic */
+      document.querySelectorAll(".hijri-cal-section .banner-moon, .hijri-cal-section .moon-phase-widget, .hijri-cal-section .moon-caption, .hijri-cal-section .moon-name").forEach(function (el) {
+        if (el.id === "clarity-banner-moon-plaque") return;
+        el.style.display = "none";
+      });
+      /* Top moon graphic from moon-v1: keep glyph, strip text nodes labeled phase */
+      document.querySelectorAll(".hijri-cal-section [class*='moon']").forEach(function (el) {
+        if (el.id === "clarity-banner-moon-plaque") return;
+        var t = (el.textContent || "").replace(/\s+/g, " ").trim();
+        if (/waning|waxing|gibbous|crescent|full moon|new moon|quarter/i.test(t) && el.children.length === 0) {
+          el.style.display = "none";
+        }
+      });
+      /* Specific: hide text-only phase labels */
+      document.querySelectorAll(".hijri-cal-section").forEach(function (sec) {
+        sec.querySelectorAll("div, span, p").forEach(function (el) {
+          if (el.closest("#clarity-banner-moon-plaque")) return;
+          if (el.closest(".hijri-cal-grid")) return;
+          if (el.id && /hijri|temp|cal-title|meta|event/.test(el.id)) return;
+          var t = (el.textContent || "").replace(/\s+/g, " ").trim();
+          if (/^(Waning|Waxing|Full|New|Last|First).{0,20}$/i.test(t) || /^WANING|^WAXING|^FULL MOON/i.test(t)) {
+            el.style.display = "none";
+          }
+        });
+      });
+    } catch (e) {}
+  }
+
   function boot() {
     try {
       var saved = parseInt(localStorage.getItem("clarity_rabbana_idx_v1") || "0", 10);
@@ -316,6 +349,7 @@
     } catch (e) {}
     paintRabbana();
     arrangePlaqueSeals();
+    silenceMoonWording();
     ensureCalendar();
     ensureClock();
     dedupeAudio();
@@ -332,3 +366,46 @@
     arrangePlaqueSeals: arrangePlaqueSeals
   };
 })(typeof window !== "undefined" ? window : this);
+
+
+/* companion-banner-moon-clean-v1 · 20261026BANNER3 */
+(function(){
+  if (window.__CLARITY_BANNER_MOON_CLEAN_V1__) return;
+  window.__CLARITY_BANNER_MOON_CLEAN_V1__ = true;
+  function clean(){
+    var sec = document.querySelector(".hijri-cal-section");
+    if (!sec) return;
+    /* Hide our secondary plaque entirely */
+    var p = document.getElementById("clarity-banner-moon-plaque");
+    if (p) p.style.display = "none";
+    /* Walk text-only phase labels */
+    sec.querySelectorAll("div, span, p, strong").forEach(function(el){
+      if (el.closest(".hijri-cal-grid")) return;
+      if (el.id && /hijri|temp|title|meta|event|cal-/.test(el.id)) return;
+      var t = (el.textContent||"").replace(/\s+/g," ").trim();
+      if (!t) return;
+      if (/^(WANING|WAXING|FULL|NEW|LAST|FIRST)/i.test(t) || /^(Waning|Waxing) (gibbous|crescent)$/i.test(t) || /^Full moon$/i.test(t) || /^New moon$/i.test(t)) {
+        /* if element is ONLY the label text, hide it */
+        if (el.children.length === 0 || (el.children.length === 1 && /emoji|icon|moon/i.test(el.children[0].className||""))) {
+          el.style.setProperty("display","none","important");
+        } else if (el.children.length && t.length < 28) {
+          /* parent that only holds phase word */
+          var onlyText = true;
+          for (var i=0;i<el.childNodes.length;i++) {
+            var n = el.childNodes[i];
+            if (n.nodeType === 3 && n.textContent.trim()) { onlyText = true; }
+          }
+          el.childNodes.forEach && null;
+          Array.prototype.forEach.call(el.childNodes, function(n){
+            if (n.nodeType === 3 && /waning|waxing|gibbous|crescent|full moon|new moon/i.test(n.textContent)) {
+              n.textContent = "";
+            }
+          });
+        }
+      }
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(clean, 100); setTimeout(clean, 600); });
+  else { setTimeout(clean, 100); setTimeout(clean, 600); }
+  window.addEventListener("load", function(){ setTimeout(clean, 300); });
+})();
