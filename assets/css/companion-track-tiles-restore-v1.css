@@ -1,0 +1,45 @@
+/* companion-track-tiles-restore-v1.css · 20261026FIX */
+.clarity-gate-switcher,
+.clarity-gate-switcher.rrra-sitewide,
+.cgs-btn-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  width: 100% !important;
+  margin: 0.5rem auto !important;
+  padding: 0.5rem 0.65rem !important;
+  box-sizing: border-box !important;
+}
+.clarity-gate-switcher .cgs-btn,
+.clarity-gate-switcher button.cgs-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  min-height: 2.5rem !important;
+}
+.clarity-gate-switcher .cgs-label {
+  display: inline-block !important;
+  font-size: 0.75rem !important;
+  opacity: 0.85 !important;
+  margin-right: 0.35rem !important;
+}
+/* icons */
+.nuros-icon {
+  display: inline-block !important;
+  width: 1.15em !important;
+  height: 1.15em !important;
+  vertical-align: -0.15em !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+}
