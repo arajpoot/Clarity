@@ -1,8 +1,16 @@
-University pages clean 20261023UNI
+Clarity Companion Day-First 20261027DF2 (HTML included)
 
-Rebuilt: faculty · bots · grading · portal (same pattern as desk)
-Light-cleaned: charter · lab · lab/arabic · library · orientation (CF/junk strip)
+UPLOAD TO MAIN ROOT (Companion only — do not replace campus/):
+  index.html
+  assets/companion-inline/inline-clarity-shell-v3.js
+  assets/companion-inline/inline-clarity-day-first-v1.js
 
-Upload all paths. Purge CF.
-Incognito each: /campus/faculty.html · bots · grading · portal
-Companion untouched.
+Then Cloudflare Purge Everything.
+
+VERIFY Incognito:
+  1) / opens Day landing (āyah strip + routines)
+  2) Companion path → opens full path
+  3) New Incognito → landing again
+  4) /campus/ unchanged
+
+Educational only — not a fatwa.
