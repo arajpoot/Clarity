@@ -1,21 +1,12 @@
-# Landing-v3 fortify (delta only)
+# Dayn v2 mount fix (delta)
 
-## Live findings
-- `build()` removes `#clarity-day-landing` then rebuilds once (`__CDL_V12_BUILT__`)
-- Does **not** dispatch `clarity:landing-ready`
-- ~57KB JS; 5s salah countdown intervals (hidden-tab aware)
-- Dayn was mounting outside root → easy to miss visually / order races
-
-## This delta
-1. `inline-clarity-landing-v3-fortify-v1.js` — stable `#clarity-landing-slot-dayn` inside landing + ready event
-2. Dayn JS prefers that slot
-3. Cache-bust via query on deploy
+Live issue: vault uses `.amana-vault-interior` / `#amana-family-tree-lite` / `#ahr-debts` — not `#tab-amanah`.
+Landing needs host **inside** `#clarity-day-landing`.
 
 ## Deploy only
-```
-assets/companion-inline/inline-clarity-landing-v3-fortify-v1.js
-assets/companion-inline/inline-clarity-dayn-ledger-v1.js
-```
-Plus one index.html line to load fortify (if not already).
+- assets/companion-inline/inline-clarity-dayn-ledger-v2.js (NEW)
+- assets/companion-inline/inline-clarity-landing-v3-fortify-v1.js (if not already)
+- assets/css/clarity-dayn-ledger-v1.css (if not already)
+- index.html: add v2 script (see INDEX_SNIPPET.txt); can leave v1 or remove to avoid double UI
 
-Optional perf later: defer landing-v3 with `defer`, lengthen countdown to 15–30s inside upstream file.
+Prefer **only v2** script tag to avoid duplicate cards.
