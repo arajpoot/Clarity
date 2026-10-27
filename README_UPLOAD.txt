@@ -1,13 +1,16 @@
-Companion clean cycle · 20261024UFT
+Companion error sweep · 20261026FIX
 
-CRITICAL FIX: Uncaught SyntaxError Identifier UFT_KEY already declared
-File: assets/clarity-uft-full-restore-v1.js
-- Removed top-level const UFT_KEY
-- Use window.UFT_KEY + var UFT_KEY inside guarded IIFE
+Fixes from live review:
+1. Four track path tiles missing — path plaques CSS had display:none on .clarity-gate-switcher
+2. notesLoad is not defined — early shim + bind to recovery
+3. Icons v3 not applying reliably — boot ensures CSS + reapply
+4. HTML structure — single body/html close
 
-Also includes prior lean + dedupe + companion guide.
+ESSENTIALS upload (Companion only, campus untouched):
+  assets/companion-inline/inline-clarity_path_plaques_v1.js
+  assets/companion-notesload-shim-v1.js
+  assets/companion-icons-v3-boot-v1.js
+  assets/css/companion-track-tiles-restore-v1.css
+  index.html  (optional full; or inject tags from INJECT.txt)
 
-Upload at minimum:
-  assets/clarity-uft-full-restore-v1.js
-
-Full package: index.html + assets/ as in zip.
+Hard-refresh Companion home. Confirm Track: Seeker · New Muslim · Daily · Dai visible.
