@@ -1,4 +1,4 @@
-/* companion-quiz-to-day-v1.css · 20261026NIGHT */
+/* companion-quiz-to-day-v1.css · 20261026QUIZ2 — own full-width section */
 #cdl-quiz-section.cdl-quiz-section {
   display: block !important;
   width: 100% !important;
@@ -7,6 +7,30 @@
   padding: 0.75rem 0.85rem 1rem;
   box-sizing: border-box;
   clear: both;
+  float: none !important;
+  grid-column: 1 / -1 !important; /* if parent is grid */
 }
-#cdl-fiqh-quiz-slot #fiqh-quiz-card { width: 100% !important; max-width: 100% !important; }
-.cdl-trust-grid .cdl-quiz-section { display: none !important; }
+#cdl-quiz-section .cdl-quiz-section-head {
+  margin-bottom: 0.5rem;
+}
+#cdl-quiz-section .cdl-h {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+}
+#cdl-fiqh-quiz-slot,
+#cdl-quiz-section .cdl-fiqh-quiz-slot {
+  display: block !important;
+  width: 100% !important;
+}
+#cdl-fiqh-quiz-slot #fiqh-quiz-card,
+#cdl-quiz-section #fiqh-quiz-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0.35rem 0 0 !important;
+  box-sizing: border-box;
+}
+/* Never sit in trust plaque grid columns */
+.cdl-trust-grid #cdl-quiz-section,
+.cdl-trust-grid #fiqh-quiz-card {
+  grid-column: 1 / -1;
+}
