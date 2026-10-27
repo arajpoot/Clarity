@@ -1,14 +1,21 @@
-# Restore University icon · path tracker · banner harden
+# Clarity Companion · Phases A–E essentials
 
-## Delta
-- index.html
-- assets/css/nuros-icons-v3.css (path strip + campus + banner contain)
-- assets/nuros-icons-apply-v3.js (force campus icon + restore 4 path tiles)
-- assets/companion-inline/inline-clarity-banner-harden-v1.js
-- assets/icons/* (incl. fixed campus mosque)
-- prior shariah meme lock scripts if present
+## Phase A — Single owners
+- Banner thrash intervals blocked; nuclear/repair/moon/live-harden disabled in index
+- Path: grave strip preferred over TRACK bar
+- Icons: NurOS v3 only
 
-## Fixes
-1. University dual-path icon forced (nuros-icon-campus)
-2. #clarity-grave-path-strip / 4 path tiles visible on companion
-3. Banner contain + stable attribute to reduce script flash
+## Phase B — Dual paths
+- Stable #dual-path-university / #dual-path-companion
+- Force campus + companion plaques
+
+## Phase C — Workspace
+- Companion main overflow visible via CSS + JS
+
+## Phase D — Load hygiene
+- Competing scripts commented out in index
+
+## Phase E — Smoke
+- See SMOKE_AE.json after sim
+
+Campus untouched. Educational only — not a fatwa.
