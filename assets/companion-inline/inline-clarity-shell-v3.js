@@ -220,6 +220,27 @@
       }
     }
 
+
+    /* Vault-pattern door: Day room vs Companion main */
+    var dayRoom = document.getElementById("clarity-day-landing-room");
+    if (dayRoom) {
+      if (m === "landing") {
+        dayRoom.hidden = false;
+        dayRoom.style.setProperty("display", "block", "important");
+        dayRoom.removeAttribute("aria-hidden");
+      } else {
+        dayRoom.hidden = true;
+        dayRoom.style.setProperty("display", "none", "important");
+        dayRoom.setAttribute("aria-hidden", "true");
+      }
+    }
+    /* Hide legacy injected day landing if present */
+    var legacy = document.getElementById("clarity-day-landing");
+    if (legacy) {
+      legacy.style.setProperty("display", "none", "important");
+      legacy.setAttribute("aria-hidden", "true");
+    }
+
     if (m === "companion" && typeof w.ClarityLoadCompanion === "function") {
       try { w.ClarityLoadCompanion(); } catch (e) {}
     }
