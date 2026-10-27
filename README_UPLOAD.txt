@@ -1,11 +1,15 @@
-Quiz own section · 20261026QUIZ2
+Quiz → Day landing · 20261026QUIZ
 
-#cdl-quiz-section is a full-width Day landing block BEFORE trust/review plaques.
-#fiqh-quiz-card moves into #cdl-fiqh-quiz-slot inside that section.
-Not nested in Auto review / trust grid.
+Moves #fiqh-quiz-card (Sharia IQ & Daily Fiqh) into Day landing
+immediately BEFORE Auto review plaque.
+
+Method: DOM appendChild move (keeps all siq* handlers & online fetch).
 
 Upload:
   assets/companion-inline/inline-clarity-landing-v3.js
   assets/companion-quiz-to-day-v1.js
   assets/css/companion-quiz-to-day-v1.css
   index.html
+
+Hard-refresh → Day landing: quiz appears above Auto review.
+Action tab no longer holds the quiz block.
