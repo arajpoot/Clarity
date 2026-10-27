@@ -1,0 +1,101 @@
+
+/* 4 path tiles restore */
+#clarity-grave-path-strip,
+.grave-path-strip {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin: 0.65rem auto 0.85rem !important;
+  max-width: 52rem;
+  padding: 0.75rem 0.85rem !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(15, 76, 58, 0.2) !important;
+  background: linear-gradient(145deg, rgba(15, 76, 58, 0.1), rgba(15, 76, 58, 0.03)) !important;
+  box-sizing: border-box !important;
+}
+html[data-theme="dark"] #clarity-grave-path-strip,
+html[data-theme="night"] #clarity-grave-path-strip {
+  border-color: rgba(212, 180, 90, 0.22) !important;
+  background: linear-gradient(145deg, rgba(12, 40, 32, 0.95), rgba(8, 28, 22, 0.9)) !important;
+}
+#clarity-grave-path-strip .gps-title {
+  margin: 0 0 0.15rem !important;
+  font-size: 1.05rem !important;
+  text-align: center !important;
+  color: #5b4a8a;
+  font-weight: 700;
+}
+html[data-theme="dark"] #clarity-grave-path-strip .gps-title {
+  color: #c4b5fd;
+}
+#clarity-grave-path-strip .gps-goal {
+  margin: 0 0 0.55rem !important;
+  font-size: 0.8rem !important;
+  text-align: center !important;
+  opacity: 0.85;
+}
+#clarity-grave-path-strip .gps-phases {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.45rem !important;
+}
+@media (max-width: 720px) {
+  #clarity-grave-path-strip .gps-phases {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+#clarity-grave-path-strip .gps-phase {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.2rem !important;
+  text-align: left !important;
+  padding: 0.55rem 0.6rem !important;
+  border-radius: 12px !important;
+  border: 1.5px solid rgba(15, 76, 58, 0.18) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  cursor: pointer !important;
+  font: inherit !important;
+  color: inherit !important;
+  min-height: 7.5rem;
+}
+html[data-theme="dark"] #clarity-grave-path-strip .gps-phase,
+html[data-theme="night"] #clarity-grave-path-strip .gps-phase {
+  background: rgba(15, 40, 32, 0.75) !important;
+  border-color: rgba(212, 180, 90, 0.2) !important;
+  color: #e7efe9 !important;
+}
+#clarity-grave-path-strip .gps-phase.is-active {
+  border-color: rgba(201, 162, 39, 0.65) !important;
+  box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.25);
+}
+#clarity-grave-path-strip .gps-ico {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+#clarity-grave-path-strip .gps-phase-title {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #5b4a8a;
+}
+html[data-theme="dark"] #clarity-grave-path-strip .gps-phase-title {
+  color: #ddd6fe;
+}
+#clarity-grave-path-strip .gps-phase-goal {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+#clarity-grave-path-strip .gps-phase-focus {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #b45309;
+  margin-top: 0.15rem;
+}
+html[data-theme="dark"] #clarity-grave-path-strip .gps-phase-focus {
+  color: #fbbf24;
+}
+html[data-shell-mode="companion"] #clarity-grave-path-strip {
+  display: block !important;
+}
