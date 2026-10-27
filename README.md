@@ -1,10 +1,7 @@
-# Restore 4 path tiles
+# Shariah campus icon obliterate
 
-Injects #clarity-grave-path-strip with Seeker / New Muslim / Daily / Da'i tiles.
-Wires claritySwitchGate on click. Hides redundant TRACK bar when strip is live.
+- Mosque-only university plaque (no cross-bar)
+- CSS + JS force
+- Scrub church/cross unicode + human emoji on pedigree
 
-Deploy:
-- index.html
-- assets/css/clarity-path-tiles-restore-v1.css
-- assets/companion-inline/inline-clarity-path-tiles-restore-v1.js
-(+ prior AE essentials if needed)
+Educational only — not a fatwa. Campus /campus/ tree untouched.
