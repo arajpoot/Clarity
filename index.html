@@ -1,61 +1,40 @@
 <!DOCTYPE html><html data-amana-session="locked" data-theme="light" lang="en" data-shell-mode="landing"><head>
+<style id="clarity-url-first-paint">
+/* URL shell first paint · 20261028URLSHELL */
+html[data-shell-mode="companion"] #clarity-day-landing-room { display: none !important; }
+html[data-shell-mode="day"] #main-content,
+html[data-shell-mode="landing"] #main-content { display: none !important; }
+html[data-shell-mode="day"] .clarity-gate-switcher,
+html[data-shell-mode="landing"] .clarity-gate-switcher { display: none !important; height: 0 !important; min-height: 0 !important; }
+</style>
+<script>
+/* URL shell: set mode attribute BEFORE paint from query — ends first-visit war */
+(function(){
+  try {
+    var q = new URLSearchParams(location.search);
+    var s = (q.get("shell") || "").toLowerCase();
+    var h = (location.hash || "").toLowerCase();
+    var m = null;
+    if (s === "companion" || s === "main") m = "companion";
+    else if (s === "day" || s === "landing") m = "day";
+    else if (h === "#companion" || h === "#reminder" || h === "#shell=companion") m = "companion";
+    else if (h === "#day" || h === "#shell=day") m = "day";
+    else {
+      try {
+        var ls = localStorage.getItem("clarity_shell_mode_v1");
+        if (ls === "companion") m = "companion";
+        else m = "day";
+      } catch (e) { m = "day"; }
+    }
+    document.documentElement.setAttribute("data-shell-mode", m);
+  } catch (e) {}
+})();
+</script>
+
 <script id="clarity-sticky-mode-early">
 (function(){var KEY="clarity_shell_mode_v1",PICK="clarity_shell_user_pick_v1";try{var m=localStorage.getItem(KEY);if(m!=="landing"&&m!=="companion"){m="landing";localStorage.setItem(KEY,m);}if(m==="companion"||localStorage.getItem(PICK)==="1"){try{sessionStorage.setItem(PICK,"1");}catch(e){}try{localStorage.setItem(PICK,"1");}catch(e){}}document.documentElement.setAttribute("data-shell-mode",m);}catch(e){document.documentElement.setAttribute("data-shell-mode","landing");}})();
 </script>
-<style id="clarity-p0-first-paint">
-/* P0 first-paint lock · 20261027P0P9 — before any script */
-html[data-shell-mode="landing"] .clarity-gate-switcher,
-html[data-shell-mode="landing"] .rrra-sitewide,
-html[data-shell-mode="landing"] .cgp-track-plaque,
-html[data-shell-mode="landing"] .cgs-btn,
-html:not([data-shell-mode="companion"]) .clarity-gate-switcher,
-html:not([data-shell-mode="companion"]) .rrra-sitewide,
-html:not([data-shell-mode="companion"]) .cgp-track-plaque {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  max-height: 0 !important;
-  min-height: 0 !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  position: absolute !important;
-  left: -9999px !important;
-  border: none !important;
-}
-html:not([data-shell-mode="companion"]) #clarity-dual-path,
-html:not([data-shell-mode="companion"]) .clarity-dual-path,
-html[data-shell-mode="landing"] #clarity-dual-path {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-}
-html:not([data-shell-mode="companion"]) #clarity-provision-home,
-html:not([data-shell-mode="companion"]) .clarity-provision-home {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-}
-html:not([data-shell-mode="companion"]) #clarity-door-rail,
-html:not([data-shell-mode="companion"]) .door-rail-bottom {
-  display: none !important;
-  height: 0 !important;
-}
-html:not([data-shell-mode="companion"]) #main-content {
-  display: none !important;
-}
-html[data-shell-mode="landing"] #clarity-day-landing-room,
-html:not([data-shell-mode="companion"]) #clarity-day-landing-room {
-  display: block !important;
-  visibility: visible !important;
-}
-</style>
+
 
 <style id="clarity-paint-shell">
 html{background:#f6f1e7;color:#1c2a22}
@@ -2903,9 +2882,9 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </script>
 
 
-<script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261027P0P9"></script>
-<script src="assets/companion-inline/inline-clarity-day-room-v3.js?v=20261027R1"></script>
-<script src="assets/companion-inline/inline-clarity-day-vault.js?v=20261027F5"></script>
+<script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261028URLSHELL"></script>
+<script src="assets/companion-inline/inline-clarity-day-room-v3.js?v=20261028URLSHELL"></script>
+<script src="assets/companion-inline/inline-clarity-day-vault.js?v=20261028URLSHELL"></script>
 <script defer src="/assets/clarity-chunk-8.js?v=20261027RECOVERY"></script>
 <script defer src="/assets/clarity-aux-pack-v1.js?v=20261027RECOVERY"></script>
 
@@ -2917,11 +2896,12 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="assets/companion-inline/inline-clarity-day-section-order-v1.js?v=20261027F5"></script>
 <script src="assets/companion-inline/inline-clarity-qada-calendar-v1.js?v=20261027G1"></script>
 <script src="assets/companion-inline/inline-clarity-day-fortify-ctrl-v1.js?v=20261027R1"></script>
-<script src="assets/companion-inline/inline-clarity-day-flow-v3.js?v=20261027ISO1"></script>
+<script src="assets/companion-inline/inline-clarity-day-flow-v3.js?v=20261028URLSHELL"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script src="assets/companion-inline/inline-clarity-single-switch-v1.js?v=20261028SEAL"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 
 </html>

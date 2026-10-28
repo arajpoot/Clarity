@@ -1,19 +1,25 @@
-DAY P0→P9 COMPLETE 20261027P0P9
+URL SHELL architecture 20261028URLSHELL
 
-P0 First-paint: html data-shell-mode=landing + critical CSS in <head>
-P1 TRACK kill: specificity > aux-pack; repeated suppress on Day only
-P2 Shell: Day room only under plaque on landing
-P3 Core: dual path + Do this today + 2:153 (inside room)
-P4 Prayer: next salah + tasbeeh + Qibla compass
-P5 Adhkār morning/evening cycle
-P6 Long stay + send light + protection
-P7 Wuḍūʾ/prayer folds + qaḍāʾ + Dayn
-P8 Review plaques + © footer
-P9 Smoke inventory: all checks passed
+ONE OWNER — ends the mode war.
 
-Upload ALL 4 files. Purge CF completely. Incognito cold load.
+URL is source of truth:
+  /?shell=day         → Day landing
+  /?shell=companion   → Companion (sticky on refresh)
 
-Expected Day: NO track bar flash, full scroll content.
-Companion path: tools + optional TRACK + bottom rail.
+On switch, shell writes ?shell= into the address bar via history.replaceState.
+Refresh keeps Companion if URL still says companion.
+
+Changes:
+  · Replaced shell-v3 with URL shell (no first-visit force)
+  · day-vault is PASSIVE CSS only (never sets mode)
+  · day-room fills only when mode is day
+  · 4-path TRACK restored on Companion only; killed on Day
+  · Inline head script sets data-shell-mode from URL before paint
+
+Upload all files. Purge CF. Test:
+  1) Open site → Day
+  2) Companion path → URL shows ?shell=companion
+  3) Refresh → still Companion, no Day cards
+  4) Day landing → URL ?shell=day, no TRACK bar
 
 Campus untouched. Educational only — not a fatwa.
