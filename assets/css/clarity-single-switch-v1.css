@@ -1,0 +1,65 @@
+
+/* Obliterate shell reopen multi-pill bar chrome — we replace content via JS */
+#clarity-reopen-bar .crb-btn,
+#clarity-reopen-bar .crb-open,
+#clarity-reopen-bar .crb-hide,
+#clarity-reopen-bar .crb-comp,
+#clarity-shell-switcher,
+#clarity-day-switch-bar,
+button[data-crb],
+.shell-pill {
+  /* individual legacy buttons hidden; bar may hold one rebuilt pill */
+}
+#clarity-reopen-bar button:nth-child(n+2) {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* Single destination pill look on reopen bar */
+#clarity-reopen-bar {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0 !important;
+  max-width: min(20rem, 92vw);
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-radius: 999px !important;
+  padding: 0.3rem !important;
+}
+#clarity-reopen-bar #clarity-single-switch,
+#clarity-reopen-bar button.crb-single {
+  display: block !important;
+  width: 100%;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 0.45rem 1.1rem !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  cursor: pointer;
+  background: #0d4f3c !important;
+  color: #f7f1e6 !important;
+  position: relative !important;
+  left: auto !important;
+}
+html[data-theme="dark"] #clarity-reopen-bar #clarity-single-switch,
+html[data-theme="night"] #clarity-reopen-bar #clarity-single-switch {
+  background: #c9a84c !important;
+  color: #0c241c !important;
+}
+
+html[data-shell-mode="companion"] #clarity-day-landing-room {
+  display: none !important;
+  visibility: hidden !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing-room {
+  display: block !important;
+  visibility: visible !important;
+}
