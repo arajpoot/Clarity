@@ -5,6 +5,12 @@
  */
 (function (w) {
   "use strict";
+  /* URLSHELL_GUARD: never fill or unhide on companion */
+  function __shellIsDay() {
+    var m = document.documentElement.getAttribute("data-shell-mode");
+    return m !== "companion";
+  }
+
   if (w.__CLARITY_DAY_ROOM_P9__) return;
   w.__CLARITY_DAY_ROOM_P9__ = true;
   w.__CLARITY_DAY_ROOM_V3__ = true;
@@ -141,6 +147,7 @@
   }
 
   function fill(room) {
+    if (!__shellIsDay()) return;
     if (!room) return;
     var _in0 = room.querySelector(".day-room-inner");
     /* RECOVERY: empty room must always fill — never seal an empty landing */
@@ -519,6 +526,7 @@
   }
 
   function boot() {
+    if (!__shellIsDay()) return;
     var room = document.getElementById("clarity-day-landing-room");
     if (!room) return;
     fill(room);
