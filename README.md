@@ -1,16 +1,11 @@
-# Clarity Day Shell FINAL (2026-10-28)
+# Single switch v1
 
-Delta only — deploy these files:
+- Obliterates #clarity-reopen-bar multi-pills (Day landing | Companion path | Hide)
+- One destination pill only
+- sessionStorage clarity_shell_user_pick_v1 always set — stops shell first-visit force landing
+- Sticky companion on refresh
 
+Deploy:
 - index.html
-- assets/css/clarity-day-isolate-v1.css
-- assets/companion-inline/inline-clarity-day-isolate-v1.js
-
-## Behavior
-- No first-paint force-landing fighter
-- One switch pill only (#clarity-day-switch-bar)
-- localStorage clarity_shell_mode_v1 sticky (landing | companion)
-- Day room sealed on companion mode
-- Legacy multi-bars / Hide for now nuked
-
-Hard-refresh after deploy.
+- assets/css/clarity-single-switch-v1.css
+- assets/companion-inline/inline-clarity-single-switch-v1.js
