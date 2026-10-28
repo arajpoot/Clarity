@@ -22,14 +22,21 @@
   function unhide() {
     var r = room();
     if (!r) return;
+    /* ISOLATE: never unhide day room on companion shell */
+    if (document.documentElement.getAttribute("data-shell-mode") === "companion") {
+      try {
+        r.setAttribute("hidden", "");
+        r.hidden = true;
+        r.style.setProperty("display", "none", "important");
+      } catch (e) {}
+      return;
+    }
     try {
       r.removeAttribute("hidden");
       r.hidden = false;
-      if (document.documentElement.getAttribute("data-shell-mode") !== "companion") {
-        r.style.setProperty("display", "block", "important");
-        r.style.setProperty("visibility", "visible", "important");
-        r.style.setProperty("opacity", "1", "important");
-      }
+      r.style.setProperty("display", "block", "important");
+      r.style.setProperty("visibility", "visible", "important");
+      r.style.setProperty("opacity", "1", "important");
     } catch (e) {}
   }
 
