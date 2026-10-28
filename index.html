@@ -1,6 +1,6 @@
 <!DOCTYPE html><html data-amana-session="locked" data-theme="light" lang="en" data-shell-mode="landing"><head>
-<script id="clarity-shell-mode-boot">
-(function(){try{var m=localStorage.getItem("clarity_shell_mode_v1");if(m!=="companion"&&m!=="landing")m="landing";document.documentElement.setAttribute("data-shell-mode",m);}catch(e){document.documentElement.setAttribute("data-shell-mode","landing");}})();
+<script id="clarity-sticky-mode-early">
+(function(){var KEY="clarity_shell_mode_v1",PICK="clarity_shell_user_pick_v1";try{var m=localStorage.getItem(KEY);if(m!=="landing"&&m!=="companion"){m="landing";localStorage.setItem(KEY,m);}if(m==="companion"||localStorage.getItem(PICK)==="1"){try{sessionStorage.setItem(PICK,"1");}catch(e){}try{localStorage.setItem(PICK,"1");}catch(e){}}document.documentElement.setAttribute("data-shell-mode",m);}catch(e){document.documentElement.setAttribute("data-shell-mode","landing");}})();
 </script>
 <style id="clarity-p0-first-paint">
 /* P0 first-paint lock · 20261027P0P9 — before any script */
@@ -496,7 +496,7 @@ body[data-active-tab="reminder"] #tajweed-live-card,body[data-active-tab="remind
 <link rel="stylesheet" href="assets/css/clarity-qada-calendar-v1.css?v=20261027G1">
 <link rel="stylesheet" href="assets/css/clarity-day-landing-fortified-v1.css?v=20261027R1">
 <link rel="stylesheet" href="assets/css/clarity-day-flow-v3.css?v=20261027FL3">
-<link rel="stylesheet" href="assets/css/clarity-single-switch-v1.css?v=20261028SS1">
+<link rel="stylesheet" href="assets/css/clarity-single-switch-v1.css?v=20261028STICKY">
 </head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
@@ -2920,7 +2920,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="assets/companion-inline/inline-clarity-day-flow-v3.js?v=20261027ISO1"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="assets/companion-inline/inline-clarity-single-switch-v1.js?v=20261028SS1"></script>
+<script src="assets/companion-inline/inline-clarity-single-switch-v1.js?v=20261028STICKY"></script>
 </body>
 
 </html>
