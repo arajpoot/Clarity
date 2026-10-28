@@ -1,0 +1,16 @@
+{
+  "phases": "C1-C6",
+  "smoke": {
+    "room": true,
+    "data_room_filled": "9",
+    "children_stable": 16,
+    "no_rebuild_after_2_5s": true,
+    "dayn_enrich": "3",
+    "dayn_form": true,
+    "compass_present": true,
+    "ClarityDayRoom.stability": "C1",
+    "version": 10,
+    "caught_from_stability": []
+  },
+  "note": "notesLoad error may appear if full live script graph not mirrored in sandbox"
+}

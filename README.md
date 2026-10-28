@@ -1,14 +1,13 @@
-# Day landing Dayn enrichment v3 (delta)
+# Day landing stability C1–C6
 
-Self-contained enhancement of day-room `#clarity-landing-slot-dayn`:
-- Qard ḥasan required checkbox
-- Structured ledger + repay/settle
-- Education + tutorial
-- Vault registry panel
+- day-room-v3: softer ensure, fewer boots, qibla orientation throttle
+- day-vault: 12s interval (was 1s)
+- dayn-enrich: no body MutationObserver; day-room-ready; fewer retries
+- CSS: shell visibility + compass will-change
 
-Deploy only:
+Deploy:
 - index.html
-- assets/css/clarity-dayn-enrich-v3.css
+- assets/companion-inline/inline-clarity-day-room-v3.js
+- assets/companion-inline/inline-clarity-day-vault.js
 - assets/companion-inline/inline-clarity-dayn-enrich-v3.js
-
-Educational only — not a fatwa.
+- assets/css/clarity-day-room-stability-v1.css
