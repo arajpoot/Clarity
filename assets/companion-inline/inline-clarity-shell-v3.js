@@ -21,7 +21,7 @@
   function setMode(m) {
     if (m !== "landing" && m !== "companion") return;
     try { localStorage.setItem(KEY, m); } catch (e) {}
-    try { sessionStorage.setItem("clarity_shell_user_pick_v1", "1"); } catch (e2) {}
+    try { sessionStorage.setItem("clarity_shell_user_choice", m); } catch (e) {}
     apply();
   }
 
@@ -51,11 +51,7 @@
       "#clarity-visit-pill-bar,.clarity-visit-strip,#clarity-visit-strip,",
       ".visit-strip[data-day-landing],.day-landing-footer-bar{",
       "  display:none!important;}",
-      ".shell-landing-hide{display:none!important;}",
-      "/* Restore first-landing overview when marked */",
-      "html[data-shell-mode=landing] #clarity-welcome,",
-      "html[data-shell-mode=landing] #clarity-three-doors,",
-      "html[data-shell-mode=landing] [data-landing-overview]{display:block!important;}"
+      ".shell-landing-hide{display:none!important;}"
     ].join("\n");
     (document.head || document.documentElement).appendChild(s);
   }
@@ -68,7 +64,6 @@
       bar.setAttribute("role", "toolbar");
       bar.setAttribute("aria-label", "Day landing and companion");
     }
-    bar.setAttribute("data-landing", "pill");
     bar.innerHTML =
       '<span class="crb-ico" aria-hidden="true">🏠</span>' +
       '<span class="crb-pill" id="crb-mode-pill">Day landing</span>' +
@@ -145,9 +140,14 @@
       if (hideBtn) hideBtn.style.display = "";
       if (compBtn) compBtn.style.display = "";
       if (pill) pill.textContent = "Day landing";
-      /* Day landing only through oath + study cards. Companion hubs via path tiles. */
-      document.querySelectorAll("#main-content .tab-panel, #main-content .rrra-hub, #main-content .rrra-hub-hero").forEach(function (el) {
+      document.querySelectorAll(".tab-panel, .rrra-hub, .rrra-hub-hero").forEach(function (el) {
+        if (el.closest && el.closest("#clarity-day-landing")) return;
         el.classList.add("shell-landing-hide");
+      });
+      document.querySelectorAll("h2, h3").forEach(function (h) {
+        if (!/Path to furnish|Phased learning/i.test(h.textContent || "")) return;
+        var box = h.closest("section, article, .card, .panel, div");
+        if (box && box.id !== "clarity-day-landing") box.classList.add("shell-landing-hide");
       });
     } else {
       if (land) { land.hidden = true; land.style.display = "none"; }
@@ -158,51 +158,6 @@
       document.querySelectorAll(".shell-landing-hide").forEach(function (el) {
         el.classList.remove("shell-landing-hide");
       });
-      /* Reveal companion surface immediately — do not wait for refresh */
-      try {
-        var mainNow = document.getElementById("main-content") || document.querySelector(".main-content");
-        if (mainNow) {
-          mainNow.style.setProperty("display", "block", "important");
-          mainNow.style.setProperty("visibility", "visible", "important");
-          mainNow.removeAttribute("aria-hidden");
-          mainNow.hidden = false;
-        }
-        document.querySelectorAll("#main-content .tab-panel, #main-content .rrra-hub").forEach(function (el) {
-          el.classList.remove("shell-landing-hide");
-        });
-        var tabId = "reminder";
-        try {
-          var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
-          if (/^(reminder|reality|reflection|action|notes)$/.test(h)) tabId = h;
-          else {
-            var s = w.sessionStorage && w.sessionStorage.getItem("clarity_active_section_v1");
-            if (s && /^(reminder|reality|reflection|action|notes)$/.test(s)) tabId = s;
-          }
-        } catch (eTab) {}
-        document.querySelectorAll(".tab-panel").forEach(function (p) {
-          var on = p.id === ("tab-" + tabId);
-          p.classList.toggle("active", on);
-          if (on) {
-            p.hidden = false;
-            p.style.setProperty("display", "block", "important");
-            p.style.setProperty("visibility", "visible", "important");
-            p.style.setProperty("opacity", "1", "important");
-            p.setAttribute("aria-hidden", "false");
-            p.querySelectorAll(".card, [id$='-card'], .rrra-hub-hero, .rrra-hub-summary").forEach(function (c) {
-              c.classList.remove("gate-hidden", "shell-landing-hide");
-              c.hidden = false;
-              c.style.removeProperty("display");
-              c.style.removeProperty("visibility");
-              c.style.removeProperty("height");
-              c.style.removeProperty("max-height");
-              c.style.removeProperty("opacity");
-            });
-          }
-        });
-        if (typeof w.clarityOpenSectionDoor === "function") {
-          try { w.clarityOpenSectionDoor(tabId); } catch (eOpen) {}
-        }
-      } catch (eComp) {}
     }
     applyDoorRail(m);
 
@@ -213,9 +168,7 @@
         main.setAttribute("aria-hidden", "true");
       } else {
         main.style.setProperty("display", "block", "important");
-        main.style.setProperty("visibility", "visible", "important");
         main.removeAttribute("aria-hidden");
-        main.hidden = false;
       }
     }
 
@@ -223,15 +176,6 @@
       try { w.ClarityLoadCompanion(); } catch (e) {}
     }
   }
-
-  /* Mobile: ensure Day landing is first surface */
-  try {
-    if (window.matchMedia && window.matchMedia("(max-width: 900px)").matches) {
-      if (sessionStorage.getItem("clarity_shell_user_pick_v1") !== "1") {
-        try { localStorage.setItem(KEY, "landing"); } catch (e) {}
-      }
-    }
-  } catch (e) {}
 
   w.ClarityShell = { mode: mode, setMode: setMode, apply: apply };
 
