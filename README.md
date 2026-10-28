@@ -1,1 +1,1 @@
-Sticky companion FINAL. Deploy 3 files. Hard refresh once.
+Restore visible single switch bar under banner. Deploy 3 files.
