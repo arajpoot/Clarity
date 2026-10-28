@@ -142,11 +142,18 @@
 
   function fill(room) {
     if (!room) return;
-    if (room.getAttribute("data-day-fortified") === "1") {
-      var _in = room.querySelector(".day-room-inner");
-      if (_in && _in.children.length) return;
+    var _in0 = room.querySelector(".day-room-inner");
+    /* RECOVERY: empty room must always fill — never seal an empty landing */
+    if (_in0 && !_in0.children.length) {
+      room.removeAttribute("data-day-fortified");
+      room.removeAttribute("data-room-filled");
+      room.removeAttribute("data-day-order-baked");
+      room.removeAttribute("hidden");
+      room.hidden = false;
+    } else if (room.getAttribute("data-day-fortified") === "1" && _in0 && _in0.children.length) {
+      return;
     }
-    if (room.getAttribute("data-room-filled") === "9") return;
+    if (room.getAttribute("data-room-filled") === "9" && _in0 && _in0.children.length) return;
     injectCss();
     var inner = room.querySelector(".day-room-inner");
     if (!inner) {
