@@ -1,10 +1,18 @@
 
-/* Day landing isolation trench — vault-style boundary */
-html[data-shell-mode="companion"] #clarity-day-landing-room,
-html[data-shell-mode="companion"] #clarity-day-landing-room * {
-  /* children still in DOM but room is inert host */
-}
-html[data-shell-mode="companion"] #clarity-day-landing-room {
+/* Kill ALL legacy shell / day switch bars — only #clarity-day-switch-bar survives */
+.clarity-shell-plaque,
+[data-legacy-shell-bar],
+#clarity-shell-switcher,
+.day-landing-switch-bar,
+.shell-switch-bar,
+.clarity-day-landing-plaque-switch,
+[class*="shell-plaque"],
+button.shell-pill,
+#shell-go-landing,
+#shell-go-companion,
+.one-plaque-bar,
+[aria-label="Switch Day landing or Companion"]:not(#clarity-day-switch-bar),
+[aria-label*="One plaque"] {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -18,28 +26,16 @@ html[data-shell-mode="companion"] #clarity-day-landing-room {
   padding: 0 !important;
   border: none !important;
 }
-html[data-shell-mode="landing"] #clarity-day-landing-room {
-  display: block !important;
+
+/* Jewelry bar only */
+#clarity-day-switch-bar {
+  display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
   height: auto !important;
-  max-height: none !important;
   position: relative !important;
   left: auto !important;
   pointer-events: auto !important;
-}
-
-/* Kill legacy multi-pill switch bars */
-#clarity-shell-switcher .shell-pill.is-current,
-.clarity-shell-plaque,
-[data-legacy-shell-bar],
-.day-landing-switch-bar .is-current {
-  display: none !important;
-}
-
-/* Single destination pill bar */
-#clarity-day-switch-bar {
-  display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.4rem 0.65rem;
@@ -47,17 +43,17 @@ html[data-shell-mode="landing"] #clarity-day-landing-room {
   max-width: min(22rem, 92vw);
   box-sizing: border-box;
   border-radius: 999px;
-  border: 1px solid rgba(201,168,76,0.4);
-  background: linear-gradient(145deg, rgba(15,76,58,0.14), rgba(255,255,255,0.05));
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  z-index: 50;
-  position: relative;
+  border: 1px solid rgba(201,168,76,0.45);
+  background: linear-gradient(145deg, rgba(15,76,58,0.16), rgba(255,255,255,0.06));
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  z-index: 60;
 }
 #clarity-day-switch-bar button {
+  display: block !important;
   font: inherit;
   font-size: 0.82rem;
   font-weight: 700;
-  padding: 0.42rem 1.1rem;
+  padding: 0.42rem 1.15rem;
   border-radius: 999px;
   border: none;
   cursor: pointer;
@@ -71,27 +67,23 @@ html[data-theme="night"] #clarity-day-switch-bar button {
   background: #c9a84c;
   color: #0c241c;
 }
-/* Hide any second/third pills if old scripts inject them */
-#clarity-day-switch-bar button:nth-child(n+2),
-#clarity-shell-switcher {
+#clarity-day-switch-bar button:nth-child(n+2) {
   display: none !important;
-}
-#clarity-day-switch-bar button:first-child {
-  display: block !important;
 }
 
-/* Day cards that leaked into companion tabs */
-html[data-shell-mode="companion"] .cdl-card:not(#amana-vault-interior *),
-html[data-shell-mode="companion"] .cdl-deed,
-html[data-shell-mode="companion"] .cdl-footer-plaque,
-html[data-shell-mode="companion"] #cdl-wudu-card,
-html[data-shell-mode="companion"] #clarity-landing-slot-dayn,
-html[data-shell-mode="companion"] #cdl-qada-calendar,
-html[data-shell-mode="companion"] .cdl-resurrection-shell {
-  /* only hide if outside day room — JS ejects; CSS backup for orphans */
-}
-html[data-shell-mode="companion"] #main-content > .cdl-card,
-html[data-shell-mode="companion"] .tab-panel > .cdl-card.cdl-resurrection-shell,
-html[data-shell-mode="companion"] .rrra-hub > .dual-tiles {
+/* Companion: day sealed */
+html[data-shell-mode="companion"] #clarity-day-landing-room {
   display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  pointer-events: none !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing-room {
+  display: block !important;
+  visibility: visible !important;
+  position: relative !important;
+  left: auto !important;
 }
