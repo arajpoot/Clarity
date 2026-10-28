@@ -165,6 +165,33 @@
 <link rel="stylesheet" href="assets/css/companion-qada-tracker-v1.css?v=20261026p">
 <link rel="stylesheet" href="assets/css/companion-hide-meme-icons-v1.css?v=20261026p">
 <link rel="stylesheet" href="assets/css/companion-trust-plaques-v1.css?v=20261026r">
+
+<style id="gate-obliterate">
+#clarity-welcome,.clarity-welcome-overlay,.gate-overlay#landing-gate-screen{display:none!important;visibility:hidden!important;pointer-events:none!important;opacity:0!important}
+</style>
+<script id="gate-obliterate-js">
+(function(){
+  try{
+    localStorage.setItem("clarity_welcome_seen_v2","1");
+    localStorage.setItem("clarity_welcome_seen","1");
+  }catch(e){}
+  function kill(){
+    document.querySelectorAll("#clarity-welcome,.clarity-welcome-overlay,#landing-gate-screen").forEach(function(el){
+      el.classList.remove("show");
+      el.setAttribute("aria-hidden","true");
+      el.style.display="none";
+      if(el.parentNode) el.parentNode.removeChild(el);
+    });
+    try{ document.documentElement.style.overflowY=""; }catch(e){}
+  }
+  kill();
+  document.addEventListener("DOMContentLoaded", kill);
+  setTimeout(kill, 0);
+  setTimeout(kill, 400);
+  setTimeout(kill, 1200);
+  window.clarityShowWelcome = function(){};
+})();
+</script>
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 
@@ -402,37 +429,6 @@
 </noscript>
 
 <a href="#main-content" class="skip-link">Skip to content</a>
-<div class="clarity-welcome-overlay" id="clarity-welcome" role="dialog" aria-modal="true" aria-labelledby="cw-title" aria-hidden="true">
-  <div class="clarity-welcome-card" id="cw-card">
-    <h2 class="cw-title" id="cw-title"><span class="cw-moon" aria-hidden="true">🌙</span> Furnish Your Grave</h2>
-    <p class="cw-sub">Private companion for the heart &amp; grave — Qur’an, authentic ḥadīth, daily deeds. Educational only · not a fatwa.</p>
-    <p class="cw-track-kicker" id="cw-track-kicker">Choose a track</p>
-    <div class="cw-steps" role="list" id="cw-track-steps">
-      <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('seeker')">
-        <span class="cw-step-num">1</span>
-        <div><strong>Curious Seeker</strong> — purpose, prophecy, Qur’an, next life</div>
-      </button>
-      <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('new_muslim')">
-        <span class="cw-step-num">2</span>
-        <div><strong>New Muslim</strong> — shahada, prayer, character starter</div>
-      </button>
-      <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('practicing')">
-        <span class="cw-step-num">3</span>
-        <div><strong>Daily Muslim</strong> — streaks, tajweed, light legacy</div>
-      </button>
-      <button type="button" class="cw-step cw-step-btn" role="listitem" onclick="clarityWelcomePickTrack('dai')">
-        <span class="cw-step-num">4</span>
-        <div><strong>Aspiring Da’i</strong> — sincerity, sources, calm dawah</div>
-      </button>
-    </div>
-    <div class="cw-actions">
-      <button type="button" class="cw-primary" id="cw-begin" onclick="clarityWelcomePickTrack('seeker')">Begin as Seeker</button>
-      <button type="button" class="cw-ghost" onclick="clarityWelcomeSkipToName()">Skip — plant my name</button>
-    </div>
-    <p class="cw-note">On this device only · Quran.com / Sunnah.com · not a fatwa</p>
-  </div>
-</div>
-<button type="button" class="clarity-start-chip" id="clarity-start-chip" onclick="clarityShowWelcome()" aria-label="Show welcome guide">✨ Start here</button>
 <audio id="quran-audio-dup1" preload="none" crossorigin="anonymous"></audio><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
 
 <div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
