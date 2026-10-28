@@ -71,6 +71,7 @@
     });
   }
 
+  var __vaultLastMode = "";
   function run() {
     /* force landing until user picks companion */
     try {
@@ -85,7 +86,7 @@
 
   run();
   [0, 10, 30, 60, 120, 250, 500, 1000, 2000, 4000].forEach(function (ms) { setTimeout(run, ms); });
-  setInterval(run, 1000);
+  setInterval(run, 12000); /* C3 calm */
   document.addEventListener("DOMContentLoaded", run);
   w.addEventListener("load", function () { run(); setTimeout(run, 100); });
 })(typeof window !== "undefined" ? window : this);

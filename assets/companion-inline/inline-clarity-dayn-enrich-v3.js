@@ -315,8 +315,9 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  [500, 1500, 3000, 6000, 10000].forEach(function (ms) { setTimeout(boot, ms); });
+  [800, 2500].forEach(function (ms) { setTimeout(boot, ms); }); /* C2 fewer retries */
   document.addEventListener("clarity:landing-ready", boot);
+  document.addEventListener("clarity:day-room-ready", boot);
   document.addEventListener("clarity:companion-ready", boot);
   document.addEventListener(
     "click",
@@ -326,12 +327,5 @@
     },
     true
   );
-  try {
-    new MutationObserver(function () {
-      var slot = document.getElementById("clarity-landing-slot-dayn");
-      if (slot && slot.getAttribute("data-dayn-enrich") !== "3") boot();
-      if (!document.getElementById("clarity-dayn-vault-ledger") && document.querySelector(".amana-vault-interior"))
-        boot();
-    }).observe(document.body, { childList: true, subtree: true });
-  } catch (e) {}
-})(typeof window !== "undefined" ? window : this);
+  /* C2: MutationObserver removed — event-driven only */
+  })(typeof window !== "undefined" ? window : this);

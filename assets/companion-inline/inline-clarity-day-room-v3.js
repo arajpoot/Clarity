@@ -476,7 +476,11 @@
             applyQibla(lat, lng, null);
             qBtn.textContent = "Refresh location";
             /* device orientation if available */
+            var __qiblaLast = 0;
             function onOri(ev) {
+              var __now = Date.now();
+              if (__now - __qiblaLast < 120) return;
+              __qiblaLast = __now;
               var h = ev.webkitCompassHeading;
               if (typeof h !== "number" && ev.alpha != null) h = 360 - ev.alpha;
               if (typeof h === "number") applyQibla(lat, lng, h);
@@ -509,20 +513,32 @@
     try { document.dispatchEvent(new CustomEvent("clarity:day-room-ready")); } catch (e) {}
   }
 
+  var __ensureFails = 0;
   function ensure() {
     var room = document.getElementById("clarity-day-landing-room");
     if (!room) return;
-    var inner = room.querySelector(".day-room-inner");
-    if (!inner || !inner.children.length) {
+    /* C1 stability: only rebuild if inner truly empty for consecutive checks */
+    if (room.getAttribute("data-room-filled") === "9") {
+      var inner = room.querySelector(".day-room-inner");
+      if (inner && inner.children.length) {
+        __ensureFails = 0;
+        return;
+      }
+      __ensureFails++;
+      if (__ensureFails < 2) return;
       room.removeAttribute("data-room-filled");
+      __ensureFails = 0;
       boot();
+      return;
     }
+    boot();
   }
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 40); });
   } else setTimeout(boot, 40);
-  w.addEventListener("load", function () { setTimeout(ensure, 200); });
-  [500, 1500, 3000].forEach(function (ms) { setTimeout(ensure, ms); });
-  w.ClarityDayRoom = { fill: boot, version: 9 };
+  w.addEventListener("load", function () { setTimeout(ensure, 400); });
+  /* C1: one delayed ensure only — no 500/1500/3000 storm */
+  setTimeout(ensure, 2000);
+  w.ClarityDayRoom = { fill: boot, version: 10, stability: "C1" };
 })(typeof window !== "undefined" ? window : this);
