@@ -1,23 +1,5 @@
 <!DOCTYPE html><html data-amana-session="locked" data-theme="light" lang="en" data-shell-mode="landing"><head>
-<script id="clarity-day-landing-first-paint">
-(function(){
-  try{
-    var k="clarity_shell_mode_v1";
-    /* Always prefer landing on cold start unless user explicitly chose companion this session */
-    var sessionPick=null;
-    try{ sessionPick=sessionStorage.getItem("clarity_shell_pick_v1"); }catch(e){}
-    var m=localStorage.getItem(k);
-    if(!sessionPick || sessionPick!=="companion"){
-      m="landing";
-      try{ localStorage.setItem(k,"landing"); }catch(e){}
-    }
-    document.documentElement.setAttribute("data-shell-mode", m==="companion"?"companion":"landing");
-  }catch(e){
-    document.documentElement.setAttribute("data-shell-mode","landing");
-  }
-  window.__CLARITY_DAY_LANDING_FIRST__=true;
-})();
-</script>
+<script id="clarity-day-landing-first-paint">(function(){try{var k="clarity_shell_mode_v1";var p=null;try{p=sessionStorage.getItem("clarity_shell_pick_v1")||localStorage.getItem(k);}catch(e){}var m=(p==="companion")?"companion":"landing";try{if(p==="companion"){localStorage.setItem(k,"companion");}else if(!localStorage.getItem(k)){localStorage.setItem(k,"landing");}}catch(e){}document.documentElement.setAttribute("data-shell-mode",m);}catch(e){document.documentElement.setAttribute("data-shell-mode","landing");}})();</script>
 <style id="clarity-p0-first-paint">
 /* P0 first-paint lock · 20261027P0P9 — before any script */
 html[data-shell-mode="landing"] .clarity-gate-switcher,
@@ -512,7 +494,7 @@ body[data-active-tab="reminder"] #tajweed-live-card,body[data-active-tab="remind
 <link rel="stylesheet" href="assets/css/clarity-qada-calendar-v1.css?v=20261027G1">
 <link rel="stylesheet" href="assets/css/clarity-day-landing-fortified-v1.css?v=20261027R1">
 <link rel="stylesheet" href="assets/css/clarity-day-flow-v3.css?v=20261027FL3">
-<link rel="stylesheet" href="assets/css/clarity-day-isolate-v1.css?v=20261027ISO1">
+<link rel="stylesheet" href="assets/css/clarity-day-isolate-v1.css?v=20261027ISO2">
 </head><body data-amana-companion-local="1" data-ux-density="minimal" data-active-tab="journey" data-section-fortress="1"><nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand cu-nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave"><img class="cu-nav-insignia" src="/assets/curriculum/vault/admin/brand/clarity-university-insignia.svg" width="36" height="36" alt="" /><span class="cu-nav-text"><span class="cu-nav-title">Clarity · Companion</span><span class="cu-nav-sub">NurOS · Furnish Your Grave</span></span></span>
@@ -2934,7 +2916,7 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <script src="assets/companion-inline/inline-clarity-qada-calendar-v1.js?v=20261027G1"></script>
 <script src="assets/companion-inline/inline-clarity-day-fortify-ctrl-v1.js?v=20261027R1"></script>
 <script src="assets/companion-inline/inline-clarity-day-flow-v3.js?v=20261027ISO1"></script>
-<script src="assets/companion-inline/inline-clarity-day-isolate-v1.js?v=20261027ISO1"></script>
+<script src="assets/companion-inline/inline-clarity-day-isolate-v1.js?v=20261027ISO2"></script>
 </body>
 
 </html>
