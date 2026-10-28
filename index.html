@@ -1,4 +1,59 @@
-<!DOCTYPE html><html data-amana-session="locked" data-theme="light" lang="en"><head>
+<!DOCTYPE html><html data-amana-session="locked" data-theme="light" lang="en" data-shell-mode="landing"><head>
+<style id="clarity-p0-first-paint">
+/* P0 first-paint lock · 20261027P0P9 — before any script */
+html[data-shell-mode="landing"] .clarity-gate-switcher,
+html[data-shell-mode="landing"] .rrra-sitewide,
+html[data-shell-mode="landing"] .cgp-track-plaque,
+html[data-shell-mode="landing"] .cgs-btn,
+html:not([data-shell-mode="companion"]) .clarity-gate-switcher,
+html:not([data-shell-mode="companion"]) .rrra-sitewide,
+html:not([data-shell-mode="companion"]) .cgp-track-plaque {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  border: none !important;
+}
+html:not([data-shell-mode="companion"]) #clarity-dual-path,
+html:not([data-shell-mode="companion"]) .clarity-dual-path,
+html[data-shell-mode="landing"] #clarity-dual-path {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+}
+html:not([data-shell-mode="companion"]) #clarity-provision-home,
+html:not([data-shell-mode="companion"]) .clarity-provision-home {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+}
+html:not([data-shell-mode="companion"]) #clarity-door-rail,
+html:not([data-shell-mode="companion"]) .door-rail-bottom {
+  display: none !important;
+  height: 0 !important;
+}
+html:not([data-shell-mode="companion"]) #main-content {
+  display: none !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing-room,
+html:not([data-shell-mode="companion"]) #clarity-day-landing-room {
+  display: block !important;
+  visibility: visible !important;
+}
+</style>
+
 <style id="clarity-paint-shell">
 html{background:#f6f1e7;color:#1c2a22}
 html[data-theme=dark]{background:#0c1410;color:#e7efe9}
@@ -560,7 +615,7 @@ body[data-active-tab="reminder"] #tajweed-live-card,body[data-active-tab="remind
 </div>
 </div>
 <!-- Phase5c: sitewide TRACK rail under banner -->
-<div class="clarity-gate-switcher rrra-sitewide" data-rail-suppressed="1" style="display:none!important" hidden role="group" aria-label="Learning track — switch anytime" hidden aria-hidden="true" style="display:none!important;height:0!important;min-height:0!important;overflow:hidden!important" hidden>
+<div class="clarity-gate-switcher rrra-sitewide" data-rail-suppressed="1" style="display:none!important" hidden role="group" aria-label="Learning track — switch anytime" hidden aria-hidden="true" style="display:none!important;height:0!important;min-height:0!important;overflow:hidden!important" hidden aria-hidden="true" data-rail-suppressed="1">
   <span class="cgs-label">TRACK</span>
   <button type="button" class="cgs-btn cgs-seeker" data-gate="seeker" onclick="claritySwitchGate('seeker')" title="Curious Seeker — purpose, prophecy, Qur’an, next life"><span class="cgs-ico" aria-hidden="true">🔭</span><span class="cgs-txt"><span class="cgs-num">1</span> Seeker</span></button>
   <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="claritySwitchGate('new_muslim')" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
@@ -757,7 +812,7 @@ var claritySession=(function(){var m={},f={getItem:function(k){return Object.pro
 window.onerror=function(msg,s,l){try{var d=document.getElementById("clarity-boot-err");if(!d){d=document.createElement("div");d.id="clarity-boot-err";d.style.cssText="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#7f1d1d;color:#fff;padding:8px;font:13px system-ui";(document.body||document.documentElement).appendChild(d)}d.textContent=String(msg)+(l?" @"+l:"")}catch(e){}};
 </script><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio>
 <!-- Dual path: Companion desk vs University campus -->
-<section id="clarity-dual-path" class="clarity-dual-path" aria-label="Two paths">
+<section id="clarity-dual-path" class="clarity-dual-path" aria-label="Two paths" style="display:none!important;height:0!important;min-height:0!important" hidden>
   
   <div class="dual-tiles">
     <a class="dual-tile dual-tile-companion" href="#main-content" id="dual-path-companion">
@@ -2837,9 +2892,9 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </script>
 
 
-<script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261027VAULT-HARD"></script>
-<script src="/assets/companion-inline/inline-clarity-day-room-v3.js?v=20261027VAULT-HARD"></script>
-<script src="/assets/companion-inline/inline-clarity-day-vault.js?v=20261027VAULT-HARD"></script>
+<script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261027P0P9"></script>
+<script src="/assets/companion-inline/inline-clarity-day-room-v3.js?v=20261027P0P9"></script>
+<script src="/assets/companion-inline/inline-clarity-day-vault.js?v=20261027P0P9"></script>
 <script defer src="/assets/clarity-chunk-8.js?v=20261027RECOVERY"></script>
 <script defer src="/assets/clarity-aux-pack-v1.js?v=20261027RECOVERY"></script>
 <script defer src="/assets/clarity-runtime-overlays-v1.js?v=20261027RECOVERY"></script>
