@@ -5,8 +5,8 @@
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_DAY_ROOM_V4__) return;
-  w.__CLARITY_DAY_ROOM_V4__ = true;
+  if (w.__CLARITY_DAY_ROOM_P9__) return;
+  w.__CLARITY_DAY_ROOM_P9__ = true;
   w.__CLARITY_DAY_ROOM_V3__ = true;
 
   var KAABA = { lat: 21.4225, lng: 39.8262 };
@@ -142,7 +142,7 @@
 
   function fill(room) {
     if (!room) return;
-    if (room.getAttribute("data-room-filled") === "4") return;
+    if (room.getAttribute("data-room-filled") === "9") return;
     injectCss();
     var inner = room.querySelector(".day-room-inner");
     if (!inner) {
@@ -284,7 +284,7 @@
     /* Trust */
     html += "<div class=\"cdl-card\" id=\"cdl-confidence\"><div class=\"cdl-head\"><h2>🛡️ Built for trust</h2></div>";
     html += "<p class=\"cdl-sub\"><strong>Educational companion only — not a fatwa, not legal advice.</strong></p>";
-    html += "<p class=\"cdl-sub\">Sources: Quran.com · Sunnah.com · data stays on this device · vault notes are local.</p></div>";
+    html += "<p class=\"cdl-sub\">Sources: Quran.com · Sunnah.com · ṣaḥīḥ preferred · data on this device.</p><div style=\"display:grid;gap:0.5rem;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:0.55rem\"><article style=\"padding:0.65rem;border-radius:12px;border:1px solid rgba(15,76,58,0.15)\"><strong>📖 Sources</strong><p class=\"cdl-sub\">Quran.com · Sunnah.com</p></article><article style=\"padding:0.65rem;border-radius:12px;border:1px solid rgba(15,76,58,0.15)\"><strong>💻 On device</strong><p class=\"cdl-sub\">local · private · no account</p></article><article style=\"padding:0.65rem;border-radius:12px;border:1px solid rgba(15,76,58,0.15)\"><strong>🔐 Notes</strong><p class=\"cdl-sub\">not legal advice</p></article><article style=\"padding:0.65rem;border-radius:12px;border:1px solid rgba(15,76,58,0.15)\"><strong>🧭 Qibla</strong><p class=\"cdl-sub\">approx · verify locally</p></article></div><p class=\"cdl-sub\">Weak reports are not practice. Ask a trusted teacher when unsure. Not a grade of īmān.</p></div>";
 
     /* Footer */
     html += "<div class=\"cdl-footer-plaque\" id=\"cdl-footer-plaque\" role=\"contentinfo\">";
@@ -293,7 +293,7 @@
     html += "<p><a href=\"https://quran.com\" target=\"_blank\" rel=\"noopener\">Quran.com</a> · <a href=\"https://sunnah.com\" target=\"_blank\" rel=\"noopener\">Sunnah.com</a> · <a href=\"/campus/\">Campus</a></p></div>";
 
     inner.innerHTML = html;
-    room.setAttribute("data-room-filled", "4");
+    room.setAttribute("data-room-filled", "9");
     wire(pack, idx, cnt, light);
   }
 
@@ -524,5 +524,5 @@
   } else setTimeout(boot, 40);
   w.addEventListener("load", function () { setTimeout(ensure, 200); });
   [500, 1500, 3000].forEach(function (ms) { setTimeout(ensure, ms); });
-  w.ClarityDayRoom = { fill: boot, version: 4 };
+  w.ClarityDayRoom = { fill: boot, version: 9 };
 })(typeof window !== "undefined" ? window : this);
