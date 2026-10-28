@@ -1,0 +1,148 @@
+
+/* Day landing · full-width glossy plaque · gold outline */
+html[data-shell-mode="landing"] #clarity-day-landing-room,
+#clarity-day-landing-room {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0.5rem 0 1.25rem !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing-room .day-room-inner,
+#clarity-day-landing-room .day-room-inner {
+  width: 100% !important;
+  max-width: min(52rem, 100%) !important;
+  margin: 0 auto !important;
+  padding: 1rem 1rem 1.25rem !important;
+  box-sizing: border-box !important;
+  border-radius: 22px !important;
+  border: 1.5px solid rgba(201, 168, 76, 0.55) !important;
+  background:
+    linear-gradient(145deg, rgba(255,252,245,0.92), rgba(247,241,230,0.88)),
+    radial-gradient(ellipse at 20% 0%, rgba(201,168,76,0.12), transparent 55%) !important;
+  box-shadow:
+    0 0 0 1px rgba(201,168,76,0.2),
+    0 12px 40px rgba(15, 40, 32, 0.12),
+    inset 0 1px 0 rgba(255,255,255,0.65) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+html[data-theme="dark"] #clarity-day-landing-room .day-room-inner,
+html[data-theme="night"] #clarity-day-landing-room .day-room-inner {
+  border-color: rgba(201, 168, 76, 0.45) !important;
+  background:
+    linear-gradient(145deg, rgba(12, 36, 28, 0.95), rgba(8, 24, 20, 0.92)),
+    radial-gradient(ellipse at 20% 0%, rgba(201,168,76,0.1), transparent 55%) !important;
+  box-shadow:
+    0 0 0 1px rgba(201,168,76,0.15),
+    0 12px 40px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.06) !important;
+  color: #e7efe9;
+}
+#clarity-day-landing-room .cdl-card,
+#clarity-day-landing-room .cdl-deed {
+  border-radius: 16px !important;
+  border: 1px solid rgba(201,168,76,0.22) !important;
+  background: rgba(255,255,255,0.45) !important;
+  padding: 0.85rem 0.95rem !important;
+  margin: 0.65rem 0 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+}
+html[data-theme="dark"] #clarity-day-landing-room .cdl-card,
+html[data-theme="dark"] #clarity-day-landing-room .cdl-deed,
+html[data-theme="night"] #clarity-day-landing-room .cdl-card,
+html[data-theme="night"] #clarity-day-landing-room .cdl-deed {
+  background: rgba(255,255,255,0.04) !important;
+  border-color: rgba(201,168,76,0.2) !important;
+}
+#clarity-day-landing-room .dual-tiles {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.65rem !important;
+  width: 100% !important;
+}
+@media (max-width: 560px) {
+  #clarity-day-landing-room .dual-tiles {
+    grid-template-columns: 1fr !important;
+  }
+  #clarity-day-landing-room .day-room-inner {
+    padding: 0.85rem 0.75rem 1rem !important;
+    border-radius: 18px !important;
+  }
+}
+#clarity-day-landing-room .dual-tile {
+  border-radius: 14px !important;
+  border: 1px solid rgba(201,168,76,0.35) !important;
+  background: rgba(255,255,255,0.55) !important;
+  padding: 0.85rem !important;
+}
+html[data-theme="dark"] #clarity-day-landing-room .dual-tile {
+  background: rgba(0,0,0,0.2) !important;
+}
+/* Qada enrich layout */
+#clarity-day-landing-room .cdl-qada-row {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr)) !important;
+  gap: 0.45rem !important;
+  align-items: end !important;
+}
+#clarity-day-landing-room .cdl-qada-row label {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.2rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: capitalize !important;
+}
+#clarity-day-landing-room .cdl-qada-summary {
+  font-size: 0.8rem;
+  margin-top: 0.45rem;
+  opacity: 0.9;
+}
+#clarity-day-landing-room #cdl-trust-review-card {
+  border-color: rgba(201,168,76,0.4) !important;
+}
+
+
+/* Day landing stability C5 — avoid paint thrash */
+#clarity-day-landing-room .day-room-inner {
+  content-visibility: auto;
+}
+#clarity-day-landing-room .cdl-compass-needle {
+  will-change: transform;
+  transition: transform 0.12s linear;
+}
+html[data-shell-mode="landing"] #clarity-day-landing-room {
+  display: block !important;
+  visibility: visible !important;
+}
+html[data-shell-mode="companion"] #clarity-day-landing-room {
+  display: none !important;
+}
+
+
+/* Phase 1 · Day landing containment */
+#clarity-day-landing-room {
+  contain: layout style;
+  width: 100%;
+  max-width: 100%;
+}
+#clarity-day-landing-room[data-day-fortified="1"] .day-room-inner {
+  contain: style;
+}
+#clarity-day-landing-room .cdl-wudu-card .cdl-fold-body,
+#clarity-day-landing-room #cdl-wudu-body {
+  display: block !important;
+  hidden: false;
+}
+#clarity-day-landing-room #cdl-wudu-body[hidden] {
+  display: block !important;
+}
+#clarity-day-landing-room .cdl-wudu-card ol.cdl-steps,
+#clarity-day-landing-room .cdl-wudu-card .cdl-steps {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
