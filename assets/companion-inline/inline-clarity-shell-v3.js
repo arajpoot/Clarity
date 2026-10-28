@@ -54,6 +54,35 @@
       /* Hide legacy dual path OUTSIDE day room on landing */
       'html[data-shell-mode="landing"] #main-content .dual-tiles,',
       'html[data-shell-mode="landing"] #main-application-workspace .dual-tiles:not(#clarity-day-landing-room .dual-tiles){display:none!important;}',
+      
+      /* HK1: Do this today (provision) → Day landing only */
+      'html[data-shell-mode="companion"] #clarity-provision-home,',
+      'html[data-shell-mode="companion"] .clarity-provision-home,',
+      'html[data-shell-mode="companion"] #clarity-visit-pill-bar,',
+      'html[data-shell-mode="companion"] .cph-card.cph-provision{',
+      "display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;}",
+      'html[data-shell-mode="landing"] #clarity-provision-home,',
+      'html[data-shell-mode="landing"] .clarity-provision-home{',
+      "display:none!important;}",  /* Day room owns "do this today" — avoid double */
+      /* HK1: Track bar + phased learning → Companion only */
+      'html[data-shell-mode="landing"] .clarity-gate-switcher,',
+      'html[data-shell-mode="landing"] .rrra-sitewide,',
+      'html[data-shell-mode="landing"] [aria-label*="Learning track"],',
+      'html[data-shell-mode="landing"] [aria-label*="Phased learning"],',
+      'html[data-shell-mode="landing"] .cgs-label,',
+      'html[data-shell-mode="landing"] #clarity-visit-pill-bar{',
+      "display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;}",
+      'html[data-shell-mode="companion"] .clarity-gate-switcher.rrra-sitewide{',
+      "display:flex!important;visibility:visible!important;height:auto!important;}",
+      /* HK1: Bottom RRRA door rail → Companion only */
+      'html[data-shell-mode="landing"] #clarity-door-rail,',
+      'html[data-shell-mode="landing"] .door-rail-bottom,',
+      'html[data-shell-mode="landing"] .door-rail-rrra5{',
+      "display:none!important;visibility:hidden!important;height:0!important;max-height:0!important;overflow:hidden!important;pointer-events:none!important;}",
+      'html[data-shell-mode="companion"] #clarity-door-rail,',
+      'html[data-shell-mode="companion"] .door-rail-bottom{',
+      "display:flex!important;visibility:visible!important;height:auto!important;max-height:none!important;pointer-events:auto!important;}",
+
       'html[data-shell-mode="landing"] #clarity-grave-path-strip,',
       'html[data-shell-mode="landing"] .grave-path-strip{display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;}'
     ].join("");
