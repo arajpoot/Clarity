@@ -1,10 +1,10 @@
 /**
- * Sticky companion FINAL — honour localStorage on refresh
+ * Restore switch bar — always visible single destination pill
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_STICKY_COMPANION_V1__) return;
-  g.__CLARITY_STICKY_COMPANION_V1__ = true;
+  if (g.__CLARITY_SWITCH_RESTORE_V1__) return;
+  g.__CLARITY_SWITCH_RESTORE_V1__ = true;
 
   var KEY = "clarity_shell_mode_v1";
   var PICK = "clarity_shell_user_pick_v1";
@@ -14,7 +14,9 @@
       var m = localStorage.getItem(KEY);
       if (m === "landing" || m === "companion") return m;
     } catch (e) {}
-    return "landing";
+    return document.documentElement.getAttribute("data-shell-mode") === "companion"
+      ? "companion"
+      : "landing";
   }
 
   function armPick() {
@@ -57,54 +59,101 @@
         } catch (e) {}
       }
     }
-    paintPill(m);
+    ensureBar(m);
   }
 
-  function paintPill(m) {
+  function findAnchor() {
+    return (
+      document.getElementById("clarity-top-duo") ||
+      document.querySelector(".clarity-banner, #clarity-banner, header, #clarity-global-nav") ||
+      document.getElementById("clarity-day-landing-room") ||
+      document.getElementById("main-application-workspace") ||
+      document.body
+    );
+  }
+
+  function ensureBar(m) {
     m = m || readMode();
     var bar = document.getElementById("clarity-reopen-bar");
     if (!bar) {
       bar = document.createElement("div");
       bar.id = "clarity-reopen-bar";
-      var a = document.querySelector("header,.clarity-banner,#clarity-banner") ||
-        document.getElementById("clarity-day-landing-room");
-      if (a && a.parentNode) {
-        if (a.id === "clarity-day-landing-room") a.parentNode.insertBefore(bar, a);
-        else a.parentNode.insertBefore(bar, a.nextSibling);
-      } else document.body.appendChild(bar);
+      bar.setAttribute("role", "navigation");
+      bar.setAttribute("aria-label", "Switch Day landing or Companion");
+      var anchor = findAnchor();
+      try {
+        if (anchor && anchor.parentNode) {
+          if (anchor.id === "clarity-day-landing-room" || anchor.id === "main-application-workspace") {
+            anchor.parentNode.insertBefore(bar, anchor);
+          } else {
+            anchor.parentNode.insertBefore(bar, anchor.nextSibling);
+          }
+        } else {
+          document.body.appendChild(bar);
+        }
+      } catch (e) {
+        document.body.appendChild(bar);
+      }
     }
-    bar.innerHTML = "";
+
+    /* force visible styles inline as last resort */
+    try {
+      bar.style.setProperty("display", "flex", "important");
+      bar.style.setProperty("visibility", "visible", "important");
+      bar.style.setProperty("opacity", "1", "important");
+      bar.style.setProperty("z-index", "100", "important");
+      bar.style.setProperty("position", "relative", "important");
+      bar.style.setProperty("margin", "0.5rem auto 0.65rem", "important");
+      bar.style.setProperty("max-width", "min(20rem, 92vw)", "important");
+    } catch (e) {}
+
     var go = m === "landing" ? "companion" : "landing";
     var label = m === "landing" ? "Companion path →" : "← Day landing";
-    var btn = document.createElement("button");
-    btn.type = "button";
-    btn.id = "clarity-single-switch";
-    btn.textContent = label;
-    btn.addEventListener("click", function (ev) {
-      ev.preventDefault();
-      ev.stopImmediatePropagation();
-      setMode(go);
+
+    var btn = document.getElementById("clarity-single-switch");
+    if (!btn || btn.parentNode !== bar) {
+      bar.innerHTML = "";
+      btn = document.createElement("button");
+      btn.type = "button";
+      btn.id = "clarity-single-switch";
+      bar.appendChild(btn);
+    }
+    /* remove extra buttons */
+    Array.prototype.slice.call(bar.querySelectorAll("button")).forEach(function (b) {
+      if (b.id !== "clarity-single-switch") b.remove();
     });
-    bar.appendChild(btn);
+    btn.textContent = label;
+    btn.onclick = function (ev) {
+      if (ev) {
+        ev.preventDefault();
+        ev.stopImmediatePropagation();
+      }
+      setMode(go);
+    };
+
+    try {
+      btn.style.setProperty("display", "block", "important");
+      btn.style.setProperty("width", "100%", "important");
+      btn.style.setProperty("visibility", "visible", "important");
+    } catch (e) {}
   }
 
-  function honourStorage() {
+  function honour() {
     armPick();
     var stored = readMode();
     document.documentElement.setAttribute("data-shell-mode", stored);
-    try { localStorage.setItem(KEY, stored); } catch (e) {}
     apply(stored);
   }
 
   function patchShell() {
-    if (!g.ClarityShell || g.ClarityShell.__stickyPatched) return;
+    if (!g.ClarityShell || g.ClarityShell.__switchRestored) return;
     var sm = g.ClarityShell.setMode;
     var ap = g.ClarityShell.apply;
     if (typeof sm === "function") {
       g.ClarityShell.setMode = function (m) {
         writeMode(m);
         var r = sm.apply(this, arguments);
-        setTimeout(honourStorage, 0);
+        setTimeout(honour, 0);
         return r;
       };
     }
@@ -119,50 +168,52 @@
           } catch (e) {}
         }
         var r = ap.apply(this, arguments);
-        setTimeout(honourStorage, 0);
-        setTimeout(honourStorage, 40);
+        setTimeout(honour, 0);
+        setTimeout(ensureBar, 20);
         return r;
       };
     }
-    g.ClarityShell.__stickyPatched = true;
+    g.ClarityShell.__switchRestored = true;
   }
 
-  try {
-    var _setItem = Storage.prototype.setItem;
-    Storage.prototype.setItem = function (k, v) {
-      if (k === KEY && v === "landing") {
-        try {
-          if (localStorage.getItem(PICK) === "1" && localStorage.getItem(KEY) === "companion") {
-            return; /* refuse forced demotion */
-          }
-        } catch (e) {}
+  document.addEventListener(
+    "click",
+    function (ev) {
+      var t = ev.target && ev.target.closest && ev.target.closest("#day-path-companion,#dual-path-companion");
+      if (t) {
+        ev.preventDefault();
+        setMode("companion");
       }
-      return _setItem.apply(this, arguments);
-    };
-  } catch (e) {}
-
-  document.addEventListener("click", function (ev) {
-    var t = ev.target && ev.target.closest && ev.target.closest("#day-path-companion,#dual-path-companion");
-    if (t) {
-      ev.preventDefault();
-      setMode("companion");
-    }
-  }, true);
+    },
+    true
+  );
 
   function boot() {
-    armPick();
     patchShell();
-    honourStorage();
+    honour();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
-  [0, 50, 100, 250, 500, 1000, 2000, 4000].forEach(function (ms) {
-    setTimeout(function () { patchShell(); honourStorage(); }, ms);
+
+  [0, 100, 300, 800, 1500, 3000, 5000].forEach(function (ms) {
+    setTimeout(function () {
+      patchShell();
+      ensureBar(readMode());
+    }, ms);
   });
   g.addEventListener("load", function () {
-    honourStorage();
-    setTimeout(honourStorage, 100);
+    ensureBar(readMode());
+    setTimeout(function () { ensureBar(readMode()); }, 200);
   });
 
-  g.ClaritySticky = { setMode: setMode, mode: readMode, honour: honourStorage };
+  /* If something removes the bar, put it back */
+  try {
+    new MutationObserver(function () {
+      if (!document.getElementById("clarity-reopen-bar") || !document.getElementById("clarity-single-switch")) {
+        ensureBar(readMode());
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  } catch (e) {}
+
+  g.ClaritySwitch = { setMode: setMode, mode: readMode, ensureBar: ensureBar };
 })(typeof window !== "undefined" ? window : this);
