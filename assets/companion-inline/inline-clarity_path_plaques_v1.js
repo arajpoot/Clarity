@@ -1,13 +1,11 @@
-/* 20261026FREEZE freeze-safe plaques */
 /**
- * Path plaques v3 · 20261026FIX2
- * Decorate path tiles with icons. NEVER hide .clarity-gate-switcher track row.
+ * Path plaques v1 — icons on path tiles, hide TRACK bar, compact single row
  * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_PATH_PLAQUES_V4__) return;
-  w.__CLARITY_PATH_PLAQUES_V4__ = true;
+  if (w.__CLARITY_PATH_PLAQUES_V1__) return;
+  w.__CLARITY_PATH_PLAQUES_V1__ = true;
 
   var ICONS = {
     seeker: "🔭",
@@ -17,120 +15,95 @@
   };
 
   var CSS = [
-    "/* Track row ALWAYS visible */",
-    ".clarity-gate-switcher,.clarity-gate-switcher.rrra-sitewide,.cgs-btn-row{",
-    "  display:flex!important;flex-wrap:wrap!important;gap:.4rem!important;",
-    "  align-items:center!important;justify-content:center!important;",
-    "  visibility:visible!important;opacity:1!important;",
-    "  height:auto!important;max-height:none!important;overflow:visible!important;",
-    "  pointer-events:auto!important;position:relative!important;",
-    "  width:100%!important;margin:.5rem auto!important;padding:.45rem .6rem!important;",
-    "  box-sizing:border-box!important;}",
-    ".clarity-gate-switcher .cgs-btn,button.cgs-btn{",
-    "  display:inline-flex!important;visibility:visible!important;opacity:1!important;",
-    "  pointer-events:auto!important;align-items:center!important;gap:.3rem!important;}",
-    ".clarity-gate-switcher .cgs-label{display:inline-block!important;font-size:.75rem!important;opacity:.85!important;}",
-    "/* University path tile icon slot */",
-    "[data-door='campus'] .td-ico,.cph-uni-tile .nuros-icon,.university-path-card .nuros-icon,",
-    "a[href*='/campus'] .nuros-icon-campus{display:inline-block!important;}"
-  ].join("\\n");
+    "/* Hide TRACK / gate switcher — icons live on path plaques */",
+    ".clarity-gate-switcher,#clarity-path-rail,#clarity-path-intro,",
+    ".cgs-btn-row,[aria-label=\"Learning track — switch anytime\"]{",
+    "  display:none!important;}",
+    "/* Path strip: full width centered */",
+    "#clarity-grave-path-strip,.grave-path-strip,.path-to-grave{",
+    "  width:100%!important;max-width:100%!important;margin:0.5rem auto 0.75rem!important;",
+    "  box-sizing:border-box!important;text-align:center!important;",
+    "  padding:0.65rem 0.75rem!important;border-radius:16px!important;",
+    "  border:1px solid rgba(15,76,58,0.18)!important;",
+    "  background:linear-gradient(145deg,rgba(15,76,58,0.06),rgba(15,76,58,0.02))!important;}",
+    "html[data-theme=dark] #clarity-grave-path-strip,html[data-theme=dark] .grave-path-strip{",
+    "  border-color:rgba(212,180,90,0.2)!important;background:linear-gradient(145deg,rgba(212,180,90,0.06),rgba(12,28,22,0.5))!important;}",
+    "#clarity-grave-path-strip h3,.grave-path-strip h3{",
+    "  margin:0 0 0.2rem!important;font-size:1.05rem!important;text-align:center!important;}",
+    "#clarity-grave-path-strip .gps-goal,.grave-path-strip .gps-goal{",
+    "  margin:0 0 0.55rem!important;font-size:0.8rem!important;opacity:0.8;text-align:center!important;}",
+    "/* Single row of smaller plaques */",
+    "#clarity-grave-path-strip .gps-phases,.grave-path-strip .gps-phases,",
+    ".path-to-grave .doors,.path-doors-grid{",
+    "  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;",
+    "  gap:0.4rem!important;width:100%!important;margin:0 auto!important;}",
+    "@media(max-width:720px){",
+    "  #clarity-grave-path-strip .gps-phases,.grave-path-strip .gps-phases{",
+    "    grid-template-columns:repeat(2,minmax(0,1fr))!important;}",
+    "}",
+    "#clarity-grave-path-strip .gps-phase,.grave-path-strip .gps-phase,",
+    ".path-to-grave .door{",
+    "  display:flex!important;flex-direction:column!important;align-items:flex-start!important;",
+    "  gap:0.15rem!important;min-height:0!important;padding:0.5rem 0.55rem!important;",
+    "  border-radius:12px!important;border:1px solid rgba(15,76,58,0.22)!important;",
+    "  background:rgba(255,255,255,0.04)!important;cursor:pointer!important;",
+    "  text-align:left!important;font:inherit!important;color:inherit!important;",
+    "  box-sizing:border-box!important;width:100%!important;}",
+    "html[data-theme=dark] #clarity-grave-path-strip .gps-phase{",
+    "  border-color:rgba(212,180,90,0.22)!important;background:rgba(0,0,0,0.2)!important;}",
+    "#clarity-grave-path-strip .gps-phase.active,.gps-phase.is-active{",
+    "  border-color:rgba(201,162,39,0.65)!important;",
+    "  box-shadow:0 0 0 1px rgba(201,162,39,0.35),0 4px 14px rgba(0,0,0,0.12)!important;}",
+    "#clarity-grave-path-strip .gps-ico{",
+    "  font-size:1.25rem!important;line-height:1!important;margin-bottom:0.15rem!important;}",
+    "#clarity-grave-path-strip .gps-phase strong{",
+    "  font-size:0.82rem!important;line-height:1.25!important;display:block!important;}",
+    "#clarity-grave-path-strip .gps-phase{",
+    "  font-size:0.72rem!important;line-height:1.3!important;opacity:0.95;}",
+    "#clarity-grave-path-strip .gps-tag{",
+    "  display:block!important;margin-top:0.25rem!important;font-size:0.65rem!important;",
+    "  letter-spacing:0.03em!important;text-transform:uppercase!important;",
+    "  color:#c9a227!important;opacity:0.95!important;}"
+  ].join("\n");
 
   function injectCss() {
-    var id = "clarity-path-plaques-css-v3";
-    var s = document.getElementById(id);
-    if (!s) {
-      s = document.createElement("style");
-      s.id = id;
-      (document.head || document.documentElement).appendChild(s);
-    }
+    if (document.getElementById("clarity-path-plaques-css")) return;
+    var s = document.createElement("style");
+    s.id = "clarity-path-plaques-css";
     s.textContent = CSS;
-  }
-
-  function showTrack() {
-    try {
-      document.querySelectorAll(".clarity-gate-switcher, .cgs-btn-row").forEach(function (el) {
-        el.style.removeProperty("display");
-        el.style.removeProperty("visibility");
-        el.style.removeProperty("opacity");
-        el.style.removeProperty("height");
-        el.style.removeProperty("max-height");
-        el.hidden = false;
-        el.style.setProperty("display", "flex", "important");
-        el.style.setProperty("visibility", "visible", "important");
-        el.style.setProperty("opacity", "1", "important");
-      });
-      document.querySelectorAll(".clarity-gate-switcher .cgs-btn, button.cgs-btn").forEach(function (btn) {
-        btn.style.setProperty("display", "inline-flex", "important");
-        btn.style.setProperty("visibility", "visible", "important");
-        btn.hidden = false;
-      });
-    } catch (e) {}
-  }
-
-  function decoratePhases() {
-    var phases = document.querySelectorAll(
-      "#clarity-grave-path-strip .gps-phase, .grave-path-strip .gps-phase, .clarity-gate-switcher .cgs-btn"
-    );
-    phases.forEach(function (btn) {
-      if (btn.querySelector(".gps-ico, .cgs-ico .nuros-icon")) {
-        /* leave existing emoji ico */
-      }
-      var g = btn.getAttribute("data-gate") || "";
-      if (!g && btn.classList.contains("cgs-seeker")) g = "seeker";
-      if (!g && btn.classList.contains("cgs-new")) g = "new_muslim";
-      if (!g && btn.classList.contains("cgs-daily")) g = "practicing";
-      if (!g && btn.classList.contains("cgs-dai")) g = "dai";
-      if (!btn.querySelector(".gps-ico") && btn.classList.contains("gps-phase")) {
-        var ico = ICONS[g] || "✦";
-        var span = document.createElement("span");
-        span.className = "gps-ico";
-        span.setAttribute("aria-hidden", "true");
-        span.textContent = ico;
-        btn.insertBefore(span, btn.firstChild);
-      }
-    });
-  }
-
-  function decorateUniversityTile() {
-    try {
-      var tiles = document.querySelectorAll(
-        "a[href*='/campus'], [data-door='campus'], .cph-uni, .university-path, [class*='university']"
-      );
-      tiles.forEach(function (tile) {
-        var text = (tile.textContent || "").toLowerCase();
-        if (text.indexOf("university") < 0 && !tile.getAttribute("href")) return;
-        if (tile.querySelector(".nuros-icon-campus, .gps-ico-campus")) return;
-        var el = document.createElement("span");
-        el.className = "nuros-icon nuros-icon-campus";
-        el.setAttribute("aria-hidden", "true");
-        el.style.cssText = "display:inline-block;width:1.25em;height:1.25em;margin-inline-end:.35rem;vertical-align:-.2em;";
-        /* fallback glyph if CSS sprite missing */
-        if (!el.textContent) el.textContent = "🎓";
-        var icoHost = tile.querySelector(".td-ico, .cph-ico, h2, strong") || tile;
-        if (icoHost === tile) tile.insertBefore(el, tile.firstChild);
-        else icoHost.insertBefore(el, icoHost.firstChild);
-      });
-    } catch (e) {}
+    (document.head || document.documentElement).appendChild(s);
   }
 
   function decorate() {
     injectCss();
-    showTrack();
-    decoratePhases();
-    decorateUniversityTile();
+    // Hide track
+    try {
+      document.querySelectorAll(".clarity-gate-switcher, #clarity-path-rail, #clarity-path-intro").forEach(function (el) {
+        el.style.setProperty("display", "none", "important");
+      });
+    } catch (e) {}
+
+    var phases = document.querySelectorAll("#clarity-grave-path-strip .gps-phase, .grave-path-strip .gps-phase");
+    phases.forEach(function (btn) {
+      if (btn.querySelector(".gps-ico")) return;
+      var g = btn.getAttribute("data-gate") || "";
+      var ico = ICONS[g] || "✦";
+      var span = document.createElement("span");
+      span.className = "gps-ico";
+      span.setAttribute("aria-hidden", "true");
+      span.textContent = ico;
+      btn.insertBefore(span, btn.firstChild);
+    });
   }
 
-  function boot() {
-    decorate();
-    setTimeout(decorate, 300);
-    setTimeout(decorate, 1000);
-    setTimeout(decorate, 2500);
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  w.addEventListener("load", function () { setTimeout(decorate, 200); });
-
-  /* Defeat any later script that hides track */
-  /* FREEZE: MutationObserver removed — was looping with style writes */
+  function boot() { decorate(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 60); });
+  else setTimeout(boot, 60);
+  w.addEventListener("load", function () { setTimeout(boot, 250); });
+  document.addEventListener("clarity-core-ready", function () { setTimeout(boot, 150); });
+  // Observe strip rebuilds
+  try {
+    var obs = new MutationObserver(function () { setTimeout(decorate, 40); });
+    if (document.documentElement) obs.observe(document.documentElement, { childList: true, subtree: true });
+  } catch (e) {}
 })(typeof window !== "undefined" ? window : this);

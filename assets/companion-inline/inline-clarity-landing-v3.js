@@ -598,11 +598,6 @@
             '<div class="cdl-trust-links">' +
               '<a href="https://clarity-dawah.fyi/campus/" target="_blank" rel="noopener">Campus ↗</a>' +
             '</div></article>' +
-          '<section class=\"cdl-block cdl-quiz-host\" id=\"cdl-fiqh-quiz-slot\" aria-label=\"Daily Fiqh and Sharia IQ\">' +
-            '<h2 class=\"cdl-h\" style=\"font-size:1rem;margin:0 0 0.35rem\">🧠 Daily quiz · Fiqh &amp; Sharia IQ</h2>' +
-            '<p class=\"cdl-sub\" style=\"margin:0 0 0.5rem\">Moved here for daily routine · educational only — not a fatwa · online fetch kept</p>' +
-            '<!-- fiqh-quiz-card moves here at runtime -->' +
-          '</section>' +
           '<article class="cdl-trust-plaque" data-trust="review" id="cdl-trust-review-plaque">' +
             '<div class="cdl-trust-ico" aria-hidden="true">🔎</div>' +
             '<h3>Auto review · this device</h3>' +

@@ -1,213 +1,243 @@
 /**
- * Clarity URL Shell · 20261028URLSHELL
- * Single owner of mode. URL is source of truth.
- *   ?shell=day | ?shell=companion
- *   #shell=day | #shell=companion | #companion | #day
- * Refresh keeps the section. No first-visit force war.
+ * Clarity Shell v3.1 — single mode plaque under banner
+ * One bar only: Companion ↔ Day landing. No double task bars.
  * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_URL_SHELL__) return;
-  w.__CLARITY_URL_SHELL__ = true;
-  w.__CLARITY_SHELL_V3__ = true; /* legacy guards */
+  if (w.__CLARITY_SHELL_V3__) return;
+  w.__CLARITY_SHELL_V3__ = true;
 
   var KEY = "clarity_shell_mode_v1";
 
-  function parseUrl() {
-    try {
-      var q = new URLSearchParams(w.location.search || "");
-      var s = (q.get("shell") || "").toLowerCase();
-      if (s === "day" || s === "landing") return "day";
-      if (s === "companion" || s === "main") return "companion";
-    } catch (e) {}
-    try {
-      var h = (w.location.hash || "").toLowerCase();
-      if (h === "#shell=day" || h === "#day" || h === "#landing") return "day";
-      if (h === "#shell=companion" || h === "#companion" || h === "#reminder" || h === "#main") return "companion";
-    } catch (e2) {}
-    return null;
-  }
-
-  function writeUrl(m) {
-    try {
-      var u = new URL(w.location.href);
-      u.searchParams.set("shell", m === "companion" ? "companion" : "day");
-      /* keep hash if not a shell hash */
-      var h = (u.hash || "").toLowerCase();
-      if (h === "#shell=day" || h === "#shell=companion" || h === "#day" || h === "#landing" || h === "#companion") {
-        u.hash = "";
-      }
-      w.history.replaceState(null, "", u.pathname + u.search + (u.hash || ""));
-    } catch (e) {}
-  }
-
   function mode() {
-    var fromUrl = parseUrl();
-    if (fromUrl) return fromUrl;
     try {
       var m = localStorage.getItem(KEY);
-      if (m === "companion") return "companion";
-      if (m === "landing" || m === "day") return "day";
+      if (m === "landing" || m === "companion") return m;
     } catch (e) {}
-    return "day";
+    return "landing";
   }
 
   function setMode(m) {
-    if (m === "landing") m = "day";
-    if (m !== "day" && m !== "companion") return;
-    try { localStorage.setItem(KEY, m === "day" ? "landing" : "companion"); } catch (e) {}
+    if (m !== "landing" && m !== "companion") return;
+    try { localStorage.setItem(KEY, m); } catch (e) {}
     try { sessionStorage.setItem("clarity_shell_user_pick_v1", "1"); } catch (e2) {}
-    writeUrl(m);
     apply();
   }
 
   function injectCss() {
-    if (document.getElementById("clarity-url-shell-css")) return;
+    if (document.getElementById("clarity-shell-plaque-css")) return;
     var s = document.createElement("style");
-    s.id = "clarity-url-shell-css";
+    s.id = "clarity-shell-plaque-css";
     s.textContent = [
       "#clarity-reopen-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.4rem;",
-      "width:100%;box-sizing:border-box;margin:0.35rem 0 0.5rem;padding:0.4rem 0.65rem;border-radius:14px;",
-      "border:1px solid rgba(15,76,58,0.22);background:linear-gradient(135deg,rgba(15,76,58,0.14),rgba(15,76,58,0.05));position:relative;z-index:40;}",
-      "#clarity-reopen-bar .crb-btn{border:none;border-radius:999px;padding:0.35rem 0.8rem;font-weight:700;cursor:pointer;font-size:0.8rem;}",
-      "#clarity-reopen-bar .crb-btn.crb-on{background:linear-gradient(135deg,#c9a227,#e0b93a);color:#1a1408;}",
-      "#clarity-reopen-bar .crb-btn.crb-off{background:transparent;border:1px solid rgba(15,76,58,0.35);color:inherit;}",
-      /* Day */
-      'html[data-shell-mode="day"] #clarity-day-landing-room,html[data-shell-mode="landing"] #clarity-day-landing-room{display:block!important;visibility:visible!important;}',
-      'html[data-shell-mode="day"] #main-content,html[data-shell-mode="landing"] #main-content{display:none!important;}',
-      'html[data-shell-mode="day"] #clarity-door-rail,html[data-shell-mode="landing"] #clarity-door-rail,',
-      'html[data-shell-mode="day"] .door-rail-bottom,html[data-shell-mode="landing"] .door-rail-bottom{display:none!important;height:0!important;}',
-      'html[data-shell-mode="day"] #clarity-dual-path,html[data-shell-mode="landing"] #clarity-dual-path,',
-      'html[data-shell-mode="day"] #clarity-provision-home,html[data-shell-mode="landing"] #clarity-provision-home{display:none!important;height:0!important;min-height:0!important;}',
-      /* TRACK off on Day — specificity beats aux-pack */
-      'html[data-shell-mode="day"] .clarity-gate-switcher,html[data-shell-mode="landing"] .clarity-gate-switcher,',
-      'html[data-shell-mode="day"] .cgp-track-plaque,html[data-shell-mode="landing"] .cgp-track-plaque,',
-      'html[data-shell-mode="day"] .rrra-sitewide,html[data-shell-mode="landing"] .rrra-sitewide{',
-      "display:none!important;visibility:hidden!important;height:0!important;min-height:0!important;overflow:hidden!important;",
-      "margin:0!important;padding:0!important;opacity:0!important;pointer-events:none!important;position:absolute!important;left:-9999px!important;}",
-      /* Companion */
-      'html[data-shell-mode="companion"] #clarity-day-landing-room{display:none!important;visibility:hidden!important;}',
-      'html[data-shell-mode="companion"] #main-content{display:block!important;visibility:visible!important;}',
-      'html[data-shell-mode="companion"] #clarity-door-rail,html[data-shell-mode="companion"] .door-rail-bottom{display:flex!important;visibility:visible!important;height:auto!important;}',
-      'html[data-shell-mode="companion"] #clarity-dual-path,html[data-shell-mode="companion"] #clarity-provision-home{display:none!important;}',
-      /* 4-path TRACK tiles — Companion only */
-      'html[data-shell-mode="companion"] .clarity-gate-switcher,html[data-shell-mode="companion"] .cgp-track-plaque{',
-      "display:flex!important;visibility:visible!important;height:auto!important;min-height:2.75rem!important;",
-      "position:relative!important;left:auto!important;opacity:1!important;pointer-events:auto!important;",
-      "flex-wrap:wrap;align-items:center;justify-content:center;gap:0.35rem;",
-      "margin:0.45rem 0.5rem 0.65rem;padding:0.5rem 0.65rem;border-radius:14px;",
-      "border:1px solid rgba(15,76,58,0.22);background:linear-gradient(135deg,rgba(15,76,58,0.12),rgba(15,76,58,0.04));}"
-    ].join("");
-    document.head.appendChild(s);
+      "  width:100%;max-width:100%;box-sizing:border-box;margin:0.35rem 0 0.5rem;padding:0.4rem 0.65rem;",
+      "  border-radius:14px;border:1px solid rgba(15,76,58,0.22);",
+      "  background:linear-gradient(135deg,rgba(15,76,58,0.14),rgba(15,76,58,0.05));}",
+      "html[data-theme=dark] #clarity-reopen-bar,html[data-theme=night] #clarity-reopen-bar{",
+      "  background:linear-gradient(135deg,rgba(212,180,90,0.1),rgba(12,28,22,0.7));border-color:rgba(212,180,90,0.22);}",
+      "#clarity-reopen-bar .crb-ico{font-size:1.05rem;line-height:1;}",
+      "#clarity-reopen-bar .crb-label{font-weight:800;font-size:0.78rem;letter-spacing:0.04em;text-transform:uppercase;opacity:0.85;}",
+      "#clarity-reopen-bar .crb-btn{border:none;border-radius:999px;padding:0.32rem 0.75rem;font-weight:700;cursor:pointer;font-size:0.8rem;}",
+      "#clarity-reopen-bar .crb-btn.crb-open{background:linear-gradient(135deg,#c9a227,#e0b93a);color:#1a1408;}",
+      "#clarity-reopen-bar .crb-btn.crb-hide{background:linear-gradient(135deg,#0f4c3a,#1a6b52);color:#f7f3eb;}",
+      "#clarity-reopen-bar .crb-btn.crb-comp{background:transparent;border:1px solid rgba(15,76,58,0.35);color:inherit;}",
+      "html[data-theme=dark] #clarity-reopen-bar .crb-btn.crb-comp{border-color:rgba(212,180,90,0.35);}",
+      "#clarity-reopen-bar .crb-hint{font-size:0.72rem;opacity:0.7;}",
+      "#clarity-reopen-bar .crb-pill{font-size:0.72rem;font-weight:700;padding:0.18rem 0.5rem;border-radius:999px;",
+      "  background:rgba(15,76,58,0.15);}",
+      "html[data-theme=dark] #clarity-reopen-bar .crb-pill{background:rgba(212,180,90,0.12);}",
+      "/* Hide duplicate bars */",
+      "#clarity-visit-pill-bar,.clarity-visit-strip,#clarity-visit-strip,",
+      ".visit-strip[data-day-landing],.day-landing-footer-bar{",
+      "  display:none!important;}",
+      ".shell-landing-hide{display:none!important;}",
+      "/* Restore first-landing overview when marked */",
+      "html[data-shell-mode=landing] #clarity-welcome,",
+      "html[data-shell-mode=landing] #clarity-three-doors,",
+      "html[data-shell-mode=landing] [data-landing-overview]{display:block!important;}"
+    ].join("\n");
+    (document.head || document.documentElement).appendChild(s);
   }
 
-  function ensurePlaque() {
+  function ensureRibbon() {
     var bar = document.getElementById("clarity-reopen-bar");
     if (!bar) {
       bar = document.createElement("div");
       bar.id = "clarity-reopen-bar";
-      bar.setAttribute("role", "navigation");
-      bar.innerHTML =
-        '<button type="button" class="crb-btn" data-shell="day">Day landing</button>' +
-        '<button type="button" class="crb-btn" data-shell="companion">Companion path</button>' +
-        '<span style="font-size:0.72rem;opacity:0.75;margin-left:0.35rem">URL keeps your place on refresh</span>';
-      var banner = document.querySelector(".banner");
-      if (banner && banner.parentNode) banner.parentNode.insertBefore(bar, banner.nextSibling);
-      else document.body.insertBefore(bar, document.body.firstChild);
+      bar.setAttribute("role", "toolbar");
+      bar.setAttribute("aria-label", "Day landing and companion");
+    }
+    bar.setAttribute("data-landing", "pill");
+    bar.innerHTML =
+      '<span class="crb-ico" aria-hidden="true">🏠</span>' +
+      '<span class="crb-pill" id="crb-mode-pill">Day landing</span>' +
+      '<button type="button" class="crb-btn crb-open" data-crb="open">Open daily routines</button>' +
+      '<button type="button" class="crb-btn crb-hide" data-crb="hide">Hide for now</button>' +
+      '<button type="button" class="crb-btn crb-comp" data-crb="companion">Companion path</button>' +
+      '<span class="crb-hint">One plaque · return anytime on this device</span>';
+
+    // Place once: directly under banner (clarity-top-duo)
+    var duo = document.getElementById("clarity-top-duo");
+    var host = (duo && duo.parentNode) || document.body;
+    if (bar.parentNode !== host || (duo && bar.previousSibling !== duo && bar.previousElementSibling !== duo)) {
+      if (bar.parentNode) bar.parentNode.removeChild(bar);
+      if (duo && duo.nextSibling) host.insertBefore(bar, duo.nextSibling);
+      else if (duo) host.appendChild(bar);
+      else host.insertBefore(bar, host.firstChild);
+    }
+
+    if (!bar._bound) {
+      bar._bound = true;
       bar.addEventListener("click", function (ev) {
-        var t = ev.target.closest("[data-shell]");
+        var t = ev.target && ev.target.closest && ev.target.closest("[data-crb]");
         if (!t) return;
-        setMode(t.getAttribute("data-shell"));
+        var a = t.getAttribute("data-crb");
+        if (a === "open") setMode("landing");
+        else if (a === "hide" || a === "companion") setMode("companion");
       });
     }
-    var m = mode();
-    bar.querySelectorAll("[data-shell]").forEach(function (btn) {
-      var on = btn.getAttribute("data-shell") === m;
-      btn.classList.toggle("crb-on", on);
-      btn.classList.toggle("crb-off", !on);
-    });
+    return bar;
+  }
+
+  function hideDuplicateBars() {
+    try {
+      ["clarity-visit-pill-bar", "clarity-visit-strip"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.style.setProperty("display", "none", "important");
+      });
+      document.querySelectorAll(".visit-strip, .clarity-visit-strip, .day-landing-footer-bar").forEach(function (el) {
+        if (el.id === "clarity-reopen-bar") return;
+        el.style.setProperty("display", "none", "important");
+      });
+      // Remove any second #clarity-reopen-bar
+      var bars = document.querySelectorAll("#clarity-reopen-bar");
+      for (var i = 1; i < bars.length; i++) bars[i].remove();
+    } catch (e) {}
+  }
+
+  function applyDoorRail(m) {
+    try {
+      var door = document.getElementById("clarity-door-rail") || document.querySelector(".door-rail");
+      if (!door) return;
+      if (m === "landing") door.style.setProperty("display", "none", "important");
+      else door.style.removeProperty("display");
+    } catch (e) {}
   }
 
   function apply() {
     injectCss();
     var m = mode();
-    /* sync attribute — both day and legacy landing for old CSS */
-    try {
-      document.documentElement.setAttribute("data-shell-mode", m === "day" ? "day" : "companion");
-      /* also set landing alias for any leftover CSS */
-      if (m === "day") document.documentElement.setAttribute("data-shell-mode", "day");
-    } catch (e) {}
-    ensurePlaque();
+    document.documentElement.setAttribute("data-shell-mode", m);
+    try { document.body.setAttribute("data-shell-mode", m); } catch (e) {}
+    var bar = ensureRibbon();
+    hideDuplicateBars();
 
-    var dayRoom = document.getElementById("clarity-day-landing-room");
-    var main = document.getElementById("main-content");
+    var openBtn = bar.querySelector('[data-crb="open"]');
+    var hideBtn = bar.querySelector('[data-crb="hide"]');
+    var compBtn = bar.querySelector('[data-crb="companion"]');
+    var pill = document.getElementById("crb-mode-pill");
+    var land = document.getElementById("clarity-day-landing");
 
-    if (dayRoom) {
-      if (m === "day") {
-        dayRoom.hidden = false;
-        dayRoom.removeAttribute("hidden");
-        dayRoom.style.setProperty("display", "block", "important");
-        dayRoom.style.setProperty("visibility", "visible", "important");
-        /* allow fill once */
+    if (m === "landing") {
+      if (land) { land.hidden = false; land.style.removeProperty("display"); }
+      if (openBtn) openBtn.style.display = "none";
+      if (hideBtn) hideBtn.style.display = "";
+      if (compBtn) compBtn.style.display = "";
+      if (pill) pill.textContent = "Day landing";
+      /* Day landing only through oath + study cards. Companion hubs via path tiles. */
+      document.querySelectorAll("#main-content .tab-panel, #main-content .rrra-hub, #main-content .rrra-hub-hero").forEach(function (el) {
+        el.classList.add("shell-landing-hide");
+      });
+    } else {
+      if (land) { land.hidden = true; land.style.display = "none"; }
+      if (openBtn) openBtn.style.display = "";
+      if (hideBtn) hideBtn.style.display = "none";
+      if (compBtn) compBtn.style.display = "none";
+      if (pill) pill.textContent = "Companion";
+      document.querySelectorAll(".shell-landing-hide").forEach(function (el) {
+        el.classList.remove("shell-landing-hide");
+      });
+      /* Reveal companion surface immediately — do not wait for refresh */
+      try {
+        var mainNow = document.getElementById("main-content") || document.querySelector(".main-content");
+        if (mainNow) {
+          mainNow.style.setProperty("display", "block", "important");
+          mainNow.style.setProperty("visibility", "visible", "important");
+          mainNow.removeAttribute("aria-hidden");
+          mainNow.hidden = false;
+        }
+        document.querySelectorAll("#main-content .tab-panel, #main-content .rrra-hub").forEach(function (el) {
+          el.classList.remove("shell-landing-hide");
+        });
+        var tabId = "reminder";
         try {
-          if (w.ClarityDayRoom && typeof w.ClarityDayRoom.fill === "function") {
-            var inner = dayRoom.querySelector(".day-room-inner");
-            if (inner && !inner.children.length) w.ClarityDayRoom.fill();
+          var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
+          if (/^(reminder|reality|reflection|action|notes)$/.test(h)) tabId = h;
+          else {
+            var s = w.sessionStorage && w.sessionStorage.getItem("clarity_active_section_v1");
+            if (s && /^(reminder|reality|reflection|action|notes)$/.test(s)) tabId = s;
           }
-        } catch (e) {}
-      } else {
-        dayRoom.hidden = true;
-        dayRoom.setAttribute("hidden", "");
-        dayRoom.style.setProperty("display", "none", "important");
-      }
+        } catch (eTab) {}
+        document.querySelectorAll(".tab-panel").forEach(function (p) {
+          var on = p.id === ("tab-" + tabId);
+          p.classList.toggle("active", on);
+          if (on) {
+            p.hidden = false;
+            p.style.setProperty("display", "block", "important");
+            p.style.setProperty("visibility", "visible", "important");
+            p.style.setProperty("opacity", "1", "important");
+            p.setAttribute("aria-hidden", "false");
+            p.querySelectorAll(".card, [id$='-card'], .rrra-hub-hero, .rrra-hub-summary").forEach(function (c) {
+              c.classList.remove("gate-hidden", "shell-landing-hide");
+              c.hidden = false;
+              c.style.removeProperty("display");
+              c.style.removeProperty("visibility");
+              c.style.removeProperty("height");
+              c.style.removeProperty("max-height");
+              c.style.removeProperty("opacity");
+            });
+          }
+        });
+        if (typeof w.clarityOpenSectionDoor === "function") {
+          try { w.clarityOpenSectionDoor(tabId); } catch (eOpen) {}
+        }
+      } catch (eComp) {}
     }
+    applyDoorRail(m);
+
+    var main = document.getElementById("main-content") || document.querySelector(".main-content");
     if (main) {
-      if (m === "day") {
+      if (m === "landing") {
         main.style.setProperty("display", "none", "important");
         main.setAttribute("aria-hidden", "true");
       } else {
         main.style.setProperty("display", "block", "important");
         main.style.setProperty("visibility", "visible", "important");
         main.removeAttribute("aria-hidden");
+        main.hidden = false;
       }
     }
 
-    /* TRACK: suppress on day only */
-    document.querySelectorAll(".clarity-gate-switcher,.cgp-track-plaque,.rrra-sitewide").forEach(function (el) {
-      if (m === "day") {
-        el.style.setProperty("display", "none", "important");
-        el.setAttribute("hidden", "");
-      } else {
-        el.style.setProperty("display", "flex", "important");
-        el.removeAttribute("hidden");
-      }
-    });
+    if (m === "companion" && typeof w.ClarityLoadCompanion === "function") {
+      try { w.ClarityLoadCompanion(); } catch (e) {}
+    }
   }
 
-  /* Boot: URL wins; if no URL param, restore last mode into URL so refresh sticks */
-  (function bootMode() {
-    var fromUrl = parseUrl();
-    var m = fromUrl || mode();
-    try { localStorage.setItem(KEY, m === "day" ? "landing" : "companion"); } catch (e) {}
-    if (!fromUrl) writeUrl(m);
-    try { document.documentElement.setAttribute("data-shell-mode", m); } catch (e2) {}
-  })();
+  /* Mobile: ensure Day landing is first surface */
+  try {
+    if (window.matchMedia && window.matchMedia("(max-width: 900px)").matches) {
+      if (sessionStorage.getItem("clarity_shell_user_pick_v1") !== "1") {
+        try { localStorage.setItem(KEY, "landing"); } catch (e) {}
+      }
+    }
+  } catch (e) {}
 
-  w.ClarityShell = {
-    mode: function () { return mode() === "day" ? "landing" : "companion"; },
-    setMode: function (m) {
-      if (m === "landing") m = "day";
-      setMode(m);
-    },
-    apply: apply,
-    rawMode: mode
-  };
+  w.ClarityShell = { mode: mode, setMode: setMode, apply: apply };
 
   function boot() { apply(); }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 20); });
-  } else setTimeout(boot, 20);
-  w.addEventListener("load", function () { setTimeout(apply, 80); });
-  w.addEventListener("popstate", function () { apply(); });
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 40); });
+  else setTimeout(boot, 40);
+  w.addEventListener("load", function () { setTimeout(apply, 200); });
+  document.addEventListener("clarity-core-ready", function () { setTimeout(apply, 120); });
 })(typeof window !== "undefined" ? window : this);
