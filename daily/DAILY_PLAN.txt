@@ -1,0 +1,28 @@
+Daily — self-contained like campus
+================================
+Campus form (unchanged):
+  /campus/index.html
+  /campus/assets/css + js
+  own nav, own theme, does not load companion tabs
+
+Phase A — this package
+  /daily/index.html          surface page
+  /daily/assets/daily.css
+  /daily/assets/daily.js
+  Content isolated: today's deed, morning/evening adhkar, tasbeeh
+  Same device keys as companion so counts continue
+  Links out to / and /campus/ — does not embed companion panels
+
+Phase B — next
+  Move banner salah times and Hijri plaque into /daily/
+  Companion Day landing pill becomes a link to /daily/
+
+Phase C
+  Adhkar full set and "Do this today" history live only in /daily/
+  Companion keeps Reminder / Reality / Reflection / Action / Vault
+
+Rules
+  Campus untouched
+  Companion doors untouched
+  Data stays on this device
+  Educational only — not a fatwa
