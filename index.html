@@ -194,7 +194,10 @@
 </script>
 <link rel="prefetch" href="/daily/"/>
 
-<style id="daily-isolate">#clarity-day-landing,#cdl-today,#cdl-adhkar{display:none!important}</style>
+<style id="daily-isolate">
+#clarity-day-landing,#cdl-today,#cdl-adhkar,#clarity-reopen-bar .cdl-card{display:none!important}
+html[data-shell-mode=landing] #clarity-day-landing{display:none!important}
+</style>
 <script id="daily-isolate-js">
 (function(){
   function bridge(){
@@ -207,7 +210,7 @@
       bar.appendChild(a);
     }
     var land=document.getElementById("clarity-day-landing");
-    if(land) land.style.display="none";
+    if(land && land.parentNode) land.parentNode.removeChild(land);
   }
   document.addEventListener("DOMContentLoaded", bridge);
   setTimeout(bridge, 600);
