@@ -1,7 +1,67 @@
 
-#clarity-reopen-bar button:nth-child(n+2){display:none!important;position:absolute!important;left:-9999px!important;width:0!important;height:0!important;overflow:hidden!important;padding:0!important;border:0!important;}
-#clarity-reopen-bar{display:flex!important;justify-content:center!important;max-width:min(20rem,92vw);margin-left:auto!important;margin-right:auto!important;border-radius:999px!important;padding:0.3rem!important;gap:0!important;}
-#clarity-single-switch{display:block!important;width:100%;border:none!important;border-radius:999px!important;padding:0.45rem 1.1rem!important;font-weight:700!important;font-size:0.85rem!important;cursor:pointer;background:#0d4f3c!important;color:#f7f1e6!important;}
-html[data-theme="dark"] #clarity-single-switch,html[data-theme="night"] #clarity-single-switch{background:#c9a84c!important;color:#0c241c!important;}
-html[data-shell-mode="companion"] #clarity-day-landing-room{display:none!important;visibility:hidden!important;}
-html[data-shell-mode="landing"] #clarity-day-landing-room{display:block!important;visibility:visible!important;}
+/* Force switch bar visible under banner */
+#clarity-reopen-bar {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: 2.5rem !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 100 !important;
+  left: auto !important;
+  width: auto !important;
+  max-width: min(20rem, 92vw) !important;
+  margin: 0.5rem auto 0.65rem !important;
+  padding: 0.3rem !important;
+  box-sizing: border-box !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0 !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(201,168,76,0.45) !important;
+  background: linear-gradient(145deg, rgba(15,76,58,0.2), rgba(15,76,58,0.08)) !important;
+  pointer-events: auto !important;
+  clip: auto !important;
+}
+#clarity-reopen-bar button:nth-child(n+2) {
+  display: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+#clarity-single-switch {
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 0.5rem 1.15rem !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  cursor: pointer !important;
+  background: #0d4f3c !important;
+  color: #f7f1e6 !important;
+  position: relative !important;
+  left: auto !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+html[data-theme="dark"] #clarity-single-switch,
+html[data-theme="night"] #clarity-single-switch {
+  background: #c9a84c !important;
+  color: #0c241c !important;
+}
+html[data-shell-mode="companion"] #clarity-day-landing-room {
+  display: none !important;
+  visibility: hidden !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing-room {
+  display: block !important;
+  visibility: visible !important;
+}
