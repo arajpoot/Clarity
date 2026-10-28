@@ -4,7 +4,8 @@
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_DAY_ROOM_V3__) return;
+  /* DAYFIX allow single load */
+if (w.__CLARITY_DAY_ROOM_V3__) return;
   w.__CLARITY_DAY_ROOM_V3__ = true;
 
   var KEY_TAS = "clarity_soft_tasbeeh_v1";
@@ -367,4 +368,19 @@
     if (room && room.getAttribute("data-room-filled") !== "3") boot();
   });
   w.ClarityDayRoom = { fill: boot, version: 3 };
+
+  /* DAYFIX: ensure room fills even if shell raced */
+  (function dayfixBoot() {
+    function ensure() {
+      var room = document.getElementById("clarity-day-landing-room");
+      if (!room) return;
+      var inner = room.querySelector(".day-room-inner");
+      if (inner && !inner.children.length) {
+        try { room.removeAttribute("data-room-filled"); } catch (e) {}
+        try { if (window.ClarityDayRoom) window.ClarityDayRoom.fill(); } catch (e2) {}
+      }
+    }
+    [50, 200, 600, 1200, 2500].forEach(function (ms) { setTimeout(ensure, ms); });
+  })();
+
 })(typeof window !== "undefined" ? window : this);
