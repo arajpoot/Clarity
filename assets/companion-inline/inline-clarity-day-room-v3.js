@@ -142,6 +142,10 @@
 
   function fill(room) {
     if (!room) return;
+    if (room.getAttribute("data-day-fortified") === "1") {
+      var _in = room.querySelector(".day-room-inner");
+      if (_in && _in.children.length) return;
+    }
     if (room.getAttribute("data-room-filled") === "9") return;
     injectCss();
     var inner = room.querySelector(".day-room-inner");
@@ -294,6 +298,7 @@
 
     inner.innerHTML = html;
     room.setAttribute("data-room-filled", "9");
+    room.setAttribute("data-day-fortified", "1");
     wire(pack, idx, cnt, light);
   }
 
@@ -517,20 +522,18 @@
   function ensure() {
     var room = document.getElementById("clarity-day-landing-room");
     if (!room) return;
-    /* C1 stability: only rebuild if inner truly empty for consecutive checks */
-    if (room.getAttribute("data-room-filled") === "9") {
+    /* Phase 1 fortify: never rebuild once filled and has children */
+    if (room.getAttribute("data-room-filled") === "9" || room.getAttribute("data-day-fortified") === "1") {
       var inner = room.querySelector(".day-room-inner");
       if (inner && inner.children.length) {
         __ensureFails = 0;
         return;
       }
       __ensureFails++;
-      if (__ensureFails < 2) return;
-      room.removeAttribute("data-room-filled");
-      __ensureFails = 0;
-      boot();
-      return;
+      if (__ensureFails < 3) return;
     }
+    if (room.getAttribute("data-day-fortified") === "1") return; /* sealed */
+    __ensureFails = 0;
     boot();
   }
 
@@ -538,7 +541,6 @@
     document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 40); });
   } else setTimeout(boot, 40);
   w.addEventListener("load", function () { setTimeout(ensure, 400); });
-  /* C1: one delayed ensure only — no 500/1500/3000 storm */
   setTimeout(ensure, 2000);
-  w.ClarityDayRoom = { fill: boot, version: 10, stability: "C1" };
+  w.ClarityDayRoom = { fill: boot, version: 11, stability: "F1", fortified: true };
 })(typeof window !== "undefined" ? window : this);
