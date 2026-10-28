@@ -1,15 +1,16 @@
-RECOVERY STABLE 20261027RECOVERY
+DAYFIX 20261027DAYFIX — banner safe
 
-BASE: Clarity-main (10) — last known good banner + Companion RRRA.
-ADDED ONLY:
-  · Day room section (vault pattern)
-  · Minimal shell door (no observers)
-  · Day room content (verse, adhkar, qada, dayn, review, © plaque)
-  · Explicit AV engines: chunk-8, aux-pack, overlays, haramain temps
+Does NOT replace banner markup (keeps live working banner).
+Updates only:
+  · inline-clarity-shell-v3.js  (decisive Day vs Companion door + plaque)
+  · inline-clarity-day-room-v3.js (fill + empty-room recovery)
+  · index.html script ?v= only
 
-Upload the FULL zip contents. Purge Cloudflare. Test in Incognito only.
+Upload these 3 files. Purge CF. Incognito:
+  1) Should open Day landing (dual path + āyah + adhkār + …)
+  2) Companion path → main tools; banner AV still works
+  3) Day landing button returns to fortified Day room
 
-Do NOT mix with partial earlier packages.
+If stuck on Companion: DevTools → Application → clear sessionStorage key clarity_shell_user_pick_v1 and localStorage clarity_shell_mode_v1, refresh.
 
-Campus: leave campus/ on GitHub unchanged.
-Educational only — not a fatwa.
+Campus untouched. Educational only — not a fatwa.
