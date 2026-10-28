@@ -1,0 +1,27 @@
+
+/* Kill legacy gate / track chooser — path tiles + Day landing own first paint */
+#clarity-welcome,
+.clarity-welcome,
+.clarity-gate-switcher,
+.cgp-track-plaque,
+.rrra-sitewide.clarity-gate-switcher,
+[aria-label="Learning track — switch anytime"],
+button.gate-mode,
+#gate-mode-btn,
+.legacy-gate-card,
+[data-legacy-gate] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+/* Hide standalone "Gate mode" chrome buttons if present */
+button[title*="Gate mode"],
+button[aria-label*="Gate mode"] {
+  display: none !important;
+}
