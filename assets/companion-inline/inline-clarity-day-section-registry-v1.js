@@ -1,34 +1,65 @@
 /**
- * Day Landing Section Registry · resurrection watchdog
- * Detects missing fortified-day cards after updates and restores soft shells.
- * Does NOT wipe healthy content. Educational only — not a fatwa.
+ * Day Landing Section Registry v2 · merged catalog (day-room + legacy landing-v3)
+ * KEEP current enriched modules; soft-restore gaps from legacy strengths
+ * Educational only — not a fatwa
  */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_DAY_SECTION_REGISTRY_V1__) return;
+  if (g.__CLARITY_DAY_SECTION_REGISTRY_V2__) return;
+  g.__CLARITY_DAY_SECTION_REGISTRY_V2__ = true;
   g.__CLARITY_DAY_SECTION_REGISTRY_V1__ = true;
 
-  var REGISTRY_KEY = "clarity_day_section_registry_v1";
+  var REGISTRY_KEY = "clarity_day_section_registry_v2";
 
-  /** Canonical slots for fortified day landing (order = daily flow) */
+  /**
+   * source: "both" | "day-room" | "legacy" | "enrich"
+   * policy: keep | prefer-current | restore-if-missing
+   */
   var CATALOG = [
-    { id: "slot-paths", test: function (root) { return !!root.querySelector(".dual-tiles, #day-path-companion, #dual-path-companion"); }, title: "Dual paths" },
-    { id: "slot-todo", test: function (root) { return /Do this today/i.test(root.textContent || ""); }, title: "Do this today" },
-    { id: "slot-salah", test: function (root) { return /Next ṣalāh|Next salah|cdl-salah/i.test(root.textContent || "") || !!root.querySelector("#cdl-salah-name, #cdl-salah-cd"); }, title: "Next ṣalāh" },
-    { id: "slot-adhkar", test: function (root) { return /Adhkār|Adhkar/i.test(root.textContent || ""); }, title: "Adhkār" },
-    { id: "slot-wudu", test: function (root) { return !!root.querySelector("#cdl-wudu-card, #cdl-wudu-body, #cdl-wudu-btn") || /Wuḍū|Wudu/i.test(root.textContent || ""); }, title: "Wuḍūʾ" },
-    { id: "slot-tasbeeh", test: function (root) { return /Tasbeeh|Tasbih|streak/i.test(root.textContent || ""); }, title: "Tasbeeh / streak" },
-    { id: "slot-qada", test: function (root) { return /Qaḍā|Qada/i.test(root.textContent || "") || !!root.querySelector("input[data-qada], #cdl-qada-calendar"); }, title: "Qaḍāʾ tracker" },
-    { id: "slot-dayn", test: function (root) { return !!root.querySelector("#clarity-landing-slot-dayn, #dayn-save") || /Amānah Dayn|Qard ḥasan/i.test(root.textContent || ""); }, title: "Amānah Dayn" },
-    { id: "slot-vault-note", test: function (root) { return /Vault note registry/i.test(root.textContent || ""); }, title: "Vault note registry" },
-    { id: "slot-light", test: function (root) { return /Send light ahead/i.test(root.textContent || ""); }, title: "Send light ahead" },
-    { id: "slot-grave", test: function (root) { return /Remember the long stay/i.test(root.textContent || ""); }, title: "Remember the long stay" },
-    { id: "slot-reward", test: function (root) { return /Reward that may continue/i.test(root.textContent || ""); }, title: "Reward that may continue" },
-    { id: "slot-qibla", test: function (root) { return /Qibla/i.test(root.textContent || "") || !!root.querySelector(".cdl-compass, #cdl-compass"); }, title: "Qibla" },
-    { id: "slot-protect", test: function (root) { return /Core protection/i.test(root.textContent || ""); }, title: "Core protection set" },
-    { id: "slot-review", test: function (root) { return !!root.querySelector("#cdl-trust-review-card") || /Auto review/i.test(root.textContent || ""); }, title: "Auto review" },
-    { id: "slot-trust", test: function (root) { return /Built for trust/i.test(root.textContent || ""); }, title: "Built for trust" },
-    { id: "slot-prayer-outline", test: function (root) { return /Prayer outline/i.test(root.textContent || "") || !!root.querySelector("#cdl-salah-body, #cdl-salah-btn"); }, title: "Prayer outline" }
+    { id: "slot-paths", title: "Dual paths (Companion / University)", source: "both", policy: "keep",
+      test: function (r) { return !!r.querySelector(".dual-tiles, #day-path-companion, #dual-path-companion"); } },
+    { id: "slot-todo", title: "Do this today", source: "both", policy: "keep",
+      test: function (r) { return /Do this today/i.test(r.textContent || ""); } },
+    { id: "slot-salah", title: "Next ṣalāh", source: "both", policy: "keep",
+      test: function (r) { return /Next ṣalāh|Next salah/i.test(r.textContent || "") || !!r.querySelector("#cdl-salah-name,#cdl-salah-cd"); } },
+    { id: "slot-adhkar", title: "Adhkār (morning/evening)", source: "both", policy: "keep",
+      test: function (r) { return /Adhkār|Adhkar/i.test(r.textContent || ""); } },
+    { id: "slot-wudu", title: "Wuḍūʾ steps", source: "both", policy: "keep",
+      test: function (r) { return !!r.querySelector("#cdl-wudu-card,#cdl-wudu-body,#cdl-wudu-btn") || /Wuḍū|Wudu steps/i.test(r.textContent || ""); } },
+    { id: "slot-salah-steps", title: "Prayer outline / ṣalāh steps", source: "both", policy: "restore-if-missing",
+      test: function (r) { return /Prayer outline|ṣalāh steps|Salah steps/i.test(r.textContent || "") || !!r.querySelector("#cdl-salah-body,#cdl-salah-btn,#cdl-salah-steps"); } },
+    { id: "slot-tasbeeh", title: "Tasbeeh today", source: "both", policy: "keep",
+      test: function (r) { return /Tasbeeh|Tasbih/i.test(r.textContent || ""); } },
+    { id: "slot-streak", title: "Soft streak", source: "both", policy: "keep",
+      test: function (r) { return /Soft streak|streak/i.test(r.textContent || "") || !!r.querySelector("#cdl-streak"); } },
+    { id: "slot-qada", title: "Qaḍāʾ tracker + calendar", source: "day-room", policy: "keep",
+      test: function (r) { return /Qaḍā|Qada/i.test(r.textContent || "") || !!r.querySelector("input[data-qada],#cdl-qada-calendar"); } },
+    { id: "slot-dayn", title: "Amānah Dayn (Qard ḥasan ledger)", source: "enrich", policy: "prefer-current",
+      test: function (r) { return !!r.querySelector("#clarity-landing-slot-dayn,#dayn-save") || /Amānah Dayn|Qard ḥasan/i.test(r.textContent || ""); } },
+    { id: "slot-vault-note", title: "Vault note registry", source: "both", policy: "keep",
+      test: function (r) { return /Vault note registry/i.test(r.textContent || ""); } },
+    { id: "slot-light", title: "Send light ahead", source: "both", policy: "keep",
+      test: function (r) { return /Send light ahead/i.test(r.textContent || ""); } },
+    { id: "slot-grave", title: "Remember the long stay", source: "both", policy: "keep",
+      test: function (r) { return /Remember the long stay/i.test(r.textContent || ""); } },
+    { id: "slot-reward", title: "Reward that may continue", source: "both", policy: "keep",
+      test: function (r) { return /Reward that may continue/i.test(r.textContent || ""); } },
+    { id: "slot-qibla", title: "Qibla direction", source: "both", policy: "keep",
+      test: function (r) { return /Qibla/i.test(r.textContent || "") || !!r.querySelector(".cdl-compass,#cdl-qibla-card,#cdl-compass"); } },
+    { id: "slot-protect", title: "Core protection set", source: "day-room", policy: "keep",
+      test: function (r) { return /Core protection/i.test(r.textContent || ""); } },
+    { id: "slot-review", title: "Auto review · this device", source: "legacy+enrich", policy: "restore-if-missing",
+      test: function (r) { return !!r.querySelector("#cdl-trust-review-card,#cdl-trust-review-btn") || /Auto review/i.test(r.textContent || ""); } },
+    { id: "slot-trust", title: "Built for trust", source: "both", policy: "keep",
+      test: function (r) { return /Built for trust/i.test(r.textContent || ""); } },
+    { id: "slot-sources", title: "Sources in the open (legacy plaque)", source: "legacy", policy: "restore-if-missing",
+      test: function (r) { return /Sources in the open|Quran\.com · Sunnah/i.test(r.textContent || ""); } },
+    { id: "slot-humility", title: "Scholarly humility (legacy)", source: "legacy", policy: "restore-if-missing",
+      test: function (r) { return /Scholarly humility/i.test(r.textContent || ""); } },
+    { id: "slot-fiqh-quiz", title: "Daily quiz · Fiqh (legacy)", source: "legacy", policy: "restore-if-missing",
+      test: function (r) { return /Fiqh|Sharia IQ|cdl-fiqh/i.test(r.textContent || "") || !!r.querySelector("#cdl-fiqh-quiz-slot"); } },
+    { id: "slot-zakat", title: "Zakat reminder (legacy id)", source: "legacy", policy: "restore-if-missing",
+      test: function (r) { return !!r.querySelector("#cdl-zakat") || /Zak[aā]t/i.test(r.textContent || ""); } }
   ];
 
   function root() {
@@ -37,37 +68,28 @@
 
   function scan() {
     var r = root();
-    if (!r) return { ok: false, reason: "no-room", missing: CATALOG.map(function (c) { return c.id; }), present: [] };
+    if (!r) return { ok: false, reason: "no-room", missing: CATALOG.map(function (c) { return c.id; }), present: [], detail: [] };
     var inner = r.querySelector(".day-room-inner") || r;
-    var missing = [];
-    var present = [];
+    var missing = [], present = [], detail = [];
     CATALOG.forEach(function (c) {
-      if (c.test(inner)) present.push(c.id);
+      var ok = false;
+      try { ok = !!c.test(inner); } catch (e) {}
+      if (ok) present.push(c.id);
       else missing.push(c.id);
+      detail.push({ id: c.id, title: c.title, source: c.source, policy: c.policy, present: ok });
     });
     return {
-      ok: missing.length === 0,
+      ok: missing.filter(function (id) {
+        var c = CATALOG.filter(function (x) { return x.id === id; })[0];
+        return c && c.policy !== "restore-if-missing";
+      }).length === 0,
       missing: missing,
       present: present,
-      childCount: (r.querySelector(".day-room-inner") || r).children.length,
+      detail: detail,
+      childCount: inner.children.length,
       fortified: r.getAttribute("data-day-fortified"),
       filled: r.getAttribute("data-room-filled")
     };
-  }
-
-  function logRegistry(report) {
-    try {
-      localStorage.setItem(
-        REGISTRY_KEY,
-        JSON.stringify({
-          at: new Date().toISOString(),
-          missing: report.missing,
-          present: report.present,
-          childCount: report.childCount
-        })
-      );
-    } catch (e) {}
-    g.__CLARITY_DAY_LAST_SCAN__ = report;
   }
 
   function softShell(title, body) {
@@ -75,63 +97,59 @@
     el.className = "cdl-card cdl-resurrection-shell";
     el.setAttribute("data-resurrected", "1");
     el.innerHTML =
-      '<div class="cdl-head"><h2>' +
-      title +
-      "</h2></div>" +
-      '<p class="cdl-sub">' +
-      body +
-      "</p>" +
-      '<p class="cdl-sub">Restored shell · open Companion or refresh if tools stay empty · educational only.</p>';
+      '<div class="cdl-head"><h2>' + title + "</h2></div>" +
+      '<p class="cdl-sub">' + body + "</p>" +
+      '<p class="cdl-sub">Registry restore · educational only — not a fatwa.</p>';
     return el;
   }
 
-  function resurrectMissing(report) {
+  function resurrect(report) {
     var r = root();
     if (!r) return;
     var inner = r.querySelector(".day-room-inner");
     if (!inner) return;
 
-    /* Critical path: if almost everything gone, full fill */
-    if (report.childCount < 3 || report.missing.length >= 10) {
+    if (report.childCount < 3 || report.missing.indexOf("slot-todo") >= 0 && report.missing.indexOf("slot-paths") >= 0) {
       try {
         r.removeAttribute("data-day-fortified");
         r.removeAttribute("data-room-filled");
         r.removeAttribute("hidden");
         r.hidden = false;
-        if (g.ClarityDayRoom && typeof g.ClarityDayRoom.fill === "function") {
-          g.ClarityDayRoom.fill();
-        }
-      } catch (e) {
-        console.warn("[day registry] fill", e);
-      }
+        if (g.ClarityDayRoom && g.ClarityDayRoom.fill) g.ClarityDayRoom.fill();
+      } catch (e) {}
       return;
     }
 
-    /* Soft shells only for a few missing — avoid spam */
     var shells = {
       "slot-wudu": function () {
-        if (document.getElementById("cdl-wudu-card")) return null;
-        return softShell(
-          "💧 Wuḍūʾ steps",
-          "Intention · hands · mouth · nose · face · arms · head & ears · feet. Confirm with a teacher."
-        );
+        return softShell("💧 Wuḍūʾ steps", "Intention · hands · mouth · nose · face · arms · head & ears · feet.");
+      },
+      "slot-salah-steps": function () {
+        return softShell("🕌 Prayer outline", "Stand · takbīr · recitation · rukūʿ · sujūd · educational outline.");
       },
       "slot-review": function () {
-        if (document.getElementById("cdl-trust-review-card")) return null;
-        return softShell("🔎 Auto review", "Trust check for Day landing modules on this device.");
+        return softShell("🔎 Auto review · this device", "Re-check Day landing modules after a revamp.");
       },
-      "slot-qibla": function () {
-        return softShell("🧭 Qibla", "Open Day landing qibla tool when available · verify locally.");
+      "slot-sources": function () {
+        return softShell("📖 Sources in the open", "Quran.com · Sunnah.com · ṣaḥīḥ preferred · educational.");
+      },
+      "slot-humility": function () {
+        return softShell("🌱 Scholarly humility", "Not a fatwa · ask a local teacher when unsure.");
+      },
+      "slot-fiqh-quiz": function () {
+        return softShell("🧠 Daily quiz · Fiqh", "Optional IQ plaque · open when module is wired.");
       },
       "slot-protect": function () {
-        return softShell("🛡️ Core protection set", "Educational reminders · not a fatwa.");
+        return softShell("🛡️ Core protection set", "Educational reminders on this device.");
       },
-      "slot-prayer-outline": function () {
-        return softShell("🕌 Prayer outline", "Stand · takbīr · recitation · rukūʿ · sujūd · educational outline.");
+      "slot-qibla": function () {
+        return softShell("🧭 Qibla", "Verify direction locally · educational approximation.");
       }
     };
 
-    report.missing.slice(0, 4).forEach(function (id) {
+    report.missing.forEach(function (id) {
+      var meta = CATALOG.filter(function (c) { return c.id === id; })[0];
+      if (!meta || meta.policy === "prefer-current" && id === "slot-dayn") return;
       if (!shells[id]) return;
       if (inner.querySelector('[data-resurrect-id="' + id + '"]')) return;
       var node = shells[id]();
@@ -141,53 +159,35 @@
     });
   }
 
-  function unhideRoom() {
-    var r = root();
-    if (!r) return;
-    try {
-      r.removeAttribute("hidden");
-      r.hidden = false;
-      if (document.documentElement.getAttribute("data-shell-mode") !== "companion") {
-        r.style.setProperty("display", "block", "important");
-        r.style.setProperty("visibility", "visible", "important");
-      }
-    } catch (e) {}
-  }
-
   function run() {
-    unhideRoom();
-    var report = scan();
-    logRegistry(report);
-    if (!report.ok) {
-      console.info("[Day section registry] missing:", report.missing.join(", "));
-      resurrectMissing(report);
-      /* re-scan after soft restore / fill */
-      setTimeout(function () {
-        logRegistry(scan());
-      }, 600);
+    var r = root();
+    if (r) {
+      try {
+        r.removeAttribute("hidden");
+        r.hidden = false;
+      } catch (e) {}
     }
-    /* dispatch for other tools */
+    var report = scan();
     try {
-      document.dispatchEvent(
-        new CustomEvent("clarity:day-registry-scan", { detail: g.__CLARITY_DAY_LAST_SCAN__ })
-      );
+      localStorage.setItem(REGISTRY_KEY, JSON.stringify({ at: new Date().toISOString(), missing: report.missing, present: report.present }));
+    } catch (e) {}
+    g.__CLARITY_DAY_LAST_SCAN__ = report;
+    if (report.missing.length) {
+      console.info("[Day registry v2] missing:", report.missing.join(", "));
+      resurrect(report);
+    }
+    try {
+      document.dispatchEvent(new CustomEvent("clarity:day-registry-scan", { detail: report }));
     } catch (e) {}
   }
 
-  g.ClarityDayRegistry = {
-    scan: scan,
-    run: run,
-    catalog: CATALOG
-  };
+  g.ClarityDayRegistry = { scan: scan, run: run, catalog: CATALOG, version: 2 };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(run, 500); });
   else setTimeout(run, 500);
-  document.addEventListener("clarity:day-room-ready", function () { setTimeout(run, 200); });
-  document.addEventListener("clarity:landing-ready", function () { setTimeout(run, 200); });
-  [1500, 4000, 8000].forEach(function (ms) { setTimeout(run, ms); });
-
-  /* Visibility / focus: re-check when user returns */
+  document.addEventListener("clarity:day-room-ready", function () { setTimeout(run, 250); });
+  [1200, 3500, 7000].forEach(function (ms) { setTimeout(run, ms); });
   document.addEventListener("visibilitychange", function () {
-    if (!document.hidden) setTimeout(run, 300);
+    if (!document.hidden) setTimeout(run, 400);
   });
 })(typeof window !== "undefined" ? window : this);
