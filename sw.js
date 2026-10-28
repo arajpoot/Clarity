@@ -2,8 +2,8 @@
  * Network-first for HTML/navigate + campus buildings; cache assets.
  * One registration; old caches purged on activate.
  */
-const CACHE = "clarity-20261013NC3";
-const PRECACHE = ["/", "/robots.txt", "/campus/"];
+const CACHE = "clarity-20261028DAILY";
+const PRECACHE = ["/", "/robots.txt", "/campus/", "/daily/"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -26,6 +26,7 @@ self.addEventListener("activate", (e) => {
 function isBuilding(path) {
   const roots = [
     "/campus",
+    "/daily",
     "/lab",
     "/vault",
     "/journey",
@@ -63,7 +64,7 @@ self.addEventListener("fetch", (e) => {
           return res;
         })
         .catch(() => {
-          if (isMulti || isSeal) return Promise.reject();
+          if (isMulti || isSeal || path.indexOf("/daily") === 0) return Promise.reject();
           return caches.match(req).then((r) => r || caches.match("/"));
         })
     );
