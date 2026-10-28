@@ -1,9 +1,8 @@
-/* clarity-path-progress-v1.js · 20261026PATH2 · path extent only, no section cross-wire */
 
 (function(){
 "use strict";
-if (window.__CLARITY_PATH_PROGRESS_V5__) return;
-window.__CLARITY_PATH_PROGRESS_V5__ = true;
+if (window.__CLARITY_PATH_PROGRESS_V4__) return;
+window.__CLARITY_PATH_PROGRESS_V4__ = true;
 
 /**
  * Phased doors + smooth quiz + ADDITIVE sections
@@ -199,7 +198,11 @@ function applyContent(gate){
     try { raw(gate); } finally { window.__clarityPathBypass = false; }
   }
   applyAdditiveFilter(gate);
-  /* PATH2: path extent only — do not switchTab into RRRA sections */
+  /* Bring user to the natural hub for this path so sections are visible */
+  try {
+    var hub = (gate === "practicing") ? "action" : (gate === "dai") ? "reminder" : "reminder";
+    if (typeof switchTab === "function") switchTab(hub);
+  } catch(e){}
   setTimeout(function(){ applyAdditiveFilter(gate); }, 80);
   setTimeout(function(){ applyAdditiveFilter(gate); }, 400);
   setTimeout(function(){ applyAdditiveFilter(gate); }, 900);
@@ -261,7 +264,7 @@ function markUI(current){
     rail.id = "clarity-path-rail";
     host.parentNode.insertBefore(rail, host.nextSibling);
   }
-  /* PATH2: keep track DOM; do not removeChild path rail */
+  if (rail && rail.parentNode) rail.parentNode.removeChild(rail); /* single track UI only */
 }
 
 /* ---- Smooth quiz ---- */
