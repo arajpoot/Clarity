@@ -1,6 +1,6 @@
-# Day section registry + resurrection
+# Day landing vault-style isolation
 
-ClarityDayRegistry.scan() / .run()
-Catalog of day-landing slots; soft restore or full fill if critically empty.
-
-Also ship recovery day-room + fortify-ctrl if included.
+- One switch pill only (destination)
+- Seal day room on companion
+- Eject leaked .cdl-* cards from companion tabs
+- day-flow unhide respects companion mode
