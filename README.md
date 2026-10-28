@@ -1,1 +1,1 @@
-Restore visible single switch bar under banner. Deploy 3 files.
+Companion seal: sticky mode + eject day leaks. Deploy 3 files.
