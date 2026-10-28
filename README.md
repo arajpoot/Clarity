@@ -1,9 +1,14 @@
-# Dayn v2 + index.html
+# Day landing Dayn enrichment v3 (delta)
 
-Overwrite on site root:
+Self-contained enhancement of day-room `#clarity-landing-slot-dayn`:
+- Qard ḥasan required checkbox
+- Structured ledger + repay/settle
+- Education + tutorial
+- Vault registry panel
+
+Deploy only:
 - index.html
-- assets/companion-inline/inline-clarity-dayn-ledger-v2.js
-- assets/companion-inline/inline-clarity-landing-v3-fortify-v1.js
-- assets/css/clarity-dayn-ledger-v1.css
+- assets/css/clarity-dayn-enrich-v3.css
+- assets/companion-inline/inline-clarity-dayn-enrich-v3.js
 
-Hard-refresh. Open Day landing and Amānah Vault.
+Educational only — not a fatwa.
