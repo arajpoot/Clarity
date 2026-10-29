@@ -30,44 +30,58 @@
 
 <main id="clarity-day-landing" aria-label="Day landing">
 
-  <!-- Dual path (only external navigation) -->
   <div class="dual-tiles">
     <a class="dual-tile" href="/">
-      <strong>Companion path</strong>
-      <small>Reminder · Reality · Reflection · Action</small>
+      <img class="nuros" src="assets/icons/nuros-companion.svg" alt="" width="42" height="42"/>
+      <span class="tile-text">
+        <strong>Companion path</strong>
+        <small>Reminder · Reality · Reflection · Action</small>
+      </span>
     </a>
     <a class="dual-tile" href="/campus/">
-      <strong>Campus path</strong>
-      <small>Desk · Lab · Library</small>
+      <img class="nuros" src="assets/icons/nuros-campus.svg" alt="" width="42" height="42"/>
+      <span class="tile-text">
+        <strong>Campus path</strong>
+        <small>Desk · Lab · Library</small>
+      </span>
     </a>
   </div>
 
-  <!-- Phase A — Oath / Muslim 1631 -->
   <section class="cdl-card cdl-oath" id="cdl-oath">
     <div class="cdl-head">
-      <h2>Furnish your grave</h2>
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-kaaba.svg" alt="" width="30" height="30"/>
+        <h2>Furnish your grave</h2>
+      </div>
       <span class="cdl-period" id="cdl-period">Today</span>
     </div>
     <p class="cdl-sub">When a person dies, his deeds come to an end except three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.</p>
     <p class="cdl-note">Muslim 1631 · educational wording · verify with a scholar · not a fatwa</p>
   </section>
 
-  <!-- Remember the long stay (from live day landing) -->
   <section class="cdl-card">
-    <div class="cdl-head"><h2>Remember the long stay</h2></div>
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-tree.svg" alt="" width="30" height="30"/>
+        <h2>Remember the long stay</h2>
+      </div>
+    </div>
     <p class="cdl-sub">Family and wealth turn back at the grave; <strong>deeds stay with you</strong>. Prepare a home of light — not only a warning, an invitation to send good ahead today.</p>
     <p class="cdl-note">Educational reminder · not a fatwa</p>
   </section>
 
-  <!-- Do this today -->
   <section class="cdl-card" id="cdl-today">
     <div class="cdl-head">
-      <h2>Do this today</h2>
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-today.svg" alt="" width="30" height="30"/>
+        <h2>Do this today</h2>
+      </div>
       <span class="cdl-lane" id="cdl-lane">deed</span>
     </div>
     <div class="cdl-row">
       <span class="tas-wrap">
-        📿 <strong id="cdl-tas-count">0</strong>
+        <img class="nuros" src="assets/icons/nuros-tasbih.svg" alt="" width="22" height="22" style="width:1.4rem;height:1.4rem;border-radius:50%;vertical-align:middle"/>
+        <strong id="cdl-tas-count">0</strong>
         <button type="button" id="cdl-tas-inc" aria-label="Increment tasbeeh">+1</button>
         <button type="button" id="cdl-tas-reset" title="Reset" aria-label="Reset tasbeeh">↺</button>
       </span>
@@ -79,40 +93,56 @@
     <p class="cdl-note">Educational only — not a fatwa. Acceptance is with Allah.</p>
   </section>
 
-  <!-- Phase B — Adhkār -->
   <section class="cdl-card">
     <div class="cdl-head">
-      <h2>Adhkār · <span id="cdl-adh-window">morning</span></h2>
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-dua.svg" alt="" width="30" height="30"/>
+        <h2>Adhkār · <span id="cdl-adh-window">morning</span></h2>
+      </div>
     </div>
     <div id="cdl-adhkar-list"></div>
   </section>
 
-  <!-- Phase C — Wuḍūʾ -->
   <section class="cdl-card cdl-expandable">
     <button type="button" class="cdl-expand-btn" data-target="cdl-wudu" aria-expanded="false">
-      Wuḍūʾ outline · 8 steps <span class="chev" aria-hidden="true">▸</span>
+      <span class="btn-label">
+        <img class="nuros" src="assets/icons/nuros-water.svg" alt="" width="28" height="28"/>
+        Wuḍūʾ outline · 8 steps
+      </span>
+      <span class="chev" aria-hidden="true">▸</span>
     </button>
     <div id="cdl-wudu" class="cdl-expand-body" hidden></div>
   </section>
 
-  <!-- Phase D — Prayer -->
   <section class="cdl-card cdl-expandable">
     <button type="button" class="cdl-expand-btn" data-target="cdl-salah" aria-expanded="false">
-      Prayer outline · 7 steps <span class="chev" aria-hidden="true">▸</span>
+      <span class="btn-label">
+        <img class="nuros" src="assets/icons/nuros-salah.svg" alt="" width="28" height="28"/>
+        Prayer outline · 7 steps
+      </span>
+      <span class="chev" aria-hidden="true">▸</span>
     </button>
     <div id="cdl-salah" class="cdl-expand-body" hidden></div>
   </section>
 
-  <!-- Phase E — Send light -->
   <section class="cdl-card">
-    <div class="cdl-head"><h2>Send light ahead</h2></div>
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-seed.svg" alt="" width="30" height="30"/>
+        <h2>Send light ahead</h2>
+      </div>
+    </div>
     <p class="cdl-sub">Three small intentions that echo ongoing reward themes (Muslim 1631 · educational).</p>
     <div id="cdl-light" class="cdl-light-row"></div>
   </section>
 
-  <!-- Phase G — Protection -->
   <section class="cdl-card">
-    <div class="cdl-head"><h2>Core protection set</h2></div>
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-shield.svg" alt="" width="30" height="30"/>
+        <h2>Core protection set</h2>
+      </div>
+    </div>
     <p class="cdl-note">Āyat al-Kursī · the three Quls · istighfār. Learn the wording with a teacher; this card is a reminder only.</p>
     <ul class="cdl-protect">
       <li>Āyat al-Kursī (2:255)</li>
@@ -121,17 +151,24 @@
     </ul>
   </section>
 
-  <!-- Surprise: Long-stay provisions map (today highlighted) -->
   <section class="cdl-card cdl-expandable">
     <button type="button" class="cdl-expand-btn" data-target="cdl-provisions" aria-expanded="false">
-      Provisions for the long stay · 7 lanes <span class="chev" aria-hidden="true">▸</span>
+      <span class="btn-label">
+        <img class="nuros" src="assets/icons/nuros-path.svg" alt="" width="28" height="28"/>
+        Provisions for the long stay · 7 lanes
+      </span>
+      <span class="chev" aria-hidden="true">▸</span>
     </button>
     <div id="cdl-provisions" class="cdl-expand-body" hidden></div>
   </section>
 
-  <!-- History -->
   <section class="cdl-card">
-    <div class="cdl-head"><h2>Last seven days</h2></div>
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-scroll.svg" alt="" width="30" height="30"/>
+        <h2>Last seven days</h2>
+      </div>
+    </div>
     <div id="cdl-hist"></div>
   </section>
 
