@@ -1,0 +1,161 @@
+/**
+ * Daily adhkār · banner Scheherazade New match · window countdown · 20261020ADH2
+ */
+.clarity-adhkar-daily {
+  width: 100%;
+  max-width: 100%;
+  margin: 0.65rem 0 1rem;
+  padding: 0;
+  box-sizing: border-box;
+}
+.cad-card {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 16px;
+  padding: 1rem 1.1rem 0.9rem;
+  border: 1px solid rgba(201, 168, 76, 0.38);
+  background: linear-gradient(155deg, #fffefb 0%, #f5efe3 55%, #ebe2d0 100%);
+  color: #1a2e24;
+  box-shadow: 0 1px 0 #fff inset, 0 8px 28px rgba(26, 46, 36, 0.07);
+}
+html[data-theme="dark"] .cad-card,
+body.dark .cad-card {
+  background: linear-gradient(160deg, #152820 0%, #1a3328 100%);
+  color: #e8f0ea;
+  border-color: rgba(201, 168, 76, 0.32);
+  box-shadow: none;
+}
+.cad-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+.cad-window {
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: #7a5c2e;
+  letter-spacing: 0.02em;
+}
+html[data-theme="dark"] .cad-window,
+body.dark .cad-window {
+  color: #e4c76a;
+}
+.cad-pos {
+  font-size: 0.78rem;
+  font-weight: 700;
+  opacity: 0.75;
+}
+.cad-countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.55rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #0f5c42;
+  background: rgba(30, 125, 94, 0.12);
+  border: 1px solid rgba(30, 125, 94, 0.35);
+}
+html[data-theme="dark"] .cad-countdown,
+body.dark .cad-countdown {
+  color: #7dcea0;
+  background: rgba(30, 125, 94, 0.18);
+}
+.cad-countdown.is-soft {
+  color: #6b5a2e;
+  background: rgba(201, 168, 76, 0.12);
+  border-color: rgba(201, 168, 76, 0.4);
+}
+html[data-theme="dark"] .cad-countdown.is-soft,
+body.dark .cad-countdown.is-soft {
+  color: #e4c76a;
+}
+.cad-soft {
+  display: block;
+  font-size: 0.78rem;
+  margin: 0 0 0.5rem;
+  color: #3d5348;
+}
+html[data-theme="dark"] .cad-soft,
+body.dark .cad-soft {
+  color: #a8bdb0;
+}
+/* Same stack as banner .arabic / .rabbana-arabic (masnūn duʿāʾ) */
+.cad-ar,
+.cad-ar.arabic,
+.cad-ar.rabbana-arabic {
+  font-family: "Scheherazade New", Amiri, "Noto Naskh Arabic", Lateef, "Traditional Arabic", serif !important;
+  direction: rtl;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 2.15;
+  font-size: clamp(1.25rem, 3.6vw, 1.65rem);
+  margin: 0.35rem 0 0.55rem;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: inherit;
+}
+html[data-theme="light"] .cad-ar,
+body:not(.dark):not([data-theme="dark"]) .cad-ar {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6), 0 1.5px 2px rgba(0, 0, 0, 0.08);
+}
+.cad-en {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0 0 0.45rem;
+  opacity: 0.95;
+}
+.cad-meta {
+  font-size: 0.8rem;
+  margin: 0 0 0.25rem;
+  color: #1e7d5e;
+  font-weight: 650;
+}
+html[data-theme="dark"] .cad-meta,
+body.dark .cad-meta {
+  color: #7dcea0;
+}
+.cad-note {
+  font-size: 0.78rem;
+  margin: 0 0 0.65rem;
+  opacity: 0.85;
+}
+.cad-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.35rem 0;
+}
+.cad-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+  background: #1e7d5e;
+  color: #fff;
+}
+.cad-btn.ghost {
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(139, 111, 63, 0.4);
+}
+html[data-theme="dark"] .cad-btn.ghost,
+body.dark .cad-btn.ghost {
+  border-color: rgba(201, 168, 76, 0.35);
+}
+.cad-btn.cad-pulse {
+  transform: scale(1.04);
+}
+.cad-foot {
+  font-size: 0.72rem;
+  margin: 0.5rem 0 0;
+  opacity: 0.8;
+}

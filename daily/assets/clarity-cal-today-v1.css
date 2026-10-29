@@ -1,0 +1,28 @@
+/* Hijri calendar today highlight · 20261022HARMONY */
+#hijri-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  text-align: center;
+  font-size: 0.72rem;
+}
+#hijri-cal-grid .day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.35rem;
+  border-radius: 0.35rem;
+  padding: 0.1rem;
+}
+#hijri-cal-grid .day.today,
+#hijri-cal-grid .day.is-today,
+#hijri-cal-grid .day[aria-current="date"] {
+  background: #1e7d5e !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 0 1.5px rgba(201, 168, 76, 0.85);
+}
+#hijri-cal-title {
+  font-weight: 800;
+  font-size: 0.82rem;
+}

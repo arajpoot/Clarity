@@ -1,0 +1,27 @@
+
+:root{--bg:#0c1410;--card:#152019;--gold:#d4b45a;--text:#e7efe9;--line:rgba(212,180,90,.35)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:system-ui,sans-serif;background:#0c1410;color:var(--text)}
+header{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1rem;background:linear-gradient(90deg,#0a2a40,#0d4f3c)}
+header a{color:#f3e6c0;text-decoration:none;font-weight:700}
+nav.top{display:flex;gap:.4rem;flex-wrap:wrap;padding:.5rem 1rem}
+nav.top a{color:#e0c56a;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.3rem .7rem}
+nav.top a.here{background:rgba(212,180,90,.15)}
+main{max-width:42rem;margin:0 auto;padding:.6rem 1rem 2rem}
+.dual-tiles{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin:.4rem 0 .8rem}
+@media(max-width:560px){.dual-tiles{grid-template-columns:1fr}}
+.dual-tile{display:block;text-decoration:none;color:inherit;border-radius:14px;padding:.75rem .85rem;background:linear-gradient(135deg,#12241c,#0c1a14);border:1px solid rgba(212,180,90,.25)}
+.dual-tile strong{display:block}
+.dual-tile small{opacity:.85}
+.cdl-card{border-radius:1.15rem;border:1.5px solid rgba(201,168,76,.45);background:linear-gradient(155deg,#1c3028,#12221c);padding:1rem 1.1rem;margin:.55rem 0;color:#e8f0ea}
+.cdl-head{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.cdl-head h2{margin:0;color:#f3e6c0;font-size:1.15rem}
+.cdl-period,.cdl-lane,.cdl-note,.cdl-adhkar-ref{color:#9aab9f;font-size:.86rem}
+.cdl-row{display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;margin:.45rem 0}
+.cdl-adhkar-ar{direction:rtl;text-align:right;font-size:1.35rem;line-height:1.9;color:#f3e6c0;margin:.4rem 0}
+.cdl-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.6rem}
+.cdl-pills a,.cdl-pills button{border:1px solid var(--line);background:#0c1410;color:#f3e6c0;border-radius:999px;padding:.3rem .7rem;text-decoration:none;font-weight:700}
+button{background:#0d4f3c;color:#f3e6c0;border:1px solid var(--line);border-radius:999px;padding:.4rem .8rem;font-weight:700;cursor:pointer}
+
+.daily-banner{margin:.4rem 0 .8rem;border-radius:18px;overflow:hidden;border:1px solid rgba(212,180,90,.35);background:#0c1410}
+.daily-banner img{display:block;width:100%;height:auto}

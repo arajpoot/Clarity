@@ -1,9 +1,6 @@
 
 (function(){
-  var KEY_PROV="clarity_provision_day_v1";
-  var KEY_TAS="clarity_cph_tasbeeh_v1";
-  var KEY_HIST="clarity_daily_history_v1";
-  var KEY_ADH="clarity_daily_adhkar_v1";
+  var KEY_PROV="clarity_provision_day_v1", KEY_TAS="clarity_cph_tasbeeh_v1", KEY_ADH="clarity_daily_adhkar_v1";
   var PROVISIONS=[
     {lane:"jariyah",text:"Do one small ongoing good: teach something useful, water a plant, or give a quiet sadaqah."},
     {lane:"knowledge",text:"Learn or share one beneficial sentence from the Qur'an or Sunnah with sincerity."},
@@ -31,26 +28,25 @@
   function period(){var h=new Date().getHours();if(h<5)return "Night";if(h<12)return "Morning";if(h<15)return "Midday";if(h<18)return "Afternoon";if(h<21)return "Evening";return "Night"}
   function evening(){var h=new Date().getHours();return h>=15||h<5}
   var day=today();
-  var prov=read(KEY_PROV); if(!prov||prov.day!==day){var p=PROVISIONS[Math.abs(hash(day))%PROVISIONS.length];prov={day:day,lane:p.lane,text:p.text,done:false};write(KEY_PROV,prov)}
+  var prov=read(KEY_PROV); if(!prov||prov.day!==day){var p=PROVISIONS[Math.abs(hash(day))%PROVISIONS.length];prov={day:day,lane:p.lane,text:p.text};write(KEY_PROV,prov)}
   var pack=evening()?ADHKAR.evening:ADHKAR.morning;
+  var dh=pack[0];
   var tas=read(KEY_TAS)||{}; if(tas.day!==day) tas={day:day,count:0};
-  var adh=read(KEY_ADH)||{}; if(adh.day!==day) adh={day:day,counts:{}};
-  var hist=read(KEY_HIST)||[];
-
-  document.getElementById("d-period").textContent=period()+" · "+(evening()?"evening set":"morning set");
-  document.getElementById("d-deed").textContent=prov.text;
-  document.getElementById("d-done").textContent=prov.done?"Done today":"Not marked";
-  document.getElementById("d-tas").textContent=tas.count||0;
-
-  var list=document.getElementById("d-adhkar");
+  var adh=read(KEY_ADH)||{}; if(adh.day!==day) adh={day:day,count:0};
+  document.getElementById("cdl-period").textContent=period();
+  document.getElementById("cdl-lane").textContent=prov.lane;
+  document.getElementById("cdl-deed").textContent=prov.text;
+  document.getElementById("cdl-tas-count").textContent=tas.count||0;
+  document.getElementById("cdl-adh-window").textContent=evening()?"evening":"morning";
+  var list=document.getElementById("cdl-adhkar-list");
   pack.forEach(function(item){
-    var n=(adh.counts&&adh.counts[item.id])||0;
     var card=document.createElement("div");
-    card.className="card";
-    card.innerHTML='<p class="ar"></p><p class="en"></p><p class="muted"></p><p>Count <strong></strong> / '+item.target+'</p><button type="button">+1</button>';
-    card.querySelector(".ar").textContent=item.ar;
-    card.querySelector(".en").textContent=item.en;
-    card.querySelector(".muted").textContent=item.ref;
+    card.className="cdl-card";
+    card.innerHTML='<p class="cdl-adhkar-ar"></p><p></p><p class="cdl-adhkar-ref"></p><p>Count <strong>0</strong> / '+item.target+'</p><button type="button">+1</button>';
+    card.querySelector(".cdl-adhkar-ar").textContent=item.ar;
+    card.querySelector("p:nth-of-type(2)").textContent=item.en;
+    card.querySelector(".cdl-adhkar-ref").textContent=item.ref;
+    var n=(adh.counts&&adh.counts[item.id])||0;
     card.querySelector("strong").textContent=n;
     card.querySelector("button").onclick=function(){
       adh.counts=adh.counts||{}; adh.counts[item.id]=(adh.counts[item.id]||0)+1; write(KEY_ADH,adh);
@@ -58,26 +54,6 @@
     };
     list.appendChild(card);
   });
-
-  document.getElementById("d-mark").onclick=function(){
-    prov.done=true; write(KEY_PROV,prov);
-    hist=hist.filter(function(h){return h.day!==day});
-    hist.unshift({day:day,text:prov.text,done:true});
-    hist=hist.slice(0,7); write(KEY_HIST,hist);
-    document.getElementById("d-done").textContent="Done today";
-    paintHist();
-  };
-  document.getElementById("d-tas-inc").onclick=function(){tas.count=(tas.count||0)+1;write(KEY_TAS,tas);document.getElementById("d-tas").textContent=tas.count};
-  document.getElementById("d-tas-reset").onclick=function(){tas={day:day,count:0};write(KEY_TAS,tas);document.getElementById("d-tas").textContent=0};
-  function paintHist(){
-    var box=document.getElementById("d-hist");
-    box.innerHTML="";
-    (read(KEY_HIST)||[]).forEach(function(h){
-      var p=document.createElement("p");
-      p.textContent=h.day+" · "+(h.done?"done":"open")+" · "+h.text;
-      box.appendChild(p);
-    });
-    if(!box.innerHTML) box.innerHTML="<p class='muted'>No history yet. Mark today when you finish.</p>";
-  }
-  paintHist();
+  document.getElementById("cdl-tas-inc").onclick=function(){tas.count=(tas.count||0)+1;write(KEY_TAS,tas);document.getElementById("cdl-tas-count").textContent=tas.count};
+  document.getElementById("cdl-tas-reset").onclick=function(){tas={day:day,count:0};write(KEY_TAS,tas);document.getElementById("cdl-tas-count").textContent=0};
 })();
