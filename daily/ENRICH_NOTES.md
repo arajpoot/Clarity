@@ -1,13 +1,12 @@
-# Daily · Phase 3 — banner, al-ʿAṣr, pillars, farḍ map
+# Daily · Final build (Phases 1–4)
 
-Bismillah. Educational only — not a fatwa.
+Bismillah. Educational only — not a fatwa. Self-contained like Campus.
 
-## Phase plan (executed)
-1. **Banner sleek** — re-crop scenic (Kaaba/quill), bottom caption removed, residual title quieted with soft upper gradient
-2. **Sūrat al-ʿAṣr** — gold Naskh Arabic + Sahih International English overlay on banner
-3. **Five pillars** — self-contained educational map (Shahāda · Ṣalāh · Zakāt · Ṣawm · Ḥajj) with NurOS icons
-4. **Farḍ rakʿahs** — daily map of the five farḍ units (from live day-landing pulse)
-5. **Campus model** — all assets under `/daily/`; no companion-inline dependency
+## Phases delivered
+1. **Message alignment** — order: Banner → dual tiles → Now cue → Do this today → Adhkār → Farḍ check → post/sleep → light/protection → oath → maps → history → continuity
+2. **Full adhkār** — morning + evening packs embedded from package `adhkar/data/*.json` (also shipped under assets/adhkar/)
+3. **Stackable routines** — after farḍ dhikr · before sleep protection · today’s five farḍ mark-done
+4. **Continuity** — streak, 7-day history, closing line tied to al-ʿAṣr / furnish the grave
 
 ## Architecture
 ```
@@ -16,28 +15,18 @@ Bismillah. Educational only — not a fatwa.
   assets/
     daily-banner.jpg
     daily.css
-    daily.js
+    daily.js          ← all packs embedded (no network required)
+    adhkar/
+      morning.json
+      evening.json
     icons/nuros-*.svg
 ```
 
-## Content now on Daily
-- Full-width scenic banner + al-ʿAṣr plaque
-- Dual path tiles (NurOS)
-- Five pillars map
-- Farḍ rakʿahs map
-- Furnish your grave / Muslim 1631
-- Remember the long stay
-- Do this today + tasbeeh + streak
-- Full morning/evening adhkār
-- Wuḍūʾ 8 + Prayer 7 (expandable)
-- Send light ahead
-- Core protection
-- Provisions map (7 lanes)
-- 7-day history
-- Local theme toggle
+## Smoke
+- node --check daily.js OK
+- DOM id cross-check OK
+- Runtime eval with mock DOM OK
+- No companion-inline dependency
 
-## Left in Companion
-Reminder tab, Vault UI, qaḍāʾ tracker, media dock, Hijri calendar — by design.
-
-## Deploy
-Replace entire `/daily/` folder. Hard-refresh.
+## Non-goals (by design)
+Live adhan, Qibla, full Quran app, accounts — stay on Companion / elsewhere.
