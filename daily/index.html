@@ -1,49 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Daily · Clarity — today</title>
-<meta name="description" content="Today's deed, full adhkar, and seven-day history. On this device. Educational only — not a fatwa."/>
+<title>Daily · Clarity</title>
+<meta name="description" content="Day landing. Today's deed, adhkar, tasbeeh. On this device. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/daily/"/>
-<link rel="stylesheet" href="assets/daily.css"/>
+<link rel="stylesheet" href="assets/daily-form.css"/>
+<link rel="stylesheet" href="assets/clarity-day-surface-ui-v1.css"/>
 </head>
-<body data-address="daily">
-<p id="daily-landed" style="position:absolute;left:-9999px">daily-address-landed</p>
+<body>
 <header>
   <a href="/daily/">Clarity · Daily</a>
   <a href="/">Companion</a>
 </header>
-<nav>
+<nav class="top">
   <a class="here" href="/daily/">Today</a>
   <a href="/campus/">Campus</a>
   <a href="/">Companion</a>
 </nav>
-<main>
-  <p class="muted">Today lives here. Companion doors stay on the home address. Educational only.</p>
-  <div class="card">
-    <h1>Today</h1>
-    <p>One deed. Morning or evening adhkar. Tasbeeh. Seven-day history. All on this device.</p>
-    <p><a href="/">Open companion doors</a></p>
+<figure class="daily-banner">
+  <img src="assets/daily-banner.svg" alt="Clarity — Furnish Your Grave. Today on this device." width="1200" height="420"/>
+</figure>
+
+<main id="clarity-day-landing" aria-label="Day landing">
+  <div class="dual-tiles">
+    <a class="dual-tile" href="/"><strong>Companion path</strong><small>Reminder · Reality · Reflection · Action</small></a>
+    <a class="dual-tile" href="/campus/"><strong>Campus path</strong><small>Desk · Lab · Library</small></a>
   </div>
-  <div class="card">
-    <p class="muted">Do this today · <span id="d-period"></span></p>
-    <h1>One deed</h1>
-    <p id="d-deed"></p>
-    <p class="muted" id="d-done"></p>
-    <button type="button" id="d-mark">Mark done</button>
+  <div class="cdl-card" id="cdl-today">
+    <div class="cdl-head"><h2>Do this today</h2><span class="cdl-period" id="cdl-period"></span></div>
+    <div class="cdl-row">
+      <span>🕌 Next salah · on the companion banner</span>
+      <span>📿 <strong id="cdl-tas-count">0</strong>
+        <button type="button" id="cdl-tas-inc">+1</button>
+        <button type="button" id="cdl-tas-reset">↺</button>
+      </span>
+    </div>
+    <div class="cdl-lane" id="cdl-lane"></div>
+    <p class="cdl-deed" id="cdl-deed"></p>
+    <p class="cdl-note">Educational only — not a fatwa. Acceptance is with Allah.</p>
   </div>
-  <h2>Adhkar</h2>
-  <div id="d-adhkar"></div>
-  <div class="card">
-    <p class="muted">Tasbeeh · today</p>
-    <p>Count <strong id="d-tas">0</strong></p>
-    <button type="button" id="d-tas-inc">+1</button>
-    <button type="button" id="d-tas-reset">Reset</button>
-  </div>
-  <div class="card">
-    <p class="muted">Last seven days</p>
-    <div id="d-hist"></div>
+  <div class="cdl-card">
+    <div class="cdl-head"><h2>Adhkār · <span id="cdl-adh-window"></span></h2></div>
+    <div id="cdl-adhkar-list"></div>
+    <div class="cdl-pills">
+      <a href="/#reminder">✦ Reminder</a>
+      <a href="/#reality">◉ Reality</a>
+      <a href="/#reflection">☾ Reflection</a>
+      <a href="/#action">➤ Action</a>
+      <a href="/#notes">🏦 Vault</a>
+    </div>
   </div>
 </main>
 <script src="assets/daily.js"></script>
