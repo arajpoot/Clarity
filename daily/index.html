@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Daily · Clarity</title>
-<meta name="description" content="Day landing. Today's deed, adhkar, tasbeeh. On this device. Educational only — not a fatwa."/>
+<title>Daily · Clarity — today</title>
+<meta name="description" content="Day landing. Today's deed, full adhkār, wuḍūʾ & prayer outline, send light ahead. On this device. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/daily/"/>
 <link rel="stylesheet" href="assets/daily-form.css"/>
 </head>
-<body>
+<body data-address="daily">
 <header>
   <a href="/daily/">Clarity · Daily</a>
   <a href="/">Companion</a>
@@ -18,44 +18,102 @@
   <a href="/campus/">Campus</a>
   <a href="/">Companion</a>
 </nav>
-<figure class="daily-banner">
-  <img src="assets/daily-banner.jpg" alt="Clarity — Furnish Your Grave" width="1200" height="420"/>
-</figure>
+
 <main id="clarity-day-landing" aria-label="Day landing">
+
+  <!-- Dual path tiles (live form factor) -->
   <div class="dual-tiles">
     <a class="dual-tile" href="/"><strong>Companion path</strong><small>Reminder · Reality · Reflection · Action</small></a>
     <a class="dual-tile" href="/campus/"><strong>Campus path</strong><small>Desk · Lab · Library</small></a>
   </div>
-  <div class="cdl-card" id="cdl-today">
-    <div class="cdl-head"><h2>Do this today</h2><span class="cdl-period" id="cdl-period">Today</span></div>
-    <div class="cdl-row">
-      <span>🕌 Next salah · companion banner</span>
-      <span>📿 <strong id="cdl-tas-count">0</strong>
-        <button type="button" id="cdl-tas-inc">+1</button>
-        <button type="button" id="cdl-tas-reset">↺</button>
-      </span>
+
+  <!-- Phase A — Oath / Muslim 1631 plaque -->
+  <div class="cdl-card cdl-oath" id="cdl-oath">
+    <div class="cdl-head">
+      <h2>Furnish your grave</h2>
+      <span class="cdl-period" id="cdl-period">Today</span>
     </div>
-    <div class="cdl-lane" id="cdl-lane">deed</div>
-    <p class="cdl-deed" id="cdl-deed">One small ongoing good: teach something useful, water a plant, or give a quiet sadaqah.</p>
+    <p class="cdl-sub">When a person dies, his deeds come to an end except three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.</p>
+    <p class="cdl-note">Muslim 1631 · educational wording · verify with a scholar · not a fatwa</p>
+  </div>
+
+  <!-- Do this today + tasbeeh -->
+  <div class="cdl-card" id="cdl-today">
+    <div class="cdl-head">
+      <h2>Do this today</h2>
+      <span class="cdl-lane" id="cdl-lane">deed</span>
+    </div>
+    <div class="cdl-row">
+      <span>📿 Tasbeeh <strong id="cdl-tas-count">0</strong>
+        <button type="button" id="cdl-tas-inc">+1</button>
+        <button type="button" id="cdl-tas-reset" title="Reset">↺</button>
+      </span>
+      <span id="cdl-streak" class="cdl-note"></span>
+    </div>
+    <p class="cdl-deed" id="cdl-deed">One small ongoing good…</p>
+    <p class="cdl-note" id="cdl-done">Not marked</p>
+    <button type="button" id="cdl-mark">Mark done</button>
     <p class="cdl-note">Educational only — not a fatwa. Acceptance is with Allah.</p>
   </div>
+
+  <!-- Phase B — Adhkār -->
   <div class="cdl-card">
-    <div class="cdl-head"><h2>Adhkār · <span id="cdl-adh-window">morning</span></h2></div>
-    <div id="cdl-adhkar-list">
-      <div class="cdl-card">
-        <p class="cdl-adhkar-ar">اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ</p>
-        <p>O Allah, by You we enter the morning and by You the evening, by You we live and die, and to You is the resurrection.</p>
-        <p class="cdl-adhkar-ref">Tirmidhi 3391 · educational</p>
-      </div>
+    <div class="cdl-head">
+      <h2>Adhkār · <span id="cdl-adh-window">morning</span></h2>
     </div>
-    <div class="cdl-pills">
-      <a href="/#reminder">✦ Reminder</a>
-      <a href="/#reality">◉ Reality</a>
-      <a href="/#reflection">☾ Reflection</a>
-      <a href="/#action">➤ Action</a>
-      <a href="/#notes">🏦 Vault</a>
-    </div>
+    <div id="cdl-adhkar-list"></div>
   </div>
+
+  <!-- Phase C — Wuḍūʾ steps (expandable) -->
+  <div class="cdl-card cdl-expandable">
+    <button type="button" class="cdl-expand-btn" data-target="cdl-wudu" aria-expanded="false">
+      Wuḍūʾ outline · 8 steps <span class="chev">▸</span>
+    </button>
+    <div id="cdl-wudu" class="cdl-expand-body" hidden></div>
+  </div>
+
+  <!-- Phase D — Prayer steps (expandable) -->
+  <div class="cdl-card cdl-expandable">
+    <button type="button" class="cdl-expand-btn" data-target="cdl-salah" aria-expanded="false">
+      Prayer outline · 7 steps <span class="chev">▸</span>
+    </button>
+    <div id="cdl-salah" class="cdl-expand-body" hidden></div>
+  </div>
+
+  <!-- Phase E — Send light ahead -->
+  <div class="cdl-card">
+    <div class="cdl-head"><h2>Send light ahead</h2></div>
+    <p class="cdl-sub">Three small intentions that echo ongoing reward themes (Muslim 1631 · educational).</p>
+    <div id="cdl-light" class="cdl-light-row"></div>
+  </div>
+
+  <!-- Phase G — Core protection -->
+  <div class="cdl-card">
+    <div class="cdl-head"><h2>Core protection set</h2></div>
+    <p class="cdl-note">Āyat al-Kursī · the three Quls · istighfār. Learn the wording with a teacher; this card is a reminder only.</p>
+    <ul class="cdl-protect">
+      <li>Āyat al-Kursī (2:255)</li>
+      <li>Sūrat al-Ikhlāṣ · al-Falaq · an-Nās</li>
+      <li>Sayyid al-istighfār or any sincere istighfār</li>
+    </ul>
+  </div>
+
+  <!-- Seven-day history -->
+  <div class="cdl-card">
+    <div class="cdl-head"><h2>Last seven days</h2></div>
+    <div id="cdl-hist"></div>
+  </div>
+
+  <!-- Soft pills back to companion sections -->
+  <div class="cdl-pills">
+    <a href="/#reminder">✦ Reminder</a>
+    <a href="/#reality">◉ Reality</a>
+    <a href="/#reflection">☾ Reflection</a>
+    <a href="/#action">➤ Action</a>
+    <a href="/#notes">🏦 Vault</a>
+  </div>
+
+  <p class="cdl-footer">Educational only — not a fatwa. On this device. Sources shown where available. Verify with a trusted local scholar.</p>
 </main>
 <script src="assets/daily.js"></script>
 </body>
