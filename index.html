@@ -195,8 +195,7 @@
 <link rel="prefetch" href="/daily/"/>
 
 <style id="daily-isolate">
-#clarity-day-landing,#cdl-today,#cdl-adhkar,#clarity-reopen-bar .cdl-card{display:none!important}
-html[data-shell-mode=landing] #clarity-day-landing{display:none!important}
+#clarity-day-landing{display:block!important;position:relative;z-index:2}
 </style>
 <script id="daily-isolate-js">
 (function(){
@@ -210,7 +209,7 @@ html[data-shell-mode=landing] #clarity-day-landing{display:none!important}
       bar.appendChild(a);
     }
     var land=document.getElementById("clarity-day-landing");
-    if(land && land.parentNode) land.parentNode.removeChild(land);
+    if(land) land.style.display="block";
   }
   document.addEventListener("DOMContentLoaded", bridge);
   setTimeout(bridge, 600);
