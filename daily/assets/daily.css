@@ -594,3 +594,293 @@ html[data-theme="light"] button { color: #fffdf8; }
     font-size: 1.05rem;
   }
 }
+
+
+/* =========================================================
+   Mobile responsiveness — optimized
+   ========================================================= */
+
+/* Safe areas (notches / home indicator) */
+@supports (padding: max(0px)) {
+  .daily-header {
+    padding-left: max(0.85rem, env(safe-area-inset-left));
+    padding-right: max(0.85rem, env(safe-area-inset-right));
+  }
+  nav.top {
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+  }
+  main {
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+    padding-bottom: max(2.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* ---- Phones (≤640px) ---- */
+@media (max-width: 640px) {
+  :root {
+    --plaque-pad: 0.85rem 0.9rem;
+    --radius: 1rem;
+  }
+
+  .daily-header {
+    padding: 0.55rem 0.85rem;
+  }
+  .daily-header .brand {
+    font-size: 0.98rem;
+  }
+  .header-actions a {
+    font-size: 0.82rem;
+  }
+  #theme-toggle {
+    width: 2.25rem;
+    height: 2.25rem;
+    /* larger touch target */
+  }
+
+  nav.top {
+    padding: 0.4rem 0.75rem 0.5rem;
+    gap: 0.35rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  nav.top::-webkit-scrollbar { display: none; }
+  nav.top a {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    /* min touch height ~36px */
+    min-height: 2.1rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  main {
+    padding: 0.55rem 0.75rem 2.75rem;
+  }
+
+  /* Dual tiles stack cleanly */
+  .dual-tiles {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin: 0.35rem 0 0.75rem;
+  }
+  a.dual-tile,
+  .dual-tile {
+    padding: 0.8rem 0.9rem;
+    gap: 0.65rem;
+    border-radius: 14px;
+  }
+  .dual-tile .nuros {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+  .dual-tile strong {
+    font-size: 0.98rem;
+  }
+  .dual-tile small {
+    font-size: 0.78rem;
+  }
+
+  /* Cards */
+  .cdl-card {
+    margin: 0.55rem 0;
+    border-radius: 1rem;
+  }
+  .cdl-head h2 {
+    font-size: 1.02rem;
+  }
+  .cdl-head .nuros {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+  .cdl-deed {
+    font-size: 1rem;
+  }
+  .cdl-sub {
+    font-size: 0.84rem;
+  }
+  .cdl-note {
+    font-size: 0.8rem;
+  }
+
+  /* Arabic readable on narrow screens without overflow */
+  .cdl-adhkar-ar {
+    font-size: 1.2rem;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+  }
+
+  /* Expand buttons — full-width touch */
+  .cdl-expandable {
+    padding: 0.55rem 0.85rem;
+  }
+  .cdl-expand-btn {
+    min-height: 2.6rem;
+    font-size: 0.95rem;
+    padding: 0.45rem 0;
+  }
+  .cdl-expand-btn .nuros {
+    width: 1.55rem;
+    height: 1.55rem;
+  }
+
+  /* Buttons — 44px-class touch targets */
+  button {
+    min-height: 2.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  button.primary {
+    width: 100%;
+    margin-top: 0.4rem;
+  }
+  .tas-wrap button {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  /* Pillars — single column, readable */
+  .pillars-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.45rem;
+  }
+  .pillar-card {
+    padding: 0.7rem 0.8rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.65rem;
+  }
+  .pillar-card .nuros {
+    width: 2rem;
+    height: 2rem;
+  }
+  .pillar-card strong {
+    font-size: 0.95rem;
+  }
+  .pillar-card small {
+    flex: 1 1 100%;
+    font-size: 0.78rem;
+    padding-left: 2.65rem; /* align under text after icon */
+    margin-top: -0.15rem;
+  }
+
+  /* Farḍ chips — horizontal scroll if needed */
+  .fard-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.2rem;
+    scrollbar-width: none;
+  }
+  .fard-row::-webkit-scrollbar { display: none; }
+  .fard-chip {
+    flex: 0 0 auto;
+    min-width: 3.8rem;
+    padding: 0.5rem 0.45rem;
+  }
+  .fard-chip strong {
+    font-size: 1.2rem;
+  }
+  .fard-chip span {
+    font-size: 0.72rem;
+  }
+
+  /* Send light — stack */
+  .cdl-light-row {
+    grid-template-columns: 1fr !important;
+  }
+  .cdl-light-btn {
+    padding: 0.75rem 0.85rem;
+    min-height: 3rem;
+  }
+
+  /* Provisions */
+  .prov-lane {
+    min-width: 3.8rem;
+    font-size: 0.7rem;
+  }
+  .prov-text {
+    font-size: 0.86rem;
+  }
+
+  .cdl-footer {
+    font-size: 0.74rem;
+    padding: 0 0.25rem;
+  }
+
+  /* Banner already has ≤640 rules; reinforce image */
+  .daily-banner img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ---- Very small phones (≤380px) ---- */
+@media (max-width: 380px) {
+  .daily-header .brand {
+    font-size: 0.92rem;
+  }
+  .banner-verse-plaque .verse-ar {
+    font-size: 0.86rem;
+  }
+  .banner-gravity .gravity-line {
+    font-size: 0.74rem;
+  }
+  .cdl-adhkar-ar {
+    font-size: 1.1rem;
+  }
+  .pillar-card small {
+    padding-left: 0;
+  }
+}
+
+/* ---- Tablet portrait (641–899px) ---- */
+@media (min-width: 641px) and (max-width: 899px) {
+  main {
+    padding: 0.75rem 1.25rem 2.75rem;
+    max-width: 42rem;
+  }
+  .dual-tiles {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cdl-light-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  a.dual-tile,
+  .dual-tile,
+  button,
+  .cdl-light-btn {
+    transition: none;
+  }
+  a.dual-tile:hover,
+  .dual-tile:hover {
+    transform: none;
+  }
+}
+
+/* Prevent horizontal page scroll from long Arabic */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+.cdl-adhkar-ar,
+.verse-ar,
+.banner-verse-plaque {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
