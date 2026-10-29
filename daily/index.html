@@ -3,92 +3,108 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Daily · Clarity — today</title>
-<meta name="description" content="Day landing. Today's deed, full adhkār, wuḍūʾ & prayer outline, send light ahead. On this device. Educational only — not a fatwa."/>
+<title>Daily · Clarity — Furnish Your Grave</title>
+<meta name="description" content="Self-contained daily surface: deed, full adhkār, wuḍūʾ & prayer outline, send light, protection. On this device. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/daily/"/>
-<link rel="stylesheet" href="assets/daily-form.css"/>
+<link rel="stylesheet" href="assets/daily.css"/>
 </head>
 <body data-address="daily">
-<header>
-  <a href="/daily/">Clarity · Daily</a>
-  <a href="/">Companion</a>
+
+<header class="daily-header">
+  <a class="brand" href="/daily/">Clarity · Daily</a>
+  <div class="header-actions">
+    <button type="button" id="theme-toggle" title="Toggle theme" aria-label="Toggle light or dark">◐</button>
+    <a href="/">Companion</a>
+  </div>
 </header>
-<nav class="top">
+
+<nav class="top" aria-label="Primary">
   <a class="here" href="/daily/">Today</a>
   <a href="/campus/">Campus</a>
   <a href="/">Companion</a>
 </nav>
 
+<figure class="daily-banner">
+  <img src="assets/daily-banner.jpg" alt="Clarity — Furnish Your Grave" width="852" height="414" loading="eager"/>
+</figure>
+
 <main id="clarity-day-landing" aria-label="Day landing">
 
-  <!-- Dual path tiles (live form factor) -->
+  <!-- Dual path (only external navigation) -->
   <div class="dual-tiles">
-    <a class="dual-tile" href="/"><strong>Companion path</strong><small>Reminder · Reality · Reflection · Action</small></a>
-    <a class="dual-tile" href="/campus/"><strong>Campus path</strong><small>Desk · Lab · Library</small></a>
+    <a class="dual-tile" href="/">
+      <strong>Companion path</strong>
+      <small>Reminder · Reality · Reflection · Action</small>
+    </a>
+    <a class="dual-tile" href="/campus/">
+      <strong>Campus path</strong>
+      <small>Desk · Lab · Library</small>
+    </a>
   </div>
 
-  <!-- Phase A — Oath / Muslim 1631 plaque -->
-  <div class="cdl-card cdl-oath" id="cdl-oath">
+  <!-- Phase A — Oath / Muslim 1631 -->
+  <section class="cdl-card cdl-oath" id="cdl-oath">
     <div class="cdl-head">
       <h2>Furnish your grave</h2>
       <span class="cdl-period" id="cdl-period">Today</span>
     </div>
     <p class="cdl-sub">When a person dies, his deeds come to an end except three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.</p>
     <p class="cdl-note">Muslim 1631 · educational wording · verify with a scholar · not a fatwa</p>
-  </div>
+  </section>
 
-  <!-- Do this today + tasbeeh -->
-  <div class="cdl-card" id="cdl-today">
+  <!-- Do this today -->
+  <section class="cdl-card" id="cdl-today">
     <div class="cdl-head">
       <h2>Do this today</h2>
       <span class="cdl-lane" id="cdl-lane">deed</span>
     </div>
     <div class="cdl-row">
-      <span>📿 Tasbeeh <strong id="cdl-tas-count">0</strong>
-        <button type="button" id="cdl-tas-inc">+1</button>
-        <button type="button" id="cdl-tas-reset" title="Reset">↺</button>
+      <span class="tas-wrap">
+        📿 <strong id="cdl-tas-count">0</strong>
+        <button type="button" id="cdl-tas-inc" aria-label="Increment tasbeeh">+1</button>
+        <button type="button" id="cdl-tas-reset" title="Reset" aria-label="Reset tasbeeh">↺</button>
       </span>
-      <span id="cdl-streak" class="cdl-note"></span>
+      <span id="cdl-streak" class="streak-badge" hidden></span>
     </div>
     <p class="cdl-deed" id="cdl-deed">One small ongoing good…</p>
     <p class="cdl-note" id="cdl-done">Not marked</p>
-    <button type="button" id="cdl-mark">Mark done</button>
+    <button type="button" id="cdl-mark" class="primary">Mark done</button>
     <p class="cdl-note">Educational only — not a fatwa. Acceptance is with Allah.</p>
-  </div>
+  </section>
 
   <!-- Phase B — Adhkār -->
-  <div class="cdl-card">
+  <section class="cdl-card">
     <div class="cdl-head">
       <h2>Adhkār · <span id="cdl-adh-window">morning</span></h2>
     </div>
     <div id="cdl-adhkar-list"></div>
-  </div>
+  </section>
 
-  <!-- Phase C — Wuḍūʾ steps (expandable) -->
-  <div class="cdl-card cdl-expandable">
+  <!-- Phase C — Wuḍūʾ -->
+  <section class="cdl-card cdl-expandable">
     <button type="button" class="cdl-expand-btn" data-target="cdl-wudu" aria-expanded="false">
-      Wuḍūʾ outline · 8 steps <span class="chev">▸</span>
+      Wuḍūʾ outline · 8 steps <span class="chev" aria-hidden="true">▸</span>
     </button>
     <div id="cdl-wudu" class="cdl-expand-body" hidden></div>
-  </div>
+  </section>
 
-  <!-- Phase D — Prayer steps (expandable) -->
-  <div class="cdl-card cdl-expandable">
+  <!-- Phase D — Prayer -->
+  <section class="cdl-card cdl-expandable">
     <button type="button" class="cdl-expand-btn" data-target="cdl-salah" aria-expanded="false">
-      Prayer outline · 7 steps <span class="chev">▸</span>
+      Prayer outline · 7 steps <span class="chev" aria-hidden="true">▸</span>
     </button>
     <div id="cdl-salah" class="cdl-expand-body" hidden></div>
-  </div>
+  </section>
 
-  <!-- Phase E — Send light ahead -->
-  <div class="cdl-card">
+  <!-- Phase E — Send light -->
+  <section class="cdl-card">
     <div class="cdl-head"><h2>Send light ahead</h2></div>
     <p class="cdl-sub">Three small intentions that echo ongoing reward themes (Muslim 1631 · educational).</p>
     <div id="cdl-light" class="cdl-light-row"></div>
-  </div>
+  </section>
 
-  <!-- Phase G — Core protection -->
-  <div class="cdl-card">
+  <!-- Phase G — Protection -->
+  <section class="cdl-card">
     <div class="cdl-head"><h2>Core protection set</h2></div>
     <p class="cdl-note">Āyat al-Kursī · the three Quls · istighfār. Learn the wording with a teacher; this card is a reminder only.</p>
     <ul class="cdl-protect">
@@ -96,25 +112,28 @@
       <li>Sūrat al-Ikhlāṣ · al-Falaq · an-Nās</li>
       <li>Sayyid al-istighfār or any sincere istighfār</li>
     </ul>
-  </div>
+  </section>
 
-  <!-- Seven-day history -->
-  <div class="cdl-card">
+  <!-- Surprise: Long-stay provisions map (today highlighted) -->
+  <section class="cdl-card cdl-expandable">
+    <button type="button" class="cdl-expand-btn" data-target="cdl-provisions" aria-expanded="false">
+      Provisions for the long stay · 7 lanes <span class="chev" aria-hidden="true">▸</span>
+    </button>
+    <div id="cdl-provisions" class="cdl-expand-body" hidden></div>
+  </section>
+
+  <!-- History -->
+  <section class="cdl-card">
     <div class="cdl-head"><h2>Last seven days</h2></div>
     <div id="cdl-hist"></div>
-  </div>
+  </section>
 
-  <!-- Soft pills back to companion sections -->
-  <div class="cdl-pills">
-    <a href="/#reminder">✦ Reminder</a>
-    <a href="/#reality">◉ Reality</a>
-    <a href="/#reflection">☾ Reflection</a>
-    <a href="/#action">➤ Action</a>
-    <a href="/#notes">🏦 Vault</a>
-  </div>
-
-  <p class="cdl-footer">Educational only — not a fatwa. On this device. Sources shown where available. Verify with a trusted local scholar.</p>
+  <p class="cdl-footer">
+    Educational only — not a fatwa. On this device. Sources shown where available.<br/>
+    Verify with a trusted local scholar. Campus and Companion remain separate surfaces.
+  </p>
 </main>
+
 <script src="assets/daily.js"></script>
 </body>
 </html>

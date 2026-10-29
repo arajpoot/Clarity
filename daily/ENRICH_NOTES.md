@@ -1,54 +1,47 @@
-# Daily surface enrichment — Phases A–G
+# Daily · isolated surface (campus-style) — polished build
 
 Bismillah. Educational only — not a fatwa.
 
-## Source
-- Package: Clarity-main (attached) · `assets/companion-inline/inline-clarity-landing-v3.js` + LANDING_PHASES.md
-- Live form factor: https://clarity-dawah.fyi/daily/ (cdl-card, dual-tiles, shared device keys)
-
-## What was ported
-
-| Phase | Content | Where in enriched daily |
-|-------|---------|-------------------------|
-| A | Oath plaque + Muslim 1631 framing | `#cdl-oath` card |
-| A | 7 grave-furniture provisions | `#cdl-today` deed (rotates by day hash) |
-| B | Full morning / evening adhkār packs (6 each) with targets + refs | `#cdl-adhkar-list` |
-| C | Wuḍūʾ 8 steps (expandable) | `#cdl-wudu` |
-| D | Prayer 7 steps (expandable) | `#cdl-salah` |
-| E | Send light ahead (knowledge / ṣadaqah / duʿāʾ) | `#cdl-light` |
-| F | Mobile folds, full-width cards, dual-tile stack | CSS |
-| G | Core protection set reminder | Protection card |
-
-## Shared device keys (continuity with Companion)
-- `clarity_provision_day_v1`
-- `clarity_cph_tasbeeh_v1`
-- `clarity_today_done_v1`
-- `clarity_soft_streak_v1`
-- `clarity_daily_adhkar_v1`
-- `clarity_daily_history_v1`
-- `clarity_send_light_v1`
-
-## Deploy (only these paths)
+## Architecture (like Campus)
 ```
-/daily/index.html          ← replace
-/daily/assets/daily.js     ← replace
-/daily/assets/daily-form.css ← replace
+/daily/
+  index.html
+  assets/
+    daily.css          ← self-contained theme + plaques
+    daily.js           ← all logic, no companion pull
+    daily-banner.jpg   ← Furnish Your Grave banner
+  ENRICH_NOTES.md
 ```
 
-Companion (`/`) and Campus (`/campus/**`) remain untouched.
+- **Isolated**: no companion-inline scripts, no deep `#reminder` pills.
+- Only external links: dual tiles → `/` (Companion) and `/campus/`.
+- Shared device keys kept so deed / tasbeeh / streak continue if user also opens Companion.
+
+## Content map
+| Section | Source |
+|---------|--------|
+| Banner | Extracted from provided “Clarity – Furnish Your Grave” artwork |
+| Oath plaque | Muslim 1631 framing (Phase A) |
+| Do this today + tasbeeh + streak | Provisions + shared keys |
+| Full adhkār packs | Phase B (morning / evening auto) |
+| Wuḍūʾ 8 steps | Phase C (expandable) |
+| Prayer 7 steps | Phase D (expandable) |
+| Send light ahead | Phase E |
+| Core protection | Phase G |
+| Provisions map | Surprise — all 7 lanes, today highlighted |
+| Local theme toggle | Surprise — dark/light, stored only for Daily |
+
+## Deploy
+Replace entire `/daily/` folder (or the four files under it).
 
 ## Smoke checklist
-- [ ] Cold load: no console errors
-- [ ] Deed rotates by calendar day; same key as Companion
-- [ ] Morning vs evening adhkār switch by hour (≥15 or <4 = evening)
-- [ ] +1 / reset tasbeeh persists
-- [ ] Mark done → streak + 7-day history
-- [ ] Expand wuḍūʾ / prayer; collapse again
-- [ ] Send-light toggles persist for the day
-- [ ] Dual tiles → `/` and `/campus/` only (no JS pull)
-- [ ] Mobile: cards full width, no horizontal overflow
-- [ ] All source refs + “educational only — not a fatwa” present
-
-## Optional next (Phase B from package DAILY_PLAN)
-- Companion “Day landing” pill becomes a link to `/daily/`
-- Banner / next-salah plaque can move into daily later
+- [x] Banner loads
+- [x] Theme toggle persists
+- [x] Deed rotates by day; Mark done → streak + history
+- [x] Adhkār morning/evening switch
+- [x] Expanders open/close
+- [x] Send-light toggles
+- [x] Provisions map highlights today’s lane
+- [x] No companion JS required
+- [x] Dual tiles only external navigation
+- [x] Mobile: single column, no overflow
