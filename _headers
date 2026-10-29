@@ -1,9 +1,13 @@
-# Cloudflare Pages / compatible static hosts
+# Clarity cache · PageSpeed
 /assets/*
-  Cache-Control: public, max-age=31536000, immutable
-/adhkar/data/*
-  Cache-Control: public, max-age=86400
-/
+  Cache-Control: public, max-age=604800
+/campus/assets/*
+  Cache-Control: public, max-age=604800
+/daily/assets/*
+  Cache-Control: public, max-age=604800
+/sw.js
   Cache-Control: public, max-age=0, must-revalidate
-/index.html
-  Cache-Control: public, max-age=0, must-revalidate
+/*.css
+  Cache-Control: public, max-age=604800
+/*.js
+  Cache-Control: public, max-age=604800

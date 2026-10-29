@@ -2,7 +2,7 @@
  * Network-first for HTML/navigate + campus buildings; cache assets.
  * One registration; old caches purged on activate.
  */
-const CACHE = "clarity-20261028DAILY";
+const CACHE = "clarity-20261028SPEED";
 const PRECACHE = ["/", "/robots.txt", "/campus/", "/daily/"];
 
 self.addEventListener("install", (e) => {
@@ -54,8 +54,12 @@ self.addEventListener("fetch", (e) => {
   const isMulti = isBuilding(path);
 
   if (isNavigate || isSeal || isMulti) {
+    var timed = new Promise(function(resolve, reject){
+      var timer = setTimeout(function(){ reject(new Error("sw-timeout")); }, 8000);
+      fetch(req).then(function(res){ clearTimeout(timer); resolve(res); }, function(err){ clearTimeout(timer); reject(err); });
+    });
     e.respondWith(
-      fetch(req)
+      timed
         .then((res) => {
           if (res && res.ok && isNavigate) {
             const copy = res.clone();
