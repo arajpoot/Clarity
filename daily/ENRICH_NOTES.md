@@ -1,47 +1,48 @@
-# Daily · isolated surface (campus-style) — polished build
+# Daily · isolated surface (campus-style) — Phase 2 polish
 
 Bismillah. Educational only — not a fatwa.
 
-## Architecture (like Campus)
+## Architecture (self-contained like Campus)
 ```
 /daily/
   index.html
   assets/
-    daily.css          ← self-contained theme + plaques
-    daily.js           ← all logic, no companion pull
-    daily-banner.jpg   ← Furnish Your Grave banner
+    daily-banner.jpg   ← cleaned, wider, no caption overlay
+    daily.css
+    daily.js
   ENRICH_NOTES.md
 ```
 
-- **Isolated**: no companion-inline scripts, no deep `#reminder` pills.
-- Only external links: dual tiles → `/` (Companion) and `/campus/`.
-- Shared device keys kept so deed / tasbeeh / streak continue if user also opens Companion.
+- No companion-inline scripts
+- No deep `#reminder` / `#reality` links
+- Only external navigation: dual tiles → Companion + Campus
+- Shared device keys kept for continuity of deed / tasbeeh / streak
 
-## Content map
-| Section | Source |
-|---------|--------|
-| Banner | Extracted from provided “Clarity – Furnish Your Grave” artwork |
-| Oath plaque | Muslim 1631 framing (Phase A) |
-| Do this today + tasbeeh + streak | Provisions + shared keys |
-| Full adhkār packs | Phase B (morning / evening auto) |
-| Wuḍūʾ 8 steps | Phase C (expandable) |
-| Prayer 7 steps | Phase D (expandable) |
-| Send light ahead | Phase E |
-| Core protection | Phase G |
-| Provisions map | Surprise — all 7 lanes, today highlighted |
-| Local theme toggle | Surprise — dark/light, stored only for Daily |
+## Content imported from live day-landing pulse
+| Block | Status |
+|-------|--------|
+| Banner (Furnish Your Grave) | Clean rectangular impact, caption removed |
+| Dual path tiles | Strengthened plaque styling |
+| Furnish your grave / Muslim 1631 | Present |
+| Remember the long stay | Added this phase |
+| Do this today + tasbeeh + streak | Present |
+| Full morning/evening adhkār packs | Present |
+| Wuḍūʾ 8 steps + Prayer 7 steps | Expandable |
+| Send light ahead | Present |
+| Core protection set | Present |
+| Provisions map (7 lanes, today highlighted) | Present |
+| Local theme toggle | Present |
+
+## Intentionally left in Companion
+Full Reminder tab (commands, hadith, Names), Vault registry UI, qaḍāʾ tracker, farḍ map, ṣawm/zakāt/ḥajj sections, banner media dock, Hijri calendar — those remain Companion tools. Daily owns the daily pulse only.
 
 ## Deploy
-Replace entire `/daily/` folder (or the four files under it).
+Replace entire `/daily/` folder with this package.
 
-## Smoke checklist
-- [x] Banner loads
-- [x] Theme toggle persists
-- [x] Deed rotates by day; Mark done → streak + history
-- [x] Adhkār morning/evening switch
-- [x] Expanders open/close
-- [x] Send-light toggles
-- [x] Provisions map highlights today’s lane
-- [x] No companion JS required
-- [x] Dual tiles only external navigation
-- [x] Mobile: single column, no overflow
+## Smoke
+- [x] JS syntax
+- [x] HTML structure
+- [x] Banner clean (no white caption bar)
+- [x] Dual tiles plaque form
+- [x] “Remember the long stay” present
+- [x] Self-contained (no companion-inline)
