@@ -7,7 +7,6 @@
 <meta name="description" content="Day landing. Today's deed, adhkar, tasbeeh. On this device. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/daily/"/>
 <link rel="stylesheet" href="assets/daily-form.css"/>
-<link rel="stylesheet" href="assets/clarity-day-surface-ui-v1.css"/>
 </head>
 <body>
 <header>
@@ -20,30 +19,35 @@
   <a href="/">Companion</a>
 </nav>
 <figure class="daily-banner">
-  <img src="assets/daily-banner.svg" alt="Clarity — Furnish Your Grave. Today on this device." width="1200" height="420"/>
+  <img src="assets/daily-banner.jpg" alt="Clarity — Furnish Your Grave" width="1200" height="420"/>
 </figure>
-
 <main id="clarity-day-landing" aria-label="Day landing">
   <div class="dual-tiles">
     <a class="dual-tile" href="/"><strong>Companion path</strong><small>Reminder · Reality · Reflection · Action</small></a>
     <a class="dual-tile" href="/campus/"><strong>Campus path</strong><small>Desk · Lab · Library</small></a>
   </div>
   <div class="cdl-card" id="cdl-today">
-    <div class="cdl-head"><h2>Do this today</h2><span class="cdl-period" id="cdl-period"></span></div>
+    <div class="cdl-head"><h2>Do this today</h2><span class="cdl-period" id="cdl-period">Today</span></div>
     <div class="cdl-row">
-      <span>🕌 Next salah · on the companion banner</span>
+      <span>🕌 Next salah · companion banner</span>
       <span>📿 <strong id="cdl-tas-count">0</strong>
         <button type="button" id="cdl-tas-inc">+1</button>
         <button type="button" id="cdl-tas-reset">↺</button>
       </span>
     </div>
-    <div class="cdl-lane" id="cdl-lane"></div>
-    <p class="cdl-deed" id="cdl-deed"></p>
+    <div class="cdl-lane" id="cdl-lane">deed</div>
+    <p class="cdl-deed" id="cdl-deed">One small ongoing good: teach something useful, water a plant, or give a quiet sadaqah.</p>
     <p class="cdl-note">Educational only — not a fatwa. Acceptance is with Allah.</p>
   </div>
   <div class="cdl-card">
-    <div class="cdl-head"><h2>Adhkār · <span id="cdl-adh-window"></span></h2></div>
-    <div id="cdl-adhkar-list"></div>
+    <div class="cdl-head"><h2>Adhkār · <span id="cdl-adh-window">morning</span></h2></div>
+    <div id="cdl-adhkar-list">
+      <div class="cdl-card">
+        <p class="cdl-adhkar-ar">اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ</p>
+        <p>O Allah, by You we enter the morning and by You the evening, by You we live and die, and to You is the resurrection.</p>
+        <p class="cdl-adhkar-ref">Tirmidhi 3391 · educational</p>
+      </div>
+    </div>
     <div class="cdl-pills">
       <a href="/#reminder">✦ Reminder</a>
       <a href="/#reality">◉ Reality</a>
