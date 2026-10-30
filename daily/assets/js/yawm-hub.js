@@ -1,7 +1,7 @@
 /*! Yawm hub L4 — leftovers import · educational only — not a fatwa */
 (function () {
   "use strict";
-  var VER = "20261029L4";
+  var VER = "20261029RALIGN";
   var KEY = {
     deed: "clarity.daily.deed.v1",
     tas: "clarity.daily.tasbeeh.v1",
