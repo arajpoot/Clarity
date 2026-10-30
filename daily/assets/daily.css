@@ -998,3 +998,20 @@ html, body {
     min-height: 2.6rem;
   }
 }
+
+
+/* === Y0 Banner lock · Yawm · 20261029Y === */
+.daily-banner{position:relative;margin:0 0 1rem;border-radius:1rem;overflow:hidden;border:1px solid rgba(201,168,76,.35)}
+.daily-banner img{display:block;width:100%;height:auto;max-height:min(42vh,320px);object-fit:cover}
+.banner-verse-plaque{position:absolute;left:50%;top:8%;transform:translateX(-50%);width:min(94%,36rem);padding:.55rem .75rem;border-radius:.75rem;background:rgba(8,20,16,.72);border:1px solid rgba(201,168,76,.4);backdrop-filter:blur(6px);text-align:center}
+.banner-verse-plaque .bismillah{margin:0;font-family:"Noto Naskh Arabic",Amiri,serif;font-size:.85rem;color:#e8d5a3}
+.banner-verse-plaque .verse-ar{margin:.25rem 0;font-family:"Noto Naskh Arabic",Amiri,serif;font-size:clamp(.95rem,2.8vw,1.2rem);line-height:1.85;color:#f5f0e6}
+.banner-verse-plaque .verse-en{margin:.2rem 0 0;font-size:.78rem;opacity:.95}
+.banner-verse-plaque .verse-ref{margin:.15rem 0 0;font-size:.68rem;color:#c9a84c}
+.banner-gravity{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);width:min(94%,34rem);text-align:center;padding:.4rem .65rem;border-radius:999px;background:rgba(0,0,0,.55);border:1px solid rgba(201,168,76,.3)}
+.banner-gravity .gravity-line{margin:0;font-size:clamp(.78rem,2.2vw,.92rem);font-style:italic;color:#f0e6c8}
+.yawm-hub{display:grid;gap:.65rem;grid-template-columns:repeat(auto-fill,minmax(10.5rem,1fr));margin:1rem 0}
+.yawm-hub a{display:block;padding:.85rem .9rem;border-radius:1rem;border:1px solid rgba(201,168,76,.32);background:rgba(255,255,255,.05);text-decoration:none;color:inherit}
+.yawm-hub a strong{display:block;color:#c9a84c;font-size:.95rem}
+.yawm-hub a small{display:block;margin-top:.25rem;font-size:.78rem;opacity:.88}
+.yawm-brand-sub{font-size:.72rem;opacity:.85;margin:0}
