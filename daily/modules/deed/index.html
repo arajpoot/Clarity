@@ -2,72 +2,96 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Do this today · Yawm · Clarity</title>
-<meta name="description" content="Do this today — Yawm. Educational only — not a fatwa."/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<meta name="description" content="Do this today — Yawm module. Educational only — not a fatwa. On this device."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../../assets/daily.css"/>
 <style>
-.mod-wrap{max-width:42rem;margin:0 auto;padding:0 .85rem 2.5rem}
-.mod-nav{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 1rem;font-size:.8rem}
-.mod-nav a{padding:.25rem .55rem;border-radius:999px;border:1px solid rgba(201,168,76,.3);text-decoration:none;color:inherit}
-.mod-card{margin:1rem 0;padding:1rem 1.1rem;border-radius:1rem;border:1px solid rgba(201,168,76,.32);background:rgba(255,255,255,.04)}
-.mod-card h1{font-size:1.2rem;color:#e8d5a3;margin:0 0 .5rem}
-.ar{font-family:"Noto Naskh Arabic",serif;font-size:1.12rem;line-height:1.9;direction:rtl;text-align:right}
-.btn{display:inline-flex;padding:.45rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;margin:.2rem}
-.btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
-.sub{font-size:.8rem;opacity:.88}
+.mod-shell{max-width:42rem;margin:0 auto;padding:0 .85rem 2.75rem}
+.mod-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding:.7rem 0;border-bottom:1px solid rgba(201,168,76,.22)}
+.mod-top .brand{font-weight:800;color:#c9a84c;text-decoration:none}
+.mod-top nav a{font-size:.8rem;margin-left:.45rem;opacity:.9}
+.mod-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin:.65rem 0}
+.mod-pills a{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.28rem .6rem;border-radius:999px;font-size:.72rem;
+  border:1px solid rgba(201,168,76,.32);text-decoration:none;color:inherit;
+  background:rgba(255,255,255,.05);
+}
+.mod-pills a img{width:1rem;height:1rem}
+.mod-pills a.here{background:rgba(30,125,94,.35);border-color:transparent}
 </style>
 </head>
 <body data-yawm="1">
-<div class="mod-wrap">
-<header style="display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid rgba(201,168,76,.2)">
-  <a href="/daily/" style="font-weight:800;color:#c9a84c;text-decoration:none">Clarity · Yawm</a>
-  <span style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a></span>
-</header>
-<nav class="mod-nav">
-  <a href="/daily/modules/now/">Now</a>
-  <a href="/daily/modules/deed/">Deed</a>
-  <a href="/daily/modules/adhkar/">Adhkār</a>
-  <a href="/daily/modules/tasbeeh/">Tasbeeh</a>
-  <a href="/daily/modules/salah/">Farḍ</a>
-  <a href="/daily/modules/light/">Light</a>
-</nav>
-<div class="mod-card">
-  <h1>Do this today</h1>
-  <p id="deed">…</p>
-  <p id="st" class="sub">Not marked</p>
-  <button type="button" class="btn" id="mark">Mark done</button>
-  <button type="button" class="btn ghost" id="next">Another</button>
-  <p class="sub" style="margin-top:.75rem">Mirror, not scoreboard. Acceptance is with Allah.</p>
+<div class="mod-shell">
+  <header class="mod-top">
+    <a class="brand" href="/daily/">Clarity · Yawm</a>
+    <nav><a href="/daily/">Hub</a><a href="/">Companion</a><a href="/campus/">Campus</a></nav>
+  </header>
+
+  <figure class="yawm-mini-banner">
+    <img src="../../assets/daily-banner.jpg" alt="" width="1600" height="754" loading="eager"/>
+    <div class="yawm-mini-plaque">
+      <p class="mp-title">One deed · by time</p>
+      <p class="mp-sub">Mirror, not scoreboard</p>
+    </div>
+  </figure>
+
+  <div class="yawm-quill-rule">Yawm · Do this today</div>
+
+  <nav class="mod-pills" aria-label="Modules">
+    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg" alt=""/>Now</a>
+    <a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg" alt=""/>Deed</a>
+    <a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg" alt=""/>Adhkār</a>
+    <a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg" alt=""/>Tasbeeh</a>
+    <a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg" alt=""/>Farḍ</a>
+    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg" alt=""/>Light</a>
+  </nav>
+
+  
+  <section class="glass-plaque">
+    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem">
+      <img src="../../assets/icons/nuros-seed.svg" width="40" height="40" alt=""/>
+      <h1 style="margin:0">Do this today</h1>
+    </div>
+    <p id="deed" style="font-size:1.02rem;line-height:1.55;margin:0 0 .5rem">…</p>
+    <p id="st" style="font-size:.82rem;opacity:.88">Not marked</p>
+    <p style="margin:.85rem 0 0">
+      <button type="button" class="btn" id="mark" style="padding:.45rem 1.1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer">Mark done</button>
+      <button type="button" id="next" style="padding:.45rem 1.1rem;border-radius:999px;border:1px solid rgba(201,168,76,.45);background:transparent;color:inherit;font-weight:700;cursor:pointer;margin-left:.35rem">Another</button>
+    </p>
+    <p style="margin:.75rem 0 0;font-size:.78rem;opacity:.85">Acceptance is with Allah. Educational only — not a fatwa.</p>
+  </section>
+  <script>
+  (function(){
+    var KEY="clarity.daily.deed.v1";
+    var DEEDS=[
+      "Share one beneficial sentence from Qur\u2019an or Sunnah with sincerity — or learn one \u0101yah with meaning.",
+      "Beneficial knowledge or a child who prays for you (Muslim 1631 \u00b7 educational wording — confirm with a teacher).",
+      "Remove harm from a path, or teach one useful skill for Allah\u2019s sake.",
+      "Pray one \u1e63al\u0101h with fuller calm in ruk\u016b\u02bf and suj\u016bd.",
+      "Seek forgiveness morning or evening with presence of heart.",
+      "Enjoin truth gently — or stay silent if unsure of the source."
+    ];
+    function day(){return new Date().toDateString()}
+    function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){return{}}}
+    function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+    var st=load();
+    if(st.day!==day()) st={day:day(),i:Math.floor(Math.random()*DEEDS.length),done:false};
+    function paint(){
+      document.getElementById("deed").textContent=DEEDS[st.i%DEEDS.length];
+      document.getElementById("st").textContent=st.done?"Marked done today \u2713":"Not marked";
+    }
+    paint();save(st);
+    document.getElementById("mark").onclick=function(){st.done=true;save(st);paint()};
+    document.getElementById("next").onclick=function(){st.i=(st.i+1)%DEEDS.length;st.done=false;save(st);paint()};
+  })();
+  </script>
+
+
+  <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
 </div>
-<p class="sub">Educational only — not a fatwa.</p>
-</div>
-<script src="../../assets/daily.js" defer></script>
-<script>
-document.addEventListener("DOMContentLoaded",function(){
-  /* prefer hub logic if daily.js exposes; else local */
-  var KEY="clarity.daily.deed.v1";
-  var DEEDS=[
-    "Share one beneficial sentence from Qur'an or Sunnah with sincerity — or learn one āyah with meaning.",
-    "Beneficial knowledge or a child who prays for you (Muslim 1631 · educational wording — confirm with a teacher).",
-    "Remove harm from a path, or teach one useful skill for Allah's sake.",
-    "Pray one ṣalāh with fuller calm in rukūʿ and sujūd.",
-    "Seek forgiveness morning or evening with presence of heart.",
-    "Enjoin truth gently — or stay silent if unsure of the source."
-  ];
-  function day(){var d=new Date();return d.toDateString()}
-  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){return{}}}
-  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-  var st=load();
-  if(st.day!==day()) st={day:day(),i:Math.floor(Math.random()*DEEDS.length),done:false};
-  function paint(){
-    document.getElementById("deed").textContent=DEEDS[st.i%DEEDS.length];
-    document.getElementById("st").textContent=st.done?"Marked done today":"Not marked";
-  }
-  paint();save(st);
-  document.getElementById("mark").onclick=function(){st.done=true;save(st);paint()};
-  document.getElementById("next").onclick=function(){st.i=(st.i+1)%DEEDS.length;st.done=false;save(st);paint()};
-});
-</script>
-</body></html>
+</body>
+</html>
