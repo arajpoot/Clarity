@@ -4,27 +4,28 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Adhkār · Yawm · Clarity</title>
-<meta name="description" content="Adhkār — Yawm module. Educational only — not a fatwa."/>
+<meta name="description" content="Adhkār — Yawm. Educational only — not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../../assets/daily.css"/>
 <style>
-.mod-wrap{max-width:40rem;margin:0 auto;padding:0 .85rem 2rem}
-.mod-nav a{margin-right:.5rem;font-size:.85rem}
-.mod-card{margin:1rem 0;padding:1rem;border-radius:1rem;border:1px solid rgba(201,168,76,.32);background:rgba(255,255,255,.04)}
-.mod-card h1{font-size:1.25rem;color:#e8d5a3;margin:0 0 .5rem}
-.ar{font-family:"Noto Naskh Arabic",serif;font-size:1.15rem;line-height:1.9;direction:rtl;text-align:right}
-.btn{display:inline-flex;padding:.45rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer}
+.mod-wrap{max-width:42rem;margin:0 auto;padding:0 .85rem 2.5rem}
+.mod-nav{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 1rem;font-size:.8rem}
+.mod-nav a{padding:.25rem .55rem;border-radius:999px;border:1px solid rgba(201,168,76,.3);text-decoration:none;color:inherit}
+.mod-card{margin:1rem 0;padding:1rem 1.1rem;border-radius:1rem;border:1px solid rgba(201,168,76,.32);background:rgba(255,255,255,.04)}
+.mod-card h1{font-size:1.2rem;color:#e8d5a3;margin:0 0 .5rem}
+.ar{font-family:"Noto Naskh Arabic",serif;font-size:1.12rem;line-height:1.9;direction:rtl;text-align:right}
+.btn{display:inline-flex;padding:.45rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;margin:.2rem}
 .btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
+.sub{font-size:.8rem;opacity:.88}
 </style>
 </head>
 <body data-yawm="1">
 <div class="mod-wrap">
-<header class="daily-header" style="padding:.75rem 0">
-  <a class="brand" href="/daily/">Clarity · Yawm</a>
-  <div class="header-actions"><a href="/daily/">Hub</a> · <a href="/">Companion</a></div>
+<header style="display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid rgba(201,168,76,.2)">
+  <a href="/daily/" style="font-weight:800;color:#c9a84c;text-decoration:none">Clarity · Yawm</a>
+  <span style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a></span>
 </header>
-<nav class="mod-nav" aria-label="Modules">
-  <a href="/daily/">Hub</a>
+<nav class="mod-nav">
   <a href="/daily/modules/now/">Now</a>
   <a href="/daily/modules/deed/">Deed</a>
   <a href="/daily/modules/adhkar/">Adhkār</a>
@@ -33,48 +34,59 @@
   <a href="/daily/modules/light/">Light</a>
 </nav>
 <div class="mod-card">
-  <h1>Adhkār · <span id="adh-win">…</span></h1>
-  <p style="font-size:.8rem;opacity:.85">Pack on this device · educational · not a fatwa. Confirm practice with a teacher.</p>
-  <div id="adh-list"></div>
+  <h1>Adhkār · <span id="win">…</span></h1>
+  <p class="sub">Full pack from Yawm adhkār data · counts on this device · educational · not a fatwa.</p>
+  <p class="sub" id="prog"></p>
+  <div id="list"></div>
 </div>
 </div>
 <script>
 (function(){
   var KEY="clarity.daily.adhkar.v1";
-  var MORNING=[
-    {id:"m1",ar:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",en:"Glory and praise be to Allah.",count:100,source:"Muslim 2692",grade:"ṣaḥīḥ"},
-    {id:"m2",ar:"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",en:"In the name of Allah with whose name nothing on earth or in heaven can harm, and He is the All-Hearing, All-Knowing.",count:3,source:"Abū Dāwūd 5088",grade:"verify grade with teacher"}
-  ];
-  var EVENING=[
-    {id:"e1",ar:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ",en:"O Allah, You are my Lord; there is no god but You. You created me and I am Your servant.",count:1,source:"Bukhārī 6306",grade:"ṣaḥīḥ"},
-    {id:"e2",ar:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",en:"Glory and praise be to Allah.",count:100,source:"Muslim 2692",grade:"ṣaḥīḥ"}
-  ];
   var h=new Date().getHours();
-  var isM=h>=4&&h<15;
-  var pack=isM?MORNING:EVENING;
-  document.getElementById("adh-win").textContent=isM?"morning":"evening";
-  var st={};try{st=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){}
-  var day=new Date().toDateString();
-  if(st.day!==day)st={day:day,c:{}};
-  var root=document.getElementById("adh-list");
-  pack.forEach(function(item){
-    if(!st.c[item.id])st.c[item.id]=0;
-    var el=document.createElement("div");
-    el.style.margin="1rem 0";el.style.paddingBottom=".75rem";el.style.borderBottom="1px solid rgba(201,168,76,.2)";
-    el.innerHTML="<p class='ar' dir='rtl' lang='ar'></p><p></p><p style='font-size:.75rem;color:#c9a84c'></p><p style='font-size:.85rem'>Count <span data-n></span> / "+item.count+"</p><button type='button' class='btn' data-id='"+item.id+"'>+1</button>";
-    el.querySelector(".ar").textContent=item.ar;
-    el.querySelector("p:nth-child(2)").textContent=item.en;
-    el.querySelector("p:nth-child(3)").textContent=item.source+" · "+item.grade;
-    function paint(){el.querySelector("[data-n]").textContent=st.c[item.id]||0}
-    paint();
-    el.querySelector("button").onclick=function(){
-      st.c[item.id]=Math.min(item.count,(st.c[item.id]||0)+1);
-      try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}
+  var file=(h>=4&&h<15)?"../../assets/adhkar/morning.json":"../../assets/adhkar/evening.json";
+  document.getElementById("win").textContent=(h>=4&&h<15)?"morning":"evening";
+  function day(){return new Date().toDateString()}
+  function loadSt(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){return{}}}
+  function saveSt(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+  fetch(file).then(function(r){return r.json()}).then(function(data){
+    var items=data.items||data||[];
+    var st=loadSt();
+    if(st.day!==day()) st={day:day(),c:{}};
+    var root=document.getElementById("list");
+    var done=0,total=items.length;
+    items.forEach(function(item,idx){
+      var id=item.id||("i"+idx);
+      var need=item.count||1;
+      if(!st.c[id]) st.c[id]=0;
+      if(st.c[id]>=need) done++;
+      var el=document.createElement("div");
+      el.style.cssText="margin:1rem 0;padding-bottom:.85rem;border-bottom:1px solid rgba(201,168,76,.2)";
+      var ar=item.ar||item.arabic||"";
+      var en=item.en||item.english||"";
+      var src=(item.source||"")+" · "+(item.grade||"");
+      el.innerHTML="<p class='ar' dir='rtl' lang='ar'></p><p></p><p class='sub' style='color:#c9a84c'></p><p class='sub'>Count <b data-n></b> / "+need+"</p><button type='button' class='btn'>+1</button>";
+      el.querySelector(".ar").textContent=ar;
+      el.querySelector("p:nth-child(2)").textContent=en;
+      el.querySelector("p:nth-child(3)").textContent=src+(item.note?" · "+item.note:"");
+      function paint(){
+        el.querySelector("[data-n]").textContent=st.c[id]||0;
+        document.getElementById("prog").textContent=done+" of "+total+" complete";
+      }
       paint();
-    };
-    root.appendChild(el);
+      el.querySelector("button").onclick=function(){
+        var prev=st.c[id]||0;
+        st.c[id]=Math.min(need,prev+1);
+        if(prev<need && st.c[id]>=need) done++;
+        saveSt(st);paint();
+      };
+      root.appendChild(el);
+    });
+    saveSt(st);
+    document.getElementById("prog").textContent=done+" of "+total+" complete";
+  }).catch(function(){
+    document.getElementById("list").innerHTML="<p class='sub'>Could not load adhkār JSON. Use hub on /daily/.</p>";
   });
-  try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}
 })();
 </script>
 </body></html>
