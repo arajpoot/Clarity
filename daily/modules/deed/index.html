@@ -4,50 +4,38 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta name="yawm-build" content="20261029VP2"/>
+<meta name="yawm-build" content="20261030S10"/>
 <title>Do this today · Yawm · Clarity</title>
-<meta name="description" content="Do this today — Yawm module. Educational only — not a fatwa."/>
+<meta name="description" content="Do this today — Yawm. Educational only — not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../../assets/daily.css?v=20261029VP2"/>
-<style>
-.mod-shell{max-width:min(100%,72rem);width:100%;margin:0 auto;padding:0 .85rem 2.75rem;box-sizing:border-box}
-.mod-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem;padding:.7rem 0;border-bottom:1px solid rgba(201,168,76,.22)}
+<link rel="stylesheet" href="../../assets/daily.css?v=20261030S10"/>
+<style id="yawm-vp-icons">
+.mod-shell{max-width:min(100%,72rem)!important;width:100%!important;margin:0 auto!important;padding:0 max(.75rem,env(safe-area-inset-left)) 2.75rem!important;box-sizing:border-box!important}
+.mod-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;padding:.7rem 0;border-bottom:1px solid rgba(201,168,76,.22)}
 .mod-top .brand{font-weight:800;color:#c9a84c;text-decoration:none}
 .mod-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin:.65rem 0}
-.mod-pills a{display:inline-flex;align-items:center;gap:.3rem;padding:.28rem .6rem;border-radius:999px;font-size:.72rem;
-  border:1px solid rgba(201,168,76,.32);text-decoration:none;color:inherit;background:rgba(255,255,255,.05)}
+.mod-pills a{display:inline-flex;align-items:center;gap:.3rem;padding:.28rem .6rem;border-radius:999px;font-size:.72rem;border:1px solid rgba(201,168,76,.32);text-decoration:none;color:inherit;background:rgba(255,255,255,.05)}
 .mod-pills a.here{background:rgba(30,125,94,.42);border-color:transparent;color:#fff}
 .mod-pills a img{width:1rem;height:1rem}
 .btn{display:inline-flex;padding:.4rem .95rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;margin:.2rem}
 .btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
-.ar{font-family:"Noto Naskh Arabic",serif;direction:rtl;text-align:right;font-size:1.12rem;line-height:1.9}
-.yawm-chip{text-align:left;padding:.75rem;border-radius:.9rem;border:1px solid rgba(201,168,76,.32);background:rgba(0,0,0,.2);color:inherit;cursor:pointer;margin:.35rem 0;width:100%}
-.yawm-chip.on{border-color:#1e7d5e;background:rgba(30,125,94,.28)}
+.ar{font-family:"Noto Naskh Arabic",serif;direction:rtl;text-align:right;font-size:1.15rem;line-height:1.9}
+.report{margin:.75rem 0;padding:.85rem 1rem;border-radius:.9rem;border:1px solid rgba(201,168,76,.35);background:rgba(30,125,94,.15)}
+.report .meta{font-size:.78rem;color:#e0c56a;margin-top:.35rem}
+.report a{color:#e0c56a;font-weight:600}
+.act{margin:.75rem 0;padding:.75rem .9rem;border-radius:.85rem;border:1px dashed rgba(201,168,76,.35);font-size:.88rem}
+.act strong{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c;margin-bottom:.35rem}
+img.sec-ico{width:1.65rem;height:1.65rem;border-radius:50%;padding:.2rem;background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.45);flex-shrink:0}
+h1.with-ico,h2.with-ico{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
+.glass-plaque{margin:1rem 0;padding:1.1rem 1.15rem;border-radius:1rem;border:1px solid rgba(201,168,76,.28);background:rgba(8,24,20,.55)}
 .yawm-fard-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.4rem}
 @media(max-width:640px){.yawm-fard-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .yawm-fard-pill{padding:.65rem .35rem;border-radius:.85rem;border:1px solid rgba(201,168,76,.3);background:rgba(0,0,0,.18);color:inherit;cursor:pointer;text-align:center}
 .yawm-fard-pill.on{background:rgba(30,125,94,.35)}
 .yawm-fard-pill b{display:block;font-size:1.2rem;color:#e8d5a3}
-.yawm-fard-pill span{font-size:.68rem}
+.yawm-chip{display:block;width:100%;text-align:left;padding:.75rem;margin:.35rem 0;border-radius:.9rem;border:1px solid rgba(201,168,76,.32);background:rgba(0,0,0,.2);color:inherit;cursor:pointer}
+.yawm-chip.on{border-color:#1e7d5e;background:rgba(30,125,94,.28)}
 </style>
-
-<style id="yawm-vp-icons">
-/* Force full viewport + visible section icons · 20261029VP2 */
-.mod-shell{max-width:min(100%,72rem)!important;width:100%!important;margin:0 auto!important;
-  padding:0 max(.75rem,env(safe-area-inset-left)) 2.75rem max(.75rem,env(safe-area-inset-right))!important;
-  box-sizing:border-box!important}
-.yawm-mini-banner,.glass-plaque,.reward-card,.enrich-block,.ext-links{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
-h1.with-ico,h2.with-ico{display:flex!important;align-items:center!important;gap:.55rem!important;flex-wrap:wrap}
-img.sec-ico{
-  width:1.75rem!important;height:1.75rem!important;min-width:1.75rem!important;
-  display:inline-block!important;vertical-align:middle!important;
-  flex-shrink:0!important;opacity:1!important;visibility:visible!important;
-  filter:none!important;
-  background:rgba(201,168,76,.18)!important;border-radius:50%!important;padding:.22rem!important;
-  box-sizing:content-box!important;border:1px solid rgba(201,168,76,.4)!important;
-}
-</style>
-
 </head>
 <body data-yawm="1">
 <div class="mod-shell">
@@ -56,87 +44,70 @@ img.sec-ico{
     <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
   </header>
   <figure class="yawm-mini-banner">
-    <img src="../../assets/daily-banner.jpg?v=20261029VP2" alt="" width="1600" height="754" loading="eager"/>
+    <img src="../../assets/daily-banner.jpg?v=20261030S10" alt="" width="1600" height="754" loading="eager"/>
     <div class="yawm-mini-plaque">
-      <p class="mp-title">One deed · by time</p>
+      <p class="mp-title">One concrete deed</p>
       <p class="mp-sub">Mirror, not scoreboard</p>
     </div>
   </figure>
   <div class="yawm-quill-rule">Yawm · Do this today</div>
-  <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029VP2" alt=""/>Now</a><a href="/daily/modules/deed/" class="here"><img src="../../assets/icons/nuros-seed.svg?v=20261029VP2" alt=""/>Do</a><a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029VP2" alt=""/>Adhkār</a><a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029VP2" alt=""/>Tasbeeh</a><a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029VP2" alt=""/>Farḍ</a><a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029VP2" alt=""/>Send</a>
-  </nav>
+  <nav class="mod-pills" aria-label="Modules"><a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261030S10" alt=""/>Now</a><a href="/daily/modules/deed/" class="here"><img src="../../assets/icons/nuros-seed.svg?v=20261030S10" alt=""/>Deed</a><a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261030S10" alt=""/>Adhkār</a><a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261030S10" alt=""/>Tasbeeh</a><a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261030S10" alt=""/>Farḍ</a><a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261030S10" alt=""/>Light</a></nav>
 
   <section class="glass-plaque">
-    <h1 class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-seed.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Do this today · <span id="per">…</span></h1>
-    <p id="deed" style="font-size:1.05rem;line-height:1.5"></p>
-    <p id="st" class="sub">Not marked</p>
+    <h1 class="with-ico" id="deed-title"><img class="sec-ico" src="../../assets/icons/nuros-seed.svg?v=20261030S10" alt=""/>Say Bismillāh before the next ordinary task.</h1>
+    <p class="sub" id="st">Not marked</p>
     <button type="button" class="btn" id="mark">Mark done</button>
     <button type="button" class="btn ghost" id="next">Another</button>
   </section>
-  <section class="glass-plaque">
-    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c" class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-tree.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Send light · intentions</h2>
-    <p class="sub">Tap to mark an intention on this device (Muslim 1631 themes · educational).</p>
-    <div id="chips"></div>
-  </section>
-  <aside class="reward-card">
-    <h2 class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-scroll.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">What continues after death</h2>
+  <div class="report">
     <p>When a person dies, his deeds come to an end except three: ongoing charity, knowledge from which benefit is gained, and a righteous child who prays for him.</p>
-    <p class="meta">Ṣaḥīḥ Muslim · 1631 · educational wording</p>
-  </aside>
+    <p class="meta">Ṣaḥīḥ · Muslim · 1631 · <a href="https://sunnah.com/muslim:1631" target="_blank" rel="noopener">sunnah.com/muslim:1631</a></p>
+  </div>
+  <div class="act">
+    <strong>One way to act — not a ruling</strong>
+    <button type="button" class="yawm-chip" data-id="sl1">Beneficial knowledge — teach or share one verified benefit</button>
+    <button type="button" class="yawm-chip" data-id="sl2">Ṣadaqah intention — a small ongoing or quiet charity</button>
+    <button type="button" class="yawm-chip" data-id="sl3">Duʿāʾ for parents — living or deceased</button>
+    <button type="button" class="yawm-chip" data-id="sl4">Remove a harm from a path others use</button>
+  </div>
   <script>
   (function(){
-    var KEY="clarity.daily.deed.v1", LIGHT="clarity.daily.sendlight.v1", VER="20261029VP2";
+    var KEY="clarity.daily.deed.v1", LIGHT="clarity.daily.sendlight.v1";
     var DEEDS=[
-      {period:"any",text:"One gentle word or act of service for family — raising hearts that may pray for you."},
-      {period:"any",text:"Share one beneficial sentence from Qur'an or Sunnah with sincerity."},
-      {period:"any",text:"Pray one ṣalāh with fuller calm in rukūʿ and sujūd."},
-      {period:"evening",text:"Seek forgiveness with presence before sleep."},
-      {period:"night",text:"One gentle word or act of service for family — raising hearts that may pray for you."}
+      "Say Bismillāh before the next ordinary task.",
+      "One gentle word or act of service for family.",
+      "Share one beneficial sentence from Qur'an or Sunnah with sincerity.",
+      "Pray one ṣalāh with fuller calm in rukūʿ and sujūd.",
+      "Seek forgiveness with presence before sleep."
     ];
     function day(){return new Date().toDateString()}
-    function period(){var h=new Date().getHours();if(h>=4&&h<12)return"morning";if(h>=12&&h<17)return"afternoon";if(h>=17&&h<20)return"evening";return"night"}
     function load(k,fb){try{var x=localStorage.getItem(k);return x?JSON.parse(x):fb}catch(e){return fb}}
     function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-    var p=period(); document.getElementById("per").textContent=p.toUpperCase();
-    var pool=DEEDS.filter(function(d){return d.period==="any"||d.period===p}); if(!pool.length)pool=DEEDS;
-    var st=load(KEY,{}); if(st.day!==day())st={day:day(),i:Math.floor(Math.random()*pool.length),done:false};
-    if(st.i>=pool.length)st.i=0;
-    function paint(){document.getElementById("deed").textContent=pool[st.i].text;document.getElementById("st").textContent=st.done?"Marked done today":"Not marked";save(KEY,st)}
+    var st=load(KEY,{}); if(st.day!==day())st={day:day(),i:0,done:false};
+    if(typeof st.i!=="number"||st.i>=DEEDS.length)st.i=0;
+    function paint(){
+      var title=document.getElementById("deed-title");
+      title.innerHTML='<img class="sec-ico" src="../../assets/icons/nuros-seed.svg?v=20261030S10" alt=""/>';
+      title.appendChild(document.createTextNode(DEEDS[st.i]));
+      document.getElementById("st").textContent=st.done?"Marked done today":"Not marked · mirror, not scoreboard";
+      document.title=DEEDS[st.i].slice(0,48)+" · Yawm · Clarity";
+      save(KEY,st);
+    }
     paint();
     document.getElementById("mark").onclick=function(){st.done=true;paint()};
-    document.getElementById("next").onclick=function(){st.i=(st.i+1)%pool.length;st.done=false;paint()};
-    fetch("../../assets/data/send-light.json?v="+VER).then(function(r){return r.json()}).then(function(items){
-      var ls=load(LIGHT,{}); if(ls.day!==day())ls={day:day(),done:{}};
-      var root=document.getElementById("chips");
-      function render(){root.innerHTML="";items.forEach(function(it){
-        var b=document.createElement("button");b.type="button";b.className="yawm-chip"+(ls.done[it.id]?" on":"");
-        b.innerHTML="<strong></strong><span></span>";b.querySelector("strong").textContent=it.label;
-        b.querySelector("span").textContent=ls.done[it.id]?"Marked · "+it.hint:it.hint;
-        b.onclick=function(){ls.done[it.id]=!ls.done[it.id];save(LIGHT,ls);render()};root.appendChild(b);
-      })}
-      render();
-    }).catch(function(){});
+    document.getElementById("next").onclick=function(){st.i=(st.i+1)%DEEDS.length;st.done=false;paint()};
+    var ls=load(LIGHT,{}); if(ls.day!==day())ls={day:day(),done:{}};
+    document.querySelectorAll(".yawm-chip").forEach(function(b){
+      if(ls.done[b.getAttribute("data-id")])b.classList.add("on");
+      b.onclick=function(){
+        var id=b.getAttribute("data-id");
+        ls.done[id]=!ls.done[id];
+        b.classList.toggle("on",!!ls.done[id]);
+        save(LIGHT,ls);
+      };
+    });
   })();
   </script>
-
-  
-  <div class="enrich-block">
-    <h2 class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-scroll.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Educational enrichment · ongoing good</h2>
-    <p>Public educational summaries of Muslim 1631 mention that when a person dies, their deeds end except continuous charity, knowledge that is benefited from, and a righteous child who prays for them. Yawm’s “one deed” mirrors that teaching: something small you can actually do today.</p>
-    <ul>
-      <li>Teach or share one verified beneficial sentence.</li>
-      <li>Remove a harm from a path others use.</li>
-      <li>Pray one ṣalāh with more presence.</li>
-      <li>Seek forgiveness with attention of the heart.</li>
-    </ul>
-    <p>Confirm hadith wording and grade with a teacher. Acceptance is with Allah.</p>
-  </div>
-  <div class="ext-links">
-    <a href="https://sunnah.com/muslim:1631" target="_blank" rel="noopener">Sunnah.com — Muslim 1631 ↗</a><br/>
-    <a href="https://productivemuslim.com/adhkar-to-unlock-barakah/" target="_blank" rel="noopener">Productive Muslim — habits of remembrance ↗</a>
-    <span class="note">Educational only — not a fatwa.</span>
-  </div>
 
   <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
 </div>
