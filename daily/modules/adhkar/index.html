@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta name="yawm-build" content="20261029R1"/>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Adhkār · Yawm · Clarity</title>
 <meta name="description" content="Adhkār — Yawm educational module. Not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../../assets/daily.css"/>
+<link rel="stylesheet" href="../../assets/daily.css?v=20261029R1"/>
 </head>
 <body data-yawm="1">
 <div class="mod-shell">
@@ -16,7 +18,7 @@
   </header>
 
   <figure class="yawm-mini-banner">
-    <img src="../../assets/daily-banner.jpg" alt="" width="1600" height="754" loading="eager"/>
+    <img src="../../assets/daily-banner.jpg?v=20261029R1" alt="" width="1600" height="754" loading="eager"/>
     <div class="yawm-mini-plaque">
       <p class="mp-title">Adhkār · morning & evening</p>
       <p class="mp-sub">Full pack on this device</p>
@@ -26,18 +28,18 @@
   <div class="yawm-quill-rule">Yawm · Adhkār</div>
 
   <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg" alt=""/>Now</a>
-    <a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg" alt=""/>Deed</a>
-    <a href="/daily/modules/adhkar/" class="here"><img src="../../assets/icons/nuros-dua.svg" alt=""/>Adhkār</a>
-    <a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg" alt=""/>Tasbeeh</a>
-    <a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg" alt=""/>Farḍ</a>
-    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg" alt=""/>Light</a>
+    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029R1" alt=""/>Now</a>
+    <a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029R1" alt=""/>Deed</a>
+    <a href="/daily/modules/adhkar/" class="here"><img src="../../assets/icons/nuros-dua.svg?v=20261029R1" alt=""/>Adhkār</a>
+    <a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029R1" alt=""/>Tasbeeh</a>
+    <a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029R1" alt=""/>Farḍ</a>
+    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029R1" alt=""/>Light</a>
   </nav>
 
   
   <section class="glass-plaque">
     <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem">
-      <img src="../../assets/icons/nuros-dua.svg" width="40" height="40" alt=""/>
+      <img src="../../assets/icons/nuros-dua.svg?v=20261029R1" width="40" height="40" alt=""/>
       <h1 style="margin:0">Adhkār · <span id="win">…</span></h1>
     </div>
     <p style="font-size:.8rem;opacity:.88;margin:0 0 .75rem">Counts on this device · educational · not a fatwa.</p>
@@ -65,7 +67,7 @@
     var KEY="clarity.daily.adhkar.v1";
     var h=new Date().getHours();
     var morning=h>=4&&h<15;
-    var file=morning?"../../assets/adhkar/morning.json":"../../assets/adhkar/evening.json";
+    var file=morning?"../../assets/adhkar/morning.json?v=20261029R1":"../../assets/adhkar/evening.json?v=20261029R1";
     document.getElementById("win").textContent=morning?"morning":"evening";
     function day(){return new Date().toDateString()}
     function loadSt(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){return{}}}
@@ -107,6 +109,21 @@
   })();
   </script>
 
+
+  
+  <aside class="reward-card" aria-label="Authentic reminder">
+    <h2>Subḥān Allāh wa bi-ḥamdih</h2>
+    <p class="ar" dir="rtl" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
+    <p>Whoever says in the morning and in the evening: “Glory and praise be to Allah” one hundred times, no one will come on the Day of Resurrection with anything better than what he has done — except one who said the same or more.</p>
+    <p class="meta">Ṣaḥīḥ Muslim · 2692 · educational summary</p>
+    <span class="grade">ṣaḥīḥ · Muslim</span>
+  </aside>
+  <aside class="reward-card" aria-label="Authentic reminder">
+    <h2>Sayyid al-istighfār</h2>
+    <p>The best way of seeking forgiveness includes affirming Allah as Lord and asking forgiveness — whoever says it in the day with certainty and dies before evening is among the people of Paradise (and likewise for the night), as in the report.</p>
+    <p class="meta">Ṣaḥīḥ al-Bukhārī · 6306 · educational summary — read full Arabic with a teacher</p>
+    <span class="grade">ṣaḥīḥ · Bukhārī</span>
+  </aside>
 
   <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
 </div>
