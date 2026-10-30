@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta name="yawm-build" content="20261029R1"/>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta name="yawm-build" content="20261029RALIGN"/>
 <title>Now · Yawm · Clarity</title>
-<meta name="description" content="Now — Yawm educational module. Not a fatwa."/>
+<meta name="description" content="Now — Yawm module. Educational only — not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../../assets/daily.css?v=20261029R1"/>
+<link rel="stylesheet" href="../../assets/daily.css?v=20261029RALIGN"/>
+<style>
+.mod-shell{max-width:44rem;margin:0 auto;padding:0 .85rem 2.75rem}
+.mod-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem;padding:.7rem 0;border-bottom:1px solid rgba(201,168,76,.22)}
+.mod-top .brand{font-weight:800;color:#c9a84c;text-decoration:none}
+.mod-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin:.65rem 0}
+.mod-pills a{display:inline-flex;align-items:center;gap:.3rem;padding:.28rem .6rem;border-radius:999px;font-size:.72rem;
+  border:1px solid rgba(201,168,76,.32);text-decoration:none;color:inherit;background:rgba(255,255,255,.05)}
+.mod-pills a.here{background:rgba(30,125,94,.42);border-color:transparent;color:#fff}
+.mod-pills a img{width:1rem;height:1rem}
+.btn{display:inline-flex;padding:.4rem .95rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;margin:.2rem}
+.btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
+.ar{font-family:"Noto Naskh Arabic",serif;direction:rtl;text-align:right;font-size:1.12rem;line-height:1.9}
+.yawm-chip{text-align:left;padding:.75rem;border-radius:.9rem;border:1px solid rgba(201,168,76,.32);background:rgba(0,0,0,.2);color:inherit;cursor:pointer;margin:.35rem 0;width:100%}
+.yawm-chip.on{border-color:#1e7d5e;background:rgba(30,125,94,.28)}
+.yawm-fard-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.4rem}
+@media(max-width:640px){.yawm-fard-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.yawm-fard-pill{padding:.65rem .35rem;border-radius:.85rem;border:1px solid rgba(201,168,76,.3);background:rgba(0,0,0,.18);color:inherit;cursor:pointer;text-align:center}
+.yawm-fard-pill.on{background:rgba(30,125,94,.35)}
+.yawm-fard-pill b{display:block;font-size:1.2rem;color:#e8d5a3}
+.yawm-fard-pill span{font-size:.68rem}
+</style>
 </head>
 <body data-yawm="1">
 <div class="mod-shell">
@@ -16,50 +37,41 @@
     <a class="brand" href="/daily/">Clarity · Yawm</a>
     <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
   </header>
-
   <figure class="yawm-mini-banner">
-    <img src="../../assets/daily-banner.jpg?v=20261029R1" alt="" width="1600" height="754" loading="eager"/>
+    <img src="../../assets/daily-banner.jpg?v=20261029RALIGN" alt="" width="1600" height="754" loading="eager"/>
     <div class="yawm-mini-plaque">
       <p class="mp-title">Now · the portion of this hour</p>
-      <p class="mp-sub">Scenery of time — educational cue, not a timetable</p>
+      <p class="mp-sub">Educational cue — not a prayer timetable</p>
     </div>
   </figure>
-
   <div class="yawm-quill-rule">Yawm · Now</div>
-
   <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/" class="here"><img src="../../assets/icons/nuros-today.svg?v=20261029R1" alt=""/>Now</a>
-    <a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029R1" alt=""/>Deed</a>
-    <a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029R1" alt=""/>Adhkār</a>
-    <a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029R1" alt=""/>Tasbeeh</a>
-    <a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029R1" alt=""/>Farḍ</a>
-    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029R1" alt=""/>Light</a>
+    <a href="/daily/modules/now/" class="here"><img src="../../assets/icons/nuros-today.svg?v=20261029RALIGN" alt=""/>Now</a><a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029RALIGN" alt=""/>Do</a><a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029RALIGN" alt=""/>Adhkār</a><a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029RALIGN" alt=""/>Tasbeeh</a><a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029RALIGN" alt=""/>Farḍ</a><a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029RALIGN" alt=""/>Send</a>
   </nav>
 
-  
   <section class="glass-plaque">
-    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem">
-      <img src="../../assets/icons/nuros-today.svg?v=20261029R1" width="40" height="40" alt=""/>
-      <h1 style="margin:0">Now · <span id="lbl">…</span></h1>
-    </div>
-    <p id="detail" style="margin:0;line-height:1.55"></p>
+    <h1>Now · <span id="lbl">…</span></h1>
+    <p id="detail" class="sub"></p>
   </section>
-  <div class="enrich-block">
-    <h2>Educational enrichment · day shape</h2>
-    <p>Many productivity guides for Muslims structure the day around the five prayers—not as a rigid timetable, but as anchors. A common pattern described in public educational writing (e.g. Productive Muslim style routines) is:</p>
-    <ul>
-      <li><strong>Before / at Fajr</strong> — wake with dhikr, optional night prayer if able, Fajr sunnah then farḍ.</li>
-      <li><strong>After Fajr</strong> — morning adhkār, a portion of Qur’an while the mind is fresh.</li>
-      <li><strong>Through the day</strong> — work and family folded between Dhuhr, ʿAṣr, Maghrib, ʿIshāʾ.</li>
-      <li><strong>Evening</strong> — evening adhkār, reduce harm, prepare sleep with remembrance.</li>
+  <section class="glass-plaque">
+    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c">Day shape (educational)</h2>
+    <ul class="sub" style="margin:0;padding-left:1.1rem;line-height:1.55">
+      <li>Before / at Fajr — dhikr, optional night prayer if able, Fajr</li>
+      <li>After Fajr — morning adhkār, a portion of Qur’an</li>
+      <li>Through the day — work and family between the prayers</li>
+      <li>Evening — evening adhkār, reduce harm, rest with remembrance</li>
     </ul>
-    <p>Prophetic reports describe serving family, then going out when prayer is called (see collections such as Bukhārī — confirm exact wording with a teacher). Adjust everything to your local times and capacity.</p>
-  </div>
+  </section>
+  <aside class="reward-card">
+    <h2>Reward of the hours before dawn</h2>
+    <p class="ar" dir="rtl" lang="ar">وَبِالْأَسْحَارِ هُمْ يَسْتَغْفِرُونَ</p>
+    <p>And in the hours before dawn they would ask forgiveness.</p>
+    <p class="meta">Qur’an · 51:18 · educational meaning</p>
+  </aside>
   <div class="ext-links">
-    <strong>Sources to read further</strong><br/>
-    <a href="https://productivemuslim.com/whats-your-morning-routine/" target="_blank" rel="noopener">Productive Muslim — morning routine ideas</a><br/>
-    <a href="https://productivemuslim.com/daily-routine-of-prophet-muhammad/" target="_blank" rel="noopener">Prophetic daily rhythm (overview article)</a>
-    <span class="note">External educational material only — not a fatwa. Not a schedule from this site.</span>
+    <a href="https://productivemuslim.com/whats-your-morning-routine/" target="_blank" rel="noopener">Productive Muslim — morning routine ↗</a><br/>
+    <a href="/daily/modules/adhkar/">Open Adhkār module →</a>
+    <span class="note">External · educational · not a fatwa.</span>
   </div>
   <script>
   (function(){
@@ -72,16 +84,6 @@
     document.getElementById("detail").textContent=d;
   })();
   </script>
-
-
-  
-  <aside class="reward-card" aria-label="Authentic reminder">
-    <h2>Reward of the hours before dawn</h2>
-    <p class="ar" dir="rtl" lang="ar">وَبِالْأَسْحَارِ هُمْ يَسْتَغْفِرُونَ</p>
-    <p>And in the hours before dawn they would ask forgiveness.</p>
-    <p class="meta">Qur’an · Sūrat al-Dhāriyāt 51:18 · educational meaning</p>
-    <span class="grade">Qur’an</span>
-  </aside>
 
   <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
 </div>
