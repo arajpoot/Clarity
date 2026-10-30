@@ -1486,3 +1486,9 @@ html[data-theme="light"] .glass-plaque h1{color:#6b5a1e}
 .yawm-fard-pill.on{background:rgba(30,125,94,.35);border-color:transparent}
 .yawm-fard-pill b{display:block;font-size:1.2rem;color:#e8d5a3}
 .yawm-fard-pill span{font-size:.68rem;opacity:.9}
+
+
+/* === VP2 hard · 20261029VP2 === */
+:root{--yawm-max:min(100vw - .5rem, 72rem)}
+.mod-shell{max-width:var(--yawm-max)!important;width:100%!important}
+img.sec-ico{width:1.75rem!important;height:1.75rem!important;display:inline-block!important;opacity:1!important}
