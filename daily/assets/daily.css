@@ -1379,3 +1379,94 @@ html[data-theme="light"] .glass-plaque h1{color:#6b5a1e}
 }
 .ext-links a{color:#e0c56a;font-weight:600}
 .ext-links .note{display:block;margin-top:.4rem;font-size:.72rem;opacity:.88}
+
+/* === Cache-era mobile + top plaque · 20261029R1 === */
+.yawm-mini-plaque{
+  position:absolute !important;
+  left:50% !important;
+  top:0 !important;
+  bottom:auto !important;
+  right:auto !important;
+  transform:translateX(-50%) !important;
+  width:min(94%,28rem) !important;
+  max-width:94% !important;
+  margin-top:.55rem !important;
+  padding:.55rem .85rem !important;
+  border-radius:.85rem !important;
+  text-align:center !important;
+  background:rgba(6,16,14,.32) !important;
+  border:1px solid rgba(201,168,76,.45) !important;
+  backdrop-filter:blur(3px) !important;
+  -webkit-backdrop-filter:blur(3px) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 6px 18px rgba(0,0,0,.25) !important;
+  z-index:2;
+}
+.yawm-mini-banner img{
+  max-height:min(28vh,190px) !important;
+  object-position:center 45% !important;
+}
+/* Mobile hub */
+@media (max-width:640px){
+  .daily-header{padding:.55rem .65rem}
+  .yawm-hub{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:.4rem !important;
+  }
+  .yawm-tile{
+    min-height:5.4rem;
+    padding:.55rem .4rem .5rem;
+  }
+  .yawm-tile strong{font-size:.74rem}
+  .yawm-tile small{font-size:.6rem;line-height:1.25}
+  .yawm-tile .yt-icon{width:1.65rem;height:1.65rem}
+  .mod-shell{padding:0 .55rem 2.25rem}
+  .mod-pills a{font-size:.68rem;padding:.28rem .5rem}
+  .glass-plaque{padding:.95rem .85rem;border-radius:1rem}
+  .enrich-block{padding:.85rem .8rem;font-size:.86rem}
+  .banner-verse-plaque{width:min(96%,36rem);padding:.45rem .55rem}
+  .banner-verse-plaque .verse-ar{font-size:clamp(.82rem,3.4vw,1.05rem)}
+  .banner-gravity{width:min(96%,34rem);padding:.35rem .5rem}
+  .banner-gravity .gravity-line{font-size:clamp(.7rem,3vw,.85rem)}
+  .dual-tiles{grid-template-columns:1fr;gap:.5rem}
+}
+@media (max-width:380px){
+  .yawm-hub{gap:.32rem !important}
+  .yawm-tile strong{font-size:.7rem}
+}
+.reward-card{
+  margin:1rem 0;
+  padding:1rem 1.05rem;
+  border-radius:1rem;
+  border:1px solid rgba(201,168,76,.4);
+  background:linear-gradient(145deg,rgba(30,125,94,.18),rgba(8,24,20,.55));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+}
+.reward-card h2{
+  margin:0 0 .5rem;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#c9a84c;
+}
+.reward-card .ar{
+  font-family:"Noto Naskh Arabic",serif;
+  direction:rtl;
+  text-align:right;
+  font-size:1.08rem;
+  line-height:1.9;
+  margin:.35rem 0;
+}
+.reward-card .meta{
+  font-size:.75rem;
+  color:#e0c56a;
+  margin-top:.35rem;
+}
+.reward-card .grade{
+  display:inline-block;
+  margin-top:.25rem;
+  padding:.12rem .45rem;
+  border-radius:999px;
+  font-size:.68rem;
+  background:rgba(201,168,76,.2);
+  border:1px solid rgba(201,168,76,.35);
+}
