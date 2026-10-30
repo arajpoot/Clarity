@@ -1,15 +1,11 @@
-# Yawm FINAL build stamp
+# Yawm S10 FINAL — source-led
 
-Audit: **PASS**
-fail_count: 0
-ok_count: 86
-tool: `tools/yawm-content-audit.py`
-
-Surfaces verified:
-- Hub slim + six module doors
-- Modules: now, deed, adhkar, tasbeeh, salah, light
-- enrich-block + ext-links + reward cards
-- Assets: CSS, hub JS, banner, JSON packs
-- Forbidden hub blocks (full qaḍāʾ / vault textarea / wuḍūʾ bulk) absent
+Audit manual FAIL count: 0
+Build: 20261030S10
+- Hub live first lines, no empty ellipsis titles
+- Quran.com + Sunnah.com only under /daily/
+- Reports: grade · collection · number · link
+- One way to act — not a ruling
+- Companion / Campus untouched
 
 Educational only — not a fatwa.
