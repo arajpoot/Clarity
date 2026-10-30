@@ -1002,3 +1002,166 @@ html, body {
 /* Y0 Banner lock · Yawm enriched · 20261029E */
 .yawm-hub a{background:rgba(255,255,255,.04)}
 .yawm-hub a:hover{border-color:#c9a84c}
+
+/* === Yawm modules · glass + quill · 20261029Q === */
+.yawm-hub{
+  display:grid;
+  gap:.7rem;
+  grid-template-columns:repeat(auto-fill,minmax(10.2rem,1fr));
+  margin:.35rem 0 1.15rem;
+}
+.yawm-tile{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.45rem;
+  padding:1rem .95rem .9rem;
+  border-radius:1.05rem;
+  text-decoration:none;
+  color:inherit;
+  border:1px solid rgba(201,168,76,.38);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.09) 0%, rgba(12,40,32,.35) 48%, rgba(8,24,20,.55) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.25),
+    0 8px 24px rgba(0,0,0,.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow:hidden;
+  transition: border-color .2s, transform .15s;
+}
+.yawm-tile::before{
+  content:"";
+  position:absolute;
+  top:-20%;
+  right:-15%;
+  width:4.5rem;
+  height:4.5rem;
+  background:url("icons/nuros-scroll.svg") center/contain no-repeat;
+  opacity:.07;
+  pointer-events:none;
+}
+.yawm-tile:hover{
+  border-color:#e0c56a;
+  transform:translateY(-2px);
+}
+.yawm-tile .yt-icon{
+  width:2.35rem;
+  height:2.35rem;
+  padding:.35rem;
+  border-radius:12px;
+  background:rgba(201,168,76,.12);
+  border:1px solid rgba(201,168,76,.35);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+}
+.yawm-tile strong{
+  display:block;
+  font-size:.95rem;
+  color:#e8d5a3;
+  font-weight:800;
+  letter-spacing:.01em;
+}
+.yawm-tile small{
+  display:block;
+  font-size:.72rem;
+  line-height:1.35;
+  opacity:.88;
+}
+/* Mini ʿAṣr gate on modules */
+.yawm-mini-banner{
+  position:relative;
+  margin:0 0 1rem;
+  border-radius:1rem;
+  overflow:hidden;
+  border:1px solid rgba(201,168,76,.4);
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+}
+.yawm-mini-banner img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:min(22vh,160px);
+  object-fit:cover;
+  filter:saturate(1.05) brightness(.92);
+}
+.yawm-mini-plaque{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(92%,28rem);
+  padding:.45rem .65rem;
+  border-radius:.75rem;
+  text-align:center;
+  background:rgba(6,18,14,.7);
+  border:1px solid rgba(201,168,76,.45);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+}
+.yawm-mini-plaque .mp-title{
+  margin:0;
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(1rem,3.5vw,1.25rem);
+  color:#e8d5a3;
+  font-weight:700;
+}
+.yawm-mini-plaque .mp-sub{
+  margin:.15rem 0 0;
+  font-size:.68rem;
+  opacity:.9;
+  font-style:italic;
+}
+.yawm-quill-rule{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  margin:.35rem 0 1rem;
+  font-size:.72rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#c9a84c;
+}
+.yawm-quill-rule::before,
+.yawm-quill-rule::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(201,168,76,.55), transparent);
+}
+.glass-plaque{
+  margin:1rem 0;
+  padding:1.1rem 1.15rem;
+  border-radius:1.1rem;
+  border:1px solid rgba(201,168,76,.36);
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.1) 0%, rgba(14,36,28,.4) 55%, rgba(8,22,18,.65) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 12px 32px rgba(0,0,0,.3);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.glass-plaque h1{
+  margin:0 0 .5rem;
+  font-family:"Cormorant Garamond",serif;
+  font-size:1.35rem;
+  color:#e8d5a3;
+}
+.glass-plaque .ar{
+  font-family:"Noto Naskh Arabic",Amiri,serif;
+  font-size:1.15rem;
+  line-height:1.95;
+  direction:rtl;
+  text-align:right;
+  color:#f5f0e6;
+}
+html[data-theme="light"] .yawm-tile,
+html[data-theme="light"] .glass-plaque{
+  background:linear-gradient(145deg,#fffef8,#f3efe0);
+  color:#1a2e24;
+}
+html[data-theme="light"] .yawm-tile strong,
+html[data-theme="light"] .glass-plaque h1{color:#6b5a1e}
