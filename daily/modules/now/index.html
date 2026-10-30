@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Now · Yawm · Clarity</title>
+<meta name="description" content="Now — Yawm module. Educational only — not a fatwa."/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../assets/daily.css"/>
+<style>
+.mod-wrap{max-width:40rem;margin:0 auto;padding:0 .85rem 2rem}
+.mod-nav a{margin-right:.5rem;font-size:.85rem}
+.mod-card{margin:1rem 0;padding:1rem;border-radius:1rem;border:1px solid rgba(201,168,76,.32);background:rgba(255,255,255,.04)}
+.mod-card h1{font-size:1.25rem;color:#e8d5a3;margin:0 0 .5rem}
+.ar{font-family:"Noto Naskh Arabic",serif;font-size:1.15rem;line-height:1.9;direction:rtl;text-align:right}
+.btn{display:inline-flex;padding:.45rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
+</style>
+</head>
+<body data-yawm="1">
+<div class="mod-wrap">
+<header class="daily-header" style="padding:.75rem 0">
+  <a class="brand" href="/daily/">Clarity · Yawm</a>
+  <div class="header-actions"><a href="/daily/">Hub</a> · <a href="/">Companion</a></div>
+</header>
+<nav class="mod-nav" aria-label="Modules">
+  <a href="/daily/">Hub</a>
+  <a href="/daily/modules/now/">Now</a>
+  <a href="/daily/modules/deed/">Deed</a>
+  <a href="/daily/modules/adhkar/">Adhkār</a>
+  <a href="/daily/modules/tasbeeh/">Tasbeeh</a>
+  <a href="/daily/modules/salah/">Farḍ</a>
+  <a href="/daily/modules/light/">Light</a>
+</nav>
+<div class="mod-card">
+  <h1>Now · time window</h1>
+  <p id="now-label" style="font-size:1.2rem;font-weight:700">…</p>
+  <p class="cdl-sub">Educational cue from local clock — not a prayer timetable.</p>
+  <p>Morning window: focus adhkār &amp; intention. Evening window: adhkār, protect the heart, prepare the long stay.</p>
+</div>
+<p style="font-size:.78rem;opacity:.85">Educational only — not a fatwa.</p>
+</div>
+<script>
+(function(){
+  var h=new Date().getHours();
+  var w=(h>=5&&h<12)?"Morning":(h>=12&&h<17)?"Afternoon":(h>=17&&h<20)?"Evening":"Night";
+  document.getElementById("now-label").textContent=w+" · "+new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+})();
+</script>
+</body></html>
