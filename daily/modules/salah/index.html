@@ -4,13 +4,13 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta name="yawm-build" content="20261029RALIGN2"/>
+<meta name="yawm-build" content="20261029VP2"/>
 <title>Farḍ & ṣalāh · Yawm · Clarity</title>
 <meta name="description" content="Farḍ & ṣalāh — Yawm module. Educational only — not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../../assets/daily.css?v=20261029RALIGN2"/>
+<link rel="stylesheet" href="../../assets/daily.css?v=20261029VP2"/>
 <style>
-.mod-shell{max-width:44rem;margin:0 auto;padding:0 .85rem 2.75rem}
+.mod-shell{max-width:min(100%,72rem);width:100%;margin:0 auto;padding:0 .85rem 2.75rem;box-sizing:border-box}
 .mod-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem;padding:.7rem 0;border-bottom:1px solid rgba(201,168,76,.22)}
 .mod-top .brand{font-weight:800;color:#c9a84c;text-decoration:none}
 .mod-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin:.65rem 0}
@@ -30,6 +30,24 @@
 .yawm-fard-pill b{display:block;font-size:1.2rem;color:#e8d5a3}
 .yawm-fard-pill span{font-size:.68rem}
 </style>
+
+<style id="yawm-vp-icons">
+/* Force full viewport + visible section icons · 20261029VP2 */
+.mod-shell{max-width:min(100%,72rem)!important;width:100%!important;margin:0 auto!important;
+  padding:0 max(.75rem,env(safe-area-inset-left)) 2.75rem max(.75rem,env(safe-area-inset-right))!important;
+  box-sizing:border-box!important}
+.yawm-mini-banner,.glass-plaque,.reward-card,.enrich-block,.ext-links{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
+h1.with-ico,h2.with-ico{display:flex!important;align-items:center!important;gap:.55rem!important;flex-wrap:wrap}
+img.sec-ico{
+  width:1.75rem!important;height:1.75rem!important;min-width:1.75rem!important;
+  display:inline-block!important;vertical-align:middle!important;
+  flex-shrink:0!important;opacity:1!important;visibility:visible!important;
+  filter:none!important;
+  background:rgba(201,168,76,.18)!important;border-radius:50%!important;padding:.22rem!important;
+  box-sizing:content-box!important;border:1px solid rgba(201,168,76,.4)!important;
+}
+</style>
+
 </head>
 <body data-yawm="1">
 <div class="mod-shell">
@@ -38,7 +56,7 @@
     <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
   </header>
   <figure class="yawm-mini-banner">
-    <img src="../../assets/daily-banner.jpg?v=20261029RALIGN2" alt="" width="1600" height="754" loading="eager"/>
+    <img src="../../assets/daily-banner.jpg?v=20261029VP2" alt="" width="1600" height="754" loading="eager"/>
     <div class="yawm-mini-plaque">
       <p class="mp-title">Farḍ · pillars of the day</p>
       <p class="mp-sub">Outline only — ask a teacher</p>
@@ -46,22 +64,22 @@
   </figure>
   <div class="yawm-quill-rule">Yawm · Farḍ & ṣalāh</div>
   <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029RALIGN2" alt=""/>Now</a><a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029RALIGN2" alt=""/>Do</a><a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029RALIGN2" alt=""/>Adhkār</a><a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029RALIGN2" alt=""/>Tasbeeh</a><a href="/daily/modules/salah/" class="here"><img src="../../assets/icons/nuros-salah.svg?v=20261029RALIGN2" alt=""/>Farḍ</a><a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029RALIGN2" alt=""/>Send</a>
+    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029VP2" alt=""/>Now</a><a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029VP2" alt=""/>Do</a><a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029VP2" alt=""/>Adhkār</a><a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029VP2" alt=""/>Tasbeeh</a><a href="/daily/modules/salah/" class="here"><img src="../../assets/icons/nuros-salah.svg?v=20261029VP2" alt=""/>Farḍ</a><a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029VP2" alt=""/>Send</a>
   </nav>
 
   <section class="glass-plaque">
-    <h1>Next ṣalāh</h1>
+    <h1 class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-salah.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Next ṣalāh</h1>
     <p class="lead" id="sn" style="font-size:1.3rem;color:#e8d5a3;font-weight:700">…</p>
     <p class="sub" id="ss"></p>
     <p class="sub"><a href="/" style="color:#e0c56a">Live city times on Companion banner →</a></p>
   </section>
   <section class="glass-plaque">
-    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c">Farḍ rakʿahs · mark today</h2>
+    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c" class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-salah.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Farḍ rakʿahs · mark today</h2>
     <div id="fmap" class="yawm-fard-row"></div>
     <p class="sub" style="margin-top:.5rem">Educational map · sunnah units vary by school · not a fatwa.</p>
   </section>
   <section class="glass-plaque">
-    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c">Wuḍūʾ outline</h2>
+    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c" class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-water.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Wuḍūʾ outline</h2>
     <ol class="sub" style="margin:0;padding-left:1.1rem;line-height:1.55">
       <li>Intention · bismillah</li>
       <li>Hands, mouth, nose</li>
@@ -73,20 +91,20 @@
     · <a href="https://www.muslim.sg/articles/how-to-pray-in-islam-step-by-step-guide-to-solat-for-beginners" target="_blank" rel="noopener" style="color:#e0c56a">How to pray ↗</a></p>
   </section>
   <section class="glass-plaque">
-    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c">Qaḍāʾ · private aid</h2>
+    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c" class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-today.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Qaḍāʾ · private aid</h2>
     <p class="sub">Not a fatwa. Ask a teacher for your case. <span id="qd">0</span> days · <span id="qf">0</span> farḍ</p>
     <button type="button" class="btn" id="q1">+ day</button>
     <button type="button" class="btn" id="q2">+ farḍ</button>
     <button type="button" class="btn ghost" id="q3">Clear</button>
   </section>
   <aside class="reward-card">
-    <h2>Seek help through prayer</h2>
+    <h2 class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-scroll.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Seek help through prayer</h2>
     <p class="ar" dir="rtl" lang="ar">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ</p>
     <p class="meta">Qur’an · 2:45 · educational meaning</p>
   </aside>
   <script>
   (function(){
-    var VER="20261029RALIGN2";
+    var VER="20261029VP2";
     var el=document.getElementById("sn"), sub=document.getElementById("ss");
     var h=new Date().getHours(), names=["Fajr","Dhuhr","ʿAṣr","Maghrib","ʿIshāʾ"], approx=[5,13,16,19,21], i=0;
     for(var k=0;k<approx.length;k++){if(h<approx[k]){i=k;break}i=0}
@@ -124,7 +142,7 @@
 
   
   <div class="enrich-block">
-    <h2>Educational enrichment · learning ṣalāh &amp; wuḍūʾ</h2>
+    <h2 class="with-ico"><img class="sec-ico" src="../../assets/icons/nuros-scroll.svg?v=20261029VP2" alt="" width="24" height="24"/ style="width:1.75rem;height:1.75rem;display:inline-block;flex-shrink:0;background:rgba(201,168,76,.2);border-radius:50%;padding:.2rem;border:1px solid rgba(201,168,76,.45)">Educational enrichment · learning ṣalāh &amp; wuḍūʾ</h2>
     <p>Beginner guides (e.g. MuslimSG educational articles) walk through wuḍūʾ steps, takbīrat al-iḥrām, Fātiḥah, and the positions of prayer. Details of sunnah acts and hand placement can differ by school of law — this page maps farḍ unit counts and private qaḍāʾ aids only.</p>
     <ul>
       <li>Learn wuḍūʾ with a local teacher or trusted beginner guide.</li>
