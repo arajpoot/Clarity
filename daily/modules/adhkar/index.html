@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Adhkār · Yawm · Clarity</title>
+<meta name="description" content="Adhkār — Yawm module. Educational only — not a fatwa."/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../assets/daily.css"/>
+<style>
+.mod-wrap{max-width:40rem;margin:0 auto;padding:0 .85rem 2rem}
+.mod-nav a{margin-right:.5rem;font-size:.85rem}
+.mod-card{margin:1rem 0;padding:1rem;border-radius:1rem;border:1px solid rgba(201,168,76,.32);background:rgba(255,255,255,.04)}
+.mod-card h1{font-size:1.25rem;color:#e8d5a3;margin:0 0 .5rem}
+.ar{font-family:"Noto Naskh Arabic",serif;font-size:1.15rem;line-height:1.9;direction:rtl;text-align:right}
+.btn{display:inline-flex;padding:.45rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
+</style>
+</head>
+<body data-yawm="1">
+<div class="mod-wrap">
+<header class="daily-header" style="padding:.75rem 0">
+  <a class="brand" href="/daily/">Clarity · Yawm</a>
+  <div class="header-actions"><a href="/daily/">Hub</a> · <a href="/">Companion</a></div>
+</header>
+<nav class="mod-nav" aria-label="Modules">
+  <a href="/daily/">Hub</a>
+  <a href="/daily/modules/now/">Now</a>
+  <a href="/daily/modules/deed/">Deed</a>
+  <a href="/daily/modules/adhkar/">Adhkār</a>
+  <a href="/daily/modules/tasbeeh/">Tasbeeh</a>
+  <a href="/daily/modules/salah/">Farḍ</a>
+  <a href="/daily/modules/light/">Light</a>
+</nav>
+<div class="mod-card">
+  <h1>Adhkār · <span id="adh-win">…</span></h1>
+  <p style="font-size:.8rem;opacity:.85">Pack on this device · educational · not a fatwa. Confirm practice with a teacher.</p>
+  <div id="adh-list"></div>
+</div>
+</div>
+<script>
+(function(){
+  var KEY="clarity.daily.adhkar.v1";
+  var MORNING=[
+    {id:"m1",ar:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",en:"Glory and praise be to Allah.",count:100,source:"Muslim 2692",grade:"ṣaḥīḥ"},
+    {id:"m2",ar:"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",en:"In the name of Allah with whose name nothing on earth or in heaven can harm, and He is the All-Hearing, All-Knowing.",count:3,source:"Abū Dāwūd 5088",grade:"verify grade with teacher"}
+  ];
+  var EVENING=[
+    {id:"e1",ar:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ",en:"O Allah, You are my Lord; there is no god but You. You created me and I am Your servant.",count:1,source:"Bukhārī 6306",grade:"ṣaḥīḥ"},
+    {id:"e2",ar:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",en:"Glory and praise be to Allah.",count:100,source:"Muslim 2692",grade:"ṣaḥīḥ"}
+  ];
+  var h=new Date().getHours();
+  var isM=h>=4&&h<15;
+  var pack=isM?MORNING:EVENING;
+  document.getElementById("adh-win").textContent=isM?"morning":"evening";
+  var st={};try{st=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){}
+  var day=new Date().toDateString();
+  if(st.day!==day)st={day:day,c:{}};
+  var root=document.getElementById("adh-list");
+  pack.forEach(function(item){
+    if(!st.c[item.id])st.c[item.id]=0;
+    var el=document.createElement("div");
+    el.style.margin="1rem 0";el.style.paddingBottom=".75rem";el.style.borderBottom="1px solid rgba(201,168,76,.2)";
+    el.innerHTML="<p class='ar' dir='rtl' lang='ar'></p><p></p><p style='font-size:.75rem;color:#c9a84c'></p><p style='font-size:.85rem'>Count <span data-n></span> / "+item.count+"</p><button type='button' class='btn' data-id='"+item.id+"'>+1</button>";
+    el.querySelector(".ar").textContent=item.ar;
+    el.querySelector("p:nth-child(2)").textContent=item.en;
+    el.querySelector("p:nth-child(3)").textContent=item.source+" · "+item.grade;
+    function paint(){el.querySelector("[data-n]").textContent=st.c[item.id]||0}
+    paint();
+    el.querySelector("button").onclick=function(){
+      st.c[item.id]=Math.min(item.count,(st.c[item.id]||0)+1);
+      try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}
+      paint();
+    };
+    root.appendChild(el);
+  });
+  try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}
+})();
+</script>
+</body></html>
