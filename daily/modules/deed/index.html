@@ -4,31 +4,15 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Do this today · Yawm · Clarity</title>
-<meta name="description" content="Do this today — Yawm module. Educational only — not a fatwa. On this device."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<meta name="description" content="Do this today — Yawm educational module. Not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../../assets/daily.css"/>
-<style>
-.mod-shell{max-width:42rem;margin:0 auto;padding:0 .85rem 2.75rem}
-.mod-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding:.7rem 0;border-bottom:1px solid rgba(201,168,76,.22)}
-.mod-top .brand{font-weight:800;color:#c9a84c;text-decoration:none}
-.mod-top nav a{font-size:.8rem;margin-left:.45rem;opacity:.9}
-.mod-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin:.65rem 0}
-.mod-pills a{
-  display:inline-flex;align-items:center;gap:.3rem;
-  padding:.28rem .6rem;border-radius:999px;font-size:.72rem;
-  border:1px solid rgba(201,168,76,.32);text-decoration:none;color:inherit;
-  background:rgba(255,255,255,.05);
-}
-.mod-pills a img{width:1rem;height:1rem}
-.mod-pills a.here{background:rgba(30,125,94,.35);border-color:transparent}
-</style>
 </head>
 <body data-yawm="1">
 <div class="mod-shell">
   <header class="mod-top">
     <a class="brand" href="/daily/">Clarity · Yawm</a>
-    <nav><a href="/daily/">Hub</a><a href="/">Companion</a><a href="/campus/">Campus</a></nav>
+    <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
   </header>
 
   <figure class="yawm-mini-banner">
@@ -52,26 +36,41 @@
 
   
   <section class="glass-plaque">
-    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem">
+    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem">
       <img src="../../assets/icons/nuros-seed.svg" width="40" height="40" alt=""/>
       <h1 style="margin:0">Do this today</h1>
     </div>
     <p id="deed" style="font-size:1.02rem;line-height:1.55;margin:0 0 .5rem">…</p>
     <p id="st" style="font-size:.82rem;opacity:.88">Not marked</p>
     <p style="margin:.85rem 0 0">
-      <button type="button" class="btn" id="mark" style="padding:.45rem 1.1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer">Mark done</button>
+      <button type="button" id="mark" style="padding:.45rem 1.15rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer">Mark done</button>
       <button type="button" id="next" style="padding:.45rem 1.1rem;border-radius:999px;border:1px solid rgba(201,168,76,.45);background:transparent;color:inherit;font-weight:700;cursor:pointer;margin-left:.35rem">Another</button>
     </p>
-    <p style="margin:.75rem 0 0;font-size:.78rem;opacity:.85">Acceptance is with Allah. Educational only — not a fatwa.</p>
   </section>
+  <div class="enrich-block">
+    <h2>Educational enrichment · ongoing good</h2>
+    <p>Public educational summaries of a well-known report (Muslim 1631 and similar) mention that when a person dies, their deeds end except continuous charity, knowledge that is benefited from, and a righteous child who prays for them. Yawm’s “one deed” is a practical mirror of that teaching: something small you can actually do today.</p>
+    <ul>
+      <li>Teach or share one verified beneficial sentence.</li>
+      <li>Remove a harm from a path others use.</li>
+      <li>Pray one ṣalāh with more presence.</li>
+      <li>Seek forgiveness with attention of the heart.</li>
+    </ul>
+    <p>Always confirm hadith wording and grade with a teacher. Acceptance is with Allah.</p>
+  </div>
+  <div class="ext-links">
+    <a href="https://sunnah.com/muslim:1631" target="_blank" rel="noopener">Sunnah.com — Muslim 1631</a><br/>
+    <a href="https://productivemuslim.com/adhkar-to-unlock-barakah/" target="_blank" rel="noopener">Productive Muslim — habits of remembrance</a>
+    <span class="note">Educational only — not a fatwa.</span>
+  </div>
   <script>
   (function(){
     var KEY="clarity.daily.deed.v1";
     var DEEDS=[
-      "Share one beneficial sentence from Qur\u2019an or Sunnah with sincerity — or learn one \u0101yah with meaning.",
-      "Beneficial knowledge or a child who prays for you (Muslim 1631 \u00b7 educational wording — confirm with a teacher).",
-      "Remove harm from a path, or teach one useful skill for Allah\u2019s sake.",
-      "Pray one \u1e63al\u0101h with fuller calm in ruk\u016b\u02bf and suj\u016bd.",
+      "Share one beneficial sentence from Qur’an or Sunnah with sincerity — or learn one āyah with meaning.",
+      "Beneficial knowledge or a child who prays for you (Muslim 1631 · educational wording — confirm with a teacher).",
+      "Remove harm from a path, or teach one useful skill for Allah’s sake.",
+      "Pray one ṣalāh with fuller calm in rukūʿ and sujūd.",
       "Seek forgiveness morning or evening with presence of heart.",
       "Enjoin truth gently — or stay silent if unsure of the source."
     ];
@@ -82,7 +81,7 @@
     if(st.day!==day()) st={day:day(),i:Math.floor(Math.random()*DEEDS.length),done:false};
     function paint(){
       document.getElementById("deed").textContent=DEEDS[st.i%DEEDS.length];
-      document.getElementById("st").textContent=st.done?"Marked done today \u2713":"Not marked";
+      document.getElementById("st").textContent=st.done?"Marked done today ✓":"Not marked";
     }
     paint();save(st);
     document.getElementById("mark").onclick=function(){st.done=true;save(st);paint()};
@@ -91,15 +90,7 @@
   </script>
 
 
-  
-  <div class="ext-links">
-    <strong>Learn more (external · educational)</strong><br/>
-    <a href="https://productivemuslim.com/adhkar-to-unlock-barakah/" target="_blank" rel="noopener">Productive Muslim — adhkār &amp; barakah habits</a><br/>
-    <a href="https://sunnah.com/muslim:1631" target="_blank" rel="noopener">Sunnah.com — Muslim 1631 (ongoing charity / knowledge / righteous child)</a>
-    <span class="note">Verify wording and grade with a teacher. Not a fatwa. Acceptance is with Allah.</span>
-  </div>
-
-<p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
+  <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
 </div>
 </body>
 </html>
