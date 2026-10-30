@@ -1243,3 +1243,139 @@ html[data-theme="light"] .glass-plaque h1{color:#6b5a1e}
 }
 .ext-links a{color:#e0c56a}
 .ext-links .note{display:block;margin-top:.35rem;font-size:.72rem;opacity:.85}
+
+/* === Mini banner transparent center · module harmony · 20261029H === */
+.yawm-mini-banner{
+  position:relative;
+  margin:0 0 1.1rem;
+  border-radius:1rem;
+  overflow:hidden;
+  border:1px solid rgba(201,168,76,.38);
+  box-shadow:0 12px 36px rgba(0,0,0,.32);
+}
+.yawm-mini-banner img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:min(32vh,200px);
+  object-fit:cover;
+  object-position:center 35%;
+  filter:saturate(1.08) brightness(.88);
+}
+.yawm-mini-plaque{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  bottom:auto !important;
+  right:auto !important;
+  transform:translate(-50%,-50%) !important;
+  width:min(90%,26rem) !important;
+  max-width:90% !important;
+  padding:.7rem 1rem !important;
+  border-radius:.9rem !important;
+  text-align:center !important;
+  background:rgba(8,22,18,.28) !important;
+  border:1px solid rgba(201,168,76,.42) !important;
+  backdrop-filter:blur(2px) !important;
+  -webkit-backdrop-filter:blur(2px) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 4px 20px rgba(0,0,0,.2) !important;
+}
+.yawm-mini-plaque .mp-title{
+  margin:0 !important;
+  font-family:"Cormorant Garamond",serif !important;
+  font-size:clamp(1.05rem,3.2vw,1.35rem) !important;
+  font-weight:700 !important;
+  color:#f3e6c0 !important;
+  text-shadow:0 1px 8px rgba(0,0,0,.55);
+}
+.yawm-mini-plaque .mp-sub{
+  margin:.3rem 0 0 !important;
+  font-size:clamp(.72rem,2.2vw,.86rem) !important;
+  color:#f0ebe0 !important;
+  opacity:.95 !important;
+  font-style:italic;
+  text-shadow:0 1px 6px rgba(0,0,0,.5);
+}
+.mod-shell{
+  max-width:48rem;
+  margin:0 auto;
+  padding:0 .85rem 2.75rem;
+  box-sizing:border-box;
+}
+.mod-top{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:.5rem;
+  padding:.7rem 0;
+  border-bottom:1px solid rgba(201,168,76,.22);
+}
+.mod-top .brand{font-weight:800;color:#c9a84c;text-decoration:none;font-size:1rem}
+.mod-pills{
+  display:flex;flex-wrap:wrap;gap:.4rem;margin:.65rem 0 1rem;
+}
+.mod-pills a{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.32rem .7rem;border-radius:999px;font-size:.74rem;font-weight:600;
+  border:1px solid rgba(201,168,76,.32);text-decoration:none;color:inherit;
+  background:rgba(255,255,255,.05);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+.mod-pills a.here{
+  background:rgba(30,125,94,.42);
+  border-color:transparent;
+  color:#fff;
+}
+.mod-pills a img{width:1.05rem;height:1.05rem}
+.glass-plaque{
+  margin:0.85rem 0 1rem;
+  padding:1.15rem 1.2rem;
+  border-radius:1.15rem;
+  border:1px solid rgba(201,168,76,.36);
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.1) 0%, rgba(14,40,32,.42) 50%, rgba(8,24,20,.62) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 14px 36px rgba(0,0,0,.28);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.glass-plaque h1{
+  margin:0 0 .55rem;
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(1.25rem,4vw,1.5rem);
+  color:#e8d5a3;
+}
+.enrich-block{
+  margin:1rem 0;
+  padding:1rem 1.1rem;
+  border-radius:1rem;
+  border:1px dashed rgba(201,168,76,.35);
+  background:rgba(12,36,28,.35);
+  font-size:.9rem;
+  line-height:1.55;
+}
+.enrich-block h2{
+  margin:0 0 .45rem;
+  font-size:.78rem;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:#c9a84c;
+  font-weight:800;
+}
+.enrich-block ul{margin:.35rem 0 .5rem 1.1rem;padding:0}
+.enrich-block li{margin:.25rem 0}
+.ext-links{
+  margin-top:1.1rem;
+  padding:0.9rem 1rem;
+  border-radius:.9rem;
+  border:1px solid rgba(201,168,76,.28);
+  background:rgba(0,0,0,.2);
+  font-size:.8rem;
+  line-height:1.55;
+}
+.ext-links a{color:#e0c56a;font-weight:600}
+.ext-links .note{display:block;margin-top:.4rem;font-size:.72rem;opacity:.88}
