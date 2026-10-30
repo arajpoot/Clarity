@@ -1,19 +1,17 @@
-# Yawm (`/daily/`) — Campus-pattern isolation
+# Yawm (`/daily/`) — enriched from live package
 
 Bismillah. Educational only — not a fatwa.
 
-## Name
-- Product: **Yawm** (today’s portion)
-- URL: `/daily/` (stable)
-- Banner: **ʿAṣr Gate** — `daily-banner.jpg` + Sūrat al-ʿAṣr plaque + gravity line
+## Content source
+Imported full hub cards + `daily.js` packs from live Clarity-main daily folder,
+plus Yawm naming, ʿAṣr Gate banner, and `modules/*` doors.
 
-## Rules
-1. Ship whole `daily/` folder.
-2. Relative assets only under `daily/assets/`.
-3. No `companion-inline` scripts.
-4. Keys: `clarity.daily.*`
-5. Outward links: `/`, `/campus/`, optional `/lab/`.
-6. Modules under `daily/modules/*`.
+## Hub includes
+Now · Do this today · Adhkār · Farḍ checklist · Send light · Protection ·
+Furnish grave · Long stay · Pillars · Farḍ map · Seven-day history · Continuity
 
-## Banner contract
-Banner is mandatory first content after nav. Do not strip al-ʿAṣr plaque or gravity line.
+## Modules
+now, deed, adhkar (JSON packs), tasbeeh, salah, light
+
+## Isolation
+Relative assets only. No companion-inline. Keys clarity.daily.*
