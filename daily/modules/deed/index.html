@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta name="yawm-build" content="20261029R1"/>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta name="yawm-build" content="20261029RALIGN"/>
 <title>Do this today · Yawm · Clarity</title>
-<meta name="description" content="Do this today — Yawm educational module. Not a fatwa."/>
+<meta name="description" content="Do this today — Yawm module. Educational only — not a fatwa."/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../../assets/daily.css?v=20261029R1"/>
+<link rel="stylesheet" href="../../assets/daily.css?v=20261029RALIGN"/>
+<style>
+.mod-shell{max-width:44rem;margin:0 auto;padding:0 .85rem 2.75rem}
+.mod-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem;padding:.7rem 0;border-bottom:1px solid rgba(201,168,76,.22)}
+.mod-top .brand{font-weight:800;color:#c9a84c;text-decoration:none}
+.mod-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin:.65rem 0}
+.mod-pills a{display:inline-flex;align-items:center;gap:.3rem;padding:.28rem .6rem;border-radius:999px;font-size:.72rem;
+  border:1px solid rgba(201,168,76,.32);text-decoration:none;color:inherit;background:rgba(255,255,255,.05)}
+.mod-pills a.here{background:rgba(30,125,94,.42);border-color:transparent;color:#fff}
+.mod-pills a img{width:1rem;height:1rem}
+.btn{display:inline-flex;padding:.4rem .95rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;margin:.2rem}
+.btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
+.ar{font-family:"Noto Naskh Arabic",serif;direction:rtl;text-align:right;font-size:1.12rem;line-height:1.9}
+.yawm-chip{text-align:left;padding:.75rem;border-radius:.9rem;border:1px solid rgba(201,168,76,.32);background:rgba(0,0,0,.2);color:inherit;cursor:pointer;margin:.35rem 0;width:100%}
+.yawm-chip.on{border-color:#1e7d5e;background:rgba(30,125,94,.28)}
+.yawm-fard-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.4rem}
+@media(max-width:640px){.yawm-fard-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.yawm-fard-pill{padding:.65rem .35rem;border-radius:.85rem;border:1px solid rgba(201,168,76,.3);background:rgba(0,0,0,.18);color:inherit;cursor:pointer;text-align:center}
+.yawm-fard-pill.on{background:rgba(30,125,94,.35)}
+.yawm-fard-pill b{display:block;font-size:1.2rem;color:#e8d5a3}
+.yawm-fard-pill span{font-size:.68rem}
+</style>
 </head>
 <body data-yawm="1">
 <div class="mod-shell">
@@ -16,89 +37,70 @@
     <a class="brand" href="/daily/">Clarity · Yawm</a>
     <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
   </header>
-
   <figure class="yawm-mini-banner">
-    <img src="../../assets/daily-banner.jpg?v=20261029R1" alt="" width="1600" height="754" loading="eager"/>
+    <img src="../../assets/daily-banner.jpg?v=20261029RALIGN" alt="" width="1600" height="754" loading="eager"/>
     <div class="yawm-mini-plaque">
       <p class="mp-title">One deed · by time</p>
       <p class="mp-sub">Mirror, not scoreboard</p>
     </div>
   </figure>
-
   <div class="yawm-quill-rule">Yawm · Do this today</div>
-
   <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029R1" alt=""/>Now</a>
-    <a href="/daily/modules/deed/" class="here"><img src="../../assets/icons/nuros-seed.svg?v=20261029R1" alt=""/>Deed</a>
-    <a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029R1" alt=""/>Adhkār</a>
-    <a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029R1" alt=""/>Tasbeeh</a>
-    <a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029R1" alt=""/>Farḍ</a>
-    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029R1" alt=""/>Light</a>
+    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029RALIGN" alt=""/>Now</a><a href="/daily/modules/deed/" class="here"><img src="../../assets/icons/nuros-seed.svg?v=20261029RALIGN" alt=""/>Do</a><a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029RALIGN" alt=""/>Adhkār</a><a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029RALIGN" alt=""/>Tasbeeh</a><a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029RALIGN" alt=""/>Farḍ</a><a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029RALIGN" alt=""/>Send</a>
   </nav>
 
-  
   <section class="glass-plaque">
-    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem">
-      <img src="../../assets/icons/nuros-seed.svg?v=20261029R1" width="40" height="40" alt=""/>
-      <h1 style="margin:0">Do this today</h1>
-    </div>
-    <p id="deed" style="font-size:1.02rem;line-height:1.55;margin:0 0 .5rem">…</p>
-    <p id="st" style="font-size:.82rem;opacity:.88">Not marked</p>
-    <p style="margin:.85rem 0 0">
-      <button type="button" id="mark" style="padding:.45rem 1.15rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer">Mark done</button>
-      <button type="button" id="next" style="padding:.45rem 1.1rem;border-radius:999px;border:1px solid rgba(201,168,76,.45);background:transparent;color:inherit;font-weight:700;cursor:pointer;margin-left:.35rem">Another</button>
-    </p>
+    <h1>Do this today · <span id="per">…</span></h1>
+    <p id="deed" style="font-size:1.05rem;line-height:1.5"></p>
+    <p id="st" class="sub">Not marked</p>
+    <button type="button" class="btn" id="mark">Mark done</button>
+    <button type="button" class="btn ghost" id="next">Another</button>
   </section>
-  <div class="enrich-block">
-    <h2>Educational enrichment · ongoing good</h2>
-    <p>Public educational summaries of a well-known report (Muslim 1631 and similar) mention that when a person dies, their deeds end except continuous charity, knowledge that is benefited from, and a righteous child who prays for them. Yawm’s “one deed” is a practical mirror of that teaching: something small you can actually do today.</p>
-    <ul>
-      <li>Teach or share one verified beneficial sentence.</li>
-      <li>Remove a harm from a path others use.</li>
-      <li>Pray one ṣalāh with more presence.</li>
-      <li>Seek forgiveness with attention of the heart.</li>
-    </ul>
-    <p>Always confirm hadith wording and grade with a teacher. Acceptance is with Allah.</p>
-  </div>
-  <div class="ext-links">
-    <a href="https://sunnah.com/muslim:1631" target="_blank" rel="noopener">Sunnah.com — Muslim 1631</a><br/>
-    <a href="https://productivemuslim.com/adhkar-to-unlock-barakah/" target="_blank" rel="noopener">Productive Muslim — habits of remembrance</a>
-    <span class="note">Educational only — not a fatwa.</span>
-  </div>
-  <script>
-  (function(){
-    var KEY="clarity.daily.deed.v1";
-    var DEEDS=[
-      "Share one beneficial sentence from Qur’an or Sunnah with sincerity — or learn one āyah with meaning.",
-      "Beneficial knowledge or a child who prays for you (Muslim 1631 · educational wording — confirm with a teacher).",
-      "Remove harm from a path, or teach one useful skill for Allah’s sake.",
-      "Pray one ṣalāh with fuller calm in rukūʿ and sujūd.",
-      "Seek forgiveness morning or evening with presence of heart.",
-      "Enjoin truth gently — or stay silent if unsure of the source."
-    ];
-    function day(){return new Date().toDateString()}
-    function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){return{}}}
-    function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-    var st=load();
-    if(st.day!==day()) st={day:day(),i:Math.floor(Math.random()*DEEDS.length),done:false};
-    function paint(){
-      document.getElementById("deed").textContent=DEEDS[st.i%DEEDS.length];
-      document.getElementById("st").textContent=st.done?"Marked done today ✓":"Not marked";
-    }
-    paint();save(st);
-    document.getElementById("mark").onclick=function(){st.done=true;save(st);paint()};
-    document.getElementById("next").onclick=function(){st.i=(st.i+1)%DEEDS.length;st.done=false;save(st);paint()};
-  })();
-  </script>
-
-
-  
-  <aside class="reward-card" aria-label="Authentic reminder">
+  <section class="glass-plaque">
+    <h2 style="margin:0 0 .5rem;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c">Send light · intentions</h2>
+    <p class="sub">Tap to mark an intention on this device (Muslim 1631 themes · educational).</p>
+    <div id="chips"></div>
+  </section>
+  <aside class="reward-card">
     <h2>What continues after death</h2>
     <p>When a person dies, his deeds come to an end except three: ongoing charity, knowledge from which benefit is gained, and a righteous child who prays for him.</p>
-    <p class="meta">Ṣaḥīḥ Muslim · 1631 · educational wording — confirm full text with a teacher</p>
-    <span class="grade">ṣaḥīḥ · Muslim</span>
+    <p class="meta">Ṣaḥīḥ Muslim · 1631 · educational wording</p>
   </aside>
+  <script>
+  (function(){
+    var KEY="clarity.daily.deed.v1", LIGHT="clarity.daily.sendlight.v1", VER="20261029RALIGN";
+    var DEEDS=[
+      {period:"any",text:"One gentle word or act of service for family — raising hearts that may pray for you."},
+      {period:"any",text:"Share one beneficial sentence from Qur'an or Sunnah with sincerity."},
+      {period:"any",text:"Pray one ṣalāh with fuller calm in rukūʿ and sujūd."},
+      {period:"evening",text:"Seek forgiveness with presence before sleep."},
+      {period:"night",text:"One gentle word or act of service for family — raising hearts that may pray for you."}
+    ];
+    function day(){return new Date().toDateString()}
+    function period(){var h=new Date().getHours();if(h>=4&&h<12)return"morning";if(h>=12&&h<17)return"afternoon";if(h>=17&&h<20)return"evening";return"night"}
+    function load(k,fb){try{var x=localStorage.getItem(k);return x?JSON.parse(x):fb}catch(e){return fb}}
+    function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+    var p=period(); document.getElementById("per").textContent=p.toUpperCase();
+    var pool=DEEDS.filter(function(d){return d.period==="any"||d.period===p}); if(!pool.length)pool=DEEDS;
+    var st=load(KEY,{}); if(st.day!==day())st={day:day(),i:Math.floor(Math.random()*pool.length),done:false};
+    if(st.i>=pool.length)st.i=0;
+    function paint(){document.getElementById("deed").textContent=pool[st.i].text;document.getElementById("st").textContent=st.done?"Marked done today":"Not marked";save(KEY,st)}
+    paint();
+    document.getElementById("mark").onclick=function(){st.done=true;paint()};
+    document.getElementById("next").onclick=function(){st.i=(st.i+1)%pool.length;st.done=false;paint()};
+    fetch("../../assets/data/send-light.json?v="+VER).then(function(r){return r.json()}).then(function(items){
+      var ls=load(LIGHT,{}); if(ls.day!==day())ls={day:day(),done:{}};
+      var root=document.getElementById("chips");
+      function render(){root.innerHTML="";items.forEach(function(it){
+        var b=document.createElement("button");b.type="button";b.className="yawm-chip"+(ls.done[it.id]?" on":"");
+        b.innerHTML="<strong></strong><span></span>";b.querySelector("strong").textContent=it.label;
+        b.querySelector("span").textContent=ls.done[it.id]?"Marked · "+it.hint:it.hint;
+        b.onclick=function(){ls.done[it.id]=!ls.done[it.id];save(LIGHT,ls);render()};root.appendChild(b);
+      })}
+      render();
+    }).catch(function(){});
+  })();
+  </script>
 
   <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
 </div>
