@@ -1470,3 +1470,19 @@ html[data-theme="light"] .glass-plaque h1{color:#6b5a1e}
   background:rgba(201,168,76,.2);
   border:1px solid rgba(201,168,76,.35);
 }
+
+/* L4 leftovers UI · 20261029L4 */
+.yawm-chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;margin-top:.65rem}
+@media(max-width:640px){.yawm-chips{grid-template-columns:1fr}}
+.yawm-chip{text-align:left;padding:.75rem .8rem;border-radius:.9rem;border:1px solid rgba(201,168,76,.32);
+  background:rgba(0,0,0,.2);color:inherit;cursor:pointer}
+.yawm-chip.on{border-color:#1e7d5e;background:rgba(30,125,94,.28)}
+.yawm-chip strong{display:block;color:#e8d5a3;font-size:.9rem}
+.yawm-chip span{display:block;margin-top:.25rem;font-size:.75rem;opacity:.9}
+.yawm-fard-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.4rem;margin-top:.65rem}
+@media(max-width:640px){.yawm-fard-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.yawm-fard-pill{padding:.65rem .35rem;border-radius:.85rem;border:1px solid rgba(201,168,76,.3);
+  background:rgba(0,0,0,.18);color:inherit;cursor:pointer;text-align:center}
+.yawm-fard-pill.on{background:rgba(30,125,94,.35);border-color:transparent}
+.yawm-fard-pill b{display:block;font-size:1.2rem;color:#e8d5a3}
+.yawm-fard-pill span{font-size:.68rem;opacity:.9}
