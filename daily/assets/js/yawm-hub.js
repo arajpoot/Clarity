@@ -138,3 +138,35 @@ try{var th=localStorage.getItem("clarity.daily.theme.v1");if(th)document.documen
 
 /* Light tile is static in HTML */
 })();
+
+
+/* Path wire S11 — Companion must set dest BEFORE leaving Yawm or root early-redirect loops back to /daily/ */
+(function(){
+  "use strict";
+  function markCompanion(){
+    try{
+      sessionStorage.setItem("clarity_landing_dest_v1","companion");
+      sessionStorage.setItem("clarity_shell_user_pick_v1","1");
+      sessionStorage.setItem("clarity_daily_first_skip_v1","1");
+      localStorage.setItem("clarity_shell_mode_v1","companion");
+    }catch(e){}
+  }
+  function markCampus(){
+    try{ sessionStorage.setItem("clarity_landing_dest_v1","campus"); }catch(e){}
+  }
+  function wire(){
+    document.querySelectorAll('a[data-yawm-to="companion"], a[href*="enter=companion"]').forEach(function(a){
+      if(a.__yawmPath) return;
+      a.__yawmPath = true;
+      a.addEventListener("click", function(){ markCompanion(); }, true);
+    });
+    document.querySelectorAll('a[href="/campus/"], a[href*="/campus"]').forEach(function(a){
+      if(a.__yawmCampus) return;
+      a.__yawmCampus = true;
+      a.addEventListener("click", function(){ markCampus(); }, true);
+    });
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+
