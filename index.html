@@ -3224,5 +3224,189 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 })(typeof window !== "undefined" ? window : this);
 </script>
 
+
+
+<script id="clarity-companion-link-rescue-v3">
+/*! Companion link rescue v3 · 20261031LR3
+ * Keeps main + active tab clickable; kills overlay traps; restores rail/links.
+ * Educational only — not a fatwa.
+ */
+(function (w) {
+  "use strict";
+  if (w.__CLARITY_COMPANION_LINK_RESCUE_V3__) return;
+  w.__CLARITY_COMPANION_LINK_RESCUE_V3__ = true;
+
+  var TABS = ["reminder", "reality", "reflection", "action", "notes"];
+
+  function forceCompanion() {
+    try {
+      document.documentElement.setAttribute("data-shell-mode", "companion");
+      if (document.body) {
+        document.body.setAttribute("data-shell-mode", "companion");
+        if (!document.body.getAttribute("data-active-tab") || document.body.getAttribute("data-active-tab") === "journey") {
+          document.body.setAttribute("data-active-tab", "reminder");
+        }
+      }
+      localStorage.setItem("clarity_shell_mode_v1", "companion");
+      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
+      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
+      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
+    } catch (e) {}
+  }
+
+  function killOverlays() {
+    var ids = [
+      "landing-gate-screen",
+      "clarity-gate-overlay",
+      "gate-screen",
+      "clarity-welcome",
+      "clarity-path-overlay",
+    ];
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add("hidden");
+      el.hidden = true;
+      el.setAttribute("aria-hidden", "true");
+      el.style.setProperty("display", "none", "important");
+      el.style.setProperty("pointer-events", "none", "important");
+      el.style.setProperty("opacity", "0", "important");
+      el.style.setProperty("z-index", "-1", "important");
+    });
+    document.querySelectorAll(".gate-overlay, .clarity-welcome-overlay, .shell-landing-hide").forEach(function (el) {
+      if (el.id === "main-content" || (el.closest && el.closest("#main-content"))) {
+        el.classList.remove("shell-landing-hide");
+        return;
+      }
+      el.style.setProperty("pointer-events", "none", "important");
+    });
+    try {
+      document.documentElement.style.pointerEvents = "auto";
+      document.body.style.pointerEvents = "auto";
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
+    } catch (e2) {}
+  }
+
+  function showMainAndTab() {
+    var main = document.getElementById("main-content");
+    if (main) {
+      main.hidden = false;
+      main.removeAttribute("aria-hidden");
+      main.classList.remove("shell-landing-hide", "gate-hidden", "hidden");
+      main.style.setProperty("display", "block", "important");
+      main.style.setProperty("visibility", "visible", "important");
+      main.style.setProperty("opacity", "1", "important");
+      main.style.setProperty("pointer-events", "auto", "important");
+      main.style.setProperty("z-index", "2", "important");
+    }
+    var tab = "reminder";
+    try {
+      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
+      if (h === "vault" || h === "amana") tab = "notes";
+      else if (TABS.indexOf(h) >= 0) tab = h;
+      else {
+        var cur = (document.body && document.body.getAttribute("data-active-tab")) || "";
+        if (TABS.indexOf(cur) >= 0) tab = cur;
+      }
+    } catch (e3) {}
+    try {
+      document.body.setAttribute("data-active-tab", tab);
+    } catch (e4) {}
+    TABS.forEach(function (t) {
+      var p = document.getElementById("tab-" + t);
+      if (!p) return;
+      var on = t === tab;
+      p.hidden = !on;
+      p.setAttribute("aria-hidden", on ? "false" : "true");
+      p.classList.toggle("active", on);
+      if (on) {
+        p.style.setProperty("display", "block", "important");
+        p.style.setProperty("visibility", "visible", "important");
+        p.style.setProperty("pointer-events", "auto", "important");
+        p.style.setProperty("opacity", "1", "important");
+      } else {
+        p.style.setProperty("display", "none", "important");
+      }
+    });
+    /* Make all interactive nodes inside active tab receive clicks */
+    if (main) {
+      main.querySelectorAll("a, button, [onclick], input, select, textarea, label, summary").forEach(function (n) {
+        try {
+          n.style.pointerEvents = "auto";
+        } catch (e5) {}
+      });
+    }
+  }
+
+  function wireRail() {
+    w.clarityOpenSectionDoor = function (name) {
+      forceCompanion();
+      killOverlays();
+      try {
+        if (name === "vault" || name === "amana") name = "notes";
+        document.body.setAttribute("data-active-tab", name);
+        if (TABS.indexOf(name) >= 0) {
+          try {
+            history.replaceState(null, "", w.location.pathname + w.location.search + "#" + name);
+          } catch (e) {}
+        }
+      } catch (e6) {}
+      showMainAndTab();
+    };
+    document.querySelectorAll("[data-rail-tab], .door-rail-btn").forEach(function (btn) {
+      if (btn.__lr3) return;
+      btn.__lr3 = true;
+      btn.addEventListener(
+        "click",
+        function (ev) {
+          var t = btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "reminder";
+          try {
+            ev.preventDefault();
+          } catch (e) {}
+          w.clarityOpenSectionDoor(t);
+        },
+        true
+      );
+    });
+  }
+
+  function run() {
+    forceCompanion();
+    killOverlays();
+    showMainAndTab();
+    wireRail();
+  }
+
+  function boot() {
+    run();
+    [30, 100, 250, 600, 1200, 2500, 4500, 7000, 10000].forEach(function (ms) {
+      setTimeout(run, ms);
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  w.addEventListener("load", boot);
+  w.addEventListener("hashchange", run);
+  try {
+    new MutationObserver(function () {
+      var main = document.getElementById("main-content");
+      if (!main) return;
+      var blocked =
+        main.hidden ||
+        main.getAttribute("aria-hidden") === "true" ||
+        (main.style && main.style.display === "none");
+      if (blocked) run();
+    }).observe(document.documentElement, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+      attributeFilter: ["style", "hidden", "aria-hidden", "class", "data-shell-mode"],
+    });
+  } catch (e7) {}
+})(typeof window !== "undefined" ? window : this);
+</script>
+
 </body>
 </html>

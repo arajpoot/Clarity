@@ -1,19 +1,21 @@
-# Companion unfreeze v2
+# Companion link rescue v3
 
-## Live freeze cause
-All tab panels ship with `display:none`. Shell can stay on `landing` with `#main-content` hidden. Dayn/contain races do not open a tab — UI looks frozen.
+Wa ʿalaykum as-salām.
 
-## Fix (inline in index.html)
-`clarity-companion-unfreeze-v2` runs multi-pass:
-1. Force `data-shell-mode=companion` (+ storage)
-2. Unlock pointer-events
-3. Show `#main-content`
-4. Open hash tab or **reminder**
-5. Scrub Dayn outside vault
-6. Bind `clarityOpenSectionDoor`
+## Live status
+Unfreeze v2 is deployed, but Companion can still feel frozen: overlays / shell landing / pointer-events races leave tabs or links unclickable. Static HTML still ships every tab as `display:none`.
+
+## Fix
+Inline `clarity-companion-link-rescue-v3` (last in body):
+- Force companion mode
+- Kill gate/welcome overlays (pointer-events none)
+- Show `#main-content` + active hash tab
+- Re-enable pointer-events on links/buttons in main
+- Rebind rail + `clarityOpenSectionDoor`
+- MutationObserver: if main is hidden again → re-run
 
 ## Deploy
-Replace root **`index.html` only**. Hard-refresh / clear site data once.
+Replace root **`index.html`**. Hard-refresh + clear site data once.
 
 ## Smoke
-10/10 tab hash cycles — main visible, correct panel, companion mode.
+10/10 tab cycles — main clickable, correct panel, overlays dead.
