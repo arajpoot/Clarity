@@ -1,8 +1,7 @@
-# Dayn section build 20261031DAYN2
+# Amānah Fortress · FORT1
 
-FAILS: 0
-Notes + Qard ḥasan below heirs letter in vault
-Together on day landing + vault hotlink
-CSV export/import + Excel sheet
+Sealed path: `/vault/sealed/`
+Public door: `/assets/clarity-vault-fortify-boot-v1.js`
+Simulation fails: 0
 
-Educational only — not a fatwa · not legal/financial advice.
+Educational only — not a fatwa · not legal advice.

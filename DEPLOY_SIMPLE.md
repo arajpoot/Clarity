@@ -1,16 +1,15 @@
-# Deploy · Dayn + notes section · 20261031DAYN2
+# Fortress deploy · 20261031FORT1
 
 ## Upload
-Merge `assets/` and `vault/` into site root.
+Merge **entire** `assets/` and `vault/` (includes new `vault/sealed/`).
 
-## One line
+## One line (Companion index only)
 ```html
-<script src="/assets/clarity-vault-fortify-boot-v1.js?v=20261031DAYN2" defer></script>
+<script src="/assets/clarity-vault-fortify-boot-v1.js?v=20261031FORT1" defer></script>
 ```
 
-## Behaviour
-- **Day landing:** Notes slot + Qard ḥasan Dayn together + **Open Amānah Vault to verify**
-- **Vault:** Section **below letter to heirs** — notes + Dayn + **CSV export / import / Excel sheet**
-- Storage: `clarity_dayn_ledger_v1` (original)
+## Verify
+Console: `[Amānah Fortress] 20261031FORT1 ready`  
+Sealed scripts load from `/vault/sealed/*.js`.
 
-Hard refresh after push.
+Do not point craft/reminder scripts at `/vault/sealed/` directly.
