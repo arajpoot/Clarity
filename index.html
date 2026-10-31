@@ -2924,145 +2924,156 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 </script>
 
-<!-- Daily-first landing: Day landing → /daily/ · not Reality -->
-<script id="clarity-daily-first-landing-v1">
-/*! Daily-first landing · 20261031DL1
- * Day landing / Open daily routines → /daily/ (Yawm isolated surface)
- * Companion default tab = reminder — not reality (avoids freeze surface)
+<!-- Daily-first v2: landing = /daily/ — not Reminder, not Reality -->
+<script id="clarity-daily-first-landing-v2">
+/*! Daily-first landing v2 · 20261031DL2
+ * True landing = /daily/ (Yawm) — NOT Reminder, NOT Reality.
+ * Companion stays available after user chooses Companion path.
  * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_DAILY_FIRST_LANDING_V1__) return;
-  w.__CLARITY_DAILY_FIRST_LANDING_V1__ = true;
+  if (w.__CLARITY_DAILY_FIRST_LANDING_V2__) return;
+  w.__CLARITY_DAILY_FIRST_LANDING_V2__ = true;
 
   var DAILY = "/daily/";
+  var KEY_MODE = "clarity_shell_mode_v1";
+  var KEY_PICK = "clarity_shell_user_pick_v1";
+  var KEY_SKIP = "clarity_daily_first_skip_v1";
 
-  function goDaily(ev) {
-    if (ev) {
-      try { ev.preventDefault(); } catch (e) {}
-    }
+  function onDailyPage() {
     try {
-      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-      sessionStorage.setItem("clarity_force_landing_once", "0");
-    } catch (e2) {}
+      return /^\/daily\/?/.test(w.location.pathname || "");
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function goDaily(reason) {
+    if (onDailyPage()) return;
+    try {
+      sessionStorage.setItem(KEY_PICK, "1");
+      sessionStorage.setItem("clarity_landing_dest_v1", "daily");
+    } catch (e) {}
     w.location.href = DAILY;
   }
 
-  function wireDailyCtas() {
-    document.querySelectorAll(
-      '[data-crb="open"], .crb-open, a[href="#clarity-day-landing"], button[data-open-daily], #crb-mode-pill'
-    ).forEach(function (el) {
-      if (el.__dailyWired) return;
-      el.__dailyWired = true;
-      var label = ((el.textContent || "") + " " + (el.getAttribute("aria-label") || "")).toLowerCase();
-      if (el.id === "crb-mode-pill") {
-        /* pill is status — skip click hijack */
+  function userChoseCompanion() {
+    try {
+      if (sessionStorage.getItem(KEY_PICK) === "1" &&
+          sessionStorage.getItem("clarity_landing_dest_v1") === "companion") {
+        return true;
+      }
+      if (sessionStorage.getItem(KEY_SKIP) === "1") return true;
+      var m = localStorage.getItem(KEY_MODE);
+      /* explicit companion only after pick — not mere leftover */
+      if (sessionStorage.getItem(KEY_PICK) === "1" && m === "companion") return true;
+    } catch (e) {}
+    return false;
+  }
+
+  function wireCtas() {
+    document.querySelectorAll("button, a, [data-crb]").forEach(function (el) {
+      if (el.__dl2) return;
+      var t = ((el.textContent || "") + " " + (el.getAttribute("aria-label") || "") + " " + (el.getAttribute("data-crb") || "")).toLowerCase();
+      var isDailyCta =
+        el.getAttribute("data-crb") === "open" ||
+        /open daily routine|open daily|day landing|daily routines|daily page/.test(t);
+      var isCompanionCta =
+        el.getAttribute("data-crb") === "companion" ||
+        el.getAttribute("data-crb") === "hide" ||
+        /companion path|hide for now/.test(t);
+
+      if (isDailyCta) {
+        el.__dl2 = true;
+        el.addEventListener(
+          "click",
+          function (ev) {
+            try { ev.preventDefault(); } catch (e) {}
+            goDaily("cta");
+          },
+          true
+        );
+        if (el.tagName === "A") el.setAttribute("href", DAILY);
+      }
+      if (isCompanionCta) {
+        el.__dl2 = true;
+        el.addEventListener(
+          "click",
+          function () {
+            try {
+              sessionStorage.setItem(KEY_PICK, "1");
+              sessionStorage.setItem("clarity_landing_dest_v1", "companion");
+              sessionStorage.setItem(KEY_SKIP, "1");
+              localStorage.setItem(KEY_MODE, "companion");
+            } catch (e) {}
+          },
+          true
+        );
+      }
+    });
+  }
+
+  function interceptShell() {
+    try {
+      if (!w.ClarityShell || !w.ClarityShell.setMode || w.ClarityShell.setMode.__dl2) return;
+      var orig = w.ClarityShell.setMode.bind(w.ClarityShell);
+      w.ClarityShell.setMode = function (m) {
+        if (m === "landing") {
+          goDaily("shell");
+          return;
+        }
+        try {
+          sessionStorage.setItem(KEY_PICK, "1");
+          sessionStorage.setItem("clarity_landing_dest_v1", "companion");
+          sessionStorage.setItem(KEY_SKIP, "1");
+        } catch (e) {}
+        return orig(m);
+      };
+      w.ClarityShell.setMode.__dl2 = true;
+    } catch (e2) {}
+  }
+
+  /** First paint on home: prefer /daily/ over in-app Reminder/Reality */
+  function firstLandingRedirect() {
+    if (onDailyPage()) return;
+    if (userChoseCompanion()) return;
+    /* Query or hash means user aimed at a companion section — stay */
+    try {
+      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
+      if (h && /^(reminder|reality|reflection|action|notes|vault)$/.test(h)) {
+        sessionStorage.setItem(KEY_SKIP, "1");
+        sessionStorage.setItem("clarity_landing_dest_v1", "companion");
         return;
       }
-      if (/open daily|day landing|daily routine|open routines/i.test(label) || el.getAttribute("data-crb") === "open") {
-        el.addEventListener("click", goDaily, true);
-        if (el.tagName === "A") el.setAttribute("href", DAILY);
-      }
-    });
-
-    /* Ribbon "Open daily routines" by text */
-    document.querySelectorAll("button, a").forEach(function (el) {
-      if (el.__dailyWired) return;
-      var t = (el.textContent || "").trim();
-      if (/^open daily routines$/i.test(t) || /^day landing$/i.test(t) && el.classList.contains("crb-btn")) {
-        el.__dailyWired = true;
-        el.addEventListener("click", goDaily, true);
-        if (el.tagName === "A") el.setAttribute("href", DAILY);
-      }
-    });
-
-    /* Ensure path pill Daily exists */
-    if (!document.getElementById("clarity-daily-first-pill")) {
-      var bar =
-        document.getElementById("clarity-reopen-bar") ||
-        document.querySelector("[data-landing='pill']") ||
-        document.getElementById("clarity-top-duo");
-      if (bar) {
-        var a = document.createElement("a");
-        a.id = "clarity-daily-first-pill";
-        a.className = "crb-btn crb-open";
-        a.href = DAILY;
-        a.textContent = "Daily routines";
-        a.style.cssText = "margin-left:0.35rem;border-radius:999px;padding:0.35rem 0.85rem;font-weight:700;text-decoration:none;";
-        a.addEventListener("click", goDaily, true);
-        bar.appendChild(a);
-      }
+    } catch (e) {}
+    /* Shell mode landing or unset → Daily page */
+    var mode = "landing";
+    try {
+      mode = document.documentElement.getAttribute("data-shell-mode") ||
+        localStorage.getItem(KEY_MODE) ||
+        "landing";
+    } catch (e3) {}
+    if (mode === "landing" || mode === "" || mode == null) {
+      goDaily("first-paint");
     }
   }
 
-  function avoidRealityDefault() {
-    try {
-      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
-      var tab = (document.body && document.body.getAttribute("data-active-tab") || "").toLowerCase();
-      /* journey is legacy body attr — not a real tab */
-      if (tab === "journey" || tab === "reality") {
-        /* Only auto-shift if user did not explicitly pick reality this session */
-        var picked = sessionStorage.getItem("clarity_tab_user_pick_v1");
-        if (picked === "reality") return;
-        document.body.setAttribute("data-active-tab", "reminder");
-        if (h === "reality" || h === "journey" || !h) {
-          try {
-            history.replaceState(null, "", w.location.pathname + w.location.search + "#reminder");
-          } catch (e) {
-            w.location.hash = "reminder";
-          }
-        }
-        var panels = document.querySelectorAll("#main-content .tab-panel");
-        panels.forEach(function (p) {
-          var on = p.id === "tab-reminder";
-          p.classList.toggle("active", on);
-          p.hidden = !on;
-          p.setAttribute("aria-hidden", on ? "false" : "true");
-          if (on) {
-            p.style.setProperty("display", "block", "important");
-            p.style.setProperty("visibility", "visible", "important");
-          }
-        });
-        var main = document.getElementById("main-content");
-        if (main) {
-          main.hidden = false;
-          main.removeAttribute("aria-hidden");
-          main.style.setProperty("display", "block", "important");
-        }
-      }
-    } catch (e3) {}
-  }
-
-  function interceptShellOpen() {
-    /* If ClarityShell.setMode("landing") is used, prefer /daily/ */
-    try {
-      if (w.ClarityShell && w.ClarityShell.setMode && !w.ClarityShell.setMode.__dailyFirst) {
-        var orig = w.ClarityShell.setMode.bind(w.ClarityShell);
-        w.ClarityShell.setMode = function (m) {
-          if (m === "landing") {
-            goDaily();
-            return;
-          }
-          return orig(m);
-        };
-        w.ClarityShell.setMode.__dailyFirst = true;
-      }
-    } catch (e4) {}
-  }
-
   function boot() {
-    wireDailyCtas();
-    avoidRealityDefault();
-    interceptShellOpen();
+    wireCtas();
+    interceptShell();
+    firstLandingRedirect();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
   w.addEventListener("load", function () {
     boot();
-    [200, 800, 2000, 4000].forEach(function (ms) {
-      setTimeout(boot, ms);
+    [150, 600, 1500, 3000].forEach(function (ms) {
+      setTimeout(function () {
+        wireCtas();
+        interceptShell();
+      }, ms);
     });
   });
 })(typeof window !== "undefined" ? window : this);
