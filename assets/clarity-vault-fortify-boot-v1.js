@@ -1,4 +1,4 @@
-/*! Clarity Amānah vault fortify BOOT · 20261031DR1
+/*! Clarity Amānah vault fortify BOOT · 20261031DR2
  * One script tag deploys façade, isolate, digest, panel, passphrase tutorial, daily pill.
  * Educational only — not a fatwa · not legal advice.
  */
@@ -7,7 +7,7 @@
   if (window.__CLARITY_VAULT_FORTIFY_BOOT__) return;
   window.__CLARITY_VAULT_FORTIFY_BOOT__ = true;
 
-  var VER = "20261031DR1";
+  var VER = "20261031DR2";
   var scripts = [
     "/assets/clarity-vault-facade-v1.js?v=" + VER,
     "/assets/clarity-vault-isolate-guard-v1.js?v=" + VER,

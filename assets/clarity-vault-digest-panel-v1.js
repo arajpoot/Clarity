@@ -1,25 +1,38 @@
-/*! Inject digest export panel + on-demand API · educational · not legal advice */
+/*! Digest panel — ledger section only · never passphrase gate · educational */
 (function () {
   "use strict";
+  function badContext(el) {
+    if (!el) return true;
+    var t = (el.textContent || "").toLowerCase();
+    if (/create\s*&\s*open vault|i have a vault|confirm passphrase/.test(t) && el.querySelector && el.querySelector('input[type="password"]'))
+      return true;
+    // if host itself is inside a password form card with strength meter
+    var card = el.closest("section,form,article,.card") || el;
+    var ct = (card.textContent || "").toLowerCase();
+    if (/strength:\s*—/.test(ct) && card.querySelector('input[type="password"]')) return true;
+    return false;
+  }
   function host() {
-    return (
+    var h =
       document.getElementById("vault-export-host") ||
-      document.querySelector("[data-vault-export]") ||
-      document.getElementById("amana-export") ||
-      document.querySelector(".vault-export")
-    );
+      document.querySelector("#amana-ledger-section [data-vault-export]") ||
+      document.querySelector("[data-vault-ledger] [data-vault-export]") ||
+      document.querySelector("[data-vault-export]");
+    if (h && badContext(h)) return null;
+    return h;
   }
   function render() {
     var h = host();
     if (!h || h.querySelector("[data-vault-digest-panel]")) return;
+    if (badContext(h)) return;
     var box = document.createElement("div");
     box.setAttribute("data-vault-digest-panel", "1");
     box.style.cssText =
-      "margin:1rem 0;padding:1rem;border:1px solid rgba(201,168,76,.35);border-radius:12px;background:rgba(0,0,0,.2)";
+      "margin:1rem 0 0;padding:1rem;border:1px solid rgba(201,168,76,.35);border-radius:12px;background:rgba(0,0,0,.2)";
     box.innerHTML =
       "<h3 style='margin:0 0 .5rem;color:#c9a84c;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase'>Daily email digest · snapshot-only</h3>" +
       "<p style='font-size:.82rem;opacity:.9;margin:0 0 .75rem'>Built on your device after unlock. Server only stores and sends this snapshot. Passphrase never leaves this device. Educational · not legal advice.</p>" +
-      "<label style='display:block;font-size:.8rem;margin:.35rem 0'>Email<br/><input id='cvd-email' type='email' style='width:100%;max-width:22rem;padding:.4rem;border-radius:8px;border:1px solid rgba(201,168,76,.3);background:rgba(0,0,0,.25);color:inherit'/></label>" +
+      "<label style='display:block;font-size:.8rem;margin:.35rem 0'>Email<br/><input id='cvd-email' type='email' autocomplete='email' style='width:100%;max-width:22rem;padding:.4rem;border-radius:8px;border:1px solid rgba(201,168,76,.3);background:rgba(0,0,0,.25);color:inherit'/></label>" +
       "<div style='margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.35rem'>" +
       "<button type='button' id='cvd-sub' style='padding:.4rem .8rem;border:0;border-radius:999px;background:#1e7d5e;color:#fff;font-weight:700'>Enable / verify</button>" +
       "<button type='button' id='cvd-snap' style='padding:.4rem .8rem;border:0;border-radius:999px;background:#1e7d5e;color:#fff;font-weight:700'>Build &amp; upload today’s snapshot</button>" +
@@ -66,10 +79,7 @@
       var out = document.getElementById("cvd-token-out");
       if (r && r.ok && r.token) {
         out.style.display = "block";
-        out.textContent =
-          "Bearer token (copy once):\n" + r.token +
-          "\n\nGET " + (r.base_url || "") + "/api/vault-digest/latest\nAuthorization: Bearer <token>\n\n" +
-          (r.note || "");
+        out.textContent = "Bearer token (copy once):\n" + r.token + "\n\nGET " + (r.base_url || "") + "/api/vault-digest/latest\nAuthorization: Bearer <token>\n\n" + (r.note || "");
         msg("Token issued — copy now; it will not be shown again.");
       } else msg("Token failed: " + (r && r.error));
     };
@@ -80,7 +90,15 @@
       if (out) { out.textContent = ""; out.style.display = "none"; }
     };
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render);
-  else render();
-  setTimeout(render, 1500);
+  function tick() { render(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", tick);
+  else tick();
+  setTimeout(tick, 1000);
+  setTimeout(tick, 2500);
+  setTimeout(tick, 5000);
+  try {
+    var obs = new MutationObserver(tick);
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+    setTimeout(function () { try { obs.disconnect(); } catch (e) {} }, 25000);
+  } catch (e) {}
 })();
