@@ -1,14 +1,8 @@
 {
-  "build": "20261031SA1",
-  "phases": [1, 2, 3, 4],
-  "static": {
-    "body_reminder": true,
-    "competing_fixers_removed": true,
-    "authority_inline": true,
-    "daily_isolate_neutralized": true,
-    "legacy_hrefs_remapped": true
-  },
-  "runtime_cycles": 12,
-  "runtime_passed": 12,
-  "integrity": "restored"
+  "build": "20261031SA1B",
+  "phases": ["B1-css", "B2-mode-lock", "B3-shell-neutralizer", "B4-authority-pulse"],
+  "live_cause": "shell-v3 shell-landing-hide race after SA1",
+  "cycles": 10,
+  "passed": 10,
+  "allOk": true
 }

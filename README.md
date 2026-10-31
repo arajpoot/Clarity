@@ -1,40 +1,21 @@
-# Companion Phases 1–4 · Surface Authority SA1
+# Companion Repair B · Shell-race freeze
 
 Bismillah. Educational only — not a fatwa.
 
-## What changed
+## Live finding
+SA1 **was deployed**, but **shell-v3** still defaults/`setMode("landing")` and adds `shell-landing-hide` to every tab panel. Authority at end of body lost the race → frozen Companion links.
 
-### Phase 1 — Single authority
-- Removed competing inlines: landing-unfreeze v1, freeze-breaker, companion-unfreeze v2, link-rescue v3
-- **One** controller: `clarity-surface-authority-v1`
-- `ClarityShell.setMode("landing")` → `/daily/` (no in-page landing trap)
-- Body default: `data-active-tab="reminder"` (not `journey`)
+## Second phased plan (implemented)
 
-### Phase 2 — Tab & main first paint
-- Authority opens hash tab or **reminder**, shows `#main-content`, pointer-events auto
-- `daily-isolate-js` **neutralized** — never forces `#clarity-day-landing` in companion mode
-- Single `clarityOpenSectionDoor` / `ClaritySurface.openTab`
-
-### Phase 3 — Gate ghosts
-- Removes/kills `#landing-gate-screen`, welcome overlays
-- Hides in-page day-landing under companion mode
-- `resetToGateView` → reminder (no gate trap)
-- Scrubs Dayn outside vault
-
-### Phase 4 — Paths
-- Static remap: seerah/tafseer/tajweed/lectures/meme/commands/fiqh → Campus or Companion
-- Runtime path wire for remaining anchors
-- Daily / Campus label hrefs normalized
+| Phase | Fix |
+|-------|-----|
+| **B1** | Critical **CSS** in `<head>`: companion mode forces `#main-content` + active tab visible/clickable |
+| **B2** | **Mode lock** early in head: `enter=companion` / dest / tab hash → `data-shell-mode=companion` before shell |
+| **B3** | **Shell neutralizer**: `ClarityShell.setMode("landing")` → `companion` when dest is companion |
+| **B4** | **Authority SA1B**: 8s rAF pulse, `style.cssText` !important, re-open tab after shell hide |
 
 ## Deploy
-Replace root **`index.html`** (authority is **inline** — no extra asset required).  
-Optional: also upload `assets/clarity-surface-authority-v1.js` as backup copy.
-
-Hard-refresh + clear site data once.
+Replace root **`index.html`**. Hard-refresh + **clear site data** once.
 
 ## Smoke
-| Gate | Result |
-|------|--------|
-| Static phase 1–4 | **PASS** |
-| Runtime 12 tab cycles | **12/12** |
-| Integrity | **restored** |
+Static B1–B4 present · **10/10** runtime cycles after simulated shell hide race · `allOk: true`
