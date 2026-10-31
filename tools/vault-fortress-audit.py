@@ -9,7 +9,7 @@ fails, warns, ok = [], [], []
 sealed = ROOT / "vault" / "sealed"
 required = [
     "facade-v1.js", "isolate-guard-v1.js", "digest-v1.js", "digest-panel-v1.js",
-    "export-host-v1.js", "passphrase-tutorial-v1.js",
+    "export-host-v1.js", "passphrase-tutorial-v1.js", "runtime-gate-v1.js",
     "dayn-section-bridge-v2.js", "dayn-mount-adapter-v1.js", "dayn-ledger-v2.js", "dayn-enrich-v3.js",
 ]
 for r in required:
