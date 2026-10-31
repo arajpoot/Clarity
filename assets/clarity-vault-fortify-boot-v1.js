@@ -1,4 +1,4 @@
-/*! Clarity Amānah vault fortify BOOT · 20261031DR2
+/*! Clarity Amānah vault fortify BOOT · 20261031DAYN2
  * One script tag deploys façade, isolate, digest, panel, passphrase tutorial, daily pill.
  * Educational only — not a fatwa · not legal advice.
  */
@@ -7,13 +7,17 @@
   if (window.__CLARITY_VAULT_FORTIFY_BOOT__) return;
   window.__CLARITY_VAULT_FORTIFY_BOOT__ = true;
 
-  var VER = "20261031DR2";
+  var VER = "20261031DAYN2";
   var scripts = [
     "/assets/clarity-vault-facade-v1.js?v=" + VER,
     "/assets/clarity-vault-isolate-guard-v1.js?v=" + VER,
     "/assets/clarity-vault-digest-v1.js?v=" + VER,
     "/assets/clarity-vault-export-host-v1.js?v=" + VER,
     "/assets/clarity-vault-digest-panel-v1.js?v=" + VER,
+    "/assets/clarity-dayn-section-bridge-v2.js?v=" + VER,
+    "/assets/clarity-dayn-mount-adapter-v1.js?v=" + VER,
+    "/assets/clarity-dayn-ledger-v2.js?v=" + VER,
+    "/assets/clarity-dayn-enrich-v3.js?v=" + VER,
     "/assets/clarity-vault-passphrase-tutorial-v1.js?v=" + VER,
     "/vault/patches/daily-note-vault-pill.js?v=" + VER
   ];
