@@ -3056,5 +3056,173 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 </script>
 <script defer src="/assets/clarity-site-path-wire-v1.js?v=20261031W1"></script>
 <script defer src="assets/clarity-companion-wire-v1.js?v=20261031CW1"></script>
+
+
+<script id="clarity-companion-unfreeze-v2">
+/*! Companion unfreeze v2 · 20261031UF2
+ * Force Companion usable: main visible + one tab open + rail works.
+ * Runs after shell/freeze races. Educational only — not a fatwa.
+ */
+(function (w) {
+  "use strict";
+  if (w.__CLARITY_COMPANION_UNFREEZE_V2__) return;
+  w.__CLARITY_COMPANION_UNFREEZE_V2__ = true;
+
+  var TABS = ["reminder", "reality", "reflection", "action", "notes"];
+  var pass = 0;
+
+  function markCompanion() {
+    try {
+      document.documentElement.setAttribute("data-shell-mode", "companion");
+      if (document.body) document.body.setAttribute("data-shell-mode", "companion");
+      localStorage.setItem("clarity_shell_mode_v1", "companion");
+      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
+      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
+      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
+    } catch (e) {}
+    try {
+      if (w.ClarityShell && w.ClarityShell.setMode) {
+        /* avoid daily-first hijack of setMode(landing) only */
+        var sm = w.ClarityShell.setMode;
+        if (!sm.__uf2) {
+          w.ClarityShell.setMode = function (m) {
+            if (m === "landing") m = "companion";
+            return sm.call(w.ClarityShell, m);
+          };
+          w.ClarityShell.setMode.__uf2 = true;
+        }
+        w.ClarityShell.setMode("companion");
+      }
+    } catch (e2) {}
+  }
+
+  function unlock() {
+    try {
+      document.documentElement.style.pointerEvents = "auto";
+      document.body.style.pointerEvents = "auto";
+      document.documentElement.style.removeProperty("overflow");
+      document.body.style.removeProperty("overflow");
+    } catch (e) {}
+  }
+
+  function showMain() {
+    var main = document.getElementById("main-content");
+    if (!main) return null;
+    main.hidden = false;
+    main.removeAttribute("aria-hidden");
+    main.classList.remove("shell-landing-hide", "gate-hidden");
+    main.style.setProperty("display", "block", "important");
+    main.style.setProperty("visibility", "visible", "important");
+    main.style.setProperty("opacity", "1", "important");
+    main.style.setProperty("pointer-events", "auto", "important");
+    main.style.setProperty("height", "auto", "important");
+    main.style.setProperty("max-height", "none", "important");
+    main.style.setProperty("overflow", "visible", "important");
+    return main;
+  }
+
+  function openTab(name) {
+    name = String(name || "reminder").toLowerCase().replace(/^#/, "");
+    if (name === "vault" || name === "amana") name = "notes";
+    if (TABS.indexOf(name) < 0) name = "reminder";
+
+    try {
+      document.body.setAttribute("data-active-tab", name);
+    } catch (e) {}
+
+    TABS.forEach(function (t) {
+      var p = document.getElementById("tab-" + t);
+      if (!p) return;
+      var on = t === name;
+      p.classList.toggle("active", on);
+      p.classList.toggle("is-active", on);
+      p.hidden = !on;
+      p.setAttribute("aria-hidden", on ? "false" : "true");
+      if (on) {
+        p.style.setProperty("display", "block", "important");
+        p.style.setProperty("visibility", "visible", "important");
+        p.style.setProperty("opacity", "1", "important");
+        p.style.setProperty("pointer-events", "auto", "important");
+      } else {
+        p.style.setProperty("display", "none", "important");
+      }
+    });
+
+    document.querySelectorAll("[data-rail-tab], .door-rail-btn").forEach(function (btn) {
+      var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
+      if (t === "vault" || t === "amana") t = "notes";
+      btn.classList.toggle("active", t === name);
+    });
+
+    return name;
+  }
+
+  function scrubDaynFromTabs() {
+    try {
+      document.querySelectorAll("#clarity-dayn-entry, .clarity-dayn-entry, #clarity-landing-slot-dayn").forEach(function (el) {
+        if (el.closest && el.closest("#amana-vault, [data-vault-root], .amana-vault-interior, #tab-notes, #clarity-dayn-vault-ledger")) return;
+        try {
+          el.remove();
+        } catch (e) {
+          el.style.setProperty("display", "none", "important");
+        }
+      });
+    } catch (e) {}
+  }
+
+  function hideLandingChrome() {
+    try {
+      var land = document.getElementById("clarity-day-landing");
+      if (land && !land.querySelector("#tab-reminder")) {
+        /* in-page day landing empty — don't cover companion */
+        var mode = document.documentElement.getAttribute("data-shell-mode");
+        if (mode === "companion") {
+          land.style.setProperty("display", "none", "important");
+        }
+      }
+    } catch (e) {}
+  }
+
+  function desiredTab() {
+    try {
+      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
+      if (h === "vault" || h === "amana") return "notes";
+      if (TABS.indexOf(h) >= 0) return h;
+    } catch (e) {}
+    return "reminder";
+  }
+
+  function run() {
+    pass++;
+    markCompanion();
+    unlock();
+    showMain();
+    scrubDaynFromTabs();
+    hideLandingChrome();
+    openTab(desiredTab());
+    /* API for rail */
+    w.clarityOpenSectionDoor = function (n) {
+      markCompanion();
+      showMain();
+      openTab(n);
+    };
+  }
+
+  function boot() {
+    run();
+    [50, 150, 400, 800, 1500, 3000, 5000, 8000].forEach(function (ms) {
+      setTimeout(run, ms);
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  w.addEventListener("load", boot);
+  w.addEventListener("hashchange", function () {
+    run();
+  });
+})(typeof window !== "undefined" ? window : this);
+</script>
+
 </body>
 </html>
