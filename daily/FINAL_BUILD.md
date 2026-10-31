@@ -1,11 +1,11 @@
-# Yawm S10 FINAL — source-led
+# Yawm FINAL · fortified foundation
 
-Audit manual FAIL count: 0
-Build: 20261030S10
-- Hub live first lines, no empty ellipsis titles
-- Quran.com + Sunnah.com only under /daily/
-- Reports: grade · collection · number · link
-- One way to act — not a ruling
-- Companion / Campus untouched
+Build: **20261030S10F**
+Audit: run `python3 tools/yawm-content-audit.py` — must PASS
+
+Contracts:
+- ARCHITECTURE.md
+- NAV_CONTRACT.md
+- FOUNDATION_LOCK.md
 
 Educational only — not a fatwa.
