@@ -1,74 +1,64 @@
-/*! Dayn mount adapter · places authentic Qard ḥasan ledger in Ledger + day landing
- * Storage remains clarity_dayn_ledger_v1 (same as original)
- * Educational only — not a fatwa · not legal/financial advice
+/*! Dayn mount adapter v2 · vault passphrase surface only — no Day landing slot
+ * Educational only — not a fatwa.
  */
 (function () {
   "use strict";
-  if (window.__CLARITY_DAYN_MOUNT_ADAPTER__) return;
-  window.__CLARITY_DAYN_MOUNT_ADAPTER__ = true;
+  if (window.__CLARITY_DAYN_MOUNT_ADAPTER_V2__) return;
+  window.__CLARITY_DAYN_MOUNT_ADAPTER_V2__ = true;
 
-  function ensureLandingSlot() {
-    var landing =
-      document.getElementById("clarity-day-landing") ||
-      document.querySelector("[data-day-landing]") ||
-      document.getElementById("clarity-landing-slot-dayn");
-    if (!landing) return null;
-    var slot = document.getElementById("clarity-landing-slot-dayn");
+  function scrubLanding() {
+    try {
+      document.querySelectorAll("#clarity-dayn-entry, #clarity-landing-slot-dayn, [data-dayn-slot]").forEach(function (el) {
+        if (el.closest && el.closest("#amana-vault, [data-vault-root], .amana-vault-interior, #clarity-vault-slot-dayn, #clarity-dayn-vault-ledger")) return;
+        try {
+          el.remove();
+        } catch (e) {
+          el.hidden = true;
+        }
+      });
+    } catch (e) {}
+  }
+
+  function ensureVaultSlot() {
+    scrubLanding();
+    var block =
+      document.getElementById("amana-vault-ledger-block-dayn") ||
+      document.getElementById("clarity-vault-slot-dayn");
+    if (block) {
+      if (!block.id || block.id === "amana-vault-ledger-block-dayn") block.id = "clarity-vault-slot-dayn";
+      return block;
+    }
+    var gate =
+      document.querySelector("[data-vault-passphrase-panel]") ||
+      document.getElementById("vault-passphrase") ||
+      document.getElementById("amana-vault-gate") ||
+      document.getElementById("amana-ledger-section") ||
+      document.querySelector("[data-vault-ledger]") ||
+      document.querySelector(".amana-vault-interior") ||
+      document.getElementById("amana-vault") ||
+      document.querySelector("[data-vault-root]");
+    if (!gate) return null;
+    var slot = document.getElementById("clarity-vault-slot-dayn");
     if (!slot) {
       slot = document.createElement("div");
-      slot.id = "clarity-landing-slot-dayn";
-      slot.setAttribute("data-dayn-slot", "1");
-      // insert before "Remember the long stay" if found, else append
-      var longStay = null;
-      landing.querySelectorAll("h2,h3,.cdl-head,section,.card").forEach(function (el) {
-        if (/remember the long stay/i.test(el.textContent || "")) longStay = el.closest("section,article,.card") || el;
-      });
-      if (longStay && longStay.parentElement) {
-        longStay.parentElement.insertBefore(slot, longStay);
+      slot.id = "clarity-vault-slot-dayn";
+      slot.className = "amana-dayn-vault-slot";
+      var pw = gate.querySelector && gate.querySelector('input[type="password"]');
+      if (pw && pw.parentElement) {
+        var wrap = pw.closest("label, .field, .form-row, div") || pw;
+        if (wrap.parentElement) wrap.parentElement.insertBefore(slot, wrap.nextSibling);
+        else gate.appendChild(slot);
       } else {
-        landing.appendChild(slot);
+        var exportHost = document.getElementById("vault-export-host");
+        if (exportHost && exportHost.parentElement === gate) gate.insertBefore(slot, exportHost);
+        else gate.appendChild(slot);
       }
     }
     return slot;
   }
 
-  function ensureVaultSlot() {
-    var block = document.getElementById('amana-vault-ledger-block-dayn') || document.getElementById('clarity-vault-slot-dayn');
-    if (block) { if (!block.id || block.id === 'amana-vault-ledger-block-dayn') block.id = 'clarity-vault-slot-dayn'; return block; }
-    // Prefer Amānah Ledger shell from fortify
-    var ledger =
-      document.getElementById("amana-ledger-section") ||
-      document.querySelector("[data-vault-ledger]");
-    if (ledger) {
-      var slot = document.getElementById("clarity-vault-slot-dayn");
-      if (!slot) {
-        slot = document.createElement("div");
-        slot.id = "clarity-vault-slot-dayn";
-        slot.className = "amana-dayn-vault-slot";
-        var exportHost = document.getElementById("vault-export-host");
-        if (exportHost) ledger.insertBefore(slot, exportHost);
-        else ledger.appendChild(slot);
-      }
-      return slot;
-    }
-    // Original targets
-    var interior =
-      document.querySelector(".amana-vault-interior") ||
-      document.getElementById("ahr-debts") ||
-      document.querySelector("[data-vault-unlocked]");
-    if (!interior) return null;
-    var vslot = document.getElementById("clarity-vault-slot-dayn");
-    if (!vslot) {
-      vslot = document.createElement("div");
-      vslot.id = "clarity-vault-slot-dayn";
-      var parent = interior.closest("section,article,.card") || interior.parentElement || interior;
-      if (parent) parent.appendChild(vslot);
-    }
-    return vslot;
-  }
-
   function tick() {
-    ensureLandingSlot();
+    scrubLanding();
     ensureVaultSlot();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", tick);
@@ -79,6 +69,10 @@
   try {
     var obs = new MutationObserver(tick);
     obs.observe(document.documentElement, { childList: true, subtree: true });
-    setTimeout(function () { try { obs.disconnect(); } catch (e) {} }, 20000);
+    setTimeout(function () {
+      try {
+        obs.disconnect();
+      } catch (e) {}
+    }, 20000);
   } catch (e) {}
 })();

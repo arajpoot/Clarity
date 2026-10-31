@@ -234,59 +234,69 @@
     });
   }
 
-  function ensureLandingHost() {
-    /* CONTAINED: only Day landing — never #main-content (prevents Reality leak / freeze) */
+  function scrubLandingDayn() {
+    /* Dayn lives on vault passphrase surface only — strip any day-landing hosts */
     try {
-      if (window.ClarityVaultGate && !window.ClarityVaultGate.allowDaynLanding()) {
-        return document.getElementById("clarity-dayn-entry");
-      }
-    } catch (eGate) {}
-    var landing = document.getElementById("clarity-day-landing");
-    if (!landing || landing.hidden || landing.getAttribute("aria-hidden") === "true") {
-      return document.getElementById("clarity-dayn-entry");
-    }
-    var host = document.getElementById("clarity-dayn-entry");
-    if (host && host.isConnected && landing.contains(host)) return host;
-    /* Stray host outside landing — relocate or drop */
-    if (host && host.isConnected && !landing.contains(host)) {
-      try { host.remove(); } catch (eR) {}
-      host = null;
-    }
-    if (!host) {
-      host = document.createElement("section");
-      host.id = "clarity-dayn-entry";
-      host.className = "clarity-dayn-entry card";
-      host.setAttribute("aria-label", "Qard Hasan dayn entry");
-      host.setAttribute("data-dayn-contained", "1");
-    }
-    var slot = document.getElementById("clarity-landing-slot-dayn");
-    if (!slot || !landing.contains(slot)) {
-      slot = document.createElement("div");
-      slot.id = "clarity-landing-slot-dayn";
-      slot.setAttribute("data-dayn-slot", "1");
-      var longStay = null;
-      landing.querySelectorAll("h2,h3,.cdl-head,section,.card").forEach(function (el) {
-        if (/remember the long stay/i.test(el.textContent || "")) {
-          longStay = el.closest("section,article,.card") || el;
-        }
+      document.querySelectorAll("#clarity-dayn-entry, #clarity-landing-slot-dayn, [data-dayn-slot]").forEach(function (el) {
+        var inVault = el.closest && el.closest("#amana-vault, [data-vault-root], .amana-vault-interior, #clarity-vault-slot-dayn, #clarity-dayn-vault-ledger");
+        if (inVault) return;
+        try { el.remove(); } catch (e) { el.hidden = true; }
       });
-      if (longStay && longStay.parentElement) longStay.parentElement.insertBefore(slot, longStay);
-      else landing.appendChild(slot);
-    }
-    if (!slot.contains(host)) slot.appendChild(host);
-    return host;
+    } catch (eS) {}
+  }
+
+  function ensureLandingHost() {
+    scrubLandingDayn();
+    return null; /* never mount on Day landing */
   }
 
   function mountLanding() {
-    var host = ensureLandingHost();
-    if (!host) return; /* no landing yet — do not dump into companion tabs */
-    host.hidden = false;
-    host.style.setProperty("display", "block", "important");
-    host.style.setProperty("visibility", "visible", "important");
-    wire(host);
+    scrubLandingDayn();
+    /* no-op — Dayn moved to vault passphrase page */
+  }
+
+  function ensurePassphraseVaultHost() {
+    try {
+      if (window.ClarityVaultGate && !window.ClarityVaultGate.allowDaynVault()) return null;
+    } catch (eG) {}
+    var panel = document.getElementById("clarity-dayn-vault-ledger");
+    if (panel && panel.isConnected) return panel;
+    var root =
+      document.querySelector("[data-vault-passphrase-panel]") ||
+      document.getElementById("vault-passphrase") ||
+      document.getElementById("amana-vault-gate") ||
+      document.querySelector("#amana-vault, [data-vault-root], .amana-vault-interior");
+    if (!root) return null;
+    var slot = document.getElementById("clarity-vault-slot-dayn");
+    if (!slot) {
+      slot = document.createElement("div");
+      slot.id = "clarity-vault-slot-dayn";
+      slot.setAttribute("data-dayn-vault-slot", "1");
+      /* Place after passphrase inputs when present */
+      var pw = root.querySelector('input[type="password"]');
+      if (pw && pw.parentElement) {
+        var after = pw.closest("label, .field, .form-row, p, div") || pw;
+        if (after.parentElement) after.parentElement.insertBefore(slot, after.nextSibling);
+        else root.appendChild(slot);
+      } else {
+        root.appendChild(slot);
+      }
+    }
+    panel = document.getElementById("clarity-dayn-vault-ledger");
+    if (!panel) {
+      panel = document.createElement("section");
+      panel.id = "clarity-dayn-vault-ledger";
+      panel.className = "clarity-dayn-vault-ledger card";
+      panel.setAttribute("aria-label", "Qard Hasan dayn ledger — vault");
+      panel.setAttribute("data-dayn-vault", "1");
+    }
+    if (!slot.contains(panel)) slot.appendChild(panel);
+    return panel;
   }
 
   function renderVault() {
+    try { ensurePassphraseVaultHost(); } catch (ePH) {}
+    scrubLandingDayn();
     var panel = document.getElementById("clarity-dayn-vault-ledger");
     if (!panel || !panel.isConnected) {
       panel = document.createElement("section");
@@ -363,7 +373,7 @@
 
   function boot() {
     try {
-      mountLanding();
+      mountLanding(); scrubLandingDayn();
       renderVault();
     } catch (e) {
       console.warn("[Dayn v2]", e);
