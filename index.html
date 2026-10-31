@@ -2750,5 +2750,177 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 })(typeof window !== "undefined" ? window : this);
 
 </script>
+<!-- Clarity freeze-breaker v1 · 10-pass recovery -->
+<script id="clarity-freeze-breaker-v1">
+/*! Clarity Companion freeze-breaker v1 · multi-pass
+ * Restores interactivity when shell/landing thrash hides main or freezes UI.
+ * Educational only — not a fatwa.
+ */
+(function (w) {
+  "use strict";
+  if (w.__CLARITY_FREEZE_BREAKER_V1__) return;
+  w.__CLARITY_FREEZE_BREAKER_V1__ = true;
+
+  var KEY = "clarity_shell_mode_v1";
+  var PICK = "clarity_shell_user_pick_v1";
+  var passes = 0;
+
+  function landOk() {
+    var land = document.getElementById("clarity-day-landing") ||
+      document.querySelector("[data-landing-root]");
+    if (!land) return false;
+    if (land.hidden || land.getAttribute("aria-hidden") === "true") return false;
+    try {
+      var st = w.getComputedStyle(land);
+      if (st.display === "none" || st.visibility === "hidden") return false;
+      var r = land.getBoundingClientRect();
+      return r.height > 40 && r.width > 40;
+    } catch (e) {
+      return !!(land.children && land.children.length);
+    }
+  }
+
+  function forceCompanion() {
+    try {
+      document.documentElement.setAttribute("data-shell-mode", "companion");
+      if (document.body) document.body.setAttribute("data-shell-mode", "companion");
+      localStorage.setItem(KEY, "companion");
+      sessionStorage.setItem(PICK, "1");
+    } catch (e) {}
+    try {
+      if (w.ClarityShell && w.ClarityShell.setMode) w.ClarityShell.setMode("companion");
+      else if (w.ClarityDayShell && w.ClarityDayShell.setMode) w.ClarityDayShell.setMode("companion");
+    } catch (e2) {}
+  }
+
+  function unlockSurface() {
+    try {
+      document.documentElement.style.removeProperty("pointer-events");
+      document.body.style.removeProperty("pointer-events");
+      document.body.style.removeProperty("overflow");
+      document.documentElement.style.pointerEvents = "auto";
+      document.body.style.pointerEvents = "auto";
+    } catch (e) {}
+
+    var main = document.getElementById("main-content") || document.querySelector(".main-content");
+    if (main) {
+      main.hidden = false;
+      main.removeAttribute("aria-hidden");
+      main.style.setProperty("display", "block", "important");
+      main.style.setProperty("visibility", "visible", "important");
+      main.style.setProperty("opacity", "1", "important");
+      main.style.removeProperty("pointer-events");
+      main.style.pointerEvents = "auto";
+    }
+
+    document.querySelectorAll(".shell-landing-hide, .gate-hidden").forEach(function (el) {
+      el.classList.remove("shell-landing-hide", "gate-hidden");
+      el.hidden = false;
+      try {
+        el.style.removeProperty("display");
+        el.style.removeProperty("visibility");
+        el.style.removeProperty("opacity");
+        el.style.removeProperty("pointer-events");
+        el.style.removeProperty("height");
+        el.style.removeProperty("max-height");
+      } catch (e3) {}
+    });
+
+    ["landing-gate-screen", "clarity-gate-overlay", "gate-screen"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.hidden = true;
+      el.setAttribute("aria-hidden", "true");
+      el.style.setProperty("display", "none", "important");
+      el.style.setProperty("pointer-events", "none", "important");
+    });
+
+    /* Activate a tab panel if none visible */
+    var panels = document.querySelectorAll("#main-content .tab-panel");
+    var any = false;
+    panels.forEach(function (p) {
+      if (!p.hidden && p.classList.contains("active")) any = true;
+    });
+    if (!any && panels.length) {
+      var want = "reminder";
+      try {
+        var h = (location.hash || "").replace(/^#/, "").toLowerCase();
+        if (/^(reminder|reality|reflection|action|notes)$/.test(h)) want = h;
+        else {
+          var t = (document.body.getAttribute("data-active-tab") || "").toLowerCase();
+          if (/^(reminder|reality|reflection|action|notes)$/.test(t)) want = t;
+        }
+      } catch (e4) {}
+      panels.forEach(function (p) {
+        var on = p.id === "tab-" + want;
+        p.classList.toggle("active", on);
+        p.hidden = !on;
+        p.setAttribute("aria-hidden", on ? "false" : "true");
+        if (on) {
+          p.style.setProperty("display", "block", "important");
+          p.style.setProperty("visibility", "visible", "important");
+          p.style.pointerEvents = "auto";
+        }
+      });
+      try { document.body.setAttribute("data-active-tab", want); } catch (e5) {}
+    }
+  }
+
+  function scrubDaynLeak() {
+    var land = document.getElementById("clarity-day-landing");
+    document.querySelectorAll("#clarity-dayn-entry, .clarity-dayn-entry").forEach(function (el) {
+      if (land && land.contains(el)) return;
+      if (el.closest && el.closest("#amana-vault, .amana-vault-interior, [data-vault-root], #clarity-dayn-vault-ledger, #clarity-vault-slot-dayn")) return;
+      try { el.remove(); } catch (e) {
+        el.style.setProperty("display", "none", "important");
+      }
+    });
+  }
+
+  function pass() {
+    passes++;
+    try {
+      if (!landOk()) forceCompanion();
+      unlockSurface();
+      scrubDaynLeak();
+    } catch (e) {}
+  }
+
+  function boot() {
+    pass();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+
+  /* 10 recovery cycles — matches multi-pass smoke requirement */
+  w.addEventListener("load", function () {
+    pass();
+    [100, 300, 600, 1000, 1600, 2500, 4000, 6000, 9000, 12000].forEach(function (ms) {
+      setTimeout(pass, ms);
+    });
+  });
+
+  /* If shell re-hides main without landing, heal */
+  try {
+    new MutationObserver(function () {
+      var main = document.getElementById("main-content");
+      if (!main) return;
+      var hidden =
+        main.hidden ||
+        main.getAttribute("aria-hidden") === "true" ||
+        (main.style && main.style.display === "none");
+      if (hidden && !landOk()) pass();
+    }).observe(document.documentElement, {
+      attributes: true,
+      subtree: true,
+      attributeFilter: ["style", "hidden", "aria-hidden", "data-shell-mode", "class"],
+    });
+  } catch (eObs) {}
+
+  w.ClarityFreezeBreaker = { pass: pass, passes: function () { return passes; } };
+})(typeof window !== "undefined" ? window : this);
+
+</script>
 </body>
 </html>

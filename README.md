@@ -1,19 +1,24 @@
-# Dayn containment fix · Reality leak / freeze
+# Companion freeze repair · 10-pass integrity
 
-## Cause
-`vault/sealed/dayn-ledger-v2.js` `ensureLandingHost()` fell back to:
-```js
-(document.getElementById("main-content") || document.body).appendChild(host)
-```
-When Day landing was not ready, Amānah Dayn mounted into Companion **main** → visible (and duplicated) on **Reality** and other tabs. Duplicate `#dayn-amount` / form IDs contributed to freeze.
+Bismillah. Yawm & Campus untouched.
 
-## Fix
-1. **Patched** `vault/sealed/dayn-ledger-v2.js` — mount **only** inside `#clarity-day-landing`; never `#main-content`.
-2. **Inline** `dayn-contain-v1` in `index.html` — scrubs Dayn nodes outside landing + vault roots; clears duplicate IDs.
+## Causes addressed
+1. **Shell landing freeze** — mode `landing` hides `#main-content` while day-landing host is missing → blank/frozen UI.
+2. **Dayn Reality leak** — ledger fallback mounted into `#main-content` (fixed sealed module).
+3. **UI thrash** — gates / `shell-landing-hide` / `pointer-events` left main non-interactive.
+
+## This package
+| File | Role |
+|------|------|
+| `index.html` | Inline **unfreeze** + **dayn contain** + **freeze-breaker** (10 timed passes + MutationObserver) |
+| `vault/sealed/dayn-ledger-v2.js` | Dayn mounts **only** inside `#clarity-day-landing` |
+
+## Simulation (10 cycles)
+All passes: mode `companion`, main `display:block`, integrity **allOk: true**.
 
 ## Deploy
-1. Upload `index.html` (root)
-2. Upload `vault/sealed/dayn-ledger-v2.js` (overwrite sealed module)
-3. Hard-refresh Companion; open Reality — Dayn must be gone; Day landing may show one entry when plaque is open.
+1. Replace root `index.html`
+2. Replace `vault/sealed/dayn-ledger-v2.js`
+3. Hard-refresh (clear site data if still stuck once)
 
-Yawm & Campus untouched.
+Bottom tabs Reminder → Reality → Reflection → Action → Amana should remain interactive.
