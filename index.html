@@ -227,6 +227,7 @@
 #clarity-day-landing{display:block!important;position:relative;z-index:2}
 </style>
 <script id="daily-isolate-js">
+/*! daily-isolate neutralized SA1 — do not force in-page day-landing in companion */
 (function(){
   function bridge(){
     var bar=document.getElementById("clarity-reopen-bar");
@@ -237,15 +238,18 @@
       a.style.cssText="margin-left:.5rem;color:#f3e6c0;font-weight:700";
       bar.appendChild(a);
     }
+    /* never force #clarity-day-landing display in companion mode */
     var land=document.getElementById("clarity-day-landing");
-    if(land) land.style.display="block";
+    var mode=(document.documentElement.getAttribute("data-shell-mode")||"");
+    if(land && mode==="companion"){
+      land.style.setProperty("display","none","important");
+    }
   }
   document.addEventListener("DOMContentLoaded", bridge);
   setTimeout(bridge, 600);
-  setTimeout(bridge, 1600);
 })();
 </script>
-</head><body data-active-tab="journey" data-section-fortress="1">
+</head><body data-active-tab="reminder" data-section-fortress="1">
 
 
 
@@ -465,16 +469,16 @@
     <p>Educational Islamic companion (requires JavaScript for the full app). Indexed section paths:</p>
     <ul>
       <li><a href="/journey">Journey</a></li>
-      <li><a href="/seerah">Seerah &amp; Prophetic lessons</a></li>
+      <li><a href="/campus/journey/">Seerah &amp; Prophetic lessons</a></li>
       <li><a href="/campus/journey/">Grave preparation</a></li>
       <li><a href="/janazah-prayer">Janazah prayer outline</a></li>
-      <li><a href="/tafseer">Tafsir</a></li>
-      <li><a href="/tajweed">Tajweed</a></li>
-      <li><a href="/lectures">Lectures</a></li>
-      <li><a href="/fiqh-tools">Fiqh tools (family tree, farāʾiḍ, wasiyyah)</a></li>
-      <li><a href="/meme">Meme Studio</a></li>
+      <li><a href="/campus/library/">Tafsir</a></li>
+      <li><a href="/campus/lab/">Tajweed</a></li>
+      <li><a href="/campus/library/">Lectures</a></li>
+      <li><a href="/campus/library/">Fiqh tools (family tree, farāʾiḍ, wasiyyah)</a></li>
+      <li><a href="/?enter=companion#reminder">Meme Studio</a></li>
       <li><a href="/?enter=companion#notes">Notes &amp; Sharia IQ</a></li>
-      <li><a href="/commands">Commands</a></li>
+      <li><a href="/campus/library/">Commands</a></li>
       <li><a href="/about">About</a></li>
     </ul>
     <p><strong>Educational only — not a fatwa.</strong></p>
@@ -2524,200 +2528,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <link rel="stylesheet" href="assets/css/clarity-pedigree-plaque-css-v1.css" />
 
 <!-- Clarity landing unfreeze — inline (no separate file required) -->
-<script id="clarity-landing-unfreeze-v1">
-/**
- * inline-clarity-landing-unfreeze-v1.js
- * Live fix: site frozen on landing when #clarity-day-landing is missing
- * but shell mode is "landing" and #main-content is display:none.
- * Yawm/Campus untouched. Educational only — not a fatwa.
- */
-(function (w) {
-  "use strict";
-  if (w.__CLARITY_LANDING_UNFREEZE_V1__) return;
-  w.__CLARITY_LANDING_UNFREEZE_V1__ = true;
-
-  var KEY = "clarity_shell_mode_v1";
-  var PICK = "clarity_shell_user_pick_v1";
-
-  function landEl() {
-    return document.getElementById("clarity-day-landing") ||
-      document.getElementById("clarity-day-landing-room") ||
-      document.querySelector("[data-landing-root]");
-  }
-
-  function landUsable(el) {
-    if (!el) return false;
-    try {
-      if (el.hidden) return false;
-      var st = w.getComputedStyle(el);
-      if (st.display === "none" || st.visibility === "hidden" || st.opacity === "0") return false;
-      var r = el.getBoundingClientRect();
-      return r.height > 24 && r.width > 24;
-    } catch (e) {
-      return !!(el && el.children && el.children.length);
-    }
-  }
-
-  function mode() {
-    var m = document.documentElement.getAttribute("data-shell-mode");
-    if (m === "landing" || m === "companion") return m;
-    try { m = localStorage.getItem(KEY); } catch (e) {}
-    return m === "companion" ? "companion" : "landing";
-  }
-
-  function setCompanion() {
-    try {
-      document.documentElement.setAttribute("data-shell-mode", "companion");
-      document.body && document.body.setAttribute("data-shell-mode", "companion");
-      localStorage.setItem(KEY, "companion");
-      sessionStorage.setItem(PICK, "1");
-    } catch (e) {}
-    try {
-      if (w.ClarityShell && w.ClarityShell.setMode) w.ClarityShell.setMode("companion");
-      else if (w.ClarityDayShell && w.ClarityDayShell.setMode) w.ClarityDayShell.setMode("companion");
-    } catch (e2) {}
-  }
-
-  function revealMain() {
-    var main = document.getElementById("main-content") || document.querySelector(".main-content");
-    if (main) {
-      main.hidden = false;
-      main.removeAttribute("aria-hidden");
-      main.style.setProperty("display", "block", "important");
-      main.style.setProperty("visibility", "visible", "important");
-      main.style.setProperty("opacity", "1", "important");
-      main.style.removeProperty("pointer-events");
-    }
-    document.querySelectorAll(".shell-landing-hide, .gate-hidden").forEach(function (el) {
-      el.classList.remove("shell-landing-hide", "gate-hidden");
-      el.hidden = false;
-      try {
-        el.style.removeProperty("display");
-        el.style.removeProperty("visibility");
-        el.style.removeProperty("opacity");
-        el.style.removeProperty("pointer-events");
-        el.style.removeProperty("height");
-        el.style.removeProperty("max-height");
-      } catch (e) {}
-    });
-    /* Prefer reminder hub if none active */
-    var panels = document.querySelectorAll("#main-content .tab-panel");
-    var any = false;
-    panels.forEach(function (p) {
-      if (p.classList.contains("active") && !p.hidden) any = true;
-    });
-    if (!any && panels.length) {
-      var rem = document.getElementById("tab-reminder") || panels[0];
-      panels.forEach(function (p) {
-        var on = p === rem;
-        p.classList.toggle("active", on);
-        p.hidden = !on;
-        p.setAttribute("aria-hidden", on ? "false" : "true");
-        if (on) {
-          p.style.setProperty("display", "block", "important");
-          p.style.setProperty("visibility", "visible", "important");
-        }
-      });
-    }
-    try {
-      document.body.style.removeProperty("pointer-events");
-      document.documentElement.style.removeProperty("pointer-events");
-      document.body.style.removeProperty("overflow");
-    } catch (e3) {}
-  }
-
-  function killStaleGates() {
-    ["landing-gate-screen", "clarity-gate-overlay", "gate-screen"].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      el.style.setProperty("display", "none", "important");
-      el.style.setProperty("pointer-events", "none", "important");
-      el.setAttribute("aria-hidden", "true");
-      el.hidden = true;
-    });
-  }
-
-  function ensurePathPills() {
-    if (document.getElementById("clarity-path-pills")) return;
-    var nav = document.createElement("nav");
-    nav.id = "clarity-path-pills";
-    nav.setAttribute("aria-label", "Path pills");
-    nav.innerHTML =
-      '<a class="cpp-pill cpp-primary" href="/daily/" title="Isolated Daily surface">Daily page</a>' +
-      '<button type="button" class="cpp-pill" data-unfreeze="companion">Companion</button>' +
-      '<a class="cpp-pill cpp-ghost" href="/campus/">Campus</a>';
-    if (!document.getElementById("cpp-unfreeze-css")) {
-      var s = document.createElement("style");
-      s.id = "cpp-unfreeze-css";
-      s.textContent =
-        "#clarity-path-pills{display:flex;flex-wrap:nowrap;gap:0.4rem;justify-content:center;padding:0.45rem 0.65rem;overflow-x:auto;}" +
-        "#clarity-path-pills .cpp-pill{border-radius:999px;padding:0.42rem 0.95rem;font-weight:700;font-size:0.82rem;" +
-        "border:1.5px solid rgba(201,168,76,0.45);background:rgba(13,79,60,0.35);color:#f3e6c0;text-decoration:none;cursor:pointer;}" +
-        "#clarity-path-pills .cpp-primary{background:linear-gradient(135deg,#1a5c45,#0d4f3c);border-color:rgba(212,180,90,0.65);}";
-      document.head.appendChild(s);
-    }
-    nav.addEventListener("click", function (ev) {
-      var t = ev.target && ev.target.closest && ev.target.closest("[data-unfreeze]");
-      if (!t) return;
-      setCompanion();
-      revealMain();
-    });
-    var duo = document.getElementById("clarity-top-duo") || document.querySelector("header") || document.body;
-    if (duo && duo.parentNode) duo.parentNode.insertBefore(nav, duo.nextSibling);
-    else document.body.insertBefore(nav, document.body.firstChild);
-  }
-
-  function heal() {
-    killStaleGates();
-    var m = mode();
-    var land = landEl();
-    var ok = landUsable(land);
-
-    /* Core freeze: landing mode, main hidden, no usable day landing */
-    if (m === "landing" && !ok) {
-      setCompanion();
-      revealMain();
-    } else if (m === "companion") {
-      revealMain();
-    } else if (m === "landing" && ok) {
-      /* Landing present — keep it, but never leave body non-interactive */
-      try {
-        document.body.style.removeProperty("pointer-events");
-      } catch (e) {}
-    }
-
-    ensurePathPills();
-  }
-
-  function boot() {
-    try { heal(); } catch (e) {}
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  w.addEventListener("load", function () {
-    boot();
-    setTimeout(boot, 300);
-    setTimeout(boot, 1200);
-    setTimeout(boot, 2800);
-  });
-
-  /* If shell re-hides main later, heal again */
-  try {
-    new MutationObserver(function () {
-      var main = document.getElementById("main-content");
-      if (!main) return;
-      var m = mode();
-      var land = landEl();
-      if (m === "landing" && !landUsable(land)) {
-        if (main.style.display === "none" || main.getAttribute("aria-hidden") === "true") boot();
-      }
-    }).observe(document.documentElement, { attributes: true, subtree: true, attributeFilter: ["style", "hidden", "aria-hidden", "data-shell-mode", "class"] });
-  } catch (eObs) {}
-})(typeof window !== "undefined" ? window : this);
-
-</script>
-
 <!-- Dayn containment: keep Amānah Dayn off Reality / companion tabs -->
 <script id="clarity-dayn-contain-v1">
 /*! Dayn containment · strips Amānah Dayn from Reality / non-landing companion tabs
@@ -2781,178 +2591,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 </script>
 <!-- Clarity freeze-breaker v1 · 10-pass recovery -->
-<script id="clarity-freeze-breaker-v1">
-/*! Clarity Companion freeze-breaker v1 · multi-pass
- * Restores interactivity when shell/landing thrash hides main or freezes UI.
- * Educational only — not a fatwa.
- */
-(function (w) {
-  "use strict";
-  if (w.__CLARITY_FREEZE_BREAKER_V1__) return;
-  w.__CLARITY_FREEZE_BREAKER_V1__ = true;
-
-  var KEY = "clarity_shell_mode_v1";
-  var PICK = "clarity_shell_user_pick_v1";
-  var passes = 0;
-
-  function landOk() {
-    var land = document.getElementById("clarity-day-landing") ||
-      document.querySelector("[data-landing-root]");
-    if (!land) return false;
-    if (land.hidden || land.getAttribute("aria-hidden") === "true") return false;
-    try {
-      var st = w.getComputedStyle(land);
-      if (st.display === "none" || st.visibility === "hidden") return false;
-      var r = land.getBoundingClientRect();
-      return r.height > 40 && r.width > 40;
-    } catch (e) {
-      return !!(land.children && land.children.length);
-    }
-  }
-
-  function forceCompanion() {
-    try {
-      document.documentElement.setAttribute("data-shell-mode", "companion");
-      if (document.body) document.body.setAttribute("data-shell-mode", "companion");
-      localStorage.setItem(KEY, "companion");
-      sessionStorage.setItem(PICK, "1");
-    } catch (e) {}
-    try {
-      if (w.ClarityShell && w.ClarityShell.setMode) w.ClarityShell.setMode("companion");
-      else if (w.ClarityDayShell && w.ClarityDayShell.setMode) w.ClarityDayShell.setMode("companion");
-    } catch (e2) {}
-  }
-
-  function unlockSurface() {
-    try {
-      document.documentElement.style.removeProperty("pointer-events");
-      document.body.style.removeProperty("pointer-events");
-      document.body.style.removeProperty("overflow");
-      document.documentElement.style.pointerEvents = "auto";
-      document.body.style.pointerEvents = "auto";
-    } catch (e) {}
-
-    var main = document.getElementById("main-content") || document.querySelector(".main-content");
-    if (main) {
-      main.hidden = false;
-      main.removeAttribute("aria-hidden");
-      main.style.setProperty("display", "block", "important");
-      main.style.setProperty("visibility", "visible", "important");
-      main.style.setProperty("opacity", "1", "important");
-      main.style.removeProperty("pointer-events");
-      main.style.pointerEvents = "auto";
-    }
-
-    document.querySelectorAll(".shell-landing-hide, .gate-hidden").forEach(function (el) {
-      el.classList.remove("shell-landing-hide", "gate-hidden");
-      el.hidden = false;
-      try {
-        el.style.removeProperty("display");
-        el.style.removeProperty("visibility");
-        el.style.removeProperty("opacity");
-        el.style.removeProperty("pointer-events");
-        el.style.removeProperty("height");
-        el.style.removeProperty("max-height");
-      } catch (e3) {}
-    });
-
-    ["landing-gate-screen", "clarity-gate-overlay", "gate-screen"].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      el.hidden = true;
-      el.setAttribute("aria-hidden", "true");
-      el.style.setProperty("display", "none", "important");
-      el.style.setProperty("pointer-events", "none", "important");
-    });
-
-    /* Activate a tab panel if none visible */
-    var panels = document.querySelectorAll("#main-content .tab-panel");
-    var any = false;
-    panels.forEach(function (p) {
-      if (!p.hidden && p.classList.contains("active")) any = true;
-    });
-    if (!any && panels.length) {
-      var want = "reminder";
-      try {
-        var h = (location.hash || "").replace(/^#/, "").toLowerCase();
-        if (/^(reminder|reality|reflection|action|notes)$/.test(h)) want = h;
-        else {
-          var t = (document.body.getAttribute("data-active-tab") || "").toLowerCase();
-          if (/^(reminder|reality|reflection|action|notes)$/.test(t)) want = t;
-        }
-      } catch (e4) {}
-      panels.forEach(function (p) {
-        var on = p.id === "tab-" + want;
-        p.classList.toggle("active", on);
-        p.hidden = !on;
-        p.setAttribute("aria-hidden", on ? "false" : "true");
-        if (on) {
-          p.style.setProperty("display", "block", "important");
-          p.style.setProperty("visibility", "visible", "important");
-          p.style.pointerEvents = "auto";
-        }
-      });
-      try { document.body.setAttribute("data-active-tab", want); } catch (e5) {}
-    }
-  }
-
-  function scrubDaynLeak() {
-    var land = document.getElementById("clarity-day-landing");
-    document.querySelectorAll("#clarity-dayn-entry, .clarity-dayn-entry").forEach(function (el) {
-      if (land && land.contains(el)) return;
-      if (el.closest && el.closest("#amana-vault, .amana-vault-interior, [data-vault-root], #clarity-dayn-vault-ledger, #clarity-vault-slot-dayn")) return;
-      try { el.remove(); } catch (e) {
-        el.style.setProperty("display", "none", "important");
-      }
-    });
-  }
-
-  function pass() {
-    passes++;
-    try {
-      if (!landOk()) forceCompanion();
-      unlockSurface();
-      scrubDaynLeak();
-    } catch (e) {}
-  }
-
-  function boot() {
-    pass();
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-
-  /* 10 recovery cycles — matches multi-pass smoke requirement */
-  w.addEventListener("load", function () {
-    pass();
-    [100, 300, 600, 1000, 1600, 2500, 4000, 6000, 9000, 12000].forEach(function (ms) {
-      setTimeout(pass, ms);
-    });
-  });
-
-  /* If shell re-hides main without landing, heal */
-  try {
-    new MutationObserver(function () {
-      var main = document.getElementById("main-content");
-      if (!main) return;
-      var hidden =
-        main.hidden ||
-        main.getAttribute("aria-hidden") === "true" ||
-        (main.style && main.style.display === "none");
-      if (hidden && !landOk()) pass();
-    }).observe(document.documentElement, {
-      attributes: true,
-      subtree: true,
-      attributeFilter: ["style", "hidden", "aria-hidden", "data-shell-mode", "class"],
-    });
-  } catch (eObs) {}
-
-  w.ClarityFreezeBreaker = { pass: pass, passes: function () { return passes; } };
-})(typeof window !== "undefined" ? window : this);
-
-</script>
-
 <!-- Daily-first LATE v3: CTAs → /daily/ -->
 <script id="clarity-daily-first-landing-v3">
 /*! Daily-first LATE v3 · CTAs + shell intercept · early head owns first paint
@@ -3055,23 +2693,28 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 </script>
 <script defer src="/assets/clarity-site-path-wire-v1.js?v=20261031W1"></script>
-<script defer src="assets/clarity-companion-wire-v1.js?v=20261031CW1"></script>
-
-
-<script id="clarity-companion-unfreeze-v2">
-/*! Companion unfreeze v2 · 20261031UF2
- * Force Companion usable: main visible + one tab open + rail works.
- * Runs after shell/freeze races. Educational only — not a fatwa.
+<script id="clarity-surface-authority-v1">
+/*! Clarity Surface Authority v1 · 20261031SA1
+ * Phases 1–4: ONE owner of Companion surface, tabs, gate kill, paths.
+ * Replaces competing unfreeze / freeze-breaker / link-rescue stacks.
+ * Educational only — not a fatwa.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_COMPANION_UNFREEZE_V2__) return;
-  w.__CLARITY_COMPANION_UNFREEZE_V2__ = true;
+  if (w.__CLARITY_SURFACE_AUTHORITY_V1__) return;
+  w.__CLARITY_SURFACE_AUTHORITY_V1__ = true;
 
   var TABS = ["reminder", "reality", "reflection", "action", "notes"];
-  var pass = 0;
+  var DAILY = "/daily/";
+  var CAMPUS = "/campus/";
+  var VER = "20261031SA1";
 
-  function markCompanion() {
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+  /* ---------- Phase 1: shell authority ---------- */
+  function forceCompanion() {
     try {
       document.documentElement.setAttribute("data-shell-mode", "companion");
       if (document.body) document.body.setAttribute("data-shell-mode", "companion");
@@ -3081,57 +2724,65 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
       sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
     } catch (e) {}
     try {
-      if (w.ClarityShell && w.ClarityShell.setMode) {
-        /* avoid daily-first hijack of setMode(landing) only */
-        var sm = w.ClarityShell.setMode;
-        if (!sm.__uf2) {
+      if (w.ClarityShell && typeof w.ClarityShell.setMode === "function") {
+        if (!w.ClarityShell.setMode.__sa1) {
+          var orig = w.ClarityShell.setMode.bind(w.ClarityShell);
           w.ClarityShell.setMode = function (m) {
-            if (m === "landing") m = "companion";
-            return sm.call(w.ClarityShell, m);
+            if (m === "landing") {
+              /* In-page landing is retired — Daily is /daily/ */
+              try {
+                sessionStorage.setItem("clarity_landing_dest_v1", "daily");
+              } catch (e2) {}
+              w.location.href = DAILY;
+              return;
+            }
+            return orig("companion");
           };
-          w.ClarityShell.setMode.__uf2 = true;
+          w.ClarityShell.setMode.__sa1 = true;
         }
-        w.ClarityShell.setMode("companion");
       }
-    } catch (e2) {}
+    } catch (e3) {}
   }
 
-  function unlock() {
+  function unlockPointers() {
     try {
       document.documentElement.style.pointerEvents = "auto";
       document.body.style.pointerEvents = "auto";
-      document.documentElement.style.removeProperty("overflow");
-      document.body.style.removeProperty("overflow");
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
     } catch (e) {}
   }
 
   function showMain() {
-    var main = document.getElementById("main-content");
+    var main = $("main-content");
     if (!main) return null;
     main.hidden = false;
     main.removeAttribute("aria-hidden");
-    main.classList.remove("shell-landing-hide", "gate-hidden");
+    main.classList.remove("shell-landing-hide", "gate-hidden", "hidden");
     main.style.setProperty("display", "block", "important");
     main.style.setProperty("visibility", "visible", "important");
     main.style.setProperty("opacity", "1", "important");
     main.style.setProperty("pointer-events", "auto", "important");
-    main.style.setProperty("height", "auto", "important");
-    main.style.setProperty("max-height", "none", "important");
-    main.style.setProperty("overflow", "visible", "important");
+    main.style.setProperty("z-index", "2", "important");
     return main;
   }
 
+  /* ---------- Phase 2: tabs ---------- */
   function openTab(name) {
     name = String(name || "reminder").toLowerCase().replace(/^#/, "");
-    if (name === "vault" || name === "amana") name = "notes";
+    if (name === "vault" || name === "amana" || name === "journey") name = name === "journey" ? "reminder" : "notes";
     if (TABS.indexOf(name) < 0) name = "reminder";
+
+    forceCompanion();
+    unlockPointers();
+    showMain();
 
     try {
       document.body.setAttribute("data-active-tab", name);
     } catch (e) {}
 
     TABS.forEach(function (t) {
-      var p = document.getElementById("tab-" + t);
+      var p = $("tab-" + t);
       if (!p) return;
       var on = t === name;
       p.classList.toggle("active", on);
@@ -3152,15 +2803,148 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
       var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
       if (t === "vault" || t === "amana") t = "notes";
       btn.classList.toggle("active", t === name);
+      btn.setAttribute("aria-current", t === name ? "page" : "false");
     });
+
+    var main = $("main-content");
+    if (main) {
+      main.querySelectorAll("a, button, [onclick], input, select, textarea").forEach(function (n) {
+        try {
+          n.style.pointerEvents = "auto";
+        } catch (e) {}
+      });
+    }
+
+    try {
+      var want = name === "notes" ? "notes" : name;
+      if ((w.location.hash || "").replace(/^#/, "") !== want) {
+        history.replaceState(null, "", w.location.pathname + w.location.search + "#" + want);
+      }
+    } catch (e4) {}
 
     return name;
   }
 
-  function scrubDaynFromTabs() {
+  function desiredTab() {
+    try {
+      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
+      if (h === "vault" || h === "amana") return "notes";
+      if (TABS.indexOf(h) >= 0) return h;
+      var cur = (document.body && document.body.getAttribute("data-active-tab")) || "";
+      if (TABS.indexOf(cur) >= 0) return cur;
+    } catch (e) {}
+    return "reminder";
+  }
+
+  /* ---------- Phase 3: gate ghosts ---------- */
+  function killGateGhosts() {
+    [
+      "landing-gate-screen",
+      "clarity-gate-overlay",
+      "gate-screen",
+      "clarity-welcome",
+    ].forEach(function (id) {
+      var el = $(id);
+      if (!el) return;
+      el.hidden = true;
+      el.setAttribute("aria-hidden", "true");
+      el.classList.add("hidden");
+      el.style.setProperty("display", "none", "important");
+      el.style.setProperty("pointer-events", "none", "important");
+      el.style.setProperty("opacity", "0", "important");
+      el.style.setProperty("z-index", "-1", "important");
+      try {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      } catch (e) {}
+    });
+    document.querySelectorAll(".gate-overlay, .clarity-welcome-overlay").forEach(function (el) {
+      el.style.setProperty("display", "none", "important");
+      el.style.setProperty("pointer-events", "none", "important");
+      try {
+        el.remove();
+      } catch (e2) {}
+    });
+    /* Hide in-page day-landing when companion — real Daily is /daily/ */
+    try {
+      var land = $("clarity-day-landing");
+      if (land && document.documentElement.getAttribute("data-shell-mode") === "companion") {
+        land.style.setProperty("display", "none", "important");
+        land.setAttribute("aria-hidden", "true");
+      }
+    } catch (e3) {}
+  }
+
+  /* ---------- Phase 4: paths ---------- */
+  var PATH_MAP = {
+    "/grave": "/campus/journey/",
+    "/seerah": "/campus/journey/",
+    "/tafseer": "/campus/library/",
+    "/tajweed": "/campus/lab/",
+    "/lectures": "/campus/library/",
+    "/notes": "/?enter=companion#notes",
+    "/meme": "/?enter=companion#reminder",
+    "/commands": "/campus/library/",
+    "/fiqh-tools": "/campus/library/",
+    "/charter/": "/campus/",
+    "/charter": "/campus/",
+  };
+
+  function wirePaths() {
+    document.querySelectorAll("a[href]").forEach(function (a) {
+      var href = a.getAttribute("href") || "";
+      var path = href.split("?")[0].split("#")[0];
+      if (PATH_MAP[path]) {
+        a.setAttribute("href", PATH_MAP[path]);
+        a.setAttribute("data-sa-remap", "1");
+      }
+      var text = ((a.textContent || "") + " " + (a.getAttribute("aria-label") || "")).toLowerCase();
+      if (/open daily|daily routines|daily page|day landing/.test(text) && !/campus/.test(text)) {
+        if (href === "/" || href === "#" || !href) a.setAttribute("href", DAILY);
+      }
+      if (/university path|campus path|campus map/.test(text)) {
+        if (href === "/" || href === "#" || !href) a.setAttribute("href", CAMPUS);
+      }
+    });
+  }
+
+  function wireRail() {
+    w.clarityOpenSectionDoor = function (name) {
+      openTab(name);
+    };
+    w.ClaritySurface = {
+      openTab: openTab,
+      forceCompanion: forceCompanion,
+      showMain: showMain,
+      version: VER,
+    };
+    /* Neutralize gate reset → companion reminder */
+    w.resetToGateView = function () {
+      openTab("reminder");
+    };
+    w.clarityShowWelcome = function () {};
+
+    document.querySelectorAll("[data-rail-tab], .door-rail-btn").forEach(function (btn) {
+      if (btn.__sa1) return;
+      btn.__sa1 = true;
+      btn.addEventListener(
+        "click",
+        function (ev) {
+          var t = btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "reminder";
+          try {
+            ev.preventDefault();
+            ev.stopPropagation();
+          } catch (e) {}
+          openTab(t);
+        },
+        true
+      );
+    });
+  }
+
+  function scrubDaynOutsideVault() {
     try {
       document.querySelectorAll("#clarity-dayn-entry, .clarity-dayn-entry, #clarity-landing-slot-dayn").forEach(function (el) {
-        if (el.closest && el.closest("#amana-vault, [data-vault-root], .amana-vault-interior, #tab-notes, #clarity-dayn-vault-ledger")) return;
+        if (el.closest && el.closest("#amana-vault, [data-vault-root], .amana-vault-interior, #tab-notes, #clarity-dayn-vault-ledger, #clarity-vault-slot-dayn")) return;
         try {
           el.remove();
         } catch (e) {
@@ -3170,47 +2954,20 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
     } catch (e) {}
   }
 
-  function hideLandingChrome() {
-    try {
-      var land = document.getElementById("clarity-day-landing");
-      if (land && !land.querySelector("#tab-reminder")) {
-        /* in-page day landing empty — don't cover companion */
-        var mode = document.documentElement.getAttribute("data-shell-mode");
-        if (mode === "companion") {
-          land.style.setProperty("display", "none", "important");
-        }
-      }
-    } catch (e) {}
-  }
-
-  function desiredTab() {
-    try {
-      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
-      if (h === "vault" || h === "amana") return "notes";
-      if (TABS.indexOf(h) >= 0) return h;
-    } catch (e) {}
-    return "reminder";
-  }
-
   function run() {
-    pass++;
-    markCompanion();
-    unlock();
+    forceCompanion();
+    unlockPointers();
+    killGateGhosts();
     showMain();
-    scrubDaynFromTabs();
-    hideLandingChrome();
     openTab(desiredTab());
-    /* API for rail */
-    w.clarityOpenSectionDoor = function (n) {
-      markCompanion();
-      showMain();
-      openTab(n);
-    };
+    wireRail();
+    wirePaths();
+    scrubDaynOutsideVault();
   }
 
   function boot() {
     run();
-    [50, 150, 400, 800, 1500, 3000, 5000, 8000].forEach(function (ms) {
+    [40, 120, 350, 800, 1600, 3200, 6000].forEach(function (ms) {
       setTimeout(run, ms);
     });
   }
@@ -3219,194 +2976,23 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
   else boot();
   w.addEventListener("load", boot);
   w.addEventListener("hashchange", function () {
-    run();
+    openTab(desiredTab());
   });
-})(typeof window !== "undefined" ? window : this);
-</script>
 
-
-
-<script id="clarity-companion-link-rescue-v3">
-/*! Companion link rescue v3 · 20261031LR3
- * Keeps main + active tab clickable; kills overlay traps; restores rail/links.
- * Educational only — not a fatwa.
- */
-(function (w) {
-  "use strict";
-  if (w.__CLARITY_COMPANION_LINK_RESCUE_V3__) return;
-  w.__CLARITY_COMPANION_LINK_RESCUE_V3__ = true;
-
-  var TABS = ["reminder", "reality", "reflection", "action", "notes"];
-
-  function forceCompanion() {
-    try {
-      document.documentElement.setAttribute("data-shell-mode", "companion");
-      if (document.body) {
-        document.body.setAttribute("data-shell-mode", "companion");
-        if (!document.body.getAttribute("data-active-tab") || document.body.getAttribute("data-active-tab") === "journey") {
-          document.body.setAttribute("data-active-tab", "reminder");
-        }
-      }
-      localStorage.setItem("clarity_shell_mode_v1", "companion");
-      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
-    } catch (e) {}
-  }
-
-  function killOverlays() {
-    var ids = [
-      "landing-gate-screen",
-      "clarity-gate-overlay",
-      "gate-screen",
-      "clarity-welcome",
-      "clarity-path-overlay",
-    ];
-    ids.forEach(function (id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      el.classList.add("hidden");
-      el.hidden = true;
-      el.setAttribute("aria-hidden", "true");
-      el.style.setProperty("display", "none", "important");
-      el.style.setProperty("pointer-events", "none", "important");
-      el.style.setProperty("opacity", "0", "important");
-      el.style.setProperty("z-index", "-1", "important");
-    });
-    document.querySelectorAll(".gate-overlay, .clarity-welcome-overlay, .shell-landing-hide").forEach(function (el) {
-      if (el.id === "main-content" || (el.closest && el.closest("#main-content"))) {
-        el.classList.remove("shell-landing-hide");
-        return;
-      }
-      el.style.setProperty("pointer-events", "none", "important");
-    });
-    try {
-      document.documentElement.style.pointerEvents = "auto";
-      document.body.style.pointerEvents = "auto";
-      document.documentElement.style.overflow = "auto";
-      document.body.style.overflow = "auto";
-    } catch (e2) {}
-  }
-
-  function showMainAndTab() {
-    var main = document.getElementById("main-content");
-    if (main) {
-      main.hidden = false;
-      main.removeAttribute("aria-hidden");
-      main.classList.remove("shell-landing-hide", "gate-hidden", "hidden");
-      main.style.setProperty("display", "block", "important");
-      main.style.setProperty("visibility", "visible", "important");
-      main.style.setProperty("opacity", "1", "important");
-      main.style.setProperty("pointer-events", "auto", "important");
-      main.style.setProperty("z-index", "2", "important");
-    }
-    var tab = "reminder";
-    try {
-      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
-      if (h === "vault" || h === "amana") tab = "notes";
-      else if (TABS.indexOf(h) >= 0) tab = h;
-      else {
-        var cur = (document.body && document.body.getAttribute("data-active-tab")) || "";
-        if (TABS.indexOf(cur) >= 0) tab = cur;
-      }
-    } catch (e3) {}
-    try {
-      document.body.setAttribute("data-active-tab", tab);
-    } catch (e4) {}
-    TABS.forEach(function (t) {
-      var p = document.getElementById("tab-" + t);
-      if (!p) return;
-      var on = t === tab;
-      p.hidden = !on;
-      p.setAttribute("aria-hidden", on ? "false" : "true");
-      p.classList.toggle("active", on);
-      if (on) {
-        p.style.setProperty("display", "block", "important");
-        p.style.setProperty("visibility", "visible", "important");
-        p.style.setProperty("pointer-events", "auto", "important");
-        p.style.setProperty("opacity", "1", "important");
-      } else {
-        p.style.setProperty("display", "none", "important");
-      }
-    });
-    /* Make all interactive nodes inside active tab receive clicks */
-    if (main) {
-      main.querySelectorAll("a, button, [onclick], input, select, textarea, label, summary").forEach(function (n) {
-        try {
-          n.style.pointerEvents = "auto";
-        } catch (e5) {}
-      });
-    }
-  }
-
-  function wireRail() {
-    w.clarityOpenSectionDoor = function (name) {
-      forceCompanion();
-      killOverlays();
-      try {
-        if (name === "vault" || name === "amana") name = "notes";
-        document.body.setAttribute("data-active-tab", name);
-        if (TABS.indexOf(name) >= 0) {
-          try {
-            history.replaceState(null, "", w.location.pathname + w.location.search + "#" + name);
-          } catch (e) {}
-        }
-      } catch (e6) {}
-      showMainAndTab();
-    };
-    document.querySelectorAll("[data-rail-tab], .door-rail-btn").forEach(function (btn) {
-      if (btn.__lr3) return;
-      btn.__lr3 = true;
-      btn.addEventListener(
-        "click",
-        function (ev) {
-          var t = btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "reminder";
-          try {
-            ev.preventDefault();
-          } catch (e) {}
-          w.clarityOpenSectionDoor(t);
-        },
-        true
-      );
-    });
-  }
-
-  function run() {
-    forceCompanion();
-    killOverlays();
-    showMainAndTab();
-    wireRail();
-  }
-
-  function boot() {
-    run();
-    [30, 100, 250, 600, 1200, 2500, 4500, 7000, 10000].forEach(function (ms) {
-      setTimeout(run, ms);
-    });
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  w.addEventListener("load", boot);
-  w.addEventListener("hashchange", run);
   try {
     new MutationObserver(function () {
-      var main = document.getElementById("main-content");
+      var main = $("main-content");
       if (!main) return;
-      var blocked =
-        main.hidden ||
-        main.getAttribute("aria-hidden") === "true" ||
-        (main.style && main.style.display === "none");
-      if (blocked) run();
+      if (main.hidden || main.getAttribute("aria-hidden") === "true") run();
     }).observe(document.documentElement, {
       attributes: true,
       childList: true,
       subtree: true,
       attributeFilter: ["style", "hidden", "aria-hidden", "class", "data-shell-mode"],
     });
-  } catch (e7) {}
+  } catch (e) {}
 })(typeof window !== "undefined" ? window : this);
-</script>
 
+</script>
 </body>
 </html>

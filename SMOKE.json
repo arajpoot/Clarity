@@ -1,9 +1,14 @@
 {
-  "build": "20261031CW1",
-  "cycles": 12,
-  "passed": 12,
-  "allOk": true,
-  "tabs": ["reminder","reality","reflection","action","notes"],
-  "daily": true,
-  "campus": true
+  "build": "20261031SA1",
+  "phases": [1, 2, 3, 4],
+  "static": {
+    "body_reminder": true,
+    "competing_fixers_removed": true,
+    "authority_inline": true,
+    "daily_isolate_neutralized": true,
+    "legacy_hrefs_remapped": true
+  },
+  "runtime_cycles": 12,
+  "runtime_passed": 12,
+  "integrity": "restored"
 }
