@@ -218,6 +218,35 @@
 <style id="furnish-critical">
 #clarity-grave-path-strip,#grave-path-card{display:block;margin:.6rem auto;max-width:42rem;padding:.8rem 1rem;border-radius:14px;border:1px solid rgba(212,180,90,.35);background:rgba(21,32,25,.92);color:#e7efe9}
 #clarity-grave-path-strip h2,#grave-path-card h2{color:#f3e6c0;font-size:1.15rem;margin:.2rem 0}
+
+/* Cycle C polish — first paint even before .active class */
+html[data-shell-mode="companion"] #main-content .tab-panel.shell-landing-hide {
+  pointer-events: auto !important;
+}
+html[data-shell-mode="companion"] #tab-reminder {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+html[data-shell-mode="companion"] #tab-reminder[hidden] {
+  /* SA will unhide; override attribute hide */
+  display: block !important;
+}
+html[data-shell-mode="companion"] #tab-reality[hidden],
+html[data-shell-mode="companion"] #tab-reflection[hidden],
+html[data-shell-mode="companion"] #tab-action[hidden],
+html[data-shell-mode="companion"] #tab-notes[hidden] {
+  display: none !important;
+}
+html[data-shell-mode="companion"] #clarity-door-rail,
+html[data-shell-mode="companion"] .door-rail-bottom {
+  pointer-events: auto !important;
+  z-index: 20 !important;
+}
+html[data-shell-mode="companion"] #clarity-door-rail button {
+  pointer-events: auto !important;
+}
 </style>
 <link rel="stylesheet" href="assets/css/nuros-icons-v1.css">
 <link rel="stylesheet" href="assets/css/companion-tweet-unbury-icons-v1.css">
@@ -2951,5 +2980,40 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
   w.addEventListener("hashchange", function () { openTab(desired()); });
 })(typeof window !== "undefined" ? window : this);
 </script>
+
+<script id="clarity-companion-cycle-c-heal">
+/*! Cycle C · final-surface + shell heal handshake */
+(function(w){
+  function heal(){
+    try {
+      if (w.ClarityFinalSurface && w.ClarityFinalSurface.assert) {
+        var t = (document.body && document.body.getAttribute("data-active-tab")) || "reminder";
+        w.ClarityFinalSurface.assert(t === "journey" ? "reminder" : t);
+      }
+    } catch(e) {}
+    try {
+      if (w.ClaritySurface && w.ClaritySurface.openTab) {
+        var h = (w.location.hash||"").replace(/^#/,"") || "reminder";
+        if (h === "journey") h = "reminder";
+        w.ClaritySurface.openTab(h);
+      }
+    } catch(e2) {}
+    try {
+      document.querySelectorAll("#main-content .shell-landing-hide").forEach(function(el){
+        el.classList.remove("shell-landing-hide");
+      });
+    } catch(e3) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", heal);
+  else heal();
+  w.addEventListener("load", function(){
+    heal();
+    setTimeout(heal, 200);
+    setTimeout(heal, 800);
+    setTimeout(heal, 2000);
+  });
+})(window);
+</script>
+
 </body>
 </html>

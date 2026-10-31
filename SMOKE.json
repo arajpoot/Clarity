@@ -1,8 +1,8 @@
 {
-  "build": "20261031SA1B",
-  "phases": ["B1-css", "B2-mode-lock", "B3-shell-neutralizer", "B4-authority-pulse"],
-  "live_cause": "shell-v3 shell-landing-hide race after SA1",
-  "cycles": 10,
-  "passed": 10,
-  "allOk": true
+  "build": "20261031SC1",
+  "cycle": "C",
+  "passed": 12,
+  "total": 12,
+  "allOk": true,
+  "upgrades": ["SA1B", "B1-CSS", "B2-lock", "B3-neutralizer", "C-heal", "C-css"]
 }

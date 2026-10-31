@@ -1,21 +1,16 @@
-# Companion Repair B · Shell-race freeze
+# Companion Smooth · Cycle C
 
-Bismillah. Educational only — not a fatwa.
+Bismillah · Alḥamdulillāh. Educational only — not a fatwa.
 
-## Live finding
-SA1 **was deployed**, but **shell-v3** still defaults/`setMode("landing")` and adds `shell-landing-hide` to every tab panel. Authority at end of body lost the race → frozen Companion links.
-
-## Second phased plan (implemented)
-
-| Phase | Fix |
-|-------|-----|
-| **B1** | Critical **CSS** in `<head>`: companion mode forces `#main-content` + active tab visible/clickable |
-| **B2** | **Mode lock** early in head: `enter=companion` / dest / tab hash → `data-shell-mode=companion` before shell |
-| **B3** | **Shell neutralizer**: `ClarityShell.setMode("landing")` → `companion` when dest is companion |
-| **B4** | **Authority SA1B**: 8s rAF pulse, `style.cssText` !important, re-open tab after shell hide |
+## Stack kept
+- Daily-first early (`/daily/` landing)
+- Surface CSS B1 + **Cycle C polish** (reminder first paint, rail clickable)
+- Mode lock B2 · Shell neutralizer B3 · Authority **SA1B** pulse
+- Path-wire · Fortify · Dayn contain
+- **Cycle C heal** — handshake with `ClarityFinalSurface.assert` + strip `shell-landing-hide`
 
 ## Deploy
-Replace root **`index.html`**. Hard-refresh + **clear site data** once.
+Replace root **`index.html`**. Hard-refresh once (clear site data if a tab still looks stuck).
 
 ## Smoke
-Static B1–B4 present · **10/10** runtime cycles after simulated shell hide race · `allOk: true`
+12/12 tab cycles after shell-hide race · `allOk: true`
