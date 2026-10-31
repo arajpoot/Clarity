@@ -1,34 +1,24 @@
-# Site-wide path wire · Daily · Companion · Campus
+# Companion wire — all sections
 
 Bismillah. Educational only — not a fatwa.
 
-## Problems found
-| Surface | Issue |
-|---------|--------|
-| **Campus / Desk** | “← Companion” used `href="/"` → root early script sent users **back to /daily/** (loop) |
-| **Daily** | Companion already used `enter=companion` (OK) |
-| **Root** | Lands on `/daily/` (OK); University/Open daily need consistent targets |
-| **Legacy SEO paths** | `/grave`, `/seerah`, `/notes`, … **404** |
-
-## Fix
-1. **Static HTML** — Campus + Desk Companion → `/?enter=companion#reminder`
-2. **`/assets/clarity-site-path-wire-v1.js`** on root, daily, campus, desk:
-   - Rewrites bare `/` Companion links
-   - Open daily → `/daily/`
-   - University path → `/campus/`
-   - Remaps retired paths to Campus library/journey or Companion hashes
-   - Sets `clarity_landing_dest_v1` on click
+## Fixes
+| Area | Behavior |
+|------|----------|
+| **Tabs** | Reminder · Reality · Reflection · Action · Notes (Vault) open reliably |
+| **Rail** | Bottom door-rail buttons + `clarityOpenSectionDoor` |
+| **Hash** | `#reminder` … `#notes` / `#vault` |
+| **Main** | `#main-content` forced visible in Companion mode |
+| **Daily** | Open daily / Day landing → `/daily/` |
+| **Campus** | University path → `/campus/` |
+| **Legacy** | `/grave` etc. remapped to Campus / Companion |
 
 ## Deploy
 ```
-index.html                          (root — keep early daily-first)
-assets/clarity-site-path-wire-v1.js
-daily/index.html
-campus/index.html
-campus/desk/index.html
+index.html
+assets/clarity-companion-wire-v1.js
 ```
-
-Hard-refresh each surface once.
+Hard-refresh. Keep existing daily-first early script + path-wire + vault sealed Dayn.
 
 ## Smoke
-**12/12** deploy-order path cycles (vm sandbox): Daily land, Companion no loop, Campus open, remaps.
+12/12 tab + path cycles pass.

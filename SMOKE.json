@@ -1,15 +1,9 @@
 {
-  "build": "20261031W1",
+  "build": "20261031CW1",
   "cycles": 12,
   "passed": 12,
   "allOk": true,
-  "matrix": {
-    "root_to_daily": true,
-    "companion_no_daily_loop": true,
-    "campus_to_companion": true,
-    "desk_to_companion": true,
-    "daily_to_campus": true,
-    "university_path": true,
-    "legacy_remap": true
-  }
+  "tabs": ["reminder","reality","reflection","action","notes"],
+  "daily": true,
+  "campus": true
 }
