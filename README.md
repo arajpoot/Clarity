@@ -1,24 +1,27 @@
-# Companion freeze repair · 10-pass integrity
+# Amānah Vault Fortress integrity · FORT3
 
-Bismillah. Yawm & Campus untouched.
+Bismillah. Educational only — not a fatwa.
 
-## Causes addressed
-1. **Shell landing freeze** — mode `landing` hides `#main-content` while day-landing host is missing → blank/frozen UI.
-2. **Dayn Reality leak** — ledger fallback mounted into `#main-content` (fixed sealed module).
-3. **UI thrash** — gates / `shell-landing-hide` / `pointer-events` left main non-interactive.
+## Architecture (restored)
+- **One public door:** `assets/clarity-vault-fortify-boot-v1.js`
+- **Sealed stack:** `/vault/sealed/*` including **Dayn** as a gated component
+- **Quarantine:** `assets/clarity-vault-legacy-quarantine-v1.js` strips Dayn UI leaked into Companion tabs from leftover public `/assets/clarity-dayn-*.js` copies
 
-## This package
-| File | Role |
-|------|------|
-| `index.html` | Inline **unfreeze** + **dayn contain** + **freeze-breaker** (10 timed passes + MutationObserver) |
-| `vault/sealed/dayn-ledger-v2.js` | Dayn mounts **only** inside `#clarity-day-landing` |
+## Leftovers still on CDN (not in HTML script tags for Dayn)
+Public copies of dayn ledger may exist under `/assets/` but must not be wired in `index.html`. Quarantine removes their DOM if they paint Reality/etc.
 
-## Simulation (10 cycles)
-All passes: mode `companion`, main `display:block`, integrity **allOk: true**.
+Helpers still listed (backup guide, vault form, note registry) — soft helpers; fortress is authority for Dayn/digest.
 
 ## Deploy
-1. Replace root `index.html`
-2. Replace `vault/sealed/dayn-ledger-v2.js`
-3. Hard-refresh (clear site data if still stuck once)
+1. `index.html`
+2. `assets/clarity-vault-fortify-boot-v1.js`
+3. `assets/clarity-vault-legacy-quarantine-v1.js`
+4. `vault/sealed/*` (especially `dayn-ledger-v2.js`)
+5. `vault/patches/daily-note-vault-pill.js`
 
-Bottom tabs Reminder → Reality → Reflection → Action → Amana should remain interactive.
+Hard-refresh. Yawm & Campus untouched.
+
+## Audit
+```bash
+python3 tools/vault-isolation-audit.py index.html
+```
