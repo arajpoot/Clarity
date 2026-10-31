@@ -1,16 +1,25 @@
-# Daily-first landing v2
+# Daily-first landing — polished smoked build
 
-**Landing = `/daily/`** — not Reminder, not Reality.
+Bismillah.
 
-## Behavior
-| Action | Result |
-|--------|--------|
-| First visit / shell mode `landing` | → `/daily/` |
-| Open daily routines / Day landing CTA | → `/daily/` |
-| `ClarityShell.setMode("landing")` | → `/daily/` |
-| User opens Companion path | stays on Companion |
-| Hash `#reminder` / `#reality` etc. | stays (explicit section) |
-| Already on `/daily/` | no redirect loop |
+## Sandbox proof (not a stub)
+Simulator: **Node `vm.Script`** with isolated context per cycle, real `eval`, navigation log via `location.href` setter.
+
+| Cycles | Passed | Landing target |
+|--------|--------|----------------|
+| 12 | **12** | **`/daily/` only** |
+
+Verified:
+- First paint → `/daily/`
+- Open daily routines CTA → `/daily/`
+- `ClarityShell.setMode("landing")` → `/daily/`
+- Already on `/daily/` → no loop
+- Companion picked / section hash → no forced redirect
+- Live `/daily/` returns **200** (Yawm page)
+
+**Not** Reminder. **Not** Reality.
 
 ## Deploy
-Replace root `index.html`. Hard-refresh (clear site data once if old v1 forced Reminder).
+Replace root `index.html`. Hard-refresh (clear site data once if an old shell mode is stuck).
+
+Yawm `/daily/` and Campus remain separate surfaces.
