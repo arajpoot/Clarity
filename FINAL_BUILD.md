@@ -1,12 +1,8 @@
-# Deployment-ready · smoked final
+# Dayn section build 20261031DAYN2
 
-Build: 20261031DR1
-Integrity fails: 0
-Audit: {'pass': True, 'fail_count': 0, 'fails': [], 'ok_count': 17}
+FAILS: 0
+Notes + Qard ḥasan below heirs letter in vault
+Together on day landing + vault hotlink
+CSV export/import + Excel sheet
 
-## User action
-1. Upload `assets/` + `vault/`
-2. Paste one script tag from DEPLOY_SIMPLE.md before `</body>` on Companion index.html
-3. Push · hard refresh
-
-Educational only — not a fatwa.
+Educational only — not a fatwa · not legal/financial advice.

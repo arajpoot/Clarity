@@ -1,15 +1,16 @@
-# Deploy (placement fix 20261031DR2)
+# Deploy · Dayn + notes section · 20261031DAYN2
 
 ## Upload
-Merge `assets/` and `vault/` to site root.
+Merge `assets/` and `vault/` into site root.
 
-## One line (if not already present)
+## One line
 ```html
-<script src="/assets/clarity-vault-fortify-boot-v1.js?v=20261031DR2" defer></script>
+<script src="/assets/clarity-vault-fortify-boot-v1.js?v=20261031DAYN2" defer></script>
 ```
 
-## What changed (DR2)
-Digest / email / API panel **must not** sit on the passphrase create/unlock card.
-It mounts only in **Amānah · Ledger** (with heirs letter / notes), after that UI is present.
+## Behaviour
+- **Day landing:** Notes slot + Qard ḥasan Dayn together + **Open Amānah Vault to verify**
+- **Vault:** Section **below letter to heirs** — notes + Dayn + **CSV export / import / Excel sheet**
+- Storage: `clarity_dayn_ledger_v1` (original)
 
-Hard refresh after upload.
+Hard refresh after push.
