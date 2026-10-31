@@ -1,20 +1,7 @@
-# Include order (existing surfaces only)
-
-Place scripts with other Amānah assets under `/assets/`.
-Worker lives under `/vault/workers/vault-digest/` (ops only — not a public page).
+# Preferred: one boot script
 
 ```html
-<script src="/assets/clarity-vault-facade-v1.js" defer></script>
-<script src="/assets/clarity-vault-isolate-guard-v1.js" defer></script>
-<script src="/assets/clarity-vault-digest-v1.js" defer></script>
-<script src="/assets/clarity-vault-digest-panel-v1.js" defer></script>
-<script src="/assets/clarity-vault-passphrase-tutorial-v1.js" defer></script>
-<script src="/vault/patches/daily-note-vault-pill.js" defer></script>
+<script src="/assets/clarity-vault-fortify-boot-v1.js?v=20261031DR1" defer></script>
 ```
 
-Optional API base:
-```html
-<script>window.CLARITY_VAULT_DIGEST_API = "https://YOUR_WORKER.workers.dev";</script>
-```
-
-Do not add new public top-level folders. Do not edit `/daily/` or `/campus/`.
+Boot loads: façade → isolate → digest → export-host → panel → passphrase tutorial → daily pill.
