@@ -1,16 +1,29 @@
-# Companion Smooth · Cycle C
+# Companion banner polish · Integrity BI1
 
-Bismillah · Alḥamdulillāh. Educational only — not a fatwa.
+Bismillah. Educational display only — not a fatwa. Verify ṣalāh with a local mosque.
 
-## Stack kept
-- Daily-first early (`/daily/` landing)
-- Surface CSS B1 + **Cycle C polish** (reminder first paint, rail clickable)
-- Mode lock B2 · Shell neutralizer B3 · Authority **SA1B** pulse
-- Path-wire · Fortify · Dayn contain
-- **Cycle C heal** — handshake with `ClarityFinalSurface.assert` + strip `shell-landing-hide`
+## Deep scan findings
+| Element | Problem |
+|---------|---------|
+| **#salah-times-list** | Stuck on `Loading…` — old repair looked for wrong selectors |
+| **#temp-makkah / #temp-madinah** | Never filled by any script |
+| **#hijri-cal-grid / meta** | Empty / ellipsis |
+| **#hijri-local-time** | Stale placeholder |
+| **AV / banner-media** | Overlay clicks can be blocked by media layer |
+
+## Fix · `clarity-banner-integrity-v1`
+- Hijri label + simple grid (Intl Islamic calendar)
+- Temps via **Open-Meteo** (Makkah & Madinah)
+- Ṣalāh list via **Aladhan** timingsByCity (default Makkah; `clarity_salah_city` in localStorage)
+- Local clock tick
+- Media `pointer-events: none` so plaques/controls stay clickable
 
 ## Deploy
-Replace root **`index.html`**. Hard-refresh once (clear site data if a tab still looks stuck).
+```
+index.html
+assets/clarity-banner-integrity-v1.js   # optional; also inlined
+```
+Hard-refresh.
 
 ## Smoke
-12/12 tab cycles after shell-hide race · `allOk: true`
+Salah list · temps · clock · hijri · `allOk: true` (mock APIs in sandbox)
