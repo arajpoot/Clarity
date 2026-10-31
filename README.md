@@ -1,25 +1,21 @@
-# Daily-first landing — polished smoked build
+# Daily-first landing HARDENED v3
 
-Bismillah.
+## Live problem found
+Daily-first v2 ran **at end of body**. Before it ran:
+1. micro-boot set shell `landing`
+2. freeze-breaker saw no day-landing host → forced **companion** + `user_pick=1`
+3. v2 then treated that as “user chose companion” → **skipped `/daily/`**
 
-## Sandbox proof (not a stub)
-Simulator: **Node `vm.Script`** with isolated context per cycle, real `eval`, navigation log via `location.href` setter.
+So landing never reached Daily on a real browser.
 
-| Cycles | Passed | Landing target |
-|--------|--------|----------------|
-| 12 | **12** | **`/daily/` only** |
+## Fix
+1. **EARLY** script in `<head>` (before micro-boot / freeze-breaker):
+   - On `/` with no section hash and no explicit `clarity_landing_dest_v1=companion` → `location.replace("/daily/")`
+2. **LATE** script for CTAs + `ClarityShell.setMode("landing")` → `/daily/`
+3. Companion skip only when **dest === companion** (not mere pick flag)
 
-Verified:
-- First paint → `/daily/`
-- Open daily routines CTA → `/daily/`
-- `ClarityShell.setMode("landing")` → `/daily/`
-- Already on `/daily/` → no loop
-- Companion picked / section hash → no forced redirect
-- Live `/daily/` returns **200** (Yawm page)
-
-**Not** Reminder. **Not** Reality.
+## Sandbox (vm.Script) · 10/10
+Including “freeze pick alone still daily” — **pass**.
 
 ## Deploy
-Replace root `index.html`. Hard-refresh (clear site data once if an old shell mode is stuck).
-
-Yawm `/daily/` and Campus remain separate surfaces.
+Replace root `index.html`. Hard-refresh. Clear site data once if old session dest blocks you.

@@ -1,4 +1,22 @@
 <!DOCTYPE html><html data-theme="light" lang="en"><head>
+<script id="clarity-daily-first-early-v3">
+/*! Daily-first EARLY v3 · runs before shell/freeze · landing = /daily/ only */
+(function () {
+  try {
+    var p = location.pathname || "/";
+    if (/^\/daily\/?$/.test(p)) return;
+    if (p !== "/" && p !== "") return;
+    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
+    if (h && /^(reminder|reality|reflection|action|notes|vault)$/.test(h)) return;
+    var dest = sessionStorage.getItem("clarity_landing_dest_v1");
+    if (dest === "companion") return;
+    /* Force daily as true landing — ignore shell-mode races */
+    sessionStorage.setItem("clarity_landing_dest_v1", "daily");
+    location.replace("/daily/");
+  } catch (e) {}
+})();
+</script>
+
 <meta name="companion-phase-build" content="0-1-boot-20261025">
 
 
@@ -2924,24 +2942,19 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 </script>
 
-<!-- Daily-first v2: landing = /daily/ — not Reminder, not Reality -->
-<script id="clarity-daily-first-landing-v2">
-/*! Daily-first landing v2 · 20261031DL2
- * True landing = /daily/ (Yawm) — NOT Reminder, NOT Reality.
- * Companion stays available after user chooses Companion path.
- * Educational only — not a fatwa.
+<!-- Daily-first LATE v3: CTAs → /daily/ -->
+<script id="clarity-daily-first-landing-v3">
+/*! Daily-first LATE v3 · CTAs + shell intercept · early head owns first paint
+ * Landing = /daily/ — not Reminder, not Reality.
  */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_DAILY_FIRST_LANDING_V2__) return;
-  w.__CLARITY_DAILY_FIRST_LANDING_V2__ = true;
+  if (w.__CLARITY_DAILY_FIRST_LANDING_V3__) return;
+  w.__CLARITY_DAILY_FIRST_LANDING_V3__ = true;
 
   var DAILY = "/daily/";
-  var KEY_MODE = "clarity_shell_mode_v1";
-  var KEY_PICK = "clarity_shell_user_pick_v1";
-  var KEY_SKIP = "clarity_daily_first_skip_v1";
 
-  function onDailyPage() {
+  function onDaily() {
     try {
       return /^\/daily\/?/.test(w.location.pathname || "");
     } catch (e) {
@@ -2949,132 +2962,83 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
     }
   }
 
-  function goDaily(reason) {
-    if (onDailyPage()) return;
+  function goDaily() {
+    if (onDaily()) return;
     try {
-      sessionStorage.setItem(KEY_PICK, "1");
       sessionStorage.setItem("clarity_landing_dest_v1", "daily");
+      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
     } catch (e) {}
     w.location.href = DAILY;
   }
 
-  function userChoseCompanion() {
+  function markCompanion() {
     try {
-      if (sessionStorage.getItem(KEY_PICK) === "1" &&
-          sessionStorage.getItem("clarity_landing_dest_v1") === "companion") {
-        return true;
-      }
-      if (sessionStorage.getItem(KEY_SKIP) === "1") return true;
-      var m = localStorage.getItem(KEY_MODE);
-      /* explicit companion only after pick — not mere leftover */
-      if (sessionStorage.getItem(KEY_PICK) === "1" && m === "companion") return true;
+      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
+      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
+      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
+      localStorage.setItem("clarity_shell_mode_v1", "companion");
     } catch (e) {}
-    return false;
   }
 
-  function wireCtas() {
+  function wire() {
     document.querySelectorAll("button, a, [data-crb]").forEach(function (el) {
-      if (el.__dl2) return;
-      var t = ((el.textContent || "") + " " + (el.getAttribute("aria-label") || "") + " " + (el.getAttribute("data-crb") || "")).toLowerCase();
-      var isDailyCta =
+      if (el.__dl3) return;
+      var t = (
+        (el.textContent || "") +
+        " " +
+        (el.getAttribute("aria-label") || "") +
+        " " +
+        (el.getAttribute("data-crb") || "")
+      ).toLowerCase();
+      if (
         el.getAttribute("data-crb") === "open" ||
-        /open daily routine|open daily|day landing|daily routines|daily page/.test(t);
-      var isCompanionCta =
-        el.getAttribute("data-crb") === "companion" ||
-        el.getAttribute("data-crb") === "hide" ||
-        /companion path|hide for now/.test(t);
-
-      if (isDailyCta) {
-        el.__dl2 = true;
+        /open daily routine|open daily|day landing|daily routines|daily page/.test(t)
+      ) {
+        el.__dl3 = true;
         el.addEventListener(
           "click",
           function (ev) {
-            try { ev.preventDefault(); } catch (e) {}
-            goDaily("cta");
+            try {
+              ev.preventDefault();
+            } catch (e) {}
+            goDaily();
           },
           true
         );
         if (el.tagName === "A") el.setAttribute("href", DAILY);
       }
-      if (isCompanionCta) {
-        el.__dl2 = true;
-        el.addEventListener(
-          "click",
-          function () {
-            try {
-              sessionStorage.setItem(KEY_PICK, "1");
-              sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-              sessionStorage.setItem(KEY_SKIP, "1");
-              localStorage.setItem(KEY_MODE, "companion");
-            } catch (e) {}
-          },
-          true
-        );
+      if (
+        el.getAttribute("data-crb") === "companion" ||
+        el.getAttribute("data-crb") === "hide" ||
+        /companion path|hide for now/.test(t)
+      ) {
+        el.__dl3 = true;
+        el.addEventListener("click", markCompanion, true);
       }
     });
-  }
 
-  function interceptShell() {
     try {
-      if (!w.ClarityShell || !w.ClarityShell.setMode || w.ClarityShell.setMode.__dl2) return;
-      var orig = w.ClarityShell.setMode.bind(w.ClarityShell);
-      w.ClarityShell.setMode = function (m) {
-        if (m === "landing") {
-          goDaily("shell");
-          return;
-        }
-        try {
-          sessionStorage.setItem(KEY_PICK, "1");
-          sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-          sessionStorage.setItem(KEY_SKIP, "1");
-        } catch (e) {}
-        return orig(m);
-      };
-      w.ClarityShell.setMode.__dl2 = true;
+      if (w.ClarityShell && w.ClarityShell.setMode && !w.ClarityShell.setMode.__dl3) {
+        var orig = w.ClarityShell.setMode.bind(w.ClarityShell);
+        w.ClarityShell.setMode = function (m) {
+          if (m === "landing") {
+            goDaily();
+            return;
+          }
+          markCompanion();
+          return orig(m);
+        };
+        w.ClarityShell.setMode.__dl3 = true;
+      }
     } catch (e2) {}
   }
 
-  /** First paint on home: prefer /daily/ over in-app Reminder/Reality */
-  function firstLandingRedirect() {
-    if (onDailyPage()) return;
-    if (userChoseCompanion()) return;
-    /* Query or hash means user aimed at a companion section — stay */
-    try {
-      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
-      if (h && /^(reminder|reality|reflection|action|notes|vault)$/.test(h)) {
-        sessionStorage.setItem(KEY_SKIP, "1");
-        sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-        return;
-      }
-    } catch (e) {}
-    /* Shell mode landing or unset → Daily page */
-    var mode = "landing";
-    try {
-      mode = document.documentElement.getAttribute("data-shell-mode") ||
-        localStorage.getItem(KEY_MODE) ||
-        "landing";
-    } catch (e3) {}
-    if (mode === "landing" || mode === "" || mode == null) {
-      goDaily("first-paint");
-    }
-  }
-
-  function boot() {
-    wireCtas();
-    interceptShell();
-    firstLandingRedirect();
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wire);
+  else wire();
   w.addEventListener("load", function () {
-    boot();
-    [150, 600, 1500, 3000].forEach(function (ms) {
-      setTimeout(function () {
-        wireCtas();
-        interceptShell();
-      }, ms);
-    });
+    wire();
+    setTimeout(wire, 500);
+    setTimeout(wire, 2000);
   });
 })(typeof window !== "undefined" ? window : this);
 

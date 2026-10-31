@@ -1,13 +1,10 @@
 {
-  "ver": "20261028URLSHELL",
-  "smoke": {
-    "url_parse": true,
-    "write_url": true,
-    "no_first_visit_force": true,
-    "vault_no_mode_force": true,
-    "day_guard": true,
-    "track_companion": true,
-    "track_day_off": true,
-    "crit_inline": true
-  }
+  "version": "v3-early-head",
+  "simulator": "node vm.Script",
+  "cycles": 10,
+  "passed": 10,
+  "allOk": true,
+  "early_before_micro_boot": true,
+  "landing": "/daily/",
+  "race_fixed": "freeze-breaker pick no longer blocks daily"
 }
