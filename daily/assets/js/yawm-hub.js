@@ -1,7 +1,7 @@
 /*! Yawm hub S10 — source-led · educational only — not a fatwa */
 (function(){
 "use strict";
-var VER="20261030S10b";
+var VER="20261030S10F";
 var KEY={
   deed:"clarity.daily.deed.v1",
   tas:"clarity.daily.tasbeeh.v1",
