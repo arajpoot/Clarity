@@ -10,3 +10,8 @@
 8. Isolation audit PASS before publish.
 9. On-demand API (optional later) is opt-in, token-hashed, snapshot-only, revocable.
 10. No third-party model vendor keys required on Clarity by default.
+
+
+## Fortress seclusion (20261031FORT1)
+11. Integral vault scripts live only under `/vault/sealed/`.
+12. Public door is fortress boot only; other sections must not import sealed modules.
