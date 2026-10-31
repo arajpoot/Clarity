@@ -22,6 +22,7 @@
   ].join("");
 
   function findMount() {
+    if (window.ClarityVaultGate && !window.ClarityVaultGate.allowPassphraseTutorial()) return null;
     var selectors = [
       "[data-vault-passphrase-panel]",
       "#vault-passphrase",
@@ -39,11 +40,13 @@
       var el = document.querySelector(selectors[i]);
       if (el) return el;
     }
-    // password field near vault
-    var inputs = document.querySelectorAll('input[type="password"]');
+    // password fields ONLY inside vault roots
+    var inputs = (window.ClarityVaultGate && window.ClarityVaultGate.vaultPasswordInputs)
+      ? window.ClarityVaultGate.vaultPasswordInputs()
+      : [];
     for (var j = 0; j < inputs.length; j++) {
       var inp = inputs[j];
-      var root = inp.closest("section,form,article,.card,[data-vault-sealed]") || inp.parentElement;
+      var root = inp.closest("section,form,article,.card,[data-vault-root],#amana-vault") || inp.parentElement;
       if (root) return root;
     }
     return null;

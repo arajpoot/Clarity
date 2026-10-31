@@ -1,3 +1,4 @@
+/* gated by runtime-gate when loaded after gate */
 /**
  * Dayn Ledger v1 · Qard Hasan only
  * Landing entry + Amānah Vault ledger (on-device)
@@ -474,7 +475,7 @@
 
   try{
     var obs = new MutationObserver(function(){
-      var h = document.getElementById("clarity-dayn-entry");
+      var h = document.getElementById("clarity-dayn-entry"); try{setTimeout(function(){try{obs.disconnect()}catch(e){}},12000);}catch(e){}
       if(!h || !h.isConnected) remount();
     });
     obs.observe(document.body, { childList:true, subtree:true });

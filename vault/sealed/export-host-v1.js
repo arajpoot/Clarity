@@ -96,6 +96,7 @@
   }
 
   function place() {
+    if (window.ClarityVaultGate && !window.ClarityVaultGate.allowDigestPanel()) return;
     if (document.getElementById("vault-export-host")) return;
     var mount = findLedgerMount();
     if (!mount) return; // wait until unlocked UI exists
@@ -109,6 +110,7 @@
   }
 
   function tick() {
+    if (window.ClarityVaultGate && !window.ClarityVaultGate.isVaultContext()) return;
     // Only attempt when not clearly on locked gate alone
     var gateOnly = document.querySelector('input[type="password"]') &&
       !document.querySelector("[data-vault-unlocked], [data-amana-open='1'], .vault-unlocked");

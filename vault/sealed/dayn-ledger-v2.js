@@ -1,3 +1,4 @@
+/* gated by runtime-gate when loaded after gate */
 /**
  * Dayn Ledger v2 · Qard Hasan only — mount fix for live vault + landing
  * Landing: inside #clarity-day-landing (slot or end)
@@ -367,7 +368,7 @@
   try {
     new MutationObserver(function () {
       if (!document.getElementById("clarity-dayn-entry") || !document.getElementById("clarity-dayn-vault-ledger"))
-        boot();
+        boot(); try{setTimeout(function(){try{obs.disconnect()}catch(e){}},12000);}catch(e){}
     }).observe(document.body, { childList: true, subtree: true });
   } catch (e) {}
 })(typeof window !== "undefined" ? window : this);

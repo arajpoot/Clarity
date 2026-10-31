@@ -100,6 +100,7 @@
   }
 
   function mountDayLandingBundle() {
+    if (window.ClarityVaultGate && !window.ClarityVaultGate.allowDaynLanding()) return;
     var landing =
       document.getElementById("clarity-day-landing") ||
       document.querySelector("[data-day-landing]");
@@ -147,6 +148,7 @@
   }
 
   function mountVaultBundle() {
+    if (window.ClarityVaultGate && !window.ClarityVaultGate.allowDaynVault()) return;
     var heirs = findHeirsLetter();
     var sec = ensureSection(heirs, "amana-vault-ledger-block");
     // also expose classic ids for dayn scripts

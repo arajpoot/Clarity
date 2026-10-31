@@ -22,6 +22,7 @@
     return h;
   }
   function render() {
+    if (window.ClarityVaultGate && !window.ClarityVaultGate.allowDigestPanel()) return;
     var h = host();
     if (!h || h.querySelector("[data-vault-digest-panel]")) return;
     if (badContext(h)) return;
