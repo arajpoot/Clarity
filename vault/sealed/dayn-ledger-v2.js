@@ -235,33 +235,51 @@
   }
 
   function ensureLandingHost() {
-    var host = document.getElementById("clarity-dayn-entry");
-    if (host && host.isConnected) return host;
-    host = document.createElement("section");
-    host.id = "clarity-dayn-entry";
-    host.className = "clarity-dayn-entry card";
-    host.setAttribute("aria-label", "Qard Hasan dayn entry");
-
-    var slot = document.getElementById("clarity-landing-slot-dayn");
+    /* CONTAINED: only Day landing — never #main-content (prevents Reality leak / freeze) */
+    try {
+      if (window.ClarityVaultGate && !window.ClarityVaultGate.allowDaynLanding()) {
+        return document.getElementById("clarity-dayn-entry");
+      }
+    } catch (eGate) {}
     var landing = document.getElementById("clarity-day-landing");
-    if (slot) {
-      slot.appendChild(host);
-    } else if (landing) {
-      // create slot at end of landing
+    if (!landing || landing.hidden || landing.getAttribute("aria-hidden") === "true") {
+      return document.getElementById("clarity-dayn-entry");
+    }
+    var host = document.getElementById("clarity-dayn-entry");
+    if (host && host.isConnected && landing.contains(host)) return host;
+    /* Stray host outside landing — relocate or drop */
+    if (host && host.isConnected && !landing.contains(host)) {
+      try { host.remove(); } catch (eR) {}
+      host = null;
+    }
+    if (!host) {
+      host = document.createElement("section");
+      host.id = "clarity-dayn-entry";
+      host.className = "clarity-dayn-entry card";
+      host.setAttribute("aria-label", "Qard Hasan dayn entry");
+      host.setAttribute("data-dayn-contained", "1");
+    }
+    var slot = document.getElementById("clarity-landing-slot-dayn");
+    if (!slot || !landing.contains(slot)) {
       slot = document.createElement("div");
       slot.id = "clarity-landing-slot-dayn";
-      landing.appendChild(slot);
-      slot.appendChild(host);
-    } else {
-      var dual = document.querySelector(".dual-tiles");
-      if (dual && dual.parentNode) dual.parentNode.insertBefore(host, dual.nextSibling);
-      else (document.getElementById("main-content") || document.body).appendChild(host);
+      slot.setAttribute("data-dayn-slot", "1");
+      var longStay = null;
+      landing.querySelectorAll("h2,h3,.cdl-head,section,.card").forEach(function (el) {
+        if (/remember the long stay/i.test(el.textContent || "")) {
+          longStay = el.closest("section,article,.card") || el;
+        }
+      });
+      if (longStay && longStay.parentElement) longStay.parentElement.insertBefore(slot, longStay);
+      else landing.appendChild(slot);
     }
+    if (!slot.contains(host)) slot.appendChild(host);
     return host;
   }
 
   function mountLanding() {
     var host = ensureLandingHost();
+    if (!host) return; /* no landing yet — do not dump into companion tabs */
     host.hidden = false;
     host.style.setProperty("display", "block", "important");
     host.style.setProperty("visibility", "visible", "important");
@@ -366,9 +384,18 @@
     if (/amana|vault|unlock|heir/i.test(s)) setTimeout(boot, 300);
   }, true);
   try {
-    new MutationObserver(function () {
-      if (!document.getElementById("clarity-dayn-entry") || !document.getElementById("clarity-dayn-vault-ledger"))
-        boot(); try{setTimeout(function(){try{obs.disconnect()}catch(e){}},12000);}catch(e){}
-    }).observe(document.body, { childList: true, subtree: true });
+    try {
+      var _daynObs = new MutationObserver(function () {
+        var land = document.getElementById("clarity-day-landing");
+        var entry = document.getElementById("clarity-dayn-entry");
+        if (entry && land && !land.contains(entry)) {
+          try { entry.remove(); } catch (e) {}
+          entry = null;
+        }
+        if (land && (!entry || !document.getElementById("clarity-dayn-vault-ledger"))) boot();
+      });
+      _daynObs.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function () { try { _daynObs.disconnect(); } catch (e) {} }, 12000);
+    } catch (e) {}
   } catch (e) {}
 })(typeof window !== "undefined" ? window : this);
