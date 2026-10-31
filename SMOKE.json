@@ -1,9 +1,15 @@
 {
-  "build": "20261031S11P",
+  "build": "20261031W1",
   "cycles": 12,
   "passed": 12,
   "allOk": true,
-  "companion_no_daily_loop": true,
-  "campus_wired": true,
-  "root_still_lands_daily": true
+  "matrix": {
+    "root_to_daily": true,
+    "companion_no_daily_loop": true,
+    "campus_to_companion": true,
+    "desk_to_companion": true,
+    "daily_to_campus": true,
+    "university_path": true,
+    "legacy_remap": true
+  }
 }

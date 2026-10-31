@@ -1,23 +1,34 @@
-# Yawm path wire · Companion + Campus
+# Site-wide path wire · Daily · Companion · Campus
 
-## Error (from live screenshot)
-Landing on Daily works, but **Companion path** used `href="/"`.
+Bismillah. Educational only — not a fatwa.
 
-Root early daily-first then sent `/` → `/daily/` again → **infinite Yawm loop**.  
-Campus `/campus/` was fine; Companion was not.
+## Problems found
+| Surface | Issue |
+|---------|--------|
+| **Campus / Desk** | “← Companion” used `href="/"` → root early script sent users **back to /daily/** (loop) |
+| **Daily** | Companion already used `enter=companion` (OK) |
+| **Root** | Lands on `/daily/` (OK); University/Open daily need consistent targets |
+| **Legacy SEO paths** | `/grave`, `/seerah`, `/notes`, … **404** |
 
 ## Fix
-| Link | Before | After |
-|------|--------|--------|
-| Companion (nav + dual tile) | `/` | `/?enter=companion#reminder` |
-| Campus / University | `/campus/` | `/campus/` (unchanged) |
-| Early root script | always daily on `/` | skip if `?enter=companion` or dest=companion |
-| `yawm-hub.js` | — | sets session dest on click |
+1. **Static HTML** — Campus + Desk Companion → `/?enter=companion#reminder`
+2. **`/assets/clarity-site-path-wire-v1.js`** on root, daily, campus, desk:
+   - Rewrites bare `/` Companion links
+   - Open daily → `/daily/`
+   - University path → `/campus/`
+   - Remaps retired paths to Campus library/journey or Companion hashes
+   - Sets `clarity_landing_dest_v1` on click
 
-## Deploy (both)
-1. **`daily/index.html`**
-2. **`daily/assets/js/yawm-hub.js`**
-3. **Root `index.html`** (early head script v3.1 with `enter=companion`) — or replace early block from package
+## Deploy
+```
+index.html                          (root — keep early daily-first)
+assets/clarity-site-path-wire-v1.js
+daily/index.html
+campus/index.html
+campus/desk/index.html
+```
+
+Hard-refresh each surface once.
 
 ## Smoke
-12/12 path cycles pass (vm sandbox): Daily first paint, Companion no loop, Campus open.
+**12/12** deploy-order path cycles (vm sandbox): Daily land, Companion no loop, Campus open, remaps.
