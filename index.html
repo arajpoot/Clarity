@@ -1,20 +1,31 @@
 <!DOCTYPE html><html data-theme="light" lang="en"><head>
 <script id="clarity-daily-first-early-v3">
-/*! Daily-first EARLY v3 · runs before shell/freeze · landing = /daily/ only */
+/*! Daily-first EARLY v3.1 · landing=/daily/ · allow ?enter=companion from Yawm */
 (function () {
   try {
     var p = location.pathname || "/";
     if (/^\/daily\/?$/.test(p)) return;
     if (p !== "/" && p !== "") return;
+    var q = location.search || "";
+    if (/enter=companion|dest=companion/i.test(q)) {
+      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
+      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
+      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
+      localStorage.setItem("clarity_shell_mode_v1", "companion");
+      return;
+    }
     var h = (location.hash || "").replace(/^#/, "").toLowerCase();
-    if (h && /^(reminder|reality|reflection|action|notes|vault)$/.test(h)) return;
+    if (h && /^(reminder|reality|reflection|action|notes|vault)$/.test(h)) {
+      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
+      return;
+    }
     var dest = sessionStorage.getItem("clarity_landing_dest_v1");
     if (dest === "companion") return;
-    /* Force daily as true landing — ignore shell-mode races */
     sessionStorage.setItem("clarity_landing_dest_v1", "daily");
     location.replace("/daily/");
   } catch (e) {}
 })();
+
 </script>
 
 <meta name="companion-phase-build" content="0-1-boot-20261025">

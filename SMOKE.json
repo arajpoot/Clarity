@@ -1,10 +1,9 @@
 {
-  "version": "v3-early-head",
-  "simulator": "node vm.Script",
-  "cycles": 10,
-  "passed": 10,
+  "build": "20261031S11P",
+  "cycles": 12,
+  "passed": 12,
   "allOk": true,
-  "early_before_micro_boot": true,
-  "landing": "/daily/",
-  "race_fixed": "freeze-breaker pick no longer blocks daily"
+  "companion_no_daily_loop": true,
+  "campus_wired": true,
+  "root_still_lands_daily": true
 }

@@ -1,21 +1,23 @@
-# Daily-first landing HARDENED v3
+# Yawm path wire · Companion + Campus
 
-## Live problem found
-Daily-first v2 ran **at end of body**. Before it ran:
-1. micro-boot set shell `landing`
-2. freeze-breaker saw no day-landing host → forced **companion** + `user_pick=1`
-3. v2 then treated that as “user chose companion” → **skipped `/daily/`**
+## Error (from live screenshot)
+Landing on Daily works, but **Companion path** used `href="/"`.
 
-So landing never reached Daily on a real browser.
+Root early daily-first then sent `/` → `/daily/` again → **infinite Yawm loop**.  
+Campus `/campus/` was fine; Companion was not.
 
 ## Fix
-1. **EARLY** script in `<head>` (before micro-boot / freeze-breaker):
-   - On `/` with no section hash and no explicit `clarity_landing_dest_v1=companion` → `location.replace("/daily/")`
-2. **LATE** script for CTAs + `ClarityShell.setMode("landing")` → `/daily/`
-3. Companion skip only when **dest === companion** (not mere pick flag)
+| Link | Before | After |
+|------|--------|--------|
+| Companion (nav + dual tile) | `/` | `/?enter=companion#reminder` |
+| Campus / University | `/campus/` | `/campus/` (unchanged) |
+| Early root script | always daily on `/` | skip if `?enter=companion` or dest=companion |
+| `yawm-hub.js` | — | sets session dest on click |
 
-## Sandbox (vm.Script) · 10/10
-Including “freeze pick alone still daily” — **pass**.
+## Deploy (both)
+1. **`daily/index.html`**
+2. **`daily/assets/js/yawm-hub.js`**
+3. **Root `index.html`** (early head script v3.1 with `enter=companion`) — or replace early block from package
 
-## Deploy
-Replace root `index.html`. Hard-refresh. Clear site data once if old session dest blocks you.
+## Smoke
+12/12 path cycles pass (vm sandbox): Daily first paint, Companion no loop, Campus open.
