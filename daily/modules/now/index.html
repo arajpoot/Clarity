@@ -1,13 +1,102 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Now · Yawm · Clarity</title>
-<style>body{margin:0;font-family:system-ui,sans-serif;background:#0d1f17;color:#e8f0ea;line-height:1.55}
-a{color:#d4af37}.wrap{max-width:40rem;margin:0 auto;padding:1rem}
-.ar{direction:rtl;font-size:1.25rem;font-family:serif}
-.card{border:1px solid rgba(212,175,55,.3);border-radius:14px;padding:1rem;background:#12261c}</style></head>
-<body><div class="wrap">
-<p><a href="/companion/">Companion</a> · <a href="/daily/">Yawm</a> · <a href="/campus/">Campus</a></p>
-<p><a href="/daily/">← Hub</a></p>
-<div class="card"><h1>Now</h1><p>After Fajr · morning adhkār. Open matching adhkār or ṣalāh for this hour.</p><p><a href="/daily/modules/adhkar/">Adhkār</a> · <a href="/daily/modules/salah/">Ṣalāh</a></p></div>
-<p style="font-size:.8rem;opacity:.75">Educational only — not a fatwa.</p>
-</div></body></html>
+<!--
+  YAWM FOUNDATION LOCK 20261030S10F
+  Isolated wing — edit only under /daily/
+  See ARCHITECTURE.md · NAV_CONTRACT.md · FOUNDATION_LOCK.md
+  Ship only if: python3 tools/yawm-content-audit.py → PASS
+  Educational only — not a fatwa
+-->
+
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta name="yawm-build" content="20261030S10F"/>
+<title>After Fajr · Yawm · Clarity</title>
+<meta name="description" content="After Fajr — Yawm. Educational only — not a fatwa."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../assets/daily.css?v=20261030S10F"/>
+<style id="yawm-vp-icons">
+.mod-shell{max-width:min(100%,72rem)!important;width:100%!important;margin:0 auto!important;padding:0 max(.75rem,env(safe-area-inset-left)) 2.75rem!important;box-sizing:border-box!important}
+.mod-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;padding:.7rem 0;border-bottom:1px solid rgba(201,168,76,.22)}
+.mod-top .brand{font-weight:800;color:#c9a84c;text-decoration:none}
+.mod-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin:.65rem 0}
+.mod-pills a{display:inline-flex;align-items:center;gap:.3rem;padding:.28rem .6rem;border-radius:999px;font-size:.72rem;border:1px solid rgba(201,168,76,.32);text-decoration:none;color:inherit;background:rgba(255,255,255,.05)}
+.mod-pills a.here{background:rgba(30,125,94,.42);border-color:transparent;color:#fff}
+.mod-pills a img{width:1rem;height:1rem}
+.btn{display:inline-flex;padding:.4rem .95rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;margin:.2rem}
+.btn.ghost{background:transparent;border:1px solid rgba(201,168,76,.4);color:inherit}
+.ar{font-family:"Noto Naskh Arabic",serif;direction:rtl;text-align:right;font-size:1.15rem;line-height:1.9}
+.report{margin:.75rem 0;padding:.85rem 1rem;border-radius:.9rem;border:1px solid rgba(201,168,76,.35);background:rgba(30,125,94,.15)}
+.report .meta{font-size:.78rem;color:#e0c56a;margin-top:.35rem}
+.report a{color:#e0c56a;font-weight:600}
+.act{margin:.75rem 0;padding:.75rem .9rem;border-radius:.85rem;border:1px dashed rgba(201,168,76,.35);font-size:.88rem}
+.act strong{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c;margin-bottom:.35rem}
+img.sec-ico{width:1.65rem;height:1.65rem;border-radius:50%;padding:.2rem;background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.45);flex-shrink:0}
+h1.with-ico,h2.with-ico{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
+.glass-plaque{margin:1rem 0;padding:1.1rem 1.15rem;border-radius:1rem;border:1px solid rgba(201,168,76,.28);background:rgba(8,24,20,.55)}
+.yawm-fard-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.4rem}
+@media(max-width:640px){.yawm-fard-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.yawm-fard-pill{padding:.65rem .35rem;border-radius:.85rem;border:1px solid rgba(201,168,76,.3);background:rgba(0,0,0,.18);color:inherit;cursor:pointer;text-align:center}
+.yawm-fard-pill.on{background:rgba(30,125,94,.35)}
+.yawm-fard-pill b{display:block;font-size:1.2rem;color:#e8d5a3}
+.yawm-chip{display:block;width:100%;text-align:left;padding:.75rem;margin:.35rem 0;border-radius:.9rem;border:1px solid rgba(201,168,76,.32);background:rgba(0,0,0,.2);color:inherit;cursor:pointer}
+.yawm-chip.on{border-color:#1e7d5e;background:rgba(30,125,94,.28)}
+</style>
+</head>
+<body data-yawm="1">
+<div class="mod-shell">
+  <header class="mod-top">
+    <a class="brand" href="/daily/">Clarity · Yawm</a>
+    <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
+  </header>
+  <figure class="yawm-mini-banner">
+    <img src="../../assets/daily-banner.jpg?v=20261030S10F" alt="" width="1600" height="754" loading="eager"/>
+    <div class="yawm-mini-plaque">
+      <p class="mp-title">After Fajr · morning adhkār</p>
+      <p class="mp-sub">Educational cue — not a timetable</p>
+    </div>
+  </figure>
+  <div class="yawm-quill-rule">Yawm · After Fajr</div>
+  <nav class="mod-pills" aria-label="Modules"><a href="/daily/modules/now/" class="here"><img src="../../assets/icons/nuros-today.svg?v=20261030S10F" alt=""/>Now</a><a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261030S10F" alt=""/>Deed</a><a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261030S10F" alt=""/>Adhkār</a><a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261030S10F" alt=""/>Tasbeeh</a><a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261030S10F" alt=""/>Farḍ</a><a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261030S10F" alt=""/>Light</a></nav>
+
+  <section class="glass-plaque">
+    <h1 class="with-ico" id="portion-title"><img class="sec-ico" src="../../assets/icons/nuros-today.svg?v=20261030S10F" alt=""/>After Fajr · morning adhkār</h1>
+    <p class="sub">Four educational anchors for the day. Adjust to your local times and capacity.</p>
+    <ul style="margin:.5rem 0 0 1.1rem;line-height:1.55;font-size:.92rem">
+      <li><strong>Before Fajr</strong> — dhikr, optional night prayer if able, Fajr</li>
+      <li><strong>After Fajr</strong> — morning adhkār, a portion of Qur’an</li>
+      <li><strong>Through the day</strong> — work and family between the prayers</li>
+      <li><strong>Evening</strong> — evening adhkār, reduce harm, rest with remembrance</li>
+    </ul>
+  </section>
+  <div class="report">
+    <p class="ar" dir="rtl" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
+    <p>Report of saying this one hundred times in the morning and evening — confirm full wording with a teacher.</p>
+    <p class="meta">Ṣaḥīḥ · Muslim · 2692 · <a href="https://sunnah.com/muslim:2692" target="_blank" rel="noopener">sunnah.com/muslim:2692</a></p>
+  </div>
+  <div class="report">
+    <p class="ar" dir="rtl" lang="ar">وَالْعَصْرِ</p>
+    <p>Sūrat al-ʿAṣr frames the path: faith, righteous work, truth, and patience.</p>
+    <p class="meta">Qur’an · 103 · <a href="https://quran.com/103" target="_blank" rel="noopener">quran.com/103</a></p>
+  </div>
+  <div class="act"><strong>One way to act — not a ruling</strong>Do the line that matches this hour.</div>
+  <script>
+  (function(){
+    var h=new Date().getHours(),t,s;
+    if(h>=4&&h<6){t="Before Fajr · dhikr";s="Before Fajr · dhikr and optional night prayer if able"}
+    else if(h>=6&&h<12){t="After Fajr · morning adhkār";s=t}
+    else if(h>=12&&h<17){t="Through the day · between the prayers";s=t}
+    else if(h>=17&&h<20){t="Evening · evening adhkār";s=t}
+    else{t="Night · seek forgiveness";s=t}
+    var el=document.getElementById("portion-title");
+    if(el){el.lastChild.textContent=""; el.appendChild(document.createTextNode(s))}
+    document.title=t+" · Yawm · Clarity";
+  })();
+  </script>
+
+  <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
+</div>
+</body>
+</html>
