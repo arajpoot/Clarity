@@ -1,83 +1,74 @@
-/*! Amānah runtime gate v2 · Dayn vault-only (not Day landing / not Companion tabs)
- * Educational only — not a fatwa · not legal/financial advice.
- */
+/*! Amānah sealed runtime gate · SPA-aware · stops tab leakage */
 (function (w) {
   "use strict";
-  if (w.ClarityVaultGate && w.ClarityVaultGate.__daynVaultOnly) return;
-
-  function hash() {
-    try {
-      return (w.location.hash || "").replace(/^#/, "").toLowerCase();
-    } catch (e) {
-      return "";
-    }
-  }
+  if (w.__CLARITY_VAULT_RUNTIME_GATE__) return;
+  w.__CLARITY_VAULT_RUNTIME_GATE__ = true;
 
   function tab() {
     try {
-      var b = document.body;
-      return ((b && b.getAttribute("data-active-tab")) || "").toLowerCase();
+      return ((document.body && document.body.getAttribute("data-active-tab")) || "").toLowerCase();
     } catch (e) {
       return "";
     }
   }
-
+  function hash() {
+    try {
+      return (location.hash || "").toLowerCase();
+    } catch (e) {
+      return "";
+    }
+  }
   function vaultPanelVisible() {
-    var sels = [
-      "[data-vault-root]",
-      "#amana-vault",
-      ".amana-vault-interior",
-      "#amana-prepare-tonight",
-      "[data-vault-passphrase-panel]",
-      "#vault-passphrase",
-      "#amana-vault-gate",
-    ];
-    for (var i = 0; i < sels.length; i++) {
-      var nodes = document.querySelectorAll(sels[i]);
-      for (var j = 0; j < nodes.length; j++) {
-        var el = nodes[j];
-        if (el.hasAttribute("hidden") || el.getAttribute("aria-hidden") === "true") continue;
-        try {
-          if (el.style && el.style.display === "none") continue;
-        } catch (e) {}
-        return true;
+    var roots = document.querySelectorAll("#amana-vault, [data-vault-root], .amana-vault-interior");
+    for (var i = 0; i < roots.length; i++) {
+      var el = roots[i];
+      if (el.hasAttribute("hidden")) continue;
+      if (el.getAttribute("aria-hidden") === "true") continue;
+      var st = "";
+      try {
+        st = (el.style && el.style.display) || "";
+      } catch (e) {}
+      if (st === "none") continue;
+      // class active on parent tab
+      var tabp = el.closest(".tab-panel, [data-tab-panel]");
+      if (tabp && tabp.hasAttribute("hidden")) continue;
+      if (tabp && tabp.getAttribute("aria-hidden") === "true") continue;
+      if (tabp && !(tabp.classList && (tabp.classList.contains("active") || tabp.classList.contains("is-active")))) {
+        // if tab system uses active class and this panel lacks it, skip
+        if (tabp.className && String(tabp.className).indexOf("tab-panel") >= 0) continue;
       }
+      return true;
     }
     return false;
   }
 
+  /** Active vault UX — not merely "vault nodes exist in SPA DOM" */
   function isVaultContext() {
     var h = hash();
     if (h.indexOf("vault") >= 0) return true;
     var t = tab();
     if (t === "notes" || t === "vault") return true;
+    // Amana bottom nav often uses notes for vault tools
+    if (t === "notes") return true;
     if (vaultPanelVisible()) return true;
     return false;
   }
 
-  function isPassphraseSurface() {
-    if (!isVaultContext()) return false;
-    var roots = document.querySelectorAll(
-      "[data-vault-root], #amana-vault, .amana-vault, .amana-vault-interior, #amana-prepare-tonight, [data-vault-passphrase-panel], #vault-passphrase, #amana-vault-gate"
-    );
-    for (var i = 0; i < roots.length; i++) {
-      var r = roots[i];
-      if (r.hasAttribute("hidden")) continue;
-      if (r.querySelector('input[type="password"], [data-vault-passphrase], .vault-passphrase, #vault-passphrase')) {
-        return true;
-      }
-      if (r.id === "vault-passphrase" || r.getAttribute("data-vault-passphrase-panel") != null) return true;
-    }
-    return isVaultContext();
-  }
-
   function isDayLandingContext() {
-    return false; /* Dayn removed from Day landing */
+    var land =
+      document.getElementById("clarity-day-landing") ||
+      document.querySelector("[data-day-landing]");
+    if (!land) return false;
+    if (land.hasAttribute("hidden") || land.getAttribute("aria-hidden") === "true") return false;
+    try {
+      if (land.style && land.style.display === "none") return false;
+    } catch (e) {}
+    return true;
   }
 
   function vaultPasswordInputs() {
     var roots = document.querySelectorAll(
-      "[data-vault-root], #amana-vault, .amana-vault, .amana-vault-interior, #amana-prepare-tonight, [data-vault-passphrase-panel]"
+      "[data-vault-root], #amana-vault, .amana-vault, .amana-vault-interior, #amana-prepare-tonight"
     );
     var out = [];
     for (var i = 0; i < roots.length; i++) {
@@ -90,10 +81,8 @@
   }
 
   w.ClarityVaultGate = {
-    __daynVaultOnly: true,
     isVaultContext: isVaultContext,
     isDayLandingContext: isDayLandingContext,
-    isPassphraseSurface: isPassphraseSurface,
     vaultPasswordInputs: vaultPasswordInputs,
     allowDigestPanel: function () {
       return isVaultContext();
@@ -102,10 +91,10 @@
       return isVaultContext();
     },
     allowDaynVault: function () {
-      return isVaultContext() || isPassphraseSurface();
+      return isVaultContext();
     },
     allowDaynLanding: function () {
-      return false;
+      return isDayLandingContext();
     },
   };
 })(window);

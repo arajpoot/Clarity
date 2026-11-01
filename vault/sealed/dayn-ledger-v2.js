@@ -234,69 +234,41 @@
     });
   }
 
-  function scrubLandingDayn() {
-    /* Dayn lives on vault passphrase surface only — strip any day-landing hosts */
-    try {
-      document.querySelectorAll("#clarity-dayn-entry, #clarity-landing-slot-dayn, [data-dayn-slot]").forEach(function (el) {
-        var inVault = el.closest && el.closest("#amana-vault, [data-vault-root], .amana-vault-interior, #clarity-vault-slot-dayn, #clarity-dayn-vault-ledger");
-        if (inVault) return;
-        try { el.remove(); } catch (e) { el.hidden = true; }
-      });
-    } catch (eS) {}
-  }
-
   function ensureLandingHost() {
-    scrubLandingDayn();
-    return null; /* never mount on Day landing */
+    var host = document.getElementById("clarity-dayn-entry");
+    if (host && host.isConnected) return host;
+    host = document.createElement("section");
+    host.id = "clarity-dayn-entry";
+    host.className = "clarity-dayn-entry card";
+    host.setAttribute("aria-label", "Qard Hasan dayn entry");
+
+    var slot = document.getElementById("clarity-landing-slot-dayn");
+    var landing = document.getElementById("clarity-day-landing");
+    if (slot) {
+      slot.appendChild(host);
+    } else if (landing) {
+      // create slot at end of landing
+      slot = document.createElement("div");
+      slot.id = "clarity-landing-slot-dayn";
+      landing.appendChild(slot);
+      slot.appendChild(host);
+    } else {
+      var dual = document.querySelector(".dual-tiles");
+      if (dual && dual.parentNode) dual.parentNode.insertBefore(host, dual.nextSibling);
+      else (document.getElementById("main-content") || document.body).appendChild(host);
+    }
+    return host;
   }
 
   function mountLanding() {
-    scrubLandingDayn();
-    /* no-op — Dayn moved to vault passphrase page */
-  }
-
-  function ensurePassphraseVaultHost() {
-    try {
-      if (window.ClarityVaultGate && !window.ClarityVaultGate.allowDaynVault()) return null;
-    } catch (eG) {}
-    var panel = document.getElementById("clarity-dayn-vault-ledger");
-    if (panel && panel.isConnected) return panel;
-    var root =
-      document.querySelector("[data-vault-passphrase-panel]") ||
-      document.getElementById("vault-passphrase") ||
-      document.getElementById("amana-vault-gate") ||
-      document.querySelector("#amana-vault, [data-vault-root], .amana-vault-interior");
-    if (!root) return null;
-    var slot = document.getElementById("clarity-vault-slot-dayn");
-    if (!slot) {
-      slot = document.createElement("div");
-      slot.id = "clarity-vault-slot-dayn";
-      slot.setAttribute("data-dayn-vault-slot", "1");
-      /* Place after passphrase inputs when present */
-      var pw = root.querySelector('input[type="password"]');
-      if (pw && pw.parentElement) {
-        var after = pw.closest("label, .field, .form-row, p, div") || pw;
-        if (after.parentElement) after.parentElement.insertBefore(slot, after.nextSibling);
-        else root.appendChild(slot);
-      } else {
-        root.appendChild(slot);
-      }
-    }
-    panel = document.getElementById("clarity-dayn-vault-ledger");
-    if (!panel) {
-      panel = document.createElement("section");
-      panel.id = "clarity-dayn-vault-ledger";
-      panel.className = "clarity-dayn-vault-ledger card";
-      panel.setAttribute("aria-label", "Qard Hasan dayn ledger — vault");
-      panel.setAttribute("data-dayn-vault", "1");
-    }
-    if (!slot.contains(panel)) slot.appendChild(panel);
-    return panel;
+    var host = ensureLandingHost();
+    host.hidden = false;
+    host.style.setProperty("display", "block", "important");
+    host.style.setProperty("visibility", "visible", "important");
+    wire(host);
   }
 
   function renderVault() {
-    try { ensurePassphraseVaultHost(); } catch (ePH) {}
-    scrubLandingDayn();
     var panel = document.getElementById("clarity-dayn-vault-ledger");
     if (!panel || !panel.isConnected) {
       panel = document.createElement("section");
@@ -373,7 +345,7 @@
 
   function boot() {
     try {
-      mountLanding(); scrubLandingDayn();
+      mountLanding();
       renderVault();
     } catch (e) {
       console.warn("[Dayn v2]", e);
@@ -394,18 +366,9 @@
     if (/amana|vault|unlock|heir/i.test(s)) setTimeout(boot, 300);
   }, true);
   try {
-    try {
-      var _daynObs = new MutationObserver(function () {
-        var land = document.getElementById("clarity-day-landing");
-        var entry = document.getElementById("clarity-dayn-entry");
-        if (entry && land && !land.contains(entry)) {
-          try { entry.remove(); } catch (e) {}
-          entry = null;
-        }
-        if (land && (!entry || !document.getElementById("clarity-dayn-vault-ledger"))) boot();
-      });
-      _daynObs.observe(document.body, { childList: true, subtree: true });
-      setTimeout(function () { try { _daynObs.disconnect(); } catch (e) {} }, 12000);
-    } catch (e) {}
+    new MutationObserver(function () {
+      if (!document.getElementById("clarity-dayn-entry") || !document.getElementById("clarity-dayn-vault-ledger"))
+        boot(); try{setTimeout(function(){try{obs.disconnect()}catch(e){}},12000);}catch(e){}
+    }).observe(document.body, { childList: true, subtree: true });
   } catch (e) {}
 })(typeof window !== "undefined" ? window : this);
