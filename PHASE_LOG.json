@@ -1,31 +1,41 @@
 [
   {
-    "phase": "P1",
+    "phase": "C0",
     "ok": true,
-    "msg": "boots=1 beacons=1"
+    "msg": "live index 251096"
   },
   {
-    "phase": "P2",
+    "phase": "C0",
     "ok": true,
-    "msg": "sealed=13"
+    "msg": "sealed n=13"
   },
   {
-    "phase": "P4",
+    "phase": "C2",
     "ok": true,
-    "msg": "dayn-v2"
+    "msg": "beacon count now 1"
   },
   {
-    "phase": "P5",
+    "phase": "C3",
     "ok": true,
-    "msg": "daily"
+    "msg": "defer + nuclear"
   },
   {
-    "phase": "P6",
+    "phase": "C4",
+    "ok": true,
+    "msg": "index written 250258"
+  },
+  {
+    "phase": "C5",
+    "ok": true,
+    "msg": "integrity"
+  },
+  {
+    "phase": "C5",
     "ok": true,
     "msg": "gate PASS"
   },
   {
-    "phase": "P6",
+    "phase": "C5",
     "ok": true,
     "msg": "syntax"
   }
