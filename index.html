@@ -2448,7 +2448,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="clarity-banner-nuclear-js" src="assets/companion-inline/inline-clarity-banner-nuclear-js.js" defer></script>
 <script src="assets/companion-inline/inline-clarity_path_plaques_v1.js?v=20261025m" defer></script>
 <script src="assets/clarity-path-progress-v1.js" defer></script>
-<script src="assets/clarity-grave-path-curriculum-js.js" defer></script>
+<!-- deferred-until-companion: assets/clarity-grave-path-curriculum-js.js -->
 <script id="clarity-path-night-fix-v1" src="assets/companion-inline/inline-clarity_path_night_fix_v1.js" defer></script>
 <script id="clarity-path-reset-js-v1" src="assets/companion-inline/inline-clarity_path_reset_v1.js" defer></script>
 <script id="clarity-perf-loader-v1" src="assets/companion-inline/inline-clarity-perf-loader-v1.js?v=20261025b" defer></script>
@@ -2469,26 +2469,81 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="clarity-online-sitewide-v1" src="assets/companion-inline/inline-clarity_online_sitewide_v1.js" defer></script>
 <script id="clarity-rrra5-legacy-cleanup-v1" src="assets/companion-inline/inline-clarity_rrra5_legacy_cleanup_v1.js" defer></script>
 <script id="clarity-section-pills-js-v1" src="assets/companion-inline/inline-clarity_section_pills_v2.js" defer></script>
-<script id="clarity-path-nuclear-v1" src="assets/companion-inline/inline-clarity_path_nuclear_v1.js?v=20261026s" defer></script>
+<!-- deferred-until-companion: assets/companion-inline/inline-clarity_path_nuclear_v1.js?v=20261026s -->
 <script id="clarity-pedigree-plaque-js-v1" src="assets/companion-inline/inline-clarity_pedigree_plaque_v1.js" defer></script>
 <script id="clarity-doors-flow-js-v1" src="assets/companion-inline/inline-clarity-doors-flow-js-v1.js" defer></script>
 <script id="clarity-allow-guard-v1" src="assets/companion-inline/inline-322398e3fd.js" defer></script>
 <script id="clarity-live-harden-v1" src="assets/companion-inline/inline-clarity_live_harden_v1.js" defer></script>
-<script id="clarity-uft-viewport-recover-js-v1" src="assets/companion-inline/inline-clarity_uft_viewport_recover.js" defer></script>
-<script id="clarity-amana-backup-guidance-v1" src="assets/companion-inline/inline-clarity_amana_backup_guide.js" defer></script>
-<script id="clarity-amana-hardening-v1" src="assets/companion-inline/inline-clarity_amana_hardening.js" defer></script>
-<script id="clarity-vault-fix-js-v1" src="assets/companion-inline/inline-clarity_vault_fix.js" defer></script>
-<script id="clarity-uft-print-fix-v2-js" src="assets/companion-inline/inline-clarity_uft_print_fix_v2.js" defer></script>
-<script id="clarity-vault-security-harden-v1" src="assets/companion-inline/inline-clarity_vault_harden_v1.js" defer></script>
+<!-- deferred-until-companion: assets/companion-inline/inline-clarity_uft_viewport_recover.js -->
+<!-- deferred-until-companion: assets/companion-inline/inline-clarity_amana_backup_guide.js -->
+<!-- deferred-until-companion: assets/companion-inline/inline-clarity_amana_hardening.js -->
+<!-- deferred-until-companion: assets/companion-inline/inline-clarity_vault_fix.js -->
+<!-- deferred-until-companion: assets/companion-inline/inline-clarity_uft_print_fix_v2.js -->
+<!-- deferred-until-companion: assets/companion-inline/inline-clarity_vault_harden_v1.js -->
 <script id="clarity-vault-note-registry-js" src="assets/companion-inline/inline-clarity_vault_note_registry.js?v=20261026n" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script src="assets/nuros-icons-apply-v1.js"></script>
-<script src="assets/companion-inline/inline-bundle-meme-v1.js?v=20261026i"></script>
+<!-- deferred-until-companion: assets/companion-inline/inline-bundle-meme-v1.js?v=20261026i -->
 <script src="assets/companion-inline/inline-bundle-security-v1.js?v=20261026i"></script>
 <script src="assets/companion-inline/inline-clarity-qada-tracker-v1.js?v=20261026p"></script>
 <script src="assets/companion-inline/inline-clarity-samina-verse-v1.js?v=20261026p"></script>
+
+<script id="clarity-companion-lazy-v1">
+(function(){
+  "use strict";
+  if (window.__CLARITY_COMPANION_LAZY_V1__) return;
+  window.__CLARITY_COMPANION_LAZY_V1__ = true;
+  var LOADED = false;
+  var QUEUE = ['assets/clarity-grave-path-curriculum-js.js', 'assets/companion-inline/inline-clarity_path_nuclear_v1.js?v=20261026s', 'assets/companion-inline/inline-clarity_uft_viewport_recover.js', 'assets/companion-inline/inline-clarity_amana_backup_guide.js', 'assets/companion-inline/inline-clarity_amana_hardening.js', 'assets/companion-inline/inline-clarity_vault_fix.js', 'assets/companion-inline/inline-clarity_uft_print_fix_v2.js', 'assets/companion-inline/inline-clarity_vault_harden_v1.js', 'assets/companion-inline/inline-bundle-meme-v1.js?v=20261026i'];
+  function loadOne(src){
+    return new Promise(function(resolve){
+      if (!src) return resolve();
+      if (document.querySelector('script[data-clarity-lazy-src="'+src+'"]')) return resolve();
+      var s = document.createElement("script");
+      s.src = src;
+      s.defer = true;
+      s.setAttribute("data-clarity-lazy-src", src);
+      s.onload = function(){ resolve(); };
+      s.onerror = function(){ resolve(); };
+      document.head.appendChild(s);
+    });
+  }
+  function loadAll(){
+    if (LOADED) return Promise.resolve();
+    LOADED = true;
+    var chain = Promise.resolve();
+    QUEUE.forEach(function(src){
+      chain = chain.then(function(){ return loadOne(src); });
+    });
+    return chain;
+  }
+  function isCompanion(){
+    try {
+      var m = document.documentElement.getAttribute("data-shell-mode") || "";
+      if (m === "companion") return true;
+      if (localStorage.getItem("clarity_shell_mode_v1") === "companion") return true;
+    } catch(e){}
+    var h = (location.hash || "").toLowerCase();
+    if (/reminder|reality|reflection|action|notes|amana|vault|meme|fiqh|uft/.test(h)) return true;
+    return false;
+  }
+  function maybe(){ if (isCompanion()) loadAll(); }
+  window.ClarityLoadCompanion = loadAll;
+  document.addEventListener("clarity-shell-mode", function(ev){
+    try { if (ev && ev.detail && ev.detail.mode === "companion") loadAll(); } catch(e){}
+  });
+  var n = 0;
+  var t = setInterval(function(){
+    n++; maybe();
+    if (LOADED || n > 20) clearInterval(t);
+  }, 500);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", maybe);
+  else maybe();
+  window.addEventListener("hashchange", maybe);
+})();
+</script>
+
 <script src="assets/companion-inline/inline-clarity-final-surface-v1.js?v=20261026p"></script>
-<script src="/assets/clarity-vault-fortify-boot-v1.js?v=20261031DR1" defer></script>
 </body>
 </html>
 
