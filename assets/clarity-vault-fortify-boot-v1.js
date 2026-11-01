@@ -1,4 +1,4 @@
-/*! Amānah Vault FORTRESS BOOT · 20261031FORT3R1
+/*! Amānah Vault FORTRESS BOOT · 20261031S7
  * Thin public door — sealed modules under /vault/sealed/
  * runtime-gate first to stop UI leakage into other Companion tabs
  */
@@ -6,7 +6,7 @@
   "use strict";
   if (window.__CLARITY_VAULT_FORTRESS_BOOT__) return;
   window.__CLARITY_VAULT_FORTRESS_BOOT__ = true;
-  var VER = "20261031FORT3R1";
+  var VER = "20261031S7";
   var BASE = "/vault/sealed/";
   var scripts = [
     "runtime-gate-v1.js",
@@ -19,6 +19,7 @@
     "dayn-mount-adapter-v1.js",
     "dayn-ledger-v2.js",
     "dayn-enrich-v3.js",
+    "dayn-ensure-s45.js",
     "passphrase-tutorial-v1.js"
   ];
   function loadOne(name) {

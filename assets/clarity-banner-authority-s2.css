@@ -1,0 +1,7 @@
+/* S2 banner authority — prevent empty black collapse under banner */
+.banner, .cv-stitched-banner, #banner-media, .banner-overlay {
+  min-height: 0;
+}
+.banner-overlay { position: relative; z-index: 2; }
+.banner-still-img, .banner-live-iframe { max-width: 100%; }
+.banner-side, .banner-center { visibility: visible; }
