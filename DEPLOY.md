@@ -1,8 +1,8 @@
-# S0–S7 deploy
+# Companion T0–T7 deploy
 
-1. Replace root `index.html`
-2. Merge `assets/` (boot, banner CSS, salah harmony)
-3. Merge `vault/sealed/` (all files including dayn-ensure-s45.js)
+1. Replace root index.html
+2. Merge assets/ (boot T7, banner peace, shell, salah, authority css)
+3. Merge vault/sealed/
 4. Hard refresh
 
-Boot: `?v=20261031S7`
+Boot: ?v=20261031T7
