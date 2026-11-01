@@ -23,6 +23,8 @@
     try { localStorage.setItem(KEY, m); } catch (e) {}
     try { sessionStorage.setItem("clarity_shell_user_pick_v1", "1"); } catch (e2) {}
     apply();
+    try { document.dispatchEvent(new CustomEvent("clarity-shell-mode", { detail: { mode: m } })); } catch (e3) {}
+    if (m === "companion") { try { if (typeof w.ClarityLoadCompanion === "function") w.ClarityLoadCompanion(); } catch (e4) {} }
   }
 
   function injectCss() {
