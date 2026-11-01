@@ -93,7 +93,7 @@
     var ifr = $("banner-live");
     var img = $("banner-img");
     if (img && !img.getAttribute("src")) {
-      img.setAttribute("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg");
+      img.setAttribute("src", "/companion/assets/banner-still-haramain.jpg");
     }
     if (ifr && img) {
       /* if live never starts, keep still visible */
