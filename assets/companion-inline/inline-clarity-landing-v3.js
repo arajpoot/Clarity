@@ -425,7 +425,7 @@
     wrap.setAttribute("aria-label", "Daily landing — furnish your grave");
     wrap.setAttribute("data-landing-root", "1");
     wrap.innerHTML =
-      '<div class="dual-tiles" data-landing="paths" role="navigation" aria-label="Choose a path">' +
+      '<!-- ROOM_NAV_REPLACES_DUAL --><div class="dual-tiles dual-tiles--retired" data-landing="paths" hidden aria-hidden="true" role="navigation" aria-label="Choose a path">' +
         '<a class="dual-tile" href="#main-content" id="dual-path-companion">' +
           '<span class="dual-ico" aria-hidden="true">🏠</span><strong>Companion path</strong>' +
           '<small>Reminder · Reality · Reflection · Action — tools on this page</small></a>' +
