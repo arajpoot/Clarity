@@ -1,0 +1,57 @@
+{
+  "status": "verified",
+  "cycles": [
+    {
+      "name": "meme",
+      "ok": true,
+      "detail": {
+        "dom_miss": [],
+        "script_miss": [],
+        "scripts": 6
+      }
+    },
+    {
+      "name": "tajweed_whisper",
+      "ok": true,
+      "detail": {
+        "dom_miss": [],
+        "whisper_recorder": true,
+        "syntax": 0
+      }
+    },
+    {
+      "name": "notepad",
+      "ok": true,
+      "detail": {
+        "dom_miss": [],
+        "api": true,
+        "notesCreate_fn": true,
+        "syntax": 0
+      }
+    },
+    {
+      "name": "calligraphy",
+      "ok": true,
+      "detail": {
+        "dom_miss": [],
+        "api_miss": [],
+        "syntax": 0,
+        "linked": true
+      }
+    },
+    {
+      "name": "script_dedupe",
+      "ok": true,
+      "detail": {
+        "dups": {}
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ]
+}

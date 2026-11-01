@@ -1,0 +1,21 @@
+{
+  "status": "verified",
+  "html_size": 253989,
+  "script_tags_balanced": true,
+  "deferred_companion_scripts": 9,
+  "queue_files_exist": true,
+  "landing_markers": [
+    "paths",
+    "pulse",
+    "adhkar",
+    "amana-note",
+    "qada",
+    "qada",
+    "confidence"
+  ],
+  "js_syntax_inline_ok": true,
+  "repairs": [
+    "removed missing deferred assets/clarity-vault-fortify-boot-v1.js from QUEUE"
+  ],
+  "smoke": "local http 200 on /, landing, shell, sitemap, robots"
+}

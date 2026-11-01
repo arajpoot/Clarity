@@ -1,0 +1,39 @@
+{
+  "build": "companion-phase-landing-markers-20261025",
+  "campus": "untouched",
+  "landing_markers": {
+    "pulse": "[data-landing=\"pulse\"] on .cdl-hero",
+    "adhkar": "[data-landing=\"adhkar\"] on #cdl-adhkar",
+    "paths": "[data-landing=\"paths\"] on .dual-tiles",
+    "pill": "[data-landing=\"pill\"] on #clarity-reopen-bar"
+  },
+  "source_order": "landing-v3.js: pulse \u2192 adhkar \u2192 paths \u2192 oath",
+  "smoke": {
+    "seqOk": true,
+    "y_order": {
+      "pill": 249,
+      "pulse": 312,
+      "adhkar": 502,
+      "paths": 758
+    },
+    "errors": 0,
+    "overflowX": false,
+    "university": "https://clarity-dawah.fyi/campus/"
+  },
+  "restore": {
+    "landing_v3_sections": [
+      "pulse",
+      "adhkar",
+      "paths",
+      "oath",
+      "core protection",
+      "wudu",
+      "salah steps",
+      "send light",
+      "foot"
+    ],
+    "shell": "no longer hides tab panels / path overview on landing",
+    "tab_reminder": "display:block aria-hidden=false on first paint",
+    "door_rail": "kept visible on landing"
+  }
+}

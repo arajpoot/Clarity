@@ -1,0 +1,61 @@
+{
+  "status": "verified",
+  "focus": "banner \u00b7 calendar \u00b7 salah \u00b7 AV \u00b7 controls",
+  "cycles": [
+    {
+      "name": "banner_dom_ids",
+      "ok": true,
+      "detail": {
+        "missing_ids": [],
+        "n": 20
+      }
+    },
+    {
+      "name": "banner_scripts",
+      "ok": true,
+      "detail": {
+        "miss_link": [],
+        "miss_file": []
+      }
+    },
+    {
+      "name": "banner_css",
+      "ok": true,
+      "detail": {
+        "css_miss": [],
+        "controls_css": true
+      }
+    },
+    {
+      "name": "banner_syntax",
+      "ok": true,
+      "detail": {
+        "bad": []
+      }
+    },
+    {
+      "name": "repair_targets_match_dom",
+      "ok": true,
+      "detail": {
+        "miss_targets": []
+      }
+    },
+    {
+      "name": "banner_http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    },
+    {
+      "name": "banner_structure",
+      "ok": true,
+      "detail": {
+        "top_duo": true,
+        "banner": true,
+        "overlay": true,
+        "sides": true
+      }
+    }
+  ]
+}
