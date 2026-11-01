@@ -1,0 +1,36 @@
+
+/* Companion surface lock — never leave main empty */
+html[data-shell-mode="companion"] #main-content,
+html[data-shell-mode="companion"] .main-content {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 50vh !important;
+}
+html[data-shell-mode="companion"] .tab-panel.active,
+html[data-shell-mode="companion"] .tab-panel[aria-hidden="false"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 16rem !important;
+}
+html[data-shell-mode="companion"] .tab-panel.active .rrra-hub-hero,
+html[data-shell-mode="companion"] .tab-panel.active .rrra-hub-summary {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+}
+html[data-shell-mode="companion"] .tab-panel.active .card:not([data-gate-hidden="1"]),
+html[data-shell-mode="companion"] .tab-panel.active [id$="-card"]:not([data-gate-hidden="1"]) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+}
+/* Path board is chrome — not a replacement for tab body */
+#clarity-path-board, .path-furnish-strip {
+  flex: 0 0 auto;
+}

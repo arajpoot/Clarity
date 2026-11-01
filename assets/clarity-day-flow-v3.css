@@ -1,0 +1,61 @@
+
+/* Day landing flow isolation + qada cal + wudu + footer */
+#clarity-day-landing-room {
+  contain: layout style;
+  display: block !important;
+  visibility: visible !important;
+}
+html[data-shell-mode="companion"] #clarity-day-landing-room {
+  display: none !important;
+}
+#clarity-day-landing-room .cdl-wudu-card .cdl-steps {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+#clarity-day-landing-room .cdl-qada-cal {
+  margin-top: 0.75rem;
+}
+#clarity-day-landing-room .cdl-qada-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+#clarity-day-landing-room .cdl-qada-dow {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  opacity: 0.7;
+}
+#clarity-day-landing-room .cdl-qada-day {
+  min-height: 2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(201,168,76,0.25);
+  background: rgba(255,255,255,0.12);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: inherit;
+}
+#clarity-day-landing-room .cdl-qada-day.is-today {
+  border-color: rgba(201,168,76,0.7);
+}
+#clarity-day-landing-room .cdl-qada-day.is-marked {
+  background: rgba(13,79,60,0.35);
+  border-color: rgba(201,168,76,0.55);
+  font-weight: 800;
+}
+#clarity-day-landing-room .cdl-footer-plaque {
+  margin-top: 1.25rem;
+  padding: 0.85rem 0.5rem 1rem;
+  text-align: center;
+  font-size: 0.78rem;
+  opacity: 0.9;
+  border-top: 1px solid rgba(201,168,76,0.25);
+}
+#clarity-day-landing-room .cdl-footer-plaque a {
+  color: inherit;
+  text-decoration: underline;
+}

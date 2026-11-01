@@ -1,0 +1,80 @@
+
+/* NUKE legacy switch UI */
+#clarity-shell-switcher,
+.clarity-shell-plaque,
+[data-legacy-shell-bar],
+.day-landing-switch-bar,
+.one-plaque-bar,
+#shell-go-landing,
+#shell-go-companion,
+button.shell-pill,
+.shell-pill {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(0,0,0,0) !important;
+}
+
+/* Single bar */
+#clarity-day-switch-bar {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  width: auto !important;
+  max-width: min(20rem, 90vw);
+  margin: 0.5rem auto !important;
+  padding: 0.35rem !important;
+  position: relative !important;
+  left: auto !important;
+  pointer-events: auto !important;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(201,168,76,0.45);
+  background: rgba(13,79,60,0.12);
+  z-index: 80;
+  clip: auto !important;
+}
+#clarity-day-switch-bar > button {
+  display: block !important;
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: #0d4f3c;
+  color: #f7f1e6;
+}
+html[data-theme="dark"] #clarity-day-switch-bar > button,
+html[data-theme="night"] #clarity-day-switch-bar > button {
+  background: #c9a84c;
+  color: #0c241c;
+}
+
+html[data-shell-mode="companion"] #clarity-day-landing-room {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  pointer-events: none !important;
+}
+html[data-shell-mode="landing"] #clarity-day-landing-room {
+  display: block !important;
+  visibility: visible !important;
+  position: relative !important;
+  left: auto !important;
+}

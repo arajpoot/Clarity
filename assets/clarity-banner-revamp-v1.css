@@ -1,0 +1,182 @@
+/* clarity-banner-revamp-v1.css · 20261026BANNER2 */
+#clarity-top-duo .banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 18px 18px;
+  min-height: 220px;
+  isolation: isolate;
+  box-shadow: 0 12px 40px rgba(0,0,0,.28);
+}
+#clarity-top-duo .banner-media { position: absolute; inset: 0; z-index: 0; }
+#clarity-top-duo .banner-still-img,
+#clarity-top-duo .banner-live-iframe { width: 100%; height: 100%; object-fit: cover; border: 0; }
+#clarity-top-duo .banner-media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6,18,14,.55), rgba(6,18,14,.35) 40%, rgba(6,18,14,.72));
+  pointer-events: none;
+}
+#clarity-top-duo .banner-overlay {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(140px,1fr) minmax(220px,1.6fr) minmax(140px,1fr);
+  gap: .55rem;
+  padding: .65rem .75rem .85rem;
+}
+@media (max-width: 820px) {
+  #clarity-top-duo .banner-overlay {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "left right" "center center";
+  }
+  #clarity-top-duo .banner-side.left { grid-area: left; }
+  #clarity-top-duo .banner-side.right { grid-area: right; }
+  #clarity-top-duo .banner-center { grid-area: center; }
+}
+@media (max-width: 520px) {
+  #clarity-top-duo .banner-overlay {
+    grid-template-columns: 1fr;
+    grid-template-areas: "center" "left" "right";
+  }
+}
+#clarity-top-duo .hijri-cal-section,
+#clarity-top-duo .salah-times-section {
+  background: linear-gradient(155deg, rgba(12,28,22,.82), rgba(8,20,16,.72));
+  border: 1px solid rgba(212,180,90,.28);
+  border-radius: 14px;
+  padding: .55rem .6rem .65rem;
+  backdrop-filter: blur(10px);
+  color: #e8f0ea;
+  height: 100%;
+}
+/* Moon plaque on calendar */
+#clarity-banner-moon-plaque,
+#clarity-top-duo .banner-moon-plaque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .1rem;
+  margin: 0 auto .35rem;
+  padding: .35rem .5rem;
+  min-width: 4.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212,180,90,.4);
+  background: radial-gradient(circle at 30% 25%, rgba(240,226,176,.2), rgba(12,28,22,.9));
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
+#clarity-banner-moon-plaque .moon-emoji { font-size: 1.35rem; line-height: 1; }
+#clarity-banner-moon-plaque .moon-lab {
+  font-size: .62rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(245,230,184,.95);
+  font-weight: 700;
+}
+/* Allah seal on Salah */
+#clarity-top-duo .salah-times-section .allah-circular-seal {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin: 0 auto .35rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(212,180,90,.5);
+  background: radial-gradient(circle at 30% 30%, rgba(212,180,90,.28), rgba(12,28,22,.92));
+}
+#clarity-top-duo .seal-ar {
+  font-family: "Amiri","Scheherazade New","Noto Naskh Arabic",serif;
+  font-size: 1.05rem;
+  color: #f0e2b0;
+}
+#clarity-top-duo .cal-title,
+#clarity-top-duo .salah-title {
+  text-align: center;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(212,180,90,.95);
+  margin-bottom: .3rem;
+  font-weight: 700;
+}
+#clarity-top-duo .hijri-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  font-size: .62rem;
+  text-align: center;
+}
+#clarity-top-duo .hijri-cal-grid .hc-day.is-today {
+  background: rgba(212,180,90,.35);
+  color: #fff8e0;
+  font-weight: 700;
+  border-radius: 4px;
+}
+#clarity-top-duo .hijri-cal-meta,
+#clarity-top-duo .hijri-temps { font-size: .68rem; margin-top: .3rem; opacity: .9; }
+#clarity-top-duo .salah-times-list { list-style: none; margin: 0; padding: 0; font-size: .72rem; }
+#clarity-top-duo .salah-times-list li {
+  display: flex; justify-content: space-between; gap: .4rem;
+  padding: .18rem .2rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+#clarity-top-duo .salah-times-list li.is-next {
+  background: rgba(212,180,90,.18);
+  border-radius: 6px;
+  font-weight: 700;
+}
+#clarity-top-duo .hijri-local-time {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: .35rem;
+  color: #f5e6b8;
+}
+#clarity-top-duo .banner-center { text-align: center; color: #f2f7f3; }
+#clarity-top-duo .bismillah {
+  font-family: "Amiri","Scheherazade New","Noto Naskh Arabic",serif;
+  font-size: clamp(.95rem,2.5vw,1.25rem);
+  color: #f0e2b0;
+}
+#clarity-top-duo .banner-brand { margin: 0; font-size: clamp(1.15rem,3vw,1.55rem); font-weight: 700; }
+#clarity-top-duo .brand-name {
+  background: linear-gradient(90deg,#f5e6b8,#d4b45a,#f5e6b8);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+#clarity-top-duo .rabbana-box {
+  width: min(100%, 28rem);
+  margin: .25rem auto 0;
+  background: rgba(8,18,14,.55);
+  border: 1px solid rgba(212,180,90,.22);
+  border-radius: 12px;
+  padding: .4rem .55rem .5rem;
+}
+#clarity-top-duo .rabbana-arabic {
+  font-family: "Amiri","Scheherazade New","Noto Naskh Arabic",serif;
+  font-size: clamp(.95rem,2.4vw,1.2rem);
+  line-height: 1.7;
+  direction: rtl;
+  color: #fff8e8;
+}
+#clarity-top-duo .rabbana-english { font-size: .78rem; opacity: .9; }
+#clarity-top-duo .rabbana-ref { font-size: .68rem; color: rgba(212,180,90,.95); }
+#clarity-top-duo .stream-controls {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: .35rem; margin-top: .4rem; padding: .35rem .4rem;
+  background: rgba(6,16,12,.65);
+  border: 1px solid rgba(212,180,90,.2);
+  border-radius: 999px;
+}
+#clarity-top-duo .stream-controls select,
+#clarity-top-duo .stream-controls button {
+  font-size: .7rem; border-radius: 99px;
+  border: 1px solid rgba(212,180,90,.3);
+  background: rgba(20,40,32,.9); color: #e8f0ea;
+  padding: .28rem .55rem; cursor: pointer;
+}
+#clarity-top-duo .live-haramain-btn .live-dot {
+  width: .45rem; height: .45rem; border-radius: 50%; background: #c44;
+  display: inline-block;
+}
+#clarity-top-duo .live-haramain-btn.is-live .live-dot { background: #3dca7a; }
+#quran-audio-dup1 { display: none !important; }

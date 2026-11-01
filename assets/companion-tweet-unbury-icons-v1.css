@@ -1,0 +1,51 @@
+
+/* === Tweet desk unbury + section icon rhythm · 20261025 === */
+#callig-lab-card,
+#callig-lab-card .callig-lab-stage,
+#callig-lab-card #callig-pad,
+#callig-lab-card canvas {
+  position: relative !important;
+  z-index: 1 !important;
+  max-height: none !important;
+  overflow: hidden !important; /* contain canvas, do not spill onto next card */
+}
+#tweet-desk-card {
+  position: relative !important;
+  z-index: 5 !important;
+  clear: both !important;
+  margin-top: 1.25rem !important;
+  padding-top: 0.85rem !important;
+  isolation: isolate;
+  background: var(--card-bg, #faf7f0) !important;
+  overflow: visible !important;
+}
+#tweet-desk-card h2 {
+  position: relative;
+  z-index: 6;
+}
+/* Ensure calligraphy card ends cleanly */
+#callig-lab-card {
+  margin-bottom: 1rem !important;
+  padding-bottom: 0.75rem !important;
+  overflow: hidden !important;
+}
+/* Rich steps always readable when fold opens */
+#clarity-day-landing .cdl-fold-body:not([hidden]) {
+  display: block !important;
+  visibility: visible !important;
+  max-height: none !important;
+  opacity: 1 !important;
+}
+#clarity-day-landing .cdl-step-rich {
+  display: flex !important;
+  visibility: visible !important;
+}
+#clarity-day-landing .cdl-learn {
+  display: inline-block !important;
+}
+.nuros-icon.nuros-sec-ico {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-right: 0.4rem;
+  vertical-align: -0.15em;
+}

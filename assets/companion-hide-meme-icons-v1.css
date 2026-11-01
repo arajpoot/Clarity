@@ -1,0 +1,25 @@
+
+/* Hide site-wide meme launch chips/icons — studio remains in designated #meme-card */
+.clarity-to-meme-pill,
+.clarity-meme-push-pill,
+.clarity-meme-btn,
+button.meme-push,
+[data-meme-push],
+.card > .meme-chip-row:not(#meme-card .meme-chip-row),
+a[href="#meme-card"]:not(#meme-card a),
+.td-row a[href*="meme"]:not(#meme-card a) {
+  display: none !important;
+}
+/* Do not hide controls inside the meme studio itself */
+#meme-card .clarity-to-meme-pill,
+#meme-card .clarity-meme-push-pill,
+#meme-card .clarity-meme-btn,
+#meme-studio-root .clarity-meme-btn,
+#meme-card button,
+#meme-studio-root button {
+  display: unset;
+}
+#meme-card .clarity-to-meme-pill,
+#meme-card .clarity-meme-push-pill {
+  display: none !important; /* even inside card, no redundant push pills */
+}

@@ -1,0 +1,16 @@
+
+/* Day landing stability C5 — avoid paint thrash */
+#clarity-day-landing-room .day-room-inner {
+  content-visibility: auto;
+}
+#clarity-day-landing-room .cdl-compass-needle {
+  will-change: transform;
+  transition: transform 0.12s linear;
+}
+html[data-shell-mode="landing"] #clarity-day-landing-room {
+  display: block !important;
+  visibility: visible !important;
+}
+html[data-shell-mode="companion"] #clarity-day-landing-room {
+  display: none !important;
+}

@@ -1,0 +1,178 @@
+
+/* Dayn Ledger · Qard Hasan only · educational not a fatwa */
+#clarity-dayn-entry, .clarity-dayn-entry {
+  margin: 0.85rem 0 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(15,76,58,0.2);
+  background: linear-gradient(145deg, rgba(15,76,58,0.07), rgba(255,255,255,0.4));
+  box-sizing: border-box;
+}
+html[data-theme="dark"] #clarity-dayn-entry,
+html[data-theme="night"] #clarity-dayn-entry {
+  background: linear-gradient(145deg, rgba(12,36,28,0.95), rgba(8,24,20,0.9));
+  border-color: rgba(212,180,90,0.22);
+  color: #e7efe9;
+}
+#clarity-dayn-entry h2, #clarity-dayn-entry .dayn-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0d4f3c;
+}
+html[data-theme="dark"] #clarity-dayn-entry h2 { color: #d4b45a; }
+#clarity-dayn-entry .dayn-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(15,76,58,0.12);
+  border: 1px solid rgba(15,76,58,0.25);
+  color: #0d4f3c;
+  margin-bottom: 0.5rem;
+}
+html[data-theme="dark"] #clarity-dayn-entry .dayn-badge {
+  background: rgba(212,180,90,0.12);
+  border-color: rgba(212,180,90,0.3);
+  color: #e8c65a;
+}
+#clarity-dayn-entry .dayn-edu {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  margin: 0.4rem 0 0.65rem;
+  opacity: 0.92;
+}
+#clarity-dayn-entry .dayn-edu summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #0d4f3c;
+}
+html[data-theme="dark"] #clarity-dayn-entry .dayn-edu summary { color: #d4b45a; }
+#clarity-dayn-entry .dayn-edu ul { margin: 0.35rem 0 0; padding-left: 1.1rem; }
+#clarity-dayn-entry .dayn-form {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+#clarity-dayn-entry label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+#clarity-dayn-entry input, #clarity-dayn-entry select, #clarity-dayn-entry textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15,76,58,0.22);
+  background: rgba(255,255,255,0.75);
+  font: inherit;
+}
+html[data-theme="dark"] #clarity-dayn-entry input,
+html[data-theme="dark"] #clarity-dayn-entry select,
+html[data-theme="dark"] #clarity-dayn-entry textarea {
+  background: rgba(0,0,0,0.25);
+  border-color: rgba(212,180,90,0.25);
+  color: #e7efe9;
+}
+#clarity-dayn-entry .dayn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+#clarity-dayn-entry .dayn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+#clarity-dayn-entry button.dayn-btn {
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #0d4f3c;
+  color: #f7f1e6;
+}
+#clarity-dayn-entry button.dayn-btn.secondary {
+  background: transparent;
+  border: 1.5px solid rgba(15,76,58,0.3);
+  color: #0d4f3c;
+}
+html[data-theme="dark"] #clarity-dayn-entry button.dayn-btn.secondary {
+  border-color: rgba(212,180,90,0.35);
+  color: #e8c65a;
+}
+#clarity-dayn-entry .dayn-qh-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin: 0.35rem 0;
+}
+#clarity-dayn-entry .dayn-qh-check input { width: auto; margin-top: 0.15rem; }
+#clarity-dayn-entry .dayn-foot {
+  font-size: 0.68rem;
+  opacity: 0.75;
+  margin-top: 0.5rem;
+}
+#clarity-dayn-entry .dayn-today {
+  margin-top: 0.75rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(15,76,58,0.12);
+}
+#clarity-dayn-entry .dayn-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(15,76,58,0.08);
+}
+#clarity-dayn-entry .dayn-line button {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15,76,58,0.25);
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+}
+#clarity-dayn-entry .dayn-msg {
+  font-size: 0.78rem;
+  margin: 0.35rem 0;
+  color: #0d4f3c;
+}
+html[data-theme="dark"] #clarity-dayn-entry .dayn-msg { color: #e8c65a; }
+#clarity-dayn-entry .dayn-tutorial {
+  font-size: 0.78rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 12px;
+  background: rgba(212,180,90,0.12);
+  margin-bottom: 0.55rem;
+}
+#clarity-dayn-entry[hidden], .clarity-dayn-entry[hidden] { display: none !important; }
+
+/* Vault ledger panel */
+#clarity-dayn-vault-ledger {
+  margin: 0.75rem 0;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(15,76,58,0.18);
+  background: rgba(15,76,58,0.05);
+}
+#clarity-dayn-vault-ledger h3 { margin: 0 0 0.4rem; font-size: 0.95rem; }
+#clarity-dayn-vault-ledger .dayn-v-line {
+  font-size: 0.8rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(15,76,58,0.1);
+}

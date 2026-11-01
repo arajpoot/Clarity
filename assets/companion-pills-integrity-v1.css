@@ -1,0 +1,15 @@
+/* companion-pills-integrity-v1.css · 20261026PILLS */
+#clarity-door-rail .door-rail-btn.active,
+.door-rail-btn.active {
+  outline: 2px solid rgba(212, 180, 90, 0.55);
+  outline-offset: 2px;
+}
+.tab-panel.active,
+.tab-panel.is-active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.tab-panel:not(.active):not(.is-active) {
+  /* keep legacy hide unless another layer forces show */
+}
