@@ -1,24 +1,15 @@
-# Companion surface · /companion/
-
-Parallel to:
-- `/daily/` — Yawm
-- `/campus/` — University
-- `/vault/` — Campus locker (not Amānah)
-
-This folder is the **Companion integrity surface** for further upgrades.
+# Companion architecture · 20261031HOME1
 
 ```
-/companion/
-  index.html          ← Companion shell (or entry)
-  assets/             ← fortress boot + surface helpers
-  sealed/             ← Amānah sealed modules (isolated)
-  patches/            ← thin nav patches
-  tools/              ← deploy gate
-  ARCHITECTURE.md
+/companion/                 ← HOME (this surface)
+  index.html
+  assets/*-boot-v1.js
+  sealed/*                 ← Amānah only
   FOUNDATION_LOCK.md
   NAV_CONTRACT.md
+  YAWM_CAMPUS_BOUNDARY.md
+
+/daily/                    ← Yawm (untouched by this package)
+/campus/                   ← University (untouched)
+/                          ← site door (thin redirect)
 ```
-
-Boot loads **`/companion/sealed/`** only (not campus vault page).
-
-Version: 20261031COMP1

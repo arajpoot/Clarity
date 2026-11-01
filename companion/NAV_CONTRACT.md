@@ -1,10 +1,10 @@
-# Companion nav contract
+# Companion nav
 
-| Surface | URL |
-|---------|-----|
-| Companion hub | `/companion/` or site root linking here |
+| Door | URL |
+|------|-----|
+| Companion HOME | `/companion/` |
 | Yawm | `/daily/` |
 | Campus | `/campus/` |
-| Campus vault page | `/vault/` (not Amānah) |
+| Site door | `/` → Companion (redirect) |
 
-Amānah unlock UI mounts inside Companion shell only.
+In-shell tabs: `/companion/#reminder` · `#reality` · `#reflection` · `#action` · `#notes`
