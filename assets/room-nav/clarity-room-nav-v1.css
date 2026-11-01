@@ -1,0 +1,46 @@
+/* clarity-room-nav-v1 · three isolated rooms · 20261101 */
+.clarity-room-nav{
+  position:sticky;top:0;z-index:200;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.35rem;
+  padding:0.45rem 0.65rem;padding-top:max(0.45rem, env(safe-area-inset-top));
+  background:linear-gradient(180deg,rgba(12,28,22,0.96),rgba(12,28,22,0.88));
+  border-bottom:1px solid rgba(212,180,90,0.28);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+html[data-theme=light] .clarity-room-nav,
+html:not([data-theme=dark]):not([data-theme=night]) .clarity-room-nav{
+  background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,248,0.92));
+  border-bottom-color:rgba(15,76,58,0.18);
+}
+.clarity-room-nav a{
+  display:inline-flex;align-items:center;gap:0.35rem;
+  min-height:40px;padding:0.35rem 0.9rem;border-radius:999px;
+  font-size:0.78rem;font-weight:800;letter-spacing:0.02em;
+  text-decoration:none;color:inherit;
+  border:1px solid rgba(212,180,90,0.28);
+  background:rgba(15,76,58,0.12);
+  transition:background .15s,border-color .15s,transform .12s;
+}
+html[data-theme=light] .clarity-room-nav a,
+html:not([data-theme=dark]):not([data-theme=night]) .clarity-room-nav a{
+  border-color:rgba(15,76,58,0.2);background:rgba(15,76,58,0.06);
+}
+.clarity-room-nav a:hover{border-color:rgba(212,180,90,0.55);transform:translateY(-1px)}
+.clarity-room-nav a[aria-current="page"],
+.clarity-room-nav a.is-here{
+  background:#1e7d5e;color:#fff;border-color:transparent;
+}
+.clarity-room-nav .crn-ico{font-size:1rem;line-height:1}
+.clarity-room-nav .crn-label{line-height:1.1}
+.clarity-room-nav .crn-sub{
+  display:block;font-size:0.62rem;font-weight:600;opacity:0.85;letter-spacing:0;
+}
+.clarity-room-nav .crn-seal{
+  width:100%;text-align:center;margin:0.15rem 0 0;
+  font-size:0.65rem;opacity:0.75;
+}
+@media(min-width:520px){
+  .clarity-room-nav{gap:0.5rem;padding:0.5rem 1rem}
+  .clarity-room-nav a{min-height:44px;padding:0.4rem 1.15rem;font-size:0.82rem}
+}
