@@ -1,8 +1,8 @@
-# Boundary
+# Boundary · 20261031ARCH1
 
-| Surface | Package may edit? |
-|---------|-------------------|
-| `/companion/` | YES |
-| `/daily/` | NO |
-| `/campus/` | NO |
-| Root `index.html` | ONLY thin door/redirect |
+| Path | Companion package |
+|------|-------------------|
+| `/companion/**` | YES |
+| `/daily/**` | NO |
+| `/campus/**` | NO |
+| `/assets/companion-inline/**` | READ on server; do not delete |

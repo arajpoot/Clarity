@@ -1,5 +1,14 @@
 {
-  "surface": "/companion/",
+  "contracts": [
+    "ARCHITECTURE.md",
+    "COMPANION_CONTRACT.md",
+    "DEPLOY.md",
+    "FOUNDATION_LOCK.md",
+    "MODULES.md",
+    "NAV_CONTRACT.md",
+    "REVIEW_YAWM_CAMPUS.md",
+    "YAWM_CAMPUS_BOUNDARY.md"
+  ],
   "sealed": [
     "dayn-enrich-v3.js",
     "dayn-ensure-s45.js",
@@ -15,10 +24,33 @@
     "passphrase-tutorial-v1.js",
     "runtime-gate-v1.js"
   ],
+  "modules": [
+    "clarity-notes-recovery-v1.js",
+    "inline-bundle-meme-v1.js",
+    "inline-clarity-meme-canvas-clean-v1.js",
+    "inline-clarity-meme-online-bg-v1.js",
+    "inline-clarity-tj-meme-tweet-revamp-js.js",
+    "inline-clarity_callig_pad_boot.js",
+    "inline-clarity_lmr_read_sync.js",
+    "inline-clarity_meme_push_cards.js",
+    "inline-clarity_meme_unlock_v2.js",
+    "inline-clarity_vault_note_registry.js",
+    "inline-nx-tajweed-deep-studio-js-v1.js",
+    "nx-tj-lmr-js-v1.js"
+  ],
+  "redirects": [
+    "commands",
+    "fiqh-tools",
+    "grave",
+    "lectures",
+    "meme",
+    "notes",
+    "seerah",
+    "tafseer",
+    "tajweed"
+  ],
   "assets": [
     "clarity-companion-surface-boot-v1.js",
     "clarity-vault-fortify-boot-v1.js"
-  ],
-  "boot_base": "/companion/sealed/",
-  "index_bytes": 254980
+  ]
 }

@@ -1,19 +1,27 @@
-# Companion FOUNDATION LOCK · 20261031HOME1
+# Companion FOUNDATION LOCK · 20261031ARCH1
 
-Same spirit as `/daily/FOUNDATION_LOCK.md` and Campus isolation.
+Modeled on `/daily/FOUNDATION_LOCK.md` isolation.
 
-## Owns
-- Companion shell UI (tabs Reminder → Notes)
-- Amānah sealed stack under `/companion/sealed/`
-- Dayn ledger key namespace `clarity_dayn_ledger_v1`
-- Fortress boot under `/companion/assets/`
+## This surface owns
+- URL home: **`/companion/`**
+- Shell UI (Reminder → Notes tabs)
+- Amānah sealed stack: **`/companion/sealed/`**
+- Module pack: **`/companion/modules/`** (meme, tajweed, calligraphy, notes essentials)
+- Fortress boot: **`/companion/assets/`**
+- SPA redirects: **`/companion/redirects/`**
+
+## Storage namespaces (Companion / Amānah only)
+- `clarity_dayn_ledger_v1` and related Dayn keys
+- Vault digest session keys used by sealed digest modules
 
 ## Must not
-- Import Campus `/vault/` page internals as Amānah
-- Let Yawm `/daily/` or Campus scripts write Amānah keys
-- Load sealed modules from outside `/companion/sealed/` for Companion features
+- Write Amānah keys from `/daily/` or `/campus/` scripts
+- Load Companion sealed modules from Campus `/vault/` page
+- Treat Campus `/vault/` as Amānah Vault
 
-## Home URL
-**https://clarity-dawah.fyi/companion/**
+## Ship gate
+- Boot loads only `/companion/sealed/`
+- Index boot script is `/companion/assets/clarity-vault-fortify-boot-v1.js`
+- Yawm and Campus trees are not modified by Companion packages
 
 Educational only — not a fatwa · not legal advice.
