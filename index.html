@@ -1,65 +1,4 @@
 <!DOCTYPE html><html data-theme="light" lang="en"><head>
-<script id="clarity-daily-first-early-v3">
-/*! Daily-first EARLY v3.1 · landing=/daily/ · allow ?enter=companion from Yawm */
-(function () {
-  try {
-    var p = location.pathname || "/";
-    if (/^\/daily\/?$/.test(p)) return;
-    if (p !== "/" && p !== "") return;
-    var q = location.search || "";
-    if (/enter=companion|dest=companion/i.test(q)) {
-      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
-      localStorage.setItem("clarity_shell_mode_v1", "companion");
-      return;
-    }
-    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
-    if (h && /^(reminder|reality|reflection|action|notes|vault)$/.test(h)) {
-      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-      return;
-    }
-    var dest = sessionStorage.getItem("clarity_landing_dest_v1");
-    if (dest === "companion") return;
-    sessionStorage.setItem("clarity_landing_dest_v1", "daily");
-    location.replace("/daily/");
-  } catch (e) {}
-})();
-
-</script>
-
-<script id="clarity-companion-mode-lock-b2">
-/*! Phase B2 · force companion mode on enter=companion / dest / hash tabs before shell-v3 */
-(function(){
-  try {
-    var q = location.search || "";
-    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
-    var dest = "";
-    try { dest = sessionStorage.getItem("clarity_landing_dest_v1") || ""; } catch(e) {}
-    var want =
-      /enter=companion|dest=companion/i.test(q) ||
-      dest === "companion" ||
-      /^(reminder|reality|reflection|action|notes|vault)$/.test(h);
-    if (!want && location.pathname === "/" && dest === "daily") return;
-    if (!want) {
-      /* if already companion in storage, keep */
-      try {
-        if (localStorage.getItem("clarity_shell_mode_v1") === "companion") want = true;
-      } catch(e2) {}
-    }
-    if (!want) return;
-    document.documentElement.setAttribute("data-shell-mode", "companion");
-    try {
-      localStorage.setItem("clarity_shell_mode_v1", "companion");
-      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
-    } catch(e3) {}
-  } catch(e) {}
-})();
-</script>
-
-
 <meta name="companion-phase-build" content="0-1-boot-20261025">
 
 
@@ -218,35 +157,6 @@
 <style id="furnish-critical">
 #clarity-grave-path-strip,#grave-path-card{display:block;margin:.6rem auto;max-width:42rem;padding:.8rem 1rem;border-radius:14px;border:1px solid rgba(212,180,90,.35);background:rgba(21,32,25,.92);color:#e7efe9}
 #clarity-grave-path-strip h2,#grave-path-card h2{color:#f3e6c0;font-size:1.15rem;margin:.2rem 0}
-
-/* Cycle C polish — first paint even before .active class */
-html[data-shell-mode="companion"] #main-content .tab-panel.shell-landing-hide {
-  pointer-events: auto !important;
-}
-html[data-shell-mode="companion"] #tab-reminder {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-html[data-shell-mode="companion"] #tab-reminder[hidden] {
-  /* SA will unhide; override attribute hide */
-  display: block !important;
-}
-html[data-shell-mode="companion"] #tab-reality[hidden],
-html[data-shell-mode="companion"] #tab-reflection[hidden],
-html[data-shell-mode="companion"] #tab-action[hidden],
-html[data-shell-mode="companion"] #tab-notes[hidden] {
-  display: none !important;
-}
-html[data-shell-mode="companion"] #clarity-door-rail,
-html[data-shell-mode="companion"] .door-rail-bottom {
-  pointer-events: auto !important;
-  z-index: 20 !important;
-}
-html[data-shell-mode="companion"] #clarity-door-rail button {
-  pointer-events: auto !important;
-}
 </style>
 <link rel="stylesheet" href="assets/css/nuros-icons-v1.css">
 <link rel="stylesheet" href="assets/css/companion-tweet-unbury-icons-v1.css">
@@ -288,7 +198,6 @@ html[data-shell-mode="companion"] #clarity-door-rail button {
 #clarity-day-landing{display:block!important;position:relative;z-index:2}
 </style>
 <script id="daily-isolate-js">
-/*! daily-isolate neutralized SA1 — do not force in-page day-landing in companion */
 (function(){
   function bridge(){
     var bar=document.getElementById("clarity-reopen-bar");
@@ -299,77 +208,15 @@ html[data-shell-mode="companion"] #clarity-door-rail button {
       a.style.cssText="margin-left:.5rem;color:#f3e6c0;font-weight:700";
       bar.appendChild(a);
     }
-    /* never force #clarity-day-landing display in companion mode */
     var land=document.getElementById("clarity-day-landing");
-    var mode=(document.documentElement.getAttribute("data-shell-mode")||"");
-    if(land && mode==="companion"){
-      land.style.setProperty("display","none","important");
-    }
+    if(land) land.style.display="block";
   }
   document.addEventListener("DOMContentLoaded", bridge);
   setTimeout(bridge, 600);
+  setTimeout(bridge, 1600);
 })();
 </script>
-
-<style id="clarity-companion-surface-css-b1">
-/* Phase B1 · Companion surface lock — outranks shell-v3 hide */
-html[data-shell-mode="companion"] #main-content,
-html[data-shell-mode="companion"] #main-content.main-content {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  z-index: 2 !important;
-}
-html[data-shell-mode="companion"] #main-content .shell-landing-hide {
-  /* shell marks panels hidden — SA will show active; keep pointer events */
-  pointer-events: auto !important;
-}
-html[data-shell-mode="companion"] #main-content .tab-panel.active,
-html[data-shell-mode="companion"] #main-content .tab-panel.is-active,
-html[data-shell-mode="companion"] #tab-reminder:not([hidden]) {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-html[data-shell-mode="companion"] #clarity-day-landing {
-  display: none !important;
-  pointer-events: none !important;
-}
-html[data-shell-mode="companion"] #landing-gate-screen,
-html[data-shell-mode="companion"] .gate-overlay,
-html[data-shell-mode="companion"] .clarity-welcome-overlay {
-  display: none !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-  z-index: -1 !important;
-}
-html[data-shell-mode="companion"] body {
-  pointer-events: auto !important;
-  overflow: auto !important;
-}
-</style>
-
-
-<style id="clarity-banner-integrity-css">
-#clarity-top-duo .banner-overlay { pointer-events: auto; }
-#clarity-top-duo #banner-media { pointer-events: none; }
-#clarity-top-duo .hijri-cal-grid { min-height: 2.2rem; font-weight: 700; color: #f3e6c0; }
-#clarity-top-duo .salah-times-list { list-style: none; margin: 0; padding: 0; }
-#clarity-top-duo .salah-times-list li {
-  display: flex; justify-content: space-between; gap: .5rem;
-  padding: .15rem 0; font-size: .82rem;
-}
-#clarity-top-duo .salah-time { font-variant-numeric: tabular-nums; color: #e8d48a; }
-#clarity-top-duo .hijri-temps { font-size: .75rem; opacity: .95; }
-</style>
-
-<link rel="stylesheet" href="/assets/clarity-banner-authority-s2.css?v=20261031HK1"/>
-</head><body data-active-tab="reminder" data-section-fortress="1">
+</head><body data-active-tab="journey" data-section-fortress="1">
 
 
 
@@ -589,16 +436,16 @@ html[data-shell-mode="companion"] body {
     <p>Educational Islamic companion (requires JavaScript for the full app). Indexed section paths:</p>
     <ul>
       <li><a href="/journey">Journey</a></li>
-      <li><a href="/campus/journey/">Seerah &amp; Prophetic lessons</a></li>
-      <li><a href="/campus/journey/">Grave preparation</a></li>
+      <li><a href="/seerah">Seerah &amp; Prophetic lessons</a></li>
+      <li><a href="/grave">Grave preparation</a></li>
       <li><a href="/janazah-prayer">Janazah prayer outline</a></li>
-      <li><a href="/campus/library/">Tafsir</a></li>
-      <li><a href="/campus/lab/">Tajweed</a></li>
-      <li><a href="/campus/library/">Lectures</a></li>
-      <li><a href="/campus/library/">Fiqh tools (family tree, farāʾiḍ, wasiyyah)</a></li>
-      <li><a href="/?enter=companion#reminder">Meme Studio</a></li>
-      <li><a href="/?enter=companion#notes">Notes &amp; Sharia IQ</a></li>
-      <li><a href="/campus/library/">Commands</a></li>
+      <li><a href="/tafseer">Tafsir</a></li>
+      <li><a href="/tajweed">Tajweed</a></li>
+      <li><a href="/lectures">Lectures</a></li>
+      <li><a href="/fiqh-tools">Fiqh tools (family tree, farāʾiḍ, wasiyyah)</a></li>
+      <li><a href="/meme">Meme Studio</a></li>
+      <li><a href="/notes">Notes &amp; Sharia IQ</a></li>
+      <li><a href="/commands">Commands</a></li>
       <li><a href="/about">About</a></li>
     </ul>
     <p><strong>Educational only — not a fatwa.</strong></p>
@@ -2250,8 +2097,25 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </div><!-- /tab-notes -->
 </main></div>
 
+ <!-- lazy:assets/clarity-core-block-8.js -->
+
 
 <link id="nx-tajweed-deep-studio-v1" rel="stylesheet" media="print" onload="this.media='all'" href="assets/css/nx-tajweed-deep-studio-v1.css" />
+<!-- lazy:assets/nx-tajweed-deep-studio-js-v1.js -->
+
+
+
+
+<!-- lazy:assets/nx-tj-lmr-js-v1.js -->
+
+
+
+
+<!-- lazy:assets/nuros-bridge-enrich-js.js -->
+
+
+
+
 
 
 
@@ -2270,6 +2134,22 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 
 
+<!-- lazy:assets/clarity-full-surah-recitation-v1.js -->
+
+
+
+
+
+
+
+
+
+<!-- lazy:assets/clarity-amana-vault-gate-js-v1.js -->
+
+
+
+
+
 
 
 <link id="clarity-rrra5-core-v1" rel="stylesheet" media="print" onload="this.media='all'" href="assets/css/clarity-rrra5-core-v1.css" />
@@ -2278,6 +2158,27 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
 
 <link id="clarity-day-shariah-lock-v1" rel="stylesheet" media="print" onload="this.media='all'" href="assets/css/clarity-day-shariah-lock-v1.css" />
+
+
+
+
+
+
+
+<!-- lazy:assets/clarity-track-os-v3.js -->
+<!-- lazy:assets/clarity-seerah-revamp-js.js -->
+<!-- lazy:assets/nuros-amana-vault-js.js -->
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2538,40 +2439,13 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 </script>
 <script src="assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261026s" defer></script>
 <script src="assets/companion-inline/inline-bundle-nuros-v1.js?v=20261026i" defer></script>
-
-<script id="clarity-shell-neutralizer-b3">
-/*! Phase B3 · when companion dest, shell setMode(landing) becomes companion */
-(function(w){
-  var install = function(){
-    try {
-      if (!w.ClarityShell || !w.ClarityShell.setMode || w.ClarityShell.setMode.__b3) return;
-      var dest = "";
-      try { dest = sessionStorage.getItem("clarity_landing_dest_v1") || ""; } catch(e) {}
-      var mode = document.documentElement.getAttribute("data-shell-mode") || "";
-      if (dest !== "companion" && mode !== "companion") return;
-      var orig = w.ClarityShell.setMode.bind(w.ClarityShell);
-      w.ClarityShell.setMode = function(m){
-        if (m === "landing") m = "companion";
-        return orig(m);
-      };
-      w.ClarityShell.setMode.__b3 = true;
-      try { w.ClarityShell.setMode("companion"); } catch(e2) {}
-    } catch(e3) {}
-  };
-  install();
-  document.addEventListener("DOMContentLoaded", install);
-  [0, 50, 100, 300, 800, 2000].forEach(function(ms){ setTimeout(install, ms); });
-})(window);
-</script>
-
 <script src="assets/companion-inline/inline-clarity-shell-v3.js?v=20261026p" defer></script>
 <script src="assets/companion-inline/inline-clarity-landing-v3.js?v=20261026s" defer></script>
 <script id="clarity-madinah-autoplay-v1" src="assets/companion-inline/inline-clarity_madinah_ap.js" defer></script>
 <script id="clarity-banner-repair-v1" src="assets/companion-inline/inline-clarity_banner_repair.js" defer></script>
 <script src="assets/companion-inline/inline-clarity_banner_moon_v1.js?v=20261025h" defer></script>
 <script id="clarity-surah-continue-v1" src="assets/companion-inline/inline-clarity_surah_cont.js" defer></script>
-<!-- S2 neutralized fighter: <!-- T2 removed banner-nuclear script -->
--->
+<!-- REJ nuclear out -->
 <script src="assets/companion-inline/inline-clarity_path_plaques_v1.js?v=20261025m" defer></script>
 <script src="assets/clarity-path-progress-v1.js" defer></script>
 <script src="assets/clarity-grave-path-curriculum-js.js" defer></script>
@@ -2609,622 +2483,11 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="clarity-vault-note-registry-js" src="assets/companion-inline/inline-clarity_vault_note_registry.js?v=20261026n" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script src="assets/nuros-icons-apply-v1.js"></script>
-<script src="assets/companion-inline/inline-bundle-meme-v1.js?v=20261026i" defer></script>
-<script src="assets/companion-inline/inline-bundle-security-v1.js?v=20261026i" defer></script>
+<script src="assets/companion-inline/inline-bundle-meme-v1.js?v=20261026i"></script>
+<script src="assets/companion-inline/inline-bundle-security-v1.js?v=20261026i"></script>
 <script src="assets/companion-inline/inline-clarity-qada-tracker-v1.js?v=20261026p"></script>
 <script src="assets/companion-inline/inline-clarity-samina-verse-v1.js?v=20261026p"></script>
 <script src="assets/companion-inline/inline-clarity-final-surface-v1.js?v=20261026p"></script>
-
-<script defer src="assets/clarity-vault-legacy-quarantine-v1.js?v=20261031FORT3"></script>
-<link rel="stylesheet" href="assets/css/nuros-rail-glow-v18.css" />
-<link rel="stylesheet" href="assets/css/clarity-pedigree-plaque-css-v1.css" />
-
-<!-- Clarity landing unfreeze — inline (no separate file required) -->
-<!-- Dayn containment: keep Amānah Dayn off Reality / companion tabs -->
-<script id="clarity-dayn-contain-v1">
-/*! Dayn containment · strips Amānah Dayn from Reality / non-landing companion tabs
- * Educational only — not a fatwa · not legal/financial advice
- */
-(function (w) {
-  "use strict";
-  if (w.__CLARITY_DAYN_CONTAIN_V1__) return;
-  w.__CLARITY_DAYN_CONTAIN_V1__ = true;
-
-  function isAllowedParent(el) {
-    if (!el) return false;
-    if (el.closest && el.closest("#clarity-day-landing, #clarity-landing-slot-dayn, #clarity-dayn-vault-ledger, #clarity-vault-slot-dayn, .amana-vault-interior, #amana-vault, [data-vault-root]")) return true;
-    return false;
-  }
-
-  function scrub() {
-    var nodes = document.querySelectorAll(
-      "#clarity-dayn-entry, .clarity-dayn-entry, [data-dayn-slot], section.clarity-dayn-entry"
-    );
-    nodes.forEach(function (el) {
-      if (isAllowedParent(el)) return;
-      /* duplicate form freeze: remove from Reality / main tabs */
-      try {
-        el.remove();
-      } catch (e) {
-        el.style.setProperty("display", "none", "important");
-        el.setAttribute("hidden", "");
-      }
-    });
-    /* orphan duplicate IDs outside landing */
-    var ids = ["dayn-amount", "dayn-save", "dayn-dir", "dayn-who", "dayn-qh"];
-    ids.forEach(function (id) {
-      var all = document.querySelectorAll("#" + id);
-      if (all.length <= 1) return;
-      for (var i = 0; i < all.length; i++) {
-        if (!isAllowedParent(all[i])) {
-          var root = all[i].closest("section, .card, .clarity-dayn-entry") || all[i];
-          try { root.remove(); } catch (e2) {}
-        }
-      }
-    });
-  }
-
-  function boot() {
-    try { scrub(); } catch (e) {}
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  w.addEventListener("load", function () {
-    boot();
-    [200, 800, 2000, 4000, 8000].forEach(function (ms) { setTimeout(boot, ms); });
-  });
-  try {
-    new MutationObserver(function () { boot(); }).observe(document.documentElement, {
-      childList: true,
-      subtree: true
-    });
-  } catch (e) {}
-})(typeof window !== "undefined" ? window : this);
-
-</script>
-<!-- Clarity freeze-breaker v1 · 10-pass recovery -->
-<!-- Daily-first LATE v3: CTAs → /daily/ -->
-<script id="clarity-daily-first-landing-v3">
-/*! Daily-first LATE v3 · CTAs + shell intercept · early head owns first paint
- * Landing = /daily/ — not Reminder, not Reality.
- */
-(function (w) {
-  "use strict";
-  if (w.__CLARITY_DAILY_FIRST_LANDING_V3__) return;
-  w.__CLARITY_DAILY_FIRST_LANDING_V3__ = true;
-
-  var DAILY = "/daily/";
-
-  function onDaily() {
-    try {
-      return /^\/daily\/?/.test(w.location.pathname || "");
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function goDaily() {
-    if (onDaily()) return;
-    try {
-      sessionStorage.setItem("clarity_landing_dest_v1", "daily");
-      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-    } catch (e) {}
-    w.location.href = DAILY;
-  }
-
-  function markCompanion() {
-    try {
-      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
-      localStorage.setItem("clarity_shell_mode_v1", "companion");
-    } catch (e) {}
-  }
-
-  function wire() {
-    document.querySelectorAll("button, a, [data-crb]").forEach(function (el) {
-      if (el.__dl3) return;
-      var t = (
-        (el.textContent || "") +
-        " " +
-        (el.getAttribute("aria-label") || "") +
-        " " +
-        (el.getAttribute("data-crb") || "")
-      ).toLowerCase();
-      if (
-        el.getAttribute("data-crb") === "open" ||
-        /open daily routine|open daily|day landing|daily routines|daily page/.test(t)
-      ) {
-        el.__dl3 = true;
-        el.addEventListener(
-          "click",
-          function (ev) {
-            try {
-              ev.preventDefault();
-            } catch (e) {}
-            goDaily();
-          },
-          true
-        );
-        if (el.tagName === "A") el.setAttribute("href", DAILY);
-      }
-      if (
-        el.getAttribute("data-crb") === "companion" ||
-        el.getAttribute("data-crb") === "hide" ||
-        /companion path|hide for now/.test(t)
-      ) {
-        el.__dl3 = true;
-        el.addEventListener("click", markCompanion, true);
-      }
-    });
-
-    try {
-      if (w.ClarityShell && w.ClarityShell.setMode && !w.ClarityShell.setMode.__dl3) {
-        var orig = w.ClarityShell.setMode.bind(w.ClarityShell);
-        w.ClarityShell.setMode = function (m) {
-          if (m === "landing") {
-            goDaily();
-            return;
-          }
-          markCompanion();
-          return orig(m);
-        };
-        w.ClarityShell.setMode.__dl3 = true;
-      }
-    } catch (e2) {}
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wire);
-  else wire();
-  w.addEventListener("load", function () {
-    wire();
-    setTimeout(wire, 500);
-    setTimeout(wire, 2000);
-  });
-})(typeof window !== "undefined" ? window : this);
-
-</script>
-<script defer src="/assets/clarity-site-path-wire-v1.js?v=20261031W1"></script>
-<script id="clarity-surface-authority-v1">
-/*! Clarity Surface Authority v1B · 20261031SA1B · Phase B hardened */
-(function (w) {
-  "use strict";
-  if (w.__CLARITY_SURFACE_AUTHORITY_V1B__) return;
-  w.__CLARITY_SURFACE_AUTHORITY_V1B__ = true;
-  w.__CLARITY_SURFACE_AUTHORITY_V1__ = true;
-
-  var TABS = ["reminder", "reality", "reflection", "action", "notes"];
-  var DAILY = "/daily/";
-  var pulses = 0;
-
-  function forceCompanion() {
-    try {
-      document.documentElement.setAttribute("data-shell-mode", "companion");
-      if (document.body) document.body.setAttribute("data-shell-mode", "companion");
-      localStorage.setItem("clarity_shell_mode_v1", "companion");
-      sessionStorage.setItem("clarity_landing_dest_v1", "companion");
-      sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-      sessionStorage.setItem("clarity_daily_first_skip_v1", "1");
-    } catch (e) {}
-    try {
-      if (w.ClarityShell && w.ClarityShell.setMode) {
-        if (!w.ClarityShell.setMode.__sa1b) {
-          var orig = w.ClarityShell.setMode.bind(w.ClarityShell);
-          w.ClarityShell.setMode = function (m) {
-            if (m === "landing") {
-              try { sessionStorage.setItem("clarity_landing_dest_v1", "daily"); } catch (e2) {}
-              w.location.href = DAILY;
-              return;
-            }
-            return orig("companion");
-          };
-          w.ClarityShell.setMode.__sa1b = true;
-        }
-        try { w.ClarityShell.setMode("companion"); } catch (e3) {}
-      }
-    } catch (e4) {}
-  }
-
-  function unlock() {
-    try {
-      document.documentElement.style.pointerEvents = "auto";
-      document.body.style.pointerEvents = "auto";
-      document.documentElement.style.overflow = "auto";
-      document.body.style.overflow = "auto";
-    } catch (e) {}
-  }
-
-  function showMain() {
-    var main = document.getElementById("main-content");
-    if (!main) return;
-    main.hidden = false;
-    main.removeAttribute("aria-hidden");
-    main.classList.remove("shell-landing-hide", "gate-hidden", "hidden");
-    main.style.cssText = (main.style.cssText || "") + ";display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;z-index:2!important;height:auto!important;max-height:none!important;overflow:visible!important;";
-  }
-
-  function openTab(name) {
-    name = String(name || "reminder").toLowerCase().replace(/^#/, "");
-    if (name === "vault" || name === "amana") name = "notes";
-    if (name === "journey") name = "reminder";
-    if (TABS.indexOf(name) < 0) name = "reminder";
-    forceCompanion();
-    unlock();
-    showMain();
-    try { document.body.setAttribute("data-active-tab", name); } catch (e) {}
-    TABS.forEach(function (t) {
-      var p = document.getElementById("tab-" + t);
-      if (!p) return;
-      var on = t === name;
-      p.classList.toggle("active", on);
-      p.classList.toggle("is-active", on);
-      p.hidden = !on;
-      p.setAttribute("aria-hidden", on ? "false" : "true");
-      p.classList.remove("shell-landing-hide");
-      if (on) {
-        p.style.cssText = "display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;";
-      } else {
-        p.style.cssText = "display:none!important;";
-      }
-    });
-    document.querySelectorAll("#main-content a, #main-content button, #main-content [onclick]").forEach(function (n) {
-      try { n.style.pointerEvents = "auto"; } catch (e) {}
-    });
-    document.querySelectorAll("[data-rail-tab], .door-rail-btn").forEach(function (btn) {
-      var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
-      if (t === "vault" || t === "amana") t = "notes";
-      btn.classList.toggle("active", t === name);
-    });
-    try {
-      if ((w.location.hash || "").replace(/^#/, "") !== name) {
-        history.replaceState(null, "", w.location.pathname + w.location.search + "#" + name);
-      }
-    } catch (e5) {}
-    return name;
-  }
-
-  function desired() {
-    try {
-      var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
-      if (h === "vault" || h === "amana") return "notes";
-      if (TABS.indexOf(h) >= 0) return h;
-    } catch (e) {}
-    return "reminder";
-  }
-
-  function killGhosts() {
-    ["landing-gate-screen", "clarity-welcome"].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      el.style.cssText = "display:none!important;pointer-events:none!important;opacity:0!important;z-index:-1!important;";
-      try { el.remove(); } catch (e) {}
-    });
-    var land = document.getElementById("clarity-day-landing");
-    if (land) land.style.cssText = "display:none!important;pointer-events:none!important;";
-    try {
-      document.querySelectorAll("#clarity-dayn-entry, .clarity-dayn-entry").forEach(function (el) {
-        if (el.closest && el.closest("#tab-notes, #amana-vault, [data-vault-root]")) return;
-        try { el.remove(); } catch (e) { el.style.display = "none"; }
-      });
-    } catch (e2) {}
-  }
-
-  function run() {
-    forceCompanion();
-    unlock();
-    killGhosts();
-    showMain();
-    openTab(desired());
-    w.clarityOpenSectionDoor = openTab;
-    w.resetToGateView = function () { openTab("reminder"); };
-    w.ClaritySurface = { openTab: openTab, version: "SA1B" };
-  }
-
-  function boot() {
-    run();
-    var start = Date.now();
-    function pulse() {
-      pulses++;
-      run();
-      if (Date.now() - start < 8000) {
-        if (w.requestAnimationFrame) w.requestAnimationFrame(function () { setTimeout(pulse, 50); });
-        else setTimeout(pulse, 100);
-      }
-    }
-    pulse();
-    [100, 400, 1000, 2500, 5000].forEach(function (ms) { setTimeout(run, ms); });
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  w.addEventListener("load", boot);
-  w.addEventListener("hashchange", function () { openTab(desired()); });
-})(typeof window !== "undefined" ? window : this);
-</script>
-
-<script id="clarity-companion-cycle-c-heal">
-/*! Cycle C · final-surface + shell heal handshake */
-(function(w){
-  function heal(){
-    try {
-      if (w.ClarityFinalSurface && w.ClarityFinalSurface.assert) {
-        var t = (document.body && document.body.getAttribute("data-active-tab")) || "reminder";
-        w.ClarityFinalSurface.assert(t === "journey" ? "reminder" : t);
-      }
-    } catch(e) {}
-    try {
-      if (w.ClaritySurface && w.ClaritySurface.openTab) {
-        var h = (w.location.hash||"").replace(/^#/,"") || "reminder";
-        if (h === "journey") h = "reminder";
-        w.ClaritySurface.openTab(h);
-      }
-    } catch(e2) {}
-    try {
-      document.querySelectorAll("#main-content .shell-landing-hide").forEach(function(el){
-        el.classList.remove("shell-landing-hide");
-      });
-    } catch(e3) {}
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", heal);
-  else heal();
-  w.addEventListener("load", function(){
-    heal();
-    setTimeout(heal, 200);
-    setTimeout(heal, 800);
-    setTimeout(heal, 2000);
-  });
-})(window);
-</script>
-
-<script id="clarity-banner-integrity-v1">
-/*! Clarity Banner Integrity v1 · 20261031BI1
- * Hijri plaque · Makkah/Madinah temps · Ṣalāh list · local clock
- * Educational display only — not a fatwa · verify with local mosque.
- */
-(function (w) {
-  "use strict";
-  if (w.__CLARITY_BANNER_INTEGRITY_V1__) return;
-  w.__CLARITY_BANNER_INTEGRITY_V1__ = true;
-
-  function $(id) {
-    return document.getElementById(id);
-  }
-
-  function setTxt(el, t) {
-    if (!el) return;
-    el.textContent = t;
-  }
-
-  /* ----- Hijri ----- */
-  function hijriLabel(d) {
-    try {
-      return new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      }).format(d);
-    } catch (e) {
-      return d.toDateString();
-    }
-  }
-
-  function hijriParts(d) {
-    try {
-      var parts = new Intl.DateTimeFormat("en-u-ca-islamic", {
-        day: "numeric",
-        month: "numeric",
-        year: "numeric",
-      }).formatToParts(d);
-      var o = {};
-      parts.forEach(function (p) {
-        if (p.type !== "literal") o[p.type] = p.value;
-      });
-      return o;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  function repairHijri() {
-    var now = new Date();
-    var label = hijriLabel(now);
-    setTxt($("hijri-cal-title"), "Hijri · تقويم");
-    setTxt($("hijri-cal-meta"), label);
-    setTxt($("hijri-ms-event"), "Educational calendar · not a fatwa");
-
-    var grid = $("hijri-cal-grid");
-    if (grid && (!grid.children.length || /loading|…/i.test(grid.textContent || ""))) {
-      var p = hijriParts(now) || {};
-      grid.innerHTML = "";
-      var day = document.createElement("div");
-      day.className = "hcg-day";
-      day.textContent = p.day || String(now.getDate());
-      var mon = document.createElement("div");
-      mon.className = "hcg-month";
-      mon.textContent = (p.month ? "M" + p.month + " · " : "") + label.split(" ").slice(0, 2).join(" ");
-      grid.appendChild(day);
-      grid.appendChild(mon);
-    }
-
-    var greg = now.toLocaleDateString(undefined, {
-      weekday: "short",
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-    var meta = $("hijri-cal-meta");
-    if (meta && meta.textContent.indexOf(greg) < 0) {
-      meta.textContent = label + " · " + greg;
-    }
-  }
-
-  /* ----- Temps (Open-Meteo, no key) ----- */
-  function repairTemps() {
-    var mk = $("temp-makkah");
-    var md = $("temp-madinah");
-    if (!mk && !md) return;
-    if (mk && mk.textContent && !/[—–\-]/.test(mk.textContent) && !/…/.test(mk.textContent)) return;
-
-    function fill(lat, lon, el) {
-      if (!el) return Promise.resolve();
-      var url =
-        "https://api.open-meteo.com/v1/forecast?latitude=" +
-        lat +
-        "&longitude=" +
-        lon +
-        "&current=temperature_2m";
-      return fetch(url, { credentials: "omit" })
-        .then(function (r) {
-          return r.json();
-        })
-        .then(function (j) {
-          var t = j && j.current && j.current.temperature_2m;
-          if (typeof t === "number") setTxt(el, String(Math.round(t)));
-        })
-        .catch(function () {
-          if (/[—–\-…]/.test(el.textContent || "")) setTxt(el, "—");
-        });
-    }
-    /* Makkah ~21.42,39.83 · Madinah ~24.47,39.61 */
-    fill(21.4225, 39.8262, mk);
-    fill(24.4672, 39.6117, md);
-  }
-
-  /* ----- Ṣalāh list ----- */
-  function cityPrefs() {
-    var city = "Makkah";
-    var country = "SA";
-    try {
-      var c = localStorage.getItem("clarity_salah_city");
-      var co = localStorage.getItem("clarity_salah_country");
-      if (c) city = c;
-      if (co) country = co;
-    } catch (e) {}
-    return { city: city, country: country };
-  }
-
-  function paintSalahList(timings, cityLabel) {
-    var list = $("salah-times-list");
-    if (!list || !timings) return;
-    var order = [
-      ["Fajr", "Fajr"],
-      ["Dhuhr", "Dhuhr"],
-      ["Asr", "ʿAṣr"],
-      ["Maghrib", "Maghrib"],
-      ["Isha", "ʿIshāʾ"],
-    ];
-    var html = "";
-    order.forEach(function (pair) {
-      var key = pair[0];
-      var name = pair[1];
-      var raw = timings[key] || "—";
-      var time = String(raw).split(" ")[0].slice(0, 5);
-      html +=
-        '<li><span class="salah-name">' +
-        name +
-        '</span><span class="salah-time" data-salah="' +
-        key +
-        '">' +
-        time +
-        "</span></li>";
-    });
-    list.innerHTML = html;
-    setTxt($("salah-title"), "Ṣalāh");
-    setTxt($("hijri-local-loc"), cityLabel + " · method 2 · educational");
-  }
-
-  function repairSalah() {
-    var list = $("salah-times-list");
-    if (!list) return;
-    var filled = list.querySelectorAll(".salah-time");
-    var ok = false;
-    filled.forEach(function (el) {
-      if (el.textContent && /^\d{1,2}:\d{2}/.test(el.textContent.trim())) ok = true;
-    });
-    if (ok && filled.length >= 5) return;
-
-    var pref = cityPrefs();
-    var url =
-      "https://api.aladhan.com/v1/timingsByCity?city=" +
-      encodeURIComponent(pref.city) +
-      "&country=" +
-      encodeURIComponent(pref.country) +
-      "&method=2";
-    fetch(url, { credentials: "omit" })
-      .then(function (r) {
-        return r.json();
-      })
-      .then(function (j) {
-        var t = j && j.data && j.data.timings;
-        if (!t) throw new Error("no timings");
-        paintSalahList(t, pref.city);
-      })
-      .catch(function () {
-        /* Fallback: Makkah fixed educational placeholder times cleared — show offline note */
-        if (!list.querySelector(".salah-time") || /loading|…/i.test(list.textContent || "")) {
-          list.innerHTML =
-            '<li><span class="salah-name">Offline</span><span class="salah-time">—</span></li>';
-          setTxt($("hijri-local-loc"), "Times unavailable · try again online");
-        }
-      });
-  }
-
-  /* ----- Local clock ----- */
-  function tickClock() {
-    var el = $("hijri-local-time");
-    if (!el) return;
-    var n = new Date();
-    var hh = String(n.getHours()).padStart(2, "0");
-    var mm = String(n.getMinutes()).padStart(2, "0");
-    setTxt(el, hh + ":" + mm);
-  }
-
-  /* ----- AV / control strip soft heal ----- */
-  function healAv() {
-    try {
-      var live = $("banner-live");
-      var img = $("banner-img");
-      if (img && !img.getAttribute("src")) {
-        img.src =
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg";
-      }
-      /* ensure media container not aria-blocking clicks on overlay */
-      var media = $("banner-media");
-      if (media) media.style.pointerEvents = "none";
-      var overlay = document.querySelector("#clarity-top-duo .banner-overlay");
-      if (overlay) overlay.style.pointerEvents = "auto";
-    } catch (e) {}
-  }
-
-  function run() {
-    repairHijri();
-    repairTemps();
-    repairSalah();
-    tickClock();
-    healAv();
-  }
-
-  function boot() {
-    run();
-    setInterval(tickClock, 30000);
-    setTimeout(run, 600);
-    setTimeout(run, 2000);
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  w.addEventListener("load", function () {
-    setTimeout(run, 400);
-  });
-
-  w.ClarityBannerIntegrity = { run: run, repairSalah: repairSalah, repairTemps: repairTemps };
-})(typeof window !== "undefined" ? window : this);
-
-</script>
-
-<script src="/assets/clarity-salah-harmony-s3.js?v=20261031HK1" defer></script>
-<script src="/assets/clarity-banner-peace-t2.js?v=20261031HK1" defer></script>
-<script src="/assets/clarity-companion-shell-t3.js?v=20261031HK1" defer></script>
-<script src="/assets/clarity-vault-fortify-boot-v1.js?v=20261031HK1" defer></script>
+<script src="/assets/clarity-vault-fortify-boot-v1.js?v=20261031REJ1" defer></script>
 </body>
 </html>

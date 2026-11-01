@@ -1,26 +1,32 @@
 [
   {
+    "phase": "P1",
     "ok": true,
-    "msg": "base index from /home/workdir/artifacts/clarity-companion-t0-t7/index.html len=277392"
+    "msg": "boots=1 beacons=1"
   },
   {
+    "phase": "P2",
     "ok": true,
-    "msg": "boot 20261031HK1"
+    "msg": "sealed=13"
   },
   {
+    "phase": "P4",
+    "ok": true,
+    "msg": "dayn-v2"
+  },
+  {
+    "phase": "P5",
+    "ok": true,
+    "msg": "daily"
+  },
+  {
+    "phase": "P6",
     "ok": true,
     "msg": "gate PASS"
   },
   {
+    "phase": "P6",
     "ok": true,
-    "msg": "syntax all"
-  },
-  {
-    "ok": true,
-    "msg": "no daily/ folder"
-  },
-  {
-    "ok": true,
-    "msg": "no campus/ folder"
+    "msg": "syntax"
   }
 ]
