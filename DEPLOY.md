@@ -1,9 +1,9 @@
-# Wiring + cache buster · 20261101WB1
+# Yawm as default landing
 
-Merge:
-- `daily/` (all)
-- `companion/index.html`
-- `companion/assets/clarity-vault-fortify-boot-v1.js` (sealed loads use `?v=20261101WB1`)
+Replace **root** `index.html` only.
 
-Hard refresh / CDN purge recommended.
-Campus untouched. Sealed files stay on server under `/companion/sealed/`.
+- https://clarity-dawah.fyi/ → redirects to `/daily/`
+- Companion: https://clarity-dawah.fyi/companion/
+- Campus: https://clarity-dawah.fyi/campus/
+
+Hard refresh after deploy.
