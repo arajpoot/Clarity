@@ -1,110 +1,46 @@
 <!DOCTYPE html>
-<!--
-  YAWM FOUNDATION LOCK 20261030S10F
-  Isolated wing — edit only under /daily/
-  See ARCHITECTURE.md · NAV_CONTRACT.md · FOUNDATION_LOCK.md
-  Ship only if: python3 tools/yawm-content-audit.py → PASS
-  Educational only — not a fatwa
--->
-
-<html lang="en" data-theme="dark">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta name="yawm-build" content="20261030S10F"/>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="clarity-surface" content="yawm"/>
 <title>Yawm · Clarity — Furnish Your Grave</title>
-<meta name="description" content="Yawm — today’s portion with Qur’an and numbered reports. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/daily/"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/daily.css?v=20261030S10F"/>
-<style id="yawm-vp-icons">
-.mod-shell,.yawm-hub-wrap{max-width:min(100%,72rem)!important;width:100%!important;margin:0 auto;padding:0 max(.75rem,env(safe-area-inset-left)) 2rem;box-sizing:border-box}
-.yawm-tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin:1rem 0}
-@media(max-width:720px){.yawm-tri{grid-template-columns:1fr}}
-.yawm-card{padding:1rem 1.05rem;border-radius:1.05rem;border:1px solid rgba(201,168,76,.34);
-  background:linear-gradient(155deg,rgba(255,255,255,.08),rgba(10,28,22,.55));text-decoration:none;color:inherit;display:block}
-.yawm-card h2{margin:0 0 .4rem;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:#c9a84c;display:flex;align-items:center;gap:.45rem}
-.yawm-card .lead{font-size:.95rem;font-weight:700;color:#e8d5a3;margin:0 0 .3rem;line-height:1.35}
-.yawm-card .ar{font-family:"Noto Naskh Arabic",serif;direction:rtl;text-align:right;font-size:1.05rem;line-height:1.85;margin:.25rem 0}
-.yawm-card .sub{font-size:.8rem;opacity:.9;line-height:1.4}
-.yawm-card .more{color:#e0c56a;font-size:.8rem;font-weight:600}
-.btn{display:inline-flex;padding:.4rem .95rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;margin:.15rem 0}
-img.sec-ico{width:1.35rem;height:1.35rem;border-radius:50%;padding:.15rem;background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.4)}
-</style>
-</head>
-<body data-address="daily" data-yawm="1" data-final="1">
-<header class="daily-header">
-  <a class="brand" href="/daily/">Clarity · Yawm</a>
-  <div class="header-actions">
-    <button type="button" id="theme-toggle" aria-label="Toggle theme">◐</button>
-    <a href="/">Companion</a>
-  </div>
-</header>
-<nav class="top" aria-label="Primary">
-  <a class="here" href="/daily/">Yawm</a>
-  <a href="/campus/">Campus</a>
-  <a href="/">Companion</a>
+<style>
+:root{--ink:#0d1f17;--gold:#d4af37;--mist:#e8f0ea;--card:#12261c}
+body{margin:0;font-family:system-ui,sans-serif;background:var(--ink);color:var(--mist);line-height:1.5}
+a{color:var(--gold)}.wrap{max-width:52rem;margin:0 auto;padding:1rem 1.1rem 2.5rem}
+.doors{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1rem}
+.doors a{text-decoration:none;color:var(--mist);border:1px solid rgba(212,175,55,.35);padding:.35rem .85rem;border-radius:999px;font-weight:600;font-size:.9rem}
+.doors a.here{background:rgba(212,175,55,.15);color:#e8d5a3}
+.hero{text-align:center;border:1px solid rgba(212,175,55,.28);border-radius:16px;padding:1.1rem 1rem;margin-bottom:1rem;background:var(--card)}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem;color:#e8d5a3}
+.ar{font-family:serif;font-size:1.35rem;direction:rtl}
+.grid{display:grid;grid-template-columns:1fr;gap:.75rem}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+.tile{display:block;text-decoration:none;color:inherit;border:1px solid rgba(212,175,55,.28);border-radius:14px;padding:.9rem 1rem;background:rgba(18,38,28,.95)}
+.tile h2{margin:0 0 .35rem;font-size:1.05rem;color:#e8d5a3}
+.tile p{margin:0;font-size:.92rem;opacity:.92}
+.foot{margin-top:1.5rem;font-size:.8rem;opacity:.75;text-align:center}
+</style></head><body>
+<div class="wrap">
+<nav class="doors" aria-label="Clarity surfaces">
+<a href="/companion/">Companion</a>
+<a class="here" href="/daily/">Yawm</a>
+<a href="/campus/">Campus</a>
 </nav>
-<figure class="daily-banner">
-  <img src="assets/daily-banner.jpg?v=20261030S10F" alt="Clarity — Furnish Your Grave" width="1600" height="754" loading="eager"/>
-  <div class="banner-verse-plaque" aria-label="Sūrat al-ʿAṣr">
-    <p class="bismillah" dir="rtl" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-    <p class="verse-ar" dir="rtl" lang="ar">وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ ۝ إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ</p>
-    <p class="verse-en">By time — mankind is in loss, except those who believe, work righteousness, and enjoin truth and patience.</p>
-    <p class="verse-ref">Sūrat al-ʿAṣr (103) · educational · <a href="https://quran.com/103" target="_blank" rel="noopener" style="color:#e0c56a">quran.com/103</a></p>
-  </div>
-  <div class="banner-gravity"><p class="gravity-line">Time is passing. Furnish the grave with faith, deeds, truth, and ṣabr.</p></div>
-</figure>
-<main class="yawm-hub-wrap" id="clarity-day-landing">
-  <p style="font-size:.72rem;opacity:.85;margin:.35rem 0">Yawm · educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
-  <div class="dual-tiles">
-    <a class="dual-tile" href="/"><span class="tile-text"><strong>Companion path</strong><small>Reminder · Reality · Reflection · Action</small></span></a>
-    <a class="dual-tile" href="/campus/"><span class="tile-text"><strong>University path</strong><small>Campus · Lab · Library</small></span></a>
-  </div>
-  <div class="yawm-quill-rule">Six modules · live first lines</div>
-  <div class="yawm-tri">
-    <a class="yawm-card" href="modules/now/">
-      <h2><img class="sec-ico" src="assets/icons/nuros-today.svg?v=20261030S10F" alt=""/>Now</h2>
-      <p class="lead" id="tile-now-line">After Fajr · morning adhkār</p>
-      <span class="more">Open Now →</span>
-    </a>
-    <div class="yawm-card">
-      <h2><img class="sec-ico" src="assets/icons/nuros-seed.svg?v=20261030S10F" alt=""/>Do this today</h2>
-      <p class="lead" id="tile-deed-line">Say Bismillāh before the next ordinary task.</p>
-      <p class="sub" id="tile-deed-status">Not marked</p>
-      <button type="button" class="btn" id="tile-deed-mark">Mark done</button>
-      <p><a class="more" href="modules/deed/">Open Deed →</a></p>
-    </div>
-    <a class="yawm-card" href="modules/tasbeeh/">
-      <h2><img class="sec-ico" src="assets/icons/nuros-tasbih.svg?v=20261030S10F" alt=""/>Tasbeeh</h2>
-      <p class="ar" id="tile-tas-ar" dir="rtl" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
-      <p class="lead">Count <span id="tile-tas-count">0</span></p>
-      <span class="more">Open Tasbeeh →</span>
-    </a>
-  </div>
-  <div class="yawm-tri">
-    <a class="yawm-card" href="modules/salah/">
-      <h2><img class="sec-ico" src="assets/icons/nuros-salah.svg?v=20261030S10F" alt=""/>Farḍ</h2>
-      <p class="lead" id="tile-salah-line">Open Companion for times</p>
-      <p class="sub" id="tile-salah-sub">Cue only — not a mosque timetable.</p>
-      <span class="more">Open Farḍ →</span>
-    </a>
-    <a class="yawm-card" href="modules/adhkar/">
-      <h2><img class="sec-ico" src="assets/icons/nuros-dua.svg?v=20261030S10F" alt=""/>Adhkār</h2>
-      <p class="ar" id="tile-adh-ar" dir="rtl" lang="ar">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ</p>
-      <p class="sub" id="tile-adh-meta">Abū Dāwūd 5084 · verify grade · educational</p>
-      <span class="more">Open Adhkār →</span>
-    </a>
-    <a class="yawm-card" href="modules/light/">
-      <h2><img class="sec-ico" src="assets/icons/nuros-tree.svg?v=20261030S10F" alt=""/>Send light</h2>
-      <p class="lead">Muslim 1631 · three continuing deeds</p>
-      <p class="sub">Ṣaḥīḥ · ongoing charity, beneficial knowledge, a righteous child who prays</p>
-      <span class="more">Open Light →</span>
-    </a>
-  </div>
-  <p style="margin:1.5rem 0;font-size:.78rem;opacity:.85">Educational only · not a fatwa · not legal advice · acceptance is with Allah.</p>
-</main>
-<script src="assets/js/yawm-hub.js?v=20261030S10F" defer></script>
-</body>
-</html>
+<header class="hero">
+<h1>Yawm · Daily routine</h1>
+<p class="ar" lang="ar">وَالْعَصْرِ ﴿١﴾ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ ﴿٢﴾</p>
+<p>By time — mankind is in loss (Qur’an 103:1–2). <a href="https://quran.com/103" rel="noopener" target="_blank">quran.com/103</a></p>
+<p style="margin-top:.65rem;font-size:.9rem">Single source of truth for the day. Path, craft, and Amānah stay in <a href="/companion/">Companion</a>.</p>
+</header>
+<div class="grid">
+<a class="tile" href="modules/now/"><h2>Now</h2><p>After Fajr · morning adhkār — or the portion that matches this hour.</p></a>
+<a class="tile" href="modules/deed/"><h2>Do this today</h2><p>Say Bismillāh before the next ordinary task. Mark done on device.</p></a>
+<a class="tile" href="modules/tasbeeh/"><h2>Tasbeeh</h2><p class="ar" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p><p>Count on this device. Muslim 2692 · <a href="https://sunnah.com/muslim:2692" target="_blank" rel="noopener">sunnah.com</a></p></a>
+<a class="tile" href="modules/salah/"><h2>Ṣalāh</h2><p>Wuḍūʾ steps · farḍ counts 2 / 4 / 4 / 3 / 4. Live times on Companion banner.</p></a>
+<a class="tile" href="modules/adhkar/"><h2>Adhkār</h2><p class="ar" lang="ar">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ</p><p>Abū Dāwūd 5084 · <a href="https://sunnah.com/abudawud:5084" target="_blank" rel="noopener">sunnah.com</a></p></a>
+<a class="tile" href="modules/light/"><h2>Light</h2><p>Ongoing charity · beneficial knowledge · a righteous child who prays. Muslim 1631 · <a href="https://sunnah.com/muslim:1631" target="_blank" rel="noopener">sunnah.com</a></p></a>
+</div>
+<p class="foot">Educational only — not a fatwa. Acceptance is with Allah.<br/>
+<a href="/companion/#notes">Notes / Amānah in Companion</a> · build 20261101Y6</p>
+</div></body></html>
