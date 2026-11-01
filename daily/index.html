@@ -7,7 +7,7 @@
   Educational only — not a fatwa
 -->
 
-<html lang="en" data-theme="dark">
+<html data-clarity-room="yawm" lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
@@ -32,6 +32,8 @@
 .btn{display:inline-flex;padding:.4rem .95rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;cursor:pointer;margin:.15rem 0}
 img.sec-ico{width:1.35rem;height:1.35rem;border-radius:50%;padding:.15rem;background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.4)}
 </style>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101r">
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101r" defer></script>
 </head>
 <body data-address="daily" data-yawm="1" data-final="1">
 <header class="daily-header">
@@ -41,11 +43,14 @@ img.sec-ico{width:1.35rem;height:1.35rem;border-radius:50%;padding:.15rem;backgr
     <a href="/">Companion</a>
   </div>
 </header>
-<nav class="top" aria-label="Primary">
-  <a class="here" href="/daily/">Yawm</a>
-  <a href="/campus/">Campus</a>
-  <a href="/">Companion</a>
+
+<nav class="clarity-room-nav" data-room="yawm" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · vault · reminder</span></span></a>
+  <a href="/daily/" data-room-link="yawm" class="is-here" aria-current="page"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
+  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
+  <p class="crn-seal">Three rooms · educational only · not a fatwa</p>
 </nav>
+
 <figure class="daily-banner">
   <img src="assets/daily-banner.jpg?v=20261030S10F" alt="Clarity — Furnish Your Grave" width="1600" height="754" loading="eager"/>
   <div class="banner-verse-plaque" aria-label="Sūrat al-ʿAṣr">
