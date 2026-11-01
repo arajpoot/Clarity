@@ -1,30 +1,13 @@
-# Companion ARCHITECTURE · 20261031ARCH1
-
-Parallel to Yawm (`/daily/ARCHITECTURE.md`) and Campus shell isolation.
+# Companion ARCHITECTURE · C1
 
 ```
-/companion/                      ← HOME
-  index.html                    ← full Companion shell
-  FOUNDATION_LOCK.md
-  NAV_CONTRACT.md
-  COMPANION_CONTRACT.md
-  ARCHITECTURE.md
-  MODULES.md
-  YAWM_CAMPUS_BOUNDARY.md
-  assets/                       ← fortify / surface boot only
-  sealed/                       ← Amānah JS (fortress)
-  modules/                      ← meme · tajweed · callig · notes pack
-  modules/css/
-  redirects/                    ← SPA stubs
-  patches/
-  tools/
-
-/daily/                         ← Yawm (do not edit here)
-/campus/                        ← University (do not edit here)
-/assets/companion-inline/       ← shared shell scripts on server (read)
+/                         ← thin door (room-nav + enter)
+/companion/               ← COMPANION HOME
+  index.html
+  assets/                 ← surface + fortify boots
+  sealed/                 ← Amānah fortress
+  modules/                ← meme · tajweed · callig · notes
+/assets/companion-inline/ ← shared shell (server read)
+/daily/                   ← Yawm
+/campus/                  ← University
 ```
-
-## Load order (simplified)
-1. Shared `/assets/…` shell & banner scripts (absolute paths)
-2. `/companion/modules/*` module pack
-3. `/companion/assets/clarity-vault-fortify-boot-v1.js` → `/companion/sealed/*`

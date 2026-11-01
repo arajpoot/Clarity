@@ -1,6 +1,6 @@
-<!DOCTYPE html><html data-theme="light" lang="en"><head>
+<!DOCTYPE html><html data-clarity-room="companion" data-theme="light" lang="en"><head>
 <meta name="clarity-surface" content="companion"/>
-<link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
+<link rel="canonical" href="https://clarity-dawah.fyi/companion/">
 
 <meta name="companion-phase-build" content="0-1-boot-20261025">
 
@@ -223,7 +223,17 @@
 <style id="yawm-sot-hide-day-landing">
 #clarity-day-landing,.clarity-day-landing,[data-clarity-day-landing],#clarity-landing-stack,.day-landing-stack{display:none!important}
 </style>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101c1">
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101c1" defer></script>
 </head><body data-active-tab="journey" data-section-fortress="1">
+
+<nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion" class="is-here" aria-current="page"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · vault · reminder</span></span></a>
+  <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
+  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
+  <p class="crn-seal">Three rooms · educational only · not a fatwa</p>
+</nav>
+
 
 <!-- Surface doors · Yawm/Campus parity · 20261031ARCH1 -->
 <nav id="clarity-surface-doors" class="clarity-surface-doors" aria-label="Clarity surfaces"
@@ -1449,6 +1459,11 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 
       <div class="tj-lmr-panel" id="tj-lmr-step3" hidden>
         <p class="tj-tool-hint">In-app whisper recorder. Record, play back next to the master, then <strong>Score vs master</strong>. Alignment is a practice helper (timing &amp; energy) — not a qāriʾ verdict. Seek a teacher for true correction.</p>
+        <div class="tj-lmr-meter" id="tj-lmr-meter" aria-label="Practice energy meter">
+          <div class="tj-lmr-meter-track" style="height:8px;border-radius:999px;background:rgba(15,76,58,0.15);overflow:hidden;margin:0.4rem 0">
+            <div id="tj-lmr-meter-fill" style="height:100%;width:0%;background:#1e7d5e;border-radius:999px;transition:width .2s"></div>
+          </div>
+        </div>
         <div class="tj-lmr-rec-row">
           <button type="button" class="btn-soft" id="tj-lmr-rec-btn">🎙 Start whisper</button>
           <button type="button" class="btn-secondary" id="tj-lmr-rec-stop" disabled>⏹ Stop</button>
@@ -2404,7 +2419,8 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-clarity-landing-v3.js?v=20261101WB1" defer></script>
 <script id="clarity-madinah-autoplay-v1" src="/assets/companion-inline/inline-clarity_madinah_ap.js?v=20261101WB1" defer></script>
-<script id="clarity-banner-repair-v1" src="/assets/companion-inline/inline-clarity_banner_repair.js?v=20261101WB1" defer></script>
+<script id="clarity-banner-repair-v1" src="/assets/companion-inline/inline-clarity_banner_repair.js?v=20261101B1" defer></script>
+<script defer src="/assets/companion-inline/inline-clarity-banner-nuclear-js.js?v=20261101B1"></script>
 <script src="/assets/companion-inline/inline-clarity_banner_moon_v1.js?v=20261101WB1" defer></script>
 <script id="clarity-surah-continue-v1" src="/assets/companion-inline/inline-clarity_surah_cont.js?v=20261101WB1" defer></script>
 <!-- REJ nuclear out -->
@@ -2423,11 +2439,9 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="nuros5-shariah-js-v2" src="/assets/companion-inline/inline-42564f0868.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-982b3dbd78.js?v=20261101WB1" defer></script>
 <script id="clarity-embed-fold-viewport-v1" src="/assets/companion-inline/inline-clarity_embed_fold.js?v=20261101WB1" defer></script>
-<script id="clarity-tajweed-read-sync-v1" src="/assets/companion-inline/inline-clarity_lmr_read_sync.js?v=20261101WB1" defer></script>
 <script id="clarity-quick-nav-v1" src="/assets/companion-inline/inline-clarity_quick_nav.js?v=20261101WB1" defer></script>
 <script id="clarity-tab-persist-v1" src="/assets/companion-inline/inline-clarity_tab_persist.js?v=20261101WB1" defer></script>
 <script id="clarity-rrra5-core-js-v1" src="/assets/companion-inline/inline-clarity_rrra5_core.js?v=20261101WB1" defer></script>
-<script id="clarity-callig-pad-boot-v1" src="/assets/companion-inline/inline-clarity_callig_pad_boot.js?v=20261101WB1" defer></script>
 <script id="clarity-online-sitewide-v1" src="/assets/companion-inline/inline-clarity_online_sitewide_v1.js?v=20261101WB1" defer></script>
 <script id="clarity-rrra5-legacy-cleanup-v1" src="/assets/companion-inline/inline-clarity_rrra5_legacy_cleanup_v1.js?v=20261101WB1" defer></script>
 <script id="clarity-section-pills-js-v1" src="/assets/companion-inline/inline-clarity_section_pills_v2.js?v=20261101WB1" defer></script>
@@ -2442,10 +2456,8 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="clarity-vault-fix-js-v1" src="/assets/companion-inline/inline-clarity_vault_fix.js?v=20261101WB1" defer></script>
 <script id="clarity-uft-print-fix-v2-js" src="/assets/companion-inline/inline-clarity_uft_print_fix_v2.js?v=20261101WB1" defer></script>
 <script id="clarity-vault-security-harden-v1" src="/assets/companion-inline/inline-clarity_vault_harden_v1.js?v=20261101WB1" defer></script>
-<script id="clarity-vault-note-registry-js" src="/assets/companion-inline/inline-clarity_vault_note_registry.js?v=20261101WB1" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script src="/assets/nuros-icons-apply-v1.js?v=20261101WB1"></script>
-<script src="/assets/companion-inline/inline-bundle-meme-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-bundle-security-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-clarity-qada-tracker-v1.js?v=20261101WB1"></script>
 <script src="/assets/companion-inline/inline-clarity-samina-verse-v1.js?v=20261101WB1"></script>
@@ -2462,7 +2474,8 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/companion/modules/inline-clarity-tj-meme-tweet-revamp-js.js?v=20261101WB1" defer></script>
 <script src="/companion/modules/clarity-notes-recovery-v1.js?v=20261101WB1" defer></script>
 <script src="/companion/modules/inline-bundle-meme-v1.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-clarity_callig_pad_boot.js?v=20261101WB1" defer></script>
+<script defer src="/companion/modules/clarity-callig-engine-v1.js?v=20261101M1"></script>
+<script defer src="/companion/modules/inline-clarity_callig_pad_boot.js?v=20261101WB1"></script>
 <script src="/companion/modules/inline-clarity_vault_note_registry.js?v=20261101WB1" defer></script>
 <script src="/companion/assets/clarity-vault-fortify-boot-v1.js?v=20261101WB1" defer></script>
 </body>
