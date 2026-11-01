@@ -1,4 +1,4 @@
-/*! Amānah Vault FORTRESS BOOT · 20261031S7
+/*! Amānah Vault FORTRESS BOOT · 20261031T7
  * Thin public door — sealed modules under /vault/sealed/
  * runtime-gate first to stop UI leakage into other Companion tabs
  */
@@ -6,7 +6,7 @@
   "use strict";
   if (window.__CLARITY_VAULT_FORTRESS_BOOT__) return;
   window.__CLARITY_VAULT_FORTRESS_BOOT__ = true;
-  var VER = "20261031S7";
+  var VER = "20261031T7";
   var BASE = "/vault/sealed/";
   var scripts = [
     "runtime-gate-v1.js",
