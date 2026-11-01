@@ -1,10 +1,15 @@
-# Companion cleanup C1 · 20261031C1
+# Companion HOME (clean surface)
 
-After REJ1 surface restore. Fixes remaining double beacon + lazy comment clutter.
+## In this package
+- `companion/` — **only** Companion surface (shell, sealed, boot, foundation, **redirects inside companion/**)
+- `index.html` — thin site door → `/companion/`
 
-## Merge
-1. index.html
-2. assets/clarity-vault-fortify-boot-v1.js
-3. vault/sealed/*
+## Not included
+- Root-level `tajweed/`, `notes/`, `commands/`, etc. (use `companion/tajweed/` etc. or hash links)
 
-Hard refresh. Yawm/Campus untouched.
+## Deploy
+1. Upload `companion/` folder to site root  
+2. Replace root `index.html` with the door file  
+3. Keep existing `/assets/companion-inline/` on server  
+
+URL: https://clarity-dawah.fyi/companion/

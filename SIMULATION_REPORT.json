@@ -1,4 +1,15 @@
 {
-  "fails": [],
-  "ver": "20261031FORT1"
+  "fails": [
+    {
+      "cycle": 3,
+      "name": "boot_not_campus_vault",
+      "ok": false,
+      "detail": ""
+    }
+  ],
+  "repairs": [
+    "wrote deploy gate tool"
+  ],
+  "total_checks": 41,
+  "pass": false
 }
