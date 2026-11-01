@@ -1,13 +1,16 @@
-# Companion ARCHITECTURE · C1
+# Companion ARCHITECTURE · C3
 
 ```
-/                         ← thin door (room-nav + enter)
+/                         ← thin door (C1)
 /companion/               ← COMPANION HOME
   index.html
-  assets/                 ← surface + fortify boots
-  sealed/                 ← Amānah fortress
+  assets/                 ← fortify, amana entry, banner-still
   modules/                ← meme · tajweed · callig · notes
-/assets/companion-inline/ ← shared shell (server read)
+  sealed/                 ← Amānah fortress (lazy C2)
+  redirects/              ← SPA stubs → #hash (C3)
+/assets/companion-inline/ ← shared shell (still required)
 /daily/                   ← Yawm
 /campus/                  ← University
 ```
+
+Amānah: entered from Companion only (`#notes` / `ClarityEnterAmana`).

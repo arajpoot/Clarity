@@ -225,6 +225,7 @@
 </style>
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101c1">
 <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101c1" defer></script>
+<meta name="clarity-phase" content="C3"/>
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -270,10 +271,10 @@ style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:.55r
         allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
         allowfullscreen playsinline></iframe>
       <img loading="lazy" decoding="async" id="banner-img" class="banner-still-img" width="640" height="360"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg"
-        alt="Masjid al-Haram"
-        decoding="async"
-        onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg';">
+        src="/companion/assets/banner-still-haramain.jpg?v=20261101C3"
+        alt="Haramain still — educational"
+        data-fallback-wiki="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg"
+        onerror="if(!this.dataset.err){this.dataset.err=1;this.src=this.dataset.fallbackWiki||'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg';}else{this.onerror=null;this.style.background='#0c1c16';}">
     </div>
     <div class="banner-overlay">
       <!-- Calendar plaque -->
