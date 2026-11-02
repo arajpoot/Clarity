@@ -1,0 +1,93 @@
+{
+  "scope": "companion_only",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "R1_room_attr",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "R2_four_nav",
+      "ok": true,
+      "detail": {
+        "links": [
+          "companion",
+          "yawm",
+          "university",
+          "amana"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "name": "R3_vault_retired",
+      "ok": true,
+      "detail": {
+        "moved": true,
+        "gate": false,
+        "issues": []
+      }
+    },
+    {
+      "name": "R4_rail",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "R5_hash",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "script_balance",
+      "ok": true,
+      "detail": {
+        "o": 61,
+        "c": 61,
+        "issues": []
+      }
+    },
+    {
+      "name": "scope_isolation",
+      "ok": true,
+      "detail": {
+        "note": "repair only wrote companion/index.html",
+        "issues": []
+      }
+    },
+    {
+      "name": "http_companion",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    },
+    {
+      "name": "cycle2_consistency",
+      "ok": true,
+      "detail": {
+        "same_size": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "cycle3_untouched_note",
+      "ok": true,
+      "detail": {
+        "issues": [],
+        "policy": "Yawm / Campus / Am\u0101nah not written in this repair"
+      }
+    }
+  ],
+  "repairs": [],
+  "status": "verified",
+  "passed": 10,
+  "total": 10
+}
