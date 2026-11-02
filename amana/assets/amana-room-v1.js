@@ -64,6 +64,7 @@
         }
       });
       obs.observe(document.documentElement, { attributes: true, subtree: true, attributeFilter: ["class", "data-vault-unlocked", "data-amana-unlocked"] });
+      setTimeout(function(){ try { obs.disconnect(); } catch(e){} }, 20000);
     } catch (e) {}
 
     // Hash routes soft
