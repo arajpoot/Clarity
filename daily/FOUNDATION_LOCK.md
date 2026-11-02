@@ -1,11 +1,7 @@
-# Yawm FOUNDATION LOCK — four-door model
+# Yawm FOUNDATION LOCK · 20261102M1
 
-## Owns
-- `/daily/` hub and modules: now · deed · tasbeeh · salah · adhkar · light
+Phase M1: daily routine enrichment only under `/daily/`.
 
-## Does not own
-- Amānah unlock, Dayn ledger, wasiyyah editors → `/amana/`
-- Path curriculum chrome → `/companion/`
-- University → `/campus/`
+Companion / Campus / Amānah application trees are **not** in this package.
 
-Yawm is **single source of truth** for daily routine across Clarity.
+Yawm is single source of truth for the day.
