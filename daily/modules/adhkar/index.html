@@ -1,60 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta name="yawm-build" content="20261029R1"/>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="clarity-surface" content="yawm"/>
-<meta name="clarity-build" content="20261102M1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Adhkār · Yawm · Clarity</title>
-<style>
-:root{--ink:#0d1f17;--gold:#d4af37;--mist:#e8f0ea;--card:#12261c}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,"Segoe UI",sans-serif;background:var(--ink);color:var(--mist);line-height:1.55}
-a{color:var(--gold)}
-.wrap{max-width:42rem;margin:0 auto;padding:1rem 1.1rem 2.5rem}
-.doors{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;margin-bottom:1rem}
-.doors a{text-decoration:none;color:var(--mist);border:1px solid rgba(212,175,55,.35);padding:.35rem .8rem;border-radius:999px;font-weight:600;font-size:.85rem}
-.doors a.here{background:rgba(212,175,55,.14);color:#e8d5a3}
-.hero{text-align:center;border:1px solid rgba(212,175,55,.28);border-radius:16px;padding:1.1rem 1rem;margin-bottom:1rem;background:var(--card)}
-.hero h1{margin:0 0 .4rem;font-size:1.4rem;color:#e8d5a3}
-.ar{font-family:Georgia,"Noto Naskh Arabic","Amiri",serif;font-size:1.3rem;direction:rtl}
-.grid{display:grid;grid-template-columns:1fr;gap:.7rem}
-@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
-.tile{display:block;text-decoration:none;color:inherit;border:1px solid rgba(212,175,55,.28);border-radius:14px;padding:.85rem 1rem;background:rgba(18,38,28,.95)}
-.tile h2{margin:0 0 .35rem;font-size:1.05rem;color:#e8d5a3}
-.tile p{margin:0;font-size:.9rem;opacity:.92}
-.card{border:1px solid rgba(212,175,55,.3);border-radius:14px;padding:1rem;background:var(--card);margin:.75rem 0}
-.card h1{margin:0 0 .5rem;font-size:1.25rem;color:#e8d5a3}
-.card h2{margin:1rem 0 .35rem;font-size:1.05rem;color:#e8d5a3}
-.foot{margin-top:1.5rem;font-size:.78rem;opacity:.75;text-align:center}
-.note{font-size:.85rem;opacity:.88;margin-top:.65rem}
-.src{font-size:.82rem;opacity:.9}
-</style>
+<meta name="description" content="Adhkār — Yawm educational module. Not a fatwa."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../assets/daily.css?v=20261029R1"/>
 </head>
-<body>
-<div class="wrap">
-<nav class="doors" aria-label="Clarity rooms">
-<a href="/companion/">Companion</a>
-<a class="here" href="/daily/">Yawm</a>
-<a href="/campus/">University</a>
-<a href="/amana/">Amānah</a>
-</nav>
-<p><a href="/daily/">← Yawm hub</a></p>
-<div class="card">
-<h1>Adhkār</h1>
-<p class="ar" lang="ar">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ</p>
+<body data-yawm="1">
+<div class="mod-shell">
+  <header class="mod-top">
+    <a class="brand" href="/daily/">Clarity · Yawm</a>
+    <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
+  </header>
 
-<p>Morning remembrance (default on this page).</p>
-<p class="src"><strong>Abū Dāwūd 5084</strong> · verify grade · <a href="https://sunnah.com/abudawud:5084" target="_blank" rel="noopener">sunnah.com/abudawud:5084</a></p>
-<h2>Also (titles — open source to confirm grade)</h2>
-<ul>
-<li>Sayyid al-istighfār · Bukhārī 6306 · <a href="https://sunnah.com/bukhari:6306" target="_blank" rel="noopener">sunnah.com/bukhari:6306</a></li>
-<li>Subḥān Allāh wa bi-ḥamdih · Muslim 2692 · <a href="https://sunnah.com/muslim:2692" target="_blank" rel="noopener">sunnah.com/muslim:2692</a></li>
-</ul>
-<p class="note">Ported as Yawm SoT so Companion day-landing is not required for adhkār.</p>
+  <figure class="yawm-mini-banner">
+    <img src="../../assets/daily-banner.jpg?v=20261029R1" alt="" width="1600" height="754" loading="eager"/>
+    <div class="yawm-mini-plaque">
+      <p class="mp-title">Adhkār · morning & evening</p>
+      <p class="mp-sub">Full pack on this device</p>
+    </div>
+  </figure>
 
-</div>
-<p class="foot">Educational only — not a fatwa. One way to act — not a ruling. · 20261102M1</p>
+  <div class="yawm-quill-rule">Yawm · Adhkār</div>
+
+  <nav class="mod-pills" aria-label="Modules">
+    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029R1" alt=""/>Now</a>
+    <a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029R1" alt=""/>Deed</a>
+    <a href="/daily/modules/adhkar/" class="here"><img src="../../assets/icons/nuros-dua.svg?v=20261029R1" alt=""/>Adhkār</a>
+    <a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029R1" alt=""/>Tasbeeh</a>
+    <a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029R1" alt=""/>Farḍ</a>
+    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029R1" alt=""/>Light</a>
+  </nav>
+
+  
+  <section class="glass-plaque">
+    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem">
+      <img src="../../assets/icons/nuros-dua.svg?v=20261029R1" width="40" height="40" alt=""/>
+      <h1 style="margin:0">Adhkār · <span id="win">…</span></h1>
+    </div>
+    <p style="font-size:.8rem;opacity:.88;margin:0 0 .75rem">Counts on this device · educational · not a fatwa.</p>
+    <p id="prog" style="font-size:.8rem;color:#c9a84c;margin:0 0 .5rem"></p>
+    <div id="list"></div>
+  </section>
+  <div class="enrich-block">
+    <h2>Educational enrichment · what scholars compile</h2>
+    <p>IslamQA and similar educational summaries collect ṣaḥīḥ reports for morning and evening remembrance, including:</p>
+    <ul>
+      <li><strong>Sayyid al-istighfār</strong> — Bukhārī 6306 (best form of seeking forgiveness — confirm full text).</li>
+      <li><strong>Subḥān Allāh wa bi-ḥamdih</strong> — Muslim 2692, often 100 times morning and evening.</li>
+      <li><strong>Protection phrases</strong> — e.g. “Bismillāh alladhī lā yaḍurru…” (Abū Dāwūd / Tirmidhī chains — verify grade).</li>
+    </ul>
+    <p>Popular booklets such as <em>Hisn al-Muslim</em> (Fortress of the Muslim) arrange these for daily use. Prefer authentic chains; when grades differ, ask a teacher. Consistency matters more than rushing a long list.</p>
+  </div>
+  <div class="ext-links">
+    <a href="https://islamqa.info/en/answers/217496" target="_blank" rel="noopener">IslamQA — morning &amp; evening adhkār</a><br/>
+    <a href="https://sunnah.com/" target="_blank" rel="noopener">Sunnah.com — verify collection · number</a><br/>
+    <a href="https://productivemuslim.com/adhkar-to-unlock-barakah/" target="_blank" rel="noopener">Productive Muslim — easy adhkār overview</a>
+    <span class="note">Not a fatwa. Confirm practice with a qualified teacher.</span>
+  </div>
+  <script>
+  (function(){
+    var KEY="clarity.daily.adhkar.v1";
+    var h=new Date().getHours();
+    var morning=h>=4&&h<15;
+    var file=morning?"../../assets/adhkar/morning.json?v=20261029R1":"../../assets/adhkar/evening.json?v=20261029R1";
+    document.getElementById("win").textContent=morning?"morning":"evening";
+    function day(){return new Date().toDateString()}
+    function loadSt(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){return{}}}
+    function saveSt(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+    fetch(file).then(function(r){return r.json()}).then(function(data){
+      var items=data.items||[];
+      var st=loadSt();
+      if(st.day!==day()) st={day:day(),c:{}};
+      var root=document.getElementById("list");
+      var done=0,total=items.length;
+      items.forEach(function(item,idx){
+        var id=item.id||("i"+idx);
+        var need=item.count||1;
+        if(!st.c[id]) st.c[id]=0;
+        if(st.c[id]>=need) done++;
+        var el=document.createElement("div");
+        el.style.cssText="margin:1rem 0;padding:0.85rem;border-radius:0.85rem;border:1px solid rgba(201,168,76,.22);background:rgba(0,0,0,.18)";
+        el.innerHTML="<p class=\"ar\" dir=\"rtl\" lang=\"ar\" style=\"margin:0 0 .35rem;font-family:Noto Naskh Arabic,serif;font-size:1.12rem;line-height:1.9;direction:rtl;text-align:right\"></p><p style=\"margin:0 0 .25rem;font-size:.92rem\"></p><p style=\"margin:0;font-size:.72rem;color:#c9a84c\"></p><p style=\"margin:.45rem 0;font-size:.82rem\">Count <b data-n></b> / "+need+"</p><button type=\"button\" style=\"padding:.4rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700\">+1</button>";
+        el.querySelector(".ar").textContent=item.ar||"";
+        el.querySelectorAll("p")[1].textContent=item.en||"";
+        el.querySelectorAll("p")[2].textContent=(item.source||"")+" · "+(item.grade||"")+(item.note?" · "+item.note:"");
+        function paint(){
+          el.querySelector("[data-n]").textContent=st.c[id]||0;
+          document.getElementById("prog").textContent=done+" of "+total+" complete";
+        }
+        paint();
+        el.querySelector("button").onclick=function(){
+          var prev=st.c[id]||0;
+          st.c[id]=Math.min(need,prev+1);
+          if(prev<need&&st.c[id]>=need) done++;
+          saveSt(st);paint();
+        };
+        root.appendChild(el);
+      });
+      saveSt(st);
+    }).catch(function(){
+      document.getElementById("list").innerHTML="<p style=\"opacity:.85\">Could not load pack — open the Yawm hub.</p>";
+    });
+  })();
+  </script>
+
+
+  
+  <aside class="reward-card" aria-label="Authentic reminder">
+    <h2>Subḥān Allāh wa bi-ḥamdih</h2>
+    <p class="ar" dir="rtl" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
+    <p>Whoever says in the morning and in the evening: “Glory and praise be to Allah” one hundred times, no one will come on the Day of Resurrection with anything better than what he has done — except one who said the same or more.</p>
+    <p class="meta">Ṣaḥīḥ Muslim · 2692 · educational summary</p>
+    <span class="grade">ṣaḥīḥ · Muslim</span>
+  </aside>
+  <aside class="reward-card" aria-label="Authentic reminder">
+    <h2>Sayyid al-istighfār</h2>
+    <p>The best way of seeking forgiveness includes affirming Allah as Lord and asking forgiveness — whoever says it in the day with certainty and dies before evening is among the people of Paradise (and likewise for the night), as in the report.</p>
+    <p class="meta">Ṣaḥīḥ al-Bukhārī · 6306 · educational summary — read full Arabic with a teacher</p>
+    <span class="grade">ṣaḥīḥ · Bukhārī</span>
+  </aside>
+
+  <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
 </div>
 </body>
 </html>
