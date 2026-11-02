@@ -1,0 +1,26 @@
+{
+  "source": "archive3/companion/index.html",
+  "repairs": [
+    "base=archive3 companion/index.html",
+    "data-clarity-room=companion",
+    "four-room nav",
+    "amana room callout on notes tab",
+    "hash #amana \u2192 /amana/ (notes stays local)",
+    "build ARCH3-MERGE"
+  ],
+  "size": 255618,
+  "script_balance": [
+    72,
+    72
+  ],
+  "checks": {
+    "amana-vault-gate": true,
+    "amana-vault-interior": true,
+    "amana-heir": true,
+    "uft-build": true,
+    "tab-reminder": true,
+    "tab-action": true,
+    "four_nav": true
+  },
+  "policy": "Content-rich archive3 base; four-room nav; vault kept in Companion with /amana/ callout; Yawm/Campus/Am\u0101nah files not edited"
+}
