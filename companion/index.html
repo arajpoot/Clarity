@@ -6,42 +6,22 @@
   if (window.__CLARITY_FREEZE_GUARD_V1__) return;
   window.__CLARITY_FREEZE_GUARD_V1__ = true;
   try {
-    var path = (location.pathname || "");
-    var fromDaily = false;
-    try {
-      fromDaily = /\/daily\//.test(document.referrer || "") || sessionStorage.getItem("clarity_from_yawm") === "1";
-    } catch(e) {}
-    if (path.indexOf("/companion") === 0) {
-      document.documentElement.setAttribute("data-clarity-viewport", "companion-path");
-      document.documentElement.setAttribute("data-clarity-room", "companion");
-      try { sessionStorage.removeItem("clarity_from_yawm"); } catch(e2) {}
+    if ((location.pathname||"").indexOf("/companion")===0) {
+      document.documentElement.setAttribute("data-clarity-viewport","companion-path");
+      document.documentElement.setAttribute("data-clarity-room","companion");
     }
-    function killLanding(){
-      try {
-        var nodes = document.querySelectorAll("#clarity-day-landing,.clarity-day-landing,#clarity-landing-stack,.day-landing-stack,[data-clarity-day-landing]");
-        for (var i=0;i<nodes.length;i++){
-          nodes[i].style.setProperty("display","none","important");
-          nodes[i].setAttribute("hidden","hidden");
-          nodes[i].setAttribute("aria-hidden","true");
-        }
-      } catch(e3) {}
-    }
-    // Block landing-v3 from re-injecting on companion path
     window.__CLARITY_SKIP_DAY_LANDING__ = true;
-    killLanding();
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", killLanding);
-    else killLanding();
-    // limited observer then disconnect (no forever thrash)
-    try {
-      var n = 0;
-      var obs = new MutationObserver(function(){
-        killLanding();
-        n++;
-        if (n > 25) { try { obs.disconnect(); } catch(e4) {} }
-      });
-      if (document.documentElement) obs.observe(document.documentElement, {childList:true, subtree:true});
-      setTimeout(function(){ try { obs.disconnect(); } catch(e5) {} }, 8000);
-    } catch(e6) {}
+    function killLandingOnly(){
+      try {
+        document.querySelectorAll("#clarity-day-landing,.clarity-day-landing,#clarity-landing-stack,.day-landing-stack,[data-clarity-day-landing]").forEach(function(el){
+          el.style.setProperty("display","none","important");
+          el.setAttribute("hidden","hidden");
+        });
+      } catch(e) {}
+    }
+    killLandingOnly();
+    document.addEventListener("DOMContentLoaded", killLandingOnly);
+    setTimeout(killLandingOnly, 500);
   } catch(err) {}
 })();
 </script>
@@ -295,16 +275,12 @@ body[data-clarity-room="companion"] #clarity-day-landing {
 
 
 <style id="c-clean-companion-css">
-/* C-clean: Companion is tools+pathways only — no day-landing SOT */
-html[data-clarity-room="companion"] #clarity-day-landing,
-html[data-clarity-viewport="companion-path"] #clarity-day-landing,
+/* C-clean: hide day-landing SOT only — never hide RRRA hubs */
 #clarity-day-landing,
 .clarity-day-landing,
 #clarity-landing-stack,
 .day-landing-stack,
-[data-clarity-day-landing],
-.cdl-hero,
-.yawm-landing-on-companion {
+[data-clarity-day-landing] {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
@@ -313,11 +289,25 @@ html[data-clarity-viewport="companion-path"] #clarity-day-landing,
   overflow: hidden !important;
   margin: 0 !important;
   padding: 0 !important;
-  border: none !important;
+}
+/* Ensure Companion tool panels can show */
+#main-content, .main-content, #tab-reminder, #tab-reality, #tab-reflection, #tab-action, #tab-notes {
+  visibility: visible !important;
+}
+.tab-panel.rrra-hub.is-active,
+.tab-panel.rrra-hub.active,
+#tab-reminder.tab-panel {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
 }
 </style>
 
-</head><body data-active-tab="journey" data-section-fortress="1">
+</head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
   <a href="/companion/" data-room-link="companion" class="is-here" aria-current="page"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
@@ -574,7 +564,7 @@ style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:.55r
 <a href="#main-content" class="skip-link">Skip to content</a>
 <audio id="quran-audio-dup1" preload="none" crossorigin="anonymous"></audio><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
 
-<div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
+<div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub is-active active" data-rrra-hub="reminder" aria-hidden="false">
 <div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
 <div class="rrra-hub-meta">8 sections</div></div>
 <div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · Meme Studio (auto verse/ḥadīth) · deepen-study links.</div>
@@ -2525,7 +2515,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/assets/clarity-path-progress-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/clarity-grave-path-curriculum-js.js?v=20261101WB1" defer></script>
 <script id="clarity-path-night-fix-v1" src="/assets/companion-inline/inline-clarity_path_night_fix_v1.js?v=20261101WB1" defer></script>
-<script type="text/plain" data-c-clean-skip="1" data-c-clean-skip="1" type="text/plain" id="clarity-path-reset-js-v1" src="/assets/companion-inline/inline-clarity_path_reset_v1.js?v=20261101WB1" defer></script><!-- c-clean skip: path reset thrash on companion -->
+<script type="text/plain" data-c-clean-skip="1" id="clarity-path-reset-js-v1" src="/assets/companion-inline/inline-clarity_path_reset_v1.js?v=20261101WB1" defer></script><!-- c-clean skip: path reset thrash on companion -->
 <script id="clarity-perf-loader-v1" src="/assets/companion-inline/inline-clarity-perf-loader-v1.js?v=20261101WB1" defer></script>
 <script id="clarity-surface-polish-v1" src="/assets/companion-inline/inline-clarity_surface_polish_v1.js?v=20261101WB1" defer></script>
 <script id="clarity-icons-links-polish-v1" src="/assets/companion-inline/inline-clarity_icons_links_polish_v1.js?v=20261101WB1" defer></script>
@@ -2594,5 +2584,60 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 </script>
 
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+
+<script id="c-clean-integrity-restore-v1">
+(function(){
+  "use strict";
+  if (window.__C_CLEAN_INTEGRITY_V1__) return;
+  window.__C_CLEAN_INTEGRITY_V1__ = true;
+  function showReminder(){
+    try {
+      document.documentElement.setAttribute("data-clarity-viewport", "companion-path");
+      document.documentElement.setAttribute("data-clarity-room", "companion");
+      var tabs = ["tab-reminder","tab-reality","tab-reflection","tab-action","tab-notes"];
+      tabs.forEach(function(id){
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (id === "tab-reminder") {
+          el.classList.add("is-active", "active");
+          el.style.setProperty("display", "block", "important");
+          el.style.setProperty("visibility", "visible", "important");
+          el.style.setProperty("opacity", "1", "important");
+          el.removeAttribute("hidden");
+          el.setAttribute("aria-hidden", "false");
+        }
+      });
+      var main = document.getElementById("main-content") || document.querySelector(".main-content");
+      if (main) {
+        main.style.setProperty("display", "block", "important");
+        main.style.setProperty("visibility", "visible", "important");
+        main.style.setProperty("opacity", "1", "important");
+      }
+      // hide landing only
+      var land = document.getElementById("clarity-day-landing");
+      if (land) {
+        land.style.setProperty("display", "none", "important");
+        land.setAttribute("hidden", "hidden");
+      }
+      // reopen bar: prefer Yawm link, not empty path
+      var bar = document.getElementById("clarity-reopen-bar");
+      if (bar && !bar.querySelector("a[data-c-clean-yawm]")) {
+        var a = document.createElement("a");
+        a.href = "/daily/";
+        a.textContent = "Open Yawm · today";
+        a.setAttribute("data-c-clean-yawm", "1");
+        a.style.cssText = "margin-left:.5rem;color:#f3e6c0;font-weight:700";
+        bar.appendChild(a);
+      }
+    } catch (e) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", showReminder);
+  else showReminder();
+  setTimeout(showReminder, 200);
+  setTimeout(showReminder, 1000);
+  setTimeout(showReminder, 2500);
+})();
+</script>
+
 </body>
 </html>

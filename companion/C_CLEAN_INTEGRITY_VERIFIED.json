@@ -1,0 +1,59 @@
+{
+  "ok": false,
+  "cycles": [
+    {
+      "name": "tabs_present",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "reminder_active",
+      "ok": false,
+      "detail": {
+        "issues": [
+          "not active"
+        ]
+      }
+    },
+    {
+      "name": "no_global_cdl_hero_hide",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "integrity_script",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "balance",
+      "ok": true,
+      "detail": {
+        "o": 76,
+        "c": 76,
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    },
+    {
+      "name": "cycle2",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    }
+  ],
+  "status": "needs_attention"
+}
