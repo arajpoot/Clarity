@@ -92,6 +92,7 @@ body {
   <label for="ahr-docs">Where key documents are</label>
   <input id="ahr-docs" type="text" style="width:100%;margin:0.25rem 0 0.5rem;padding:0.45rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
   <button type="button" class="btn-soft" id="amana-heirs-save">Save on this device</button>
+  <button type="button" class="btn-soft" id="amana-heirs-print">Print heir pack</button>
   <p id="amana-heirs-msg" style="font-size:0.78rem;opacity:0.85"></p>
 </section>
 
@@ -125,5 +126,7 @@ body {
 })();
 </script>
 
+<script defer src="/amana/assets/amana-heirs-print-v1.js?v=20261101A3"></script>
+<script>document.getElementById("amana-heirs-print")&&document.getElementById("amana-heirs-print").addEventListener("click",function(){if(window.ClarityAmanaPrintHeirs)ClarityAmanaPrintHeirs();});</script>
 </body>
 </html>
