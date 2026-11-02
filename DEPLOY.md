@@ -1,7 +1,14 @@
-# Companion path polish · 20261102P4
+# Companion richness restore · 20261102RICH1
 
-Replace companion/index.html
+Base: pre–Yawm-migration shell (stable companion index ~250KB) with full path + RRRA tab sections.
 
-P1 beacon dedupe · P2 drop banner-nuclear · P3 drop path_nuclear · P4 scrap day-landing · P5 ghosts · P6 abs paths · P7 html trim · P8 peace flag
+Still applied:
+- Day-landing **scrap** (Yawm remains daily SoT)
+- Four-door nav
+- No banner/path nuclear
+- Absolute `/assets/...` paths for companion-inline
+- Beacon ≤1
 
-Keeps: path cards (Seeker…), banner repair/moon/av, craft modules, fortify boot.
+**Requires** live server still has `/assets/companion-inline/` (unchanged).
+
+Replace `companion/index.html` only.
