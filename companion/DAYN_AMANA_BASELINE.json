@@ -1,6 +1,6 @@
 {
   "title": "Am\u0101nah Dayn architecture baseline",
-  "version": "20261101DAYN-BASELINE",
+  "version": "20261101V0",
   "educational": true,
   "storage": {
     "ledger": "clarity_dayn_ledger_v1",
@@ -56,9 +56,10 @@
     "vault/LIVE_CRAWL_AND_WIRING.md"
   ],
   "gap": {
-    "companion_html_has_landing_slot": false,
-    "companion_html_has_vault_slot": false,
+    "companion_html_has_landing_slot": true,
+    "companion_html_has_vault_slot": true,
     "sealed_scripts_present": true,
-    "next_upgrade": "Restore DOM slots + wire boot after sealed-ready"
+    "phase": "V0",
+    "next_upgrade": "V1 chamber polish / A1 /amana/ shell"
   }
 }

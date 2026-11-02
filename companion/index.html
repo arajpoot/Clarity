@@ -226,6 +226,18 @@
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101c1">
 <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101c1" defer></script>
 <meta name="clarity-phase" content="C3"/>
+
+<style data-v0-dayn-css="1">
+.clarity-dayn-landing-card, .clarity-dayn-vault-card {
+  margin: 0.75rem auto; max-width: 42rem; padding: 0.9rem 1rem;
+  border-radius: 14px; border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(15,76,58,0.14);
+}
+#clarity-landing-slot-dayn, #clarity-vault-slot-dayn, #clarity-vault-dayn-io {
+  min-height: 0.5rem;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -482,7 +494,19 @@ style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:.55r
 <a href="#main-content" class="skip-link">Skip to content</a>
 <audio id="quran-audio-dup1" preload="none" crossorigin="anonymous"></audio><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
 
-<div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
+<div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content">
+
+<!-- V0 Amānah Dayn · outside vault (routine entry) -->
+<section id="clarity-dayn-landing-section" class="card clarity-dayn-landing-card" data-amana-dayn="landing" aria-label="Qard hasan Dayn entry">
+  <h2 style="margin:0 0 0.35rem;font-size:1.05rem;color:#d4b45a">Qard ḥasan · Dayn entry</h2>
+  <p style="font-size:0.8rem;opacity:0.9;margin:0 0 0.65rem;line-height:1.4">
+    Record loans and repayments on this device. Same ledger opens inside Amānah after unlock.
+    Educational only — not a fatwa · not legal or financial advice · no interest (qard ḥasan only).
+  </p>
+  <div id="clarity-landing-slot-dayn" data-dayn-slot="landing"></div>
+</section>
+
+<div id="tab-reminder" class="tab-panel rrra-hub" data-rrra-hub="reminder" aria-hidden="true" style="display:none">
 <div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
 <div class="rrra-hub-meta">8 sections</div></div>
 <div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · Meme Studio (auto verse/ḥadīth) · deepen-study links.</div>
@@ -1932,6 +1956,20 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
     <button type="button" class="lock-btn" id="amana-btn-lock">🔒 Lock now</button>
   </div>
 
+  
+<!-- V0 Amānah Dayn · inside vault counterpart + CSV/Excel IO -->
+<section id="clarity-dayn-vault-section" class="card clarity-dayn-vault-card" data-amana-dayn="vault" aria-label="Amānah Dayn ledger">
+  <h2 style="margin:0 0 0.35rem;font-size:1.05rem;color:#d4b45a">Amānah Dayn · ledger</h2>
+  <p style="font-size:0.8rem;opacity:0.9;margin:0 0 0.65rem;line-height:1.4">
+    Counterpart of the routine Dayn entry. Export a date-stamped CSV or Excel-compatible sheet on this device.
+    Educational · not legal or financial advice.
+  </p>
+  <div id="amana-vault-ledger-block-dayn" class="amana-vault-ledger-block-dayn">
+    <div id="clarity-vault-slot-dayn" data-dayn-slot="vault"></div>
+    <div id="clarity-vault-dayn-io" data-dayn-io="1"></div>
+  </div>
+</section>
+
   <details class="amana-heir-dd" id="amana-heir-dd">
 <summary>📋 Heir readiness · for those you leave behind</summary>
 <div class="amana-heir-body">
@@ -2482,5 +2520,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/companion/modules/inline-clarity_vault_note_registry.js?v=20261101WB1" defer></script>
 <script src="/companion/assets/clarity-vault-fortify-boot-v1.js?v=20261101C2" defer></script>
 <script defer src="/companion/assets/clarity-amana-entry-v1.js?v=20261101C2"></script>
+<script defer src="/companion/assets/clarity-dayn-v0-boot.js?v=20261101V0"></script>
 </body>
 </html>
