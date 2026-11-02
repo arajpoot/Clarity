@@ -1,0 +1,64 @@
+{
+  "title": "Am\u0101nah Dayn architecture baseline",
+  "version": "20261101DAYN-BASELINE",
+  "educational": true,
+  "storage": {
+    "ledger": "clarity_dayn_ledger_v1",
+    "tutorial": "clarity_dayn_tutorial_done_v1"
+  },
+  "surfaces": {
+    "outside_vault": {
+      "slot": "#clarity-landing-slot-dayn",
+      "role": "entry + list + repay",
+      "scripts": [
+        "dayn-mount-adapter-v1.js",
+        "dayn-ledger-v2.js",
+        "dayn-section-bridge-v2.js"
+      ]
+    },
+    "inside_vault": {
+      "slot": "#clarity-vault-slot-dayn",
+      "alias": "#amana-vault-ledger-block-dayn",
+      "role": "counterpart ledger + CSV/Excel IO",
+      "scripts": [
+        "dayn-section-bridge-v2.js",
+        "dayn-ledger-v2.js"
+      ]
+    }
+  },
+  "export": {
+    "csv": "amana-dayn-YYYY-MM-DD.csv",
+    "excel": "amana-dayn-YYYY-MM-DD.xls (SpreadsheetML)",
+    "import_csv": true,
+    "client_side_only": true,
+    "implemented_in": "dayn-section-bridge-v2.js"
+  },
+  "sealed_path": "/companion/sealed/",
+  "fortify": "/companion/assets/clarity-vault-fortify-boot-v1.js",
+  "load_order": [
+    "runtime-gate-v1.js",
+    "facade-v1.js",
+    "isolate-guard-v1.js",
+    "digest-v1.js",
+    "export-host-v1.js",
+    "digest-panel-v1.js",
+    "dayn-section-bridge-v2.js",
+    "dayn-mount-adapter-v1.js",
+    "dayn-ledger-v2.js",
+    "dayn-enrich-v3.js",
+    "dayn-ensure-s45.js",
+    "passphrase-tutorial-v1.js"
+  ],
+  "sources_docs": [
+    "vault/DAYN_RESTORE.md",
+    "vault/fortress/ARCHITECTURE.md",
+    "vault/VAULT_ARCHITECTURE.md",
+    "vault/LIVE_CRAWL_AND_WIRING.md"
+  ],
+  "gap": {
+    "companion_html_has_landing_slot": false,
+    "companion_html_has_vault_slot": false,
+    "sealed_scripts_present": true,
+    "next_upgrade": "Restore DOM slots + wire boot after sealed-ready"
+  }
+}

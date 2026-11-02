@@ -1,15 +1,12 @@
-# Companion ARCHITECTURE · C4
+# Companion ARCHITECTURE · C5
 
 ```
 /companion/
-  index.html
-  assets/
-    boot/           ← C4 owned shell scripts (copies)
-    banner-still-haramain.jpg
-    clarity-vault-fortify-boot-v1.js
-    clarity-amana-entry-v1.js
+  index.html          ← no companion-inline script src
+  assets/boot/        ← full shell ownership (C4+C5)
+  assets/             ← fortify, amana entry, banner still
   modules/
-  sealed/           ← lazy Amānah
-  redirects/        ← C3 hash stubs
-/assets/companion-inline/  ← retained copies / other surfaces
+  sealed/             ← lazy Amānah
+  redirects/
+/assets/companion-inline/  ← deprecated for Companion (copies retained)
 ```

@@ -1,37 +1,9 @@
 {
-  "phase": "C4",
-  "companion_home": "/companion/",
-  "boot_ownership": {
-    "path": "/companion/assets/boot/",
-    "count": 23,
-    "files": [
-      "inline-clarity_error_guard_v2.js",
-      "inline-clarity-micro-boot-v1.js",
-      "inline-bundle-nuros-v1.js",
-      "inline-clarity-shell-v3.js",
-      "inline-clarity-landing-v3.js",
-      "inline-clarity_madinah_ap.js",
-      "inline-clarity_banner_repair.js",
-      "inline-clarity-banner-nuclear-js.js",
-      "inline-clarity_banner_moon_v1.js",
-      "inline-clarity_surah_cont.js",
-      "inline-clarity_surface_polish_v1.js",
-      "inline-clarity_live_harden_v1.js",
-      "inline-clarity_path_nuclear_v1.js",
-      "inline-clarity-doors-flow-js-v1.js",
-      "inline-clarity_tab_persist.js",
-      "inline-clarity_section_pills_v2.js",
-      "inline-clarity_vault_fix.js",
-      "inline-clarity_vault_harden_v1.js",
-      "inline-clarity_amana_hardening.js",
-      "inline-bundle-security-v1.js",
-      "inline-clarity-qada-tracker-v1.js",
-      "inline-clarity-samina-verse-v1.js",
-      "inline-clarity-final-surface-v1.js"
-    ],
-    "note": "Copies only \u2014 originals remain in /assets/companion-inline/ until refs hit zero (C5+)"
-  },
-  "still_shared_inline": [
+  "phase": "C5",
+  "companion_inline_refs_in_companion_html": 0,
+  "boot_path": "/companion/assets/boot/",
+  "boot_file_count": 46,
+  "migrated_this_phase": [
     "inline-clarity_shariah_source_guard_v1.js",
     "inline-clarity_path_plaques_v1.js",
     "inline-clarity_path_night_fix_v1.js",
@@ -54,8 +26,6 @@
     "inline-clarity_amana_backup_guide.js",
     "inline-clarity_uft_print_fix_v2.js"
   ],
-  "still_shared_inline_count": 21,
   "modules": "/companion/modules/",
-  "sealed_lazy": "/companion/sealed/",
-  "banner_still": "/companion/assets/banner-still-haramain.jpg"
+  "sealed_lazy": "/companion/sealed/"
 }
