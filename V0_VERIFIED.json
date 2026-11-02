@@ -1,0 +1,59 @@
+{
+  "phase": "V0",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "slots",
+      "ok": true,
+      "detail": {
+        "landing": true,
+        "vault": true,
+        "block": true,
+        "io": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "boot_wire",
+      "ok": true,
+      "detail": {
+        "file": true,
+        "linked": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "script_balance",
+      "ok": true,
+      "detail": {
+        "o": 73,
+        "c": 73,
+        "issues": []
+      }
+    },
+    {
+      "name": "sealed_still",
+      "ok": true,
+      "detail": {
+        "files": 6,
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ],
+  "status": "verified"
+}

@@ -38,7 +38,8 @@
     display: grid; gap: 0.75rem; margin: 1.25rem 0;
   }
   @media (min-width: 640px) {
-    .door-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .door-grid { grid-template-columns: 1fr 1fr; }
+    @media (min-width: 720px) { .door-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
   }
   .door-card {
     display: block; text-decoration: none; color: inherit;
@@ -64,7 +65,8 @@
   <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · vault · reminder</span></span></a>
   <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
   <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
-  <p class="crn-seal">Three rooms · educational only · not a fatwa</p>
+  <a href="/amana/" data-room-link="amana"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
+  <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
 </nav>
 
 <main class="door-wrap">
@@ -90,6 +92,11 @@
       <span class="ico" aria-hidden="true">🎓</span>
       <strong>University</strong>
       <span>Ordered path: Seeker → Practice → Consistency → Transmission.</span>
+    </a>
+    <a class="door-card" href="/amana/">
+      <span class="ico" aria-hidden="true">🔐</span>
+      <strong>Amānah</strong>
+      <span>Private vault · Dayn · heir readiness on this device.</span>
     </a>
   </div>
 
