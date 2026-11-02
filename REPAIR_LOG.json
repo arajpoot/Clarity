@@ -1,0 +1,135 @@
+{
+  "log": [
+    {
+      "phase": "P1",
+      "ok": true,
+      "msg": "beacons before=2"
+    },
+    {
+      "phase": "P1",
+      "ok": true,
+      "msg": "beacons after=1"
+    },
+    {
+      "phase": "P2",
+      "ok": true,
+      "msg": "banner-nuclear removed (had 1)"
+    },
+    {
+      "phase": "P3",
+      "ok": true,
+      "msg": "path_nuclear removed"
+    },
+    {
+      "phase": "P4",
+      "ok": true,
+      "msg": "scrap CSS applied"
+    },
+    {
+      "phase": "P5",
+      "ok": true,
+      "msg": "landing/qada ghosts cleared"
+    },
+    {
+      "phase": "P6",
+      "ok": true,
+      "msg": "absolute assets"
+    },
+    {
+      "phase": "P7",
+      "ok": true,
+      "msg": "trim after html"
+    },
+    {
+      "phase": "P8",
+      "ok": true,
+      "msg": "banner peace flag"
+    }
+  ],
+  "sims": [
+    {
+      "n": 1,
+      "name": "beacon_le1",
+      "ok": true,
+      "d": "1"
+    },
+    {
+      "n": 2,
+      "name": "no_banner_nuclear",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 3,
+      "name": "no_path_nuclear",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 4,
+      "name": "no_landing_v3",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 5,
+      "name": "scrap",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 6,
+      "name": "banner_nodes",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 7,
+      "name": "banner_repair_kept",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 8,
+      "name": "path_seeker",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 9,
+      "name": "path_four",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 10,
+      "name": "one_body_html",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 11,
+      "name": "no_rel_assets",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 12,
+      "name": "fortify",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 13,
+      "name": "no_force_show",
+      "ok": true,
+      "d": ""
+    },
+    {
+      "n": 14,
+      "name": "script_count_reduced",
+      "ok": false,
+      "d": "83"
+    }
+  ]
+}
