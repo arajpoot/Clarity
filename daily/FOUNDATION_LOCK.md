@@ -1,7 +1,5 @@
-# Yawm FOUNDATION LOCK · 20261102M1
+# Yawm FOUNDATION LOCK · 20261102R1
 
-Phase M1: daily routine enrichment only under `/daily/`.
-
-Companion / Campus / Amānah application trees are **not** in this package.
-
-Yawm is single source of truth for the day.
+Restored enriched layout + banner from prior Yawm wing.
+Nav: four doors (Companion · Yawm · University · Amānah).
+Edit only under /daily/. Other rooms untouched.

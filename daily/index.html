@@ -1,81 +1,355 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta name="yawm-build" content="20261102R1"/>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="clarity-surface" content="yawm"/>
-<meta name="clarity-build" content="20261102M1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Yawm · Clarity — Furnish Your Grave</title>
+<meta name="description" content="Self-contained daily surface: now cue, deed, full adhkār, farḍ checklist, wuḍūʾ & prayer outline, send light, protection. On this device. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/daily/"/>
-<style>
-:root{--ink:#0d1f17;--gold:#d4af37;--mist:#e8f0ea;--card:#12261c}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,"Segoe UI",sans-serif;background:var(--ink);color:var(--mist);line-height:1.55}
-a{color:var(--gold)}
-.wrap{max-width:42rem;margin:0 auto;padding:1rem 1.1rem 2.5rem}
-.doors{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;margin-bottom:1rem}
-.doors a{text-decoration:none;color:var(--mist);border:1px solid rgba(212,175,55,.35);padding:.35rem .8rem;border-radius:999px;font-weight:600;font-size:.85rem}
-.doors a.here{background:rgba(212,175,55,.14);color:#e8d5a3}
-.hero{text-align:center;border:1px solid rgba(212,175,55,.28);border-radius:16px;padding:1.1rem 1rem;margin-bottom:1rem;background:var(--card)}
-.hero h1{margin:0 0 .4rem;font-size:1.4rem;color:#e8d5a3}
-.ar{font-family:Georgia,"Noto Naskh Arabic","Amiri",serif;font-size:1.3rem;direction:rtl}
-.grid{display:grid;grid-template-columns:1fr;gap:.7rem}
-@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
-.tile{display:block;text-decoration:none;color:inherit;border:1px solid rgba(212,175,55,.28);border-radius:14px;padding:.85rem 1rem;background:rgba(18,38,28,.95)}
-.tile h2{margin:0 0 .35rem;font-size:1.05rem;color:#e8d5a3}
-.tile p{margin:0;font-size:.9rem;opacity:.92}
-.card{border:1px solid rgba(212,175,55,.3);border-radius:14px;padding:1rem;background:var(--card);margin:.75rem 0}
-.card h1{margin:0 0 .5rem;font-size:1.25rem;color:#e8d5a3}
-.card h2{margin:1rem 0 .35rem;font-size:1.05rem;color:#e8d5a3}
-.foot{margin-top:1.5rem;font-size:.78rem;opacity:.75;text-align:center}
-.note{font-size:.85rem;opacity:.88;margin-top:.65rem}
-.src{font-size:.82rem;opacity:.9}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=EB+Garamond:ital,wght@0,600;0,700;1,500&family=Noto+Naskh+Arabic:wght@500;600;700&family=Noto+Nastaliq+Urdu:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/daily.css?v=20261102R1"/>
 </head>
-<body>
-<div class="wrap">
-<nav class="doors" aria-label="Clarity rooms">
-<a href="/companion/">Companion</a>
-<a class="here" href="/daily/">Yawm</a>
-<a href="/campus/">University</a>
-<a href="/amana/">Amānah</a>
-</nav>
-<header class="hero">
-  <h1>Yawm · Daily routine</h1>
-  <p class="ar" lang="ar">وَالْعَصْرِ ﴿١﴾ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ ﴿٢﴾</p>
-  <p>By time — mankind is in loss. <a href="https://quran.com/103" target="_blank" rel="noopener">Qur’an 103:1–2</a></p>
-  <p class="note">Single home for the day. Path and craft stay in Companion; trusts stay in Amānah.</p>
+<body data-address="daily">
+
+<header class="daily-header">
+  <a class="brand" href="/daily/">Clarity · Yawm</a>
+  <div class="header-actions">
+    <button type="button" id="theme-toggle" title="Toggle theme" aria-label="Toggle light or dark">◐</button>
+    <a href="/companion/">Companion</a>
+  </div>
 </header>
-<div class="grid">
-  <a class="tile" href="modules/now/">
-    <h2>Now</h2>
-    <p>After Fajr · morning adhkār — or the portion that matches this hour of the day.</p>
-  </a>
-  <a class="tile" href="modules/deed/">
-    <h2>Do this today</h2>
-    <p>Say Bismillāh before the next ordinary task. One small deed, done with intention.</p>
-  </a>
-  <a class="tile" href="modules/tasbeeh/">
-    <h2>Tasbeeh</h2>
-    <p class="ar" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
-    <p>Count on this device. Muslim 2692 · verify grade.</p>
-  </a>
-  <a class="tile" href="modules/salah/">
-    <h2>Ṣalāh</h2>
-    <p>Wuḍūʾ outline · farḍ counts 2 / 4 / 4 / 3 / 4. Live times also on the Companion banner.</p>
-  </a>
-  <a class="tile" href="modules/adhkar/">
-    <h2>Adhkār</h2>
-    <p class="ar" lang="ar">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ</p>
-    <p>Morning remembrance · Abū Dāwūd 5084 · verify grade.</p>
-  </a>
-  <a class="tile" href="modules/light/">
-    <h2>Light</h2>
-    <p>Ongoing charity · beneficial knowledge · a righteous child who prays. Muslim 1631 · Ṣaḥīḥ.</p>
-  </a>
-</div>
-<p class="foot">Educational only — not a fatwa. Acceptance is with Allah.<br/>
-<a href="/amana/">Amānah</a> · <a href="/companion/">Companion</a> · build 20261102M1</p>
-</div>
+
+<nav class="top" aria-label="Clarity rooms">
+  <a href="/companion/">Companion</a>
+  <a class="here" href="/daily/">Yawm</a>
+  <a href="/campus/">University</a>
+  <a href="/amana/">Amānah</a>
+</nav>
+
+<figure class="daily-banner">
+  <img src="assets/daily-banner.jpg?v=20261102R1" alt="Clarity — Furnish Your Grave" width="1600" height="754" loading="eager"/>
+  <div class="banner-verse-plaque" aria-label="Sūrat al-ʿAṣr">
+    <p class="bismillah" dir="rtl" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <p class="verse-ar" dir="rtl" lang="ar">وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ ۝ إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ</p>
+    <p class="verse-en">By time — mankind is in loss, except those who believe, work righteousness, and enjoin truth and patience.</p>
+    <p class="verse-ref">Sūrat al-ʿAṣr (103) · educational</p>
+  </div>
+  <div class="banner-gravity" aria-label="Message">
+    <p class="gravity-line">Time is passing. Furnish the grave with faith, deeds, truth, and ṣabr.</p>
+  </div>
+</figure>
+
+<main id="clarity-day-landing" aria-label="Yawm hub">
+
+  <div class="dual-tiles">
+    <a class="dual-tile" href="/">
+      <img class="nuros" src="assets/icons/nuros-companion.svg?v=20261102R1" alt="" width="42" height="42"/>
+      <span class="tile-text">
+        <strong>Companion path</strong>
+        <small>Reminder · Reality · Reflection · Action</small>
+      </span>
+    </a>
+    <a class="dual-tile" href="/campus/">
+      <img class="nuros" src="assets/icons/nuros-campus.svg?v=20261102R1" alt="" width="42" height="42"/>
+      <span class="tile-text">
+        <strong>Campus path</strong>
+        <small>Desk · Lab · Library</small>
+      </span>
+    </a>
+  </div>
+
+  
+  
+  <p class="yawm-brand-sub" style="font-size:.72rem;opacity:.85;margin:.5rem 0 0">Yawm — today’s portion · ʿAṣr Gate · educational only — not a fatwa.</p>
+  <div class="yawm-quill-rule">Modules</div>
+  <nav class="yawm-hub" aria-label="Yawm modules">
+    <a class="yawm-tile" href="modules/now/">
+      <img class="yt-icon" src="assets/icons/nuros-today.svg?v=20261102R1" alt="" width="36" height="36"/>
+      <strong>Now</strong>
+      <small>Morning · evening window</small>
+    </a>
+    <a class="yawm-tile" href="modules/deed/">
+      <img class="yt-icon" src="assets/icons/nuros-seed.svg?v=20261102R1" alt="" width="36" height="36"/>
+      <strong>Do this today</strong>
+      <small>One deed · mark done</small>
+    </a>
+    <a class="yawm-tile" href="modules/adhkar/">
+      <img class="yt-icon" src="assets/icons/nuros-dua.svg?v=20261102R1" alt="" width="36" height="36"/>
+      <strong>Adhkār</strong>
+      <small>Morning &amp; evening pack</small>
+    </a>
+    <a class="yawm-tile" href="modules/tasbeeh/">
+      <img class="yt-icon" src="assets/icons/nuros-tasbih.svg?v=20261102R1" alt="" width="36" height="36"/>
+      <strong>Tasbeeh</strong>
+      <small>Counter on this device</small>
+    </a>
+    <a class="yawm-tile" href="modules/salah/">
+      <img class="yt-icon" src="assets/icons/nuros-salah.svg?v=20261102R1" alt="" width="36" height="36"/>
+      <strong>Farḍ map</strong>
+      <small>Rakʿahs · outline</small>
+    </a>
+    <a class="yawm-tile" href="modules/light/">
+      <img class="yt-icon" src="assets/icons/nuros-tree.svg?v=20261102R1" alt="" width="36" height="36"/>
+      <strong>Send light</strong>
+      <small>Grave · protection</small>
+    </a>
+  </nav>
+
+<!-- Phase 1: Now cue -->
+  <section class="cdl-card cdl-now" id="cdl-now">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-today.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Now · <span class="now-period">today</span></h2>
+      </div>
+    </div>
+    <p class="now-text cdl-deed">Loading cue…</p>
+    <p class="cdl-note">Educational cue from local time — not a prayer timetable.</p>
+  </section>
+
+  <!-- Do this today -->
+  <section class="cdl-card" id="cdl-today">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-seed.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Do this today</h2>
+      </div>
+      <span class="cdl-lane" id="cdl-lane">deed</span>
+    </div>
+    <div class="cdl-row">
+      <span class="tas-wrap">
+        <img class="nuros" src="assets/icons/nuros-tasbih.svg?v=20261102R1" alt="" width="22" height="22" style="width:1.4rem;height:1.4rem;border-radius:50%;vertical-align:middle"/>
+        <strong id="cdl-tas-count">0</strong>
+        <button type="button" id="cdl-tas-inc" aria-label="Increment tasbeeh">+1</button>
+        <button type="button" id="cdl-tas-reset" title="Reset" aria-label="Reset tasbeeh">↺</button>
+      </span>
+      <span id="cdl-streak" class="streak-badge" hidden></span>
+    </div>
+    <p class="cdl-deed" id="cdl-deed">One small ongoing good…</p>
+    <p class="cdl-note" id="cdl-done">Not marked</p>
+    <button type="button" id="cdl-mark" class="primary">Mark done</button>
+    <p class="cdl-note">Educational only — not a fatwa. Acceptance is with Allah.</p>
+  </section>
+
+  <!-- Phase 2: Window adhkār -->
+  <section class="cdl-card" id="cdl-adhkar">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-dua.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Adhkār · <span id="cdl-adh-window">morning</span></h2>
+      </div>
+      <span class="cdl-note" id="cdl-adh-progress">0 of 0</span>
+    </div>
+    <p class="cdl-sub">Full pack from Clarity adhkār data · counts on this device · educational · not a fatwa.</p>
+    <div id="cdl-adhkar-list"></div>
+  </section>
+
+  <!-- Phase 3: Farḍ checklist -->
+  <section class="cdl-card" id="cdl-fard-today">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-salah.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Today’s farḍ · mark done</h2>
+      </div>
+    </div>
+    <p class="cdl-sub">On this device only — not a prayer timetable. Educational checklist.</p>
+    <div id="cdl-fard-check" class="fard-check-row"></div>
+  </section>
+
+  <!-- Phase 3: Post-ṣalāh -->
+  <section class="cdl-card cdl-expandable">
+    <button type="button" class="cdl-expand-btn" data-target="cdl-post" aria-expanded="false">
+      <span class="btn-label">
+        <img class="nuros" src="assets/icons/nuros-tasbih.svg?v=20261102R1" alt="" width="28" height="28"/>
+        After farḍ · short dhikr
+      </span>
+      <span class="chev" aria-hidden="true">▸</span>
+    </button>
+    <div id="cdl-post" class="cdl-expand-body" hidden>
+      <div id="cdl-post-list"></div>
+      <p class="cdl-note">Muslim 595 / 597 · educational · schools differ on details.</p>
+    </div>
+  </section>
+
+  <!-- Phase 3: Before sleep -->
+  <section class="cdl-card cdl-expandable">
+    <button type="button" class="cdl-expand-btn" data-target="cdl-sleep" aria-expanded="false">
+      <span class="btn-label">
+        <img class="nuros" src="assets/icons/nuros-shield.svg?v=20261102R1" alt="" width="28" height="28"/>
+        Before sleep · protection
+      </span>
+      <span class="chev" aria-hidden="true">▸</span>
+    </button>
+    <div id="cdl-sleep" class="cdl-expand-body" hidden>
+      <div id="cdl-sleep-list"></div>
+      <p class="cdl-note">Learn full wording with a teacher · educational · not a fatwa.</p>
+    </div>
+  </section>
+
+  <!-- Send light -->
+  <section class="cdl-card">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-tree.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Send light ahead</h2>
+      </div>
+    </div>
+    <p class="cdl-sub">Three small intentions that echo ongoing reward themes (Muslim 1631 · educational).</p>
+    <div id="cdl-light" class="cdl-light-row"></div>
+  </section>
+
+  <!-- Core protection -->
+  <section class="cdl-card">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-shield.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Core protection set</h2>
+      </div>
+    </div>
+    <p class="cdl-note">Āyat al-Kursī · the three Quls · istighfār. Learn the wording with a teacher; this card is a reminder only.</p>
+    <ul class="cdl-protect">
+      <li>Āyat al-Kursī (2:255)</li>
+      <li>Sūrat al-Ikhlāṣ · al-Falaq · an-Nās</li>
+      <li>Sayyid al-istighfār or any sincere istighfār</li>
+    </ul>
+  </section>
+
+  <!-- Oath / long stay -->
+  <section class="cdl-card cdl-oath" id="cdl-oath">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-kaaba.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Furnish your grave</h2>
+      </div>
+      <span class="cdl-period" id="cdl-period">Today</span>
+    </div>
+    <p class="cdl-sub">When a person dies, his deeds come to an end except three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.</p>
+    <p class="cdl-note">Muslim 1631 · educational wording · verify with a scholar · not a fatwa</p>
+  </section>
+
+  <section class="cdl-card">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-path.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Remember the long stay</h2>
+      </div>
+    </div>
+    <p class="cdl-sub">Family and wealth turn back at the grave; <strong>deeds stay with you</strong>. Prepare a home of light — not only a warning, an invitation to send good ahead today.</p>
+    <p class="cdl-note">Educational reminder · not a fatwa</p>
+  </section>
+
+  <!-- Reference maps lower -->
+  <section class="cdl-card" id="cdl-pillars">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-star.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Five pillars · daily map</h2>
+      </div>
+    </div>
+    <p class="cdl-sub">Foundation of practice — map only. Educational · not a fatwa.</p>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <img class="nuros" src="assets/icons/nuros-shield.svg?v=20261102R1" alt="" width="36" height="36"/>
+        <strong>Shahāda</strong>
+        <small>Testimony of faith — no god but Allah, Muhammad is His Messenger ﷺ</small>
+      </div>
+      <div class="pillar-card">
+        <img class="nuros" src="assets/icons/nuros-salah.svg?v=20261102R1" alt="" width="36" height="36"/>
+        <strong>Ṣalāh</strong>
+        <small>Five daily prayers — the first deed asked about on the Day of Standing</small>
+      </div>
+      <div class="pillar-card">
+        <img class="nuros" src="assets/icons/nuros-seed.svg?v=20261102R1" alt="" width="36" height="36"/>
+        <strong>Zakāt</strong>
+        <small>Purifying due on wealth when niṣāb and a lunar year pass</small>
+      </div>
+      <div class="pillar-card">
+        <img class="nuros" src="assets/icons/nuros-water.svg?v=20261102R1" alt="" width="36" height="36"/>
+        <strong>Ṣawm</strong>
+        <small>Fasting Ramaḍān when able — niyyah before dawn</small>
+      </div>
+      <div class="pillar-card">
+        <img class="nuros" src="assets/icons/nuros-kaaba.svg?v=20261102R1" alt="" width="36" height="36"/>
+        <strong>Ḥajj</strong>
+        <small>Pilgrimage once when able — safety, health, and means</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="cdl-card" id="cdl-fard">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-salah.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Farḍ rakʿahs · map</h2>
+      </div>
+    </div>
+    <div class="fard-row">
+      <div class="fard-chip"><strong>2</strong><span>Fajr</span></div>
+      <div class="fard-chip"><strong>4</strong><span>Dhuhr</span></div>
+      <div class="fard-chip"><strong>4</strong><span>ʿAṣr</span></div>
+      <div class="fard-chip"><strong>3</strong><span>Maghrib</span></div>
+      <div class="fard-chip"><strong>4</strong><span>ʿIshāʾ</span></div>
+    </div>
+    <p class="cdl-note">Sunnah units vary by school · educational.</p>
+  </section>
+
+  <section class="cdl-card cdl-expandable">
+    <button type="button" class="cdl-expand-btn" data-target="cdl-wudu" aria-expanded="false">
+      <span class="btn-label">
+        <img class="nuros" src="assets/icons/nuros-water.svg?v=20261102R1" alt="" width="28" height="28"/>
+        Wuḍūʾ outline · 8 steps
+      </span>
+      <span class="chev" aria-hidden="true">▸</span>
+    </button>
+    <div id="cdl-wudu" class="cdl-expand-body" hidden></div>
+  </section>
+
+  <section class="cdl-card cdl-expandable">
+    <button type="button" class="cdl-expand-btn" data-target="cdl-salah" aria-expanded="false">
+      <span class="btn-label">
+        <img class="nuros" src="assets/icons/nuros-salah.svg?v=20261102R1" alt="" width="28" height="28"/>
+        Prayer outline · 7 steps
+      </span>
+      <span class="chev" aria-hidden="true">▸</span>
+    </button>
+    <div id="cdl-salah" class="cdl-expand-body" hidden></div>
+  </section>
+
+  <section class="cdl-card cdl-expandable">
+    <button type="button" class="cdl-expand-btn" data-target="cdl-provisions" aria-expanded="false">
+      <span class="btn-label">
+        <img class="nuros" src="assets/icons/nuros-path.svg?v=20261102R1" alt="" width="28" height="28"/>
+        Provisions for the long stay · 7 lanes
+      </span>
+      <span class="chev" aria-hidden="true">▸</span>
+    </button>
+    <div id="cdl-provisions" class="cdl-expand-body" hidden></div>
+  </section>
+
+  <section class="cdl-card">
+    <div class="cdl-head">
+      <div class="cdl-head-left">
+        <img class="nuros" src="assets/icons/nuros-scroll.svg?v=20261102R1" alt="" width="30" height="30"/>
+        <h2>Last seven days</h2>
+      </div>
+    </div>
+    <div id="cdl-hist"></div>
+  </section>
+
+  <!-- Phase 4 continuity -->
+  <p class="cdl-continuity" id="cdl-continuity"></p>
+
+  <p class="cdl-footer">
+    Educational only — not a fatwa. On this device. Sources shown where available.<br/>
+    Verify with a trusted local scholar. Campus and Companion remain separate surfaces.
+  </p>
+</main>
+
+<script src="assets/daily.js?v=20261102R1"></script>
 </body>
 </html>
