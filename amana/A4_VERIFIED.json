@@ -1,0 +1,53 @@
+{
+  "phase": "A4",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "tree_full_host",
+      "ok": true,
+      "detail": {
+        "uft_reg_name": true,
+        "uft_stage": true,
+        "uft_js": true,
+        "restore": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "faraid_rich",
+      "ok": true,
+      "detail": {
+        "root": true,
+        "js": true,
+        "linked": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "wasiyyah_rich",
+      "ok": true,
+      "detail": {
+        "root": true,
+        "js": true,
+        "print": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ],
+  "status": "verified"
+}

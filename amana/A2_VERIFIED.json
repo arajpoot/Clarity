@@ -1,0 +1,56 @@
+{
+  "phase": "A2",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "pages_exist",
+      "ok": true,
+      "detail": {
+        "missing": [],
+        "issues": []
+      }
+    },
+    {
+      "name": "uft_assets",
+      "ok": true,
+      "detail": {
+        "uft": 308173,
+        "restore": 318445,
+        "faraid": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "tree_links_uft",
+      "ok": true,
+      "detail": {
+        "linked": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "fiqh_faraid",
+      "ok": true,
+      "detail": {
+        "linked": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ],
+  "status": "verified"
+}

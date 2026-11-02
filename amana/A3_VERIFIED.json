@@ -1,0 +1,63 @@
+{
+  "phase": "A3",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "sealed_amana",
+      "ok": true,
+      "detail": {
+        "n": 13,
+        "issues": []
+      }
+    },
+    {
+      "name": "fortify_base",
+      "ok": true,
+      "detail": {
+        "base": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "pages_use_amana_fortify",
+      "ok": true,
+      "detail": {
+        "home": true,
+        "dayn": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "wasiyyah_heirs_print",
+      "ok": true,
+      "detail": {
+        "wasi": true,
+        "print": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "isolation",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ],
+  "status": "verified"
+}

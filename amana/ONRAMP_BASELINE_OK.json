@@ -1,0 +1,20 @@
+{
+  "live_deploy_upto_date": true,
+  "sandbox_status": "verified",
+  "repairs": [
+    "debounce v0 sealed load (single promise)",
+    "amana-room observer disconnect 20s",
+    "v1 chamber observer disconnect 20s",
+    "nuros boot interval 250ms -> 2000ms",
+    "nuros interval 250->2000 companion/assets/boot/inline-bundle-nuros-v1.js",
+    "nuros interval 250->2000 assets/companion-inline/inline-bundle-nuros-v1.js",
+    "v1 chamber observer disconnect"
+  ],
+  "onramp": {
+    "door_four_tiles": true,
+    "amana_room": "/amana/",
+    "companion_vault_tab_retired": true,
+    "dayn_slots_on_amana": true,
+    "sealed_via_fortify": true
+  }
+}

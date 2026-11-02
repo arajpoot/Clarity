@@ -1,0 +1,74 @@
+{
+  "phase": "C3",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "banner_local",
+      "ok": true,
+      "detail": {
+        "in_html": true,
+        "file": true,
+        "size": 110839,
+        "issues": []
+      }
+    },
+    {
+      "name": "redirects",
+      "ok": true,
+      "detail": {
+        "count": 9,
+        "issues": []
+      }
+    },
+    {
+      "name": "load_map",
+      "ok": true,
+      "detail": {
+        "exists": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "c2_preserved",
+      "ok": true,
+      "detail": {
+        "fortify": true,
+        "entry": true,
+        "sealed_dir": 13,
+        "issues": []
+      }
+    },
+    {
+      "name": "script_balance",
+      "ok": true,
+      "detail": {
+        "open": 70,
+        "close": 70,
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    },
+    {
+      "name": "isolation",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    }
+  ],
+  "status": "verified"
+}

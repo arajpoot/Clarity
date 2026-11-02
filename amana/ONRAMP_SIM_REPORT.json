@@ -1,0 +1,114 @@
+{
+  "ok": false,
+  "cycles": [
+    {
+      "name": "arch_files",
+      "ok": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "name": "rooms_isolation",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "syntax_balance",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "freeze_risk",
+      "ok": false,
+      "detail": {
+        "hot_intervals": [
+          [
+            "inline-bundle-nuros-v1.js",
+            250
+          ],
+          [
+            "inline-bundle-nuros-v1.js",
+            250
+          ]
+        ],
+        "warnings": [
+          "clarity-amana-v1-chamber.js observer no disconnect",
+          "amana-room-v1.js observer no disconnect",
+          "inline-bundle-nuros-v1.js observer no disconnect",
+          "inline-clarity-qada-tracker-v1.js observer no disconnect",
+          "inline-clarity_path_night_fix_v1.js observer no disconnect",
+          "inline-clarity_path_plaques_v1.js observer no disconnect",
+          "inline-clarity_pedigree_plaque_v1.js observer no disconnect",
+          "inline-clarity_uft_viewport_recover.js observer no disconnect",
+          "inline-clarity_vault_fix.js observer no disconnect"
+        ],
+        "issues": [
+          "inline-bundle-nuros-v1.js interval 250ms",
+          "inline-bundle-nuros-v1.js interval 250ms"
+        ]
+      }
+    },
+    {
+      "name": "leak_guards",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "dayn_wire",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    },
+    {
+      "name": "freeze_after_repair",
+      "ok": true,
+      "detail": {
+        "issues": [],
+        "repairs": [
+          "debounce v0 sealed load",
+          "amana observer disconnect timeout"
+        ]
+      }
+    },
+    {
+      "name": "http_after_repair",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ],
+  "repairs": [
+    "debounce v0 sealed load",
+    "amana observer disconnect timeout"
+  ],
+  "issues": [
+    "freeze_risk"
+  ],
+  "status": "needs_attention",
+  "passed": 9,
+  "total": 10
+}

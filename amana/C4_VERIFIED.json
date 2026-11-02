@@ -1,0 +1,64 @@
+{
+  "phase": "C4",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "boot_pack",
+      "ok": true,
+      "detail": {
+        "count": 23,
+        "issues": []
+      }
+    },
+    {
+      "name": "html_boot_refs",
+      "ok": true,
+      "detail": {
+        "boot_src_count": 23,
+        "owned_still_inline": [],
+        "issues": []
+      }
+    },
+    {
+      "name": "inline_retained",
+      "ok": true,
+      "detail": {
+        "shell_in_inline": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "boot_syntax",
+      "ok": true,
+      "detail": {
+        "bad": [],
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    },
+    {
+      "name": "isolation",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    }
+  ],
+  "status": "verified",
+  "boot_count": 23,
+  "remaining_inline_refs": 21
+}

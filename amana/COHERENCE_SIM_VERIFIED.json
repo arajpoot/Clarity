@@ -1,0 +1,109 @@
+{
+  "phase": "C1+C2 coherence",
+  "cycles": [
+    {
+      "name": "tree_shape",
+      "ok": true,
+      "detail": {
+        "missing": [],
+        "sealed_js": 13
+      }
+    },
+    {
+      "name": "c1_thin_door",
+      "ok": true,
+      "detail": {
+        "size": 4637,
+        "issues": []
+      }
+    },
+    {
+      "name": "c1_companion_home",
+      "ok": true,
+      "detail": {
+        "size": 254651,
+        "scripts": 70,
+        "issues": []
+      }
+    },
+    {
+      "name": "c1_room_nav",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "c2_sealed_fortify",
+      "ok": true,
+      "detail": {
+        "issues": [],
+        "sealed_syntax_bad": []
+      }
+    },
+    {
+      "name": "isolation",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "modules_banner",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "flow_coherence",
+      "ok": true,
+      "detail": {
+        "flow": {
+          "door_to_companion": true,
+          "door_to_yawm": true,
+          "door_to_university": true,
+          "companion_amana_api": true,
+          "companion_sealed_base": true
+        },
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit_tool",
+      "ok": true,
+      "detail": {
+        "pass": true,
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http_matrix",
+      "ok": true,
+      "detail": {
+        "fails": [],
+        "sizes": {
+          "/": 4722,
+          "/companion/": 259366,
+          "/daily/": 8086,
+          "/campus/": 18915,
+          "/assets/room-nav/clarity-room-nav-v1.js": 3361,
+          "/assets/room-nav/clarity-room-nav-v1.css": 2042,
+          "/companion/assets/clarity-vault-fortify-boot-v1.js": 3641,
+          "/companion/assets/clarity-amana-entry-v1.js": 2245,
+          "/companion/sealed/runtime-gate-v1.js": 3259,
+          "/companion/sealed/facade-v1.js": 1333,
+          "/companion/modules/clarity-callig-engine-v1.js": 5797,
+          "/companion/modules/inline-bundle-meme-v1.js": 22243,
+          "/companion/modules/nx-tj-lmr-js-v1.js": 23035,
+          "/sitemap.xml": 1349,
+          "/robots.txt": 70
+        },
+        "issues": []
+      }
+    }
+  ],
+  "ok": true,
+  "repairs": []
+}

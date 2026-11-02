@@ -1,0 +1,41 @@
+{
+  "phase": "A5",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "dashboard",
+      "ok": true,
+      "detail": {
+        "grid": true,
+        "js": true,
+        "fortify": true,
+        "slots": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "sealed_still",
+      "ok": true,
+      "detail": {
+        "n": 13,
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ],
+  "status": "verified"
+}

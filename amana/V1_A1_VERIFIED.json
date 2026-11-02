@@ -1,0 +1,61 @@
+{
+  "phase": "V1+A1",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "amana_page",
+      "ok": true,
+      "detail": {
+        "exists": true,
+        "room": true,
+        "slots": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "door_four",
+      "ok": true,
+      "detail": {
+        "hrefs": [
+          "/companion/",
+          "/daily/",
+          "/campus/",
+          "/amana/"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "name": "companion_retire_tab",
+      "ok": true,
+      "detail": {
+        "moved": true,
+        "no_gate": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "room_nav_amana",
+      "ok": true,
+      "detail": {
+        "js": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    },
+    {
+      "name": "isolation",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    }
+  ],
+  "status": "verified"
+}
