@@ -1470,3 +1470,15 @@ html[data-theme="light"] .glass-plaque h1{color:#6b5a1e}
   background:rgba(201,168,76,.2);
   border:1px solid rgba(201,168,76,.35);
 }
+
+/* Y4 enrichment */
+.cdl-pillar-grid{display:grid;grid-template-columns:1fr;gap:0.55rem;margin:0.5rem 0}
+@media(min-width:700px){.cdl-pillar-grid{grid-template-columns:repeat(3,1fr)}}
+.cdl-pillar{padding:0.65rem 0.75rem;border-radius:12px;border:1px solid rgba(212,180,90,0.25);background:rgba(15,76,58,0.12)}
+.cdl-pillar strong{display:block;color:#e8d5a3;font-size:0.95rem}
+.cdl-pillar small{opacity:0.85;font-size:0.78rem;line-height:1.35}
+.cdl-rakah-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.4rem;margin:0.5rem 0}
+@media(max-width:560px){.cdl-rakah-grid{grid-template-columns:repeat(3,1fr)}}
+.cdl-rakah{text-align:center;padding:0.5rem 0.25rem;border-radius:12px;border:1px solid rgba(212,180,90,0.22);background:rgba(0,0,0,0.2)}
+.cdl-rakah-n{display:block;font-size:1.35rem;font-weight:800;color:#e8d48a}
+#yawm-registry-bridge a{color:#c9a84c;font-weight:700}

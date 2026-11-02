@@ -367,6 +367,78 @@
   /* Continuity line */
   var cont = document.getElementById("cdl-continuity");
   if (cont) {
-    cont.textContent = "Time is passing. Return tomorrow with faith, a deed, truth, and ṣabr — furnish the grave one day at a time.";
+    
+
+  /* ---- Y1–Y4 enrichment: pillars + rakʿah map + long-stay plaque ---- */
+  var PILLARS = [
+    { id: "shahada", title: "Shahādah", sub: "Faith · foundation of the day" },
+    { id: "salah", title: "Ṣalāh", sub: "Five prayers · mark farḍ above" },
+    { id: "zakat", title: "Zakāh", sub: "Purify wealth when due · not a calculator" },
+    { id: "sawm", title: "Ṣawm", sub: "Ramadan & voluntary fasts · educational" },
+    { id: "hajj", title: "Ḥajj", sub: "Once if able · follow your group’s guidance" }
+  ];
+  var RAKAHS = [
+    { name: "Fajr", n: "2" },
+    { name: "Ẓuhr", n: "4" },
+    { name: "ʿAṣr", n: "4" },
+    { name: "Maghrib", n: "3" },
+    { name: "ʿIshāʾ", n: "4" }
+  ];
+
+  var pillarsBox = document.getElementById("cdl-pillars");
+  if (pillarsBox && !pillarsBox.dataset.enriched) {
+    pillarsBox.dataset.enriched = "1";
+    pillarsBox.innerHTML = "";
+    var grid = document.createElement("div");
+    grid.className = "cdl-pillar-grid";
+    PILLARS.forEach(function (p) {
+      var el = document.createElement("div");
+      el.className = "cdl-pillar";
+      el.innerHTML = "<strong></strong><small></small>";
+      el.querySelector("strong").textContent = p.title;
+      el.querySelector("small").textContent = p.sub;
+      grid.appendChild(el);
+    });
+    pillarsBox.appendChild(grid);
+    var note = document.createElement("p");
+    note.className = "cdl-note";
+    note.textContent = "Educational map only — not a fatwa. Practice with a teacher.";
+    pillarsBox.appendChild(note);
+  }
+
+  var fardMap = document.getElementById("cdl-fard");
+  if (fardMap && !fardMap.dataset.enriched) {
+    fardMap.dataset.enriched = "1";
+    fardMap.innerHTML = "";
+    var rg = document.createElement("div");
+    rg.className = "cdl-rakah-grid";
+    RAKAHS.forEach(function (r) {
+      var cell = document.createElement("div");
+      cell.className = "cdl-rakah";
+      cell.innerHTML = "<span class='cdl-rakah-n'></span><strong></strong><small>farḍ</small>";
+      cell.querySelector(".cdl-rakah-n").textContent = r.n;
+      cell.querySelector("strong").textContent = r.name;
+      rg.appendChild(cell);
+    });
+    fardMap.appendChild(rg);
+    var n2 = document.createElement("p");
+    n2.className = "cdl-note";
+    n2.textContent = "Farḍ rakʿah counts · school differences exist · ask a local teacher.";
+    fardMap.appendChild(n2);
+  }
+
+  /* Remember the long stay — ensure visible copy */
+  var longStay = document.getElementById("cdl-long-stay");
+  if (longStay && !longStay.dataset.enriched) {
+    longStay.dataset.enriched = "1";
+    longStay.innerHTML = "<p>Family and wealth turn back at the grave; <strong>deeds stay with you</strong>. Prepare a home of light — not only a warning, an invitation to send good ahead today.</p><p class='cdl-note'>Educational reminder · not a fatwa</p>";
+  }
+
+  /* Mark Yawm enrichment */
+  try {
+    document.documentElement.setAttribute("data-yawm-enrich", "Y4");
+  } catch (e) {}
+
+  cont.textContent = "Time is passing. Return tomorrow with faith, a deed, truth, and ṣabr — furnish the grave one day at a time.";
   }
 })();
