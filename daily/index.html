@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-clarity-room="yawm" data-theme="dark">
 <head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
 <meta http-equiv="Pragma" content="no-cache"/>
-<meta name="yawm-build" content="20261102R1"/>
+<meta name="yawm-build" content="20261102Y4"/>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Yawm · Clarity — Furnish Your Grave</title>
@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=EB+Garamond:ital,wght@0,600;0,700;1,500&family=Noto+Naskh+Arabic:wght@500;600;700&family=Noto+Nastaliq+Urdu:wght@500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/daily.css?v=20261102R1"/>
+<link rel="stylesheet" href="assets/daily.css?v=20261102Y4"/>
 </head>
 <body data-address="daily">
 
@@ -24,11 +24,11 @@
   </div>
 </header>
 
-<nav class="top" aria-label="Clarity rooms">
-  <a href="/companion/">Companion</a>
-  <a class="here" href="/daily/">Yawm</a>
-  <a href="/campus/">University</a>
-  <a href="/amana/">Amānah</a>
+<nav class="top clarity-room-nav" data-room="yawm" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion">Companion</a>
+  <a class="here" href="/daily/" data-room-link="yawm" aria-current="page">Yawm</a>
+  <a href="/campus/" data-room-link="university">University</a>
+  <a href="/amana/" data-room-link="amana">Amānah</a>
 </nav>
 
 <figure class="daily-banner">
@@ -236,7 +236,7 @@
     <div class="cdl-head">
       <div class="cdl-head-left">
         <img class="nuros" src="assets/icons/nuros-path.svg?v=20261102R1" alt="" width="30" height="30"/>
-        <h2>Remember the long stay</h2>
+        <h2>Remember the long stay</h2></div></div><div id="cdl-long-stay">
       </div>
     </div>
     <p class="cdl-sub">Family and wealth turn back at the grave; <strong>deeds stay with you</strong>. Prepare a home of light — not only a warning, an invitation to send good ahead today.</p>
@@ -344,12 +344,18 @@
   <!-- Phase 4 continuity -->
   <p class="cdl-continuity" id="cdl-continuity"></p>
 
+  <section class="cdl-card" id="yawm-registry-bridge">
+    <div class="cdl-head"><div class="cdl-head-left"><h2>Vault notes · Amānah</h2></div></div>
+    <p class="cdl-sub">Trust notes and heir readiness live in the <a href="/amana/">Amānah room</a>. Yawm is today’s portion only — one-way registry stays on-device in Amānah.</p>
+    <p class="cdl-note">Educational · not legal advice · not a fatwa</p>
+  </section>
   <p class="cdl-footer">
     Educational only — not a fatwa. On this device. Sources shown where available.<br/>
     Verify with a trusted local scholar. Campus and Companion remain separate surfaces.
   </p>
 </main>
 
-<script src="assets/daily.js?v=20261102R1"></script>
+<script src="assets/daily.js?v=20261102Y4"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>

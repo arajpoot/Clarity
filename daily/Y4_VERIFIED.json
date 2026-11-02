@@ -1,0 +1,94 @@
+{
+  "ok": true,
+  "cycles": [
+    {
+      "name": "Y1_enrich_markers",
+      "ok": true,
+      "detail": {
+        "pillars": true,
+        "rakahs": true,
+        "registry_bridge": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "Y2_storage_keys",
+      "ok": true,
+      "detail": {
+        "keys": [
+          "clarity.daily.deed.v1",
+          "clarity.daily.tasbeeh.v1",
+          "clarity.daily.streak.v1",
+          "clarity.daily.light.v1",
+          "clarity.daily.theme.v1",
+          "clarity.daily.adhkar.v1",
+          "clarity.daily.fard.v1",
+          "clarity.daily.hist.v1"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "name": "Y2_js_syntax",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "modules_exist",
+      "ok": true,
+      "detail": {
+        "missing": [],
+        "issues": []
+      }
+    },
+    {
+      "name": "room_nav",
+      "ok": true,
+      "detail": {
+        "amana": true,
+        "companion": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "cdl_ids",
+      "ok": true,
+      "detail": {
+        "n": 31,
+        "issues": []
+      }
+    },
+    {
+      "name": "Y4_http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    },
+    {
+      "name": "Y4_cycle2",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "Y4_isolation",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    }
+  ],
+  "phases": [
+    "Y1",
+    "Y2",
+    "Y3",
+    "Y4"
+  ],
+  "status": "verified",
+  "passed": 9,
+  "total": 9
+}
