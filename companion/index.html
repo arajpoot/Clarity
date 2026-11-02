@@ -165,7 +165,6 @@
 <link rel="stylesheet" href="/assets/css/companion-tweet-unbury-icons-v1.css?v=20261101WB1">
 <link rel="stylesheet" href="/assets/css/companion-doors-mobile-v1.css?v=20261101WB1">
 <link rel="stylesheet" href="/assets/css/companion-surface-lock-v1.css?v=20261101WB1">
-<link rel="stylesheet" href="/assets/css/companion-qada-tracker-v1.css?v=20261101WB1">
 <link rel="stylesheet" href="/assets/css/companion-hide-meme-icons-v1.css?v=20261101WB1">
 <link rel="stylesheet" href="/assets/css/companion-trust-plaques-v1.css?v=20261101WB1">
 
@@ -197,9 +196,7 @@
 </script>
 <link rel="prefetch" href="/daily/"/>
 
-<style id="daily-isolate">
-#clarity-day-landing{display:block!important;position:relative;z-index:2}
-</style>
+
 <script id="daily-isolate-js">
 (function(){
   function bridge(){
@@ -220,9 +217,7 @@
 })();
 </script>
 
-<style id="yawm-sot-hide-day-landing">
-#clarity-day-landing,.clarity-day-landing,[data-clarity-day-landing],#clarity-landing-stack,.day-landing-stack{display:none!important}
-</style>
+
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101c1">
 <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101c1" defer></script>
 <meta name="clarity-phase" content="C3"/>
@@ -238,6 +233,29 @@
 }
 </style>
 
+
+<style id="yawm-sot-scrap-day-landing">
+/* M3: Yawm is daily SoT — Companion day-landing viewport removed from use */
+#clarity-day-landing,
+.clarity-day-landing,
+[data-clarity-day-landing],
+#clarity-landing-stack,
+.day-landing-stack,
+#landing-gate-screen,
+.clarity-welcome-overlay,
+#clarity-welcome {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+}
+</style>
+<meta name="clarity-build" content="20261102M3"/>
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -250,11 +268,12 @@
 
 
 <!-- Surface doors · Yawm/Campus parity · 20261031ARCH1 -->
-<nav id="clarity-surface-doors" class="clarity-surface-doors" aria-label="Clarity surfaces"
-style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:.55rem .75rem;background:rgba(13,31,23,.92);border-bottom:1px solid rgba(212,175,55,.28);position:relative;z-index:50">
+<nav id="clarity-surface-doors" class="clarity-surface-doors" aria-label="Clarity rooms"
+ style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:.55rem .75rem;background:rgba(13,31,23,.92);border-bottom:1px solid rgba(212,175,55,.28);position:relative;z-index:50">
 <a href="/companion/" style="color:#e8d5a3;text-decoration:none;font-weight:700;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(212,175,55,.45)">Companion</a>
 <a href="/daily/" style="color:#cfe0d6;text-decoration:none;font-weight:600;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)">Yawm</a>
-<a href="/campus/" style="color:#cfe0d6;text-decoration:none;font-weight:600;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)">Campus</a>
+<a href="/campus/" style="color:#cfe0d6;text-decoration:none;font-weight:600;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)">University</a>
+<a href="/amana/" style="color:#cfe0d6;text-decoration:none;font-weight:600;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)">Amānah</a>
 </nav>
 
 
@@ -2152,7 +2171,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/companion/assets/boot/inline-clarity-micro-boot-v1.js?v=20261101C4" defer></script>
 <script src="/companion/assets/boot/inline-bundle-nuros-v1.js?v=20261101C4" defer></script>
 <script src="/companion/assets/boot/inline-clarity-shell-v3.js?v=20261101C4" defer></script>
-<script src="/companion/assets/boot/inline-clarity-landing-v3.js?v=20261101C4" defer></script>
 <script id="clarity-madinah-autoplay-v1" src="/companion/assets/boot/inline-clarity_madinah_ap.js?v=20261101C4" defer></script>
 <script defer src="/companion/assets/boot/clarity-banner-av-v1.js?v=20261101H1"></script>
 <script defer src="/companion/assets/boot/clarity-banner-stubs-v1.js?v=20261101H1"></script>
@@ -2196,7 +2214,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script src="/assets/nuros-icons-apply-v1.js?v=20261101WB1"></script>
 <script src="/companion/assets/boot/inline-bundle-security-v1.js?v=20261101C4" defer></script>
-<script src="/companion/assets/boot/inline-clarity-qada-tracker-v1.js?v=20261101C4"></script>
 <script src="/companion/assets/boot/inline-clarity-samina-verse-v1.js?v=20261101C4"></script>
 <script src="/companion/assets/boot/inline-clarity-final-surface-v1.js?v=20261101C4"></script>
 
@@ -2235,5 +2252,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 })();
 </script>
 
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
