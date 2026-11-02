@@ -1,16 +1,15 @@
-# Companion ARCHITECTURE · C3
+# Companion ARCHITECTURE · C4
 
 ```
-/                         ← thin door (C1)
-/companion/               ← COMPANION HOME
+/companion/
   index.html
-  assets/                 ← fortify, amana entry, banner-still
-  modules/                ← meme · tajweed · callig · notes
-  sealed/                 ← Amānah fortress (lazy C2)
-  redirects/              ← SPA stubs → #hash (C3)
-/assets/companion-inline/ ← shared shell (still required)
-/daily/                   ← Yawm
-/campus/                  ← University
+  assets/
+    boot/           ← C4 owned shell scripts (copies)
+    banner-still-haramain.jpg
+    clarity-vault-fortify-boot-v1.js
+    clarity-amana-entry-v1.js
+  modules/
+  sealed/           ← lazy Amānah
+  redirects/        ← C3 hash stubs
+/assets/companion-inline/  ← retained copies / other surfaces
 ```
-
-Amānah: entered from Companion only (`#notes` / `ClarityEnterAmana`).
