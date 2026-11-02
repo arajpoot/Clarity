@@ -10,7 +10,8 @@
       return p === "/companion" || p.indexOf("/companion/") === 0;
     }},
     yawm: { href: "/daily/", match: function (p) { return (p || "").indexOf("/daily") === 0; }},
-    university: { href: "/campus/", match: function (p) { return (p || "").indexOf("/campus") === 0; }}
+    university: { href: "/campus/", match: function (p) { return (p || "").indexOf("/campus") === 0; }},
+    amana: { href: "/amana/", match: function (p) { return (p || "").indexOf("/amana") === 0; }}
   };
 
 
@@ -51,6 +52,8 @@
         '<span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>' +
       '<a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span>' +
         '<span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>' +
+      '<a href="/amana/" data-room-link="amana"><span class="crn-ico" aria-hidden="true">🔐</span>' +
+        '<span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>' +
       '<p class="crn-seal">Three rooms · educational only · not a fatwa</p>';
     var body = document.body;
     if (body) {
@@ -69,7 +72,9 @@
       var p = path();
       if (p.indexOf("/daily") === 0) room = "yawm";
       else if (p.indexOf("/campus") === 0) room = "university";
+      else if (p.indexOf("/amana") === 0) room = "amana";
       else if (p === "/companion" || p.indexOf("/companion/") === 0) room = "companion";
+      else if (p.indexOf("/amana") === 0) room = "amana";
       else room = ""; /* thin door at root — no room current */
     }
     ensureNav(room);
