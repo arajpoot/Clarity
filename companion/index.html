@@ -219,21 +219,83 @@
 <meta name="clarity-build" content="20261102RICH1"/>
 <script>window.__CLARITY_BANNER_PEACE__="20261102RICH1";</script>
 
-<style id="yawm-sot-scrap-day-landing">
-#clarity-day-landing,.clarity-day-landing,[data-clarity-day-landing],
-#clarity-landing-stack,.day-landing-stack,#landing-gate-screen,
-.clarity-welcome-overlay,#clarity-welcome{
-  display:none!important;visibility:hidden!important;pointer-events:none!important;
-  height:0!important;max-height:0!important;overflow:hidden!important;opacity:0!important;
-}
-</style>
+
 <meta name="clarity-build" content="20261102POL1"/>
 <script>window.__CLARITY_BANNER_PEACE__="20261102POL1";</script>
+
+<style id="clarity-companion-viewport-fix-20261102NAV1">
+/* Hide ONLY day-landing stack — not path, not RRRA, not door rail */
+#clarity-day-landing,
+.clarity-day-landing,
+[data-clarity-day-landing="1"],
+#clarity-landing-stack,
+.day-landing-stack,
+#landing-gate-screen,
+.clarity-welcome-overlay,
+#clarity-welcome {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+}
+/* Unhide bottom RRRA door rail */
+#clarity-door-rail,
+.door-rail-bottom,
+.door-rail-rrra5 {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 70 !important;
+}
+/* Path + main companion sections stay visible */
+[data-rrra],
+.rrra-section,
+#clarity-path-root,
+.path-plaques,
+.grave-path,
+.clarity-path {
+  visibility: visible !important;
+}
+/* One room nav only at top */
+.clarity-room-nav:not(:first-of-type) { display: none !important; }
+</style>
+<meta name="clarity-build" content="20261102NAV1"/>
+<script>
+/* Force companion path mode: close day-landing overlay if script reopens it */
+(function(){
+  try {
+    document.documentElement.setAttribute("data-clarity-viewport","companion-path");
+    window.__CLARITY_BANNER_PEACE__ = "20261102NAV1";
+    function hideLanding(){
+      var nodes = document.querySelectorAll("#clarity-day-landing,.clarity-day-landing,#clarity-landing-stack,.day-landing-stack");
+      for (var i=0;i<nodes.length;i++){ nodes[i].style.setProperty("display","none","important"); }
+    }
+    function showRail(){
+      var r = document.getElementById("clarity-door-rail");
+      if (r) { r.style.setProperty("display","flex","important"); r.style.setProperty("visibility","visible","important"); }
+    }
+    function boot(){ hideLanding(); showRail(); }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+    else boot();
+    setTimeout(boot, 400);
+    setTimeout(boot, 1200);
+  } catch(e) {}
+})();
+</script>
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <nav id="clarity-surface-doors" class="clarity-surface-doors" aria-label="Clarity rooms"
  style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:.55rem .75rem;
- background:rgba(13,31,23,.92);border-bottom:1px solid rgba(212,175,55,.28);position:relative;z-index:60">
+ background:rgba(13,31,23,.92);border-bottom:1px solid rgba(212,175,55,.28);position:sticky;top:0;z-index:80">
 <a href="/companion/" style="color:#e8d5a3;text-decoration:none;font-weight:700;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(212,175,55,.45)">Companion</a>
 <a href="/daily/" style="color:#cfe0d6;text-decoration:none;font-weight:600;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)">Yawm</a>
 <a href="/campus/" style="color:#cfe0d6;text-decoration:none;font-weight:600;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)">University</a>
