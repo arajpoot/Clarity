@@ -1,0 +1,418 @@
+{
+  "title": "Final integrity \u00b7 C1\u2013C5 \u00b7 Am\u0101nah + Dayn baseline",
+  "ok": true,
+  "cycles": [
+    {
+      "name": "tree_phases",
+      "ok": true,
+      "detail": {
+        "missing": [],
+        "boot_js": 46,
+        "sealed_js": 13,
+        "modules_js": 13
+      }
+    },
+    {
+      "name": "c1_door",
+      "ok": true,
+      "detail": {
+        "size": 4637,
+        "issues": []
+      }
+    },
+    {
+      "name": "c5_boot_ownership",
+      "ok": true,
+      "detail": {
+        "inline_refs": 0,
+        "boot_refs": 46,
+        "issues": []
+      }
+    },
+    {
+      "name": "isolation",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "amana_entry_fortify",
+      "ok": true,
+      "detail": {
+        "lazy": true,
+        "enter": true,
+        "issues": []
+      }
+    },
+    {
+      "name": "dayn_ledger_sealed",
+      "ok": true,
+      "detail": {
+        "dayn_files": [
+          "dayn-enrich-v3.js",
+          "dayn-ensure-s45.js",
+          "dayn-ledger-v1.js",
+          "dayn-ledger-v2.js",
+          "dayn-mount-adapter-v1.js",
+          "dayn-section-bridge-v2.js"
+        ],
+        "fortify_loads_dayn": true,
+        "markers": {
+          "dayn-enrich-v3.js": {
+            "size": 12817,
+            "localStorage": true,
+            "has_dayn": true,
+            "has_ledger": true,
+            "has_debt": true
+          },
+          "dayn-ensure-s45.js": {
+            "size": 362,
+            "localStorage": false,
+            "has_dayn": true,
+            "has_ledger": false,
+            "has_debt": false
+          },
+          "dayn-ledger-v1.js": {
+            "size": 18384,
+            "localStorage": true,
+            "has_dayn": true,
+            "has_ledger": true,
+            "has_debt": true
+          },
+          "dayn-ledger-v2.js": {
+            "size": 14356,
+            "localStorage": true,
+            "has_dayn": true,
+            "has_ledger": true,
+            "has_debt": true
+          },
+          "dayn-mount-adapter-v1.js": {
+            "size": 3321,
+            "localStorage": false,
+            "has_dayn": true,
+            "has_ledger": true,
+            "has_debt": true
+          },
+          "dayn-section-bridge-v2.js": {
+            "size": 16201,
+            "localStorage": true,
+            "has_dayn": true,
+            "has_ledger": true,
+            "has_debt": false
+          }
+        },
+        "issues": []
+      }
+    },
+    {
+      "name": "sealed_syntax_api",
+      "ok": true,
+      "detail": {
+        "files": 13,
+        "api_surface": {
+          "dayn-enrich-v3.js": {
+            "ClarityVault": false,
+            "passphrase": false,
+            "lock": true,
+            "size": 12817
+          },
+          "dayn-ensure-s45.js": {
+            "ClarityVault": false,
+            "passphrase": false,
+            "lock": false,
+            "size": 362
+          },
+          "dayn-ledger-v1.js": {
+            "ClarityVault": false,
+            "passphrase": false,
+            "lock": true,
+            "size": 18384
+          },
+          "dayn-ledger-v2.js": {
+            "ClarityVault": false,
+            "passphrase": false,
+            "lock": true,
+            "size": 14356
+          },
+          "dayn-mount-adapter-v1.js": {
+            "ClarityVault": false,
+            "passphrase": false,
+            "lock": true,
+            "size": 3321
+          },
+          "dayn-section-bridge-v2.js": {
+            "ClarityVault": true,
+            "passphrase": false,
+            "lock": true,
+            "size": 16201
+          },
+          "digest-panel-v1.js": {
+            "ClarityVault": true,
+            "passphrase": true,
+            "lock": true,
+            "size": 7062
+          },
+          "digest-v1.js": {
+            "ClarityVault": true,
+            "passphrase": false,
+            "lock": true,
+            "size": 7264
+          },
+          "export-host-v1.js": {
+            "ClarityVault": true,
+            "passphrase": true,
+            "lock": true,
+            "size": 5674
+          },
+          "facade-v1.js": {
+            "ClarityVault": true,
+            "passphrase": false,
+            "lock": true,
+            "size": 1329
+          },
+          "isolate-guard-v1.js": {
+            "ClarityVault": false,
+            "passphrase": true,
+            "lock": true,
+            "size": 495
+          },
+          "passphrase-tutorial-v1.js": {
+            "ClarityVault": true,
+            "passphrase": true,
+            "lock": true,
+            "size": 4186
+          },
+          "runtime-gate-v1.js": {
+            "ClarityVault": true,
+            "passphrase": true,
+            "lock": false,
+            "size": 3254
+          }
+        },
+        "issues": []
+      }
+    },
+    {
+      "name": "vault_note_registry",
+      "ok": true,
+      "detail": {
+        "keys": {
+          "localStorage": true,
+          "registry": true,
+          "heir": true,
+          "landing": true
+        },
+        "issues": []
+      }
+    },
+    {
+      "name": "banner_av",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "module_dom",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "room_audit",
+      "ok": true,
+      "detail": {
+        "out": "PASS \u00b7 room isolation OK",
+        "issues": []
+      }
+    },
+    {
+      "name": "http_matrix",
+      "ok": true,
+      "detail": {
+        "fails": [],
+        "sizes": {
+          "/": 4722,
+          "/companion/": 259620,
+          "/daily/": 8086,
+          "/campus/": 18915,
+          "/companion/assets/clarity-vault-fortify-boot-v1.js": 3641,
+          "/companion/assets/clarity-amana-entry-v1.js": 2245,
+          "/companion/assets/boot/clarity-banner-av-v1.js": 4992,
+          "/companion/assets/boot/inline-clarity-shell-v3.js": 11555,
+          "/companion/modules/inline-clarity_vault_note_registry.js": 11111,
+          "/companion/sealed/runtime-gate-v1.js": 3259,
+          "/companion/sealed/facade-v1.js": 1333,
+          "/companion/sealed/dayn-ledger-v2.js": 14434,
+          "/companion/sealed/dayn-enrich-v3.js": 12894,
+          "/companion/sealed/dayn-section-bridge-v2.js": 16229,
+          "/companion/sealed/dayn-mount-adapter-v1.js": 3328,
+          "/companion/sealed/isolate-guard-v1.js": 499,
+          "/companion/sealed/passphrase-tutorial-v1.js": 4200,
+          "/companion/assets/banner-still-haramain.jpg": 110839,
+          "/assets/room-nav/clarity-room-nav-v1.js": 3361
+        }
+      }
+    }
+  ],
+  "amana_dayn": {
+    "entry": "Companion only \u2014 ClarityEnterAmana / #notes / tab-notes",
+    "fortify": "/companion/assets/clarity-vault-fortify-boot-v1.js (lazy)",
+    "sealed_base": "/companion/sealed/",
+    "dayn_chain": [
+      "dayn-section-bridge-v2.js",
+      "dayn-mount-adapter-v1.js",
+      "dayn-ledger-v2.js",
+      "dayn-enrich-v3.js",
+      "dayn-ensure-s45.js"
+    ],
+    "gate_stack": [
+      "runtime-gate-v1.js",
+      "facade-v1.js",
+      "isolate-guard-v1.js"
+    ],
+    "note_registry": "companion/modules/inline-clarity_vault_note_registry.js",
+    "baseline_detail": {
+      "dayn_api": {
+        "dayn-enrich-v3.js": {
+          "exports": [],
+          "storage_keys": [],
+          "functions": [
+            "load",
+            "save",
+            "uid",
+            "money",
+            "remaining",
+            "richHtml",
+            "msg",
+            "renderToday",
+            "recordRepay",
+            "settleLine",
+            "saveLine",
+            "enhanceSlot",
+            "renderVault",
+            "boot"
+          ]
+        },
+        "dayn-ensure-s45.js": {
+          "exports": [],
+          "storage_keys": [],
+          "functions": [
+            "e"
+          ]
+        },
+        "dayn-ledger-v1.js": {
+          "exports": [],
+          "storage_keys": [],
+          "functions": [
+            "load",
+            "save",
+            "uid",
+            "money",
+            "remaining",
+            "educationHtml",
+            "tutorialHtml",
+            "formHtml",
+            "renderToday",
+            "msg",
+            "saveLine",
+            "recordRepay",
+            "settleLine",
+            "mountLanding",
+            "renderVaultPanel",
+            "boot",
+            "place",
+            "ensureHost",
+            "forceVisible",
+            "remount"
+          ]
+        },
+        "dayn-ledger-v2.js": {
+          "exports": [],
+          "storage_keys": [],
+          "functions": [
+            "load",
+            "save",
+            "uid",
+            "money",
+            "remaining",
+            "cardHtml",
+            "wire",
+            "msg",
+            "saveLine",
+            "recordRepay",
+            "settleLine",
+            "renderToday",
+            "ensureLandingHost",
+            "mountLanding",
+            "renderVault",
+            "boot"
+          ]
+        },
+        "dayn-mount-adapter-v1.js": {
+          "exports": [
+            "__CLARITY_DAYN_MOUNT_ADAPTER__"
+          ],
+          "storage_keys": [],
+          "functions": [
+            "ensureLandingSlot",
+            "ensureVaultSlot",
+            "tick"
+          ]
+        },
+        "dayn-section-bridge-v2.js": {
+          "exports": [],
+          "storage_keys": [],
+          "functions": [
+            "load",
+            "save",
+            "remaining",
+            "money",
+            "findHeirsLetter",
+            "ensureSection",
+            "vaultLinkHtml",
+            "mountDayLandingBundle",
+            "mountVaultBundle",
+            "csvEscape",
+            "buildCsv",
+            "downloadBlob",
+            "buildExcelXml",
+            "cell",
+            "parseCsv",
+            "split",
+            "mountIo",
+            "relocateNotes",
+            "tick"
+          ]
+        }
+      },
+      "sealed_load_order": [
+        "runtime-gate-v1.js",
+        "facade-v1.js",
+        "isolate-guard-v1.js",
+        "digest-v1.js",
+        "export-host-v1.js",
+        "digest-panel-v1.js",
+        "dayn-section-bridge-v2.js",
+        "dayn-mount-adapter-v1.js",
+        "dayn-ledger-v2.js",
+        "dayn-enrich-v3.js",
+        "dayn-ensure-s45.js",
+        "passphrase-tutorial-v1.js"
+      ]
+    },
+    "next_upgrade_ready": true
+  },
+  "issues": [],
+  "status": "verified",
+  "passed": 12,
+  "total": 12,
+  "dayn_architecture": {
+    "doc": "companion/DAYN_AMANA_ARCHITECTURE.md",
+    "baseline_json": "companion/DAYN_AMANA_BASELINE.json",
+    "gap_slots_missing_in_html": true,
+    "sealed_ok": true
+  }
+}
