@@ -1,0 +1,16 @@
+{
+  "repairs": [
+    "removed day-landing display:block!important",
+    "freeze-guard CSS",
+    "freeze-guard JS early",
+    "mark landing skip before landing-v3",
+    "landing-v3 skip patch",
+    "nuros 250->2000 packaged"
+  ],
+  "script_balance": [
+    75,
+    75
+  ],
+  "cause": "day-landing display:block vs none thrash + landing-v3 reinject + nuros 250ms intervals",
+  "fix": "companion-path hide CSS + early freeze-guard + skip landing boot + quiet nuros"
+}

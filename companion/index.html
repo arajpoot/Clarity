@@ -1,4 +1,51 @@
 <!DOCTYPE html><html data-clarity-room="companion" data-theme="light" lang="en"><head>
+
+<script id="clarity-freeze-guard-v1">
+(function(){
+  "use strict";
+  if (window.__CLARITY_FREEZE_GUARD_V1__) return;
+  window.__CLARITY_FREEZE_GUARD_V1__ = true;
+  try {
+    var path = (location.pathname || "");
+    var fromDaily = false;
+    try {
+      fromDaily = /\/daily\//.test(document.referrer || "") || sessionStorage.getItem("clarity_from_yawm") === "1";
+    } catch(e) {}
+    if (path.indexOf("/companion") === 0) {
+      document.documentElement.setAttribute("data-clarity-viewport", "companion-path");
+      document.documentElement.setAttribute("data-clarity-room", "companion");
+      try { sessionStorage.removeItem("clarity_from_yawm"); } catch(e2) {}
+    }
+    function killLanding(){
+      try {
+        var nodes = document.querySelectorAll("#clarity-day-landing,.clarity-day-landing,#clarity-landing-stack,.day-landing-stack,[data-clarity-day-landing]");
+        for (var i=0;i<nodes.length;i++){
+          nodes[i].style.setProperty("display","none","important");
+          nodes[i].setAttribute("hidden","hidden");
+          nodes[i].setAttribute("aria-hidden","true");
+        }
+      } catch(e3) {}
+    }
+    // Block landing-v3 from re-injecting on companion path
+    window.__CLARITY_SKIP_DAY_LANDING__ = true;
+    killLanding();
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", killLanding);
+    else killLanding();
+    // limited observer then disconnect (no forever thrash)
+    try {
+      var n = 0;
+      var obs = new MutationObserver(function(){
+        killLanding();
+        n++;
+        if (n > 25) { try { obs.disconnect(); } catch(e4) {} }
+      });
+      if (document.documentElement) obs.observe(document.documentElement, {childList:true, subtree:true});
+      setTimeout(function(){ try { obs.disconnect(); } catch(e5) {} }, 8000);
+    } catch(e6) {}
+  } catch(err) {}
+})();
+</script>
+
 <meta name="clarity-surface" content="companion"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
@@ -198,7 +245,7 @@
 <link rel="prefetch" href="/daily/"/>
 
 <style id="daily-isolate">
-#clarity-day-landing{display:block!important;position:relative;z-index:2}
+/* freeze-fix: removed display:block!important on day-landing */
 </style>
 <script id="daily-isolate-js">
 (function(){
@@ -226,6 +273,26 @@
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102A3"/>
 <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102A3" defer></script>
 <meta name="clarity-build" content="20261102ARCH3-MERGE"/>
+
+<style id="clarity-freeze-guard-css">
+/* Companion path: never mount day-landing stack (prevents thrash with Yawm) */
+html[data-clarity-viewport="companion-path"] #clarity-day-landing,
+html[data-clarity-viewport="companion-path"] .clarity-day-landing,
+html[data-clarity-viewport="companion-path"] #clarity-landing-stack,
+html[data-clarity-viewport="companion-path"] .day-landing-stack,
+html[data-clarity-room="companion"] #clarity-day-landing,
+body[data-clarity-room="companion"] #clarity-day-landing {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+</style>
+
 </head><body data-active-tab="journey" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -2423,6 +2490,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-bundle-nuros-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261101WB1" defer></script>
+<script data-freeze-defer-landing="1">window.__CLARITY_SKIP_DAY_LANDING__=true;</script>
 <script src="/assets/companion-inline/inline-clarity-landing-v3.js?v=20261101WB1" defer></script>
 <script id="clarity-madinah-autoplay-v1" src="/assets/companion-inline/inline-clarity_madinah_ap.js?v=20261101WB1" defer></script>
 <script id="clarity-banner-repair-v1" src="/assets/companion-inline/inline-clarity_banner_repair.js?v=20261101WB1" defer></script>
@@ -2501,5 +2569,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 })();
 </script>
 
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
