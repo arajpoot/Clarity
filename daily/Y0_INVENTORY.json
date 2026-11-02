@@ -1,0 +1,197 @@
+{
+  "phase": "Y0",
+  "locked": true,
+  "no_deletes": true,
+  "companion_bytes": 255618,
+  "daily_bytes": 16146,
+  "yawm_module_hrefs": [
+    "modules/adhkar/",
+    "modules/deed/",
+    "modules/light/",
+    "modules/now/",
+    "modules/salah/",
+    "modules/tasbeeh/"
+  ],
+  "yawm_modules_http": {
+    "modules/adhkar/": {
+      "status": 200,
+      "size": 8283
+    },
+    "modules/deed/": {
+      "status": 200,
+      "size": 6510
+    },
+    "modules/light/": {
+      "status": 200,
+      "size": 5348
+    },
+    "modules/now/": {
+      "status": 200,
+      "size": 5635
+    },
+    "modules/salah/": {
+      "status": 200,
+      "size": 3442
+    },
+    "modules/tasbeeh/": {
+      "status": 200,
+      "size": 5319
+    }
+  },
+  "yawm_element_ids": [
+    "cdl-adh-progress",
+    "cdl-adh-window",
+    "cdl-adhkar",
+    "cdl-adhkar-list",
+    "cdl-continuity",
+    "cdl-deed",
+    "cdl-done",
+    "cdl-fard",
+    "cdl-fard-check",
+    "cdl-fard-today",
+    "cdl-hist",
+    "cdl-lane",
+    "cdl-light",
+    "cdl-mark",
+    "cdl-now",
+    "cdl-oath",
+    "cdl-period",
+    "cdl-pillars",
+    "cdl-post",
+    "cdl-post-list",
+    "cdl-provisions",
+    "cdl-salah",
+    "cdl-sleep",
+    "cdl-sleep-list",
+    "cdl-streak",
+    "cdl-tas-count",
+    "cdl-tas-inc",
+    "cdl-tas-reset",
+    "cdl-today",
+    "cdl-wudu",
+    "clarity-day-landing",
+    "theme-toggle"
+  ],
+  "companion_data_landing": [
+    "pulse",
+    "adhkar",
+    "paths",
+    "pill"
+  ],
+  "companion_day_related_scripts": [
+    "/assets/companion-inline/inline-clarity-landing-v3.js?v=20261101WB1",
+    "/assets/companion-inline/inline-clarity_vault_note_registry.js?v=20261101WB1",
+    "/companion/modules/inline-clarity_vault_note_registry.js?v=20261101WB1"
+  ],
+  "matrix": [
+    {
+      "source": "Dual path tiles (Companion path \u00b7 University path)",
+      "dest": "COMPANION_KEEP",
+      "yawm": "\u2014",
+      "note": "SOT pathways on Companion after Y3; Yawm may link out only"
+    },
+    {
+      "source": "Day landing shell #clarity-day-landing",
+      "dest": "YAWM_SHELL",
+      "yawm": "/daily/ #clarity-day-landing",
+      "note": "Yawm hub already uses this id"
+    },
+    {
+      "source": "data-landing=pulse",
+      "dest": "YAWM",
+      "yawm": "/daily/ + modules/now/ \u00b7 modules/deed/",
+      "note": "Today pulse / now window"
+    },
+    {
+      "source": "data-landing=adhkar",
+      "dest": "YAWM",
+      "yawm": "/daily/modules/adhkar/ \u00b7 #cdl-adhkar",
+      "note": "Morning/evening pack"
+    },
+    {
+      "source": "data-landing=paths",
+      "dest": "COMPANION_KEEP",
+      "yawm": "optional links only",
+      "note": "Path tiles stay Companion SOT"
+    },
+    {
+      "source": "data-landing=pill",
+      "dest": "YAWM_OR_COMPANION",
+      "yawm": "hub strip",
+      "note": "Reopen/hide pill \u2014 Yawm default after Y3"
+    },
+    {
+      "source": "Do this today \u00b7 deed \u00b7 Mark done",
+      "dest": "YAWM",
+      "yawm": "/daily/modules/deed/ \u00b7 #cdl-deed #cdl-mark",
+      "note": "Reuse deed storage when identified in Y1"
+    },
+    {
+      "source": "Next \u1e63al\u0101h",
+      "dest": "YAWM",
+      "yawm": "/daily/modules/salah/ \u00b7 banner times",
+      "note": "Link schedule; avoid second prayer engine"
+    },
+    {
+      "source": "Tasbeeh today",
+      "dest": "YAWM",
+      "yawm": "/daily/modules/tasbeeh/ \u00b7 #cdl-tas-*",
+      "note": "Device counter"
+    },
+    {
+      "source": "Adhk\u0101r \u00b7 morning window",
+      "dest": "YAWM",
+      "yawm": "/daily/modules/adhkar/",
+      "note": "Port rich copy from Companion landing card"
+    },
+    {
+      "source": "Vault note registry",
+      "dest": "AMANAH_OR_BRIDGE",
+      "yawm": "optional entry widget",
+      "note": "Registry module script; heirs read in Am\u0101nah"
+    },
+    {
+      "source": "Remember the long stay",
+      "dest": "YAWM",
+      "yawm": "#cdl-oath \u00b7 provisions",
+      "note": "Educational grave reminder"
+    },
+    {
+      "source": "Reward that may continue",
+      "dest": "YAWM",
+      "yawm": "#cdl-continuity \u00b7 #cdl-light",
+      "note": "Jariyah / Muslim 1631 context"
+    },
+    {
+      "source": "Far\u1e0d / pillars / wudu maps",
+      "dest": "YAWM",
+      "yawm": "#cdl-fard #cdl-pillars #cdl-wudu #cdl-salah",
+      "note": "Already scaffolded on Yawm snapshot"
+    },
+    {
+      "source": "Banner live \u00b7 theme \u00b7 packs",
+      "dest": "COMPANION_OR_SHARED",
+      "yawm": "\u2014",
+      "note": "Stay Companion chrome unless shared asset"
+    },
+    {
+      "source": "inline-clarity-landing-v3.js",
+      "dest": "YAWM_WIRE",
+      "yawm": "Y2 load on /daily/",
+      "note": "Primary landing behavior script"
+    },
+    {
+      "source": "inline-clarity_vault_note_registry.js",
+      "dest": "AMANAH_OR_BRIDGE",
+      "yawm": "Y2 optional",
+      "note": "One-way registry"
+    }
+  ],
+  "policy": {
+    "after_Y3": "Companion retains pathway tiles only for daily-routine SOT flip",
+    "yawm": "Owns routine modules",
+    "amana": "Owns vault registry read/heirs",
+    "campus": "untouched"
+  },
+  "next_phase": "Y1"
+}
