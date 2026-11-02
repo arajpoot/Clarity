@@ -1,8 +1,10 @@
-# Yawm M1 enrich · 20261102M1
+# Yawm restore banner + layout · 20261102R1
 
-**Only** upload/merge the `daily/` folder.
+Merge entire `daily/` folder (index, assets/, modules/).
 
-- Do not replace companion/, campus/, or amana/
-- Hard refresh https://clarity-dawah.fyi/daily/
+Must include:
+- assets/daily.css
+- assets/daily-banner.jpg (or svg)
+- assets/*.js as referenced
 
-Phase M1 only — Companion day-landing scrap is a later phase.
+Hard refresh /daily/
