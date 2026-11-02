@@ -35,6 +35,7 @@
         else lock();
       });
       obs.observe(tab, { attributes: true, attributeFilter: ["class"] });
+      setTimeout(function(){ try { obs.disconnect(); } catch(e){} }, 20000);
       if (!tab.classList.contains("amana-locked")) unlock();
     }
   } catch (e2) {}
