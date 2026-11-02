@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-clarity-room="amana">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Notes · Amānah · Clarity</title>
+<meta name="description" content="Notes — Amānah on-device tools. Educational only — not a fatwa or legal advice."/>
+<link rel="canonical" href="https://clarity-dawah.fyi/amana/notes/"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101A2"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101A2" defer></script>
+
+<style>
+:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  background: radial-gradient(1000px 500px at 50% -10%, rgba(30,125,94,0.2), transparent),
+              linear-gradient(180deg, #0c1c16, #0a1410 55%);
+  color: #e8f0ec;
+}
+.amana-wrap { max-width: 52rem; margin: 0 auto; padding: 0.75rem 1rem 2.5rem; }
+.amana-hero { text-align: center; margin: 0.75rem 0 1rem; }
+.amana-hero h1 { font-family: Georgia, serif; font-size: 1.55rem; margin: 0 0 0.3rem; color: #e8d5a3; }
+.amana-hero p { margin: 0.25rem 0; font-size: 0.85rem; opacity: 0.9; line-height: 1.4; }
+.amana-card {
+  margin: 0.75rem 0; padding: 0.95rem 1rem; border-radius: 14px;
+  border: 1px solid rgba(212,180,90,0.3); background: rgba(15,76,58,0.14);
+}
+.amana-card h2 { margin: 0 0 0.4rem; font-size: 1.05rem; color: #d4b45a; }
+.amana-card p, .amana-card li { font-size: 0.82rem; line-height: 1.45; opacity: 0.92; }
+.amana-subnav {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;
+  margin: 0.5rem 0 0.75rem;
+}
+.amana-subnav a {
+  text-decoration: none; color: inherit; font-size: 0.75rem; font-weight: 700;
+  padding: 0.35rem 0.7rem; border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.25);
+}
+.amana-subnav a.is-here { background: rgba(30,125,94,0.45); border-color: rgba(212,180,90,0.55); }
+.amana-foot { text-align: center; margin-top: 1.5rem; font-size: 0.75rem; opacity: 0.75; }
+.amana-foot a { color: #c9a84c; font-weight: 700; }
+.btn-soft {
+  display: inline-block; margin: 0.25rem 0.25rem 0 0; padding: 0.4rem 0.85rem;
+  border-radius: 999px; border: 1px solid rgba(212,180,90,0.35);
+  background: rgba(30,125,94,0.35); color: inherit; font-weight: 700; font-size: 0.8rem;
+  cursor: pointer; text-decoration: none;
+}
+.disc {
+  font-size: 0.78rem; padding: 0.55rem 0.7rem; border-radius: 10px;
+  border-left: 3px solid rgba(212,180,90,0.55); background: rgba(0,0,0,0.25); margin: 0.5rem 0;
+}
+#clarity-landing-slot-dayn, #clarity-vault-slot-dayn, #clarity-vault-dayn-io { min-height: 0.25rem; }
+</style>
+</head>
+<body>
+<nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
+  <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
+  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
+  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
+  <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
+</nav>
+<main class="amana-wrap">
+  <header class="amana-hero">
+    <h1>Amānah notes</h1>
+    <p><strong>Educational only — not a fatwa · not legal or financial advice.</strong></p>
+  </header>
+  <nav class="amana-subnav" aria-label="Amānah sections">
+<a href="/amana/" class="">Home</a>
+<a href="/amana/dayn/" class="">Dayn</a>
+<a href="/amana/heirs/" class="">Heirs</a>
+<a href="/amana/notes/" class="is-here" aria-current="page">Notes</a>
+<a href="/amana/tree/" class="">Family tree</a>
+<a href="/amana/fiqh/" class="">Farāʾiḍ</a>
+</nav>
+  
+<section class="amana-card">
+  <h2>Amānah notes</h2>
+  <p class="disc">Private notes on this device. For the one-way registry path from landing, use Companion entry when available; heirs should look in Amānah.</p>
+  <textarea id="amana-notes-body" rows="10" style="width:100%;padding:0.55rem;border-radius:10px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit" placeholder="Notes…"></textarea>
+  <button type="button" class="btn-soft" id="amana-notes-save">Save notes</button>
+  <p id="amana-notes-msg" style="font-size:0.78rem;opacity:0.85"></p>
+</section>
+
+  <p class="amana-foot">
+    <a href="/amana/">Amānah home</a> ·
+    <a href="/companion/">Companion</a> ·
+    <a href="/daily/">Yawm</a> ·
+    <a href="/campus/">University</a>
+  </p>
+</main>
+
+<script>
+(function(){
+  var KEY="clarity_amana_notes_page_v1";
+  function load(){ try{ var v=localStorage.getItem(KEY); if(v!=null) document.getElementById("amana-notes-body").value=v; }catch(e){} }
+  function save(){ try{ localStorage.setItem(KEY, document.getElementById("amana-notes-body").value);
+    document.getElementById("amana-notes-msg").textContent="Saved · "+new Date().toLocaleString();
+  }catch(e){} }
+  document.getElementById("amana-notes-save").addEventListener("click", save);
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", load); else load();
+})();
+</script>
+
+</body>
+</html>
