@@ -44,6 +44,10 @@
 
   /** Active vault UX — not merely "vault nodes exist in SPA DOM" */
   function isVaultContext() {
+    try {
+      var path = (location.pathname || "");
+      if (path.indexOf("/amana") === 0) return true;
+    } catch (e0) {}
     var h = hash();
     if (h.indexOf("vault") >= 0) return true;
     var t = tab();
@@ -55,6 +59,7 @@
   }
 
   function isDayLandingContext() {
+    if (document.getElementById("clarity-landing-slot-dayn")) return true;
     var land =
       document.getElementById("clarity-day-landing") ||
       document.querySelector("[data-day-landing]");
