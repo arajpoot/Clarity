@@ -397,7 +397,7 @@
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 80); });
   else setTimeout(boot, 80);
-  window.addEventListener("load", function(){ setTimeout(boot, 250); });
+  window.addEventListener("load", function(){ setTimeout(boot, 2000); });
 
   // Re-activate when switching sections
   function wrap(name) {
@@ -418,7 +418,7 @@
     var t = ev.target && ev.target.closest && ev.target.closest("[data-rail-tab],[data-tab],.door-rail-btn,.mb-tab,.nav-tab");
     if (t) {
       setTimeout(activateActiveTab, 80);
-      setTimeout(activateActiveTab, 250);
+      setTimeout(activateActiveTab, 2000);
     }
   }, true);
 
@@ -504,7 +504,7 @@
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 80); });
   else setTimeout(boot, 80);
-  window.addEventListener("load", function(){ setTimeout(boot, 250); });
+  window.addEventListener("load", function(){ setTimeout(boot, 2000); });
   // re-apply when About / meme tab opens
   document.addEventListener("click", function(ev){
     var t = ev.target;
@@ -997,7 +997,7 @@ window.memeBgIdx = g.memeBgIdx;
           clearInterval(timer);
         }
         if (tries > 40) clearInterval(timer); /* ~4s */
-      }, 250);
+      }, 2000);
     }, false);
   }
 
@@ -1015,7 +1015,7 @@ window.memeBgIdx = g.memeBgIdx;
           clearInterval(timer);
         }
         if (tries > 40) clearInterval(timer);
-      }, 250);
+      }, 2000);
     }, false);
   }
 

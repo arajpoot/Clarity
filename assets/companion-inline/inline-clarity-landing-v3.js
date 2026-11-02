@@ -1,3 +1,5 @@
+/*! patched for companion freeze-guard */
+(function(w){if(w.__CLARITY_SKIP_DAY_LANDING__){w.__CLARITY_LANDING_V3_SKIPPED__=true;return;}
 /**
  * Clarity Day Landing v5 — Furnish your grave
  * Phases A–G: oath + reward, adhkār, wuḍūʾ, prayer steps, send light ahead
@@ -847,7 +849,7 @@
     try { if (w.ClarityShell && typeof w.ClarityShell.apply === "function") w.ClarityShell.apply(); } catch (e) {}
   }
 
-  function boot() {
+  function boot_SKIPCHECK() {
     try { build(); }
     catch (e) {
       console.warn("[landing-v5]", e);
@@ -884,3 +886,5 @@
     } catch (e) { clearInterval(_salahTimer); }
   }, 5000);
 })(typeof window !== "undefined" ? window : this);
+
+})(typeof window!=="undefined"?window:this);
