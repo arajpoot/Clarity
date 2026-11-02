@@ -1,92 +1,67 @@
 [
   {
-    "phase": "Y0",
+    "phase": "M0",
     "ok": true,
-    "msg": "daily len 7329 landing_word=True"
+    "msg": "inventory written"
   },
   {
-    "phase": "Y1",
+    "phase": "M1",
     "ok": true,
-    "msg": "hub"
+    "msg": "hub enriched with four doors + live tile lines"
   },
   {
-    "phase": "Y2",
+    "phase": "M1",
     "ok": true,
-    "msg": "modules"
+    "msg": "six modules written"
   },
   {
-    "phase": "Y3",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "links"
+    "msg": "hub_103"
   },
   {
-    "phase": "Y4",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "companion stripped day-landing CSS; vault boot kept"
+    "msg": "hub_four_doors"
   },
   {
-    "phase": "Y5",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "three doors"
+    "msg": "hub_six"
   },
   {
-    "phase": "SIM",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "1 hub_103"
+    "msg": "tasbeeh_ar"
   },
   {
-    "phase": "SIM",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "2 six_modules"
+    "msg": "adhkar_ar"
   },
   {
-    "phase": "SIM",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "3 tasbeeh_ar"
+    "msg": "muslim_1631"
   },
   {
-    "phase": "SIM",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "4 adhkar_ar"
+    "msg": "no_companion_pkg"
   },
   {
-    "phase": "SIM",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "5 muslim_1631"
+    "msg": "no_campus_pkg"
   },
   {
-    "phase": "SIM",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "6 fard"
+    "msg": "no_amana_pkg"
   },
   {
-    "phase": "SIM",
+    "phase": "SMOKE",
     "ok": true,
-    "msg": "7 doors_comp"
-  },
-  {
-    "phase": "SIM",
-    "ok": true,
-    "msg": "8 hide_landing"
-  },
-  {
-    "phase": "SIM",
-    "ok": true,
-    "msg": "9 vault_boot"
-  },
-  {
-    "phase": "SIM",
-    "ok": true,
-    "msg": "10 no_campus_pkg"
-  },
-  {
-    "phase": "SIM",
-    "ok": true,
-    "msg": "11 notes_link"
-  },
-  {
-    "phase": "SIM",
-    "ok": true,
-    "msg": "12 no_prod_muslim"
+    "msg": "no_prod_muslim"
   }
 ]
