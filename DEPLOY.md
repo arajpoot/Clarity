@@ -1,5 +1,9 @@
-# Companion polished final · 20261102POL1
+# Companion nav + rail + banner · 20261102NAV1
 
-Live verified RICH1 (~252KB, 660 ids). Cleanup: beacon, scrap, doors, abs paths, fortify once.
+1. Single top room bar (Companion·Yawm·University·Amānah)
+2. Keep clarity-global-nav (theme / packs)
+3. Force-show #clarity-door-rail (bottom RRRA)
+4. Narrow hide: day-landing only
+5. Path mode boot script
 
-Replace companion/index.html only. Needs /assets/companion-inline/ + /companion/assets|sealed on server.
+Replace companion/index.html
