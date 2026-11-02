@@ -1,64 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta name="yawm-build" content="20261029R1"/>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="clarity-surface" content="yawm"/>
-<meta name="clarity-build" content="20261102M1"/>
-<title>Ṣalāh · Yawm · Clarity</title>
-<style>
-:root{--ink:#0d1f17;--gold:#d4af37;--mist:#e8f0ea;--card:#12261c}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,"Segoe UI",sans-serif;background:var(--ink);color:var(--mist);line-height:1.55}
-a{color:var(--gold)}
-.wrap{max-width:42rem;margin:0 auto;padding:1rem 1.1rem 2.5rem}
-.doors{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;margin-bottom:1rem}
-.doors a{text-decoration:none;color:var(--mist);border:1px solid rgba(212,175,55,.35);padding:.35rem .8rem;border-radius:999px;font-weight:600;font-size:.85rem}
-.doors a.here{background:rgba(212,175,55,.14);color:#e8d5a3}
-.hero{text-align:center;border:1px solid rgba(212,175,55,.28);border-radius:16px;padding:1.1rem 1rem;margin-bottom:1rem;background:var(--card)}
-.hero h1{margin:0 0 .4rem;font-size:1.4rem;color:#e8d5a3}
-.ar{font-family:Georgia,"Noto Naskh Arabic","Amiri",serif;font-size:1.3rem;direction:rtl}
-.grid{display:grid;grid-template-columns:1fr;gap:.7rem}
-@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
-.tile{display:block;text-decoration:none;color:inherit;border:1px solid rgba(212,175,55,.28);border-radius:14px;padding:.85rem 1rem;background:rgba(18,38,28,.95)}
-.tile h2{margin:0 0 .35rem;font-size:1.05rem;color:#e8d5a3}
-.tile p{margin:0;font-size:.9rem;opacity:.92}
-.card{border:1px solid rgba(212,175,55,.3);border-radius:14px;padding:1rem;background:var(--card);margin:.75rem 0}
-.card h1{margin:0 0 .5rem;font-size:1.25rem;color:#e8d5a3}
-.card h2{margin:1rem 0 .35rem;font-size:1.05rem;color:#e8d5a3}
-.foot{margin-top:1.5rem;font-size:.78rem;opacity:.75;text-align:center}
-.note{font-size:.85rem;opacity:.88;margin-top:.65rem}
-.src{font-size:.82rem;opacity:.9}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Farḍ map · Yawm · Clarity</title>
+<meta name="description" content="Farḍ map — Yawm educational module. Not a fatwa."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../assets/daily.css?v=20261029R1"/>
 </head>
-<body>
-<div class="wrap">
-<nav class="doors" aria-label="Clarity rooms">
-<a href="/companion/">Companion</a>
-<a class="here" href="/daily/">Yawm</a>
-<a href="/campus/">University</a>
-<a href="/amana/">Amānah</a>
-</nav>
-<p><a href="/daily/">← Yawm hub</a></p>
-<div class="card">
-<h1>Ṣalāh</h1>
+<body data-yawm="1">
+<div class="mod-shell">
+  <header class="mod-top">
+    <a class="brand" href="/daily/">Clarity · Yawm</a>
+    <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
+  </header>
+
+  <figure class="yawm-mini-banner">
+    <img src="../../assets/daily-banner.jpg?v=20261029R1" alt="" width="1600" height="754" loading="eager"/>
+    <div class="yawm-mini-plaque">
+      <p class="mp-title">Farḍ · pillars of the day</p>
+      <p class="mp-sub">Outline only — ask a teacher</p>
+    </div>
+  </figure>
+
+  <div class="yawm-quill-rule">Yawm · Farḍ map</div>
+
+  <nav class="mod-pills" aria-label="Modules">
+    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029R1" alt=""/>Now</a>
+    <a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029R1" alt=""/>Deed</a>
+    <a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029R1" alt=""/>Adhkār</a>
+    <a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029R1" alt=""/>Tasbeeh</a>
+    <a href="/daily/modules/salah/" class="here"><img src="../../assets/icons/nuros-salah.svg?v=20261029R1" alt=""/>Farḍ</a>
+    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029R1" alt=""/>Light</a>
+  </nav>
+
+  
+  <section class="glass-plaque">
+    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem">
+      <img src="../../assets/icons/nuros-salah.svg?v=20261029R1" width="40" height="40" alt=""/>
+      <h1 style="margin:0">Farḍ rakʿahs</h1>
+    </div>
+    <ul style="margin:.4rem 0;padding-left:1.2rem;line-height:1.7">
+      <li>Fajr — 2 farḍ</li>
+      <li>Dhuhr — 4 farḍ</li>
+      <li>ʿAṣr — 4 farḍ</li>
+      <li>Maghrib — 3 farḍ</li>
+      <li>ʿIshāʾ — 4 farḍ</li>
+    </ul>
+    <p style="font-size:.9rem">Wuḍūʾ before ṣalāh. <em>Seek help through patience and prayer</em> (2:45).</p>
+  </section>
+  <div class="enrich-block">
+    <h2>Educational enrichment · learning ṣalāh &amp; wuḍūʾ</h2>
+    <p>Beginner guides (e.g. MuslimSG educational articles) walk through wuḍūʾ steps, takbīrat al-iḥrām, Fātiḥah, and the positions of prayer. Details of sunnah acts and hand placement can differ by school of law — this page only maps the farḍ unit counts.</p>
+    <ul>
+      <li>Learn wuḍūʾ with a local teacher or trusted beginner guide.</li>
+      <li>Pray on time as far as you can; make up with knowledge, not despair.</li>
+      <li>Mark-done checklist for today lives on the Yawm hub.</li>
+    </ul>
+  </div>
+  <div class="ext-links">
+    <a href="https://www.muslim.sg/articles/how-to-pray-in-islam-step-by-step-guide-to-solat-for-beginners" target="_blank" rel="noopener">MuslimSG — how to pray</a><br/>
+    <a href="https://muslim.sg/articles/how-to-perform-wudhu-a-step-by-step-guide-for-beginners" target="_blank" rel="noopener">MuslimSG — how to perform wuḍūʾ</a><br/>
+    <a href="https://quran.com/2/45" target="_blank" rel="noopener">Quran.com — 2:45</a>
+    <span class="note">Educational only — not a fatwa. Follow a qualified teacher for rulings.</span>
+  </div>
 
 
-<p>Educational outline only — learn with a teacher for rulings.</p>
-<h2>Farḍ counts</h2>
-<p>Fajr <strong>2</strong> · Ẓuhr <strong>4</strong> · ʿAṣr <strong>4</strong> · Maghrib <strong>3</strong> · ʿIshāʾ <strong>4</strong></p>
-<h2>Wuḍūʾ (high level)</h2>
-<ol>
-<li>Intention</li>
-<li>Wash the face</li>
-<li>Wash the arms to the elbows</li>
-<li>Wipe the head</li>
-<li>Wash the feet to the ankles</li>
-</ol>
-<p class="src">Live next-ṣalāh display: <a href="/companion/">Companion banner</a>. Routine teaching: this Yawm module.</p>
+  
+  <aside class="reward-card" aria-label="Authentic reminder">
+    <h2>The first matter of accountability</h2>
+    <p>The first matter concerning which a servant will be brought to account on the Day of Resurrection is the prayer. If it is sound, the rest of his deeds will be sound; if it is corrupt, the rest of his deeds will be corrupt.</p>
+    <p class="meta">Reported via al-Ṭabarānī and others; often graded ṣaḥīḥ or ḥasan by later scholars — confirm chain with a teacher. Educational reminder only.</p>
+    <span class="grade">verify grade · educational</span>
+  </aside>
+  <aside class="reward-card" aria-label="Qur’an">
+    <h2>Seek help through prayer</h2>
+    <p class="ar" dir="rtl" lang="ar">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ</p>
+    <p>And seek help through patience and prayer.</p>
+    <p class="meta">Qur’an · 2:45 · educational meaning</p>
+    <span class="grade">Qur’an</span>
+  </aside>
 
-</div>
-<p class="foot">Educational only — not a fatwa. One way to act — not a ruling. · 20261102M1</p>
+  <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
 </div>
 </body>
 </html>
