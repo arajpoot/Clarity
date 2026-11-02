@@ -1482,3 +1482,8 @@ html[data-theme="light"] .glass-plaque h1{color:#6b5a1e}
 .cdl-rakah{text-align:center;padding:0.5rem 0.25rem;border-radius:12px;border:1px solid rgba(212,180,90,0.22);background:rgba(0,0,0,0.2)}
 .cdl-rakah-n{display:block;font-size:1.35rem;font-weight:800;color:#e8d48a}
 #yawm-registry-bridge a{color:#c9a84c;font-weight:700}
+
+.cdl-pillar-trio{display:grid;gap:0.5rem;margin:0.5rem 0}
+@media(min-width:700px){.cdl-pillar-trio{grid-template-columns:1fr 1fr 1fr}}
+.cdl-pillar-trio .cdl-pillar a{color:#c9a84c;font-weight:700;font-size:0.78rem}
+#cdl-pillar-deepen .cdl-note a{text-decoration:none}
