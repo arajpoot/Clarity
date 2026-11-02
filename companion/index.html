@@ -1,5 +1,69 @@
 <!DOCTYPE html><html data-clarity-room="companion" data-theme="light" lang="en"><head>
 
+<script id="y3-companion-sot-boot">
+(function(){
+  "use strict";
+  if (window.__Y3_COMPANION_SOT__) return;
+  window.__Y3_COMPANION_SOT__ = true;
+  window.__CLARITY_SKIP_DAY_LANDING__ = true;
+  try {
+    document.documentElement.setAttribute("data-clarity-viewport", "companion-path");
+    document.documentElement.setAttribute("data-clarity-room", "companion");
+  } catch(e) {}
+  function killLanding(){
+    try {
+      document.querySelectorAll("#clarity-day-landing,.clarity-day-landing,#clarity-landing-stack,.day-landing-stack,#clarity-reopen-bar,[data-clarity-day-landing]").forEach(function(el){
+        el.style.setProperty("display","none","important");
+        el.setAttribute("hidden","hidden");
+        try { if (el.parentNode && el.id === "clarity-day-landing") el.parentNode.removeChild(el); } catch(e2) {}
+      });
+    } catch(e3) {}
+  }
+  function showReminder(){
+    try {
+      var el = document.getElementById("tab-reminder");
+      if (el) {
+        el.classList.add("is-active","active");
+        el.style.setProperty("display","block","important");
+        el.style.setProperty("visibility","visible","important");
+        el.style.setProperty("opacity","1","important");
+        el.removeAttribute("hidden");
+        el.setAttribute("aria-hidden","false");
+      }
+      var main = document.getElementById("main-content");
+      if (main) {
+        main.style.setProperty("display","block","important");
+        main.style.setProperty("visibility","visible","important");
+      }
+      document.body && document.body.setAttribute("data-active-tab","reminder");
+    } catch(e4) {}
+  }
+  killLanding(); showReminder();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function(){ killLanding(); showReminder(); });
+  }
+  setTimeout(function(){ killLanding(); showReminder(); }, 300);
+  setTimeout(function(){ killLanding(); showReminder(); }, 1200);
+  // Remove reinjected landing briefly
+  try {
+    var n = 0;
+    var obs = new MutationObserver(function(muts){
+      for (var i=0;i<muts.length;i++){
+        var nodes = muts[i].addedNodes || [];
+        for (var j=0;j<nodes.length;j++){
+          var el = nodes[j];
+          if (el && el.id === "clarity-day-landing") killLanding();
+        }
+      }
+      if (++n > 30) obs.disconnect();
+    });
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+    setTimeout(function(){ try{ obs.disconnect(); }catch(e5){} }, 8000);
+  } catch(e6) {}
+})();
+</script>
+
+
 <script id="clarity-freeze-guard-v1">
 (function(){
   "use strict";
@@ -26,7 +90,7 @@
 })();
 </script>
 
-<meta name="clarity-surface" content="20261102C-CLEAN"/>
+<meta name="clarity-surface" content="20261102Y3-SOT"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
 <meta name="companion-phase-build" content="0-1-boot-20261025">
@@ -227,7 +291,7 @@
 <style id="daily-isolate">
 /* freeze-fix: removed display:block!important on day-landing */
 </style>
-<script type="text/plain" data-c-clean-skip="1" id="daily-isolate-js">
+<script type="text/plain" data-y3-skip="1" type="text/plain" data-c-clean-skip="1" id="daily-isolate-js">
 (function(){
   function bridge(){
     var bar=document.getElementById("clarity-reopen-bar");
@@ -304,6 +368,52 @@ body[data-clarity-room="companion"] #clarity-day-landing {
   max-height: none !important;
   overflow: visible !important;
   pointer-events: auto !important;
+}
+</style>
+
+
+<style id="y3-companion-sot-css">
+/* Y3: Companion SOT = tabbed RRRA · day routine lives on /daily/ */
+#clarity-day-landing,
+.clarity-day-landing,
+#clarity-landing-stack,
+.day-landing-stack,
+[data-clarity-day-landing],
+#clarity-reopen-bar {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none !important;
+}
+#main-content, .main-content {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#tab-reminder.tab-panel,
+.tab-panel.rrra-hub.is-active,
+.tab-panel.rrra-hub.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+.y3-yawm-cta {
+  max-width: 42rem; margin: 0.75rem auto; padding: 0.75rem 1rem;
+  border-radius: 14px; border: 1px solid rgba(212,180,90,0.35);
+  background: rgba(15,76,58,0.14); text-align: center;
+}
+.y3-yawm-cta a {
+  display: inline-block; margin-top: 0.35rem; padding: 0.4rem 1rem;
+  border-radius: 999px; background: rgba(30,125,94,0.45);
+  color: #e8f0ec; font-weight: 800; text-decoration: none;
 }
 </style>
 
@@ -2639,5 +2749,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 })();
 </script>
 
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
