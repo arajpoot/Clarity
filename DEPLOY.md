@@ -1,14 +1,5 @@
-# Companion richness restore · 20261102RICH1
+# Companion polished final · 20261102POL1
 
-Base: pre–Yawm-migration shell (stable companion index ~250KB) with full path + RRRA tab sections.
+Live verified RICH1 (~252KB, 660 ids). Cleanup: beacon, scrap, doors, abs paths, fortify once.
 
-Still applied:
-- Day-landing **scrap** (Yawm remains daily SoT)
-- Four-door nav
-- No banner/path nuclear
-- Absolute `/assets/...` paths for companion-inline
-- Beacon ≤1
-
-**Requires** live server still has `/assets/companion-inline/` (unchanged).
-
-Replace `companion/index.html` only.
+Replace companion/index.html only. Needs /assets/companion-inline/ + /companion/assets|sealed on server.
