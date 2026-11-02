@@ -1,12 +1,12 @@
-# Companion ARCHITECTURE · C5
+# Companion ARCHITECTURE (door 1 of 4)
 
 ```
 /companion/
-  index.html          ← no companion-inline script src
-  assets/boot/        ← full shell ownership (C4+C5)
-  assets/             ← fortify, amana entry, banner still
+  index.html
+  assets/
   modules/
-  sealed/             ← lazy Amānah
+  sealed/
   redirects/
-/assets/companion-inline/  ← deprecated for Companion (copies retained)
 ```
+
+Cross-room: only links + room-nav. Amānah primary UX is `/amana/`.
