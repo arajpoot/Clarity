@@ -1,7 +1,7 @@
 <!DOCTYPE html><html data-clarity-room="companion" data-theme="light" lang="en"><head>
 
-<script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261103P2"></script>
-<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261103P2" />
+<script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261103P3"></script>
+<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261103P3" />
 
 
 <script src="/companion/assets/clarity-banner-av-v1.js?v=20261102AV"></script>
@@ -9,7 +9,7 @@
 <meta name="clarity-surface" content="companion"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
-<meta name="companion-phase-build" content="2-boot-smooth-20261103" />
+<meta name="companion-phase-build" content="3-lazy-dedupe-20261103" />
 
 
 
@@ -2157,7 +2157,9 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-bundle-nuros-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261101WB1" defer></script>
-<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P2" defer data-phase="2-after-shell"></script>
+<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P3" defer data-phase="2-after-shell"></script>
+<script src="/companion/assets/companion-craft-lazy-v1.js?v=20261103P3" defer data-phase="3-craft"></script>
+
 <script type="text/plain" data-rb-skip="1" src="/assets/companion-inline/inline-clarity-landing-v3.js?v=20261101WB1" defer></script>
 <script id="clarity-madinah-autoplay-v1" src="/assets/companion-inline/inline-clarity_madinah_ap.js?v=20261101WB1" defer></script>
 <script id="clarity-banner-repair-v1" src="/assets/companion-inline/inline-clarity_banner_repair.js?v=20261101WB1" defer></script>
@@ -2179,11 +2181,13 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script id="nuros5-shariah-js-v2" src="/assets/companion-inline/inline-42564f0868.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-982b3dbd78.js?v=20261101WB1" defer></script>
 <script id="clarity-embed-fold-viewport-v1" src="/assets/companion-inline/inline-clarity_embed_fold.js?v=20261101WB1" defer></script>
-<script id="clarity-tajweed-read-sync-v1" src="/assets/companion-inline/inline-clarity_lmr_read_sync.js?v=20261101WB1" defer></script>
+<!-- phase3-dedupe removed: /assets/companion-inline/inline-clarity_lmr_read_sync.js -->
+
 <script id="clarity-quick-nav-v1" src="/assets/companion-inline/inline-clarity_quick_nav.js?v=20261101WB1" defer></script>
 <script id="clarity-tab-persist-v1" src="/assets/companion-inline/inline-clarity_tab_persist.js?v=20261101WB1" defer></script>
 <script id="clarity-rrra5-core-js-v1" src="/assets/companion-inline/inline-clarity_rrra5_core.js?v=20261101WB1" defer></script>
-<script id="clarity-callig-pad-boot-v1" src="/assets/companion-inline/inline-clarity_callig_pad_boot.js?v=20261101WB1" defer></script>
+<!-- phase3-dedupe removed: /assets/companion-inline/inline-clarity_callig_pad_boot.js -->
+
 <script id="clarity-online-sitewide-v1" src="/assets/companion-inline/inline-clarity_online_sitewide_v1.js?v=20261101WB1" defer></script>
 <script id="clarity-rrra5-legacy-cleanup-v1" src="/assets/companion-inline/inline-clarity_rrra5_legacy_cleanup_v1.js?v=20261101WB1" defer></script>
 <script id="clarity-section-pills-js-v1" src="/assets/companion-inline/inline-clarity_section_pills_v2.js?v=20261101WB1" defer></script>
@@ -2201,27 +2205,40 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script type="text/plain" data-rb-skip="1" id="clarity-vault-note-registry-js" src="/assets/companion-inline/inline-clarity_vault_note_registry.js?v=20261101WB1" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script src="/assets/nuros-icons-apply-v1.js?v=20261101WB1"></script>
-<script src="/assets/companion-inline/inline-bundle-meme-v1.js?v=20261101WB1" defer></script>
+<!-- phase3-dedupe removed: /assets/companion-inline/inline-bundle-meme-v1.js -->
+
 <script src="/assets/companion-inline/inline-bundle-security-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-clarity-qada-tracker-v1.js?v=20261101WB1"></script>
 <script src="/assets/companion-inline/inline-clarity-samina-verse-v1.js?v=20261101WB1"></script>
 <script src="/assets/companion-inline/inline-clarity-final-surface-v1.js?v=20261101WB1"></script>
 
 <!-- Companion modules pack 20261031MOD1 -->
-<script src="/companion/modules/inline-clarity_lmr_read_sync.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-nx-tajweed-deep-studio-js-v1.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/nx-tj-lmr-js-v1.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-clarity-meme-canvas-clean-v1.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-clarity-meme-online-bg-v1.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-clarity_meme_unlock_v2.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-clarity_meme_push_cards.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-clarity-tj-meme-tweet-revamp-js.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/clarity-notes-recovery-v1.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-bundle-meme-v1.js?v=20261101WB1" defer></script>
-<script src="/companion/modules/inline-clarity_callig_pad_boot.js?v=20261101WB1" defer></script>
+<!-- phase3-dedupe removed: /companion/modules/inline-clarity_lmr_read_sync.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/inline-nx-tajweed-deep-studio-js-v1.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/nx-tj-lmr-js-v1.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/inline-clarity-meme-canvas-clean-v1.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/inline-clarity-meme-online-bg-v1.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/inline-clarity_meme_unlock_v2.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/inline-clarity_meme_push_cards.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/inline-clarity-tj-meme-tweet-revamp-js.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/clarity-notes-recovery-v1.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/inline-bundle-meme-v1.js -->
+
+<!-- phase3-dedupe removed: /companion/modules/inline-clarity_callig_pad_boot.js -->
+
 <script type="text/plain" data-rb-skip="1" src="/companion/modules/inline-clarity_vault_note_registry.js?v=20261101WB1" defer></script>
 <script type="text/plain" data-rb-skip="1" src="/companion/assets/clarity-vault-fortify-boot-v1.js?v=20261101WB1" defer></script>
 
-<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P2" data-phase="2-smooth"></script>
+<!-- phase3-dedupe dup: /companion/assets/clarity-companion-unfreeze-v3.js -->
+
 </body>
 </html>
