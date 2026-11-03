@@ -33,12 +33,16 @@
   setTimeout(scrub, 1200);
 })();
 </script>
+
+<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261103P1" />
+<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P1"></script>
+
 <script src="/companion/assets/clarity-banner-av-v1.js?v=20261102AV"></script>
 
 <meta name="clarity-surface" content="companion"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
-<meta name="companion-phase-build" content="0-1-boot-20261025">
+<meta name="companion-phase-build" content="0-1-unfreeze-20261103" />
 
 
 
@@ -243,12 +247,16 @@
     if(bar && !bar.querySelector("a[href='/daily/']")){
       var a=document.createElement("a");
       a.href="/daily/";
-      a.textContent="Open daily page";
+      a.textContent="Open Yawm · daily";
       a.style.cssText="margin-left:.5rem;color:#f3e6c0;font-weight:700";
       bar.appendChild(a);
     }
+    /* Phase 1: never force-show day-landing on Companion — Yawm owns /daily/ */
     var land=document.getElementById("clarity-day-landing");
-    if(land) land.style.display="block";
+    if(land){
+      land.style.setProperty("display","none","important");
+      land.setAttribute("hidden","hidden");
+    }
   }
   document.addEventListener("DOMContentLoaded", bridge);
   setTimeout(bridge, 600);
@@ -2245,5 +2253,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/companion/modules/inline-clarity_callig_pad_boot.js?v=20261101WB1" defer></script>
 <script type="text/plain" data-rb-skip="1" src="/companion/modules/inline-clarity_vault_note_registry.js?v=20261101WB1" defer></script>
 <script type="text/plain" data-rb-skip="1" src="/companion/assets/clarity-vault-fortify-boot-v1.js?v=20261101WB1" defer></script>
+
+<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P1" data-phase="1-tail"></script>
 </body>
 </html>
