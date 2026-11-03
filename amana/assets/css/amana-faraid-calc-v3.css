@@ -1,0 +1,140 @@
+/*! Companion-parity Farāʾiḍ calculator styles */
+.amana-faraid-calc-v3 {
+  margin: 0.75rem 0 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: linear-gradient(160deg, rgba(30, 125, 94, 0.1), rgba(0, 0, 0, 0.22));
+  font-family: Inter, system-ui, sans-serif;
+}
+.amana-faraid-calc-v3 .cred-stamp {
+  font-size: 0.72rem;
+  opacity: 0.9;
+  margin-bottom: 0.45rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  background: rgba(212, 180, 90, 0.1);
+  border: 1px solid rgba(212, 180, 90, 0.25);
+}
+.amana-faraid-calc-v3 h3 {
+  margin: 0 0 0.4rem;
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.2rem;
+}
+.fc-tut {
+  margin: 0.4rem 0 0.65rem;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.22);
+  background: rgba(212, 180, 90, 0.08);
+}
+.fc-tut summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #d4b45a;
+}
+.faraid-honest {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin: 0.5rem 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  border-left: 3px solid rgba(196, 92, 62, 0.55);
+  background: rgba(0, 0, 0, 0.22);
+}
+.notes-hint {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 0.4rem 0;
+}
+.fc-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem 0.65rem;
+  margin-top: 0.5rem;
+}
+@media (max-width: 640px) {
+  .fc-form { grid-template-columns: 1fr; }
+}
+.fc-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.fc-form input,
+.fc-form select {
+  padding: 0.42rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: #0c1c16;
+  color: inherit;
+  font-size: 0.88rem;
+}
+.fc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.65rem 0;
+}
+.fc-actions button,
+.fc-actions a.btn-link {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(30, 125, 94, 0.5);
+  color: inherit;
+  text-decoration: none;
+}
+.fc-actions button.soft,
+.fc-actions a.btn-link {
+  background: rgba(0, 0, 0, 0.28);
+}
+.fc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+.fc-table th,
+.fc-table td {
+  text-align: left;
+  padding: 0.35rem 0.4rem;
+  border-bottom: 1px solid rgba(212, 180, 90, 0.18);
+  vertical-align: top;
+}
+.fc-table input,
+.fc-table select {
+  width: 100%;
+  padding: 0.25rem;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: #0c1c16;
+  color: inherit;
+}
+.fc-result {
+  margin-top: 0.65rem;
+  padding: 0.65rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(0, 0, 0, 0.22);
+}
+.fc-empty {
+  font-size: 0.84rem;
+  opacity: 0.85;
+  padding: 0.55rem;
+  border: 1px dashed rgba(212, 180, 90, 0.28);
+  border-radius: 10px;
+}
+.fc-msg {
+  min-height: 1.1em;
+  font-size: 0.78rem;
+}
+.fc-msg.ok { color: #7dcea0; }
+.fc-msg.err { color: #f0a090; }
