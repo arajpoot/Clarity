@@ -1,6 +1,6 @@
-/*! amana-fortify-boot gate-aware v2 · Phase B
+/*! amana-fortify-boot gate-aware v2 · freeze-fix cycle
  * Gate → no Dayn scripts.
- * /amana/dayn/ → ensure + adapter-v2 + ledger-v3 + bridge.
+ * /amana/dayn/ → ensure + adapter-v2 + ledger-v3 + bridge-v3 (observer-free).
  * Educational only — not a fatwa.
  */
 (function (w) {
@@ -23,11 +23,11 @@
     "/amana/sealed/dayn-ensure-s45.js",
     "/amana/sealed/dayn-mount-adapter-v2.js",
     "/amana/sealed/dayn-ledger-v3.js",
-    "/amana/sealed/dayn-section-bridge-v2.js"
+    "/amana/sealed/dayn-section-bridge-v3.js"
   ];
 
   var SEALED_GATE = [];
-  var VERSION = "20261102B1";
+  var VERSION = "20261102F2";
   var loading = null;
 
   function loadScript(src) {
