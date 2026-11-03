@@ -3,39 +3,130 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Heirs · Amānah · Clarity</title>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102UI"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102UI" defer></script>
-<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102UI"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102UI"/>
+<title>Letter to heirs · Amānah · Clarity</title>
+<meta name="description" content="Letter to heirs — Amānah on-device tools. Educational only — not a fatwa or legal advice."/>
+<link rel="canonical" href="https://clarity-dawah.fyi/amana/heirs/"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101A2"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101A2" defer></script>
 
+<style>
+:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  background: radial-gradient(1000px 500px at 50% -10%, rgba(30,125,94,0.2), transparent),
+              linear-gradient(180deg, #0c1c16, #0a1410 55%);
+  color: #e8f0ec;
+}
+.amana-wrap { max-width: 52rem; margin: 0 auto; padding: 0.75rem 1rem 2.5rem; }
+.amana-hero { text-align: center; margin: 0.75rem 0 1rem; }
+.amana-hero h1 { font-family: Georgia, serif; font-size: 1.55rem; margin: 0 0 0.3rem; color: #e8d5a3; }
+.amana-hero p { margin: 0.25rem 0; font-size: 0.85rem; opacity: 0.9; line-height: 1.4; }
+.amana-card {
+  margin: 0.75rem 0; padding: 0.95rem 1rem; border-radius: 14px;
+  border: 1px solid rgba(212,180,90,0.3); background: rgba(15,76,58,0.14);
+}
+.amana-card h2 { margin: 0 0 0.4rem; font-size: 1.05rem; color: #d4b45a; }
+.amana-card p, .amana-card li { font-size: 0.82rem; line-height: 1.45; opacity: 0.92; }
+.amana-subnav {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;
+  margin: 0.5rem 0 0.75rem;
+}
+.amana-subnav a {
+  text-decoration: none; color: inherit; font-size: 0.75rem; font-weight: 700;
+  padding: 0.35rem 0.7rem; border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.25);
+}
+.amana-subnav a.is-here { background: rgba(30,125,94,0.45); border-color: rgba(212,180,90,0.55); }
+.amana-foot { text-align: center; margin-top: 1.5rem; font-size: 0.75rem; opacity: 0.75; }
+.amana-foot a { color: #c9a84c; font-weight: 700; }
+.btn-soft {
+  display: inline-block; margin: 0.25rem 0.25rem 0 0; padding: 0.4rem 0.85rem;
+  border-radius: 999px; border: 1px solid rgba(212,180,90,0.35);
+  background: rgba(30,125,94,0.35); color: inherit; font-weight: 700; font-size: 0.8rem;
+  cursor: pointer; text-decoration: none;
+}
+.disc {
+  font-size: 0.78rem; padding: 0.55rem 0.7rem; border-radius: 10px;
+  border-left: 3px solid rgba(212,180,90,0.55); background: rgba(0,0,0,0.25); margin: 0.5rem 0;
+}
+#clarity-landing-slot-dayn, #clarity-vault-slot-dayn, #clarity-vault-dayn-io { min-height: 0.25rem; }
+</style>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
-  <a href="/companion/" data-room-link="companion"><span class="crn-ico">🏠</span><span class="crn-label">Companion</span></a>
-  <a href="/daily/" data-room-link="yawm"><span class="crn-ico">🌅</span><span class="crn-label">Yawm</span></a>
-  <a href="/campus/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
-  <a href="/amana/" data-room-link="amana" class="is-here"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
+  <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
+  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
+  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
+  <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
 </nav>
 <main class="amana-wrap">
   <header class="amana-hero">
-    <h1>Heirs</h1>
-    <p><strong>Educational only — not a fatwa · not legal advice.</strong></p>
+    <h1>Heir readiness</h1>
+    <p><strong>Educational only — not a fatwa · not legal or financial advice.</strong></p>
   </header>
-  <nav class="amana-subnav">
-    <a href="/amana/">Gate</a>
-    <a href="/amana/dayn/">Dayn</a>
-    <a href="/amana/heirs/">Heirs</a>
-    <a href="/amana/notes/">Notes</a>
-    <a href="/amana/tree/">Tree</a>
-    <a href="/amana/fiqh/">Farāʾiḍ</a>
-    <a href="/amana/wasiyyah/">Wasiyyah</a>
-  </nav>
-  <section class="amana-card">
-    <p class="disc">Chamber page · unlock at the gate if locked. On-device only.</p>
-  </section>
+  <nav class="amana-subnav" aria-label="Amānah sections">
+<a href="/amana/" class="">Home</a>
+<a href="/amana/dayn/" class="">Dayn</a>
+<a href="/amana/heirs/" class="is-here" aria-current="page">Heirs</a>
+<a href="/amana/notes/" class="">Notes</a>
+<a href="/amana/tree/" class="">Family tree</a>
+<a href="/amana/fiqh/" class="">Farāʾiḍ</a>
+</nav>
+  
+<section class="amana-card" id="heirs">
+  <h2>Letter to heirs · readiness</h2>
+  <p class="disc">On-device notes for those you leave behind. Not a will, not a fatwa, not a court filing. Confirm with a scholar and local counsel.</p>
+  <label for="ahr-fullname">Full name</label>
+  <input id="ahr-fullname" type="text" style="width:100%;margin:0.25rem 0 0.5rem;padding:0.45rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit" placeholder="As on documents"/>
+  <label for="ahr-kin">Next of kin · phone</label>
+  <input id="ahr-kin" type="text" style="width:100%;margin:0.25rem 0 0.5rem;padding:0.45rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
+  <label for="ahr-wasi">Executor / wasī · guardian of minors</label>
+  <input id="ahr-wasi" type="text" style="width:100%;margin:0.25rem 0 0.5rem;padding:0.45rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
+  <label for="ahr-letter">Letter to my family</label>
+  <textarea id="ahr-letter" rows="5" style="width:100%;margin:0.25rem 0 0.5rem;padding:0.45rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit" placeholder="Beloved family…"></textarea>
+  <label for="ahr-debts">Debts / trusts to settle first</label>
+  <textarea id="ahr-debts" rows="3" style="width:100%;margin:0.25rem 0 0.5rem;padding:0.45rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"></textarea>
+  <label for="ahr-docs">Where key documents are</label>
+  <input id="ahr-docs" type="text" style="width:100%;margin:0.25rem 0 0.5rem;padding:0.45rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
+  <button type="button" class="btn-soft" id="amana-heirs-save">Save on this device</button>
+  <button type="button" class="btn-soft" id="amana-heirs-print">Print heir pack</button>
+  <p id="amana-heirs-msg" style="font-size:0.78rem;opacity:0.85"></p>
+</section>
+
+  <p class="amana-foot">
+    <a href="/amana/">Amānah home</a> ·
+    <a href="/companion/">Companion</a> ·
+    <a href="/daily/">Yawm</a> ·
+    <a href="/campus/">University</a>
+  </p>
 </main>
+
+<script>
+(function(){
+  var KEY="clarity_amana_heirs_v1";
+  var ids=["ahr-fullname","ahr-kin","ahr-wasi","ahr-letter","ahr-debts","ahr-docs"];
+  function load(){
+    try{
+      var raw=localStorage.getItem(KEY); if(!raw) return;
+      var o=JSON.parse(raw);
+      ids.forEach(function(id){ var el=document.getElementById(id); if(el&&o[id]!=null) el.value=o[id]; });
+    }catch(e){}
+  }
+  function save(){
+    var o={}; ids.forEach(function(id){ var el=document.getElementById(id); if(el) o[id]=el.value; });
+    try{ localStorage.setItem(KEY, JSON.stringify(o));
+      document.getElementById("amana-heirs-msg").textContent="Saved on this device · "+new Date().toLocaleString();
+    }catch(e){ document.getElementById("amana-heirs-msg").textContent="Could not save"; }
+  }
+  document.getElementById("amana-heirs-save")&&document.getElementById("amana-heirs-save").addEventListener("click", save);
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", load); else load();
+})();
+</script>
+
+<script defer src="/amana/assets/amana-heirs-print-v1.js?v=20261101A3"></script>
+<script>document.getElementById("amana-heirs-print")&&document.getElementById("amana-heirs-print").addEventListener("click",function(){if(window.ClarityAmanaPrintHeirs)ClarityAmanaPrintHeirs();});</script>
 </body>
 </html>
