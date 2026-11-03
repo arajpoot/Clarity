@@ -1,0 +1,40 @@
+{
+  "phase": "M4",
+  "banner": {
+    "css": "/amana/assets/css/am-banner-v1.css",
+    "ayahs": [
+      "4:58",
+      "4:7"
+    ],
+    "links": [
+      "https://quran.com/4/58",
+      "https://quran.com/4/7",
+      "https://quran.com/4/11",
+      "https://quran.com/4/12"
+    ],
+    "no_figurative_art": true,
+    "disclaimer": "educational only \u2014 not a fatwa"
+  },
+  "routes": [
+    "/amana/",
+    "/amana/dayn/",
+    "/amana/heirs/",
+    "/amana/notes/",
+    "/amana/tree/",
+    "/amana/fiqh/",
+    "/amana/wasiyyah/"
+  ],
+  "assets_required": [
+    "/amana/assets/css/am-critical-v1.css",
+    "/amana/assets/css/am-banner-v1.css",
+    "/amana/assets/clarity-amana-engine-v1.js",
+    "/amana/assets/amana-export-desk-v1.js",
+    "/amana/sealed/dayn-ledger-v2.js"
+  ],
+  "peer_research": "M4_BANNER_RESEARCH.md",
+  "checks": {
+    "no_mailto_in_export": true,
+    "pill_below_gate": true,
+    "foundation_lock": true
+  }
+}
