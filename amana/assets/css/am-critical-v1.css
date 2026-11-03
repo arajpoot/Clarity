@@ -1,0 +1,53 @@
+/*! am-critical-v1 · Amānah room chrome · educational only */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;600;700&family=Cairo:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+:root {
+  --amana-bg0:#0a1410; --amana-bg1:#0c1c16; --amana-card:rgba(15,76,58,0.16);
+  --amana-card-border:rgba(212,180,90,0.38); --amana-gold:#e8d5a3; --amana-gold-dim:#c9a84c;
+  --amana-green:#1e7d5e; --amana-text:#e8f0ec; --amana-muted:rgba(232,240,236,0.78);
+  --amana-radius:14px; --amana-font:"Inter",system-ui,sans-serif;
+  --amana-arabic:"Noto Naskh Arabic","Amiri","Reem Kufi",serif;
+  --amana-display:"Cormorant Garamond","Reem Kufi",Georgia,serif;
+}
+html[data-clarity-room="amana"], body {
+  margin:0; min-height:100vh; font-family:var(--amana-font); color:var(--amana-text);
+  background:linear-gradient(180deg,var(--amana-bg1),var(--amana-bg0));
+}
+[lang="ar"], .ar, [dir="rtl"] { font-family:var(--amana-arabic); }
+.amana-wrap { max-width:48rem; margin:0 auto; padding:0.75rem 1rem 2.75rem; }
+.amana-hero { text-align:center; margin:0.75rem 0 1rem; }
+.amana-hero h1 { font-family:var(--amana-display); color:var(--amana-gold); font-size:1.75rem; margin:0 0 0.35rem; }
+.amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0 1rem; }
+.amana-subnav a {
+  text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
+  padding:0.38rem 0.75rem; border-radius:999px;
+  border:1px solid rgba(212,180,90,0.35); background:rgba(0,0,0,0.28);
+}
+.amana-subnav a.is-here { background:rgba(30,125,94,0.5); border-color:rgba(212,180,90,0.6); }
+.amana-card, .intake-card {
+  margin:0.75rem 0; padding:1rem 1.1rem; border-radius:var(--amana-radius);
+  border:1px solid var(--amana-card-border); background:var(--amana-card);
+  box-shadow:0 10px 28px rgba(0,0,0,0.25);
+}
+.disc { font-size:0.82rem; line-height:1.5; color:var(--amana-muted); }
+.av-btn-primary, .btn-soft, .av-btn-soft {
+  display:inline-block; padding:0.45rem 0.95rem; border-radius:999px; font-weight:800; font-size:0.82rem;
+  cursor:pointer; border:1px solid rgba(212,180,90,0.4); color:inherit; text-decoration:none; margin:0.2rem;
+}
+.av-btn-primary { background:rgba(30,125,94,0.55); }
+.btn-soft, .av-btn-soft { background:rgba(0,0,0,0.28); }
+.amana-foot { text-align:center; margin-top:1.5rem; font-size:0.75rem; opacity:0.8; }
+.amana-foot a { color:var(--amana-gold-dim); font-weight:700; }
+/* Unlock status — below passphrase, NOT sticky over room-nav */
+#amana-unlock-pill {
+  display:none; margin:0.75rem 0 1rem; padding:0.55rem 0.85rem; border-radius:12px;
+  text-align:center; font-size:0.82rem; font-weight:700;
+  background:linear-gradient(90deg,rgba(30,125,94,0.55),rgba(20,90,70,0.5));
+  border:1px solid rgba(212,180,90,0.4); color:#f3ecda;
+}
+#amana-unlock-pill.is-on { display:block; }
+#amana-unlock-pill a { color:#ffe9a8; font-weight:800; margin:0 0.3rem; }
+#amana-unlock-pill button {
+  margin-left:0.45rem; padding:0.2rem 0.65rem; border-radius:999px;
+  border:1px solid rgba(255,255,255,0.35); background:rgba(0,0,0,0.25);
+  color:inherit; font-weight:800; cursor:pointer; font-size:0.75rem;
+}
