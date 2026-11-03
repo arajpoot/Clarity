@@ -1,116 +1,60 @@
-/*! companion fortify C2 · 20261101C2 · sealed only under /companion/sealed/ */
+/*! amana-fortify-boot-v1 · loads sealed Dayn chain · educational — not a fatwa */
 (function (w) {
   "use strict";
-  if (w.__CLARITY_VAULT_FORTRESS_BOOT_C2__) return;
-  w.__CLARITY_VAULT_FORTRESS_BOOT_C2__ = true;
+  if (w.__CLARITY_VAULT_FORTRESS_BOOT_A3__) return;
+  w.__CLARITY_VAULT_FORTRESS_BOOT_A3__ = true;
 
-  var VER = "20261101C2";
-  var BASE = "/companion/sealed/";
-  var scripts = [
-    "runtime-gate-v1.js",
-    "facade-v1.js",
-    "isolate-guard-v1.js",
-    "digest-v1.js",
-    "export-host-v1.js",
-    "digest-panel-v1.js",
-    "dayn-section-bridge-v2.js",
-    "dayn-mount-adapter-v1.js",
-    "dayn-ledger-v2.js",
-    "dayn-enrich-v3.js",
-    "dayn-ensure-s45.js",
-    "passphrase-tutorial-v1.js"
+  var SEALED = [
+    "/amana/sealed/dayn-ledger-v2.js",
+    "/amana/sealed/dayn-mount-adapter-v1.js",
+    "/amana/sealed/dayn-section-bridge-v2.js",
+    "/amana/sealed/dayn-enrich-v3.js",
+    "/amana/sealed/dayn-ensure-s45.js"
   ];
   var loading = null;
-  var loaded = false;
 
-  function loadOne(n) {
-    return new Promise(function (res, rej) {
-      var id = "c2-sealed-" + n.replace(/\W+/g, "_");
-      if (document.getElementById(id)) return res(n);
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
       var s = document.createElement("script");
-      s.id = id;
-      s.src = BASE + n + "?v=" + VER;
-      s.defer = true;
-      s.onload = function () { res(n); };
-      s.onerror = function () { rej(new Error("sealed fail: " + n)); };
+      s.src = src + (src.indexOf("?") >= 0 ? "&" : "?") + "v=20261102DN";
+      s.async = false;
+      s.onload = function () { resolve(src); };
+      s.onerror = function () { reject(new Error("fail " + src)); };
       document.head.appendChild(s);
     });
   }
 
-  function loadSealed() {
-    if (loaded) return Promise.resolve("loaded");
+  w.ClarityLoadAmanaSealed = function () {
     if (loading) return loading;
-    loading = Promise.resolve();
-    scripts.forEach(function (n) {
-      loading = loading.then(function () { return loadOne(n); });
-    });
-    loading = loading.then(function () {
-      loaded = true;
+    loading = SEALED.reduce(function (p, src) {
+      return p.then(function () {
+        return loadScript(src).catch(function (e) {
+          try { console.warn("[Amānah] sealed optional", src, e); } catch (e2) {}
+        });
+      });
+    }, Promise.resolve()).then(function () {
       try {
-        document.documentElement.setAttribute("data-amana-sealed", "ready");
+        if (typeof w.ClarityDaynMount === "function") w.ClarityDaynMount();
+        if (typeof w.ClarityDaynBridgeInit === "function") w.ClarityDaynBridgeInit();
         document.dispatchEvent(new CustomEvent("clarity-amana-sealed-ready"));
-      } catch (e) {}
+      } catch (e3) {}
       return "ready";
-    }).catch(function (err) {
-      loading = null;
-      try { console.warn("[Companion Amānah]", err); } catch (e) {}
-      throw err;
     });
     return loading;
-  }
+  };
 
-  w.ClarityLoadAmanaSealed = loadSealed;
+  w.ClarityEnterAmana = function () {
+    return w.ClarityLoadAmanaSealed();
+  };
 
-  function wantsAmana() {
+  /* Auto-load on dayn page if session unlocked */
+  function maybeAutoload() {
     try {
-      var h = (w.location.hash || "").toLowerCase();
-      if (/notes|amana|vault|heir/.test(h)) return true;
-      var q = (w.location.search || "").toLowerCase();
-      if (/enter=amana|enter=vault|enter=notes/.test(q)) return true;
-      var tab = document.getElementById("tab-notes");
-      if (tab && tab.classList && (tab.classList.contains("active") || tab.classList.contains("amana-unlocked"))) return true;
-    } catch (e) {}
-    return false;
-  }
-
-  function maybe() {
-    if (wantsAmana()) loadSealed();
-  }
-
-  /* Enter Amānah from Companion only — hash + notes tab */
-  function enterAmana(opts) {
-    opts = opts || {};
-    try {
-      if (opts.hash !== false) {
-        var h = opts.hash || "notes";
-        if ((w.location.hash || "") !== "#" + h) w.location.hash = h;
+      if (sessionStorage.getItem("clarity_amana_session_unlocked_v1") === "1") {
+        w.ClarityLoadAmanaSealed();
       }
     } catch (e) {}
-    return loadSealed().then(function () {
-      try {
-        var tab = document.getElementById("tab-notes");
-        if (tab && typeof tab.click === "function") tab.click();
-      } catch (e2) {}
-      try {
-        document.dispatchEvent(new CustomEvent("clarity-amana-enter"));
-      } catch (e3) {}
-      return "entered";
-    });
   }
-  w.ClarityEnterAmana = enterAmana;
-
-  document.addEventListener("click", function (ev) {
-    try {
-      var t = ev.target && ev.target.closest && ev.target.closest(
-        "#tab-notes, [data-rail-tab='notes'], [data-enter-amana], a[href='#notes'], a[href='#amana'], a[href='#vault']"
-      );
-      if (t) loadSealed();
-    } catch (e) {}
-  }, true);
-
-  w.addEventListener("hashchange", maybe);
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", maybe);
-  else maybe();
-  /* soft delayed check for deep links */
-  setTimeout(maybe, 800);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", maybeAutoload);
+  else maybeAutoload();
 })(window);
