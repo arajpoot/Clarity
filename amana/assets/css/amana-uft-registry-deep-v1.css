@@ -1,0 +1,124 @@
+/*! Registry deep panel · Archive-3 style fields */
+.uft-registry-deep {
+  margin: 0.85rem 0;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background:
+    linear-gradient(160deg, rgba(30, 125, 94, 0.12), rgba(0, 0, 0, 0.22));
+  font-family: Inter, system-ui, sans-serif;
+}
+.uft-deep-title {
+  margin: 0 0 0.25rem;
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.15rem;
+}
+.uft-deep-hint {
+  margin: 0 0 0.65rem;
+  font-size: 0.78rem;
+  opacity: 0.88;
+  line-height: 1.4;
+}
+.uft-deep-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem 0.65rem;
+}
+@media (max-width: 640px) {
+  .uft-deep-grid { grid-template-columns: 1fr; }
+}
+.uft-registry-deep .uft-field label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  opacity: 0.88;
+  margin-bottom: 0.15rem;
+}
+.uft-registry-deep .uft-field input,
+.uft-registry-deep .uft-field select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.42rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: #0c1c16;
+  color: inherit;
+  font-size: 0.88rem;
+}
+.uft-field-span { grid-column: 1 / -1; }
+.uft-deep-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+.uft-deep-btn {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(30, 125, 94, 0.5);
+  color: inherit;
+}
+.uft-deep-btn.soft { background: rgba(0, 0, 0, 0.28); }
+.uft-deep-file { display: inline-flex; align-items: center; }
+.uft-deep-io {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(212, 180, 90, 0.2);
+}
+.uft-deep-io-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #c9a84c;
+}
+.uft-deep-msg {
+  min-height: 1.1em;
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+}
+.uft-deep-msg.ok { color: #7dcea0; }
+.uft-deep-msg.err { color: #f0a090; }
+.uft-deep-list-wrap {
+  margin-top: 0.75rem;
+}
+.uft-deep-list-wrap h4 {
+  margin: 0 0 0.35rem;
+  color: #d4b45a;
+  font-size: 0.9rem;
+}
+.uft-deep-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin: 0.4rem 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.22);
+  background: rgba(0, 0, 0, 0.22);
+  font-size: 0.84rem;
+}
+.uft-deep-meta {
+  font-size: 0.75rem;
+  opacity: 0.88;
+  margin-top: 0.15rem;
+}
+.uft-deep-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.uft-deep-row-actions button {
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.3);
+  background: rgba(0, 0, 0, 0.3);
+  color: inherit;
+}
