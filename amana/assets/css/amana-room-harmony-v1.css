@@ -1,0 +1,162 @@
+/*! Amānah room harmony v1 · Companion vault fonts · icons · plaques
+ * Aligns Amānah chambers with Companion trust aesthetic
+ * Educational only — not a fatwa
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+html[data-clarity-room="amana"],
+body[data-clarity-room="amana"],
+.amana-wrap,
+#user-family-tree-card,
+.amana-card {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+/* Titles — Companion serif */
+.amana-wrap h1,
+.amana-wrap h2,
+.amana-card h2,
+.amana-hero h1,
+.uft-titlebar-amana h2,
+.amana-living-centre h2,
+.amana-faraid-calc-v3 h3,
+.wasiyyah-enrich-v2 h3 {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif !important;
+  letter-spacing: 0.01em;
+  color: #e8d5a3;
+}
+
+/* Arabic */
+[lang="ar"],
+.amana-banner-ayah,
+.arabic,
+.uft-name-ar {
+  font-family: "Scheherazade New", Amiri, "Noto Naskh Arabic", serif !important;
+}
+
+/* Trust / on-device plaque */
+.amana-trust-plaque,
+.on-device-ok,
+.uft-badge,
+.fs-badge,
+.we-badge {
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.cred-stamp {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  opacity: 0.92;
+  margin: 0 0 0.5rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(212, 180, 90, 0.1);
+}
+
+/* Soft icon chips (text glyphs · Companion lean) */
+.amana-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-right: 0.25rem;
+  border-radius: 8px;
+  background: rgba(30, 125, 94, 0.35);
+  border: 1px solid rgba(212, 180, 90, 0.3);
+  font-size: 0.85rem;
+}
+
+/* Buttons match Companion soft pills */
+.amana-wrap .btn-soft,
+.amana-wrap .btn-secondary,
+.uft-build-actions button,
+.fc-actions button,
+.we-actions .btn-soft,
+.uft-dock-steps .uft-step {
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  border: 1px solid rgba(212, 180, 90, 0.38);
+}
+
+/* Cards */
+.amana-card,
+.uft-build-panel,
+.amana-living-centre,
+.amana-faraid-calc-v3,
+.wasiyyah-enrich-v2,
+.uft-registry-deep {
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: linear-gradient(160deg, rgba(30, 125, 94, 0.1), rgba(0, 0, 0, 0.2));
+}
+
+/* File ops panel */
+.uft-file-ops {
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(15, 76, 58, 0.12);
+}
+.uft-file-ops summary {
+  cursor: pointer;
+  color: #e8d5a3;
+  font-weight: 700;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.05rem;
+}
+.uft-file-ops .uft-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0;
+}
+.uft-file-ops .uft-file-menus {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+@media (max-width: 640px) {
+  .uft-file-ops .uft-file-menus { grid-template-columns: 1fr; }
+}
+.uft-file-ops label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.uft-file-ops select {
+  padding: 0.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: #0c1c16;
+  color: inherit;
+}
+.uft-save-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+}
+
+/* Heir readiness harmony */
+.ahr-disc, .faraid-honest {
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+/* Light theme safety */
+html[data-theme="light"] .amana-card,
+html[data-theme="day"] .amana-card {
+  background: linear-gradient(160deg, rgba(30, 125, 94, 0.06), rgba(255, 255, 255, 0.75));
+}
