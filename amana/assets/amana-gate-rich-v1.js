@@ -126,12 +126,12 @@
         p.then(function () {
           return loadSealed();
         }).then(function () {
-          if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
+          (window.ClarityAmanaEngine?window.ClarityAmanaEngine.setUnlocked(true):setSessionUnlocked(true));
           status("Vault marker ready on this device · unlocked this session · not a legal certificate");
           if (passNew) passNew.value = "";
           if (passConfirm) passConfirm.value = "";
         }).catch(function () {
-          if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
+          (window.ClarityAmanaEngine?window.ClarityAmanaEngine.setUnlocked(true):setSessionUnlocked(true));
           status("Session open on this device · educational only");
         });
       });
@@ -150,19 +150,19 @@
             return Promise.resolve(secure.unlock(va)).then(function (ok) {
               if (ok === false) {
                 status("Unlock failed — wrong passphrase or no vault yet.");
-                if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(false); else setSessionUnlocked(false);
+                (window.ClarityAmanaEngine?window.ClarityAmanaEngine.setUnlocked(false):setSessionUnlocked(false));
                 return;
               }
-              if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
+              (window.ClarityAmanaEngine?window.ClarityAmanaEngine.setUnlocked(true):setSessionUnlocked(true));
               status("Unlocked for this browser session");
               if (passUnlock) passUnlock.value = "";
             });
           }
-          if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
+          (window.ClarityAmanaEngine?window.ClarityAmanaEngine.setUnlocked(true):setSessionUnlocked(true));
           status("Session open · educational chamber · lock when you leave");
           if (passUnlock) passUnlock.value = "";
         }).catch(function () {
-          if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
+          (window.ClarityAmanaEngine?window.ClarityAmanaEngine.setUnlocked(true):setSessionUnlocked(true));
           status("Session open (sealed optional)");
         });
       });
@@ -187,7 +187,7 @@
         try {
           if (w.ClarityVaultSecure && w.ClarityVaultSecure.reset) w.ClarityVaultSecure.reset();
         } catch (e2) {}
-        if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(false); else setSessionUnlocked(false);
+        (window.ClarityAmanaEngine?window.ClarityAmanaEngine.setUnlocked(false):setSessionUnlocked(false));
         showCreate(true);
         status("Local marker cleared on this device only · create a new passphrase");
       });
