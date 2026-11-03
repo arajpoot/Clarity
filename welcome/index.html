@@ -1,33 +1,168 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Meet the guide · Clarity University</title>
-<link rel="stylesheet" href="/assets/cu-addon-chrome.css"/>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Clarity · Four Gates Welcome</title>
+<meta name="description" content="Welcome to Clarity — choose Companion, Yawm (Daily), Campus, or Amānah. Private educational companion. Not a fatwa."/>
+<meta name="theme-color" content="#0a1812"/>
+<link rel="stylesheet" href="/assets/css/clarity-four-gates-welcome-v1.css?v=20261103FG1"/>
 </head>
-<body class="cu-addon">
-<header class="cu-banner">
-  <a class="cu-brand" href="/campus/"><small>University · Nur Path</small>Clarity University</a>
-  <a class="cu-main-link" href="/">← Companion</a>
-</header>
-<nav class="cu-tabs" aria-label="Campus"><a href="/campus/" class="">Map</a><a href="/campus/desk/" class="">Desk</a><a href="/welcome/" class="here">Guide</a><a href="/lab/" class="">Lab</a><a href="/adhkar/" class="">Adhkār</a><a href="/charter/" class="">Charter</a><a href="/" class="">Companion</a></nav>
-<p class="cu-guide">Guide · Foundations — On-device guide. Not a scholar. Not an ijāzah.</p>
-<main class="cu-wrap">
+<body class="cgw">
+<div class="cgw-inner">
+  <p class="cgw-bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+  <h1 class="cgw-title">Welcome to Clarity</h1>
+  <p class="cgw-sub">Four doors on one campus. Tap a building on the map — or a card below — to enter. Educational companion only; not a fatwa.</p>
+  <p class="cgw-hint" id="cgw-hint">Hover or tap a gate on the illustration</p>
 
-<h1>Meet the guide</h1>
-<p class="muted">This page teaches the testimony. It is not a formal shahādah with a witness. For that, sit with a local community.</p>
-<div class="card">
-<p class="ar">أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ</p>
-<p>I bear witness that there is no deity except Allah, and I bear witness that Muhammad is the Messenger of Allah.</p>
-<p><a href="https://quran.com/3/18">Qur’an 3:18</a> · <a href="https://sunnah.com/bukhari:8">Sahih al-Bukhari 8</a></p>
-<button type="button" id="enter">I have read the testimony · Enter Unit 1</button>
-<p class="muted" id="saved" hidden>Saved on this device.</p>
+  <div class="cgw-stage" id="cgw-stage">
+    <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive campus with four gates">
+      <defs>
+        <linearGradient id="cgwSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#122a22"/>
+          <stop offset="100%" stop-color="#081510"/>
+        </linearGradient>
+        <linearGradient id="cgwDome" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#2d7a5c"/>
+          <stop offset="100%" stop-color="#1a4a38"/>
+        </linearGradient>
+        <radialGradient id="cgwLamp" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#f3e6c0" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#f3e6c0" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect width="900" height="420" fill="url(#cgwSky)"/>
+      <g fill="#e8d5a3">
+        <circle class="cgw-star" cx="40" cy="30" r="1.4"/>
+        <circle class="cgw-star" cx="100" cy="55" r="1.1"/>
+        <circle class="cgw-star" cx="180" cy="25" r="1.3"/>
+        <circle class="cgw-star" cx="560" cy="40" r="1.2"/>
+        <circle class="cgw-star" cx="720" cy="28" r="1.4"/>
+        <circle class="cgw-star" cx="820" cy="60" r="1"/>
+      </g>
+      <circle class="cgw-moon" cx="800" cy="55" r="20" fill="#e8d5a3" opacity="0.9"/>
+      <circle cx="808" cy="48" r="16" fill="#0c1c16" opacity="0.35"/>
+      <g class="cgw-cloud" fill="#1e3d32" opacity="0.4">
+        <ellipse cx="160" cy="70" rx="42" ry="13"/>
+        <ellipse cx="188" cy="68" rx="24" ry="10"/>
+      </g>
+      <g class="cgw-cloud-b" fill="#1e3d32" opacity="0.3">
+        <ellipse cx="520" cy="80" rx="50" ry="12"/>
+      </g>
+      <path d="M0 250 Q220 210 450 235 T900 225 L900 420 L0 420 Z" fill="#0a1a14"/>
+      <path d="M0 280 Q300 250 500 275 T900 270 L900 420 L0 420 Z" fill="#0d221a"/>
+
+      <!-- GATE 1 · Companion -->
+      <a class="cgw-gate" data-gate="companion" href="/companion/" tabindex="0" aria-label="Companion gate">
+        <rect x="40" y="175" width="150" height="115" rx="4" fill="#16352a" stroke="#2d7a5c" stroke-width="1.5"/>
+        <polygon points="40,175 115,145 190,175" fill="#1a4a38" stroke="#d4b45a" stroke-width="1"/>
+        <rect class="cgw-win" x="55" y="195" width="24" height="28" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="90" y="195" width="24" height="28" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="125" y="195" width="24" height="28" rx="2" fill="#e8d5a3"/>
+        <rect x="95" y="245" width="28" height="45" fill="#0a1812" stroke="#d4b45a"/>
+        <text class="cgw-gate-label" x="115" y="305" text-anchor="middle">Companion</text>
+      </a>
+
+      <!-- GATE 2 · Yawm / Daily -->
+      <a class="cgw-gate" data-gate="yawm" href="/daily/" tabindex="0" aria-label="Yawm daily gate">
+        <rect x="230" y="185" width="140" height="105" rx="4" fill="#16352a" stroke="#2d7a5c" stroke-width="1.5"/>
+        <rect x="230" y="175" width="140" height="12" fill="#1e4a38"/>
+        <rect class="cgw-win" x="245" y="200" width="30" height="32" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="285" y="200" width="30" height="32" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="325" y="200" width="30" height="32" rx="2" fill="#e8d5a3"/>
+        <circle cx="300" cy="165" r="14" fill="none" stroke="#d4b45a" stroke-width="2"/>
+        <text class="cgw-gate-label" x="300" y="308" text-anchor="middle">Yawm · Daily</text>
+      </a>
+
+      <!-- GATE 3 · Campus -->
+      <a class="cgw-gate" data-gate="campus" href="/campus/" tabindex="0" aria-label="Campus university gate">
+        <rect x="410" y="160" width="160" height="130" rx="3" fill="#16352a" stroke="#2d7a5c" stroke-width="1.5"/>
+        <polygon points="410,160 490,125 570,160" fill="#1a4a38" stroke="#d4b45a"/>
+        <rect class="cgw-win" x="430" y="180" width="22" height="26" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="460" y="180" width="22" height="26" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="490" y="180" width="22" height="26" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="520" y="180" width="22" height="26" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="430" y="218" width="22" height="26" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="460" y="218" width="22" height="26" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="490" y="218" width="22" height="26" rx="2" fill="#e8d5a3"/>
+        <rect class="cgw-win" x="520" y="218" width="22" height="26" rx="2" fill="#e8d5a3"/>
+        <rect x="475" y="250" width="30" height="40" fill="#0a1812" stroke="#d4b45a"/>
+        <text class="cgw-gate-label" x="490" y="308" text-anchor="middle">Campus</text>
+      </a>
+
+      <!-- GATE 4 · Amānah -->
+      <a class="cgw-gate" data-gate="amana" href="/amana/" tabindex="0" aria-label="Amānah trust gate">
+        <rect x="620" y="170" width="130" height="120" fill="#16352a" stroke="#2d7a5c" stroke-width="1.5"/>
+        <path d="M620 175 Q685 115 750 175 Z" fill="url(#cgwDome)" stroke="#d4b45a"/>
+        <circle cx="685" cy="128" r="5" fill="#e8d5a3"/>
+        <path d="M660 290 L660 230 Q685 210 710 230 L710 290 Z" fill="#0a1812" stroke="#d4b45a"/>
+        <rect x="755" y="140" width="12" height="110" fill="#1a4a38" stroke="#d4b45a" stroke-width="0.8"/>
+        <polygon points="753,140 761,125 769,140" fill="#d4b45a"/>
+        <g class="cgw-flag"><path d="M767 148 L792 154 L767 160 Z" fill="#c45c3e" opacity="0.9"/></g>
+        <text class="cgw-gate-label" x="685" y="312" text-anchor="middle">Amānah</text>
+      </a>
+
+      <!-- Trees & lamps -->
+      <g class="cgw-tree" transform="translate(15,260)"><rect x="12" y="40" width="6" height="45" fill="#3d2914"/><ellipse cx="15" cy="35" rx="22" ry="26" fill="#1e5c44"/></g>
+      <g class="cgw-tree-2" transform="translate(850,255)"><rect x="12" y="35" width="5" height="42" fill="#3d2914"/><ellipse cx="15" cy="30" rx="18" ry="22" fill="#246b50"/></g>
+      <g transform="translate(200,310)"><rect width="3" height="24" fill="#4a3a20"/><circle class="cgw-lamp" cx="1.5" cy="0" r="9" fill="url(#cgwLamp)"/><circle cx="1.5" cy="0" r="2.5" fill="#e8d5a3"/></g>
+      <g transform="translate(580,310)"><rect width="3" height="24" fill="#4a3a20"/><circle class="cgw-lamp" cx="1.5" cy="0" r="9" fill="url(#cgwLamp)"/><circle cx="1.5" cy="0" r="2.5" fill="#e8d5a3"/></g>
+      <rect x="0" y="400" width="900" height="20" fill="#081510"/>
+    </svg>
+  </div>
+
+  <div class="cgw-cards" id="cgw-cards">
+    <a class="cgw-card" data-gate="companion" href="/companion/">
+      <strong>Companion</strong>
+      <span>Heart path · Qurʾān, Hadith, character</span>
+      <span class="tag">Enter →</span>
+    </a>
+    <a class="cgw-card" data-gate="yawm" href="/daily/">
+      <strong>Yawm · Daily</strong>
+      <span>Day landing · deeds · consistency</span>
+      <span class="tag">Enter →</span>
+    </a>
+    <a class="cgw-card" data-gate="campus" href="/campus/">
+      <strong>Campus</strong>
+      <span>University path · structured learning</span>
+      <span class="tag">Enter →</span>
+    </a>
+    <a class="cgw-card" data-gate="amana" href="/amana/">
+      <strong>Amānah</strong>
+      <span>Desk · trusts · family · farāʾiḍ study</span>
+      <span class="tag">Enter →</span>
+    </a>
+  </div>
+
+  <p class="cgw-disc">Educational companion only — not a fatwa service. Private, local-first where noted. Seek a qualified scholar for personal rulings.</p>
 </div>
-
-</main>
-<footer class="cu-note" style="text-align:center;padding:1rem">Educational only — not a fatwa. Verify on Quran.com / Sunnah.com. Ask a local scholar.</footer>
 <script>
-document.getElementById("enter").onclick=function(){
-  try{var o=JSON.parse(localStorage.getItem("clarity_path_v1")||"{}");o.shahadahRead={at:Date.now()};localStorage.setItem("clarity_path_v1",JSON.stringify(o));}catch(e){}
-  document.getElementById("saved").hidden=false;
-  setTimeout(function(){location.href="/path/unit-1/";},400);
-};
+(function () {
+  var labels = {
+    companion: "Companion — path of the heart",
+    yawm: "Yawm — daily deeds & landing",
+    campus: "Campus — university learning path",
+    amana: "Amānah — desk, trusts & legacy tools"
+  };
+  var hint = document.getElementById("cgw-hint");
+  function setActive(gate) {
+    document.querySelectorAll(".cgw-gate, .cgw-card").forEach(function (el) {
+      el.classList.toggle("is-active", el.getAttribute("data-gate") === gate);
+    });
+    if (hint && gate && labels[gate]) hint.textContent = labels[gate];
+  }
+  document.querySelectorAll(".cgw-gate, .cgw-card").forEach(function (el) {
+    el.addEventListener("mouseenter", function () { setActive(el.getAttribute("data-gate")); });
+    el.addEventListener("focus", function () { setActive(el.getAttribute("data-gate")); });
+    el.addEventListener("mouseleave", function () {
+      if (!document.querySelector(".cgw-gate:hover, .cgw-card:hover")) {
+        document.querySelectorAll(".is-active").forEach(function (x) { x.classList.remove("is-active"); });
+        if (hint) hint.textContent = "Hover or tap a gate on the illustration";
+      }
+    });
+  });
+})();
 </script>
-</body></html>
+</body>
+</html>
