@@ -1,4 +1,21 @@
-/* Companion Phase 1 unfreeze · Yawm day-landing stays off on Companion · campus untouched */
+/* Companion Phase 1.1 — never blank main on companion room */
+html[data-clarity-room="companion"] #main-content,
+html[data-shell-mode="companion"] #main-content,
+html.companion-unfrozen #main-content {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+html[data-clarity-room="companion"] #tab-reminder.tab-panel.is-active,
+html[data-clarity-room="companion"] #tab-reminder.tab-panel.active,
+html[data-shell-mode="companion"] #tab-reminder {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
 html[data-clarity-room="companion"] #clarity-day-landing,
 html[data-clarity-room="companion"] .clarity-day-landing,
 html[data-clarity-room="companion"] #clarity-landing-stack,
@@ -11,17 +28,11 @@ html[data-clarity-room="companion"] #clarity-welcome {
   visibility: hidden !important;
   pointer-events: none !important;
   height: 0 !important;
+  max-height: 0 !important;
   overflow: hidden !important;
 }
-html[data-clarity-room="companion"] #main-content {
+/* path tiles may show; hubs must stay readable */
+html[data-clarity-room="companion"] .tab-panel.rrra-hub.is-active {
   display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-html[data-clarity-room="companion"] #tab-reminder.tab-panel.is-active,
-html[data-clarity-room="companion"] #tab-reminder.tab-panel.active {
-  display: block !important;
-  visibility: visible !important;
-  aria-hidden: false;
+  min-height: 12rem;
 }
