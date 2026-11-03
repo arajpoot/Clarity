@@ -1,0 +1,176 @@
+/*! Amānah UFT layout · horizontal pedigree + collapsed registry
+ * Educational only — not a legal pedigree
+ */
+
+/* —— Registry collapsed by default —— */
+#uft-registry-deep.uft-reg-collapsed .uft-deep-grid,
+#uft-registry-deep.uft-reg-collapsed .uft-deep-actions,
+#uft-registry-deep.uft-reg-collapsed .uft-deep-io,
+#uft-registry-deep.uft-reg-collapsed .uft-deep-list-wrap,
+#uft-registry-deep.uft-reg-collapsed .uft-deep-hint {
+  display: none !important;
+}
+#uft-registry-deep .uft-reg-collapse-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+#uft-registry-deep .uft-reg-collapse-bar button {
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(0, 0, 0, 0.28);
+  color: inherit;
+}
+#uft-reg-list-host.collapsed,
+.uft-registry-panel.collapsed .uft-field,
+.uft-registry-panel.collapsed #uft-reg-list {
+  display: none !important;
+}
+
+/* Build panel starts collapsed unless user opens it */
+#uft-build-section:not([open]) {
+  /* native details */
+}
+
+/* —— Horizontal pedigree viewport —— */
+#uft-preview.uft-tree,
+#uft-preview.uft-tree.uft-orient-h {
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  max-height: min(72vh, 42rem);
+  min-height: min(36vh, 20rem);
+}
+
+/* Zoom layer lays generations in a horizontal flow */
+#uft-preview.uft-orient-h .uft-zoom-layer,
+#uft-preview.uft-orient-h #uft-zoom-layer,
+#uft-preview.uft-orient-h .uft-zoom-sizer {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  gap: 0.85rem;
+  min-width: max-content;
+  padding: 0.5rem 1rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Bands sit side-by-side (oldest → you → descendants) */
+#uft-preview.uft-orient-h .uft-band,
+#uft-preview.uft-orient-h section.uft-band {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 0 0 auto;
+  min-width: 11.5rem;
+  max-width: 18rem;
+  margin: 0 !important;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.18);
+  padding: 0.35rem;
+}
+#uft-preview.uft-orient-h .uft-band.collapsed .uft-band-scroll {
+  display: none !important;
+}
+#uft-preview.uft-orient-h .uft-band-head {
+  width: 100%;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.45rem;
+  border-radius: 8px;
+  border: none;
+  background: rgba(30, 125, 94, 0.35);
+  color: #e8d5a3;
+  cursor: pointer;
+}
+#uft-preview.uft-orient-h .uft-band-scroll {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.45rem;
+  padding: 0.4rem 0.2rem;
+  max-height: min(55vh, 32rem);
+  overflow: auto;
+}
+
+/* Clusters / couples / kids flow horizontally within a band */
+#uft-preview.uft-orient-h .uft-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 9rem;
+}
+#uft-preview.uft-orient-h .uft-couple {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center;
+  gap: 0.35rem;
+}
+#uft-preview.uft-orient-h .uft-kids-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center;
+  gap: 0.3rem;
+  padding-top: 0.25rem;
+  border-top: 1px dashed rgba(212, 180, 90, 0.22);
+}
+
+/* Person cards — compact for horizontal scan */
+#uft-preview.uft-orient-h .uft-person,
+#uft-preview.uft-orient-h .uft-card-sleek {
+  min-width: 6.5rem;
+  max-width: 9.5rem;
+  padding: 0.35rem 0.45rem !important;
+  font-size: 0.78rem !important;
+}
+
+/* Backbone window if present */
+#uft-preview.uft-orient-h .uft-window,
+#uft-preview.uft-orient-h .uft-backbone {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 0.65rem;
+  align-items: flex-start;
+  min-width: max-content;
+}
+
+/* Orientation toggle */
+.uft-orient-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin: 0.35rem 0 0.5rem;
+  font-size: 0.78rem;
+}
+.uft-orient-bar button {
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.38);
+  background: rgba(0, 0, 0, 0.28);
+  color: inherit;
+}
+.uft-orient-bar button.is-on {
+  background: rgba(30, 125, 94, 0.5);
+  border-color: rgba(212, 180, 90, 0.55);
+}
+
+/* Stage: keep preview dominant */
+#uft-stage {
+  overflow-x: auto;
+}
