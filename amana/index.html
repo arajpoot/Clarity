@@ -4,52 +4,76 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Amānah Vault · Clarity</title>
-<meta name="clarity-phase" content="AMANA-ENGINE-V1"/>
+<meta name="description" content="Amānah on-device vault gate. Passphrase never stored by Clarity. Educational only — not a fatwa."/>
+<meta name="clarity-phase" content="AMANA-GATE-RESTORE-V2"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102ENG"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102ENG" defer></script>
-<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102E2"></script>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102G2"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102G2" defer></script>
 <style>
 :root { color-scheme: dark light; }
-body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
-  background:linear-gradient(180deg,#0c1c16,#0a1410); color:#e8f0ec; }
-.amana-wrap { max-width:42rem; margin:0 auto; padding:0.75rem 1rem 2.75rem; }
-.amana-hero { text-align:center; margin:0.75rem 0 1rem; }
-.amana-hero h1 { font-family:Georgia,serif; color:#e8d5a3; font-size:1.75rem; margin:0 0 0.35rem; }
-.amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0 1rem; }
-.amana-subnav a { text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
-  padding:0.35rem 0.7rem; border-radius:999px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25); }
-.amana-subnav a[data-amana-nav-chamber] { opacity:0.55; }
-html[data-amana-unlocked="1"] .amana-subnav a[data-amana-nav-chamber] { opacity:1; }
-.amana-vault-gate { margin:0.5rem 0 1rem; padding:1.1rem 1.15rem; border-radius:16px;
-  border:1px solid rgba(212,180,90,0.38);
-  background:linear-gradient(165deg,rgba(18,40,32,0.95),rgba(8,20,16,0.98)); }
-.av-brand { font-weight:800; font-size:1.2rem; color:#e8d5a3; margin-bottom:0.55rem; }
-.av-warn, .av-purpose { font-size:0.84rem; line-height:1.5; margin:0 0 0.85rem; padding:0.7rem 0.8rem;
-  border-radius:12px; border:1px solid rgba(212,180,90,0.35); background:rgba(0,0,0,0.3); }
-.av-field { display:flex; gap:0.35rem; align-items:center; margin:0.25rem 0 0.55rem; }
-.av-field input, #amana-pass-new, #amana-pass-confirm, #amana-pass-unlock {
-  flex:1; width:100%; max-width:24rem; padding:0.5rem 0.65rem; border-radius:10px;
-  border:1px solid rgba(212,180,90,0.35); background:#0c1c16; color:inherit; }
-.av-btn-primary, .av-btn-soft, .btn-soft {
-  display:inline-block; padding:0.45rem 0.95rem; border-radius:999px; font-weight:800; font-size:0.82rem;
-  cursor:pointer; border:1px solid rgba(212,180,90,0.35); color:inherit; text-decoration:none; margin:0.2rem; }
-.av-btn-primary { background:rgba(30,125,94,0.55); }
-.av-btn-soft, .btn-soft { background:rgba(0,0,0,0.28); }
-.intake-card { margin:1rem 0; padding:1rem; border-radius:14px; border:1px solid rgba(212,180,90,0.32);
-  background:rgba(15,76,58,0.14); }
-.intake-card h2 { margin:0 0 0.4rem; color:#e8d5a3; font-size:1.05rem; }
-.intake-card label { display:block; font-size:0.78rem; margin-top:0.4rem; }
-.intake-card input, .intake-card select, .intake-card textarea {
-  width:100%; max-width:24rem; padding:0.45rem 0.6rem; border-radius:8px; margin-top:0.2rem;
-  border:1px solid rgba(212,180,90,0.3); background:#0c1c16; color:inherit; box-sizing:border-box; }
-.amana-foot { text-align:center; margin-top:1.5rem; font-size:0.75rem; opacity:0.8; }
-.amana-foot a { color:#c9a84c; font-weight:700; }
-#amana-engine-status { font-size:0.78rem; text-align:center; opacity:0.9; min-height:1.2em; }
+body {
+  margin: 0; min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  background: linear-gradient(180deg, #0c1c16 0%, #0a1410 100%); color: #e8f0ec;
+}
+.amana-wrap { max-width: 42rem; margin: 0 auto; padding: 0.75rem 1rem 2.75rem; }
+.amana-hero { text-align: center; margin: 0.75rem 0 1rem; }
+.amana-hero h1 { font-family: Georgia, "Times New Roman", serif; color: #e8d5a3; font-size: 1.75rem; margin: 0 0 0.35rem; }
+.amana-subnav { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; margin: 0.5rem 0 1rem; }
+.amana-subnav a {
+  text-decoration: none; color: inherit; font-size: 0.75rem; font-weight: 700;
+  padding: 0.35rem 0.7rem; border-radius: 999px; border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.25);
+}
+.amana-vault-gate {
+  margin: 0.5rem 0 1rem; padding: 1.1rem 1.15rem; border-radius: 16px;
+  border: 1px solid rgba(212,180,90,0.38);
+  background: linear-gradient(165deg, rgba(18,40,32,0.95), rgba(8,20,16,0.98));
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+}
+.av-brand { font-weight: 800; font-size: 1.2rem; color: #e8d5a3; margin-bottom: 0.55rem; letter-spacing: 0.02em; }
+.av-brand .icon { margin-right: 0.35rem; }
+.av-warn {
+  font-size: 0.84rem; line-height: 1.5; margin: 0 0 0.85rem; padding: 0.7rem 0.8rem;
+  border-radius: 12px; border: 1px solid rgba(212,180,90,0.35); background: rgba(0,0,0,0.3);
+}
+.av-hint-text { font-size: 0.82rem; opacity: 0.9; line-height: 1.45; margin: 0 0 0.75rem; }
+.av-field { display: flex; gap: 0.35rem; align-items: center; margin: 0.25rem 0 0.55rem; }
+.av-field input[type="password"], .av-field input[type="text"],
+#amana-pass-new, #amana-pass-confirm, #amana-pass-unlock, #amana-reset-type {
+  flex: 1; width: 100%; max-width: 24rem; padding: 0.5rem 0.65rem; border-radius: 10px;
+  border: 1px solid rgba(212,180,90,0.35); background: #0c1c16; color: inherit; font-size: 0.95rem;
+}
+.av-eye { border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.3); border-radius: 8px; padding: 0.35rem 0.5rem; cursor: pointer; color: inherit; }
+.av-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.35rem; }
+.av-btn-primary, .av-btn-soft {
+  display: inline-block; padding: 0.45rem 0.95rem; border-radius: 999px; font-weight: 800; font-size: 0.82rem;
+  cursor: pointer; border: 1px solid rgba(212,180,90,0.35); color: inherit;
+}
+.av-btn-primary { background: rgba(30,125,94,0.55); }
+.av-btn-soft { background: rgba(0,0,0,0.28); }
+#amana-strength-bar {
+  height: 6px; max-width: 24rem; border-radius: 4px; background: linear-gradient(90deg,#c9a84c,#1e7d5e);
+  width: 0; margin: 0.25rem 0 0.15rem; transition: width 0.2s ease;
+}
+#amana-strength-lab, #amana-gate-status, #amana-attempts-lab { font-size: 0.75rem; opacity: 0.85; margin: 0.25rem 0; }
+.av-backup-guide { font-size: 0.8rem; line-height: 1.5; }
+.amana-tools {
+  margin: 1rem 0; padding: 0.95rem 1rem; border-radius: 14px;
+  border: 1px solid rgba(212,180,90,0.28); background: rgba(15,76,58,0.12);
+}
+.amana-tools a { color: #c9a84c; font-weight: 700; margin-right: 0.65rem; font-size: 0.85rem; }
+.amana-foot { text-align: center; margin-top: 1.5rem; font-size: 0.75rem; opacity: 0.8; }
+.amana-foot a { color: #c9a84c; font-weight: 700; }
+label { font-size: 0.8rem; display: block; margin-top: 0.35rem; }
 </style>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102UI"/>
+<link rel="stylesheet" href="/amana/assets/css/am-critical-v1.css?v=20261102M1"/>
+<link rel="stylesheet" href="/amana/assets/css/am-gate-v1.css?v=20261102M1"/>
+<link rel="stylesheet" href="/amana/assets/css/am-chamber-v1.css?v=20261102M1"/>
+<link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102M1"/>
+<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102M2"></script>
+
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
@@ -68,14 +92,13 @@ html[data-amana-unlocked="1"] .amana-subnav a[data-amana-nav-chamber] { opacity:
   </header>
   <nav class="amana-subnav" aria-label="Amānah sections">
     <a href="/amana/">Gate</a>
-    <a href="/amana/dayn/" data-amana-nav-chamber="1">Dayn</a>
-    <a href="/amana/heirs/" data-amana-nav-chamber="1">Heirs</a>
-    <a href="/amana/notes/" data-amana-nav-chamber="1">Notes</a>
-    <a href="/amana/tree/" data-amana-nav-chamber="1">Tree</a>
-    <a href="/amana/fiqh/" data-amana-nav-chamber="1">Farāʾiḍ</a>
-    <a href="/amana/wasiyyah/" data-amana-nav-chamber="1">Wasiyyah</a>
+    <a href="/amana/dayn/">Dayn</a>
+    <a href="/amana/heirs/">Heirs</a>
+    <a href="/amana/notes/">Notes</a>
+    <a href="/amana/tree/">Tree</a>
+    <a href="/amana/fiqh/">Farāʾiḍ</a>
+    <a href="/amana/wasiyyah/">Wasiyyah</a>
   </nav>
-  <p id="amana-engine-status"></p>
 
 <div class="amana-vault-gate" id="amana-vault-gate" role="region" aria-label="Amana Vault login">
   <div class="av-brand"><span class="icon" aria-hidden="true">🏦</span> Amana Vault</div>
@@ -182,94 +205,26 @@ html[data-amana-unlocked="1"] .amana-subnav a[data-amana-nav-chamber] { opacity:
 
 
 
-  <!-- Dayn intake always on gate: view form; save requires unlock -->
-  <section class="intake-card" id="amana-dayn-intake" aria-label="Dayn quick entry">
-    <h2>📒 Dayn intake · Qard ḥasan</h2>
-    <p style="font-size:0.82rem;line-height:1.45;opacity:0.92">
-      Always available on the gate. <strong>View and fill anytime.</strong>
-      <strong>Save to ledger</strong> needs an unlocked session (no interest / ribā fields).
-      Educational only — not a fatwa.
-    </p>
-    <label><input type="checkbox" id="intake-qard-only" checked /> This entry is Qard ḥasan only — no interest</label>
-    <label>Direction
-      <select id="intake-dir"><option value="owe">I owe</option><option value="owed">Owed to me</option><option value="hold">I hold in trust</option></select>
-    </label>
-    <label>Amount <input type="number" id="intake-amount" min="0" step="0.01" placeholder="0.00" /></label>
-    <label>Counterparty <input type="text" id="intake-party" placeholder="Name or initials" autocomplete="off" /></label>
-    <label>Currency <input type="text" id="intake-ccy" value="CAD" /></label>
-    <label>Note <textarea id="intake-note" rows="2" placeholder="Principal only · evidence note"></textarea></label>
-    <div style="margin-top:0.65rem">
-      <button type="button" class="av-btn-primary" id="intake-save">Save to ledger</button>
-      <a class="av-btn-soft" href="/amana/dayn/" data-amana-nav-chamber="1">Full Dayn chamber</a>
-    </div>
-    <p id="intake-msg" style="font-size:0.78rem;opacity:0.9;margin-top:0.5rem"></p>
+  <section class="amana-tools amana-unlocked-only" hidden>
+    <h2 style="margin:0 0 0.4rem;color:#d4b45a;font-size:1.05rem">Chamber tools</h2>
+    <p style="font-size:0.85rem;margin:0 0 0.5rem">Open after unlock · data stays on this device.</p>
+    <a href="/amana/dayn/">Dayn ledger</a>
+    <a href="/amana/heirs/">Heir readiness</a>
+    <a href="/amana/tree/">Family tree</a>
+    <a href="/amana/fiqh/">Farāʾiḍ study</a>
+    <a href="/amana/wasiyyah/">Wasiyyah notes</a>
   </section>
 
-  <section class="intake-card amana-unlocked-only" hidden data-amana-requires-unlock="1">
-    <h2>Chamber tools</h2>
-    <p style="font-size:0.85rem">Open after unlock · data stays on this device.</p>
-    <a class="btn-soft" href="/amana/dayn/">Dayn ledger</a>
-    <a class="btn-soft" href="/amana/heirs/">Heir readiness</a>
-    <a class="btn-soft" href="/amana/tree/">Family tree</a>
-    <a class="btn-soft" href="/amana/fiqh/">Farāʾiḍ study</a>
-    <a class="btn-soft" href="/amana/wasiyyah/">Wasiyyah notes</a>
-  </section>
-
-  <p class="amana-foot"><a href="/companion/">Companion</a> · <a href="/daily/">Yawm</a><br/>
-  Passphrase is never stored by Clarity servers and cannot be recovered by us.</p>
+  <p class="amana-foot">
+    <a href="/companion/">Companion</a> · <a href="/daily/">Yawm</a><br/>
+    Passphrase is never stored by Clarity servers and cannot be recovered by us.
+  </p>
 </main>
-<script src="/amana/assets/amana-fortify-boot-v1.js?v=20261102ENG" defer></script>
-<script src="/amana/assets/amana-gate-rich-v1.js?v=20261102ENG" defer></script>
-<script>
-(function(){
-  function msg(t){ var el=document.getElementById("intake-msg"); if(el) el.textContent=t||""; }
-  function saveIntake(){
-    var Eng = window.ClarityAmanaEngine;
-    if (!Eng || !Eng.isUnlocked()) {
-      msg("Unlock the vault first, then save. Your fields stay filled.");
-      if (Eng) Eng.requireUnlock({ next: "/amana/#amana-dayn-intake", reason: "dayn-save" });
-      return;
-    }
-    var line = {
-      direction: (document.getElementById("intake-dir")||{}).value,
-      amount: (document.getElementById("intake-amount")||{}).value,
-      party: (document.getElementById("intake-party")||{}).value,
-      currency: (document.getElementById("intake-ccy")||{}).value,
-      note: (document.getElementById("intake-note")||{}).value,
-      qardHasan: !!(document.getElementById("intake-qard-only")||{}).checked,
-      ts: Date.now()
-    };
-    try {
-      var key = "clarity_amana_dayn_intake_queue_v1";
-      var q = JSON.parse(localStorage.getItem(key) || "[]");
-      if (!Array.isArray(q)) q = [];
-      q.push(line);
-      localStorage.setItem(key, JSON.stringify(q));
-      msg("Saved on this device queue · open Full Dayn chamber to reconcile. Educational only.");
-      if (window.ClarityLoadAmanaSealed) window.ClarityLoadAmanaSealed();
-    } catch (e) {
-      msg("Could not save on this device.");
-    }
-  }
-  document.addEventListener("DOMContentLoaded", function(){
-    var b = document.getElementById("intake-save");
-    if (b) b.addEventListener("click", saveIntake);
-    /* chamber nav intercept when locked */
-    document.querySelectorAll("[data-amana-nav-chamber]").forEach(function(a){
-      a.addEventListener("click", function(ev){
-        var Eng = window.ClarityAmanaEngine;
-        if (Eng && !Eng.isUnlocked()) {
-          ev.preventDefault();
-          Eng.requireUnlock({ next: a.getAttribute("href"), reason: "chamber" });
-        }
-      });
-    });
-    var st = document.getElementById("amana-engine-status");
-    if (st && /need_unlock/.test(location.search)) {
-      st.textContent = "Unlock to open the chamber tool you requested.";
-    }
-  });
-})();
-</script>
+<script defer src="/amana/assets/amana-fortify-boot-v1.js?v=20261102G2"></script>
+<script defer src="/amana/assets/amana-gate-rich-v1.js?v=20261102G2"></script>
+
+<script defer src="/amana/assets/amana-fortify-boot-v1.js?v=20261102M2"></script>
+<script defer src="/amana/assets/amana-gate-rich-v1.js?v=20261102M2"></script>
+
 </body>
 </html>

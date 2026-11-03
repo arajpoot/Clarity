@@ -2,9 +2,12 @@
 
 | Door | URL |
 |------|-----|
-| Companion | `/companion/` |
-| Yawm | `/daily/` |
-| University | `/campus/` |
-| Amānah (here) | `/amana/` |
+| Gate | `/amana/` |
+| Dayn | `/amana/dayn/` |
+| Heirs | `/amana/heirs/` |
+| Notes | `/amana/notes/` |
+| Tree | `/amana/tree/` |
+| Farāʾiḍ | `/amana/fiqh/` |
+| Wasiyyah | `/amana/wasiyyah/` |
 
-Sub-nav: `/amana/dayn/` · `heirs/` · `notes/` · `tree/` · `fiqh/` · `wasiyyah/`
+Four-room chrome: Companion · Yawm · University · Amānah
