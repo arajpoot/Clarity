@@ -1,0 +1,111 @@
+/*! Amānah living-centre links v1 · Tree as hub
+ * Educational only — not a fatwa · not legal advice
+ */
+.amana-living-centre {
+  margin: 0.85rem 0 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background:
+    linear-gradient(155deg, rgba(30, 125, 94, 0.16), rgba(0, 0, 0, 0.25));
+  font-family: Inter, system-ui, sans-serif;
+}
+.amana-living-centre h2 {
+  margin: 0 0 0.25rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #e8d5a3;
+  font-size: 1.15rem;
+}
+.amana-living-centre .alc-lead {
+  margin: 0 0 0.65rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+.alc-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.25rem;
+  margin: 0.35rem 0 0.55rem;
+  font-size: 0.78rem;
+  opacity: 0.9;
+}
+.alc-flow span.sep { opacity: 0.55; padding: 0 0.15rem; }
+.alc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.45rem;
+}
+.alc-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.65rem 0.7rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.3);
+  background: rgba(0, 0, 0, 0.28);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.alc-card:hover,
+.alc-card:focus {
+  border-color: rgba(212, 180, 90, 0.6);
+  background: rgba(30, 125, 94, 0.28);
+  outline: none;
+}
+.alc-card strong {
+  display: block;
+  color: #e8d5a3;
+  font-size: 0.88rem;
+  margin-bottom: 0.2rem;
+}
+.alc-card span {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  opacity: 0.88;
+}
+.alc-note {
+  margin: 0.65rem 0 0;
+  font-size: 0.72rem;
+  opacity: 0.82;
+  line-height: 1.4;
+}
+
+/* Compact strip for other chambers */
+.amana-centre-strip {
+  margin: 0.75rem 0;
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(15, 76, 58, 0.12);
+  font-size: 0.82rem;
+}
+.amana-centre-strip strong {
+  color: #d4b45a;
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+}
+.amana-centre-strip .acs-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.amana-centre-strip a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: rgba(0, 0, 0, 0.25);
+}
+.amana-centre-strip a.is-here {
+  background: rgba(30, 125, 94, 0.45);
+  border-color: rgba(212, 180, 90, 0.5);
+}
+.amana-centre-strip a:hover {
+  border-color: rgba(212, 180, 90, 0.55);
+}
