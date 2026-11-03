@@ -3,273 +3,146 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Amānah Vault · Clarity</title>
-<meta name="clarity-phase" content="AMANA-ENGINE-V1"/>
+<title>Amānah · Clarity — on-device vault</title>
+<meta name="description" content="Amānah room home — Dayn, heirs, tree, farāʾiḍ, wasiyyah. Educational only."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102ENG"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102ENG" defer></script>
-<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102E2"></script>
+<meta name="clarity-phase" content="A6"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101A5"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101A5" defer></script>
 <style>
 :root { color-scheme: dark light; }
-body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
-  background:linear-gradient(180deg,#0c1c16,#0a1410); color:#e8f0ec; }
-.amana-wrap { max-width:42rem; margin:0 auto; padding:0.75rem 1rem 2.75rem; }
-.amana-hero { text-align:center; margin:0.75rem 0 1rem; }
-.amana-hero h1 { font-family:Georgia,serif; color:#e8d5a3; font-size:1.75rem; margin:0 0 0.35rem; }
-.amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0 1rem; }
-.amana-subnav a { text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
-  padding:0.35rem 0.7rem; border-radius:999px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25); }
-.amana-subnav a[data-amana-nav-chamber] { opacity:0.55; }
-html[data-amana-unlocked="1"] .amana-subnav a[data-amana-nav-chamber] { opacity:1; }
-.amana-vault-gate { margin:0.5rem 0 1rem; padding:1.1rem 1.15rem; border-radius:16px;
-  border:1px solid rgba(212,180,90,0.38);
-  background:linear-gradient(165deg,rgba(18,40,32,0.95),rgba(8,20,16,0.98)); }
-.av-brand { font-weight:800; font-size:1.2rem; color:#e8d5a3; margin-bottom:0.55rem; }
-.av-warn, .av-purpose { font-size:0.84rem; line-height:1.5; margin:0 0 0.85rem; padding:0.7rem 0.8rem;
-  border-radius:12px; border:1px solid rgba(212,180,90,0.35); background:rgba(0,0,0,0.3); }
-.av-field { display:flex; gap:0.35rem; align-items:center; margin:0.25rem 0 0.55rem; }
-.av-field input, #amana-pass-new, #amana-pass-confirm, #amana-pass-unlock {
-  flex:1; width:100%; max-width:24rem; padding:0.5rem 0.65rem; border-radius:10px;
-  border:1px solid rgba(212,180,90,0.35); background:#0c1c16; color:inherit; }
-.av-btn-primary, .av-btn-soft, .btn-soft {
-  display:inline-block; padding:0.45rem 0.95rem; border-radius:999px; font-weight:800; font-size:0.82rem;
-  cursor:pointer; border:1px solid rgba(212,180,90,0.35); color:inherit; text-decoration:none; margin:0.2rem; }
-.av-btn-primary { background:rgba(30,125,94,0.55); }
-.av-btn-soft, .btn-soft { background:rgba(0,0,0,0.28); }
-.intake-card { margin:1rem 0; padding:1rem; border-radius:14px; border:1px solid rgba(212,180,90,0.32);
-  background:rgba(15,76,58,0.14); }
-.intake-card h2 { margin:0 0 0.4rem; color:#e8d5a3; font-size:1.05rem; }
-.intake-card label { display:block; font-size:0.78rem; margin-top:0.4rem; }
-.intake-card input, .intake-card select, .intake-card textarea {
-  width:100%; max-width:24rem; padding:0.45rem 0.6rem; border-radius:8px; margin-top:0.2rem;
-  border:1px solid rgba(212,180,90,0.3); background:#0c1c16; color:inherit; box-sizing:border-box; }
-.amana-foot { text-align:center; margin-top:1.5rem; font-size:0.75rem; opacity:0.8; }
-.amana-foot a { color:#c9a84c; font-weight:700; }
-#amana-engine-status { font-size:0.78rem; text-align:center; opacity:0.9; min-height:1.2em; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; font-family: system-ui, sans-serif;
+  background: radial-gradient(1000px 500px at 50% -10%, rgba(30,125,94,0.22), transparent),
+              linear-gradient(180deg, #0c1c16, #0a1410 55%);
+  color: #e8f0ec;
+}
+.amana-wrap { max-width: 44rem; margin: 0 auto; padding: 0.75rem 1rem 2.5rem; }
+.amana-hero { text-align: center; margin: 1rem 0 1rem; }
+.amana-hero .bismillah { font-size: 1.2rem; direction: rtl; margin: 0 0 0.35rem; }
+.amana-hero h1 { font-family: Georgia, serif; font-size: 1.75rem; margin: 0 0 0.35rem; color: #e8d5a3; }
+.amana-hero p { margin: 0.3rem 0; opacity: 0.9; font-size: 0.88rem; line-height: 1.45; }
+.amana-subnav { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; margin: 0.5rem 0 0.85rem; }
+.amana-subnav a {
+  text-decoration: none; color: inherit; font-size: 0.75rem; font-weight: 700;
+  padding: 0.35rem 0.7rem; border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.25);
+}
+.amana-subnav a.is-here { background: rgba(30,125,94,0.45); border-color: rgba(212,180,90,0.55); }
+.amana-card {
+  margin: 0.75rem 0; padding: 0.95rem 1rem; border-radius: 14px;
+  border: 1px solid rgba(212,180,90,0.3); background: rgba(15,76,58,0.16);
+}
+.amana-card h2 { margin: 0 0 0.4rem; font-size: 1.05rem; color: #d4b45a; }
+.amana-card p { margin: 0.35rem 0; font-size: 0.82rem; line-height: 1.45; opacity: 0.92; }
+.dash-grid { display: grid; gap: 0.55rem; margin-top: 0.5rem; }
+@media (min-width: 560px) { .dash-grid { grid-template-columns: 1fr 1fr; } }
+.dash-grid a {
+  display: block; text-decoration: none; color: inherit;
+  padding: 0.75rem 0.85rem; border-radius: 12px;
+  border: 1px solid rgba(212,180,90,0.25); background: rgba(12,28,22,0.5);
+}
+.dash-grid a strong { display: block; margin-bottom: 0.2rem; color: #e8d5a3; }
+.dash-grid a span { font-size: 0.75rem; opacity: 0.85; line-height: 1.35; }
+.dash-grid a .stat { display: block; margin-top: 0.35rem; font-size: 0.72rem; color: #c9a84c; }
+.amana-gate-box {
+  padding: 0.85rem; border-radius: 12px;
+  border: 1px solid rgba(212,180,90,0.35); background: rgba(0,0,0,0.28);
+}
+.btn-soft {
+  display: inline-block; margin: 0.25rem 0.25rem 0 0; padding: 0.4rem 0.85rem;
+  border-radius: 999px; border: 1px solid rgba(212,180,90,0.35);
+  background: rgba(30,125,94,0.35); color: inherit; font-weight: 700; font-size: 0.8rem;
+  cursor: pointer; text-decoration: none;
+}
+.amana-unlocked-only[hidden] { display: none !important; }
+body:not([data-amana-unlocked="1"]) .amana-unlocked-only { display: none !important; }
+.amana-foot { text-align: center; margin-top: 1.5rem; font-size: 0.75rem; opacity: 0.75; }
+.amana-foot a { color: #c9a84c; font-weight: 700; }
+#clarity-landing-slot-dayn, #clarity-vault-slot-dayn, #clarity-vault-dayn-io { min-height: 0.25rem; }
+#amana-dash-status { font-size: 0.78rem; opacity: 0.9; margin-top: 0.35rem; }
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102UI"/>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
-  <a href="/companion/" data-room-link="companion"><span class="crn-ico">🏠</span><span class="crn-label">Companion</span></a>
-  <a href="/daily/" data-room-link="yawm"><span class="crn-ico">🌅</span><span class="crn-label">Yawm</span></a>
-  <a href="/campus/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
-  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
+  <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
+  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
+  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
   <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
 </nav>
+
 <main class="amana-wrap">
   <header class="amana-hero">
-    <p lang="ar" dir="rtl" style="font-size:1.15rem;margin:0">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-    <h1>Amānah Vault</h1>
-    <p>On-device trust · Dayn · heirs · tree · study tools</p>
-    <p><strong>Educational only — not a fatwa · not legal advice · not a court document.</strong></p>
+    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <h1>Amānah</h1>
+    <p>Private on-device room · Dayn · heirs · tree · study tools</p>
+    <p><strong>Educational only — not a fatwa · not legal or financial advice.</strong><br/>
+    Clarity does not store your passphrase and cannot recover it.</p>
   </header>
-  <nav class="amana-subnav" aria-label="Amānah sections">
-    <a href="/amana/">Gate</a>
-    <a href="/amana/dayn/" data-amana-nav-chamber="1">Dayn</a>
-    <a href="/amana/heirs/" data-amana-nav-chamber="1">Heirs</a>
-    <a href="/amana/notes/" data-amana-nav-chamber="1">Notes</a>
-    <a href="/amana/tree/" data-amana-nav-chamber="1">Tree</a>
-    <a href="/amana/fiqh/" data-amana-nav-chamber="1">Farāʾiḍ</a>
-    <a href="/amana/wasiyyah/" data-amana-nav-chamber="1">Wasiyyah</a>
-  </nav>
-  <p id="amana-engine-status"></p>
 
-<div class="amana-vault-gate" id="amana-vault-gate" role="region" aria-label="Amana Vault login">
-  <div class="av-brand"><span class="icon" aria-hidden="true">🏦</span> Amana Vault</div>
-  <div class="av-warn">
-    <strong>You are responsible for your passphrase.</strong>
-    Clarity does not store it and cannot recover vault data if it is lost.
-    On-device only · encrypted at rest · educational — not a fatwa.
-  </div>
 
-  <div class="av-purpose" style="margin:0 0 0.85rem;padding:0.75rem 0.8rem;border-radius:12px;border:1px solid rgba(212,180,90,0.28);background:rgba(0,0,0,0.25);font-size:0.82rem;line-height:1.5;color:rgba(232,240,234,0.92)">
-    <strong style="color:#d4b45a">What this vault is for</strong>
-    <p style="margin:0.35rem 0 0">
-      Amana Vault holds private notes for <strong>estate readiness</strong>: who you leave behind, debts and trusts to settle first,
-      wasiyyah notes, family outline, and farāʾiḍ study tools. It is a <em>trust (amānah)</em> between you and those who may need this after you —
-      not a court filing and not a fatwa.
-    </p>
-    <p style="margin:0.45rem 0 0">
-      <strong style="color:#d4b45a">Why do it the right way</strong> — Allah commands justice in what we leave behind.
-      Harmful or unjust wills are a serious matter. The Prophet ﷺ warned against injustice in the will:
-    </p>
-    <blockquote style="margin:0.5rem 0 0;padding:0.55rem 0.65rem;border-left:3px solid rgba(212,180,90,0.55);background:rgba(212,180,90,0.08);font-size:0.8rem;line-height:1.45">
-      “Indeed a man and a woman perform deeds in obedience to Allah for sixty years, then death presents itself to them,
-      and they cause such harm in the will that the Fire becomes warranted for them.”
-      <span style="display:block;margin-top:0.35rem;opacity:0.85;font-size:0.75rem">— reported from al-Tirmidhī · educational wording; verify full isnād and fiqh with a scholar</span>
-    </blockquote>
-    <p style="margin:0.45rem 0 0;font-size:0.78rem;opacity:0.9">
-      Use this space to organise names, rights, and notes <strong>so heirs are not left in confusion</strong> —
-      then confirm inheritance and wasiyyah with a qualified local scholar and, where needed, counsel.
-    </p>
-  </div>
+<nav class="amana-subnav" aria-label="Amānah sections">
+  <a href="/amana/" class="is-here" aria-current="page">Home</a>
+  <a href="/amana/dayn/">Dayn</a>
+  <a href="/amana/heirs/">Heirs</a>
+  <a href="/amana/notes/">Notes</a>
+  <a href="/amana/tree/">Family tree</a>
+  <a href="/amana/fiqh/">Farāʾiḍ</a>
+  <a href="/amana/wasiyyah/">Wasiyyah</a>
+</nav>
 
-  <p class="av-hint-text">Create a strong passphrase (prefer 12+). Never reuse email or banking passwords.</p>
 
-  <div id="amana-gate-create">
-    <label for="amana-pass-new">New vault passphrase</label>
-    <div class="av-field">
-      <input type="password" id="amana-pass-new" autocomplete="off" data-lpignore="true" data-form-type="other" minlength="8" placeholder="••••••••••••" />
-      <button type="button" class="av-eye" data-for="amana-pass-new" title="Show/hide">👁</button>
+  <section class="amana-card" id="amana-vault-gate" data-vault-root="1" data-vault-passphrase-panel="1" role="region" aria-label="Amānah modules">
+    <div class="amana-gate-box">
+      <div style="font-weight:800;color:#e8d5a3;margin-bottom:0.35rem">🔐 Chamber status</div>
+      <p style="font-size:0.82rem;margin:0 0 0.5rem">Sealed modules load on this room only. Unlock UI from the gate stack mounts when available. Passphrase never leaves the device.</p>
+      <button type="button" class="btn-soft" id="amana-load-sealed-btn">Load vault modules</button>
+      <button type="button" class="btn-soft" id="amana-mark-unlocked-btn">Show unlocked panels</button>
+      <p id="amana-dash-status">Checking device notes…</p>
     </div>
-    <div class="av-strength" aria-hidden="true"><i id="amana-strength-bar"></i></div>
-    <div class="av-strength-lab" id="amana-strength-lab">Strength: —</div>
+  </section>
 
-    <label for="amana-pass-confirm">Confirm</label>
-    <div class="av-field">
-      <input type="password" id="amana-pass-confirm" autocomplete="off" data-lpignore="true" data-form-type="other" placeholder="••••••••••••" />
-      <button type="button" class="av-eye" data-for="amana-pass-confirm" title="Show/hide">👁</button>
+  <section class="amana-card">
+    <h2>On-ramp dashboard</h2>
+    <p>Open any tool. Counts are local to this browser only.</p>
+    <div class="dash-grid" id="amana-dash-grid">
+      <a href="/amana/dayn/"><strong>Dayn · Qard ḥasan</strong><span>Loans & repayments · CSV/Excel</span><span class="stat" data-stat="dayn">—</span></a>
+      <a href="/amana/heirs/"><strong>Heir readiness</strong><span>Letter fields · print pack</span><span class="stat" data-stat="heirs">—</span></a>
+      <a href="/amana/notes/"><strong>Notes</strong><span>Private page notes</span><span class="stat" data-stat="notes">—</span></a>
+      <a href="/amana/tree/"><strong>Family tree</strong><span>Full UFT on this device</span><span class="stat" data-stat="tree">Open toolkit</span></a>
+      <a href="/amana/fiqh/"><strong>Farāʾiḍ study</strong><span>Scenarios · checklist · not a verdict</span><span class="stat" data-stat="fiqh">—</span></a>
+      <a href="/amana/wasiyyah/"><strong>Wasiyyah notes</strong><span>Optional third · print</span><span class="stat" data-stat="wasi">—</span></a>
     </div>
+  </section>
 
-    <div class="av-actions">
-      <button type="button" class="av-btn-primary" id="amana-btn-create">Create &amp; open vault</button>
-      <button type="button" class="av-btn-soft" id="amana-btn-have">I have a vault</button>
-    </div>
-  </div>
+  <section class="amana-card" data-amana-dayn="landing">
+    <h2>Quick Dayn entry</h2>
+    <p>Same ledger as the Dayn page. Educational · no interest.</p>
+    <div id="clarity-landing-slot-dayn" data-dayn-slot="landing"></div>
+  </section>
 
-  <div id="amana-gate-unlock" hidden>
-    <label for="amana-pass-unlock">Vault passphrase</label>
-    <div class="av-field">
-      <input type="password" id="amana-pass-unlock" autocomplete="off" data-lpignore="true" data-form-type="other" readonly onfocus="this.removeAttribute('readonly')" placeholder="••••••••••••" />
-      <button type="button" class="av-eye" data-for="amana-pass-unlock" title="Show/hide">👁</button>
+  <section class="amana-card amana-unlocked-only" id="amana-chamber-dayn" data-amana-dayn="vault" hidden>
+    <h2>Dayn · vault counterpart</h2>
+    <div id="amana-vault-ledger-block-dayn">
+      <div id="clarity-vault-slot-dayn" data-dayn-slot="vault"></div>
+      <div id="clarity-vault-dayn-io" data-dayn-io="1"></div>
     </div>
-    <div class="av-actions">
-      <button type="button" class="av-btn-primary" id="amana-btn-unlock">Open vault</button>
-      <button type="button" class="av-btn-soft" id="amana-btn-back-create">Create new instead</button>
-    </div>
-    <div id="amana-lockout-panel" hidden style="margin-top:0.75rem;padding:0.7rem 0.8rem;border-radius:12px;border:1px solid rgba(196,92,62,0.4);background:rgba(196,92,62,0.12);font-size:0.8rem;line-height:1.45;color:rgba(255,230,220,0.95)">
-      <strong>Vault temporarily locked</strong>
-      <p id="amana-lockout-msg" style="margin:0.35rem 0 0">Too many failed attempts. Wait or reset this device vault.</p>
-      <p style="margin:0.4rem 0 0;font-size:0.75rem;opacity:0.9">Reset destroys encrypted data on <em>this device only</em>. Clarity cannot recover a lost passphrase.</p>
-      <div class="av-actions" style="margin-top:0.55rem">
-        <button type="button" class="av-btn-soft" id="amana-btn-reset-start" style="border-color:rgba(196,92,62,0.5)">Reset vault on this device…</button>
-      </div>
-      <div id="amana-reset-confirm" hidden style="margin-top:0.55rem">
-        <label for="amana-reset-type" style="display:block;font-size:0.75rem;margin-bottom:0.25rem">Type <strong>RESET VAULT</strong> to confirm</label>
-        <input type="text" id="amana-reset-type" autocomplete="off" placeholder="RESET VAULT" style="width:100%;padding:0.45rem 0.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.35);color:inherit;margin-bottom:0.4rem" />
-        <button type="button" class="av-btn-primary" id="amana-btn-reset-go" style="background:#a03a2a">Destroy &amp; create new passphrase</button>
-      </div>
-    </div>
-    <p id="amana-attempts-lab" style="font-size:0.72rem;opacity:0.75;margin:0.4rem 0 0;text-align:center"></p>
-  </div>
+  </section>
 
-  <div id="amana-backup-guidance" class="av-backup-guide" style="margin:0.9rem 0 0;padding:0.85rem 0.9rem;border-radius:12px;border:1px solid rgba(212,180,90,0.35);background:rgba(212,180,90,0.08);font-size:0.8rem;line-height:1.5;color:rgba(232,240,234,0.95)">
-    <strong style="color:#d4b45a;display:block;margin-bottom:0.35rem">Protect this amānah — your responsibility</strong>
-    <ul style="margin:0.25rem 0 0 1.1rem;padding:0">
-      <li style="margin:0.3rem 0"><strong>Write your passphrase offline</strong> — paper or another offline store you control. Clarity never keeps it and cannot reset it for you.</li>
-      <li style="margin:0.3rem 0"><strong>Download encrypted vault data regularly</strong> — use <em>Export encrypted backup</em> below while unlocked (or after open). Keep copies on media you control.</li>
-      <li style="margin:0.3rem 0"><strong>No on-device hint</strong> — reminder strips were removed so nothing on this phone can weaken the passphrase.</li>
-      <li style="margin:0.3rem 0"><strong>Failed attempts lock the gate</strong> — after several wrong tries, wait or type <code>RESET VAULT</code> to destroy local data and start over (this device only).</li>
-      <li style="margin:0.3rem 0"><strong>Ultimate loss</strong> — if the passphrase and all backups are gone, vault contents cannot be recovered. That is intentional for privacy.</li>
-    </ul>
-    <div class="av-actions" style="margin-top:0.65rem;flex-wrap:wrap;gap:0.4rem">
-      <button type="button" class="av-btn-soft" id="amana-btn-export-encrypted" title="Download encrypted blob from this device">⬇ Export encrypted backup</button>
-      <button type="button" class="av-btn-soft" id="amana-btn-backup-help">How to store the passphrase</button>
-    </div>
-    <p id="amana-backup-status" style="margin:0.45rem 0 0;font-size:0.72rem;opacity:0.85"></p>
-  </div>
-
-  <p class="av-sec-note" style="font-size:0.72rem;line-height:1.4;opacity:0.8;margin:0.5rem 0 0;text-align:center">
-    Security: data encrypted on this device (AES-GCM). Passphrase never stored. Auto-locks after idle.
-    Use <strong>Print vault pack</strong> only when unlocked — you will be asked to confirm.
+  <p class="amana-foot">
+    <a href="/companion/">Companion</a> ·
+    <a href="/daily/">Yawm</a> ·
+    <a href="/campus/">University</a><br/>
+    Educational only · not a fatwa · not legal advice
   </p>
-
-  <div class="av-status" id="amana-gate-status"></div>
-</div>
-
-
-
-  <!-- Dayn intake always on gate: view form; save requires unlock -->
-  <section class="intake-card" id="amana-dayn-intake" aria-label="Dayn quick entry">
-    <h2>📒 Dayn intake · Qard ḥasan</h2>
-    <p style="font-size:0.82rem;line-height:1.45;opacity:0.92">
-      Always available on the gate. <strong>View and fill anytime.</strong>
-      <strong>Save to ledger</strong> needs an unlocked session (no interest / ribā fields).
-      Educational only — not a fatwa.
-    </p>
-    <label><input type="checkbox" id="intake-qard-only" checked /> This entry is Qard ḥasan only — no interest</label>
-    <label>Direction
-      <select id="intake-dir"><option value="owe">I owe</option><option value="owed">Owed to me</option><option value="hold">I hold in trust</option></select>
-    </label>
-    <label>Amount <input type="number" id="intake-amount" min="0" step="0.01" placeholder="0.00" /></label>
-    <label>Counterparty <input type="text" id="intake-party" placeholder="Name or initials" autocomplete="off" /></label>
-    <label>Currency <input type="text" id="intake-ccy" value="CAD" /></label>
-    <label>Note <textarea id="intake-note" rows="2" placeholder="Principal only · evidence note"></textarea></label>
-    <div style="margin-top:0.65rem">
-      <button type="button" class="av-btn-primary" id="intake-save">Save to ledger</button>
-      <a class="av-btn-soft" href="/amana/dayn/" data-amana-nav-chamber="1">Full Dayn chamber</a>
-    </div>
-    <p id="intake-msg" style="font-size:0.78rem;opacity:0.9;margin-top:0.5rem"></p>
-  </section>
-
-  <section class="intake-card amana-unlocked-only" hidden data-amana-requires-unlock="1">
-    <h2>Chamber tools</h2>
-    <p style="font-size:0.85rem">Open after unlock · data stays on this device.</p>
-    <a class="btn-soft" href="/amana/dayn/">Dayn ledger</a>
-    <a class="btn-soft" href="/amana/heirs/">Heir readiness</a>
-    <a class="btn-soft" href="/amana/tree/">Family tree</a>
-    <a class="btn-soft" href="/amana/fiqh/">Farāʾiḍ study</a>
-    <a class="btn-soft" href="/amana/wasiyyah/">Wasiyyah notes</a>
-  </section>
-
-  <p class="amana-foot"><a href="/companion/">Companion</a> · <a href="/daily/">Yawm</a><br/>
-  Passphrase is never stored by Clarity servers and cannot be recovered by us.</p>
 </main>
-<script src="/amana/assets/amana-fortify-boot-v1.js?v=20261102ENG" defer></script>
-<script src="/amana/assets/amana-gate-rich-v1.js?v=20261102ENG" defer></script>
-<script>
-(function(){
-  function msg(t){ var el=document.getElementById("intake-msg"); if(el) el.textContent=t||""; }
-  function saveIntake(){
-    var Eng = window.ClarityAmanaEngine;
-    if (!Eng || !Eng.isUnlocked()) {
-      msg("Unlock the vault first, then save. Your fields stay filled.");
-      if (Eng) Eng.requireUnlock({ next: "/amana/#amana-dayn-intake", reason: "dayn-save" });
-      return;
-    }
-    var line = {
-      direction: (document.getElementById("intake-dir")||{}).value,
-      amount: (document.getElementById("intake-amount")||{}).value,
-      party: (document.getElementById("intake-party")||{}).value,
-      currency: (document.getElementById("intake-ccy")||{}).value,
-      note: (document.getElementById("intake-note")||{}).value,
-      qardHasan: !!(document.getElementById("intake-qard-only")||{}).checked,
-      ts: Date.now()
-    };
-    try {
-      var key = "clarity_amana_dayn_intake_queue_v1";
-      var q = JSON.parse(localStorage.getItem(key) || "[]");
-      if (!Array.isArray(q)) q = [];
-      q.push(line);
-      localStorage.setItem(key, JSON.stringify(q));
-      msg("Saved on this device queue · open Full Dayn chamber to reconcile. Educational only.");
-      if (window.ClarityLoadAmanaSealed) window.ClarityLoadAmanaSealed();
-    } catch (e) {
-      msg("Could not save on this device.");
-    }
-  }
-  document.addEventListener("DOMContentLoaded", function(){
-    var b = document.getElementById("intake-save");
-    if (b) b.addEventListener("click", saveIntake);
-    /* chamber nav intercept when locked */
-    document.querySelectorAll("[data-amana-nav-chamber]").forEach(function(a){
-      a.addEventListener("click", function(ev){
-        var Eng = window.ClarityAmanaEngine;
-        if (Eng && !Eng.isUnlocked()) {
-          ev.preventDefault();
-          Eng.requireUnlock({ next: a.getAttribute("href"), reason: "chamber" });
-        }
-      });
-    });
-    var st = document.getElementById("amana-engine-status");
-    if (st && /need_unlock/.test(location.search)) {
-      st.textContent = "Unlock to open the chamber tool you requested.";
-    }
-  });
-})();
-</script>
+
+<script defer src="/amana/assets/amana-fortify-boot-v1.js?v=20261101A6"></script>
+<script defer src="/amana/assets/amana-gate-ui-v1.js?v=20261101A6"></script>
+<script defer src="/companion/assets/clarity-dayn-v0-boot.js?v=20261101A6"></script>
+<script defer src="/amana/assets/amana-room-v1.js?v=20261101A6"></script>
+<script defer src="/amana/assets/amana-dashboard-v1.js?v=20261101A6"></script>
 </body>
 </html>
