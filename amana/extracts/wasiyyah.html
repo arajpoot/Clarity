@@ -1,0 +1,233 @@
+wasiyyah-card').scrollIntoView({behavior:'smooth',block:'start'})">📜 Wasiyyah</button>
+    <a class="btn-soft" href="https://zakat.international/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;padding:0.45rem 0.85rem">Zakat calculators</a>
+  </div>
+</div>
+<div data-rrra="reality" class="card card-journey weekly-review-card" id="weekly-review-card"><h2 data-i18n="weekly_title">📊 This week’s light — household mirror</h2>
+<p style="font-size:.86rem;color:var(--text-muted);margin:.2rem 0 .45rem">The Prophet ﷺ taught that the most beloved deeds are those done consistently, even if small. Count for the family: prayer, Qurʾān, istighfār, and ṣalawāt — a mirror, not a scoreboard for pride.</p><div class="deep-learn"><strong>Go deeper:</strong><a href="https://quran.com" target="_blank" rel="noopener">Qurʾān</a> ·
+ <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah</a> ·
+ <a href="https://yaqeeninstitute.org" target="_blank" rel="noopener">Yaqeen Institute</a> ·
+ one ayah with the household, then one deed.</div><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.35rem" data-i18n="weekly_desc">A quiet accounting — what you sent ahead (this device only).</p><div class="wr-grid"><div class="wr-item"><span class="wr-val" id="wr-streak">0</span><span class="wr-lab">Streak days</span></div><div class="wr-item"><span class="wr-val" id="wr-lessons">0</span><span class="wr-lab">Lessons</span></div><div class="wr-item"><span class="wr-val" id="wr-istighfar">0</span><span class="wr-lab">Istighfar (today)</span></div><div class="wr-item"><span class="wr-val" id="wr-hifz">0</span><span class="wr-lab">Hifz today</span></div></div><p id="wr-summary" style="font-size:0.9rem;margin-top:0.35rem;"></p><button type="button" class="btn-soft" onclick="switchTab('reflection')" style="margin-top:0.35rem;">Send more light →</button></div>
+<div data-rrra="reality" class="card card-life"><h2 data-i18n="life_title">Life Events Guidance</h2>
+<p style="font-size:.86rem;color:var(--text-muted);margin:.15rem 0 .45rem">Hardship and ease are both tests. Responses below are educational summaries grounded in Qurʾān and Sunnah — for your situation, ask a qualified local scholar.</p><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.65rem">Real situations — job loss, illness, parents, marriage, birth, death, anger, prayer under pressure — with Sunnah, scholarly notes, and one action for today.</p><div id="life-event"><div class="loading-msg">Loading…</div></div><button type="button" onclick="loadLifeEvent()" data-i18n="another_life">Another life event</button></div>
+<div data-rrra="reality" class="card card-israeliyat" id="israeliyat-card"><h2 data-i18n="prev_nations">🏛️ Lessons from Previous Nations</h2>
+<p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">Allah narrates the people before us so we may walk carefully. Accounts oriented to ṣaḥīḥ ḥadīth and classical reflection — not myth or entertainment. Educational only — not a fatwa.</p>
+<div class="deep-learn"><strong>📚 Study further</strong><div class="res-stack">
+<a href="https://sunnah.com/bukhari/60" target="_blank" rel="noopener">Bukhari — Prophets</a>
+<a href="https://sunnah.com/muslim/1" target="_blank" rel="noopener">Muslim — narratives</a>
+<a href="https://quran.com" target="_blank" rel="noopener">Qurʾān stories</a>
+<a href="https://islamqa.info/en/search?q=children+of+israel" target="_blank" rel="noopener">IslamQA</a>
+<a href="https://sunnah.com/search?q=bani+israel" target="_blank" rel="noopener">Sunnah.com · Banī Isrāʾīl</a>
+</div></div>
+<div class="israeliyat-chip-row" style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 .65rem">
+  <button type="button" class="btn" id="israeliyat-deep-chip" onclick="clarityIsraeliyatDeepFetch()">☁ Fetch deep lesson (online)</button>
+  <button type="button" class="btn-soft" onclick="loadIsraeliyat()">↻ Another lesson</button>
+  <button type="button" class="btn-soft" onclick="clarityIsraeliyatExpandScholar()">📜 Scholar note</button>
+  <button type="button" class="btn-soft" onclick="notesQuickFromSection('Journey','Previous nations lesson')">＋ Note</button>
+</div>
+<div id="israeliyat-deep-panel" class="ponder-box" style="display:none;margin-bottom:.55rem"></div>
+<div id="israeliyat-content"><div class="loading-msg">Loading…</div></div>
+</div>
+<div data-rrra="reality" class="card card-seerah" id="seerah-live-card" style="border-top:3px solid var(--gold)">
+  <h2>📡 Live sīrah ayah</h2>
+  <p class="td-src">Ayah tied to the Prophet’s ﷺ life, Arabic + English. Tweet desk takes the concise pair.</p>
+  <div class="arabic" id="seerah-live-ar" dir="rtl" lang="ar" style="font-size:1.35rem;margin:.4rem 0"></div>
+  <p id="seerah-live-en" class="verse-en" style="font-size:.95rem"></p>
+  <p id="seerah-live-note" class="td-src"> <button type="button" class="btn-soft" style="font-size:.72rem;padding:.2rem .5rem;margin-left:.35rem" onclick="clarityRefreshSection('seerah')">☁ Online</button></p>
+  <button type="button" class="btn-soft" onclick="clarityLiveSeerah(true)">↻ New ayah</button>
+</div>
+<div data-rrra="reality" class="card card-seerah" id="samina-card" style="border-top:3px solid var(--gold)">
+  <h2>سَمِعْنَا وَأَطَعْنَا — Prophetic judgements &amp; governance</h2>
+  <p class="td-src">Court judgements <em>and</em> moments of Prophetic governance — treaties, justice, public command, and community care — from well-known <strong>ṣaḥīḥ</strong> reports and established sīrah events (via Sunnah.com / classical sīrah). Educational only — not a fatwa or political program.</p>
+  <p id="samina-title" style="font-weight:700;color:var(--gold);margin:.3rem 0"></p>
+  <div class="arabic" id="samina-ar" dir="rtl" lang="ar" style="font-size:1.15rem;margin:.35rem 0"></div>
+  <p id="samina-en" class="verse-en" style="font-size:.95rem;line-height:1.55"></p>
+  <p id="samina-src" class="td-src"></p>
+  <div class="td-row">
+    <button type="button" class="btn-soft" onclick="clarityLiveSamina(true)">↻ Another judgement / governance</button>
+    <a id="samina-link" href="https://sunnah.com/bukhari:2361" target="_blank" rel="noopener">Open on Sunnah.com</a>
+  </div>
+</div>
+<div data-rrra="reality" class="card card-seerah"><h2 data-i18n="seerah_moment">Daily Seerah Moment</h2>
+<p class="td-src clarity-disc" style="font-size:.82rem;margin:.25rem 0 .4rem"><strong>Educational only — not a fatwa.</strong> Reflect on the Prophet’s ﷺ example; verify reports on Sunnah.com.</p>
+<div class="deep-learn"><strong>📚 Seerah study stack</strong>
+<div class="res-stack">
+<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
+<a href="https://www.abuaminaelias.com/prophetic-biography/" target="_blank" rel="noopener">Prophetic biography notes</a>
+<a href="https://islamqa.info/en/search?q=seerah" target="_blank" rel="noopener">IslamQA — Seerah</a>
+</div></div><div id="seerah-content"><div class="loading-msg">Loading…</div></div><button type="button" onclick="loadSeerah()" data-i18n="another_moment">Another moment</button></div>
+<div data-rrra="reality" class="card card-seerah"><h2 data-i18n="seerah_hadith">Seerah &amp; Hadith</h2><p style="margin-bottom:0.9rem; font-size:0.95rem;">
+ Study the life of the Prophet ﷺ, authentic ḥadīth, and the stories of the Prophets. Primary reports first — lectures live under the Lectures tab.
+ </p></div>
+<div data-rrra="reality" class="card card-seerah" id="tibbe-nabwi-card" style="border-top:3px solid #5a9e4a">
+  <h2>🌿 Ṭibb Nabawī — Prophetic medicine (one remedy)</h2>
+  <p class="td-src" style="font-size:.82rem;margin:.2rem 0 .55rem"><strong>Educational only — not medical advice or a fatwa.</strong> Always consult a qualified physician for health decisions. Verify primary texts on Sunnah.com.</p>
+  <div id="tibbe-remedy-body">
+    <h3 style="font-size:1.05rem;color:var(--accent);margin:.2rem 0 .35rem" id="tibbe-title">Black seed (الحبّة السوداء) — <em>al-ḥabba al-sawdāʾ</em></h3>
+    <div class="arabic" dir="rtl" lang="ar" style="font-size:1.1rem;margin:.35rem 0;line-height:1.85" id="tibbe-ar">فِي الْحَبَّةِ السَّوْدَاءِ شِفَاءٌ مِنْ كُلِّ دَاءٍ إِلَّا السَّامَ</div>
+    <p style="font-size:.94rem;line-height:1.55;margin:.35rem 0" id="tibbe-en">The Prophet ﷺ said: <em>“In the black seed there is healing for every disease except death (as-sām).”</em></p>
+    <p class="td-src" id="tibbe-ref">Bukhārī 5688 · Muslim 2215 · <a href="https://sunnah.com/bukhari:5688" target="_blank" rel="noopener">Open on Sunnah.com</a></p>
+    <div class="ponder-box" style="margin-top:.65rem">
+      <strong>What this is (classical note)</strong>
+      <p style="margin:.3rem 0 0;font-size:.9rem;line-height:1.5">Scholars understood this as a general blessing in the seed (Nigella sativa), not a claim that it replaces every treatment by itself. Ibn Ḥajar and others noted that “every disease” can mean many illnesses in the practice of the Arabs of that time, or a broad benefit with exceptions known to Allah — and that <em>as-sām</em> (death) is explicitly excluded.</p>
+    </div>
+    <div class="modern-context" style="margin-top:.55rem">
+      <strong>Contemporary Islamic commentary (educational)</strong>
+      <ul style="margin:.35rem 0 0 1.1rem;font-size:.88rem;line-height:1.45">
+        <li>Modern Muslim physicians and herbal educators often discuss black seed oil/seed as a supportive wellness food — never as a substitute for diagnosis or prescribed care.</li>
+        <li>Prophetic medicine is studied as part of the Sunnah of <em>prevention, moderation, and trust in Allah</em> (tawakkul), alongside seeking treatment (the Prophet ﷺ encouraged medicine).</li>
+        <li>For deeper reading: authentic ḥadīth collections first; then works cataloguing <em>aṭ-ṭibb an-nabawī</em> (e.g. Ibn al-Qayyim’s discussions) under a teacher — not internet self-prescription.</li>
+      </ul>
+    </div>
+    <div class="deep-learn" style="margin-top:.55rem">
+      <strong>Verify &amp; learn more:</strong>
+      <a href="https://sunnah.com/bukhari:5688" target="_blank" rel="noopener">Bukhārī 5688</a> ·
+      <a href="https://sunnah.com/muslim:2215" target="_blank" rel="noopener">Muslim 2215</a> ·
+      <a href="https://sunnah.com/search?q=black+seed" target="_blank" rel="noopener">Sunnah.com search</a> ·
+      <a href="https://islamqa.info/en/answers/2991" target="_blank" rel="noopener">IslamQA (edu context)</a>
+    </div>
+  </div>
+  <div style="margin-top:.65rem;display:flex;flex-wrap:wrap;gap:.4rem">
+    <button type="button" class="btn-soft" onclick="clarityTibbeNext()">↻ Another Prophetic remedy</button>
+    <button type="button" class="btn-soft" onclick="notesQuickFromSection('Seerah','Ṭibb Nabawī note')">＋ Note this remedy</button>
+  </div>
+  <p style="font-size:.78rem;margin-top:.5rem;color:var(--text-muted)">Other well-attested Prophetic remedies in the rotation: honey, dates (ʿajwah), cupping (ḥijāmah), and the principle of seeking treatment.</p>
+</div>
+<div data-rrra="reality" class="card card-seerah"><h2 data-i18n="seerah_tl">📜 Seerah timeline (key milestones)</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;" data-i18n="seerah_tl_desc">Expand each phase for a fuller summary. “Refresh online” pulls a short encyclopedia abstract when available.</p><div class="seerah-timeline" id="seerah-timeline"></div><button type="button" class="btn-secondary" style="margin-top:0.5rem;" onclick="expandAllSeerahTl()">Expand all</button><button type="button" class="btn-soft" style="margin-top:0.5rem;" onclick="fetchSeerahOnlineSummaries()">↻ Refresh online abstracts</button></div>
+<div data-rrra="reality" class="card card-stories"><h2 data-i18n="prophet_stories">📖 Stories of the Prophets</h2><div id="prophet-story"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.75rem;"><button type="button" onclick="loadProphetStory()" class="btn-secondary">Next Story</button></div></div>
+<div data-rrra="reality" class="card card-grave"><h2>⚰️ Ṣalāt al-Janāzah (funeral prayer)</h2><div class="scholar-disclaimer" role="note">
+  <strong>Educational outline — not a fatwa.</strong> Schools differ on details (loud/silent Fātiḥah, hands, number of takbīrs in some reports).
+  <ul style="margin:.35rem 0 0;padding-left:1.1rem;font-size:.88rem">
+    <li><strong>Ḥanafī:</strong> typically four takbīrs; Fātiḥah not required as in daily prayer in the same way — follow your text/imam.</li>
+    <li><strong>Mālikī / Shāfiʿī / Ḥanbalī:</strong> details of Fātiḥah and duʿāʾ placement vary — study your madhhab.</li>
+    <li><strong>In congregation:</strong> <em>do what the imam does</em> and ask him afterward if unsure.</li>
+  </ul>
+  Stand if able; no rukūʿ or sujūd. Confirm with your imam or local scholar.
+</div><ol style="margin:0.5rem 0 0.85rem 1.2rem; font-size:0.94rem; line-height:1.55;"><li><strong>Intention</strong> in the heart for the funeral prayer for this deceased, following the imam if in congregation.</li><li><strong>First takbīr</strong> — then recite <em>Sūrat al-Fātiḥah</em> (many also recite a short sūrah; schools differ).</li><li><strong>Second takbīr</strong> — send <em>ṣalawāt</em> upon the Prophet ﷺ (as in the final tashahhud of the daily prayer).</li><li><strong>Third takbīr</strong> — make duʿāʾ for the deceased (and often for all Muslims). Example: the long duʿāʾ beginning with <em>Allāhumma ighfir li-ḥayyinā wa mayyitinā…</em></li><li><strong>Fourth takbīr</strong> — brief pause / short duʿāʾ, then <em>salām</em> to the right (and left, according to the school).</li></ol><div class="ponder-box" style="margin-bottom:0.75rem;"><strong>Core duʿāʾ after the third takbīr (widely taught)</strong><p class="arabic-calligraphy" style="font-size:1.15rem;margin:0.5rem 0;line-height:1.9;"><span class="tts-body">اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ وَأَكْرِمْ نُزُلَهُ وَوَسِّعْ مُدْخَلَهُ وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ وَنَقِّهِ مِنَ الْخَطَايَا كَمَا يُنَقَّى الثَّوْبُ الْأَبْيَضُ مِنَ الدَّنَسِ وَأَبْدِلْهُ دَارًا خَيْرًا مِنْ دَارِهِ وَأَهْلًا خَيْرًا مِنْ أَهْلِهِ وَزَوْجًا خَيْرًا مِنْ زَوْجِهِ وَأَدْخِلْهُ الْجَنَّةَ وَأَعِذْهُ مِنْ عَذَابِ الْقَبْرِ وَمِنْ عَذَابِ النَّارِ</span> <button type="button" class="inline-tts" data-label="🔊" title="Listen" onclick="clarityInlineTTS(this,'ar')">🔊</button></p><p style="font-size:0.9rem;color:var(--text-muted);">O Allah, forgive him/her, have mercy on him/her, give him/her peace and pardon him/her. Make his/her rest honourable and his/her entry spacious. Wash him/her with water, snow and hail, and cleanse him/her of sins as a white garment is cleansed of dirt. Exchange his/her home for a better home, family for a better family, and spouse for a better spouse. Admit him/her to Paradise and protect him/her from the punishment of the grave and of the Fire. <em>(Muslim)</em></p></div><p style="font-size:0.88rem;color:var(--text-muted);">After the prayer: bury without delay when possible, make duʿāʾ at the grave, and continue ṣadaqah, Qurʾān, and istighfār on their behalf. <a href="https://islamqa.info/en/answers/10463" target="_blank" rel="noopener">Further reading (IslamQA overview) →</a></p></div>
+<div data-rrra="reality" class="card card-grave"><h2 data-i18n="burial_title">Preparing the Deceased &amp; Islamic Burial — Process &amp; Resources</h2><p style="font-size:0.94rem; margin-bottom:0.85rem;">
+ When a Muslim dies, the community has a collective duty (farḍ kifāyah) to wash, shroud, pray over, and bury the body with dignity and without unnecessary delay. Below is a concise overview and trusted online resources for Muslim-majority and non-Muslim countries.
+ </p><div class="ponder-box" style="margin-bottom:0.85rem; border-left-color:#0f4c3a;"><strong>Core steps (Sunnah process)</strong><ol style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;"><li><strong>Confirm death</strong> and notify family / local mosque / Islamic funeral service promptly.</li><li><strong>Ghusl</strong> — ritual washing by same-gender Muslims (or trained helpers).</li><li><strong>Kafan</strong> — shrouding in simple white cloth (typically 3 layers for men, 5 for women).</li><li><strong>Ṣalāt al-Janāzah</strong> — funeral prayer (standing, no rukūʿ/sujūd).</li><li><strong>Burial (dafn)</strong> — preferably in a Muslim cemetery or Muslim section; body on the right side facing the Qiblah; haste is recommended.</li></ol><p style="margin-top:0.5rem; font-size:0.88rem;">Avoid cremation. Embalming is generally avoided when possible; scholars allow exceptions for legal/transport necessity.</p></div><div class="ponder-box" style="margin-bottom:0.85rem;"><strong>In Muslim countries</strong><ul style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;"><li>Local mosques and municipal Islamic burial offices usually handle ghusl, kafan, janāzah and cemetery allocation quickly.</li><li>Follow local health and civil registration requirements (death certificate) while keeping the ritual sequence intact.</li><li>Contact your neighbourhood mosque or the national Islamic affairs authority for the nearest facility.</li></ul></div><div class="ponder-box" style="margin-bottom:0.85rem;"><strong>In non-Muslim countries</strong><ul style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;"><li>Contact the nearest mosque or a Muslim funeral director experienced in Islamic rites as soon as possible.</li><li>Prefer burial where the person died (local Muslim cemetery or Muslim section). Repatriation is costly, often requires embalming or sealed caskets, and delays burial — many scholars discourage it unless there is a clear need.</li><li>If only a non-Muslim cemetery is available, bury there under necessity (ḍarūrah); request Qiblah orientation and a plot near other Muslims when possible.</li><li>Obtain the legal burial permit / death certificate; funeral directors familiar with Islamic practice coordinate paperwork, ghusl facilities, and cemetery booking.</li></ul></div><div class="ponder-box" style="margin-bottom:0.85rem;"><strong>Online guides — burial process</strong><ul style="margin:0.4rem 0 0 1.1rem; font-size:0.9rem;"><li><a href="https://d1.islamhouse.com/data/en/ih_books/single2/en-preparation-of-the-deceased.pdf" target="_blank" rel="noopener">Preparation of the Deceased (PDF) – IslamHouse</a></li><li><a href="https://www.alim.org/funeral-services/complementary-funeral-guidance/" target="_blank" rel="noopener">Alim.org – Islamic funeral procedure (ghusl to burial)</a></li><li><a href="https://gardens-of-peace.org.uk/wp-content/uploads/2020/04/B07-GOP-What-to-do-When-Someone-Dies-2020.pdf" target="_blank" rel="noopener">Gardens of Peace (UK) – What to do when someone dies (PDF)</a></li><li><a href="https://fiqh.islamonline.net/en/burying-a-muslim-in-a-non-muslim-cemetery/" target="_blank" rel="noopener">IslamOnline – Burying a Muslim in a non-Muslim cemetery</a></li><li><a href="https://imam-us.org/islamic-laws-of-death-and-burial-book-online" target="_blank" rel="noopener">IMAM-US – Islamic laws of death and burial</a></li></ul></div><div class="ponder-box" style="margin-bottom:0.85rem; border-left-color:#b0892e;"><strong>Waṣiyyah (Islamic will) — fulfilling commands before and after death</strong><p style="font-size:0.92rem; margin:0.35rem 0;">
+ The Prophet ﷺ encouraged writing a will. A Muslim may bequeath up to one-third of the estate; the rest follows fixed Qurʾānic inheritance shares (farāʾiḍ) after debts and funeral costs. The will should also record funeral wishes, unpaid religious obligations (missed prayers/fasts, zakat, Hajj), trusts held for others, and an executor (waṣī).
+ </p><ul style="margin:0.4rem 0 0 1.1rem; font-size:0.9rem;"><li><a href="https://anic.org.au/last-islamic-will-wasiyah-testament/" target="_blank" rel="noopener">ANIC (Australia) – Last Islamic Will (Wasiyah) template</a></li><li><a href="https://freeislamicwill.com/will-templates-and-sample-wills" target="_blank" rel="noopener">FreeIslamicWill.com – Sample will templates</a></li><li><a href="https://theblessednights.com/free-islamic-tools/islamic-will/" target="_blank" rel="noopener">The Blessed Nights – Islamic will generator</a></li><li><a href="https://trybarakah.com/learn/islamic-will" target="_blank" rel="noopener">Try Barakah – How to write an Islamic will (guide)</a></li><li><a href="https://shariawiz.com/last-will-and-testament" target="_blank" rel="noopener">Shariawiz – Sharīʿah-compliant will tools</a></li><li><a href="https://islamqa.info/en/answers/20017" target="_blank" rel="noopener">IslamQA – Ruling on writing a will</a></li></ul><p style="margin-top:0.55rem; font-size:0.86rem; color:#555;">
+ Have any will reviewed by a local scholar and a lawyer so it is both Sharīʿah-compliant and legally enforceable in your country. Store copies with family, the executor, and your lawyer.
+ </p></div><div class="grave-note"><strong>Note:</strong> This summary is educational. Procedures and civil law differ by country. Always consult a qualified local scholar and an experienced Muslim funeral service for your situation.
+ </div></div>
+<div data-rrra="reality" class="card card-lectures" id="asma-names-lecture-card" style="border-top:3px solid var(--gold)"><h2>✨ 99 Names lectures (moved from Commands)</h2><p class="td-src" style="font-size:.82rem;margin:0 0 .4rem">Asmāʾ Allāh lecture streams — educational only.</p><div class="lecture-box" style="margin-top:1.1rem;"><h3 style="font-size:1.05rem;margin-bottom:0.4rem;">▶️ Live stream / lectures — 99 Names of Allah</h3><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">
+ Watch online reflections on the Beautiful Names (Asmāʾ Allāh al-Ḥusnā). Series play in this page when online.
+ </p><label style="font-size:0.86rem;color:var(--text-muted);">Choose a series:</label><select id="asma-lecture-select" onchange="loadAsmaLecturePlayer()" style="margin:0.35rem 0 0.65rem;width:100%;max-width:28rem;"><option value="list:PLQ02IYL5pmhH0KWBrGxxR-lCCwlTFIVbm">Yaqeen · Allah’s Names (Dr. Omar Suleiman)</option><option value="video:DKMW5YcjsDs">Yaqeen · Ep. 1 — How Merciful is Allah to Me?</option><option value="video:Lcv5vA_5Cn4">Mufti Menk · Learn the 99 Names of Allah</option><option value="list:PLzd7j-uV0vwF4pHh3-o8t7LYrSRAnJ9N3">99 Names of Allah (playlist)</option></select><div class="hajj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f0f0f" style="background:#0f0f0f;"><details class="clarity-embed-fold" data-embed-id="asma-lecture-player"><summary>▶ Open lecture video <span class="cef-title">99 Names of Allah lectures</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/videoseries?list=PLQ02IYL5pmhH0KWBrGxxR-lCCwlTFIVbm" src="about:blank" id="asma-lecture-player-dup1"
+
+ width="100%" height="315" frameborder="0" allowfullscreen
+ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+ loading="lazy" title="99 Names of Allah lectures"></iframe></div></details></div><p class="lecture-note" style="margin-top:0.45rem;"><a href="https://www.youtube.com/playlist?list=PLQ02IYL5pmhH0KWBrGxxR-lCCwlTFIVbm" target="_blank" rel="noopener">Yaqeen full series</a>
+ · <a href="https://yaqeeninstitute.org" target="_blank" rel="noopener">Yaqeen Institute</a>
+ · <a href="https://www.youtube.com/results?search_query=99+names+of+Allah+lecture+series" target="_blank" rel="noopener">More on YouTube</a></p></div></div>
+<div data-rrra="reality" class="card card-tools" id="sealed-nectar-card" style="border-top:3px solid var(--gold,#b8922a)">
+<h2>📖 The Sealed Nectar — Seerah lecture series</h2>
+<p style="font-size:.88rem;color:var(--text-muted);margin:0 0 .5rem">
+Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nectar). Select an episode from the playlist. Educational — follow along with the book where you can.
+</p>
+<div class="hajj-type-row" style="margin:.35rem 0 .5rem">
+<label for="sealed-ep" style="color:var(--accent)!important">Episode</label>
+<select id="sealed-ep" onchange="sealedLoadEp(this.value)" style="flex:1 1 14rem;background:var(--card-bg);color:var(--text);border:1px solid var(--border);padding:.45rem .6rem;border-radius:10px">
+<option value="videoseries">▶ Play full playlist (start)</option>
+</select>
+</div>
+<div class="hajj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid var(--border);background:#000">
+<details class="clarity-embed-fold" data-embed-id="sealed-yt-frame"><summary>▶ Open lecture video <span class="cef-title">The Sealed Nectar — Seerah series</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/videoseries?list=PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X&rel=0" src="about:blank" id="sealed-yt-frame-dup1"
+
+  title="The Sealed Nectar — Seerah series"
+  allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share"
+  allowfullscreen loading="lazy"
+  referrerpolicy="strict-origin-when-cross-origin"
+  style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div></details>
+</div>
+<p style="font-size:.78rem;margin-top:.4rem;color:var(--text-muted)">
+<a href="https://www.youtube.com/playlist?list=PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X" target="_blank" rel="noopener">Open playlist on YouTube</a>
+ · Book: <em>Ar-Raḥīq al-Makhtūm</em> by Safiur Rahman Mubarakpuri
+</p>
+</div>
+<div data-rrra="reality" class="card card-lectures" id="tajalliyat-lecture-card" style="border-top:3px solid var(--accent,#8b7bb8)">
+  <h2>📖 Tajalliyat-e-Nabuwat – Dr. Farhat Hashmi</h2>
+  <p style="font-size:0.92rem; margin-bottom:0.55rem; color:var(--text-muted);">
+    Moved here from Seerah so the Seerah tab stays primary-text first. A comprehensive series on the manifestations of Prophethood — life, character and teachings of Rasulullah ﷺ. Educational — verify with Qur’an &amp; Sunnah.
+  </p>
+  <div class="hajj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f0f0f" style="background:#0f0f0f;"><details class="clarity-embed-fold" data-embed-id="tajalliyat-player"><summary>▶ Open lecture video <span class="cef-title">Tajalliyat-e-Nabuwat – Dr. Farhat Hashmi</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/s17YH8xrCS8?rel=0" src="about:blank" id="tajalliyat-player-dup1"
+
+    width="100%" height="315" frameborder="0" allowfullscreen
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"
+    title="Tajalliyat-e-Nabuwat – Dr. Farhat Hashmi"></iframe></div></details></div>
+  <p class="lecture-note" style="margin-top:.45rem">
+    Start with Part 01 (Introduction). Full series:
+    <a href="https://www.youtube.com/watch?v=s17YH8xrCS8" target="_blank" rel="noopener">Tajalliyat-e-Nabuwat – Dr. Farhat Hashmi</a>
+    · Search “Tajalliyat-e-Nabuwat Farhat Hashmi” on YouTube for all parts.
+  </p>
+</div>
+<div data-rrra="reality" class="card card-lectures"><h2 data-i18n="lectures_title">Lectures &amp; Series</h2>
+<p class="td-src" style="font-size:.82rem;margin:0 0 .55rem"><strong>Educational only — not a fatwa.</strong> Split below: <em>primary texts</em> first, then contemporary speakers (orientation labeled). Optional Urdu drawer separate.</p>
+<div class="lecture-section-label" style="font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);margin:.4rem 0 .3rem">Primary texts &amp; classical study</div>
+<div class="deep-learn" style="margin-bottom:.5rem"><strong>Gateways:</strong>
+ <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> ·
+ <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a> ·
+ <a href="https://dorar.net/en" target="_blank" rel="noopener">Dorar</a> ·
+ <a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a> ·
+ <a href="https://www.kalamullah.com/books.html" target="_blank" rel="noopener">Kalamullah books</a>
+</div>
+<div class="lecture-section-label" style="font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);margin:.65rem 0 .3rem">Contemporary speakers <span style="font-weight:500;text-transform:none;letter-spacing:0;opacity:.9">(orientation labeled — not an endorsement of every view)</span></div>
+<div class="deep-learn"><strong>English / mixed:</strong>
+ <a href="https://www.youtube.com/@BayyinahInstitute" target="_blank" rel="noopener">Bayyinah</a> <span class="spk-orient">Qurʾān-focused · Nouman Ali Khan</span> ·
+ <a href="https://www.youtube.com/@YasirQadhi" target="_blank" rel="noopener">Yasir Qadhi</a> <span class="spk-orient">Academic seerah / theology · Western seminary context</span> ·
+ <a href="https://yaqeeninstitute.org" target="_blank" rel="noopener">Yaqeen</a> <span class="spk-orient">Research institute · Western Muslim audience</span> ·
+ <a href="https://www.arrahmah.org/" target="_blank" rel="noopener">ArRahmah</a> <span class="spk-orient">Community lectures</span>
+</div>
+<p style="margin-bottom:0.7rem;font-size:0.92rem;">Select a series below and play on this page. Always verify fiqh claims with a local scholar.</p><div class="lecture-box"><h3>🌟 Yaqeen Institute – The Firsts (Dr. Omar Suleiman)</h3><p class="spk-orient" style="font-size:.78rem;margin:0 0 .35rem;opacity:.9">Orientation: contemporary Western Muslim research institute · seerah/companions focus · educational</p><p style="font-size:0.92rem; margin-bottom:0.5rem; color:#444;">The Forerunners of Islam – stories of the Sahaba who were the first of their kind. Join Dr. Omar Suleiman as he explores the lives of the trailblazers of the Ummah.</p><label style="font-size:0.88rem; color:#555;">Choose series:</label><select id="yaqeen-select" onchange="loadYaqeenPlayer()" style="margin:0.4rem 0 0.7rem; width:100%; max-width:480px;"><option value="PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp">The Firsts – Full Series (Yaqeen Institute)</option></select><div class="hajj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f0f0f" style="background:#0f0f0f;"><details class="clarity-embed-fold" data-embed-id="yaqeen-player"><summary>▶ Open lecture video <span class="cef-title">yaqeen-player</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/videoseries?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp" src="about:blank" id="yaqeen-player-dup1"
+
+ width="100%" height="315" frameborder="0" allowfullscreen
+ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe></div></details></div><p class="lecture-note">Full playlist on YouTube: <a href="https://www.youtube.com/playlist?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp" target="_blank" rel="noopener">The Firsts | The Forerunners of Islam</a> · <a href="https://yaqeeninstitute.org" target="_blank" rel="noopener">Yaqeen Institute</a></p></div><details class="urdu-lectures-drawer meme-tutorial-compact" id="urdu-lectures-drawer" style="margin:.75rem 0;padding:.45rem .65rem;border-radius:12px;border:1px solid var(--border);background:rgba(0,0,0,.15)"><summary style="cursor:pointer;font-weight:700;color:var(--gold);list-style:none">🌐 Optional · Urdu lectures drawer</summary><p class="td-src" style="font-size:.8rem;margin:.35rem 0">Collapsed by default for mixed audiences. Educational — not a fatwa source.</p><div class="lecture-box"><h3>📖 Seerat-e-Sahabiyat – Farhat Hashmi</h3><p class="spk-orient" style="font-size:.78rem">Orientation: Urdu women's dars · Al-Huda style · optional for mixed audiences</p><p style="font-size:0.92rem; margin-bottom:0.5rem; color:#444;">Seerah of the female companions of the Prophet ﷺ – lessons from the lives of the Sahabiyat.</p><label style="font-size:0.88rem; color:#555;">Choose playlist:</label><select id="farhat-select" onchange="loadFarhatPlayer()" style="margin:0.4rem 0 0.7rem; width:100%; max-width:480px;"><option value="PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs">Seerat-e-Sahabiyat – Full Playlist (Farhat Hashmi)</option></select><div class="hajj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f0f0f" style="background:#0f0f0f;"><details class="clarity-embed-fold" data-embed-id="farhat-player"><summary>▶ Open lecture video <span class="cef-title">farhat-player</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/videoseries?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs" src="about:blank" id="farhat-player-dup1"
+
+ width="100%" height="315" frameborder="0" allowfullscreen
+ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe></div></details></div><p class="lecture-note">Playlist: <a href="https://www.youtube.com/playlist?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs" target="_blank" rel="noopener">Seerat-e-Sahabiyat by Farhat Hashmi</a></p></div><div class="lecture-box"><h3>🕌 Maulana Ishaq (RA) – Jummah Khutbas &amp; Lectures</h3><p class="spk-orient" style="font-size:.78rem">Orientation: South Asian Urdu khutbah tradition · verify fiqh against your local madhhab</p><label style="font-size:0.88rem; color:#555;">Choose a lecture / playlist:</label><select id="ishaq-select" onchange="loadIshaqPlayer()" style="margin:0.4rem 0 0.7rem; width:100%; max-width:480px;"><option value="PLH3gvuJis52MDUOlpiilZaJ_TNc8YMZVN">Full Khutba Jummah – Complete Playlist</option><option value="PLfosM5KUg91uQ57MoSipEXa1ieXVddTEd">Complete Khutba Jumma Collection</option><option value="PLH3gvuJis52O1a2OkfIf8edUPlyECPSiv">Khutbat e Touheed Series</option><option value="PLH3gvuJis52OnlUkdat0ECcZVJ3lnJzuZ">Seerat un Nabi ﷺ</option><option value="PLH3gvuJis52Oxc5X69qa6l83Fy99TwoHw">Khutbaat e Zulhijja &amp; Qurbani</option><option value="video:81LvfkFrujg">Last Khutba Jumma (Pulsiraat &amp; Waseela)</option><option value="video:B5yva_e_rcs">Waqia e Karbala – Lecture 1</option><option value="video:6QcPMInk7NA">Shab-e-Bara’t – Bid’ah discussion</option></select><div class="hajj-video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f0f0f" style="background:#0f0f0f;"><details class="clarity-embed-fold" data-embed-id="ishaq-player"><summary>▶ Open lecture video <span class="cef-title">ishaq-player</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube.com/embed/videoseries?list=PLH3gvuJis52MDUOlpiilZaJ_TNc8YMZVN" src="about:blank" id="ishaq-player-dup1"
+
+ width="100%" height="315" frameborder="0" allowfullscreen
+ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe></div></details></div><p class="lecture-note">Select a playlist or individual lecture above and play it directly here. Full channel: <a href="https://www.youtube.com/@Sheikh-ul-IslamMaulanaIshaq/playlists" target="_blank" rel="noopener">Sheikh-ul-Islam Maulana Ishaq</a>.</p></div></details></div>
+<div data-rrra="reality" class="card card-questions"><h2>💬 Common Questions</h2>
+<p style="font-size:.88rem;margin-bottom:.5rem;color:var(--text)">Everyday worship, life matters, and Hajj &amp; ʿUmrah. Educational only — not a fatwa.</p>
+<div class="hajj-type-row" style="margin:.35rem 0 .45rem">
+<label for="qa-topic" style="color:var(--accent)!important">Topic</label>
+<select id="qa-topic" onchange="renderQuestions()" style="background:var(--card-bg);color:var(--text);border:1px solid var(--border)">
+<option value="all">All topics</option>
+<option value="rituals">Everyday rituals</option>
+<option value="life">Life matters</option>
+<option value="hajj">Hajj &amp; ʿUmrah</option>
+</select>
+</div>
+<button type="button" id="qa-pull-btn" class="btn-secondary" onclick="qaToggleList()" style="width:100%;margin:.25rem 0 .5rem;padding:.55rem .75rem;border-radius:12px;font-weight:600;border:1px solid var(--border);background:rgba(15,76,58,.1);color:var(--accent);cursor:pointer">▸ Show questions</button>
+<div id="qa-list-wrap" style="display:none">
+<div id="questions"></div>
+</div></div>
+
+<div data-rrra="reality" class="card card-about" id="about-clarity-card"><h2 data-i18n="about_title">About Clarity</h2><p style="margin-bottom:0.75rem;" data-i18n-html="about_intro">Clarity is a local-first companion to help you <strong>prepare the heart and the grave</strong> — with Quran, authentic Hadith, character lessons, and small daily deeds. It is not a full Quran library, prayer engine, or fatwa service.</p>
+<div class="sources-polished">
+  <h3>✦ Positioning</h3>
+<p style="margin:0 0 .75rem"><button type="button" class="legacy-print-btn btn" onclick="clarityPrintLegacy()" style="margin:0;padding:0.45rem 0.9rem;font-size:0.85rem">📄 Print Legacy One-Pager</button></p>
+  <p style="margin:0 0 .5rem;font-size:.92rem;line-height:1.5">Clarity sits <em>beside</em> the great libraries (Quran.com, Sunnah.com, IslamQA) — not instead of them. Its focus is turning knowledge into consistent, grave-conscious practice and practical legacy tools (family, will, Hajj readiness) while keeping your data private on this device.</p>
+</div>
+<div class="scholar-disclaimer" data-i18n-html="about_disc"><strong>Educational only.</strong> For personal rulings, consult a qualified scholar.</div><h3 style="font-family:'Cormorant Garamond',serif;color:var(--accent);margin:0.85rem 0 0.4rem;">How content is chosen</h3><ul class="sources-list"><li><strong>Quran</strong> — live via Quran.com / AlQuran.cloud APIs (Uthmani + Sahih International).</li><li><strong>Tafsir snippets</strong> — Ibn Kathīr / Maʿārif (abridged) via Quran.com when available.</li><li><strong>Hadith</strong> — random/search via UmmahAPI; always prefer linking to <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a> for verification.</li><li><strong>Commands</strong> — curated “Yā ayyuhā alladhīna āmanū” verses with practical follow-ups.</li><li><strong>Scholar notes (Grave)</strong> — summaries from classical works (Ghazālī, Ibn Taymiyyah, Ibn al-Qayyim, Nawawī) with outbound links.</li><li><strong>Live Haramain</strong> — official Saudi Quran TV &amp; Sunnah TV channel embeds (stable channel IDs).</li><li><strong>Notes, streaks, deposits, hifz, tajweed progress</strong> — stored only on this device (localStorage).</li></ul><h3 style="font-family:'Cormorant Garamond',serif;color:var(--accent);margin:0.85rem 0 0.4rem;">Privacy</h3><p style="font-size:0.94rem;">No account. No upload of your notes. APIs are called only for public religious content (verses, hadith, weather, location-based prayer times).</p><h3 style="font-family:'Cormorant Garamond',serif;color:var(--accent);margin:0.85rem 0 0.4rem;">Recommended companions</h3><p style="font-size:0.94rem;"><a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> · <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a> · a dedicated prayer-times app · a local scholar for fatwa.</p><div class="share-light-box"><strong>Share a gentle reminder</strong><textarea id="share-light-text" readonly></textarea><button type="button" onclick="copyShareLight()">Copy message</button></div></div>
+<div data-rrra="reality" class="card clarity-resources" id="authentic-learning-stack" style="border-top:3px solid var(--gold,#b8922a)">
+<h2>📚 Authentic learning stack</h2>
+<p style="font-size:.88rem;margin:0 0 .5rem;color:var(--text)">Curated gateways for deeper study. Educational only — not a fatwa service.</p>
+<div class="res-stack">
+<a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>
+<a href="https://corpus.quran.com" target="_blank" rel="noopener">Corpus</a>
+<a href="https://tafsir.app" target="_blank" rel="noopener">Tafsir App</a>
+<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
+<a href="https://dorar.net/en" target="_blank" rel="noopener">Dorar</a>
+<a href="https://sunnah.com/riyadussalihin" target="_blank" rel="noopener">Riyāḍ al-Ṣāliḥīn</a>
+<a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a>
+<a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance</a>
+<a href="https://islamweb.net/en" target="_blank" rel="noopener">Islamweb</a>
+<a href="https://haj.gov.sa/en" target="_blank" rel="noopener">Ministry of Hajj</a>
+</div>
+<p style="font-size:.8rem;margin-top:.5rem;color:var(--text-muted)">Madhhab details differ; local scholars know your context.</p>
+</div>
+
+</div></div>
+<div 

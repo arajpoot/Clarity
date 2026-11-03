@@ -1,0 +1,26 @@
+id="faraid-card" style="margin-top:1rem;"><div class="cred-stamp">Reviewed for educational accuracy: Clarity editorial pass (Qur’an / classical farāʾiḍ outlines) · Sep 2026 · Educational only — not a fatwa.</div><h2>⚖️ Inheritance (Farāʾiḍ) — from your family tree</h2>
+<details class="clarity-tool-tutorial meme-tutorial-compact" id="faraid-tutorial" style="margin:.4rem 0 .55rem;font-size:.78rem;line-height:1.45;background:var(--accent-soft,rgba(212,180,90,.12));border-radius:10px;padding:.35rem .65rem;border:1px solid var(--border,rgba(255,255,255,.12))">
+  <summary style="cursor:pointer;font-weight:700;color:var(--gold,#d4b45a);list-style:none">💡 How to use Inheritance (Farāʾiḍ) · quick guide</summary>
+  <ol style="margin:.35rem 0 0;padding-left:1.15rem">
+    <li><strong>Mark the tree first</strong> — living heirs need gender and vital status on the Family Tree.</li>
+    <li><strong>Load heirs</strong> — pull living relatives into this calculator; confirm who is a Qurʾānic sharer (farḍ) vs residual (ʿaṣabah).</li>
+    <li><strong>Estate net</strong> — funeral/debts first; optional wasiyyah ≤ ⅓ to non-heirs; then fixed shares (4:11–12, 4:176).</li>
+    <li><strong>Review</strong> — check ʿawl / radd notes if totals exceed or fall short; print only as a study sheet.</li>
+  </ol>
+  <p style="margin:.35rem 0 0;opacity:.9"><strong>Educational tool only — not a fatwa, not a court order.</strong> Schools may differ on rare cases; consult a qualified scholar for a real estate.</p>
+</details>
+<div class="faraid-honest" role="note"><strong>Educational tool only — not a fatwa, not legal advice.</strong>
+ <strong>Hanafi study aid — other madhāhib differ; no binding distribution.</strong>
+ Core shares follow Qurʾān 4:11–12 and 4:176 with a simplified Sunni (Hanafi-leaning) model including ʿawl and radd.
+ Complex cases (grandfather with siblings, uterine heirs, ʿUmariyyatān, school differences, civil law) need a qualified scholar or local court.
+ Debts and funeral costs come <em>before</em> shares; wasiyyah to a non-heir is capped at one-third of what remains after debts.
+ </div><p class="notes-hint">Choose the deceased, load only their living close heirs from the pedigree, set the <strong>net estate</strong>, then calculate. You can ✕ remove rows and recalculate.</p><div class="uft-form" style="grid-template-columns:1fr 1fr;margin-top:0.5rem;"><label>Deceased
+ <select id="faraid-deceased" onchange="faraidOnDeceasedChange()"></select></label><label>Gender of deceased
+ <select id="faraid-gender"><option value="male">Male</option><option value="female">Female</option></select></label></div><div class="faraid-net"><label>Gross estate
+ <input type="number" id="faraid-estate" min="0" step="any" placeholder="e.g. 100000"></label><label>Currency
+ <input type="text" id="faraid-currency" placeholder="PKR, USD…" value=""></label><label>Funeral / burial costs
+ <input type="number" id="faraid-funeral" min="0" step="any" placeholder="0"></label><label>Debts of the deceased
+ <input type="number" id="faraid-debts" min="0" step="any" placeholder="0"></label><label>Wasiyyah (bequest ≤ ⅓ of remainder, non-heir)
+ <input type="number" id="faraid-wasiyyah" min="0" step="any" placeholder="0"></label><label>Net distributable (auto)
+ <input type="text" id="faraid-net" readonly placeholder="Calculated on run" style="opacity:0.9;"></label></div><div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.55rem 0;"><button type="button" onclick="faraidPullTree()">📥 Load heirs from family tree</button><button type="button" class="btn-secondary" onclick="try{document.getElementById('user-family-tree-card').scrollIntoView({behavior:'smooth'});}catch(e){}">🌳 Edit tree first</button><button type="button" onclick="faraidCalculate()">Calculate shares</button><button type="button" class="btn-secondary" onclick="faraidResetHeirs()">Clear heirs</button><button type="button" class="btn-secondary" onclick="faraidPrintResult()">🖨️ Print result</button><button type="button" class="btn-secondary" onclick="try{wasiPullFromFaraid();document.getElementById('wasiyyah-card').scrollIntoView({behavior:'smooth'});}catch(e){}">↗ Push figures to Wasiyyah</button></div><div id="faraid-heirs" style="margin-top:0.45rem;"></div><div id="faraid-result" class="search-result" style="margin-top:0.75rem;display:none;"></div><p class="notes-hint" style="margin-top:0.55rem;">Set ♂/♀ and †/● on pedigree cards so heirs load correctly. Further study: <a href="https://getmirath.com/" target="_blank" rel="noopener">Mirath</a> · <a href="https://qurani.io/inheritance-calculator/" target="_blank" rel="noopener">Qurani</a> · <a href="https://zakat.international/" target="_blank" rel="noopener">Amanah</a></p></div>
+<div class="card card-tools fiqh-tool-card" 
