@@ -1,0 +1,373 @@
+/*! Amānah Desk + Welcome merged · one page */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&family=Scheherazade+New:wght@600&display=swap");
+
+.amana-dw {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0.75rem 0.85rem 2.5rem;
+  font-family: Inter, system-ui, sans-serif;
+  color: #e7efe9;
+}
+
+.dw-bism {
+  text-align: center;
+  font-family: "Scheherazade New", Amiri, serif;
+  font-size: 1.2rem;
+  color: #d4b45a;
+  margin: 0.35rem 0 0.15rem;
+}
+
+.dw-title {
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.45rem, 4.2vw, 1.95rem);
+  font-weight: 700;
+  color: #e8d5a3;
+  margin: 0.1rem 0;
+}
+
+.dw-sub {
+  text-align: center;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  opacity: 0.92;
+  max-width: 32rem;
+  margin: 0.3rem auto 0.75rem;
+}
+
+/* Compact campus */
+.dw-campus {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  background: #0d241c;
+  margin: 0 auto 0.85rem;
+}
+.dw-campus svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dw-star { animation: dw-twinkle 3.2s ease-in-out infinite; }
+.dw-star:nth-child(2n) { animation-delay: 0.7s; }
+.dw-star:nth-child(3n) { animation-delay: 1.4s; }
+@keyframes dw-twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.95; }
+}
+.dw-moon { animation: dw-moon 6s ease-in-out infinite; }
+@keyframes dw-moon {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(232, 213, 163, 0.35)); }
+  50% { filter: drop-shadow(0 0 10px rgba(232, 213, 163, 0.7)); }
+}
+.dw-cloud { animation: dw-drift 24s linear infinite; }
+.dw-cloud-b { animation: dw-drift 30s linear infinite reverse; }
+@keyframes dw-drift {
+  from { transform: translateX(-6%); }
+  to { transform: translateX(6%); }
+}
+.dw-tree { transform-origin: 50% 100%; animation: dw-sway 5.5s ease-in-out infinite; }
+.dw-tree-2 { transform-origin: 50% 100%; animation: dw-sway 6.5s ease-in-out infinite reverse; }
+@keyframes dw-sway {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1.2deg); }
+}
+.dw-win { animation: dw-win 4s ease-in-out infinite; }
+.dw-win:nth-of-type(odd) { animation-delay: 0.9s; }
+@keyframes dw-win {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.dw-flag { transform-origin: 0 0; animation: dw-flag 2.8s ease-in-out infinite; }
+@keyframes dw-flag {
+  0%, 100% { transform: skewX(0); }
+  50% { transform: skewX(-7deg) scaleX(0.97); }
+}
+.dw-fountain { animation: dw-fount 2.2s ease-in-out infinite; }
+@keyframes dw-fount {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(-2px); opacity: 1; }
+}
+.dw-lamp { animation: dw-lamp 3.5s ease-in-out infinite; }
+@keyframes dw-lamp {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.95; }
+}
+.dw-person { animation: dw-walk 14s linear infinite; }
+@keyframes dw-walk {
+  0% { transform: translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(100px); opacity: 0; }
+}
+
+/* Section label */
+.dw-section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0 0.55rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.15rem;
+  color: #e8d5a3;
+  font-weight: 700;
+}
+.dw-section-label span {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: rgba(30, 125, 94, 0.35);
+  color: #e7efe9;
+}
+
+/* Windows grid — reuse desk styles */
+.amana-dw .amana-desk-windows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+@media (max-width: 560px) {
+  .amana-dw .amana-desk-windows { grid-template-columns: 1fr; }
+}
+.amana-dw .desk-window {
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: linear-gradient(165deg, rgba(30, 125, 94, 0.12), rgba(0, 0, 0, 0.22));
+  padding: 0.85rem 0.9rem;
+}
+.amana-dw .desk-window h2 {
+  margin: 0 0 0.3rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.1rem;
+  color: #e8d5a3;
+}
+.amana-dw .win-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(30, 125, 94, 0.35);
+  margin-bottom: 0.3rem;
+}
+.amana-dw .desk-window .hint {
+  font-size: 0.76rem;
+  opacity: 0.88;
+  line-height: 1.4;
+  margin: 0 0 0.45rem;
+}
+.amana-dw .desk-window label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+.amana-dw .desk-window input,
+.amana-dw .desk-window textarea,
+.amana-dw .desk-window select {
+  padding: 0.42rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: #0c1c16;
+  color: inherit;
+  font-size: 0.86rem;
+  font-family: inherit;
+}
+.amana-dw .desk-window textarea { min-height: 3.8rem; resize: vertical; }
+.amana-dw .desk-window .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+.amana-dw .desk-window button,
+.amana-dw .desk-btn {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.76rem;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.42);
+  background: rgba(30, 125, 94, 0.5);
+  color: inherit;
+}
+.amana-dw .desk-window button.soft,
+.amana-dw .desk-btn.soft {
+  background: rgba(0, 0, 0, 0.28);
+}
+.amana-dw .desk-receipt {
+  margin-top: 0.45rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 10px;
+  border: 1px dashed rgba(212, 180, 90, 0.4);
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 0.76rem;
+  line-height: 1.4;
+  display: none;
+}
+.amana-dw .desk-receipt.show { display: block; }
+.amana-dw .desk-receipt .ticket {
+  font-weight: 700;
+  color: #d4b45a;
+  font-family: ui-monospace, monospace;
+}
+.amana-dw .desk-msg {
+  min-height: 1.05em;
+  font-size: 0.76rem;
+  margin-top: 0.3rem;
+}
+.amana-dw .desk-msg.ok { color: #7dcea0; }
+.amana-dw .desk-msg.err { color: #f0a090; }
+
+.amana-dw .desk-log {
+  margin: 0.85rem 0;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(15, 76, 58, 0.1);
+  padding: 0.75rem 0.9rem;
+}
+.amana-dw .desk-log h2 {
+  margin: 0 0 0.3rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.05rem;
+  color: #e8d5a3;
+}
+.amana-dw .desk-log-list {
+  max-height: 12rem;
+  overflow: auto;
+  font-size: 0.78rem;
+}
+.amana-dw .desk-log-item {
+  padding: 0.35rem 0.3rem;
+  border-bottom: 1px solid rgba(212, 180, 90, 0.15);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3rem 0.5rem;
+}
+.amana-dw .desk-log-item .stamp {
+  font-family: ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: #d4b45a;
+  white-space: nowrap;
+}
+.amana-dw .desk-log-item .kind {
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+}
+.amana-dw .desk-log-item .body {
+  grid-column: 1 / -1;
+  opacity: 0.92;
+  line-height: 1.35;
+}
+
+/* Unlock CTA — prominent but secondary */
+.dw-unlock-cta {
+  margin: 1.1rem 0 0.75rem;
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 180, 90, 0.38);
+  background: linear-gradient(160deg, rgba(30, 125, 94, 0.2), rgba(0, 0, 0, 0.28));
+  text-align: center;
+}
+.dw-unlock-cta h2 {
+  margin: 0 0 0.25rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #e8d5a3;
+  font-size: 1.15rem;
+}
+.dw-unlock-cta p {
+  font-size: 0.82rem;
+  opacity: 0.9;
+  margin: 0 0 0.65rem;
+  line-height: 1.4;
+}
+.dw-unlock-cta .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.dw-unlock-cta a,
+.dw-unlock-cta button {
+  padding: 0.48rem 1.05rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(212, 180, 90, 0.45);
+  background: rgba(30, 125, 94, 0.55);
+}
+.dw-unlock-cta a.soft,
+.dw-unlock-cta button.soft {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.amana-dw .desk-interior {
+  display: none;
+  margin: 0.85rem 0;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: linear-gradient(160deg, rgba(30, 125, 94, 0.16), rgba(0, 0, 0, 0.25));
+}
+.amana-dw .desk-interior.is-open { display: block; }
+.amana-dw .desk-biz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+}
+@media (max-width: 560px) {
+  .amana-dw .desk-biz-grid { grid-template-columns: 1fr; }
+}
+.amana-dw .desk-biz-card {
+  display: block;
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: rgba(0, 0, 0, 0.28);
+  text-decoration: none;
+  color: inherit;
+}
+.amana-dw .desk-biz-card strong {
+  display: block;
+  color: #e8d5a3;
+  font-size: 0.92rem;
+  margin-bottom: 0.12rem;
+}
+.amana-dw .desk-biz-card span {
+  font-size: 0.74rem;
+  opacity: 0.88;
+  line-height: 1.35;
+}
+
+.dw-disc {
+  text-align: center;
+  font-size: 0.74rem;
+  opacity: 0.82;
+  line-height: 1.4;
+  margin: 1rem auto 0;
+  max-width: 30rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dw-star, .dw-moon, .dw-cloud, .dw-cloud-b, .dw-tree, .dw-tree-2,
+  .dw-win, .dw-flag, .dw-fountain, .dw-lamp, .dw-person {
+    animation: none !important;
+  }
+}
