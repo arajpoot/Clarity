@@ -1,0 +1,230 @@
+/*! Amānah UFT enrich v1 · registry + pedigree plaque + tutorial
+ * Educational only — not a legal pedigree · not a fatwa
+ */
+@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+#user-family-tree-card {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+#user-family-tree-card .uft-title,
+#user-family-tree-card h2,
+#user-family-tree-card h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.01em;
+}
+
+/* —— Short tutorial —— */
+.uft-tutorial {
+  margin: 0.65rem 0 0.85rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background:
+    linear-gradient(145deg, rgba(30, 125, 94, 0.18), rgba(0, 0, 0, 0.28));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.uft-tutorial strong {
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.05rem;
+}
+.uft-tutorial ol {
+  margin: 0.4rem 0 0.55rem;
+  padding-left: 1.2rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+.uft-tutorial li { margin: 0.2rem 0; }
+.uft-tutorial .uft-tut-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+.uft-tutorial button {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(30, 125, 94, 0.5);
+  color: inherit;
+}
+.uft-tutorial button.soft {
+  background: rgba(0, 0, 0, 0.28);
+}
+.uft-tutorial[hidden],
+.uft-tutorial.is-dismissed {
+  display: none !important;
+}
+
+/* —— Pedigree stage polish —— */
+#user-family-tree-card .uft-stage {
+  min-height: 16rem;
+  border: 1px solid rgba(212, 180, 90, 0.32) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 35%),
+    linear-gradient(165deg, #0f2a22 0%, #0a1c16 55%, #071410 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+#uft-status {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 0.45rem 0 0;
+  color: #c9a84c;
+}
+
+/* Generation bands */
+#user-family-tree-card .uft-band {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin: 0.35rem 0;
+  min-height: 0.5rem;
+}
+
+/* Person chips / cards inside stage */
+#user-family-tree-card .uft-person,
+#user-family-tree-card .uft-card,
+#user-family-tree-card [data-uft-person] {
+  font-family: Inter, system-ui, sans-serif;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: rgba(12, 28, 22, 0.92);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+#user-family-tree-card .uft-self,
+#uft-self {
+  border-color: rgba(30, 125, 94, 0.65) !important;
+  box-shadow: 0 0 0 1px rgba(30, 125, 94, 0.25), 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Arabic / name emphasis */
+#user-family-tree-card .uft-name-ar,
+#user-family-tree-card [lang="ar"] {
+  font-family: Amiri, "Noto Naskh Arabic", serif;
+  font-size: 1.05em;
+}
+
+/* —— Registry panel —— */
+.uft-registry-panel {
+  margin-top: 0.85rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(15, 76, 58, 0.12);
+}
+.uft-registry-panel h3 {
+  color: #d4b45a;
+  font-size: 1.05rem;
+  margin: 0 0 0.45rem;
+}
+.uft-registry-panel .uft-field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.88;
+  letter-spacing: 0.01em;
+}
+.uft-registry-panel .uft-field input,
+.uft-registry-panel .uft-field select,
+.uft-registry-panel .uft-field textarea {
+  border-radius: 10px !important;
+  border: 1px solid rgba(212, 180, 90, 0.32) !important;
+  background: #0c1c16 !important;
+  padding: 0.45rem 0.55rem !important;
+  font-size: 0.88rem !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.uft-registry-panel .uft-field input:focus,
+.uft-registry-panel .uft-field select:focus,
+.uft-registry-panel .uft-field textarea:focus {
+  outline: none;
+  border-color: rgba(212, 180, 90, 0.65) !important;
+  box-shadow: 0 0 0 3px rgba(212, 180, 90, 0.12);
+}
+
+.uft-reg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+.uft-reg-actions button,
+#user-family-tree-card .btn-soft {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.38);
+  background: rgba(30, 125, 94, 0.45);
+  color: inherit;
+}
+#user-family-tree-card .btn-soft {
+  background: rgba(0, 0, 0, 0.28);
+}
+#user-family-tree-card .btn-soft:hover,
+.uft-reg-actions button:hover {
+  border-color: rgba(212, 180, 90, 0.6);
+}
+
+/* Registry list rows */
+#uft-reg-list {
+  margin-top: 0.35rem;
+}
+#uft-reg-list .uft-reg-row,
+#uft-reg-list > div {
+  margin: 0.4rem 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.2);
+  background: rgba(0, 0, 0, 0.22);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.uft-empty-hint {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.84rem;
+  opacity: 0.88;
+  border-radius: 12px;
+  border: 1px dashed rgba(212, 180, 90, 0.28);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.uft-disclaimer {
+  font-size: 0.75rem;
+  opacity: 0.82;
+  line-height: 1.45;
+  margin: 0.65rem 0 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  border-left: 3px solid rgba(212, 180, 90, 0.45);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+/* Light theme */
+html[data-theme="light"] .uft-tutorial,
+html[data-theme="day"] .uft-tutorial {
+  background: linear-gradient(145deg, rgba(30, 125, 94, 0.1), rgba(255, 255, 255, 0.7));
+}
+html[data-theme="light"] #user-family-tree-card .uft-stage,
+html[data-theme="day"] #user-family-tree-card .uft-stage {
+  background: linear-gradient(165deg, #eef7f2, #e4f0ea) !important;
+}
+
+@media (max-width: 640px) {
+  .uft-tutorial { padding: 0.75rem; }
+  #user-family-tree-card .uft-stage { min-height: 12rem; }
+}
