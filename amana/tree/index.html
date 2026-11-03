@@ -6,9 +6,9 @@
 <title>Family tree · UFT · Amānah · Clarity</title>
 <meta name="description" content="Full family tree toolkit on device. Educational — not a legal pedigree."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/tree/"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101A4"/>
-<link rel="stylesheet" href="/amana/assets/clarity-pedigree-plaque-css-v1.css?v=20261101A4"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101A4" defer></script>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102T1"/>
+<link rel="stylesheet" href="/amana/assets/clarity-pedigree-plaque-css-v1.css?v=20261102T1"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102T1" defer></script>
 <style>
 :root { color-scheme: dark light; }
 * { box-sizing: border-box; }
@@ -52,6 +52,7 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 <link rel="stylesheet" href="/amana/assets/css/am-chamber-v1.css?v=20261102M1"/>
 <link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102M1"/>
 <script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102M2"></script>
+<script src="/amana/assets/amana-engine-unlock-patch-v1.js?v=20261102F2"></script>
 
 <link rel="stylesheet" href="/amana/assets/css/am-banner-v1.css?v=20261102M4"/>
 </head>
@@ -179,29 +180,28 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 
   <p class="amana-foot"><a href="/amana/">Amānah home</a> · <a href="/amana/fiqh/">Farāʾiḍ study</a></p>
 </main>
-<script defer src="/amana/assets/inline-clarity_uft_viewport_recover.js?v=20261101A4"></script>
-<script defer src="/amana/assets/inline-clarity_uft_print_fix_v2.js?v=20261101A4"></script>
-<script defer src="/amana/assets/inline-clarity_pedigree_plaque_v1.js?v=20261101A4"></script>
-<script defer src="/amana/assets/clarity-amana-uft-v1.js?v=20261101A4"></script>
-<script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261101A4"></script>
+<script defer src="/amana/assets/inline-clarity_uft_viewport_recover.js?v=20261102T1"></script>
+<script defer src="/amana/assets/inline-clarity_uft_print_fix_v2.js?v=20261102T1"></script>
+<script defer src="/amana/assets/inline-clarity_pedigree_plaque_v1.js?v=20261102T1"></script>
+<script defer src="/amana/assets/clarity-amana-uft-v1.js?v=20261102T1"></script>
+<script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261102T1"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   var s = document.getElementById("uft-status");
   function tick() {
     if (typeof window.uftLoad === "function" || typeof window.uftRegRender === "function") {
-      if (s) s.textContent = "UFT ready · educational outline on this device";
+      if (s) s.textContent = "UFT ready · educational outline on this device · not a legal pedigree";
       try { if (typeof uftRegRender === "function") uftRegRender(); } catch (e) {}
-    } else if (s) s.textContent = "UFT modules loaded · interact with registry fields below";
+    } else if (s) {
+      s.textContent = "Loading UFT modules…";
+    }
   }
-  setTimeout(tick, 800);
-  setTimeout(tick, 2000);
+  setTimeout(tick, 600);
+  setTimeout(tick, 1800);
+  document.addEventListener("clarity-amana-unlock-change", function (ev) {
+    if (ev.detail && ev.detail.unlocked) setTimeout(tick, 100);
+  });
 });
 </script>
-
-<script defer src="/amana/assets/inline-clarity_pedigree_plaque_v1.js?v=20261102M3"></script>
-<script defer src="/amana/assets/inline-clarity_uft_viewport_recover.js?v=20261102M3"></script>
-<script defer src="/amana/assets/inline-clarity_uft_print_fix_v2.js?v=20261102M3"></script>
-<script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261102M3"></script>
-
 </body>
 </html>
