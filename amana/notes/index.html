@@ -61,8 +61,10 @@ body {
 <link rel="stylesheet" href="/amana/assets/css/am-chamber-v1.css?v=20261102M1"/>
 <link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102M1"/>
 <script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102M2"></script>
+<script src="/amana/assets/amana-engine-unlock-patch-v1.js?v=20261102F2"></script>
 
 <link rel="stylesheet" href="/amana/assets/css/am-banner-v1.css?v=20261102M4"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-living-centre-v1.css?v=20261102B1"/>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
@@ -129,6 +131,7 @@ body {
   <p class="disc">Private notes on this device. For the one-way registry path from landing, use Companion entry when available; heirs should look in Amānah.</p>
   <textarea id="amana-notes-body" rows="10" style="width:100%;padding:0.55rem;border-radius:10px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit" placeholder="Notes…"></textarea>
   <button type="button" class="btn-soft" id="amana-notes-save">Save notes</button>
+  <p class="disc" style="font-size:0.78rem">Wasiyyah chamber can <strong>Export to Notes</strong> — look for a block starting with “Amānah · Wasiyyah notes”.</p>
   <p id="amana-notes-msg" style="font-size:0.78rem;opacity:0.85"></p>
 </section>
 
@@ -152,5 +155,6 @@ body {
 })();
 </script>
 
+<script defer src="/amana/assets/amana-living-centre-v1.js?v=20261102B1"></script>
 </body>
 </html>
