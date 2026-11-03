@@ -155,4 +155,32 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", restore);
   else restore();
+
+  /* Quran stream listen toggle */
+  w.toggleQuranStream = function () {
+    try {
+      var audio = document.getElementById("quran-audio") || document.getElementById("quran-audio-dup1");
+      if (!audio) {
+        w.changeStream && w.changeStream();
+        audio = document.getElementById("quran-audio") || document.getElementById("quran-audio-dup1");
+      }
+      if (!audio) return;
+      if (audio.paused) {
+        if (!audio.src || audio.src === location.href) {
+          if (typeof w.changeStream === "function") w.changeStream();
+        }
+        var p = audio.play();
+        if (p && typeof p.catch === "function") p.catch(function () {});
+      } else {
+        try { audio.pause(); } catch (e) {}
+      }
+    } catch (e2) {
+      try { console.warn("[Clarity] toggleQuranStream", e2); } catch (e3) {}
+    }
+  };
+
+  /* Aliases used by some archive onclicks */
+  w.toggleLive = w.toggleHaramainLive;
+  w.changeQuranStream = w.changeStream;
+
 })(window);
