@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-clarity-room="amana">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Unlock Amānah Vault</title>
+<meta name="description" content="Unlock the Amānah vault on this device. Educational only — not a fatwa."/>
+<meta name="robots" content="noindex"/>
+<meta name="theme-color" content="#0a1812"/>
+<link rel="stylesheet" href="/amana/assets/css/am-critical-v1.css"/>
+<link rel="stylesheet" href="/amana/assets/css/am-gate-v1.css"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-room-harmony-v1.css?v=20261103HARM"/>
+<style>
+  body { margin: 0; background: #071410; color: #e7efe9; min-height: 100vh; font-family: Inter, system-ui, sans-serif; }
+  .unlock-wrap { max-width: 28rem; margin: 0 auto; padding: 1.25rem 1rem 2.5rem; }
+  .unlock-wrap h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    color: #e8d5a3; font-size: 1.55rem; margin: 0.35rem 0; text-align: center;
+  }
+  .unlock-wrap .sub { text-align: center; font-size: 0.88rem; opacity: 0.9; line-height: 1.45; margin: 0 0 1rem; }
+  .unlock-back { text-align: center; margin: 0 0 0.75rem; }
+  .unlock-back a { color: #d4b45a; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+  .unlock-disc { font-size: 0.74rem; opacity: 0.82; text-align: center; line-height: 1.4; margin-top: 1.25rem; }
+  /* Ensure gate panel is visible on this focused page */
+  #amana-vault-gate { display: block !important; }
+</style>
+</head>
+<body>
+<div class="unlock-wrap">
+  <p class="unlock-back"><a href="/amana/">← Back to Campus Desk</a></p>
+  <p style="text-align:center;font-family:'Scheherazade New',Amiri,serif;color:#d4b45a;font-size:1.15rem;margin:0">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+  <h1>Unlock Amānah Vault</h1>
+  <p class="sub">Next step after the desk. Unlock only on this device if you need tree, farāʾiḍ study, wasiyyah, full dayn, or private notes.</p>
+
+  <!-- Gate mount: engine scripts populate / bind existing gate UI from shared assets -->
+  <div id="amana-vault-gate" class="amana-vault-gate">
+    <div id="amana-gate-unlock">
+      <label for="amana-pass-unlock" style="display:block;font-size:0.8rem;font-weight:600;margin:0.5rem 0 0.25rem">Passphrase</label>
+      <input type="password" id="amana-pass-unlock" autocomplete="current-password" style="width:100%;box-sizing:border-box;padding:0.5rem 0.65rem;border-radius:10px;border:1px solid rgba(212,180,90,0.35);background:#0c1c16;color:inherit;font-size:1rem"/>
+      <button type="button" id="amana-btn-unlock" style="margin-top:0.65rem;width:100%;padding:0.55rem;border-radius:999px;border:1px solid rgba(212,180,90,0.45);background:rgba(30,125,94,0.55);color:inherit;font-weight:700;cursor:pointer">Unlock</button>
+      <p id="amana-gate-status" style="font-size:0.8rem;min-height:1.2em;margin:0.5rem 0 0" role="status"></p>
+    </div>
+    <div id="amana-gate-create" hidden>
+      <p style="font-size:0.85rem;opacity:0.9">Create a vault passphrase on this device (first time).</p>
+      <label for="amana-pass-new" style="display:block;font-size:0.8rem;font-weight:600;margin:0.5rem 0 0.25rem">New passphrase</label>
+      <input type="password" id="amana-pass-new" autocomplete="new-password" style="width:100%;box-sizing:border-box;padding:0.5rem 0.65rem;border-radius:10px;border:1px solid rgba(212,180,90,0.35);background:#0c1c16;color:inherit"/>
+      <label for="amana-pass-confirm" style="display:block;font-size:0.8rem;font-weight:600;margin:0.5rem 0 0.25rem">Confirm</label>
+      <input type="password" id="amana-pass-confirm" autocomplete="new-password" style="width:100%;box-sizing:border-box;padding:0.5rem 0.65rem;border-radius:10px;border:1px solid rgba(212,180,90,0.35);background:#0c1c16;color:inherit"/>
+      <button type="button" id="amana-btn-create" style="margin-top:0.65rem;width:100%;padding:0.55rem;border-radius:999px;border:1px solid rgba(212,180,90,0.45);background:rgba(30,125,94,0.55);color:inherit;font-weight:700;cursor:pointer">Create vault</button>
+    </div>
+    <p style="font-size:0.78rem;opacity:0.85;margin-top:0.75rem">
+      <button type="button" id="amana-btn-have" class="soft" style="background:transparent;border:none;color:#d4b45a;cursor:pointer;text-decoration:underline">I already have a passphrase</button>
+      ·
+      <button type="button" id="amana-btn-back-create" style="background:transparent;border:none;color:#d4b45a;cursor:pointer;text-decoration:underline">First time · create</button>
+    </p>
+  </div>
+
+  <p class="unlock-disc">Educational only — not a fatwa · not a bank · not legal advice. Passphrase never leaves this device via Clarity servers.</p>
+  <p style="text-align:center;margin-top:1rem"><a href="/amana/" style="color:#d4b45a;font-size:0.85rem">← Return to desk without unlocking</a></p>
+</div>
+
+<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102M2"></script>
+<script src="/amana/assets/amana-engine-unlock-patch-v1.js?v=20261102F2"></script>
+<script src="/amana/assets/amana-fortify-boot-gate-v2.js?v=20261102F2"></script>
+<script src="/amana/assets/amana-gate-rich-v1.js?v=20261102G2"></script>
+<script>
+(function () {
+  function showCreate(on) {
+    var u = document.getElementById("amana-gate-unlock");
+    var c = document.getElementById("amana-gate-create");
+    if (u) u.hidden = !!on;
+    if (c) c.hidden = !on;
+  }
+  var b1 = document.getElementById("amana-btn-back-create");
+  var b2 = document.getElementById("amana-btn-have");
+  if (b1) b1.onclick = function () { showCreate(true); };
+  if (b2) b2.onclick = function () { showCreate(false); };
+  // After unlock, offer interior
+  document.addEventListener("clarity-amana-unlock-change", function (ev) {
+    if (ev.detail && ev.detail.unlocked) {
+      var st = document.getElementById("amana-gate-status");
+      if (st) st.textContent = "Unlocked · opening desk interior…";
+      setTimeout(function () { location.href = "/amana/"; }, 600);
+    }
+  });
+})();
+</script>
+</body>
+</html>
