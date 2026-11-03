@@ -1,13 +1,19 @@
-/*! Clarity Companion unfreeze v3.1 · defeats shell-v3 landing hide · campus untouched */
+/*! Clarity Companion unfreeze v4 · Phase 2 smooth · campus untouched */
 (function (w, d) {
   "use strict";
+  if (w.__CLARITY_COMPANION_UNFREEZE_V4__) return;
+  w.__CLARITY_COMPANION_UNFREEZE_V4__ = true;
+  w.__CLARITY_COMPANION_UNFREEZE_V3__ = true; /* compat */
+
   var SHELL_KEY = "clarity_shell_mode_v1";
-  if (!w.__CLARITY_COMPANION_UNFREEZE_V3__) {
-    w.__CLARITY_COMPANION_UNFREEZE_V3__ = true;
-  }
-  var LOG = w.__COMPANION_UNFREEZE_LOG || [];
+  var LOG = [];
   w.__COMPANION_UNFREEZE_LOG = LOG;
-  function log(m) { try { LOG.push(String(m)); } catch (e) {} }
+  var settled = false;
+  var lastMainDisplay = "";
+
+  function log(m) {
+    try { LOG.push(String(m)); } catch (e) {}
+  }
 
   function hide(el) {
     if (!el) return;
@@ -17,13 +23,19 @@
       el.setAttribute("aria-hidden", "true");
     } catch (e) {}
   }
-  function show(el) {
+
+  function showMain(el) {
     if (!el) return;
     try {
       el.removeAttribute("hidden");
       el.setAttribute("aria-hidden", "false");
       el.hidden = false;
-      el.style.setProperty("display", "block", "important");
+      /* only write if needed — reduces jump */
+      if (el.style.display === "none" || el.getAttribute("style") && /display\s*:\s*none/i.test(el.getAttribute("style") || "")) {
+        el.style.setProperty("display", "block", "important");
+      } else if (!el.style.display) {
+        el.style.setProperty("display", "block", "important");
+      }
       el.style.setProperty("visibility", "visible", "important");
       el.style.setProperty("opacity", "1", "important");
     } catch (e) {}
@@ -33,26 +45,23 @@
     try {
       localStorage.setItem(SHELL_KEY, "companion");
       sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-      localStorage.setItem("clarity_shell_mode", "companion");
     } catch (e) {}
     try {
       var root = d.documentElement;
+      if (root.getAttribute("data-shell-mode") !== "companion") {
+        root.setAttribute("data-shell-mode", "companion");
+      }
       root.setAttribute("data-clarity-room", "companion");
       root.setAttribute("data-clarity-viewport", "companion-path");
-      root.setAttribute("data-shell-mode", "companion");
       root.classList.add("companion-unfrozen");
-      root.classList.remove("shell-landing");
-      if (d.body) d.body.setAttribute("data-shell-mode", "companion");
-    } catch (e) {}
-    w.__CLARITY_SKIP_DAY_LANDING__ = true;
-    try {
-      if (w.ClarityShell && typeof w.ClarityShell.setMode === "function") {
-        w.ClarityShell.setMode("companion");
+      if (d.body && d.body.getAttribute("data-shell-mode") !== "companion") {
+        d.body.setAttribute("data-shell-mode", "companion");
       }
     } catch (e) {}
+    w.__CLARITY_SKIP_DAY_LANDING__ = true;
   }
 
-  function scrubLandingVault() {
+  function scrubLanding() {
     [
       "clarity-day-landing",
       "clarity-landing-stack",
@@ -60,127 +69,142 @@
       "amana-vault-interior",
       "landing-gate-screen",
       "clarity-welcome"
-    ].forEach(function (id) { hide(d.getElementById(id)); });
-    try {
-      d.querySelectorAll(
-        ".clarity-day-landing,[data-clarity-day-landing],.day-landing-stack,.clarity-welcome-overlay"
-      ).forEach(hide);
-    } catch (e) {}
+    ].forEach(function (id) {
+      hide(d.getElementById(id));
+    });
   }
 
-  function showMainAndReminder() {
-    var main = d.getElementById("main-content");
-    if (main) {
-      show(main);
-      main.style.removeProperty("display");
-      main.style.setProperty("display", "block", "important");
-      log("main shown");
-    } else {
-      log("main MISSING");
-    }
+  function openReminderOnce() {
     var hash = (w.location.hash || "").replace(/^#/, "").toLowerCase();
     var map = {
       reminder: "tab-reminder",
       reality: "tab-reality",
       reflection: "tab-reflection",
       action: "tab-action",
-      notes: "tab-notes",
-      meme: "tab-meme",
-      tajweed: "tab-tajweed",
-      calligraphy: "tab-calligraphy"
+      notes: "tab-notes"
     };
     var target = map[hash] || "tab-reminder";
-    d.querySelectorAll(".tab-panel").forEach(function (p) {
-      try {
-        p.classList.remove("is-active", "active");
-        p.setAttribute("aria-hidden", "true");
-      } catch (e) {}
-    });
     var rem = d.getElementById(target) || d.getElementById("tab-reminder");
-    if (rem) {
-      rem.classList.add("is-active", "active");
-      show(rem);
-      log("panel " + rem.id);
-    }
-    try {
-      if (typeof w.clarityOpenSectionDoor === "function") {
-        w.clarityOpenSectionDoor(hash && map[hash] ? hash : "reminder");
+    if (!rem) return;
+    if (rem.classList.contains("is-active") && rem.getAttribute("aria-hidden") === "false") {
+      /* already open — avoid class thrash */
+      if (getComputedStyle(rem).display === "none") {
+        rem.style.setProperty("display", "block", "important");
       }
-    } catch (e) {}
+      return;
+    }
+    d.querySelectorAll(".tab-panel.is-active, .tab-panel.active").forEach(function (p) {
+      if (p === rem) return;
+      p.classList.remove("is-active", "active");
+      p.setAttribute("aria-hidden", "true");
+    });
+    rem.classList.add("is-active", "active");
+    rem.setAttribute("aria-hidden", "false");
+    rem.removeAttribute("hidden");
+    rem.style.setProperty("display", "block", "important");
   }
 
-  function patchShellApply() {
+  function patchShell() {
+    if (!w.ClarityShell || w.ClarityShell.__companionPatched) return;
     try {
-      if (!w.ClarityShell || typeof w.ClarityShell.apply !== "function") return;
-      if (w.ClarityShell.__companionPatched) return;
-      var orig = w.ClarityShell.apply.bind(w.ClarityShell);
-      w.ClarityShell.apply = function () {
-        try {
-          localStorage.setItem(SHELL_KEY, "companion");
-        } catch (e) {}
-        var r = orig();
-        /* After shell applies, force main visible on companion room */
-        forceCompanionShell();
-        showMainAndReminder();
-        scrubLandingVault();
-        return r;
-      };
       if (typeof w.ClarityShell.setMode === "function") {
         var os = w.ClarityShell.setMode.bind(w.ClarityShell);
         w.ClarityShell.setMode = function (m) {
           if (m === "landing") {
-            log("blocked setMode(landing) on companion room");
+            log("block landing");
             m = "companion";
           }
           return os(m);
         };
       }
+      if (typeof w.ClarityShell.apply === "function") {
+        var oa = w.ClarityShell.apply.bind(w.ClarityShell);
+        w.ClarityShell.apply = function () {
+          try { localStorage.setItem(SHELL_KEY, "companion"); } catch (e) {}
+          var r = oa();
+          restore("after-shell-apply");
+          return r;
+        };
+      }
       w.ClarityShell.__companionPatched = true;
       log("shell patched");
+      try { w.ClarityShell.setMode("companion"); } catch (e) {}
     } catch (e) {
-      log("patch fail " + e);
+      log("patch " + e);
     }
   }
 
-  function pass(label) {
+  function restore(why) {
     forceCompanionShell();
-    scrubLandingVault();
-    showMainAndReminder();
-    patchShellApply();
-    try {
-      d.documentElement.style.pointerEvents = "";
-      if (d.body) d.body.style.pointerEvents = "";
-    } catch (e) {}
-    log("pass:" + label);
+    scrubLanding();
+    var main = d.getElementById("main-content");
+    if (main) {
+      var disp = "";
+      try { disp = getComputedStyle(main).display; } catch (e) {}
+      if (disp === "none" || main.style.display === "none") {
+        showMain(main);
+        log("main restored " + why);
+      } else {
+        /* soft ensure without rewrite */
+        main.setAttribute("aria-hidden", "false");
+        main.removeAttribute("hidden");
+      }
+    }
+    openReminderOnce();
+    patchShell();
   }
 
-  pass("sync");
-  if (d.readyState === "loading") {
-    d.addEventListener("DOMContentLoaded", function () { pass("dom"); });
-  } else {
-    pass("dom-ready");
+  function settle() {
+    restore("settle");
+    settled = true;
+    log("settled");
   }
-  w.addEventListener("load", function () { pass("load"); });
-  /* Beat shell-v3 timeouts (40 / 200 / mobile force) */
-  [50, 100, 250, 500, 1200, 2000, 3500].forEach(function (t) {
-    setTimeout(function () { pass("t" + t); }, t);
-  });
-  /* Observe shell mode flips back to landing */
-  try {
-    var mo = new MutationObserver(function () {
-      var m = d.documentElement.getAttribute("data-shell-mode");
-      if (m === "landing") {
-        log("observed landing → force companion");
-        pass("mo");
-      }
+
+  /* Early: attributes only, minimal layout */
+  forceCompanionShell();
+
+  function onReady() {
+    restore("ready");
+    /* one follow-up after shell timers (40–200ms) */
+    setTimeout(function () {
+      restore("t220");
+      settle();
+    }, 220);
+    setTimeout(function () {
+      /* final quiet check only if main hidden */
       var main = d.getElementById("main-content");
       if (main && getComputedStyle(main).display === "none") {
-        log("main hidden → restore");
-        pass("mo-main");
+        restore("t600-fix");
+      } else {
+        log("stable@600");
+      }
+    }, 600);
+  }
+
+  if (d.readyState === "loading") {
+    d.addEventListener("DOMContentLoaded", onReady);
+  } else {
+    onReady();
+  }
+  w.addEventListener("load", function () {
+    var main = d.getElementById("main-content");
+    if (main && getComputedStyle(main).display === "none") restore("load");
+    else log("load-ok");
+  });
+
+  /* Observe only shell-mode attribute — not every class thrash */
+  try {
+    var mo = new MutationObserver(function (muts) {
+      for (var i = 0; i < muts.length; i++) {
+        if (muts[i].attributeName === "data-shell-mode") {
+          if (d.documentElement.getAttribute("data-shell-mode") === "landing") {
+            restore("mo-landing");
+          }
+        }
       }
     });
-    mo.observe(d.documentElement, { attributes: true, attributeFilter: ["data-shell-mode", "class"] });
+    mo.observe(d.documentElement, { attributes: true, attributeFilter: ["data-shell-mode"] });
   } catch (e) {}
 
-  w.clarityCompanionUnfreeze = function () { pass("manual"); };
+  w.clarityCompanionUnfreeze = function () { restore("manual"); };
 })(window, document);

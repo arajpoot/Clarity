@@ -1,4 +1,4 @@
-/* Companion Phase 1.1 — never blank main on companion room */
+/* Companion Phase 2 · stable surface · less jump */
 html[data-clarity-room="companion"] #main-content,
 html[data-shell-mode="companion"] #main-content,
 html.companion-unfrozen #main-content {
@@ -6,12 +6,9 @@ html.companion-unfrozen #main-content {
   visibility: visible !important;
   opacity: 1 !important;
   pointer-events: auto !important;
-  height: auto !important;
-  overflow: visible !important;
 }
 html[data-clarity-room="companion"] #tab-reminder.tab-panel.is-active,
-html[data-clarity-room="companion"] #tab-reminder.tab-panel.active,
-html[data-shell-mode="companion"] #tab-reminder {
+html[data-clarity-room="companion"] #tab-reminder.tab-panel.active {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -31,8 +28,10 @@ html[data-clarity-room="companion"] #clarity-welcome {
   max-height: 0 !important;
   overflow: hidden !important;
 }
-/* path tiles may show; hubs must stay readable */
-html[data-clarity-room="companion"] .tab-panel.rrra-hub.is-active {
-  display: block !important;
-  min-height: 12rem;
+/* Reduce layout jump: no double opacity animation on hubs during boot */
+html[data-clarity-room="companion"] .tab-panel.rrra-hub {
+  transition: none;
+}
+html[data-clarity-room="companion"].companion-unfrozen .tab-panel.rrra-hub.is-active {
+  transition: opacity 0.2s ease;
 }
