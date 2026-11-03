@@ -1,0 +1,27 @@
+/* Companion Phase 1 unfreeze · Yawm day-landing stays off on Companion · campus untouched */
+html[data-clarity-room="companion"] #clarity-day-landing,
+html[data-clarity-room="companion"] .clarity-day-landing,
+html[data-clarity-room="companion"] #clarity-landing-stack,
+html[data-clarity-room="companion"] .day-landing-stack,
+html[data-clarity-room="companion"] #amana-vault-gate,
+html[data-clarity-room="companion"] #amana-vault-interior,
+html[data-clarity-room="companion"] #landing-gate-screen,
+html[data-clarity-room="companion"] #clarity-welcome {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+html[data-clarity-room="companion"] #main-content {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+html[data-clarity-room="companion"] #tab-reminder.tab-panel.is-active,
+html[data-clarity-room="companion"] #tab-reminder.tab-panel.active {
+  display: block !important;
+  visibility: visible !important;
+  aria-hidden: false;
+}
