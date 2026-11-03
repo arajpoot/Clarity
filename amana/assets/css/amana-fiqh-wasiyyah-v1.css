@@ -1,0 +1,125 @@
+/*! Farāʾiḍ study + Wasiyyah enrich styles */
+.faraid-study-v2, .wasiyyah-enrich-v2 {
+  margin: 0.85rem 0;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: linear-gradient(160deg, rgba(30, 125, 94, 0.12), rgba(0, 0, 0, 0.22));
+  font-family: Inter, system-ui, sans-serif;
+}
+.fs-badge, .we-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(160, 58, 42, 0.25);
+  color: #f0d5a0;
+  margin-bottom: 0.45rem;
+}
+.faraid-study-v2 h3, .wasiyyah-enrich-v2 h3 {
+  margin: 0.2rem 0 0.35rem;
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.15rem;
+}
+.fs-lead, .we-lead {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  opacity: 0.92;
+  margin: 0 0 0.55rem;
+}
+.fs-tut, .we-tut {
+  margin: 0.4rem 0 0.65rem;
+  font-size: 0.82rem;
+}
+.fs-tut summary, .we-tut summary {
+  cursor: pointer;
+  color: #c9a84c;
+  font-weight: 700;
+}
+.fs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem 0.65rem;
+}
+@media (max-width: 640px) {
+  .fs-grid { grid-template-columns: 1fr; }
+}
+.fs-grid label, .wasiyyah-enrich-v2 label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+.fs-grid input, .wasiyyah-enrich-v2 input,
+.wasiyyah-enrich-v2 textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.2rem;
+  padding: 0.42rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: #0c1c16;
+  color: inherit;
+  font-size: 0.88rem;
+}
+.fs-actions, .we-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.65rem 0;
+}
+.fs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+.fs-table th, .fs-table td {
+  text-align: left;
+  padding: 0.35rem 0.4rem;
+  border-bottom: 1px solid rgba(212, 180, 90, 0.18);
+  vertical-align: top;
+}
+.fs-result {
+  margin-top: 0.65rem;
+  padding: 0.65rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.25);
+  background: rgba(0, 0, 0, 0.22);
+}
+.fs-msg, .we-msg {
+  min-height: 1.1em;
+  font-size: 0.78rem;
+  margin: 0.35rem 0;
+}
+.fs-msg.ok, .we-msg.ok { color: #7dcea0; }
+.fs-msg.err, .we-msg.err { color: #f0a090; }
+.fs-disc, .we-disc {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  line-height: 1.4;
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.6rem;
+  border-left: 3px solid rgba(212, 180, 90, 0.45);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 8px 8px 0;
+}
+.fs-empty {
+  font-size: 0.84rem;
+  opacity: 0.85;
+  padding: 0.55rem;
+  border: 1px dashed rgba(212, 180, 90, 0.28);
+  border-radius: 10px;
+}
+.we-links {
+  font-size: 0.8rem;
+  margin-top: 0.55rem;
+}
+.we-links a {
+  color: #c9a84c;
+  font-weight: 700;
+  margin-right: 0.65rem;
+}
