@@ -1,0 +1,67 @@
+{
+  "ok": true,
+  "cycles": [
+    {
+      "name": "rich_purpose",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "lockout",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "backup",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "create_unlock",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "fortify_size",
+      "ok": true,
+      "detail": {
+        "size": 3641,
+        "issues": []
+      }
+    },
+    {
+      "name": "gate_js_syntax",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "no_wipe_design",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ],
+  "status": "verified",
+  "diagnosis": {
+    "what_happened": "H2 amana-gate-rich-v1 replaced gate via innerHTML with a thin form; fortify-boot was reduced to ~329B stub. Original ~8KB gate DOM (purpose, Tirmidhi warning, create/unlock, lockout, backup) lived in Companion tab-notes extract.",
+    "restore": "Static classic gate fragment + full fortify boot from companion + gate-rich-v2 wires IDs without wiping DOM"
+  }
+}
