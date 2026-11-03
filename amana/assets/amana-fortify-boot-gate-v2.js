@@ -1,6 +1,6 @@
-/*! amana-fortify-boot gate-aware v2
- * On the gate (/amana/) → do NOT load full Dayn sealed chain.
- * On /amana/dayn/ → load the freeze-polished Dayn chain.
+/*! amana-fortify-boot gate-aware v2 · Phase B
+ * Gate → no Dayn scripts.
+ * /amana/dayn/ → ensure + adapter-v2 + ledger-v3 + bridge.
  * Educational only — not a fatwa.
  */
 (function (w) {
@@ -19,18 +19,15 @@
     return /\/amana\/dayn\/?/.test(location.pathname || "");
   }
 
-  // Full Dayn chain only on the Dayn chamber
   var SEALED_DAYN = [
     "/amana/sealed/dayn-ensure-s45.js",
     "/amana/sealed/dayn-mount-adapter-v2.js",
-    "/amana/sealed/dayn-ledger-v2.js",
+    "/amana/sealed/dayn-ledger-v3.js",
     "/amana/sealed/dayn-section-bridge-v2.js"
   ];
 
-  // On gate: load nothing from Dayn (guard handles policy)
   var SEALED_GATE = [];
-
-  var VERSION = "20261102G1";
+  var VERSION = "20261102B1";
   var loading = null;
 
   function loadScript(src) {
@@ -51,12 +48,7 @@
 
   w.ClarityLoadAmanaSealed = function () {
     if (loading) return loading;
-
     var list = isDaynChamber() ? SEALED_DAYN : (isGatePath() ? SEALED_GATE : SEALED_DAYN);
-
-    // Other chambers (heirs/tree/fiqh/wasiyyah) currently get no Dayn scripts —
-    // that is intentional; Dayn lives on /amana/dayn/.
-
     loading = Promise.resolve();
     list.forEach(function (src) {
       loading = loading.then(function () {
@@ -67,7 +59,6 @@
         });
       });
     });
-
     loading = loading.then(function () {
       try {
         document.dispatchEvent(new CustomEvent("clarity-amana-sealed-ready"));
