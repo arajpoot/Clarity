@@ -4,11 +4,10 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Dayn ledger · Amānah · Clarity</title>
-<meta name="description" content="Qard ḥasan / dayn ledger on this device. Safe export desk. Educational only — not a fatwa."/>
+<meta name="description" content="Qard ḥasan / dayn ledger on this device. CSV export · educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/dayn/"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102E2"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102E2" defer></script>
-<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102E2"></script>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102DN"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102DN" defer></script>
 <style>
 :root { color-scheme: dark light; }
 body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
@@ -28,9 +27,7 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 .amana-foot { text-align:center; margin-top:1.5rem; font-size:0.75rem; opacity:0.8; }
 .amana-foot a { color:#c9a84c; font-weight:700; }
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102UI"/>
+<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102ENG"></script>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
@@ -57,28 +54,34 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 
   <section class="amana-card">
     <p class="disc">
-      Record debts and trusts you <strong>owe</strong> or <strong>hold</strong>. Prefer <em>qard ḥasan</em> without ribā.
-      Private on <strong>this device</strong>. Confirm serious matters with a qualified local scholar.
+      Record debts and trusts you <strong>owe</strong> or <strong>hold</strong> so they are not forgotten.
+      Prefer <em>qard ḥasan</em> (goodly loan) notes without ribā. This ledger is a private aid on <strong>this device</strong>.
+      Confirm serious matters with a qualified local scholar and, where needed, counsel.
+    </p>
+    <p style="font-size:0.8rem;opacity:0.9">
+      <strong>Chain:</strong> fortify → ledger → mount → section bridge (CSV) → enrich ·
+      <strong>Email:</strong> mailto draft only · <strong>API:</strong> none by design (no cloud debt upload).
     </p>
   </section>
 
-  <div id="clarity-vault-dayn-io" aria-label="Export desk"></div>
+  <div id="clarity-vault-dayn-io"></div>
   <div id="clarity-vault-slot-dayn"></div>
   <div id="clarity-landing-slot-dayn"></div>
 
   <section class="amana-card">
     <h2 style="margin:0 0 0.4rem;color:#d4b45a;font-size:1rem">Unlock</h2>
-    <p style="font-size:0.85rem">If the ledger does not appear, open the <a href="/amana/" style="color:#c9a84c;font-weight:700">Amānah gate</a>, unlock, then return. The green pill at the top shows unlocked status.</p>
+    <p style="font-size:0.85rem">If the ledger does not appear, open the <a href="/amana/" style="color:#c9a84c;font-weight:700">Amānah gate</a>, unlock this session, then return here.</p>
   </section>
 
-  <p class="amana-foot"><a href="/amana/">← Gate</a> · on-device only · no cloud debt API</p>
+  <p class="amana-foot"><a href="/amana/">← Gate</a> · on-device only</p>
 </main>
-<script defer src="/amana/assets/amana-fortify-boot-v1.js?v=20261102E2"></script>
-<script defer src="/amana/assets/amana-export-desk-v1.js?v=20261102E2"></script>
+<script defer src="/amana/assets/amana-fortify-boot-v1.js?v=20261102ENG"></script>
+<script defer src="/amana/assets/amana-export-desk-v1.js?v=20261102DN"></script>
+<script defer src="/amana/assets/amana-subpage-lock-v1.js?v=20261102DN"></script>
 <script>
 (function(){
   try {
-    if (window.ClarityAmanaEngine && window.ClarityAmanaEngine.isUnlocked() && window.ClarityLoadAmanaSealed) {
+    if (sessionStorage.getItem("clarity_amana_session_unlocked_v1") === "1" && window.ClarityLoadAmanaSealed) {
       window.ClarityLoadAmanaSealed();
     }
   } catch(e) {}
