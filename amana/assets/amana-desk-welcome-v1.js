@@ -194,8 +194,8 @@
       "<h2>Need the full vault?</h2>" +
       "<p>Family tree, Farāʾiḍ study, Wasiyyah, full Dayn ledger, and Notes open after unlock.</p>" +
       '<div class="cta-row">' +
-      '<button type="button" id="desk-scroll-unlock">Unlock vault · login</button>' +
-      '<a class="soft" href="#amana-vault-gate">Jump to gate</a>' +
+      '<button type="button" id="desk-scroll-unlock">Continue to unlock page</button>' +
+      '<a class="soft" href="/amana/unlock/">Open unlock landing</a>' +
       "</div></section>" +
       '<section class="desk-interior" id="desk-interior">' +
       "<h2 style=\"margin:0 0 0.25rem;font-family:Cormorant Garamond,Georgia,serif;color:#e8d5a3\">Interior · chambers open</h2>" +
@@ -464,14 +464,8 @@
     var scroll = document.getElementById("desk-scroll-unlock");
     if (scroll)
       scroll.onclick = function () {
-        var gate = document.getElementById("amana-vault-gate") || document.getElementById("amana-gate-unlock");
-        if (gate) {
-          try {
-            gate.scrollIntoView({ behavior: "smooth", block: "start" });
-          } catch (e) {
-            gate.scrollIntoView(true);
-          }
-        }
+        // Dedicated unlock landing (next step after desk)
+        location.href = "/amana/unlock/";
       };
   }
 
