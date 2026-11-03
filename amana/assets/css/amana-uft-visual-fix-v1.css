@@ -1,0 +1,50 @@
+/*! Visual pedigree viewport — required #uft-preview canvas */
+#uft-stage {
+  position: relative;
+}
+#uft-preview.uft-tree {
+  display: block !important;
+  width: 100%;
+  min-height: min(48vh, 26rem);
+  max-height: min(70vh, 40rem);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 16px;
+  border: 2px solid rgba(212, 180, 90, 0.42);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 40%),
+    linear-gradient(160deg, #0f2a22 0%, #0a1c16 55%, #071410 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.28);
+  padding: 0.75rem 0.35rem;
+  margin: 0.35rem 0 0.5rem;
+}
+#uft-preview .uft-zoom-layer,
+#uft-zoom-layer {
+  transform-origin: top center;
+}
+/* Member cards painted by UFT core */
+#uft-preview .uft-person,
+#uft-preview .uft-card,
+#uft-preview [class*="uft-mem"],
+#uft-preview .uft-node {
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(12, 28, 22, 0.95);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+}
+#uft-stage [data-uft-legacy="1"] {
+  display: none !important;
+}
+#uft-cards-sync-hint {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0.35rem 0 0.55rem;
+  opacity: 0.92;
+}
+.uft-build-actions .btn-secondary,
+.uft-build-actions label.btn-secondary {
+  background: rgba(0, 0, 0, 0.28);
+  color: inherit;
+}
