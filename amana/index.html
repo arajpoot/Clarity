@@ -4,145 +4,59 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Amānah · Clarity — on-device vault</title>
-<meta name="description" content="Amānah room home — Dayn, heirs, tree, farāʾiḍ, wasiyyah. Educational only."/>
+<meta name="description" content="Amānah passphrase gate and private on-device tools. Educational only — not a fatwa."/>
+<meta name="clarity-phase" content="H2H3"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/"/>
-<meta name="clarity-phase" content="A6"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101A5"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101A5" defer></script>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102H"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102H" defer></script>
 <style>
 :root { color-scheme: dark light; }
-* { box-sizing: border-box; }
-body {
-  margin: 0; min-height: 100vh; font-family: system-ui, sans-serif;
-  background: radial-gradient(1000px 500px at 50% -10%, rgba(30,125,94,0.22), transparent),
-              linear-gradient(180deg, #0c1c16, #0a1410 55%);
-  color: #e8f0ec;
-}
-.amana-wrap { max-width: 44rem; margin: 0 auto; padding: 0.75rem 1rem 2.5rem; }
-.amana-hero { text-align: center; margin: 1rem 0 1rem; }
-.amana-hero .bismillah { font-size: 1.2rem; direction: rtl; margin: 0 0 0.35rem; }
-.amana-hero h1 { font-family: Georgia, serif; font-size: 1.75rem; margin: 0 0 0.35rem; color: #e8d5a3; }
-.amana-hero p { margin: 0.3rem 0; opacity: 0.9; font-size: 0.88rem; line-height: 1.45; }
-.amana-subnav { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; margin: 0.5rem 0 0.85rem; }
-.amana-subnav a {
-  text-decoration: none; color: inherit; font-size: 0.75rem; font-weight: 700;
-  padding: 0.35rem 0.7rem; border-radius: 999px;
-  border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.25);
-}
-.amana-subnav a.is-here { background: rgba(30,125,94,0.45); border-color: rgba(212,180,90,0.55); }
-.amana-card {
-  margin: 0.75rem 0; padding: 0.95rem 1rem; border-radius: 14px;
-  border: 1px solid rgba(212,180,90,0.3); background: rgba(15,76,58,0.16);
-}
-.amana-card h2 { margin: 0 0 0.4rem; font-size: 1.05rem; color: #d4b45a; }
-.amana-card p { margin: 0.35rem 0; font-size: 0.82rem; line-height: 1.45; opacity: 0.92; }
-.dash-grid { display: grid; gap: 0.55rem; margin-top: 0.5rem; }
-@media (min-width: 560px) { .dash-grid { grid-template-columns: 1fr 1fr; } }
-.dash-grid a {
-  display: block; text-decoration: none; color: inherit;
-  padding: 0.75rem 0.85rem; border-radius: 12px;
-  border: 1px solid rgba(212,180,90,0.25); background: rgba(12,28,22,0.5);
-}
-.dash-grid a strong { display: block; margin-bottom: 0.2rem; color: #e8d5a3; }
-.dash-grid a span { font-size: 0.75rem; opacity: 0.85; line-height: 1.35; }
-.dash-grid a .stat { display: block; margin-top: 0.35rem; font-size: 0.72rem; color: #c9a84c; }
-.amana-gate-box {
-  padding: 0.85rem; border-radius: 12px;
-  border: 1px solid rgba(212,180,90,0.35); background: rgba(0,0,0,0.28);
-}
-.btn-soft {
-  display: inline-block; margin: 0.25rem 0.25rem 0 0; padding: 0.4rem 0.85rem;
-  border-radius: 999px; border: 1px solid rgba(212,180,90,0.35);
-  background: rgba(30,125,94,0.35); color: inherit; font-weight: 700; font-size: 0.8rem;
-  cursor: pointer; text-decoration: none;
-}
-.amana-unlocked-only[hidden] { display: none !important; }
-body:not([data-amana-unlocked="1"]) .amana-unlocked-only { display: none !important; }
-.amana-foot { text-align: center; margin-top: 1.5rem; font-size: 0.75rem; opacity: 0.75; }
-.amana-foot a { color: #c9a84c; font-weight: 700; }
-#clarity-landing-slot-dayn, #clarity-vault-slot-dayn, #clarity-vault-dayn-io { min-height: 0.25rem; }
-#amana-dash-status { font-size: 0.78rem; opacity: 0.9; margin-top: 0.35rem; }
+body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
+  background:linear-gradient(180deg,#0c1c16,#0a1410); color:#e8f0ec; }
+.amana-wrap { max-width:42rem; margin:0 auto; padding:0.75rem 1rem 2.5rem; }
+.amana-hero { text-align:center; margin:1rem 0; }
+.amana-hero h1 { font-family:Georgia,serif; color:#e8d5a3; font-size:1.7rem; margin:0 0 0.35rem; }
+.amana-card { margin:0.75rem 0; padding:0.95rem 1rem; border-radius:14px;
+  border:1px solid rgba(212,180,90,0.3); background:rgba(15,76,58,0.14); }
+.amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0; }
+.amana-subnav a { text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
+  padding:0.35rem 0.7rem; border-radius:999px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25); }
+.amana-foot { text-align:center; margin-top:1.5rem; font-size:0.75rem; opacity:0.75; }
+.amana-foot a { color:#c9a84c; font-weight:700; }
 </style>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
-  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
-  <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
-  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
-  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico">🏠</span><span class="crn-label">Companion</span></a>
+  <a href="/daily/" data-room-link="yawm"><span class="crn-ico">🌅</span><span class="crn-label">Yawm</span></a>
+  <a href="/campus/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
+  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
   <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
 </nav>
-
 <main class="amana-wrap">
   <header class="amana-hero">
-    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <p lang="ar" dir="rtl" style="font-size:1.1rem">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
     <h1>Amānah</h1>
     <p>Private on-device room · Dayn · heirs · tree · study tools</p>
-    <p><strong>Educational only — not a fatwa · not legal or financial advice.</strong><br/>
-    Clarity does not store your passphrase and cannot recover it.</p>
+    <p><strong>Educational only — not a fatwa · not legal advice.</strong></p>
   </header>
-
-
-<nav class="amana-subnav" aria-label="Amānah sections">
-  <a href="/amana/" class="is-here" aria-current="page">Home</a>
-  <a href="/amana/dayn/">Dayn</a>
-  <a href="/amana/heirs/">Heirs</a>
-  <a href="/amana/notes/">Notes</a>
-  <a href="/amana/tree/">Family tree</a>
-  <a href="/amana/fiqh/">Farāʾiḍ</a>
-  <a href="/amana/wasiyyah/">Wasiyyah</a>
-</nav>
-
-
-  <section class="amana-card" id="amana-vault-gate" data-vault-root="1" data-vault-passphrase-panel="1" role="region" aria-label="Amānah modules">
-    <div class="amana-gate-box">
-      <div style="font-weight:800;color:#e8d5a3;margin-bottom:0.35rem">🔐 Chamber status</div>
-      <p style="font-size:0.82rem;margin:0 0 0.5rem">Sealed modules load on this room only. Unlock UI from the gate stack mounts when available. Passphrase never leaves the device.</p>
-      <button type="button" class="btn-soft" id="amana-load-sealed-btn">Load vault modules</button>
-      <button type="button" class="btn-soft" id="amana-mark-unlocked-btn">Show unlocked panels</button>
-      <p id="amana-dash-status">Checking device notes…</p>
-    </div>
+  <nav class="amana-subnav">
+    <a href="/amana/">Gate</a>
+    <a href="/amana/dayn/">Dayn</a>
+    <a href="/amana/heirs/">Heirs</a>
+    <a href="/amana/notes/">Notes</a>
+    <a href="/amana/tree/">Tree</a>
+    <a href="/amana/fiqh/">Farāʾiḍ</a>
+    <a href="/amana/wasiyyah/">Wasiyyah</a>
+  </nav>
+  <section class="amana-card" id="amana-vault-gate" data-vault-root="1" data-vault-passphrase-panel="1"></section>
+  <section class="amana-card amana-unlocked-only" hidden>
+    <h2 style="color:#d4b45a;font-size:1.05rem;margin:0 0 0.4rem">Tools after unlock</h2>
+    <p style="font-size:0.85rem">Dayn ledger, heir readiness, family tree, farāʾiḍ study, wasiyyah notes — on this device.</p>
   </section>
-
-  <section class="amana-card">
-    <h2>On-ramp dashboard</h2>
-    <p>Open any tool. Counts are local to this browser only.</p>
-    <div class="dash-grid" id="amana-dash-grid">
-      <a href="/amana/dayn/"><strong>Dayn · Qard ḥasan</strong><span>Loans & repayments · CSV/Excel</span><span class="stat" data-stat="dayn">—</span></a>
-      <a href="/amana/heirs/"><strong>Heir readiness</strong><span>Letter fields · print pack</span><span class="stat" data-stat="heirs">—</span></a>
-      <a href="/amana/notes/"><strong>Notes</strong><span>Private page notes</span><span class="stat" data-stat="notes">—</span></a>
-      <a href="/amana/tree/"><strong>Family tree</strong><span>Full UFT on this device</span><span class="stat" data-stat="tree">Open toolkit</span></a>
-      <a href="/amana/fiqh/"><strong>Farāʾiḍ study</strong><span>Scenarios · checklist · not a verdict</span><span class="stat" data-stat="fiqh">—</span></a>
-      <a href="/amana/wasiyyah/"><strong>Wasiyyah notes</strong><span>Optional third · print</span><span class="stat" data-stat="wasi">—</span></a>
-    </div>
-  </section>
-
-  <section class="amana-card" data-amana-dayn="landing">
-    <h2>Quick Dayn entry</h2>
-    <p>Same ledger as the Dayn page. Educational · no interest.</p>
-    <div id="clarity-landing-slot-dayn" data-dayn-slot="landing"></div>
-  </section>
-
-  <section class="amana-card amana-unlocked-only" id="amana-chamber-dayn" data-amana-dayn="vault" hidden>
-    <h2>Dayn · vault counterpart</h2>
-    <div id="amana-vault-ledger-block-dayn">
-      <div id="clarity-vault-slot-dayn" data-dayn-slot="vault"></div>
-      <div id="clarity-vault-dayn-io" data-dayn-io="1"></div>
-    </div>
-  </section>
-
-  <p class="amana-foot">
-    <a href="/companion/">Companion</a> ·
-    <a href="/daily/">Yawm</a> ·
-    <a href="/campus/">University</a><br/>
-    Educational only · not a fatwa · not legal advice
-  </p>
+  <p class="amana-foot"><a href="/companion/">Companion</a> · <a href="/daily/">Yawm</a></p>
 </main>
-
-<script defer src="/amana/assets/amana-fortify-boot-v1.js?v=20261101A6"></script>
-<script defer src="/amana/assets/amana-gate-ui-v1.js?v=20261101A6"></script>
-<script defer src="/companion/assets/clarity-dayn-v0-boot.js?v=20261101A6"></script>
-<script defer src="/amana/assets/amana-room-v1.js?v=20261101A6"></script>
-<script defer src="/amana/assets/amana-dashboard-v1.js?v=20261101A6"></script>
+<script defer src="/amana/assets/amana-fortify-boot-v1.js?v=20261102H"></script>
+<script defer src="/amana/assets/amana-gate-rich-v1.js?v=20261102H"></script>
 </body>
 </html>
