@@ -3,46 +3,25 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Family tree · UFT · Amānah · Clarity</title>
-<meta name="description" content="Full family tree toolkit on device. Educational — not a legal pedigree."/>
+<title>Family tree · Amānah · Clarity</title>
+<meta name="description" content="Private family outline and pedigree tools on this device. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/tree/"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101A4"/>
-<link rel="stylesheet" href="/amana/assets/clarity-pedigree-plaque-css-v1.css?v=20261101A4"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101A4" defer></script>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102TR"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102TR" defer></script>
+<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102TR"></script>
+<link rel="stylesheet" href="/amana/assets/clarity-pedigree-plaque-css-v1.css?v=20261102TR"/>
 <style>
-:root { color-scheme: dark light; }
-* { box-sizing: border-box; }
-body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
-  background:linear-gradient(180deg,#0c1c16,#0a1410); color:#e8f0ec; }
-.amana-wrap { max-width:56rem; margin:0 auto; padding:0.75rem 1rem 2.5rem; }
-.amana-hero { text-align:center; margin:0.75rem 0 1rem; }
-.amana-hero h1 { font-family:Georgia,serif; color:#e8d5a3; font-size:1.55rem; margin:0; }
-.amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0 0.75rem; }
-.amana-subnav a { text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
-  padding:0.35rem 0.7rem; border-radius:999px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25); }
-.amana-subnav a.is-here { background:rgba(30,125,94,0.45); }
-.amana-card { margin:0.75rem 0; padding:0.95rem 1rem; border-radius:14px;
-  border:1px solid rgba(212,180,90,0.3); background:rgba(15,76,58,0.14); }
-.disc { font-size:0.78rem; padding:0.55rem 0.7rem; border-radius:10px;
-  border-left:3px solid rgba(212,180,90,0.55); background:rgba(0,0,0,0.25); margin:0.5rem 0; }
-.uft-grid { display:grid; gap:0.5rem; }
-@media(min-width:700px){ .uft-grid-2 { grid-template-columns:1fr 1fr; } }
-.uft-field { margin:0.35rem 0; }
-.uft-field label { display:block; font-size:0.75rem; opacity:0.85; margin-bottom:0.15rem; }
-.uft-field input, .uft-field select, .uft-field textarea {
-  width:100%; padding:0.4rem; border-radius:8px; border:1px solid rgba(212,180,90,0.3);
-  background:#0c1c16; color:inherit; font-size:0.85rem;
-}
-.uft-stage {
-  min-height:14rem; border:1px dashed rgba(212,180,90,0.3); border-radius:12px;
-  padding:0.75rem; margin:0.5rem 0; overflow:auto; background:rgba(0,0,0,0.2);
-}
-.btn-soft { display:inline-block; margin:0.25rem 0.25rem 0 0; padding:0.4rem 0.85rem;
-  border-radius:999px; border:1px solid rgba(212,180,90,0.35); background:rgba(30,125,94,0.35);
-  color:inherit; font-weight:700; font-size:0.8rem; cursor:pointer; text-decoration:none; }
-.amana-foot { text-align:center; margin-top:1.5rem; font-size:0.75rem; opacity:0.75; }
-.amana-foot a { color:#c9a84c; font-weight:700; }
-#uft-status { font-size:0.8rem; opacity:0.85; }
+body{margin:0;min-height:100vh;font-family:system-ui,sans-serif;background:linear-gradient(180deg,#0c1c16,#0a1410);color:#e8f0ec}
+.amana-wrap{max-width:52rem;margin:0 auto;padding:0.75rem 1rem 2.5rem}
+.amana-hero{text-align:center;margin:0.75rem 0}
+.amana-hero h1{font-family:Georgia,serif;color:#e8d5a3;margin:0 0 0.35rem}
+.amana-subnav{display:flex;flex-wrap:wrap;gap:0.4rem;justify-content:center;margin:0.5rem 0}
+.amana-subnav a{text-decoration:none;color:inherit;font-size:0.75rem;font-weight:700;padding:0.35rem 0.7rem;border-radius:999px;border:1px solid rgba(212,180,90,0.3);background:rgba(0,0,0,0.25)}
+.amana-subnav a.is-here{background:rgba(30,125,94,0.45)}
+.disc{font-size:0.8rem;line-height:1.45;padding:0.55rem 0.7rem;border-radius:10px;border-left:3px solid rgba(212,180,90,0.55);background:rgba(0,0,0,0.25);margin:0.5rem 0}
+/* Minimal UFT readability if full CSS missing */
+.uft-titlebar h2{color:#e8d5a3}
+.card-tree{margin:0.75rem 0;padding:0.85rem;border-radius:14px;border:1px solid rgba(212,180,90,0.3);background:rgba(15,76,58,0.1)}
 </style>
 </head>
 <body>
@@ -50,105 +29,93 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
   <a href="/companion/" data-room-link="companion"><span class="crn-ico">🏠</span><span class="crn-label">Companion</span></a>
   <a href="/daily/" data-room-link="yawm"><span class="crn-ico">🌅</span><span class="crn-label">Yawm</span></a>
   <a href="/campus/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
-  <a href="/amana/" data-room-link="amana" class="is-here"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
-  <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
+  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
 </nav>
 <main class="amana-wrap">
   <header class="amana-hero">
-    <h1>Family tree · UFT</h1>
-    <p style="font-size:0.85rem;opacity:0.9"><strong>Educational only — not a legal pedigree or court filing.</strong></p>
+    <h1>Family tree · pedigree</h1>
+    <p><strong>Educational only — not a fatwa · not a court pedigree.</strong></p>
   </header>
   <nav class="amana-subnav">
-    <a href="/amana/">Home</a>
+    <a href="/amana/">Gate</a>
     <a href="/amana/dayn/">Dayn</a>
     <a href="/amana/heirs/">Heirs</a>
-    <a href="/amana/notes/">Notes</a>
-    <a href="/amana/tree/" class="is-here" aria-current="page">Family tree</a>
+    <a href="/amana/tree/" class="is-here">Tree</a>
     <a href="/amana/fiqh/">Farāʾiḍ</a>
     <a href="/amana/wasiyyah/">Wasiyyah</a>
   </nav>
-
-  <section class="amana-card" id="user-family-tree-card">
-    <p class="disc">Full UFT stack from the fortified Amānah toolkit. Data stays on this device. Confirm farāʾiḍ with a scholar.</p>
-    <div id="clarity-family-tree-host">
-      <div id="uft-stage" class="uft-stage" data-uft="stage">
-        <div id="uft-zoom-layer">
-          <div id="uft-zoom-sizer">
-            <div id="uft-g1" class="uft-band" data-uft-gen="1"></div>
-            <div id="uft-g2" class="uft-band" data-uft-gen="2"></div>
-            <div id="uft-g3" class="uft-band" data-uft-gen="3"></div>
-            <div id="uft-backbone">
-              <div id="uft-self" class="uft-self"></div>
-              <div id="uft-self-note"></div>
-              <div id="uft-father"></div><div id="uft-father-y"></div>
-              <div id="uft-mother"></div><div id="uft-mother-y"></div>
-              <div id="uft-spouse"></div>
-              <div id="uft-children"></div>
-              <div id="uft-siblings"></div>
-              <div id="uft-grandchildren"></div>
-              <div id="uft-pgf"></div><div id="uft-pgm"></div>
-              <div id="uft-mgf"></div><div id="uft-mgm"></div>
-            </div>
-          </div>
-        </div>
-        <p id="uft-status">Loading UFT modules…</p>
-        <p id="uft-empty"></p>
-      </div>
-
-      <div class="uft-grid uft-grid-2" style="margin-top:0.75rem">
-        <div>
-          <h3 style="color:#d4b45a;font-size:0.95rem;margin:0 0 0.35rem">Registry · add person</h3>
-          <div class="uft-field"><label for="uft-reg-name">Name</label><input id="uft-reg-name" type="text"/></div>
-          <div class="uft-field"><label for="uft-reg-role">Relation / role</label><input id="uft-reg-role" type="text"/></div>
-          <div class="uft-field"><label for="uft-reg-phone">Phone</label><input id="uft-reg-phone" type="text"/></div>
-          <div class="uft-field"><label for="uft-reg-email">Email</label><input id="uft-reg-email" type="text"/></div>
-          <div class="uft-field"><label for="uft-reg-city">City</label><input id="uft-reg-city" type="text"/></div>
-          <div class="uft-field"><label for="uft-reg-note">Note</label><input id="uft-reg-note" type="text"/></div>
-          <input type="hidden" id="uft-reg-edit-id"/>
-          <div class="uft-field"><label for="uft-reg-link-host">Link host</label><input id="uft-reg-link-host" type="text"/></div>
-          <div class="uft-field"><label for="uft-reg-link-rel">Link relation</label><input id="uft-reg-link-rel" type="text"/></div>
-          <button type="button" class="btn-soft" onclick="typeof uftRegAddNew==='function'&&uftRegAddNew()">Add to registry</button>
-          <button type="button" class="btn-soft" onclick="typeof uftRegClearForm==='function'&&uftRegClearForm()">Clear form</button>
-        </div>
-        <div>
-          <h3 style="color:#d4b45a;font-size:0.95rem;margin:0 0 0.35rem">Registry list</h3>
-          <div id="uft-reg-list"></div>
-          <div id="uft-reg-new-section"></div>
-          <div id="uft-library"></div>
-          <div id="uft-reg-loaded-count" style="font-size:0.78rem;opacity:0.85;margin-top:0.35rem"></div>
-        </div>
-      </div>
-
-      <div style="margin-top:0.75rem">
-        <button type="button" class="btn-soft" onclick="typeof uftSnapshot==='function'&&uftSnapshot()">Snapshot</button>
-        <button type="button" class="btn-soft" onclick="typeof uftClear==='function'&&uftClear()">Clear tree</button>
-        <button type="button" class="btn-soft" onclick="typeof uftZoomReset==='function'&&uftZoomReset()">Reset zoom</button>
-        <span id="uft-zoom-label" style="font-size:0.78rem;opacity:0.85;margin-left:0.35rem"></span>
-      </div>
-      <div id="uft-integrity" style="font-size:0.78rem;margin-top:0.5rem;opacity:0.9"></div>
-      <div id="uft-audit-list"></div>
-    </div>
-  </section>
-
-  <p class="amana-foot"><a href="/amana/">Amānah home</a> · <a href="/amana/fiqh/">Farāʾiḍ study</a></p>
+  <p class="disc">Private on this device. Confirm inheritance with a qualified local scholar. Unlock at the gate if the chamber shell appears.</p>
+<div class="card card-tree fiqh-tool-card" id="user-family-tree-card"><div class="cred-stamp">Reviewed for educational accuracy: Clarity editorial pass (Qur’an / classical farāʾiḍ outlines) · Sep 2026 · Educational only — not a fatwa.</div><div class="uft-titlebar"><div class="uft-titlebar-main"><h2>🌳 Family tree</h2><span class="uft-titlebar-sub">Ancestry pedigree · registry · links</span></div><p class="uft-titlebar-desc">
+ Private descendant pedigree: oldest generation at the top, you at the bottom. Maiden names for women. Saved only on this device.
+ </p>
+<details class="clarity-tool-tutorial meme-tutorial-compact" id="uft-tutorial" style="margin:.4rem 0 .55rem;font-size:.78rem;line-height:1.45;background:var(--accent-soft,rgba(212,180,90,.12));border-radius:10px;padding:.35rem .65rem;border:1px solid var(--border,rgba(255,255,255,.12))">
+  <summary style="cursor:pointer;font-weight:700;color:var(--gold,#d4b45a);list-style:none">💡 How to use the Family Tree · quick guide</summary>
+  <ol style="margin:.35rem 0 0;padding-left:1.15rem">
+    <li><strong>Build pedigree</strong> — add members on the main tree; set <em>♂/♀</em>, <em>● Alive / † Deceased</em>, and birth year on each card.</li>
+    <li><strong>＋ Relative</strong> — link child, spouse, sibling, or parent from the searchable registry (or type a new name).</li>
+    <li><strong>🌳 Own Family Tree</strong> — open a personal branch under the main view; siblings of the root appear without needing parents first.</li>
+    <li><strong>Family sheet / Data health</strong> — print or check missing genders &amp; vitals before Farāʾiḍ.</li>
+    <li><strong>Privacy</strong> — data stays on this device only. Educational genealogy — not a legal pedigree certificate.</li>
+  </ol>
+  <p style="margin:.35rem 0 0;opacity:.9"><strong>Educational only — not a fatwa.</strong> Use this map to load living heirs into Inheritance and Wasiyyah tools below.</p>
+</details>
+</div><div class="meme-palette" id="uft-palette" style="display:flex;"><span class="notes-hint" style="margin-right:0.35rem;">Workspace:</span><button type="button" class="meme-swatch" style="background:#0f4c3a" onclick="uftSetSkin('green')" title="Deep green"></button><button type="button" class="meme-swatch" style="background:#1a365d" onclick="uftSetSkin('navy')" title="Navy"></button><button type="button" class="meme-swatch" style="background:#4a1942" onclick="uftSetSkin('plum')" title="Plum"></button><button type="button" class="meme-swatch" style="background:#7c2d12" onclick="uftSetSkin('earth')" title="Earth"></button><button type="button" class="meme-swatch" style="background:#0e7490" onclick="uftSetSkin('teal')" title="Teal"></button><button type="button" class="meme-swatch" style="background:#365314" onclick="uftSetSkin('olive')" title="Olive"></button><button type="button" class="meme-swatch" style="background:#44403c" onclick="uftSetSkin('charcoal')" title="Charcoal"></button><button type="button" class="meme-swatch" style="background:#f5f0e6;border:1px solid #ccc" onclick="uftSetSkin('parchment')" title="Parchment"></button></div><div class="uft-stage" id="uft-stage" data-skin="green"><input type="file" id="uft-load-file" accept="application/json,.json" hidden onchange="uftLoadFile(event)"><input type="file" id="uft-cards-file" accept="application/json,.json,.csv,text/csv" hidden onchange="uftLoadMemberCards(event)"><input type="file" id="uft-pack-file" accept="application/json,.json" hidden onchange="clarityImportPack(event)"><div class="uft-wrap"><div class="uft-chrome no-print"><div class="clarity-toolbar-amana no-print"><button type="button" class="btn-secondary" onclick="uftShowIntegrity()">🩺 Data health</button><button type="button" class="btn-secondary" onclick="uftPrintFamilySheet()">🖨️ Family sheet</button><button type="button" class="btn-secondary" onclick="uftPrintPedigreeView()">🌳 Print pedigree</button></div></div><div class="uft-tree-first"><div class="uft-view-bar"><span class="uft-hint" style="margin:0 0.2rem 0 0;">Workspace:</span><button type="button" id="uft-view-pedigree" class="active" onclick="uftSetView('pedigree')">Main pedigree</button><span class="uft-zoom-tools uft-zoom-strip" id="uft-zoom-strip" title="Pedigree scale" role="toolbar" aria-label="Pedigree scale">
+<button type="button" class="btn-secondary uft-zoom-btn" onclick="uftZoomBy(-0.12)" aria-label="Zoom out">−</button>
+<button type="button" class="btn-secondary uft-zoom-btn" id="uft-zoom-label" onclick="uftZoomReset()" title="Reset to 100%">100%</button>
+<button type="button" class="btn-secondary uft-zoom-btn" onclick="uftZoomBy(0.12)" aria-label="Zoom in">+</button>
+<button type="button" class="btn-secondary uft-zoom-btn" data-uft-z="0.5" onclick="uftZoomSet(0.5)">50%</button>
+<button type="button" class="btn-secondary uft-zoom-btn" data-uft-z="0.75" onclick="uftZoomSet(0.75)">75%</button>
+<button type="button" class="btn-secondary uft-zoom-btn" data-uft-z="1" onclick="uftZoomSet(1)">100%</button>
+<button type="button" class="btn-secondary uft-zoom-btn" data-uft-z="1.25" onclick="uftZoomSet(1.25)">125%</button>
+<button type="button" class="btn-secondary uft-zoom-btn" data-uft-z="1.5" onclick="uftZoomSet(1.5)">150%</button>
+<button type="button" class="btn-secondary uft-zoom-btn" data-uft-z="2" onclick="uftZoomSet(2)">200%</button>
+<button type="button" class="btn-secondary uft-zoom-btn" onclick="uftZoomFit&&uftZoomFit()">Fit</button>
+</span></div><div id="uft-preview-wrap" class="uft-preview-wrap"><div class="uft-chip-legend" id="uft-chip-legend" title="Card controls">
+  <span class="uft-leg-item"><span class="uft-leg-chip live">●</span> Alive</span>
+  <span class="uft-leg-item"><span class="uft-leg-chip dead">†</span> Deceased</span>
+  <span class="uft-leg-item"><span class="uft-leg-chip">♂♀</span> Gender</span>
+  <span class="uft-leg-item"><span class="uft-leg-chip">Yr</span> Birth year</span>
+  <span class="uft-leg-item"><span class="uft-leg-chip">👪</span> Family</span>
+  <span class="uft-leg-item"><span class="uft-leg-chip own">🌳</span> Own Family Tree</span>
+  <span class="uft-leg-item"><span class="uft-leg-chip add">＋</span> Add relative</span>
+</div><div id="uft-preview" class="uft-tree"><div id="uft-zoom-sizer" class="uft-zoom-sizer"><div id="uft-zoom-layer" class="uft-zoom-layer"></div></div></div><div id="uft-branch-wrap" class="uft-branch-wrap" hidden><div class="uft-workspace-divider"><span>✦ Own Family Tree · personal branch</span></div><div class="uft-branch-panel" id="uft-branch-panel"><div class="uft-branch-bar"><strong id="uft-branch-title">Personal tree</strong><span style="display:flex;gap:0.35rem;flex-wrap:wrap;align-items:center;"><button type="button" class="btn-secondary" id="uft-branch-close-btn" onclick="return window.uftCloseOwnTree ? window.uftCloseOwnTree(event) : false;">Close branch</button><button type="button" class="uft-del-btn" id="uft-branch-x-btn" title="Close this branch view" onclick="return window.uftCloseOwnTree ? window.uftCloseOwnTree(event) : false;" style="position:static;margin:0;width:2rem;height:2rem;border-radius:999px;">×</button></span></div><div class="uft-branch-line" id="uft-branch-line"></div><div class="uft-branch-body" id="uft-branch-body"></div></div></div><div id="uft-focus" class="uft-focus" hidden><div class="uft-focus-bar"><strong id="uft-focus-title">Family</strong><button type="button" onclick="uftCloseMemberView()">Close</button></div><div id="uft-focus-body" class="uft-focus-body"></div></div></div><div class="uft-editor uft-data-dock collapsed" id="uft-editor"><div class="uft-dock-head"><div class="uft-dock-title-wrap"><strong>Names &amp; registry</strong><span class="uft-dock-sub">Add · link · build pedigree</span></div><button type="button" class="uft-editor-toggle" id="uft-editor-toggle" onclick="uftToggleEditor()">✕ Close</button></div><div class="uft-dock-body"><div class="uft-dock-steps" role="toolbar" aria-label="Registry workflow steps"><button type="button" class="uft-step" data-step="1" onclick="uftDockStep(1)">1 · Registry</button><button type="button" class="uft-step" data-step="2" onclick="uftDockStep(2)">2 · Link</button><button type="button" class="uft-step" data-step="3" onclick="uftDockStep(3)">3 · Loaded cards</button><button type="button" class="uft-step" data-step="4" onclick="uftDockStep(4)">4 · Build tree</button><button type="button" class="uft-step" data-step="5" onclick="uftDockStep(5)">5 · Vitals</button></div><details class="uft-registry" id="uft-registry-box" open><summary>1 · Member registry — add · link · build</summary><p class="uft-hint" style="margin:0.35rem 0 0.5rem;"><strong>Main workspace:</strong> Add people, link relations, then build the pedigree.
+ On the tree, use <strong>+ Child / + Spouse / + Sibling</strong> to attach from the loaded list.
+ </p><div class="uft-reg-section" id="uft-reg-new-section" open><div class="uft-reg-section-title">＋ New member <span class="uft-badge">add &amp; link</span></div><div class="uft-reg-new-grid"><input type="text" id="uft-reg-name" placeholder="Full name *" autocomplete="name"><input type="tel" id="uft-reg-phone" placeholder="Phone / WhatsApp (optional)"><input type="email" id="uft-reg-email" placeholder="Email (optional)"><input type="text" id="uft-reg-city" placeholder="City / country (optional)"></div><div class="uft-reg-new-grid" style="margin-top:0.4rem;"><label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.82rem;">
+ Link on tree — attach to existing member
+ <select id="uft-reg-link-host"><option value="">No link (registry only)</option></select></label><label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.82rem;">
+ As relation
+ <select id="uft-reg-link-rel"><option value="child">Child (next generation)</option><option value="spouse">Spouse</option><option value="sibling">Sibling (same generation)</option><option value="father">Father</option><option value="mother">Mother</option><option value="relative">Other relative</option></select></label></div><input type="hidden" id="uft-reg-role" value=""><input type="hidden" id="uft-reg-note" value=""><input type="hidden" id="uft-reg-edit-id" value=""><div class="uft-reg-actions"><button type="button" class="btn-primary-reg" onclick="uftRegAddNew()">＋ Save &amp; link member</button><button type="button" class="btn-secondary" onclick="uftRegImportTree()">↙ Pull names from tree</button><button type="button" class="btn-secondary" onclick="uftSave()" title="Save pedigree and show tree in workspace">💾 Save pedigree view</button></div><p class="uft-hint" style="margin:0.25rem 0 0;">Vitals (alive / gender / year) → set on the tree card after linking.</p></div><details class="uft-reg-section" id="uft-reg-saved-section" open><summary>Registry contacts <span id="uft-reg-saved-count" style="opacity:0.75;font-weight:500;"></span></summary><div id="uft-reg-list" class="uft-reg-list"></div></details><details class="uft-reg-section" id="uft-build-section" open><summary>Build tree from registry / loaded list</summary><p class="uft-hint" style="margin:0.25rem 0 0.45rem;">Map people from the loaded member list into generations, then apply to the pedigree workspace.</p><div class="uft-build-cards" id="uft-build-from-cards"><div class="uft-reg-section-title">Build pedigree <span class="uft-badge">from list</span></div><p class="uft-hint" style="margin:0 0 0.4rem;">Choose the focus person and each generation from the list, then apply — links optional.</p><label style="display:block;margin:0 0 0.45rem;">Search cards (type a few letters)
+ <input type="search" id="uft-card-search" placeholder="e.g. kar, nad, ayy…" autocomplete="off" oninput="uftFilterCardSelects(this.value)" style="width:100%;max-width:28rem;"></label><div class="uft-build-grid"><label>Focus person *
+ <select id="uft-bc-self"><option value="">Select…</option></select></label><label>Spouse
+ <select id="uft-bc-spouse"><option value="">Select…</option></select></label><label>Father
+ <select id="uft-bc-father"><option value="">Select…</option></select></label><label>Mother
+ <select id="uft-bc-mother"><option value="">Select…</option></select></label><label>Father’s father
+ <select id="uft-bc-pgf"><option value="">Select…</option></select></label><label>Father’s mother
+ <select id="uft-bc-pgm"><option value="">Select…</option></select></label><label>Mother’s father
+ <select id="uft-bc-mgf"><option value="">Select…</option></select></label><label>Mother’s mother
+ <select id="uft-bc-mgm"><option value="">Select…</option></select></label><label>Add to G1 (oldest) — multi
+ <select id="uft-bc-g1" multiple size="3"></select></label><label>Add to G2 — multi
+ <select id="uft-bc-g2" multiple size="3"></select></label><label>Add to G3 — multi
+ <select id="uft-bc-g3" multiple size="3"></select></label><label>Siblings of You — multi
+ <select id="uft-bc-siblings" multiple size="3"></select></label><label>Children of You — multi
+ <select id="uft-bc-children" multiple size="3"></select></label><label>Grandchildren — multi
+ <select id="uft-bc-grandchildren" multiple size="3"></select></label></div><div class="uft-build-actions"><button type="button" onclick="uftApplyBuildFromCards()">Apply selections → form &amp; pedigree</button><button type="button" class="btn-secondary" onclick="uftSuggestBuildFromCards()">Auto-suggest from generation hints</button><button type="button" class="btn-secondary" onclick="uftClearBuildFromCards()">Clear selectors</button></div><p class="uft-hint" style="margin:0.4rem 0 0;">Hold Ctrl/Cmd to multi-select in generation lists. Auto-suggest uses each card’s generationHint when available.</p></div></details></details><details class="uft-reg-section uft-loaded-standalone" id="uft-reg-loaded-section" open><summary>2 · Loaded members — link · build tree <span id="uft-reg-loaded-count" style="opacity:0.75;font-weight:500;"></span></summary><p class="uft-hint" style="margin:0.2rem 0 0.4rem;">Upload CSV/JSON member cards. Search, link to the tree, or use them in <strong>Build tree</strong> above. <strong>Scan &amp; delete duplicates</strong> finds same-name cards and removes extras (keeps the fullest record).</p><div class="uft-reg-actions"><button type="button" class="btn-primary-reg" onclick="document.getElementById('uft-cards-file') && document.getElementById('uft-cards-file').click()">⬆ Upload cards</button><button type="button" class="btn-secondary" onclick="uftScanLoadedDuplicates()">🔍 Scan &amp; delete duplicates</button><button type="button" class="btn-secondary" onclick="uftOffloadLoadedCards()" title="Download loaded cards then remove them from this device">⬇ Offload loaded</button><button type="button" class="btn-secondary" onclick="uftClearLoadedCards()" title="Remove all uploaded cards from this device">Clear loaded</button><button type="button" class="btn-secondary" onclick="(function(){var s=document.getElementById('uft-build-section'); if(s){s.open=true; s.scrollIntoView({behavior:'smooth',block:'nearest'});}})()">↗ Build tree from list</button></div><input type="search" id="uft-loaded-search" class="uft-loaded-search" placeholder="Search loaded members to link…" autocomplete="off" oninput="uftFilterLoadedList(this.value)"><div id="uft-reg-loaded-list" class="uft-reg-list"></div></details><p class="uft-hint">Extended pedigree: add a Sibling onto a great-grandparent to create that grandparent’s uncle, then add that uncle’s spouse and children. Same name on both lines is one person (cousin marriage).</p><details class="uft-reg-section" id="uft-manual-advanced" style="margin-top:0.5rem;"><summary>Advanced · manual name fields (optional)</summary><p class="uft-hint" style="margin:0.25rem 0 0.4rem;">Prefer registry + loaded cards. These fields still power the pedigree data model if you type names directly.</p><div class="uft-form"><label>Focus person
+ <input type="text" id="uft-self" placeholder="Given + family name"><input type="text" id="uft-self-note" placeholder="b. year – d. year / note" style="margin-top:0.3rem;"><input type="text" id="uft-spouse" placeholder="Spouse" style="margin-top:0.3rem;"></label><label>Parents
+ <input type="text" id="uft-father" placeholder="Father"><input type="text" id="uft-father-y" placeholder="Father years (optional)" style="margin-top:0.3rem;"><input type="text" id="uft-mother" placeholder="Mother (maiden name)" style="margin-top:0.3rem;"><input type="text" id="uft-mother-y" placeholder="Mother years (optional)" style="margin-top:0.3rem;"></label><label>Paternal grandparents
+ <input type="text" id="uft-pgf" placeholder="Father’s father"><input type="text" id="uft-pgm" placeholder="Father’s mother (maiden)" style="margin-top:0.3rem;"></label><label>Maternal grandparents
+ <input type="text" id="uft-mgf" placeholder="Mother’s father"><input type="text" id="uft-mgm" placeholder="Mother’s mother (maiden)" style="margin-top:0.3rem;"></label><label>Great-grandparents (G3) — one name per line, father-line first
+ <textarea id="uft-g3" placeholder="Paternal 4, then maternal 4"></textarea></label><label>Great-great-grandparents (G2)
+ <textarea id="uft-g2" placeholder="One name per line"></textarea></label><label>3rd-great-grandparents (G1)
+ <textarea id="uft-g1" placeholder="One name per line"></textarea></label><label>Quick lists (optional)
+ <textarea id="uft-siblings" placeholder="Your siblings — one per line"></textarea><textarea id="uft-children" placeholder="Your children — one per line"></textarea><textarea id="uft-grandchildren" placeholder="Your grandchildren — one per line"></textarea></label><label class="uft-rel-box" style="grid-column:1/-1;">Add a relation to any generation
+ <div class="uft-rel-add"><input type="search" id="uft-rel-card-search" class="uft-card-pick" placeholder="Search cards by starting letters…" autocomplete="off" oninput="uftFilterCardSelects(this.value)"><select id="uft-rel-cards" class="uft-card-pick" aria-label="Member cards" onchange="uftPickMemberCard(this)"><option value="">1. Pick from loaded member cards…</option></select><select id="uft-rel-pick" aria-label="Existing members" onchange="uftPickExistingName(this)"><option value="">Or choose someone already on the tree…</option></select><select id="uft-rel-anchor" aria-label="Attach to"><option value="self">You</option><option value="spouse">Spouse</option><option value="father">Father</option><option value="mother">Mother</option><option value="pgf">Father’s father</option><option value="pgm">Father’s mother</option><option value="mgf">Mother’s father</option><option value="mgm">Mother’s mother</option><option value="g1">G1 (oldest)</option><option value="g2">G2</option><option value="g3">G3</option></select><select id="uft-rel-type" aria-label="Relation"><option value="sibling">Sibling</option><option value="child">Child / offspring</option><option value="spouse">Spouse</option><option value="grandchild">Grandchild</option><option value="uncle">Uncle</option><option value="aunt">Aunt</option><option value="nephew">Nephew</option><option value="niece">Niece</option><option value="cousin">Cousin</option></select><input type="text" id="uft-rel-name" list="uft-rel-name-list" placeholder="Or type a new name" maxlength="80" onkeydown="if(event.key==='Enter'){event.preventDefault();uftAddRel();}"><datalist id="uft-rel-name-list"></datalist><select id="uft-rel-vital" aria-label="Alive or deceased"><option value="">Status…</option><option value="alive">Alive</option><option value="deceased">Deceased</option></select><select id="uft-rel-gender" aria-label="Gender"><option value="">Gender…</option><option value="male">Male</option><option value="female">Female</option></select><input type="number" id="uft-rel-born" min="1800" max="2099" placeholder="Year of birth" inputmode="numeric"><button type="button" onclick="uftAddRel()">＋ Add to tree</button></div><div class="uft-vital-row"><select id="uft-vital-who" aria-label="Person"></select><select id="uft-vital-status" aria-label="Status"><option value="">Status…</option><option value="alive">Alive</option><option value="deceased">Deceased</option></select><button type="button" class="btn-secondary" onclick="uftApplyVital()">Set status</button></div><div id="uft-rel-list" class="uft-rel-list"></div></label></div></details></div></div><details class="uft-file-ops-standalone" id="uft-file-ops-section"><summary>Save · download · upload <span style="opacity:0.75;font-weight:500;">(collapsed until needed)</span></summary><p class="uft-hint" style="margin:0.25rem 0 0.45rem;">Pedigree save, file transfer, and named copies — outside the Edit names package. All files stay on this device.</p><div class="uft-actions"><button type="button" onclick="uftSave()" title="Save and show pedigree in workspace">💾 Save · show pedigree</button><button type="button" class="btn-secondary" onclick="uftRender(); try{uftCollapseEditor()}catch(e){}">↻ Refresh view</button><button type="button" class="btn-soft" onclick="uftStartFresh()" title="Clear pedigree and rebuild from member cards">🆕 Start tree</button><button type="button" class="btn-soft" onclick="uftClear()">🗑 Clear tree</button></div><div class="uft-file-menus no-print"><label>Download
+ <select id="uft-download-menu" onchange="uftRunDownloadMenu(this)"><option value="">Choose download…</option><option value="csv">Member cards · CSV (Excel)</option><option value="cards">Member cards · JSON (backup)</option><option value="tree">Full tree · JSON (with links)</option><option value="png">Pedigree view · PNG (clean generations)</option><option value="text">Family tree · TXT (names + links)</option><option value="pack">Amānah pack · JSON</option></select></label><label>Upload
+ <select id="uft-upload-menu" onchange="uftRunUploadMenu(this)"><option value="">Choose upload…</option><option value="cards">Member cards CSV/JSON → picker list</option><option value="tree">Full tree JSON (replace pedigree)</option><option value="pack">Amānah pack</option></select></label></div><p class="uft-hint no-print" style="margin:0.35rem 0 0;">Download <strong>Member cards · CSV (Excel)</strong> to edit names and generations in Excel, then Upload the same CSV back into the picker list. Full tree JSON restores links.</p><div class="uft-save-row"><span class="uft-status" id="uft-status">Private on this device — not uploaded.</span><div class="uft-lib"><select id="uft-library" aria-label="Saved copies" onchange="uftLoadSnapshot(this.value)"><option value="">Saved copies…</option></select><button type="button" class="btn-secondary" onclick="uftSnapshot()">Save named copy</button></div></div></details></div></div></div><!-- /uft-stage --></div><!-- /user-family-tree-card -->
+  <p style="text-align:center;margin-top:1.5rem;font-size:0.8rem"><a href="/amana/" style="color:#c9a84c;font-weight:700">← Gate</a></p>
 </main>
-<script defer src="/amana/assets/inline-clarity_uft_viewport_recover.js?v=20261101A4"></script>
-<script defer src="/amana/assets/inline-clarity_uft_print_fix_v2.js?v=20261101A4"></script>
-<script defer src="/amana/assets/inline-clarity_pedigree_plaque_v1.js?v=20261101A4"></script>
-<script defer src="/amana/assets/clarity-amana-uft-v1.js?v=20261101A4"></script>
-<script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261101A4"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  var s = document.getElementById("uft-status");
-  function tick() {
-    if (typeof window.uftLoad === "function" || typeof window.uftRegRender === "function") {
-      if (s) s.textContent = "UFT ready · educational outline on this device";
-      try { if (typeof uftRegRender === "function") uftRegRender(); } catch (e) {}
-    } else if (s) s.textContent = "UFT modules loaded · interact with registry fields below";
-  }
-  setTimeout(tick, 800);
-  setTimeout(tick, 2000);
-});
-</script>
+<script defer src="/amana/assets/inline-clarity_pedigree_plaque_v1.js?v=20261102TR"></script>
+<script defer src="/amana/assets/inline-clarity_uft_viewport_recover.js?v=20261102TR"></script>
+<script defer src="/amana/assets/inline-clarity_uft_print_fix_v2.js?v=20261102TR"></script>
+<script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261102TR"></script>
 </body>
 </html>
