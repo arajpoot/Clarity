@@ -1,0 +1,679 @@
+{
+  "phase": "0",
+  "date": "2026-11-03",
+  "scope": "companion_only",
+  "companion_index_bytes": 215110,
+  "tree_sha_main": "56e3eb17dacc12aa19f71a2791c0fff4295b76b8",
+  "script_counts": {
+    "external_total": 67,
+    "rb_skip_dead": 10,
+    "active_external": 57,
+    "by_role": {
+      "shell": 8,
+      "boot": 8,
+      "dead": 10,
+      "feature": 29,
+      "craft": 11,
+      "telemetry": 1
+    },
+    "inline_named_ids": [
+      "rb-companion-boot",
+      "gate-obliterate-js",
+      "daily-isolate-js",
+      "companion-phase-controller",
+      "clarity-shariah-source-guard-v1",
+      "clarity-error-guard-v2",
+      "clarity-ld-json-publish",
+      "clarity-ld-json-primary",
+      "clarity-madinah-autoplay-v1",
+      "clarity-banner-repair-v1",
+      "clarity-surah-continue-v1",
+      "clarity-path-night-fix-v1",
+      "clarity-path-reset-js-v1",
+      "clarity-perf-loader-v1",
+      "clarity-surface-polish-v1",
+      "clarity-icons-links-polish-v1",
+      "clarity-companion-polish-v1-js",
+      "clarity-companion-repair-v1",
+      "clarity-lite-boot-shim",
+      "nuros5-shariah-js-v2",
+      "clarity-embed-fold-viewport-v1",
+      "clarity-tajweed-read-sync-v1",
+      "clarity-quick-nav-v1",
+      "clarity-tab-persist-v1",
+      "clarity-rrra5-core-js-v1",
+      "clarity-callig-pad-boot-v1",
+      "clarity-online-sitewide-v1",
+      "clarity-rrra5-legacy-cleanup-v1",
+      "clarity-section-pills-js-v1",
+      "clarity-path-nuclear-v1",
+      "clarity-pedigree-plaque-js-v1",
+      "clarity-doors-flow-js-v1",
+      "clarity-allow-guard-v1",
+      "clarity-live-harden-v1",
+      "clarity-uft-viewport-recover-js-v1",
+      "clarity-amana-backup-guidance-v1",
+      "clarity-amana-hardening-v1",
+      "clarity-vault-fix-js-v1",
+      "clarity-uft-print-fix-v2-js",
+      "clarity-vault-security-harden-v1",
+      "clarity-vault-note-registry-js"
+    ],
+    "css_href_count": 19
+  },
+  "scripts": [
+    {
+      "src": "/companion/assets/clarity-banner-av-v1.js",
+      "version": "20261102AV",
+      "role": "shell",
+      "deferred": false,
+      "rb_skip": false,
+      "raw": "/companion/assets/clarity-banner-av-v1.js?v=20261102AV"
+    },
+    {
+      "src": "/assets/room-nav/clarity-room-nav-v1.js",
+      "version": "20261102RB",
+      "role": "shell",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/room-nav/clarity-room-nav-v1.js?v=20261102RB"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_shariah_source_guard_v1.js",
+      "version": "20261101WB1",
+      "role": "boot",
+      "deferred": false,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_shariah_source_guard_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_error_guard_v2.js",
+      "version": "20261101WB1",
+      "role": "boot",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_error_guard_v2.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity-micro-boot-v1.js",
+      "version": "20261101WB1",
+      "role": "boot",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-bundle-nuros-v1.js",
+      "version": "20261101WB1",
+      "role": "shell",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-bundle-nuros-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity-shell-v3.js",
+      "version": "20261101WB1",
+      "role": "boot",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity-shell-v3.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity-landing-v3.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/assets/companion-inline/inline-clarity-landing-v3.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_madinah_ap.js",
+      "version": "20261101WB1",
+      "role": "shell",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_madinah_ap.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_banner_repair.js",
+      "version": "20261101WB1",
+      "role": "shell",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_banner_repair.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_banner_moon_v1.js",
+      "version": "20261101WB1",
+      "role": "shell",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_banner_moon_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_surah_cont.js",
+      "version": "20261101WB1",
+      "role": "shell",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_surah_cont.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_path_plaques_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_path_plaques_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/clarity-path-progress-v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/clarity-path-progress-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/clarity-grave-path-curriculum-js.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/clarity-grave-path-curriculum-js.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_path_night_fix_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_path_night_fix_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_path_reset_v1.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/assets/companion-inline/inline-clarity_path_reset_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity-perf-loader-v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity-perf-loader-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_surface_polish_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_surface_polish_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_icons_links_polish_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_icons_links_polish_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_companion_polish_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_companion_polish_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_companion_repair_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_companion_repair_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-96908bb2ed.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-96908bb2ed.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/clarity-link-stubs-v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": false,
+      "rb_skip": false,
+      "raw": "/assets/clarity-link-stubs-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-42564f0868.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-42564f0868.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-982b3dbd78.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-982b3dbd78.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_embed_fold.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_embed_fold.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_lmr_read_sync.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_lmr_read_sync.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_quick_nav.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_quick_nav.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_tab_persist.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_tab_persist.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_rrra5_core.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_rrra5_core.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_callig_pad_boot.js",
+      "version": "20261101WB1",
+      "role": "boot",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_callig_pad_boot.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_online_sitewide_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_online_sitewide_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_rrra5_legacy_cleanup_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_rrra5_legacy_cleanup_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_section_pills_v2.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_section_pills_v2.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_path_nuclear_v1.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/assets/companion-inline/inline-clarity_path_nuclear_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_pedigree_plaque_v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_pedigree_plaque_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity-doors-flow-js-v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity-doors-flow-js-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-322398e3fd.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-322398e3fd.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_live_harden_v1.js",
+      "version": "20261101WB1",
+      "role": "boot",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_live_harden_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_uft_viewport_recover.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_uft_viewport_recover.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_amana_backup_guide.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/assets/companion-inline/inline-clarity_amana_backup_guide.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_amana_hardening.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/assets/companion-inline/inline-clarity_amana_hardening.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_vault_fix.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/assets/companion-inline/inline-clarity_vault_fix.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_uft_print_fix_v2.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity_uft_print_fix_v2.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_vault_harden_v1.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/assets/companion-inline/inline-clarity_vault_harden_v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity_vault_note_registry.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/assets/companion-inline/inline-clarity_vault_note_registry.js?v=20261101WB1"
+    },
+    {
+      "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "version": null,
+      "role": "telemetry",
+      "deferred": false,
+      "rb_skip": false,
+      "raw": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+    },
+    {
+      "src": "/assets/nuros-icons-apply-v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": false,
+      "rb_skip": false,
+      "raw": "/assets/nuros-icons-apply-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-bundle-meme-v1.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-bundle-meme-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-bundle-security-v1.js",
+      "version": "20261101WB1",
+      "role": "boot",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-bundle-security-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity-qada-tracker-v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": false,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity-qada-tracker-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity-samina-verse-v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": false,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity-samina-verse-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/assets/companion-inline/inline-clarity-final-surface-v1.js",
+      "version": "20261101WB1",
+      "role": "shell",
+      "deferred": false,
+      "rb_skip": false,
+      "raw": "/assets/companion-inline/inline-clarity-final-surface-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-clarity_lmr_read_sync.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-clarity_lmr_read_sync.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-nx-tajweed-deep-studio-js-v1.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-nx-tajweed-deep-studio-js-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/nx-tj-lmr-js-v1.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/nx-tj-lmr-js-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-clarity-meme-canvas-clean-v1.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-clarity-meme-canvas-clean-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-clarity-meme-online-bg-v1.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-clarity-meme-online-bg-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-clarity_meme_unlock_v2.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-clarity_meme_unlock_v2.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-clarity_meme_push_cards.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-clarity_meme_push_cards.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-clarity-tj-meme-tweet-revamp-js.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-clarity-tj-meme-tweet-revamp-js.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/clarity-notes-recovery-v1.js",
+      "version": "20261101WB1",
+      "role": "feature",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/clarity-notes-recovery-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-bundle-meme-v1.js",
+      "version": "20261101WB1",
+      "role": "craft",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-bundle-meme-v1.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-clarity_callig_pad_boot.js",
+      "version": "20261101WB1",
+      "role": "boot",
+      "deferred": true,
+      "rb_skip": false,
+      "raw": "/companion/modules/inline-clarity_callig_pad_boot.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/modules/inline-clarity_vault_note_registry.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/companion/modules/inline-clarity_vault_note_registry.js?v=20261101WB1"
+    },
+    {
+      "src": "/companion/assets/clarity-vault-fortify-boot-v1.js",
+      "version": "20261101WB1",
+      "role": "dead",
+      "deferred": true,
+      "rb_skip": true,
+      "raw": "/companion/assets/clarity-vault-fortify-boot-v1.js?v=20261101WB1"
+    }
+  ],
+  "yawm_now_sot": {
+    "path": "/daily/modules/now/",
+    "policy": "Yawm owns Now pulse SoT; Companion must not re-host day-landing as SoT",
+    "companion_flags": {
+      "__CLARITY_SKIP_DAY_LANDING__": true,
+      "yawm-sot-hide-day-landing_css": true,
+      "landing-v3_rb_skip": true,
+      "prefetch_daily": true
+    }
+  },
+  "freeze_notes": [
+    "rb-companion-boot scrubs day-landing/amana-vault and forces tab-reminder",
+    "Competing CSS: yawm-sot-hide-day-landing vs daily-isolate-js that may display:block landing",
+    "Vault scripts mostly type=text/plain data-rb-skip \u2014 good isolation",
+    "Still ~50+ active external scripts \u2014 Phase 2 consolidation target"
+  ],
+  "campus_lock": {
+    "blob_count": 296,
+    "bytes": 1211172,
+    "sha256_of_path_sha_list": "6b0be926a02be72dbb168209d098151f2add5c4ca1f06b063964122813c612b2",
+    "sample": [
+      "campus/.gitkeep:8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "campus/FOUNDATION_LOCK.md:fdfd9b03f75d74c4d913247450a7476efda79a44",
+      "campus/NAV_CONTRACT.md:e110aee5a3b6f8f0ac5c84a157a8cc5ae5d5d103",
+      "campus/NOMENCLATURE.md:3ee9cc7b975e8ed6d4d430a6faa25ab35cea7eb5",
+      "campus/README_UNIVERSITY_ESSENTIALS.md:5890c8d72c939d74794dc578112e189e6589f50d",
+      "campus/ROOM_LOCK.txt:f0bfd5de1b74afd283c6238e9f9e81e56a982a75",
+      "campus/SMOKE_ONRAMP.json:b06f70e9ccda62c839cd6feaf6d3ad0f0881f0eb",
+      "campus/SMOKE_REPORT.json:f58400e78143954ffbfae1bdc371089d2fb61884"
+    ]
+  },
+  "amana_lock_reference": {
+    "blob_count": 161,
+    "bytes": 2303073,
+    "sha256_of_path_sha_list": "9a40f5a736379002c3d2fb484724c6018a36855ee86f3bec36a773ec6f483b9c",
+    "sample": [
+      "amana/.gitkeep:8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "amana/A2_PAGES.md:7ebc183cf1ff2c5255dcba8d06edb989f93fd0e1",
+      "amana/A2_VERIFIED.json:42f9999c3be543faa416f395323be2a49b5d3140",
+      "amana/A3_SEALED.md:e431351218349b4982f40c8abc82fb75bdb0cf7a",
+      "amana/A3_VERIFIED.json:48936f96e535d2e2d4eb307d72c97504c817ad2c",
+      "amana/A4_RICH.md:9bf2336b05762aab281c3acfe1c6488cc6b86c4c",
+      "amana/A4_VERIFIED.json:3d4c15341197a57b89251daf631d565bdc994bdc",
+      "amana/A5_DASHBOARD.md:9771d6352d7ac24704d7a56ff0ac1fa2f9c96ef3"
+    ]
+  },
+  "daily_lock_reference": {
+    "blob_count": 94,
+    "bytes": 524080,
+    "sha256_of_path_sha_list": "b408a8abdc5365f02b690f10ce660ccdb8be0de38f10186559a22cb01ca76890",
+    "sample": [
+      "daily/.gitkeep:8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "daily/ARCHITECTURE.md:94533f9077c4e208b9494e5e0acd605dd5629573",
+      "daily/AUDIT_REPORT.json:769a8a773b670c56643438d77a26fe8cc4f03a55",
+      "daily/DAILY_PLAN.txt:3c55a27933759310715915d00b500f8e95c05c07",
+      "daily/ENRICH_NOTES.md:26fbcdf0f3200148525e107a061e2d12af001a90",
+      "daily/FINAL_BUILD.md:84ae42bb3ecf15034cb479821710a0016a1ceb3d",
+      "daily/FOUNDATION_LOCK.md:5d13e42d392755d3f5601736ca87e14be91897cf",
+      "daily/GAP1_REPORT.md:c9fac0bfa5f48b0a75badd8292f01064b399d74f"
+    ]
+  },
+  "policy": {
+    "do_not_modify": [
+      "campus/**",
+      "amana/**"
+    ],
+    "may_modify": [
+      "companion/**",
+      "assets/companion-inline/**",
+      "assets/room-nav/**",
+      "companion docs only"
+    ],
+    "shared_read_only_prefer": [
+      "assets/css/**",
+      "assets/room-nav/**"
+    ]
+  }
+}
