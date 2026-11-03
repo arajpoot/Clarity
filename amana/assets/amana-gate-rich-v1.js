@@ -126,12 +126,12 @@
         p.then(function () {
           return loadSealed();
         }).then(function () {
-          setSessionUnlocked(true);
+          if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
           status("Vault marker ready on this device · unlocked this session · not a legal certificate");
           if (passNew) passNew.value = "";
           if (passConfirm) passConfirm.value = "";
         }).catch(function () {
-          setSessionUnlocked(true);
+          if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
           status("Session open on this device · educational only");
         });
       });
@@ -150,19 +150,19 @@
             return Promise.resolve(secure.unlock(va)).then(function (ok) {
               if (ok === false) {
                 status("Unlock failed — wrong passphrase or no vault yet.");
-                setSessionUnlocked(false);
+                if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(false); else setSessionUnlocked(false);
                 return;
               }
-              setSessionUnlocked(true);
+              if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
               status("Unlocked for this browser session");
               if (passUnlock) passUnlock.value = "";
             });
           }
-          setSessionUnlocked(true);
+          if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
           status("Session open · educational chamber · lock when you leave");
           if (passUnlock) passUnlock.value = "";
         }).catch(function () {
-          setSessionUnlocked(true);
+          if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(true); else setSessionUnlocked(true);
           status("Session open (sealed optional)");
         });
       });
@@ -187,7 +187,7 @@
         try {
           if (w.ClarityVaultSecure && w.ClarityVaultSecure.reset) w.ClarityVaultSecure.reset();
         } catch (e2) {}
-        setSessionUnlocked(false);
+        if (window.ClarityAmanaEngine) window.ClarityAmanaEngine.setUnlocked(false); else setSessionUnlocked(false);
         showCreate(true);
         status("Local marker cleared on this device only · create a new passphrase");
       });
