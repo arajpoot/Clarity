@@ -1,0 +1,26 @@
+Dayn Freeze Polish · Install
+
+1. Copy files preserving paths:
+
+   amana/sealed/dayn-mount-adapter-v2.js
+   → /amana/sealed/dayn-mount-adapter-v2.js
+
+   amana/assets/amana-fortify-boot-v2.js
+   → /amana/assets/amana-fortify-boot-v2.js
+
+2. Point the Dayn chamber (and any gate that loads fortify) at the new boot:
+
+   Old:
+   <script src="/amana/assets/amana-fortify-boot-v1.js?v=20261102M5" defer></script>
+
+   New:
+   <script src="/amana/assets/amana-fortify-boot-v2.js?v=20261102D1" defer></script>
+
+3. Hard refresh the site (or bump service-worker / cache keys).
+
+4. Run the smoke matrix in docs/DAYN_CHAIN_POLISH.md.
+
+Rollback: switch the script tag back to amana-fortify-boot-v1.js.
+The original sealed files are left in place.
+
+Educational only — not a fatwa.
