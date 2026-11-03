@@ -1,0 +1,68 @@
+/*! am-banner-v1 · Sharīʿah-aligned Amānah banner · educational only — not a fatwa */
+.amana-shariah-banner {
+  position: relative;
+  margin: 0 auto 1rem;
+  max-width: 48rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 180, 90, 0.45);
+  background:
+    linear-gradient(145deg, rgba(12, 36, 28, 0.98) 0%, rgba(8, 22, 18, 0.99) 50%, rgba(14, 40, 32, 0.97) 100%);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(232, 213, 163, 0.12);
+}
+.amana-shariah-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 11px, rgba(212, 180, 90, 0.15) 11px, rgba(212, 180, 90, 0.15) 12px),
+    repeating-linear-gradient(90deg, transparent, transparent 11px, rgba(212, 180, 90, 0.12) 11px, rgba(212, 180, 90, 0.12) 12px);
+}
+.amana-shariah-banner::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #c9a84c, #e8d5a3, #c9a84c, transparent);
+}
+.amana-banner-inner { position: relative; z-index: 1; text-align: center; }
+.amana-banner-kicker {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(232, 213, 163, 0.85); margin: 0 0 0.35rem;
+}
+.amana-banner-title {
+  font-family: "Cormorant Garamond", "Reem Kufi", Georgia, serif;
+  font-size: 1.45rem; font-weight: 700; color: #e8d5a3; margin: 0 0 0.5rem;
+}
+.amana-banner-ayah {
+  font-family: "Noto Naskh Arabic", "Amiri", serif;
+  font-size: 1.2rem; line-height: 1.85; direction: rtl;
+  color: #f5f0e6; margin: 0.5rem 0 0.35rem;
+}
+.amana-banner-meaning {
+  font-size: 0.82rem; line-height: 1.5; color: rgba(232, 240, 236, 0.9);
+  margin: 0.35rem auto 0.65rem; max-width: 36rem;
+}
+.amana-banner-ref {
+  font-size: 0.75rem; color: #c9a84c; font-weight: 700;
+}
+.amana-banner-ref a { color: #e8d5a3; text-decoration: underline; }
+.amana-banner-chips {
+  display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center;
+  margin-top: 0.75rem;
+}
+.amana-banner-chips a, .amana-banner-chips span {
+  font-size: 0.7rem; font-weight: 700; padding: 0.28rem 0.65rem; border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35); background: rgba(0, 0, 0, 0.28);
+  color: inherit; text-decoration: none;
+}
+.amana-banner-note {
+  margin-top: 0.65rem; font-size: 0.72rem; opacity: 0.85; line-height: 1.4;
+}
+@media (min-width: 640px) {
+  .amana-banner-title { font-size: 1.65rem; }
+  .amana-banner-ayah { font-size: 1.35rem; }
+}
