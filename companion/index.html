@@ -1,57 +1,15 @@
 <!DOCTYPE html><html data-clarity-room="companion" data-theme="light" lang="en"><head>
 
-<script id="rb-companion-boot">
-(function(){
-  "use strict";
-  if (window.__RB_COMPANION_BOOT__) return;
-  window.__RB_COMPANION_BOOT__ = true;
-  window.__CLARITY_SKIP_DAY_LANDING__ = true;
-  try {
-    localStorage.setItem("clarity_shell_mode_v1", "companion");
-    sessionStorage.setItem("clarity_shell_user_pick_v1", "1");
-    document.documentElement.setAttribute("data-clarity-room","companion");
-    document.documentElement.setAttribute("data-clarity-viewport","companion-path");
-    document.documentElement.setAttribute("data-shell-mode","companion");
-  } catch(e) {}
-  function scrub(){
-    try {
-      ["clarity-day-landing","amana-vault-gate","amana-vault-interior","clarity-reopen-bar","landing-gate-screen"].forEach(function(id){
-        var el=document.getElementById(id);
-        if(el){ el.style.setProperty("display","none","important"); el.setAttribute("hidden","hidden"); }
-      });
-      var main=document.getElementById("main-content");
-      if(main){
-        main.style.setProperty("display","block","important");
-        main.style.setProperty("visibility","visible","important");
-        main.removeAttribute("hidden");
-        main.setAttribute("aria-hidden","false");
-      }
-      var rem=document.getElementById("tab-reminder");
-      if(rem){
-        rem.classList.add("is-active","active");
-        rem.style.setProperty("display","block","important");
-        rem.setAttribute("aria-hidden","false");
-        rem.removeAttribute("hidden");
-      }
-    } catch(e2) {}
-  }
-  scrub();
-  document.addEventListener("DOMContentLoaded", scrub);
-  setTimeout(scrub, 50);
-  setTimeout(scrub, 300);
-  setTimeout(scrub, 1200);
-})();
-</script>
+<script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261103P2"></script>
+<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261103P2" />
 
-<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261103P11" />
-<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P11"></script>
 
 <script src="/companion/assets/clarity-banner-av-v1.js?v=20261102AV"></script>
 
 <meta name="clarity-surface" content="companion"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
-<meta name="companion-phase-build" content="0-1.1-shell-lock-20261103" />
+<meta name="companion-phase-build" content="2-boot-smooth-20261103" />
 
 
 
@@ -2199,6 +2157,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-bundle-nuros-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261101WB1" defer></script>
+<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P2" defer data-phase="2-after-shell"></script>
 <script type="text/plain" data-rb-skip="1" src="/assets/companion-inline/inline-clarity-landing-v3.js?v=20261101WB1" defer></script>
 <script id="clarity-madinah-autoplay-v1" src="/assets/companion-inline/inline-clarity_madinah_ap.js?v=20261101WB1" defer></script>
 <script id="clarity-banner-repair-v1" src="/assets/companion-inline/inline-clarity_banner_repair.js?v=20261101WB1" defer></script>
@@ -2263,6 +2222,6 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script type="text/plain" data-rb-skip="1" src="/companion/modules/inline-clarity_vault_note_registry.js?v=20261101WB1" defer></script>
 <script type="text/plain" data-rb-skip="1" src="/companion/assets/clarity-vault-fortify-boot-v1.js?v=20261101WB1" defer></script>
 
-<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P11" data-phase="1-tail"></script>
+<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P2" data-phase="2-smooth"></script>
 </body>
 </html>
