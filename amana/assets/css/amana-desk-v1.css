@@ -1,0 +1,269 @@
+/*! Amānah Desk · reception / ATM intake · public surface
+ * Outside vault lock · educational only
+ */
+.amana-desk {
+  max-width: 42rem;
+  margin: 0 auto 1.5rem;
+  padding: 0 0.75rem 2rem;
+  font-family: Inter, system-ui, sans-serif;
+}
+.amana-desk-hero {
+  text-align: center;
+  padding: 1.25rem 1rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background:
+    linear-gradient(160deg, rgba(30, 125, 94, 0.18), rgba(0, 0, 0, 0.28)),
+    #0a1c16;
+  margin-bottom: 0.85rem;
+}
+.amana-desk-hero h1 {
+  margin: 0.2rem 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.65rem;
+  color: #e8d5a3;
+  font-weight: 700;
+}
+.amana-desk-hero .sub {
+  font-size: 0.9rem;
+  opacity: 0.92;
+  line-height: 1.45;
+  margin: 0.35rem auto 0;
+  max-width: 28rem;
+}
+.amana-desk-hero .bism {
+  font-family: "Scheherazade New", Amiri, serif;
+  font-size: 1.15rem;
+  color: #d4b45a;
+  margin: 0;
+}
+.amana-desk-windows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin: 0.75rem 0;
+}
+@media (max-width: 560px) {
+  .amana-desk-windows { grid-template-columns: 1fr; }
+}
+.desk-window {
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: linear-gradient(165deg, rgba(30, 125, 94, 0.12), rgba(0, 0, 0, 0.22));
+  padding: 0.85rem 0.9rem;
+}
+.desk-window h2 {
+  margin: 0 0 0.35rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.15rem;
+  color: #e8d5a3;
+}
+.desk-window .win-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(30, 125, 94, 0.35);
+  margin-bottom: 0.35rem;
+}
+.desk-window p.hint {
+  font-size: 0.78rem;
+  opacity: 0.88;
+  line-height: 1.4;
+  margin: 0 0 0.5rem;
+}
+.desk-window label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.desk-window input,
+.desk-window textarea,
+.desk-window select {
+  padding: 0.45rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: #0c1c16;
+  color: inherit;
+  font-size: 0.88rem;
+  font-family: inherit;
+}
+.desk-window textarea { min-height: 4.5rem; resize: vertical; }
+.desk-window .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+.desk-window button,
+.desk-btn {
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: 1px solid rgba(212, 180, 90, 0.42);
+  background: rgba(30, 125, 94, 0.5);
+  color: inherit;
+}
+.desk-window button.soft,
+.desk-btn.soft {
+  background: rgba(0, 0, 0, 0.28);
+}
+.desk-receipt {
+  margin-top: 0.55rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  border: 1px dashed rgba(212, 180, 90, 0.4);
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  display: none;
+}
+.desk-receipt.show { display: block; }
+.desk-receipt .ticket {
+  font-weight: 700;
+  color: #d4b45a;
+  font-family: ui-monospace, monospace;
+}
+
+/* Stamp log */
+.desk-log {
+  margin: 0.85rem 0;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(15, 76, 58, 0.1);
+  padding: 0.75rem 0.9rem;
+}
+.desk-log h2 {
+  margin: 0 0 0.35rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.1rem;
+  color: #e8d5a3;
+}
+.desk-log-list {
+  max-height: 14rem;
+  overflow: auto;
+  font-size: 0.8rem;
+}
+.desk-log-item {
+  padding: 0.4rem 0.35rem;
+  border-bottom: 1px solid rgba(212, 180, 90, 0.15);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 0.55rem;
+}
+.desk-log-item .stamp {
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: #d4b45a;
+  white-space: nowrap;
+}
+.desk-log-item .kind {
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+.desk-log-item .body {
+  grid-column: 1 / -1;
+  opacity: 0.92;
+  line-height: 1.35;
+}
+
+/* Unlock lane + interior landing */
+.desk-unlock-lane {
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.3);
+  background: rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.desk-unlock-lane h2 {
+  margin: 0 0 0.25rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #e8d5a3;
+  font-size: 1.15rem;
+}
+.desk-unlock-lane p {
+  font-size: 0.82rem;
+  opacity: 0.9;
+  margin: 0 0 0.55rem;
+}
+
+.desk-interior {
+  display: none;
+  margin: 0.85rem 0 1.25rem;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: linear-gradient(160deg, rgba(30, 125, 94, 0.16), rgba(0, 0, 0, 0.25));
+}
+.desk-interior.is-open { display: block; }
+.desk-interior h2 {
+  margin: 0 0 0.35rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #e8d5a3;
+  font-size: 1.25rem;
+}
+.desk-biz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+@media (max-width: 560px) {
+  .desk-biz-grid { grid-template-columns: 1fr; }
+}
+.desk-biz-card {
+  display: block;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: rgba(0, 0, 0, 0.28);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.desk-biz-card:hover {
+  border-color: rgba(212, 180, 90, 0.55);
+  background: rgba(30, 125, 94, 0.25);
+}
+.desk-biz-card strong {
+  display: block;
+  color: #e8d5a3;
+  font-size: 0.95rem;
+  margin-bottom: 0.15rem;
+}
+.desk-biz-card span {
+  font-size: 0.75rem;
+  opacity: 0.88;
+  line-height: 1.35;
+}
+
+.desk-disc {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  line-height: 1.4;
+  margin: 0.75rem 0 0;
+  text-align: center;
+}
+.desk-msg {
+  min-height: 1.1em;
+  font-size: 0.78rem;
+  margin-top: 0.35rem;
+}
+.desk-msg.ok { color: #7dcea0; }
+.desk-msg.err { color: #f0a090; }
+
+/* When desk mode, soften heavy gate chrome if still present */
+html.amana-desk-mode #amana-vault-gate.amana-desk-soft {
+  opacity: 0.92;
+}
