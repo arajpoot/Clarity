@@ -1,26 +1,34 @@
-Dayn Freeze Polish · Install
+Bismillah.
 
-1. Copy files preserving paths:
+CLARITY FOUR GATES WELCOME + AMĀNAH UNLOCK LANDING
 
-   amana/sealed/dayn-mount-adapter-v2.js
-   → /amana/sealed/dayn-mount-adapter-v2.js
+================================================
+A) App welcome (beautiful interactive campus)
+================================================
+Upload:
+  assets/css/clarity-four-gates-welcome-v1.css
+  welcome/index.html
 
-   amana/assets/amana-fortify-boot-v2.js
-   → /amana/assets/amana-fortify-boot-v2.js
+Open: /welcome/
 
-2. Point the Dayn chamber (and any gate that loads fortify) at the new boot:
+Tap buildings or cards → Companion · Yawm · Campus · Amānah
 
-   Old:
-   <script src="/amana/assets/amana-fortify-boot-v1.js?v=20261102M5" defer></script>
+Optional: link home CTA or soft-redirect `/` to `/welcome/`
+(see index.welcome-note.html — use only if you want `/` → welcome)
 
-   New:
-   <script src="/amana/assets/amana-fortify-boot-v2.js?v=20261102D1" defer></script>
+================================================
+B) Amānah: desk then unlock as next page
+================================================
+Upload:
+  amana/unlock/index.html
+  amana/assets/amana-desk-welcome-v1.js   (patched: Continue → /amana/unlock/)
+  amana/assets/css/amana-desk-welcome-v1.css  (if not already live)
 
-3. Hard refresh the site (or bump service-worker / cache keys).
+Flow:
+  /amana/  → desk + intake
+  → “Continue to unlock page”
+  /amana/unlock/ → login only
+  → success returns to /amana/
 
-4. Run the smoke matrix in docs/DAYN_CHAIN_POLISH.md.
-
-Rollback: switch the script tag back to amana-fortify-boot-v1.js.
-The original sealed files are left in place.
-
+================================================
 Educational only — not a fatwa.
