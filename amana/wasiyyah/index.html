@@ -4,13 +4,38 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Wasiyyah · Amānah · Clarity</title>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102UI"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102UI" defer></script>
-<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102UI"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102UI"/>
-
+<meta name="description" content="Richer wasiyyah notes on device — not a legal will or fatwa."/>
+<link rel="canonical" href="https://clarity-dawah.fyi/amana/wasiyyah/"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261101A4"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261101A4" defer></script>
+<style>
+:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
+  background:linear-gradient(180deg,#0c1c16,#0a1410); color:#e8f0ec; }
+.amana-wrap { max-width:42rem; margin:0 auto; padding:0.75rem 1rem 2.5rem; }
+.amana-hero { text-align:center; margin:0.75rem 0 1rem; }
+.amana-hero h1 { font-family:Georgia,serif; color:#e8d5a3; font-size:1.55rem; margin:0; }
+.amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0 0.75rem; }
+.amana-subnav a { text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
+  padding:0.35rem 0.7rem; border-radius:999px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25); }
+.amana-subnav a.is-here { background:rgba(30,125,94,0.45); }
+.amana-card { margin:0.75rem 0; padding:0.95rem 1rem; border-radius:14px;
+  border:1px solid rgba(212,180,90,0.3); background:rgba(15,76,58,0.14); }
+.amana-card h2 { margin:0 0 0.4rem; color:#d4b45a; font-size:1.05rem; }
+.amana-card label { display:block; font-size:0.78rem; opacity:0.9; margin-top:0.45rem; }
+.amana-card input, .amana-card textarea {
+  width:100%; margin:0.25rem 0 0.35rem; padding:0.45rem; border-radius:8px;
+  border:1px solid rgba(212,180,90,0.3); background:#0c1c16; color:inherit;
+}
+.btn-soft { display:inline-block; margin:0.25rem 0.25rem 0 0; padding:0.4rem 0.85rem;
+  border-radius:999px; border:1px solid rgba(212,180,90,0.35); background:rgba(30,125,94,0.35);
+  color:inherit; font-weight:700; font-size:0.8rem; cursor:pointer; text-decoration:none; }
+.disc { font-size:0.78rem; padding:0.55rem 0.7rem; border-radius:10px;
+  border-left:3px solid rgba(212,180,90,0.55); background:rgba(0,0,0,0.25); margin:0.5rem 0; }
+.amana-foot { text-align:center; margin-top:1.5rem; font-size:0.75rem; opacity:0.75; }
+.amana-foot a { color:#c9a84c; font-weight:700; }
+</style>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
@@ -18,24 +43,36 @@
   <a href="/daily/" data-room-link="yawm"><span class="crn-ico">🌅</span><span class="crn-label">Yawm</span></a>
   <a href="/campus/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
   <a href="/amana/" data-room-link="amana" class="is-here"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
+  <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
 </nav>
 <main class="amana-wrap">
   <header class="amana-hero">
-    <h1>Wasiyyah</h1>
-    <p><strong>Educational only — not a fatwa · not legal advice.</strong></p>
+    <h1>Wasiyyah notes</h1>
+    <p style="font-size:0.85rem;opacity:0.9"><strong>Educational only — not a legal will · not a fatwa.</strong></p>
   </header>
   <nav class="amana-subnav">
-    <a href="/amana/">Gate</a>
+    <a href="/amana/">Home</a>
     <a href="/amana/dayn/">Dayn</a>
     <a href="/amana/heirs/">Heirs</a>
     <a href="/amana/notes/">Notes</a>
-    <a href="/amana/tree/">Tree</a>
+    <a href="/amana/tree/">Family tree</a>
     <a href="/amana/fiqh/">Farāʾiḍ</a>
-    <a href="/amana/wasiyyah/">Wasiyyah</a>
+    <a href="/amana/wasiyyah/" class="is-here" aria-current="page">Wasiyyah</a>
   </nav>
   <section class="amana-card">
-    <p class="disc">Chamber page · unlock at the gate if locked. On-device only.</p>
+    <h2>Prepare notes for a teacher</h2>
+    <div id="amana-wasiyyah-rich-root"></div>
   </section>
+  <section class="amana-card">
+    <h2>Related</h2>
+    <p>
+      <a class="btn-soft" href="/amana/fiqh/">Farāʾiḍ study</a>
+      <a class="btn-soft" href="/amana/heirs/">Heir readiness</a>
+      <a class="btn-soft" href="/amana/tree/">Family tree</a>
+    </p>
+  </section>
+  <p class="amana-foot"><a href="/amana/">Amānah home</a></p>
 </main>
+<script defer src="/amana/assets/amana-wasiyyah-rich-v1.js?v=20261101A4"></script>
 </body>
 </html>
