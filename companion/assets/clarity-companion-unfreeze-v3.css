@@ -1,4 +1,4 @@
-/* Companion Phase 2 · stable surface · less jump */
+/* Companion Phase 3.5-fix · stable surface · tab isolation */
 html[data-clarity-room="companion"] #main-content,
 html[data-shell-mode="companion"] #main-content,
 html.companion-unfrozen #main-content {
@@ -7,8 +7,12 @@ html.companion-unfrozen #main-content {
   opacity: 1 !important;
   pointer-events: auto !important;
 }
-html[data-clarity-room="companion"] #tab-reminder.tab-panel.is-active,
-html[data-clarity-room="companion"] #tab-reminder.tab-panel.active {
+html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active) {
+  display: none !important;
+  visibility: hidden !important;
+}
+html[data-clarity-room="companion"] .tab-panel.is-active,
+html[data-clarity-room="companion"] .tab-panel.active {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -17,8 +21,6 @@ html[data-clarity-room="companion"] #clarity-day-landing,
 html[data-clarity-room="companion"] .clarity-day-landing,
 html[data-clarity-room="companion"] #clarity-landing-stack,
 html[data-clarity-room="companion"] .day-landing-stack,
-html[data-clarity-room="companion"] #amana-vault-gate,
-html[data-clarity-room="companion"] #amana-vault-interior,
 html[data-clarity-room="companion"] #landing-gate-screen,
 html[data-clarity-room="companion"] #clarity-welcome {
   display: none !important;
@@ -28,10 +30,6 @@ html[data-clarity-room="companion"] #clarity-welcome {
   max-height: 0 !important;
   overflow: hidden !important;
 }
-/* Reduce layout jump: no double opacity animation on hubs during boot */
 html[data-clarity-room="companion"] .tab-panel.rrra-hub {
   transition: none;
-}
-html[data-clarity-room="companion"].companion-unfrozen .tab-panel.rrra-hub.is-active {
-  transition: opacity 0.2s ease;
 }

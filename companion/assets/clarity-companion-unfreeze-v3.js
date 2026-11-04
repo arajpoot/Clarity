@@ -1,19 +1,16 @@
-/*! Clarity Companion unfreeze v4 · Phase 2 smooth · campus untouched */
+/*! Clarity Companion unfreeze v4.1 · no reminder re-leak · campus untouched */
 (function (w, d) {
   "use strict";
   if (w.__CLARITY_COMPANION_UNFREEZE_V4__) return;
   w.__CLARITY_COMPANION_UNFREEZE_V4__ = true;
-  w.__CLARITY_COMPANION_UNFREEZE_V3__ = true; /* compat */
+  w.__CLARITY_COMPANION_UNFREEZE_V3__ = true;
 
   var SHELL_KEY = "clarity_shell_mode_v1";
   var LOG = [];
   w.__COMPANION_UNFREEZE_LOG = LOG;
-  var settled = false;
-  var lastMainDisplay = "";
+  var tabBooted = false;
 
-  function log(m) {
-    try { LOG.push(String(m)); } catch (e) {}
-  }
+  function log(m) { try { LOG.push(String(m)); } catch (e) {} }
 
   function hide(el) {
     if (!el) return;
@@ -21,23 +18,6 @@
       el.style.setProperty("display", "none", "important");
       el.setAttribute("hidden", "hidden");
       el.setAttribute("aria-hidden", "true");
-    } catch (e) {}
-  }
-
-  function showMain(el) {
-    if (!el) return;
-    try {
-      el.removeAttribute("hidden");
-      el.setAttribute("aria-hidden", "false");
-      el.hidden = false;
-      /* only write if needed — reduces jump */
-      if (el.style.display === "none" || el.getAttribute("style") && /display\s*:\s*none/i.test(el.getAttribute("style") || "")) {
-        el.style.setProperty("display", "block", "important");
-      } else if (!el.style.display) {
-        el.style.setProperty("display", "block", "important");
-      }
-      el.style.setProperty("visibility", "visible", "important");
-      el.style.setProperty("opacity", "1", "important");
     } catch (e) {}
   }
 
@@ -62,19 +42,31 @@
   }
 
   function scrubLanding() {
-    [
-      "clarity-day-landing",
-      "clarity-landing-stack",
-      "amana-vault-gate",
-      "amana-vault-interior",
-      "landing-gate-screen",
-      "clarity-welcome"
-    ].forEach(function (id) {
+    ["clarity-day-landing","clarity-landing-stack","amana-vault-gate","amana-vault-interior","landing-gate-screen","clarity-welcome"].forEach(function (id) {
       hide(d.getElementById(id));
     });
   }
 
-  function openReminderOnce() {
+  function showMainOnly() {
+    var main = d.getElementById("main-content");
+    if (!main) return;
+    try {
+      main.removeAttribute("hidden");
+      main.setAttribute("aria-hidden", "false");
+      main.hidden = false;
+      if (getComputedStyle(main).display === "none") {
+        main.style.setProperty("display", "block", "important");
+        log("main restored");
+      }
+      main.style.setProperty("visibility", "visible", "important");
+      main.style.setProperty("opacity", "1", "important");
+    } catch (e) {}
+  }
+
+  /** Only on first boot — do NOT re-force reminder after user changes tab */
+  function openDefaultTabOnce() {
+    if (tabBooted) return;
+    tabBooted = true;
     var hash = (w.location.hash || "").replace(/^#/, "").toLowerCase();
     var map = {
       reminder: "tab-reminder",
@@ -84,24 +76,23 @@
       notes: "tab-notes"
     };
     var target = map[hash] || "tab-reminder";
-    var rem = d.getElementById(target) || d.getElementById("tab-reminder");
-    if (!rem) return;
-    if (rem.classList.contains("is-active") && rem.getAttribute("aria-hidden") === "false") {
-      /* already open — avoid class thrash */
-      if (getComputedStyle(rem).display === "none") {
-        rem.style.setProperty("display", "block", "important");
-      }
-      return;
-    }
-    d.querySelectorAll(".tab-panel.is-active, .tab-panel.active").forEach(function (p) {
-      if (p === rem) return;
+    d.querySelectorAll(".tab-panel").forEach(function (p) {
       p.classList.remove("is-active", "active");
       p.setAttribute("aria-hidden", "true");
     });
-    rem.classList.add("is-active", "active");
-    rem.setAttribute("aria-hidden", "false");
-    rem.removeAttribute("hidden");
-    rem.style.setProperty("display", "block", "important");
+    var rem = d.getElementById(target) || d.getElementById("tab-reminder");
+    if (rem) {
+      rem.classList.add("is-active", "active");
+      rem.setAttribute("aria-hidden", "false");
+      rem.removeAttribute("hidden");
+      rem.style.removeProperty("display");
+      log("default tab " + rem.id);
+    }
+    try {
+      if (typeof w.clarityOpenSectionDoor === "function") {
+        w.clarityOpenSectionDoor(hash && map[hash] ? hash : "reminder");
+      }
+    } catch (e) {}
   }
 
   function patchShell() {
@@ -122,7 +113,10 @@
         w.ClarityShell.apply = function () {
           try { localStorage.setItem(SHELL_KEY, "companion"); } catch (e) {}
           var r = oa();
-          restore("after-shell-apply");
+          forceCompanionShell();
+          scrubLanding();
+          showMainOnly();
+          /* no openDefaultTabOnce here */
           return r;
         };
       }
@@ -134,71 +128,41 @@
     }
   }
 
-  function restore(why) {
+  function restore(why, withTab) {
     forceCompanionShell();
     scrubLanding();
-    var main = d.getElementById("main-content");
-    if (main) {
-      var disp = "";
-      try { disp = getComputedStyle(main).display; } catch (e) {}
-      if (disp === "none" || main.style.display === "none") {
-        showMain(main);
-        log("main restored " + why);
-      } else {
-        /* soft ensure without rewrite */
-        main.setAttribute("aria-hidden", "false");
-        main.removeAttribute("hidden");
-      }
-    }
-    openReminderOnce();
+    showMainOnly();
+    if (withTab) openDefaultTabOnce();
     patchShell();
+    log("pass:" + why);
   }
 
-  function settle() {
-    restore("settle");
-    settled = true;
-    log("settled");
-  }
-
-  /* Early: attributes only, minimal layout */
   forceCompanionShell();
 
   function onReady() {
-    restore("ready");
-    /* one follow-up after shell timers (40–200ms) */
+    restore("ready", true);
+    setTimeout(function () { restore("t220", false); }, 220);
     setTimeout(function () {
-      restore("t220");
-      settle();
-    }, 220);
-    setTimeout(function () {
-      /* final quiet check only if main hidden */
       var main = d.getElementById("main-content");
-      if (main && getComputedStyle(main).display === "none") {
-        restore("t600-fix");
-      } else {
-        log("stable@600");
-      }
+      if (main && getComputedStyle(main).display === "none") restore("t600-fix", false);
+      else log("stable@600");
     }, 600);
   }
 
-  if (d.readyState === "loading") {
-    d.addEventListener("DOMContentLoaded", onReady);
-  } else {
-    onReady();
-  }
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", onReady);
+  else onReady();
   w.addEventListener("load", function () {
     var main = d.getElementById("main-content");
-    if (main && getComputedStyle(main).display === "none") restore("load");
+    if (main && getComputedStyle(main).display === "none") restore("load", false);
     else log("load-ok");
   });
 
-  /* Observe only shell-mode attribute — not every class thrash */
   try {
     var mo = new MutationObserver(function (muts) {
       for (var i = 0; i < muts.length; i++) {
         if (muts[i].attributeName === "data-shell-mode") {
           if (d.documentElement.getAttribute("data-shell-mode") === "landing") {
-            restore("mo-landing");
+            restore("mo-landing", false);
           }
         }
       }
@@ -206,5 +170,5 @@
     mo.observe(d.documentElement, { attributes: true, attributeFilter: ["data-shell-mode"] });
   } catch (e) {}
 
-  w.clarityCompanionUnfreeze = function () { restore("manual"); };
+  w.clarityCompanionUnfreeze = function () { restore("manual", false); };
 })(window, document);
