@@ -1,0 +1,53 @@
+/* companion-smoke13-fix · tracks + notes visible */
+html[data-clarity-room="companion"] .clarity-gate-switcher,
+html[data-clarity-room="companion"] .clarity-gate-switcher.rrra-sitewide,
+html[data-clarity-room="companion"] #clarity-track-strip-global,
+html[data-clarity-room="companion"] .track-strip-global {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 6 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0.5rem 0 0.65rem !important;
+  padding: 0.45rem 0.55rem !important;
+  gap: 0.35rem !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(212,180,90,0.28) !important;
+  background: rgba(15,76,58,0.14) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn,
+html[data-clarity-room="companion"] #clarity-track-strip-global .cgs-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  min-height: 2.35rem !important;
+  padding: 0.3rem 0.55rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  background: rgba(8,16,14,0.4) !important;
+  color: inherit !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+}
+html[data-clarity-room="companion"] #tab-notes.is-active,
+html[data-clarity-room="companion"] #tab-notes.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+html[data-clarity-room="companion"] #tab-notes .notes-hub-v35 {
+  display: block !important;
+  visibility: visible !important;
+}
