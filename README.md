@@ -1,63 +1,64 @@
-# Clarity Craft · Five-Door Package · 20261104C6
+# Clarity · Five Doors + Craft · FINAL deploy package · 20261104C8
 
 **Bismillah.** Educational only — not a fatwa.
 
-Revision of C3 for **single-rail compliance** with live four-door governance.
+Smoke-verified deploy bundle: root five-door landing, Craft atelier room, single-rail room-nav upgrade, Cloudflare `_redirects` fix.
 
-## What changed vs C3
-
-- Craft HTML pages **no longer hardcode** a full `<nav class="clarity-room-nav">`.
-- Shared `clarity-room-nav-v1.js` is the only rail authority:
-  - Existing 4-door rail → **upgrade in place** (add Craft tile only).
-  - No rail → create full five-link rail once.
-  - **Never** double the bar.
-- Governance docs added under `docs/` (NAV CONTRACT amendment + phased plan).
-
-## Hero banner
-- `craft/assets/clarity-craft-banner.jpg` — Registan / Ulugh Beg (Central Asia madrasa heritage)
-- Overlay: **Clarity · Crafts** + An-Naḥl 16:125 (wisdom & good instruction)
-- Soft gradient for readability · educational credit line
-
-## Package layout
+## Package contents
 
 ```
-craft/                          → copy to site root
-  index.html                    tools landing (glass plaques)
-  meme/ calligraphy/ tajweed/ quiz/ notes/
-  assets/                       craft CSS/JS
-
-assets/room-nav/                → overwrite site assets/room-nav/
-  clarity-room-nav-v1.css
-  clarity-room-nav-v1.js        in-place upgrade for Craft tile
-
-landing-patch/
-  INDEX_FIVE_DOORS_SNIPPET.html paste into root index.html (.port-grid)
-
+index.html                          → site root (5 glass plaques)
+_redirects                          → site root (removes /craft → campus/lab)
+assets/room-nav/
+  clarity-room-nav-v1.js            → overwrite (C8 upgrade-all rails)
+  clarity-room-nav-v1.css           → overwrite
+craft/                              → copy to site root
+  index.html, meme/, tajweed/, …
+  assets/clarity-craft-banner.jpg
 docs/
-  CRAFT_SURFACE_NAV_CONTRACT.md single-rail + isolation rules
-  CRAFT_PHASED_PLAN.md          phases A–D
+  CRAFT_SURFACE_NAV_CONTRACT.md
+  CRAFT_PHASED_PLAN.md
+landing-patch/
+  INDEX_FIVE_DOORS_FULL.html        → backup of root index
+  INDEX_FIVE_DOORS_SNIPPET.html
+  YAWM_ROOM_NAV_INJECT.html         → add script tags to /daily/
 ```
 
-## Deploy order
+## Deploy order (required)
 
-1. **Room nav** — replace `assets/room-nav/clarity-room-nav-v1.css` and `.js`.
-2. **Craft room** — copy entire `craft/` folder to site root.
-3. **Root landing** (optional) — merge five glass plaques from `landing-patch/`.
-4. Purge CDN · hard refresh.
+1. **`_redirects`** — overwrite site root.  
+   Removes `/craft` → `/campus/lab` 301s so Craft tile opens the atelier.
 
-## Governance (read before deploy)
+2. **`assets/room-nav/`** — overwrite both files.  
+   Use cache-bust `?v=20261104C8` on every page that already links them  
+   (Amānah, Campus, Companion, etc.).
 
-- Live product isolation remains **four doors** (`ARCHITECTURE.md`, `amana/NAV_CONTRACT.md`).
-- Craft is a **soft surface** — additive tile on the existing rail.
-- Decommission of in-Companion craft hosts is **Phase D** and needs explicit approval.
+3. **`craft/`** — copy entire folder to site root.
 
-## Smoke checks
+4. **`index.html`** — replace site root landing.
 
-- [ ] Any existing room shows **one** rail; Craft pill is present after JS
-- [ ] `/craft/` and subpages show **one** rail; Craft is current
-- [ ] No second `.clarity-room-nav` in DOM
-- [ ] `/craft/tajweed/` meter booth starts/stops (Web Audio)
-- [ ] `/craft/meme/` desks copy / open
-- [ ] `node --check` on package JS
+5. **Yawm** — add to `/daily/` (head or before `</body>`):
+   ```html
+   <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C8"/>
+   <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C8" defer></script>
+   ```
+
+6. **Purge Cloudflare cache** · hard refresh.
+
+## Smoke checklist
+
+- [ ] `GET /craft/` is **200** (not 301 to `/campus/lab/`)
+- [ ] `/` shows **5** plaques; Craft → `/craft/`
+- [ ] Room rail on landing shows **Craft** pill; seal “Five rooms…”
+- [ ] After Yawm inject: `/daily/` rail gains Craft
+- [ ] `/amana/` and `/campus/` rail gain Craft after new `?v=20261104C8` JS
+- [ ] `/craft/tajweed/` loads; `/craft/meme/` desks present
+- [ ] Only **one** `.clarity-room-nav` per page
+
+## Governance
+
+- Four isolation doors unchanged (Companion · Yawm · University · Amānah).
+- Craft is a **soft surface** on the shared rail — not a new isolation domain.
+- University Lab **Craft Laboratory** stays at `/campus/lab/`.
 
 May Allah accept the effort and make it light for the grave.

@@ -1,6 +1,6 @@
 # Clarity · merged _redirects · 20261024VAULT
 # Preserves companion + campus rules from live root _redirects
-# Updates /lab and /craft → /campus/lab (University surface)
+# /lab → /campus/lab (University). /craft is its own soft surface (no redirect).
 # /vault and companion paths unchanged
 
 # Clarity University — Cloudflare Pages redirects
@@ -27,8 +27,6 @@
 /campus/desk/consistency  /campus/desk/consistency/  301
 /campus/desk/transmission  /campus/desk/transmission/  301
 
-/craft  /campus/lab/  301
-/craft/  /campus/lab/  301
 
 /campus/transcript  /campus/transcript/  301
 /campus/assignments  /campus/assignments/  301
@@ -62,14 +60,6 @@
 /lab/media/  /campus/lab/media/  301
 /lab/shared/*  /campus/lab/shared/:splat  301
 /lab/*  /campus/lab/:splat  301
-/craft/arabic  /campus/lab/arabic/  301
-/craft/arabic/  /campus/lab/arabic/  301
-/craft/tajweed  /campus/lab/tajweed/  301
-/craft/tajweed/  /campus/lab/tajweed/  301
-/craft/recite  /campus/lab/recite/  301
-/craft/hifz  /campus/lab/hifz/  301
-/craft/calligraphy  /campus/lab/calligraphy/  301
-/craft/*  /campus/lab/:splat  301
 
 # Journey → campus · 20261024VAULT
 /journey  /campus/journey/  301
@@ -82,3 +72,8 @@
 
 # Daily surface — same form as campus
 /daily  /daily/  301
+
+# --- Craft room (soft fifth surface) · 20261104C7 ---
+# Do NOT redirect /craft or /craft/* to campus.
+# Static files live under /craft/ (atelier: meme, tajweed, desks, notes).
+# University Lab remains at /campus/lab/ (Craft Laboratory modules stay there).
