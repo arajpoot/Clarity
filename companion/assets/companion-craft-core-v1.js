@@ -14,14 +14,14 @@
     "/companion/modules/inline-nx-tajweed-deep-studio-js-v1.js?v=20261104N02",
     "/companion/modules/inline-clarity_callig_pad_boot.js?v=20261104N02",
     "/companion/modules/inline-clarity-meme-canvas-clean-v1.js?v=20261104N02",
+    "/companion/modules/inline-clarity-meme-online-bg-v1.js?v=20261104STAB",
     "/companion/modules/inline-bundle-meme-v1.js?v=20261104N02",
     "/companion/modules/inline-clarity_meme_unlock_v2.js?v=20261104N02",
     "/companion/assets/clarity-craft-integrity-v35.js?v=20261104N02"
   ];
 
   var EXTRA = [
-    "/companion/modules/inline-clarity-meme-online-bg-v1.js?v=20261104N02",
-    "/companion/modules/inline-clarity_meme_push_cards.js?v=20261104N02",
+        "/companion/modules/inline-clarity_meme_push_cards.js?v=20261104N02",
     "/companion/modules/inline-clarity-tj-meme-tweet-revamp-js.js?v=20261104N02"
   ];
 

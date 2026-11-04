@@ -1,0 +1,83 @@
+/* companion-stabilize-v1 · stop banner flash/jump · ṣalāh right stays */
+html[data-clarity-room="companion"] #clarity-top-duo,
+html[data-clarity-room="companion"] .banner {
+  min-height: 0 !important;
+  max-height: none !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+html[data-clarity-room="companion"] .banner-media,
+html[data-clarity-room="companion"] #banner-media {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  min-height: 100% !important;
+}
+html[data-clarity-room="companion"] .banner {
+  position: relative !important;
+  /* stable content height driven by overlay, not media */
+  min-height: 11.5rem !important;
+}
+html[data-clarity-room="companion"] .banner-overlay {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: minmax(7rem, 1fr) minmax(0, 1.6fr) minmax(7rem, 1fr) !important;
+  grid-template-areas: "left center right" !important;
+  align-items: start !important;
+  gap: 0.3rem 0.4rem !important;
+  padding: 0.4rem 0.5rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  /* prevent jump when children load */
+  contain: layout style;
+}
+html[data-clarity-room="companion"] .banner-side.left { grid-area: left !important; }
+html[data-clarity-room="companion"] .banner-center { grid-area: center !important; }
+html[data-clarity-room="companion"] .banner-side.right { grid-area: right !important; justify-self: end !important; }
+
+html[data-clarity-room="companion"] .salah-times-section {
+  max-width: 11rem !important;
+  margin-left: auto !important;
+  font-size: 0.7rem !important;
+}
+html[data-clarity-room="companion"] .hijri-cal-section {
+  max-width: 11rem !important;
+  font-size: 0.7rem !important;
+}
+
+/* Kill sticky measure fights on companion */
+html[data-clarity-room="companion"] #clarity-top-duo {
+  position: relative !important;
+  top: auto !important;
+}
+html[data-clarity-room="companion"] body {
+  scroll-behavior: auto !important;
+}
+
+@media (max-width: 720px) {
+  html[data-clarity-room="companion"] .banner-overlay {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas: "left right" "center center" !important;
+  }
+  html[data-clarity-room="companion"] .hijri-cal-grid {
+    display: none !important;
+  }
+  html[data-clarity-room="companion"] .banner {
+    min-height: 10rem !important;
+  }
+}
+
+/* Meme canvas stage stable */
+html[data-clarity-room="companion"] #meme-stage-wrap,
+html[data-clarity-room="companion"] #meme-stage {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+html[data-clarity-room="companion"] #meme-canvas {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  max-width: 100% !important;
+}
