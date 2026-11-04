@@ -1,0 +1,35 @@
+/*! nuros-type-icons-v1 · Phase 2 · Quill EN · Amiri AR · unified room icons
+ * Link from Port + every room. Does not remove content.
+ */
+:root {
+  --nuros-font-en: "Quill", "Quicksand", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --nuros-font-ar: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
+  --nuros-gold: #c9a227;
+  --nuros-ink: #e8f0ec;
+  --nuros-ico-companion: "🏠";
+  --nuros-ico-yawm: "🌅";
+  --nuros-ico-university: "🎓";
+  --nuros-ico-amana: "🔐";
+}
+
+html, body {
+  font-family: var(--nuros-font-en) !important;
+}
+
+.arabic,
+[lang="ar"],
+[dir="rtl"].arabic,
+.bismillah,
+.rabbana-arabic,
+.seal-ar,
+.quran-ar,
+.ayah-arabic,
+.command-arabic,
+[class*="arabic"] {
+  font-family: var(--nuros-font-ar) !important;
+}
+
+/* Soft: headings stay Quill-class */
+h1, h2, h3, h4, .banner-brand, .brand-name, .door-hero h1, .port-banner .brand {
+  font-family: var(--nuros-font-en) !important;
+}
