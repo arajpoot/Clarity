@@ -1,0 +1,227 @@
+<!--
+  Clarity Port · five glass-plaque doors
+  Replace the existing .port-grid block in root index.html with this.
+  Also update room-nav to five doors (see assets/room-nav/).
+  Educational only — not a fatwa.
+-->
+
+<style>
+  /* Five-door glass plaques — rectangular, horizontal text */
+  .port-grid {
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 560px) {
+    .port-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 980px) {
+    .port-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+  }
+
+  .room-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 16px;
+    padding: 1rem 1.05rem 1.05rem;
+    min-height: 12.5rem;
+    border: 1px solid rgba(212, 180, 90, 0.32);
+    background:
+      linear-gradient(155deg, rgba(255, 255, 255, 0.08), rgba(15, 76, 58, 0.28)),
+      linear-gradient(165deg, rgba(15, 76, 58, 0.38), rgba(8, 20, 16, 0.72));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+  }
+  .room-tile:hover,
+  .room-tile:focus-visible {
+    transform: translateY(-4px);
+    border-color: rgba(212, 180, 90, 0.65);
+    box-shadow:
+      0 14px 36px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    outline: none;
+  }
+
+  .room-tile .ico-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.55rem;
+    width: 100%;
+  }
+  .room-tile .ico {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    line-height: 1;
+    background: rgba(201, 162, 39, 0.14);
+    border: 1px solid rgba(212, 180, 90, 0.28);
+    flex-shrink: 0;
+  }
+  .room-tile .titles {
+    min-width: 0;
+    text-align: left;
+  }
+  .room-tile .name {
+    font-family: var(--font-en, "Quicksand", system-ui, sans-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+  }
+  .room-tile .name-ar {
+    font-family: var(--font-ar, Amiri, serif);
+    font-size: 0.9rem;
+    direction: rtl;
+    opacity: 0.9;
+    margin: 0.1rem 0 0;
+    line-height: 1.2;
+  }
+  .room-tile .summary {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    opacity: 0.92;
+    flex: 1 1 auto;
+    margin: 0 0 0.75rem;
+    text-align: left;
+  }
+  .room-tile .enter {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #f0d78c;
+    letter-spacing: 0.02em;
+  }
+
+  /* Craft plaque accent */
+  .room-tile[data-room-tile="craft"] {
+    border-color: rgba(45, 212, 191, 0.35);
+  }
+  .room-tile[data-room-tile="craft"] .ico {
+    background: rgba(15, 118, 110, 0.28);
+    border-color: rgba(45, 212, 191, 0.35);
+  }
+  .room-tile[data-room-tile="craft"] .enter {
+    color: #5eead4;
+  }
+
+  @media (min-width: 980px) {
+    .room-tile {
+      min-height: 14rem;
+      padding: 0.95rem 0.85rem 1rem;
+    }
+    .room-tile .name { font-size: 0.98rem; }
+    .room-tile .summary { font-size: 0.74rem; }
+  }
+</style>
+
+<p class="port-lead">
+  One Port · five isolated rooms. Read a short summary, then enter.
+  Upgrades to one room do not change the others.
+</p>
+
+<div class="port-grid" role="navigation" aria-label="Enter a room">
+
+  <a class="room-tile" href="/companion/" data-room-tile="companion">
+    <div class="ico-row">
+      <span class="ico" aria-hidden="true">🏠</span>
+      <div class="titles">
+        <p class="name">Companion</p>
+        <p class="name-ar" lang="ar" dir="rtl">المرافق</p>
+      </div>
+    </div>
+    <p class="summary">
+      Reminder path, Reality &amp; Reflection, Action tools, and Notes.
+      Banner and path plaques stay on this device.
+    </p>
+    <span class="enter">Enter Companion →</span>
+  </a>
+
+  <a class="room-tile" href="/daily/" data-room-tile="yawm">
+    <div class="ico-row">
+      <span class="ico" aria-hidden="true">🌅</span>
+      <div class="titles">
+        <p class="name">Yawm</p>
+        <p class="name-ar" lang="ar" dir="rtl">يوم</p>
+      </div>
+    </div>
+    <p class="summary">
+      Today’s portion — light, adhkār, tasbeeh, ṣalāh rhythm.
+      Calm modules for this day only.
+    </p>
+    <span class="enter">Enter Yawm →</span>
+  </a>
+
+  <a class="room-tile" href="/campus/" data-room-tile="university">
+    <div class="ico-row">
+      <span class="ico" aria-hidden="true">🎓</span>
+      <div class="titles">
+        <p class="name">University</p>
+        <p class="name-ar" lang="ar" dir="rtl">الجامعة</p>
+      </div>
+    </div>
+    <p class="summary">
+      Ordered path: Seeker → Practice → Consistency → Transmission.
+      Desk, lab, library — a campus, not the vault.
+    </p>
+    <span class="enter">Enter University →</span>
+  </a>
+
+  <a class="room-tile" href="/amana/" data-room-tile="amana">
+    <div class="ico-row">
+      <span class="ico" aria-hidden="true">🔐</span>
+      <div class="titles">
+        <p class="name">Amānah</p>
+        <p class="name-ar" lang="ar" dir="rtl">أمانة</p>
+      </div>
+    </div>
+    <p class="summary">
+      On-device trust: passphrase gate, dayn, heirs, private notes.
+      Educational readiness — not a will.
+    </p>
+    <span class="enter">Enter Amānah →</span>
+  </a>
+
+  <a class="room-tile" href="/craft/" data-room-tile="craft">
+    <div class="ico-row">
+      <span class="ico" aria-hidden="true">✒️</span>
+      <div class="titles">
+        <p class="name">Craft</p>
+        <p class="name-ar" lang="ar" dir="rtl">حرفة</p>
+      </div>
+    </div>
+    <p class="summary">
+      Meme Studio, 𝕏 &amp; Facebook desks, Tajweed Deep Studio,
+      calligraphy, quiz, notes — one quiet atelier.
+    </p>
+    <span class="enter">Enter Craft →</span>
+  </a>
+
+</div>
+
+<!-- Room nav five-door markup (paste into every room or rely on upgraded clarity-room-nav-v1.js) -->
+<!--
+<nav class="clarity-room-nav" data-room="" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
+  <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
+  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
+  <a href="/amana/" data-room-link="amana"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
+  <a href="/craft/" data-room-link="craft"><span class="crn-ico" aria-hidden="true">✒️</span><span class="crn-label">Craft<span class="crn-sub">meme · tajweed · desks</span></span></a>
+  <p class="crn-seal">Five rooms · educational only · not a fatwa</p>
+</nav>
+-->
