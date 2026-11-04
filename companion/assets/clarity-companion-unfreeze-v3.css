@@ -9,7 +9,6 @@ html.companion-unfrozen #main-content {
 }
 html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active) {
   display: none !important;
-  visibility: hidden !important;
 }
 html[data-clarity-room="companion"] .tab-panel.is-active,
 html[data-clarity-room="companion"] .tab-panel.active {

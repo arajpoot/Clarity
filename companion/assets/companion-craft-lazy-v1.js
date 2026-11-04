@@ -121,5 +121,26 @@
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
 
+  /* idle prewarm craft so tajweed/meme/calligraphy feel rich without blocking first paint */
+  function prewarm() {
+    try {
+      if (typeof w.requestIdleCallback === "function") {
+        w.requestIdleCallback(function () {
+          loadGroup("tajweed");
+          loadGroup("calligraphy");
+          loadGroup("meme");
+        }, { timeout: 4000 });
+      } else {
+        setTimeout(function () {
+          loadGroup("tajweed");
+          loadGroup("calligraphy");
+          loadGroup("meme");
+        }, 2500);
+      }
+    } catch (e) {}
+  }
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(prewarm, 500); });
+  else setTimeout(prewarm, 500);
+
   /* Optional: after 8s idle on companion, do not auto-load craft (keeps first paint light) */
 })(window, document);

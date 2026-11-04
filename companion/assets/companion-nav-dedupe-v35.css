@@ -1,0 +1,35 @@
+/* Single top bar: room strip inline, kill duplicate body room nav */
+body > nav.clarity-room-nav,
+body > .clarity-room-nav:not(#clarity-room-strip) {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+#clarity-room-strip.clarity-room-strip-inline {
+  display: inline-flex !important;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+#clarity-room-strip.clarity-room-strip-inline a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15,76,58,0.22);
+  color: inherit;
+  opacity: 0.9;
+}
+#clarity-room-strip.clarity-room-strip-inline a.is-here {
+  background: linear-gradient(135deg, rgba(15,76,58,0.18), rgba(201,162,39,0.12));
+  border-color: rgba(201,162,39,0.4);
+  opacity: 1;
+}
+/* Softer tab hide — less layout jump */
+html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active) {
+  display: none !important;
+  /* no height:0 — reduces jump */
+}
