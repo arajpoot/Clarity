@@ -8,6 +8,7 @@
   function log(m) { try { LOG.push(String(m)); } catch (e) {} }
 
   var CORE = [
+    "/companion/assets/clarity-meme-api-bridge-v1.js?v=20261104EC",
     "/companion/modules/inline-clarity_lmr_read_sync.js?v=20261104N02",
     "/companion/modules/nx-tj-lmr-js-v1.js?v=20261104N02",
     "/companion/modules/inline-nx-tajweed-deep-studio-js-v1.js?v=20261104N02",
