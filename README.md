@@ -1,39 +1,63 @@
-# Amānah Dayn · Freeze Polish Package
+# Clarity Craft · Five-Door Package · 20261104C5
 
-**Bismillah.**
+**Bismillah.** Educational only — not a fatwa.
 
-Delivers a clean, observer-free Dayn chain so the remaining Amānah enrichments (pedigree tree, farāʾiḍ study calculator, enriched wasiyyah) can land on a stable base.
+Revision of C3 for **single-rail compliance** with live four-door governance.
 
-## Contents
+## What changed vs C3
+
+- Craft HTML pages **no longer hardcode** a full `<nav class="clarity-room-nav">`.
+- Shared `clarity-room-nav-v1.js` is the only rail authority:
+  - Existing 4-door rail → **upgrade in place** (add Craft tile only).
+  - No rail → create full five-link rail once.
+  - **Never** double the bar.
+- Governance docs added under `docs/` (NAV CONTRACT amendment + phased plan).
+
+## Hero banner
+- `craft/assets/clarity-craft-banner.jpg` — Registan / Ulugh Beg (Central Asia madrasa heritage)
+- Overlay: **Clarity · Crafts** + An-Naḥl 16:125 (wisdom & good instruction)
+- Soft gradient for readability · educational credit line
+
+## Package layout
 
 ```
-dayn-polish-package/
-├── INSTALL.txt
-├── README.md
-├── docs/
-│   └── DAYN_CHAIN_POLISH.md      ← diagnosis + smoke matrix
-├── amana/
-│   ├── assets/
-│   │   └── amana-fortify-boot-v2.js
-│   ├── sealed/
-│   │   └── dayn-mount-adapter-v2.js
-│   └── dayn/
-│       └── index.html.patch      ← one-line boot swap
+craft/                          → copy to site root
+  index.html                    tools landing (glass plaques)
+  meme/ calligraphy/ tajweed/ quiz/ notes/
+  assets/                       craft CSS/JS
+
+assets/room-nav/                → overwrite site assets/room-nav/
+  clarity-room-nav-v1.css
+  clarity-room-nav-v1.js        in-place upgrade for Craft tile
+
+landing-patch/
+  INDEX_FIVE_DOORS_SNIPPET.html paste into root index.html (.port-grid)
+
+docs/
+  CRAFT_SURFACE_NAV_CONTRACT.md single-rail + isolation rules
+  CRAFT_PHASED_PLAN.md          phases A–D
 ```
 
-## What changed
+## Deploy order
 
-- **Removed** the `MutationObserver` that re-fired on every DOM write.
-- **Made** slot creation fully idempotent.
-- **Introduced** `window.ClarityAmanaDayn` coordinator.
-- **Re-ordered** sealed load: ensure → adapter-v2 → ledger-v2 → bridge.
-- **Dropped** `dayn-enrich-v3` from the live chain (file stays for rollback).
+1. **Room nav** — replace `assets/room-nav/clarity-room-nav-v1.css` and `.js`.
+2. **Craft room** — copy entire `craft/` folder to site root.
+3. **Root landing** (optional) — merge five glass plaques from `landing-patch/`.
+4. Purge CDN · hard refresh.
 
-## Quick install
+## Governance (read before deploy)
 
-1. Copy the two JS files into the matching paths under your Clarity tree.
-2. Apply the one-line patch (or manually change the fortify script `src` on `/amana/dayn/`).
-3. Hard refresh.
-4. Run the smoke list in `docs/DAYN_CHAIN_POLISH.md`.
+- Live product isolation remains **four doors** (`ARCHITECTURE.md`, `amana/NAV_CONTRACT.md`).
+- Craft is a **soft surface** — additive tile on the existing rail.
+- Decommission of in-Companion craft hosts is **Phase D** and needs explicit approval.
 
-Educational only — not a fatwa · not legal advice · not a court document.
+## Smoke checks
+
+- [ ] Any existing room shows **one** rail; Craft pill is present after JS
+- [ ] `/craft/` and subpages show **one** rail; Craft is current
+- [ ] No second `.clarity-room-nav` in DOM
+- [ ] `/craft/tajweed/` meter booth starts/stops (Web Audio)
+- [ ] `/craft/meme/` desks copy / open
+- [ ] `node --check` on package JS
+
+May Allah accept the effort and make it light for the grave.
