@@ -351,12 +351,28 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/nuros/nuros-type-icons-v1.css?v=20261104P2"/>
+<!-- University nav fix -->
+
+<script>
+(function(){
+  try {
+    document.documentElement.setAttribute("data-clarity-room","university");
+    if ((location.pathname||"").indexOf("/campus")===0) {
+      document.querySelectorAll(".clarity-room-nav a").forEach(function(a){
+        var uni = (a.getAttribute("data-room-link")==="university") || ((a.getAttribute("href")||"").indexOf("/campus")===0);
+        a.classList.toggle("is-here", !!uni);
+        if (uni) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+      });
+    }
+  } catch(e) {}
+})();
+</script>
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
-  <a href="/companion/" data-room-link="companion" class="is-here" aria-current="page"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
   <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
-  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
+  <a class="is-here" aria-current="page" href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
   <a href="/amana/" data-room-link="amana"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
   <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
 </nav>
