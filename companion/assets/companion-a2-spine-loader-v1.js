@@ -17,7 +17,7 @@
     "clarity-feature-pack-v1.js",
     "clarity-path-pack-v1.js",
     "clarity-aux-pack-v1.js",
-    "clarity-sticky-harden-v1.js"
+    /* skip sticky: "clarity-sticky-harden-v1.js" */
   ];
 
   function roomOk() {

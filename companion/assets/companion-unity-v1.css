@@ -1,0 +1,103 @@
+/* companion-unity-v1 · single layout contract · no thrash */
+html[data-clarity-room="companion"] {
+  scroll-behavior: auto !important;
+}
+html[data-clarity-room="companion"] body {
+  overflow-x: hidden !important;
+}
+html[data-clarity-room="companion"] #clarity-top-duo,
+html[data-clarity-room="companion"] .banner {
+  position: relative !important;
+  top: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  min-height: 11rem !important;
+  max-height: none !important;
+}
+html[data-clarity-room="companion"] #banner-media,
+html[data-clarity-room="companion"] .banner-media {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none;
+}
+html[data-clarity-room="companion"] #banner-media iframe,
+html[data-clarity-room="companion"] #banner-live {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+html[data-clarity-room="companion"] #banner-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+html[data-clarity-room="companion"] .banner-overlay {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: minmax(6.5rem, 1fr) minmax(0, 1.7fr) minmax(6.5rem, 1fr) !important;
+  grid-template-areas: "bleft bcenter bright" !important;
+  gap: 0.3rem 0.4rem !important;
+  padding: 0.4rem 0.5rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  contain: layout !important;
+}
+html[data-clarity-room="companion"] .banner-side.left { grid-area: bleft !important; }
+html[data-clarity-room="companion"] .banner-center { grid-area: bcenter !important; text-align: center; }
+html[data-clarity-room="companion"] .banner-side.right { grid-area: bright !important; justify-self: end !important; }
+
+html[data-clarity-room="companion"] .hijri-cal-section,
+html[data-clarity-room="companion"] .salah-times-section {
+  background: rgba(8,18,14,0.58) !important;
+  border: 1px solid rgba(212,180,90,0.22) !important;
+  border-radius: 12px !important;
+  padding: 0.35rem 0.45rem !important;
+  max-width: 11rem !important;
+  font-size: 0.68rem !important;
+  line-height: 1.25 !important;
+  backdrop-filter: blur(6px);
+}
+html[data-clarity-room="companion"] .salah-times-section { margin-left: auto !important; text-align: right !important; }
+html[data-clarity-room="companion"] .salah-times-list { list-style: none; margin: 0; padding: 0; }
+html[data-clarity-room="companion"] .salah-times-list li {
+  display: flex; justify-content: space-between; gap: 0.45rem;
+  font-size: 0.65rem; padding: 0.06rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+html[data-clarity-room="companion"] .stream-controls {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem; margin-top: 0.3rem;
+}
+html[data-clarity-room="companion"] .stream-controls select,
+html[data-clarity-room="companion"] .stream-controls button {
+  font-size: 0.66rem !important; padding: 0.2rem 0.42rem !important; border-radius: 999px !important;
+}
+html[data-clarity-room="companion"] .rabbana-box { padding: 0.3rem 0.45rem !important; border-radius: 12px; }
+html[data-clarity-room="companion"] .rabbana-arabic { font-size: clamp(0.8rem, 2.6vw, 1.02rem) !important; }
+html[data-clarity-room="companion"] .rabbana-english { font-size: 0.7rem !important; }
+
+/* tabs: only active */
+html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active) { display: none !important; }
+html[data-clarity-room="companion"] .tab-panel.is-active,
+html[data-clarity-room="companion"] .tab-panel.active { display: block !important; }
+
+/* meme canvas */
+html[data-clarity-room="companion"] #meme-stage-wrap,
+html[data-clarity-room="companion"] #meme-stage {
+  width: 100% !important; max-width: 100% !important; overflow: hidden !important;
+}
+html[data-clarity-room="companion"] #meme-canvas {
+  display: block !important; width: 100% !important; height: auto !important; max-width: 100% !important;
+}
+
+@media (max-width: 720px) {
+  html[data-clarity-room="companion"] .banner-overlay {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas: "bleft bright" "bcenter bcenter" !important;
+  }
+  html[data-clarity-room="companion"] .hijri-cal-grid { display: none !important; }
+  html[data-clarity-room="companion"] .banner { min-height: 9.5rem !important; }
+}
