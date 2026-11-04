@@ -1,0 +1,208 @@
+/* companion-banner-craft-v1 · rebuilt overlay · cal left · salah right · sleek */
+html[data-clarity-room="companion"] #clarity-top-duo {
+  position: relative !important;
+  top: auto !important;
+  z-index: 5;
+  transition: none !important;
+  animation: none !important;
+}
+html[data-clarity-room="companion"] .banner {
+  position: relative !important;
+  min-height: 13.5rem !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  border-radius: 0 0 18px 18px;
+  isolation: isolate;
+}
+html[data-clarity-room="companion"] #banner-media,
+html[data-clarity-room="companion"] .banner-media {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+html[data-clarity-room="companion"] #banner-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+html[data-clarity-room="companion"] #banner-live {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+
+/* Overlay: explicit 3-column flex — more reliable than fighting grid */
+html[data-clarity-room="companion"] .banner-overlay {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 0.5rem !important;
+  padding: 0.55rem 0.65rem 0.6rem !important;
+  min-height: 13.5rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  background: linear-gradient(180deg, rgba(6,14,12,0.25) 0%, rgba(6,14,12,0.45) 100%);
+}
+
+html[data-clarity-room="companion"] .banner-side.left {
+  flex: 0 0 auto !important;
+  width: min(42vw, 10.8rem) !important;
+  order: 1 !important;
+}
+html[data-clarity-room="companion"] .banner-center {
+  flex: 1 1 auto !important;
+  order: 2 !important;
+  text-align: center !important;
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 0 0.25rem;
+}
+html[data-clarity-room="companion"] .banner-side.right {
+  flex: 0 0 auto !important;
+  width: min(42vw, 10.8rem) !important;
+  order: 3 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+/* Plaques */
+html[data-clarity-room="companion"] .hijri-cal-section,
+html[data-clarity-room="companion"] .salah-times-section {
+  background: rgba(8, 16, 14, 0.72) !important;
+  border: 1px solid rgba(212, 180, 90, 0.28) !important;
+  border-radius: 14px !important;
+  padding: 0.4rem 0.5rem !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 0.68rem !important;
+  line-height: 1.3 !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+html[data-clarity-room="companion"] .salah-times-section {
+  text-align: right !important;
+}
+html[data-clarity-room="companion"] .salah-title,
+html[data-clarity-room="companion"] .cal-title {
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.25rem !important;
+  color: #e8d5a3 !important;
+}
+html[data-clarity-room="companion"] .salah-times-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html[data-clarity-room="companion"] .salah-times-list li {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 0.55rem !important;
+  padding: 0.1rem 0 !important;
+  font-size: 0.66rem !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+html[data-clarity-room="companion"] .salah-times-list .salah-time {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #f0e6c8;
+}
+html[data-clarity-room="companion"] .hijri-local-time {
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  margin-top: 0.3rem !important;
+}
+html[data-clarity-room="companion"] .hijri-local-loc,
+html[data-clarity-room="companion"] .hijri-temps,
+html[data-clarity-room="companion"] .hijri-cal-meta {
+  font-size: 0.6rem !important;
+  opacity: 0.9;
+}
+html[data-clarity-room="companion"] .hijri-cal-grid {
+  font-size: 0.55rem !important;
+  margin: 0.15rem 0 !important;
+}
+html[data-clarity-room="companion"] .allah-circular-seal,
+html[data-clarity-room="companion"] .masjid-circular-seal {
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+  margin-bottom: 0.2rem !important;
+  font-size: 0.75rem !important;
+}
+
+/* Center chrome */
+html[data-clarity-room="companion"] .bismillah {
+  font-size: 0.78rem !important;
+  opacity: 0.95;
+  margin: 0 0 0.15rem !important;
+}
+html[data-clarity-room="companion"] .banner-brand {
+  font-size: 1.05rem !important;
+  margin: 0.1rem 0 !important;
+}
+html[data-clarity-room="companion"] .subtitle {
+  font-size: 0.7rem !important;
+  opacity: 0.88;
+  margin-bottom: 0.35rem !important;
+}
+html[data-clarity-room="companion"] .rabbana-box {
+  background: rgba(8,16,14,0.55) !important;
+  border: 1px solid rgba(212,180,90,0.22) !important;
+  border-radius: 14px !important;
+  padding: 0.35rem 0.55rem !important;
+  margin: 0 auto 0.4rem !important;
+  max-width: 100%;
+}
+html[data-clarity-room="companion"] .rabbana-arabic {
+  font-size: clamp(0.82rem, 2.5vw, 1.05rem) !important;
+  line-height: 1.45 !important;
+}
+html[data-clarity-room="companion"] .rabbana-english {
+  font-size: 0.68rem !important;
+  opacity: 0.9;
+}
+html[data-clarity-room="companion"] .rabbana-ref {
+  font-size: 0.6rem !important;
+  opacity: 0.75;
+}
+html[data-clarity-room="companion"] .stream-controls {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0.28rem !important;
+}
+html[data-clarity-room="companion"] .stream-controls select,
+html[data-clarity-room="companion"] .stream-controls button {
+  font-size: 0.65rem !important;
+  padding: 0.22rem 0.48rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  background: rgba(8,16,14,0.65) !important;
+  color: #f3efe6 !important;
+  min-height: 0 !important;
+}
+
+@media (max-width: 640px) {
+  html[data-clarity-room="companion"] .banner,
+  html[data-clarity-room="companion"] .banner-overlay {
+    min-height: 11.5rem !important;
+  }
+  html[data-clarity-room="companion"] .hijri-cal-grid {
+    display: none !important;
+  }
+  html[data-clarity-room="companion"] .allah-circular-seal,
+  html[data-clarity-room="companion"] .masjid-circular-seal {
+    display: none !important;
+  }
+  html[data-clarity-room="companion"] .banner-side.left,
+  html[data-clarity-room="companion"] .banner-side.right {
+    width: min(46vw, 9.8rem) !important;
+  }
+}
