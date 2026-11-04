@@ -68,6 +68,11 @@
       return p.then(function () { return loadScript(src); });
     }, Promise.resolve()).then(function () {
       w.__CLARITY_CRAFT_DONE__[name] = true;
+      /* integrity meters once */
+      if (!w.__CLARITY_CRAFT_INTEGRITY_LOADED__) {
+        w.__CLARITY_CRAFT_INTEGRITY_LOADED__ = true;
+        loadScript("/companion/assets/clarity-craft-integrity-v35.js?v=20261103P35");
+      }
       try {
         d.dispatchEvent(new CustomEvent("clarity-craft-ready", { detail: { group: name } }));
       } catch (e) {}
