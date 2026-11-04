@@ -1,0 +1,134 @@
+/* Banner sleek layout · calendar LEFT · ṣalāh RIGHT · compact */
+#clarity-top-duo .banner,
+.banner {
+  position: relative;
+  overflow: hidden;
+}
+.banner-overlay {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr) !important;
+  grid-template-areas: "left center right" !important;
+  align-items: start !important;
+  gap: 0.35rem 0.5rem !important;
+  padding: 0.4rem 0.55rem 0.45rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  pointer-events: none;
+}
+.banner-overlay > * { pointer-events: auto; }
+.banner-side.left { grid-area: left !important; justify-self: start !important; }
+.banner-center { grid-area: center !important; justify-self: center !important; text-align: center; max-width: 28rem; }
+.banner-side.right { grid-area: right !important; justify-self: end !important; text-align: right !important; }
+
+/* Compact plaques */
+.banner-side.left .hijri-cal-section,
+.banner-side.right .salah-times-section {
+  background: rgba(8, 18, 14, 0.55) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 180, 90, 0.22);
+  border-radius: 12px;
+  padding: 0.35rem 0.45rem !important;
+  max-width: 11.5rem;
+  font-size: 0.72rem !important;
+  line-height: 1.25 !important;
+}
+.banner-side.right .salah-times-section {
+  margin-left: auto;
+  text-align: right;
+}
+.salah-title, .cal-title {
+  font-size: 0.7rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.2rem !important;
+  opacity: 0.95;
+}
+.salah-times-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.12rem !important;
+}
+.salah-times-list li {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 0.5rem !important;
+  font-size: 0.68rem !important;
+  padding: 0.08rem 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.salah-times-list .salah-name { opacity: 0.85; text-align: left; }
+.salah-times-list .salah-time { font-weight: 700; font-variant-numeric: tabular-nums; }
+.hijri-local-time { font-size: 0.78rem !important; font-weight: 700; margin-top: 0.25rem !important; }
+.hijri-local-loc { font-size: 0.62rem !important; opacity: 0.8; margin-top: 0.1rem !important; }
+.hijri-temps { font-size: 0.62rem !important; margin-top: 0.2rem !important; }
+.hijri-cal-grid { font-size: 0.58rem !important; transform: scale(0.92); transform-origin: top left; }
+.allah-circular-seal, .masjid-circular-seal {
+  width: 1.35rem !important;
+  height: 1.35rem !important;
+  margin: 0 0 0.2rem auto !important;
+  font-size: 0.7rem !important;
+}
+.banner-side.left .allah-circular-seal { margin-left: 0 !important; margin-right: auto !important; }
+
+/* Stream row slim */
+.stream-controls {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 0.25rem !important;
+  margin-top: 0.35rem !important;
+}
+.stream-controls select,
+.stream-controls button {
+  font-size: 0.68rem !important;
+  padding: 0.22rem 0.45rem !important;
+  border-radius: 999px !important;
+  min-height: 0 !important;
+}
+.rabbana-box {
+  padding: 0.35rem 0.5rem !important;
+  margin-top: 0.25rem !important;
+  border-radius: 12px !important;
+  max-width: 100%;
+}
+.rabbana-arabic { font-size: clamp(0.85rem, 2.8vw, 1.05rem) !important; }
+.rabbana-english { font-size: 0.72rem !important; }
+.banner-brand { font-size: 1rem !important; margin: 0.15rem 0 !important; }
+.subtitle { font-size: 0.72rem !important; opacity: 0.9; }
+
+/* Hide duplicate mid room pills (Companion / Yawm / Campus) if present outside main room-nav */
+.clarity-track-os-room-pills,
+.nuros-room-pills-duplicate,
+[data-duplicate-room-nav],
+.banner-room-pills-legacy {
+  display: none !important;
+}
+
+/* Mobile: keep LEFT | RIGHT on one row when possible; center full width below */
+@media (max-width: 720px) {
+  .banner-overlay {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas:
+      "left right"
+      "center center" !important;
+    gap: 0.3rem !important;
+    padding: 0.35rem !important;
+  }
+  .banner-side.left .hijri-cal-section,
+  .banner-side.right .salah-times-section {
+    max-width: none;
+    width: 100%;
+  }
+  .banner-side.right { text-align: right !important; }
+  .banner-side.right .salah-times-section { text-align: right; }
+  .hijri-cal-grid { display: none !important; } /* slim: hide full grid on narrow; keep meta */
+  .allah-circular-seal { display: none !important; }
+  .masjid-circular-seal { display: none !important; }
+}
+@media (max-width: 380px) {
+  .salah-times-list li { font-size: 0.62rem !important; }
+}
