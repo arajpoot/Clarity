@@ -1,0 +1,114 @@
+/* companion-unity-v2 · rails · salah right · no shake */
+#clarity-surface-doors,
+nav#clarity-surface-doors,
+.clarity-surface-doors {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+/* only first full room nav */
+body > nav.clarity-room-nav ~ nav.clarity-room-nav {
+  display: none !important;
+}
+html[data-clarity-room="companion"] #clarity-top-duo,
+html[data-clarity-room="companion"] .banner {
+  position: relative !important;
+  top: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  min-height: 12rem !important;
+}
+html[data-clarity-room="companion"] #banner-media {
+  position: absolute !important; inset: 0 !important; z-index: 0 !important;
+}
+html[data-clarity-room="companion"] .banner-overlay {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: minmax(7rem, 22%) minmax(0, 1fr) minmax(7rem, 22%) !important;
+  grid-template-areas: "bleft bcenter bright" !important;
+  gap: 0.35rem !important;
+  padding: 0.45rem 0.55rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  contain: layout !important;
+}
+html[data-clarity-room="companion"] .banner-side.left { grid-area: bleft !important; }
+html[data-clarity-room="companion"] .banner-center { grid-area: bcenter !important; }
+html[data-clarity-room="companion"] .banner-side.right {
+  grid-area: bright !important;
+  justify-self: end !important;
+  align-self: start !important;
+  width: 100% !important;
+}
+/* force salah plaque to right column visually */
+html[data-clarity-room="companion"] .banner-side.right .salah-times-section,
+html[data-clarity-room="companion"] .salah-times-section {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  max-width: 11.5rem !important;
+  text-align: right !important;
+  background: rgba(8,18,14,0.62) !important;
+  border: 1px solid rgba(212,180,90,0.25) !important;
+  border-radius: 12px !important;
+  padding: 0.4rem 0.5rem !important;
+  font-size: 0.68rem !important;
+}
+html[data-clarity-room="companion"] .banner-side.left .hijri-cal-section {
+  max-width: 11.5rem !important;
+  background: rgba(8,18,14,0.62) !important;
+  border: 1px solid rgba(212,180,90,0.25) !important;
+  border-radius: 12px !important;
+  padding: 0.4rem 0.5rem !important;
+  font-size: 0.68rem !important;
+}
+/* If salah ends up outside right (A2 move), pin it */
+html[data-clarity-room="companion"] .banner-overlay > .salah-times-section {
+  grid-area: bright !important;
+  justify-self: end !important;
+}
+
+/* Bottom door rail: single icon layer */
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn {
+  position: relative;
+}
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn::before,
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+html[data-clarity-room="companion"] #clarity-door-rail .dr-ico {
+  display: inline-block !important;
+  font-size: 1rem !important;
+  line-height: 1 !important;
+}
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn .icon,
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn [class*="nuros-icon"] {
+  display: none !important; /* avoid double with dr-ico */
+}
+
+/* tabs */
+html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active) { display: none !important; }
+html[data-clarity-room="companion"] .tab-panel.is-active,
+html[data-clarity-room="companion"] .tab-panel.active { display: block !important; }
+
+/* meme */
+html[data-clarity-room="companion"] #meme-canvas {
+  display: block !important; width: 100% !important; height: auto !important; max-width: 100% !important;
+}
+html[data-clarity-room="companion"] #meme-stage-wrap { overflow: hidden !important; max-width: 100% !important; }
+
+@media (max-width: 720px) {
+  html[data-clarity-room="companion"] .banner-overlay {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas: "bleft bright" "bcenter bcenter" !important;
+  }
+  html[data-clarity-room="companion"] .hijri-cal-grid { display: none !important; }
+}
