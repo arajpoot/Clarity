@@ -1,17 +1,18 @@
 <!DOCTYPE html><html data-clarity-room="companion" data-theme="light" lang="en"><head>
 
-<script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261103P35F"></script>
-<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261103P35F" />
+<script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261103P35S"></script>
+<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261103P35S" />
+<link rel="stylesheet" href="/companion/assets/companion-nav-dedupe-v35.css?v=20261103P35S" />
 
 
 <script src="/companion/assets/clarity-banner-av-v1.js?v=20261102AV"></script>
-<script src="/companion/assets/clarity-banner-integrity-v35.js?v=20261103P35F" defer data-phase="3.5-banner"></script>
+<script src="/companion/assets/clarity-banner-integrity-v35.js?v=20261103P35S" defer data-phase="3.5-banner"></script>
 
 
 <meta name="clarity-surface" content="companion"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
-<meta name="companion-phase-build" content="3.5-fix-tabs-banner-20261103" />
+<meta name="companion-phase-build" content="3.5-stable-tab-nav-craft-20261104" />
 
 
 
@@ -265,7 +266,7 @@
 <style id="companion-tab-isolation-v35">
 /* Companion tab isolation — Reminder must not stay forced visible */
 html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active){
-  display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;pointer-events:none!important
+  display:none!important
 }
 html[data-clarity-room="companion"] .tab-panel.is-active,
 html[data-clarity-room="companion"] .tab-panel.active{
@@ -2222,8 +2223,11 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-bundle-nuros-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261101WB1" defer></script>
-<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P35F" defer data-phase="2-after-shell"></script>
-<script src="/companion/assets/companion-craft-lazy-v1.js?v=20261103P35F" defer data-phase="3-craft"></script>
+<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P35S" defer data-phase="2-after-shell"></script>
+<script src="/companion/assets/companion-craft-lazy-v1.js?v=20261103P35S" defer data-phase="3-craft"></script>
+<script src="/companion/assets/companion-nav-dedupe-v35.js?v=20261103P35S" defer data-phase="3.5s-nav"></script>
+<script src="/companion/assets/companion-tab-persist-v35.js?v=20261103P35S" defer data-phase="3.5s-tab"></script>
+
 
 <script type="text/plain" data-rb-skip="1" src="/assets/companion-inline/inline-clarity-landing-v3.js?v=20261101WB1" defer></script>
 <script id="clarity-madinah-autoplay-v1" src="/assets/companion-inline/inline-clarity_madinah_ap.js?v=20261101WB1" defer></script>
