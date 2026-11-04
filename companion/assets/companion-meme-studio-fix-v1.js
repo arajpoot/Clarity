@@ -1,58 +1,78 @@
-/*! companion-meme-studio-fix-v1
- * 1) Move How-to + options rail ABOVE canvas
- * 2) Rewire all background chips to Shariah-safe Wikimedia pools
- * 3) Scene-per-verse: when text applied, pick matching safe scene
- * Educational only — not a fatwa. Scenery only · no prophet likeness.
+/*! companion-meme-studio-fix-v1 · revised
+ * Shariah: block people/animals random stock — allow scenery, sky, water, architecture.
+ * Curated Unsplash IDs (fixed photos, not random) + Wikimedia when available.
+ * Soft fail → solid green (no alert spam). Layout: controls above canvas.
+ * Educational only — not a fatwa.
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_MEME_STUDIO_FIX_V1__) return;
+  if (w.__CLARITY_MEME_STUDIO_FIX_V2__) return;
+  w.__CLARITY_MEME_STUDIO_FIX_V2__ = true;
   w.__CLARITY_MEME_STUDIO_FIX_V1__ = true;
 
   var LOG = (w.__MEME_STUDIO_FIX_LOG = []);
   function log(m) { try { LOG.push(String(m)); } catch (e) {} }
 
-  /* ——— Shariah-safe pools (Wikimedia / same-origin only) ——— */
+  /* Fixed photo IDs — landscapes / architecture / sky / water only (no portrait queries) */
+  var U = function (id) {
+    return "https://images.unsplash.com/" + id + "?auto=format&fit=crop&w=1600&q=80";
+  };
+  var W = function (path) {
+    return "https://upload.wikimedia.org/wikipedia/commons/" + path;
+  };
+
   var POOLS = {
     nature: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Green_pasture.jpg/1280px-Green_pasture.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Wadi_Rum_Jordan.jpg/1280px-Wadi_Rum_Jordan.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Desert_in_Qatar.jpg/1280px-Desert_in_Qatar.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Sand_dunes_in_the_Empty_Quarter.jpg/1280px-Sand_dunes_in_the_Empty_Quarter.jpg"
+      U("photo-1506905925346-21bda4d32df4"), /* mountains */
+      U("photo-1441974231531-c6227db76b6e"), /* forest path canopy */
+      U("photo-1470071451329-d1ea785c8c7d"), /* misty hills */
+      U("photo-1464822759023-fed622ff2c3b"), /* mountain peaks */
+      W("thumb/6/6d/Desert_in_Qatar.jpg/1280px-Desert_in_Qatar.jpg")
     ],
     mountains: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Wadi_Rum_Jordan.jpg/1280px-Wadi_Rum_Jordan.jpg"
+      U("photo-1506905925346-21bda4d32df4"),
+      U("photo-1464822759023-fed622ff2c3b"),
+      U("photo-1519681393784-d120267933ba")
     ],
     holy: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Masjid_al-Haram%2C_Mecca.jpg/1280px-Masjid_al-Haram%2C_Mecca.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Al-Masjid_an-Nabawi_as-from_top.jpg/1280px-Al-Masjid_an-Nabawi_as-from_top.jpg"
+      U("photo-1564769625905-50e93615e769"), /* haram area architecture */
+      U("photo-1591604129939-f1efa4d9f7fa"),
+      U("photo-1519817650390-64a5db1d0498"),
+      W("thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg"),
+      W("thumb/c/c8/Masjid_al-Haram%2C_Mecca.jpg/1280px-Masjid_al-Haram%2C_Mecca.jpg")
     ],
     night: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Night_sky_with_stars.jpg/1280px-Night_sky_with_stars.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Milky_Way_Arch.jpg/1280px-Milky_Way_Arch.jpg"
+      U("photo-1419242902214-272b3f66ee7a"), /* stars */
+      U("photo-1507272931001-fc06c17e4f43"), /* night sky */
+      U("photo-1475274047050-1d0c0975c63e")
     ],
     water: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ocean_waves.jpg/1280px-Ocean_waves.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Blue_Mediterranean_Sea.jpg/1280px-Blue_Mediterranean_Sea.jpg"
+      U("photo-1505142468610-359e7d316be0"), /* ocean */
+      U("photo-1439066615861-d1af74d74000"), /* lake */
+      U("photo-1507525428034-b723cf961d3e")  /* beach seascape */
     ],
     flowers: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Field_of_flowers.jpg/1280px-Field_of_flowers.jpg"
+      U("photo-1490750967916-d7429ed35a8e"), /* field flowers wide */
+      U("photo-1462275646964-a0e7786cbe5a")
     ],
     spirit: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Green_pasture.jpg/1280px-Green_pasture.jpg"
+      U("photo-1564769625905-50e93615e769"),
+      U("photo-1506905925346-21bda4d32df4"),
+      U("photo-1470071451329-d1ea785c8c7d")
     ],
     galaxy: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Milky_Way_Arch.jpg/1280px-Milky_Way_Arch.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Night_sky_with_stars.jpg/1280px-Night_sky_with_stars.jpg"
+      U("photo-1419242902214-272b3f66ee7a"),
+      U("photo-1462331940025-496dfbfc7564"),
+      U("photo-1516339901601-2e1b62dc0c45")
     ],
     free: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Green_pasture.jpg/1280px-Green_pasture.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg"
+      U("photo-1506905925346-21bda4d32df4"),
+      U("photo-1441974231531-c6227db76b6e"),
+      U("photo-1564769625905-50e93615e769")
     ],
     pattern: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Islamic_geometric_pattern.jpg/1280px-Islamic_geometric_pattern.jpg"
+      U("photo-1564769625905-50e93615e769"),
+      U("photo-1519817650390-64a5db1d0498")
     ]
   };
 
@@ -60,20 +80,23 @@
     nature: "nature", flowers: "flowers", holy: "holy", spirit: "spirit",
     night: "night", water: "water", galaxy: "galaxy", free: "free",
     pattern: "pattern", flickr: "nature", dynamic: "nature", stock: "nature",
-    commons: "holy", ai: "holy", "ai scene": "holy", "ai again": "nature",
-    scene: "nature", mountains: "mountains", blank: "blank"
+    commons: "holy", ai: "nature", "ai scene": "nature", "ai again": "nature",
+    scene: "nature", mountains: "mountains", blank: "blank", decor: "holy"
   };
 
   var idx = {};
   Object.keys(POOLS).forEach(function (k) { idx[k] = 0; });
 
+  /** Block only random/people/animal stock endpoints — not all remote images */
   function blocked(url) {
     var u = String(url || "").toLowerCase();
-    return !u || /picsum\.photos|loremflickr|images\.unsplash|source\.unsplash|placeholder/i.test(u);
-  }
-  function allowed(url) {
-    var u = String(url || "").toLowerCase();
-    return u.indexOf("upload.wikimedia.org") >= 0 || u.indexOf("clarity-dawah.fyi") >= 0;
+    if (!u) return true;
+    if (/picsum\.photos/.test(u)) return true;
+    if (/loremflickr/.test(u)) return true; /* often animals */
+    if (/source\.unsplash\.com/.test(u)) return true; /* random */
+    if (/placekitten|placeimg|fakeimg|placeholder\.com/.test(u)) return true;
+    if (/thispersondoesnotexist|generated\.photos/.test(u)) return true;
+    return false;
   }
 
   function nextUrl(kind) {
@@ -91,16 +114,35 @@
     if (el) el.textContent = msg;
   }
 
-  function loadUrl(url) {
-    if (!url || blocked(url) || !allowed(url)) url = nextUrl("holy");
-    status("Loading…");
-    if (typeof w.memeLoadImageFromUrl === "function") {
-      try {
-        w.memeLoadImageFromUrl(url, "Could not load — try Holy");
-        status("Background ready");
-        return;
-      } catch (e) {}
+  function paintSolid() {
+    try {
+      if (!w.memeState) w.memeState = {};
+      w.memeState.img = null;
+      var c = d.getElementById("meme-canvas");
+      if (c && c.getContext) {
+        if (c.width < 100) { c.width = 1200; c.height = 675; }
+        var ctx = c.getContext("2d");
+        var g = ctx.createLinearGradient(0, 0, c.width, c.height);
+        g.addColorStop(0, "#0f4c3a");
+        g.addColorStop(1, "#1a2a22");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, c.width, c.height);
+      }
+      if (typeof w.memeDraw === "function") w.memeDraw();
+    } catch (e) {}
+  }
+
+  function loadUrl(url, attempt) {
+    attempt = attempt || 0;
+    if (!url || blocked(url)) {
+      if (attempt < 3) return loadUrl(nextUrl("nature"), attempt + 1);
+      status("Using solid background");
+      paintSolid();
+      return;
     }
+    status("Loading…");
+
+    /* Prefer silent loader — avoid core alert() on error */
     var im = new Image();
     im.crossOrigin = "anonymous";
     im.onload = function () {
@@ -108,13 +150,25 @@
         if (!w.memeState) w.memeState = {};
         w.memeState.img = im;
         if (typeof w.memeDraw === "function") w.memeDraw();
-      } catch (e) {}
+        else if (typeof w.clarityMemeUiSync === "function") w.clarityMemeUiSync();
+        else {
+          var c = d.getElementById("meme-canvas");
+          if (c && c.getContext) {
+            if (c.width < 100) { c.width = 1200; c.height = 675; }
+            c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+          }
+        }
+      } catch (e) { log("paint " + e); }
       status("Background ready");
+      log("ok " + url.slice(0, 60));
     };
     im.onerror = function () {
-      var fb = nextUrl("holy");
-      if (fb && fb !== url) loadUrl(fb);
-      else status("Load failed — try Blank or Holy");
+      log("fail " + url.slice(0, 60));
+      if (attempt < 4) loadUrl(nextUrl("nature"), attempt + 1);
+      else {
+        status("Using solid background");
+        paintSolid();
+      }
     };
     im.src = url;
   }
@@ -124,16 +178,14 @@
     var mapped = ALIAS[kind] || kind;
     if (mapped === "blank" || kind === "blank") {
       status("Blank");
+      paintSolid();
       try {
-        if (!w.memeState) w.memeState = {};
-        w.memeState.img = null;
         if (typeof w.memeShowBlankPalette === "function") w.memeShowBlankPalette();
-        else if (typeof w.memeDraw === "function") w.memeDraw();
       } catch (e) {}
       return;
     }
     log("bg " + kind + "→" + mapped);
-    loadUrl(nextUrl(mapped));
+    loadUrl(nextUrl(mapped), 0);
   }
 
   function installFetch() {
@@ -141,24 +193,37 @@
     w.__memeOnlineFetch = fetchBg;
     w.memeFetchNature = function () { fetchBg("nature"); };
     w.memeFetchFlickr = function () { fetchBg("nature"); };
-    w.memeLoadSample = function (k) { fetchBg(k || "holy"); };
-    if (typeof w.clarityMemeDecorBg !== "function") {
-      w.clarityMemeDecorBg = function (k) {
-        fetchBg(k === "geometry" || k === "pattern" ? "pattern" : "holy");
+    w.memeLoadSample = function (k) { fetchBg(k || "nature"); };
+    w.clarityMemeDecorBg = function (k) {
+      fetchBg(k === "geometry" || k === "pattern" ? "pattern" : "holy");
+    };
+    /* Mute noisy core alert on bg fail */
+    if (typeof w.memeLoadImageFromUrl === "function" && !w.memeLoadImageFromUrl.__soft) {
+      var prev = w.memeLoadImageFromUrl;
+      w.memeLoadImageFromUrl = function (url, onFailMsg) {
+        if (blocked(url)) {
+          fetchBg("nature");
+          return;
+        }
+        try {
+          return prev.call(this, url, null); /* null → less alert spam in some builds */
+        } catch (e) {
+          loadUrl(url, 0);
+        }
       };
+      w.memeLoadImageFromUrl.__soft = true;
     }
   }
 
-  /* ——— Scene per verse / message ——— */
+  /* Scene per verse */
   function moodFromText(blob) {
     blob = String(blob || "").toLowerCase();
-    if (/ليل|night|darkness|stars|moon|قمر|سماء/.test(blob)) return "night";
+    if (/ليل|night|darkness|stars|moon|قمر/.test(blob)) return "night";
     if (/بحر|water|river|sea|rain|مطر|نهر/.test(blob)) return "water";
-    if (/جبل|mountain|طور|حجر|rock/.test(blob)) return "mountains";
-    if (/جنّ|garden|flower|tree|زرع|نبات/.test(blob)) return "flowers";
-    if (/كعب|مكّ|مكة|مدينة|مسجد|قبل|haram|kaaba|mosque|pray|صل/.test(blob)) return "holy";
-    if (/موت|death|grave|آخر|hour|قيامة|fire|نار/.test(blob)) return "night";
-    if (/شمس|sun|light|نور|dawn|فجر/.test(blob)) return "nature";
+    if (/جبل|mountain|طور/.test(blob)) return "mountains";
+    if (/جنّ|garden|flower|tree|زرع/.test(blob)) return "flowers";
+    if (/كعب|مكّ|مكة|مدينة|مسجد|haram|kaaba|mosque|صل/.test(blob)) return "holy";
+    if (/موت|death|grave|قيامة|نار|fire/.test(blob)) return "night";
     return "nature";
   }
 
@@ -172,90 +237,29 @@
         bot = w.memeState.bottom || "";
       }
     } catch (e) {}
-    var blob = [top, mid, bot, opts.text || ""].join("\n");
-    var mood = opts.mood || moodFromText(blob);
-    log("scene-per-verse mood=" + mood);
+    var mood = opts.mood || moodFromText([top, mid, bot, opts.text || ""].join("\n"));
     fetchBg(mood);
-    status("Scene for message · " + mood);
   }
-
   w.clarityMemeSceneForVerse = sceneForCanvasMessage;
 
-  /* Hook common apply paths */
-  function wrap(name, after) {
+  function wrap(name) {
     var prev = w[name];
-    if (typeof prev !== "function") return;
-    if (prev.__shariahWrapped) return;
+    if (typeof prev !== "function" || prev.__shariahWrapped) return;
     w[name] = function () {
       var r = prev.apply(this, arguments);
-      try { after.apply(null, arguments); } catch (e) {}
+      setTimeout(function () { sceneForCanvasMessage({}); }, 150);
       return r;
     };
     w[name].__shariahWrapped = true;
   }
 
-  function installHooks() {
-    wrap("memeFetchRrra", function () {
-      setTimeout(function () { sceneForCanvasMessage({}); }, 120);
-    });
-    wrap("memeDailyVerse", function () {
-      setTimeout(function () { sceneForCanvasMessage({}); }, 120);
-    });
-    /* Apply duā + bg buttons if present */
-    d.querySelectorAll("[onclick*='Apply'], button").forEach(function (btn) {
-      var t = (btn.textContent || "").toLowerCase();
-      if (t.indexOf("apply + bg") >= 0 || t.indexOf("apply+bg") >= 0) {
-        if (btn.__sceneBound) return;
-        btn.__sceneBound = true;
-        btn.addEventListener("click", function () {
-          setTimeout(function () { sceneForCanvasMessage({}); }, 150);
-        });
-      }
-    });
-  }
-
-  /* ——— Layout: How-to + scale/options ABOVE canvas ——— */
+  /* Layout: how-to + scale above canvas */
   function reorderStudio() {
     var root = d.getElementById("meme-studio-root");
     if (!root) return;
-
     var preview = root.querySelector(".meme-preview-only");
     var below = root.querySelector(".meme-below");
     if (!preview || !below) return;
-
-    /* Collect rails to lift above canvas */
-    var liftSelectors = [
-      ".meme-howto",
-      "#meme-howto",
-      "[class*='how-to']",
-      ".meme-guide",
-      "#meme-scale-bar",
-      ".meme-scale",
-      ".meme-bar-scale",
-      ".meme-options-rail",
-      "#meme-options",
-      ".meme-controls-primary"
-    ];
-    var lift = [];
-    liftSelectors.forEach(function (sel) {
-      root.querySelectorAll(sel).forEach(function (el) {
-        if (lift.indexOf(el) < 0) lift.push(el);
-      });
-    });
-
-    /* Also: first scale / outline style bars inside below that are not fetch bars */
-    below.querySelectorAll(".meme-bar").forEach(function (bar) {
-      var lab = (bar.querySelector(".meme-tool-label") || {}).textContent || "";
-      lab = lab.toLowerCase();
-      if (/scale|outline|how to|guide|options|format/.test(lab) && lift.indexOf(bar) < 0) {
-        lift.push(bar);
-      }
-    });
-    /* How-to details/summary blocks */
-    below.querySelectorAll("details, .meme-help, .howto").forEach(function (el) {
-      if (lift.indexOf(el) < 0) lift.push(el);
-    });
-
     var mount = d.getElementById("meme-controls-above");
     if (!mount) {
       mount = d.createElement("div");
@@ -263,43 +267,37 @@
       mount.className = "meme-controls-above";
       preview.parentNode.insertBefore(mount, preview);
     }
-    lift.forEach(function (el) {
+    below.querySelectorAll(".meme-bar").forEach(function (bar) {
+      var lab = ((bar.querySelector(".meme-tool-label") || {}).textContent || "").toLowerCase();
+      if (/scale|outline|how to|guide|options|format/.test(lab)) {
+        try { mount.appendChild(bar); } catch (e) {}
+      }
+    });
+    below.querySelectorAll("details, .meme-howto, .meme-help").forEach(function (el) {
       try { mount.appendChild(el); } catch (e) {}
     });
-
-    /* Restyle bg bar labels — remove picsum/flickr promises */
+    /* Retarget risky chip labels */
     root.querySelectorAll(".mv-chip").forEach(function (btn) {
       var oc = btn.getAttribute("onclick") || "";
-      var title = btn.getAttribute("title") || "";
-      if (/flickr|picsum|free online/i.test(title) || /flickr/i.test(oc)) {
-        btn.setAttribute("title", "Shariah-safe scenery · Wikimedia only");
-      }
       if (/memeFetchBg\('flickr'\)/.test(oc)) {
         btn.setAttribute("onclick", "memeFetchBg('nature')");
-        if (/Flickr/i.test(btn.textContent || "")) btn.textContent = "🌿 Nature+";
+        btn.setAttribute("title", "Nature scenery (safe)");
       }
-      if (/memeFetchBg\('free'\)/.test(oc) && /Picsum/i.test(title)) {
-        btn.setAttribute("title", "Free Wikimedia scenery · no people stock");
+      if (/Picsum/i.test(btn.getAttribute("title") || "")) {
+        btn.setAttribute("title", "Scenery catalogue · no people/animal stock");
       }
     });
-
-    log("reorder lift=" + lift.length);
+    log("reorder");
   }
-
-  var CSS = [
-    "#meme-controls-above{display:flex;flex-direction:column;gap:0.4rem;margin:0.35rem 0 0.5rem;}",
-    "#meme-controls-above .meme-bar{margin:0;}",
-    "#meme-studio-root .meme-bar-bg{order:0;}",
-    "#meme-controls-above{order:1;}",
-    "#meme-studio-root .meme-preview-only{order:2;}",
-    "#meme-studio-root.meme-realign{display:flex;flex-direction:column;}"
-  ].join("\n");
 
   function injectCss() {
     if (d.getElementById("meme-studio-fix-css")) return;
     var s = d.createElement("style");
     s.id = "meme-studio-fix-css";
-    s.textContent = CSS;
+    s.textContent = [
+      "#meme-controls-above{display:flex;flex-direction:column;gap:0.4rem;margin:0.35rem 0 0.5rem;}",
+      "#meme-studio-root.meme-realign{display:flex;flex-direction:column;}"
+    ].join("");
     (d.head || d.documentElement).appendChild(s);
   }
 
@@ -307,27 +305,28 @@
     injectCss();
     installFetch();
     reorderStudio();
-    installHooks();
-    log("boot");
+    wrap("memeFetchRrra");
+    wrap("memeDailyVerse");
+    log("boot-v2");
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
   w.addEventListener("load", function () {
-    setTimeout(boot, 100);
-    setTimeout(function () { installFetch(); reorderStudio(); installHooks(); }, 600);
+    setTimeout(boot, 80);
+    setTimeout(function () { installFetch(); }, 500);
   });
   d.addEventListener("clarity-core-ready", function () {
-    setTimeout(function () { installFetch(); installHooks(); }, 50);
+    setTimeout(installFetch, 40);
   });
   setInterval(function () {
-    if (w.memeFetchBg !== fetchBg) { log("reclaim"); installFetch(); }
-  }, 2500);
+    if (w.memeFetchBg !== fetchBg) installFetch();
+  }, 2000);
 
   w.ClarityMemeStudioFix = {
     fetchBg: fetchBg,
     sceneForVerse: sceneForCanvasMessage,
-    reorder: reorderStudio,
+    pools: POOLS,
     log: function () { return LOG.slice(); }
   };
 })(window, document);
