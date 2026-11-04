@@ -1,18 +1,15 @@
 <!DOCTYPE html><html data-clarity-room="companion" data-theme="light" lang="en"><head>
 
-<script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261103P35S"></script>
-<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261103P35S" />
-<link rel="stylesheet" href="/companion/assets/companion-nav-dedupe-v35.css?v=20261103P35S" />
-
-
+<script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261104N02"></script>
+<link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261104N02" />
 <script src="/companion/assets/clarity-banner-av-v1.js?v=20261102AV"></script>
-<script src="/companion/assets/clarity-banner-integrity-v35.js?v=20261103P35S" defer data-phase="3.5-banner"></script>
+<script src="/companion/assets/clarity-banner-integrity-v35.js?v=20261104N02" defer data-phase="3.5-banner"></script>
 
 
 <meta name="clarity-surface" content="companion"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
-<meta name="companion-phase-build" content="3.5-stable-tab-nav-craft-20261104" />
+<meta name="companion-phase-build" content="n0-n2-nav-tab-craft-20261104" />
 
 
 
@@ -283,6 +280,19 @@ html[data-clarity-room="companion"] #banner-live[aria-hidden="true"]{
 html[data-clarity-room="companion"] #banner-img.banner-still-img{
   display:block!important;width:100%;height:100%;object-fit:cover;position:relative;z-index:1;background:#0a1210
 }
+</style>
+<style id="companion-n0-room-nav-restore">
+/* N0: full room nav restored — do not hide body room nav */
+body > nav.clarity-room-nav,
+nav.clarity-room-nav,
+.clarity-room-nav {
+  display: flex !important;
+  visibility: visible !important;
+  height: auto !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+#clarity-room-strip { display: none !important; }
 </style>
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
@@ -2223,10 +2233,9 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <script src="/assets/companion-inline/inline-clarity-micro-boot-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-bundle-nuros-v1.js?v=20261101WB1" defer></script>
 <script src="/assets/companion-inline/inline-clarity-shell-v3.js?v=20261101WB1" defer></script>
-<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261103P35S" defer data-phase="2-after-shell"></script>
-<script src="/companion/assets/companion-craft-lazy-v1.js?v=20261103P35S" defer data-phase="3-craft"></script>
-<script src="/companion/assets/companion-nav-dedupe-v35.js?v=20261103P35S" defer data-phase="3.5s-nav"></script>
-<script src="/companion/assets/companion-tab-persist-v35.js?v=20261103P35S" defer data-phase="3.5s-tab"></script>
+<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261104N02" defer data-phase="2-after-shell"></script>
+<script src="/companion/assets/companion-tab-persist-v35.js?v=20261104N02" defer data-phase="n1-tab"></script>
+<script src="/companion/assets/companion-craft-core-v1.js?v=20261104N02" defer data-phase="n2-craft"></script>
 
 
 <script type="text/plain" data-rb-skip="1" src="/assets/companion-inline/inline-clarity-landing-v3.js?v=20261101WB1" defer></script>
@@ -2253,7 +2262,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <!-- phase3-dedupe removed: /assets/companion-inline/inline-clarity_lmr_read_sync.js -->
 
 <script id="clarity-quick-nav-v1" src="/assets/companion-inline/inline-clarity_quick_nav.js?v=20261101WB1" defer></script>
-<script id="clarity-tab-persist-v1" src="/assets/companion-inline/inline-clarity_tab_persist.js?v=20261101WB1" defer></script>
+<script id="clarity-tab-persist-v1" src="/assets/companion-inline/inline-clarity_tab_persist.js?v=20261101WB1" defer type="text/plain" data-rb-skip="n1-legacy-tab"></script>
 <script id="clarity-rrra5-core-js-v1" src="/assets/companion-inline/inline-clarity_rrra5_core.js?v=20261101WB1" defer></script>
 <!-- phase3-dedupe removed: /assets/companion-inline/inline-clarity_callig_pad_boot.js -->
 
