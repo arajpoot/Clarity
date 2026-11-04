@@ -1,0 +1,380 @@
+/* Craft Atelier · glass plaques · five-door era · 20261104C5
+   Matches Port dark green / gold glass language */
+
+:root {
+  --craft-bg-top: #0c1c16;
+  --craft-bg-mid: #0a1410;
+  --craft-bg-bot: #08110e;
+  --craft-ink: #e8f0ec;
+  --craft-muted: rgba(232, 240, 236, 0.88);
+  --craft-gold: #c9a227;
+  --craft-gold-soft: rgba(201, 162, 39, 0.35);
+  --craft-green: #0f4c3a;
+  --craft-accent: #1e7d5e;
+  --craft-teal: #0f766e;
+  --craft-font: "Quicksand", system-ui, -apple-system, sans-serif;
+  --craft-ar: "Amiri", "Noto Naskh Arabic", serif;
+  --craft-radius: 16px;
+}
+
+html, body.craft-room {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--craft-font);
+  background:
+    radial-gradient(1100px 520px at 50% -8%, rgba(30, 125, 94, 0.22), transparent 70%),
+    linear-gradient(180deg, var(--craft-bg-top) 0%, var(--craft-bg-mid) 55%, var(--craft-bg-bot) 100%);
+  color: var(--craft-ink);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+.craft-header {
+  text-align: center;
+  padding: 1.5rem 1.15rem 1.15rem;
+  border-bottom: 1px solid var(--craft-gold-soft);
+}
+.craft-header-inner { max-width: 40rem; margin: 0 auto; }
+.bismillah {
+  font-family: var(--craft-ar);
+  font-size: clamp(1.15rem, 3vw, 1.4rem);
+  color: #f3e6c0;
+  margin: 0 0 0.4rem;
+}
+.craft-header h1 {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.45rem, 4vw, 1.95rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.tagline { margin: 0 0 0.55rem; color: var(--craft-muted); font-size: 0.95rem; }
+.edu-stamp {
+  display: inline-block;
+  margin: 0;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--craft-gold-soft);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.companion-calling {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  padding: 0.55rem 1rem;
+  background: rgba(12, 28, 22, 0.75);
+  border-bottom: 1px solid rgba(212, 180, 90, 0.22);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  font-size: 0.84rem;
+}
+.calling-label { font-weight: 700; color: var(--craft-gold); }
+.companion-calling a {
+  color: var(--craft-ink);
+  text-decoration: none;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+.companion-calling a:hover {
+  border-color: var(--craft-gold-soft);
+  background: rgba(30, 125, 94, 0.2);
+}
+.companion-calling .home-pill {
+  margin-left: auto;
+  background: var(--craft-accent);
+  color: #fff;
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.craft-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.35rem 1.05rem 3rem;
+}
+.atelier-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 1.35rem;
+  color: var(--craft-muted);
+  font-size: 0.95rem;
+}
+
+/* Tool plaques — rectangular glass, horizontal text */
+.tool-plaques {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .tool-plaques { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1000px) {
+  .tool-plaques { grid-template-columns: repeat(3, 1fr); }
+}
+
+.tool-plaque {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--craft-radius);
+  padding: 1.1rem 1.05rem 1.05rem;
+  min-height: 11.5rem;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.07), rgba(15, 76, 58, 0.25)),
+    linear-gradient(165deg, rgba(15, 76, 58, 0.36), rgba(8, 20, 16, 0.7));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition: transform 0.16s ease, border-color 0.16s, box-shadow 0.16s;
+}
+.tool-plaque:hover,
+.tool-plaque:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(212, 180, 90, 0.65);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.plaque-ico-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+  width: 100%;
+}
+.plaque-ico {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: rgba(201, 162, 39, 0.14);
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  flex-shrink: 0;
+}
+.tool-plaque h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.plaque-ar {
+  margin: 0.1rem 0 0;
+  font-family: var(--craft-ar);
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.2;
+}
+.tool-plaque > p {
+  margin: 0 0 0.85rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--craft-muted);
+  flex: 1 1 auto;
+}
+.plaque-enter {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f0d78c;
+  letter-spacing: 0.02em;
+}
+
+/* Tool page sections */
+.tool-page .tool-section {
+  border-radius: var(--craft-radius);
+  padding: 1.2rem 1.1rem;
+  margin-bottom: 1.15rem;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.05), rgba(15, 76, 58, 0.2)),
+    rgba(10, 24, 18, 0.55);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+}
+.tool-section h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1.12rem;
+}
+.panel-note {
+  font-size: 0.88rem;
+  color: var(--craft-muted);
+  margin: 0 0 1rem;
+}
+
+.source-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.source-chips button {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(15, 76, 58, 0.2);
+  color: var(--craft-ink);
+  cursor: pointer;
+  font-family: inherit;
+}
+.source-chips button:hover,
+.source-chips button.active {
+  border-color: rgba(212, 180, 90, 0.55);
+  background: rgba(30, 125, 94, 0.35);
+}
+
+.composer label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.composer textarea,
+.composer-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--craft-ink);
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+  min-height: 100px;
+}
+.composer-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--craft-muted);
+  margin: 0.35rem 0 0.7rem;
+}
+.composer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.watermark {
+  margin-top: 0.85rem;
+  font-size: 0.76rem;
+  color: var(--craft-muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.86rem;
+  font-weight: 650;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: rgba(15, 76, 58, 0.25);
+  color: var(--craft-ink);
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+.btn:hover {
+  border-color: rgba(212, 180, 90, 0.6);
+  background: rgba(30, 125, 94, 0.35);
+}
+.btn.primary {
+  background: var(--craft-accent);
+  border-color: transparent;
+  color: #fff;
+}
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; }
+
+.tile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.craft-footer {
+  text-align: center;
+  padding: 2rem 1rem 2.5rem;
+  font-size: 0.8rem;
+  color: var(--craft-muted);
+  border-top: 1px solid rgba(212, 180, 90, 0.2);
+}
+.craft-footer p { margin: 0.25rem 0; }
+
+/* Booth meter */
+.craft-meter, .tj-booth-root .craft-meter {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+.craft-meter i, .tj-booth-root .craft-meter i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--craft-accent), var(--craft-gold));
+  transition: width 0.05s linear;
+}
+.tj-booth-root .craft-ayah {
+  font-family: var(--craft-ar);
+  font-size: 1.35rem;
+  direction: rtl;
+  text-align: right;
+  margin: 0.6rem 0;
+  padding: 0.7rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.2);
+}
+
+/* ─── Hero banner · Ulugh Beg / Registan ─── */
+.craft-hero-banner {
+  position: relative;
+  width: 100%;
+  max-height: 320px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212, 180, 90, 0.35);
+  background: #0a1612;
+}
+.craft-hero-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.craft-hero-banner .banner-credit {
+  position: absolute;
+  bottom: 6px;
+  right: 10px;
+  font-size: 0.58rem;
+  color: rgba(230, 220, 200, 0.65);
+  background: rgba(0,0,0,0.35);
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .craft-hero-banner { max-height: 200px; }
+  .craft-hero-banner img { max-height: 200px; }
+}
