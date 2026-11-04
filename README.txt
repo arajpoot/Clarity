@@ -1,10 +1,11 @@
-Companion S0–S1 STABLE
+SMOKE 1+3 FIX
 
-S0: COMPANION_STABILITY_CHARTER.md + COMPANION_LOAD_MAP_S1.json + CAMPUS_FROZEN.md
-S1: Strip fighters; boot = allowlist + unfreeze + tabs + restore/unity-v2 + meme bridge + craft + a2
+1. Four tracks: force CSS + clone strip to top of #main-content (visible on all hubs)
+3. Amānah door: hard openNotes() — shows #tab-notes hub, sets hash #notes
 
-UPLOAD: entire companion/ folder from this zip
-DO NOT touch campus/
+Also removes data-rb-thin from tab-notes.
 
-Smoke: see charter smoke sheet
-Console: window.__ALLOWLIST_LOG
+Smoke:
+- Track chips under room content (and on Reminder)
+- Tap Amānah → Notes · Amānah path + scratch pad
+- window.__SMOKE13_LOG → tracks-global, notes-open
