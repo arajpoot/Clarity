@@ -90,11 +90,27 @@
     });
   }
 
+  
+  function fixNavHere() {
+    try {
+      d.documentElement.setAttribute("data-clarity-room", "university");
+      d.querySelectorAll(".clarity-room-nav a, nav.clarity-room-nav a").forEach(function (a) {
+        var uni = a.getAttribute("data-room-link") === "university" ||
+          ((a.getAttribute("href") || "").indexOf("/campus") === 0);
+        a.classList.toggle("is-here", !!uni);
+        if (uni) a.setAttribute("aria-current", "page");
+        else a.removeAttribute("aria-current");
+      });
+    } catch (e) {}
+  }
+
   function boot() {
+    fixNavHere();
     try {
       d.documentElement.setAttribute("data-clarity-room", "university");
     } catch (e) {}
     render();
+    fixNavHere();
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
