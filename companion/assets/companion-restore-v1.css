@@ -1,0 +1,97 @@
+/* companion-restore-v1 · gates · notes door · banner absolute columns · meme top tools */
+/* 4 learning track tiles always visible */
+html[data-clarity-room="companion"] .clarity-gate-switcher,
+html[data-clarity-room="companion"] .clarity-gate-switcher.rrra-sitewide {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 0.5rem 0 0.65rem !important;
+  padding: 0.45rem 0.5rem !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(212,180,90,0.25) !important;
+  background: rgba(15,76,58,0.12) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  padding: 0.35rem 0.55rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  background: rgba(8,16,14,0.45) !important;
+  color: inherit !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn.is-active,
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn[aria-pressed="true"] {
+  border-color: rgba(212,180,90,0.45) !important;
+  background: linear-gradient(135deg, rgba(15,76,58,0.35), rgba(201,162,39,0.12)) !important;
+}
+html[data-clarity-room="companion"] .cgs-label {
+  font-size: 0.7rem !important;
+  font-weight: 800 !important;
+  opacity: 0.85;
+  margin-right: 0.15rem;
+}
+
+/* Notes panel visible when active */
+html[data-clarity-room="companion"] #tab-notes.is-active,
+html[data-clarity-room="companion"] #tab-notes.active {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Banner: absolute side columns so nothing can stack both left */
+html[data-clarity-room="companion"] .banner {
+  position: relative !important;
+  min-height: 14rem !important;
+}
+html[data-clarity-room="companion"] .banner-overlay {
+  position: relative !important;
+  min-height: 14rem !important;
+  padding: 0.5rem 0.55rem !important;
+  display: block !important; /* sides absolutely placed */
+}
+html[data-clarity-room="companion"] .banner-side.left {
+  position: absolute !important;
+  left: 0.45rem !important;
+  top: 0.45rem !important;
+  width: min(38vw, 10.5rem) !important;
+  z-index: 3 !important;
+}
+html[data-clarity-room="companion"] .banner-side.right {
+  position: absolute !important;
+  right: 0.45rem !important;
+  top: 0.45rem !important;
+  width: min(38vw, 10.5rem) !important;
+  z-index: 3 !important;
+  left: auto !important;
+}
+html[data-clarity-room="companion"] .banner-center {
+  position: relative !important;
+  z-index: 2 !important;
+  margin: 0 auto !important;
+  max-width: 22rem !important;
+  padding: 0.35rem 0.25rem 0.5rem !important;
+  text-align: center !important;
+}
+html[data-clarity-room="companion"] .salah-times-section {
+  margin-left: auto !important;
+  text-align: right !important;
+}
+
+/* Meme top tool row */
+html[data-clarity-room="companion"] .meme-bar-bg,
+html[data-clarity-room="companion"] .meme-top-tools,
+html[data-clarity-room="companion"] [class*="meme-scene"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.3rem !important;
+  visibility: visible !important;
+}
