@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-clarity-room="craft">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Craft Notes · Craft</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C5" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C5" />
+  <script>window.__CLARITY_ROOM__ = 'craft';</script>
+</head>
+<body class="craft-room">
+
+  <div class="craft-hero-banner" role="img" aria-label="Ulugh Beg Madrasa and Registan, Samarkand — Clarity Crafts">
+    <img src="/craft/assets/clarity-craft-banner.jpg" alt="Registan square · Ulugh Beg Madrasa · Clarity · Crafts" width="1600" height="680" loading="lazy" />
+    <span class="banner-credit">Photo · Registan · educational use</span>
+  </div>
+
+  <header class="craft-header">
+    <div class="craft-header-inner">
+      <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
+      <h1>📝 Craft Notes</h1>
+      <p class="tagline">Local reflections · stays in this browser</p>
+      <p class="edu-stamp">Educational only — not a fatwa · not Amānah vault</p>
+    </div>
+  </header>
+  <aside class="companion-calling">
+    <span class="calling-label">Companion calling</span>
+    <a href="/amana/notes/">Amānah Notes</a>
+    <a href="/craft/">← All tools</a>
+    <a href="/companion/" class="home-pill">Home</a>
+  </aside>
+  <main class="craft-main tool-page">
+    <section class="tool-section">
+      <h2>Quick note</h2>
+      <p class="panel-note">This is a light local pad for Craft. Private sealed notes live in <strong>Amānah</strong>.</p>
+      <textarea id="craft-note" class="composer-textarea" rows="10" placeholder="Write a short reflection… stays in this browser."></textarea>
+      <div class="desk-actions">
+        <button type="button" id="note-save" class="btn primary">Save locally</button>
+        <button type="button" id="note-clear" class="btn">Clear</button>
+      </div>
+    </section>
+  </main>
+  <footer class="craft-footer"><p>Clarity Craft · Notes · Educational only</p></footer>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C5" defer></script>
+  <script>
+    (function () {
+      var ta = document.getElementById("craft-note");
+      var KEY = "clarity_craft_note_v1";
+      try { ta.value = localStorage.getItem(KEY) || ""; } catch (e) {}
+      document.getElementById("note-save").onclick = function () {
+        try { localStorage.setItem(KEY, ta.value || ""); } catch (e) {}
+      };
+      document.getElementById("note-clear").onclick = function () {
+        ta.value = "";
+        try { localStorage.removeItem(KEY); } catch (e) {}
+      };
+    })();
+  </script>
+</body>
+</html>
