@@ -1,4 +1,4 @@
-/*! clarity-room-nav-v1 · 20261104C5
+/*! clarity-room-nav-v1 · 20261104C6
  * Single sticky rail only. Four isolation doors + soft Craft tile.
  * If a .clarity-room-nav already exists → upgrade in place (add Craft if missing).
  * Never insert a second rail. No cross-room module imports.
