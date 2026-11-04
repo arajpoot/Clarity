@@ -1,4 +1,4 @@
-# Clarity Craft · Five-Door Package · 20261104C5
+# Clarity Craft · Five-Door Package · 20261104C6
 
 **Bismillah.** Educational only — not a fatwa.
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Clarity — Furnish Your Grave</title>
-<meta name="description" content="Clarity On-Device: four rooms — Companion tools, Yawm daily portion, University path, Amānah vault. Educational only — not a fatwa."/>
+<meta name="description" content="Clarity On-Device: five rooms — Companion, Yawm, University, Amānah, and Craft atelier. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/"/>
 <meta name="clarity-port" content="20261104P1"/>
 
@@ -98,7 +98,7 @@
 
   /* —— Tiles —— */
   .port-main {
-    max-width: 52rem;
+    max-width: 64rem;
     margin: 0 auto;
     padding: 1.25rem 1.05rem 2.75rem;
   }
@@ -117,8 +117,8 @@
   @media (min-width: 560px) {
     .port-grid { grid-template-columns: 1fr 1fr; }
   }
-  @media (min-width: 900px) {
-    .port-grid { grid-template-columns: repeat(4, 1fr); }
+  @media (min-width: 980px) {
+    .port-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.75rem; }
   }
 
   .room-tile {
@@ -128,14 +128,19 @@
     text-align: left;
     text-decoration: none;
     color: inherit;
-    border-radius: 18px;
-    padding: 1.05rem 1rem 1.1rem;
-    min-height: 11.5rem;
-    border: 1px solid rgba(212, 180, 90, 0.28);
+    border-radius: 16px;
+    padding: 1rem 1.05rem 1.05rem;
+    min-height: 12.5rem;
+    border: 1px solid rgba(212, 180, 90, 0.32);
     background:
-      linear-gradient(165deg, rgba(15, 76, 58, 0.42), rgba(10, 24, 18, 0.72));
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
-    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      linear-gradient(155deg, rgba(255, 255, 255, 0.08), rgba(15, 76, 58, 0.28)),
+      linear-gradient(165deg, rgba(15, 76, 58, 0.38), rgba(8, 20, 16, 0.72));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
   }
   .room-tile:hover,
   .room-tile:focus-visible {
@@ -192,7 +197,8 @@
   <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
   <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
   <a href="/amana/" data-room-link="amana"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
-  <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
+  <a href="/craft/" data-room-link="craft"><span class="crn-ico" aria-hidden="true">✒️</span><span class="crn-label">Craft<span class="crn-sub">meme · tajweed · desks</span></span></a>
+  <p class="crn-seal">Five rooms · educational only · not a fatwa</p>
 </nav>
 
 <header class="port-banner" role="banner">
@@ -207,8 +213,8 @@
 
 <main class="port-main">
   <p class="port-lead">
-    One Port · four isolated rooms. Read a short summary, then enter.
-    Upgrades to one room do not change the others.
+    One Port · five rooms. Four isolation doors + Craft atelier surface.
+    Read a short summary, then enter. Upgrades to one room do not change the others.
   </p>
 
   <div class="port-grid" role="navigation" aria-label="Enter a room">
@@ -217,9 +223,8 @@
       <p class="name">Companion</p>
       <p class="name-ar" lang="ar" dir="rtl">المرافق</p>
       <p class="summary">
-        Reminder path (commands, Names, living words), Reality &amp; Reflection,
-        Action tools, meme &amp; calligraphy craft, and a Notes pointer to Amānah.
-        Banner, ṣalāh, and path plaques stay on this device.
+        Reminder path, Reality &amp; Reflection, Action tools.
+        Banner, ṣalāh, and path plaques on this device.
       </p>
       <span class="enter">Enter Companion →</span>
     </a>
@@ -229,8 +234,8 @@
       <p class="name">Yawm</p>
       <p class="name-ar" lang="ar" dir="rtl">يوم</p>
       <p class="summary">
-        Today’s portion — the daily source of truth: light, adhkār, tasbeeh,
-        ṣalāh rhythm, and calm modules for this day only. No vault crypto here.
+        Today’s portion — light, adhkār, tasbeeh, ṣalāh rhythm.
+        Daily source of truth. No vault crypto here.
       </p>
       <span class="enter">Enter Yawm →</span>
     </a>
@@ -240,8 +245,8 @@
       <p class="name">University</p>
       <p class="name-ar" lang="ar" dir="rtl">الجامعة</p>
       <p class="summary">
-        Ordered learning path: Seeker → Practice → Consistency → Transmission.
-        Desk, lab, library, and study markers — a campus, not the Amānah vault.
+        Ordered path: Seeker → Practice → Consistency.
+        Desk, lab, library — a campus, not Amānah.
       </p>
       <span class="enter">Enter University →</span>
     </a>
@@ -251,10 +256,21 @@
       <p class="name">Amānah</p>
       <p class="name-ar" lang="ar" dir="rtl">أمانة</p>
       <p class="summary">
-        On-device trust surface: passphrase gate, dayn, heirs, and private notes.
-        Clarity does not store your passphrase. Educational readiness — not a will.
+        On-device trust: dayn, heirs, private notes.
+        Educational readiness — not a will or fatwa.
       </p>
       <span class="enter">Enter Amānah →</span>
+    </a>
+
+    <a class="room-tile" href="/craft/" data-room-tile="craft">
+      <span class="ico" aria-hidden="true">✒️</span>
+      <p class="name">Craft</p>
+      <p class="name-ar" lang="ar" dir="rtl">الصناعة</p>
+      <p class="summary">
+        Atelier: Meme Studio, 𝕏 + Facebook desks, Tajweed Deep Studio,
+        calligraphy, quiz &amp; notes. Soft surface — isolation preserved.
+      </p>
+      <span class="enter">Enter Craft →</span>
     </a>
   </div>
 
