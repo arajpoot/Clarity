@@ -1,25 +1,10 @@
-ASSETS ALLOWLIST v1
+Companion S0–S1 STABLE
 
-Loads ONLY these root modules (with path fallbacks):
+S0: COMPANION_STABILITY_CHARTER.md + COMPANION_LOAD_MAP_S1.json + CAMPUS_FROZEN.md
+S1: Strip fighters; boot = allowlist + unfreeze + tabs + restore/unity-v2 + meme bridge + craft + a2
 
-  Track:  companion-track-tiles-restore CSS + track-unhide.js
-  Path:   path-track-stable + path-track-integrity
-  Notes:  companion-notesload-shim
-  Banner: inline-clarity-banner-restore + banner-revamp CSS
-  Meme:   clarity-meme-bg-fetch + meme-shariah-bg
-  Guard:  companion-freeze-guard
+UPLOAD: entire companion/ folder from this zip
+DO NOT touch campus/
 
-Disabled (text/plain): banner-craft JS, banner-sleek JS, stabilize JS,
-  banner-control, nav-clean
-
-Still present: unity-v2 (notes door / surface-doors kill), a2 spine (craft richness),
-  unfreeze, tab persist, meme bridge
-
-Smoke:
-  window.__ALLOWLIST_LOG → group-ok track-unhide, banner-restore, meme-bg, …
-  4 track tiles visible
-  Meme Holy/Nature backgrounds
-  Notes via Amānah door
-
-Upload full companion/ from zip.
-Files live on site at /assets/ — no need to copy those into companion/.
+Smoke: see charter smoke sheet
+Console: window.__ALLOWLIST_LOG

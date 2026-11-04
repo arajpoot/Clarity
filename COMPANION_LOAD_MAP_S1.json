@@ -1,0 +1,54 @@
+{
+  "phase": "S0-S1",
+  "room": "companion",
+  "campus_frozen": true,
+  "boot": [
+    "companion-boot-v2.js",
+    "companion-assets-allowlist-v1.js",
+    "clarity-companion-unfreeze-v3.js",
+    "companion-tab-persist-v35.js",
+    "companion-unity-v2.js",
+    "companion-restore-v1.js",
+    "clarity-meme-api-bridge-v1.js",
+    "companion-craft-core-v1.js",
+    "companion-a2-spine-loader-v1.js"
+  ],
+  "allowlist_groups": [
+    "track-css",
+    "track-unhide",
+    "path-stable",
+    "path-integrity",
+    "notes-shim",
+    "banner-restore",
+    "banner-revamp-css",
+    "meme-bg",
+    "meme-shariah",
+    "freeze-guard"
+  ],
+  "stripped_patterns": [
+    "companion-banner-craft-v1.js",
+    "companion-banner-sleek-v1.js",
+    "companion-stabilize-v1.js",
+    "clarity-banner-control-n34.js",
+    "companion-nav-clean-n34.js",
+    "clarity-banner-integrity-v35.js",
+    "clarity-banner-av-v1.js",
+    "companion-unity-v1.js",
+    "companion-error-trap-n35.js",
+    "inline-clarity_banner_repair.js",
+    "inline-clarity_live_harden_v1.js",
+    "inline-clarity_surface_polish_v1.js",
+    "inline-clarity_companion_repair_v1.js",
+    "inline-clarity_companion_polish_v1.js",
+    "inline-clarity_icons_links_polish_v1.js"
+  ],
+  "owners": {
+    "shell": "clarity-companion-unfreeze-v3",
+    "tabs": "companion-tab-persist-v35",
+    "tracks": "companion-track-unhide-v1 + tiles CSS",
+    "banner_data": "inline-clarity-banner-restore-v1",
+    "meme_bg": "clarity-meme-bg-fetch-v1 + shariah-bg",
+    "notes_door": "companion-unity-v2 / restore",
+    "craft": "a2 spine + craft-core"
+  }
+}
