@@ -1,7 +1,7 @@
 <!DOCTYPE html><html data-clarity-room="companion" data-theme="light" lang="en"><head>
 
 <script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261104EC"></script>
-<script src="/companion/assets/companion-room-owner-v1.js?v=20261104HK"></script>
+<script src="/companion/assets/companion-room-owner-v1.js?v=20261104EN"></script>
 <script src="/companion/assets/companion-ai-maintainer-v1.js?v=20261104AIM" defer></script>
 
 
@@ -332,11 +332,12 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   pointer-events: none !important;
 }
 </style>
-<link rel="stylesheet" href="/companion/assets/companion-unity-v2.css?v=20261104U2" />
-
 <link rel="stylesheet" href="/companion/assets/companion-restore-v1.css?v=20261104R" />
 
 <link rel="stylesheet" href="/assets/css/companion-track-tiles-restore-v1.css?v=20261104AL" />
+<link id="clarity-final-banner-controls-v2" rel="stylesheet" href="/assets/css/clarity-final-banner-controls-v2.css?v=20261104EN" />
+<link id="clarity-banner-revamp-v1" rel="stylesheet" href="/assets/css/clarity-banner-revamp-v1.css?v=20261104EN" />
+<link id="companion-unity-v2-css" rel="stylesheet" href="/companion/assets/companion-unity-v2.css?v=20261104EN" />
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -555,12 +556,12 @@ html[data-clarity-room="companion"] .amana-vault-interior {
     </div>
 </div>
 
-<nav id="clarity-door-rail" class="door-rail-bottom door-rail-rrra5" aria-label="Learn as — Reminder, Reality, Reflection, Action, Amana Vault">
+<nav id="clarity-door-rail" class="door-rail-bottom door-rail-rrra5" aria-label="Learn as — Reminder, Reality, Reflection, Action, Notes (Amānah room)">
   <button type="button" class="door-rail-btn rrra-rail-rem" data-rail-tab="reminder" data-rrra="reminder" onclick="clarityOpenSectionDoor('reminder')"><span class="dr-ico">✦</span><span class="dr-label">Reminder</span><span class="dr-count" id="rrra-count-reminder"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-real" data-rail-tab="reality" data-rrra="reality" onclick="clarityOpenSectionDoor('reality')"><span class="dr-ico">◉</span><span class="dr-label">Reality</span><span class="dr-count" id="rrra-count-reality"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-refl" data-rail-tab="reflection" data-rrra="reflection" onclick="clarityOpenSectionDoor('reflection')"><span class="dr-ico">☾</span><span class="dr-label">Reflection</span><span class="dr-count" id="rrra-count-reflection"></span></button>
   <button type="button" class="door-rail-btn rrra-rail-act" data-rail-tab="action" data-rrra="action" onclick="clarityOpenSectionDoor('action')"><span class="dr-ico">➤</span><span class="dr-label">Action</span><span class="dr-count" id="rrra-count-action"></span></button>
-  <button type="button" class="door-rail-btn rrra-rail-notes" data-rail-tab="notes" data-rrra="notes" onclick="clarityOpenSectionDoor('notes')"><span class="dr-ico">🔐</span><span class="dr-label">Amānah</span></button>
+  <button type="button" class="door-rail-btn rrra-rail-notes" data-rail-tab="notes" data-rrra="notes" onclick="clarityOpenSectionDoor('notes')"><span class="dr-ico">🔐</span><span class="dr-label">Notes</span></button>
 </nav>
 
 <noscript>
@@ -1924,19 +1925,21 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 </div></div>
 
 <div id="tab-notes" class="tab-panel" data-rb-thin="1">
-<div class="notes-hub-v35" data-phase="unity-v2" style="padding:0.85rem 0.9rem;max-width:52rem">
+<div class="notes-hub-v35" data-phase="amana-room-note" style="padding:0.85rem 0.9rem;max-width:52rem">
   <header class="nh-head" style="margin-bottom:0.75rem">
-    <h2 style="margin:0 0 0.35rem;font-size:1.15rem">Notes · Amānah path</h2>
+    <h2 style="margin:0 0 0.35rem;font-size:1.15rem">Notes · Amānah moved</h2>
     <p style="margin:0;font-size:0.88rem;line-height:1.45;opacity:0.9">
-      Educational space for estate readiness. Private encrypted notes live in the <strong>Amānah</strong> room.
+      The old in-companion vault is retired. Private vault, dayn, and heirs tools now live in the <strong>Amānah</strong> room.
     </p>
   </header>
-  <div class="nh-card" style="margin:0 0 0.75rem;padding:0.75rem 0.85rem;border-radius:12px;border:1px solid rgba(201,162,39,0.28);background:rgba(15,76,58,0.08)">
-    <strong style="color:#c9a227">Open Amānah Vault</strong>
-    <p style="margin:0.35rem 0 0.55rem;font-size:0.84rem;line-height:1.45">
-      Passphrase-protected notes stay on-device. Clarity does not store your passphrase.
+  <div class="nh-card" role="note" style="margin:0 0 0.75rem;padding:0.85rem 0.95rem;border-radius:14px;border:1px solid rgba(201,162,39,0.4);background:linear-gradient(135deg,rgba(15,76,58,0.16),rgba(201,162,39,0.08))">
+    <strong style="color:#c9a227;display:block;margin-bottom:0.35rem">🔐 Amānah is its own room</strong>
+    <p style="margin:0 0 0.55rem;font-size:0.86rem;line-height:1.5">
+      Passphrase-protected notes, dayn tracking, and heir guidance open at
+      <a href="/amana/" style="font-weight:700;color:#e8c547">clarity-dawah.fyi/amana/</a>.
+      Clarity does not store your passphrase. Educational only — not a fatwa.
     </p>
-    <a href="/amana/" style="display:inline-block;padding:0.4rem 0.9rem;border-radius:999px;font-weight:700;text-decoration:none;background:linear-gradient(135deg,#0f4c3a,#1a6b52);color:#f7f3eb">Go to Amānah →</a>
+    <a href="/amana/" style="display:inline-block;padding:0.45rem 1rem;border-radius:999px;font-weight:700;text-decoration:none;background:linear-gradient(135deg,#0f4c3a,#1a6b52);color:#f7f3eb">Open Amānah room →</a>
   </div>
   <div class="nh-card" style="margin:0 0 0.75rem;padding:0.75rem 0.85rem;border-radius:12px;border:1px solid rgba(15,76,58,0.15)">
     <strong>Study list (not a fatwa)</strong>
