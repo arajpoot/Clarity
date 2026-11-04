@@ -1,5 +1,5 @@
-/*! companion-tab-integrity-v1 · Phase 1
- * Bottom nav + tab panels wiring for companion room only.
+/*! companion-tab-integrity-v1 · Phase 1 (no const tabKeys)
+ * Bottom nav ↔ tab panels. Companion room only.
  */
 (function (w, d) {
   "use strict";
@@ -14,6 +14,8 @@
   }
 
   function ensureSwitchTab() {
+    if (typeof w.switchTab === "function" && w.switchTab.__fromCore) return;
+    /* only install soft switchTab if core has not replaced yet */
     if (typeof w.switchTab === "function") return;
     w.switchTab = function (id) {
       id = String(id || "reminder").replace(/^tab-/, "");
@@ -45,7 +47,7 @@
         if (!id) return;
         ev.preventDefault();
         ensureSwitchTab();
-        w.switchTab(id);
+        if (typeof w.switchTab === "function") w.switchTab(id);
       });
     });
   }
@@ -54,7 +56,7 @@
     var id = "reminder";
     try { id = localStorage.getItem("clarity_active_tab") || "reminder"; } catch (e) {}
     ensureSwitchTab();
-    w.switchTab(id);
+    if (typeof w.switchTab === "function") w.switchTab(id);
   }
 
   function boot() {
