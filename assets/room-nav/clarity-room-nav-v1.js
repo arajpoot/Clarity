@@ -1,12 +1,15 @@
-/*! clarity-room-nav-v1 · 20261104C6
+/*! clarity-room-nav-v1 · 20261104C8
  * Single sticky rail only. Four isolation doors + soft Craft tile.
- * If a .clarity-room-nav already exists → upgrade in place (add Craft if missing).
- * Never insert a second rail. No cross-room module imports.
+ * Upgrades EVERY .clarity-room-nav in place (add Craft if missing).
+ * Handles rich (icon+label) and simple (Yawm-style) markup.
+ * Never inserts a second rail. No cross-room module imports.
  * Educational only — not a fatwa.
  */
 (function () {
   "use strict";
-  if (window.__CLARITY_ROOM_NAV_V1__) return;
+  if (window.__CLARITY_ROOM_NAV_V1_C8__) return;
+  window.__CLARITY_ROOM_NAV_V1_C8__ = true;
+  /* Allow re-upgrade even if an older v1 flag was set by a prior script */
   window.__CLARITY_ROOM_NAV_V1__ = true;
 
   var ROOMS = {
@@ -61,18 +64,32 @@
       var id = (a.getAttribute("data-room-link") || "").toLowerCase();
       var here = forced ? id === forced : ROOMS[id] && ROOMS[id].match(p);
       a.classList.toggle("is-here", !!here);
+      a.classList.toggle("here", !!here);
       if (here) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
     }
   }
 
-  function craftAnchor() {
+  /** Detect simple text-only rails (e.g. Yawm .top) vs rich icon rails */
+  function isSimpleRail(nav) {
+    if (!nav) return false;
+    if (nav.classList.contains("top")) return true;
+    var sample = nav.querySelector("[data-room-link]");
+    if (!sample) return false;
+    return !sample.querySelector(".crn-ico, .crn-label");
+  }
+
+  function craftAnchor(simple) {
     var a = document.createElement("a");
     a.href = "/craft/";
     a.setAttribute("data-room-link", "craft");
-    a.innerHTML =
-      '<span class="crn-ico" aria-hidden="true">✒️</span>' +
-      '<span class="crn-label">Craft<span class="crn-sub">meme · tajweed · desks</span></span>';
+    if (simple) {
+      a.textContent = "Craft";
+    } else {
+      a.innerHTML =
+        '<span class="crn-ico" aria-hidden="true">✒️</span>' +
+        '<span class="crn-label">Craft<span class="crn-sub">meme · tajweed · desks</span></span>';
+    }
     return a;
   }
 
@@ -97,25 +114,45 @@
     );
   }
 
+  function upgradeOne(nav, room) {
+    if (!nav) return;
+    if (room) nav.setAttribute("data-room", room);
+    if (!nav.querySelector('[data-room-link="craft"]')) {
+      var simple = isSimpleRail(nav);
+      var link = craftAnchor(simple);
+      var seal = nav.querySelector(".crn-seal");
+      if (seal) {
+        nav.insertBefore(link, seal);
+        seal.textContent = "Five rooms · educational only · not a fatwa";
+      } else {
+        nav.appendChild(link);
+        /* optional seal for rails that never had one */
+        if (!simple) {
+          var p = document.createElement("p");
+          p.className = "crn-seal";
+          p.textContent = "Five rooms · educational only · not a fatwa";
+          nav.appendChild(p);
+        }
+      }
+    } else {
+      var seal2 = nav.querySelector(".crn-seal");
+      if (seal2 && /Four rooms/i.test(seal2.textContent || "")) {
+        seal2.textContent = "Five rooms · educational only · not a fatwa";
+      }
+    }
+    mark(nav);
+  }
+
   /**
-   * SINGLE-RAIL RULE (NAV CONTRACT):
-   * - If .clarity-room-nav exists → mutate it only (add Craft tile if absent).
-   * - Never create a second .clarity-room-nav.
-   * - Seal text updates to “Five rooms…” when Craft is present.
+   * SINGLE-RAIL RULE:
+   * Upgrade every existing .clarity-room-nav in place.
+   * Create one only if none exist.
    */
   function ensureNav(room) {
-    var existing = document.querySelector(".clarity-room-nav");
-    if (existing) {
-      if (room) existing.setAttribute("data-room", room);
-      if (!existing.querySelector('[data-room-link="craft"]')) {
-        var seal = existing.querySelector(".crn-seal");
-        var link = craftAnchor();
-        if (seal) existing.insertBefore(link, seal);
-        else existing.appendChild(link);
-        if (seal) seal.textContent = "Five rooms · educational only · not a fatwa";
-      }
-      mark(existing);
-      return existing;
+    var list = document.querySelectorAll(".clarity-room-nav");
+    if (list && list.length) {
+      for (var i = 0; i < list.length; i++) upgradeOne(list[i], room);
+      return list[0];
     }
     var nav = document.createElement("nav");
     nav.className = "clarity-room-nav";
@@ -151,9 +188,25 @@
     ensureNav(detectRoom());
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  window.addEventListener("popstate", function () {
-    mark(document.querySelector(".clarity-room-nav"));
+  /* Multiple passes: early DOM, load, and short delay for late shells */
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+  window.addEventListener("load", function () {
+    ensureNav(detectRoom());
   });
+  setTimeout(function () {
+    ensureNav(detectRoom());
+  }, 400);
+  window.addEventListener("popstate", function () {
+    var n = document.querySelector(".clarity-room-nav");
+    if (n) mark(n);
+  });
+
+  /* Public re-run for shells that rebuild nav */
+  window.ClarityRoomNavUpgrade = function () {
+    ensureNav(detectRoom());
+  };
 })();
