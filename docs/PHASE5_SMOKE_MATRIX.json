@@ -1,0 +1,62 @@
+{
+  "phase": 5,
+  "room": "companion",
+  "campus_touched": false,
+  "banner": "single_owner_v3",
+  "tab_matrix": [
+    {
+      "tab": "reminder",
+      "panel_present": true,
+      "cards_in_slice": 2,
+      "onclick_in_slice": 8,
+      "status": "ok"
+    },
+    {
+      "tab": "reality",
+      "panel_present": true,
+      "cards_in_slice": 2,
+      "onclick_in_slice": 3,
+      "status": "ok"
+    },
+    {
+      "tab": "reflection",
+      "panel_present": true,
+      "cards_in_slice": 4,
+      "onclick_in_slice": 3,
+      "status": "ok"
+    },
+    {
+      "tab": "action",
+      "panel_present": true,
+      "cards_in_slice": 2,
+      "onclick_in_slice": 0,
+      "status": "ok"
+    },
+    {
+      "tab": "notes",
+      "panel_present": true,
+      "cards_in_slice": 5,
+      "onclick_in_slice": 0,
+      "status": "ok"
+    },
+    {
+      "tab": "about",
+      "panel_present": true,
+      "cards_in_slice": 1,
+      "onclick_in_slice": 0,
+      "status": "ok"
+    }
+  ],
+  "wiring": {
+    "spine_dedupe": true,
+    "banner_owner_v3": true,
+    "stock_spine_disabled": true,
+    "core_path_fix": true,
+    "tab_integrity": true,
+    "craft_phase3": true,
+    "path_phase4": true,
+    "room_nav": true,
+    "no_campus_scripts": true
+  },
+  "smoke": "PASS"
+}
