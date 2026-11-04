@@ -1,4 +1,4 @@
-/*! companion-tab-persist-v35 · hash + localStorage · no force-reminder on refresh */
+/*! companion-tab-persist-v35 · N1 single path · default Reminder · campus untouched */
 (function (w, d) {
   "use strict";
   if (w.__CLARITY_TAB_PERSIST_V35__) return;
@@ -16,53 +16,33 @@
 
   function normalize(id) {
     id = String(id || "").toLowerCase().replace(/^#/, "");
-    if (id === "journey" || id === "commands") id = "reminder";
-    if (id === "callig" || id === "calligraphy") id = "action";
-    if (id === "tajweed" || id === "meme") id = id; /* may map to sections inside hubs */
-    if (!VALID[id] && id !== "tajweed" && id !== "meme" && id !== "calligraphy") {
-      /* tajweed/meme often live under hubs — keep as action/reality if unknown panel */
-      if (id === "tajweed") id = "action";
-      if (id === "meme" || id === "calligraphy") id = "action";
-    }
-    return VALID[id] ? id : null;
+    if (id === "journey" || id === "commands" || id === "seerah") id = "reminder";
+    if (id === "tajweed" || id === "callig" || id === "calligraphy" || id === "meme") id = "action";
+    if (!VALID[id]) return null;
+    return id;
   }
 
   function showTab(id, write) {
     id = normalize(id) || "reminder";
-    var panelId = VALID[id] || "tab-reminder";
+    var panelId = VALID[id];
     d.querySelectorAll(".tab-panel").forEach(function (p) {
       var on = p.id === panelId;
       p.classList.toggle("is-active", on);
       p.classList.toggle("active", on);
       p.setAttribute("aria-hidden", on ? "false" : "true");
-      if (on) {
-        p.removeAttribute("hidden");
-        p.style.removeProperty("display");
-      }
+      if (on) p.removeAttribute("hidden");
     });
     d.querySelectorAll("[data-rail-tab], [data-rrra]").forEach(function (btn) {
-      var t = btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra");
+      var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
       btn.classList.toggle("is-active", t === id);
     });
     if (write !== false) {
       try { localStorage.setItem(KEY, id); } catch (e) {}
       try {
         var want = "#" + id;
-        if ((w.location.hash || "") !== want) {
-          history.replaceState(null, "", want);
-        }
+        if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
       } catch (e2) {}
     }
-    try {
-      if (typeof w.clarityLoadCraft === "function") {
-        if (id === "action") {
-          w.clarityLoadCraft("tajweed");
-          w.clarityLoadCraft("calligraphy");
-          w.clarityLoadCraft("meme");
-        }
-        if (id === "notes") w.clarityLoadCraft("notes");
-      }
-    } catch (e3) {}
   }
 
   function resolveInitial() {
@@ -77,16 +57,19 @@
 
   w.clarityShowCompanionTab = showTab;
 
-  var prevDoor = w.clarityOpenSectionDoor;
-  w.clarityOpenSectionDoor = function (id) {
-    var n = normalize(id) || id;
-    if (VALID[n] || n === "reminder") showTab(n, true);
-    if (typeof prevDoor === "function") {
-      try { return prevDoor.apply(this, arguments); } catch (e) {}
-    }
-  };
+  function wrapDoor() {
+    var prev = w.clarityOpenSectionDoor;
+    w.clarityOpenSectionDoor = function (id) {
+      var n = normalize(id);
+      if (n) showTab(n, true);
+      if (typeof prev === "function") {
+        try { return prev.apply(this, arguments); } catch (e) {}
+      }
+    };
+  }
 
   function boot() {
+    wrapDoor();
     showTab(resolveInitial(), true);
   }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
