@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-clarity-room="craft">
 <head>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta name="clarity-build" content="C13" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta name="clarity-build" content="C15QZ" />
   <title>Sharia IQ · Craft</title>
   <meta name="description" content="Self-contained educational quiz banks. On-device. Not a fatwa." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C13" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C15" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C15" />
   <script>window.__CLARITY_ROOM__ = 'craft';</script>
   <style>
-    .quiz-q { font-size: 1.05rem; margin: 0.75rem 0; }
+    .quiz-q { font-size: 1.05rem; margin: 0.75rem 0; line-height: 1.5; }
     .quiz-opts { display: grid; gap: 0.45rem; }
-    .quiz-opts button { text-align: left; padding: 0.7rem 0.9rem; border-radius: 12px; border: 1px solid rgba(212,180,90,0.28); background: rgba(15,76,58,0.2); color: inherit; cursor: pointer; font: inherit; }
+    .quiz-opts button {
+      text-align: left; padding: 0.7rem 0.9rem; border-radius: 12px;
+      border: 1px solid rgba(212,180,90,0.28); background: rgba(15,76,58,0.2);
+      color: inherit; cursor: pointer; font: inherit;
+    }
     .quiz-opts button:hover { border-color: rgba(212,180,90,0.55); }
     .quiz-opts button.ok { background: #1e7d5e; color: #fff; }
     .quiz-opts button.bad { background: rgba(120,40,40,0.55); }
     #quiz-feedback { margin-top: 0.75rem; font-size: 0.9rem; min-height: 2.5rem; }
+    .studio-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0; }
+    .studio-actions .btn {
+      border-radius: 10px; border: 1px solid rgba(212,180,90,0.35);
+      background: #1e7d5e; color: #fff; padding: 0.45rem 0.85rem; font-weight: 700; cursor: pointer;
+    }
+    .panel-note { font-size: 0.85rem; opacity: 0.9; }
   </style>
 </head>
 <body class="craft-room">
   <div class="craft-hero-banner" role="img" aria-label="Registan">
-    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C13" alt="Registan" width="1600" height="680" loading="lazy" />
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C15" alt="Registan" width="1600" height="680" loading="lazy" />
   </div>
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
       <h1>🧠 Sharia IQ · Daily Quiz</h1>
-      <p class="tagline">Curriculum banks · sources · no cloud score</p>
+      <p class="tagline">Local banks · sources on feedback · no cloud score</p>
       <p class="edu-stamp">Educational only — not a fatwa · not a grade of īmān</p>
     </div>
   </header>
@@ -52,9 +61,16 @@
       </div>
     </section>
   </main>
-  <footer class="craft-footer"><p>Clarity Craft · Quiz · Educational only</p></footer>
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C13" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C13" defer></script>
-  <script src="/craft/assets/craft-quiz-v1.js?v=20261104C13" defer></script>
+  <footer class="craft-footer"><p>Clarity Craft · Quiz C15 · Educational only</p></footer>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/craft-quiz-v1.js?v=20261104C15" defer></script>
+  <script>
+  /* Fallback if craft-quiz-v1 expects banks under /craft/assets/data/ */
+  window.__CRAFT_QUIZ_BANKS__ = {
+    path: "/craft/assets/data/path-quiz-bank.json",
+    spark: "/craft/assets/data/module-spark-quiz-bank.json"
+  };
+  </script>
 </body>
 </html>
