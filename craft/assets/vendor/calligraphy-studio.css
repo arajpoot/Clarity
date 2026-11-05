@@ -1,0 +1,19 @@
+.callig-stage {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0.5rem auto;
+  border-radius: 14px;
+  border: 1px solid rgba(184, 166, 135, 0.45);
+  background: #fffef8;
+  overflow: hidden;
+  touch-action: none;
+}
+html[data-theme="dark"] .callig-stage { background: #152019; }
+.callig-stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#callig-ghost { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.28; }
+#callig-pad { position: relative; width: 100%; height: auto; }
