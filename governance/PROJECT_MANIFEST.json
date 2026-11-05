@@ -1,0 +1,41 @@
+{
+  "version": "20261105P1",
+  "binding": true,
+  "project": "clarity-dawah",
+  "educational_only": true,
+  "rooms": {
+    "companion": { "path": "/companion/", "may_load": ["companion"], "must_not_load": ["amana-vault", "craft-station-engines-as-home"] },
+    "yawm": { "path": "/daily/", "may_load": ["daily"], "must_not_load": ["companion-inline", "amana-vault"] },
+    "campus": { "path": "/campus/", "may_load": ["campus", "lab-under-campus"], "must_not_load": ["amana-vault"] },
+    "amana": { "path": "/amana/", "may_load": ["amana"], "must_not_load": ["companion-shell", "craft-engines"] },
+    "craft": { "path": "/craft/", "may_load": ["craft"], "must_not_load": ["companion-inline", "amana-vault", "campus-desk"] }
+  },
+  "global_invariants": {
+    "P1": "educational_stamp_not_fatwa",
+    "P2": "no_free_type_as_revelation",
+    "P3": "prefer_primary_text_links",
+    "P4": "room_isolation",
+    "P5": "amana_passphrase_local_only",
+    "P6": "remote_image_shariah_scan_where_surface_supports",
+    "P7": "pack_must_include_smoke_and_manifest_check"
+  },
+  "craft_meme_addendum": {
+    "required_scripts": [
+      "craft-meme-shariah-scan-v1.js",
+      "craft-meme-source-v1.js",
+      "craft-meme-bridge-v1.js"
+    ],
+    "paint_must_call": "clarityShariahScanUrl",
+    "fail_closed_without_scan": true
+  },
+  "deploy_gate": {
+    "reject_if_missing_project_contract_ref": false,
+    "reject_if_smoke_omits_invariants": true,
+    "reject_if_craft_meme_paint_bypasses_scan": true,
+    "reject_if_cross_room_forbidden_script": true
+  },
+  "pack_requirements": {
+    "must_include": ["SMOKE or smoke section", "list of rooms touched"],
+    "must_declare": ["rooms_touched", "invariants_checked"]
+  }
+}
