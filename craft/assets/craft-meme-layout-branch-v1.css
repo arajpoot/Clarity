@@ -1,0 +1,21 @@
+/* craft-meme-layout-branch-v1 · C17 · from archive layout_fix
+ * Controls above canvas · educational only — not a fatwa
+ */
+#mr-root, .craft-studio-host#mr-root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+#mr-root .craft-canvas-wrap,
+#mr-root canvas,
+#meme-canvas {
+  order: 2;
+  max-width: 720px;
+  width: 100%;
+  margin: 0.5rem auto;
+}
+.section-chips, .bg-chips, .ratio-chips, .studio-actions {
+  order: 1;
+}
+#meme-ratio-section { order: 1; }
+.tool-section { margin-bottom: 1rem; }
