@@ -1,0 +1,72 @@
+{
+  "$schema_note": "Clarity project-wide SMOKE template \u00b7 copy into every deploy pack as SMOKE_<BUILD>.json",
+  "build": "C16TJ",
+  "date": "2026-11-05",
+  "binding": true,
+  "educational_only": true,
+  "not_a_fatwa": true,
+  "rooms_touched": [
+    "craft"
+  ],
+  "rooms_allowed": [
+    "companion",
+    "yawm",
+    "campus",
+    "amana",
+    "craft"
+  ],
+  "project_invariants": {
+    "P1_educational_stamp": "pass",
+    "P2_no_free_type_as_revelation": "n/a",
+    "P3_primary_text_links": "pass",
+    "P4_room_isolation": "pass",
+    "P5_amana_passphrase_local": "n/a",
+    "P6_remote_image_shariah_scan": "n/a",
+    "P7_pack_declares_rooms_and_smoke": "pass"
+  },
+  "isolation_checks": {
+    "no_forbidden_cross_room_scripts": "pass",
+    "companion_inline_only_where_allowed": "pass",
+    "amana_vault_only_under_amana": "pass",
+    "craft_engines_only_under_craft": "pass"
+  },
+  "room_addenda": {
+    "craft_meme": {
+      "applies": false
+    },
+    "companion": {
+      "applies": false
+    },
+    "yawm": {
+      "applies": false
+    },
+    "amana": {
+      "applies": false
+    },
+    "campus": {
+      "applies": false
+    },
+    "craft_tajweed": {
+      "applies": true,
+      "lmr_shell_dom_present": "pass",
+      "nx_tj_lmr_script_present": "pass",
+      "booth_studio_boot": "pass",
+      "not_qari_verdict_stamp": "pass",
+      "no_upload_claim": "pass"
+    }
+  },
+  "files_changed": [
+    "craft/assets/craft-tajweed-lmr-shell-v1.js",
+    "craft/tajweed/index.html"
+  ],
+  "contract_amended": false,
+  "contract_amendment_reason": null,
+  "agent_delivery_rule": "Any proposed fix or upgrade from the agent MUST pass this SMOKE (all applicable fields pass|n/a) BEFORE delivery. Packs that skip project_invariants or fail isolation are not deliverable.",
+  "operator_signoff": {
+    "invariants_checked": false,
+    "gate_version": "20261105P1",
+    "signed": null
+  },
+  "status": "ready_for_deploy",
+  "notes": "Companion LMR host DOM ported to Craft so existing nx-tj-lmr can bind; educational only"
+}

@@ -1,14 +1,9 @@
-# C16 · Companion-grade Craft Meme enrich
+# C16TJ · Craft Tajweed LMR shell
 
-**Bismillah.** Educational only — not a fatwa.
-
-## Deploy
-1. Upload `craft/assets/craft-meme-studio-enrich-v1.js`
-2. Replace `craft/meme/index.html` (build C16)
+1. Upload `craft/assets/craft-tajweed-lmr-shell-v1.js`
+2. Replace `/craft/tajweed/index.html`
 3. Hard refresh
 
-## Gate
-See `SMOKE_C16.json` — project invariants pass; Craft meme addendum includes scan fail-closed + curated pools.
+Shell must load **before** `nx-tj-lmr-js-v1.js` (already ordered in index).
 
-## Order of scripts (required)
-shariah-scan → **studio-enrich** → online-bg → … → bridge last
+Educational only — not a fatwa · not a qāriʾ verdict.

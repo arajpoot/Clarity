@@ -1,35 +1,30 @@
-# Companion Meme vs Craft Meme · C16 port
+# Companion / Lab Tajweed vs Craft · C16TJ
 
-**Bismillah.** Educational only — not a fatwa.
+**Bismillah.** Educational only — not a fatwa · not a qāriʾ verdict.
 
-## Companion (rich modal / studio fix)
-| Feature | Source |
+## Companion / Lab richness
+| Feature | Where |
 |---------|--------|
-| Curated Unsplash + Wikimedia pools (nature, holy, night, water, flowers, spirit, …) | companion-meme-studio-fix-v1 |
-| Shariah note: no people/animals random stock | same |
-| Soft fail → solid green | same |
-| memeFetchBg / __memeOnlineFetch | same |
-| Daily verse, night quote, masnun dua helpers | api bridge + studio fix |
-| Auto-scale lines | memeAutoScaleLines |
-| PNG download / copy / share | memeDownload, memeCopyPng, memeSharePng |
-| RRRA section apply | clarityMemeFill / section chips |
+| Full LMR DOM (verse/rule modes, pull āyah, listen/match/record/focus, meter, score, log) | Companion `#tj-lmr` panel |
+| Deep studio rules + samples + audio/YT hints | Companion + `nx-tajweed-deep-studio` |
+| Daily tajweed module card | Companion |
+| Learning path / lecture embeds | Companion |
+| Practice coach tips | Lab / vendor `practice-coach.js` |
+| ClarityTajweedStudio.open(root) simple booth | `tajweed-studio-v1.js` |
 
-## Craft before C16
+## Craft before C16TJ
 | Feature | Status |
 |---------|--------|
-| Section chips + CraftMemeSource | yes |
-| Ratio chips | yes |
-| BG chips + online-bg / bg-fetch | yes (thinner pools) |
-| Shariah scan script + C15R4 bridge fail-closed | yes |
-| Curated companion-grade pools | **missing** |
-| Auto-scale / Copy PNG / Next scenery | **missing** |
-| Studio-fix soft-fail UX | **missing** |
+| `#tj-booth-root` + studio boot | yes |
+| Scripts: deep studio, LMR, coach, restore | **present (200)** |
+| LMR host DOM (`#tj-lmr-surah`, steps, record…) | **empty** — LMR could not bind |
+| Local meter fallback only | yes |
+| Practice log empty shell | yes |
 
-## C16 brings to Craft
-- `craft-meme-studio-enrich-v1.js` — port of companion studio fix  
-- **Every** pool URL load via `govScanUrl` → `clarityShariahScanUrl` (fail closed)  
-- `__memeOnlineFetch` prefers curated POOLS + scanned load  
-- UI: Copy PNG · Auto-scale text · Next scenery  
-- Full prior stack retained (shariah → enrich → online-bg → … → bridge)
+## C16TJ brings
+- `craft-tajweed-lmr-shell-v1.js` — injects Companion-grade LMR host into `#tj-lmr-host`
+- Page **C16TJ** loads shell **before** `nx-tj-lmr-js-v1`
+- Coach host slot + gov educational note
+- Isolation: Craft only · no companion-inline · no fatwa claim
 
-Better than companion for governance: fail-closed scan is mandatory on Craft paint path, not only commentary in comments.
+Does **not** re-embed full Companion path/lecture fortress (stays on Companion); Craft remains the practice workbench.

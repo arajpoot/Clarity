@@ -1,5 +1,5 @@
-# C16 Craft Meme · from Companion studio
+# C16TJ Craft Tajweed enrichment
 
-Brings curated scenery pools, auto-scale, Copy PNG, Next scenery from Companion meme studio fix into Craft — **under** project governance (Shariah scan fail-closed).
+Ports Companion-grade **Listen · Match · Record** host markup into Craft so vendor LMR JS can bind. See COMPARE.md and SMOKE_C16TJ.json.
 
-See COMPARE.md and SMOKE_C16.json.
+Educational only — not a fatwa.
