@@ -1,0 +1,70 @@
+{
+  "$schema_note": "Clarity project-wide SMOKE template · copy into every deploy pack as SMOKE_<BUILD>.json",
+  "build": "REPLACE_BUILD_ID",
+  "date": "YYYY-MM-DD",
+  "binding": true,
+  "educational_only": true,
+  "not_a_fatwa": true,
+
+  "rooms_touched": [],
+  "rooms_allowed": ["companion", "yawm", "campus", "amana", "craft"],
+
+  "project_invariants": {
+    "P1_educational_stamp": "pending",
+    "P2_no_free_type_as_revelation": "pending",
+    "P3_primary_text_links": "pending",
+    "P4_room_isolation": "pending",
+    "P5_amana_passphrase_local": "pending",
+    "P6_remote_image_shariah_scan": "pending",
+    "P7_pack_declares_rooms_and_smoke": "pending"
+  },
+
+  "isolation_checks": {
+    "no_forbidden_cross_room_scripts": "pending",
+    "companion_inline_only_where_allowed": "pending",
+    "amana_vault_only_under_amana": "pending",
+    "craft_engines_only_under_craft": "pending"
+  },
+
+  "room_addenda": {
+    "craft_meme": {
+      "applies": false,
+      "required_scripts_present": "pending",
+      "paint_calls_clarityShariahScanUrl": "pending",
+      "fail_closed_without_scan": "pending",
+      "free_type_labeled_reflection_only": "pending"
+    },
+    "companion": {
+      "applies": false,
+      "no_amana_vault_embed": "pending",
+      "workbenches_link_to_craft_when_ported": "pending"
+    },
+    "yawm": {
+      "applies": false,
+      "no_companion_inline_boot": "pending"
+    },
+    "amana": {
+      "applies": false,
+      "passphrase_not_sent_to_server": "pending",
+      "not_legal_advice_stamp": "pending"
+    },
+    "campus": {
+      "applies": false,
+      "not_fatwa_desk": "pending"
+    }
+  },
+
+  "files_changed": [],
+  "contract_amended": false,
+  "contract_amendment_reason": null,
+
+  "agent_delivery_rule": "Any proposed fix or upgrade from the agent MUST pass this SMOKE (all applicable fields pass|n/a) BEFORE delivery. Packs that skip project_invariants or fail isolation are not deliverable.",
+
+  "operator_signoff": {
+    "invariants_checked": false,
+    "gate_version": "20261105P1",
+    "signed": null
+  },
+
+  "status": "template"
+}

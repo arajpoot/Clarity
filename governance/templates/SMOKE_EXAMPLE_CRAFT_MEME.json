@@ -1,0 +1,41 @@
+{
+  "build": "EXAMPLE_C15R4",
+  "date": "2026-11-05",
+  "binding": true,
+  "educational_only": true,
+  "not_a_fatwa": true,
+  "rooms_touched": ["craft"],
+  "project_invariants": {
+    "P1_educational_stamp": "pass",
+    "P2_no_free_type_as_revelation": "pass",
+    "P3_primary_text_links": "pass",
+    "P4_room_isolation": "pass",
+    "P5_amana_passphrase_local": "n/a",
+    "P6_remote_image_shariah_scan": "pass",
+    "P7_pack_declares_rooms_and_smoke": "pass"
+  },
+  "isolation_checks": {
+    "no_forbidden_cross_room_scripts": "pass",
+    "companion_inline_only_where_allowed": "pass",
+    "amana_vault_only_under_amana": "pass",
+    "craft_engines_only_under_craft": "pass"
+  },
+  "room_addenda": {
+    "craft_meme": {
+      "applies": true,
+      "required_scripts_present": "pass",
+      "paint_calls_clarityShariahScanUrl": "pass",
+      "fail_closed_without_scan": "pass",
+      "free_type_labeled_reflection_only": "pass"
+    },
+    "companion": { "applies": false },
+    "yawm": { "applies": false },
+    "amana": { "applies": false },
+    "campus": { "applies": false }
+  },
+  "files_changed": ["craft/meme/index.html", "craft/assets/craft-meme-bridge-v1.js"],
+  "contract_amended": false,
+  "agent_delivery_rule": "Any proposed fix or upgrade from the agent MUST pass this SMOKE before delivery.",
+  "operator_signoff": { "invariants_checked": false, "gate_version": "20261105P1", "signed": null },
+  "status": "example_only"
+}
