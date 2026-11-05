@@ -1,0 +1,25 @@
+/* Host chrome for enriched studio mounts · C12 */
+.craft-studio-host {
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.85rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background: rgba(0, 0, 0, 0.22);
+}
+.craft-studio-host h2, .craft-studio-host h3 { margin: 0 0 0.5rem; }
+.craft-studio-host .craft-lead, .craft-studio-host .panel-note { opacity: 0.9; font-size: 0.85rem; }
+.craft-studio-host canvas { max-width: 100%; height: auto; border-radius: 12px; background: #0a1410; }
+.craft-studio-host button, .craft-studio-host select, .craft-studio-host textarea, .craft-studio-host input {
+  font: inherit;
+}
+.craft-studio-host textarea, .craft-studio-host input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(0,0,0,0.25);
+  color: inherit;
+  padding: 0.5rem 0.65rem;
+}
+.craft-studio-host .btn-row, .craft-studio-host .studio-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+.bridge-note { font-size: 0.75rem; opacity: 0.8; margin-top: 0.75rem; }
