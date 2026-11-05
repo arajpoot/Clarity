@@ -1,4 +1,4 @@
-# Clarity · Five Doors + Craft · FINAL deploy package · 20261104C9
+# Clarity · Five Doors + Craft · FINAL deploy package · 20261104C10
 
 **Bismillah.** Educational only — not a fatwa.
 
@@ -10,7 +10,7 @@ Smoke-verified deploy bundle: root five-door landing, Craft atelier room, single
 index.html                          → site root (5 glass plaques)
 _redirects                          → site root (removes /craft → campus/lab)
 assets/room-nav/
-  clarity-room-nav-v1.js            → overwrite (C9 upgrade-all rails)
+  clarity-room-nav-v1.js            → overwrite (C10 upgrade-all rails)
   clarity-room-nav-v1.css           → overwrite
 craft/                              → copy to site root
   index.html, meme/, tajweed/, …
@@ -30,7 +30,7 @@ landing-patch/
    Removes `/craft` → `/campus/lab` 301s so Craft tile opens the atelier.
 
 2. **`assets/room-nav/`** — overwrite both files.  
-   Use cache-bust `?v=20261104C9` on every page that already links them  
+   Use cache-bust `?v=20261104C10` on every page that already links them  
    (Amānah, Campus, Companion, etc.).
 
 3. **`craft/`** — copy entire folder to site root.
@@ -39,8 +39,8 @@ landing-patch/
 
 5. **Yawm** — add to `/daily/` (head or before `</body>`):
    ```html
-   <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C9"/>
-   <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C9" defer></script>
+   <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C10"/>
+   <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C10" defer></script>
    ```
 
 6. **Purge Cloudflare cache** · hard refresh.
@@ -51,7 +51,7 @@ landing-patch/
 - [ ] `/` shows **5** plaques; Craft → `/craft/`
 - [ ] Room rail on landing shows **Craft** pill; seal “Five rooms…”
 - [ ] After Yawm inject: `/daily/` rail gains Craft
-- [ ] `/amana/` and `/campus/` rail gain Craft after new `?v=20261104C9` JS
+- [ ] `/amana/` and `/campus/` rail gain Craft after new `?v=20261104C10` JS
 - [ ] `/craft/tajweed/` loads; `/craft/meme/` desks present
 - [ ] Only **one** `.clarity-room-nav` per page
 
@@ -67,3 +67,6 @@ May Allah accept the effort and make it light for the grave.
 - **C1** Meme: Companion RRRA section chips + source fetch → desks
 - **C2** `ClarityCraftRegistry` for future module deep links
 - Deploy: copy updated `craft/` (especially `craft/meme/` + new assets)
+
+## C1 all modules (C10)
+Tajweed rules+meter, Calligraphy pad, Quiz bank, Notes log — see docs/CRAFT_PHASE_C1_ALL_MODULES.md
