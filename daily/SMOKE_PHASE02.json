@@ -1,0 +1,30 @@
+{
+  "pack": "yawm-restore-phase2",
+  "build": "20261104Y2R",
+  "phases": ["0-inventory", "1-foundation-lock", "2-import-enriched"],
+  "source": "Clarity-archive4/daily",
+  "isolation": {
+    "companion_inline": false,
+    "craft": false,
+    "campus_desk_js": false,
+    "guard_present": true,
+    "contracts": ["YAWM_CONTRACT.md", "FOUNDATION_LOCK.md", "ROOM_LOCK.txt", "NAV_CONTRACT.md"]
+  },
+  "critical_assets": {
+    "index.html": true,
+    "daily-banner.jpg": true,
+    "daily.css": true,
+    "daily.js": true,
+    "yawm-isolation-guard-v1.js": true,
+    "modules": ["now", "deed", "adhkar", "tasbeeh", "salah", "light"]
+  },
+  "smoke": {
+    "banner": "expected",
+    "dual_tiles": "expected",
+    "module_hub": "expected",
+    "educational_stamps": "expected",
+    "room_nav_four_doors": "expected"
+  },
+  "status": "READY_FOR_DEPLOY",
+  "note": "Educational only — not a fatwa. Replace live /daily/ tree only."
+}
