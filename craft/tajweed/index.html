@@ -1,87 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-clarity-room="craft">
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta name="clarity-build" content="C13" />
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Tajweed Deep Studio · Craft</title>
-  <meta name="description" content="Tajweed rules · listen · meter · practice log. Educational only — not a fatwa · learn with a teacher." />
+  <meta name="description" content="Self-contained Tajweed booth — rules, samples, meter, practice log. Educational only — learn with a teacher." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C11" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C11" />
-  <link rel="stylesheet" href="/assets/nx-tajweed-deep-studio-v1.css" />
-  <link rel="stylesheet" href="/assets/css/nx-tajweed-deep-studio-v1.css" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/vendor/nx-tajweed-deep-studio-v1.css?v=20261104C13" />
   <script>window.__CLARITY_ROOM__ = 'craft';</script>
-  <style>
-    .rule-grid { display: grid; gap: 0.55rem; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); margin: 0.75rem 0; }
-    .rule-tile { text-align: left; padding: 0.75rem; border-radius: 14px; border: 1px solid rgba(212,180,90,0.28); background: rgba(15,76,58,0.22); color: inherit; cursor: pointer; font: inherit; }
-    .rule-tile:hover, .rule-tile.active { border-color: rgba(212,180,90,0.6); background: #1e7d5e; color: #fff; }
-    .rule-tile strong { display: block; font-size: 0.95rem; }
-    .rule-tile span { font-size: 0.72rem; opacity: 0.9; }
-    #rule-detail { white-space: pre-wrap; padding: 1rem; border-radius: 14px; border: 1px solid rgba(212,180,90,0.25); background: rgba(0,0,0,0.22); min-height: 5rem; margin: 0.5rem 0 1rem; }
-    .meter-box { padding: 0.85rem; border-radius: 14px; border: 1px solid rgba(212,180,90,0.28); background: rgba(0,0,0,0.2); }
-    .meter-bar { height: 10px; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; margin: 0.5rem 0; }
-    .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #1e7d5e, #c9a227); transition: width 0.08s linear; }
-    #practice-log { font-size: 0.8rem; opacity: 0.9; max-height: 8rem; overflow: auto; }
-  </style>
 </head>
 <body class="craft-room">
   <div class="craft-hero-banner" role="img" aria-label="Registan · Clarity Crafts">
-    <img src="/craft/assets/clarity-craft-banner.jpg" alt="Registan · Clarity Crafts" width="1600" height="680" loading="lazy" />
-    <span class="banner-credit">Photo · Registan · educational use</span>
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C13" alt="Registan · Clarity Crafts" width="1600" height="680" loading="lazy" />
   </div>
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
       <h1>📖 Tajweed Deep Studio</h1>
-      <p class="tagline">Rules · listen · level meter · practice log</p>
+      <p class="tagline">Self-contained booth · rules · samples · meter · log</p>
       <p class="edu-stamp">Educational only — not a fatwa · learn with a qualified teacher</p>
     </div>
   </header>
   <aside class="companion-calling">
-    <span class="calling-label">Companion calling</span>
-    <a href="/companion/#action">Action</a>
-    
+    <span class="calling-label">Bridge</span>
+    <a href="/companion/#action">Companion Action</a>
     <a href="/craft/">← All tools</a>
     <a href="/companion/" class="home-pill">Home</a>
   </aside>
   <main class="craft-main tool-page">
     <section class="tool-section">
-      <h2>Rule tiles</h2>
-      <p class="panel-note">Tap a rule for detail and example. On-device practice only.</p>
-      <div class="rule-grid" id="rule-grid"></div>
-      <div id="rule-detail" aria-live="polite">Select a rule…</div>
-      <div class="studio-actions">
-        <button type="button" class="btn primary" id="btn-log-rule">Log practice</button>
-        <a class="btn" href="/campus/lab/tajweed/" rel="noopener">Optional: University Lab</a>
-      </div>
+      <h2>Tajweed booth</h2>
+      <p class="panel-note">Mounted from Craft vendor assets — works offline in this room.</p>
+      <div id="tj-booth-root" class="craft-studio-host"></div>
     </section>
     <section class="tool-section">
-      <h2>Level meter (on-device)</h2>
-      <p class="panel-note">Web Audio level only — nothing is uploaded. Use headphones and a quiet room.</p>
-      <div class="meter-box">
-        <div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div>
-        <p id="meter-label">Meter idle</p>
-        <div class="studio-actions">
-          <button type="button" class="btn primary" id="btn-meter-start">Start meter</button>
-          <button type="button" class="btn" id="btn-meter-stop">Stop</button>
-        </div>
-      </div>
+      <h2>On-device level meter</h2>
+      <p class="panel-note">Web Audio only — nothing uploaded.</p>
+      <div id="tj-local-meter" class="craft-studio-host"></div>
     </section>
-    <section class="tool-section">
-      <h2>Deep studio mount</h2>
-      <div id="tj-booth-root" class="meter-box"><p class="panel-note">Booth loads when Companion/Campus assets are available.</p></div>
-    </section>
-    <section class="tool-section">
-      <h2>Practice log (this device)</h2>
-      <div id="practice-log"></div>
-    </section>
+    <p class="bridge-note">Optional later bridge: University Lab Tajweed · this room stays complete without it.</p>
   </main>
-  <footer class="craft-footer"><p>Clarity Craft · Tajweed · Educational only — not a fatwa</p></footer>
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C11" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C11" defer></script>
-  <script src="/assets/nx-tajweed-deep-studio-js-v1.js" defer></script>
-  <script src="/assets/craft/tajweed-studio-v1.js" defer></script>
-  <script src="/craft/assets/tajweed-boot-v1.js?v=20261104C11" defer></script>
-  <script src="/craft/assets/craft-tajweed-local-v1.js?v=20261104C11" defer></script>
+  <footer class="craft-footer"><p>Clarity Craft · Tajweed · Educational only</p></footer>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/tajweed-studio-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/nx-tajweed-deep-studio-js-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/practice-coach.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/craft-tajweed-local-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261104C13" defer></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.ClarityCraftStudioBoot) ClarityCraftStudioBoot.tajweed();
+    var meterHost = document.getElementById('tj-local-meter');
+    if (meterHost && !meterHost.querySelector('#meter-fill')) {
+      meterHost.innerHTML = '<div style="height:10px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden"><div id="meter-fill" style="height:100%;width:0;background:linear-gradient(90deg,#1e7d5e,#c9a227)"></div></div><p id="meter-label">Meter idle</p><div class="studio-actions"><button type="button" class="btn primary" id="btn-meter-start">Start meter</button><button type="button" class="btn" id="btn-meter-stop">Stop</button></div><div id="rule-grid" hidden></div><div id="rule-detail" hidden></div><div id="practice-log" hidden></div><button type="button" id="btn-log-rule" hidden></button>';
+    }
+  });
+  </script>
 </body>
 </html>
