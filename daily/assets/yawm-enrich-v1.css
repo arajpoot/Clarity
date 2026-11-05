@@ -1,0 +1,60 @@
+/* Yawm enrich · 20261104Y1 · Amiri AR · Quicksand EN · contract UI */
+.yawm-page {
+  font-family: Quicksand, system-ui, sans-serif;
+  color: #e8f0ec;
+  background: radial-gradient(900px 400px at 50% -10%, rgba(30,125,94,0.2), transparent 70%), #0a100c;
+  min-height: 100vh;
+  margin: 0;
+}
+.yawm-page [lang="ar"], .yawm-page .ar-line, .yawm-page .bismillah {
+  font-family: Amiri, "Noto Naskh Arabic", serif;
+}
+.yawm-main { max-width: 42rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+.yawm-hero { text-align: center; margin: 0.5rem 0 1.25rem; }
+.yawm-hero h1 { font-size: 1.45rem; margin: 0.35rem 0; }
+.bismillah { font-size: 1.15rem; opacity: 0.95; }
+.ar-line { font-size: 1.25rem; line-height: 1.7; margin: 0.5rem 0; }
+.ar-line.long { font-size: 1.1rem; line-height: 1.85; }
+.ar-line a { color: #e8c96a; text-decoration: none; }
+.ar-line a:hover { text-decoration: underline; }
+.edu-stamp, .panel-note { font-size: 0.8rem; opacity: 0.85; }
+.yawm-lines { display: grid; gap: 0.65rem; }
+.yawm-line {
+  display: grid; gap: 0.2rem; text-decoration: none; color: inherit;
+  padding: 0.9rem 1rem; border-radius: 16px;
+  border: 1px solid rgba(212,180,90,0.28);
+  background: linear-gradient(160deg, rgba(15,76,58,0.35), rgba(8,20,16,0.7));
+}
+.yawm-line:hover { border-color: rgba(212,180,90,0.55); }
+.yl-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #c9a227; }
+.yl-text { font-size: 1rem; line-height: 1.4; }
+.yl-meta { font-size: 0.78rem; opacity: 0.85; }
+.module h1 { font-size: 1.3rem; line-height: 1.35; }
+.card {
+  margin: 0.85rem 0; padding: 0.95rem 1rem; border-radius: 14px;
+  border: 1px solid rgba(212,180,90,0.25); background: rgba(0,0,0,0.22);
+}
+.report { font-size: 0.88rem; margin: 0.4rem 0 0; }
+.report a { color: #9fd6c2; }
+.act { font-size: 0.9rem; margin: 1rem 0; padding: 0.75rem 0.9rem; border-left: 3px solid #c9a227; background: rgba(15,76,58,0.2); border-radius: 0 12px 12px 0; }
+.back a { color: #9fd6c2; text-decoration: none; font-size: 0.85rem; }
+.btn {
+  display: inline-block; border-radius: 999px; border: 1px solid rgba(212,180,90,0.35);
+  background: rgba(15,76,58,0.35); color: inherit; padding: 0.45rem 0.95rem;
+  font-weight: 700; font-size: 0.85rem; cursor: pointer; text-decoration: none;
+}
+.btn.primary { background: #1e7d5e; border-color: transparent; color: #fff; }
+.anchors { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0; }
+.anchors span { font-size: 0.75rem; padding: 0.3rem 0.65rem; border-radius: 999px; border: 1px solid rgba(212,180,90,0.25); opacity: 0.85; }
+.anchors span.on { background: #1e7d5e; color: #fff; border-color: transparent; opacity: 1; }
+.counter { text-align: center; margin: 1rem 0; }
+.counter .count { font-size: 2.5rem; font-weight: 700; margin: 0.25rem 0; }
+.counter.compact { text-align: left; }
+.fard-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.fard-chips span {
+  padding: 0.45rem 0.7rem; border-radius: 12px; border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(15,76,58,0.25); font-size: 0.9rem;
+}
+.wudu { margin: 0.4rem 0 0.6rem 1.1rem; }
+.yawm-footer { text-align: center; font-size: 0.75rem; opacity: 0.8; padding: 1.25rem 1rem 2rem; }
+.deed-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; margin: 0.75rem 0; }
