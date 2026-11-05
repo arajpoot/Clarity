@@ -1,0 +1,39 @@
+{
+  "version": "C15R4",
+  "room": "craft",
+  "educational_only": true,
+  "binding": true,
+  "meme": {
+    "required_scripts": [
+      "craft-meme-shariah-scan-v1.js",
+      "craft-meme-source-v1.js",
+      "craft-meme-online-bg-v1.js",
+      "craft-meme-ratio-v1.js",
+      "craft-meme-export-v1.js",
+      "craft-meme-bridge-v1.js"
+    ],
+    "required_globals": [
+      "clarityShariahScanUrl",
+      "CraftMemeSource",
+      "__memeOnlineFetch"
+    ],
+    "paint_must_call": "clarityShariahScanUrl",
+    "fail_closed_without_scan": true,
+    "forbid": [
+      "unscoped Image() paint without scan",
+      "free-type field as primary scripture/revelation"
+    ],
+    "invariants": {
+      "G1": "Every background URL applied to canvas runs clarityShariahScanUrl first",
+      "G2": "Section sources primary for scripture lines; free-type is personal reflection only",
+      "G3": "Required scripts listed above must appear in index.html",
+      "G4": "Educational stamp and not-a-fatwa visible",
+      "G5": "No companion-inline or Amānah vault scripts from Craft pages"
+    }
+  },
+  "deploy_gate": {
+    "grep_index_must_include": ["craft-meme-shariah-scan-v1.js", "craft-meme-bridge-v1.js"],
+    "bridge_must_include": ["clarityShariahScanUrl", "refusing unscoped"],
+    "reject_if_missing": true
+  }
+}
