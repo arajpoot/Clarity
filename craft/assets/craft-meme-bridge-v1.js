@@ -1,4 +1,4 @@
-/*! craft-meme-bridge-v1 · C15R3
+/*! craft-meme-bridge-v1 · C15R4 · governance-bound
  * Connects: section sources → mr fields → wire paint
  *           online BG fetch → wire bgImage → canvas
  *           ensures #mr-root has a paintable canvas after MediaReminder open
@@ -6,8 +6,9 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_BRIDGE_C15R3__) return;
-  w.__CRAFT_MEME_BRIDGE_C15R3__ = true;
+  if (w.__CRAFT_MEME_BRIDGE_C15R4__) return;
+  w.__CRAFT_MEME_BRIDGE_C15R4__ = true;
+  /* GOVERNANCE: G1 paint→scan · G2 sources-not-free-type-as-revelation · fail closed without clarityShariahScanUrl */
 
   function $(id) { return d.getElementById(id); }
 
@@ -110,6 +111,19 @@
 
   function loadUrlAsBg(url, kind) {
     if (!url) return;
+    /* G1: Shariah scan mandatory — no paint path may skip */
+    if (typeof w.clarityShariahScanUrl === "function") {
+      var scan = w.clarityShariahScanUrl(url, kind || "");
+      if (!scan.ok) {
+        var st0 = $("meme-fetch-status");
+        if (st0) st0.textContent = "Skipped non-compliant image (" + (scan.reason || "blocked") + ") · try another";
+        return;
+      }
+    } else {
+      var st1 = $("meme-fetch-status");
+      if (st1) st1.textContent = "Shariah scan unavailable — refusing unscoped load";
+      return; /* fail closed if audit missing */
+    }
     var img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = function () { applyBgImage(img, kind); };
