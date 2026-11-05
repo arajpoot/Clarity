@@ -1,0 +1,58 @@
+/* Calligraphy enhance — 20261019UNI */
+.cu-callig-tip-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background: rgba(255, 255, 255, 0.45);
+}
+.cu-callig-tip-bar .cct-lab {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  margin-right: 0.25rem;
+}
+.cu-callig-tip-bar .mv-chip,
+.cu-callig-tip-bar button[data-tip] {
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.75rem;
+  border: 1px solid rgba(45, 106, 79, 0.3);
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+.cu-callig-tip-bar .mv-chip.on,
+.cu-callig-tip-bar button[data-tip].on {
+  background: linear-gradient(135deg, #2d6a4f, #1b4332);
+  color: #fff;
+}
+.cu-callig-tip-bar .cct-msg {
+  flex: 1 1 100%;
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-top: 0.2rem;
+}
+.cu-callig-viewport {
+  display: inline-flex;
+  gap: 0.3rem;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+.cu-callig-viewport button {
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+#callig-pad,
+#callig-canvas,
+canvas.callig-pad {
+  max-width: min(100%, 500px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+}

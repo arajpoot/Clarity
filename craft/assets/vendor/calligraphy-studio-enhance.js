@@ -1,6 +1,6 @@
 /* Calligraphy studio enhance — tip modes + viewport + narrow pad
  * Additive; does not replace lab/calligraphy/studio.js core draw.
- * Build 20261024FULL
+ * Build 20261019UNI
  */
 (function (g) {
   "use strict";
