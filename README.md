@@ -14,3 +14,13 @@ Room contracts (e.g. Craft C15R4) **add** constraints; they do not override P1�
 Wire this into packaging by including the checklist in every zip and failing review if smoke omits `project_invariants`.
 
 Educational only — not a fatwa.
+
+## SMOKE template (all future packs)
+
+```
+governance/templates/SMOKE_TEMPLATE.json   ← copy per pack
+governance/templates/SMOKE_TEMPLATE.md     ← how to fill
+governance/templates/PACK_README_SNIPPET.md
+```
+
+**Delivery rule for agents and humans:** proposed fixes must pass the filled SMOKE before delivery.
