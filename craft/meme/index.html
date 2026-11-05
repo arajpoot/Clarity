@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
-  <meta name="clarity-build" content="C15R3" />
+  <meta name="clarity-build" content="C15MEME" />
   <title>Meme Studio · Craft</title>
   <meta name="description" content="Complete Meme Studio — section sources, canvas, ratios, online backgrounds, desks. Educational only — not a fatwa." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -168,7 +168,7 @@
   </main>
 
   <footer class="craft-footer">
-    <p>Clarity Craft · Meme Studio C15R3 · Educational only — not a fatwa</p>
+    <p>Clarity Craft · Meme Studio C15 · Educational only — not a fatwa</p>
   </footer>
 
   <!-- Existing Craft studio stack -->
@@ -189,12 +189,42 @@
   <script src="/craft/assets/craft-meme-canvas-clean-v1.js?v=20261104C15" defer></script>
   <script src="/craft/assets/craft-meme-ratio-v1.js?v=20261104C15" defer></script>
   <script src="/craft/assets/craft-meme-export-v1.js?v=20261104C15" defer></script>
-  <script src="/craft/assets/craft-meme-bridge-v1.js?v=20261104C15R3" defer></script>
 
   <script>
-    /* C15R3: binding owned by craft-meme-bridge-v1.js */
     document.addEventListener("DOMContentLoaded", function () {
-      /* bridge boots MediaReminder + canvas + BG/section handlers */
+      if (window.ClarityCraftStudioBoot) ClarityCraftStudioBoot.media();
+      else if (window.ClarityMediaReminder) {
+        var mr = document.getElementById("mr-root");
+        if (mr) try { ClarityMediaReminder.open(mr); } catch (e) {}
+      }
+      setTimeout(function () {
+        var b = document.querySelector("[data-meme-section].active");
+        if (b) b.click();
+      }, 600);
+
+      /* BG chips → online fetch when available */
+      document.querySelectorAll("[data-meme-bg]").forEach(function (btn) {
+        if (btn._craftBgBound) return;
+        btn._craftBgBound = true;
+        btn.addEventListener("click", function () {
+          document.querySelectorAll("[data-meme-bg]").forEach(function (x) { x.classList.remove("active"); });
+          btn.classList.add("active");
+          var kind = btn.getAttribute("data-meme-bg") || "blank";
+          var st = document.getElementById("meme-fetch-status");
+          if (st) st.textContent = "Background: " + kind;
+          if (kind === "blank") {
+            try {
+              if (typeof window.memeShowBlankPalette === "function") window.memeShowBlankPalette();
+            } catch (e) {}
+            return;
+          }
+          if (typeof window.__memeOnlineFetch === "function") {
+            window.__memeOnlineFetch(kind);
+          } else if (typeof window.memeFetchBg === "function") {
+            window.memeFetchBg(kind);
+          }
+        });
+      });
     });
   </script>
 </body>
