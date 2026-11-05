@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
-  <meta name="clarity-build" content="C15R4" />
+  <meta name="clarity-build" content="C17" />
   <title>Meme Studio · Craft</title>
   <meta name="description" content="Complete Meme Studio — section sources, canvas, ratios, online backgrounds, desks. Educational only — not a fatwa." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C15R4" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C15R4" />
-  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261104C15R4" />
-  <link rel="stylesheet" href="/craft/assets/craft-meme-layout-v1.css?v=20261104C15R4" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105C17" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261105C17" />
+  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261105C17" />
+  <link rel="stylesheet" href="/craft/assets/craft-meme-layout-v1.css?v=20261105C17" />
+  <link rel="stylesheet" href="/craft/assets/craft-meme-layout-branch-v1.css?v=20261105C17" />
   <script>window.__CLARITY_ROOM__ = 'craft';</script>
   <style>
     .section-chips, .bg-chips, .ratio-chips { display:flex; flex-wrap:wrap; gap:0.45rem; margin:0.75rem 0; }
@@ -66,7 +67,7 @@
 </head>
 <body class="craft-room">
   <div class="craft-hero-banner" role="img" aria-label="Registan">
-    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C15R4" alt="Registan" width="1600" height="680" loading="lazy" />
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261105C17" alt="Registan" width="1600" height="680" loading="lazy" />
   </div>
   <header class="craft-header">
     <div class="craft-header-inner">
@@ -102,7 +103,7 @@
 
     <section class="tool-section">
       <h2>2 · Background (scenery only)</h2>
-      <p class="panel-note">Online safe scenery · Shariah-aware · no figurative people lists.</p>
+      <p class="panel-note">Online safe scenery · Shariah-aware · Wikimedia-first (archive best) · no figurative people lists.</p>
       <div class="bg-chips" role="group" aria-label="Backgrounds">
         <button type="button" data-meme-bg="nature">🌿 Nature</button>
         <button type="button" data-meme-bg="night">🌙 Night</button>
@@ -135,6 +136,9 @@
       <div id="mr-root" class="craft-studio-host"></div>
       <div class="wire-actions meme-export-row">
         <button type="button" class="btn primary" id="meme-export-png" data-meme-export="png">⬇ PNG</button>
+        <button type="button" class="btn" id="meme-copy-png">Copy PNG</button>
+        <button type="button" class="btn" id="meme-auto-scale">Auto-scale text</button>
+        <button type="button" class="btn" id="meme-next-bg">Next scenery</button>
         <button type="button" class="btn" id="meme-wire-preview">Re-paint canvas</button>
         <button type="button" class="btn" id="meme-push-desks">Push canvas → desks</button>
       </div>
@@ -169,28 +173,30 @@
   </main>
 
   <footer class="craft-footer">
-    <p>Clarity Craft · Meme Studio C15R4 · Educational only — not a fatwa</p>
+    <p>Clarity Craft · Meme Studio C17 · Educational only — not a fatwa</p>
   </footer>
 
   <!-- Existing Craft studio stack -->
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/vendor/clarity-meme-api-bridge-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/vendor/media-reminder-studio-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/vendor/inline-clarity_meme_interlink_v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-meme-source-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/desks-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-meme-wire-v1.js?v=20261104C15R4" defer></script>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/vendor/clarity-meme-api-bridge-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/vendor/media-reminder-studio-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/vendor/inline-clarity_meme_interlink_v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-source-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/desks-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-wire-v1.js?v=20261105C17" defer></script>
 
   <!-- C15 enrich: shariah → online bg → catalog fetch → canvas clean → ratio → export -->
-  <script src="/craft/assets/craft-meme-shariah-scan-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-meme-online-bg-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-meme-bg-fetch-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-meme-canvas-clean-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-meme-ratio-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-meme-export-v1.js?v=20261104C15R4" defer></script>
-  <script src="/craft/assets/craft-meme-bridge-v1.js?v=20261104C15R4" defer></script>
+  <script src="/craft/assets/craft-meme-shariah-scan-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-shariah-pools-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-studio-enrich-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-online-bg-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-bg-fetch-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-canvas-clean-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-ratio-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-export-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-bridge-v1.js?v=20261105C17" defer></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -228,6 +234,27 @@
         });
       });
     });
+  </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var next = document.getElementById("meme-next-bg");
+    if (next) next.addEventListener("click", function () {
+      var a = document.querySelector("[data-meme-bg].active");
+      var kind = (a && a.getAttribute("data-meme-bg")) || "nature";
+      if (kind === "blank") kind = "nature";
+      if (typeof window.__memeOnlineFetch === "function") window.__memeOnlineFetch(kind);
+    });
+    var sc = document.getElementById("meme-auto-scale");
+    if (sc) sc.addEventListener("click", function () {
+      if (typeof window.memeAutoScaleLines === "function") window.memeAutoScaleLines();
+    });
+    var cp = document.getElementById("meme-copy-png");
+    if (cp) cp.addEventListener("click", function () {
+      if (typeof window.memeCopyPng === "function") window.memeCopyPng();
+      else if (typeof window.craftMemeExportPng === "function") window.craftMemeExportPng();
+    });
+  });
   </script>
 </body>
 </html>
