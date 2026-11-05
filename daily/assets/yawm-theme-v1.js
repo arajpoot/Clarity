@@ -1,19 +1,26 @@
+/*! yawm-theme-v1 · self-contained fallback
+ * Educational only — not a fatwa. Used if daily.js load order differs.
+ */
 (function () {
   "use strict";
-  function boot() {
-    var btn = document.getElementById("theme-toggle");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      var html = document.documentElement;
-      var next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      html.setAttribute("data-theme", next);
-      try { localStorage.setItem("yawm_theme_v1", next); } catch (e) {}
-    });
+  var KEY = "clarity.daily.theme.v1";
+  function apply(t) {
     try {
-      var t = localStorage.getItem("yawm_theme_v1");
-      if (t) document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+      localStorage.setItem(KEY, t === "light" ? "light" : "dark");
     } catch (e) {}
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  try {
+    var saved = localStorage.getItem(KEY);
+    if (saved === "light" || saved === "dark") apply(saved);
+  } catch (e) {}
+  document.addEventListener("DOMContentLoaded", function () {
+    var btn = document.getElementById("theme-toggle");
+    if (!btn || btn.__yawmThemeBound) return;
+    btn.__yawmThemeBound = true;
+    btn.addEventListener("click", function () {
+      var cur = document.documentElement.getAttribute("data-theme") || "dark";
+      apply(cur === "dark" ? "light" : "dark");
+    });
+  });
 })();
