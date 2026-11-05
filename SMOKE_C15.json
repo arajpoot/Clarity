@@ -1,0 +1,46 @@
+{
+  "build": "C15",
+  "room": "craft",
+  "educational_only": true,
+  "checks": {
+    "meme": [
+      "section sources load",
+      "ratio chips resize canvas (1:1 vs 16:9)",
+      "holy/nature online fetch + status",
+      "shariah skip on blocked theme",
+      "PNG export",
+      "push to X/FB desks",
+      "no companion-inline in network"
+    ],
+    "tajweed": [
+      "booth host mounts",
+      "LMR scripts present",
+      "meter start/stop local",
+      "practice log area",
+      "edu stamp visible"
+    ],
+    "calligraphy": [
+      "letter prompts set guide",
+      "stroke on canvas",
+      "clear undo PNG",
+      "engine/enhance scripts listed"
+    ],
+    "quiz": [
+      "bank path __CRAFT_QUIZ_BANKS__",
+      "next button present",
+      "no cloud score claim"
+    ],
+    "notes": [
+      "save on device",
+      "tag select",
+      "amana link only for vault",
+      "recovery script optional"
+    ],
+    "isolation": [
+      "data-clarity-room=craft on all pages",
+      "CRAFT_CONTRACT present",
+      "ROOM_LOCK present"
+    ]
+  },
+  "status": "ready_for_operator_smoke"
+}

@@ -1,9 +1,13 @@
-# Craft Meme Enrichment Pack · C1
+# Clarity Craft · final upgrade package · C15
 
-Ports Companion-era scaling, online background fetch, Shariah scan, layout, and PNG export into **Craft Meme Studio**.
+Unified deployable pack for Craft room workbenches:
 
-See **INSTALL.md** for drop-in steps.
+- Meme Studio (ratio, online scenery, Shariah scan, PNG)
+- Tajweed Deep Studio (LMR, booth, practice)
+- Calligraphy Pad (engine, enhance, export)
+- Sharia IQ Quiz (local banks)
+- Craft Notes (device-only + recovery)
 
-Source lineage: assets/ + companion-inline/ meme modules (archive Clarity-archive4).
+See **DEPLOY.md** and **SMOKE_C15.json**.
 
 Educational only — not a fatwa.
