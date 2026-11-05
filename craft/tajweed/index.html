@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-clarity-room="craft">
 <head>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta name="clarity-build" content="C13" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta name="clarity-build" content="C15TJ" />
   <title>Tajweed Deep Studio · Craft</title>
-  <meta name="description" content="Self-contained Tajweed booth — rules, samples, meter, practice log. Educational only — learn with a teacher." />
+  <meta name="description" content="Self-contained Tajweed booth — rules, samples, LMR meter, practice log. Educational only — learn with a teacher." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C13" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C13" />
-  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261104C13" />
-  <link rel="stylesheet" href="/craft/assets/vendor/nx-tajweed-deep-studio-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C15" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C15" />
+  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261104C15" />
+  <link rel="stylesheet" href="/craft/assets/vendor/nx-tajweed-deep-studio-v1.css?v=20261104C15" />
+  <link rel="stylesheet" href="/craft/assets/craft-tajweed-restore-v1.css?v=20261104C15" />
   <script>window.__CLARITY_ROOM__ = 'craft';</script>
+  <style>
+    .tool-section { margin-bottom: 1.5rem; }
+    .panel-note { font-size: 0.85rem; opacity: 0.9; }
+    .studio-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0; }
+    .studio-actions .btn, button.btn {
+      border-radius: 10px; border: 1px solid rgba(212,180,90,0.35);
+      background: #1e7d5e; color: #fff; padding: 0.45rem 0.85rem; font-weight: 700; cursor: pointer;
+    }
+    .studio-actions .btn:not(.primary) { background: rgba(15,76,58,0.45); }
+    #tj-booth-root, #tj-local-meter, #tj-lmr-host {
+      min-height: 4rem; border-radius: 14px;
+      border: 1px solid rgba(212,180,90,0.22); padding: 0.75rem;
+      background: rgba(0,0,0,0.18);
+    }
+    #practice-log-list { font-size: 0.85rem; max-height: 10rem; overflow: auto; margin-top: 0.5rem; }
+  </style>
 </head>
 <body class="craft-room">
   <div class="craft-hero-banner" role="img" aria-label="Registan · Clarity Crafts">
-    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C13" alt="Registan · Clarity Crafts" width="1600" height="680" loading="lazy" />
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C15" alt="Registan · Clarity Crafts" width="1600" height="680" loading="lazy" />
   </div>
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
       <h1>📖 Tajweed Deep Studio</h1>
-      <p class="tagline">Self-contained booth · rules · samples · meter · log</p>
-      <p class="edu-stamp">Educational only — not a fatwa · learn with a qualified teacher</p>
+      <p class="tagline">Rules · samples · LMR meter · practice log · on-device</p>
+      <p class="edu-stamp">Educational only — not a fatwa · not a qāriʾ verdict · learn with a qualified teacher</p>
     </div>
   </header>
   <aside class="companion-calling">
@@ -34,34 +50,109 @@
     <a href="/craft/">← All tools</a>
     <a href="/companion/" class="home-pill">Home</a>
   </aside>
+
   <main class="craft-main tool-page">
     <section class="tool-section">
-      <h2>Tajweed booth</h2>
-      <p class="panel-note">Mounted from Craft vendor assets — works offline in this room.</p>
+      <h2>1 · Deep studio booth</h2>
+      <p class="panel-note">Rules and samples mounted from Craft vendor assets.</p>
       <div id="tj-booth-root" class="craft-studio-host"></div>
     </section>
+
     <section class="tool-section">
-      <h2>On-device level meter</h2>
-      <p class="panel-note">Web Audio only — nothing uploaded.</p>
-      <div id="tj-local-meter" class="craft-studio-host"></div>
+      <h2>2 · Listen · Match · Record</h2>
+      <p class="panel-note">Web Audio only — nothing uploaded. Practice helper, not a certification.</p>
+      <div id="tj-lmr-host" class="craft-studio-host"></div>
+      <div id="tj-local-meter" class="craft-studio-host">
+        <div style="height:10px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden">
+          <div id="meter-fill" style="height:100%;width:0;background:linear-gradient(90deg,#1e7d5e,#c9a227)"></div>
+        </div>
+        <p id="meter-label" class="panel-note">Meter idle</p>
+        <div class="studio-actions">
+          <button type="button" class="btn primary" id="btn-meter-start">Start meter</button>
+          <button type="button" class="btn" id="btn-meter-stop">Stop</button>
+        </div>
+      </div>
     </section>
-    <p class="bridge-note">Optional later bridge: University Lab Tajweed · this room stays complete without it.</p>
+
+    <section class="tool-section">
+      <h2>3 · Practice log</h2>
+      <p class="panel-note">Saved on this device only.</p>
+      <div id="practice-log" class="craft-studio-host">
+        <div id="practice-log-list"></div>
+        <div class="studio-actions">
+          <button type="button" class="btn" id="btn-log-clear">Clear log</button>
+        </div>
+      </div>
+    </section>
+
+    <p class="panel-note bridge-note">Optional later bridge: University Lab Tajweed · this room stays complete without it.</p>
   </main>
-  <footer class="craft-footer"><p>Clarity Craft · Tajweed · Educational only</p></footer>
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C13" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C13" defer></script>
-  <script src="/craft/assets/vendor/tajweed-studio-v1.js?v=20261104C13" defer></script>
-  <script src="/craft/assets/vendor/nx-tajweed-deep-studio-js-v1.js?v=20261104C13" defer></script>
-  <script src="/craft/assets/vendor/practice-coach.js?v=20261104C13" defer></script>
-  <script src="/craft/assets/craft-tajweed-local-v1.js?v=20261104C13" defer></script>
-  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261104C13" defer></script>
+
+  <footer class="craft-footer"><p>Clarity Craft · Tajweed C15 · Educational only — not a fatwa</p></footer>
+
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/vendor/tajweed-studio-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/vendor/nx-tajweed-deep-studio-js-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/vendor/nx-tj-lmr-js-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/vendor/inline-clarity_lmr_read_sync.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/vendor/practice-coach.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/craft-tajweed-local-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/craft-tajweed-restore-v1.js?v=20261104C15" defer></script>
+  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261104C15" defer></script>
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if (window.ClarityCraftStudioBoot) ClarityCraftStudioBoot.tajweed();
-    var meterHost = document.getElementById('tj-local-meter');
-    if (meterHost && !meterHost.querySelector('#meter-fill')) {
-      meterHost.innerHTML = '<div style="height:10px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden"><div id="meter-fill" style="height:100%;width:0;background:linear-gradient(90deg,#1e7d5e,#c9a227)"></div></div><p id="meter-label">Meter idle</p><div class="studio-actions"><button type="button" class="btn primary" id="btn-meter-start">Start meter</button><button type="button" class="btn" id="btn-meter-stop">Stop</button></div><div id="rule-grid" hidden></div><div id="rule-detail" hidden></div><div id="practice-log" hidden></div><button type="button" id="btn-log-rule" hidden></button>';
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.ClarityCraftStudioBoot) {
+      try { ClarityCraftStudioBoot.tajweed(); } catch (e) {}
     }
+    /* Local meter fallback */
+    var start = document.getElementById("btn-meter-start");
+    var stop = document.getElementById("btn-meter-stop");
+    var fill = document.getElementById("meter-fill");
+    var label = document.getElementById("meter-label");
+    var streamRef = null, raf = null, ctx = null, an = null;
+    function tick() {
+      if (!an || !fill) return;
+      var data = new Uint8Array(an.fftSize);
+      an.getByteTimeDomainData(data);
+      var peak = 0;
+      for (var i = 0; i < data.length; i++) {
+        var v = Math.abs(data[i] - 128);
+        if (v > peak) peak = v;
+      }
+      fill.style.width = Math.min(100, (peak / 128) * 100 * 2) + "%";
+      raf = requestAnimationFrame(tick);
+    }
+    if (start) start.addEventListener("click", function () {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        if (label) label.textContent = "Mic not available";
+        return;
+      }
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+        streamRef = stream;
+        var AC = window.AudioContext || window.webkitAudioContext;
+        ctx = new AC();
+        an = ctx.createAnalyser();
+        an.fftSize = 1024;
+        ctx.createMediaStreamSource(stream).connect(an);
+        if (label) label.textContent = "Listening…";
+        tick();
+        if (typeof window.clarityTjStartMeter === "function") window.clarityTjStartMeter(stream);
+      }).catch(function () {
+        if (label) label.textContent = "Mic permission denied";
+      });
+    });
+    if (stop) stop.addEventListener("click", function () {
+      if (raf) cancelAnimationFrame(raf);
+      raf = null;
+      try { if (streamRef) streamRef.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {}
+      streamRef = null;
+      try { if (ctx) ctx.close(); } catch (e) {}
+      ctx = null; an = null;
+      if (fill) fill.style.width = "0";
+      if (label) label.textContent = "Meter idle";
+      if (typeof window.clarityTjStopMeter === "function") window.clarityTjStopMeter();
+    });
   });
   </script>
 </body>
