@@ -1,4 +1,4 @@
-/*! craft-meme-paint-repair-v1 · C17R1
+/*! craft-meme-paint-repair-v1 · C17R2
  * Single owner for: canvas ensure · BG paint · text overlay · ratio · auto-scale.
  * Fixes C17 race: multiple __memeOnlineFetch wrappers + mr-canvas vs meme-canvas split.
  * G1: clarityShariahScanUrl before remote URL (fail closed if missing).
@@ -6,10 +6,11 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_PAINT_REPAIR_C17R1__) return;
-  w.__CRAFT_MEME_PAINT_REPAIR_C17R1__ = true;
+  if (w.__CRAFT_MEME_PAINT_REPAIR_C17R2__) return;
+  w.__CRAFT_MEME_PAINT_REPAIR_C17R2__ = true;
 
   var bgImage = null;
+  var proceduralKind = null;
   var ratioKey = "16:9";
   var DIMS = { "1:1": [1080, 1080], "16:9": [1200, 675], "4:5": [1080, 1350], twitter: [1200, 675], facebook: [1200, 630] };
 
@@ -102,7 +103,9 @@
     ctx.fillStyle = "#0b1f18";
     ctx.fillRect(0, 0, cw, ch);
 
-    if (bgImage) {
+    if (!bgImage && proceduralKind && w.CraftMemeFallbackScenes && typeof w.CraftMemeFallbackScenes.paintProcedural === "function") {
+      try { w.CraftMemeFallbackScenes.paintProcedural(ctx, cw, ch, proceduralKind); } catch (e0) {}
+    } else if (bgImage) {
       try {
         var ir = bgImage.width / Math.max(1, bgImage.height);
         var cr = cw / ch;
@@ -154,33 +157,48 @@
 
   function loadBg(kind) {
     kind = String(kind || "blank").toLowerCase();
+    proceduralKind = null;
     if (kind === "blank") {
       bgImage = null;
       paint();
       status("Background: solid");
       return;
     }
-    var pool = POOLS[kind] || POOLS.nature;
-    var url = pool[Math.floor(Math.random() * pool.length)];
-    if (!scan(url, kind)) return;
-    status("Fetching " + kind + "…");
-    var img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = function () {
+    status("Resolving scenery · " + kind + "…");
+    function applyImg(img, meta) {
       bgImage = img;
+      proceduralKind = null;
       try {
         if (w.memeState) { w.memeState.img = img; w.memeState.bgImage = img; }
       } catch (e) {}
       paint();
-      status("Background: " + kind + " · painted · scanned");
-    };
-    img.onerror = function () {
-      /* last resort solid with message */
+      var label = (meta && (meta.label || meta.id)) || kind;
+      status("Background: " + label + " · painted · scanned");
+    }
+    function applyProcedural(name) {
       bgImage = null;
+      proceduralKind = name || "emerald";
       paint();
-      status("BG load failed · solid · try another chip");
-    };
-    img.src = url;
+      status("Background: offline fallback · " + proceduralKind);
+    }
+    if (w.CraftMemeFallbackScenes && typeof w.CraftMemeFallbackScenes.resolveScene === "function") {
+      w.CraftMemeFallbackScenes.resolveScene(kind, function (img, meta) {
+        meta = meta || {};
+        if (img) applyImg(img, meta);
+        else if (meta.mode === "procedural") applyProcedural(meta.procedural);
+        else if (meta.mode === "solid") { bgImage = null; proceduralKind = null; paint(); status("Background: solid"); }
+        else applyProcedural("emerald");
+      });
+      return;
+    }
+    var pool = POOLS[kind] || POOLS.nature;
+    var url = pool[Math.floor(Math.random() * pool.length)];
+    if (!scan(url, kind)) { applyProcedural("emerald"); return; }
+    var img2 = new Image();
+    img2.crossOrigin = "anonymous";
+    img2.onload = function () { applyImg(img2, { id: kind }); };
+    img2.onerror = function () { applyProcedural("emerald"); };
+    img2.src = url;
   }
 
   function applyRatio(r) {
