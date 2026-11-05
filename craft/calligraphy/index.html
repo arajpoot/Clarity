@@ -1,58 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-clarity-room="craft">
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta name="clarity-build" content="C13" />
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Calligraphy Pad · Craft</title>
-  <meta name="description" content="Arabic calligraphy practice pad — on-device canvas. Educational only — not a fatwa." />
+  <meta name="description" content="Self-contained calligraphy atelier — guides, canvas, export. Educational only." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C11" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C11" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/vendor/calligraphy-studio.css?v=20261104C13" />
   <script>window.__CLARITY_ROOM__ = 'craft';</script>
-  <style>
-    #cal-canvas { width: 100%; max-width: 640px; height: 320px; border-radius: 14px; border: 1px solid rgba(212,180,90,0.3); background: #0a1410; touch-action: none; display: block; margin: 0.5rem 0; cursor: crosshair; }
-    .cal-prompts { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
-    .cal-prompts button { border-radius: 999px; border: 1px solid rgba(212,180,90,0.3); background: rgba(15,76,58,0.25); color: inherit; padding: 0.35rem 0.75rem; font-family: Amiri, serif; font-size: 1rem; cursor: pointer; }
-    .cal-prompts button:hover { background: #1e7d5e; color: #fff; }
-    #cal-guide { font-family: Amiri, serif; font-size: 1.4rem; direction: rtl; opacity: 0.85; margin: 0.35rem 0; }
-  </style>
 </head>
 <body class="craft-room">
   <div class="craft-hero-banner" role="img" aria-label="Registan · Clarity Crafts">
-    <img src="/craft/assets/clarity-craft-banner.jpg" alt="Registan · Clarity Crafts" width="1600" height="680" loading="lazy" />
-    <span class="banner-credit">Photo · Registan · educational use</span>
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C13" alt="Registan" width="1600" height="680" loading="lazy" />
   </div>
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
-      <h1>✒️ Calligraphy Pad</h1>
-      <p class="tagline">Practice strokes · export PNG · educational watermark</p>
-      <p class="edu-stamp">Educational only — not a fatwa · form is a means, not the goal</p>
+      <h1>✒️ Calligraphy Atelier</h1>
+      <p class="tagline">Guides · stroke pad · export · on-device log</p>
+      <p class="edu-stamp">Educational only — form is a means, not the goal</p>
     </div>
   </header>
   <aside class="companion-calling">
-    <span class="calling-label">Companion calling</span>
-    <a href="/companion/#action">Action</a>
-    
+    <span class="calling-label">Bridge</span>
+    <a href="/companion/#action">Companion Action</a>
     <a href="/craft/">← All tools</a>
     <a href="/companion/" class="home-pill">Home</a>
   </aside>
   <main class="craft-main tool-page">
     <section class="tool-section">
-      <h2>Guide word</h2>
-      <div class="cal-prompts" id="cal-prompts"></div>
-      <p id="cal-guide" lang="ar" dir="rtl"></p>
-      <canvas id="cal-canvas" width="960" height="480" aria-label="Calligraphy practice canvas"></canvas>
-      <div class="studio-actions">
-        <button type="button" class="btn" id="cal-clear">Clear</button>
-        <button type="button" class="btn primary" id="cal-export">Export PNG</button>
-        <a class="btn" href="/campus/lab/calligraphy/" rel="noopener">Optional: University Lab</a>
+      <h2>Studio</h2>
+      <div id="cg-root" class="craft-studio-host"></div>
+    </section>
+    <section class="tool-section">
+      <h2>Quick pad</h2>
+      <div id="cal-fallback" class="craft-studio-host">
+        <canvas id="cal-canvas" width="960" height="480" aria-label="Practice canvas"></canvas>
+        <div class="cal-prompts" id="cal-prompts"></div>
+        <p id="cal-guide" lang="ar" dir="rtl"></p>
+        <div class="studio-actions">
+          <button type="button" class="btn" id="cal-clear">Clear</button>
+          <button type="button" class="btn primary" id="cal-export">Export PNG</button>
+        </div>
       </div>
     </section>
+    <p class="bridge-note">Optional later bridge: University Lab Calligraphy.</p>
   </main>
   <footer class="craft-footer"><p>Clarity Craft · Calligraphy · Educational only</p></footer>
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C11" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C11" defer></script>
-  <script src="/craft/assets/craft-calligraphy-v1.js?v=20261104C11" defer></script>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/calligraphy-studio-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/calligraphy-studio-enhance.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/craft-calligraphy-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261104C13" defer></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.ClarityCraftStudioBoot) ClarityCraftStudioBoot.calligraphy();
+  });
+  </script>
 </body>
 </html>
