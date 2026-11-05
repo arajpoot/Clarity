@@ -1,132 +1,81 @@
 <!DOCTYPE html>
-<html data-yawm-module="adhkar" lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-clarity-room="yawm" data-yawm-sot="1">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta name="yawm-build" content="20261029R1"/>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Adhkār · Yawm · Clarity</title>
-<meta name="description" content="Adhkār — Yawm educational module. Not a fatwa."/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../../assets/daily.css?v=20261029R1"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta name="yawm-build" content="20261104Y2"/>
+  <title>Morning adhkār · Yawm</title>
+  <meta name="description" content="Morning and evening adhkār packs with grades. Educational only — not a fatwa."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/nuros/nuros-type-icons-v1.css?v=20261104P2"/>
+  <link rel="stylesheet" href="/daily/assets/daily.css?v=20261104Y2"/>
+  <link rel="stylesheet" href="/daily/assets/yawm-enrich-v1.css?v=20261104Y2"/>
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104Y2"/>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104Y2" defer></script>
 </head>
-<body data-yawm="1">
-<div class="mod-shell">
-  <header class="mod-top">
-    <a class="brand" href="/daily/">Clarity · Yawm</a>
-    <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
-  </header>
+<body class="yawm-page" data-address="daily">
+<header class="daily-header">
+  <a class="brand" href="/daily/">Clarity · Yawm</a>
+  <div class="header-actions">
+    <button type="button" id="theme-toggle" title="Toggle theme" aria-label="Toggle light or dark">◐</button>
+    <a href="/companion/">Companion</a>
+  </div>
+</header>
+<nav class="top clarity-room-nav" data-room="yawm" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion">Companion</a>
+  <a class="here" href="/daily/" data-room-link="yawm" aria-current="page">Yawm</a>
+  <a href="/campus/" data-room-link="university">University</a>
+  <a href="/amana/" data-room-link="amana">Amānah</a>
+</nav>
+<main class="yawm-main module">
+  <p class="back"><a href="/daily/">← Yawm</a></p>
+  <h1>Morning adhkār</h1>
 
-  <figure class="yawm-mini-banner">
-    <img src="../../assets/daily-banner.jpg?v=20261029R1" alt="" width="1600" height="754" loading="eager"/>
-    <div class="yawm-mini-plaque">
-      <p class="mp-title">Adhkār · morning & evening</p>
-      <p class="mp-sub">Full pack on this device</p>
-    </div>
-  </figure>
-
-  <div class="yawm-quill-rule">Yawm · Adhkār</div>
-
-  <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029R1" alt=""/>Now</a>
-    <a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029R1" alt=""/>Deed</a>
-    <a href="/daily/modules/adhkar/" class="here"><img src="../../assets/icons/nuros-dua.svg?v=20261029R1" alt=""/>Adhkār</a>
-    <a href="/daily/modules/tasbeeh/"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029R1" alt=""/>Tasbeeh</a>
-    <a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029R1" alt=""/>Farḍ</a>
-    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029R1" alt=""/>Light</a>
-  </nav>
-
-  
-  <section class="glass-plaque">
-    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem">
-      <img src="../../assets/icons/nuros-dua.svg?v=20261029R1" width="40" height="40" alt=""/>
-      <h1 style="margin:0">Adhkār · <span id="win">…</span></h1>
-    </div>
-    <p style="font-size:.8rem;opacity:.88;margin:0 0 .75rem">Counts on this device · educational · not a fatwa.</p>
-    <p id="prog" style="font-size:.8rem;color:#c9a84c;margin:0 0 .5rem"></p>
-    <div id="list"></div>
+  <section class="card">
+    <p class="ar-line long" lang="ar" dir="rtl">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذَا الْيَوْمِ، فَتْحَهُ، وَنَصْرَهُ، وَنُورَهُ، وَبَرَكَتَهُ، وَهُدَاهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهِ وَشَرِّ مَا بَعْدَهُ</p>
+    <p class="report">Abū Dāwūd · 5084 · <strong>verify grade</strong> · <a href="https://sunnah.com/abudawud:5084" target="_blank" rel="noopener">sunnah.com/abudawud:5084</a></p>
   </section>
-  <div class="enrich-block">
-    <h2>Educational enrichment · what scholars compile</h2>
-    <p>IslamQA and similar educational summaries collect ṣaḥīḥ reports for morning and evening remembrance, including:</p>
-    <ul>
-      <li><strong>Sayyid al-istighfār</strong> — Bukhārī 6306 (best form of seeking forgiveness — confirm full text).</li>
-      <li><strong>Subḥān Allāh wa bi-ḥamdih</strong> — Muslim 2692, often 100 times morning and evening.</li>
-      <li><strong>Protection phrases</strong> — e.g. “Bismillāh alladhī lā yaḍurru…” (Abū Dāwūd / Tirmidhī chains — verify grade).</li>
-    </ul>
-    <p>Popular booklets such as <em>Hisn al-Muslim</em> (Fortress of the Muslim) arrange these for daily use. Prefer authentic chains; when grades differ, ask a teacher. Consistency matters more than rushing a long list.</p>
-  </div>
-  <div class="ext-links">
-    <a href="https://islamqa.info/en/answers/217496" target="_blank" rel="noopener">IslamQA — morning &amp; evening adhkār</a><br/>
-    <a href="https://sunnah.com/" target="_blank" rel="noopener">Sunnah.com — verify collection · number</a><br/>
-    <a href="https://productivemuslim.com/adhkar-to-unlock-barakah/" target="_blank" rel="noopener">Productive Muslim — easy adhkār overview</a>
-    <span class="note">Not a fatwa. Confirm practice with a qualified teacher.</span>
-  </div>
-  <script>
-  (function(){
-    var KEY="clarity.daily.adhkar.v1";
-    var h=new Date().getHours();
-    var morning=h>=4&&h<15;
-    var file=morning?"../../assets/adhkar/morning.json?v=20261029R1":"../../assets/adhkar/evening.json?v=20261029R1";
-    document.getElementById("win").textContent=morning?"morning":"evening";
-    function day(){return new Date().toDateString()}
-    function loadSt(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){return{}}}
-    function saveSt(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
-    fetch(file).then(function(r){return r.json()}).then(function(data){
-      var items=data.items||[];
-      var st=loadSt();
-      if(st.day!==day()) st={day:day(),c:{}};
-      var root=document.getElementById("list");
-      var done=0,total=items.length;
-      items.forEach(function(item,idx){
-        var id=item.id||("i"+idx);
-        var need=item.count||1;
-        if(!st.c[id]) st.c[id]=0;
-        if(st.c[id]>=need) done++;
-        var el=document.createElement("div");
-        el.style.cssText="margin:1rem 0;padding:0.85rem;border-radius:0.85rem;border:1px solid rgba(201,168,76,.22);background:rgba(0,0,0,.18)";
-        el.innerHTML="<p class=\"ar\" dir=\"rtl\" lang=\"ar\" style=\"margin:0 0 .35rem;font-family:Noto Naskh Arabic,serif;font-size:1.12rem;line-height:1.9;direction:rtl;text-align:right\"></p><p style=\"margin:0 0 .25rem;font-size:.92rem\"></p><p style=\"margin:0;font-size:.72rem;color:#c9a84c\"></p><p style=\"margin:.45rem 0;font-size:.82rem\">Count <b data-n></b> / "+need+"</p><button type=\"button\" style=\"padding:.4rem 1rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700\">+1</button>";
-        el.querySelector(".ar").textContent=item.ar||"";
-        el.querySelectorAll("p")[1].textContent=item.en||"";
-        el.querySelectorAll("p")[2].textContent=(item.source||"")+" · "+(item.grade||"")+(item.note?" · "+item.note:"");
-        function paint(){
-          el.querySelector("[data-n]").textContent=st.c[id]||0;
-          document.getElementById("prog").textContent=done+" of "+total+" complete";
-        }
-        paint();
-        el.querySelector("button").onclick=function(){
-          var prev=st.c[id]||0;
-          st.c[id]=Math.min(need,prev+1);
-          if(prev<need&&st.c[id]>=need) done++;
-          saveSt(st);paint();
-        };
-        root.appendChild(el);
-      });
-      saveSt(st);
-    }).catch(function(){
-      document.getElementById("list").innerHTML="<p style=\"opacity:.85\">Could not load pack — open the Yawm hub.</p>";
-    });
-  })();
-  </script>
 
+  <section class="card">
+    <h2>Pack · <span id="pack-window-label">Morning adhkār</span></h2>
+    <p class="panel-note">Imported into <code>/daily/assets/adhkar-data/</code> · on this device · educational only</p>
+    <div class="anchors" style="margin-bottom:.75rem">
+      <button type="button" class="btn primary" data-adhkar-window="morning">Morning</button>
+      <button type="button" class="btn" data-adhkar-window="evening">Evening</button>
+    </div>
+    <p id="pack-status" class="panel-note">Opening on-device pack…</p>
+    <p id="pack-progress" class="panel-note"></p>
+    <p id="pack-ar" class="ar-line long" lang="ar" dir="rtl"></p>
+    <p id="pack-en" class="panel-note"></p>
+    <p id="pack-report" class="report"></p>
+    <p id="pack-note" class="panel-note"></p>
+    <div class="counter compact">
+      <span id="pack-tally">0</span> / <span id="pack-need">1</span>
+      <button type="button" class="btn primary" id="pack-plus">+1</button>
+      <button type="button" class="btn" id="pack-next">Next</button>
+    </div>
+  </section>
 
-  
-  <aside class="reward-card" aria-label="Authentic reminder">
-    <h2>Subḥān Allāh wa bi-ḥamdih</h2>
-    <p class="ar" dir="rtl" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
-    <p>Whoever says in the morning and in the evening: “Glory and praise be to Allah” one hundred times, no one will come on the Day of Resurrection with anything better than what he has done — except one who said the same or more.</p>
-    <p class="meta">Ṣaḥīḥ Muslim · 2692 · educational summary</p>
-    <span class="grade">ṣaḥīḥ · Muslim</span>
-  </aside>
-  <aside class="reward-card" aria-label="Authentic reminder">
+  <section class="card">
     <h2>Sayyid al-istighfār</h2>
-    <p>The best way of seeking forgiveness includes affirming Allah as Lord and asking forgiveness — whoever says it in the day with certainty and dies before evening is among the people of Paradise (and likewise for the night), as in the report.</p>
-    <p class="meta">Ṣaḥīḥ al-Bukhārī · 6306 · educational summary — read full Arabic with a teacher</p>
-    <span class="grade">ṣaḥīḥ · Bukhārī</span>
-  </aside>
+    <p class="ar-line long" lang="ar" dir="rtl">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي، فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ</p>
+    <p class="report"><strong>Ṣaḥīḥ</strong> · Bukhārī · 6306 · <a href="https://sunnah.com/bukhari:6306" target="_blank" rel="noopener">sunnah.com/bukhari:6306</a></p>
+  </section>
 
-  <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
-</div>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+  <section class="card">
+    <p class="ar-line" lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
+    <p class="report"><strong>Ṣaḥīḥ</strong> · Muslim · 2692 · <a href="https://sunnah.com/muslim:2692" target="_blank" rel="noopener">sunnah.com/muslim:2692</a></p>
+  </section>
+
+  <p class="act"><strong>One way to act — not a ruling:</strong> Complete the count for the dhikr on screen, then move to the next with calm.</p>
+</main>
+<footer class="yawm-footer">
+  <p>Educational only · not a fatwa · not legal advice · acceptance is with Allah · data on this device</p>
+</footer>
+<script src="/daily/assets/yawm-theme-v1.js?v=20261104Y2" defer></script>
+<script src="/daily/assets/yawm-adhkar-pack-v1.js?v=20261104Y2" defer></script>
 </body>
 </html>
