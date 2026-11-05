@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Craft Notes · Clarity</title>
-  <meta name="description" content="On-device craft reflections. Not Amānah vault. Educational only." />
+  <title>Sharia IQ · Craft</title>
+  <meta name="description" content="Short educational checks with sources. On-device. Not a fatwa." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C10" />
   <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C10" />
   <script>window.__CLARITY_ROOM__ = 'craft';</script>
   <style>
-    #notes-list { font-size: 0.85rem; margin-top: 1rem; max-height: 14rem; overflow: auto; }
-    .note-row { padding: 0.55rem 0.7rem; border-bottom: 1px solid rgba(212,180,90,0.15); }
-    .note-row time { opacity: 0.7; font-size: 0.75rem; }
+    .quiz-q { font-size: 1.05rem; margin: 0.75rem 0; }
+    .quiz-opts { display: grid; gap: 0.45rem; }
+    .quiz-opts button { text-align: left; padding: 0.7rem 0.9rem; border-radius: 12px; border: 1px solid rgba(212,180,90,0.28); background: rgba(15,76,58,0.2); color: inherit; cursor: pointer; font: inherit; }
+    .quiz-opts button:hover { border-color: rgba(212,180,90,0.55); }
+    .quiz-opts button.ok { background: #1e7d5e; color: #fff; }
+    .quiz-opts button.bad { background: rgba(120,40,40,0.55); }
+    #quiz-feedback { margin-top: 0.75rem; font-size: 0.9rem; min-height: 2.5rem; }
   </style>
 </head>
 <body class="craft-room">
@@ -23,40 +27,32 @@
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
-      <h1>📝 Craft Notes</h1>
-      <p class="tagline">Local reflections · this browser only</p>
-      <p class="edu-stamp">Not Amānah vault · not encrypted cloud · educational only</p>
+      <h1>🧠 Sharia IQ · Daily Quiz</h1>
+      <p class="tagline">Short checks · sources linked · no cloud score</p>
+      <p class="edu-stamp">Educational only — not a fatwa · not a grade of īmān</p>
     </div>
   </header>
   <aside class="companion-calling">
     <span class="calling-label">Companion calling</span>
-    <a href="/companion/#notes">Companion Notes</a>
-    <a href="/amana/notes/">Amānah Notes</a>
+    <a href="/companion/#reality">Reality</a>
+    <a href="/campus/">University</a>
     <a href="/craft/">← All tools</a>
     <a href="/companion/" class="home-pill">Home</a>
   </aside>
   <main class="craft-main tool-page">
     <section class="tool-section">
-      <p class="panel-note">For private passphrase notes and dayn, use <a href="/amana/">Amānah</a>. This pad is a light craft log.</p>
-      <label class="panel-note" for="note-tag">Tag</label>
-      <select id="note-tag" class="composer-textarea" style="min-height:auto;padding:0.45rem">
-        <option value="meme">Meme</option>
-        <option value="tajweed">Tajweed</option>
-        <option value="calligraphy">Calligraphy</option>
-        <option value="quiz">Quiz</option>
-        <option value="general">General</option>
-      </select>
-      <textarea id="craft-note" class="composer-textarea" rows="6" placeholder="Short reflection…"></textarea>
+      <p class="panel-note" id="quiz-progress">Question 1</p>
+      <div class="quiz-q" id="quiz-q"></div>
+      <div class="quiz-opts" id="quiz-opts"></div>
+      <div id="quiz-feedback"></div>
       <div class="studio-actions">
-        <button type="button" class="btn primary" id="note-save">Save on device</button>
-        <button type="button" class="btn" id="note-clear">Clear field</button>
+        <button type="button" class="btn primary" id="quiz-next">Next</button>
       </div>
-      <div id="notes-list"></div>
     </section>
   </main>
-  <footer class="craft-footer"><p>Clarity Craft · Notes · Educational only</p></footer>
+  <footer class="craft-footer"><p>Clarity Craft · Quiz · Educational only</p></footer>
   <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C10" defer></script>
   <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C10" defer></script>
-  <script src="/craft/assets/craft-notes-v1.js?v=20261104C10" defer></script>
+  <script src="/craft/assets/craft-quiz-v1.js?v=20261104C10" defer></script>
 </body>
 </html>
