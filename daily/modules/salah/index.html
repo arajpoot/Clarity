@@ -1,151 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="yawm" data-yawm-module="salah">
+<html lang="en" data-theme="dark" data-clarity-room="yawm" data-yawm-sot="1">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<meta name="yawm-build" content="20261102GAP1"/>
-<title>Farḍ · Qaḍāʾ · Qiblah · Yawm · Clarity</title>
-<meta name="description" content="Farḍ rakʿah map, qiblah helper, and qaḍāʾ tracker on this device. Educational only — not a fatwa."/>
-<link rel="canonical" href="https://clarity-dawah.fyi/daily/modules/salah/"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/daily/assets/daily.css?v=20261102GAP1"/>
-<link rel="stylesheet" href="/daily/assets/yawm-salah-tools-v1.css?v=20261102GAP1"/>
-<style>
-.mod-shell{max-width:44rem;margin:0 auto;padding:0 0 3rem}
-.mod-top{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;gap:.5rem;flex-wrap:wrap}
-.mod-top a{color:#cfe0d6;text-decoration:none;font-size:.85rem}
-.mod-top .brand{color:#e8d5a3;font-weight:700}
-.yawm-mini-banner{margin:0;position:relative;overflow:hidden;border-radius:0 0 18px 18px}
-.yawm-mini-banner img{width:100%;height:auto;display:block;max-height:160px;object-fit:cover;opacity:.85}
-.yawm-mini-plaque{position:absolute;inset:auto 1rem 1rem 1rem;padding:.65rem .85rem;border-radius:12px;
-  background:rgba(8,24,18,.82);border:1px solid rgba(212,180,90,.35)}
-.yawm-mini-plaque .mp-title{margin:0;font-family:Georgia,serif;color:#e8d5a3;font-size:1.15rem}
-.yawm-mini-plaque .mp-sub{margin:.2rem 0 0;font-size:.78rem;opacity:.9}
-.yawm-quill-rule{text-align:center;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin:1rem 0 .5rem}
-.mod-pills{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;padding:0 1rem 1rem}
-.mod-pills a{font-size:.75rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(212,180,90,.3);
-  color:inherit;text-decoration:none;background:rgba(0,0,0,.25)}
-.mod-pills a.here{background:rgba(30,125,94,.4);font-weight:700}
-.gap-card{margin:.75rem 1rem;padding:1rem;border-radius:16px;border:1px solid rgba(212,180,90,.28);
-  background:rgba(15,76,58,.14)}
-.gap-card h2{margin:0 0 .35rem;font-size:1.05rem;color:#e8d5a3;font-family:Georgia,serif}
-.gap-card .sub{font-size:.82rem;line-height:1.45;opacity:.92;margin:.35rem 0}
-.fard-row{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin:.65rem 0}
-@media(max-width:560px){.fard-row{grid-template-columns:repeat(3,1fr)}}
-.fard-cell{text-align:center;padding:.55rem .25rem;border-radius:12px;border:1px solid rgba(212,180,90,.22);background:rgba(0,0,0,.22)}
-.fard-cell strong{display:block;font-size:1.4rem;color:#e8d48a}
-.fard-cell span{font-size:.72rem;opacity:.85}
-.pillar-trio{display:grid;gap:.55rem;margin:.75rem 1rem}
-@media(min-width:700px){.pillar-trio{grid-template-columns:1fr 1fr 1fr}}
-.pillar-trio .gap-card{margin:0}
-.pillar-trio a.deep{color:#c9a84c;font-weight:700;font-size:.78rem;margin-right:.5rem}
-.disc{font-size:.78rem;padding:.5rem .65rem;border-radius:10px;border-left:3px solid rgba(212,180,90,.5);background:rgba(0,0,0,.25)}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta name="yawm-build" content="20261104Y2"/>
+  <title>Open Companion for times · Farḍ cue · Yawm</title>
+  <meta name="description" content="Prayer cue only — not a timetable. Educational only — not a fatwa."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/nuros/nuros-type-icons-v1.css?v=20261104P2"/>
+  <link rel="stylesheet" href="/daily/assets/daily.css?v=20261104Y2"/>
+  <link rel="stylesheet" href="/daily/assets/yawm-enrich-v1.css?v=20261104Y2"/>
+
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104Y2"/>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104Y2" defer></script>
+
 </head>
-<body>
-<div class="mod-shell">
-  <header class="mod-top">
-    <a class="brand" href="/daily/">Clarity · Yawm</a>
-    <nav>
-      <a href="/companion/">Companion</a> ·
-      <a href="/daily/">Hub</a> ·
-      <a href="/campus/">University</a> ·
-      <a href="/amana/">Amānah</a>
-    </nav>
-  </header>
-
-  <figure class="yawm-mini-banner">
-    <img src="/daily/assets/daily-banner.jpg?v=20261102GAP1" alt="" width="1600" height="754" loading="eager"
-      onerror="this.style.display='none'"/>
-    <div class="yawm-mini-plaque">
-      <p class="mp-title">Farḍ · Qaḍāʾ · Qiblah</p>
-      <p class="mp-sub">Educational map · not a fatwa · on this device</p>
-    </div>
-  </figure>
-
-  <div class="yawm-quill-rule">Yawm · Ṣalāh tools</div>
-  <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/">Now</a>
-    <a href="/daily/modules/deed/">Deed</a>
-    <a href="/daily/modules/adhkar/">Adhkār</a>
-    <a href="/daily/modules/tasbeeh/">Tasbeeh</a>
-    <a class="here" href="/daily/modules/salah/" aria-current="page">Ṣalāh</a>
-    <a href="/daily/modules/light/">Light</a>
-  </nav>
-
-  <section class="gap-card">
-    <h2>Farḍ rakʿahs · daily map</h2>
-    <p class="sub">Standard farḍ units taught widely — sunnah units vary by school. Educational map · not a fatwa.</p>
-    <div class="fard-row">
-      <div class="fard-cell"><strong>2</strong><span>Fajr · Farḍ</span></div>
-      <div class="fard-cell"><strong>4</strong><span>Ẓuhr · Farḍ</span></div>
-      <div class="fard-cell"><strong>4</strong><span>ʿAṣr · Farḍ</span></div>
-      <div class="fard-cell"><strong>3</strong><span>Maghrib · Farḍ</span></div>
-      <div class="fard-cell"><strong>4</strong><span>ʿIshāʾ · Farḍ</span></div>
-    </div>
-  </section>
-
-  <section class="gap-card">
-    <h2>Qiblah helper</h2>
-    <p class="sub">Toward al-Masjid al-Ḥarām (<a href="https://quran.com/2/144" target="_blank" rel="noopener">2:144</a>). <strong>Helper only — not a certified instrument.</strong></p>
-    <div class="qibla-row">
-      <div class="qibla-compass" aria-hidden="true"><div class="qibla-needle" id="yawm-qibla-needle"></div></div>
-      <div>
-        <p id="yawm-qibla-label" class="sub">Qibla helper · allow location / sensors</p>
-        <button type="button" class="qada-btn primary" id="yawm-qibla-cal">Calibrate compass</button>
-        <p class="sub" style="margin-top:.5rem"><a href="https://quran.com/2/144" target="_blank" rel="noopener">Deepen · 2:144</a></p>
-      </div>
-    </div>
-  </section>
-
-  <div class="pillar-trio" aria-label="Pillar deepen cards">
-    <section class="gap-card">
-      <h2>Ṣawm · fasting</h2>
-      <p class="sub"><strong>Aim</strong> — Fast Ramaḍān when able; niyyah before dawn; abstain dawn to sunset.</p>
-      <p class="sub disc">Make-ups and fidyah: ask a teacher. Qurʾān 2:183–185 · educational · not a fatwa.</p>
-      <p>
-        <a class="deep" href="https://quran.com/2/183" target="_blank" rel="noopener">Deepen · 2:183</a>
-        <a class="deep" href="https://sunnah.com/search?q=ramadan" target="_blank" rel="noopener">Sunnah · Ramaḍān</a>
-      </p>
-    </section>
-    <section class="gap-card">
-      <h2>Zakāt · purifying dues</h2>
-      <p class="sub"><strong>Aim</strong> — When niṣāb and a lunar year pass, give the due share. <strong>No live calculator verdict here.</strong></p>
-      <p class="sub disc">Zakāt is worship and a right of the poor — not optional branding. Qurʾān 9:60 · 2:267 · educational.</p>
-      <p>
-        <a class="deep" href="https://quran.com/9/60" target="_blank" rel="noopener">Deepen · 9:60</a>
-        <a class="deep" href="https://quran.com/2/267" target="_blank" rel="noopener">2:267</a>
-      </p>
-    </section>
-    <section class="gap-card">
-      <h2>Ḥajj · pilgrimage</h2>
-      <p class="sub"><strong>Aim</strong> — Once when able. Follow your group’s muṭawwif; this is a map, not manāsik fatwa.</p>
-      <p class="sub disc">Ability includes safety, health, and means. Qurʾān 3:97 · 22:27 · educational · not a fatwa.</p>
-      <p>
-        <a class="deep" href="https://quran.com/3/97" target="_blank" rel="noopener">Deepen · 3:97</a>
-        <a class="deep" href="https://sunnah.com/search?q=hajj" target="_blank" rel="noopener">Sunnah · ḥajj</a>
-      </p>
-    </section>
+<body class="yawm-page" data-address="daily">
+<header class="daily-header">
+  <a class="brand" href="/daily/">Clarity · Yawm</a>
+  <div class="header-actions">
+    <button type="button" id="theme-toggle" title="Toggle theme" aria-label="Toggle light or dark">◐</button>
+    <a href="/companion/">Companion</a>
   </div>
+</header>
+<nav class="top clarity-room-nav" data-room="yawm" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion">Companion</a>
+  <a class="here" href="/daily/" data-room-link="yawm" aria-current="page">Yawm</a>
+  <a href="/campus/" data-room-link="university">University</a>
+  <a href="/amana/" data-room-link="amana">Amānah</a>
+</nav>
 
-  <section class="gap-card">
-    <h2>Making up missed ṣalāh · qaḍāʾ tracker</h2>
-    <p class="sub disc">Educational companion only — <strong>not a fatwa</strong>. Missing prayer without excuse is a grave matter. Obligation begins at puberty (bulūgh). Scholars differ on make-up after deliberate neglect; ask a qualified local teacher for your case.</p>
-    <ul class="sub" style="padding-left:1.1rem">
-      <li>Repentance includes repairing what can be repaired. Prayer is the covenant of the dīn.</li>
-      <li>Forgot / slept: pray when you remember (Bukhārī, Muslim).</li>
-      <li>This log is a private aid on <em>this device only</em>.</li>
-    </ul>
-    <div id="yawm-qada-root"></div>
+<main class="yawm-main module">
+  <p class="back"><a href="/daily/">← Yawm</a></p>
+  <h1>Open Companion for times</h1>
+  <p class="panel-note">Cue only — not a mosque timetable.</p>
+  <p><a class="btn primary" href="/companion/">Open Companion</a></p>
+  <section class="card">
+    <h2>Wuḍūʾ steps (outline)</h2>
+    <ol class="wudu">
+      <li>Intention</li>
+      <li>Hands / mouth / nose</li>
+      <li>Face / arms</li>
+      <li>Head / ears</li>
+      <li>Feet</li>
+    </ol>
+    <p class="report"><strong>Ṣaḥīḥ</strong> · Bukhārī · 159 · <a href="https://sunnah.com/bukhari:159" target="_blank" rel="noopener">sunnah.com/bukhari:159</a></p>
   </section>
+  <section class="card">
+    <h2>Farḍ units (printed cue)</h2>
+    <div class="fard-chips">
+      <span><strong>2</strong> Fajr</span>
+      <span><strong>4</strong> Dhuhr</span>
+      <span><strong>4</strong> ʿAṣr</span>
+      <span><strong>3</strong> Maghrib</span>
+      <span><strong>4</strong> ʿIshāʾ</span>
+    </div>
+    <p class="panel-note">Sunnah units vary by school. Ask a teacher for your practice.</p>
+  </section>
+  <section class="card">
+    <p class="ar-line" lang="ar" dir="rtl"><a href="https://quran.com/2/45" target="_blank" rel="noopener">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ</a></p>
+    <p class="report">Qur’an · 2:45 · <a href="https://quran.com/2/45" target="_blank" rel="noopener">quran.com/2/45</a></p>
+  </section>
+  <section class="card">
+    <h2>Qaḍāʾ (private, this device)</h2>
+    <p><span id="qada-days">0</span> days · <span id="qada-fard">0</span> farḍ · ask a teacher</p>
+    <p class="panel-note">No calculator. Educational tracking only — not a ruling.</p>
+  </section>
+  <p class="act"><strong>One way to act — not a ruling:</strong> Guard the next prayer you can reach with calm wuḍūʾ and presence.</p>
+</main>
 
-  <p style="text-align:center;font-size:.8rem;opacity:.85;margin:1.5rem 1rem">
-    Educational only — not a fatwa. Data stays on this device.<br/>
-    Live times: <a href="/companion/" style="color:#d4af37">Companion banner</a> ·
-    <a href="/daily/" style="color:#d4af37">← Yawm hub</a>
-  </p>
-</div>
-<script src="/daily/assets/yawm-qada-tracker-v1.js?v=20261102GAP1" defer></script>
-<script src="/daily/assets/yawm-qibla-v1.js?v=20261102GAP1" defer></script>
+<footer class="yawm-footer">
+  <p>Educational only · not a fatwa · not legal advice · acceptance is with Allah · data on this device</p>
+</footer>
+<script src="/daily/assets/yawm-theme-v1.js?v=20261104Y2" defer></script>
+
 </body>
 </html>
