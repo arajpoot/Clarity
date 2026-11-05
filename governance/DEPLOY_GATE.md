@@ -30,3 +30,13 @@ rooms_touched: …
 P1–P7 checked: yes/no
 manifest version: …
 ```
+
+## SMOKE template (required for all future packs)
+
+Canonical files:
+
+- `governance/templates/SMOKE_TEMPLATE.json` — copy → `SMOKE_<BUILD>.json` in the pack  
+- `governance/templates/SMOKE_TEMPLATE.md` — human instructions  
+- `governance/templates/PACK_README_SNIPPET.md` — paste into pack README  
+
+**Agent / proposer rule:** Do not deliver an upgrade or fix pack until the filled SMOKE shows all applicable gates as `pass` or `n/a`. Wiring-only fixes that bypass Shariah scan, isolation, or scripture rules fail this gate.
