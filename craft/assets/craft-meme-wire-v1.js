@@ -1,11 +1,11 @@
-/*! craft-meme-wire-v1 · C14
+/*! craft-meme-wire-v1 · C15R1
  * Unifies: Companion section sources → canvas (mr-text/mr-src) + X/FB desks
  * Background scenery chips · push canvas → desks · responsive scale
  * Educational only — not a fatwa · scenery/geometry only for BG
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_CRAFT_MEME_WIRE_C14__) return;
+  if (w.__CLARITY_CRAFT_MEME_WIRE_C15R1__) return;
   w.__CLARITY_CRAFT_MEME_WIRE_C14__ = true;
 
   var bgImage = null;
@@ -104,32 +104,49 @@
     blank: null
   };
 
-  function loadBg(kind) {
-    kind = (kind || "nature").toLowerCase();
-    var st = $("meme-wire-status");
-    if (kind === "blank") {
+    function loadBg(kind) {
+    kind = (kind || "blank").toLowerCase();
+    /* C15R1: prefer online catalog (holy/nature pools) when available */
+    if (kind !== "blank" && typeof w.__memeOnlineFetch === "function") {
+      try {
+        w.__memeOnlineFetch(kind);
+        var st = $("meme-fetch-status") || $("meme-wire-status");
+        if (st) st.textContent = "Background: " + kind + " (online)";
+        return;
+      } catch (e) {}
+    }
+    var map = {
+      nature: "https://picsum.photos/seed/clarity-nature-craft/1280/720",
+      night: "https://picsum.photos/seed/clarity-night-craft/1280/720",
+      water: "https://picsum.photos/seed/clarity-water-craft/1280/720",
+      holy: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
+      flowers: "https://picsum.photos/seed/clarity-flowers-craft/1280/720",
+      flickr: "https://picsum.photos/seed/clarity-free-craft/1280/720",
+      geometry: "https://picsum.photos/seed/clarity-geom-craft/1280/720",
+      blank: null
+    };
+    var url = map[kind];
+    if (!url) {
       bgImage = null;
-      if (st) st.textContent = "Background: solid (blank)";
-      paintWithBg();
+      var st0 = $("meme-fetch-status") || $("meme-wire-status");
+      if (st0) st0.textContent = "Background: solid";
+      try { paintWithBg(); } catch (e) {}
       return;
     }
-    var url = BG[kind] || BG.nature;
-    /* cache-bust seed */
-    url = url.replace(/craft/, "craft" + (Date.now() % 997));
-    if (st) st.textContent = "Loading background: " + kind + "…";
     var img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = function () {
       bgImage = img;
-      if (st) st.textContent = "Background: " + kind + " · ready";
-      paintWithBg();
+      var st1 = $("meme-fetch-status") || $("meme-wire-status");
+      if (st1) st1.textContent = "Background: " + kind;
+      try { paintWithBg(); } catch (e) {}
     };
     img.onerror = function () {
       bgImage = null;
-      if (st) st.textContent = "Background failed · using solid";
-      paintWithBg();
+      var st2 = $("meme-fetch-status") || $("meme-wire-status");
+      if (st2) st2.textContent = "BG fetch failed · solid";
     };
-    img.src = url + (url.indexOf("?") >= 0 ? "&" : "?") + "v=c14";
+    img.src = url;
   }
 
   function paintWithBg() {

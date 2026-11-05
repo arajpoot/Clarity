@@ -1,7 +1,7 @@
-/*! craft-quiz-v1 · C13 · local + curriculum transitions · educational only */
+/*! craft-quiz-v1 · C15R1 · local + curriculum transitions · educational only */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_CRAFT_QUIZ_C13__) return;
+  if (w.__CLARITY_CRAFT_QUIZ_C15R1__) return;
   w.__CLARITY_CRAFT_QUIZ_C13__ = true;
 
   var FALLBACK = [
@@ -110,7 +110,9 @@
     if (next) next.addEventListener("click", function () { i++; show(); });
     Promise.all([
       loadJson("/craft/assets/vendor/module-spark-quiz-bank.json?v=20261104C13"),
-      loadJson("/craft/assets/vendor/path-quiz-bank.json?v=20261104C13")
+      loadJson("/craft/assets/data/path-quiz-bank.json?v=20261104C15R1").catch(function(){
+        return loadJson("/craft/assets/vendor/path-quiz-bank.json?v=20261104C15R1");
+      })
     ]).then(function () {
       show();
       if (w.ClarityCraftRegistry) w.ClarityCraftRegistry.runUpgrade("quiz", { n: BANK.length });
