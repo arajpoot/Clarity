@@ -1,113 +1,106 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-clarity-room="craft">
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta name="clarity-build" content="C13" />
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Meme Studio · Craft</title>
-  <meta name="description" content="Meme Studio — Companion RRRA verse/ḥadīth sources · 𝕏 + Facebook desks. Educational only — not a fatwa." />
+  <meta name="description" content="Self-contained Meme / reminder studio — section sources, desks, optional scenery. Educational only." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C11" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C11" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261104C13" />
+  <link rel="stylesheet" href="/craft/assets/vendor/clarity-meme-layout-v1.css?v=20261104C13" />
   <script>window.__CLARITY_ROOM__ = 'craft';</script>
   <style>
-    .section-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0; }
-    .section-chips button {
-      border-radius: 999px; border: 1px solid rgba(212,180,90,0.35);
-      background: rgba(15,76,58,0.25); color: inherit; padding: 0.4rem 0.85rem;
-      font-weight: 700; font-size: 0.8rem; cursor: pointer;
-    }
-    .section-chips button.active, .section-chips button:hover {
-      background: #1e7d5e; border-color: transparent; color: #fff;
-    }
-    .section-chips button small { display: block; font-weight: 600; opacity: 0.85; font-size: 0.65rem; }
-    #craft-verse-card {
-      white-space: pre-wrap; font-family: Amiri, serif; font-size: 1.05rem;
-      line-height: 1.55; padding: 1rem; border-radius: 14px;
-      border: 1px solid rgba(212,180,90,0.28); background: rgba(0,0,0,0.25);
-      margin: 0.75rem 0 1rem; min-height: 4rem;
-    }
-    #meme-source-status { font-size: 0.75rem; opacity: 0.8; }
+    .section-chips { display:flex; flex-wrap:wrap; gap:0.45rem; margin:0.75rem 0; }
+    .section-chips button { border-radius:999px; border:1px solid rgba(212,180,90,0.35); background:rgba(15,76,58,0.25); color:inherit; padding:0.4rem 0.85rem; font-weight:700; font-size:0.8rem; cursor:pointer; }
+    .section-chips button.active, .section-chips button:hover { background:#1e7d5e; border-color:transparent; color:#fff; }
+    .section-chips button small { display:block; font-weight:600; opacity:0.85; font-size:0.65rem; }
+    #craft-verse-card { white-space:pre-wrap; font-family:Amiri,serif; font-size:1.05rem; line-height:1.55; padding:1rem; border-radius:14px; border:1px solid rgba(212,180,90,0.28); background:rgba(0,0,0,0.25); margin:0.75rem 0 1rem; min-height:4rem; }
   </style>
 </head>
 <body class="craft-room">
-  <div class="craft-hero-banner" role="img" aria-label="Registan · Clarity Crafts">
-    <img src="/craft/assets/clarity-craft-banner.jpg" alt="Registan · Clarity Crafts" width="1600" height="680" loading="lazy" />
-    <span class="banner-credit">Photo · Registan · educational use</span>
+  <div class="craft-hero-banner" role="img" aria-label="Registan">
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C13" alt="Registan" width="1600" height="680" loading="lazy" />
   </div>
-
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
-      <h1>🖼️ Meme Studio</h1>
-      <p class="tagline">Companion sections · verse &amp; ḥadīth · 𝕏 + Facebook desks</p>
+      <h1>🖼️ Meme · Reminder Studio</h1>
+      <p class="tagline">Section sources · media card · 𝕏 + Facebook desks</p>
       <p class="edu-stamp">Educational only — not a fatwa · sources only · no free-type scripture</p>
     </div>
   </header>
-
   <aside class="companion-calling">
-    <span class="calling-label">Companion calling</span>
+    <span class="calling-label">Bridge</span>
     <a href="/companion/#meme">Companion Meme</a>
-    <a href="/companion/#reminder">Reminder</a>
-    <a href="/companion/#action">Action</a>
     <a href="/craft/">← All tools</a>
     <a href="/companion/" class="home-pill">Home</a>
   </aside>
-
   <main class="craft-main tool-page">
     <section class="tool-section">
       <h2>Companion section sources</h2>
-      <p class="panel-note">Pull from the same RRRA hubs as Companion (Reminder · Reality · Reflection · Action). Text is fixed from packs — not typed freehand.</p>
-      <div class="section-chips" role="group" aria-label="Companion sections">
+      <div class="section-chips" role="group">
         <button type="button" data-meme-section="reminder" class="active"><span>✦ Reminder</span><small>Qur’an · commands</small></button>
-        <button type="button" data-meme-section="reality"><span>◉ Reality</span><small>world · accountability</small></button>
+        <button type="button" data-meme-section="reality"><span>◉ Reality</span><small>accountability</small></button>
         <button type="button" data-meme-section="reflection"><span>☾ Reflection</span><small>heart · night</small></button>
         <button type="button" data-meme-section="action"><span>➤ Action</span><small>deed · dawah</small></button>
       </div>
       <div class="studio-actions">
         <button type="button" class="btn primary" id="meme-refresh-source">Refresh line</button>
-        <a class="btn" href="/companion/#meme">Full canvas in Companion</a>
       </div>
-      <p id="meme-source-status">Tap a section · educational only</p>
+      <p id="meme-source-status">Tap a section</p>
       <div id="craft-verse-card" aria-live="polite"></div>
     </section>
-
+    <section class="tool-section">
+      <h2>Media reminder canvas</h2>
+      <div id="mr-root" class="craft-studio-host"></div>
+    </section>
     <section class="tool-section desks-row" id="desks">
       <h2>Desks</h2>
       <div class="desk-grid">
         <div class="desk-card" id="desk-x">
           <h3>𝕏 Desk</h3>
-          <p class="panel-note">Draft ≤280 from the source card. Copy or open compose.</p>
           <textarea id="x-draft" class="composer-textarea" rows="4" maxlength="280" placeholder="Source fills this…"></textarea>
           <div class="desk-actions">
-            <button type="button" class="btn" data-desk="x" data-action="copy">Copy draft</button>
+            <button type="button" class="btn" data-desk="x" data-action="copy">Copy</button>
             <button type="button" class="btn primary" data-desk="x" data-action="open">Open 𝕏</button>
           </div>
           <p class="char-count"><span id="x-count">0</span> / 280</p>
+          <p id="x-status" class="panel-note">Ready</p>
         </div>
         <div class="desk-card" id="desk-fb">
           <h3>Facebook Desk</h3>
-          <p class="panel-note">Longer reflection from the same source.</p>
           <textarea id="fb-draft" class="composer-textarea" rows="5" placeholder="Source fills this…"></textarea>
           <div class="desk-actions">
-            <button type="button" class="btn" data-desk="fb" data-action="copy">Copy draft</button>
+            <button type="button" class="btn" data-desk="fb" data-action="copy">Copy</button>
             <button type="button" class="btn primary" data-desk="fb" data-action="open">Open Facebook</button>
-          </div>
+                    <p id="fb-status" class="panel-note">Ready</p>
         </div>
       </div>
     </section>
   </main>
-
-  <footer class="craft-footer"><p>Clarity Craft · Meme Studio · Educational only — not a fatwa</p></footer>
-
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C11" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C11" defer></script>
-  <script src="/craft/assets/craft-meme-source-v1.js?v=20261104C11" defer></script>
-  <script src="/craft/assets/desks-v1.js?v=20261104C11" defer></script>
+  <footer class="craft-footer"><p>Clarity Craft · Meme · Educational only</p></footer>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/clarity-meme-api-bridge-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/clarity-meme-bg-fetch-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/media-reminder-studio-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/vendor/clarity-share-desks-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/craft-meme-source-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/desks-v1.js?v=20261104C13" defer></script>
+  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261104C13" defer></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var b = document.querySelector("[data-meme-section].active");
-      if (b) b.click();
-    });
+  document.addEventListener('DOMContentLoaded', function(){
+    var b=document.querySelector('[data-meme-section].active'); if(b) b.click();
+    var mr=document.getElementById('mr-root');
+    if (window.ClarityCraftStudioBoot) ClarityCraftStudioBoot.media(); else if (window.ClarityMediaReminder && mr) { try { window.ClarityMediaReminder.open(mr); } catch(e){} }
+  });
   </script>
 </body>
 </html>
