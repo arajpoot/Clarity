@@ -4,42 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta name="clarity-build" content="C15NT" />
+  <meta name="clarity-build" content="C16NT" />
   <title>Craft Notes · Clarity</title>
-  <meta name="description" content="On-device craft reflections. Not Amānah vault. Educational only." />
+  <meta name="description" content="Full on-device Craft notes library. Not Amānah vault. Educational only — not a fatwa." />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C15" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261104C15" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105C16NT" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261105C16NT" />
   <script>window.__CLARITY_ROOM__ = 'craft';</script>
   <style>
-    #notes-list { font-size: 0.85rem; margin-top: 1rem; max-height: 16rem; overflow: auto; }
-    .note-row { padding: 0.55rem 0.7rem; border-bottom: 1px solid rgba(212,180,90,0.15); }
-    .note-row time { opacity: 0.7; font-size: 0.75rem; }
-    .composer-textarea {
+    .notes-layout { display: grid; grid-template-columns: minmax(12rem, 17rem) 1fr; gap: 1rem; }
+    @media (max-width: 720px) { .notes-layout { grid-template-columns: 1fr; } }
+    .notes-side, .notes-main {
+      border-radius: 14px; border: 1px solid rgba(212,180,90,0.22);
+      background: rgba(0,0,0,0.18); padding: 0.75rem;
+    }
+    .note-row {
+      display: block; width: 100%; text-align: left; margin: 0 0 0.35rem;
+      padding: 0.55rem 0.65rem; border-radius: 10px; border: 1px solid transparent;
+      background: rgba(15,76,58,0.2); color: inherit; cursor: pointer; font: inherit;
+    }
+    .note-row.active, .note-row:hover { border-color: rgba(212,180,90,0.45); background: rgba(30,125,94,0.35); }
+    .note-row time { display: block; font-size: 0.72rem; opacity: 0.7; margin-top: 0.2rem; }
+    .note-tag { font-size: 0.72rem; opacity: 0.85; }
+    .composer-textarea, .composer-input {
       width: 100%; box-sizing: border-box; border-radius: 12px;
       border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.28);
-      color: inherit; padding: 0.65rem; font: inherit; resize: vertical;
+      color: inherit; padding: 0.55rem 0.65rem; font: inherit; margin: 0.35rem 0;
     }
-    .studio-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0; }
-    .studio-actions .btn {
+    .studio-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+    .studio-actions .btn, button.btn {
       border-radius: 10px; border: 1px solid rgba(212,180,90,0.35);
-      background: #1e7d5e; color: #fff; padding: 0.45rem 0.85rem; font-weight: 700; cursor: pointer;
+      background: #1e7d5e; color: #fff; padding: 0.4rem 0.75rem; font-weight: 700; cursor: pointer;
     }
     .studio-actions .btn:not(.primary) { background: rgba(15,76,58,0.45); }
     .panel-note { font-size: 0.85rem; opacity: 0.9; }
+    #notes-list { max-height: 28rem; overflow: auto; margin-top: 0.5rem; }
   </style>
 </head>
 <body class="craft-room">
   <div class="craft-hero-banner" role="img" aria-label="Registan · Clarity Crafts">
-    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261104C15" alt="Registan · Clarity Crafts" width="1600" height="680" loading="lazy" />
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261105C16NT" alt="Registan · Clarity Crafts" width="1600" height="680" loading="lazy" />
   </div>
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
       <h1>📝 Craft Notes</h1>
-      <p class="tagline">Local reflections · this browser only</p>
-      <p class="edu-stamp">Not Amānah vault · not encrypted cloud · educational only</p>
+      <p class="tagline">Full local library · search · tags · export · this browser only</p>
+      <p class="edu-stamp">Not Amānah vault · not encrypted cloud · educational only — not a fatwa</p>
     </div>
   </header>
   <aside class="companion-calling">
@@ -49,29 +60,80 @@
     <a href="/craft/">← All tools</a>
     <a href="/companion/" class="home-pill">Home</a>
   </aside>
+
   <main class="craft-main tool-page">
-    <section class="tool-section">
-      <p class="panel-note">For private passphrase notes and dayn, use <a href="/amana/">Amānah</a>. This pad is a light craft log.</p>
-      <label class="panel-note" for="note-tag">Tag</label>
-      <select id="note-tag" class="composer-textarea" style="min-height:auto;padding:0.45rem">
-        <option value="meme">Meme</option>
-        <option value="tajweed">Tajweed</option>
-        <option value="calligraphy">Calligraphy</option>
-        <option value="quiz">Quiz</option>
-        <option value="general">General</option>
-      </select>
-      <textarea id="craft-note" class="composer-textarea" rows="6" placeholder="Short reflection…"></textarea>
-      <div class="studio-actions">
-        <button type="button" class="btn primary" id="note-save">Save on device</button>
-        <button type="button" class="btn" id="note-clear">Clear field</button>
-      </div>
-      <div id="notes-list"></div>
-    </section>
+    <p class="panel-note" id="gov-notes-note">
+      Governance · Craft storage key <code>clarity.craft.notes.v1</code> only ·
+      passphrase / dayn notes stay in <a href="/amana/">Amānah</a> ·
+      optional one-way copy from Companion library on this device · nothing uploaded.
+    </p>
+
+    <div class="notes-layout">
+      <aside class="notes-side">
+        <div class="studio-actions">
+          <button type="button" class="btn primary" id="notes-new">＋ New</button>
+          <button type="button" class="btn" id="notes-export">Export JSON</button>
+        </div>
+        <label class="panel-note" for="notes-search">Search</label>
+        <input class="composer-input" id="notes-search" type="search" placeholder="Title, body, tag…" />
+        <label class="panel-note" for="notes-tag-filter">Filter tag</label>
+        <select id="notes-tag-filter" class="composer-input">
+          <option value="">All tags</option>
+          <option value="general">general</option>
+          <option value="meme">meme</option>
+          <option value="tajweed">tajweed</option>
+          <option value="calligraphy">calligraphy</option>
+          <option value="quiz">quiz</option>
+          <option value="guide">guide</option>
+          <option value="from-companion">from-companion</option>
+          <option value="imported">imported</option>
+        </select>
+        <div id="notes-list" aria-label="Notes list"></div>
+        <div class="studio-actions">
+          <label class="btn" style="display:inline-block">
+            Import file
+            <input type="file" id="notes-import-file" accept="application/json,.json" hidden />
+          </label>
+          <button type="button" class="btn" id="notes-import-companion">Copy from Companion</button>
+        </div>
+      </aside>
+
+      <section class="notes-main">
+        <div id="notes-editor-empty">
+          <p class="panel-note">Select a note or create a new one.</p>
+        </div>
+        <div id="notes-editor-active" hidden>
+          <label class="panel-note" for="notes-title">Title</label>
+          <input class="composer-input" id="notes-title" type="text" maxlength="200" placeholder="Title" />
+          <label class="panel-note" for="notes-tag-select">Tag</label>
+          <select id="notes-tag-select" class="composer-input">
+            <option value="general">general</option>
+            <option value="meme">meme</option>
+            <option value="tajweed">tajweed</option>
+            <option value="calligraphy">calligraphy</option>
+            <option value="quiz">quiz</option>
+            <option value="guide">guide</option>
+            <option value="from-companion">from-companion</option>
+            <option value="imported">imported</option>
+          </select>
+          <label class="panel-note" for="notes-body">Body</label>
+          <textarea id="notes-body" class="composer-textarea" rows="14" placeholder="Write on this device…"></textarea>
+          <p class="panel-note"><span id="notes-char-count">0 chars</span> · <span id="notes-save-status">Ready</span></p>
+          <div class="studio-actions">
+            <button type="button" class="btn primary" id="notes-save-now">Save note</button>
+            <button type="button" class="btn" id="notes-delete">Delete</button>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
-  <footer class="craft-footer"><p>Clarity Craft · Notes C15 · Educational only</p></footer>
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C15" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261104C15" defer></script>
-  <script src="/craft/assets/craft-notes-v1.js?v=20261104C15" defer></script>
-  <script src="/craft/assets/craft-notes-recovery-v1.js?v=20261104C15" defer></script>
+
+  <footer class="craft-footer">
+    <p>Clarity Craft · Notes C16NT · Educational only — not a fatwa · not Amānah vault</p>
+  </footer>
+
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261105C16NT" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261105C16NT" defer></script>
+  <script src="/craft/assets/craft-notes-studio-v1.js?v=20261105C16NT" defer></script>
 </body>
 </html>
