@@ -1,0 +1,38 @@
+<!-- C1-Meme enrich · insert into /craft/meme/index.html after background section -->
+<!-- Educational only — not a fatwa -->
+
+<section class="tool-section" id="meme-ratio-section">
+  <h2>3b · Scale · ratio</h2>
+  <p class="panel-note">Canvas pixel size for desks · educational export.</p>
+  <div class="section-chips ratio-chips" role="group" aria-label="Canvas ratio">
+    <button type="button" data-meme-ratio="1:1">1:1</button>
+    <button type="button" data-meme-ratio="16:9" class="active">16:9</button>
+    <button type="button" data-meme-ratio="4:5">4:5</button>
+    <button type="button" data-meme-ratio="twitter">Twitter</button>
+    <button type="button" data-meme-ratio="facebook">Facebook</button>
+  </div>
+  <p id="meme-ratio-status" class="panel-note">Ratio · 16:9</p>
+</section>
+
+<!-- Expand background chips (replace or append existing bg-chips) -->
+<!-- Suggested full set:
+  nature · night · water · holy · flowers · flickr · decor · pattern · blank
+-->
+<div class="bg-chips" role="group" aria-label="Backgrounds">
+  <button type="button" data-meme-bg="nature">🌿 Nature</button>
+  <button type="button" data-meme-bg="night">🌙 Night</button>
+  <button type="button" data-meme-bg="water">💧 Water</button>
+  <button type="button" data-meme-bg="holy">🕌 Holy</button>
+  <button type="button" data-meme-bg="flowers">🌸 Flowers</button>
+  <button type="button" data-meme-bg="flickr">📷 Free</button>
+  <button type="button" data-meme-bg="blank" class="active">⬛ Solid</button>
+</div>
+<p id="meme-fetch-status" class="panel-note">Background: solid</p>
+
+<!-- Export row (after canvas section) -->
+<div class="wire-actions meme-export-row">
+  <button type="button" class="btn primary" id="meme-export-png" data-meme-export="png">⬇ PNG</button>
+  <button type="button" class="btn" id="meme-wire-preview">Re-paint canvas</button>
+  <button type="button" class="btn" id="meme-push-desks">Push canvas → desks</button>
+</div>
+<p id="meme-export-status" class="panel-note"></p>
