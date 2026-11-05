@@ -1,4 +1,4 @@
-/*! ClarityCraftRegistry v1 · 20261104C9
+/*! ClarityCraftRegistry v1 · 20261104C10
  * Cross-room deep links for Craft tools. Isolation preserved.
  * Educational only — not a fatwa.
  */
@@ -78,7 +78,7 @@
   }
 
   w.ClarityCraftRegistry = {
-    version: "20261104C9",
+    version: "20261104C10",
     tools: TOOLS,
     get: get,
     list: list,
