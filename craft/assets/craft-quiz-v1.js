@@ -1,8 +1,8 @@
-/*! craft-quiz-v1 · C15R1 · local + curriculum transitions · educational only */
+/*! craft-quiz-v1 · C15R2 · local + curriculum transitions · educational only */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_CRAFT_QUIZ_C15R1__) return;
-  w.__CLARITY_CRAFT_QUIZ_C13__ = true;
+  if (w.__CLARITY_CRAFT_QUIZ_C15R2__) return;
+  w.__CLARITY_CRAFT_QUIZ_C15R2__ = true;
 
   var FALLBACK = [
     { q: "How many obligatory daily prayers are there?", opts: ["Three", "Four", "Five", "Six"], a: 2, src: "Consensus overview · educational" },
@@ -109,7 +109,7 @@
     var next = d.getElementById("quiz-next");
     if (next) next.addEventListener("click", function () { i++; show(); });
     Promise.all([
-      loadJson("/craft/assets/vendor/module-spark-quiz-bank.json?v=20261104C13"),
+      loadJson("/craft/assets/data/module-spark-quiz-bank.json?v=20261104C15R2").catch(function(){ return loadJson("/craft/assets/vendor/module-spark-quiz-bank.json?v=20261104C15R2"); }),
       loadJson("/craft/assets/data/path-quiz-bank.json?v=20261104C15R1").catch(function(){
         return loadJson("/craft/assets/vendor/path-quiz-bank.json?v=20261104C15R1");
       })

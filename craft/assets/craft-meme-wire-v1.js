@@ -6,7 +6,7 @@
 (function (w, d) {
   "use strict";
   if (w.__CLARITY_CRAFT_MEME_WIRE_C15R1__) return;
-  w.__CLARITY_CRAFT_MEME_WIRE_C14__ = true;
+  w.__CLARITY_CRAFT_MEME_WIRE_C15R1__ = true;
 
   var bgImage = null;
   var lastLine = { ar: "", en: "", ref: "" };
