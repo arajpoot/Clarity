@@ -1,0 +1,44 @@
+/* Meme studio: background chips above canvas; controls below */
+#meme-studio-root.meme-studio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+#meme-studio-root .meme-bar-bg {
+  order: 1;
+  display: block !important;
+}
+#meme-studio-root .meme-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+#meme-studio-root .meme-preview-only,
+#meme-studio-root .meme-stage-wrap {
+  order: 2;
+  width: 100%;
+}
+#meme-studio-root .meme-bar:not(.meme-bar-bg),
+#meme-studio-root .meme-controls-below,
+#meme-studio-root [class*="meme-text"],
+#meme-studio-root .meme-rrra,
+#meme-studio-root .meme-export {
+  order: 3;
+}
+#meme-canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+.mv-chip {
+  font-size: 0.72rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(184, 166, 135, 0.4);
+  background: rgba(0, 0, 0, 0.2);
+  color: inherit;
+  cursor: pointer;
+}
+#meme-fetch-status { min-height: 1em; font-size: 0.72rem; }
