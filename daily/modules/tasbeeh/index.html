@@ -1,86 +1,72 @@
 <!DOCTYPE html>
-<html data-yawm-module="tasbeeh" lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-clarity-room="yawm" data-yawm-sot="1">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta name="yawm-build" content="20261029R1"/>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Tasbeeh · Yawm · Clarity</title>
-<meta name="description" content="Tasbeeh — Yawm educational module. Not a fatwa."/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../../assets/daily.css?v=20261029R1"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta name="yawm-build" content="20261104Y2"/>
+  <title>سُبْحَانَ اللَّهِ وَبِحَمْدِهِ · Tasbeeh · Yawm</title>
+  <meta name="description" content="Tasbeeh counter with graded reports. Educational only — not a fatwa."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/nuros/nuros-type-icons-v1.css?v=20261104P2"/>
+  <link rel="stylesheet" href="/daily/assets/daily.css?v=20261104Y2"/>
+  <link rel="stylesheet" href="/daily/assets/yawm-enrich-v1.css?v=20261104Y2"/>
+
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104Y2"/>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104Y2" defer></script>
+
 </head>
-<body data-yawm="1">
-<div class="mod-shell">
-  <header class="mod-top">
-    <a class="brand" href="/daily/">Clarity · Yawm</a>
-    <nav style="font-size:.85rem"><a href="/daily/">Hub</a> · <a href="/">Companion</a> · <a href="/campus/">Campus</a></nav>
-  </header>
+<body class="yawm-page" data-address="daily">
+<header class="daily-header">
+  <a class="brand" href="/daily/">Clarity · Yawm</a>
+  <div class="header-actions">
+    <button type="button" id="theme-toggle" title="Toggle theme" aria-label="Toggle light or dark">◐</button>
+    <a href="/companion/">Companion</a>
+  </div>
+</header>
+<nav class="top clarity-room-nav" data-room="yawm" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion">Companion</a>
+  <a class="here" href="/daily/" data-room-link="yawm" aria-current="page">Yawm</a>
+  <a href="/campus/" data-room-link="university">University</a>
+  <a href="/amana/" data-room-link="amana">Amānah</a>
+</nav>
 
-  <figure class="yawm-mini-banner">
-    <img src="../../assets/daily-banner.jpg?v=20261029R1" alt="" width="1600" height="754" loading="eager"/>
-    <div class="yawm-mini-plaque">
-      <p class="mp-title">Tasbeeh · count with presence</p>
-      <p class="mp-sub">On this device only</p>
-    </div>
-  </figure>
-
-  <div class="yawm-quill-rule">Yawm · Tasbeeh</div>
-
-  <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/"><img src="../../assets/icons/nuros-today.svg?v=20261029R1" alt=""/>Now</a>
-    <a href="/daily/modules/deed/"><img src="../../assets/icons/nuros-seed.svg?v=20261029R1" alt=""/>Deed</a>
-    <a href="/daily/modules/adhkar/"><img src="../../assets/icons/nuros-dua.svg?v=20261029R1" alt=""/>Adhkār</a>
-    <a href="/daily/modules/tasbeeh/" class="here"><img src="../../assets/icons/nuros-tasbih.svg?v=20261029R1" alt=""/>Tasbeeh</a>
-    <a href="/daily/modules/salah/"><img src="../../assets/icons/nuros-salah.svg?v=20261029R1" alt=""/>Farḍ</a>
-    <a href="/daily/modules/light/"><img src="../../assets/icons/nuros-tree.svg?v=20261029R1" alt=""/>Light</a>
-  </nav>
-
-  
-  <section class="glass-plaque" style="text-align:center">
-    <img src="../../assets/icons/nuros-tasbih.svg?v=20261029R1" width="48" height="48" alt="" style="margin-bottom:.35rem"/>
-    <h1>Tasbeeh</h1>
-    <p id="tc" style="font-size:2.75rem;font-weight:800;margin:.35rem 0;color:#e8d5a3">0</p>
-    <p>
-      <button type="button" id="inc" style="padding:.55rem 1.4rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:800;font-size:1.05rem;cursor:pointer">+1</button>
-      <button type="button" id="rst" style="padding:.55rem 1.2rem;border-radius:999px;border:1px solid rgba(201,168,76,.45);background:transparent;color:inherit;font-weight:700;cursor:pointer;margin-left:.35rem">Reset</button>
-    </p>
+<main class="yawm-main module">
+  <p class="back"><a href="/daily/">← Yawm</a></p>
+  <h1 lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</h1>
+  <p class="trans">Subḥān Allāh wa bi-ḥamdih</p>
+  <div class="counter">
+    <p class="count" id="tb-count">0</p>
+    <button type="button" class="btn primary" id="tb-plus">+1</button>
+    <button type="button" class="btn" id="tb-reset">Reset</button>
+    <p class="panel-note">On this device · presence over speed</p>
+  </div>
+  <section class="card">
+    <p class="report"><strong>Ṣaḥīḥ</strong> · Muslim · 2692 · <a href="https://sunnah.com/muslim:2692" target="_blank" rel="noopener">sunnah.com/muslim:2692</a></p>
   </section>
-  <div class="enrich-block">
-    <h2>Educational enrichment · known counts</h2>
-    <p>Muslim 2692 (and related reports) teach saying <em>Subḥān Allāh wa bi-ḥamdih</em> in the morning and evening one hundred times, with great reward described in the narration — confirm full text and grade. Busy-day educational articles also encourage folding short dhikr into ordinary tasks so remembrance is not limited to a free hour.</p>
-    <p>This counter is only a mirror. Presence of heart outweighs speed.</p>
-  </div>
-  <div class="ext-links">
-    <a href="https://sunnah.com/muslim:2692" target="_blank" rel="noopener">Sunnah.com — Muslim 2692</a><br/>
-    <a href="https://productivemuslim.com/dhikr-for-the-mum-on-the-run/" target="_blank" rel="noopener">Productive Muslim — dhikr in a busy day</a>
-    <span class="note">Practice aid — not a fatwa.</span>
-  </div>
-  <script>
-  (function(){
-    var KEY="clarity.daily.tasbeeh.v1",n=0;
-    try{n=parseInt(localStorage.getItem(KEY)||"0",10)||0}catch(e){}
-    var el=document.getElementById("tc");
-    function p(){el.textContent=n;try{localStorage.setItem(KEY,String(n))}catch(e){}}
-    p();
-    document.getElementById("inc").onclick=function(){n++;p()};
-    document.getElementById("rst").onclick=function(){n=0;p()};
-  })();
-  </script>
+  <section class="card">
+    <p class="ar-line" lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ</p>
+    <p class="report"><strong>Ṣaḥīḥ</strong> · Bukhārī · 7563 · <a href="https://sunnah.com/bukhari:7563" target="_blank" rel="noopener">sunnah.com/bukhari:7563</a></p>
+    <p class="report"><strong>Ṣaḥīḥ</strong> · Muslim · 2694 · <a href="https://sunnah.com/muslim:2694" target="_blank" rel="noopener">sunnah.com/muslim:2694</a></p>
+  </section>
+  <p class="act"><strong>One way to act — not a ruling:</strong> Count with presence for a short sitting; do not race the number.</p>
+</main>
 
-
-  
-  <aside class="reward-card" aria-label="Authentic reminder">
-    <h2>Two words light on the tongue</h2>
-    <p class="ar" dir="rtl" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ</p>
-    <p>Two words which are light on the tongue, heavy in the Scale, and beloved to the Most Merciful: “Glory and praise be to Allah” and “Glory be to Allah, the Magnificent.”</p>
-    <p class="meta">Ṣaḥīḥ al-Bukhārī · 7563 · Ṣaḥīḥ Muslim · 2694 · educational meaning</p>
-    <span class="grade">ṣaḥīḥ · Bukhārī &amp; Muslim</span>
-  </aside>
-
-  <p style="margin-top:1.5rem;font-size:.75rem;opacity:.82">Educational only — not a fatwa. Acceptance is with Allah. Data stays on this device.</p>
-</div>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<p style="text-align:center;font-size:0.8rem;opacity:0.85"><a href="/daily/">← Yawm hub</a> · educational only — not a fatwa</p>
+<footer class="yawm-footer">
+  <p>Educational only · not a fatwa · not legal advice · acceptance is with Allah · data on this device</p>
+</footer>
+<script src="/daily/assets/yawm-theme-v1.js?v=20261104Y2" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  var k="yawm_tasbeeh_count_v1", el=document.getElementById("tb-count"), n=0;
+  try{ n=parseInt(localStorage.getItem(k)||"0",10)||0; }catch(e){}
+  function show(){ el.textContent=String(n); try{ localStorage.setItem(k,String(n)); }catch(e){} }
+  document.getElementById("tb-plus").onclick=function(){ n++; show(); };
+  document.getElementById("tb-reset").onclick=function(){ n=0; show(); };
+  show();
+});
+</script>
 </body>
 </html>
