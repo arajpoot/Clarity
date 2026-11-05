@@ -1,5 +1,9 @@
-# Yawm enrich · 1 Nov bar · 20261104Y1
+# Craft Meme Enrichment Pack · C1
 
-Five-room nav preserved · Quicksand + Amiri · Shariah reports · contract smoke pass.
+Ports Companion-era scaling, online background fetch, Shariah scan, layout, and PNG export into **Craft Meme Studio**.
 
-See `docs/YAWM_SHARIAH_CONTRACT_SMOKE_Y1.md`.
+See **INSTALL.md** for drop-in steps.
+
+Source lineage: assets/ + companion-inline/ meme modules (archive Clarity-archive4).
+
+Educational only — not a fatwa.
