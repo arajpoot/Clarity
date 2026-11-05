@@ -1,0 +1,17 @@
+{
+  "build": "C15R1",
+  "repairs": ["meme-wire-online-fetch", "quiz-bank-path", "hub-cache"],
+  "deploy": [
+    "Merge craft/assets/* into live /craft/assets/",
+    "Replace /craft/index.html",
+    "Hard refresh"
+  ],
+  "checks": {
+    "meme": ["Holy chip triggers online or Kaaba URL", "ratio 1:1 vs 16:9", "PNG", "desks"],
+    "quiz": ["Progress shows Question N / M not stuck Loading", "sources on feedback"],
+    "hub": ["plaque links ?v=20261104C15R1", "build C15R1"],
+    "tajweed": ["meter buttons", "scripts 200"],
+    "calligraphy": ["stroke + PNG"],
+    "notes": ["save list"]
+  }
+}
