@@ -1,13 +1,16 @@
-# Clarity Craft · final upgrade package · C15
+# Clarity project-wide governance
 
-Unified deployable pack for Craft room workbenches:
+Binding for **all rooms** and **every** upgrade/fix.
 
-- Meme Studio (ratio, online scenery, Shariah scan, PNG)
-- Tajweed Deep Studio (LMR, booth, practice)
-- Calligraphy Pad (engine, enhance, export)
-- Sharia IQ Quiz (local banks)
-- Craft Notes (device-only + recovery)
+| File | Role |
+|------|------|
+| `governance/PROJECT_CONTRACT.md` | Human + policy rules P1–P7 |
+| `governance/PROJECT_MANIFEST.json` | Machine checklist · rooms · gates |
+| `governance/DEPLOY_GATE.md` | Reject criteria for packs |
+| `governance/UPGRADE_CHECKLIST.md` | Per-change tick list |
 
-See **DEPLOY.md** and **SMOKE_C15.json**.
+Room contracts (e.g. Craft C15R4) **add** constraints; they do not override P1–P7.
+
+Wire this into packaging by including the checklist in every zip and failing review if smoke omits `project_invariants`.
 
 Educational only — not a fatwa.
