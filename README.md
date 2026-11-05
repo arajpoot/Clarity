@@ -1,7 +1,14 @@
-# Room-nav bump · Craft pill site-wide · 20261104C10
+# Room-nav bump · smoked · governance-checked · 20261104C10
 
-Deploy these four room `index.html` files + `assets/room-nav/` so Amānah, Campus, Companion, and Yawm load the upgrade JS that injects the Craft tile.
+**Bismillah.** Deploy-ready. Simulation: **SIMULATION_PASS · ISOLATION_PASS · JS_SYNTAX_OK**.
 
-**Yawm** previously had the nav markup but **no** `clarity-room-nav-v1.js` — this build adds it.
+## Deploy
+1. `assets/room-nav/clarity-room-nav-v1.js` + `.css`
+2. `amana/index.html` · `campus/index.html` · `companion/index.html` · `daily/index.html`
+3. Purge CDN for those paths · hard refresh
 
-See `docs/ROOM_NAV_BUMP_C10.md`.
+## Expect
+- One rail per room · **Craft** pill present · seal “Five rooms…”
+- Four isolation doors unchanged · Craft = soft chrome only
+
+See `docs/GOVERNANCE_COMPLIANCE_SIM.md`.
