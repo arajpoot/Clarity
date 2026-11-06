@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="craft">
+<html data-craft-meme-build="C18-BC" lang="en" data-theme="dark" data-clarity-room="craft">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -103,15 +103,25 @@
 
     <section class="tool-section">
       <h2>2 · Background (scenery only)</h2>
-      <p class="panel-note">Online safe scenery · Shariah-aware · Wikimedia-first (archive best) · no figurative people lists.</p>
+      <p class="panel-note">Safe scenery · Shariah scan on every URL · curated landscapes/architecture · no people/animal stock · Surprise + scene-for-text.</p>
       <div class="bg-chips" role="group" aria-label="Backgrounds">
         <button type="button" data-meme-bg="nature">🌿 Nature</button>
         <button type="button" data-meme-bg="night">🌙 Night</button>
         <button type="button" data-meme-bg="water">💧 Water</button>
         <button type="button" data-meme-bg="holy">🕌 Holy</button>
         <button type="button" data-meme-bg="flowers">🌸 Flowers</button>
-        <button type="button" data-meme-bg="flickr">📷 Free</button>
+        <button type="button" data-meme-bg="galaxy">🌌 Galaxy</button>
+        <button type="button" data-meme-bg="desert">🏜️ Desert</button>
+        <button type="button" data-meme-bg="mountains">⛰️ Mountains</button>
+        <button type="button" data-meme-bg="spirit">✨ Spirit</button>
+        <button type="button" data-meme-bg="geometry">◈ Pattern</button>
+        <button type="button" data-meme-bg="free">📷 Free</button>
+        <button type="button" data-meme-bg="surprise">✨ Surprise</button>
         <button type="button" data-meme-bg="blank" class="active">⬛ Solid</button>
+      </div>
+      <div class="wire-actions" id="meme-bc-actions" style="margin-top:0.4rem">
+        <button type="button" class="btn primary" id="meme-surprise-bg">✨ Surprise scene</button>
+        <button type="button" class="btn" id="meme-scene-for-text">🖼 Scene for text</button>
       </div>
       <p id="meme-fetch-status" class="panel-note">Background: solid</p>
       <p id="meme-wire-status" class="panel-note" hidden></p>
@@ -189,7 +199,11 @@
 
   <!-- C15 enrich: shariah → online bg → catalog fetch → canvas clean → ratio → export -->
   <script src="/craft/assets/craft-meme-shariah-scan-v1.js?v=20261105C17" defer></script>
-  <script src="/craft/assets/craft-meme-shariah-pools-v1.js?v=20261105C17" defer></script>
+  <script src="/craft/assets/craft-meme-shariah-pools-v1.js?v=20261105C18" defer></script>
+<script src="/craft/assets/craft-meme-phase-bc-v1.js?v=20261105C18" defer></script>
+<script src="/craft/assets/craft-meme-atelier-v1.js?v=20261105C18" defer></script>
+
+
   <script src="/craft/assets/craft-meme-studio-enrich-v1.js?v=20261105C17" defer></script>
   <script src="/craft/assets/craft-meme-online-bg-v1.js?v=20261105C17" defer></script>
   <script src="/craft/assets/craft-meme-bg-fetch-v1.js?v=20261105C17" defer></script>
