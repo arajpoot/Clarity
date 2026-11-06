@@ -1,0 +1,100 @@
+/*! companion-g4-craft-offload-v1 · path full-width row · hard craft offload */
+/* Path tiles: desktop = one row, 4 paths + reset full width */
+html[data-clarity-room="companion"] .clarity-gate-switcher,
+html[data-clarity-room="companion"] .clarity-gate-switcher.rrra-sitewide {
+  display: grid !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0.55rem 0 0.75rem !important;
+  padding: 0.55rem !important;
+  box-sizing: border-box !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(201, 162, 39, 0.28) !important;
+  background: rgba(15, 76, 58, 0.12) !important;
+  overflow: visible !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-label {
+  grid-column: 1 / -1 !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  opacity: 0.85 !important;
+}
+/* Mobile: 2x2 paths, reset full row */
+html[data-clarity-room="companion"] .clarity-gate-switcher {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn,
+html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 0.15rem !important;
+  min-height: 3.5rem !important;
+  width: 100% !important;
+  padding: 0.6rem 0.7rem !important;
+  border-radius: 14px !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  text-align: left !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn.is-active {
+  border-color: rgba(201, 162, 39, 0.5) !important;
+  background: linear-gradient(145deg, rgba(15, 76, 58, 0.45), rgba(201, 162, 39, 0.12)) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-reset,
+html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-reset,
+html[data-clarity-room="companion"] .clarity-gate-switcher #clarity-path-reset-btn {
+  grid-column: 1 / -1 !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 2.5rem !important;
+}
+
+@media (min-width: 720px) {
+  /* 5 columns: Seeker NewMuslim Daily Dai Reset — one row full width */
+  html[data-clarity-room="companion"] .clarity-gate-switcher {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  }
+  html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-label {
+    grid-column: 1 / -1 !important;
+  }
+  html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-reset,
+  html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-reset,
+  html[data-clarity-room="companion"] .clarity-gate-switcher #clarity-path-reset-btn {
+    grid-column: auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 3.5rem !important;
+  }
+}
+
+/* Hard hide craft SoT modules left in Companion DOM */
+html[data-clarity-room="companion"] #callig-lab-card,
+html[data-clarity-room="companion"] #callig-canvas,
+html[data-clarity-room="companion"] #callig-stage-wrap,
+html[data-clarity-room="companion"] #callig-pad-control-bar,
+html[data-clarity-room="companion"] #callig-mic-panel,
+html[data-clarity-room="companion"] #nx-tajweed-deep-studio-v1,
+html[data-clarity-room="companion"] #tajweed-live-card,
+html[data-clarity-room="companion"] #meme-card,
+html[data-clarity-room="companion"] #meme-studio-root,
+html[data-clarity-room="companion"] .meme-studio:not(.craft-bridge-inline),
+html[data-clarity-room="companion"] [data-craft-legacy="1"] {
+  display: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
