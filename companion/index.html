@@ -41,7 +41,7 @@
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
 <!-- A2 spine: overlays, chunk-8, feature, path, aux, sticky via companion-a2-spine-loader-v1 -->
-<meta name="companion-phase-build" content="G3-campus-foundation-tiles-20261106" />
+<meta name="companion-phase-build" content="G4-craft-offload-path-row-20261106" />
 
 
 
@@ -363,6 +363,8 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 <script src="/companion/assets/companion-g2-polished-v1.js?v=20261106G2P" defer></script>
 <link rel="stylesheet" href="/companion/assets/companion-g3-campus-foundation-v1.css?v=20261106G3" />
 <script src="/companion/assets/companion-g3-campus-foundation-v1.js?v=20261106G3" defer></script>
+<link rel="stylesheet" href="/companion/assets/companion-g4-craft-offload-v1.css?v=20261106G4" />
+<script src="/companion/assets/companion-g4-craft-offload-v1.js?v=20261106G4" defer></script>
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -712,75 +714,14 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   <a href="/craft/meme/" style="display:inline-block;padding:0.4rem 0.85rem;border-radius:999px;font-weight:700;text-decoration:none;background:linear-gradient(135deg,#0f4c3a,#1a6b52);color:#f7f3eb">Open Meme Studio in Craft →</a>
 </div>
 
-<div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)">
-<h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
-<p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
-<div class="callig-stylus-hint" id="callig-stylus-hint">
-  <span class="callig-mode-badge" id="callig-mode-badge">Naskh · finger</span>
-  <span>One finger. Lift to end a stroke. <strong>Auto-enhance</strong> shapes ink after each stroke.</span>
-</div>
-<p id="callig-tajweed-tip" style="font-size:.84rem;color:var(--accent);margin:.3rem 0;min-height:1.2em">Select a letter, then Pronounce for tajweed-style tips.</p>
 
-<div class="callig-stage-wrap callig-lab-stage" id="callig-stage-wrap">
-  <span class="callig-live-pill" id="callig-live-pill" aria-hidden="true">Listening…</span>
-  <canvas id="callig-canvas" width="900" height="420" aria-label="Calligraphy practice pad"></canvas>
+<div class="card craft-bridge-inline" data-craft-offload="1" style="margin:0.75rem 0;padding:0.85rem 0.9rem;border-radius:14px;border:1px solid rgba(201,162,39,0.28);background:rgba(15,76,58,0.1)">
+  <strong style="display:block;margin-bottom:0.25rem">✍️ Calligraphy lab</strong>
+  <p style="margin:0 0 0.35rem;font-size:0.9rem;opacity:0.95" lang="ar" dir="rtl">خط</p>
+  <p style="margin:0 0 0.5rem;font-size:0.86rem;line-height:1.45;opacity:0.92">Pad, modes, and stylus practice live in the Craft atelier. Educational only — not a fatwa.</p>
+  <a href="/craft/calligraphy/" style="display:inline-block;padding:0.4rem 0.85rem;border-radius:999px;font-weight:700;text-decoration:none;background:linear-gradient(135deg,#0f4c3a,#1a6b52);color:#f7f3eb">Open in Craft →</a>
 </div>
-<div class="callig-pad-control-bar" id="callig-pad-control-bar" style="display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.45rem 0 .55rem">
-  <button type="button" class="btn-soft" onclick="try{calligClear()}catch(e){}">⌫ Clear</button>
-  <button type="button" class="btn-soft" onclick="try{if(calligState&&calligState.strokes){calligState.strokes.pop();calligDrawGuide();}}catch(e){}">↶ Undo</button>
-  <button type="button" class="btn-soft" onclick="try{calligDownload()}catch(e){}">⬇ PNG</button>
-  <button type="button" class="btn-soft" onclick="try{calligAutoEnhanceAll&&calligAutoEnhanceAll()}catch(e){}">✨ Enhance</button>
-  <button type="button" class="btn-soft" onclick="try{calligMarkPracticed&&calligMarkPracticed()}catch(e){}">✓ Practiced</button>
-  <label style="font-size:.72rem;display:inline-flex;align-items:center;gap:.25rem">
-    Size <input type="range" min="40" max="160" value="100" oninput="try{calligState.scale=+this.value;calligDrawGuide()}catch(e){}" style="width:5rem">
-  </label>
-</div>
-
-<div class="callig-topbar">
-  <div class="callig-canvas-tools" id="callig-canvas-tools">
-    <div class="ct-title">Type · translate · place</div>
-    <div class="ct-row">
-      <input type="text" id="callig-english-input" placeholder="Type English…" autocomplete="off" oninput="calligLiveTranslateFromInput()" onkeydown="if(event.key==='Enter'){event.preventDefault();calligTranslateToArabic();}">
-      <button type="button" class="btn-soft" id="callig-translate-btn" onclick="calligTranslateToArabic()">🌐 EN→AR</button>
-      <button type="button" class="btn-soft" onclick="calligSendEnglishToCanvas()">✏️ EN</button>
-      <button type="button" class="btn-soft" onclick="calligPlaceArabicOnCanvas()">📥 AR</button>
-      <button type="button" class="btn-secondary" onclick="calligSendEnglishToMeme()">🎨 Meme</button>
-    </div>
-
-    <div class="ct-row" id="callig-top-extra-row" style="margin-top:0.3rem">
-      <button type="button" class="btn-soft" onclick="calligSurprise && calligSurprise()" title="Puts your EN→AR phrase on the pad, or a practice letter if empty">✨ On pad</button>
-    </div>
-  </div>
-
-  </div>
-  <div class="callig-mic-panel" id="callig-mic-panel">
-    <div class="callig-mic-head">
-      <div class="ct-title">Speak → Whisper → Arabic</div>
-      <span class="callig-voice-status" id="callig-voice-status">Mic ready</span>
-    </div>
-    <div class="ct-row callig-voice-bar">
-      <button type="button" class="btn-soft" id="callig-mic-btn" onclick="calligMicToggle()">🎤 Start</button>
-      <button type="button" id="callig-mic-stop" class="btn-secondary" onclick="calligMicStop()" type="button">⏹ Stop</button>
-      <button type="button" class="btn-soft" onclick="calligMicPlaceEnglish()">EN→canvas</button>
-      <button type="button" class="btn-soft" onclick="calligMicPlaceArabic()">AR→canvas</button>
-      <label class="callig-live-toggle"><input type="checkbox" id="callig-live-ar" checked> Live AR</label>
-      <span class="wsp-badge" id="callig-wsp-badge">Whisper-tiny</span>
-    </div>
-    <div class="callig-live-grid">
-      <div>
-        <label class="callig-mic-capture-label" for="callig-voice-text">English</label>
-        <textarea id="callig-voice-text" class="callig-voice-text" rows="2" placeholder="Speech…" oninput="calligLiveTranslateFromCapture()"></textarea>
-      </div>
-      <div>
-        <label class="callig-mic-capture-label" for="callig-voice-ar">Arabic</label>
-        <textarea id="callig-voice-ar" class="callig-voice-text callig-voice-ar" rows="2" placeholder="الترجمة…" dir="rtl" lang="ar"></textarea>
-      </div>
-    </div>
-    <p class="callig-mic-help">Whisper-tiny on-device · tap Start, speak, tap Stop · online only for AR translate.</p>
-  </div>
-  <div id="callig-translate-preview"></div>
-</div>
-<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card">
+id="tweet-desk-card">
   <h2>𝕏 Tweet desk</h2>
   <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
   <div class="td-row">
@@ -1635,6 +1576,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 <!-- phase3-dedupe dup: /companion/assets/clarity-companion-unfreeze-v3.js -->
 <script type="text/plain" data-g2-offload="craft-room-sot" src="/companion/assets/companion-meme-studio-fix-v1.js?v=20261104MS3"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
