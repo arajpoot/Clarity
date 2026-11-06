@@ -1,9 +1,7 @@
-G4 PACK POLISHED — Campus packaging + governance + multi-cycle smoke
+G9 Reflection + governance
 
-Upload ENTIRE companion/ directory:
-  index.html (thin)
-  content/main.fragment.html
-  content/full.backup.html
-  assets/* (includes pack-boot, frag-inline, g6/g7, banner, …)
+Populates Reflection: lessons, verse, asma, zikr, live tafsir ayah, night breath, deposits.
+Stubs: notes/TTS/name without console crashes.
+Governance contract included.
 
-See GOVERNANCE_CONTRACT.md and SMOKE_REPORT.md
+Upload companion/index.html + g9 js/css (or full companion/).

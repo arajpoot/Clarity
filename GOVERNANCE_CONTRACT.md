@@ -1,32 +1,23 @@
-# Companion governance contract — G4 packaging polished
+# Companion governance contract — G9
 
-## Room
-- Path: `/companion/` only
-- `data-clarity-room="companion"`
-- Campus / Yawm / Amānah: **frozen** (do not edit for this package)
+## Room isolation
+- Companion only (`/companion/`)
+- Campus, Yawm, Amānah, Craft: do not merge curriculum; link out when needed
 
-## Richness (must remain in fragment)
-- Allah’s Commands (command-box)
-- Daily Samiʿnā verse
-- Ilm pathway 7-day
-- Calligraphy lab, Meme studio, Tajweed surfaces
-- Full Action hub, RRRA tabs, banner AV
-- Path tiles (Seeker → Da’i)
+## Richness
+- Reminder, Reality (G8), Reflection (G9), Action, Notes remain content-bearing
+- Loaders must define every `onclick` handler used in the hub
+- Educational only — not a fatwa; prefer Quran.com / Sunnah.com verification
 
-## Packaging
-- Thin `index.html` entry
-- `content/main.fragment.html` body richness (scripts stripped; loaded by boot)
-- Versioned assets + sequential `companion-pack-boot-v1.js`
-- `content/full.backup.html` recovery
-- Inline body scripts extracted to `companion-frag-inline-v1.js` when present
+## Stability (Campus parity spirit)
+- Self-contained entry HTML (no required fragment fetch)
+- Single room-nav; inactive tabs hidden
+- Prefer progressive disclosure over deleting modules
 
-## Stability rules
-- One room-nav (shared component)
-- No second mount root
-- Feature scripts load **after** mount
-- Failures surface alert + backup link
+## Reflection (G9)
+- Lessons, verse, asmāʾ, zikr, tafsīr ayah, night breath, deposits populated on boot/tab
+- localStorage for deposits and light streaks only — no account upload
 
 ## Change policy
-- Prefer CSS/JS modules over growing the fragment
-- Do not delete richness modules to “look like Campus”
-- Campus packaging parity ≠ Campus curriculum merge
+- Fix missing handlers before adding new parallel scripts
+- Do not strip Reflection cards to “look empty-stable”
