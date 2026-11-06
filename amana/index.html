@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="amana" data-amana-surface="desk" data-nuros-phase="amana-desk-split">
+<html lang="en" data-theme="dark" data-clarity-room="amana" data-amana-surface="desk" data-nuros-phase="amana-desk-c2">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
@@ -7,7 +7,7 @@
 <meta name="description" content="Amānah on-device desk — quick note and dayn stamp. Full vault unlock is optional. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/"/>
 <meta name="theme-color" content="#0a1812"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105A1"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105A2"/>
 <link rel="stylesheet" href="/amana/assets/css/am-critical-v1.css?v=20261102M1"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-room-harmony-v1.css?v=20261103HARM"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-desk-welcome-v1.css?v=20261103DW1"/>
@@ -19,11 +19,54 @@
 <style>
   html,body{font-family:"Quill","Quicksand",system-ui,sans-serif;background:#071410;color:#e7efe9;margin:0;}
   .arabic,[lang="ar"]{font-family:"Amiri","Noto Naskh Arabic",serif;}
-  .amana-desk-hero{text-align:center;padding:1rem 1rem 0.25rem;max-width:40rem;margin:0 auto;}
-  .amana-desk-hero h1{color:#e8d5a3;font-size:1.55rem;margin:0.35rem 0;}
-  .amana-desk-hero .sub{font-size:0.9rem;opacity:0.92;line-height:1.45;}
-  /* Never show vault gate on desk landing */
-  #amana-vault-gate,.amana-vault-gate,header[class*="banner"]{display:none!important;}
+  /* —— Rich desk hero (architecture plate + geometric veil) —— */
+  .amana-desk-hero-banner{
+    position:relative;overflow:hidden;border-radius:0 0 22px 22px;
+    min-height:200px;max-width:52rem;margin:0.35rem auto 0.75rem;
+    border:1px solid rgba(212,180,90,0.35);
+    box-shadow:0 12px 40px rgba(0,0,0,0.35);
+    background:
+      linear-gradient(180deg,rgba(7,20,16,0.25) 0%,rgba(7,20,16,0.82) 55%,rgba(7,20,16,0.95) 100%),
+      url("https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat,
+      #0a1812;
+  }
+  .amana-desk-hero-banner::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:0.22;
+    background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23d4b45a' stroke-width='0.6'/%3E%3C/svg%3E");
+  }
+  .amana-desk-hero-banner .hero-inner{
+    position:relative;z-index:1;text-align:center;padding:1.35rem 1.1rem 1.2rem;
+  }
+  .amana-desk-hero-banner .bismillah{color:#e8d5a3;font-size:1.25rem;margin:0 0 0.35rem;}
+  .amana-desk-hero-banner h1{color:#f0e0a8;font-size:1.65rem;margin:0.2rem 0 0.45rem;letter-spacing:0.02em;}
+  .amana-desk-hero-banner .ayah{
+    font-size:1.15rem;color:#f3e6c0;line-height:1.55;margin:0.4rem 0 0.25rem;
+  }
+  .amana-desk-hero-banner .ayah-en{
+    font-size:0.86rem;opacity:0.92;line-height:1.45;margin:0.25rem auto 0.35rem;max-width:34rem;
+  }
+  .amana-desk-hero-banner .ayah-ref a{color:#d4b45a;font-weight:600;text-decoration:none;}
+  .amana-desk-hero-banner .sub{font-size:0.88rem;opacity:0.9;margin:0.5rem 0 0;line-height:1.45;}
+  .amana-desk-hero-banner .chip-row{display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;margin-top:0.65rem;}
+  .amana-desk-hero-banner .chip-row span{
+    font-size:0.72rem;padding:0.25rem 0.55rem;border-radius:999px;
+    border:1px solid rgba(212,180,90,0.35);background:rgba(0,0,0,0.28);color:#e8d5a3;
+  }
+  #amana-vault-gate,.amana-vault-gate{display:none!important;}
+  .amana-single-unlock-cta{
+    max-width:40rem;margin:1rem auto 1.25rem;padding:1rem 1.1rem;text-align:center;
+    border-radius:16px;border:1px solid rgba(212,180,90,0.4);
+    background:linear-gradient(165deg,rgba(18,40,32,0.92),rgba(8,20,16,0.96));
+  }
+  .amana-single-unlock-cta h2{margin:0 0 0.35rem;color:#d4b45a;font-size:1.08rem;}
+  .amana-single-unlock-cta p{margin:0 0 0.55rem;font-size:0.85rem;line-height:1.45;opacity:0.92;}
+  .amana-single-unlock-cta .btn-unlock{
+    display:inline-block;padding:0.55rem 1.25rem;border-radius:999px;font-weight:700;
+    border:1px solid rgba(212,180,90,0.5);background:rgba(30,125,94,0.55);color:#f3e6c0;text-decoration:none;
+  }
+  .amana-single-unlock-cta .cta-note{font-size:0.72rem;opacity:0.8;margin:0.45rem 0 0;}
+  /* hide any extra unlock lanes until JS collapses them */
+  .dw-unlock-cta a.soft{display:none;}
 </style>
 </head>
 <body>
@@ -32,78 +75,45 @@
   <a href="/daily/" data-room-link="yawm"><span class="crn-ico">🌅</span><span class="crn-label">Yawm</span></a>
   <a href="/campus/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
   <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
-  <p class="crn-seal">Five rooms · educational only · not a fatwa</p>
   <a href="/craft/" data-room-link="craft"><span class="crn-ico">✒️</span><span class="crn-label">Craft</span></a>
+  <p class="crn-seal">Five rooms · educational only · not a fatwa</p>
 </nav>
 
-<p id="amana-isolation-note" role="note" style="max-width:40rem;margin:0.65rem auto;padding:0.5rem 0.75rem;font-size:0.78rem;line-height:1.45;border-radius:12px;border:1px solid rgba(201,162,39,0.3);background:rgba(15,76,58,0.12)">
-<strong>Amānah desk · on-device only.</strong>
-Quick note and dayn stamp need no unlock. Passphrase vault is optional — open only when you need deeper chambers.
+<header class="amana-desk-hero-banner" role="banner" aria-label="Amānah desk banner">
+  <div class="hero-inner">
+    <p class="bismillah arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <h1>Amānah Desk</h1>
+    <p class="ayah arabic" lang="ar" dir="rtl">إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا</p>
+    <p class="ayah-en">“Indeed, Allah commands you to render trusts to whom they are due…”</p>
+    <p class="ayah-ref"><a href="https://quran.com/4/58" target="_blank" rel="noopener noreferrer">Qurʾān 4:58 · Quran.com</a>
+      · shares also <a href="https://quran.com/4/7" target="_blank" rel="noopener noreferrer">4:7</a></p>
+    <p class="sub">Nightly note &amp; dayn stamp on this device — <strong>no unlock needed</strong>. Open the vault only for deeper chambers.</p>
+    <div class="chip-row" aria-hidden="true">
+      <span>On-device</span><span>No unlock for intake</span><span>Not a fatwa</span><span>Debts before bequests</span>
+    </div>
+  </div>
+</header>
+
+<p id="amana-isolation-note" role="note" style="max-width:40rem;margin:0.5rem auto;padding:0.5rem 0.75rem;font-size:0.78rem;line-height:1.45;border-radius:12px;border:1px solid rgba(201,162,39,0.3);background:rgba(15,76,58,0.12)">
+<strong>Amānah desk · on-device only.</strong> Passphrase vault is optional. This room does not import University grades or Companion path scores.
 Educational readiness — <strong>not a fatwa</strong>, not a will, not legal advice.
 </p>
 
-<header class="amana-desk-hero">
-  <p class="arabic" lang="ar" dir="rtl" style="color:#d4b45a;font-size:1.2rem;margin:0">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-  <h1>Amānah Desk</h1>
-  <p class="sub">Welcome. Deposit a nightly note or stamp a dayn on this device — <strong>no unlock needed</strong>. Open the vault only when you need deeper chambers.</p>
-
-<p class="amana-desk-ayah" style="max-width:40rem;margin:0.35rem auto 0.75rem;text-align:center;font-size:0.8rem;line-height:1.45;opacity:0.9">
-  <span lang="ar" dir="rtl" class="arabic">إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا</span><br/>
-  “Render trusts to whom they are due.” — <a href="https://quran.com/4/58" target="_blank" rel="noopener noreferrer" style="color:#d4b45a">Qurʾān 4:58</a>
-</p>
-</header>
 <main class="amana-wrap" style="max-width:52rem;margin:0 auto;padding:0 0.75rem 2rem">
-  
-<section class="amana-chamber-map" aria-label="Chamber doors" style="max-width:40rem;margin:0.75rem auto 1rem;padding:0.75rem 0.9rem;border-radius:14px;border:1px solid rgba(212,180,90,0.28);background:rgba(0,0,0,0.22)">
-  <p style="margin:0 0 0.45rem;font-size:0.8rem;font-weight:700;color:#d4b45a">Chambers (full vault after unlock)</p>
-  <div style="display:flex;flex-wrap:wrap;gap:0.35rem">
-    <a href="/amana/unlock/" style="padding:0.35rem 0.65rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);color:#e8d5a3;text-decoration:none;font-size:0.78rem">Gate · unlock</a>
-    <a href="/amana/dayn/" style="padding:0.35rem 0.65rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);color:#e8d5a3;text-decoration:none;font-size:0.78rem">Dayn</a>
-    <a href="/amana/heirs/" style="padding:0.35rem 0.65rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);color:#e8d5a3;text-decoration:none;font-size:0.78rem">Heirs</a>
-    <a href="/amana/tree/" style="padding:0.35rem 0.65rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);color:#e8d5a3;text-decoration:none;font-size:0.78rem">Tree</a>
-    <a href="/amana/fiqh/" style="padding:0.35rem 0.65rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);color:#e8d5a3;text-decoration:none;font-size:0.78rem">Farāʾiḍ</a>
-    <a href="/amana/wasiyyah/" style="padding:0.35rem 0.65rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);color:#e8d5a3;text-decoration:none;font-size:0.78rem">Wasiyyah</a>
-    <a href="/amana/notes/" style="padding:0.35rem 0.65rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);color:#e8d5a3;text-decoration:none;font-size:0.78rem">Notes</a>
-  </div>
-  <p style="margin:0.45rem 0 0;font-size:0.72rem;opacity:0.85">Debts before bequests · educational outline only · not a fatwa</p>
-</section>
-
   <div id="amana-desk-mount"></div>
-  
-<section class="amana-vault-entry" style="max-width:40rem;margin:1rem auto 1.5rem;padding:1rem 1.1rem;border-radius:16px;border:1px solid rgba(212,180,90,0.35);background:linear-gradient(165deg,rgba(18,40,32,0.9),rgba(8,20,16,0.95));text-align:center">
-  <h2 style="margin:0 0 0.4rem;color:#d4b45a;font-size:1.1rem">Need the full vault?</h2>
-  <p style="margin:0 0 0.75rem;font-size:0.85rem;line-height:1.45;opacity:0.92">
-    Family tree, farāʾiḍ study, wasiyyah, full dayn ledger, and private notes open after passphrase unlock on this device.
-  </p>
-  <p style="margin:0 0 0.85rem">
-    <a class="btn primary" href="/amana/unlock/" style="display:inline-block;padding:0.55rem 1.2rem;border-radius:999px;border:1px solid rgba(212,180,90,0.5);background:rgba(30,125,94,0.55);color:inherit;font-weight:700;text-decoration:none">Continue to unlock page</a>
-  </p>
-  <p style="margin:0;font-size:0.75rem;opacity:0.8">Banner and passphrase stay on the unlock page — not on this desk.</p>
-</section>
-
-  <p style="text-align:center;font-size:0.75rem;opacity:0.8;margin:1.5rem 0 0">Educational companion only · not a fatwa · not a bank · not legal advice. Data stays on this device unless you export it.</p>
+  <!-- Single unlock CTA (logical scanner collapses any desk-welcome duplicates into this) -->
+  <section id="amana-single-unlock-cta" class="amana-single-unlock-cta">
+    <h2>Need the full vault?</h2>
+    <p>Family tree, farāʾiḍ study, wasiyyah, full dayn ledger, and private notes open after passphrase unlock on this device.</p>
+    <p class="cta-row"><a class="btn-unlock" href="/amana/unlock/">Continue to vault unlock →</a></p>
+    <p class="cta-note">One door only · banner &amp; passphrase on the unlock page</p>
+  </section>
+  <p style="text-align:center;font-size:0.75rem;opacity:0.8;margin:1.25rem 0 0">Educational companion only · not a fatwa · not a bank · not legal advice. Data stays on this device unless you export it.</p>
 </main>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261105A1" defer></script>
+
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261105A2" defer></script>
 <script src="/amana/assets/amana-desk-welcome-v1.js?v=20261103DW1" defer></script>
 <script src="/amana/assets/amana-isolation-guard-v1.js?v=20261104P6" defer></script>
-<script src="/amana/assets/amana-desk-landing-v1.js?v=20261105A1" defer></script>
-
-<script>
-(function(){
-  /* Amānah landing desk mode: no gate, no banner */
-  document.documentElement.setAttribute("data-amana-surface","desk");
-  function hideGate(){
-    var g=document.getElementById("amana-vault-gate");
-    if(g){ g.hidden=true; g.style.display="none"; }
-    document.querySelectorAll(".").forEach(function(el){
-      el.hidden=true; el.style.display="none";
-    });
-  }
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", hideGate);
-  else hideGate();
-  setInterval(hideGate, 2000);
-})();
-</script>
-
+<script src="/amana/assets/amana-desk-landing-v1.js?v=20261105A2" defer></script>
 </body>
 </html>
