@@ -1,0 +1,19 @@
+/*! companion-g8-reality-stable-v1 · Phase 5 calm */
+html[data-clarity-room="companion"] {
+  scroll-behavior: auto !important;
+}
+html[data-clarity-room="companion"] nav.clarity-room-nav ~ nav.clarity-room-nav {
+  display: none !important;
+}
+html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active) {
+  display: none !important;
+}
+html[data-clarity-room="companion"] #tab-reality.is-active #seerah-live-ar,
+html[data-clarity-room="companion"] #tab-reality.active #seerah-live-ar {
+  min-height: 1.5em;
+}
+html[data-clarity-room="companion"] #clarity-top-duo,
+html[data-clarity-room="companion"] .banner {
+  transition: none !important;
+  animation: none !important;
+}
