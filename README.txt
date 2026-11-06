@@ -1,7 +1,8 @@
-G9 Reflection + governance
+G13 Reminder + About rail
 
-Populates Reflection: lessons, verse, asma, zikr, live tafsir ayah, night breath, deposits.
-Stubs: notes/TTS/name without console crashes.
-Governance contract included.
+- loadHadith / Prophet names fill (no endless Loading)
+- Bottom rail 5th button: About (not Notes→Journey)
+- About opens tab-about; link to Notes + Amānah + University
+- Educational hadith bank — verify on Sunnah.com
 
-Upload companion/index.html + g9 js/css (or full companion/).
+Upload index + g13 js/css.
