@@ -1,0 +1,126 @@
+/*! companion-g3-campus-foundation-v1 · tiles path · no meme peek · stable shell */
+html[data-clarity-room="companion"] {
+  scroll-behavior: auto !important;
+}
+html[data-clarity-room="companion"] body {
+  overflow-x: hidden !important;
+}
+html[data-clarity-room="companion"] #clarity-top-duo,
+html[data-clarity-room="companion"] .banner {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Hide residual in-page meme studio (Craft is SoT) */
+html[data-clarity-room="companion"] #meme-card,
+html[data-clarity-room="companion"] #meme-studio-root,
+html[data-clarity-room="companion"] .meme-studio:not(.craft-bridge-inline),
+html[data-clarity-room="companion"] .meme-card-realigned {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* Learning path = TILE grid (Campus-like desks), not pill bar */
+html[data-clarity-room="companion"] .clarity-gate-switcher,
+html[data-clarity-room="companion"] .clarity-gate-switcher.rrra-sitewide {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.5rem !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: 36rem !important;
+  margin: 0.55rem auto 0.75rem !important;
+  padding: 0.55rem !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(201, 162, 39, 0.28) !important;
+  background: rgba(15, 76, 58, 0.12) !important;
+  flex-wrap: unset !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-label {
+  grid-column: 1 / -1 !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  opacity: 0.85 !important;
+  margin: 0 0 0.15rem !important;
+  white-space: normal !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn,
+html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 0.2rem !important;
+  min-height: 3.6rem !important;
+  width: 100% !important;
+  padding: 0.65rem 0.75rem !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(8, 16, 14, 0.45) !important;
+  white-space: normal !important;
+  text-align: left !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  box-sizing: border-box !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn.is-active,
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn[aria-pressed="true"] {
+  border-color: rgba(201, 162, 39, 0.45) !important;
+  background: linear-gradient(145deg, rgba(15, 76, 58, 0.4), rgba(201, 162, 39, 0.12)) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn .cgs-ico {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn .cgs-txt {
+  display: block !important;
+  line-height: 1.25 !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-reset,
+html[data-clarity-room="companion"] .clarity-gate-switcher #clarity-path-reset-btn {
+  grid-column: 1 / -1 !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  min-height: 2.4rem !important;
+  opacity: 0.9 !important;
+}
+
+@media (min-width: 720px) {
+  html[data-clarity-room="companion"] .clarity-gate-switcher {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    max-width: 48rem !important;
+  }
+  html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-reset,
+  html[data-clarity-room="companion"] .clarity-gate-switcher #clarity-path-reset-btn {
+    grid-column: auto !important;
+  }
+}
+
+/* Tab panels: only active visible (stop leak/jump) */
+html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active) {
+  display: none !important;
+  visibility: hidden !important;
+}
+html[data-clarity-room="companion"] .tab-panel.is-active,
+html[data-clarity-room="companion"] .tab-panel.active {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Craft bridge cards already in Action */
+html[data-clarity-room="companion"] .craft-bridge-grid {
+  display: grid !important;
+  gap: 0.65rem !important;
+  grid-template-columns: repeat(auto-fill, minmax(14.5rem, 1fr)) !important;
+}
