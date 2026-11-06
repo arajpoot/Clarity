@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-clarity-room="university" data-nuros-phase="5" data-mahtaab="1">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
+<title>Clarity University</title>
+<meta name="description" content="Bismillah. On-device educational path. Not a physical university."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-critical-v1.css?v=20261024R9"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-shell-n1.css?v=20261024R9"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-viewport-v1.css?v=20261024R9"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-layout-wide-v1.css?v=20261024R9"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-form-v1.css?v=20261024R9"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-css-reconcile-v1.css?v=20261024R9"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-prestige-v1.css?v=20261024R9"/>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261024R9"></script>
+<style>
+.adm-steps{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 auto 1rem;max-width:40rem}
+.adm-steps button{min-height:38px;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(201,168,76,.35);background:rgba(12,22,18,.5);color:inherit;font-weight:700;font-size:.75rem;cursor:pointer}
+.adm-steps button.on{background:#1e7d5e;color:#fff;border-color:transparent}
+.adm-panel{display:none;padding:1.15rem 1.2rem;margin:0 auto 1rem;max-width:40rem}
+.adm-panel.on{display:block}
+.adm-panel h2{margin:0 0 .55rem;font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:#e8d5a3}
+html[data-theme=light] .adm-panel h2{color:#6b5a1e}
+.adm-panel ul,.adm-panel ol{margin:.45rem 0 .65rem 1.15rem;line-height:1.5}
+.adm-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+.adm-actions button,.adm-actions a.btn{min-height:46px;padding:.5rem 1.15rem;border-radius:999px;border:0;background:#1e7d5e;color:#fff;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer}
+.adm-actions button.ghost,.adm-actions a.ghost{background:transparent;color:inherit;border:1px solid rgba(201,168,76,.45)}
+.adm-input{width:100%;min-height:46px;padding:.55rem .8rem;border-radius:12px;border:1px solid rgba(201,168,76,.4);background:rgba(0,0,0,.15);color:inherit;box-sizing:border-box;margin:.4rem 0}
+html[data-theme=light] .adm-input{background:#fff}
+.adm-check{display:flex;gap:.55rem;align-items:flex-start;margin:.55rem 0;font-size:.92rem}
+.adm-note{font-size:.8rem;opacity:.88;margin-top:.75rem;line-height:1.45}
+.adm-returning{text-align:center;margin:0 auto 1.1rem;padding:1rem;border-radius:18px;border:1px dashed rgba(201,168,76,.4);max-width:40rem;background:rgba(16,28,22,.9)}
+html[data-theme=light] .adm-returning{background:#fffcf5}
+.cu-info-plaque{max-width:40rem;margin:0 auto 1.25rem;font-size:.9rem;line-height:1.45}
+</style>
+<link rel="stylesheet" href="/campus/assets/css/cu-seq-v1.css?v=20261024R9"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-uni-nav-v1.css?v=20261024R9"/>
+<style>
+
+/* Landing polish 20261024R9 */
+.cu-landing{max-width:min(52rem,100%);margin:0 auto;padding:.75rem 1rem 2.5rem}
+.cu-hero{text-align:center;padding:1.35rem 1.1rem 1.15rem;border-radius:20px;border:1px solid rgba(201,162,39,.42);
+  background:linear-gradient(165deg,rgba(16,28,22,.94),rgba(12,22,18,.78));margin-bottom:1rem}
+html[data-theme=light] .cu-hero{background:linear-gradient(165deg,#fffcf5,#f5efe0)}
+.cu-hero .bismillah{font-family:Amiri,serif;font-size:1.4rem;color:#c9a227;margin:0 0 .35rem}
+.cu-hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(1.65rem,4vw,2.15rem);margin:.15rem 0 .4rem;color:#e8d5a3}
+html[data-theme=light] .cu-hero h1{color:#4a3d14}
+.cu-hero .lead{font-size:.95rem;line-height:1.5;opacity:.92;max-width:36rem;margin:0 auto}
+.cu-hero .limits{font-size:.78rem;opacity:.82;margin-top:.65rem}
+.cu-quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.2rem,1fr));gap:.5rem;margin:.85rem 0 1.1rem}
+.cu-quick a{display:flex;flex-direction:column;gap:.12rem;padding:.72rem .85rem;border-radius:14px;
+  border:1px solid rgba(201,162,39,.35);text-decoration:none;color:inherit;background:rgba(0,0,0,.12);min-height:4rem}
+html[data-theme=light] .cu-quick a{background:#fffcf5}
+.cu-quick a:hover{border-color:#c9a227;background:rgba(30,125,94,.12)}
+.cu-quick a strong{font-size:.9rem;color:#c9a227}
+.cu-quick a span{font-size:.74rem;opacity:.85;line-height:1.3}
+.cu-section-title{font-family:"Cormorant Garamond",serif;font-size:1.22rem;color:#e8d5a3;margin:1.2rem 0 .45rem}
+html[data-theme=light] .cu-section-title{color:#6b5a1e}
+
+</style>
+<style>
+
+/* Landing polish 20261024R9 — efficient single-column */
+.cu-landing-wrap{max-width:min(44rem,100%);margin:0 auto;padding:.5rem 1rem 2rem}
+.cu-hero{text-align:center;padding:1.15rem 1rem;border-radius:18px;border:1px solid rgba(201,162,39,.42);background:linear-gradient(165deg,rgba(16,28,22,.95),rgba(12,22,18,.8));margin-bottom:.9rem}
+html[data-theme=light] .cu-hero{background:linear-gradient(165deg,#fffcf5,#f3ecdd)}
+.cu-hero .bismillah{font-family:Amiri,serif;font-size:1.3rem;color:#c9a227;margin:0 0 .3rem}
+.cu-hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(1.55rem,4vw,2rem);margin:.15rem 0 .35rem;color:#e8d5a3}
+html[data-theme=light] .cu-hero h1{color:#4a3d14}
+.cu-hero .lead{font-size:.92rem;line-height:1.5;opacity:.93;max-width:34rem;margin:0 auto}
+.cu-hero .limits{font-size:.75rem;opacity:.82;margin-top:.55rem}
+.cu-quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.45rem;margin:0 0 1rem}
+.cu-quick a{display:block;padding:.7rem .8rem;border-radius:12px;border:1px solid rgba(201,162,39,.32);text-decoration:none;color:inherit;background:rgba(0,0,0,.1);font-size:.88rem;line-height:1.35}
+html[data-theme=light] .cu-quick a{background:#fffcf5}
+.cu-quick a:hover{border-color:#c9a227;background:rgba(30,125,94,.12)}
+.cu-quick a strong{display:block;color:#c9a227;font-size:.9rem}
+.cu-quick a span{font-size:.72rem;opacity:.85}
+.cu-sec{font-family:"Cormorant Garamond",serif;font-size:1.2rem;color:#e8d5a3;margin:1.1rem 0 .4rem}
+html[data-theme=light] .cu-sec{color:#6b5a1e}
+
+</style>
+
+<style>
+/* Single landing 20261024R9 — no duplicate heroes */
+.cu-landing-wrap{max-width:min(42rem,100%);margin:0 auto;padding:.65rem 1rem 2rem}
+.cu-hero{text-align:center;padding:1.1rem 1rem;border-radius:18px;border:1px solid rgba(201,162,39,.4);background:linear-gradient(165deg,rgba(16,28,22,.95),rgba(12,22,18,.82));margin-bottom:.85rem}
+html[data-theme=light] .cu-hero{background:linear-gradient(165deg,#fffcf5,#f3ecdd)}
+.cu-hero .bismillah{font-family:Amiri,serif;font-size:1.25rem;color:#c9a227;margin:0 0 .25rem}
+.cu-hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(1.5rem,4vw,1.95rem);margin:.1rem 0 .3rem;color:#e8d5a3}
+html[data-theme=light] .cu-hero h1{color:#4a3d14}
+.cu-hero .lead{font-size:.9rem;line-height:1.5;opacity:.93;max-width:32rem;margin:0 auto}
+.cu-hero .limits{font-size:.72rem;opacity:.8;margin-top:.5rem}
+.cu-quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin:0 0 1rem}
+@media(min-width:560px){.cu-quick{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cu-quick a{display:block;padding:.65rem .75rem;border-radius:12px;border:1px solid rgba(201,162,39,.32);text-decoration:none;color:inherit;background:rgba(0,0,0,.08);font-size:.86rem;line-height:1.3;min-height:3.4rem}
+html[data-theme=light] .cu-quick a{background:#fffcf5}
+.cu-quick a:hover{border-color:#c9a227;background:rgba(30,125,94,.12)}
+.cu-quick a strong{display:block;color:#c9a227;font-size:.88rem}
+.cu-quick a span{font-size:.7rem;opacity:.85}
+.cu-sec{font-family:"Cormorant Garamond",serif;font-size:1.15rem;color:#e8d5a3;margin:1rem 0 .35rem}
+html[data-theme=light] .cu-sec{color:#6b5a1e}
+.cu-journey-slim{font-size:.85rem;line-height:1.45;opacity:.9;margin:0 0 .85rem;padding:.65rem .8rem;border-radius:12px;border:1px dashed rgba(201,162,39,.35)}
+/* Hide any leftover duplicate heroes if old CSS injects */
+.cu-landing-wrap .cu-landing .cu-hero{display:none!important}
+.cu-landing-wrap .cu-landing > .cu-quick{display:none!important}
+.cu-landing-wrap .cu-landing > .cu-section-title{display:none!important}
+</style>
+
+<link rel="stylesheet" href="/campus/assets/css/cu-faculty-lifecycle-v1.css?v=20261024R9"/>
+
+<!-- Phase 5d · archive3 campus base + NurOS Port/type/isolation -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/nuros/nuros-type-icons-v1.css?v=20261104P2"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C10"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C10" defer></script>
+<style>html,body{font-family:"Quill","Quicksand",system-ui,sans-serif}.arabic,[lang="ar"]{font-family:"Amiri","Noto Naskh Arabic",serif}</style>
+<script>
+(function(){
+  try {
+    document.documentElement.setAttribute("data-clarity-room","university");
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll(".clarity-room-nav a").forEach(function(a){
+        var uni = a.getAttribute("data-room-link")==="university" || ((a.getAttribute("href")||"").indexOf("/campus")===0);
+        a.classList.toggle("is-here", !!uni);
+        if (uni) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+      });
+    });
+  } catch(e) {}
+})();
+</script>
+</head>
+<body class="cu-page" data-campus-page="admit">
+
+<nav class="clarity-room-nav" data-room="university" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
+  <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
+  <a class="is-here" href="/campus/" data-room-link="university" aria-current="page"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
+  <a href="/amana/" data-room-link="amana"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
+  <p class="crn-seal">Four rooms · educational only · not a fatwa</p>
+</nav>
+
+<header class="cu-banner" id="cu-banner">
+  <a class="cu-brand" href="/campus/">
+    <span class="cu-brand-mark" aria-hidden="true">ن</span>
+    <div><small>On-device campus</small><strong>Clarity University</strong></div>
+  </a>
+  <div class="cu-banner-actions">
+    <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
+    <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
+    <a class="cu-main-link" href="/" data-path-wire="companion">← Port</a>
+  </div>
+</header>
+
+<main class="cu-wrap adm-stage">
+
+<p id="university-isolation-note" role="note" style="margin:0.5rem 0 0.75rem;padding:0.45rem 0.65rem;font-size:0.75rem;line-height:1.4;border-radius:10px;border:1px solid rgba(201,162,39,0.28);background:rgba(15,76,58,0.12)">
+<strong>University room</strong> (archive3 campus base). Path markers and progress here are a <em>study mirror</em>, not a grade of īmān.
+Amānah vault is at <a href="/amana/">/amana/</a>. Educational only — not a fatwa.
+</p>
+
+<div class="cu-landing-wrap">
+  <header class="cu-hero" aria-label="University welcome">
+    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ</p>
+    <h1>Clarity University</h1>
+    <p class="lead">Sequential on-device path: Seeker → Practice → Consistency → Transmission. Sources linked. Progress stays on this device.</p>
+    <p class="limits">Educational only — not a fatwa · not a grade of īmān · not a seminary</p>
+  </header>
+  <nav class="cu-quick" aria-label="Quick links">
+    <a href="/campus/desk/seeker/"><strong>Seeker desk</strong><span>Essentials modules</span></a>
+    <a href="/campus/desk/"><strong>All stages</strong><span>Map &amp; locks</span></a>
+    <a href="/campus/faculty.html"><strong>Faculty</strong><span>Guided lesson</span></a>
+    <a href="/campus/grading.html"><strong>Progress</strong><span>Study mirror</span></a>
+    <a href="/campus/lab/"><strong>Lab</strong><span>Arabic &amp; tools</span></a>
+    <a href="/campus/library/"><strong>Library</strong><span>Shelves</span></a>
+    <a href="/charter/"><strong>Charter</strong><span>Limits</span></a>
+    <a href="/companion/" data-path-wire="companion"><strong>Companion</strong><span>Reminder doors</span></a>
+    <a href="/daily/"><strong>Daily</strong><span>Today · own address</span></a>
+  </nav>
+
+  <h2 class="cu-sec">Continue learning</h2>
+  <p class="cu-journey-slim">University journey: Charter → Campus → <strong>Seeker → Practice → Consistency → Transmission</strong> → Faculty / Progress / Lab. Nothing before its proper time. Markers are a study mirror — not a grade of īmān.</p>
+  <div id="seq-continue-slot"></div>
+  <div id="seq-stage-map" class="seq-stage-map"></div>
+
+  <h2 class="cu-sec">Admission</h2>
+  <div class="adm-returning" id="adm-returning" hidden>
+    <p><strong>Welcome back</strong> · <span id="adm-returning-name"></span></p>
+    <p class="adm-actions" style="justify-content:center">
+      <a class="btn" href="/campus/portal/">Enter student portal →</a>
+      <button type="button" class="ghost" id="adm-reset">Start admission again</button>
+    </p>
+  </div>
+
+  <nav class="adm-steps" aria-label="Admission steps" id="adm-steps">
+    <button type="button" data-step="0" class="on">1 · Welcome</button>
+    <button type="button" data-step="1">2 · Charter</button>
+    <button type="button" data-step="2">3 · Declaration</button>
+    <button type="button" data-step="3">4 · Register</button>
+    <button type="button" data-step="4">5 · Orientation</button>
+  </nav>
+
+  <section class="adm-panel on cu-plaque" data-panel="0">
+    <h2>Welcome, seeker</h2>
+    <p>This path mirrors the <em>shape</em> of serious study — stages, practice halls, records, adab — as a private tool on this device.</p>
+    <ul>
+      <li><strong>Academics</strong> — Seeker → Practice → Consistency → Transmission</li>
+      <li><strong>Practice halls</strong> — Arabic, Tajweed, Recite, Calligraphy…</li>
+      <li><strong>Services</strong> — Buddy, Transcript, Schedule, Assignments</li>
+      <li><strong>Sources</strong> — Library · Vault notes · Companion Amanah for private trusts</li>
+    </ul>
+    <p class="adm-note">No tuition · no foreign campus certificate · progress stays in your browser.</p>
+    <div class="adm-actions">
+      <button type="button" data-next="1">Begin admission →</button>
+      <a class="ghost btn" href="/campus/portal/">I already registered</a>
+    </div>
+  </section>
+
+  <section class="adm-panel cu-plaque" data-panel="1" id="adm-faculty-slot">
+    <h2>Charter · limits</h2>
+    <ul>
+      <li>Not a physical university or accredited degree</li>
+      <li>Not affiliated with Al-Azhar, Madinah, IIUM, or any institution</li>
+      <li>Not a fatwa service · not a substitute for a living teacher</li>
+      <li>Not a grade of īmān</li>
+      <li>Not legal advice for courts or estates</li>
+    </ul>
+    <p>Full text: <a href="/charter/">Charter page</a>.</p>
+    <div class="adm-actions">
+      <button type="button" class="ghost" data-next="0">← Back</button>
+      <button type="button" data-next="2">I understand →</button>
+    </div>
+  </section>
+
+  <section class="adm-panel cu-plaque" data-panel="2">
+    <h2>Declaration</h2>
+    <label class="adm-check"><input type="checkbox" id="adm-d1"/> I will use this for education and practice only.</label>
+    <label class="adm-check"><input type="checkbox" id="adm-d2"/> I will ask a trusted local teacher for personal rulings.</label>
+    <label class="adm-check"><input type="checkbox" id="adm-d3"/> I understand progress is stored only on this device.</label>
+    <label class="adm-check"><input type="checkbox" id="adm-d4"/> I will not present local “diploma” or transcript as official ijāzah or university credential.</label>
+    <p id="adm-decl-err" class="adm-note" style="color:#e88" hidden>Please check all four declarations.</p>
+    <div class="adm-actions">
+      <button type="button" class="ghost" data-next="1">← Back</button>
+      <button type="button" id="adm-decl-next">Sign &amp; continue →</button>
+    </div>
+  </section>
+
+  <section class="adm-panel cu-plaque" data-panel="3">
+    <h2>Registration</h2>
+    <label class="cu-meta">Preferred name</label>
+    <input class="adm-input" id="adm-name" type="text" autocomplete="name" placeholder="e.g. Momin" maxlength="80"/>
+    <label class="cu-meta">Intention (optional)</label>
+    <input class="adm-input" id="adm-intent" type="text" placeholder="e.g. Steady foundations with adab" maxlength="120"/>
+    <p class="adm-note">Saved on this device only.</p>
+    <div class="adm-actions">
+      <button type="button" class="ghost" data-next="2">← Back</button>
+      <button type="button" id="adm-register">Register on this device →</button>
+    </div>
+  </section>
+
+  <section class="adm-panel cu-plaque" data-panel="4">
+    <h2>Orientation</h2>
+    <ol>
+      <li><strong>Today on the path</strong> — one desk module · one lab · seal with adab.</li>
+      <li><strong>Seeker first</strong> — foundations before Transmission.</li>
+      <li><strong>Lab after lesson</strong> — practice reinforces the desk.</li>
+      <li><strong>Buddy</strong> — where to go next; never personal fatwa.</li>
+    </ol>
+    <div class="adm-actions">
+      <button type="button" class="ghost" data-next="3">← Back</button>
+      <a class="btn" href="/campus/portal/">Enter student portal →</a>
+      <a class="ghost btn" href="/campus/orientation/">Orientation desk</a>
+    </div>
+  </section>
+
+  <!-- How phases work — plaque from prior build language -->
+  <aside class="cu-info-plaque cu-plaque" aria-label="How phases work">
+    <strong style="color:#e8d5a3">How phases work</strong>
+    <ol style="margin:.45rem 0 0 1.1rem;padding:0">
+      <li>One module open — only the current lesson is unlocked.</li>
+      <li>Spark quiz — answer correctly to open the next module.</li>
+      <li>All modules complete — then a short phase check.</li>
+      <li>Pass the check — unlock the next phase (no skipping ahead).</li>
+    </ol>
+  </aside>
+
+  <p class="cu-emboss">Academic precinct · journey preview</p>
+
+  <!-- Rich tiles like previous Journey Map -->
+  
+
+  <section id="seq-after-clarity" aria-label="After Clarity paths"></section>
+</div>
+<p class="cu-micro" style="margin:1rem 0"><a href="/campus/journey/">Journey roadmap</a></p>
+</main>
+
+<footer class="cu-foot">Educational only — not a fatwa. Not a grade of īmān. Last reviewed October 2026 · Quran.com / Sunnah.com.</footer>
+<script src="/campus/assets/js/cu-theme-early-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/js/cu-uni-theme-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/js/cu-seq-modules-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/js/cu-seq-progress-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/js/cu-uni-nav-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/js/cu-seq-campus-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/js/cu-seq-footer-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/js/cu-admission-flow-v1.js?v=20261024R9"></script>
+<script src="/campus/assets/faculty/faculty-controller-v1.js?v=20261024R9" defer></script>
+<script src="/campus/assets/js/cu-faculty-lifecycle-v1.js?v=20261024R9" defer></script>
+<script defer src="/assets/clarity-site-path-wire-v1.js?v=20261031W1"></script>
+<script src="/campus/assets/university-path-markers-v1.js?v=20261104P5d" defer></script>
+</body>
+</html>
