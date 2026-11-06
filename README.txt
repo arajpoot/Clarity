@@ -1,9 +1,9 @@
-G7 content + live stream
+G4 PACK POLISHED — Campus packaging + governance + multi-cycle smoke
 
-- Banner Live: autoplay muted URLs + force iframe reload on toggle
-- Allah's Commands: loads Ya ayyuhalladhina amanu verses (API) on open; prev/next
-- Daily Sami'na verse: populates on open; Another verse cycles
-- Ilm 7-day starter: 7 foci with checkboxes (localStorage)
-- Meme + Calligraphy folds hidden on Seeker & New Muslim tracks; visible on Daily & Da'i
+Upload ENTIRE companion/ directory:
+  index.html (thin)
+  content/main.fragment.html
+  content/full.backup.html
+  assets/* (includes pack-boot, frag-inline, g6/g7, banner, …)
 
-Upload companion/index.html + companion-g7-content-live-v1.js/css
+See GOVERNANCE_CONTRACT.md and SMOKE_REPORT.md

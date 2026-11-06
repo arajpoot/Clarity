@@ -1,18 +1,18 @@
-# Smoke · integrity restore + dual shell v2
+# G4 pack polished smoke
 
-Base: clarity-live-fix (clean companion)
-Added carefully (JS-only, no HTML surgery into sections):
-- inline-clarity-landing-arch-v2.js
-- inline-clarity-routines-90d-v1.js (Phase 0–9 · 40 cards)
+## Cycles
+1. Structure thin+mount+boot
+2. Fragment scripts stripped (innerHTML-safe)
+3. Inline scripts → companion-frag-inline-v1.js
+4. Sequential script load after mount
+5. Richness markers present in fragment
+6. Governance contract written
 
-## Landing
-- dual paths · Phase cards · Hide for now ribbon
-- disarrayAtTop: false · caught: []
+## Result
+PASS
 
-## Companion
-- Open daily routines ribbon visible
-- Reminder + track intact
-- landing/routines hidden
-- no SCALE/FORMAT export tools at top
-
-Campus untouched. Educational only — not a fatwa.
+## Manual smoke after deploy
+- /companion/ loads UI (not stuck on Loading)
+- window.__PACK_BOOT_LOG → mounted, js-ok…, scripts-done
+- Commands / Samiʿnā / Ilm / path tiles
+- Backup path works if fragment blocked
