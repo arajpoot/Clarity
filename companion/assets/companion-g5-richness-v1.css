@@ -1,0 +1,97 @@
+/*! companion-g5-richness-v1 · path tiles + reset row · content kept */
+html[data-clarity-room="companion"] .clarity-gate-switcher,
+html[data-clarity-room="companion"] .clarity-gate-switcher.rrra-sitewide {
+  display: grid !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0.55rem 0 0.75rem !important;
+  padding: 0.55rem !important;
+  box-sizing: border-box !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(201, 162, 39, 0.28) !important;
+  background: rgba(15, 76, 58, 0.12) !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-label {
+  grid-column: 1 / -1 !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  opacity: 0.85 !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn,
+html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 0.15rem !important;
+  min-height: 3.5rem !important;
+  width: 100% !important;
+  padding: 0.6rem 0.7rem !important;
+  border-radius: 14px !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  text-align: left !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn.is-active {
+  border-color: rgba(201, 162, 39, 0.5) !important;
+  background: linear-gradient(145deg, rgba(15, 76, 58, 0.45), rgba(201, 162, 39, 0.12)) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-reset,
+html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-reset,
+html[data-clarity-room="companion"] .clarity-gate-switcher #clarity-path-reset-btn {
+  grid-column: 1 / -1 !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 2.5rem !important;
+}
+@media (min-width: 720px) {
+  html[data-clarity-room="companion"] .clarity-gate-switcher {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  }
+  html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-reset,
+  html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-reset,
+  html[data-clarity-room="companion"] .clarity-gate-switcher #clarity-path-reset-btn {
+    grid-column: auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 3.5rem !important;
+  }
+}
+
+/* Optional Craft deep-links strip — does NOT hide in-room tools */
+html[data-clarity-room="companion"] .craft-deep-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.35rem 0 0.75rem;
+  padding: 0.35rem 0;
+}
+html[data-clarity-room="companion"] .craft-deep-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(15, 76, 58, 0.14);
+  color: inherit;
+}
