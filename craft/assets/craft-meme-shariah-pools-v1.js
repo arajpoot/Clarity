@@ -1,127 +1,120 @@
-/*! craft-meme-shariah-pools-v1 · C17
- * Best-of archive3/main: Wikimedia-only scenery pools (companion-meme-shariah-bg).
- * Every URL still passes clarityShariahScanUrl (fail closed if missing).
- * Educational only — not a fatwa · scenery/architecture/sky/water/pattern only.
+/*! craft-meme-shariah-pools-v1 · Phase B C18
+ * Curated scenery pools (fixed Unsplash IDs + Wikimedia).
+ * Blocks random people/animal stock. Every URL still intended for clarityShariahScanUrl.
+ * Educational only — not a fatwa.
  */
-(function (w, d) {
+(function (w) {
   "use strict";
-  if (w.__CRAFT_MEME_SHARIAH_POOLS_C17__) return;
-  w.__CRAFT_MEME_SHARIAH_POOLS_C17__ = true;
+  w.__CRAFT_MEME_SHARIAH_POOLS_C18__ = true;
 
-  var W = function (path) {
+  function U(id) {
+    return "https://images.unsplash.com/" + id + "?auto=format&fit=crop&w=1600&q=80";
+  }
+  function W(path) {
     return "https://upload.wikimedia.org/wikipedia/commons/" + path;
-  };
+  }
 
-  /* Curated Wikimedia — no portrait stock */
   var POOLS = {
     nature: [
-      W("thumb/d/d5/Green_pasture.jpg/1280px-Green_pasture.jpg"),
-      W("thumb/1/1a/Sand_dunes_in_the_Empty_Quarter.jpg/1280px-Sand_dunes_in_the_Empty_Quarter.jpg"),
-      W("thumb/6/6d/Desert_in_Qatar.jpg/1280px-Desert_in_Qatar.jpg"),
-      W("thumb/3/3e/Wadi_Rum_Jordan.jpg/1280px-Wadi_Rum_Jordan.jpg")
+      U("photo-1506905925346-21bda4d32df4"),
+      U("photo-1441974231531-c6227db76b6e"),
+      U("photo-1470071451329-d1ea785c8c7d"),
+      U("photo-1464822759023-fed622ff2c3b"),
+      W("thumb/6/6d/Desert_in_Qatar.jpg/1280px-Desert_in_Qatar.jpg")
     ],
-    holy: [
-      W("thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg"),
-      W("thumb/c/c8/Masjid_al-Haram%2C_Mecca.jpg/1280px-Masjid_al-Haram%2C_Mecca.jpg"),
-      W("thumb/8/8a/Al-Masjid_an-Nabawi_as-from_top.jpg/1280px-Al-Masjid_an-Nabawi_as-from_top.jpg"),
-      W("thumb/4/4a/Masjid_al-Nabawi_Gates.jpg/1280px-Masjid_al-Nabawi_Gates.jpg")
+    mountains: [
+      U("photo-1506905925346-21bda4d32df4"),
+      U("photo-1464822759023-fed622ff2c3b"),
+      U("photo-1519681393784-d120267933ba")
+    ],
+    desert: [
+      U("photo-1509316785289-025f5b846b35"),
+      U("photo-1473580044384-7ba9967e16a0"),
+      W("thumb/6/6d/Desert_in_Qatar.jpg/1280px-Desert_in_Qatar.jpg")
     ],
     night: [
-      W("thumb/6/62/Night_sky_with_stars.jpg/1280px-Night_sky_with_stars.jpg"),
-      W("thumb/8/80/Milky_Way_Arch.jpg/1280px-Milky_Way_Arch.jpg"),
-      W("thumb/2/21/Starsinthesky.jpg/1280px-Starsinthesky.jpg")
+      U("photo-1419242902214-272b3f66ee7a"),
+      U("photo-1507272931001-fc06c17e4f43"),
+      U("photo-1475274047050-1d0c0975c63e")
+    ],
+    galaxy: [
+      U("photo-1462331940025-496dfbfc7564"),
+      U("photo-1516339901601-2e1b62dc0c45"),
+      U("photo-1419242902214-272b3f66ee7a")
     ],
     water: [
-      W("thumb/7/7e/Ocean_waves.jpg/1280px-Ocean_waves.jpg"),
-      W("thumb/5/5f/Blue_Mediterranean_Sea.jpg/1280px-Blue_Mediterranean_Sea.jpg"),
-      W("thumb/0/0c/Calm_sea.jpg/1280px-Calm_sea.jpg")
+      U("photo-1505142468610-359e7d316be0"),
+      U("photo-1439066615861-d1af74d74000"),
+      U("photo-1507525428034-b723cf961d3e")
     ],
     flowers: [
-      W("thumb/a/a5/Flower_field.jpg/1280px-Flower_field.jpg"),
-      W("thumb/4/4b/Wildflowers.jpg/1280px-Wildflowers.jpg")
+      U("photo-1490750967916-d7429ed35a8e"),
+      U("photo-1462275646964-a0e7786cbe5a")
+    ],
+    holy: [
+      U("photo-1564769625905-50e93615e769"),
+      U("photo-1591604129939-f1efa4d9f7fa"),
+      U("photo-1519817650390-64a5db1d0498"),
+      W("thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg")
+    ],
+    spirit: [
+      U("photo-1564769625905-50e93615e769"),
+      U("photo-1470071451329-d1ea785c8c7d"),
+      U("photo-1506905925346-21bda4d32df4")
+    ],
+    geometry: [
+      U("photo-1564769625905-50e93615e769"),
+      U("photo-1519817650390-64a5db1d0498")
+    ],
+    free: [
+      U("photo-1506905925346-21bda4d32df4"),
+      U("photo-1441974231531-c6227db76b6e"),
+      U("photo-1564769625905-50e93615e769")
     ],
     flickr: [
-      W("thumb/6/6d/Desert_in_Qatar.jpg/1280px-Desert_in_Qatar.jpg"),
-      W("thumb/d/d5/Green_pasture.jpg/1280px-Green_pasture.jpg")
-    ],
-    blank: []
+      U("photo-1441974231531-c6227db76b6e"),
+      U("photo-1506905925346-21bda4d32df4")
+    ]
   };
 
-  if (!w.MEME_BG_POOLS) w.MEME_BG_POOLS = {};
-  Object.keys(POOLS).forEach(function (k) {
-    w.MEME_BG_POOLS[k] = POOLS[k].slice();
-  });
+  var ALIAS = {
+    nature: "nature", night: "night", water: "water", holy: "holy",
+    flowers: "flowers", free: "free", flickr: "flickr", blank: "blank",
+    galaxy: "galaxy", desert: "desert", mountains: "mountains",
+    spirit: "spirit", geometry: "geometry", pattern: "geometry",
+    surprise: "surprise", dynamic: "nature", stock: "nature"
+  };
 
-  function status(msg) {
-    var el = d.getElementById("meme-fetch-status");
-    if (el) el.textContent = msg || "";
+  var idx = {};
+  Object.keys(POOLS).forEach(function (k) { idx[k] = 0; });
+
+  function blockedHost(url) {
+    var u = String(url || "").toLowerCase();
+    if (!u) return true;
+    if (/picsum\.photos|loremflickr|source\.unsplash\.com|placekitten|thispersondoesnotexist/.test(u)) return true;
+    return false;
   }
 
-  function scan(url, meta) {
-    if (typeof w.clarityShariahScanUrl !== "function") {
-      status("Shariah scan unavailable — refusing unscoped load");
-      return false;
-    }
-    var r = w.clarityShariahScanUrl(url, meta || "");
-    if (!r.ok) {
-      status("Skipped non-compliant (" + (r.reason || "blocked") + ")");
-      return false;
-    }
-    return true;
-  }
-
-  function loadUrl(url, kind) {
-    if (!url || !scan(url, kind || "")) return;
-    var img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = function () {
-      try {
-        if (w.memeState) {
-          w.memeState.img = img;
-          w.memeState.bgImage = img;
-        }
-      } catch (e) {}
-      try {
-        if (typeof w.__craftMemePaint === "function") w.__craftMemePaint();
-      } catch (e2) {}
-      try {
-        d.dispatchEvent(new CustomEvent("craft-meme-bg-loaded", { detail: { img: img, kind: kind } }));
-      } catch (e3) {}
-      status("Background: " + (kind || "ready") + " · Wikimedia · scanned");
-    };
-    img.onerror = function () {
-      status("BG failed · try Next scenery");
-    };
-    img.src = url;
-  }
-
-  function pick(kind) {
-    kind = String(kind || "nature").toLowerCase();
+  function next(kind) {
+    kind = ALIAS[String(kind || "nature").toLowerCase()] || "nature";
     if (kind === "blank") return null;
-    var pool = POOLS[kind] || POOLS.nature || [];
-    if (!pool.length) return null;
-    return pool[Math.floor(Math.random() * pool.length)];
+    if (kind === "surprise") {
+      var keys = ["nature", "night", "water", "holy", "galaxy", "desert", "mountains", "flowers", "spirit"];
+      kind = keys[Math.floor(Math.random() * keys.length)];
+    }
+    var pool = POOLS[kind] || POOLS.nature;
+    var i = idx[kind] || 0;
+    var url = pool[i % pool.length];
+    idx[kind] = i + 1;
+    if (blockedHost(url)) return next("holy");
+    return url;
   }
 
-  /* Prefer these pools for Craft chip fetches */
-  var prev = w.__memeOnlineFetch;
-  w.__memeOnlineFetch = function (kind) {
-    kind = String(kind || "nature").toLowerCase();
-    if (kind === "blank") {
-      status("Background: solid");
-      return;
-    }
-    var url = pick(kind);
-    if (url) {
-      loadUrl(url, kind);
-      return;
-    }
-    if (typeof prev === "function" && !prev._c17Pools) {
-      try { prev(kind); } catch (e) {}
-    }
+  w.CraftMemePools = {
+    version: "C18",
+    pools: POOLS,
+    next: next,
+    blockedHost: blockedHost,
+    alias: ALIAS
   };
-  w.__memeOnlineFetch._c17Pools = true;
-  w.memeFetchBg = w.__memeOnlineFetch;
-
-  w.craftMemeShariahPools = { version: "C17", pools: POOLS, pick: pick, loadUrl: loadUrl };
-})(window, document);
+})(window);
