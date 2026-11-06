@@ -1,100 +1,74 @@
-/*! craft-meme-bench-logic-v1 · C18.2
- * Strict bench order (scenery + surprise ABOVE desks):
- * Message → Full surprise → Scenery → Canvas/export → Scale → Desks
+/*! craft-meme-bench-logic-v1 · C18.3
+ * Share/desks bench ALWAYS bottom.
+ * Order: Message → Surprise → Scenery → Canvas → Scale → Desks
  */
 (function (w, d) {
   "use strict";
-  w.__CRAFT_MEME_BENCH_LOGIC_V1__ = true;
+  w.__CRAFT_MEME_BENCH_LOGIC_V1__ = "C18.3";
 
   function root() {
     return d.querySelector("main.craft-main") || d.querySelector("main") || d.body;
   }
 
-  function classify(sec) {
-    if (!sec || !sec.getAttribute) return "other";
-    if (sec.id === "meme-full-surprise-pack") return "surprise";
-    if (sec.id === "meme-bench-flow") return "flow";
-    if (sec.id === "desks" || sec.classList.contains("desks-row")) return "desks";
-    if (sec.id === "meme-ratio-section") return "scale";
-    if (sec.querySelector && sec.querySelector("#mr-root")) return "canvas";
-    if (sec.querySelector && sec.querySelector("[data-meme-bg], .bg-chips")) return "background";
-    if (sec.querySelector && sec.querySelector("[data-meme-section]")) return "sources";
-    var h = ((sec.querySelector("h2") || {}).textContent || "").toLowerCase();
-    if (/surprise|verse \+ scene/.test(h)) return "surprise";
-    if (/scenery|background/.test(h)) return "background";
-    if (/scale|ratio/.test(h)) return "scale";
-    if (/canvas|media reminder/.test(h)) return "canvas";
-    if (/desk/.test(h)) return "desks";
-    if (/section source|message/.test(h)) return "sources";
-    return "other";
+  function isDesks(sec) {
+    if (!sec) return false;
+    if (sec.id === "desks" || (sec.classList && sec.classList.contains("desks-row"))) return true;
+    var h = ((sec.querySelector && sec.querySelector("h2")) || {}).textContent || "";
+    return /desk/i.test(h);
+  }
+
+  function rank(sec) {
+    if (isDesks(sec)) return 100;
+    if (sec.id === "meme-bench-flow") return 0;
+    if (sec.id === "meme-full-surprise-pack") return 20;
+    if (sec.querySelector && sec.querySelector("[data-meme-section]")) return 10;
+    if (sec.querySelector && sec.querySelector("[data-meme-bg], .bg-chips")) return 30;
+    if (sec.querySelector && sec.querySelector("#mr-root, #meme-export-png")) return 40;
+    if (sec.id === "meme-ratio-section" || (sec.querySelector && sec.querySelector("[data-meme-ratio]"))) return 50;
+    var h = ((sec.querySelector && sec.querySelector("h2")) || {}).textContent || "";
+    h = h.toLowerCase();
+    if (/surprise/.test(h)) return 20;
+    if (/scenery|background/.test(h)) return 30;
+    if (/canvas|export/.test(h)) return 40;
+    if (/scale|ratio/.test(h)) return 50;
+    if (/message|source/.test(h)) return 10;
+    return 90;
   }
 
   function reorder() {
     var r = root();
     if (!r) return;
-    var secs = Array.prototype.slice.call(r.querySelectorAll(":scope > section.tool-section, :scope > #meme-full-surprise-pack, :scope > #meme-bench-flow"));
-    if (!secs.length) {
-      secs = Array.prototype.slice.call(d.querySelectorAll("section.tool-section, #meme-full-surprise-pack"));
-    }
-    var buckets = {
-      flow: [], sources: [], surprise: [], background: [], canvas: [], scale: [], desks: [], other: []
-    };
-    secs.forEach(function (sec) {
-      var k = classify(sec);
-      (buckets[k] || buckets.other).push(sec);
+    var kids = Array.prototype.slice.call(r.children);
+    var secs = kids.filter(function (el) {
+      return el.matches && (el.matches("section.tool-section") || el.id === "meme-full-surprise-pack" || el.id === "meme-bench-flow");
     });
-
-    var order = []
-      .concat(buckets.flow)
-      .concat(buckets.sources)
-      .concat(buckets.surprise)
-      .concat(buckets.background)
-      .concat(buckets.canvas)
-      .concat(buckets.scale)
-      .concat(buckets.desks)
-      .concat(buckets.other);
-
-    order.forEach(function (sec) {
+    if (secs.length < 2) {
+      secs = Array.prototype.slice.call(d.querySelectorAll("main section.tool-section, #meme-full-surprise-pack, #meme-bench-flow"));
+    }
+    secs.sort(function (a, b) { return rank(a) - rank(b); });
+    /* desks last */
+    var desks = secs.filter(isDesks);
+    var rest = secs.filter(function (s) { return !isDesks(s); });
+    rest.concat(desks).forEach(function (sec) {
       try { r.appendChild(sec); } catch (e) {}
     });
-
-    /* Renumber visible titles */
-    var titleMap = {
-      sources: "1 · Message · section sources",
-      surprise: "✨ Full surprise · verse + scene",
-      background: "2 · Scenery backgrounds",
-      canvas: "3 · Canvas · export",
-      scale: "4 · Scale · ratio · text",
-      desks: "5 · Desks · share"
-    };
-    order.forEach(function (sec) {
-      var k = classify(sec);
-      var h2 = sec.querySelector && sec.querySelector("h2");
-      if (h2 && titleMap[k]) h2.textContent = titleMap[k];
-    });
   }
 
-  function boot() {
-    reorder();
-  }
+  function boot() { reorder(); }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
   w.addEventListener("load", function () {
-    setTimeout(boot, 50);
-    setTimeout(boot, 300);
-    setTimeout(boot, 900);
+    setTimeout(boot, 40);
+    setTimeout(boot, 250);
+    setTimeout(boot, 800);
   });
-  /* late layout shifts from media bench */
   setInterval(function () {
     var desks = d.getElementById("desks");
-    var bg = d.querySelector(".bg-chips");
-    if (desks && bg) {
-      var pos = desks.compareDocumentPosition(bg.parentElement || bg);
-      /* if bg is AFTER desks, reorder */
-      if (pos & Node.DOCUMENT_POSITION_FOLLOWING) {
-        /* bg follows desks? actually FOLLOWING means bg is after desks in tree — bad */
-        boot();
-      }
-    }
-  }, 2000);
+    var main = root();
+    if (!desks || !main) return;
+    var lastSec = null;
+    var kids = main.querySelectorAll(":scope > section.tool-section, :scope > #meme-full-surprise-pack");
+    if (kids.length) lastSec = kids[kids.length - 1];
+    if (lastSec && lastSec !== desks && !isDesks(lastSec)) boot();
+  }, 1500);
 })(window, document);

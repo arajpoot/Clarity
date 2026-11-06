@@ -1,4 +1,4 @@
-/*! craft-meme-phase-bc-v1 · C18.2
+/*! craft-meme-phase-bc-v1 · C18.3
  * Wire-compatible paint: sets __craftMemeBgImage + __craftMemePaint so scenery STAYS.
  * Full surprise = section line + scenery + scale.
  * Educational only — not a fatwa.
