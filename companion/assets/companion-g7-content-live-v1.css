@@ -1,0 +1,17 @@
+/*! companion-g7-content-live-v1 */
+html[data-clarity-room="companion"] #command-box .arabic {
+  font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
+}
+html[data-clarity-path="seeker"] details.craft-fold[data-fold-id="meme-card"],
+html[data-clarity-path="seeker"] details.craft-fold[data-fold-id="callig-lab-card"],
+html[data-clarity-path="new_muslim"] details.craft-fold[data-fold-id="meme-card"],
+html[data-clarity-path="new_muslim"] details.craft-fold[data-fold-id="callig-lab-card"],
+html[data-clarity-path="seeker"] #meme-card,
+html[data-clarity-path="seeker"] #callig-lab-card,
+html[data-clarity-path="new_muslim"] #meme-card,
+html[data-clarity-path="new_muslim"] #callig-lab-card {
+  display: none !important;
+}
+html[data-clarity-room="companion"] .ilm-day-row:last-child {
+  border-bottom: none !important;
+}
