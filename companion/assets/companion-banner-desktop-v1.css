@@ -1,0 +1,215 @@
+/*! companion-banner-desktop-v1
+ * Desktop ≥701px: full Hijri calendar | glass Rabbana + AV | full Salah schedule
+ * Does not override companion-banner-mobile-v1 (max-width 700px).
+ * Educational only — not a fatwa.
+ */
+
+@media (min-width: 701px) {
+  #clarity-top-duo .banner {
+    position: relative;
+    min-height: 280px;
+    overflow: hidden;
+    border-radius: 0 0 18px 18px;
+  }
+
+  #clarity-top-duo .banner-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  #clarity-top-duo .banner-still-img,
+  #clarity-top-duo .banner-live-iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Three-column overlay */
+  #clarity-top-duo .banner-overlay {
+    position: relative;
+    z-index: 1;
+    display: grid !important;
+    grid-template-columns: minmax(200px, 1.05fr) minmax(280px, 1.6fr) minmax(200px, 1.05fr);
+    gap: 0.75rem;
+    align-items: stretch;
+    padding: 0.75rem 0.9rem 0.85rem;
+    min-height: 280px;
+    background: linear-gradient(180deg, rgba(6,18,14,0.25) 0%, rgba(6,18,14,0.55) 45%, rgba(6,18,14,0.78) 100%);
+  }
+
+  #clarity-top-duo .banner-side.left,
+  #clarity-top-duo .banner-side.right,
+  #clarity-top-duo .banner-center {
+    position: relative !important;
+    width: auto !important;
+    max-width: none !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    float: none !important;
+  }
+
+  /* Glass plaques */
+  #clarity-top-duo .banner-side.left .hijri-cal-section,
+  #clarity-top-duo .banner-side.right .salah-section,
+  #clarity-top-duo .banner-side.right > div {
+    background: rgba(10, 28, 22, 0.82);
+    border: 1px solid rgba(212, 180, 90, 0.35);
+    border-radius: 16px;
+    padding: 0.7rem 0.75rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  #clarity-top-duo .banner-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 0.35rem;
+  }
+
+  #clarity-top-duo .banner-center .rabbana-box {
+    width: 100%;
+    max-width: 36rem;
+    margin: 0.25rem auto 0.35rem;
+    padding: 0.65rem 0.85rem 0.7rem;
+    border-radius: 16px;
+    border: 1px solid rgba(212, 180, 90, 0.4);
+    background: rgba(8, 22, 18, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.3);
+  }
+
+  #clarity-top-duo .rabbana-arabic {
+    font-family: "Amiri", "Noto Naskh Arabic", serif;
+    font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+    line-height: 1.55;
+    color: #f3e6c0;
+    direction: rtl;
+  }
+  #clarity-top-duo .rabbana-english {
+    font-size: 0.86rem;
+    opacity: 0.92;
+    line-height: 1.4;
+    margin-top: 0.25rem;
+  }
+  #clarity-top-duo .rabbana-ref {
+    font-size: 0.75rem;
+    color: #d4b45a;
+    margin-top: 0.15rem;
+  }
+  #clarity-top-duo .rabbana-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-bottom: 0.25rem;
+  }
+  #clarity-top-duo .rabbana-cycle {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212,180,90,0.4);
+    background: rgba(0,0,0,0.35);
+    color: #f0e6c8;
+    cursor: pointer;
+  }
+
+  /* AV glass plaque under Rabbana */
+  #clarity-top-duo .stream-controls {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    max-width: 40rem;
+    margin: 0.15rem mono;
+    margin: 0.2rem auto 0;
+    padding: 0.45rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 180, 90, 0.35);
+    background: rgba(8, 22, 18, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  #clarity-top-duo .stream-controls select,
+  #clarity-top-duo .stream-controls button {
+    font-size: 0.78rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212,180,90,0.35);
+    background: rgba(15, 50, 38, 0.85);
+    color: #f0e6c8;
+    padding: 0.35rem 0.55rem;
+    max-width: 9.5rem;
+  }
+  #clarity-top-duo .stream-controls #surah-list-pill {
+    max-width: 8.5rem;
+    background: rgba(160, 120, 40, 0.55);
+  }
+  #clarity-top-duo .quran-stream-btn {
+    background: rgba(240, 240, 240, 0.95) !important;
+    color: #0a1812 !important;
+    font-weight: 700;
+  }
+  #clarity-top-duo .live-haramain-btn {
+    border-color: rgba(220, 80, 80, 0.55);
+  }
+  #clarity-top-duo .live-haramain-btn .live-dot {
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #e74c3c;
+    margin-right: 0.25rem;
+  }
+
+  /* Full hijri grid visible */
+  #clarity-top-duo .hijri-cal-grid {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.15rem;
+    font-size: 0.72rem;
+    margin: 0.35rem 0;
+  }
+  #clarity-top-duo .hijri-cal-grid span,
+  #clarity-top-duo .hijri-cal-grid div {
+    text-align: center;
+    padding: 0.15rem 0;
+  }
+  #clarity-top-duo .hijri-temps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.78rem;
+    margin-top: 0.35rem;
+  }
+
+  /* Salah list full */
+  #clarity-top-duo #salah-times-list,
+  #clarity-top-duo .salah-times {
+    list-style: none;
+    margin: 0.35rem 0;
+    padding: 0;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  #clarity-top-duo #salah-times-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.2rem 0;
+    font-size: 0.84rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  #clarity-top-duo #salah-times-list li.is-next-salah {
+    color: #b8f0c8;
+    font-weight: 700;
+  }
+}
