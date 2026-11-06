@@ -1,9 +1,8 @@
-G3 Campus-like foundation for Companion
+G4 · Craft hard offload + path row with Reset
 
-1. Learning path = 2x2 tiles on mobile, 4 tiles on desktop (not pill bar)
-2. Meme studio peek removed from Reminder — bridge to /craft/meme/
-3. CSS hide residual meme-card / meme-studio-root
-4. Shell: no transition/animation thrash on banner; tab panels only active
+Desktop: 5 columns — Seeker | New Muslim | Daily | Da'i | Reset (full width one row)
+Mobile: 2x2 paths, Reset full width under
 
-Upload companion/index.html + companion/assets/companion-g3-campus-foundation-v1.*
-Campus untouched.
+Offloaded to Craft (bridge cards): Calligraphy, Tajweed (+ CSS/JS hide residual meme/callig/tajweed DOM)
+
+Upload companion/ only.
