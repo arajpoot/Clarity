@@ -1,11 +1,12 @@
-G5 RICHNESS RESTORED
+G6 MID-WAY — richness + Campus-like calm
 
-Base: pre-thinning G0G1 full Companion content (~212KB class).
-Restored: calligraphy lab, meme studio, tajweed surfaces, full Action hub, all Reminder cards.
+KEPT (not deleted):
+  Calligraphy lab, Meme studio, Tajweed, full Action, all Reminder cards
 
-Only additive UI:
-- Path switcher as tiles; desktop 5-col with Reset on same row
-- Five rooms seal text
-- Does NOT remove or hide craft modules
+STABILITY:
+  - Path tiles; desktop 5-col with Reset same row
+  - Heavy studios start COLLAPSED in <details> — expand in place when needed
+  - Optional "Also in Craft atelier" link (secondary, not a replacement)
+  - Banner motion damped; inactive tabs hidden; single room-nav
 
-Upload entire companion/ folder from this zip (index + assets from G0G1 + g5 css/js).
+Upload full companion/ from this zip.
