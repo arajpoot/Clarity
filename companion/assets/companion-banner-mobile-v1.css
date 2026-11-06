@@ -1,0 +1,139 @@
+/*! companion-banner-mobile-v1 · Companion-only
+ * Mobile: stack Hijri + Salah cards, kill overlap, page scroll (not inner banner scroll)
+ * Desktop ≥701px unchanged. Educational only — not a fatwa.
+ */
+
+@media (max-width: 700px) {
+  :root { --cu-banner-touch: 44px; }
+
+  /* Room nav: single row wrap, Craft not orphaned above content */
+  .clarity-room-nav {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.5rem;
+    max-width: 100%;
+  }
+  .clarity-room-nav a {
+    flex: 0 1 auto;
+    min-height: var(--cu-banner-touch);
+  }
+
+  /* Top chrome: theme pills + legacy packs — wrap, smaller */
+  .global-nav, nav.global-nav, .cv-top-tools, .banner-tools {
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+    max-width: 100%;
+  }
+
+  #clarity-top-duo,
+  #clarity-top-duo .banner {
+    max-height: none !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    position: relative !important;
+  }
+
+  #clarity-top-duo .banner {
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 0 0 16px 16px;
+  }
+
+  #clarity-top-duo .banner-media {
+    position: relative !important;
+    min-height: 120px;
+    max-height: 160px;
+  }
+  #clarity-top-duo .banner-still-img,
+  #clarity-top-duo .banner-live-iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Overlay: stack sides — Hijri then Salah (no side-by-side crush) */
+  #clarity-top-duo .banner-overlay {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.55rem !important;
+    padding: 0.55rem 0.65rem 0.75rem !important;
+    inset: auto !important;
+    background: linear-gradient(180deg, rgba(7,20,16,0.2), rgba(7,20,16,0.92));
+  }
+
+  #clarity-top-duo .banner-side,
+  #clarity-top-duo .banner-side.left,
+  #clarity-top-duo .banner-side.right {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    float: none !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+
+  #clarity-top-duo .banner-center {
+    order: -1;
+    width: 100%;
+    text-align: center;
+    padding: 0.25rem 0;
+  }
+
+  /* Cards readable */
+  #clarity-top-duo .banner-side > div,
+  #clarity-top-duo .banner-side .card,
+  #clarity-top-duo .hijri-card,
+  #clarity-top-duo .salah-card {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Salah list: no clipped rows */
+  #salah-times-list,
+  #clarity-top-duo .salah-times {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  #salah-times-list li {
+    min-height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+  }
+
+  /* Volume / audio strip below cards — never over text */
+  #clarity-top-duo .banner-volume,
+  #clarity-top-duo .volume-wrap,
+  #clarity-top-duo input[type="range"],
+  .banner-audio-controls,
+  .cv-volume-row {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 16rem;
+    margin: 0.35rem auto 0.15rem !important;
+    z-index: 2;
+  }
+
+  /* Surah select full width under Hijri */
+  #clarity-top-duo select,
+  #clarity-top-duo .surah-select {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Prevent sticky freeze on mobile */
+  .banner,
+  #clarity-top-duo,
+  .global-nav {
+    position: relative !important;
+  }
+}
