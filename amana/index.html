@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="amana" data-amana-surface="desk" data-nuros-phase="amana-desk-c2">
+<html lang="en" data-theme="dark" data-clarity-room="amana" data-amana-surface="desk" data-nuros-phase="amana-desk-c3">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Amānah Desk · Clarity</title>
-<meta name="description" content="Amānah on-device desk — quick note and dayn stamp. Full vault unlock is optional. Educational only — not a fatwa."/>
+<meta name="description" content="Amānah on-device desk — quick note and dayn stamp. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/"/>
 <meta name="theme-color" content="#0a1812"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105A2"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105A3"/>
 <link rel="stylesheet" href="/amana/assets/css/am-critical-v1.css?v=20261102M1"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-room-harmony-v1.css?v=20261103HARM"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-desk-welcome-v1.css?v=20261103DW1"/>
@@ -17,56 +17,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/nuros/nuros-type-icons-v1.css?v=20261104P2"/>
 <style>
-  html,body{font-family:"Quill","Quicksand",system-ui,sans-serif;background:#071410;color:#e7efe9;margin:0;}
-  .arabic,[lang="ar"]{font-family:"Amiri","Noto Naskh Arabic",serif;}
-  /* —— Rich desk hero (architecture plate + geometric veil) —— */
-  .amana-desk-hero-banner{
-    position:relative;overflow:hidden;border-radius:0 0 22px 22px;
-    min-height:200px;max-width:52rem;margin:0.35rem auto 0.75rem;
-    border:1px solid rgba(212,180,90,0.35);
-    box-shadow:0 12px 40px rgba(0,0,0,0.35);
-    background:
-      linear-gradient(180deg,rgba(7,20,16,0.25) 0%,rgba(7,20,16,0.82) 55%,rgba(7,20,16,0.95) 100%),
-      url("https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat,
-      #0a1812;
-  }
-  .amana-desk-hero-banner::before{
-    content:"";position:absolute;inset:0;pointer-events:none;opacity:0.22;
-    background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23d4b45a' stroke-width='0.6'/%3E%3C/svg%3E");
-  }
-  .amana-desk-hero-banner .hero-inner{
-    position:relative;z-index:1;text-align:center;padding:1.35rem 1.1rem 1.2rem;
-  }
-  .amana-desk-hero-banner .bismillah{color:#e8d5a3;font-size:1.25rem;margin:0 0 0.35rem;}
-  .amana-desk-hero-banner h1{color:#f0e0a8;font-size:1.65rem;margin:0.2rem 0 0.45rem;letter-spacing:0.02em;}
-  .amana-desk-hero-banner .ayah{
-    font-size:1.15rem;color:#f3e6c0;line-height:1.55;margin:0.4rem 0 0.25rem;
-  }
-  .amana-desk-hero-banner .ayah-en{
-    font-size:0.86rem;opacity:0.92;line-height:1.45;margin:0.25rem auto 0.35rem;max-width:34rem;
-  }
-  .amana-desk-hero-banner .ayah-ref a{color:#d4b45a;font-weight:600;text-decoration:none;}
-  .amana-desk-hero-banner .sub{font-size:0.88rem;opacity:0.9;margin:0.5rem 0 0;line-height:1.45;}
-  .amana-desk-hero-banner .chip-row{display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;margin-top:0.65rem;}
-  .amana-desk-hero-banner .chip-row span{
-    font-size:0.72rem;padding:0.25rem 0.55rem;border-radius:999px;
-    border:1px solid rgba(212,180,90,0.35);background:rgba(0,0,0,0.28);color:#e8d5a3;
-  }
-  #amana-vault-gate,.amana-vault-gate{display:none!important;}
-  .amana-single-unlock-cta{
-    max-width:40rem;margin:1rem auto 1.25rem;padding:1rem 1.1rem;text-align:center;
-    border-radius:16px;border:1px solid rgba(212,180,90,0.4);
-    background:linear-gradient(165deg,rgba(18,40,32,0.92),rgba(8,20,16,0.96));
-  }
-  .amana-single-unlock-cta h2{margin:0 0 0.35rem;color:#d4b45a;font-size:1.08rem;}
-  .amana-single-unlock-cta p{margin:0 0 0.55rem;font-size:0.85rem;line-height:1.45;opacity:0.92;}
-  .amana-single-unlock-cta .btn-unlock{
-    display:inline-block;padding:0.55rem 1.25rem;border-radius:999px;font-weight:700;
-    border:1px solid rgba(212,180,90,0.5);background:rgba(30,125,94,0.55);color:#f3e6c0;text-decoration:none;
-  }
-  .amana-single-unlock-cta .cta-note{font-size:0.72rem;opacity:0.8;margin:0.45rem 0 0;}
-  /* hide any extra unlock lanes until JS collapses them */
-  .dw-unlock-cta a.soft{display:none;}
+html,body{font-family:"Quill","Quicksand",system-ui,sans-serif;background:#071410;color:#e7efe9;margin:0}
+.arabic,[lang="ar"]{font-family:"Amiri",serif}
+/* Compact hero */
+.amana-desk-hero-banner{
+  position:relative;overflow:hidden;border-radius:14px;
+  min-height:120px;max-width:40rem;margin:0.4rem auto 0.55rem;
+  border:1px solid rgba(212,180,90,0.35);
+  background:
+    linear-gradient(180deg,rgba(7,20,16,0.35) 0%,rgba(7,20,16,0.88) 70%,rgba(7,20,16,0.96) 100%),
+    url("https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1400&q=75") center/cover no-repeat,#0a1812;
+}
+.amana-desk-hero-banner .hero-inner{position:relative;z-index:1;text-align:center;padding:0.75rem 0.85rem 0.7rem}
+.amana-desk-hero-banner h1{color:#f0e0a8;font-size:1.2rem;margin:0 0 0.25rem}
+.amana-desk-hero-banner .ayah{font-size:0.98rem;color:#f3e6c0;line-height:1.4;margin:0.2rem 0}
+.amana-desk-hero-banner .ayah-en{font-size:0.78rem;opacity:0.9;margin:0.15rem auto;max-width:32rem;line-height:1.35}
+.amana-desk-hero-banner .ayah-ref{font-size:0.72rem;margin:0.15rem 0 0}
+.amana-desk-hero-banner .ayah-ref a{color:#d4b45a;text-decoration:none;font-weight:600}
+.amana-desk-hero-banner .chip-row{display:flex;flex-wrap:wrap;gap:0.25rem;justify-content:center;margin-top:0.4rem}
+.amana-desk-hero-banner .chip-row span{font-size:0.65rem;padding:0.15rem 0.45rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);background:rgba(0,0,0,0.28);color:#e8d5a3}
+/* Hide desk-welcome title stack + its unlock lane (JS also removes) */
+#amana-desk-welcome-root .dw-bism,
+#amana-desk-welcome-root .dw-title,
+#amana-desk-welcome-root .dw-sub,
+#desk-unlock-lane,
+.dw-unlock-cta{display:none!important}
+#amana-vault-gate,.amana-vault-gate{display:none!important}
+.amana-single-unlock-cta{
+  max-width:40rem;margin:0.85rem auto 1rem;padding:0.85rem 1rem;text-align:center;
+  border-radius:14px;border:1px solid rgba(212,180,90,0.4);
+  background:linear-gradient(165deg,rgba(18,40,32,0.92),rgba(8,20,16,0.96));
+}
+.amana-single-unlock-cta h2{margin:0 0 0.3rem;color:#d4b45a;font-size:1rem}
+.amana-single-unlock-cta p{margin:0 0 0.45rem;font-size:0.82rem;line-height:1.4;opacity:0.92}
+.amana-single-unlock-cta .btn-unlock{
+  display:inline-block;padding:0.5rem 1.15rem;border-radius:999px;font-weight:700;
+  border:1px solid rgba(212,180,90,0.5);background:rgba(30,125,94,0.55);color:#f3e6c0;text-decoration:none;
+}
+.amana-single-unlock-cta .cta-note{font-size:0.7rem;opacity:0.8;margin:0.35rem 0 0}
 </style>
 </head>
 <body>
@@ -79,41 +67,34 @@
   <p class="crn-seal">Five rooms · educational only · not a fatwa</p>
 </nav>
 
-<header class="amana-desk-hero-banner" role="banner" aria-label="Amānah desk banner">
+<header class="amana-desk-hero-banner" role="banner">
   <div class="hero-inner">
-    <p class="bismillah arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
     <h1>Amānah Desk</h1>
     <p class="ayah arabic" lang="ar" dir="rtl">إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا</p>
     <p class="ayah-en">“Indeed, Allah commands you to render trusts to whom they are due…”</p>
-    <p class="ayah-ref"><a href="https://quran.com/4/58" target="_blank" rel="noopener noreferrer">Qurʾān 4:58 · Quran.com</a>
-      · shares also <a href="https://quran.com/4/7" target="_blank" rel="noopener noreferrer">4:7</a></p>
-    <p class="sub">Nightly note &amp; dayn stamp on this device — <strong>no unlock needed</strong>. Open the vault only for deeper chambers.</p>
-    <div class="chip-row" aria-hidden="true">
-      <span>On-device</span><span>No unlock for intake</span><span>Not a fatwa</span><span>Debts before bequests</span>
-    </div>
+    <p class="ayah-ref"><a href="https://quran.com/4/58" target="_blank" rel="noopener noreferrer">Qurʾān 4:58 · Quran.com</a></p>
+    <div class="chip-row"><span>On-device</span><span>No unlock for intake</span><span>Not a fatwa</span></div>
   </div>
 </header>
 
-<p id="amana-isolation-note" role="note" style="max-width:40rem;margin:0.5rem auto;padding:0.5rem 0.75rem;font-size:0.78rem;line-height:1.45;border-radius:12px;border:1px solid rgba(201,162,39,0.3);background:rgba(15,76,58,0.12)">
-<strong>Amānah desk · on-device only.</strong> Passphrase vault is optional. This room does not import University grades or Companion path scores.
-Educational readiness — <strong>not a fatwa</strong>, not a will, not legal advice.
+<p id="amana-isolation-note" role="note" style="max-width:40rem;margin:0.4rem auto;padding:0.45rem 0.7rem;font-size:0.75rem;line-height:1.4;border-radius:12px;border:1px solid rgba(201,162,39,0.3);background:rgba(15,76,58,0.12)">
+<strong>On-device only.</strong> Desk needs no unlock. Vault passphrase is optional — not a fatwa, not legal advice.
 </p>
 
 <main class="amana-wrap" style="max-width:52rem;margin:0 auto;padding:0 0.75rem 2rem">
   <div id="amana-desk-mount"></div>
-  <!-- Single unlock CTA (logical scanner collapses any desk-welcome duplicates into this) -->
   <section id="amana-single-unlock-cta" class="amana-single-unlock-cta">
     <h2>Need the full vault?</h2>
-    <p>Family tree, farāʾiḍ study, wasiyyah, full dayn ledger, and private notes open after passphrase unlock on this device.</p>
-    <p class="cta-row"><a class="btn-unlock" href="/amana/unlock/">Continue to vault unlock →</a></p>
-    <p class="cta-note">One door only · banner &amp; passphrase on the unlock page</p>
+    <p>Deeper chambers open after passphrase unlock on this device.</p>
+    <p class="cta-row"><a class="btn-unlock" href="/amana/unlock/" id="amana-unlock-only-link">Continue to vault unlock →</a></p>
+    <p class="cta-note">One door only</p>
   </section>
-  <p style="text-align:center;font-size:0.75rem;opacity:0.8;margin:1.25rem 0 0">Educational companion only · not a fatwa · not a bank · not legal advice. Data stays on this device unless you export it.</p>
+  <p style="text-align:center;font-size:0.72rem;opacity:0.8;margin:1rem 0 0">Educational only · not a fatwa · not a bank · not legal advice</p>
 </main>
 
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261105A2" defer></script>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261105A3" defer></script>
 <script src="/amana/assets/amana-desk-welcome-v1.js?v=20261103DW1" defer></script>
 <script src="/amana/assets/amana-isolation-guard-v1.js?v=20261104P6" defer></script>
-<script src="/amana/assets/amana-desk-landing-v1.js?v=20261105A2" defer></script>
+<script src="/amana/assets/amana-desk-landing-v1.js?v=20261105A3" defer></script>
 </body>
 </html>
