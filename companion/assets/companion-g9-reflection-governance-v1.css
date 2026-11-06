@@ -1,0 +1,10 @@
+/*! companion-g9-reflection-governance-v1 */
+html[data-clarity-room="companion"] #tab-reflection .loading-msg {
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+html[data-clarity-room="companion"] #verse .arabic,
+html[data-clarity-room="companion"] #tafseer-live-ar,
+html[data-clarity-room="companion"] #asma-box .arabic {
+  font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
+}
