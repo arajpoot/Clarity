@@ -1,12 +1,9 @@
-G6 MID-WAY — richness + Campus-like calm
+G7 content + live stream
 
-KEPT (not deleted):
-  Calligraphy lab, Meme studio, Tajweed, full Action, all Reminder cards
+- Banner Live: autoplay muted URLs + force iframe reload on toggle
+- Allah's Commands: loads Ya ayyuhalladhina amanu verses (API) on open; prev/next
+- Daily Sami'na verse: populates on open; Another verse cycles
+- Ilm 7-day starter: 7 foci with checkboxes (localStorage)
+- Meme + Calligraphy folds hidden on Seeker & New Muslim tracks; visible on Daily & Da'i
 
-STABILITY:
-  - Path tiles; desktop 5-col with Reset same row
-  - Heavy studios start COLLAPSED in <details> — expand in place when needed
-  - Optional "Also in Craft atelier" link (secondary, not a replacement)
-  - Banner motion damped; inactive tabs hidden; single room-nav
-
-Upload full companion/ from this zip.
+Upload companion/index.html + companion-g7-content-live-v1.js/css
