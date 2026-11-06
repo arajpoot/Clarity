@@ -41,7 +41,7 @@
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/"/>
 
 <!-- A2 spine: overlays, chunk-8, feature, path, aux, sticky via companion-a2-spine-loader-v1 -->
-<meta name="companion-phase-build" content="G2-polished-no-double-nav-20261106" />
+<meta name="companion-phase-build" content="G3-campus-foundation-tiles-20261106" />
 
 
 
@@ -361,6 +361,8 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 <!-- g1-integrity removed: track clone caused mobile path doubles -->
 <link rel="stylesheet" href="/companion/assets/companion-g2-polished-v1.css?v=20261106G2P" />
 <script src="/companion/assets/companion-g2-polished-v1.js?v=20261106G2P" defer></script>
+<link rel="stylesheet" href="/companion/assets/companion-g3-campus-foundation-v1.css?v=20261106G3" />
+<script src="/companion/assets/companion-g3-campus-foundation-v1.js?v=20261106G3" defer></script>
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -703,113 +705,13 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 </div>
 </details>
 </div>
-<div class="card card-tools meme-card-realigned" id="meme-card" data-rrra="reminder" data-rrra-pin="reminder" style="border-top:3px solid var(--gold,#b8922a)">
-<h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 Clarity Meme Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
-<p id="meme-fetch-status" style="font-size:.7rem;color:var(--accent);min-height:.85em;margin:0 0 .25rem"></p>
 
-<div id="meme-studio-root" class="meme-studio meme-realign">
-
-  <!-- 1. BACKGROUND CHIPS ON TOP -->
-  <div class="meme-bar meme-bar-bg">
-    <div class="meme-tool-label">Background</div>
-    <div class="meme-chip-row">
-      <button type="button" class="mv-chip" onclick="memeFetchBg('nature')">🌿 Nature</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('flickr')" title="Flickr public photostream + free Shariah-leaning nature/architecture (no figurative stock lists)">📸 Flickr</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('flowers')">🌸 Flowers</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('holy')">🕌 Holy</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Free online: Wikimedia · Picsum · Flickr public · Shariah-leaning nature/architecture">📷 Free photos</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Next free-catalogue image">↻ Next free</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('spirit')">✨ Spirit</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('night')">🌙 Night</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('water')">💧 Water</button>
-      <button type="button" class="mv-chip" onclick="memeFetchBg('dynamic')">🎬 Dynamic</button>
-      <button type="button" class="mv-chip" onclick="memeShowBlankPalette()">⬛ Blank</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('mosque')}catch(e){}">🕌 Décor</button>
-      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('geometry')}catch(e){}">◈ Pattern</button>
-
-    </div>
-  </div>
-
-  <div class="meme-preview-only">
-    <div id="meme-stage-wrap" class="meme-stage-wrap" data-ratio="twitter">
-      <div id="meme-stage" class="meme-stage" data-ratio="twitter" style="aspect-ratio:16/9">
-        <canvas id="meme-canvas" width="1200" height="675" aria-label="Meme canvas"></canvas>
-        <div class="meme-text-box top" id="meme-box-top" data-which="top"><div class="meme-drag-handle">Top</div></div>
-        <div class="meme-text-box middle" id="meme-box-mid" data-which="mid"><div class="meme-drag-handle">Mid</div></div>
-        <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom"><div class="meme-drag-handle">Bot</div></div>
-        <a id="meme-wm-link" href="https://clarity-dawah.fyi/#meme" target="_blank" rel="noopener noreferrer" title="Open Meme Studio"><span class="wm-hit-label">clarity-dawah.fyi/#meme</span></a>
-      </div>
-      <div id="meme-palette" class="meme-palette" hidden></div>
-      <input type="color" id="meme-blank-custom" style="display:none" onchange="memeSetBlankColor&&memeSetBlankColor(this.value)">
-    </div>
-  </div>
-
-  <!-- 3. CONTROLS BELOW PREVIEW -->
-  <div class="meme-below">
-    <div class="meme-bar" id="meme-rrra-fetch-bar">
-      <div class="meme-tool-label">Fetch · verse &amp; ḥadīth (auto · no typing)</div>
-      <div class="meme-chip-row" role="group" aria-label="Fetch by learning category">
-        <button type="button" class="mv-chip mv-accent" data-rrra="reminder" onclick="memeFetchRrra('reminder')" title="Reminder — what Allah commanded">✦ Reminder</button>
-        <button type="button" class="mv-chip" data-rrra="reality" onclick="memeFetchRrra('reality')" title="Reality — what happened">◉ Reality</button>
-        <button type="button" class="mv-chip" data-rrra="reflection" onclick="memeFetchRrra('reflection')" title="Reflection — ponder the sign">☾ Reflection</button>
-        <button type="button" class="mv-chip" data-rrra="action" onclick="memeFetchRrra('action')" title="Action — do this next">➤ Action</button>
-        <button type="button" class="mv-chip" onclick="memeFetchRrra(null)" title="Random category">✨ Surprise</button>
-
-<button type="button" class="mv-chip" onclick="memeDailyVerse()">📖 Daily verse</button>
-<button type="button" class="mv-chip" onclick="memeFromJourney()">🧭 Journey</button>
-<button type="button" class="mv-chip" onclick="memeFromCommand()">📜 Command</button>
-<button type="button" class="mv-chip" onclick="memeMasnunDua()">🤲 Masnūn duʿā</button>
-<button type="button" class="mv-chip" onclick="memeNightQuote()">🌙 Night</button>
-<button type="button" class="mv-chip" onclick="memeFetchUrduDua()" title="Arabic + English only">✨ Duʿā pack</button>
-<button type="button" class="mv-chip" onclick="memeApplyUrduDua()">Apply duʿā</button>
-<button type="button" class="mv-chip" onclick="memeApplyUrduDua(true)">Apply + bg</button>
-      </div>
-      <p id="meme-rrra-status" style="font-size:.72rem;color:var(--text-muted);margin:.35rem 0 0;line-height:1.4">Tap a category — Arabic + English from Qur’an.com / authentic ḥadīth packs. No manual text or mic.</p>
-
-      <input type="hidden" id="meme-top-input" value="">
-      <input type="hidden" id="meme-mid-input" value="">
-      <input type="hidden" id="meme-bottom-input" value="">
-    </div>
-
-    <div class="meme-bar meme-bar-scale">
-      <div class="meme-tool-label">Scale · outline</div>
-      <div class="meme-chip-row meme-size-row-h" id="meme-line-sizes">
-<button type="button" class="mv-chip" onclick="memeAutoScaleLines()">⬚ Auto-scale</button>
-<button type="button" class="mv-chip" onclick="memeSendToTweetDesk()">↗ Tweet Desk</button>
-
-        <label>Top <input type="range" id="meme-size-top" min="14" max="72" value="42" oninput="memeOnLineSize('top',this.value)"><b id="meme-size-top-val">42</b></label>
-        <label>Mid <input type="range" id="meme-size-mid" min="14" max="72" value="42" oninput="memeOnLineSize('mid',this.value)"><b id="meme-size-mid-val">42</b></label>
-        <label>Bot <input type="range" id="meme-size-bottom" min="14" max="72" value="36" oninput="memeOnLineSize('bottom',this.value)"><b id="meme-size-bottom-val">36</b></label>
-        <label>All <input type="range" id="meme-size" min="14" max="72" value="42" oninput="memeOnSize&&memeOnSize(this.value)"><b id="meme-size-val">42</b></label>
-        <label>Outline <input type="range" id="meme-outline" min="0" max="12" value="4" oninput="memeOnOutline?memeOnOutline(this.value):(memeState.outline=+this.value,memeDraw())"><b id="meme-outline-val">4</b></label>
-      </div>
-    </div>
-
-    <div class="meme-bar">
-      <div class="meme-tool-label">Format · export</div>
-      <div class="meme-chip-row">
-        <select id="meme-ratio" onchange="memeSetRatio(this.value)" title="Canvas size"><option value="twitter" selected>X / Twitter · 16:9</option><option value="1:1">Instagram · 1:1</option><option value="facebook">Facebook · 1.91:1</option><option value="4:5">Portrait · 4:5</option></select>
-        <select id="meme-font" onchange="memeState.font=this.value;memeDraw()" title="Font style"><option value="impact">Impact</option><option value="serif">Serif</option><option value="naskh">Naskh</option><option value="sans">Sans</option><option value="arabic">Arabic</option></select>
-        <button type="button" class="mv-chip" onclick="memeDownload()">⬇ PNG</button>
-        <button type="button" class="mv-chip" onclick="memeSharePng()">📤 Share</button>
-        <button type="button" class="mv-chip" onclick="memeCopyPng()">📋 Copy</button>
-        <button type="button" class="mv-chip" onclick="try{memeState.top=memeState.mid=memeState.bottom='';['meme-top-input','meme-mid-input','meme-bottom-input'].forEach(function(id){var e=document.getElementById(id);if(e)e.value=''});memeDraw()}catch(e){}">↺ Clear</button>
-      </div>
-    </div>
-
-    <div id="meme-urdu-preview" style="display:none"></div>
-    <input type="url" id="meme-urdu-img-url" style="display:none">
-    <p id="meme-audio-status" style="font-size:.68rem;color:var(--text-muted);margin:.15rem 0 0">Watermark: clarity-dawah.fyi · text from sources only (no mic / no free-type)</p>
-    <details class="meme-tutorial-compact" id="meme-tutorial" style="margin-top:.35rem;font-size:.78rem;line-height:1.4;background:var(--accent-soft);border-radius:10px;padding:.3rem .6rem;border:1px solid var(--border)">
-      <summary style="cursor:pointer;font-weight:600;color:var(--gold);list-style:none">💡 How to · quick guide</summary>
-      <ol style="margin:.3rem 0 0;padding-left:1.1rem">
-        <li>Pick a background · tap ✦ Reminder / ◉ Reality / ☾ Reflection / ➤ Action for a verse or ḥadīth.</li>
-        <li>No typing or mic — drag text boxes on the preview · Download PNG. Educational only.</li>
-      </ol>
-    </details>
-  </div>
+<div class="card craft-bridge-inline" id="meme-card-bridge" data-rrra="reminder" style="margin:0.75rem 0;padding:0.85rem 0.9rem;border-radius:14px;border:1px solid rgba(201,162,39,0.28);background:rgba(15,76,58,0.1)">
+  <strong style="display:block;margin-bottom:0.25rem">🎨 Meme Studio</strong>
+  <p style="margin:0 0 0.5rem;font-size:0.86rem;line-height:1.45;opacity:0.92">Full studio lives in the Craft room — sources, scenery, export. Educational only — not a fatwa.</p>
+  <a href="/craft/meme/" style="display:inline-block;padding:0.4rem 0.85rem;border-radius:999px;font-weight:700;text-decoration:none;background:linear-gradient(135deg,#0f4c3a,#1a6b52);color:#f7f3eb">Open Meme Studio in Craft →</a>
 </div>
-</div>
+
 <div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)">
 <h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
 <p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
@@ -1733,6 +1635,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 <!-- phase3-dedupe dup: /companion/assets/clarity-companion-unfreeze-v3.js -->
 <script type="text/plain" data-g2-offload="craft-room-sot" src="/companion/assets/companion-meme-studio-fix-v1.js?v=20261104MS3"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
