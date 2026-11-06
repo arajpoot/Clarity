@@ -1,8 +1,8 @@
-/*! companion-banner-plaques-v1 — Allah seal on Salah · calendar/salah polish */
+/*! companion-banner-plaques-v1 · symmetry + event + salah city */
 .allah-circular-seal {
-  width: 2.6rem;
-  height: 2.6rem;
-  margin: 0 auto 0.35rem;
+  width: 2.65rem;
+  height: 2.65rem;
+  margin: 0 auto 0.3rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -19,6 +19,11 @@
 }
 .masjid-circular-seal { display: none !important; }
 
+.hijri-cal-section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
 .hijri-cal-grid {
   display: grid !important;
   grid-template-columns: repeat(7, 1fr);
@@ -26,16 +31,8 @@
   font-size: 0.7rem;
   margin: 0.3rem 0;
 }
-.hijri-cal-grid .hc-wd {
-  opacity: 0.65;
-  font-weight: 700;
-  text-align: center;
-}
-.hijri-cal-grid .hc-day {
-  text-align: center;
-  padding: 0.18rem 0;
-  border-radius: 6px;
-}
+.hijri-cal-grid .hc-wd { opacity: 0.65; font-weight: 700; text-align: center; }
+.hijri-cal-grid .hc-day { text-align: center; padding: 0.18rem 0; border-radius: 6px; }
 .hijri-cal-grid .hc-day.is-today {
   background: rgba(212, 180, 90, 0.35);
   color: #fff8e0;
@@ -43,9 +40,41 @@
 }
 .hijri-cal-grid .hc-empty { visibility: hidden; }
 
-#salah-times-list li.is-next-salah .salah-time {
-  color: #b8f0c8;
-  font-weight: 800;
+/* Event countdown (dashed separator) */
+.hijri-next-event,
+#hijri-next-event {
+  margin: 0.4rem 0 0.25rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed rgba(212, 180, 90, 0.4);
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: #e8d5a3;
+}
+.hijri-next-event .ev-name { font-weight: 700; display: block; }
+.hijri-next-event .ev-days { opacity: 0.9; font-size: 0.7rem; }
+
+/* Temps centered under calendar */
+.hijri-temps,
+#hijri-temps {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  text-align: center;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  width: 100%;
+}
+.hijri-temps .ht-item { display: block; width: 100%; text-align: center; }
+
+/* Salah plaque symmetry */
+.salah-times-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .salah-times-section .salah-title,
 #salah-title {
@@ -53,5 +82,28 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   color: #e8d5a3;
-  margin: 0.15rem 0 0.35rem;
+  margin: 0.1rem 0 0.2rem;
+}
+.salah-city,
+#hijri-local-loc {
+  text-align: center !important;
+  font-size: 0.72rem;
+  opacity: 0.9;
+  margin: 0 0 0.35rem;
+  color: #cfe6d8;
+  width: 100%;
+}
+#salah-times-list {
+  width: 100%;
+  text-align: left;
+}
+#salah-times-list li.is-next-salah .salah-time {
+  color: #b8f0c8;
+  font-weight: 800;
+}
+#hijri-local-time {
+  text-align: center;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-weight: 600;
 }
