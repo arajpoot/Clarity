@@ -1,0 +1,11 @@
+/*! companion-g10-action-hajj-parity-v1 */
+html[data-clarity-room="companion"] #hajj-panel {
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  background: rgba(15, 76, 58, 0.1);
+  margin: 0.5rem 0;
+}
+html[data-clarity-room="companion"] #hajj-checklist-list label {
+  cursor: pointer;
+}
