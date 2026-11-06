@@ -1,0 +1,43 @@
+{
+  "phase": "G0-G1",
+  "room": "companion",
+  "campus_frozen": true,
+  "richness_kept": true,
+  "boot_order": [
+    "companion-boot-v2.js",
+    "companion-boot-shim-v1.js",
+    "companion-room-owner-v1.js",
+    "companion-shariah-guard-v1.js",
+    "companion-error-guard-v1.js",
+    "companion-banner-viewport-v1.js",
+    "companion-banner-mobile-v1.js",
+    "companion-banner-desktop-v1.js",
+    "companion-banner-controls-v1.js",
+    "companion-banner-plaques-v1.js",
+    "companion-banner-enrich-v1.js",
+    "companion-haramain-temps-v1.js",
+    "clarity-room-nav-v1.js",
+    "clarity-companion-unfreeze-v3.js",
+    "companion-tab-persist-v35.js",
+    "clarity-meme-api-bridge-v1.js",
+    "companion-craft-core-v1.js",
+    "clarity-path-progress-v1.js",
+    "companion-path-governance-v1.js",
+    "clarity-grave-path-curriculum-js.js",
+    "companion-meme-studio-fix-v1.js",
+    "companion-g1-integrity-v1.js"
+  ],
+  "room_owner_packs": [
+    "clarity-runtime-overlays-v1.js",
+    "clarity-feature-pack-v1.js",
+    "clarity-path-pack-v1.js",
+    "clarity-aux-pack-v1.js"
+  ],
+  "stripped_dual_owners": [
+    "companion-banner-craft-v1.js",
+    "companion-banner-sleek-v1.js",
+    "companion-stabilize-v1.js",
+    "clarity-banner-control-n34.js",
+    "companion-a2-spine-loader-v1.js"
+  ]
+}

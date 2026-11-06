@@ -1,11 +1,10 @@
-SMOKE 1+3 FIX
+G0–G1 Companion integrity (richness kept)
 
-1. Four tracks: force CSS + clone strip to top of #main-content (visible on all hubs)
-3. Amānah door: hard openNotes() — shows #tab-notes hub, sets hash #notes
+G0: COMPANION_ROOM_CONTRACT_G0.md + COMPANION_LOAD_MAP_G1.json
+G1: Live-aligned index + assets; g1-integrity places tracks under banner; notes door; owner assert
 
-Also removes data-rb-thin from tab-notes.
+UPLOAD: companion/ folder only
+Campus untouched
 
-Smoke:
-- Track chips under room content (and on Reminder)
-- Tap Amānah → Notes · Amānah path + scratch pad
-- window.__SMOKE13_LOG → tracks-global, notes-open
+Smoke: tracks under banner; Amānah→Notes; banner/meme/path richness still present
+Console: window.__G1_LOG

@@ -1,9 +1,5 @@
-# Campus frozen (S0–S1)
+# Frozen rooms (G0–G1)
 
-Do not upload or edit:
+Do not modify: campus/, daily/, amana/
 
-- campus/
-- campus-index.html
-- assets/curriculum/** (unless separate campus task)
-
-Companion work is limited to companion/ and optional read-only use of existing /assets modules via allowlist.
+Companion-only deploy: companion/
