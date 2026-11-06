@@ -1,0 +1,35 @@
+/* G1 · tracks under banner · notes panel · campus frozen (companion only) */
+html[data-clarity-room="companion"] .clarity-gate-switcher,
+html[data-clarity-room="companion"] #clarity-track-strip-global {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0.4rem 0 0.55rem !important;
+  padding: 0.4rem 0.55rem !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(212, 180, 90, 0.28) !important;
+  background: rgba(15, 76, 58, 0.14) !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  min-height: 2.25rem !important;
+  padding: 0.28rem 0.5rem !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+}
+html[data-clarity-room="companion"] #tab-notes.is-active,
+html[data-clarity-room="companion"] #tab-notes.active {
+  display: block !important;
+  visibility: visible !important;
+}
