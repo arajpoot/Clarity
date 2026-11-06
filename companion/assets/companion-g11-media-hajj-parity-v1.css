@@ -1,0 +1,14 @@
+/*! companion-g11-media-hajj-parity-v1 */
+html[data-clarity-room="companion"] .g11-media-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.35rem 0;
+}
+html[data-clarity-room="companion"] #g11-media-desk {
+  border-top: 3px solid rgba(201, 162, 39, 0.45);
+}
+html[data-clarity-room="companion"] iframe[data-src] {
+  background: rgba(0, 0, 0, 0.2);
+  min-height: 120px;
+}
