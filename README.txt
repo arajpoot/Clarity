@@ -1,10 +1,18 @@
-G0–G1 Companion integrity (richness kept)
+G2 POLISHED (no double nav)
 
-G0: COMPANION_ROOM_CONTRACT_G0.md + COMPANION_LOAD_MAP_G1.json
-G1: Live-aligned index + assets; g1-integrity places tracks under banner; notes door; owner assert
+Companion already injects Craft via room-nav JS — this package does NOT add a second top rail.
 
-UPLOAD: companion/ folder only
-Campus untouched
+Fixes:
+- Seal → Five rooms
+- Kill g1/smoke13 track clones
+- Single track strip + mobile horizontal scroll
+- Action → Craft bridges only
+- Offload companion craft studio scripts
 
-Smoke: tracks under banner; Amānah→Notes; banner/meme/path richness still present
-Console: window.__G1_LOG
+Upload:
+  companion/index.html
+  companion/assets/companion-g2-polished-v1.css
+  companion/assets/companion-g2-polished-v1.js
+  craft/index.html (optional; only if you want seal/nav sync on craft hub)
+
+Do not upload campus/daily/amana.
