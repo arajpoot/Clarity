@@ -1,0 +1,104 @@
+/*! companion-final-repair-v1 · type balance + path pills + city */
+html[data-clarity-room="companion"] {
+  --cu-font: "Quicksand", "Quill", system-ui, sans-serif;
+  --cu-ar: "Amiri", "Noto Naskh Arabic", serif;
+  --cu-gold: #e8d5a3;
+  --cu-muted: rgba(231, 239, 233, 0.88);
+}
+html[data-clarity-room="companion"] body {
+  font-family: var(--cu-font);
+}
+html[data-clarity-room="companion"] .arabic,
+html[data-clarity-room="companion"] [lang="ar"] {
+  font-family: var(--cu-ar);
+}
+
+/* Salah city — larger, under Allah */
+#hijri-local-loc,
+.salah-city {
+  display: block !important;
+  text-align: center !important;
+  font-size: 0.92rem !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.02em;
+  color: var(--cu-gold) !important;
+  opacity: 1 !important;
+  margin: 0.15rem 0 0.4rem !important;
+  line-height: 1.3;
+}
+
+/* Path pills bar */
+#clarity-path-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  max-width: 42rem;
+  margin: 0.65rem auto 0.85rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: linear-gradient(180deg, rgba(18, 40, 32, 0.92), rgba(8, 20, 16, 0.96));
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+#clarity-path-pills .cpp-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--cu-gold);
+  margin-right: 0.25rem;
+}
+#clarity-path-pills button.cpp-pill {
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: rgba(0,0,0,0.28);
+  color: #eef6f0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  min-height: 2rem;
+}
+#clarity-path-pills button.cpp-pill.is-active {
+  background: rgba(30, 125, 94, 0.55);
+  border-color: rgba(180, 240, 200, 0.45);
+  color: #fff;
+}
+#clarity-path-pills button.cpp-pill.path-locked {
+  opacity: 0.55;
+}
+#clarity-path-pills button.cpp-reset {
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: rgba(180, 140, 40, 0.35);
+  color: #fff8e0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+/* Hide legacy multi-tile track chrome when pills present */
+html[data-path-pills="1"] .clarity-gate-switcher .cgs-tile,
+html[data-path-pills="1"] .clarity-gate-switcher .track-tiles {
+  display: none !important;
+}
+
+/* Hard hide filtered cards + meme on non-practicing/dai */
+html[data-clarity-path="seeker"] #meme-card,
+html[data-clarity-path="seeker"] .meme-card-realigned,
+html[data-clarity-path="seeker"] #meme-studio-root,
+html[data-clarity-path="new_muslim"] #meme-card,
+html[data-clarity-path="new_muslim"] .meme-card-realigned,
+html[data-clarity-path="new_muslim"] #meme-studio-root,
+.path-filtered-out {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
