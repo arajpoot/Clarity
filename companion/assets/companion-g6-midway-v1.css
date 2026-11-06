@@ -1,0 +1,153 @@
+/*! companion-g6-midway-v1 · rich content kept · campus-like calm · progressive craft */
+html[data-clarity-room="companion"] {
+  scroll-behavior: auto !important;
+}
+html[data-clarity-room="companion"] body {
+  overflow-x: hidden !important;
+}
+html[data-clarity-room="companion"] #clarity-top-duo,
+html[data-clarity-room="companion"] .banner {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Path tiles — desktop 5-col with Reset on same row */
+html[data-clarity-room="companion"] .clarity-gate-switcher,
+html[data-clarity-room="companion"] .clarity-gate-switcher.rrra-sitewide {
+  display: grid !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0.55rem 0 0.75rem !important;
+  padding: 0.55rem !important;
+  box-sizing: border-box !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(201, 162, 39, 0.28) !important;
+  background: rgba(15, 76, 58, 0.12) !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-label {
+  grid-column: 1 / -1 !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  opacity: 0.85 !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn,
+html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 0.15rem !important;
+  min-height: 3.5rem !important;
+  width: 100% !important;
+  padding: 0.6rem 0.7rem !important;
+  border-radius: 14px !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  text-align: left !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-btn.is-active {
+  border-color: rgba(201, 162, 39, 0.5) !important;
+  background: linear-gradient(145deg, rgba(15, 76, 58, 0.45), rgba(201, 162, 39, 0.12)) !important;
+}
+html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-reset,
+html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-reset,
+html[data-clarity-room="companion"] .clarity-gate-switcher #clarity-path-reset-btn {
+  grid-column: 1 / -1 !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 2.5rem !important;
+}
+@media (min-width: 720px) {
+  html[data-clarity-room="companion"] .clarity-gate-switcher {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  }
+  html[data-clarity-room="companion"] .clarity-gate-switcher .cgs-reset,
+  html[data-clarity-room="companion"] .clarity-gate-switcher button.cgs-reset,
+  html[data-clarity-room="companion"] .clarity-gate-switcher #clarity-path-reset-btn {
+    grid-column: auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 3.5rem !important;
+  }
+}
+
+/* Progressive craft: collapsed by default, expand in place — content NOT deleted */
+html[data-clarity-room="companion"] details.craft-fold {
+  margin: 0.75rem 0;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background: rgba(15, 76, 58, 0.1);
+  overflow: hidden;
+}
+html[data-clarity-room="companion"] details.craft-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.85rem 1rem;
+  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  user-select: none;
+}
+html[data-clarity-room="companion"] details.craft-fold > summary::-webkit-details-marker {
+  display: none;
+}
+html[data-clarity-room="companion"] details.craft-fold > summary .cf-hint {
+  font-weight: 500;
+  font-size: 0.8rem;
+  opacity: 0.85;
+  flex: 1 1 12rem;
+}
+html[data-clarity-room="companion"] details.craft-fold > summary .cf-open {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #c9a227;
+}
+html[data-clarity-room="companion"] details.craft-fold[open] > summary .cf-open::after {
+  content: " · expanded";
+}
+html[data-clarity-room="companion"] details.craft-fold:not([open]) > summary .cf-open::after {
+  content: " · tap to expand";
+}
+html[data-clarity-room="companion"] details.craft-fold .craft-fold-body {
+  padding: 0 0.75rem 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+html[data-clarity-room="companion"] .cf-also-craft {
+  display: inline-block;
+  margin: 0.35rem 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #c9a227;
+  text-decoration: none;
+}
+
+/* Tab isolation — reduce jump/leak without removing hubs */
+html[data-clarity-room="companion"] .tab-panel:not(.is-active):not(.active) {
+  display: none !important;
+}
+html[data-clarity-room="companion"] .tab-panel.is-active,
+html[data-clarity-room="companion"] .tab-panel.active {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Single room-nav only */
+html[data-clarity-room="companion"] nav.clarity-room-nav ~ nav.clarity-room-nav {
+  display: none !important;
+}
