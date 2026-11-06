@@ -1,0 +1,12 @@
+/*! companion-g13-reminder-about-v1 */
+html[data-clarity-room="companion"] #hadith,
+html[data-clarity-room="companion"] #prophet-name-box {
+  min-height: 4rem;
+}
+html[data-clarity-room="companion"] #tab-about {
+  display: none;
+}
+html[data-clarity-room="companion"] #tab-about.is-active,
+html[data-clarity-room="companion"] #tab-about.active {
+  display: block !important;
+}
