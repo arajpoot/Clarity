@@ -1,8 +1,11 @@
-G4 · Craft hard offload + path row with Reset
+G5 RICHNESS RESTORED
 
-Desktop: 5 columns — Seeker | New Muslim | Daily | Da'i | Reset (full width one row)
-Mobile: 2x2 paths, Reset full width under
+Base: pre-thinning G0G1 full Companion content (~212KB class).
+Restored: calligraphy lab, meme studio, tajweed surfaces, full Action hub, all Reminder cards.
 
-Offloaded to Craft (bridge cards): Calligraphy, Tajweed (+ CSS/JS hide residual meme/callig/tajweed DOM)
+Only additive UI:
+- Path switcher as tiles; desktop 5-col with Reset on same row
+- Five rooms seal text
+- Does NOT remove or hide craft modules
 
-Upload companion/ only.
+Upload entire companion/ folder from this zip (index + assets from G0G1 + g5 css/js).
