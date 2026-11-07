@@ -1,11 +1,64 @@
-/* Port room tour pills + modal · Enter + Tour same row */
+/* Port tours · keep-centered castle + glass action plaques */
+
+/* Restore grid areas on wraps (inner .tower no longer carries grid-area) */
+.sym-grid > .tower-wrap.sym-left { grid-area: left; }
+.sym-grid > .tower-wrap.sym-left2 { grid-area: left2; }
+.sym-grid > .tower-wrap.sym-keep { grid-area: keep; }
+.sym-grid > .tower-wrap.sym-right { grid-area: right; }
+.sym-grid > .tower-wrap.sym-right2 { grid-area: right2; }
+
+.tower-wrap {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+.tower-wrap > .tower {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  /* glass enrichment */
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.05), transparent 42%),
+    linear-gradient(180deg, rgba(30, 125, 94, 0.12), rgba(0, 0, 0, 0.22));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Center keep emphasis (matches original castle) */
+.tower-wrap.sym-keep > .tower.keep {
+  border-width: 1px;
+  border-color: rgba(201, 162, 39, 0.55);
+  background:
+    linear-gradient(160deg, rgba(232, 213, 163, 0.08), transparent 40%),
+    linear-gradient(180deg, rgba(30, 125, 94, 0.2), rgba(8, 20, 16, 0.35));
+  box-shadow:
+    inset 0 1px 0 rgba(232, 213, 163, 0.12),
+    0 10px 28px rgba(0, 0, 0, 0.22);
+}
+.tower-wrap.sym-keep > .tower.keep h3 {
+  font-size: 1.35rem;
+}
+
+/* Castle introduction card */
 .port-tour {
   max-width: 40rem;
   margin: 1rem auto 1.25rem;
   padding: 0.85rem 1rem;
   border-radius: 14px;
   border: 1px solid rgba(212, 180, 90, 0.3);
-  background: rgba(15, 76, 58, 0.14);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 50%),
+    rgba(15, 76, 58, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .port-tour h2 {
   margin: 0 0 0.35rem;
@@ -31,92 +84,79 @@
   opacity: 0.75;
 }
 
-.tower-wrap {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  height: 100%;
-}
-.tower-wrap > .tower {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Action row: Enter + Tour on one line */
+/* Glass plaque: Enter + Tour same size, one row */
 .tower-actions {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: stretch;
   justify-content: stretch;
-  gap: 0.35rem;
+  gap: 0.4rem;
   margin-top: auto;
-  padding-top: 0.45rem;
+  padding: 0.4rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    rgba(8, 18, 14, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
-.tower-actions .enter {
-  flex: 1 1 auto;
+
+.tower-actions .enter,
+.tower-actions .room-tour-pill {
+  flex: 1 1 0;
   min-width: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   text-decoration: none;
-  color: inherit;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  padding: 0.35rem 0.45rem;
-  min-height: 34px;
-  border-radius: 999px;
-  border: 1px solid rgba(212, 180, 90, 0.35);
-  background: rgba(30, 125, 94, 0.35);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tower-actions .enter:hover,
-.tower-actions .enter:focus-visible {
-  background: rgba(30, 125, 94, 0.55);
-  outline: none;
-}
-
-.room-tour-pill {
-  appearance: none;
-  cursor: pointer;
-  flex: 0 0 auto;
   margin: 0;
-  padding: 0.35rem 0.55rem;
+  padding: 0.42rem 0.35rem;
+  min-height: 36px;
   border-radius: 999px;
-  border: 1px solid rgba(212, 180, 90, 0.45);
-  background: rgba(12, 28, 22, 0.92);
-  color: #e8d5a3;
   font: inherit;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   line-height: 1.15;
-  min-height: 34px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  appearance: none;
+  color: #e8f0ec;
+  border: 1px solid rgba(212, 180, 90, 0.38);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(30, 125, 94, 0.28);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
 }
-.room-tour-pill:hover,
-.room-tour-pill:focus-visible {
-  background: rgba(30, 125, 94, 0.45);
-  outline: none;
+
+.tower-actions .enter:hover,
+.tower-actions .enter:focus-visible,
+.tower-actions .room-tour-pill:hover,
+.tower-actions .room-tour-pill:focus-visible {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
+    rgba(30, 125, 94, 0.48);
   border-color: rgba(232, 213, 163, 0.65);
+  outline: none;
+  transform: translateY(-1px);
 }
-.room-tour-pill.is-ready {
+
+.tower-actions .room-tour-pill.is-ready {
   border-color: rgba(80, 180, 120, 0.55);
 }
 
-/* Hide legacy lone .enter if any old markup remains */
+/* Hide legacy lone enter */
 .tower > .enter:not(.tower-actions .enter) {
   display: none;
 }
 
+/* Modal */
 .room-tour-modal {
   position: fixed;
   inset: 0;
@@ -183,12 +223,9 @@
 }
 
 @media (max-width: 420px) {
-  .tower-actions .enter {
-    font-size: 0.65rem;
-    padding: 0.32rem 0.35rem;
-  }
-  .room-tour-pill {
-    font-size: 0.62rem;
-    padding: 0.32rem 0.45rem;
+  .tower-actions .enter,
+  .tower-actions .room-tour-pill {
+    font-size: 0.64rem;
+    padding: 0.38rem 0.28rem;
   }
 }
