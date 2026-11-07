@@ -6,18 +6,17 @@
 <title>Family tree · UFT · Amānah · Clarity</title>
 <meta name="description" content="Full family tree toolkit on device. Educational — not a legal pedigree."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/tree/"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261102T1"/>
-<link rel="stylesheet" href="/amana/assets/clarity-pedigree-plaque-css-v1.css?v=20261102T1"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-registry-deep-v1.css?v=20261102T2"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261102T1" defer></script>
+<!-- P0P1 · Amānah-owned UFT host · enrichment only · educational only — not a fatwa -->
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/clarity-pedigree-plaque-css-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-registry-deep-v1.css?v=20261107P1"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261107P1" defer></script>
 <style>
 :root { color-scheme: dark light; }
 * { box-sizing: border-box; }
 body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
   background:linear-gradient(180deg,#0c1c16,#0a1410); color:#e8f0ec; }
 .amana-wrap { max-width:56rem; margin:0 auto; padding:0.75rem 1rem 2.5rem; }
-.amana-hero { text-align:center; margin:0.75rem 0 1rem; }
-.amana-hero h1 { font-family:Georgia,serif; color:#e8d5a3; font-size:1.55rem; margin:0; }
 .amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0 0.75rem; }
 .amana-subnav a { text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
   padding:0.35rem 0.7rem; border-radius:999px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25); }
@@ -34,10 +33,33 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
   width:100%; padding:0.4rem; border-radius:8px; border:1px solid rgba(212,180,90,0.3);
   background:#0c1c16; color:inherit; font-size:0.85rem;
 }
+/* P1 host contract: stage → chrome + preview → sizer → layer → bands */
 .uft-stage {
   min-height:14rem; border:1px dashed rgba(212,180,90,0.3); border-radius:12px;
   padding:0.75rem; margin:0.5rem 0; overflow:auto; background:rgba(0,0,0,0.2);
+  position: relative;
 }
+.uft-chrome-zoom {
+  display:flex; flex-wrap:wrap; gap:0.35rem; align-items:center;
+  margin:0 0 0.5rem; font-size:0.78rem;
+}
+.uft-chrome-zoom .btn-soft { margin:0; }
+#uft-preview, .uft-preview {
+  min-height:12rem; position: relative;
+  overflow: auto;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.12);
+}
+#uft-zoom-sizer, .uft-zoom-sizer {
+  transform-origin: 0 0;
+  min-width: 100%;
+}
+#uft-zoom-layer, .uft-zoom-layer {
+  position: relative;
+  min-height: 10rem;
+  padding: 0.35rem;
+}
+.uft-band { margin: 0.35rem 0; }
 .btn-soft { display:inline-block; margin:0.25rem 0.25rem 0 0; padding:0.4rem 0.85rem;
   border-radius:999px; border:1px solid rgba(212,180,90,0.35); background:rgba(30,125,94,0.35);
   color:inherit; font-weight:700; font-size:0.8rem; cursor:pointer; text-decoration:none; }
@@ -48,20 +70,21 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="/amana/assets/css/am-critical-v1.css?v=20261102M1"/>
-<link rel="stylesheet" href="/amana/assets/css/am-gate-v1.css?v=20261102M1"/>
-<link rel="stylesheet" href="/amana/assets/css/am-chamber-v1.css?v=20261102M1"/>
-<link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261102M1"/>
-<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261102M2"></script>
-<script src="/amana/assets/amana-engine-unlock-patch-v1.js?v=20261102F2"></script>
+<link rel="stylesheet" href="/amana/assets/css/am-critical-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/am-gate-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/am-chamber-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/clarity-amana-room-ui-v1.css?v=20261107P1"/>
+<script src="/amana/assets/clarity-amana-engine-v1.js?v=20261107P1"></script>
+<script src="/amana/assets/amana-engine-unlock-patch-v1.js?v=20261107P1"></script>
 
-<link rel="stylesheet" href="/amana/assets/css/am-banner-v1.css?v=20261102M4"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-dock-v1.css?v=20261102D1"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-build-viewport-v1.css?v=20261102BV1"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-visual-fix-v1.css?v=20261103V1"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-layout-h-v1.css?v=20261103H1"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-room-harmony-v1.css?v=20261103HARM"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-living-centre-v1.css?v=20261102B1"/>
+<link rel="stylesheet" href="/amana/assets/css/am-banner-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-dock-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-dock-v2.css?v=20261107P2"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-build-viewport-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-visual-polish-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-layout-h-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-room-harmony-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-living-centre-v1.css?v=20261107P1"/>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
@@ -69,6 +92,7 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
   <a href="/daily/" data-room-link="yawm"><span class="crn-ico">🌅</span><span class="crn-label">Yawm</span></a>
   <a href="/campus/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
   <a href="/amana/" data-room-link="amana" class="is-here"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
+  <a href="/craft/" data-room-link="craft"><span class="crn-ico">✒️</span><span class="crn-label">Craft</span></a>
   <p class="crn-seal">Five rooms · educational only · not a fatwa</p>
 </nav>
 
@@ -112,7 +136,6 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 </header>
 
 <main class="amana-wrap">
-  
   <nav class="amana-subnav">
     <a href="/amana/">Home</a>
     <a href="/amana/dayn/">Dayn</a>
@@ -126,23 +149,31 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
   <section class="amana-card" id="user-family-tree-card">
     <p class="disc">Full family tree module (Archive-3 / UFT lineage) · registry + pedigree view on this device. Educational outline only — not a legal pedigree · confirm farāʾiḍ with a scholar.</p>
     <div id="clarity-family-tree-host">
+      <!-- P1 host contract: #uft-stage > chrome + #uft-preview > #uft-zoom-sizer > #uft-zoom-layer > bands/backbone -->
       <div id="uft-stage" class="uft-stage" data-uft="stage">
-        <div id="uft-zoom-layer">
-          <div id="uft-zoom-sizer">
-            <div id="uft-g1" class="uft-band" data-uft-gen="1"></div>
-            <div id="uft-g2" class="uft-band" data-uft-gen="2"></div>
-            <div id="uft-g3" class="uft-band" data-uft-gen="3"></div>
-            <div id="uft-backbone">
-              <div id="uft-self" class="uft-self"></div>
-              <div id="uft-self-note"></div>
-              <div id="uft-father"></div><div id="uft-father-y"></div>
-              <div id="uft-mother"></div><div id="uft-mother-y"></div>
-              <div id="uft-spouse"></div>
-              <div id="uft-children"></div>
-              <div id="uft-siblings"></div>
-              <div id="uft-grandchildren"></div>
-              <div id="uft-pgf"></div><div id="uft-pgm"></div>
-              <div id="uft-mgf"></div><div id="uft-mgm"></div>
+        <div class="uft-chrome-zoom no-print" aria-label="Pedigree zoom">
+          <button type="button" class="btn-soft" onclick="typeof uftZoomBy==='function'&&uftZoomBy(-0.12)" aria-label="Zoom out">−</button>
+          <button type="button" class="btn-soft" id="uft-zoom-label" onclick="typeof uftZoomReset==='function'&&uftZoomReset()" title="Reset zoom (double-tap pedigree)">100%</button>
+          <button type="button" class="btn-soft" onclick="typeof uftZoomBy==='function'&&uftZoomBy(0.12)" aria-label="Zoom in">+</button>
+        </div>
+        <div id="uft-preview" class="uft-preview uft-tree" data-uft="preview">
+          <div id="uft-zoom-sizer" class="uft-zoom-sizer">
+            <div id="uft-zoom-layer" class="uft-zoom-layer">
+              <div id="uft-g1" class="uft-band" data-uft-gen="1"></div>
+              <div id="uft-g2" class="uft-band" data-uft-gen="2"></div>
+              <div id="uft-g3" class="uft-band" data-uft-gen="3"></div>
+              <div id="uft-backbone">
+                <div id="uft-self" class="uft-self"></div>
+                <div id="uft-self-note"></div>
+                <div id="uft-father"></div><div id="uft-father-y"></div>
+                <div id="uft-mother"></div><div id="uft-mother-y"></div>
+                <div id="uft-spouse"></div>
+                <div id="uft-children"></div>
+                <div id="uft-siblings"></div>
+                <div id="uft-grandchildren"></div>
+                <div id="uft-pgf"></div><div id="uft-pgm"></div>
+                <div id="uft-mgf"></div><div id="uft-mgm"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -178,49 +209,55 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
         <button type="button" class="btn-soft" onclick="typeof uftSnapshot==='function'&&uftSnapshot()">Snapshot</button>
         <button type="button" class="btn-soft" onclick="typeof uftClear==='function'&&uftClear()">Clear tree</button>
         <button type="button" class="btn-soft" onclick="typeof uftZoomReset==='function'&&uftZoomReset()">Reset zoom</button>
-        <span id="uft-zoom-label" style="font-size:0.78rem;opacity:0.85;margin-left:0.35rem"></span>
+        <a class="btn-soft" href="/amana/fiqh/">Farāʾiḍ study →</a>
       </div>
       <div id="uft-integrity" style="font-size:0.78rem;margin-top:0.5rem;opacity:0.9"></div>
       <div id="uft-audit-list"></div>
     </div>
   </section>
 
-  <p class="amana-foot"><a href="/amana/">Amānah home</a> · <a href="/amana/fiqh/">Farāʾiḍ study</a></p>
+  <p class="amana-foot"><a href="/amana/">Amānah home</a> · <a href="/amana/fiqh/">Farāʾiḍ study</a> · educational only — not a fatwa</p>
 </main>
-<script defer src="/amana/assets/inline-clarity_uft_viewport_recover.js?v=20261102T1"></script>
-<script defer src="/amana/assets/inline-clarity_uft_print_fix_v2.js?v=20261102T1"></script>
-<script defer src="/amana/assets/inline-clarity_pedigree_plaque_v1.js?v=20261102T1"></script>
-<script defer src="/amana/assets/clarity-amana-uft-v1.js?v=20261102T1"></script>
-<script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261102T1"></script>
-<script defer src="/amana/assets/amana-uft-registry-deep-v1.js?v=20261102T2"></script>
-<script defer src="/amana/assets/amana-uft-viewport-stable-v1.js?v=20261106P1"></script>
-<script defer src="/amana/assets/amana-uft-relation-enrich-v2.js?v=20261106P2"></script>
-<script defer src="/amana/assets/amana-uft-fiqh-bridge-v1.js?v=20261106P3"></script>
-<script defer src="/amana/assets/amana-uft-polish-print-v1.js?v=20261106P4"></script>
-<script defer src="/amana/assets/amana-uft-dock-v1.js?v=20261102D1"></script>
-<script defer src="/amana/assets/amana-uft-build-viewport-v1.js?v=20261102BV1"></script>
-<script defer src="/amana/assets/amana-uft-visual-fix-v1.js?v=20261103V1"></script>
-<script defer src="/amana/assets/amana-uft-layout-h-v1.js?v=20261103H1"></script>
+
+<!-- P1 boot order: core → restore → registry → viewport-stable → dock → layout → print → plaque → file-ops → fiqh-bridge → living-centre
+     All under /amana/assets/ (no companion-inline). -->
+<script defer src="/amana/assets/clarity-amana-uft-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-registry-deep-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-viewport-stable-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-dock-v2.js?v=20261107P2"></script>
+<script defer src="/amana/assets/amana-uft-layout-h-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/inline-clarity_uft_print_fix_v2.js?v=20261107P1"></script>
+<script defer src="/amana/assets/inline-clarity_pedigree_plaque_v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-file-ops-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-fiqh-bridge-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-living-centre-v1.js?v=20261107P1"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   var s = document.getElementById("uft-status");
   function tick() {
+    var preview = document.getElementById("uft-preview");
+    var stage = document.getElementById("uft-stage");
     if (typeof window.uftLoad === "function" || typeof window.uftRegRender === "function") {
-      if (s) s.textContent = "UFT ready · educational outline on this device · not a legal pedigree";
+      if (s) {
+        s.textContent = "UFT ready · host OK" +
+          (preview ? " (#uft-preview)" : "") +
+          (stage ? " (#uft-stage)" : "") +
+          " · educational outline · not a legal pedigree";
+      }
       try { if (typeof uftRegRender === "function") uftRegRender(); } catch (e) {}
+      try { if (typeof uftLoad === "function") uftLoad(); } catch (e2) {}
     } else if (s) {
       s.textContent = "Loading UFT modules…";
     }
   }
-  setTimeout(tick, 600);
-  setTimeout(tick, 1800);
+  setTimeout(tick, 400);
+  setTimeout(tick, 1200);
+  setTimeout(tick, 2400);
   document.addEventListener("clarity-amana-unlock-change", function (ev) {
     if (ev.detail && ev.detail.unlocked) setTimeout(tick, 100);
   });
 });
 </script>
-<script defer src="/amana/assets/amana-uft-file-ops-v1.js?v=20261103HARM"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script defer src="/amana/assets/amana-living-centre-v1.js?v=20261102B1"></script>
 </body>
 </html>
