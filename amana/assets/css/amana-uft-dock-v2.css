@@ -1,0 +1,222 @@
+/*! Amānah UFT dock chrome v2 · P2
+ * Companion-parity Edit names package · steps 1–5 Islamic palette
+ * LTR left-aligned · collapsible · educational only — not a legal pedigree
+ */
+
+.uft-titlebar-amana {
+  margin: 0 0 0.65rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.32);
+  background: linear-gradient(155deg, rgba(30, 125, 94, 0.14), rgba(0, 0, 0, 0.2));
+}
+.uft-titlebar-amana h2 {
+  margin: 0;
+  color: #e8d5a3;
+  font-family: Georgia, "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+}
+.uft-titlebar-amana .uft-titlebar-sub {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.88;
+  margin-top: 0.15rem;
+}
+.uft-titlebar-amana .uft-titlebar-desc {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.9;
+}
+
+/* Edit names package — collapsible data dock */
+.uft-data-dock,
+.uft-dock-amana {
+  margin: 0.65rem 0 0.85rem;
+  padding: 0.55rem 0.85rem 0.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.3);
+  background: rgba(15, 76, 58, 0.14);
+  direction: ltr;
+  text-align: left;
+}
+.uft-data-dock > .uft-dock-head,
+.uft-dock-amana .uft-dock-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+  direction: ltr;
+  text-align: left;
+  width: 100%;
+}
+.uft-data-dock > .uft-dock-head .uft-dock-title-wrap,
+.uft-dock-amana .uft-dock-title-wrap {
+  flex: 1 1 auto;
+  text-align: left;
+  direction: ltr;
+  order: 1;
+}
+.uft-dock-title-wrap strong {
+  color: #e8d5a3;
+  font-size: 0.95rem;
+}
+.uft-dock-sub {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+.uft-editor-toggle {
+  margin-left: auto !important;
+  order: 2;
+  cursor: pointer;
+  padding: 0.32rem 0.7rem !important;
+  border-radius: 999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(212, 180, 90, 0.4) !important;
+  background: rgba(30, 125, 94, 0.4) !important;
+  color: inherit !important;
+}
+
+/* Steps 1–5 — LTR left, Islamic palette */
+.uft-dock-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  justify-content: flex-start;
+  align-items: center;
+  direction: ltr;
+  text-align: left;
+  width: 100%;
+}
+.uft-dock-steps button.uft-step {
+  margin: 0 !important;
+  padding: 0.38rem 0.72rem !important;
+  border-radius: 999px !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: 2px solid transparent !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  line-height: 1.2;
+  color: #0a120e !important;
+}
+.uft-dock-steps button.uft-step:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+.uft-dock-steps button.uft-step:active {
+  transform: scale(0.97);
+}
+.uft-dock-steps button.uft-step.is-active,
+.uft-dock-steps button.uft-step.active-step {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35), 0 4px 16px rgba(0, 0, 0, 0.28);
+}
+
+/* 1 green · 2 teal · 3 gold · 4 olive · 5 burgundy */
+.uft-dock-steps button.uft-step[data-step="1"] {
+  background: linear-gradient(135deg, #1a6b52, #0f4c3a) !important;
+  border-color: #2d8a5e !important;
+  color: #f7f3eb !important;
+}
+.uft-dock-steps button.uft-step[data-step="2"] {
+  background: linear-gradient(135deg, #0e7490, #155e75) !important;
+  border-color: #5eead4 !important;
+  color: #f0fdfa !important;
+}
+.uft-dock-steps button.uft-step[data-step="3"] {
+  background: linear-gradient(135deg, #c9a227, #a07a35) !important;
+  border-color: #e8d48b !important;
+  color: #2a1f08 !important;
+}
+.uft-dock-steps button.uft-step[data-step="4"] {
+  background: linear-gradient(135deg, #3d7a35, #2a5a20) !important;
+  border-color: #8fbf62 !important;
+  color: #f7f3eb !important;
+}
+.uft-dock-steps button.uft-step[data-step="5"] {
+  background: linear-gradient(135deg, #8a3030, #6b1d1d) !important;
+  border-color: #c9a06a !important;
+  color: #faf6ef !important;
+}
+
+.uft-step-flash {
+  animation: uftStepFlash 0.9s ease;
+}
+@keyframes uftStepFlash {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55); }
+  40% { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25); }
+  100% { box-shadow: none; }
+}
+
+.uft-dock-hint {
+  font-size: 0.78rem;
+  opacity: 0.9;
+  line-height: 1.4;
+  margin: 0.25rem 0 0.35rem;
+  text-align: left;
+  direction: ltr;
+}
+.uft-dock-hint strong {
+  color: #d4b45a;
+}
+
+.uft-dock-body {
+  margin-top: 0.35rem;
+}
+/* Collapsed: hide body only — steps/header stay */
+.uft-data-dock.collapsed .uft-dock-body,
+.uft-dock-amana.collapsed .uft-dock-body {
+  display: none !important;
+}
+.uft-data-dock.collapsed .uft-dock-hint,
+.uft-dock-amana.collapsed .uft-dock-hint {
+  display: none !important;
+}
+
+.uft-tutorial-amana {
+  margin: 0.4rem 0 0.65rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  padding: 0.35rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.22);
+  background: rgba(212, 180, 90, 0.1);
+  text-align: left;
+  direction: ltr;
+}
+.uft-tutorial-amana summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #d4b45a;
+}
+.uft-tutorial-amana ol {
+  margin: 0.35rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.uft-dock-focus {
+  outline: 2px solid rgba(212, 180, 90, 0.55) !important;
+  outline-offset: 3px;
+  transition: outline 0.2s ease;
+}
+
+#user-family-tree-card .uft-stage {
+  border-radius: 14px;
+}
+
+/* Registry grid alignment under dock */
+#clarity-family-tree-host .uft-grid {
+  direction: ltr;
+  text-align: left;
+}
