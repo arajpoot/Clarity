@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105A3"/>
 <link rel="stylesheet" href="/assets/port-castle-v2.css?v=20261106A2"/>
-<link rel="stylesheet" href="/assets/port-room-tours-v1.css?v=20261107T1"/>
+<link rel="stylesheet" href="/assets/port-room-tours-v1.css?v=20261107T2"/>
 </head>
 <body>
 <header class="port-banner" role="banner">
@@ -59,7 +59,7 @@
 
     <div class="sym-grid">
       <div class="tower-wrap">
-        <a class="tower sym-left" data-room="companion" href="/companion/">
+        <div class="tower sym-left" data-room="companion">
           <div class="battles" aria-hidden="true"></div>
           <h3>✦ Companion</h3>
           <div class="role">Reminder · path · tools</div>
@@ -69,13 +69,15 @@
             <li>Reality · Reflection · Action</li>
             <li>Ḥajj · quiz · media desk</li>
           </ul>
-          <div class="enter">Enter Companion</div>
-        </a>
-        <button type="button" class="room-tour-pill" data-tour="companion" data-src="/assets/media/tours/clarity-companion-tour-v1.mp4" aria-label="Play Companion room tour">▶ Tour</button>
+          <div class="tower-actions">
+            <a class="enter" href="/companion/">Enter Companion</a>
+            <button type="button" class="room-tour-pill" data-tour="companion" data-src="/assets/media/tours/clarity-companion-tour-v1.mp4" aria-label="Play companion room tour">▶ Tour</button>
+          </div>
+        </div>
       </div>
 
       <div class="tower-wrap">
-        <a class="tower keep sym-keep" data-room="yawm" href="/daily/">
+        <div class="tower keep sym-keep" data-room="yawm">
           <div class="battles" aria-hidden="true"></div>
           <h3>☾ Yawm · Keep</h3>
           <div class="role">Today’s portion · heart of the castle</div>
@@ -85,13 +87,15 @@
             <li>Farḍ checklist · small deed</li>
             <li>Offline-first daily loop</li>
           </ul>
-          <div class="enter">Enter Yawm</div>
-        </a>
-        <button type="button" class="room-tour-pill" data-tour="yawm" data-src="/assets/media/tours/clarity-yawm-tour-v1.mp4" aria-label="Play Yawm room tour">▶ Tour</button>
+          <div class="tower-actions">
+            <a class="enter" href="/daily/">Enter Yawm</a>
+            <button type="button" class="room-tour-pill" data-tour="yawm" data-src="/assets/media/tours/clarity-yawm-tour-v1.mp4" aria-label="Play yawm room tour">▶ Tour</button>
+          </div>
+        </div>
       </div>
 
       <div class="tower-wrap">
-        <a class="tower sym-right" data-room="amana" href="/amana/">
+        <div class="tower sym-right" data-room="amana">
           <div class="battles" aria-hidden="true"></div>
           <h3>🔐 Amānah</h3>
           <div class="role">Trust · legacy desk</div>
@@ -101,13 +105,15 @@
             <li>Dayn · heirs · wasiyyah</li>
             <li>You hold the passphrase</li>
           </ul>
-          <div class="enter">Enter Amānah</div>
-        </a>
-        <button type="button" class="room-tour-pill is-ready" data-tour="amana" data-src="/assets/media/clarity-amana-tour-v2.mp4" aria-label="Play Amānah room tour">▶ Tour</button>
+          <div class="tower-actions">
+            <a class="enter" href="/amana/">Enter Amānah</a>
+            <button type="button" class="room-tour-pill is-ready" data-tour="amana" data-src="/assets/media/clarity-amana-tour-v2.mp4" aria-label="Play amana room tour">▶ Tour</button>
+          </div>
+        </div>
       </div>
 
       <div class="tower-wrap">
-        <a class="tower sym-left2" data-room="campus" href="/campus/">
+        <div class="tower sym-left2" data-room="campus">
           <div class="battles" aria-hidden="true"></div>
           <h3>◉ University</h3>
           <div class="role">Ordered path</div>
@@ -117,13 +123,15 @@
             <li>On-device progress</li>
             <li>Not a physical university</li>
           </ul>
-          <div class="enter">Enter Campus</div>
-        </a>
-        <button type="button" class="room-tour-pill" data-tour="campus" data-src="/assets/media/tours/clarity-campus-tour-v1.mp4" aria-label="Play Campus room tour">▶ Tour</button>
+          <div class="tower-actions">
+            <a class="enter" href="/campus/">Enter Campus</a>
+            <button type="button" class="room-tour-pill" data-tour="campus" data-src="/assets/media/tours/clarity-campus-tour-v1.mp4" aria-label="Play campus room tour">▶ Tour</button>
+          </div>
+        </div>
       </div>
 
       <div class="tower-wrap">
-        <a class="tower sym-right2" data-room="craft" href="/craft/">
+        <div class="tower sym-right2" data-room="craft">
           <div class="battles" aria-hidden="true"></div>
           <h3>✎ Craft</h3>
           <div class="role">Atelier</div>
@@ -133,9 +141,11 @@
             <li>Calligraphy pad</li>
             <li>Creative practice</li>
           </ul>
-          <div class="enter">Enter Craft</div>
-        </a>
-        <button type="button" class="room-tour-pill" data-tour="craft" data-src="/assets/media/tours/clarity-craft-tour-v1.mp4" aria-label="Play Craft room tour">▶ Tour</button>
+          <div class="tower-actions">
+            <a class="enter" href="/craft/">Enter Craft</a>
+            <button type="button" class="room-tour-pill" data-tour="craft" data-src="/assets/media/tours/clarity-craft-tour-v1.mp4" aria-label="Play craft room tour">▶ Tour</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -166,6 +176,6 @@
 </div>
 
 <script src="/assets/port-castle-v2.js?v=20261106A2" defer></script>
-<script src="/assets/port-room-tours-v1.js?v=20261107T1" defer></script>
+<script src="/assets/port-room-tours-v1.js?v=20261107T2" defer></script>
 </body>
 </html>
