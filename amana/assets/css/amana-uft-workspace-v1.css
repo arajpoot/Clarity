@@ -1,0 +1,167 @@
+/*! Amānah UFT workspace v1 · P4
+ * Pedigree readability · empty states · integrity strip · smooth zoom surface
+ * Replaces missing amana-uft-visual-polish-v1.css (404 on live)
+ * Educational only — not a legal pedigree
+ */
+
+#uft-stage.uft-stage,
+.uft-stage {
+  min-height: 16rem;
+  border: 1px solid rgba(212, 180, 90, 0.28);
+  border-radius: 14px;
+  padding: 0.65rem 0.75rem 0.85rem;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(30, 125, 94, 0.12), transparent 55%),
+    rgba(0, 0, 0, 0.22);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#uft-preview,
+.uft-preview {
+  min-height: 12rem;
+  position: relative;
+  overflow: auto;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.14);
+  border: 1px dashed rgba(212, 180, 90, 0.22);
+  touch-action: pan-x pan-y;
+  cursor: grab;
+}
+#uft-preview:active {
+  cursor: grabbing;
+}
+
+#uft-zoom-sizer,
+.uft-zoom-sizer {
+  transform-origin: 0 0;
+  will-change: transform;
+  min-width: 100%;
+}
+
+#uft-zoom-layer,
+.uft-zoom-layer {
+  position: relative;
+  min-height: 10rem;
+  padding: 0.5rem 0.35rem 1rem;
+  transition: none; /* avoid jitter during drag */
+}
+
+/* Generation bands */
+.uft-band,
+#uft-g1,
+#uft-g2,
+#uft-g3 {
+  margin: 0.45rem 0;
+  padding: 0.35rem 0.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 90, 0.12);
+  background: rgba(15, 76, 58, 0.08);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+#uft-backbone {
+  margin-top: 0.55rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.2);
+  background: rgba(0, 0, 0, 0.18);
+  display: grid;
+  gap: 0.35rem;
+}
+
+#uft-backbone > div {
+  min-height: 1.25rem;
+  padding: 0.28rem 0.45rem;
+  border-radius: 8px;
+  background: rgba(30, 125, 94, 0.12);
+  border: 1px solid rgba(212, 180, 90, 0.12);
+  font-size: 0.85rem;
+  word-break: break-word;
+}
+
+#uft-self,
+.uft-self {
+  background: rgba(201, 162, 39, 0.16) !important;
+  border-color: rgba(212, 180, 90, 0.4) !important;
+  font-weight: 650;
+  color: #e8d5a3;
+}
+
+/* Empty / placeholder */
+.uft-empty,
+#uft-empty,
+#uft-zoom-layer .uft-empty,
+#uft-preview .uft-empty {
+  margin: 0.75rem 0.35rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(212, 180, 90, 0.35);
+  background: rgba(212, 180, 90, 0.06);
+  color: #e8f0ec;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  opacity: 0.95;
+  text-align: left;
+}
+
+.uft-chrome-zoom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin: 0 0 0.5rem;
+  user-select: none;
+}
+.uft-chrome-zoom .btn-soft {
+  min-width: 2.25rem;
+  text-align: center;
+}
+
+/* Integrity / readiness strip */
+#uft-integrity,
+.uft-integrity {
+  margin-top: 0.55rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 10px;
+  border-left: 3px solid rgba(212, 180, 90, 0.5);
+  background: rgba(0, 0, 0, 0.22);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  opacity: 0.95;
+}
+#uft-integrity:empty {
+  display: none;
+}
+#uft-integrity.is-ready {
+  border-left-color: rgba(45, 138, 94, 0.75);
+}
+#uft-integrity.is-warn {
+  border-left-color: rgba(201, 162, 39, 0.85);
+}
+
+#uft-status {
+  font-size: 0.8rem;
+  opacity: 0.88;
+  margin: 0.35rem 0 0;
+}
+
+/* Registry cards under stage */
+#uft-reg-list {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+#uft-reg-list .uft-reg-row,
+#uft-reg-list li {
+  padding: 0.35rem 0.45rem;
+  margin: 0.25rem 0;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 180, 90, 0.14);
+  background: rgba(0, 0, 0, 0.16);
+}
+
+/* Reduce layout thrash while zooming */
+.uft-zooming #uft-zoom-sizer {
+  pointer-events: none;
+}
