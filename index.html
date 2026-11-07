@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="port" data-phase="A-port-chrome-symmetry">
+<html lang="en" data-theme="dark" data-clarity-room="port" data-phase="A-port-room-tours">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<meta name="clarity-phase" content="A-port-chrome-symmetry-20261106"/>
+<meta name="clarity-phase" content="A-port-room-tours-20261107"/>
 <meta name="description" content="Clarity — Furnish Your Grave. Five rooms, local-first. Educational only — not a fatwa."/>
 <title>Clarity — Furnish Your Grave</title>
 <link rel="canonical" href="https://clarity-dawah.fyi/"/>
@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105A3"/>
 <link rel="stylesheet" href="/assets/port-castle-v2.css?v=20261106A2"/>
+<link rel="stylesheet" href="/assets/port-room-tours-v1.css?v=20261107T1"/>
 </head>
 <body>
 <header class="port-banner" role="banner">
@@ -41,15 +42,15 @@
 <main class="port-wrap">
   <p class="port-disclaimer"><strong>Educational only — not a fatwa, not legal advice.</strong> Verify with Quran.com, Sunnah.com, and a local scholar. Private data stays on this device unless you export it.</p>
 
-  
-  <section class="port-tour" aria-label="Short tour of Clarity and Amānah" style="max-width:40rem;margin:1rem auto 1.25rem;padding:0.85rem 1rem;border-radius:14px;border:1px solid rgba(212,180,90,0.3);background:rgba(15,76,58,0.14)">
-    <h2 style="margin:0 0 0.35rem;font-size:1.05rem;color:#e8d5a3">Short tour · Port &amp; Amānah</h2>
-    <p style="margin:0 0 0.55rem;font-size:0.82rem;opacity:0.92;line-height:1.4">About half a minute. Five rooms, the Amānah gate, Tree &amp; Farāʾiḍ (locked until you unlock on your device), and Craft. <strong>Educational only — not a fatwa.</strong></p>
-    <video controls playsinline preload="metadata" poster="" style="width:100%;max-width:100%;border-radius:10px;background:#0a1410;border:1px solid rgba(212,180,90,0.22)" title="Clarity Amānah short tour">
+  <section class="port-tour" aria-label="Castle introduction">
+    <h2>Castle introduction</h2>
+    <p class="port-tour-lead">A short overview of Clarity’s five rooms. Room-specific tours sit on each card below — tap <strong>▶ Tour</strong> when you want one. Educational only — not a fatwa.</p>
+    <video controls playsinline preload="metadata" title="Clarity castle introduction">
+      <source src="/assets/media/tours/clarity-port-intro-v1.mp4" type="video/mp4"/>
       <source src="/assets/media/clarity-amana-tour-v2.mp4" type="video/mp4"/>
-      Your browser does not play this video. <a href="/assets/media/clarity-amana-tour-v2.mp4">Download the tour</a>.
+      Your browser does not play this video.
     </video>
-    <p style="margin:0.45rem 0 0;font-size:0.75rem;opacity:0.8">On-device vault · passphrase stays with you · confirm inheritance with a local scholar</p>
+    <p class="port-tour-note">Fallback uses the Amānah tour until the dedicated Port intro is published.</p>
   </section>
 
   <section class="castle-sym" aria-label="Castle rooms in symmetry">
@@ -57,73 +58,85 @@
     <p class="sub">Wings for learning &amp; craft · keep for today’s portion · Phase A offline foundation</p>
 
     <div class="sym-grid">
-      <!-- left wing -->
-      <a class="tower sym-left" data-room="companion" href="/companion/">
-        <div class="battles" aria-hidden="true"></div>
-        <h3>✦ Companion</h3>
-        <div class="role">Reminder · path · tools</div>
-        <ul>
-          <li>Commands &amp; daily verse</li>
-          <li>Hadith &amp; Prophet’s names ﷺ</li>
-          <li>Reality · Reflection · Action</li>
-          <li>Ḥajj · quiz · media desk</li>
-        </ul>
-        <div class="enter">Enter Companion</div>
-      </a>
+      <div class="tower-wrap">
+        <a class="tower sym-left" data-room="companion" href="/companion/">
+          <div class="battles" aria-hidden="true"></div>
+          <h3>✦ Companion</h3>
+          <div class="role">Reminder · path · tools</div>
+          <ul>
+            <li>Commands &amp; daily verse</li>
+            <li>Hadith &amp; Prophet’s names ﷺ</li>
+            <li>Reality · Reflection · Action</li>
+            <li>Ḥajj · quiz · media desk</li>
+          </ul>
+          <div class="enter">Enter Companion</div>
+        </a>
+        <button type="button" class="room-tour-pill" data-tour="companion" data-src="/assets/media/tours/clarity-companion-tour-v1.mp4" aria-label="Play Companion room tour">▶ Tour</button>
+      </div>
 
-      <!-- center keep: Yawm -->
-      <a class="tower keep sym-keep" data-room="yawm" href="/daily/">
-        <div class="battles" aria-hidden="true"></div>
-        <h3>☾ Yawm · Keep</h3>
-        <div class="role">Today’s portion · heart of the castle</div>
-        <ul>
-          <li>Sūrat al-ʿAṣr</li>
-          <li>Continuing deeds (Muslim 1631)</li>
-          <li>Farḍ checklist · small deed</li>
-          <li>Offline-first daily loop</li>
-        </ul>
-        <div class="enter">Enter Yawm</div>
-      </a>
+      <div class="tower-wrap">
+        <a class="tower keep sym-keep" data-room="yawm" href="/daily/">
+          <div class="battles" aria-hidden="true"></div>
+          <h3>☾ Yawm · Keep</h3>
+          <div class="role">Today’s portion · heart of the castle</div>
+          <ul>
+            <li>Sūrat al-ʿAṣr</li>
+            <li>Continuing deeds (Muslim 1631)</li>
+            <li>Farḍ checklist · small deed</li>
+            <li>Offline-first daily loop</li>
+          </ul>
+          <div class="enter">Enter Yawm</div>
+        </a>
+        <button type="button" class="room-tour-pill" data-tour="yawm" data-src="/assets/media/tours/clarity-yawm-tour-v1.mp4" aria-label="Play Yawm room tour">▶ Tour</button>
+      </div>
 
-      <!-- right wing -->
-      <a class="tower sym-right" data-room="amana" href="/amana/">
-        <div class="battles" aria-hidden="true"></div>
-        <h3>🔐 Amānah</h3>
-        <div class="role">Trust · legacy desk</div>
-        <ul>
-          <li>Desk notes (no unlock)</li>
-          <li>Optional vault chambers</li>
-          <li>Dayn · heirs · wasiyyah</li>
-          <li>You hold the passphrase</li>
-        </ul>
-        <div class="enter">Enter Amānah</div>
-      </a>
+      <div class="tower-wrap">
+        <a class="tower sym-right" data-room="amana" href="/amana/">
+          <div class="battles" aria-hidden="true"></div>
+          <h3>🔐 Amānah</h3>
+          <div class="role">Trust · legacy desk</div>
+          <ul>
+            <li>Desk notes (no unlock)</li>
+            <li>Optional vault chambers</li>
+            <li>Dayn · heirs · wasiyyah</li>
+            <li>You hold the passphrase</li>
+          </ul>
+          <div class="enter">Enter Amānah</div>
+        </a>
+        <button type="button" class="room-tour-pill is-ready" data-tour="amana" data-src="/assets/media/clarity-amana-tour-v2.mp4" aria-label="Play Amānah room tour">▶ Tour</button>
+      </div>
 
-      <a class="tower sym-left2" data-room="campus" href="/campus/">
-        <div class="battles" aria-hidden="true"></div>
-        <h3>◉ University</h3>
-        <div class="role">Ordered path</div>
-        <ul>
-          <li>Curriculum tracks</li>
-          <li>Structured lessons</li>
-          <li>On-device progress</li>
-          <li>Not a physical university</li>
-        </ul>
-        <div class="enter">Enter Campus</div>
-      </a>
+      <div class="tower-wrap">
+        <a class="tower sym-left2" data-room="campus" href="/campus/">
+          <div class="battles" aria-hidden="true"></div>
+          <h3>◉ University</h3>
+          <div class="role">Ordered path</div>
+          <ul>
+            <li>Curriculum tracks</li>
+            <li>Structured lessons</li>
+            <li>On-device progress</li>
+            <li>Not a physical university</li>
+          </ul>
+          <div class="enter">Enter Campus</div>
+        </a>
+        <button type="button" class="room-tour-pill" data-tour="campus" data-src="/assets/media/tours/clarity-campus-tour-v1.mp4" aria-label="Play Campus room tour">▶ Tour</button>
+      </div>
 
-      <a class="tower sym-right2" data-room="craft" href="/craft/">
-        <div class="battles" aria-hidden="true"></div>
-        <h3>✎ Craft</h3>
-        <div class="role">Atelier</div>
-        <ul>
-          <li>Meme studio</li>
-          <li>Tajweed deep tools</li>
-          <li>Calligraphy pad</li>
-          <li>Creative practice</li>
-        </ul>
-        <div class="enter">Enter Craft</div>
-      </a>
+      <div class="tower-wrap">
+        <a class="tower sym-right2" data-room="craft" href="/craft/">
+          <div class="battles" aria-hidden="true"></div>
+          <h3>✎ Craft</h3>
+          <div class="role">Atelier</div>
+          <ul>
+            <li>Meme studio</li>
+            <li>Tajweed deep tools</li>
+            <li>Calligraphy pad</li>
+            <li>Creative practice</li>
+          </ul>
+          <div class="enter">Enter Craft</div>
+        </a>
+        <button type="button" class="room-tour-pill" data-tour="craft" data-src="/assets/media/tours/clarity-craft-tour-v1.mp4" aria-label="Play Craft room tour">▶ Tour</button>
+      </div>
     </div>
   </section>
 
@@ -139,6 +152,20 @@
     <p>Sources: <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> · <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a></p>
   </footer>
 </main>
+
+<div id="room-tour-modal" class="room-tour-modal" hidden>
+  <div class="room-tour-dialog" role="dialog" aria-modal="true" aria-labelledby="room-tour-title">
+    <div class="room-tour-head">
+      <h2 id="room-tour-title">Room tour</h2>
+      <button type="button" class="room-tour-close" id="room-tour-close" aria-label="Close tour">×</button>
+    </div>
+    <video id="room-tour-video" controls playsinline preload="metadata"></video>
+    <p class="room-tour-stamp">Educational only — not a fatwa · not legal advice</p>
+    <p id="room-tour-missing" class="room-tour-missing" hidden>This room tour is not on the server yet. Amānah tour is available; others follow in the next pack.</p>
+  </div>
+</div>
+
 <script src="/assets/port-castle-v2.js?v=20261106A2" defer></script>
+<script src="/assets/port-room-tours-v1.js?v=20261107T1" defer></script>
 </body>
 </html>
