@@ -1,0 +1,63 @@
+{
+  "page": "/amana/tree/",
+  "build": "AMANA_UFT_FIQH_P0P1",
+  "educational_only": true,
+  "keys": {
+    "tree": "clarity_user_family_tree_v1",
+    "cards": "clarity_uft_member_cards_v1"
+  },
+  "css_order": [
+    { "href": "/assets/room-nav/clarity-room-nav-v1.css", "role": "shared_chrome" },
+    { "href": "/amana/assets/clarity-pedigree-plaque-css-v1.css", "role": "plaque" },
+    { "href": "/amana/assets/css/amana-uft-registry-deep-v1.css", "role": "registry" },
+    { "href": "/amana/assets/css/am-critical-v1.css", "role": "amana_shell" },
+    { "href": "/amana/assets/css/am-gate-v1.css", "role": "amana_shell" },
+    { "href": "/amana/assets/css/am-chamber-v1.css", "role": "amana_shell" },
+    { "href": "/amana/assets/clarity-amana-room-ui-v1.css", "role": "amana_shell" },
+    { "href": "/amana/assets/css/am-banner-v1.css", "role": "banner" },
+    { "href": "/amana/assets/css/amana-uft-dock-v1.css", "role": "dock" },
+    { "href": "/amana/assets/css/amana-uft-build-viewport-v1.css", "role": "build_viewport" },
+    { "href": "/amana/assets/css/amana-uft-visual-fix-v1.css", "role": "visual_fix" },
+    { "href": "/amana/assets/css/amana-uft-layout-h-v1.css", "role": "layout" },
+    { "href": "/amana/assets/css/amana-room-harmony-v1.css", "role": "harmony" },
+    { "href": "/amana/assets/css/amana-living-centre-v1.css", "role": "living_centre" }
+  ],
+  "js_order_current": [
+    { "src": "/assets/room-nav/clarity-room-nav-v1.js", "role": "shared_chrome", "defer": true },
+    { "src": "/amana/assets/clarity-amana-engine-v1.js", "role": "vault_engine", "defer": false },
+    { "src": "/amana/assets/amana-engine-unlock-patch-v1.js", "role": "unlock_bridge", "defer": false },
+    { "src": "/amana/assets/inline-clarity_uft_viewport_recover.js", "role": "recover", "defer": true },
+    { "src": "/amana/assets/inline-clarity_uft_print_fix_v2.js", "role": "print", "defer": true },
+    { "src": "/amana/assets/inline-clarity_pedigree_plaque_v1.js", "role": "plaque", "defer": true },
+    { "src": "/amana/assets/clarity-amana-uft-v1.js", "role": "core", "defer": true },
+    { "src": "/amana/assets/clarity-uft-full-restore-v1.js", "role": "restore", "defer": true },
+    { "src": "/amana/assets/amana-uft-registry-deep-v1.js", "role": "registry", "defer": true },
+    { "src": "/amana/assets/amana-uft-dock-v1.js", "role": "dock", "defer": true },
+    { "src": "/amana/assets/amana-uft-build-viewport-v1.js", "role": "build_viewport", "defer": true },
+    { "src": "/amana/assets/amana-uft-visual-fix-v1.js", "role": "visual_fix", "defer": true },
+    { "src": "/amana/assets/amana-uft-layout-h-v1.js", "role": "layout", "defer": true },
+    { "src": "/amana/assets/amana-uft-file-ops-v1.js", "role": "file_ops", "defer": true },
+    { "src": "/amana/assets/amana-living-centre-v1.js", "role": "living_centre", "defer": true }
+  ],
+  "js_order_phase1_target": [
+    { "src": "/assets/room-nav/clarity-room-nav-v1.js", "role": "shared_chrome" },
+    { "src": "/amana/assets/clarity-amana-engine-v1.js", "role": "vault_engine" },
+    { "src": "/amana/assets/amana-engine-unlock-patch-v1.js", "role": "unlock_bridge" },
+    { "src": "/amana/assets/clarity-amana-uft-v1.js", "role": "core" },
+    { "src": "/amana/assets/clarity-uft-full-restore-v1.js", "role": "restore" },
+    { "src": "/amana/assets/amana-uft-registry-deep-v1.js", "role": "registry" },
+    { "src": "/amana/assets/amana-uft-viewport-stable-v1.js", "role": "stable_bridge", "note": "absorbs recover + visual-fix + build chrome inject; no capability drop" },
+    { "src": "/amana/assets/amana-uft-dock-v1.js", "role": "dock" },
+    { "src": "/amana/assets/amana-uft-layout-h-v1.js", "role": "layout" },
+    { "src": "/amana/assets/inline-clarity_uft_print_fix_v2.js", "role": "print" },
+    { "src": "/amana/assets/inline-clarity_pedigree_plaque_v1.js", "role": "plaque" },
+    { "src": "/amana/assets/amana-uft-file-ops-v1.js", "role": "file_ops" },
+    { "src": "/amana/assets/amana-living-centre-v1.js", "role": "living_centre" }
+  ],
+  "fragility": [
+    "Core uftRender expects #uft-preview; Amānah HTML ships #uft-stage bands",
+    "Build selects need card indexes not only names",
+    "Multiple recover bridges race on cold load"
+  ],
+  "enrichment": "held"
+}

@@ -10,4 +10,10 @@
 | Farāʾiḍ | `/amana/fiqh/` |
 | Wasiyyah | `/amana/wasiyyah/` |
 
-Four-room chrome: Companion · Yawm · University · Amānah
+Five-room chrome: Companion · Yawm · University · Amānah · Craft
+
+Seal: **Five rooms · educational only · not a fatwa**
+
+---
+
+*Phase 0–1 pack*
