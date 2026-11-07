@@ -1,4 +1,4 @@
-/* Port room tour pills + modal · additive · educational only */
+/* Port room tour pills + modal · Enter + Tour same row */
 .port-tour {
   max-width: 40rem;
   margin: 1rem auto 1.25rem;
@@ -34,30 +34,73 @@
 .tower-wrap {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 0.35rem;
   min-width: 0;
+  height: 100%;
 }
 .tower-wrap > .tower {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Action row: Enter + Tour on one line */
+.tower-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: stretch;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.45rem;
+}
+.tower-actions .enter {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 0.45rem;
+  min-height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: rgba(30, 125, 94, 0.35);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tower-actions .enter:hover,
+.tower-actions .enter:focus-visible {
+  background: rgba(30, 125, 94, 0.55);
+  outline: none;
 }
 
 .room-tour-pill {
   appearance: none;
   cursor: pointer;
-  align-self: center;
+  flex: 0 0 auto;
   margin: 0;
-  padding: 0.28rem 0.85rem;
+  padding: 0.35rem 0.55rem;
   border-radius: 999px;
   border: 1px solid rgba(212, 180, 90, 0.45);
   background: rgba(12, 28, 22, 0.92);
   color: #e8d5a3;
   font: inherit;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.03em;
-  line-height: 1.2;
-  min-height: 32px;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  min-height: 34px;
+  white-space: nowrap;
 }
 .room-tour-pill:hover,
 .room-tour-pill:focus-visible {
@@ -67,6 +110,11 @@
 }
 .room-tour-pill.is-ready {
   border-color: rgba(80, 180, 120, 0.55);
+}
+
+/* Hide legacy lone .enter if any old markup remains */
+.tower > .enter:not(.tower-actions .enter) {
+  display: none;
 }
 
 .room-tour-modal {
@@ -132,4 +180,15 @@
   margin: 0.35rem 0 0;
   font-size: 0.8rem;
   color: #c9a84c;
+}
+
+@media (max-width: 420px) {
+  .tower-actions .enter {
+    font-size: 0.65rem;
+    padding: 0.32rem 0.35rem;
+  }
+  .room-tour-pill {
+    font-size: 0.62rem;
+    padding: 0.32rem 0.45rem;
+  }
 }
