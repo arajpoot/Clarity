@@ -1,0 +1,248 @@
+/*! port-castle-v2 · classic chrome + symmetric keep */
+:root {
+  --bg: #071410;
+  --bg2: #0c1a15;
+  --card: rgba(12, 28, 22, 0.92);
+  --gold: #c9a227;
+  --gold2: #e8d5a3;
+  --line: rgba(201, 162, 39, 0.32);
+  --text: #e7efe9;
+  --muted: rgba(231, 239, 233, 0.72);
+  --mint: #1e7d5e;
+}
+html[data-theme="light"] {
+  --bg: #f4efe4;
+  --bg2: #ebe4d6;
+  --card: rgba(255, 252, 245, 0.95);
+  --text: #14201a;
+  --muted: rgba(20, 32, 26, 0.72);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Quicksand", "Plus Jakarta Sans", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.arabic, [lang="ar"] { font-family: "Amiri", serif; }
+
+/* classic top banner strip */
+.port-banner {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(120deg, rgba(15, 76, 58, 0.55), rgba(10, 20, 16, 0.2) 45%, rgba(201, 162, 39, 0.12)),
+    radial-gradient(ellipse 80% 100% at 100% 0%, rgba(201, 162, 39, 0.2), transparent 50%),
+    var(--bg2);
+  padding: 1.15rem 1rem 1.35rem;
+}
+.port-banner .banner-glow {
+  position: absolute;
+  inset: auto -20% -40% 40%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.15), transparent 60%);
+  pointer-events: none;
+}
+.port-banner-inner {
+  position: relative;
+  max-width: 56rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.port-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 0.35rem;
+}
+.port-title {
+  font-family: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  font-size: clamp(1.75rem, 5vw, 2.45rem);
+  font-weight: 700;
+  margin: 0;
+  color: var(--gold2);
+  line-height: 1.15;
+}
+.port-title span { color: var(--gold); }
+.port-tagline {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.port-ar {
+  margin: 0.65rem 0 0;
+  font-size: 1.2rem;
+  color: var(--gold);
+  direction: rtl;
+}
+.port-tools {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.port-chip {
+  font-size: 0.68rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text);
+  cursor: pointer;
+}
+html[data-theme="light"] .port-chip { background: rgba(255, 255, 255, 0.7); }
+.port-chip.online { border-color: rgba(61, 158, 111, 0.55); }
+.port-chip.offline { border-color: rgba(180, 100, 60, 0.55); }
+
+.port-wrap {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 2.5rem;
+}
+.port-disclaimer {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--muted);
+  text-align: center;
+  max-width: 40rem;
+  margin: 0.75rem auto 1.25rem;
+}
+
+/* symmetric castle: wings + center keep */
+.castle-sym {
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background: var(--card);
+  padding: 1rem 0.85rem 1.25rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+.castle-sym h2 {
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  color: var(--gold);
+  margin: 0 0 0.25rem;
+}
+.castle-sym .sub {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.sym-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  grid-template-areas:
+    "left keep right"
+    "left2 keep right2";
+  gap: 0.55rem;
+  align-items: stretch;
+}
+@media (max-width: 720px) {
+  .sym-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "keep"
+      "left"
+      "right"
+      "left2"
+      "right2";
+  }
+}
+.sym-left { grid-area: left; }
+.sym-left2 { grid-area: left2; }
+.sym-keep { grid-area: keep; }
+.sym-right { grid-area: right; }
+.sym-right2 { grid-area: right2; }
+
+.tower {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  padding: 0.7rem 0.7rem 0.8rem;
+  background: linear-gradient(180deg, rgba(30, 125, 94, 0.08), rgba(0, 0, 0, 0.15));
+  min-height: 100%;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.tower:hover, .tower:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(201, 162, 39, 0.7);
+  outline: none;
+}
+.tower .battles {
+  height: 6px;
+  margin: -0.25rem 0 0.45rem;
+  opacity: 0.5;
+  background: repeating-linear-gradient(90deg, var(--gold) 0 10px, transparent 10px 16px);
+}
+.tower h3 {
+  margin: 0 0 0.15rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.12rem;
+  color: var(--gold2);
+}
+.tower .role {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.tower ul {
+  margin: 0;
+  padding-left: 0.95rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--muted);
+  flex: 1;
+}
+.tower .enter {
+  margin-top: 0.55rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem;
+  border-radius: 999px;
+  background: rgba(30, 125, 94, 0.45);
+  border: 1px solid var(--line);
+}
+
+/* center keep emphasis */
+.tower.keep {
+  border-width: 1.5px;
+  border-color: rgba(201, 162, 39, 0.55);
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, 0.12), rgba(15, 76, 58, 0.2)),
+    var(--card);
+  justify-content: center;
+  min-height: 100%;
+}
+.tower.keep h3 { font-size: 1.35rem; }
+.tower.keep ul { font-size: 0.78rem; }
+.tower.keep .enter {
+  background: rgba(201, 162, 39, 0.22);
+  color: var(--gold2);
+}
+
+.tower[data-room="companion"] { border-top: 3px solid #c9a227; }
+.tower[data-room="yawm"] { border-top: 3px solid #3d9e6f; }
+.tower[data-room="campus"] { border-top: 3px solid #6b8f9e; }
+.tower[data-room="amana"] { border-top: 3px solid #b8922a; }
+.tower[data-room="craft"] { border-top: 3px solid #8a6bb0; }
+
+.port-foot {
+  margin-top: 1.35rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.port-foot a { color: var(--gold); }
