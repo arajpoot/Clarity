@@ -1,0 +1,19 @@
+{
+  "build": "AMANA_UFT_FIQH_P0P3",
+  "date": "2026-11-07",
+  "educational_only": true,
+  "governance": {
+    "enrichment_clause": true,
+    "other_rooms": "held",
+    "amana_chambers_held": ["dayn", "heirs", "notes", "wasiyyah", "gate", "unlock", "desk"]
+  },
+  "p0p2_live": "PASS",
+  "p3_checks": [
+    { "id": "L1", "assert": "amana-uft-loaded-ops-v1.js in pack and tree boot", "status": "implemented" },
+    { "id": "L2", "assert": "API: uftScanLoadedDuplicates · uftOffloadLoadedCards · uftClearLoadedCards", "status": "implemented" },
+    { "id": "L3", "assert": "Panel #uft-loaded-ops with scan / offload / clear / sync", "status": "implemented" },
+    { "id": "L4", "assert": "Uses clarity_uft_member_cards_v1 only — does not clear tree registry", "status": "implemented" },
+    { "id": "L5", "assert": "Operator: deploy then exercise scan/offload on Tree", "status": "operator_verify_after_deploy" }
+  ],
+  "next": "P4 pedigree workspace polish · P5 PNG snapshot · P6 Farāʾiḍ study UX"
+}

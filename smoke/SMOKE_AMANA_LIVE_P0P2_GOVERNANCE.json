@@ -1,0 +1,41 @@
+{
+  "build": "AMANA_UFT_FIQH_P0P2_LIVE",
+  "date": "2026-11-07",
+  "live_crawl": {
+    "tree": {
+      "url": "https://clarity-dawah.fyi/amana/tree/",
+      "five_rooms": true,
+      "uft_preview": true,
+      "dock_v2_js": true,
+      "dock_v2_css": true,
+      "viewport_stable": true,
+      "companion_inline_script_src": false,
+      "companion_inline_comment_only": true,
+      "assets_http_200": true
+    },
+    "fiqh": {
+      "url": "https://clarity-dawah.fyi/amana/fiqh/",
+      "five_rooms": true,
+      "owned_imports_only": true,
+      "educational_stamp": true
+    },
+    "other_rooms_http": {
+      "/companion/": 200,
+      "/daily/": 200,
+      "/campus/": 200,
+      "/amana/dayn/": 200,
+      "/amana/heirs/": 200,
+      "/amana/notes/": 200,
+      "/amana/wasiyyah/": 200
+    }
+  },
+  "governance_audit": {
+    "enrichment_only": "PASS",
+    "isolation_owned_imports": "PASS",
+    "other_rooms_untouched": "PASS",
+    "amana_dayn_heirs_notes_wasiyyah_not_in_pack": "PASS",
+    "educational_stamps": "PASS",
+    "notes": "Dayn still shows legacy Four rooms seal — held out of scope, not a P0-P2 regression"
+  },
+  "verdict": "P0-P2 LIVE COMPLIANT · proceed P3"
+}
