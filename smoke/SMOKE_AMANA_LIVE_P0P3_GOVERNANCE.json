@@ -1,0 +1,25 @@
+{
+  "build": "AMANA_UFT_FIQH_P0P3_LIVE",
+  "date": "2026-11-07",
+  "live_crawl": {
+    "tree": {
+      "five_rooms": true,
+      "uft_preview": true,
+      "dock_v2": true,
+      "loaded_ops": true,
+      "viewport_stable": true,
+      "companion_inline_script": false,
+      "loaded_ops_http": 200,
+      "load_map_phase": "P0P3"
+    },
+    "fiqh": { "five_rooms": true, "owned_imports": true },
+    "other_rooms_all_200": true
+  },
+  "governance_audit": {
+    "enrichment_only": "PASS",
+    "isolation": "PASS",
+    "other_rooms_held": "PASS",
+    "known_issue_fixed_in_p4": "amana-uft-visual-polish-v1.css was 404 on live — replaced by workspace-v1.css"
+  },
+  "verdict": "P0-P3 LIVE COMPLIANT · P4 packages 404 fix + workspace polish"
+}

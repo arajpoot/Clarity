@@ -1,0 +1,18 @@
+{
+  "build": "AMANA_UFT_FIQH_P0P4",
+  "educational_only": true,
+  "governance": {
+    "enrichment_clause": true,
+    "other_rooms": "held",
+    "amana_chambers_held": ["dayn", "heirs", "notes", "wasiyyah", "gate", "unlock", "desk"]
+  },
+  "p0p3_live": "PASS",
+  "p4_checks": [
+    { "id": "W1", "assert": "workspace-v1.css + js in pack; tree no longer requests visual-polish-v1.css", "status": "implemented" },
+    { "id": "W2", "assert": "Double-tap / dblclick on preview resets zoom", "status": "implemented" },
+    { "id": "W3", "assert": "Integrity strip gender/vital readiness", "status": "implemented" },
+    { "id": "W4", "assert": "Empty-state styling and backbone card readability CSS", "status": "implemented" },
+    { "id": "W5", "assert": "Operator verify after deploy: no 404 for workspace CSS; integrity fills", "status": "operator_verify" }
+  ],
+  "next": "P5 file ops PNG workspace snapshot · P6 Farāʾiḍ study UX"
+}
