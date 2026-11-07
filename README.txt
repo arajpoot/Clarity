@@ -1,16 +1,11 @@
-Phase A — Castle Port + offline SW
+Phase A Port v2 — classic chrome + symmetric castle
 
-Deploy to site ROOT (not only companion/):
+Restores Port banner title chrome + site room-nav.
+Castle layout: left wing Companion/Campus, center Yawm keep, right wing Amānah/Craft.
+
+Deploy to site ROOT:
   index.html
-  sw.js
-  assets/port-castle-v1.css
-  assets/port-castle-v1.js
-
-See PHASE_A_OFFLINE.md for checklist.
-
-
-BINDING GOVERNANCE
-------------------
-GOVERNANCE_CONTRACT.md is part of Phase A and is BINDING on Phases B, C, D+.
-Enrichment hold applies to Port + all five rooms (not Companion only).
-Upload GOVERNANCE_CONTRACT.md to site root with Phase A.
+  sw.js (from Phase A)
+  GOVERNANCE_CONTRACT.md
+  assets/port-castle-v2.css
+  assets/port-castle-v2.js

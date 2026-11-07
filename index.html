@@ -1,73 +1,96 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="port" data-phase="A-offline-castle">
+<html lang="en" data-theme="dark" data-clarity-room="port" data-phase="A-port-chrome-symmetry">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<meta name="clarity-phase" content="A-offline-castle-port-20261106"/>
-<meta name="description" content="Clarity — five rooms in one castle. Furnish your grave through daily practice. Educational only — not a fatwa."/>
+<meta name="clarity-phase" content="A-port-chrome-symmetry-20261106"/>
+<meta name="description" content="Clarity — Furnish Your Grave. Five rooms, local-first. Educational only — not a fatwa."/>
 <title>Clarity — Furnish Your Grave</title>
 <link rel="canonical" href="https://clarity-dawah.fyi/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/port-castle-v1.css?v=20261106A1"/>
-<link rel="manifest" href="/manifest.webmanifest"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105A3"/>
+<link rel="stylesheet" href="/assets/port-castle-v2.css?v=20261106A2"/>
 </head>
 <body>
-<div class="castle-port">
-  <div class="cp-top">
-    <a class="cp-brand" href="/">Clarity</a>
-    <div class="cp-meta">
-      <span class="cp-chip" id="cp-net-chip">…</span>
-      <span class="cp-chip" id="cp-sw-chip">PWA…</span>
-      <button type="button" class="cp-chip" id="cp-theme" title="Theme">◐ Theme</button>
-    </div>
+<header class="port-banner" role="banner">
+  <div class="banner-glow" aria-hidden="true"></div>
+  <div class="port-tools">
+    <span class="port-chip" id="cp-net-chip">…</span>
+    <span class="port-chip" id="cp-sw-chip">PWA…</span>
+    <button type="button" class="port-chip" id="cp-theme" title="Theme">◐</button>
   </div>
-
-  <div class="cp-motto">
-    <div class="ar">فَأَمَّا مَنْ ثَقُلَتْ مَوَازِينُهُ</div>
-    <div class="en">Furnish the grave — send light ahead, one day at a time.</div>
+  <div class="port-banner-inner">
+    <p class="port-kicker">Clarity · local-first · five rooms</p>
+    <h1 class="port-title">Furnish Your <span>Grave</span></h1>
+    <p class="port-tagline">Daily practice · private amānah · ordered learning — educational companion only</p>
+    <p class="port-ar arabic" lang="ar">فَأَمَّا مَنْ ثَقُلَتْ مَوَازِينُهُ</p>
   </div>
-  <p class="cp-disclaimer"><strong>Educational companion only — not a fatwa, not legal advice.</strong> Verify with Quran.com, Sunnah.com, and a local scholar. Private data stays on your device unless you export it.</p>
+</header>
 
-  <section class="castle-stage" aria-label="Five rooms of Clarity">
-    <div class="castle-sky" aria-hidden="true"></div>
-    <h1 class="castle-title">The Castle of Clarity</h1>
-    <p class="castle-sub">Five rooms · one intention · local-first · Phase A offline foundation</p>
+<nav class="top clarity-room-nav" data-room="port" aria-label="Clarity rooms">
+  <a href="/" aria-current="page">Port</a>
+  <a href="/companion/">Companion</a>
+  <a href="/daily/">Yawm</a>
+  <a href="/campus/">Campus</a>
+  <a href="/amana/">Amānah</a>
+  <a href="/craft/">Craft</a>
+</nav>
 
-    <div class="castle-row">
-      <a class="room-tower" data-room="companion" href="/companion/">
-        <div class="battlement" aria-hidden="true"></div>
-        <div class="room-ico">✦</div>
-        <h2>Companion</h2>
+<main class="port-wrap">
+  <p class="port-disclaimer"><strong>Educational only — not a fatwa, not legal advice.</strong> Verify with Quran.com, Sunnah.com, and a local scholar. Private data stays on this device unless you export it.</p>
+
+  <section class="castle-sym" aria-label="Castle rooms in symmetry">
+    <h2>The Castle of Clarity</h2>
+    <p class="sub">Wings for learning &amp; craft · keep for today’s portion · Phase A offline foundation</p>
+
+    <div class="sym-grid">
+      <!-- left wing -->
+      <a class="tower sym-left" data-room="companion" href="/companion/">
+        <div class="battles" aria-hidden="true"></div>
+        <h3>✦ Companion</h3>
         <div class="role">Reminder · path · tools</div>
         <ul>
-          <li>Allah’s commands &amp; daily verse</li>
+          <li>Commands &amp; daily verse</li>
           <li>Hadith &amp; Prophet’s names ﷺ</li>
           <li>Reality · Reflection · Action</li>
-          <li>Ḥajj outline · quiz · media desk</li>
+          <li>Ḥajj · quiz · media desk</li>
         </ul>
-        <div class="door">Enter Companion</div>
+        <div class="enter">Enter Companion</div>
       </a>
 
-      <a class="room-tower" data-room="yawm" href="/daily/">
-        <div class="battlement" aria-hidden="true"></div>
-        <div class="room-ico">☾</div>
-        <h2>Yawm</h2>
-        <div class="role">Today’s portion</div>
+      <!-- center keep: Yawm -->
+      <a class="tower keep sym-keep" data-room="yawm" href="/daily/">
+        <div class="battles" aria-hidden="true"></div>
+        <h3>☾ Yawm · Keep</h3>
+        <div class="role">Today’s portion · heart of the castle</div>
         <ul>
-          <li>Sūrat al-ʿAṣr focus</li>
+          <li>Sūrat al-ʿAṣr</li>
           <li>Continuing deeds (Muslim 1631)</li>
           <li>Farḍ checklist · small deed</li>
           <li>Offline-first daily loop</li>
         </ul>
-        <div class="door">Enter Yawm</div>
+        <div class="enter">Enter Yawm</div>
       </a>
 
-      <a class="room-tower" data-room="campus" href="/campus/">
-        <div class="battlement" aria-hidden="true"></div>
-        <div class="room-ico">◉</div>
-        <h2>University</h2>
+      <!-- right wing -->
+      <a class="tower sym-right" data-room="amana" href="/amana/">
+        <div class="battles" aria-hidden="true"></div>
+        <h3>🔐 Amānah</h3>
+        <div class="role">Trust · legacy desk</div>
+        <ul>
+          <li>Desk notes (no unlock)</li>
+          <li>Optional vault chambers</li>
+          <li>Dayn · heirs · wasiyyah</li>
+          <li>You hold the passphrase</li>
+        </ul>
+        <div class="enter">Enter Amānah</div>
+      </a>
+
+      <a class="tower sym-left2" data-room="campus" href="/campus/">
+        <div class="battles" aria-hidden="true"></div>
+        <h3>◉ University</h3>
         <div class="role">Ordered path</div>
         <ul>
           <li>Curriculum tracks</li>
@@ -75,27 +98,12 @@
           <li>On-device progress</li>
           <li>Not a physical university</li>
         </ul>
-        <div class="door">Enter Campus</div>
+        <div class="enter">Enter Campus</div>
       </a>
 
-      <a class="room-tower" data-room="amana" href="/amana/">
-        <div class="battlement" aria-hidden="true"></div>
-        <div class="room-ico">🔐</div>
-        <h2>Amānah</h2>
-        <div class="role">Trust · legacy desk</div>
-        <ul>
-          <li>Desk notes (no unlock)</li>
-          <li>Optional vault chambers</li>
-          <li>Dayn · heirs · wasiyyah reminders</li>
-          <li>You hold the passphrase</li>
-        </ul>
-        <div class="door">Enter Amānah</div>
-      </a>
-
-      <a class="room-tower" data-room="craft" href="/craft/">
-        <div class="battlement" aria-hidden="true"></div>
-        <div class="room-ico">✎</div>
-        <h2>Craft</h2>
+      <a class="tower sym-right2" data-room="craft" href="/craft/">
+        <div class="battles" aria-hidden="true"></div>
+        <h3>✎ Craft</h3>
         <div class="role">Atelier</div>
         <ul>
           <li>Meme studio</li>
@@ -103,14 +111,13 @@
           <li>Calligraphy pad</li>
           <li>Creative practice</li>
         </ul>
-        <div class="door">Enter Craft</div>
+        <div class="enter">Enter Craft</div>
       </a>
     </div>
-    <p class="castle-keep">The keep is your intention. The rooms are only doors. Educational only — not a fatwa.</p>
   </section>
 
-  <footer class="cp-foot">
-    <p>Phase A · offline caches per room · <a href="/GOVERNANCE_CONTRACT.md">castle-wide governance</a> · enrichment held for all rooms.</p>
+  <footer class="port-foot">
+    <p>Phase A · <a href="/GOVERNANCE_CONTRACT.md">castle-wide governance</a> · enrichment held for all rooms</p>
     <p>
       <a href="/companion/">Companion</a> ·
       <a href="/daily/">Yawm</a> ·
@@ -120,7 +127,7 @@
     </p>
     <p>Sources: <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> · <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a></p>
   </footer>
-</div>
-<script src="/assets/port-castle-v1.js?v=20261106A1" defer></script>
+</main>
+<script src="/assets/port-castle-v2.js?v=20261106A2" defer></script>
 </body>
 </html>
