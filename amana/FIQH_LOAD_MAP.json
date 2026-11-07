@@ -1,6 +1,6 @@
 {
   "page": "/amana/fiqh/",
-  "build": "AMANA_UFT_FIQH_P0P1",
+  "build": "AMANA_UFT_FIQH_P0P6",
   "educational_only": true,
   "keys": {
     "tree": "clarity_user_family_tree_v1",
@@ -8,46 +8,21 @@
     "calc_store": "clarity_amana_faraid_calc_v3",
     "rich_store": "clarity_amana_faraid_rich_v1"
   },
-  "css_order": [
-    { "href": "/assets/room-nav/clarity-room-nav-v1.css", "role": "shared_chrome" },
-    { "href": "/amana/assets/css/am-critical-v1.css", "role": "amana_shell" },
-    { "href": "/amana/assets/css/am-gate-v1.css", "role": "amana_shell" },
-    { "href": "/amana/assets/css/am-chamber-v1.css", "role": "amana_shell" },
-    { "href": "/amana/assets/clarity-amana-room-ui-v1.css", "role": "amana_shell" },
-    { "href": "/amana/assets/css/am-banner-v1.css", "role": "banner" },
-    { "href": "/amana/assets/css/amana-living-centre-v1.css", "role": "living_centre" },
-    { "href": "/amana/assets/css/amana-fiqh-wasiyyah-v1.css", "role": "fiqh_shell" },
-    { "href": "/amana/assets/css/amana-faraid-calc-v3.css", "role": "calc" },
-    { "href": "/amana/assets/css/amana-room-harmony-v1.css", "role": "harmony" }
-  ],
   "js_order": [
-    { "src": "/assets/room-nav/clarity-room-nav-v1.js", "role": "shared_chrome", "defer": true },
-    { "src": "/amana/assets/clarity-amana-engine-v1.js", "role": "vault_engine", "defer": false },
-    { "src": "/amana/assets/amana-engine-unlock-patch-v1.js", "role": "unlock_bridge", "defer": false },
-    { "src": "/amana/assets/amana-faraid-rich-v1.js", "role": "study_maps", "defer": true, "note": "SHARE_TABLE educational only" },
-    { "src": "/amana/assets/clarity-amana-fiqh-v1.js", "role": "fiqh_shell", "defer": true },
-    { "src": "/amana/assets/amana-faraid-calculator-v3.js", "role": "study_calc", "defer": true, "note": "reads UFT_KEY / uftRead; Hanafi-leaning study aid" },
-    { "src": "/amana/assets/amana-uft-relation-enrich-v2.js", "role": "relation", "defer": true },
-    { "src": "/amana/assets/amana-uft-fiqh-bridge-v1.js", "role": "tree_bridge", "defer": true },
-    { "src": "/amana/assets/amana-uft-polish-print-v1.js", "role": "print", "defer": true },
-    { "src": "/amana/assets/amana-living-centre-v1.js", "role": "living_centre", "defer": true }
+    { "src": "/amana/assets/amana-fiqh-study-ux-v1.js", "role": "study_ux_p6" },
+    { "src": "/amana/assets/amana-faraid-rich-v1.js", "role": "study_maps" },
+    { "src": "/amana/assets/clarity-amana-fiqh-v1.js", "role": "fiqh_shell" },
+    { "src": "/amana/assets/amana-faraid-calculator-v3.js", "role": "study_calc" },
+    { "src": "/amana/assets/amana-uft-relation-enrich-v2.js", "role": "relation" },
+    { "src": "/amana/assets/amana-uft-fiqh-bridge-v1.js", "role": "tree_bridge" },
+    { "src": "/amana/assets/amana-uft-polish-print-v1.js", "role": "print" },
+    { "src": "/amana/assets/amana-living-centre-v1.js", "role": "living_centre" }
   ],
-  "ownership": {
-    "imports": "amana/assets only — no companion-inline on this page",
-    "isolation": "P1 verified"
-  },
-  "shared_with_uft": ["clarity_user_family_tree_v1", "gender", "vital", "registry roles", "clarity_amana_fiqh_outline_v1"],
   "stamps_required": [
     "Educational only — not a fatwa",
     "not a court order",
     "other madhāhib differ"
   ],
-  "phase1": {
-    "action": "verify_mount_and_tree_read",
-    "no_removal": true,
-    "enrichment": "added",
-    "note": "P1 chrome isolation only; full Farāʾiḍ UX parity is P6"
-  },
   "enrichment": "added",
-  "phase": "P0P1"
+  "phase": "P0P6"
 }
