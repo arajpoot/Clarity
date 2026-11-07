@@ -1,0 +1,55 @@
+{
+  "build": "AMANA_UFT_FIQH_P0P2",
+  "date": "2026-11-07",
+  "educational_only": true,
+  "governance": {
+    "enrichment_clause": true,
+    "other_rooms": "held",
+    "amana_chambers_held": ["dayn", "heirs", "notes", "wasiyyah", "gate", "unlock", "desk"]
+  },
+  "p0p1_smoke": "PASS",
+  "p2_checks": [
+    {
+      "id": "D1",
+      "assert": "amana-uft-dock-v2.js and dock-v2.css present in pack",
+      "status": "implemented"
+    },
+    {
+      "id": "D2",
+      "assert": "Tree page loads dock-v2 after viewport-stable; no companion-inline",
+      "status": "implemented"
+    },
+    {
+      "id": "D3",
+      "assert": "Steps labels: 1 Registry · 2 Link · 3 Loaded cards · 4 Build tree · 5 Vitals",
+      "status": "implemented"
+    },
+    {
+      "id": "D4",
+      "assert": "Islamic palette CSS data-step 1–5 gradients present in dock-v2.css",
+      "status": "implemented"
+    },
+    {
+      "id": "D5",
+      "assert": "Dock defaults collapsed; Expand/Collapse toggle",
+      "status": "implemented"
+    },
+    {
+      "id": "D6",
+      "assert": "Operator: open /amana/tree/ → dock injects; step clicks scroll to targets",
+      "status": "operator_verify_after_deploy"
+    }
+  ],
+  "deliverables": [
+    "amana/docs/P0_PORT_MAP.md",
+    "amana/tree/index.html",
+    "amana/fiqh/index.html",
+    "amana/UFT_LOAD_MAP.json",
+    "amana/FIQH_LOAD_MAP.json",
+    "amana/assets/amana-uft-dock-v2.js",
+    "amana/assets/css/amana-uft-dock-v2.css",
+    "smoke/SMOKE_AMANA_UFT_FIQH_P0P1.json",
+    "smoke/SMOKE_AMANA_UFT_FIQH_P0P2.json"
+  ],
+  "next": "P3 Registry · Loaded · Build (offload, scan-delete, build-from-cards)"
+}
