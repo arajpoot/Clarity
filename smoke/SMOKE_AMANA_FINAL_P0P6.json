@@ -1,0 +1,30 @@
+{
+  "build": "AMANA_UFT_FIQH_P0P6",
+  "date": "2026-11-07",
+  "educational_only": true,
+  "live_p0p4": "PASS",
+  "multi_pass_artifact_smoke": "PASS",
+  "governance": {
+    "enrichment_only": "PASS",
+    "tree_fiqh_only": "PASS",
+    "other_rooms_held": "PASS",
+    "dayn_heirs_notes_wasiyyah_logic_held": "PASS",
+    "owned_imports": "PASS",
+    "stamps": "PASS"
+  },
+  "phases": {
+    "P0": "port map",
+    "P1": "host #uft-preview · five-room · viewport-stable",
+    "P2": "Edit names dock steps 1–5 palette",
+    "P3": "loaded cards scan-delete offload",
+    "P4": "workspace polish · visual-polish 404 fixed",
+    "P5": "PNG workspace snapshot override",
+    "P6": "Farāʾiḍ study UX · outline host · stamps · path strip"
+  },
+  "operator_after_deploy": [
+    "Tree: no visual-polish 404; dock; loaded ops; double-tap zoom",
+    "Tree: Download menu → Pedigree PNG uses workspace snapshot",
+    "Fiqh: outline host + stamps + path; calculator still mounts",
+    "Other rooms unchanged HTTP 200"
+  ]
+}
