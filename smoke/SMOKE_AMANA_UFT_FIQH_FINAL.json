@@ -1,0 +1,50 @@
+{
+  "build": "AMANA_UFT_FIQH_P0_P5_FINAL",
+  "date": "2026-11-06",
+  "bismillah": true,
+  "educational_only": true,
+  "rooms_touched": ["amana"],
+  "chambers_touched": ["tree", "fiqh"],
+  "chambers_held": ["dayn", "heirs", "notes", "wasiyyah", "gate"],
+  "project_invariants": {
+    "P1": "pass",
+    "P2": "n/a",
+    "P3": "pass",
+    "P4": "pass",
+    "P5": "pass",
+    "P6": "n/a",
+    "P7": "pass"
+  },
+  "enrichment": {
+    "port": "held",
+    "companion": "held",
+    "yawm": "held",
+    "campus": "held",
+    "amana": "added",
+    "craft": "held"
+  },
+  "enrichment_notes": {
+    "amana": "P0-1 five-room docs/seal + viewport stable; P2 relation fields; P3 tree-fiqh outline bridge; P4 study print pack + resilience; no surfaces removed",
+    "other_rooms": "HTTP 200 shells; no feature scripts added"
+  },
+  "phase_smoke": {
+    "P0_P1_five_rooms_docs_seal_stable": "pass",
+    "P2_relation_enrich_script": "pass",
+    "P3_fiqh_bridge_script": "pass",
+    "P4_polish_print_script": "pass",
+    "stack_P1_through_P4_on_tree": "pass",
+    "other_rooms_http": "pass"
+  },
+  "assets_shipped": [
+    "amana/assets/amana-uft-viewport-stable-v1.js",
+    "amana/assets/amana-uft-relation-enrich-v2.js",
+    "amana/assets/amana-uft-fiqh-bridge-v1.js",
+    "amana/assets/amana-uft-polish-print-v1.js"
+  ],
+  "operator_signoff": {
+    "enrichment_never_decreased": true,
+    "passphrase_local_only": true,
+    "not_a_fatwa_stamps_present": true,
+    "manifest_ref": "20261105P1"
+  }
+}
