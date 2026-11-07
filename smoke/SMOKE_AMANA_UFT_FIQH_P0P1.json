@@ -1,0 +1,63 @@
+{
+  "build": "AMANA_UFT_FIQH_P0P1",
+  "date": "2026-11-06",
+  "bismillah": true,
+  "educational_only": true,
+  "rooms_touched": ["amana"],
+  "docs_touched": [
+    "ARCHITECTURE.md",
+    "NAV_CONTRACT.md",
+    "amana/ARCHITECTURE.md",
+    "amana/NAV_CONTRACT.md"
+  ],
+  "assets_added": [
+    "amana/assets/amana-uft-viewport-stable-v1.js"
+  ],
+  "project_invariants": {
+    "P1": "pass",
+    "P2": "n/a",
+    "P3": "pass",
+    "P4": "pass",
+    "P5": "pass",
+    "P6": "n/a",
+    "P7": "pass"
+  },
+  "enrichment": {
+    "port": "held",
+    "companion": "held",
+    "yawm": "held",
+    "campus": "held",
+    "amana": "held",
+    "craft": "held"
+  },
+  "enrichment_notes": {
+    "amana": "Tree viewport stabilisation bridge additive; Farāʾiḍ load verified against same UFT_KEY; five-room seal text; no surface removed",
+    "docs": "five-room alignment only",
+    "craft": "documented as fifth room; no feature touch"
+  },
+  "smoke": {
+    "tree_locked": "sim_pass",
+    "tree_unlocked_render": "sim_pass",
+    "tree_registry_roundtrip": "sim_pass",
+    "tree_preview_host": "sim_pass",
+    "fiqh_study_and_calc": "sim_pass",
+    "fiqh_read_tree": "sim_pass",
+    "five_room_nav_seal": "sim_pass",
+    "other_rooms_held": "sim_pass"
+  },
+  "sim_cycle": {
+    "ran": true,
+    "repairs": [
+      "Stable bridge creates #uft-preview if missing before uftRender",
+      "Registry→cards sync idempotent",
+      "Integrity hints additive only",
+      "Phase 1 keeps legacy bridges until optional collapse — no capability drop"
+    ]
+  },
+  "operator_signoff": {
+    "rooms_touched": "amana (+ docs)",
+    "P1_P7": "yes",
+    "manifest_version": "20261105P1",
+    "enrichment_never_decreased": true
+  }
+}
