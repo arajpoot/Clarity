@@ -1,8 +1,16 @@
-G13 Reminder + About rail
+Phase A — Castle Port + offline SW
 
-- loadHadith / Prophet names fill (no endless Loading)
-- Bottom rail 5th button: About (not Notes→Journey)
-- About opens tab-about; link to Notes + Amānah + University
-- Educational hadith bank — verify on Sunnah.com
+Deploy to site ROOT (not only companion/):
+  index.html
+  sw.js
+  assets/port-castle-v1.css
+  assets/port-castle-v1.js
 
-Upload index + g13 js/css.
+See PHASE_A_OFFLINE.md for checklist.
+
+
+BINDING GOVERNANCE
+------------------
+GOVERNANCE_CONTRACT.md is part of Phase A and is BINDING on Phases B, C, D+.
+Enrichment hold applies to Port + all five rooms (not Companion only).
+Upload GOVERNANCE_CONTRACT.md to site root with Phase A.

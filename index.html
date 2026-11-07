@@ -1,287 +1,126 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="port" data-nuros-phase="1">
+<html lang="en" data-theme="dark" data-clarity-room="port" data-phase="A-offline-castle">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="clarity-phase" content="A-offline-castle-port-20261106"/>
+<meta name="description" content="Clarity — five rooms in one castle. Furnish your grave through daily practice. Educational only — not a fatwa."/>
 <title>Clarity — Furnish Your Grave</title>
-<meta name="description" content="Clarity On-Device: five rooms — Companion, Yawm, University, Amānah, and Craft atelier. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/"/>
-<meta name="clarity-port" content="20261104P1"/>
-
-<!-- Unified type: Quill (English) · Amiri (Arabic) — NurOS V3.1.2 §3.1 -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<!-- Quicksand is the web-available Quill-class geometric sans used as Quill stand-in if "Quill" is not on CDN;
-     primary stack names Quill first for local installs, then Quicksand. -->
-
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104P1"/>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104P1" defer></script>
-
-<style>
-  :root {
-    color-scheme: dark light;
-    --font-en: "Quill", "Quicksand", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --font-ar: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
-    --gold: #c9a227;
-    --gold-soft: rgba(201, 162, 39, 0.35);
-    --green: #0f4c3a;
-    --ink: #e8f0ec;
-    --muted: rgba(232, 240, 236, 0.88);
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    min-height: 100%;
-    font-family: var(--font-en);
-    background:
-      radial-gradient(1100px 520px at 50% -8%, rgba(30, 125, 94, 0.28), transparent 70%),
-      linear-gradient(180deg, #0c1c16 0%, #0a1410 55%, #08110e 100%);
-    color: var(--ink);
-    -webkit-font-smoothing: antialiased;
-  }
-  .arabic, [lang="ar"] { font-family: var(--font-ar); }
-
-  /* —— Clarity banner —— */
-  .port-banner {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0 0 22px 22px;
-    min-height: 11.5rem;
-    border-bottom: 1px solid var(--gold-soft);
-  }
-  .port-banner-bg {
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(160deg, rgba(8, 28, 22, 0.75), rgba(8, 28, 22, 0.55)),
-      url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/960px-Kaaba_Masjid_Haraam_Makkah.jpg")
-        center/cover no-repeat;
-    opacity: 0.95;
-  }
-  .port-banner-inner {
-    position: relative; z-index: 1;
-    max-width: 52rem;
-    margin: 0 auto;
-    padding: 1.35rem 1.15rem 1.5rem;
-    text-align: center;
-  }
-  .port-banner .bismillah {
-    font-family: var(--font-ar);
-    font-size: clamp(1.25rem, 3.5vw, 1.55rem);
-    direction: rtl;
-    margin: 0 0 0.45rem;
-    color: #f3e6c0;
-  }
-  .port-banner .brand {
-    font-family: var(--font-en);
-    font-weight: 700;
-    font-size: clamp(1.75rem, 5vw, 2.15rem);
-    margin: 0 0 0.25rem;
-    letter-spacing: 0.02em;
-  }
-  .port-banner .brand .mark { color: var(--gold); margin-right: 0.2rem; }
-  .port-banner .tag {
-    margin: 0;
-    font-size: 0.98rem;
-    opacity: 0.95;
-  }
-  .port-banner .stance {
-    display: inline-block;
-    margin-top: 0.65rem;
-    padding: 0.28rem 0.75rem;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    border: 1px solid var(--gold-soft);
-    background: rgba(0, 0, 0, 0.35);
-  }
-
-  /* —— Tiles —— */
-  .port-main {
-    max-width: 64rem;
-    margin: 0 auto;
-    padding: 1.25rem 1.05rem 2.75rem;
-  }
-  .port-lead {
-    text-align: center;
-    margin: 0 0 1.1rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: var(--muted);
-  }
-  .port-grid {
-    display: grid;
-    gap: 0.85rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 560px) {
-    .port-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (min-width: 980px) {
-    .port-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.75rem; }
-  }
-
-  .room-tile {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 16px;
-    padding: 1rem 1.05rem 1.05rem;
-    min-height: 12.5rem;
-    border: 1px solid rgba(212, 180, 90, 0.32);
-    background:
-      linear-gradient(155deg, rgba(255, 255, 255, 0.08), rgba(15, 76, 58, 0.28)),
-      linear-gradient(165deg, rgba(15, 76, 58, 0.38), rgba(8, 20, 16, 0.72));
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow:
-      0 8px 28px rgba(0, 0, 0, 0.22),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
-  }
-  .room-tile:hover,
-  .room-tile:focus-visible {
-    transform: translateY(-3px);
-    border-color: rgba(212, 180, 90, 0.6);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
-    outline: none;
-  }
-  .room-tile .ico {
-    font-size: 1.55rem;
-    line-height: 1;
-    margin-bottom: 0.45rem;
-  }
-  .room-tile .name {
-    font-family: var(--font-en);
-    font-weight: 700;
-    font-size: 1.08rem;
-    margin: 0 0 0.2rem;
-  }
-  .room-tile .name-ar {
-    font-family: var(--font-ar);
-    font-size: 0.95rem;
-    direction: rtl;
-    opacity: 0.9;
-    margin: 0 0 0.45rem;
-  }
-  .room-tile .summary {
-    font-size: 0.82rem;
-    line-height: 1.45;
-    opacity: 0.92;
-    flex: 1 1 auto;
-    margin: 0 0 0.7rem;
-  }
-  .room-tile .enter {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #f0d78c;
-    letter-spacing: 0.02em;
-  }
-
-  .port-foot {
-    text-align: center;
-    margin-top: 1.75rem;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    opacity: 0.85;
-  }
-  .port-foot a { color: #d4c08a; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/port-castle-v1.css?v=20261106A1"/>
+<link rel="manifest" href="/manifest.webmanifest"/>
 </head>
 <body>
-<nav class="clarity-room-nav" data-room="" aria-label="Clarity rooms">
-  <a href="/companion/" data-room-link="companion"><span class="crn-ico" aria-hidden="true">🏠</span><span class="crn-label">Companion<span class="crn-sub">tools · reminder</span></span></a>
-  <a href="/daily/" data-room-link="yawm"><span class="crn-ico" aria-hidden="true">🌅</span><span class="crn-label">Yawm<span class="crn-sub">today’s portion</span></span></a>
-  <a href="/campus/" data-room-link="university"><span class="crn-ico" aria-hidden="true">🎓</span><span class="crn-label">University<span class="crn-sub">ordered path</span></span></a>
-  <a href="/amana/" data-room-link="amana"><span class="crn-ico" aria-hidden="true">🔐</span><span class="crn-label">Amānah<span class="crn-sub">vault · dayn · heirs</span></span></a>
-  <a href="/craft/" data-room-link="craft"><span class="crn-ico" aria-hidden="true">✒️</span><span class="crn-label">Craft<span class="crn-sub">meme · tajweed · desks</span></span></a>
-  <p class="crn-seal">Five rooms · educational only · not a fatwa</p>
-</nav>
-
-<header class="port-banner" role="banner">
-  <div class="port-banner-bg" aria-hidden="true"></div>
-  <div class="port-banner-inner">
-    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-    <h1 class="brand"><span class="mark" aria-hidden="true">✒️</span>Clarity</h1>
-    <p class="tag">Furnish your grave · prepare for the long stay</p>
-    <p class="stance">Educational companion only — not a fatwa · not legal advice</p>
-  </div>
-</header>
-
-<main class="port-main">
-  <p class="port-lead">
-    One Port · five rooms. Four isolation doors + Craft atelier surface.
-    Read a short summary, then enter. Upgrades to one room do not change the others.
-  </p>
-
-  <div class="port-grid" role="navigation" aria-label="Enter a room">
-    <a class="room-tile" href="/companion/" data-room-tile="companion">
-      <span class="ico" aria-hidden="true">🏠</span>
-      <p class="name">Companion</p>
-      <p class="name-ar" lang="ar" dir="rtl">المرافق</p>
-      <p class="summary">
-        Reminder path, Reality &amp; Reflection, Action tools.
-        Banner, ṣalāh, and path plaques on this device.
-      </p>
-      <span class="enter">Enter Companion →</span>
-    </a>
-
-    <a class="room-tile" href="/daily/" data-room-tile="yawm">
-      <span class="ico" aria-hidden="true">🌅</span>
-      <p class="name">Yawm</p>
-      <p class="name-ar" lang="ar" dir="rtl">يوم</p>
-      <p class="summary">
-        Today’s portion — light, adhkār, tasbeeh, ṣalāh rhythm.
-        Daily source of truth. No vault crypto here.
-      </p>
-      <span class="enter">Enter Yawm →</span>
-    </a>
-
-    <a class="room-tile" href="/campus/" data-room-tile="university">
-      <span class="ico" aria-hidden="true">🎓</span>
-      <p class="name">University</p>
-      <p class="name-ar" lang="ar" dir="rtl">الجامعة</p>
-      <p class="summary">
-        Ordered path: Seeker → Practice → Consistency.
-        Desk, lab, library — a campus, not Amānah.
-      </p>
-      <span class="enter">Enter University →</span>
-    </a>
-
-    <a class="room-tile" href="/amana/" data-room-tile="amana">
-      <span class="ico" aria-hidden="true">🔐</span>
-      <p class="name">Amānah</p>
-      <p class="name-ar" lang="ar" dir="rtl">أمانة</p>
-      <p class="summary">
-        On-device trust: dayn, heirs, private notes.
-        Educational readiness — not a will or fatwa.
-      </p>
-      <span class="enter">Enter Amānah →</span>
-    </a>
-
-    <a class="room-tile" href="/craft/" data-room-tile="craft">
-      <span class="ico" aria-hidden="true">✒️</span>
-      <p class="name">Craft</p>
-      <p class="name-ar" lang="ar" dir="rtl">الصناعة</p>
-      <p class="summary">
-        Atelier: Meme Studio, 𝕏 + Facebook desks, Tajweed Deep Studio,
-        calligraphy, quiz &amp; notes. Soft surface — isolation preserved.
-      </p>
-      <span class="enter">Enter Craft →</span>
-    </a>
+<div class="castle-port">
+  <div class="cp-top">
+    <a class="cp-brand" href="/">Clarity</a>
+    <div class="cp-meta">
+      <span class="cp-chip" id="cp-net-chip">…</span>
+      <span class="cp-chip" id="cp-sw-chip">PWA…</span>
+      <button type="button" class="cp-chip" id="cp-theme" title="Theme">◐ Theme</button>
+    </div>
   </div>
 
-  <p class="port-foot">
-    <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> ·
-    <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a><br/>
-    © Clarity Dawah · NurOS Port Phase 1 · on-device where private
-  </p>
-</main>
-<script src="/assets/nuros/nuros-integrity-smoke-v1.js?v=20261104P7" defer></script>
-<script src="/assets/nuros/nuros-ops-boot-v1.js?v=20261104P8" defer></script>
-<script src="/companion/assets/companion-meme-shariah-bg-v1.js?v=20261104MS"></script>
+  <div class="cp-motto">
+    <div class="ar">فَأَمَّا مَنْ ثَقُلَتْ مَوَازِينُهُ</div>
+    <div class="en">Furnish the grave — send light ahead, one day at a time.</div>
+  </div>
+  <p class="cp-disclaimer"><strong>Educational companion only — not a fatwa, not legal advice.</strong> Verify with Quran.com, Sunnah.com, and a local scholar. Private data stays on your device unless you export it.</p>
+
+  <section class="castle-stage" aria-label="Five rooms of Clarity">
+    <div class="castle-sky" aria-hidden="true"></div>
+    <h1 class="castle-title">The Castle of Clarity</h1>
+    <p class="castle-sub">Five rooms · one intention · local-first · Phase A offline foundation</p>
+
+    <div class="castle-row">
+      <a class="room-tower" data-room="companion" href="/companion/">
+        <div class="battlement" aria-hidden="true"></div>
+        <div class="room-ico">✦</div>
+        <h2>Companion</h2>
+        <div class="role">Reminder · path · tools</div>
+        <ul>
+          <li>Allah’s commands &amp; daily verse</li>
+          <li>Hadith &amp; Prophet’s names ﷺ</li>
+          <li>Reality · Reflection · Action</li>
+          <li>Ḥajj outline · quiz · media desk</li>
+        </ul>
+        <div class="door">Enter Companion</div>
+      </a>
+
+      <a class="room-tower" data-room="yawm" href="/daily/">
+        <div class="battlement" aria-hidden="true"></div>
+        <div class="room-ico">☾</div>
+        <h2>Yawm</h2>
+        <div class="role">Today’s portion</div>
+        <ul>
+          <li>Sūrat al-ʿAṣr focus</li>
+          <li>Continuing deeds (Muslim 1631)</li>
+          <li>Farḍ checklist · small deed</li>
+          <li>Offline-first daily loop</li>
+        </ul>
+        <div class="door">Enter Yawm</div>
+      </a>
+
+      <a class="room-tower" data-room="campus" href="/campus/">
+        <div class="battlement" aria-hidden="true"></div>
+        <div class="room-ico">◉</div>
+        <h2>University</h2>
+        <div class="role">Ordered path</div>
+        <ul>
+          <li>Curriculum tracks</li>
+          <li>Structured lessons</li>
+          <li>On-device progress</li>
+          <li>Not a physical university</li>
+        </ul>
+        <div class="door">Enter Campus</div>
+      </a>
+
+      <a class="room-tower" data-room="amana" href="/amana/">
+        <div class="battlement" aria-hidden="true"></div>
+        <div class="room-ico">🔐</div>
+        <h2>Amānah</h2>
+        <div class="role">Trust · legacy desk</div>
+        <ul>
+          <li>Desk notes (no unlock)</li>
+          <li>Optional vault chambers</li>
+          <li>Dayn · heirs · wasiyyah reminders</li>
+          <li>You hold the passphrase</li>
+        </ul>
+        <div class="door">Enter Amānah</div>
+      </a>
+
+      <a class="room-tower" data-room="craft" href="/craft/">
+        <div class="battlement" aria-hidden="true"></div>
+        <div class="room-ico">✎</div>
+        <h2>Craft</h2>
+        <div class="role">Atelier</div>
+        <ul>
+          <li>Meme studio</li>
+          <li>Tajweed deep tools</li>
+          <li>Calligraphy pad</li>
+          <li>Creative practice</li>
+        </ul>
+        <div class="door">Enter Craft</div>
+      </a>
+    </div>
+    <p class="castle-keep">The keep is your intention. The rooms are only doors. Educational only — not a fatwa.</p>
+  </section>
+
+  <footer class="cp-foot">
+    <p>Phase A · offline caches per room · <a href="/GOVERNANCE_CONTRACT.md">castle-wide governance</a> · enrichment held for all rooms.</p>
+    <p>
+      <a href="/companion/">Companion</a> ·
+      <a href="/daily/">Yawm</a> ·
+      <a href="/campus/">Campus</a> ·
+      <a href="/amana/">Amānah</a> ·
+      <a href="/craft/">Craft</a>
+    </p>
+    <p>Sources: <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> · <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a></p>
+  </footer>
+</div>
+<script src="/assets/port-castle-v1.js?v=20261106A1" defer></script>
 </body>
 </html>
