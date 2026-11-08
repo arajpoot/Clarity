@@ -1,0 +1,49 @@
+/*! amana-uft-tree-polish-v1 · M5b+ viewport · pill spacing · registry dedupe · educational only */
+/* Unlock pill: prevent jammed links (DaynHeirsTree…) */
+#amana-unlock-pill a {
+  display: inline-block;
+  margin: 0 0.35rem;
+  padding: 0.1rem 0.15rem;
+  white-space: nowrap;
+}
+#amana-unlock-pill {
+  line-height: 1.45;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+#amana-unlock-pill button {
+  margin-left: 0.45rem;
+}
+
+/* Pedigree stage — restore usable height on mobile/desktop */
+#uft-stage.uft-stage,
+.uft-stage {
+  min-height: min(70vh, 36rem) !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+#uft-preview,
+.uft-preview,
+.uft-tree {
+  min-height: min(58vh, 30rem) !important;
+  height: auto !important;
+  min-width: 100%;
+}
+
+/* Hide duplicate registry panels (keep first rich registry) */
+.uft-registry-deep ~ .uft-registry-deep,
+.uft-registry-panel ~ .uft-registry-panel,
+[data-uft-registry="1"] ~ [data-uft-registry="1"],
+.amana-card .uft-registry-deep:nth-of-type(n+2) {
+  display: none !important;
+}
+
+/* Optional second static host if modules inject twice into host */
+#clarity-family-tree-host .uft-registry-deep:nth-of-type(n+2) {
+  display: none !important;
+}
+
+/* Reduce double chrome under banner */
+.amana-tree-page .amana-hero { display: none; }
