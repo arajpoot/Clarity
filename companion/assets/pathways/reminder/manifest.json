@@ -1,0 +1,20 @@
+{
+  "id": "reminder",
+  "label": "Reminder",
+  "scripts": [
+    "/companion/assets/companion-g13-reminder-about-v1.js",
+    "/companion/assets/companion-g7-content-live-v1.js"
+  ],
+  "css": [
+    "/companion/assets/companion-g13-reminder-about-v1.css",
+    "/companion/assets/companion-g7-content-live-v1.css"
+  ],
+  "hashes": [
+    "#reminder",
+    "reminder"
+  ],
+  "forbidden": [
+    "/assets/companion-inline/",
+    "/amana/sealed/"
+  ]
+}
