@@ -61,23 +61,79 @@
     return JSON.parse(t);
   }
 
+
+  function hydrateFromRegistry(data) {
+    if (!data || typeof data !== "object") return data;
+    data.registry = Array.isArray(data.registry) ? data.registry : [];
+    data.relatives = Array.isArray(data.relatives) ? data.relatives : [];
+    function pickRole(role) {
+      var hit = data.registry.find(function (r) {
+        return r && String(r.role || "").toLowerCase() === role;
+      });
+      return hit && hit.name ? String(hit.name).trim() : "";
+    }
+    function linesFromRole(role) {
+      return data.registry
+        .filter(function (r) { return r && String(r.role || "").toLowerCase() === role && r.name; })
+        .map(function (r) { return String(r.name).trim(); });
+    }
+    if (!data.self) data.self = pickRole("self") || pickRole("focus") || "";
+    if (!data.father) data.father = pickRole("father");
+    if (!data.mother) data.mother = pickRole("mother");
+    if (!data.spouse) data.spouse = pickRole("spouse");
+    if (!data.pgf) data.pgf = pickRole("pgf") || pickRole("paternal grandfather");
+    if (!data.pgm) data.pgm = pickRole("pgm") || pickRole("paternal grandmother");
+    if (!data.mgf) data.mgf = pickRole("mgf") || pickRole("maternal grandfather");
+    if (!data.mgm) data.mgm = pickRole("mgm") || pickRole("maternal grandmother");
+    if (!data.children || !String(data.children).trim()) {
+      var kids = linesFromRole("child").concat(linesFromRole("children"));
+      if (kids.length) data.children = kids.join("\\n");
+    }
+    if (!data.siblings || !String(data.siblings).trim()) {
+      var sibs = linesFromRole("sibling").concat(linesFromRole("siblings"));
+      if (sibs.length) data.siblings = sibs.join("\\n");
+    }
+    if (!data.grandchildren || !String(data.grandchildren).trim()) {
+      var gc = linesFromRole("grandchild").concat(linesFromRole("grandchildren"));
+      if (gc.length) data.grandchildren = gc.join("\\n");
+    }
+    return data;
+  }
+
   function applyTreeJson(obj) {
     if (!obj || typeof obj !== "object") throw new Error("not object");
-    /* Accept {tree:...}, pack wrappers, or bare UFT object */
-    var data = obj.tree || obj.uft || obj.familyTree || obj;
+    var data = obj.tree || obj.uft || obj.familyTree || obj.payload || obj;
     if (data && data.meta && data.payload) data = data.payload;
     if (typeof data === "string") data = JSON.parse(data);
+    if (!data || typeof data !== "object") throw new Error("empty tree");
+    data = hydrateFromRegistry(data);
     try {
       localStorage.setItem(UFT_KEY, JSON.stringify(data));
     } catch (e) {
       throw new Error("storage");
     }
+    /* Prefer core apply so stage fields + pedigree redraw */
     try {
-      if (typeof w.uftLoad === "function") w.uftLoad();
-      else if (typeof w.uftRender === "function") w.uftRender();
-    } catch (e2) {}
-    status("Full tree JSON imported · on this device only · educational outline");
+      if (typeof w.uftApplyData === "function") {
+        w.uftApplyData(data);
+      } else {
+        if (typeof w.uftLoad === "function") w.uftLoad();
+        if (typeof w.uftRender === "function") w.uftRender();
+        if (typeof w.uftRegRender === "function") w.uftRegRender();
+      }
+    } catch (e2) {
+      try {
+        if (typeof w.uftRender === "function") w.uftRender();
+      } catch (e3) {}
+    }
+    try {
+      if (typeof w.uftRegImportTree === "function" && !(data.registry && data.registry.length)) {
+        w.uftRegImportTree();
+      }
+    } catch (e4) {}
+    status("Full tree JSON imported · pedigree refreshed · on this device only · educational outline");
   }
+
 
   function applyCards(text, name) {
     var cards = [];
