@@ -1,0 +1,18 @@
+{
+  "page": "/amana/tree/",
+  "build": "AMANA_UFT_PHASE_A_20261108",
+  "educational_only": true,
+  "enrichment": "held",
+  "phase_a_append_js": [
+    {"src": "/amana/assets/amana-uft-phase-a-host-v1.js", "role": "host_alias", "defer": true},
+    {"src": "/amana/assets/amana-uft-upload-fix-v1.js", "role": "upload_picker_fix", "defer": true}
+  ],
+  "fragility_closed": [
+    "Upload select clicked missing file inputs — fixed by upload-fix-v1",
+    "uft-preview vs uft-stage — aliased by phase-a-host-v1"
+  ],
+  "fragility_remaining": [
+    "Multiple recover bridges may still race — Phase B collapse",
+    "Build selects need card indexes — Phase B"
+  ]
+}
