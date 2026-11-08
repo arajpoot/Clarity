@@ -1,0 +1,263 @@
+/*! Amānah UFT foundation v1 · campus-quiet · one sheet · no ghost stacks
+ * Educational only — not a legal pedigree
+ */
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  background: linear-gradient(180deg, #0c1c16, #0a1410);
+  color: #e8f0ec;
+}
+.amana-wrap { max-width: 56rem; margin: 0 auto; padding: 0.75rem 1rem 2.5rem; }
+
+/* Room nav — always visible five */
+.clarity-room-nav {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.5rem 0.25rem;
+}
+.clarity-room-nav a {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(0,0,0,0.25);
+}
+.clarity-room-nav a.is-here,
+.clarity-room-nav a[aria-current="page"] {
+  background: rgba(30,125,94,0.45);
+  border-color: rgba(212,180,90,0.5);
+}
+
+.amana-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin: 0.5rem 0 0.75rem;
+}
+.amana-subnav a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(0,0,0,0.25);
+}
+.amana-subnav a.is-here { background: rgba(30,125,94,0.45); }
+
+.amana-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  margin: 0.5rem 0 0.9rem;
+  border: 1px solid rgba(212,180,90,0.45);
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(30,125,94,0.28), transparent 55%),
+    linear-gradient(165deg, #0f2a20, #0a1812 55%, #0c1c16);
+  padding: 1.1rem 1rem;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+}
+.amana-banner .kicker {
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d4b45a;
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+}
+.amana-banner h1 {
+  margin: 0 0 0.4rem;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  color: #f0e6c8;
+}
+.amana-banner .ayah {
+  text-align: center;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin: 0.35rem 0;
+  color: #e8d5a3;
+}
+.amana-banner .meaning {
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  opacity: 0.92;
+  margin: 0.25rem auto 0;
+  max-width: 36rem;
+}
+.amana-banner .meaning a { color: #c9a84c; }
+.amana-banner .foot {
+  text-align: center;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  margin: 0.55rem 0 0;
+  line-height: 1.4;
+}
+
+.disc {
+  font-size: 0.78rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  border-left: 3px solid rgba(212,180,90,0.55);
+  background: rgba(0,0,0,0.25);
+  margin: 0.5rem 0;
+}
+.amana-card {
+  margin: 0.75rem 0;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(15,76,58,0.14);
+}
+
+#uft-meta-outside {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.92;
+  color: #e8d5a3;
+  margin: 0.25rem 0 0.45rem;
+  max-width: 40rem;
+}
+#uft-preview .uft-window-meta { display: none !important; }
+
+#uft-stage.uft-stage, .uft-stage {
+  min-height: 18rem;
+  border: 1px solid rgba(212,180,90,0.28);
+  border-radius: 14px;
+  padding: 0.65rem 0.75rem;
+  margin: 0.5rem 0;
+  background: rgba(0,0,0,0.22);
+  overflow: auto;
+}
+#uft-preview, .uft-preview {
+  min-height: 14rem;
+  position: relative;
+  overflow: auto;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.14);
+  border: 1px dashed rgba(212,180,90,0.22);
+}
+
+/* Horizontal backbone */
+#uft-preview.uft-orient-h .uft-dtree,
+#uft-preview.uft-orient-h .uft-vtree { display: none !important; }
+#uft-preview.uft-orient-v .uft-backbone { display: none !important; }
+
+#uft-preview .uft-backbone {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start;
+  min-width: max-content;
+  gap: 0;
+  padding: 0.75rem 0.5rem 1rem;
+}
+#uft-preview .uft-backbone .uft-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  min-width: 8.5rem;
+  max-width: 12rem;
+  padding: 0.35rem 0.25rem;
+}
+#uft-preview .uft-backbone .uft-col-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #e8d5a3;
+  opacity: 0.85;
+  text-align: center;
+}
+#uft-preview .uft-backbone .uft-connector {
+  flex: 0 0 auto;
+  width: 1.35rem;
+  min-width: 1.35rem;
+  align-self: center;
+  height: 2px;
+  margin: 2.5rem 0.15rem 0;
+  background: linear-gradient(90deg, rgba(212,180,90,0.2), rgba(212,180,90,0.85), rgba(212,180,90,0.2));
+}
+
+/* Glass plaques */
+#uft-preview .uft-person,
+#uft-preview .uft-card-sleek {
+  position: relative;
+  min-width: 7.2rem;
+  max-width: 11.5rem;
+  padding: 0.55rem 0.6rem 0.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(232, 213, 163, 0.38);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 40%, rgba(15,76,58,0.25) 100%),
+    rgba(8, 22, 16, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.12) inset,
+    0 8px 22px rgba(0,0,0,0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+#uft-preview .uft-avatar { display: none !important; }
+#uft-preview .uft-person.focus,
+#uft-preview .uft-person.is-focus {
+  border-color: rgba(201, 168, 76, 0.75);
+  box-shadow: 0 0 0 1px rgba(201,168,76,0.35), 0 10px 28px rgba(0,0,0,0.32);
+}
+
+#uft-preview .uft-chip,
+#uft-preview .uft-vital-btn,
+#uft-preview .uft-gender-btn,
+#uft-preview .uft-born-btn,
+#uft-preview .uft-focus-btn,
+#uft-preview .uft-own-btn,
+#uft-preview .uft-add-rel-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.7rem;
+  height: 1.55rem;
+  padding: 0 0.4rem;
+  margin: 0.08rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #f0e6c8;
+  cursor: pointer;
+  border: 1px solid rgba(232, 213, 163, 0.4);
+  background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(0,0,0,0.18)), rgba(20, 60, 45, 0.55);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.uft-hidden-fields {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.page-foot {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.72rem;
+  opacity: 0.75;
+}
+.page-foot a { color: #c9a84c; }
