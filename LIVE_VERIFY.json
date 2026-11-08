@@ -1,0 +1,80 @@
+{
+  "ok": true,
+  "issues": [],
+  "warnings": [],
+  "live": {
+    "html_bytes": 214375,
+    "status": 200,
+    "checks": {
+      "room_nav": true,
+      "title": true,
+      "companion_boot": true,
+      "banner_controls": true,
+      "room_owner": true,
+      "batch_boot_c1": false,
+      "companion_inline_src": false,
+      "amana_sealed_src": false
+    }
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "ok": true,
+      "fails": []
+    },
+    {
+      "cycle": 2,
+      "ok": true,
+      "fails": []
+    },
+    {
+      "cycle": 3,
+      "ok": true,
+      "fails": []
+    },
+    {
+      "cycle": 4,
+      "ok": true,
+      "fails": []
+    },
+    {
+      "cycle": 5,
+      "ok": true,
+      "fails": []
+    }
+  ],
+  "assets": {
+    "/companion/assets/companion-boot-v2.js": {
+      "status": 200,
+      "bytes": 618
+    },
+    "/companion/assets/companion-room-owner-v1.js": {
+      "status": 200,
+      "bytes": 20739
+    },
+    "/companion/assets/companion-banner-controls-v1.js": {
+      "status": 200,
+      "bytes": 6003
+    },
+    "/companion/assets/companion-banner-viewport-v1.js": {
+      "status": 200,
+      "bytes": 11052
+    },
+    "/companion/assets/banner/companion-banner-batch-boot-v1.js": {
+      "status": 200,
+      "bytes": 1925
+    },
+    "/companion/FOUNDATION_LOCK.md": {
+      "status": 200,
+      "bytes": 455
+    },
+    "/companion/COMPANION_ASSET_INVENTORY.json": {
+      "status": 200,
+      "bytes": 22652
+    }
+  },
+  "c0_docs_deployed": true,
+  "c1_batch_boot_deployed": true,
+  "status": "pass",
+  "ready_for_c2": true
+}

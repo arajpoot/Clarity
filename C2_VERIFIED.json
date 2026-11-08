@@ -1,58 +1,94 @@
 {
-  "phase": "C2",
-  "status": "verified",
-  "companion_home": "/companion/",
-  "sealed": "/companion/sealed/",
-  "amana_entry": "Companion only (#notes / ClarityEnterAmana)",
+  "ok": true,
+  "issues": [],
   "cycles": [
     {
-      "name": "sealed_pack",
-      "ok": true,
-      "detail": {
-        "count": 13,
-        "miss": []
-      }
-    },
-    {
-      "name": "syntax",
-      "ok": true,
-      "detail": {
-        "bad": []
-      }
-    },
-    {
-      "name": "fortify_contract",
-      "ok": true,
-      "detail": {
-        "base_companion_sealed": true,
-        "lazy_api": true,
-        "enter_api": true,
-        "no_vault_sealed_path": true
-      }
-    },
-    {
-      "name": "isolation",
+      "name": "chrome",
       "ok": true,
       "detail": {
         "issues": []
       }
     },
     {
-      "name": "html_wire",
+      "name": "no_inline_src",
       "ok": true,
       "detail": {
-        "fortify_linked": true,
-        "entry_linked": true,
-        "script_balanced": true,
-        "tab_notes": true
+        "issues": []
       }
     },
     {
-      "name": "http",
+      "name": "loader_present",
       "ok": true,
       "detail": {
-        "fails": []
+        "issues": []
       }
+    },
+    {
+      "name": "g13_not_critical",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "g8_not_critical",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "packs_exist",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "pack_assets",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "syntax_loader",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "http_1",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_2",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_3",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_4",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_5",
+      "ok": true,
+      "fails": []
     }
-  ]
+  ],
+  "status": "verified",
+  "governance": {
+    "curtain": true,
+    "seo_url": "/companion/",
+    "chrome_stable": true,
+    "pathway_selective_load": true
+  }
 }
