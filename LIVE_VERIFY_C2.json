@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "issues": [],
+  "warnings": [],
+  "cycles": [
+    {
+      "cycle": 1,
+      "ok": true,
+      "fails": []
+    },
+    {
+      "cycle": 2,
+      "ok": true,
+      "fails": []
+    },
+    {
+      "cycle": 3,
+      "ok": true,
+      "fails": []
+    },
+    {
+      "cycle": 4,
+      "ok": true,
+      "fails": []
+    },
+    {
+      "cycle": 5,
+      "ok": true,
+      "fails": []
+    }
+  ],
+  "checks": {
+    "status": 200,
+    "bytes": 214607,
+    "room_nav": true,
+    "title": true,
+    "loader": true,
+    "pack_reminder_ref": true,
+    "g13_critical": false,
+    "g8_critical": false,
+    "g10_critical": false,
+    "inline_src": false,
+    "amana_sealed_src": false,
+    "c2_deferred_comments": 18,
+    "script_src_count": 29
+  },
+  "assets": {
+    "/companion/assets/boot/companion-pathway-loader-v1.js": {
+      "status": 200,
+      "bytes": 3343
+    },
+    "/companion/assets/pathways/reminder/pack-v1.js": {
+      "status": 200,
+      "bytes": 1964
+    },
+    "/companion/assets/pathways/reality/pack-v1.js": {
+      "status": 200,
+      "bytes": 1954
+    },
+    "/companion/assets/pathways/reflection/pack-v1.js": {
+      "status": 200,
+      "bytes": 1873
+    },
+    "/companion/assets/pathways/action/pack-v1.js": {
+      "status": 200,
+      "bytes": 2202
+    },
+    "/companion/assets/companion-g13-reminder-about-v1.js": {
+      "status": 200,
+      "bytes": 9014
+    },
+    "/companion/assets/companion-g8-reality-stable-v1.js": {
+      "status": 200,
+      "bytes": 9734
+    },
+    "/companion/assets/companion-boot-v2.js": {
+      "status": 200,
+      "bytes": 618
+    }
+  },
+  "status": "pass",
+  "ready_for_c3": true
+}

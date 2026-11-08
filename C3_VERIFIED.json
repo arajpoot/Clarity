@@ -1,74 +1,106 @@
 {
-  "phase": "C3",
   "ok": true,
   "cycles": [
     {
-      "name": "banner_local",
-      "ok": true,
-      "detail": {
-        "in_html": true,
-        "file": true,
-        "size": 110839,
-        "issues": []
-      }
-    },
-    {
-      "name": "redirects",
-      "ok": true,
-      "detail": {
-        "count": 9,
-        "issues": []
-      }
-    },
-    {
-      "name": "load_map",
-      "ok": true,
-      "detail": {
-        "exists": true,
-        "issues": []
-      }
-    },
-    {
-      "name": "c2_preserved",
-      "ok": true,
-      "detail": {
-        "fortify": true,
-        "entry": true,
-        "sealed_dir": 13,
-        "issues": []
-      }
-    },
-    {
-      "name": "script_balance",
-      "ok": true,
-      "detail": {
-        "open": 70,
-        "close": 70,
-        "issues": []
-      }
-    },
-    {
-      "name": "room_audit",
-      "ok": true,
-      "detail": {
-        "out": "PASS \u00b7 room isolation OK",
-        "issues": []
-      }
-    },
-    {
-      "name": "http",
-      "ok": true,
-      "detail": {
-        "fails": []
-      }
-    },
-    {
-      "name": "isolation",
+      "name": "chrome",
       "ok": true,
       "detail": {
         "issues": []
       }
+    },
+    {
+      "name": "loader",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "craft_idle",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "one_beacon",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "no_ai_critical",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "no_meme_critical",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "no_inline",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "c2_g_deferred",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "syntax",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "http_1",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_2",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_3",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_4",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_5",
+      "ok": true,
+      "fails": []
     }
   ],
-  "status": "verified"
+  "issues": [],
+  "status": "verified",
+  "metrics": {
+    "script_src_count": 23,
+    "cf_beacons": 1
+  },
+  "governance": {
+    "curtain": true,
+    "seo_url": "/companion/",
+    "chrome_stable": true,
+    "c2_retained": true,
+    "c3_noise_strip": true
+  }
 }
