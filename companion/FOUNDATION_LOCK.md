@@ -1,17 +1,14 @@
-# Companion FOUNDATION LOCK — four-door model
+# Companion FOUNDATION LOCK — C0/C1 · curtain architecture
 
 ## Owns
-- `/companion/` shell, banner, path tabs, craft studios
-- Optional lazy sealed copies under `/companion/sealed/` for shell features that still need them
+- `/companion/` chrome and pathway UI
+- `/companion/assets/` boot, banner, pathway packs, companion CSS
 
 ## Does not own
-- Daily routine SoT → **Yawm** `/daily/`
-- Primary Amānah / Dayn / wasiyyah UX → **Amānah** `/amana/`
-- University curriculum → **Campus** `/campus/`
+- Yawm SoT → `/daily/`
+- Amānah vault / dayn / tree / farāʾiḍ product → `/amana/`
+- University → `/campus/`
 
-## Nav
-Always expose four doors via room-nav: Companion · Yawm · University · Amānah.
-
-Day-landing / daily-routine chrome on Companion stays suppressed; Yawm is SoT for the day.
-
-Educational only — not a fatwa.
+## Curtain rule (C0–C1)
+Public chrome and URLs stay stable for users and indexing.
+Architecture upgrades happen via owned assets under `/companion/assets/`.

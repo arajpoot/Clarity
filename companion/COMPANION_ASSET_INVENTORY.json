@@ -1,0 +1,690 @@
+{
+  "phase": "C0",
+  "scripts": [
+    {
+      "src": "/companion/assets/companion-boot-v2.js?v=20261104EC",
+      "class": "owned-boot",
+      "path": "/companion/assets/companion-boot-v2.js"
+    },
+    {
+      "src": "/companion/assets/companion-boot-shim-v1.js?v=20261106C1",
+      "class": "owned-boot",
+      "path": "/companion/assets/companion-boot-shim-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-room-owner-v1.js?v=20261104EN",
+      "class": "owned-boot",
+      "path": "/companion/assets/companion-room-owner-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-shariah-guard-v1.js?v=20261106C1",
+      "class": "owned-boot",
+      "path": "/companion/assets/companion-shariah-guard-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-error-guard-v1.js?v=20261106C1",
+      "class": "owned-boot",
+      "path": "/companion/assets/companion-error-guard-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-banner-viewport-v1.js?v=20261104VP",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-viewport-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-banner-mobile-v1.js?v=20261105M1",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-mobile-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-banner-desktop-v1.js?v=20261105D1",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-desktop-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-banner-controls-v1.js?v=20261105FIX1",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-controls-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-banner-plaques-v1.js?v=20261105Q2",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-plaques-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-banner-enrich-v1.js?v=20261106B1",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-enrich-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-haramain-temps-v1.js?v=20261105M1",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-haramain-temps-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-ai-maintainer-v1.js?v=20261104AIM",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-ai-maintainer-v1.js"
+    },
+    {
+      "src": "/assets/room-nav/clarity-room-nav-v1.js?v=20261104C10",
+      "class": "shared-room-nav",
+      "path": "/assets/room-nav/clarity-room-nav-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g1-integrity-v1.js?v=20261106G1",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g1-integrity-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g6-midway-v1.js?v=20261106G6",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g6-midway-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g7-content-live-v1.js?v=20261106G7",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g7-content-live-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g8-reality-stable-v1.js?v=20261106G8",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g8-reality-stable-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g9-reflection-governance-v1.js?v=20261106G9",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g9-reflection-governance-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g10-action-hajj-parity-v1.js?v=20261106G10",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g10-action-hajj-parity-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g11-media-hajj-parity-v1.js?v=20261106G11",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g11-media-hajj-parity-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g12-quiz-about-governance-v1.js?v=20261106G12",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g12-quiz-about-governance-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-g13-reminder-about-v1.js?v=20261106G13",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g13-reminder-about-v1.js"
+    },
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg",
+      "class": "external",
+      "path": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg"
+    },
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg",
+      "class": "external",
+      "path": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/640px-Kaaba_Masjid_Haraam_Makkah.jpg"
+    },
+    {
+      "src": "https://www.youtube-nocookie.com/embed/videoseries?list=PLQ02IYL5pmhH0KWBrGxxR-lCCwlTFIVbm&rel=0&modestbranding=1",
+      "class": "external",
+      "path": "https://www.youtube-nocookie.com/embed/videoseries"
+    },
+    {
+      "src": "about:blank",
+      "class": "external",
+      "path": "about:blank"
+    },
+    {
+      "src": "https://www.youtube-nocookie.com/embed/videoseries?list=PLGlK3JqJXED8GhgIczDFEqEM0uFWfGN5X&rel=0&modestbranding=1",
+      "class": "external",
+      "path": "https://www.youtube-nocookie.com/embed/videoseries"
+    },
+    {
+      "src": "about:blank",
+      "class": "external",
+      "path": "about:blank"
+    },
+    {
+      "src": "https://www.youtube-nocookie.com/embed/s17YH8xrCS8?rel=0&modestbranding=1",
+      "class": "external",
+      "path": "https://www.youtube-nocookie.com/embed/s17YH8xrCS8"
+    },
+    {
+      "src": "about:blank",
+      "class": "external",
+      "path": "about:blank"
+    },
+    {
+      "src": "https://www.youtube-nocookie.com/embed/videoseries?list=PLQ02IYL5pmhHFl7j6wPcFTZmlQvRhsejp&rel=0&modestbranding=1",
+      "class": "external",
+      "path": "https://www.youtube-nocookie.com/embed/videoseries"
+    },
+    {
+      "src": "about:blank",
+      "class": "external",
+      "path": "about:blank"
+    },
+    {
+      "src": "https://www.youtube-nocookie.com/embed/videoseries?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs&rel=0&modestbranding=1",
+      "class": "external",
+      "path": "https://www.youtube-nocookie.com/embed/videoseries"
+    },
+    {
+      "src": "about:blank",
+      "class": "external",
+      "path": "about:blank"
+    },
+    {
+      "src": "https://www.youtube-nocookie.com/embed/videoseries?list=PLH3gvuJis52MDUOlpiilZaJ_TNc8YMZVN&rel=0&modestbranding=1",
+      "class": "external",
+      "path": "https://www.youtube-nocookie.com/embed/videoseries"
+    },
+    {
+      "src": "about:blank",
+      "class": "external",
+      "path": "about:blank"
+    },
+    {
+      "src": "https://open.spotify.com/embed/track/6jy0lafVq7EIAy243fxuv8?utm_source=generator",
+      "class": "external",
+      "path": "https://open.spotify.com/embed/track/6jy0lafVq7EIAy243fxuv8"
+    },
+    {
+      "src": "https://www.youtube-nocookie.com/embed/videoseries?list=PL62RQxDpIL7UAWIf4ZHOH5aJIt3YHc7rg&rel=0&modestbranding=1",
+      "class": "external",
+      "path": "https://www.youtube-nocookie.com/embed/videoseries"
+    },
+    {
+      "src": "about:blank",
+      "class": "external",
+      "path": "about:blank"
+    },
+    {
+      "src": "https://www.youtube-nocookie.com/embed/MUDNDj4n7I4?rel=0&modestbranding=1",
+      "class": "external",
+      "path": "https://www.youtube-nocookie.com/embed/MUDNDj4n7I4"
+    },
+    {
+      "src": "about:blank",
+      "class": "external",
+      "path": "about:blank"
+    },
+    {
+      "src": "/companion/assets/clarity-companion-unfreeze-v3.js?v=20261104EC",
+      "class": "owned-companion",
+      "path": "/companion/assets/clarity-companion-unfreeze-v3.js"
+    },
+    {
+      "src": "/companion/assets/companion-tab-persist-v35.js?v=20261104EC",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-tab-persist-v35.js"
+    },
+    {
+      "src": "/companion/assets/clarity-meme-api-bridge-v1.js?v=20261104EC",
+      "class": "owned-companion",
+      "path": "/companion/assets/clarity-meme-api-bridge-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-craft-core-v1.js?v=20261104EC",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-craft-core-v1.js"
+    },
+    {
+      "src": "/assets/clarity-path-progress-v1.js?v=20261101WB1",
+      "class": "shared-js-candidate",
+      "path": "/assets/clarity-path-progress-v1.js"
+    },
+    {
+      "src": "/companion/assets/companion-path-governance-v1.js?v=20261106G1",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-path-governance-v1.js"
+    },
+    {
+      "src": "/assets/clarity-grave-path-curriculum-js.js?v=20261101WB1",
+      "class": "shared-js-candidate",
+      "path": "/assets/clarity-grave-path-curriculum-js.js"
+    },
+    {
+      "src": "/assets/clarity-link-stubs-v1.js?v=20261101WB1",
+      "class": "shared-js-candidate",
+      "path": "/assets/clarity-link-stubs-v1.js"
+    },
+    {
+      "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "class": "external",
+      "path": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+    },
+    {
+      "src": "/companion/assets/companion-meme-studio-fix-v1.js?v=20261104MS3",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-meme-studio-fix-v1.js"
+    },
+    {
+      "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "class": "external",
+      "path": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+    },
+    {
+      "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "class": "external",
+      "path": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+    }
+  ],
+  "css": [
+    {
+      "href": "/companion/assets/clarity-companion-unfreeze-v3.css?v=20261104EC",
+      "class": "owned-companion",
+      "path": "/companion/assets/clarity-companion-unfreeze-v3.css"
+    },
+    {
+      "href": "/assets/css/clarity-style-block-0.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/clarity-style-block-0.css"
+    },
+    {
+      "href": "/assets/css/clarity-revamp-css.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/clarity-revamp-css.css"
+    },
+    {
+      "href": "/assets/css/clarity-scroll-fortress-css.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/clarity-scroll-fortress-css.css"
+    },
+    {
+      "href": "/assets/css/clarity-amana-vault-gate-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/clarity-amana-vault-gate-v1.css"
+    },
+    {
+      "href": "/assets/css/nuros-shariah-palette-collapse-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/nuros-shariah-palette-collapse-v1.css"
+    },
+    {
+      "href": "/assets/css/companion-lean-styles.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/companion-lean-styles.css"
+    },
+    {
+      "href": "/assets/css/nuros-icons-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/nuros-icons-v1.css"
+    },
+    {
+      "href": "/assets/css/companion-tweet-unbury-icons-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/companion-tweet-unbury-icons-v1.css"
+    },
+    {
+      "href": "/assets/css/companion-doors-mobile-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/companion-doors-mobile-v1.css"
+    },
+    {
+      "href": "/assets/css/companion-surface-lock-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/companion-surface-lock-v1.css"
+    },
+    {
+      "href": "/assets/css/companion-qada-tracker-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/companion-qada-tracker-v1.css"
+    },
+    {
+      "href": "/assets/css/companion-trust-plaques-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/companion-trust-plaques-v1.css"
+    },
+    {
+      "href": "/assets/room-nav/clarity-room-nav-v1.css?v=20261104C10",
+      "class": "shared-room-nav",
+      "path": "/assets/room-nav/clarity-room-nav-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-restore-v1.css?v=20261104R",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-restore-v1.css"
+    },
+    {
+      "href": "/assets/css/companion-track-tiles-restore-v1.css?v=20261104AL",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/companion-track-tiles-restore-v1.css"
+    },
+    {
+      "href": "/assets/css/clarity-final-banner-controls-v2.css?v=20261104EN",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/clarity-final-banner-controls-v2.css"
+    },
+    {
+      "href": "/assets/css/clarity-banner-revamp-v1.css?v=20261104EN",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/clarity-banner-revamp-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-unity-v2.css?v=20261104EN",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-unity-v2.css"
+    },
+    {
+      "href": "/assets/nuros/nuros-type-icons-v1.css?v=20261104P2",
+      "class": "shared-js-candidate",
+      "path": "/assets/nuros/nuros-type-icons-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-banner-mobile-v1.css?v=20261105M1",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-mobile-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-banner-desktop-v1.css?v=20261105D1",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-desktop-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-banner-plaques-v1.css?v=20261105Q2",
+      "class": "owned-banner",
+      "path": "/companion/assets/companion-banner-plaques-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g1-integrity-v1.css?v=20261106G1",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g1-integrity-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g6-midway-v1.css?v=20261106G6",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g6-midway-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g7-content-live-v1.css?v=20261106G7",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g7-content-live-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g8-reality-stable-v1.css?v=20261106G8",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g8-reality-stable-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g9-reflection-governance-v1.css?v=20261106G9",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g9-reflection-governance-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g10-action-hajj-parity-v1.css?v=20261106G10",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g10-action-hajj-parity-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g11-media-hajj-parity-v1.css?v=20261106G11",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g11-media-hajj-parity-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g12-quiz-about-governance-v1.css?v=20261106G12",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g12-quiz-about-governance-v1.css"
+    },
+    {
+      "href": "/companion/assets/companion-g13-reminder-about-v1.css?v=20261106G13",
+      "class": "owned-companion",
+      "path": "/companion/assets/companion-g13-reminder-about-v1.css"
+    },
+    {
+      "href": "/companion/modules/css/nx-tajweed-deep-studio-v1.css?v=20261101WB1",
+      "class": "other",
+      "path": "/companion/modules/css/nx-tajweed-deep-studio-v1.css"
+    },
+    {
+      "href": "/assets/css/nuros-final-polish-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/nuros-final-polish-v1.css"
+    },
+    {
+      "href": "/assets/css/clarity-rrra5-core-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/clarity-rrra5-core-v1.css"
+    },
+    {
+      "href": "/assets/css/clarity-day-shariah-lock-v1.css?v=20261101WB1",
+      "class": "shared-css-candidate",
+      "path": "/assets/css/clarity-day-shariah-lock-v1.css"
+    }
+  ],
+  "summary": {
+    "owned-boot": 5,
+    "owned-banner": 10,
+    "owned-companion": 28,
+    "shared-room-nav": 2,
+    "external": 22,
+    "shared-js-candidate": 4,
+    "shared-css-candidate": 18,
+    "other": 1
+  },
+  "downloaded": [
+    {
+      "path": "/companion/assets/companion-boot-v2.js",
+      "bytes": 620,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-boot-shim-v1.js",
+      "bytes": 2616,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-room-owner-v1.js",
+      "bytes": 20890,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-shariah-guard-v1.js",
+      "bytes": 5295,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-error-guard-v1.js",
+      "bytes": 2843,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-viewport-v1.js",
+      "bytes": 11080,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-mobile-v1.js",
+      "bytes": 1752,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-desktop-v1.js",
+      "bytes": 10990,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-controls-v1.js",
+      "bytes": 6013,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-plaques-v1.js",
+      "bytes": 10516,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-enrich-v1.js",
+      "bytes": 14422,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-haramain-temps-v1.js",
+      "bytes": 2511,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-ai-maintainer-v1.js",
+      "bytes": 10636,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g1-integrity-v1.js",
+      "bytes": 4111,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g6-midway-v1.js",
+      "bytes": 2784,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g7-content-live-v1.js",
+      "bytes": 13620,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g8-reality-stable-v1.js",
+      "bytes": 10363,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g9-reflection-governance-v1.js",
+      "bytes": 12618,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g10-action-hajj-parity-v1.js",
+      "bytes": 16222,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g11-media-hajj-parity-v1.js",
+      "bytes": 7542,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g12-quiz-about-governance-v1.js",
+      "bytes": 16514,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g13-reminder-about-v1.js",
+      "bytes": 9909,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/clarity-companion-unfreeze-v3.js",
+      "bytes": 3799,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-tab-persist-v35.js",
+      "bytes": 2600,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/clarity-meme-api-bridge-v1.js",
+      "bytes": 7678,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-craft-core-v1.js",
+      "bytes": 3029,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-path-governance-v1.js",
+      "bytes": 10846,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-meme-studio-fix-v1.js",
+      "bytes": 11624,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/clarity-companion-unfreeze-v3.css",
+      "bytes": 1248,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-restore-v1.css",
+      "bytes": 3381,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-unity-v2.css",
+      "bytes": 4341,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-mobile-v1.css",
+      "bytes": 3580,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-desktop-v1.css",
+      "bytes": 5711,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-banner-plaques-v1.css",
+      "bytes": 2668,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g1-integrity-v1.css",
+      "bytes": 1276,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g6-midway-v1.css",
+      "bytes": 5362,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g7-content-live-v1.css",
+      "bytes": 834,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g8-reality-stable-v1.css",
+      "bytes": 686,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g9-reflection-governance-v1.css",
+      "bytes": 388,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g10-action-hajj-parity-v1.css",
+      "bytes": 335,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g11-media-hajj-parity-v1.css",
+      "bytes": 388,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g12-quiz-about-governance-v1.css",
+      "bytes": 614,
+      "status": 200
+    },
+    {
+      "path": "/companion/assets/companion-g13-reminder-about-v1.css",
+      "bytes": 375,
+      "status": 200
+    },
+    {
+      "path": "/companion/modules/css/nx-tajweed-deep-studio-v1.css",
+      "bytes": 6325,
+      "status": 200
+    }
+  ],
+  "failed": []
+}

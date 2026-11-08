@@ -7,4 +7,4 @@
 | University | `/campus/` |
 | Amānah | `/amana/` |
 
-In-shell: `#reminder` · `#reality` · `#reflection` · `#action` · `#notes`.
+Pathway selection stays inside Companion chrome (curtain packs in later phases).
