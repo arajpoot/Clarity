@@ -1,0 +1,43 @@
+{
+  "ok": false,
+  "cycles": [
+    {
+      "name": "batch_lists",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "tree_html_batch",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "no_direct_uft_flood",
+      "ok": false,
+      "detail": {
+        "issues": [
+          "still direct uft: ['/amana/assets/amana-uft-batch-boot-v1.js?v=20261108M5b']"
+        ]
+      }
+    },
+    {
+      "name": "syntax",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "http",
+      "ok": true,
+      "detail": {
+        "fails": []
+      }
+    }
+  ],
+  "status": "needs_attention"
+}
