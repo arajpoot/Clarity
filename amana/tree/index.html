@@ -181,7 +181,8 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
         <p id="uft-empty"></p>
       </div>
 
-      <div class="uft-grid uft-grid-2" style="margin-top:0.75rem">
+      <!-- unified registry replaces dual grid -->
+<div id="uft-legacy-reg-grid" style="display:none"><div class="uft-grid uft-grid-2" style="margin-top:0.75rem">
         <div>
           <h3 style="color:#d4b45a;font-size:0.95rem;margin:0 0 0.35rem">Registry · add person</h3>
           <div class="uft-field"><label for="uft-reg-name">Name</label><input id="uft-reg-name" type="text"/></div>
@@ -202,7 +203,7 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
           <div id="uft-reg-new-section"></div>
           <div id="uft-library"></div>
           <div id="uft-reg-loaded-count" style="font-size:0.78rem;opacity:0.85;margin-top:0.35rem"></div>
-        </div>
+        </div></div>
       </div>
 
       <div style="margin-top:0.75rem">
@@ -223,6 +224,10 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
      All under /amana/assets/ (Amānah-owned assets only). -->
 <script defer src="/amana/assets/clarity-amana-uft-v1.js?v=20261107P1"></script>
 <script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261107P1"></script>
+
+<!-- Registry UI unity · single intake · 20261108UU1 -->
+<script defer src="/amana/assets/amana-uft-registry-ui-unity-v1.js?v=20261108UU1"></script>
+
 <script defer src="/amana/assets/amana-uft-registry-deep-v1.js?v=20261107P1"></script>
 <script defer src="/amana/assets/amana-uft-viewport-stable-v1.js?v=20261107P1"></script>
 <script defer src="/amana/assets/amana-uft-dock-v2.js?v=20261107P2"></script>
