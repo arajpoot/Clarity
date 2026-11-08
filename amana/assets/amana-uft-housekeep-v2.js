@@ -1,6 +1,5 @@
-/*! Amānah UFT housekeep v2
- * Distinct H/V · strip initials · hide duplicate registry + long relation lists
- * Educational only — not a fatwa · not a legal pedigree
+/*! Amānah UFT housekeep v2.1 · softened
+ * Initials strip · orient bar · do not hide registry richness
  */
 (function (w, d) {
   "use strict";
@@ -17,28 +16,6 @@
     d.querySelectorAll(".uft-avatar").forEach(function (el) {
       el.style.display = "none";
       el.setAttribute("aria-hidden", "true");
-    });
-  }
-
-  function hideDupes() {
-    var box = d.getElementById("uft-registry-box");
-    if (box && box.closest && box.closest("#user-family-tree-card")) {
-      if (d.querySelector(".uft-dock, #uft-dock, [data-uft-dock], #uft-registry-deep")) {
-        box.hidden = true;
-        box.style.display = "none";
-      }
-    }
-    var rel = d.getElementById("uft-rel-list");
-    if (rel) {
-      rel.hidden = true;
-      rel.style.display = "none";
-      rel.innerHTML = "";
-    }
-    d.querySelectorAll("#user-family-tree-card p, #user-family-tree-card li, #user-family-tree-card div").forEach(function (el) {
-      var t = (el.textContent || "").trim();
-      if (/^You\s*→\s*(Offspring|Sibling|Uncle|Aunt)/i.test(t) && el.children.length <= 2) {
-        el.style.display = "none";
-      }
     });
   }
 
@@ -82,6 +59,27 @@
     });
   }
 
+  function expandRegistryRichness() {
+    /* Open deep registry panel */
+    var deep = d.getElementById("uft-registry-deep");
+    if (deep) {
+      deep.classList.remove("uft-reg-collapsed");
+      deep.style.display = "";
+      deep.hidden = false;
+    }
+    try {
+      localStorage.setItem("clarity_uft_reg_collapsed_v1", "0");
+    } catch (e) {}
+    /* Expand dock registry section if present */
+    d.querySelectorAll("details.uft-registry, #uft-registry-box, details[data-uft-reg]").forEach(function (el) {
+      try {
+        el.open = true;
+        el.hidden = false;
+        el.style.display = "";
+      } catch (err) {}
+    });
+  }
+
   function settle() {
     if (!isTree()) return;
     ensureOrientBar();
@@ -91,8 +89,8 @@
       if (v === "v" || v === "h") mode = v;
     } catch (e) {}
     applyOrient(mode);
-    hideDupes();
     stripInitials();
+    expandRegistryRichness();
   }
 
   function wrapRender() {
@@ -102,7 +100,7 @@
       var r = orig.apply(this, arguments);
       setTimeout(function () {
         stripInitials();
-        hideDupes();
+        expandRegistryRichness();
       }, 0);
       return r;
     };
@@ -118,8 +116,7 @@
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
   setTimeout(boot, 500);
-  setTimeout(boot, 1500);
-  setTimeout(wrapRender, 800);
+  setTimeout(boot, 1800);
   d.addEventListener("clarity-amana-unlock-change", function (ev) {
     if (ev.detail && ev.detail.unlocked) setTimeout(boot, 300);
   });
