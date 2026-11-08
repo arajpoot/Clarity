@@ -1,0 +1,77 @@
+/* Port P3 — How the castle works. Port-owned. Rooms untouched. */
+.port-how-castle {
+  max-width: 920px;
+  margin: 1.5rem auto 1.75rem;
+  padding: 0 1rem;
+}
+.phc-card {
+  background: linear-gradient(165deg, rgba(16, 40, 32, 0.92), rgba(10, 28, 22, 0.96));
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  border-radius: 16px;
+  padding: 1.25rem 1.35rem 1.4rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+}
+.phc-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #e8d5a3;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.phc-sub {
+  margin: 0 0 1.15rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: rgba(180, 200, 190, 0.9);
+}
+.phc-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.phc-step {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 162, 39, 0.16);
+  border-radius: 14px;
+  padding: 1rem 0.9rem;
+  text-align: center;
+}
+.phc-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: rgba(30, 125, 94, 0.45);
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  color: #e8d5a3;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.55rem;
+}
+.phc-step h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  color: #e8d5a3;
+  font-weight: 700;
+}
+.phc-step p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: rgba(200, 215, 205, 0.95);
+}
+.phc-stamp {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(160, 180, 170, 0.9);
+}
+@media (max-width: 720px) {
+  .phc-steps { grid-template-columns: 1fr; }
+}
