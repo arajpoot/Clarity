@@ -45,9 +45,16 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-tree-lines-v1.css?v=20261108TL11"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-glass-plaque-v1.css?v=20261108GP1"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-branch-horizontal-v1.css?v=20261108BH1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-day-close-v1.css?v=20261108DC1"/>
 </head>
 <body>
-<nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms"></nav>
+<nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
+  <a href="/companion/" data-room-link="companion"><span class="crn-ico">🏠</span><span class="crn-label">Companion</span></a>
+  <a href="/yawm/" data-room-link="yawm"><span class="crn-ico">📅</span><span class="crn-label">Yawm</span></a>
+  <a href="/university/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
+  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
+  <a href="/craft/" data-room-link="craft"><span class="crn-ico">✍️</span><span class="crn-label">Craft</span></a>
+</nav>
 <main class="amana-wrap">
   <nav class="amana-subnav" aria-label="Amānah rooms">
     <a href="/amana/">Home</a>
@@ -76,6 +83,7 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 
     <!-- Classic stage host (full-restore draws into #uft-preview / #uft-stage) -->
     <div id="clarity-family-tree-host">
+      <p id="uft-meta-outside" class="uft-meta-outside" style="font-size:0.78rem;opacity:0.9;line-height:1.35;margin:0.35rem 0 0.5rem;color:#e8d5a3"></p>
       <div id="uft-stage" class="uft-stage" data-skin="green">
         <div id="uft-preview" class="uft-preview uft-tree"></div>
       </div>
@@ -130,5 +138,6 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 <script defer src="/amana/assets/amana-uft-ui-order-v1.js?v=20261108UO1"></script>
 <script defer src="/amana/assets/amana-uft-glass-plaque-v1.js?v=20261108GP1"></script>
 <script defer src="/amana/assets/amana-uft-branch-horizontal-v1.js?v=20261108BH1"></script>
+<script defer src="/amana/assets/amana-uft-day-close-v1.js?v=20261108DC1"></script>
 </body>
 </html>
