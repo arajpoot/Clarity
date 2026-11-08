@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-clarity-room="port"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Port P0–P3 smoke</title>
+<link rel="stylesheet" href="../assets/port-trust-strip-v1.css"/>
+<link rel="stylesheet" href="../assets/port-door-registry-v1.css"/>
+<link rel="stylesheet" href="../assets/port-visit-notes-v1.css"/>
+<link rel="stylesheet" href="../assets/port-how-castle-v1.css"/>
+<style>
+body{margin:0;font-family:system-ui;background:#0c1c16;color:#e8f0ec}
+.wrap{max-width:1100px;margin:0 auto;padding:1.25rem}
+header h1{color:#e8d5a3}
+.sym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.tower{background:#12261e;border:1px solid rgba(201,162,39,.28);border-radius:14px;padding:1rem}
+.tower-actions{display:flex;gap:.5rem;margin-top:.5rem}
+a.enter{color:#e8d5a3;border:1px solid rgba(201,162,39,.4);padding:.35rem .7rem;border-radius:8px;text-decoration:none}
+#log{margin-top:1.5rem;padding:1rem;background:#0a1612;border-radius:12px;white-space:pre-wrap;font-size:.85rem}
+.ok{color:#6dca9a}.fail{color:#e88}
+</style>
+</head><body>
+<div class="wrap">
+<header class="hero"><h1>Furnish Your Grave</h1>
+<p>Educational only — not a fatwa. Private data stays on this device.</p></header>
+<div class="castle-intro"><h2>Castle introduction</h2><p>Video placeholder</p></div>
+<div class="sym-grid">
+<div class="tower" data-room="companion"><h3>Companion</h3><div class="tower-actions"><a class="enter" href="/companion/">Enter Companion</a></div></div>
+<div class="tower" data-room="yawm"><h3>Yawm</h3><div class="tower-actions"><a class="enter" href="/daily/">Enter Yawm</a></div></div>
+<div class="tower" data-room="amana"><h3>Amānah</h3><div class="tower-actions"><a class="enter" href="/amana/">Enter Amānah</a></div></div>
+<div class="tower" data-room="campus"><h3>Campus</h3><div class="tower-actions"><a class="enter" href="/campus/">Enter Campus</a></div></div>
+<div class="tower" data-room="craft"><h3>Craft</h3><div class="tower-actions"><a class="enter" href="/craft/">Enter Craft</a></div></div>
+</div>
+<div id="log">…</div>
+</div>
+<script src="../assets/port-trust-strip-v1.js"></script>
+<script src="../assets/port-door-registry-v1.js"></script>
+<script src="../assets/port-visit-notes-v1.js"></script>
+<script src="../assets/port-how-castle-v1.js"></script>
+<script>
+(function(){
+  var log=document.getElementById('log'), lines=[];
+  function p(ok,m){lines.push((ok?'PASS':'FAIL')+': '+m)}
+  function done(){
+    var f=lines.filter(function(l){return l.indexOf('FAIL')===0}).length;
+    log.className=f?'fail':'ok';
+    log.textContent=lines.join('\n')+'\n\n'+(f?'FAILED '+f:'SMOKE_ALL_PASS');
+    document.title=f?'SMOKE_FAIL':'SMOKE_ALL_PASS';
+  }
+  function run(){
+    try{
+      p(!!document.getElementById('port-trust-strip'),'P1 trust strip');
+      p(!!document.getElementById('port-how-castle'),'P3 how castle');
+      p(/Arrive/i.test(document.getElementById('port-how-castle').innerText),'P3 Arrive');
+      p(/Choose a door/i.test(document.getElementById('port-how-castle').innerText),'P3 Choose');
+      p(/Verify/i.test(document.getElementById('port-how-castle').innerText),'P3 Verify');
+      var D=window.ClarityPortDoorRegistry, N=window.ClarityPortVisitNotes;
+      p(!!D,'P1b API'); p(!!N,'P2b API');
+      if(!D||!N){done();return}
+      p(D.key==='clarity.port.doorRegistry.v1','door key');
+      p(N.key==='clarity.port.visitNotes.v1','notes key');
+      p(document.querySelectorAll('.door-registry-stamp').length===5,'5 stamps');
+      p(!!document.getElementById('port-visit-notes'),'visit notes');
+      p(/not Amānah/i.test(document.getElementById('port-visit-notes').innerText),'not Amānah');
+      document.querySelectorAll('a.enter').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
+      D.clear(); N.clear();
+      document.querySelector('.tower[data-room="companion"] a.enter').click();
+      p(!!D.snapshot().companion,'enter records');
+      N.add('smoke note'); p(N.list().length===1,'note saved');
+      p(!localStorage.getItem('clarity.amana'),'no amana key');
+      var how=document.getElementById('port-how-castle'), grid=document.querySelector('.sym-grid');
+      p(how&&grid&&(how.compareDocumentPosition(grid)&Node.DOCUMENT_POSITION_FOLLOWING),'how before grid');
+    }catch(e){p(false,String(e))}
+    done();
+  }
+  function wait(n){
+    n=n||0;
+    if(window.ClarityPortDoorRegistry&&window.ClarityPortVisitNotes&&document.getElementById('port-how-castle')&&document.getElementById('port-trust-strip')) return run();
+    if(n>60){p(false,'timeout APIs');done();return}
+    setTimeout(function(){wait(n+1)},50);
+  }
+  window.addEventListener('load',function(){wait(0)});
+})();
+</script>
+</body></html>

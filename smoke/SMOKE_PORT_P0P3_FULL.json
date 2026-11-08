@@ -1,0 +1,98 @@
+{
+  "package": "PORT_P0P3_FULL_DEPLOY",
+  "phases": [
+    "P0",
+    "P1",
+    "P1b",
+    "P2b",
+    "P3"
+  ],
+  "governance_contract": {
+    "enrichment_only": true,
+    "rooms_untouched": true,
+    "owned_imports_only": true,
+    "not_amanah_notes": true,
+    "not_fatwa": true
+  },
+  "html_included": true,
+  "checks": [
+    {
+      "name": "asset_port-trust-strip-v1.css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset_port-trust-strip-v1.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset_port-door-registry-v1.css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset_port-door-registry-v1.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset_port-visit-notes-v1.css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset_port-visit-notes-v1.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset_port-how-castle-v1.css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset_port-how-castle-v1.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index_exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index_all_css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index_all_js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index_rooms",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_room_hijack",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "readme",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "browser_smoke",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "browser_log_excerpt": "PASS: P1 trust strip PASS: P3 how castle PASS: P3 Arrive PASS: P3 Choose PASS: P3 Verify PASS: P1b API PASS: P2b API PASS: door key PASS: notes key PASS: 5 stamps PASS: visit notes PASS: not Am\u0101nah PASS: enter records PASS: note saved PASS: no amana key PASS: how before grid SMOKE_ALL_PASS",
+  "passed": true,
+  "fail_count": 0
+}
