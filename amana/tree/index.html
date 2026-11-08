@@ -41,6 +41,7 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 /* hidden backbone fields for core collect/load */
 .uft-hidden-fields { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 </style>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-housekeep-v2.css?v=20261108HK2"/>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms"></nav>
@@ -94,41 +95,7 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
     </div>
 
     <!-- Registry host for dock / deep modules -->
-    <details class="uft-registry" id="uft-registry-box" open>
-      <summary style="cursor:pointer;font-weight:700;color:#e8d5a3">Names &amp; registry · add · link · build</summary>
-      <p style="font-size:0.78rem;opacity:0.9;margin:0.4rem 0">Main workspace: add people, link relations, build the pedigree. Educational outline only.</p>
-      <div class="uft-grid" style="display:grid;gap:0.4rem;grid-template-columns:1fr 1fr">
-        <input id="uft-reg-name" placeholder="Full name *" style="grid-column:1/-1;padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
-        <input id="uft-reg-phone" placeholder="Phone / WhatsApp" style="padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
-        <input id="uft-reg-email" placeholder="Email" style="padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
-        <input id="uft-reg-city" placeholder="City / country" style="padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
-        <input id="uft-reg-note" placeholder="Note" style="grid-column:1/-1;padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
-        <label style="font-size:0.75rem">Link host
-          <select id="uft-reg-link-host" style="width:100%;padding:0.35rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit">
-            <option value="">No link (registry only)</option>
-          </select>
-        </label>
-        <label style="font-size:0.75rem">As relation
-          <select id="uft-reg-link-rel" style="width:100%;padding:0.35rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit">
-            <option value="child">Child</option>
-            <option value="spouse">Spouse</option>
-            <option value="sibling">Sibling</option>
-            <option value="father">Father</option>
-            <option value="mother">Mother</option>
-            <option value="relative">Other</option>
-          </select>
-        </label>
-        <input type="hidden" id="uft-reg-role" value=""/>
-        <input type="hidden" id="uft-reg-edit-id" value=""/>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.5rem">
-        <button type="button" onclick="typeof uftRegAddNew==='function'&&uftRegAddNew()" style="padding:0.35rem 0.7rem;border-radius:999px;border:1px solid rgba(212,180,90,0.4);background:rgba(30,125,94,0.4);color:inherit;font-weight:700;cursor:pointer">＋ Save &amp; link member</button>
-        <button type="button" onclick="typeof uftRegImportTree==='function'&&uftRegImportTree()" style="padding:0.35rem 0.7rem;border-radius:999px;border:1px solid rgba(212,180,90,0.4);background:rgba(0,0,0,0.28);color:inherit;font-weight:700;cursor:pointer">Pull names from tree</button>
-        <button type="button" onclick="typeof uftSave==='function'&&uftSave()" style="padding:0.35rem 0.7rem;border-radius:999px;border:1px solid rgba(212,180,90,0.4);background:rgba(0,0,0,0.28);color:inherit;font-weight:700;cursor:pointer">Save pedigree view</button>
-      </div>
-      <div id="uft-reg-list" style="margin-top:0.55rem"></div>
-      <div id="uft-rel-list" style="margin-top:0.35rem"></div>
-    </details>
+    <!-- static registry duplicate removed · housekeep v2 · dock provides registry -->
   </section>
 
   <p class="foot">
@@ -154,5 +121,6 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 <script defer src="/amana/assets/amana-uft-png-v1.js?v=20261107P5"></script>
 <script defer src="/amana/assets/amana-uft-fiqh-bridge-v1.js?v=20261107P1"></script>
 <script defer src="/amana/assets/amana-uft-classic-boost-v1.js?v=20261108CL1"></script>
+<script defer src="/amana/assets/amana-uft-housekeep-v2.js?v=20261108HK2"></script>
 </body>
 </html>
