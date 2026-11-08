@@ -1,17 +1,17 @@
-/*! Amānah UFT · build-tree repair + registry de-dupe
- * Screenshots: registry full, pedigree slots empty; double registry forms.
- * - Deduplicate registry rows (name+role)
- * - Auto map roles → backbone (self/father/…) and children/siblings lines
- * - On Build tree chip / empty stage: suggest + apply to pedigree
- * - Collapse duplicate registry UI (keep one primary form)
- * Educational only — not a legal pedigree
+/*! Amānah UFT · registry-unity + build repair v2
+ * Root cause: Build tree calls uftApplyBuildFromCards which ALERTs when
+ * clarity_uft_member_cards_v1 is empty — even if registry has 70+ people.
+ * Fix: registry is source of truth → sync to cards → map backbone → pedigree.
+ * Single effective registry path; suppress cards-only gate.
+ * Educational only — not a legal pedigree.
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_AMANA_UFT_BUILD_REPAIR_V1__) return;
+  /* allow reload of newer repair */
   w.__CLARITY_AMANA_UFT_BUILD_REPAIR_V1__ = true;
 
   var KEY = w.UFT_KEY || "clarity_user_family_tree_v1";
+  var CARDS_KEY = "clarity_uft_member_cards_v1";
 
   function isTree() {
     return /\/amana\/tree\/?/.test(location.pathname || "") || !!d.getElementById("user-family-tree-card");
@@ -46,7 +46,6 @@
       if (!r || !r.name) return;
       var k = norm(r.name) + "|" + norm(r.role);
       if (seen[k]) {
-        /* merge sparse fields into first */
         var prev = seen[k];
         ["phone", "email", "city", "note", "gender", "vital"].forEach(function (f) {
           if (!prev[f] && r[f]) prev[f] = r[f];
@@ -68,6 +67,40 @@
       out.push(row);
     });
     return out;
+  }
+
+  function registryToCards(reg) {
+    return (reg || []).map(function (r) {
+      return {
+        name: r.name,
+        role: r.role || "",
+        slot: r.role || "",
+        generationHint: r.role || "",
+        phone: r.phone || "",
+        email: r.email || "",
+        city: r.city || "",
+        note: r.note || "",
+        gender: r.gender || "",
+        vital: r.vital || ""
+      };
+    });
+  }
+
+  function syncRegistryToCards() {
+    var data = read();
+    data.registry = dedupeRegistry(data.registry || []);
+    write(data);
+    var cards = registryToCards(data.registry);
+    try {
+      localStorage.setItem(CARDS_KEY, JSON.stringify(cards));
+    } catch (e) {}
+    try {
+      if (typeof w.uftSetStoredCards === "function") w.uftSetStoredCards(cards);
+    } catch (e2) {}
+    try {
+      if (typeof w.uftRegRenderLoaded === "function") w.uftRegRenderLoaded();
+    } catch (e3) {}
+    return cards;
   }
 
   function roleIs(r, re) {
@@ -98,8 +131,9 @@
       return names;
     }
 
+    /* Prefer explicit roles; do not invent self from random sibling */
     if (!data.self) data.self = first(/^(self|focus|me)$/i);
-    if (!data.spouse) data.spouse = first(/spouse|husband|wife/i);
+    if (!data.spouse) data.spouse = first(/^(spouse|husband|wife)$/i);
     if (!data.father) data.father = first(/^father$/i);
     if (!data.mother) data.mother = first(/^mother$/i);
     if (!data.pgf) data.pgf = first(/paternal grandfather|^pgf$/i);
@@ -108,19 +142,21 @@
     if (!data.mgm) data.mgm = first(/maternal grandmother|^mgm$/i);
 
     var kids = all(/^(child|son|daughter|children)$/i);
-    if (kids.length && !String(data.children || "").trim()) data.children = kids.join("\n");
+    if (kids.length) data.children = kids.join("\n");
     var sibs = all(/^(sibling|brother|sister)$/i);
-    if (sibs.length && !String(data.siblings || "").trim()) data.siblings = sibs.join("\n");
+    if (sibs.length) data.siblings = sibs.join("\n");
     var gc = all(/grandchild|grandson|granddaughter/i);
-    if (gc.length && !String(data.grandchildren || "").trim()) data.grandchildren = gc.join("\n");
+    if (gc.length) data.grandchildren = gc.join("\n");
 
+    /* If still no self but registry has people, leave self empty — user must mark Self once */
     data.savedAt = new Date().toISOString();
     return data;
   }
 
   function applyToPedigree(data) {
-    data = mapRegistryToBackbone(data);
+    data = mapRegistryToBackbone(data || read());
     write(data);
+    syncRegistryToCards();
     try {
       if (typeof w.uftApplyData === "function") w.uftApplyData(data);
       else {
@@ -133,137 +169,156 @@
     } catch (e2) {}
     var st = d.getElementById("uft-status") || d.getElementById("uft-fo-status");
     if (st) {
+      var n = (data.registry || []).length;
       st.textContent =
-        "Pedigree built from registry (" +
-        (data.registry || []).length +
-        " contacts) · educational outline only — not a legal pedigree";
+        "Pedigree from registry (" +
+        n +
+        " contacts)" +
+        (data.self ? " · focus: " + data.self : " · set one person role to Self") +
+        " · educational outline only";
     }
     return data;
   }
 
-  function collapseDuplicateForms() {
-    /* Prefer deep registry panel; hide older simple duplicate if both fill same purpose */
-    var deep = d.getElementById("uft-registry-deep");
-    var simple = d.getElementById("uft-reg-name");
-    if (deep && simple) {
-      var simpleForm = simple.closest(".uft-grid, form, section, .amana-card, div");
-      /* Don't hide if it's inside deep panel */
-      if (simpleForm && deep.contains && !deep.contains(simple)) {
-        /* Mark secondary form */
-        var host = simple.parentNode;
-        while (host && host !== d.body && host.querySelectorAll && host.querySelectorAll("input").length < 12) {
-          host = host.parentNode;
-        }
+  /** Override core gates that require member cards */
+  function installOverrides() {
+    w.uftApplyBuildFromCards = function () {
+      var data = read();
+      var regN = (data.registry || []).length;
+      var cards = [];
+      try {
+        cards = JSON.parse(localStorage.getItem(CARDS_KEY) || "[]");
+      } catch (e) {}
+      if ((!cards || !cards.length) && regN) {
+        syncRegistryToCards();
       }
-    }
-    /* Deduplicate visible registry list rows in DOM by name+role text */
-    var lists = d.querySelectorAll("#uft-reg-list, #uft-deep-list, .uft-reg-list");
-    lists.forEach(function (box) {
-      var rows = Array.prototype.slice.call(box.children || []);
-      var seen = {};
-      rows.forEach(function (row) {
-        var t = norm(row.textContent || "").slice(0, 80);
-        if (!t) return;
-        if (seen[t]) {
-          row.style.display = "none";
-          row.setAttribute("data-reg-deduped", "1");
-        } else seen[t] = 1;
+      /* Always prefer registry map when registry present */
+      if (regN) {
+        applyToPedigree(data);
+        return;
+      }
+      if (!cards || !cards.length) {
+        var st = d.getElementById("uft-status");
+        if (st) st.textContent = "Add people in Registry first, then Build tree.";
+        return;
+      }
+      /* cards only — lightweight apply from card roles */
+      data.registry = data.registry || [];
+      cards.forEach(function (c) {
+        if (!c || !c.name) return;
+        data.registry.push({
+          name: c.name,
+          role: c.role || c.slot || "",
+          phone: c.phone || "",
+          gender: c.gender || "",
+          vital: c.vital || ""
+        });
       });
+      applyToPedigree(data);
+    };
+
+    w.uftSuggestBuildFromCards = function () {
+      var data = read();
+      if ((data.registry || []).length) {
+        syncRegistryToCards();
+        applyToPedigree(data);
+        return;
+      }
+      var st = d.getElementById("uft-status");
+      if (st) st.textContent = "Add people in Registry (with roles) first.";
+    };
+
+    /* Sync button */
+    var syncBtn = d.getElementById("uft-sync-reg-cards");
+    d.querySelectorAll("button").forEach(function (btn) {
+      if (btn.__uftSyncReg) return;
+      if (/Sync registry/i.test(btn.textContent || "")) {
+        btn.__uftSyncReg = true;
+        btn.addEventListener("click", function () {
+          var n = syncRegistryToCards().length;
+          applyToPedigree(read());
+          var st = d.getElementById("uft-status");
+          if (st) st.textContent = "Synced registry → cards (" + n + ") and refreshed pedigree · educational only";
+        });
+      }
     });
   }
 
   function wireBuildChip() {
-    d.querySelectorAll("button, a, [role='tab'], .uft-chip, [data-uft-step]").forEach(function (el) {
-      if (el.__uftBuildRepair) return;
-      var t = (el.textContent || "") + " " + (el.getAttribute("data-uft-step") || "");
-      if (!/Build tree|4\s*[·.]\s*Build|uft-bc-apply/i.test(t) && el.id !== "uft-bc-apply") return;
-      el.__uftBuildRepair = true;
+    d.querySelectorAll("button, a, [role='tab']").forEach(function (el) {
+      if (el.__uftBuildUnity) return;
+      var t = el.textContent || "";
+      if (!/Build tree|4\s*[·.]\s*Build/i.test(t) && el.id !== "uft-bc-apply") return;
+      el.__uftBuildUnity = true;
       el.addEventListener(
         "click",
         function () {
           setTimeout(function () {
-            /* Prefer core suggest + apply */
             try {
-              if (typeof w.uftSuggestBuildFromCards === "function") w.uftSuggestBuildFromCards();
-            } catch (e) {}
-            var sug = d.getElementById("uft-bc-suggest");
-            if (sug) try { sug.click(); } catch (e2) {}
-            setTimeout(function () {
-              var apply = d.getElementById("uft-bc-apply");
-              if (apply) try { apply.click(); } catch (e3) {}
-              else applyToPedigree(read());
-            }, 120);
-          }, 80);
+              w.uftApplyBuildFromCards();
+            } catch (e) {
+              applyToPedigree(read());
+            }
+          }, 50);
         },
-        false
+        true
       );
     });
-    var apply = d.getElementById("uft-bc-apply");
-    if (apply && !apply.__uftBuildRepair) {
-      apply.__uftBuildRepair = true;
-      apply.addEventListener(
-        "click",
-        function () {
-          setTimeout(function () {
-            var data = read();
-            if (!data.self && (data.registry || []).length) applyToPedigree(data);
-          }, 200);
-        },
-        false
-      );
-    }
   }
 
-  function autoIfEmpty() {
+  function collapseDuplicateRegistryChrome() {
+    /* Hide secondary "Registry · add person" if deep panel exists and simple is duplicate */
+    var deep = d.getElementById("uft-registry-deep");
+    if (!deep) return;
+    var labels = d.querySelectorAll("h3,h2,.uft-reg-section-title");
+    var seen = 0;
+    labels.forEach(function (h) {
+      if (!/Registry\s*·\s*add person|Registry list/i.test(h.textContent || "")) return;
+      seen++;
+      if (seen > 2 && h.closest) {
+        var block = h.closest(".uft-grid, section, .amana-card, details");
+        if (block && !deep.contains(block)) {
+          block.setAttribute("data-reg-secondary", "1");
+          /* do not hard-hide — opacity to reduce double chrome */
+          block.style.opacity = "0.92";
+        }
+      }
+    });
+  }
+
+  function autoBoot() {
     if (!isTree()) return;
+    installOverrides();
+    wireBuildChip();
+    collapseDuplicateRegistryChrome();
     var data = read();
     var regN = (data.registry || []).length;
-    if (!regN) return;
-    data.registry = dedupeRegistry(data.registry);
-    write(data);
-    var needs =
-      !data.self ||
-      (!data.father && !data.mother && !String(data.children || "").trim());
-    var stage = d.getElementById("uft-stage");
-    var emptyUi =
-      stage && /Pedigree empty|Father's father|\.\s*$/i.test((stage.textContent || "").slice(0, 400));
-    /* If many registry members but backbone sparse, map */
-    if (needs || (regN >= 3 && !data.self)) {
-      applyToPedigree(data);
-    } else if (emptyUi && data.self) {
-      try {
-        if (typeof w.uftApplyData === "function") w.uftApplyData(data);
-        else if (typeof w.uftRender === "function") w.uftRender();
-      } catch (e) {}
+    if (regN >= 1) {
+      data.registry = dedupeRegistry(data.registry);
+      write(data);
+      /* Auto-build if backbone empty */
+      if (!data.self || !String(data.children || data.siblings || "").trim()) {
+        applyToPedigree(data);
+      } else {
+        syncRegistryToCards();
+        try {
+          if (typeof w.uftRender === "function") w.uftRender();
+        } catch (e) {}
+      }
     }
   }
 
-  function boot() {
-    if (!isTree()) return;
-    collapseDuplicateForms();
-    wireBuildChip();
-    autoIfEmpty();
-  }
-
-  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  setTimeout(boot, 600);
-  setTimeout(boot, 1500);
-  setTimeout(boot, 2800);
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", autoBoot);
+  else autoBoot();
+  setTimeout(autoBoot, 500);
+  setTimeout(autoBoot, 1400);
+  setTimeout(autoBoot, 3000);
   d.addEventListener("clarity-amana-unlock-change", function (ev) {
-    if (ev.detail && ev.detail.unlocked) setTimeout(boot, 250);
+    if (ev.detail && ev.detail.unlocked) setTimeout(autoBoot, 200);
   });
 
   w.uftBuildRepairApply = function () {
     return applyToPedigree(read());
   };
-  w.uftBuildRepairDedupe = function () {
-    var data = read();
-    data.registry = dedupeRegistry(data.registry || []);
-    write(data);
-    try {
-      if (typeof w.uftRegRender === "function") w.uftRegRender();
-    } catch (e) {}
-    return data.registry.length;
-  };
+  w.uftSyncRegistryToCards = syncRegistryToCards;
 })(window, document);
