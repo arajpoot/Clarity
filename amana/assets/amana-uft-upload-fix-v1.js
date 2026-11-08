@@ -132,6 +132,7 @@
       }
     } catch (e4) {}
     try { if (typeof w.uftBuildRepairApply === "function") w.uftBuildRepairApply(); } catch (eBR) {}
+    try { if (typeof w.uftEnrichRestore === "function") w.uftEnrichRestore(); } catch (eER) {}
     status("Full tree JSON imported · pedigree refreshed · on this device only · educational outline");
   }
 
