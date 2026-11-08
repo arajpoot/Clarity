@@ -1,8 +1,9 @@
-/*! Amānah UFT housekeep v2
- * Hide initials · distinct H/V · remove duplicate registry / long relation lists
+/*! Amānah UFT housekeep v2.1 · softened
+ * Hide initials only · keep registry richness
  * Educational only — not a legal pedigree
  */
 
+/* Initials off */
 #uft-preview .uft-avatar,
 .uft-stage .uft-avatar,
 .uft-person .uft-avatar,
@@ -10,65 +11,10 @@
   display: none !important;
 }
 
-#uft-preview .uft-person,
-#uft-preview .uft-card-sleek {
-  padding-top: 0.45rem;
-}
-
-#uft-preview.uft-orient-h .uft-zoom-layer,
-#uft-preview.uft-orient-h #uft-zoom-layer,
-#uft-preview.uft-orient-h .uft-zoom-sizer {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  align-items: flex-start !important;
-  gap: 0.75rem;
-  min-width: max-content;
-}
-
-#uft-preview.uft-orient-h .uft-band,
-#uft-preview.uft-orient-h section.uft-band {
-  flex: 0 0 auto;
-  min-width: 11rem;
-  max-width: 16rem;
-}
-
-#uft-preview.uft-orient-v .uft-zoom-layer,
-#uft-preview.uft-orient-v #uft-zoom-layer,
-#uft-preview.uft-orient-v .uft-zoom-sizer {
-  display: flex !important;
-  flex-direction: column !important;
-  flex-wrap: nowrap !important;
-  align-items: stretch !important;
-  min-width: 100%;
-  gap: 0.55rem;
-}
-
-#uft-preview.uft-orient-v .uft-band,
-#uft-preview.uft-orient-v section.uft-band {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-}
-
-#uft-preview.uft-orient-v .uft-band-scroll,
-#uft-preview.uft-orient-v .uft-couple,
-#uft-preview.uft-orient-v .uft-kids-row {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  gap: 0.35rem;
-}
-
+/* Long relation dump only (not registry forms) */
 #uft-rel-list,
-#uft-relatives-panel,
-.uft-rel-list,
-[data-uft-rel-list],
-.uft-relation-dump,
-#uft-relation-dump {
+.uft-relation-dump {
   display: none !important;
 }
 
-#user-family-tree-card > details#uft-registry-box {
-  display: none !important;
-}
+/* Do NOT hide #uft-registry-box / deep / dock — richness restored */

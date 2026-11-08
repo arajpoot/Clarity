@@ -1,14 +1,7 @@
-/*! Amānah UFT · classic linked tree lines v1
- * Horizontal pedigree with clear parent→child connector lines
+/*! Amānah UFT · linked tree lines v1.1
+ * Clear couple → children connectors; does not suppress registry
  * Educational only — not a legal pedigree
  */
-
-/* Prefer horizontal linked layout as default stage */
-#uft-preview.uft-tree,
-#uft-preview.uft-orient-h {
-  overflow-x: auto !important;
-  overflow-y: auto !important;
-}
 
 #uft-preview.uft-orient-h .uft-zoom-layer,
 #uft-preview.uft-orient-h #uft-zoom-layer,
@@ -19,152 +12,124 @@
   align-items: flex-start !important;
   gap: 1rem;
   min-width: max-content;
-  padding: 0.75rem 1rem 1.25rem;
+  padding: 0.85rem 1rem 1.35rem;
 }
 
-/* Generation bands side-by-side */
 #uft-preview.uft-orient-h .uft-band,
 #uft-preview.uft-orient-h section.uft-band {
   display: flex !important;
   flex-direction: column !important;
   flex: 0 0 auto;
-  min-width: 12rem;
-  max-width: 18rem;
+  min-width: 12.5rem;
+  max-width: 19rem;
   margin: 0 !important;
-  position: relative;
 }
 
-/* Cluster = household unit */
 #uft-preview .uft-cluster {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
-  margin: 0.45rem 0.25rem;
+  margin: 0.5rem 0.3rem;
   position: relative;
 }
 
-#uft-preview .uft-col-label {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  opacity: 0.75;
-  color: #e8d5a3;
-  margin-bottom: 0.25rem;
-  text-align: center;
-}
-
-/* Couple row */
 #uft-preview .uft-couple {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
-  gap: 0.4rem;
+  gap: 0.45rem;
   position: relative;
-  padding-bottom: 0.55rem;
+  padding-bottom: 0.65rem;
 }
 
-/* Vertical stem from couple down to kids */
-#uft-preview .uft-cluster:has(.uft-kids-row) .uft-couple::after {
+/* Stem under couple */
+#uft-preview .uft-couple::after {
   content: "";
   position: absolute;
   left: 50%;
   bottom: 0;
   width: 2px;
-  height: 0.55rem;
-  background: rgba(212, 180, 90, 0.55);
-  transform: translateX(-50%);
+  height: 0.65rem;
+  margin-left: -1px;
+  background: rgba(212, 180, 90, 0.6);
 }
 
-/* Kids row with horizontal connector bar */
 #uft-preview .uft-kids-row {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  gap: 0.45rem;
+  gap: 0.5rem;
   position: relative;
-  padding-top: 0.55rem;
-  margin-top: 0;
+  padding-top: 0.65rem;
 }
 
+/* Horizontal bar above kids */
 #uft-preview .uft-kids-row::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 12%;
+  right: 12%;
   height: 2px;
-  background: rgba(212, 180, 90, 0.45);
+  background: rgba(212, 180, 90, 0.5);
 }
 
-/* Stem from bar down to each child card */
 #uft-preview .uft-kids-row > .uft-person,
 #uft-preview .uft-kids-row > .uft-card-sleek {
   position: relative;
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
 }
 
 #uft-preview .uft-kids-row > .uft-person::before,
 #uft-preview .uft-kids-row > .uft-card-sleek::before {
   content: "";
   position: absolute;
-  top: -0.55rem;
+  top: -0.65rem;
   left: 50%;
   width: 2px;
-  height: 0.55rem;
-  background: rgba(212, 180, 90, 0.5);
-  transform: translateX(-50%);
+  height: 0.65rem;
+  margin-left: -1px;
+  background: rgba(212, 180, 90, 0.55);
 }
 
-/* Single child: simpler stem */
-#uft-preview .uft-kids-row:has(> :only-child)::before {
-  left: 50%;
-  right: auto;
-  width: 2px;
+/* Vertical outline (fallback richness) — keep readable with guide line */
+#uft-preview .uft-vtree {
+  margin: 0.4rem 0.25rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(212, 180, 90, 0.35);
 }
-
-/* Cards sit cleanly under lines */
-#uft-preview .uft-person,
-#uft-preview .uft-card-sleek {
+#uft-preview .uft-vtree ul {
+  margin: 0.2rem 0 0.2rem 0.75rem;
+  padding-left: 0.65rem;
+  border-left: 1px solid rgba(212, 180, 90, 0.28);
+}
+#uft-preview .uft-vtree li {
+  list-style: none;
+  margin: 0.4rem 0;
   position: relative;
-  z-index: 1;
+}
+#uft-preview .uft-vtree li::before {
+  content: "";
+  position: absolute;
+  left: -0.65rem;
+  top: 1.1rem;
+  width: 0.55rem;
+  height: 1px;
+  background: rgba(212, 180, 90, 0.4);
 }
 
-/* Hide avatar initials (keep housekeep) */
 #uft-preview .uft-avatar {
   display: none !important;
 }
 
-/* Vertical mode: stacked generations, still show small stems */
-#uft-preview.uft-orient-v .uft-zoom-layer,
-#uft-preview.uft-orient-v #uft-zoom-layer {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.65rem;
-  min-width: 100%;
+/* Registry richness — ensure deep panel visible when present */
+#uft-registry-deep {
+  display: block !important;
 }
-
-#uft-preview.uft-orient-v .uft-band {
-  width: 100%;
-  max-width: none;
-}
-
-#uft-preview.uft-orient-v .uft-couple,
-#uft-preview.uft-orient-v .uft-kids-row {
-  flex-wrap: wrap;
-}
-
-/* Soften pure outline vtree if it appears — prefer band clusters */
-#uft-preview .uft-vtree {
-  padding-left: 0.5rem;
-  border-left: 2px solid rgba(212, 180, 90, 0.25);
-  margin: 0.35rem 0;
-}
-#uft-preview .uft-vtree li {
-  list-style: none;
-  margin: 0.35rem 0;
+#uft-registry-deep.uft-reg-collapsed .uft-deep-grid,
+#uft-registry-deep.uft-reg-collapsed .uft-deep-actions,
+#uft-registry-deep.uft-reg-collapsed .uft-deep-list-wrap {
+  display: block !important;
 }
