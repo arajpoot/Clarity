@@ -3,58 +3,27 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Family tree · UFT · Amānah · Clarity</title>
-<meta name="description" content="Full family tree toolkit on device — linked pedigree, member cards, registry. Educational — not a legal pedigree."/>
+<title>Family tree · Amānah · Clarity</title>
+<meta name="description" content="On-device family tree and registry. Educational outline only — not a legal pedigree — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/tree/"/>
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261107P1"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-registry-deep-v1.css?v=20261107P1"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-dock-v1.css?v=20261107P1"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-dock-v2.css?v=20261107P2"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-build-viewport-v1.css?v=20261107P1"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-workspace-v1.css?v=20261107P4"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-layout-h-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-foundation-v1.css?v=20261108SF1"/>
 <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261107P1" defer></script>
-<style>
-:root { color-scheme: dark; }
-* { box-sizing: border-box; }
-body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
-  background:linear-gradient(180deg,#0c1c16,#0a1410); color:#e8f0ec; }
-.amana-wrap { max-width:56rem; margin:0 auto; padding:0.75rem 1rem 2.5rem; }
-.amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0 0.75rem; }
-.amana-subnav a { text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
-  padding:0.35rem 0.7rem; border-radius:999px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25); }
-.amana-subnav a.is-here { background:rgba(30,125,94,0.45); }
-.amana-card { margin:0.75rem 0; padding:0.95rem 1rem; border-radius:14px;
-  border:1px solid rgba(212,180,90,0.3); background:rgba(15,76,58,0.14); }
-.disc { font-size:0.78rem; padding:0.55rem 0.7rem; border-radius:10px;
-  border-left:3px solid rgba(212,180,90,0.55); background:rgba(0,0,0,0.25); margin:0.5rem 0; }
-#uft-stage.uft-stage, .uft-stage {
-  min-height:16rem; border:1px solid rgba(212,180,90,0.28); border-radius:14px;
-  padding:0.65rem 0.75rem; margin:0.5rem 0; background:rgba(0,0,0,0.22); overflow:auto;
-}
-#uft-preview, .uft-preview {
-  min-height:12rem; position:relative; overflow:auto; border-radius:12px;
-  background:rgba(0,0,0,0.14); border:1px dashed rgba(212,180,90,0.22);
-}
-.foot { margin-top:1.25rem; text-align:center; font-size:0.72rem; opacity:0.75; }
-.foot a { color:#c9a84c; }
-/* hidden backbone fields for core collect/load */
-.uft-hidden-fields { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-</style>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-housekeep-v2.css?v=20261108HK22"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-tree-lines-v1.css?v=20261108TL11"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-glass-plaque-v1.css?v=20261108GP1"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-branch-horizontal-v1.css?v=20261108BH1"/>
-<link rel="stylesheet" href="/amana/assets/css/amana-uft-day-close-v1.css?v=20261108DC1"/>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
-  <a href="/companion/" data-room-link="companion"><span class="crn-ico">🏠</span><span class="crn-label">Companion</span></a>
-  <a href="/yawm/" data-room-link="yawm"><span class="crn-ico">📅</span><span class="crn-label">Yawm</span></a>
-  <a href="/university/" data-room-link="university"><span class="crn-ico">🎓</span><span class="crn-label">University</span></a>
-  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-ico">🔐</span><span class="crn-label">Amānah</span></a>
-  <a href="/craft/" data-room-link="craft"><span class="crn-ico">✍️</span><span class="crn-label">Craft</span></a>
+  <a href="/companion/" data-room-link="companion"><span class="crn-label">Companion</span></a>
+  <a href="/yawm/" data-room-link="yawm"><span class="crn-label">Yawm</span></a>
+  <a href="/university/" data-room-link="university"><span class="crn-label">University</span></a>
+  <a href="/amana/" data-room-link="amana" class="is-here" aria-current="page"><span class="crn-label">Amānah</span></a>
+  <a href="/craft/" data-room-link="craft"><span class="crn-label">Craft</span></a>
 </nav>
+
 <main class="amana-wrap">
   <nav class="amana-subnav" aria-label="Amānah rooms">
     <a href="/amana/">Home</a>
@@ -65,25 +34,24 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
     <a href="/amana/dayn/">Dayn</a>
   </nav>
 
-  <header class="amana-banner" aria-label="Bayt al-Amānah" style="position:relative;overflow:hidden;border-radius:16px;margin:0.5rem 0 0.9rem;border:1px solid rgba(212,180,90,0.45);background:radial-gradient(ellipse at 20% 0%,rgba(30,125,94,0.28),transparent 55%),linear-gradient(165deg,#0f2a20,#0a1812 55%,#0c1c16);padding:1.1rem 1rem;box-shadow:0 8px 28px rgba(0,0,0,0.28)">
-    <p style="text-align:center;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#d4b45a;margin:0 0 0.35rem;font-weight:700">Bayt al-Amānah · on-device trust room</p>
-    <h1 style="margin:0 0 0.4rem;text-align:center;font-family:Georgia,serif;font-size:1.5rem;color:#f0e6c8">Amānah Vault</h1>
-    <p lang="ar" dir="rtl" style="text-align:center;font-size:1.05rem;line-height:1.65;margin:0.35rem 0;color:#e8d5a3">إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا</p>
-    <p style="text-align:center;font-size:0.8rem;line-height:1.45;opacity:0.92;margin:0.25rem auto 0;max-width:36rem">“Indeed, Allah commands you to render trusts to whom they are due…” <span style="color:#c9a84c">— Qurʾān 4:58 · <a href="https://quran.com/4/58" target="_blank" rel="noopener noreferrer" style="color:#c9a84c">Quran.com</a></span></p>
-    <p lang="ar" dir="rtl" style="text-align:center;font-size:0.98rem;line-height:1.6;margin:0.45rem 0;color:#e8d5a3">لِّلرِّجَالِ نَصِيبٌ مِّمَّا تَرَكَ الْوَالِدَانِ وَالْأَقْرَبُونَ وَلِلنِّسَاءِ نَصِيبٌ…</p>
-    <p style="text-align:center;font-size:0.8rem;line-height:1.45;opacity:0.92;margin:0.25rem auto 0;max-width:36rem">Men and women have a determined share of what parents and near relatives leave. <span style="color:#c9a84c">— Qurʾān 4:7 · farāʾiḍ <a href="https://quran.com/4/11" target="_blank" rel="noopener noreferrer" style="color:#c9a84c">4:11</a>–<a href="https://quran.com/4/12" target="_blank" rel="noopener noreferrer" style="color:#c9a84c">4:12</a></span></p>
-    <p style="text-align:center;font-size:0.7rem;opacity:0.8;margin:0.55rem 0 0;line-height:1.4">Educational companion only — not a fatwa — not legal advice — not a court document.</p>
+  <header class="amana-banner" aria-label="Bayt al-Amānah">
+    <p class="kicker">Bayt al-Amānah · on-device trust room</p>
+    <h1>Amānah Vault</h1>
+    <p class="ayah" lang="ar" dir="rtl">إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا</p>
+    <p class="meaning">“Indeed, Allah commands you to render trusts to whom they are due…” — Qurʾān 4:58 · <a href="https://quran.com/4/58" target="_blank" rel="noopener noreferrer">Quran.com</a></p>
+    <p class="ayah" lang="ar" dir="rtl" style="font-size:0.98rem">لِّلرِّجَالِ نَصِيبٌ مِّمَّا تَرَكَ الْوَالِدَانِ وَالْأَقْرَبُونَ وَلِلنِّسَاءِ نَصِيبٌ…</p>
+    <p class="meaning">Men and women have a determined share of what parents and near relatives leave. — Qurʾān 4:7 · farāʾiḍ <a href="https://quran.com/4/11" target="_blank" rel="noopener noreferrer">4:11</a>–<a href="https://quran.com/4/12" target="_blank" rel="noopener noreferrer">4:12</a></p>
+    <p class="foot">Educational companion only — not a fatwa — not legal advice — not a court document.</p>
   </header>
 
   <p class="disc">Private pedigree outline on this device. Educational genealogy — not a legal pedigree certificate. Confirm farāʾiḍ with a scholar.</p>
 
   <section class="amana-card" id="user-family-tree-card">
     <h2 style="margin:0 0 0.35rem;font-size:1.05rem;color:#e8d5a3;font-family:Georgia,serif">Family tree · ancestry pedigree</h2>
-    <p style="margin:0 0 0.65rem;font-size:0.78rem;opacity:0.9;line-height:1.4">Linked member cards, zoom workspace, registry steps, and own-branch tools from the classic UFT module.</p>
+    <p style="margin:0 0 0.55rem;font-size:0.78rem;opacity:0.9;line-height:1.4">Linked member cards, zoom workspace, and registry from the classic UFT module. On this device only.</p>
 
-    <!-- Classic stage host (full-restore draws into #uft-preview / #uft-stage) -->
     <div id="clarity-family-tree-host">
-      <p id="uft-meta-outside" class="uft-meta-outside" style="font-size:0.78rem;opacity:0.9;line-height:1.35;margin:0.35rem 0 0.5rem;color:#e8d5a3"></p>
+      <p id="uft-meta-outside"></p>
       <div id="uft-stage" class="uft-stage" data-skin="green">
         <div id="uft-preview" class="uft-preview uft-tree"></div>
       </div>
@@ -91,32 +59,28 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
     <p id="uft-status" style="font-size:0.78rem;opacity:0.9;min-height:1.2em;margin:0.4rem 0"></p>
     <div id="uft-integrity" style="font-size:0.75rem;margin:0.35rem 0;opacity:0.9"></div>
 
-    <!-- Backbone fields for uftCollect / uftLoad (visually hidden) -->
     <div class="uft-hidden-fields" aria-hidden="true">
-      <input id="uft-self" /><input id="uft-self-note" />
-      <input id="uft-father" /><input id="uft-father-y" />
-      <input id="uft-mother" /><input id="uft-mother-y" />
-      <input id="uft-spouse" />
-      <input id="uft-pgf" /><input id="uft-pgm" />
-      <input id="uft-mgf" /><input id="uft-mgm" />
+      <input id="uft-self"/><input id="uft-self-note"/>
+      <input id="uft-father"/><input id="uft-father-y"/>
+      <input id="uft-mother"/><input id="uft-mother-y"/>
+      <input id="uft-spouse"/>
+      <input id="uft-pgf"/><input id="uft-pgm"/>
+      <input id="uft-mgf"/><input id="uft-mgm"/>
       <textarea id="uft-children"></textarea>
       <textarea id="uft-siblings"></textarea>
       <textarea id="uft-grandchildren"></textarea>
       <textarea id="uft-g1"></textarea><textarea id="uft-g2"></textarea><textarea id="uft-g3"></textarea>
     </div>
-
-    <!-- Registry host for dock / deep modules -->
-    <!-- static registry duplicate removed · housekeep v2 · dock provides registry -->
   </section>
 
-  <p class="foot">
+  <p class="page-foot">
     <a href="/amana/">Amānah home</a> ·
     <a href="/amana/fiqh/">Farāʾiḍ study</a> ·
     educational only — not a fatwa
   </p>
 </main>
 
-<!-- Classic UFT stack (assets already on live CDN) -->
+<!-- Core UFT only — no ghost patch stack -->
 <script defer src="/amana/assets/clarity-amana-engine-v1.js?v=20261107P1"></script>
 <script defer src="/amana/assets/amana-engine-unlock-patch-v1.js?v=20261107P1"></script>
 <script defer src="/amana/assets/clarity-amana-uft-v1.js?v=20261107P1"></script>
@@ -129,15 +93,7 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 <script defer src="/amana/assets/amana-uft-loaded-ops-v1.js?v=20261107P3"></script>
 <script defer src="/amana/assets/amana-uft-workspace-v1.js?v=20261107P4"></script>
 <script defer src="/amana/assets/amana-uft-build-viewport-v1.js?v=20261107P1"></script>
-<script defer src="/amana/assets/amana-uft-png-v1.js?v=20261107P5"></script>
 <script defer src="/amana/assets/amana-uft-fiqh-bridge-v1.js?v=20261107P1"></script>
-<script defer src="/amana/assets/amana-uft-classic-boost-v1.js?v=20261108CL1"></script>
-<script defer src="/amana/assets/amana-uft-housekeep-v2.js?v=20261108HK21"></script>
-<script defer src="/amana/assets/amana-uft-tree-lines-v1.js?v=20261108TL11"></script>
-<script defer src="/amana/assets/amana-uft-registry-rich-v1.js?v=20261108RR1"></script>
-<script defer src="/amana/assets/amana-uft-ui-order-v1.js?v=20261108UO1"></script>
-<script defer src="/amana/assets/amana-uft-glass-plaque-v1.js?v=20261108GP1"></script>
-<script defer src="/amana/assets/amana-uft-branch-horizontal-v1.js?v=20261108BH1"></script>
-<script defer src="/amana/assets/amana-uft-day-close-v1.js?v=20261108DC1"></script>
+<script defer src="/amana/assets/amana-uft-foundation-v1.js?v=20261108SF1"></script>
 </body>
 </html>
