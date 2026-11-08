@@ -3,132 +3,47 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Family tree · Amānah · Clarity</title>
-<meta name="description" content="On-device family tree and registry. Educational outline only — not a legal pedigree — not a fatwa."/>
+<title>Family tree · UFT · Amānah · Clarity</title>
+<meta name="description" content="Full family tree toolkit on device — linked pedigree, member cards, registry. Educational — not a legal pedigree."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/amana/tree/"/>
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-registry-deep-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-dock-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-dock-v2.css?v=20261107P2"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-build-viewport-v1.css?v=20261107P1"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-workspace-v1.css?v=20261107P4"/>
+<link rel="stylesheet" href="/amana/assets/css/amana-uft-layout-h-v1.css?v=20261107P1"/>
 <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261107P1" defer></script>
 <style>
 :root { color-scheme: dark; }
 * { box-sizing: border-box; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-  background: linear-gradient(180deg, #0c1c16, #0a1410);
-  color: #e8f0ec;
+body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
+  background:linear-gradient(180deg,#0c1c16,#0a1410); color:#e8f0ec; }
+.amana-wrap { max-width:56rem; margin:0 auto; padding:0.75rem 1rem 2.5rem; }
+.amana-subnav { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin:0.5rem 0 0.75rem; }
+.amana-subnav a { text-decoration:none; color:inherit; font-size:0.75rem; font-weight:700;
+  padding:0.35rem 0.7rem; border-radius:999px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25); }
+.amana-subnav a.is-here { background:rgba(30,125,94,0.45); }
+.amana-card { margin:0.75rem 0; padding:0.95rem 1rem; border-radius:14px;
+  border:1px solid rgba(212,180,90,0.3); background:rgba(15,76,58,0.14); }
+.disc { font-size:0.78rem; padding:0.55rem 0.7rem; border-radius:10px;
+  border-left:3px solid rgba(212,180,90,0.55); background:rgba(0,0,0,0.25); margin:0.5rem 0; }
+#uft-stage.uft-stage, .uft-stage {
+  min-height:16rem; border:1px solid rgba(212,180,90,0.28); border-radius:14px;
+  padding:0.65rem 0.75rem; margin:0.5rem 0; background:rgba(0,0,0,0.22); overflow:auto;
 }
-.amana-wrap { max-width: 56rem; margin: 0 auto; padding: 0.75rem 1rem 2.75rem; }
-.amana-subnav {
-  display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;
-  margin: 0.5rem 0 0.85rem;
+#uft-preview, .uft-preview {
+  min-height:12rem; position:relative; overflow:auto; border-radius:12px;
+  background:rgba(0,0,0,0.14); border:1px dashed rgba(212,180,90,0.22);
 }
-.amana-subnav a {
-  text-decoration: none; color: inherit; font-size: 0.75rem; font-weight: 700;
-  padding: 0.35rem 0.7rem; border-radius: 999px;
-  border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.25);
-}
-.amana-subnav a.is-here { background: rgba(30,125,94,0.45); border-color: rgba(212,180,90,0.5); }
-.hero {
-  text-align: center; padding: 0.85rem 1rem; margin: 0.5rem 0 0.85rem;
-  border-radius: 14px; border: 1px solid rgba(212,180,90,0.35);
-  background: rgba(15,76,58,0.16);
-}
-.hero h1 {
-  margin: 0 0 0.35rem; font-family: Georgia, serif; font-size: 1.35rem; color: #e8d5a3;
-}
-.hero p { margin: 0.25rem 0; font-size: 0.82rem; line-height: 1.45; opacity: 0.92; }
-.disc {
-  font-size: 0.78rem; padding: 0.55rem 0.75rem; border-radius: 10px;
-  border-left: 3px solid rgba(212,180,90,0.55); background: rgba(0,0,0,0.28); margin: 0.65rem 0;
-}
-.layout {
-  display: grid; gap: 0.85rem;
-}
-@media (min-width: 860px) {
-  .layout { grid-template-columns: 1.12fr 0.98fr; align-items: start; }
-}
-.panel {
-  border-radius: 14px; border: 1px solid rgba(212,180,90,0.3);
-  background: rgba(0,0,0,0.22); padding: 0.85rem;
-}
-.panel h2 {
-  margin: 0 0 0.5rem; font-size: 0.95rem; color: #e8d5a3; font-family: Georgia, serif;
-}
-.panel .hint { font-size: 0.75rem; opacity: 0.85; margin: 0 0 0.65rem; line-height: 1.4; }
-.uft-gen {
-  margin: 0.45rem 0; padding: 0.45rem; border-radius: 12px;
-  border: 1px solid rgba(212,180,90,0.22); background: rgba(15,76,58,0.1);
-}
-.uft-gen-label {
-  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em;
-  opacity: 0.72; margin-bottom: 0.3rem; color: #e8d5a3;
-}
-.uft-gen-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.uft-person {
-  min-width: 6.4rem; padding: 0.42rem 0.55rem; border-radius: 10px;
-  border: 1px solid rgba(212,180,90,0.35); background: rgba(30,125,94,0.22);
-  font-size: 0.84rem;
-}
-.uft-person strong { display: block; color: #f0e6c8; font-size: 0.88rem; }
-.uft-person span { font-size: 0.7rem; opacity: 0.8; }
-.uft-person.is-focus {
-  border-color: #c9a84c;
-  box-shadow: 0 0 0 1px rgba(201,168,76,0.35);
-}
-.uft-empty { font-size: 0.82rem; opacity: 0.8; margin: 0.35rem 0; line-height: 1.4; }
-.form-grid {
-  display: grid; gap: 0.45rem; grid-template-columns: 1fr 1fr;
-}
-.form-grid label {
-  display: flex; flex-direction: column; gap: 0.15rem;
-  font-size: 0.72rem; opacity: 0.9;
-}
-.form-grid .span2 { grid-column: 1 / -1; }
-.form-grid input, .form-grid select {
-  padding: 0.4rem 0.45rem; border-radius: 8px;
-  border: 1px solid rgba(212,180,90,0.3); background: #0c1c16; color: inherit;
-  font-size: 0.85rem;
-}
-.actions { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.55rem; }
-button, .btn {
-  appearance: none; cursor: pointer; font: inherit; font-size: 0.78rem; font-weight: 700;
-  padding: 0.38rem 0.75rem; border-radius: 999px;
-  border: 1px solid rgba(212,180,90,0.4); background: rgba(30,125,94,0.4); color: inherit;
-}
-button.btn-soft, .btn-soft {
-  background: rgba(0,0,0,0.28);
-}
-button:active { transform: translateY(1px); }
-#uft-registry-list { margin-top: 0.55rem; max-height: 18rem; overflow: auto; }
-.uft-reg-row {
-  display: flex; justify-content: space-between; gap: 0.5rem; align-items: center;
-  padding: 0.4rem 0.45rem; margin: 0.28rem 0; border-radius: 8px;
-  border: 1px solid rgba(212,180,90,0.14); background: rgba(15,76,58,0.12);
-  font-size: 0.8rem;
-}
-.uft-reg-row .meta { display: block; font-size: 0.7rem; opacity: 0.8; margin-top: 0.1rem; }
-.uft-reg-acts { flex-shrink: 0; }
-#uft-status {
-  margin: 0.75rem 0 0; font-size: 0.78rem; opacity: 0.9; min-height: 1.25em;
-}
-#uft-count { font-size: 0.75rem; opacity: 0.8; }
-.workflow {
-  margin: 0.75rem 0; padding: 0.75rem 0.85rem; border-radius: 12px;
-  border: 1px solid rgba(212,180,90,0.28); background: rgba(15,76,58,0.12);
-}
-.workflow h2 { margin: 0 0 0.3rem; font-size: 0.9rem; color: #e8d5a3; }
-.foot {
-  margin-top: 1.25rem; text-align: center; font-size: 0.72rem; opacity: 0.75;
-}
-.foot a { color: #c9a84c; }
+.foot { margin-top:1.25rem; text-align:center; font-size:0.72rem; opacity:0.75; }
+.foot a { color:#c9a84c; }
+/* hidden backbone fields for core collect/load */
+.uft-hidden-fields { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 </style>
 </head>
 <body>
-<nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
-  <!-- room nav filled by clarity-room-nav-v1.js when present -->
-</nav>
-
+<nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms"></nav>
 <main class="amana-wrap">
   <nav class="amana-subnav" aria-label="Amānah rooms">
     <a href="/amana/">Home</a>
@@ -139,101 +54,82 @@ button:active { transform: translateY(1px); }
     <a href="/amana/dayn/">Dayn</a>
   </nav>
 
-  <header class="hero">
-    <h1>Family tree</h1>
-    <p>On-device registry and pedigree outline. Built from scratch for stability.</p>
-    <p><strong>Educational only — not a fatwa — not a legal pedigree — not a court document.</strong></p>
+  <header class="amana-banner" aria-label="Bayt al-Amānah" style="position:relative;overflow:hidden;border-radius:16px;margin:0.5rem 0 0.9rem;border:1px solid rgba(212,180,90,0.45);background:radial-gradient(ellipse at 20% 0%,rgba(30,125,94,0.28),transparent 55%),linear-gradient(165deg,#0f2a20,#0a1812 55%,#0c1c16);padding:1.1rem 1rem;box-shadow:0 8px 28px rgba(0,0,0,0.28)">
+    <p style="text-align:center;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#d4b45a;margin:0 0 0.35rem;font-weight:700">Bayt al-Amānah · on-device trust room</p>
+    <h1 style="margin:0 0 0.4rem;text-align:center;font-family:Georgia,serif;font-size:1.5rem;color:#f0e6c8">Amānah Vault</h1>
+    <p lang="ar" dir="rtl" style="text-align:center;font-size:1.05rem;line-height:1.65;margin:0.35rem 0;color:#e8d5a3">إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا</p>
+    <p style="text-align:center;font-size:0.8rem;line-height:1.45;opacity:0.92;margin:0.25rem auto 0;max-width:36rem">“Indeed, Allah commands you to render trusts to whom they are due…” <span style="color:#c9a84c">— Qurʾān 4:58 · <a href="https://quran.com/4/58" target="_blank" rel="noopener noreferrer" style="color:#c9a84c">Quran.com</a></span></p>
+    <p lang="ar" dir="rtl" style="text-align:center;font-size:0.98rem;line-height:1.6;margin:0.45rem 0;color:#e8d5a3">لِّلرِّجَالِ نَصِيبٌ مِّمَّا تَرَكَ الْوَالِدَانِ وَالْأَقْرَبُونَ وَلِلنِّسَاءِ نَصِيبٌ…</p>
+    <p style="text-align:center;font-size:0.8rem;line-height:1.45;opacity:0.92;margin:0.25rem auto 0;max-width:36rem">Men and women have a determined share of what parents and near relatives leave. <span style="color:#c9a84c">— Qurʾān 4:7 · farāʾiḍ <a href="https://quran.com/4/11" target="_blank" rel="noopener noreferrer" style="color:#c9a84c">4:11</a>–<a href="https://quran.com/4/12" target="_blank" rel="noopener noreferrer" style="color:#c9a84c">4:12</a></span></p>
+    <p style="text-align:center;font-size:0.7rem;opacity:0.8;margin:0.55rem 0 0;line-height:1.4">Educational companion only — not a fatwa — not legal advice — not a court document.</p>
   </header>
 
-  <p class="disc">
-    Confirm any real estate or inheritance matter with a qualified local scholar.
-    Data stays in this browser unless you export a file.
-  </p>
+  <p class="disc">Private pedigree outline on this device. Educational genealogy — not a legal pedigree certificate. Confirm farāʾiḍ with a scholar.</p>
 
-  <section class="workflow" aria-label="Tree to Farāʾiḍ workflow">
-    <h2>Workflow · Tree → Farāʾiḍ study</h2>
-    <p class="hint" style="margin:0 0 0.45rem;font-size:0.78rem;opacity:0.9;line-height:1.4">
-      Add people and roles here, save an educational outline, then open Farāʾiḍ to load heirs for study.
-      Set gender when you can. <strong>Not a fatwa.</strong>
-    </p>
-    <div class="actions">
-      <button type="button" id="uft-outline">Save outline for Farāʾiḍ</button>
-      <button type="button" class="btn-soft" id="uft-fiqh">Open Farāʾiḍ study →</button>
-      <button type="button" class="btn-soft" id="uft-refresh">Refresh view</button>
+  <section class="amana-card" id="user-family-tree-card">
+    <h2 style="margin:0 0 0.35rem;font-size:1.05rem;color:#e8d5a3;font-family:Georgia,serif">Family tree · ancestry pedigree</h2>
+    <p style="margin:0 0 0.65rem;font-size:0.78rem;opacity:0.9;line-height:1.4">Linked member cards, zoom workspace, registry steps, and own-branch tools from the classic UFT module.</p>
+
+    <!-- Classic stage host (full-restore draws into #uft-preview / #uft-stage) -->
+    <div id="clarity-family-tree-host">
+      <div id="uft-stage" class="uft-stage" data-skin="green">
+        <div id="uft-preview" class="uft-preview uft-tree"></div>
+      </div>
     </div>
+    <p id="uft-status" style="font-size:0.78rem;opacity:0.9;min-height:1.2em;margin:0.4rem 0"></p>
+    <div id="uft-integrity" style="font-size:0.75rem;margin:0.35rem 0;opacity:0.9"></div>
+
+    <!-- Backbone fields for uftCollect / uftLoad (visually hidden) -->
+    <div class="uft-hidden-fields" aria-hidden="true">
+      <input id="uft-self" /><input id="uft-self-note" />
+      <input id="uft-father" /><input id="uft-father-y" />
+      <input id="uft-mother" /><input id="uft-mother-y" />
+      <input id="uft-spouse" />
+      <input id="uft-pgf" /><input id="uft-pgm" />
+      <input id="uft-mgf" /><input id="uft-mgm" />
+      <textarea id="uft-children"></textarea>
+      <textarea id="uft-siblings"></textarea>
+      <textarea id="uft-grandchildren"></textarea>
+      <textarea id="uft-g1"></textarea><textarea id="uft-g2"></textarea><textarea id="uft-g3"></textarea>
+    </div>
+
+    <!-- Registry host for dock / deep modules -->
+    <details class="uft-registry" id="uft-registry-box" open>
+      <summary style="cursor:pointer;font-weight:700;color:#e8d5a3">Names &amp; registry · add · link · build</summary>
+      <p style="font-size:0.78rem;opacity:0.9;margin:0.4rem 0">Main workspace: add people, link relations, build the pedigree. Educational outline only.</p>
+      <div class="uft-grid" style="display:grid;gap:0.4rem;grid-template-columns:1fr 1fr">
+        <input id="uft-reg-name" placeholder="Full name *" style="grid-column:1/-1;padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
+        <input id="uft-reg-phone" placeholder="Phone / WhatsApp" style="padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
+        <input id="uft-reg-email" placeholder="Email" style="padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
+        <input id="uft-reg-city" placeholder="City / country" style="padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
+        <input id="uft-reg-note" placeholder="Note" style="grid-column:1/-1;padding:0.4rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit"/>
+        <label style="font-size:0.75rem">Link host
+          <select id="uft-reg-link-host" style="width:100%;padding:0.35rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit">
+            <option value="">No link (registry only)</option>
+          </select>
+        </label>
+        <label style="font-size:0.75rem">As relation
+          <select id="uft-reg-link-rel" style="width:100%;padding:0.35rem;border-radius:8px;border:1px solid rgba(212,180,90,0.3);background:#0c1c16;color:inherit">
+            <option value="child">Child</option>
+            <option value="spouse">Spouse</option>
+            <option value="sibling">Sibling</option>
+            <option value="father">Father</option>
+            <option value="mother">Mother</option>
+            <option value="relative">Other</option>
+          </select>
+        </label>
+        <input type="hidden" id="uft-reg-role" value=""/>
+        <input type="hidden" id="uft-reg-edit-id" value=""/>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.5rem">
+        <button type="button" onclick="typeof uftRegAddNew==='function'&&uftRegAddNew()" style="padding:0.35rem 0.7rem;border-radius:999px;border:1px solid rgba(212,180,90,0.4);background:rgba(30,125,94,0.4);color:inherit;font-weight:700;cursor:pointer">＋ Save &amp; link member</button>
+        <button type="button" onclick="typeof uftRegImportTree==='function'&&uftRegImportTree()" style="padding:0.35rem 0.7rem;border-radius:999px;border:1px solid rgba(212,180,90,0.4);background:rgba(0,0,0,0.28);color:inherit;font-weight:700;cursor:pointer">Pull names from tree</button>
+        <button type="button" onclick="typeof uftSave==='function'&&uftSave()" style="padding:0.35rem 0.7rem;border-radius:999px;border:1px solid rgba(212,180,90,0.4);background:rgba(0,0,0,0.28);color:inherit;font-weight:700;cursor:pointer">Save pedigree view</button>
+      </div>
+      <div id="uft-reg-list" style="margin-top:0.55rem"></div>
+      <div id="uft-rel-list" style="margin-top:0.35rem"></div>
+    </details>
   </section>
-
-  <div class="layout">
-    <section class="panel" aria-label="Pedigree">
-      <h2>Pedigree</h2>
-      <p class="hint">Names appear by generation from registry roles. Stable view — no collapsing bands.</p>
-      <div id="uft-pedigree"></div>
-      <div class="actions">
-        <button type="button" class="btn-soft" id="uft-export">Export JSON</button>
-        <button type="button" class="btn-soft" id="uft-import">Import JSON</button>
-        <button type="button" class="btn-soft" id="uft-clear-tree">Clear tree</button>
-        <input type="file" id="uft-file" accept="application/json,.json" hidden />
-      </div>
-    </section>
-
-    <section class="panel" aria-label="Registry">
-      <h2>Registry · add &amp; list</h2>
-      <p class="hint">One intake. Set role <strong>Self</strong> for the focus person. <span id="uft-count"></span></p>
-      <div class="form-grid">
-        <label class="span2">Full name
-          <input id="uft-name" maxlength="80" autocomplete="name" placeholder="Full name" />
-        </label>
-        <label>Role
-          <select id="uft-role">
-            <option value="self">self</option>
-            <option value="spouse">spouse</option>
-            <option value="father">father</option>
-            <option value="mother">mother</option>
-            <option value="child">child</option>
-            <option value="sibling">sibling</option>
-            <option value="pgf">pgf</option>
-            <option value="pgm">pgm</option>
-            <option value="mgf">mgf</option>
-            <option value="mgm">mgm</option>
-            <option value="uncle">uncle</option>
-            <option value="aunt">aunt</option>
-            <option value="nephew">nephew</option>
-            <option value="niece">niece</option>
-            <option value="grandchild">grandchild</option>
-            <option value="other">other</option>
-          </select>
-        </label>
-        <label>Gender
-          <select id="uft-gender">
-            <option value="">—</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-          </select>
-        </label>
-        <label>Vital
-          <select id="uft-vital">
-            <option value="">—</option>
-            <option value="living">living</option>
-            <option value="deceased">deceased</option>
-          </select>
-        </label>
-        <label>Phone
-          <input id="uft-phone" maxlength="40" />
-        </label>
-        <label class="span2">Note
-          <input id="uft-note" maxlength="160" />
-        </label>
-        <input type="hidden" id="uft-edit-id" value="" />
-      </div>
-      <div class="actions">
-        <button type="button" id="uft-save">Save to registry</button>
-        <button type="button" class="btn-soft" id="uft-clear-form">Clear form</button>
-      </div>
-      <div id="uft-registry-list"></div>
-    </section>
-  </div>
-
-  <p id="uft-status" role="status"></p>
 
   <p class="foot">
     <a href="/amana/">Amānah home</a> ·
@@ -242,6 +138,21 @@ button:active { transform: translateY(1px); }
   </p>
 </main>
 
-<script defer src="/amana/assets/amana-uft-from-scratch-v1.js?v=20261108FS1"></script>
+<!-- Classic UFT stack (assets already on live CDN) -->
+<script defer src="/amana/assets/clarity-amana-engine-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-engine-unlock-patch-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/clarity-amana-uft-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/clarity-uft-full-restore-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-registry-deep-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-viewport-stable-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-dock-v2.js?v=20261107P2"></script>
+<script defer src="/amana/assets/amana-uft-layout-h-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-file-ops-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-loaded-ops-v1.js?v=20261107P3"></script>
+<script defer src="/amana/assets/amana-uft-workspace-v1.js?v=20261107P4"></script>
+<script defer src="/amana/assets/amana-uft-build-viewport-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-png-v1.js?v=20261107P5"></script>
+<script defer src="/amana/assets/amana-uft-fiqh-bridge-v1.js?v=20261107P1"></script>
+<script defer src="/amana/assets/amana-uft-classic-boost-v1.js?v=20261108CL1"></script>
 </body>
 </html>
