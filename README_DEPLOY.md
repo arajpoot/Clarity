@@ -1,23 +1,25 @@
-# Amānah UFT · unified registry intake — full deploy
+# Amānah Family Tree · full-restore + banner
 
-**Bismillah.** Copy into repo root:
+**Bismillah.** Top-class classic UFT experience restored.
+
+## Deploy (copy into repo root)
 
 ```
 amana/tree/index.html
-amana/fiqh/index.html
-amana/assets/amana-uft-phase-a-host-v1.js
-amana/assets/amana-uft-upload-fix-v1.js
-amana/assets/amana-uft-phase-b-boot-v1.js
-amana/assets/amana-uft-phase-b-registry-v1.js
-amana/assets/amana-uft-fiqh-workflow-enrich-v1.js
-amana/assets/amana-uft-fiqh-phase-c-v1.js
-amana/assets/amana-uft-fiqh-phase-d-security-v1.js
-amana/assets/amana-uft-fiqh-housekeep-v1.js
-amana/assets/amana-uft-build-repair-v1.js
-amana/assets/amana-uft-registry-ui-unity-v1.js
+amana/assets/amana-uft-classic-boost-v1.js
 ```
 
-## Smoke
-1. Tree page shows **one** registry block: “1 · Member registry — add · link · build”.
-2. No side-by-side “add person” + “full fields”.
-3. Can set Self, link child, Save & link, Build pedigree without member-cards alert.
+All other modules load from existing live CDN paths under `/amana/assets/`.
+
+## Includes
+- Bayt al-Amānah banner (Qurʾān 4:58, 4:7)
+- Full-restore linked pedigree viewport
+- Dock / workspace / zoom / layout
+- Registry · link · loaded cards · build tree · vitals
+- Own-family-tree branch (core module)
+- Farāʾiḍ bridge
+
+## After deploy
+Hard-refresh `/amana/tree/` (unlock vault if required).
+
+Educational only — not a fatwa · not a legal pedigree.
