@@ -18,3 +18,15 @@
 }
 
 /* Do NOT hide #uft-registry-box / deep / dock — richness restored */
+
+/* UI order · collapsed registry hides long lists */
+#uft-registry-deep.uft-reg-collapsed .uft-deep-list-wrap,
+#uft-registry-deep.uft-reg-collapsed #uft-deep-list,
+#uft-registry-deep.uft-reg-collapsed .uft-reg-row,
+#uft-registry-deep.uft-reg-collapsed .uft-deep-grid,
+#uft-registry-deep.uft-reg-collapsed .uft-deep-actions {
+  display: none !important;
+}
+#uft-registry-deep.uft-reg-collapsed {
+  padding-bottom: 0.35rem;
+}
