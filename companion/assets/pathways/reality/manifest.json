@@ -1,0 +1,20 @@
+{
+  "id": "reality",
+  "label": "Reality",
+  "scripts": [
+    "/companion/assets/companion-g8-reality-stable-v1.js",
+    "/companion/assets/companion-g1-integrity-v1.js"
+  ],
+  "css": [
+    "/companion/assets/companion-g8-reality-stable-v1.css",
+    "/companion/assets/companion-g1-integrity-v1.css"
+  ],
+  "hashes": [
+    "#reality",
+    "reality"
+  ],
+  "forbidden": [
+    "/assets/companion-inline/",
+    "/amana/sealed/"
+  ]
+}
