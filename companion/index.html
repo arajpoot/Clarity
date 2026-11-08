@@ -2,6 +2,7 @@
 
 <script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261104EC"></script>
 <script src="/companion/assets/boot/companion-pathway-loader-v1.js?v=20261108C2" defer></script>
+<script src="/companion/assets/boot/companion-craft-idle-v1.js?v=20261108C3" defer></script>
 
 <script src="/companion/assets/companion-boot-shim-v1.js?v=20261106C1"></script>
 <script src="/companion/assets/companion-room-owner-v1.js?v=20261104EN"></script>
@@ -17,23 +18,7 @@
 
 
 <script src="/companion/assets/companion-haramain-temps-v1.js?v=20261105M1" defer></script>
-<script src="/companion/assets/companion-ai-maintainer-v1.js?v=20261104AIM" defer></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- C3 noise: ai-maintainer deferred off critical path -->
 <link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261104EC" />
 
 
@@ -360,24 +345,7 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 <link rel="stylesheet" href="/companion/assets/companion-banner-mobile-v1.css?v=20261105M1"/>
 <link rel="stylesheet" href="/companion/assets/companion-banner-desktop-v1.css?v=20261105D1"/>
 <link rel="stylesheet" href="/companion/assets/companion-banner-plaques-v1.css?v=20261105Q2"/>
-<!-- C2 deferred css: /companion/assets/companion-g1-integrity-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g1-integrity-v1.js -->
-<!-- C2 deferred css: /companion/assets/companion-g6-midway-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g6-midway-v1.js -->
-<!-- C2 deferred css: /companion/assets/companion-g7-content-live-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g7-content-live-v1.js -->
-<!-- C2 deferred css: /companion/assets/companion-g8-reality-stable-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g8-reality-stable-v1.js -->
-<!-- C2 deferred css: /companion/assets/companion-g9-reflection-governance-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g9-reflection-governance-v1.js -->
-<!-- C2 deferred css: /companion/assets/companion-g10-action-hajj-parity-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g10-action-hajj-parity-v1.js -->
-<!-- C2 deferred css: /companion/assets/companion-g11-media-hajj-parity-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g11-media-hajj-parity-v1.js -->
-<!-- C2 deferred css: /companion/assets/companion-g12-quiz-about-governance-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g12-quiz-about-governance-v1.js -->
-<!-- C2 deferred css: /companion/assets/companion-g13-reminder-about-v1.css -->
-<!-- C2 deferred to pathway pack: /companion/assets/companion-g13-reminder-about-v1.js -->
+<!-- C2 pathway modules deferred (see packs) -->
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -2323,7 +2291,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 <script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261104EC" defer data-phase="2-after-shell"></script>
 <script src="/companion/assets/companion-tab-persist-v35.js?v=20261104EC" defer data-phase="n1-tab"></script>
-<script src="/companion/assets/clarity-meme-api-bridge-v1.js?v=20261104EC" defer data-phase="meme-bridge"></script>
+<!-- C3 deferred craft: meme-api-bridge -->
 <script src="/companion/assets/companion-craft-core-v1.js?v=20261104EC" defer data-phase="n2-craft"></script>
 
 
@@ -2403,9 +2371,10 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 
 <!-- phase3-dedupe dup: /companion/assets/clarity-companion-unfreeze-v3.js -->
-<script src="/companion/assets/companion-meme-studio-fix-v1.js?v=20261104MS3"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+<!-- C3 deferred craft: meme-studio -->
+<!-- C3 deduped cf beacon -->
+<!-- C3 deduped cf beacon -->
+<!-- C3 deduped cf beacon -->
+<!-- C3 deduped cf beacon -->
 </body>
 </html>
