@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-clarity-room="port">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Clarity Port — P1b+P2b Smoke</title>
+<link rel="stylesheet" href="../assets/port-door-registry-v1.css"/>
+<link rel="stylesheet" href="../assets/port-visit-notes-v1.css"/>
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#0c1c16;color:#e8f0ec}
+.wrap{max-width:1100px;margin:0 auto;padding:1.25rem}
+.hero h1{color:#e8d5a3;margin:0 0 .5rem}
+.stamp{font-size:.85rem;color:rgba(180,200,190,.9);margin-bottom:1rem}
+.sym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.tower{background:#12261e;border:1px solid rgba(201,162,39,.28);border-radius:14px;padding:1rem}
+.tower h3{margin:.2rem 0;color:#e8d5a3}
+.role{font-size:.85rem;color:rgba(180,200,190,.9);margin-bottom:.5rem}
+.tower ul{margin:0;padding-left:1.1rem;font-size:.88rem;color:#c8d8d0}
+.tower-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+a.enter{color:#e8d5a3;text-decoration:none;border:1px solid rgba(201,162,39,.4);padding:.35rem .7rem;border-radius:8px}
+.room-tour-pill{background:rgba(30,125,94,.35);border:1px solid rgba(201,162,39,.3);color:#e8f0ec;border-radius:8px;padding:.35rem .7rem;cursor:pointer}
+#smoke-log{margin-top:1.5rem;padding:1rem;background:#0a1612;border-radius:12px;font-size:.85rem;white-space:pre-wrap}
+.ok{color:#6dca9a}.fail{color:#e88}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>Furnish Your Grave</h1>
+    <p class="stamp">Educational only — not a fatwa, not legal advice. Private data stays on this device.</p>
+    <p>Castle introduction · five doors · Phase A offline foundation</p>
+  </header>
+  <div class="sym-grid">
+    <div class="tower" data-room="companion"><h3>✦ Companion</h3><div class="role">Reminder · path · tools</div><ul><li>Commands & daily verse</li><li>Reality · Reflection · Action</li></ul><div class="tower-actions"><a class="enter" href="/companion/">Enter Companion</a><button type="button" class="room-tour-pill">▶ Tour</button></div></div>
+    <div class="tower keep" data-room="yawm"><h3>☾ Yawm · Keep</h3><div class="role">Today’s portion</div><ul><li>Farḍ checklist</li><li>Small deed</li></ul><div class="tower-actions"><a class="enter" href="/daily/">Enter Yawm</a><button type="button" class="room-tour-pill">▶ Tour</button></div></div>
+    <div class="tower" data-room="amana"><h3>🔐 Amānah</h3><div class="role">Trust · legacy desk</div><ul><li>Tree · farāʾiḍ study</li><li>You hold the passphrase</li></ul><div class="tower-actions"><a class="enter" href="/amana/">Enter Amānah</a><button type="button" class="room-tour-pill">▶ Tour</button></div></div>
+    <div class="tower" data-room="campus"><h3>◉ University</h3><div class="role">Ordered path</div><ul><li>Seeker → Transmission</li><li>Not a physical university</li></ul><div class="tower-actions"><a class="enter" href="/campus/">Enter Campus</a><button type="button" class="room-tour-pill">▶ Tour</button></div></div>
+    <div class="tower" data-room="craft"><h3>✎ Craft</h3><div class="role">Atelier</div><ul><li>Calligraphy · meme · tajweed</li></ul><div class="tower-actions"><a class="enter" href="/craft/">Enter Craft</a><button type="button" class="room-tour-pill">▶ Tour</button></div></div>
+  </div>
+  <div id="smoke-log">Running smoke…</div>
+</div>
+<script src="../assets/port-door-registry-v1.js"></script>
+<script src="../assets/port-visit-notes-v1.js"></script>
+<script>
+(function(){
+  var log = document.getElementById('smoke-log');
+  var lines = [];
+  function p(ok, msg){ lines.push((ok?'PASS':'FAIL') + ': ' + msg); }
+  function finish(){
+    var fails = lines.filter(function(l){ return l.indexOf('FAIL')===0; }).length;
+    log.className = fails ? 'fail' : 'ok';
+    log.textContent = lines.join('\n') + '\n\n' + (fails ? ('FAILED '+fails) : 'SMOKE_ALL_PASS');
+    window.__PORT_SMOKE__ = { fails: fails, lines: lines };
+    document.title = fails ? 'SMOKE_FAIL' : 'SMOKE_ALL_PASS';
+  }
+  function run(){
+    try {
+      var D = window.ClarityPortDoorRegistry;
+      var N = window.ClarityPortVisitNotes;
+      p(!!D, 'P1b API present');
+      p(!!N, 'P2b API present');
+      if (!D || !N) { finish(); return; }
+      p(D.key === 'clarity.port.doorRegistry.v1', 'P1b storage key');
+      p(N.key === 'clarity.port.visitNotes.v1', 'P2b storage key');
+      p(D.key !== N.key, 'keys isolated');
+      D.clear(); N.clear();
+      p(document.querySelectorAll('.door-registry-stamp').length === 5, '5 door stamps');
+      p(!!document.getElementById('port-visit-notes'), 'visit notes mounted');
+      p(/not Amānah/i.test(document.getElementById('port-visit-notes').textContent), 'not Amānah label');
+      p(/not a fatwa/i.test(document.getElementById('port-visit-notes').textContent), 'not a fatwa stamp');
+      document.querySelectorAll('a.enter').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); }); });
+      document.querySelector('.tower[data-room="companion"] a.enter').click();
+      document.querySelector('.tower[data-room="craft"] a.enter').click();
+      var snap = D.snapshot();
+      p(!!(snap.companion && snap.companion.lastEntered), 'companion recorded');
+      p(!!(snap.craft && snap.craft.lastEntered), 'craft recorded');
+      N.add('Smoke note: return to Yawm later');
+      var notes = N.list();
+      p(notes.length === 1 && /Yawm/.test(notes[0].text), 'note saved');
+      p(!!notes[0].at, 'note timestamped');
+      var tog = document.querySelector('.pvn-toggle');
+      if (tog) tog.click();
+      p(document.getElementById('pvn-body') && !document.getElementById('pvn-body').hasAttribute('hidden'), 'panel opens');
+      N.clear();
+      p(N.list().length === 0, 'notes clear');
+      p(!localStorage.getItem('clarity.amana'), 'no amana key written');
+    } catch (e) {
+      p(false, String(e));
+    }
+    finish();
+  }
+  function waitReady(n){
+    n = n || 0;
+    if (window.ClarityPortDoorRegistry && window.ClarityPortVisitNotes) return run();
+    if (n > 50) { p(false, 'APIs not ready'); finish(); return; }
+    setTimeout(function(){ waitReady(n+1); }, 50);
+  }
+  if (document.readyState === 'complete') waitReady(0);
+  else window.addEventListener('load', function(){ waitReady(0); });
+})();
+</script>
+</body>
+</html>

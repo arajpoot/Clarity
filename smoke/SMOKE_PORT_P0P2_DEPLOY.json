@@ -1,0 +1,101 @@
+{
+  "package": "PORT_P0P2_DEPLOY",
+  "phases": [
+    "P0",
+    "P1",
+    "P1b",
+    "P2b"
+  ],
+  "governance_contract": {
+    "enrichment_only": true,
+    "rooms_untouched": true,
+    "owned_imports_only": true,
+    "not_amanah_notes": true,
+    "not_fatwa": true
+  },
+  "checks": [
+    {
+      "name": "file_index.html",
+      "pass": true,
+      "detail": "9239"
+    },
+    {
+      "name": "file_assets_port-trust-strip-v1.css",
+      "pass": true,
+      "detail": "732"
+    },
+    {
+      "name": "file_assets_port-trust-strip-v1.js",
+      "pass": true,
+      "detail": "1372"
+    },
+    {
+      "name": "file_assets_port-door-registry-v1.css",
+      "pass": true,
+      "detail": "748"
+    },
+    {
+      "name": "file_assets_port-door-registry-v1.js",
+      "pass": true,
+      "detail": "4171"
+    },
+    {
+      "name": "file_assets_port-visit-notes-v1.css",
+      "pass": true,
+      "detail": "3612"
+    },
+    {
+      "name": "file_assets_port-visit-notes-v1.js",
+      "pass": true,
+      "detail": "6167"
+    },
+    {
+      "name": "file_README_DEPLOY.md",
+      "pass": true,
+      "detail": "2135"
+    },
+    {
+      "name": "index_links_css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index_links_js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index_rooms_enter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index_no_room_asset_hijack",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "browser_smoke",
+      "pass": true,
+      "detail": "SMOKE_ALL_PASS"
+    },
+    {
+      "name": "readme",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "passed": true,
+  "fail_count": 0,
+  "deploy_root_files": [
+    "index.html",
+    "assets/port-trust-strip-v1.css",
+    "assets/port-trust-strip-v1.js",
+    "assets/port-door-registry-v1.css",
+    "assets/port-door-registry-v1.js",
+    "assets/port-visit-notes-v1.css",
+    "assets/port-visit-notes-v1.js",
+    "README_DEPLOY.md"
+  ],
+  "browser_smoke": "PASS"
+}
