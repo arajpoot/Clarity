@@ -29,11 +29,11 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 .disc { font-size:0.78rem; padding:0.55rem 0.7rem; border-radius:10px;
   border-left:3px solid rgba(212,180,90,0.55); background:rgba(0,0,0,0.25); margin:0.5rem 0; }
 #uft-stage.uft-stage, .uft-stage {
-  min-height:16rem; border:1px solid rgba(212,180,90,0.28); border-radius:14px;
+  min-height:min(70vh, 36rem); border:1px solid rgba(212,180,90,0.28); border-radius:14px;
   padding:0.65rem 0.75rem; margin:0.5rem 0; background:rgba(0,0,0,0.22); overflow:auto;
 }
 #uft-preview, .uft-preview {
-  min-height:12rem; position:relative; overflow:auto; border-radius:12px;
+  min-height:min(58vh, 30rem); position:relative; overflow:auto; border-radius:12px;
   background:rgba(0,0,0,0.14); border:1px dashed rgba(212,180,90,0.22);
 }
 .foot { margin-top:1.25rem; text-align:center; font-size:0.72rem; opacity:0.75; }
@@ -46,8 +46,9 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-glass-plaque-v1.css?v=20261108GP1"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-branch-horizontal-v1.css?v=20261108BH1"/>
 <link rel="stylesheet" href="/amana/assets/css/amana-uft-day-close-v1.css?v=20261108DC1"/>
+<link rel="stylesheet" href="/amana/assets/amana-uft-tree-polish-v1.css?v=20261108T1"/>
 </head>
-<body>
+<body class="amana-tree-page">
 <nav class="clarity-room-nav" data-room="amana" aria-label="Clarity rooms">
   <a href="/companion/" data-room-link="companion"><span class="crn-ico">🏠</span><span class="crn-label">Companion</span></a>
   <a href="/yawm/" data-room-link="yawm"><span class="crn-ico">📅</span><span class="crn-label">Yawm</span></a>
@@ -121,5 +122,6 @@ body { margin:0; min-height:100vh; font-family:system-ui,sans-serif;
 <script defer src="/amana/assets/amana-engine-unlock-patch-v1.js?v=20261107P1"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script src="/amana/assets/amana-uft-batch-boot-v1.js?v=20261108M5b" defer></script>
+<script src="/amana/assets/amana-uft-tree-polish-v1.js?v=20261108T1" defer></script>
 </body>
 </html>
