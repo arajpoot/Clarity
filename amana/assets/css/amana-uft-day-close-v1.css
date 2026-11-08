@@ -1,0 +1,52 @@
+/*! Day-close polish · meta outside stage · room nav visible */
+.clarity-room-nav {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.5rem;
+}
+.clarity-room-nav a {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(0,0,0,0.25);
+}
+.clarity-room-nav a.is-here,
+.clarity-room-nav a[aria-current="page"] {
+  background: rgba(30,125,94,0.45);
+  border-color: rgba(212,180,90,0.5);
+}
+
+/* Description / summary line above viewport — not inside scroll stage */
+.uft-meta-outside,
+#uft-meta-outside {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.92;
+  color: #e8d5a3;
+  margin: 0.25rem 0 0.45rem;
+  max-width: 40rem;
+}
+
+/* Hide in-stage meta so viewport opens on the tree */
+#uft-preview .uft-window-meta {
+  display: none !important;
+}
+
+/* Give stage more room for the tree itself */
+#uft-stage.uft-stage,
+.uft-stage {
+  min-height: 18rem;
+}
+#uft-preview,
+.uft-preview {
+  min-height: 14rem;
+}
