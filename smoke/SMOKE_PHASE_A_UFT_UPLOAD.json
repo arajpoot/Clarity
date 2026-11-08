@@ -1,0 +1,20 @@
+{
+  "phase": "A",
+  "room": "/amana/tree/",
+  "build": "AMANA_UFT_PHASE_A_20261108",
+  "educational_only": true,
+  "enrichment": "held",
+  "keys_touched": ["clarity_user_family_tree_v1", "clarity_uft_member_cards_v1"],
+  "tests": [
+    {"id": "A1", "name": "hidden_inputs_present", "expect": "uft-load-file,uft-cards-file,uft-pack-file in DOM after boot"},
+    {"id": "A2", "name": "upload_menu_opens_picker", "expect": "change on #uft-upload-menu value=tree triggers input.click"},
+    {"id": "A3", "name": "import_tree_json", "expect": "localStorage clarity_user_family_tree_v1 updated"},
+    {"id": "A4", "name": "preview_host_alias", "expect": "getElementById('uft-preview') returns #uft-stage"},
+    {"id": "A5", "name": "no_network_upload", "expect": "FileReader only; no fetch of file contents"}
+  ],
+  "governance": {
+    "foundation_lock": "amana owns tree",
+    "companion_vault_retired": true,
+    "enrichment_clause": "held"
+  }
+}
