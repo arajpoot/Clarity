@@ -1,0 +1,8 @@
+{
+  "build": "AMANA_UFT_AD_20261108",
+  "live_precheck": "5/5 cycles pass on deployed A-B-E",
+  "enrichment": "workflow_active",
+  "governance_pass": true,
+  "security_pass": true,
+  "tests": ["A_upload", "B_registry", "E_workflow", "C_gender_checklist", "D_status_soft_clear"]
+}
