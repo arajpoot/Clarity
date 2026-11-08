@@ -1,44 +1,48 @@
-# Clarity Port — P0–P2 deploy package
+# Clarity Port — Full P0–P3 deploy package
 
 **Bismillah.** Educational only — not a fatwa.
 
-You do **not** need to hand-edit HTML. Upload files to the paths below.
+You do **not** need to edit HTML by hand. Upload as mapped below.
 
-## What this is
+## Contents
 
-| Phase | Deliverable |
-|-------|-------------|
-| **P0** | Inventory freeze · rooms untouched · owned assets only |
-| **P1** | Trust strip under hero (local-first · not a fatwa · verify) |
-| **P1b** | Door registry — last entered date/time on each room tile |
+| Phase | Feature |
+|-------|---------|
+| **P0** | Inventory freeze · enrichment-only · rooms untouched |
+| **P1** | Trust strip (Local-first · On this device · Not a fatwa · Verify…) |
+| **P1b** | Door registry — last entered date/time on each tile |
 | **P2b** | Visit notepad — optional, timestamped, **not Amānah** |
+| **P3** | How the castle works — Arrive → Choose a door → Verify |
 
-## Upload map (FTP / Git / host panel)
+## Upload map
 
 ```
-/index.html                          ← replace Port homepage
+/index.html                              ← Port homepage (already wired)
 /assets/port-trust-strip-v1.css
 /assets/port-trust-strip-v1.js
 /assets/port-door-registry-v1.css
 /assets/port-door-registry-v1.js
 /assets/port-visit-notes-v1.css
 /assets/port-visit-notes-v1.js
+/assets/port-how-castle-v1.css
+/assets/port-how-castle-v1.js
 ```
 
-If your Port homepage is not `index.html` at site root (e.g. `port/index.html`), upload the HTML to **that** file instead, and keep `/assets/...` paths the same.
+If Port is not site root, replace **your Port HTML file** with `index.html` from this zip; keep all files under `/assets/` as named.
 
-## What the user sees
+## After upload — checklist
 
-1. **Trust pills** under the hero  
-2. Each door: **Not yet entered** or **Last entered · &lt;date time&gt;** after tapping Enter  
-3. **Visit notes** card under the room grid — Open → type → Save with timestamp  
+1. Hard-refresh Port  
+2. Trust pills under hero  
+3. “How the castle works” (3 steps) above room tiles  
+4. Each door: Not yet entered / Last entered  
+5. Visit notes under tiles (not Amānah)  
+6. Enter a room, return — stamp updates  
 
 ## Storage (this device only)
 
-- `clarity.port.doorRegistry.v1`
-- `clarity.port.visitNotes.v1`
-
-Does **not** write Amānah or other room keys.
+- `clarity.port.doorRegistry.v1`  
+- `clarity.port.visitNotes.v1`  
 
 ## Governance
 
@@ -48,17 +52,4 @@ Does **not** write Amānah or other room keys.
 
 ## Rollback
 
-Delete the six `/assets/port-*` files and restore the previous `index.html` (or remove the three CSS + three JS lines from head/body).
-
-## After deploy — 2-minute check
-
-1. Open `https://clarity-dawah.fyi/`  
-2. See trust strip pills  
-3. Each tile shows a small last-entered line  
-4. Scroll — Visit notes card appears  
-5. Enter Companion (or any door), return — stamp updated  
-6. Save a visit note — timestamp appears; Clear all does not affect Amānah  
-
-## Next phase (not in this zip)
-
-**P3** — “How the castle works” (Arrive → Choose a door → Verify)
+Restore previous Port HTML and delete the eight `/assets/port-*` files listed above.
