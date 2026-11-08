@@ -1,6 +1,6 @@
-# Amānah UFT · A–D + housekeep + build repair — full deploy
+# Amānah UFT · unified registry intake — full deploy
 
-**Bismillah.** Copy into Clarity repo root:
+**Bismillah.** Copy into repo root:
 
 ```
 amana/tree/index.html
@@ -14,11 +14,10 @@ amana/assets/amana-uft-fiqh-phase-c-v1.js
 amana/assets/amana-uft-fiqh-phase-d-security-v1.js
 amana/assets/amana-uft-fiqh-housekeep-v1.js
 amana/assets/amana-uft-build-repair-v1.js
+amana/assets/amana-uft-registry-ui-unity-v1.js
 ```
 
 ## Smoke
-
-1. Open tree (unlocked) with existing registry → pedigree should fill self/parents/children from roles.
-2. Or Upload full JSON → names on stage, not only registry list.
-3. Registry duplicates collapse (same name+role).
-4. Farāʾiḍ outline not tripled.
+1. Tree page shows **one** registry block: “1 · Member registry — add · link · build”.
+2. No side-by-side “add person” + “full fields”.
+3. Can set Self, link child, Save & link, Build pedigree without member-cards alert.
