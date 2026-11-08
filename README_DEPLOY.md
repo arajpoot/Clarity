@@ -1,25 +1,14 @@
-# Amānah Family Tree · full-restore + banner
+# Amānah UFT · linked tree lines
 
-**Bismillah.** Top-class classic UFT experience restored.
-
-## Deploy (copy into repo root)
+Adds classic horizontal connector lines (couple → bar → children) on the pedigree viewport.
 
 ```
 amana/tree/index.html
 amana/assets/amana-uft-classic-boost-v1.js
+amana/assets/amana-uft-housekeep-v2.js
+amana/assets/amana-uft-tree-lines-v1.js
+amana/assets/css/amana-uft-housekeep-v2.css
+amana/assets/css/amana-uft-tree-lines-v1.css
 ```
 
-All other modules load from existing live CDN paths under `/amana/assets/`.
-
-## Includes
-- Bayt al-Amānah banner (Qurʾān 4:58, 4:7)
-- Full-restore linked pedigree viewport
-- Dock / workspace / zoom / layout
-- Registry · link · loaded cards · build tree · vitals
-- Own-family-tree branch (core module)
-- Farāʾiḍ bridge
-
-## After deploy
-Hard-refresh `/amana/tree/` (unlock vault if required).
-
-Educational only — not a fatwa · not a legal pedigree.
+Hard-refresh → Viewport **Horizontal** for the linked layout.
