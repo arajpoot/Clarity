@@ -1,0 +1,306 @@
+/*! Amānah UFT · glass plaque cards + hardened horizontal viewport v1
+ * Educational only — not a legal pedigree
+ */
+
+/* ═══ Hardened horizontal viewport ═══ */
+#uft-preview.uft-tree,
+#uft-preview.uft-orient-h {
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  max-height: min(72vh, 40rem);
+  min-height: min(38vh, 18rem);
+  padding: 0.35rem;
+}
+
+#uft-preview.uft-orient-h .uft-zoom-layer,
+#uft-preview.uft-orient-h #uft-zoom-layer,
+#uft-preview.uft-orient-h .uft-zoom-sizer {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 1.1rem;
+  min-width: max-content;
+  width: max-content;
+  padding: 1rem 1.25rem 1.5rem;
+  box-sizing: border-box;
+}
+
+#uft-preview.uft-orient-h .uft-band,
+#uft-preview.uft-orient-h section.uft-band {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 0 0 auto !important;
+  min-width: 13rem;
+  max-width: 20rem;
+  margin: 0 !important;
+  padding: 0.45rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.22);
+  background: rgba(0, 0, 0, 0.16);
+}
+
+#uft-preview.uft-orient-h .uft-band.collapsed .uft-band-scroll {
+  display: none !important;
+}
+
+#uft-preview.uft-orient-h .uft-band-scroll {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.55rem;
+}
+
+#uft-preview.uft-orient-h .uft-cluster {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  gap: 0;
+  margin: 0.35rem 0;
+}
+
+#uft-preview.uft-orient-h .uft-couple {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  padding-bottom: 0.7rem;
+}
+
+#uft-preview.uft-orient-h .uft-couple::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 2px;
+  height: 0.7rem;
+  margin-left: -1px;
+  background: linear-gradient(180deg, rgba(212,180,90,0.15), rgba(212,180,90,0.65));
+}
+
+#uft-preview.uft-orient-h .uft-kids-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  padding-top: 0.7rem;
+}
+
+#uft-preview.uft-orient-h .uft-kids-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: rgba(212, 180, 90, 0.5);
+  border-radius: 1px;
+}
+
+#uft-preview.uft-orient-h .uft-kids-row > .uft-person,
+#uft-preview.uft-orient-h .uft-kids-row > .uft-card-sleek {
+  position: relative;
+  margin-top: 0.45rem;
+}
+
+#uft-preview.uft-orient-h .uft-kids-row > .uft-person::before,
+#uft-preview.uft-orient-h .uft-kids-row > .uft-card-sleek::before {
+  content: "";
+  position: absolute;
+  top: -0.7rem;
+  left: 50%;
+  width: 2px;
+  height: 0.7rem;
+  margin-left: -1px;
+  background: rgba(212, 180, 90, 0.55);
+}
+
+/* ═══ Glass plaque member cards ═══ */
+#uft-preview .uft-person,
+#uft-preview .uft-card-sleek,
+.uft-stage .uft-person,
+.uft-stage .uft-card-sleek {
+  position: relative;
+  min-width: 7.4rem;
+  max-width: 11.5rem;
+  padding: 0.55rem 0.6rem 0.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(232, 213, 163, 0.38);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 40%, rgba(15,76,58,0.25) 100%),
+    rgba(8, 22, 16, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.12) inset,
+    0 -1px 0 rgba(0,0,0,0.25) inset,
+    0 8px 22px rgba(0,0,0,0.28),
+    0 0 0 1px rgba(212,180,90,0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+/* Soft glass sheen */
+#uft-preview .uft-person::after,
+#uft-preview .uft-card-sleek::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(125deg, rgba(255,255,255,0.14) 0%, transparent 42%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#uft-preview .uft-person > *,
+#uft-preview .uft-card-sleek > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Focus plaque — stronger gold emboss */
+#uft-preview .uft-person.focus,
+#uft-preview .uft-person.is-focus,
+#uft-preview .uft-card-sleek.focus,
+#uft-preview .uft-card-sleek.is-focus,
+#uft-preview .uft-person[class*="focus"] {
+  border-color: rgba(201, 168, 76, 0.75);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.16) inset,
+    0 0 0 1px rgba(201,168,76,0.35),
+    0 10px 28px rgba(0,0,0,0.32),
+    0 0 24px rgba(201,168,76,0.12);
+}
+
+/* Hide avatar initials */
+#uft-preview .uft-avatar {
+  display: none !important;
+}
+
+#uft-preview .uft-card-title,
+#uft-preview .uft-card-head {
+  text-align: left;
+}
+
+#uft-preview .uft-card-title strong,
+#uft-preview .uft-person strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f3e8c8;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+}
+
+#uft-preview .uft-card-title span,
+#uft-preview .uft-person .uft-meta,
+#uft-preview .uft-person small {
+  font-size: 0.7rem;
+  opacity: 0.85;
+  color: #d4c49a;
+}
+
+/* ═══ Embossed pills / chips ═══ */
+#uft-preview .uft-chip,
+#uft-preview .uft-vital-btn,
+#uft-preview .uft-gender-btn,
+#uft-preview .uft-born-btn,
+#uft-preview .uft-focus-btn,
+#uft-preview .uft-own-btn,
+#uft-preview .uft-add-rel-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.7rem;
+  height: 1.55rem;
+  padding: 0 0.4rem;
+  margin: 0.08rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #f0e6c8;
+  cursor: pointer;
+  border: 1px solid rgba(232, 213, 163, 0.4);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.03) 45%, rgba(0,0,0,0.18) 100%),
+    rgba(20, 60, 45, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.2) inset,
+    0 -1px 0 rgba(0,0,0,0.3) inset,
+    0 2px 6px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+#uft-preview .uft-chip:active,
+#uft-preview .uft-vital-btn:active,
+#uft-preview .uft-gender-btn:active,
+#uft-preview .uft-born-btn:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.08) inset,
+    0 1px 3px rgba(0,0,0,0.25);
+}
+
+/* Vital states */
+#uft-preview .uft-vital-btn.live,
+#uft-preview .uft-vital-btn.alive {
+  border-color: rgba(120, 200, 140, 0.55);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(40,120,70,0.35) 100%),
+    rgba(20, 80, 50, 0.55);
+}
+#uft-preview .uft-vital-btn.dead,
+#uft-preview .uft-vital-btn.deceased {
+  border-color: rgba(180, 180, 180, 0.4);
+  opacity: 0.9;
+}
+
+#uft-preview .uft-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+  margin-top: 0.28rem;
+}
+
+#uft-preview .uft-chip-stack {
+  margin-top: 0.2rem;
+}
+
+/* Delete pill — quieter */
+#uft-preview .uft-del-btn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.3rem;
+  z-index: 2;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212,180,90,0.3);
+  background: rgba(0,0,0,0.35);
+  color: #e8d5a3;
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset;
+}
+
+/* Band headers subtle plaque */
+#uft-preview .uft-band-head {
+  border-radius: 10px;
+  border: 1px solid rgba(212,180,90,0.22);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.15));
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset;
+  color: #e8d5a3;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.35rem 0.5rem;
+  margin-bottom: 0.35rem;
+}
