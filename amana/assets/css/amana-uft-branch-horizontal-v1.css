@@ -1,0 +1,133 @@
+/*! Amānah UFT · branch horizontal v1
+ * Prefer backbone (generation columns + connectors) in Horizontal mode
+ * Vertical mode keeps descendant outline tree
+ * Glass plaques retained · educational only
+ */
+
+/* ── Horizontal: show linked generation columns (backbone) ── */
+#uft-preview.uft-orient-h .uft-window {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: max-content;
+  padding: 0.5rem 0.75rem 1rem;
+}
+
+#uft-preview.uft-orient-h .uft-window-meta {
+  max-width: 28rem;
+  font-size: 0.78rem;
+  opacity: 0.9;
+  line-height: 1.35;
+}
+
+/* Hide vertical outline dump in horizontal — backbone is the branch view */
+#uft-preview.uft-orient-h .uft-dtree,
+#uft-preview.uft-orient-h .uft-vtree {
+  display: none !important;
+}
+
+/* Backbone = left → right generations */
+#uft-preview.uft-orient-h .uft-backbone,
+#uft-preview .uft-backbone {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  justify-content: flex-start;
+  gap: 0;
+  min-width: max-content;
+  width: max-content;
+  padding: 0.75rem 0.5rem 1rem;
+}
+
+#uft-preview .uft-backbone .uft-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  min-width: 8.5rem;
+  max-width: 12rem;
+  padding: 0.35rem 0.25rem;
+}
+
+#uft-preview .uft-backbone .uft-col-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #e8d5a3;
+  opacity: 0.85;
+  text-align: center;
+  margin-bottom: 0.2rem;
+}
+
+/* Gold connector between generation columns */
+#uft-preview .uft-backbone .uft-connector {
+  flex: 0 0 auto;
+  width: 1.35rem;
+  min-width: 1.35rem;
+  align-self: center;
+  height: 2px;
+  margin: 2.5rem 0.15rem 0;
+  background: linear-gradient(90deg, rgba(212,180,90,0.2), rgba(212,180,90,0.85), rgba(212,180,90,0.2));
+  border-radius: 1px;
+  position: relative;
+}
+
+#uft-preview .uft-backbone .uft-connector::before,
+#uft-preview .uft-backbone .uft-connector::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: rgba(212, 180, 90, 0.75);
+  box-shadow: 0 0 0 2px rgba(12, 28, 22, 0.5);
+}
+#uft-preview .uft-backbone .uft-connector::before { left: -2px; }
+#uft-preview .uft-backbone .uft-connector::after { right: -2px; }
+
+/* People in a column stack as plaques */
+#uft-preview .uft-backbone .uft-col .uft-person,
+#uft-preview .uft-backbone .uft-col .uft-card-sleek {
+  width: 100%;
+  max-width: 11rem;
+}
+
+/* ── Vertical: outline tree, hide backbone columns ── */
+#uft-preview.uft-orient-v .uft-backbone {
+  display: none !important;
+}
+
+#uft-preview.uft-orient-v .uft-dtree,
+#uft-preview.uft-orient-v .uft-vtree {
+  display: block !important;
+}
+
+#uft-preview.uft-orient-v .uft-vtree {
+  margin: 0.35rem 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(212, 180, 90, 0.35);
+}
+
+#uft-preview.uft-orient-v .uft-vtree ul {
+  margin-left: 0.65rem;
+  padding-left: 0.65rem;
+  border-left: 1px solid rgba(212, 180, 90, 0.25);
+}
+
+/* Stage must scroll horizontally for backbone */
+#uft-preview.uft-orient-h {
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+}
+
+#uft-preview.uft-orient-h .uft-zoom-layer,
+#uft-preview.uft-orient-h #uft-zoom-layer {
+  min-width: max-content !important;
+  width: max-content !important;
+}
