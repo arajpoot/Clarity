@@ -131,6 +131,7 @@
         w.uftRegImportTree();
       }
     } catch (e4) {}
+    try { if (typeof w.uftBuildRepairApply === "function") w.uftBuildRepairApply(); } catch (eBR) {}
     status("Full tree JSON imported · pedigree refreshed · on this device only · educational outline");
   }
 
