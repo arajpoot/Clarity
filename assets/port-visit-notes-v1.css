@@ -1,0 +1,173 @@
+/* Clarity Port — Visit notepad (P2b). Port-owned. Not Amānah. */
+.port-visit-notes {
+  max-width: 920px;
+  margin: 1.75rem auto 2rem;
+  padding: 0 1rem;
+}
+.pvn-card {
+  background: linear-gradient(165deg, rgba(16, 40, 32, 0.92), rgba(10, 28, 22, 0.96));
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.pvn-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+}
+.pvn-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #e8d5a3;
+  letter-spacing: 0.02em;
+}
+.pvn-sub {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  color: rgba(180, 200, 190, 0.9);
+}
+.pvn-sub strong {
+  color: #c9a227;
+  font-weight: 600;
+}
+.pvn-toggle {
+  flex-shrink: 0;
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  background: rgba(30, 125, 94, 0.35);
+  color: #e8f0ec;
+  border-radius: 999px;
+  padding: 0.4rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pvn-toggle:hover {
+  background: rgba(30, 125, 94, 0.55);
+}
+.pvn-body {
+  padding: 1rem 1.15rem 1.25rem;
+}
+.pvn-stamp {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  color: rgba(180, 200, 190, 0.85);
+  line-height: 1.4;
+}
+.pvn-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #c9a227;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+.pvn-input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background: rgba(8, 20, 16, 0.75);
+  color: #e8f0ec;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  resize: vertical;
+  min-height: 4.5rem;
+}
+.pvn-input:focus {
+  outline: 2px solid rgba(201, 162, 39, 0.45);
+  outline-offset: 1px;
+}
+.pvn-meta {
+  margin: 0.35rem 0 0.65rem;
+  font-size: 0.75rem;
+  color: rgba(160, 180, 170, 0.85);
+  text-align: right;
+}
+.pvn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.pvn-save {
+  border: none;
+  border-radius: 10px;
+  background: #1e7d5e;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.pvn-save:hover { background: #25956f; }
+.pvn-clear-all {
+  border: 1px solid rgba(180, 100, 90, 0.4);
+  background: transparent;
+  color: rgba(220, 180, 170, 0.95);
+  border-radius: 10px;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.pvn-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.pvn-empty {
+  font-size: 0.88rem;
+  color: rgba(160, 180, 170, 0.8);
+  padding: 0.5rem 0;
+}
+.pvn-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0.2rem 0.75rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 162, 39, 0.12);
+}
+.pvn-item-time {
+  grid-column: 1;
+  font-size: 0.72rem;
+  color: #c9a227;
+  font-weight: 600;
+}
+.pvn-item-text {
+  grid-column: 1;
+  font-size: 0.92rem;
+  color: #e8f0ec;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.pvn-del {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  border: none;
+  background: transparent;
+  color: rgba(200, 160, 150, 0.85);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+}
+.pvn-del:hover {
+  background: rgba(180, 80, 70, 0.2);
+  color: #f0c0b8;
+}
+@media (max-width: 640px) {
+  .port-visit-notes { margin-top: 1.25rem; }
+  .pvn-head { padding: 0.85rem 1rem; }
+}

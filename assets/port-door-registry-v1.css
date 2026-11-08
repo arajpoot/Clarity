@@ -1,0 +1,27 @@
+/* Clarity Port — Door registry stamps (P1b). Port-owned. Rooms untouched. */
+.door-registry-stamp {
+  margin: 0.65rem 0 0.35rem;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: rgba(180, 200, 190, 0.88);
+  background: rgba(12, 28, 22, 0.35);
+  border: 1px solid rgba(201, 162, 39, 0.22);
+  border-radius: 8px;
+  font-weight: 500;
+}
+.door-registry-stamp.is-visited {
+  color: rgba(232, 213, 163, 0.95);
+  border-color: rgba(201, 162, 39, 0.4);
+  background: rgba(20, 48, 36, 0.45);
+}
+/* Light / cream tiles if present */
+.tower .door-registry-stamp {
+  /* inherits; keep readable on dark green cards */
+}
+@media (max-width: 640px) {
+  .door-registry-stamp {
+    font-size: 0.72rem;
+  }
+}

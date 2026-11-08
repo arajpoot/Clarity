@@ -1,0 +1,29 @@
+/* Port P1 — Trust strip under hero. Port-owned. Rooms untouched. */
+.port-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.55rem;
+  justify-content: center;
+  margin: 0.85rem auto 1.1rem;
+  max-width: 920px;
+  padding: 0 1rem;
+}
+.port-trust-strip span {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(232, 213, 163, 0.95);
+  background: rgba(12, 28, 22, 0.55);
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+}
+.port-trust-strip .pts-job {
+  flex-basis: 100%;
+  text-align: center;
+  border-style: dashed;
+  color: rgba(200, 215, 205, 0.95);
+  font-weight: 500;
+  background: rgba(16, 40, 32, 0.4);
+}
