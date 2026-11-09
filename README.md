@@ -1,7 +1,5 @@
-# Calligraphy C19CALLIG3 · Noorani + Listen/Speak
+# Sharia IQ Deep Studio · C19QUIZ1
 
-- Indo-Pak **Noorani Qaaidah** 17-skill rail
-- **Listen** / **Slow** (speech synthesis) · **Speak along** (on-device recognition)
-- Natural pad · curriculum journal (Tajweed parity)
+Curriculum path (L0–L6) with **teach cards** then checks, path meters, and on-device journal.
 
-Educational only — not an ijāzah or fatwa.
+Educational only — not a fatwa · not a grade of īmān.
