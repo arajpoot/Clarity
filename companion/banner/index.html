@@ -42,6 +42,14 @@ button, select { border-radius: 999px; border: 1px solid rgba(212,180,90,0.35); 
         <option value="madinah">Madinah</option>
       </select>
     </label>
+    <label>Volume <input type="range" id="volume-slider" min="0" max="100" value="82"/></label>
+    <select id="stream-select" aria-label="Radio stream">
+      <option value="https://qurango.net/radio/tarateel">Tarateel</option>
+      <option value="https://qurango.net/radio/maher">Maher</option>
+    </select>
+    <select id="surah-list-pill" aria-label="Surah"><option value="">Surah…</option>
+      <option value="1">1 Al-Fātiḥah</option><option value="36">36 Yā-Sīn</option><option value="67">67 Al-Mulk</option>
+    </select>
     <button type="button" id="stream-btn" onclick="window.changeStream&&window.changeStream()">Next stream</button>
   </div>
   <div class="row">
@@ -64,5 +72,6 @@ button, select { border-radius: 999px; border: 1px solid rgba(212,180,90,0.35); 
   <p class="disc"><a href="/companion/" style="color:#c9a84c">← Companion</a></p>
 </main>
 <script src="/companion/assets/banner/companion-banner-owner-v1.js?v=20261108C5"></script>
+<script src="/companion/assets/banner/companion-banner-audio-v1.js?v=20261108C5a"></script>
 </body>
 </html>
