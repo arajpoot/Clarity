@@ -1,14 +1,13 @@
-/*! craft-meme-paint-standard-v1 · C19MEME3
- * Post-quality canvas: Arabic top · English center · ref bottom · gold frame
- * Cover-fit scenery · soft vignette · scale controls · auto-scale
- * Single paint owner — no Media Reminder double text
+/*! craft-meme-paint-standard-v1 · C19MEME3-final
+ * Single-owner paint: keep scenery · Arabic top · English center · ref bottom · gold frame
+ * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_PAINT_STD_V3__) return;
+  /* allow re-install of final build */
   w.__CRAFT_MEME_PAINT_STD_V3__ = true;
-  w.__CRAFT_MEME_PAINT_STD_V1__ = true; /* legacy gate */
+  w.__CRAFT_MEME_PAINT_STD_V1__ = true;
 
   var GOLD = "#e8c76b";
   var GOLD_LINE = "rgba(232,199,107,0.92)";
@@ -25,7 +24,39 @@
   function $(id) { return d.getElementById(id); }
 
   function getCanvas() {
-    return $("meme-canvas") || $("mr-canvas") || d.querySelector("#mr-root canvas") || d.querySelector(".craft-canvas-wrap canvas") || d.querySelector("canvas");
+    return (
+      $("meme-canvas") ||
+      $("mr-canvas") ||
+      d.querySelector("#mr-root canvas") ||
+      d.querySelector(".craft-canvas-wrap canvas") ||
+      d.querySelector("canvas")
+    );
+  }
+
+  function ensureMemeState() {
+    if (!w.memeState) w.memeState = {};
+    return w.memeState;
+  }
+
+  function resolveBg(canvas) {
+    if (w.__memeBgImage && w.__memeBgImage.width) return w.__memeBgImage;
+    if (canvas && canvas._craftBgImage && canvas._craftBgImage.width) return canvas._craftBgImage;
+    var st = w.memeState;
+    if (st && st.img && st.img.width) return st.img;
+    if (st && st.bgImage && st.bgImage.width) return st.bgImage;
+    if (w.__memeBgImg && w.__memeBgImg.width) return w.__memeBgImg;
+    return null;
+  }
+
+  function rememberBg(img) {
+    if (!img) return;
+    w.__memeBgImage = img;
+    w.__memeBgImg = img;
+    var st = ensureMemeState();
+    st.img = img;
+    st.bgImage = img;
+    var c = getCanvas();
+    if (c) c._craftBgImage = img;
   }
 
   function parseLayers(raw) {
@@ -42,17 +73,14 @@
         raw = raw.replace(m2[0], " ").trim();
       }
     }
-    var arRe = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\u064B-\u065F\s،؟؛۝ٰٕٖۗۘۙۚۛۜٓٔٗ٘]+/g;
+    var arRe = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\u064B-\u065F\s،؟؛]+/g;
     var arParts = raw.match(arRe);
     if (arParts) {
       ar = arParts.map(function (s) { return s.trim(); }).filter(function (s) { return s.length > 1; }).join(" ").replace(/\s+/g, " ").trim();
       raw = raw.replace(arRe, " ");
     }
     en = raw.replace(/\s+/g, " ").replace(/\(\s*\)/g, "").replace(/^[\s\-–—:·]+|[\s\-–—:·]+$/g, "").trim();
-    en = en.replace(/\s*clarity-dawah\.fyi.*$/i, "").replace(/\s*educational only.*$/i, "").replace(/\s+/g, " ").trim();
-    /* drop mixed dash leftovers like leading emdash */
-    en = en.replace(/^[—\-–:]+\s*/, "").trim();
-    if (!ref) ref = "";
+    en = en.replace(/\s*clarity-dawah\.fyi.*$/i, "").replace(/\s*educational only.*$/i, "").replace(/^[—\-–:]+\s*/, "").trim();
     return { ar: ar, en: en, ref: ref };
   }
 
@@ -86,8 +114,7 @@
     }
     if (line && lines.length < maxLines) lines.push(line);
     if (lines.length === maxLines && i < words.length - 1) {
-      var last = lines[lines.length - 1];
-      lines[lines.length - 1] = last.replace(/\s+\S+$/, "") + "…";
+      lines[lines.length - 1] = lines[lines.length - 1].replace(/\s+\S+$/, "") + "…";
     }
     return lines;
   }
@@ -145,18 +172,17 @@
   }
 
   function drawVignette(ctx, w, h) {
-    /* soft edge only — keep photo quality */
-    var g = ctx.createRadialGradient(w / 2, h * 0.42, Math.min(w, h) * 0.2, w / 2, h * 0.5, Math.max(w, h) * 0.78);
+    var g = ctx.createRadialGradient(w / 2, h * 0.42, Math.min(w, h) * 0.22, w / 2, h * 0.5, Math.max(w, h) * 0.78);
     g.addColorStop(0, "rgba(0,0,0,0)");
-    g.addColorStop(0.65, "rgba(0,0,0,0.12)");
-    g.addColorStop(1, "rgba(0,0,0,0.48)");
+    g.addColorStop(0.7, "rgba(0,0,0,0.1)");
+    g.addColorStop(1, "rgba(0,0,0,0.45)");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
-    var lg = ctx.createLinearGradient(0, h * 0.62, 0, h);
+    var lg = ctx.createLinearGradient(0, h * 0.64, 0, h);
     lg.addColorStop(0, "rgba(0,0,0,0)");
-    lg.addColorStop(1, "rgba(0,0,0,0.42)");
+    lg.addColorStop(1, "rgba(0,0,0,0.4)");
     ctx.fillStyle = lg;
-    ctx.fillRect(0, h * 0.62, w, h * 0.38);
+    ctx.fillRect(0, h * 0.64, w, h * 0.36);
   }
 
   function drawGoldFrame(ctx, w, h) {
@@ -192,38 +218,24 @@
     ctx.shadowColor = "rgba(0,0,0,0.55)";
     ctx.shadowBlur = 8;
     ctx.shadowOffsetY = 2;
-    for (var i = 0; i < lines.length; i++) {
-      ctx.fillText(lines[i], cx, y0 + i * lineH);
-    }
+    for (var i = 0; i < lines.length; i++) ctx.fillText(lines[i], cx, y0 + i * lineH);
     ctx.restore();
-    return lines.length * lineH;
   }
 
-  function paintStandard(opts) {
-    opts = opts || {};
-    var canvas = getCanvas();
-    if (!canvas || !canvas.getContext) return false;
-    var ctx = canvas.getContext("2d");
-    var w = canvas.width || 1200;
-    var h = canvas.height || 675;
-
-    var layers = opts.layers || parseLayers(opts.text || readSourceText());
+  function paintText(ctx, w, h) {
+    drawVignette(ctx, w, h);
+    drawGoldFrame(ctx, w, h);
+    var layers = parseLayers(readSourceText());
     var ar = layers.ar || "";
     var en = layers.en || "";
     var ref = layers.ref || "";
-
-    if (!opts.skipVignette) drawVignette(ctx, w, h);
-    drawGoldFrame(ctx, w, h);
-
     var padX = Math.round(w * 0.09);
     var maxW = w - padX * 2;
     var cx = w / 2;
-
     var arFamily = "Amiri, 'Scheherazade New', 'Noto Naskh Arabic', serif";
     var enFamily = "Georgia, 'Cormorant Garamond', 'Times New Roman', serif";
     var refFamily = "Quicksand, Inter, system-ui, sans-serif";
 
-    /* Arabic — top third */
     if (ar) {
       var arBase = Math.round(h * 0.062 * scale.ar);
       var arMin = Math.round(h * 0.034);
@@ -236,8 +248,6 @@
       var arY = Math.round(h * 0.26) - arBlock / 2 + arLH / 2;
       drawCentered(ctx, arLines, cx, arY, arLH, CREAM);
     }
-
-    /* English — center, gold */
     if (en) {
       var enBase = Math.round(h * 0.038 * scale.en);
       var enMin = Math.round(h * 0.024);
@@ -249,8 +259,6 @@
       var enY = Math.round(h * 0.52) - enBlock / 2 + enLH / 2;
       drawCentered(ctx, enLines, cx, enY, enLH, GOLD);
     }
-
-    /* Reference — bottom */
     var refY = Math.round(h * 0.86);
     ctx.save();
     ctx.textAlign = "center";
@@ -266,31 +274,46 @@
     ctx.fillStyle = "rgba(232,199,107,0.72)";
     ctx.fillText("clarity-dawah.fyi · educational reminder", cx, refY + Math.round(h * 0.036));
     ctx.restore();
-    return true;
   }
 
   function fullPaint() {
     var canvas = getCanvas();
-    if (!canvas) return;
+    if (!canvas) return false;
     var ctx = canvas.getContext("2d");
+    if (!ctx) return false;
     var W = canvas.width || 1200;
     var H = canvas.height || 675;
-    var bg = w.__memeBgImage || canvas._craftBgImage || w.__memeBgImg;
+    if (!canvas.width) { canvas.width = W; canvas.height = H; }
+
+    var bg = resolveBg(canvas);
     ctx.clearRect(0, 0, W, H);
-    if (bg && bg.complete !== false && bg.width) {
-      try { drawCoverBg(ctx, bg, W, H); } catch (e) { fillFallback(ctx, W, H); }
+    if (bg) {
+      try { drawCoverBg(ctx, bg, W, H); }
+      catch (e) { fillFallback(ctx, W, H); }
     } else {
       fillFallback(ctx, W, H);
     }
-    paintStandard({});
-    try {
-      if (w.ClarityMemeAutomation && typeof w.ClarityMemeAutomation.fillDesks === "function") {
-        setTimeout(function () { w.ClarityMemeAutomation.fillDesks(false); }, 60);
-      }
-    } catch (e2) {}
+    paintText(ctx, W, H);
+    return true;
   }
 
-  /** Auto-scale: shrink until Arabic+English fit in bands */
+  function loadBgUrl(url, failMsg) {
+    if (!url) return;
+    var img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = function () {
+      rememberBg(img);
+      fullPaint();
+      var st = $("meme-fetch-status");
+      if (st) st.textContent = "Background ready";
+    };
+    img.onerror = function () {
+      var st = $("meme-fetch-status");
+      if (st) st.textContent = failMsg || "Background load failed";
+    };
+    img.src = url;
+  }
+
   function autoScale() {
     scale.ar = 1;
     scale.en = 1;
@@ -300,100 +323,48 @@
     var ctx = canvas.getContext("2d");
     var w = canvas.width, h = canvas.height;
     var maxW = w * 0.82;
-    var arFamily = "Amiri, serif";
-    var enFamily = "Georgia, serif";
     if (layers.ar) {
       for (var a = 1; a >= 0.55; a -= 0.05) {
-        var sz = Math.round(h * 0.062 * a);
-        ctx.font = "700 " + sz + "px " + arFamily;
+        ctx.font = "700 " + Math.round(h * 0.062 * a) + "px Amiri, serif";
         if (ctx.measureText(layers.ar).width <= maxW * 1.6) { scale.ar = Math.round(a * 100) / 100; break; }
         scale.ar = a;
       }
     }
     if (layers.en) {
       for (var e = 1; e >= 0.55; e -= 0.05) {
-        var ez = Math.round(h * 0.038 * e);
-        ctx.font = "600 " + ez + "px " + enFamily;
+        ctx.font = "600 " + Math.round(h * 0.038 * e) + "px Georgia, serif";
         var lines = wrapLines(ctx, layers.en, maxW, 4);
         if (lines.length <= 4) { scale.en = Math.round(e * 100) / 100; break; }
         scale.en = e;
       }
     }
-    persistScale();
+    try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e1) {}
     syncSliders();
     fullPaint();
-  }
-
-  function persistScale() {
-    try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e) {}
   }
 
   function syncSliders() {
     var ar = $("meme-scale-ar");
     var en = $("meme-scale-en");
-    var arv = $("meme-scale-ar-val");
-    var env = $("meme-scale-en-val");
     if (ar) ar.value = String(Math.round(scale.ar * 100));
     if (en) en.value = String(Math.round(scale.en * 100));
+    var arv = $("meme-scale-ar-val");
+    var env = $("meme-scale-en-val");
     if (arv) arv.textContent = Math.round(scale.ar * 100) + "%";
     if (env) env.textContent = Math.round(scale.en * 100) + "%";
   }
 
-  function installHook() {
-    w.memeDraw = function () { fullPaint(); };
-    w.memeDraw._craftStd = true;
-    w.craftMemePaintStandard = function (o) { fullPaint(); return paintStandard(o || {}); };
-    w.craftMemeRepaintStandard = fullPaint;
-    w.craftMemeParseLayers = parseLayers;
-    w.memeAutoScaleLines = autoScale;
-    w.craftMemeSetScale = function (ar, en) {
-      if (typeof ar === "number") scale.ar = Math.min(1.4, Math.max(0.5, ar));
-      if (typeof en === "number") scale.en = Math.min(1.4, Math.max(0.5, en));
-      persistScale();
-      syncSliders();
-      fullPaint();
-    };
-    w.craftMemeGetScale = function () { return { ar: scale.ar, en: scale.en, ref: scale.ref }; };
-
-    /* capture bg image assignments */
-    var prevLoad = w.memeLoadImageFromUrl;
-    if (typeof prevLoad === "function" && !prevLoad._stdCap) {
-      w.memeLoadImageFromUrl = function (url, failMsg) {
-        var img = new Image();
-        img.crossOrigin = "anonymous";
-        img.onload = function () {
-          w.__memeBgImage = img;
-          var c = getCanvas();
-          if (c) c._craftBgImage = img;
-          fullPaint();
-        };
-        img.onerror = function () {
-          if (typeof failMsg === "string") {
-            var st = $("meme-fetch-status");
-            if (st) st.textContent = failMsg;
-          }
-        };
-        img.src = url;
-        if (typeof prevLoad === "function") {
-          try { /* still allow legacy path */ } catch (e) {}
-        }
-      };
-      w.memeLoadImageFromUrl._stdCap = true;
-    }
-  }
-
   function injectScalePanel() {
-    if ($("meme-scale-panel")) return;
-    var host = d.querySelector("#desks") || d.querySelector(".desks-row") || d.querySelector(".tool-section");
+    if ($("meme-scale-panel")) { syncSliders(); return; }
     var panel = d.createElement("div");
     panel.id = "meme-scale-panel";
     panel.className = "tool-section";
     panel.innerHTML =
-      '<h2>Text scale · before publish</h2>' +
-      '<p class="panel-note">Ported craft controls · Arabic &amp; English size · auto-fit for the frame · saved on this device.</p>' +
-      '<div class="meme-scale-grid" style="display:grid;gap:0.65rem;max-width:28rem">' +
-      '<label style="display:flex;align-items:center;gap:0.6rem;font-size:0.85rem">Arabic <input type="range" id="meme-scale-ar" min="50" max="140" value="' + Math.round(scale.ar * 100) + '" style="flex:1" /> <span id="meme-scale-ar-val">' + Math.round(scale.ar * 100) + '%</span></label>' +
-      '<label style="display:flex;align-items:center;gap:0.6rem;font-size:0.85rem">English <input type="range" id="meme-scale-en" min="50" max="140" value="' + Math.round(scale.en * 100) + '" style="flex:1" /> <span id="meme-scale-en-val">' + Math.round(scale.en * 100) + '%</span></label>' +
+      "<h2>Text scale · before publish</h2>" +
+      '<p class="panel-note">Arabic &amp; English size · auto-fit · saved on this device.</p>' +
+      '<div style="display:grid;gap:0.65rem;max-width:28rem">' +
+      '<label style="display:flex;align-items:center;gap:0.6rem;font-size:0.85rem">Arabic <input type="range" id="meme-scale-ar" min="50" max="140" value="' + Math.round(scale.ar * 100) + '" style="flex:1"/> <span id="meme-scale-ar-val">' + Math.round(scale.ar * 100) + "%</span></label>" +
+      '<label style="display:flex;align-items:center;gap:0.6rem;font-size:0.85rem">English <input type="range" id="meme-scale-en" min="50" max="140" value="' + Math.round(scale.en * 100) + '" style="flex:1"/> <span id="meme-scale-en-val">' + Math.round(scale.en * 100) + "%</span></label>" +
       '<div class="wire-actions" style="display:flex;flex-wrap:wrap;gap:0.4rem">' +
       '<button type="button" class="btn primary" id="meme-scale-apply">Apply scale</button>' +
       '<button type="button" class="btn" id="meme-scale-auto">Auto-scale text</button>' +
@@ -404,7 +375,6 @@
       if (/Scale|ratio/i.test(sec.textContent || "")) ratioSec = sec;
     });
     if (ratioSec && ratioSec.parentNode) ratioSec.parentNode.insertBefore(panel, ratioSec.nextSibling);
-    else if (host && host.parentNode) host.parentNode.insertBefore(panel, host);
     else d.body.appendChild(panel);
 
     function onSlide() {
@@ -417,19 +387,53 @@
       if (el) el.addEventListener("input", onSlide);
     });
     var apply = $("meme-scale-apply");
-    if (apply) apply.addEventListener("click", function () { onSlide(); persistScale(); fullPaint(); });
+    if (apply) apply.addEventListener("click", function () {
+      onSlide();
+      try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e) {}
+      fullPaint();
+    });
     var auto = $("meme-scale-auto");
     if (auto) auto.addEventListener("click", autoScale);
     var reset = $("meme-scale-reset");
     if (reset) reset.addEventListener("click", function () {
       scale = { ar: 1, en: 1, ref: 1 };
-      persistScale();
+      try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e2) {}
       syncSliders();
       fullPaint();
     });
   }
 
-  function wireButtons() {
+  function installHooks() {
+    /* always own image loader so online-bg keeps scenery */
+    w.memeLoadImageFromUrl = function (url, failMsg) {
+      loadBgUrl(url, failMsg);
+    };
+    w.memeLoadImageFromUrl._craftStd = true;
+
+    w.memeDraw = function () { fullPaint(); };
+    w.memeDraw._craftStd = true;
+
+    w.craftMemePaintStandard = fullPaint;
+    w.craftMemeRepaintStandard = fullPaint;
+    w.craftMemeParseLayers = parseLayers;
+    w.memeAutoScaleLines = autoScale;
+    w.craftMemeSetScale = function (ar, en) {
+      if (typeof ar === "number") scale.ar = Math.min(1.4, Math.max(0.5, ar));
+      if (typeof en === "number") scale.en = Math.min(1.4, Math.max(0.5, en));
+      try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e) {}
+      syncSliders();
+      fullPaint();
+    };
+
+    /* if something sets memeState.img later, repaint */
+    try {
+      var st = ensureMemeState();
+      if (st.img && st.img.width) rememberBg(st.img);
+    } catch (e3) {}
+  }
+
+  function wireUi() {
+    injectScalePanel();
     var autoBtn = $("meme-auto-scale");
     if (autoBtn && !autoBtn._std) {
       autoBtn._std = true;
@@ -442,55 +446,53 @@
       var t = (b.textContent || "").toLowerCase();
       if ((t.indexOf("re-paint") !== -1 || t.indexOf("repaint") !== -1) && !b._stdRp) {
         b._stdRp = true;
-        b.addEventListener("click", function () { setTimeout(fullPaint, 40); });
+        b.addEventListener("click", function () { setTimeout(fullPaint, 50); });
       }
     });
     d.querySelectorAll("[data-meme-section]").forEach(function (btn) {
       if (btn._stdSec) return;
       btn._stdSec = true;
-      btn.addEventListener("click", function () { setTimeout(fullPaint, 480); });
+      btn.addEventListener("click", function () { setTimeout(fullPaint, 500); });
     });
     var refresh = $("meme-refresh-source");
     if (refresh && !refresh._std) {
       refresh._std = true;
       refresh.addEventListener("click", function () { setTimeout(fullPaint, 400); });
     }
+    /* next scenery should keep bg after fetch */
+    var next = $("meme-next-bg");
+    if (next && !next._std) {
+      next._std = true;
+      next.addEventListener("click", function () {
+        setTimeout(function () {
+          var st = w.memeState;
+          if (st && st.img) rememberBg(st.img);
+          fullPaint();
+        }, 700);
+      });
+    }
   }
 
-  function silenceMediaReminderPaint() {
-    /* Prevent Media Reminder Bench from stacking its own text on the same canvas */
-    if (w.ClarityMediaReminder && w.ClarityMediaReminder.open && !w.ClarityMediaReminder._stdMuted) {
-      var prev = w.ClarityMediaReminder.open;
-      w.ClarityMediaReminder.open = function (root) {
-        try { prev.call(w.ClarityMediaReminder, root); } catch (e) {}
-        setTimeout(fullPaint, 200);
-        setTimeout(fullPaint, 600);
-      };
-      w.ClarityMediaReminder._stdMuted = true;
-    }
-    /* Prefer not auto-opening media boot on this page */
-    if (w.ClarityCraftStudioBoot && !w.ClarityCraftStudioBoot._stdMute) {
-      var media = w.ClarityCraftStudioBoot.media;
-      w.ClarityCraftStudioBoot.media = function () {
-        /* skip dual bench open — paint-standard owns canvas */
-        return false;
-      };
-      w.ClarityCraftStudioBoot._stdMute = true;
-      if (typeof media === "function") w.ClarityCraftStudioBoot._mediaPrev = media;
+  function muteMediaBoot() {
+    if (w.ClarityCraftStudioBoot) {
+      w.ClarityCraftStudioBoot.media = function () { return false; };
     }
   }
 
   function boot() {
-    installHook();
-    silenceMediaReminderPaint();
-    injectScalePanel();
-    wireButtons();
-    setTimeout(wireButtons, 700);
-    setTimeout(silenceMediaReminderPaint, 400);
-    setTimeout(function () { try { fullPaint(); } catch (e) {} }, 1000);
+    installHooks();
+    muteMediaBoot();
+    wireUi();
+    setTimeout(installHooks, 400);
+    setTimeout(installHooks, 1200);
+    setTimeout(wireUi, 600);
+    setTimeout(function () { fullPaint(); }, 900);
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  w.addEventListener("load", function () { setTimeout(boot, 300); });
+  w.addEventListener("load", function () {
+    setTimeout(installHooks, 200);
+    setTimeout(fullPaint, 500);
+  });
 })(window, document);
