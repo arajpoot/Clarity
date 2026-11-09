@@ -1,0 +1,21 @@
+{
+  "build": "C19DVI5",
+  "room": "craft",
+  "paths": ["/craft/", "/craft/institute/"],
+  "timestamp": "2026-11-09T17:05:00Z",
+  "project_invariants": "pass",
+  "checks": {
+    "presence": "pass",
+    "isolation": "pass",
+    "landing_tile": "pass",
+    "tutorial_section": "pass",
+    "source_discipline": "pass",
+    "seeker_readonly": "pass",
+    "local_storage_prefix": "clarity.craft.institute.*",
+    "lab_tools_present": ["Lovable", "Bolt.new", "Grok", "Google AI Studio", "v0", "Replit", "Base44", "PWABuilder", "Falah.io"],
+    "educational_stamp": "pass",
+    "print_one_pager": "pass",
+    "exports": "pass"
+  },
+  "result": "pass"
+}
