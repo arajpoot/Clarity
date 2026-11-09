@@ -1,4 +1,4 @@
-/*! craft-calligraphy-qaida-v1 · C19CALLIG3
+/*! craft-calligraphy-qaida-v1 · C19CALLIG4
  * Noorani Qaaidah (Indo-Pak style) curriculum rail + Listen / Speak-along (Web Speech)
  * Pattern borrowed from Tajweed LMR: listen → match pace → on-device only
  * Educational primer path — not an ijāzah / fatwa
@@ -7,6 +7,113 @@
   "use strict";
   if (w.__CRAFT_CALLIG_QAIDA_V1__) return;
   w.__CRAFT_CALLIG_QAIDA_V1__ = true;
+
+  /* Real male letter audio (human teacher recordings)
+   * Source: arabicreadingcourse.com isolated-letters (public educational MP3s)
+   * Prefer human over synthetic TTS for Q1 single letters.
+   */
+  var LETTER_AUDIO_BASE = "https://arabicreadingcourse.com/audio/isolated-letters/";
+  var LETTER_AUDIO = {
+    "ا": "alif.mp3",
+    "أ": "alif.mp3",
+    "إ": "alif.mp3",
+    "آ": "alif.mp3",
+    "ب": "ba.mp3",
+    "ت": "ta.mp3",
+    "ث": "tha.mp3",
+    "ج": "jiim.mp3",
+    "ح": "hha.mp3",
+    "خ": "kha.mp3",
+    "د": "daal.mp3",
+    "ذ": "thaal.mp3",
+    "ر": "ra.mp3",
+    "ز": "zay.mp3",
+    "س": "siin.mp3",
+    "ش": "shiin.mp3",
+    "ص": "saad.mp3",
+    "ض": "daad.mp3",
+    "ط": "taa.mp3",
+    "ظ": "thaa.mp3",
+    "ع": "ayn.mp3",
+    "غ": "ghayn.mp3",
+    "ف": "fa.mp3",
+    "ق": "qaf.mp3",
+    "ك": "kaf.mp3",
+    "ل": "lam.mp3",
+    "م": "miim.mp3",
+    "ن": "nuun.mp3",
+    "ه": "ha.mp3",
+    "ة": "ha.mp3",
+    "و": "waw.mp3",
+    "ي": "ya.mp3",
+    "ى": "ya.mp3"
+  };
+
+  var humanAudio = null;
+
+  function stopHuman() {
+    try {
+      if (humanAudio) {
+        humanAudio.pause();
+        humanAudio.currentTime = 0;
+      }
+    } catch (e) {}
+  }
+
+  function firstBaseLetter(text) {
+    var s = String(text || "");
+    for (var i = 0; i < s.length; i++) {
+      var ch = s.charAt(i);
+      if (LETTER_AUDIO[ch]) return ch;
+    }
+    return "";
+  }
+
+  function playHumanLetter(ch, rate) {
+    return new Promise(function (resolve) {
+      var file = LETTER_AUDIO[ch];
+      if (!file) {
+        resolve(false);
+        return;
+      }
+      stopHuman();
+      stopSpeak();
+      var a = new Audio(LETTER_AUDIO_BASE + file);
+      humanAudio = a;
+      a.preload = "auto";
+      try { a.playbackRate = rate || 1; } catch (e0) {}
+      a.onended = function () { resolve(true); };
+      a.onerror = function () { resolve(false); };
+      var p = a.play();
+      if (p && typeof p.then === "function") {
+        p.then(function () {
+          status("Teacher audio · male letter model · educational only");
+        }).catch(function () { resolve(false); });
+      }
+    });
+  }
+
+  /** Prefer real male letter audio; TTS only for multi-letter / harakah drills */
+  function playModel(text, slow) {
+    var t = String(text || "").trim();
+    var base = firstBaseLetter(t);
+    var isSingle = t.length <= 2 && base && LETTER_AUDIO[base] && !/[ًٌٍَُِّْٰ]/.test(t);
+    if (isSingle || (t.length === 1 && base)) {
+      return playHumanLetter(base, slow ? 0.75 : 1).then(function (ok) {
+        if (ok) return true;
+        return speakArabic(t, slow);
+      });
+    }
+    /* For words with harakat: try human base letter once, then TTS for full token */
+    if (base && LETTER_AUDIO[base] && t.length <= 4) {
+      return playHumanLetter(base, slow ? 0.75 : 1).then(function (ok) {
+        if (!ok) return speakArabic(t, slow);
+        return true;
+      });
+    }
+    return speakArabic(t, slow);
+  }
+
 
   /* 17-lesson Indo-Pak Noorani-style path (skills order; edition names vary) */
   var QAIDA = [
@@ -49,7 +156,7 @@
     return g || lesson.glyphs[0];
   }
 
-  function speakArabic(text) {
+  function speakArabic(text, slow) {
     return new Promise(function (resolve) {
       if (!w.speechSynthesis) {
         status("Speech synthesis not available on this device");
@@ -59,7 +166,7 @@
       try { w.speechSynthesis.cancel(); } catch (e) {}
       var u = new SpeechSynthesisUtterance(String(text || ""));
       u.lang = "ar-SA";
-      u.rate = 0.75;
+      u.rate = slow ? 0.55 : 0.75;
       u.pitch = 1;
       /* prefer Arabic voice if listed */
       try {
@@ -202,7 +309,7 @@
     sec.innerHTML =
       "<h2>Noorani Qaaidah path · Indo-Pak skill order</h2>" +
       '<p class="panel-note">Seventeen progressive skills (letters → joined → ḥarakāt → tanwīn → standing marks → madd → sukūn → tashdīd → early nūn rules). ' +
-      "Listen, whisper-match on-device, then write on the pad. Educational primer — not a substitute for a teacher.</p>" +
+      "Listen uses <strong>real male teacher letter audio</strong> where available (isolated letters), then pad practice. Educational primer — not a substitute for a living teacher.</p>" +
       '<div id="cal-qaida-tip" class="panel-note"></div>' +
       '<div class="cal-qaida-rail" id="cal-qaida-rail" role="group" aria-label="Qaida lessons"></div>' +
       '<div class="cal-glyph-grid" id="cal-qaida-glyphs" role="group" aria-label="Lesson items"></div>' +
@@ -225,25 +332,17 @@
     }
 
     $("cal-listen").addEventListener("click", function () {
-      speakArabic(currentGlyph());
+      playModel(currentGlyph(), false);
     });
     $("cal-listen-slow").addEventListener("click", function () {
-      if (!w.speechSynthesis) return speakArabic(currentGlyph());
-      var u = new SpeechSynthesisUtterance(currentGlyph());
-      u.lang = "ar-SA";
-      u.rate = 0.55;
-      try {
-        var voices = w.speechSynthesis.getVoices() || [];
-        var ar = voices.filter(function (v) { return /^ar/i.test(v.lang); });
-        if (ar.length) u.voice = ar[0];
-      } catch (e) {}
-      w.speechSynthesis.cancel();
-      w.speechSynthesis.speak(u);
-      status("Slow model · breathe with the letter");
+      playModel(currentGlyph(), true).then(function () {
+        status("Slow teacher model · breathe with the letter");
+      });
     });
     $("cal-speak").addEventListener("click", startWhisperMatch);
     $("cal-stop-audio").addEventListener("click", function () {
       stopSpeak();
+      stopHuman();
       stopWhisper();
       status("Audio stopped");
     });
