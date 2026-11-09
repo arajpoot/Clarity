@@ -1,14 +1,19 @@
-/*! craft-tajweed-bridge-v2 · real sessions only · export/reset · educational only — not a fatwa */
+/*! craft-tajweed-bridge-v3 · correct ayah maxima · studio sync · educational only */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_TJ_BRIDGE_V2__) return;
-  w.__CRAFT_TJ_BRIDGE_V2__ = true;
+  if (w.__CRAFT_TJ_BRIDGE_V3__) return;
+  w.__CRAFT_TJ_BRIDGE_V3__ = true;
 
+  var AYAH_COUNT = {"1": 7, "2": 286, "3": 200, "4": 176, "5": 120, "6": 165, "7": 206, "8": 75, "9": 129, "10": 109, "11": 123, "12": 111, "13": 43, "14": 52, "15": 99, "16": 128, "17": 111, "18": 110, "19": 98, "20": 135, "21": 112, "22": 78, "23": 118, "24": 64, "25": 77, "26": 227, "27": 93, "28": 88, "29": 69, "30": 60, "31": 34, "32": 30, "33": 73, "34": 54, "35": 45, "36": 83, "37": 182, "38": 88, "39": 75, "40": 85, "41": 54, "42": 53, "43": 89, "44": 59, "45": 37, "46": 35, "47": 38, "48": 29, "49": 18, "50": 45, "51": 60, "52": 49, "53": 62, "54": 55, "55": 78, "56": 96, "57": 29, "58": 22, "59": 24, "60": 13, "61": 14, "62": 11, "63": 11, "64": 18, "65": 12, "66": 12, "67": 30, "68": 52, "69": 52, "70": 44, "71": 28, "72": 28, "73": 20, "74": 56, "75": 40, "76": 31, "77": 50, "78": 40, "79": 46, "80": 42, "81": 29, "82": 19, "83": 36, "84": 25, "85": 22, "86": 17, "87": 19, "88": 26, "89": 30, "90": 20, "91": 15, "92": 21, "93": 11, "94": 8, "95": 8, "96": 19, "97": 5, "98": 8, "99": 8, "100": 11, "101": 11, "102": 8, "103": 3, "104": 9, "105": 5, "106": 4, "107": 7, "108": 3, "109": 6, "110": 3, "111": 5, "112": 4, "113": 5, "114": 6};
   var JOURNAL_KEY = "clarity_tajweed_practice_journal_v1";
   var CUR_KEY = "clarity_tajweed_curriculum_v2";
-  var SESSION_FINGERPRINT = "clarity_tj_session_fp_v1";
 
   function $(id) { return d.getElementById(id); }
+
+  function ayahMax(surah) {
+    var k = String(parseInt(surah, 10) || 1);
+    return AYAH_COUNT[k] || 1;
+  }
 
   function loadJournal() {
     try { return JSON.parse(localStorage.getItem(JOURNAL_KEY) || "[]") || []; }
@@ -18,50 +23,139 @@
     try { localStorage.setItem(JOURNAL_KEY, JSON.stringify(rows.slice(0, 200))); } catch (e2) {}
   }
 
-  /** Only accept explicit user-triggered log entries */
-  function commitPractice(entry) {
-    if (!entry || !entry.surah || !entry.ayah) return false;
-    entry.t = entry.t || Date.now();
-    entry.score = typeof entry.score === "number" ? entry.score : 0;
-    entry.source = entry.source || "user";
-    /* de-dupe identical ref+score within 15s */
-    var rows = loadJournal();
-    var last = rows[0];
-    if (
-      last &&
-      last.surah === entry.surah &&
-      last.ayah === entry.ayah &&
-      last.score === entry.score &&
-      Math.abs((last.t || 0) - entry.t) < 15000
-    ) {
-      return false;
+  function setStatus(msg) {
+    var el = $("tj-bridge-status");
+    if (el) el.textContent = msg;
+  }
+
+  function bridgeSurah() {
+    var bs = $("tj-bridge-surah");
+    return bs ? parseInt(bs.value, 10) || 1 : 1;
+  }
+  function bridgeAyah() {
+    var ba = $("tj-bridge-ayah");
+    return ba ? parseInt(ba.value, 10) || 1 : 1;
+  }
+
+  function clampAyah() {
+    var ba = $("tj-bridge-ayah");
+    var s = bridgeSurah();
+    var max = ayahMax(s);
+    if (!ba) return max;
+    var v = parseInt(ba.value, 10) || 1;
+    if (v < 1) v = 1;
+    if (v > max) v = max;
+    ba.value = String(v);
+    ba.max = String(max);
+    ba.setAttribute("max", String(max));
+    var lab = $("tj-bridge-ayah-max");
+    if (lab) lab.textContent = "of " + max;
+    return max;
+  }
+
+  /** Push into original studio controls (various id patterns) */
+  function findStudioSurah() {
+    return (
+      $("tj-lmr-surah") ||
+      d.querySelector("#tj-lmr-host select") ||
+      d.querySelector(".tj-lmr-toolbar select") ||
+      d.querySelector('select[aria-label*="ūrāh"], select[aria-label*="Surah"], select[aria-label*="Sūrah"]')
+    );
+  }
+  function findStudioAyah() {
+    return (
+      $("tj-lmr-ayah") ||
+      d.querySelector("#tj-lmr-host input[type='number']") ||
+      d.querySelector(".tj-lmr-toolbar input[type='number']") ||
+      d.querySelector('input[aria-label*="yah"], input[aria-label*="Ayah"]')
+    );
+  }
+
+  function setSelectValue(sel, value) {
+    if (!sel) return false;
+    var v = String(value);
+    /* ensure option exists */
+    var found = false;
+    for (var i = 0; i < sel.options.length; i++) {
+      if (String(sel.options[i].value) === v || String(sel.options[i].value).indexOf(v + ".") === 0) {
+        sel.selectedIndex = i;
+        found = true;
+        break;
+      }
+      /* match "1 · Al-Fātiḥah" style by leading number */
+      var m = String(sel.options[i].textContent || "").match(/^(\d+)/);
+      if (m && m[1] === v) {
+        sel.selectedIndex = i;
+        found = true;
+        break;
+      }
     }
-    rows.unshift(entry);
-    saveJournal(rows);
-    renderJournal();
+    if (!found && sel.options.length) {
+      /* try value assign anyway */
+      sel.value = v;
+    }
+    try {
+      sel.dispatchEvent(new Event("input", { bubbles: true }));
+      sel.dispatchEvent(new Event("change", { bubbles: true }));
+    } catch (e3) {}
     return true;
   }
 
-  function feedCurriculumOnce(score, levelHint) {
+  function syncToStudio() {
+    clampAyah();
+    var s = bridgeSurah();
+    var a = bridgeAyah();
+    setSelectValue(findStudioSurah(), s);
+    var oa = findStudioAyah();
+    if (oa) {
+      oa.value = String(a);
+      oa.max = String(ayahMax(s));
+      try {
+        oa.dispatchEvent(new Event("input", { bubbles: true }));
+        oa.dispatchEvent(new Event("change", { bubbles: true }));
+      } catch (e4) {}
+    }
     try {
-      var p = JSON.parse(localStorage.getItem(CUR_KEY) || "{}") || {};
-      p.phases = p.phases || {};
-      var id = levelHint || p.levelId || "L0";
-      p.phases[id] = p.phases[id] || {
-        drills: 0, listens: 0, marks: 0, lastScore: 0, bestScore: 0, history: []
-      };
-      var ph = p.phases[id];
-      /* only bump drills when real score commit */
-      ph.lastScore = score;
-      ph.bestScore = Math.max(ph.bestScore || 0, score || 0);
-      ph.drills = (ph.drills || 0) + 1;
-      ph.history = (ph.history || []).slice(0, 40);
-      ph.history.unshift({ t: Date.now(), score: score });
-      localStorage.setItem(CUR_KEY, JSON.stringify(p));
-      if (w.ClarityTajweedCurriculum && w.ClarityTajweedCurriculum.refreshAnalysis) {
-        w.ClarityTajweedCurriculum.refreshAnalysis();
+      if (!w.state) w.state = {};
+      w.state.surah = s;
+      w.state.ayah = a;
+      var ss = String(s).padStart(3, "0");
+      var aa = String(a).padStart(3, "0");
+      w.state.audioUrl = "https://everyayah.com/data/Husary_128kbps/" + ss + aa + ".mp3";
+    } catch (e5) {}
+    var link = d.querySelector("#tj-lmr-quran-link, a[href*='quran.com']");
+    if (link) link.href = "https://quran.com/" + s + ":" + a;
+    setStatus("Bridge · " + s + ":" + a + " (max " + ayahMax(s) + ")");
+  }
+
+  function pullIntoStudio() {
+    syncToStudio();
+    var selectors = [
+      "#tj-lmr-fetch",
+      "button#tj-lmr-fetch",
+      "button[id*='fetch']",
+      "button[id*='pull']"
+    ];
+    var clicked = false;
+    for (var i = 0; i < selectors.length; i++) {
+      var btn = d.querySelector(selectors[i]);
+      if (btn && /pull|fetch|load/i.test(btn.textContent || btn.id || "")) {
+        btn.click();
+        clicked = true;
+        break;
       }
-    } catch (e3) {}
+    }
+    if (!clicked) {
+      /* click any green Pull āyah */
+      d.querySelectorAll("button").forEach(function (b) {
+        if (clicked) return;
+        if (/pull\s*āyah|pull\s*ayah|fetch/i.test(b.textContent || "")) {
+          b.click();
+          clicked = true;
+        }
+      });
+    }
+    setStatus(clicked ? ("Pulled " + bridgeSurah() + ":" + bridgeAyah()) : ("Synced " + bridgeSurah() + ":" + bridgeAyah() + " — press Pull āyah in studio"));
   }
 
   function renderJournal() {
@@ -73,61 +167,31 @@
       return;
     }
     host.innerHTML =
-      '<table class="tj-journal-table"><thead><tr><th>When</th><th>Ref</th><th>Score</th><th>Source</th></tr></thead><tbody>' +
+      '<table class="tj-journal-table"><thead><tr><th>When</th><th>Ref</th><th>Score</th></tr></thead><tbody>' +
       rows.slice(0, 40).map(function (r) {
-        return (
-          "<tr><td>" +
-          new Date(r.t).toLocaleString() +
-          "</td><td>" +
-          r.surah +
-          ":" +
-          r.ayah +
-          "</td><td><strong>" +
-          r.score +
-          "</strong></td><td>" +
-          (r.source || "") +
-          "</td></tr>"
-        );
+        return "<tr><td>" + new Date(r.t).toLocaleString() + "</td><td>" + r.surah + ":" + r.ayah +
+          "</td><td><strong>" + r.score + "</strong></td></tr>";
       }).join("") +
       "</tbody></table>";
   }
 
-  /**
-   * Parse original session log ONLY when user clicks "Import session log once"
-   * — never on page load / MutationObserver.
-   */
-  function importSessionLogOnce() {
-    var list = $("practice-log-list") || d.querySelector("#practice-log-list, .session-log");
-    if (!list) {
-      setStatus("No session log host found");
-      return;
-    }
-    var text = list.textContent || "";
-    var re = /(\d+)\s*\/\s*100[^\n]*?Qur['']?an\s+(\d+)\s*:\s*(\d+)/gi;
-    var m, n = 0;
-    var seen = {};
-    while ((m = re.exec(text))) {
-      var score = parseInt(m[1], 10);
-      var surah = parseInt(m[2], 10);
-      var ayah = parseInt(m[3], 10);
-      var key = surah + ":" + ayah + ":" + score;
-      if (seen[key]) continue;
-      seen[key] = 1;
-      if (commitPractice({ surah: surah, ayah: ayah, score: score, source: "session-import" })) n++;
-    }
-    setStatus(n ? ("Imported " + n + " unique session rows") : "No new rows to import");
-  }
-
-  function setStatus(msg) {
-    var el = $("tj-bridge-status");
-    if (el) el.textContent = msg;
+  function commitPractice(entry) {
+    if (!entry || !entry.surah) return false;
+    entry.t = entry.t || Date.now();
+    var rows = loadJournal();
+    var last = rows[0];
+    if (last && last.surah === entry.surah && last.ayah === entry.ayah && last.score === entry.score &&
+        Math.abs((last.t || 0) - entry.t) < 15000) return false;
+    rows.unshift(entry);
+    saveJournal(rows);
+    renderJournal();
+    return true;
   }
 
   function exportAll() {
     var payload = {
       exportedAt: new Date().toISOString(),
       educationalOnly: true,
-      notIjazah: true,
       journal: loadJournal(),
       curriculum: (function () {
         try { return JSON.parse(localStorage.getItem(CUR_KEY) || "{}"); } catch (e) { return {}; }
@@ -139,180 +203,110 @@
     a.download = "clarity-tajweed-progress-" + Date.now() + ".json";
     d.body.appendChild(a);
     a.click();
-    setTimeout(function () {
-      URL.revokeObjectURL(a.href);
-      a.remove();
-    }, 500);
-    setStatus("Downloaded progress JSON on this device");
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 400);
+    setStatus("Downloaded progress JSON");
   }
 
   function resetAll() {
-    if (!w.confirm("Reset Tajweed practice journal and curriculum meters on this device? Download a backup first if needed.")) {
-      return;
-    }
+    if (!w.confirm("Reset journal and curriculum meters on this device?")) return;
     try {
       localStorage.removeItem(JOURNAL_KEY);
       localStorage.removeItem(CUR_KEY);
-      localStorage.removeItem(SESSION_FINGERPRINT);
-    } catch (e4) {}
+    } catch (e6) {}
     renderJournal();
     if (w.ClarityTajweedCurriculum && w.ClarityTajweedCurriculum.refreshAnalysis) {
-      try { w.ClarityTajweedCurriculum.refreshAnalysis(); } catch (e5) {}
+      try { w.ClarityTajweedCurriculum.refreshAnalysis(); } catch (e7) {}
     }
-    /* clear visible session log list if present */
-    var list = $("practice-log-list");
-    if (list) list.innerHTML = "";
-    setStatus("Reset complete on this device");
-  }
-
-  /* Surah bridge */
-  var AYAH_COUNT = null;
-  try {
-    /* filled below via attribute on select options length */
-  } catch (e6) {}
-
-  function maxFromSelect() {
-    var bs = $("tj-bridge-surah");
-    if (!bs) return 7;
-    var opt = bs.options[bs.selectedIndex];
-    /* parse from known map on data-ayah if present */
-    var da = opt && opt.getAttribute("data-ayah");
-    if (da) return parseInt(da, 10) || 7;
-    return 286;
-  }
-
-  function syncBridge() {
-    var bs = $("tj-bridge-surah");
-    var ba = $("tj-bridge-ayah");
-    if (!bs || !ba) return;
-    var max = maxFromSelect();
-    ba.max = max;
-    if (parseInt(ba.value, 10) > max) ba.value = "1";
-    var lab = $("tj-bridge-ayah-max");
-    if (lab) lab.textContent = "of " + max;
-    var os = $("tj-lmr-surah") || d.querySelector("select#tj-lmr-surah");
-    var oa = $("tj-lmr-ayah") || d.querySelector("input#tj-lmr-ayah");
-    if (os) {
-      os.value = bs.value;
-      try { os.dispatchEvent(new Event("change", { bubbles: true })); } catch (e7) {}
-    }
-    if (oa) {
-      oa.value = ba.value;
-      try { oa.dispatchEvent(new Event("change", { bubbles: true })); } catch (e8) {}
-    }
+    setStatus("Reset complete");
   }
 
   function wire() {
-    renderJournal(); /* display only — does NOT append */
     var bs = $("tj-bridge-surah");
     var ba = $("tj-bridge-ayah");
-    if (bs && !bs.__v2) {
-      bs.__v2 = true;
-      bs.addEventListener("change", syncBridge);
+    if (bs && !bs.__v3) {
+      bs.__v3 = true;
+      bs.addEventListener("change", function () {
+        if (ba) ba.value = "1";
+        clampAyah();
+        syncToStudio();
+      });
     }
-    if (ba && !ba.__v2) {
-      ba.__v2 = true;
-      ba.addEventListener("change", syncBridge);
+    if (ba && !ba.__v3) {
+      ba.__v3 = true;
+      ba.addEventListener("change", function () {
+        clampAyah();
+        syncToStudio();
+      });
     }
     var prev = $("tj-bridge-prev");
     var next = $("tj-bridge-next");
-    if (prev && !prev.__v2) {
-      prev.__v2 = true;
+    if (prev && !prev.__v3) {
+      prev.__v3 = true;
       prev.addEventListener("click", function () {
         if (!ba) return;
-        ba.value = String(Math.max(1, (parseInt(ba.value, 10) || 1) - 1));
-        syncBridge();
+        ba.value = String(Math.max(1, bridgeAyah() - 1));
+        clampAyah();
+        syncToStudio();
       });
     }
-    if (next && !next.__v2) {
-      next.__v2 = true;
+    if (next && !next.__v3) {
+      next.__v3 = true;
       next.addEventListener("click", function () {
         if (!ba) return;
-        var max = maxFromSelect();
-        ba.value = String(Math.min(max, (parseInt(ba.value, 10) || 1) + 1));
-        syncBridge();
+        var max = ayahMax(bridgeSurah());
+        ba.value = String(Math.min(max, bridgeAyah() + 1));
+        clampAyah();
+        syncToStudio();
       });
     }
     var pull = $("tj-bridge-pull");
-    if (pull && !pull.__v2) {
-      pull.__v2 = true;
-      pull.addEventListener("click", function () {
-        syncBridge();
-        var btn = $("tj-lmr-fetch") || d.querySelector("button#tj-lmr-fetch");
-        if (btn) btn.click();
-        setStatus("Pulled into studio");
-      });
+    if (pull && !pull.__v3) {
+      pull.__v3 = true;
+      pull.addEventListener("click", pullIntoStudio);
     }
-
     var exp = $("tj-progress-export");
-    if (exp && !exp.__v2) {
-      exp.__v2 = true;
-      exp.addEventListener("click", exportAll);
-    }
+    if (exp && !exp.__v3) { exp.__v3 = true; exp.addEventListener("click", exportAll); }
     var rst = $("tj-progress-reset");
-    if (rst && !rst.__v2) {
-      rst.__v2 = true;
-      rst.addEventListener("click", resetAll);
-    }
-    var imp = $("tj-import-session");
-    if (imp && !imp.__v2) {
-      imp.__v2 = true;
-      imp.addEventListener("click", importSessionLogOnce);
-    }
+    if (rst && !rst.__v3) { rst.__v3 = true; rst.addEventListener("click", resetAll); }
 
-    /**
-     * Hook original score UI only on explicit record completion:
-     * listen for clicks on stop/score buttons, then read score after short delay.
-     */
-    d.addEventListener(
-      "click",
-      function (ev) {
-        var t = ev.target && ev.target.closest && ev.target.closest("button, [role='button']");
-        if (!t) return;
-        var label = ((t.textContent || "") + " " + (t.id || "")).toLowerCase();
-        if (!/(stop|score|record)/.test(label)) return;
-        if (/start\s*meter|stop\s*$/.test(label) && /meter/.test(label)) return;
-        /* after original handler updates DOM */
-        setTimeout(function () {
-          var scoreEl =
-            $("tj-lmr-score") ||
-            d.querySelector("[data-tj-score], .tj-lmr-score");
-          var text = (scoreEl && scoreEl.textContent) || "";
-          var list = $("practice-log-list");
-          if (list && list.firstChild) {
-            text = (list.firstChild.textContent || text) + " " + text;
-          }
-          var m = text.match(/(\d+)\s*\/\s*100/);
-          if (!m) return;
-          var score = parseInt(m[1], 10);
-          var ref = text.match(/(\d+)\s*:\s*(\d+)/) || text.match(/Qur['']?an\s+(\d+)\s*:\s*(\d+)/i);
-          var surah = ref
-            ? parseInt(ref[1], 10)
-            : parseInt((bs && bs.value) || "1", 10);
-          var ayah = ref
-            ? parseInt(ref[2], 10)
-            : parseInt((ba && ba.value) || "1", 10);
-          if (commitPractice({ surah: surah, ayah: ayah, score: score, source: "lmr-record" })) {
-            feedCurriculumOnce(score);
-            setStatus("Logged real session " + surah + ":" + ayah + " · " + score);
-          }
-        }, 600);
-      },
-      true
-    );
+    d.addEventListener("click", function (ev) {
+      var t = ev.target && ev.target.closest && ev.target.closest("button");
+      if (!t) return;
+      var label = ((t.textContent || "") + t.id).toLowerCase();
+      if (!/(stop|score)/.test(label) || /meter/.test(label)) return;
+      setTimeout(function () {
+        var list = $("practice-log-list");
+        var text = (list && list.textContent) || "";
+        var scoreEl = $("tj-lmr-score");
+        if (scoreEl) text += " " + scoreEl.textContent;
+        var m = text.match(/(\d+)\s*\/\s*100/);
+        if (!m) return;
+        var score = parseInt(m[1], 10);
+        var ref = text.match(/(\d+)\s*:\s*(\d+)/);
+        commitPractice({
+          surah: ref ? parseInt(ref[1], 10) : bridgeSurah(),
+          ayah: ref ? parseInt(ref[2], 10) : bridgeAyah(),
+          score: score,
+          source: "lmr-record"
+        });
+      }, 700);
+    }, true);
 
-    syncBridge();
+    clampAyah();
+    syncToStudio();
+    renderJournal();
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", wire);
   else wire();
-  w.addEventListener("load", wire);
-  setTimeout(wire, 900);
+  w.addEventListener("load", function () { setTimeout(wire, 400); });
+  setTimeout(wire, 1200);
 
   w.ClarityTajweedBridge = {
+    ayahMax: ayahMax,
+    syncToStudio: syncToStudio,
+    pullIntoStudio: pullIntoStudio,
     exportAll: exportAll,
-    resetAll: resetAll,
-    commitPractice: commitPractice,
-    journal: loadJournal
+    resetAll: resetAll
   };
 })(window, document);
