@@ -180,6 +180,7 @@
 
   /* ——— Text format for desks ——— */
 
+
   function currentLine() {
     var card = $("craft-verse-card");
     var t = (card && card.textContent) || "";
@@ -192,21 +193,87 @@
     return el ? String(el.value || "").trim() : "";
   }
 
+  /** Layer parse — same discipline as paint-standard (ar / en / ref) */
+  function parsePostLayers(raw) {
+    if (typeof w.craftMemeParseLayers === "function") {
+      try { return w.craftMemeParseLayers(raw); } catch (e) {}
+    }
+    raw = String(raw || "").replace(/\s+/g, " ").trim();
+    var ar = "", en = "", ref = "";
+    var mRef = raw.match(/(?:Qur[’']an|Quran|Qurʾān|Surah|Sūrat?)\s*([0-9]{1,3})\s*[:：]\s*([0-9]{1,3}(?:\s*[-–]\s*[0-9]{1,3})?)/i);
+    if (mRef) {
+      ref = "Qur’an " + mRef[1] + ":" + mRef[2].replace(/\s+/g, "");
+      raw = raw.replace(mRef[0], " ").trim();
+    } else {
+      var mRef2 = raw.match(/\(([0-9]{1,3})\s*[:：]\s*([0-9]{1,3})\)/);
+      if (mRef2) {
+        ref = "Qur’an " + mRef2[1] + ":" + mRef2[2];
+        raw = raw.replace(mRef2[0], " ").trim();
+      }
+    }
+    var arParts = raw.match(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\s،؟؛]+/g);
+    if (arParts && arParts.length) {
+      ar = arParts.map(function (s) { return s.trim(); }).filter(Boolean).join(" ").trim();
+      raw = raw.replace(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]+/g, " ");
+    }
+    en = raw.replace(/\s+/g, " ").replace(/\(\s*\)/g, " ").replace(/^[\s\-–—:·]+|[\s\-–—:·]+$/g, "").trim();
+    en = en.replace(/\s*clarity-dawah\.fyi.*$/i, "").replace(/\s*educational only.*$/i, "").trim();
+    if (!ref) ref = "";
+    return { ar: ar, en: en, ref: ref };
+  }
+
+  /**
+   * Standard post body (matches your live X style):
+   *   Arabic
+   *   English
+   *   (Qur’an x:y)
+   *   clarity-dawah.fyi · educational only —
+   */
+  function formatStandardPost(raw, network) {
+    var src = (raw || currentLine() || readDraft(network === "x" ? "x-draft" : "fb-draft") || "").trim();
+    var L = parsePostLayers(src);
+    var parts = [];
+    if (L.ar) parts.push(L.ar);
+    if (L.en) parts.push(L.en);
+    if (L.ref) parts.push("(" + L.ref + ")");
+    var body = parts.join("\n\n");
+    if (!body) body = src || "Educational reminder · Clarity Craft";
+
+    var stamp = "clarity-dawah.fyi · educational only —";
+    if (network === "x") {
+      var max = 280;
+      var room = max - stamp.length - 2;
+      if (body.length > room) {
+        /* prefer keeping Arabic + ref; trim English */
+        if (L.ar && L.ref) {
+          var core = L.ar + "\n\n";
+          var tail = "(" + L.ref + ")";
+          var midRoom = room - core.length - tail.length - 2;
+          var en = L.en || "";
+          if (midRoom > 20 && en) {
+            if (en.length > midRoom) en = en.slice(0, midRoom - 1).trim() + "…";
+            body = core + en + "\n\n" + tail;
+          } else {
+            body = (L.ar + "\n\n" + tail).slice(0, room);
+          }
+        } else {
+          body = body.slice(0, room - 1).trim() + "…";
+        }
+      }
+      var out = body + "\n\n" + stamp;
+      return out.slice(0, 280);
+    }
+    /* Facebook — fuller stamp, no hard 280 */
+    var fbStamp = "clarity-dawah.fyi · educational only —\nNot a fatwa · verify primary texts";
+    return body + "\n\n" + fbStamp;
+  }
+
   function formatForX(text) {
-    var base = (text || currentLine() || readDraft("x-draft") || "").trim();
-    if (!base) base = "Educational reminder · Clarity Craft";
-    var stamp = "\n\nEducational only — not a fatwa · verify primary texts";
-    var max = 280 - stamp.length - 2;
-    if (base.length > max) base = base.slice(0, max - 1).trim() + "…";
-    if (base.indexOf("not a fatwa") !== -1) return base.slice(0, 280);
-    return (base + stamp).slice(0, 280);
+    return formatStandardPost(text, "x");
   }
 
   function formatForFB(text) {
-    var base = (text || currentLine() || readDraft("fb-draft") || "").trim();
-    if (!base) base = "Educational reminder · Clarity Craft";
-    if (base.indexOf("not a fatwa") !== -1) return base;
-    return base + "\n\n—\nEducational only — not a fatwa.\nVerify on quran.com / sunnah.com · Clarity Craft";
+    return formatStandardPost(text, "fb");
   }
 
   function setDraft(id, value, countId, statusId, statusMsg) {
@@ -463,12 +530,17 @@
   else boot();
   w.addEventListener("load", function () { setTimeout(boot, 400); });
 
+  w.formatForX = formatForX;
+  w.formatForFB = formatForFB;
+  w.formatStandardPost = formatStandardPost;
   w.ClarityMemeAutomation = {
     fetchKind: fetchKind,
     dailyPack: dailyPack,
     fillDesks: fillDesks,
     formatForX: formatForX,
     formatForFB: formatForFB,
+    formatStandardPost: formatStandardPost,
+    parsePostLayers: parsePostLayers,
     openIntent: openIntent
   };
 })(window, document);

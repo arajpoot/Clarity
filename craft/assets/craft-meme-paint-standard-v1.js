@@ -263,6 +263,15 @@
     ctx.fillText("clarity-dawah.fyi · educational reminder", cx, refY + Math.round(h * 0.038));
     ctx.restore();
 
+
+    /* surprise: keep desks in sync with canvas layers */
+    try {
+      if (w.ClarityMemeAutomation && typeof w.ClarityMemeAutomation.fillDesks === "function") {
+        setTimeout(function () { w.ClarityMemeAutomation.fillDesks(false); }, 80);
+      } else if (typeof w.formatForX === "function") {
+        /* automation may expose later */
+      }
+    } catch (eSync) {}
     return true;
   }
 
