@@ -199,34 +199,66 @@
     return base + "\n\n—\nEducational only — not a fatwa.\nVerify on quran.com / sunnah.com · Clarity Craft";
   }
 
+  function getDraft(id) {
+    return $(id) || d.querySelector("#" + id);
+  }
+
   function fillDesks() {
     var xText = formatForX();
     var fbText = formatForFB();
-    var xBox = $("meme-x-text") || $("desk-x-text") || d.querySelector("[data-desk='x'] textarea, #x-desk-text");
-    var fbBox = $("meme-fb-text") || $("desk-fb-text") || d.querySelector("[data-desk='fb'] textarea, #fb-desk-text");
+    var xBox = getDraft("x-draft") || $("meme-x-text") || d.querySelector("#desk-x textarea");
+    var fbBox = getDraft("fb-draft") || $("meme-fb-text") || d.querySelector("#desk-fb textarea");
     if (xBox) {
       xBox.value = xText;
-      xBox.dispatchEvent(new Event("input", { bubbles: true }));
+      try { xBox.dispatchEvent(new Event("input", { bubbles: true })); } catch (e) {}
     }
     if (fbBox) {
       fbBox.value = fbText;
-      fbBox.dispatchEvent(new Event("input", { bubbles: true }));
+      try { fbBox.dispatchEvent(new Event("input", { bubbles: true })); } catch (e2) {}
     }
-    var xc = $("meme-x-count");
+    var xc = $("x-count") || $("meme-x-count");
     if (xc) xc.textContent = xText.length + " / 280";
+    var xs = $("x-status");
+    if (xs) xs.textContent = "Post-ready · " + xText.length + " chars";
+    var fs = $("fb-status");
+    if (fs) fs.textContent = "Post-ready · Facebook";
     return { x: xText, fb: fbText };
   }
 
+  function copyText(t) {
+    t = String(t || "");
+    if (!t) return Promise.resolve(false);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(t).then(function () { return true; }).catch(function () { return false; });
+    }
+    return Promise.resolve(false);
+  }
+
+  /** 1-click publish: fill desks, copy, open compose with text prefilled where platform allows */
   function openIntent(network) {
     var packed = fillDesks();
-    var url;
     if (network === "x") {
-      url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(packed.x);
-    } else {
-      url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("https://clarity-dawah.fyi/craft/meme/") +
-        "&quote=" + encodeURIComponent(packed.fb.slice(0, 500));
+      var tweet = packed.x;
+      copyText(tweet).then(function () {
+        var url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweet);
+        w.open(url, "_blank", "noopener,noreferrer");
+        status("𝕏 compose opened · text prefilled");
+        var xs = $("x-status");
+        if (xs) xs.textContent = "1-click Tweet opened ✓";
+      });
+      return;
     }
-    w.open(url, "_blank", "noopener,noreferrer");
+    /* Facebook: sharer quote is unreliable; copy + open composer-friendly share */
+    var fb = packed.fb;
+    copyText(fb).then(function () {
+      var url = "https://www.facebook.com/sharer/sharer.php?u=" +
+        encodeURIComponent("https://clarity-dawah.fyi/") +
+        "&quote=" + encodeURIComponent(fb.slice(0, 600));
+      w.open(url, "_blank", "noopener,noreferrer");
+      status("Facebook share opened · caption copied to clipboard — paste if needed");
+      var fs = $("fb-status");
+      if (fs) fs.textContent = "1-click Facebook opened · caption on clipboard ✓";
+    });
   }
 
   /* ——— Daily automation: verse + matching scene ——— */
@@ -301,6 +333,29 @@
         status("Desks filled · post-ready text");
       });
     }
+    
+    /* 1-click publish on desk cards */
+    function bindPublish(id, network) {
+      var b = $(id);
+      if (!b || b._pubBound) return;
+      b._pubBound = true;
+      b.addEventListener("click", function (e) {
+        e.preventDefault();
+        openIntent(network);
+      });
+    }
+    bindPublish("x-publish", "x");
+    bindPublish("fb-publish", "fb");
+    d.querySelectorAll('[data-action="publish"]').forEach(function (btn) {
+      if (btn._pubBound) return;
+      btn._pubBound = true;
+      var net = btn.getAttribute("data-desk") === "fb" ? "fb" : "x";
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        openIntent(net);
+      });
+    });
+
     var next = $("meme-next-bg");
     if (next && !next._auto) {
       next._auto = true;
