@@ -1,26 +1,42 @@
-# Phase 5 · Ship closeout (UFT + Farāʾiḍ)
+# Clarity · Dawah Vocational Institute (DVI) · C19DVI5
 
-**Bismillah.**
+**Pure daʿwah educational craft workbench** under `/craft/institute/`  
+Landing tile on `/craft/` plaque grid.
 
-No further HTML/JS drops required for Phase 5 if Phase 4 smoke is green.
+Educational only — not a fatwa · not a seminary · not accreditation.
 
-This folder is the **governance closeout pack**:
-
-- `smoke/SMOKE_AMANA_UFT_FIQH_FINAL.json` — final smoke record
-- `governance/UPGRADE_CHECKLIST_FINAL.md` — P1–P7
-- `docs/UFT_FIQH_ENRICHED_VERIFIED.md` — verified enrichment summary
-
-Optional: copy SMOKE JSON into repo `governance/` for the audit trail.
-
-## Changelog rows (program)
+## Package contents
 
 ```
-room        | offline | privacy | enrichment | user-visible copy
-------------|---------|---------|------------|------------------
-Port        | held    | held    | held       | five-room docs (P0-1)
-Companion   | held    | held    | held       | —
-Yawm        | held    | held    | held       | —
-Campus      | held    | held    | held       | —
-Amānah      | held    | held    | added      | Tree+Fiqh P1–P4 stack
-Craft       | held    | held    | held       | documented as fifth room
+craft-dvi-final-C19DVI5/
+├── craft/
+│   ├── index.html                 # Craft landing WITH DVI tile
+│   ├── institute/
+│   │   └── index.html             # Full workbench + short tutorial + App Building Lab
+│   ├── PLAQUE_SNIPPET.html
+│   ├── CRAFT_CONTRACT_ADDENDUM_DVI.md
+│   └── NAV_CONTRACT_UPDATE.md
+├── governance/
+│   └── DVI_GOVERNANCE_AUDIT.md
+├── smoke/
+│   ├── SMOKE_DVI_C19DVI5.json
+│   └── SIM_CYCLES_DVI_C19DVI5.json
+├── docs/
+│   └── DVI_DEPLOY.md
+└── README.md
 ```
+
+## New in C19DVI5
+- **Craft landing tile** for Dawah Vocational Institute
+- **Short tutorial** (6 steps) on the bench itself
+- Full prior Lab (Lovable, Bolt, Grok, AI Studio, v0, Replit, Base44, PWABuilder, Falah.io) + source chips, curriculum, quiz, reminder cards, seeker examples, resources, outline, print
+
+## Governance
+- PROJECT_CONTRACT P1–P7: **PASS**
+- 5-cycle sim: **all_pass**
+- Isolation: Craft only · `clarity.craft.institute.*`
+
+See `docs/DVI_DEPLOY.md`.
+
+---
+*Aligned to PROJECT_CONTRACT and CRAFT_CONTRACT · educational only — not a fatwa.*
