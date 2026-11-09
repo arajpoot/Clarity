@@ -1,0 +1,67 @@
+/* craft-calligraphy-layout-v1 · C19CALLIG1 */
+.craft-room .cal-pad-wrap{
+  position:relative;max-width:min(100%,720px);margin:.5rem auto;border-radius:14px;
+  border:1px solid rgba(201,162,39,.35);background:#0b1612;overflow:hidden;
+  touch-action:none;-webkit-user-select:none;user-select:none;
+}
+#cal-canvas{display:block;width:100%;height:auto;max-height:62vh;touch-action:none;cursor:crosshair;background:#f4efe3}
+.cal-toolbar,.cal-learn-rail{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.45rem 0}
+.cal-toolbar label{font-size:.78rem;opacity:.9;display:flex;align-items:center;gap:.35rem}
+.cal-toolbar input[type=range]{width:7rem}
+.cal-script-pills button,.cal-step-pills button,.cal-glyph-grid button{
+  border-radius:999px;border:1px solid rgba(201,162,39,.4);background:rgba(15,76,58,.2);
+  color:inherit;padding:.28rem .7rem;font-size:.8rem;cursor:pointer
+}
+.cal-script-pills button.active,.cal-step-pills button.active,.cal-glyph-grid button.active{
+  background:rgba(201,162,39,.28);border-color:rgba(232,199,107,.75)
+}
+.cal-glyph-grid{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0}
+.cal-glyph-grid button{min-width:2.4rem;font-family:Amiri,serif;font-size:1.15rem}
+#cal-guide-layer{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;
+  font-family:Amiri,"Noto Naskh Arabic",serif;color:rgba(26,40,32,.14);font-size:clamp(4rem,18vw,9rem);line-height:1}
+#cal-guide-layer.hollow{color:transparent;-webkit-text-stroke:2px rgba(26,40,32,.2);text-stroke:2px rgba(26,40,32,.2)}
+#cal-guide-layer.beside{justify-content:flex-start;padding-inline-start:8%;font-size:clamp(3rem,12vw,6rem);color:rgba(26,40,32,.22)}
+#cal-guide-layer.memory{display:none}
+.cal-lesson-card{border:1px solid rgba(201,162,39,.3);border-radius:12px;padding:.75rem 1rem;margin:1rem 0;background:rgba(15,76,58,.12)}
+.cal-lesson-card h3{margin:0 0 .35rem;font-size:1rem;color:#e8c76b}
+.cal-meter{height:.35rem;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin:.4rem 0}
+.cal-meter>span{display:block;height:100%;background:linear-gradient(90deg,#c9a227,#e8c76b);width:0%;transition:width .25s}
+
+/* Curriculum + journal parity with Tajweed */
+.cal-flow{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 1rem}
+.cal-flow-step{padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(201,162,39,.35);
+  background:rgba(15,76,58,.15);font-size:.78rem}
+.cal-flow-step strong{color:#e8c76b;margin-inline-end:.25rem}
+.cal-glass{border:1px solid rgba(201,162,39,.28);border-radius:14px;padding:1rem 1.1rem;
+  margin:1rem 0;background:rgba(11,22,18,.55)}
+.cal-level-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.5rem;margin:.6rem 0}
+.cal-level-card{border:1px solid rgba(201,162,39,.3);border-radius:12px;padding:.65rem .75rem;
+  background:rgba(15,76,58,.18);cursor:pointer;text-align:start}
+.cal-level-card.active{border-color:rgba(232,199,107,.75);box-shadow:0 0 0 1px rgba(232,199,107,.25)}
+.cal-level-card h4{margin:0 0 .2rem;font-size:.92rem;color:#e8c76b}
+.cal-level-card p{margin:0;font-size:.72rem;opacity:.85;line-height:1.35}
+.cal-level-card .cal-lv-meter{height:.28rem;border-radius:99px;background:rgba(255,255,255,.08);margin-top:.45rem;overflow:hidden}
+.cal-level-card .cal-lv-meter>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#c9a227,#e8c76b)}
+.cal-journal-list{list-style:none;margin:.5rem 0 0;padding:0}
+.cal-journal-list li{border:1px solid rgba(201,162,39,.22);border-radius:10px;padding:.55rem .75rem;margin:.4rem 0;
+  font-size:.82rem;line-height:1.4;background:rgba(0,0,0,.15)}
+.cal-journal-list li time{opacity:.7;font-size:.72rem}
+.cal-stat-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0}
+.cal-stat-card{flex:1 1 6rem;min-width:5.5rem;border-radius:10px;border:1px solid rgba(201,162,39,.25);
+  padding:.5rem .65rem;background:rgba(15,76,58,.14)}
+.cal-stat-card span{display:block;font-size:.68rem;opacity:.75}
+.cal-stat-card strong{font-size:1.1rem;color:#e8c76b}
+.cal-session-bar{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.5rem 0}
+.cal-session-bar .live{color:#e8c76b;font-variant-numeric:tabular-nums}
+
+/* Noorani Qaaidah + listen/speak */
+.cal-qaida-rail{display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0}
+.cal-qaida-rail button{border-radius:10px;border:1px solid rgba(201,162,39,.35);background:rgba(15,76,58,.16);
+  color:inherit;padding:.35rem .55rem;font-size:.72rem;cursor:pointer;max-width:11rem;text-align:start;line-height:1.25}
+.cal-qaida-rail button.active{border-color:rgba(232,199,107,.8);background:rgba(201,162,39,.22)}
+.cal-qaida-rail button small{display:block;opacity:.75;font-size:.65rem}
+.cal-lmr{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.55rem 0}
+.cal-lmr .cal-hear{font-size:1.6rem;font-family:Amiri,"Noto Naskh Arabic",serif;min-width:3rem;text-align:center}
+.cal-lmr-status{font-size:.78rem;opacity:.9;min-height:1.2em}
+.cal-pulse{animation:calPulse 1s ease-in-out infinite}
+@keyframes calPulse{0%,100%{opacity:1}50%{opacity:.45}}
