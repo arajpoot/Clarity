@@ -1,0 +1,30 @@
+{
+  "room": "craft",
+  "path": "/craft/tajweed/",
+  "owns": [
+    "tajweed deep studio",
+    "curriculum",
+    "practice journal",
+    "glass UX"
+  ],
+  "does_not_own": [
+    "Companion Action primary",
+    "Am\u0101nah",
+    "Yawm"
+  ],
+  "forbidden_src": [
+    "/assets/companion-inline/",
+    "/amana/sealed/"
+  ],
+  "educational_only": true,
+  "not_ijazah": true,
+  "richness": {
+    "surahs": 114,
+    "ayah_advance": true,
+    "practice_journal": true,
+    "master_score_proxy": true,
+    "curriculum_tutorial": true,
+    "glass_plaques": true,
+    "full_width": true
+  }
+}

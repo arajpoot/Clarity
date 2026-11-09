@@ -1,0 +1,112 @@
+{
+  "ok": true,
+  "issues": [],
+  "warnings": [],
+  "cycles": [
+    {
+      "name": "surah_114",
+      "ok": true,
+      "detail": {
+        "n": 114,
+        "issues": []
+      }
+    },
+    {
+      "name": "ayah_nav",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "journal",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "tutorial",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "glass",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "no_forbidden",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "scripts_present",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "syntax_ux",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "syntax_cur",
+      "ok": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "http_1",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_2",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_3",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_4",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_5",
+      "ok": true,
+      "fails": []
+    }
+  ],
+  "governance": {
+    "room_lock": "craft/tajweed only",
+    "educational_only": true,
+    "not_ijazah": true,
+    "zero_companion_inline_src": true,
+    "score_is_proxy": true
+  },
+  "enrichment": {
+    "surahs_114": true,
+    "ayah_advance": true,
+    "practice_journal_scored": true,
+    "curriculum_tutorial": true,
+    "glass_full_width": true,
+    "master_audio_multi_source": true
+  },
+  "status": "verified"
+}
