@@ -1,19 +1,18 @@
-/*! craft-tajweed-score-pill-v2 · Companion-parity alignment card · blob capture · educational only */
+/*! craft-tajweed-score-pill-v3 · bars + journal refresh · hide legacy log · educational only */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_TJ_SCORE_PILL_V2__) return;
-  w.__CRAFT_TJ_SCORE_PILL_V2__ = true;
+  if (w.__CRAFT_TJ_SCORE_PILL_V3__) return;
+  w.__CRAFT_TJ_SCORE_PILL_V3__ = true;
+
+  var JOURNAL_KEY = "clarity_tajweed_practice_journal_v1";
 
   function $(id) { return d.getElementById(id); }
 
-  /** Capture every MediaRecorder stop → blob (fixes missing state.userBlob) */
   function patchMediaRecorder() {
     if (w.__craftMRPatched || !w.MediaRecorder) return;
     w.__craftMRPatched = true;
-    var Orig = w.MediaRecorder;
-    var proto = Orig.prototype;
+    var proto = w.MediaRecorder.prototype;
     var origStart = proto.start;
-    var origStop = proto.stop;
     proto.start = function () {
       var self = this;
       self.__craftChunks = [];
@@ -24,8 +23,7 @@
         });
         self.addEventListener("stop", function () {
           try {
-            var type = (self.mimeType || "audio/webm");
-            var blob = new Blob(self.__craftChunks || [], { type: type });
+            var blob = new Blob(self.__craftChunks || [], { type: self.mimeType || "audio/webm" });
             if (blob.size > 0) {
               w.__craftLastUserBlob = blob;
               if (!w.state) w.state = {};
@@ -46,14 +44,32 @@
     };
   }
 
+  function injectCss() {
+    if ($("tj-align-css-v3")) return;
+    var s = d.createElement("style");
+    s.id = "tj-align-css-v3";
+    s.textContent = [
+      ".tj-alignment-card{margin:.75rem 0;padding:1rem;border-radius:16px;border:1px solid rgba(212,180,90,.35);background:rgba(15,76,58,.28)}",
+      ".tj-align-head{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;opacity:.85}",
+      ".tj-align-score{font-size:2rem;font-weight:700;color:#e8d5a3;margin:.25rem 0 .6rem}",
+      ".tj-align-row{display:grid;grid-template-columns:7.5rem 1fr 2.6rem;gap:.4rem;align-items:center;margin:.4rem 0;font-size:.8rem}",
+      ".tj-align-track{height:10px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}",
+      ".tj-align-fill{display:block;height:100%;width:0%;min-width:0;border-radius:999px;background:linear-gradient(90deg,#1e7d5e,#7dcea0);transition:width .4s ease}",
+      ".tj-align-pct{text-align:right;opacity:.9;font-variant-numeric:tabular-nums}",
+      ".tj-align-note{font-size:.78rem;opacity:.9;margin:.5rem 0}",
+      "/* hide legacy shell session log + duplicate score stubs */",
+      "#tj-lmr-log-list,.tj-lmr-session-log,#practice-log-list{display:none!important}",
+      "#tj-score-vs-master-btn-inline,#tj-score-vs-master-btn{display:none!important}",
+      "#tj-lmr-score-card:not(.tj-alignment-card){display:none!important}"
+    ].join("");
+    (d.head || d.documentElement).appendChild(s);
+  }
+
   function ensureAlignmentCard() {
     var host = $("tj-alignment-card");
-    if (host) return host;
-    var anchor =
-      $("tj-score-stats") ||
-      $("tj-lmr-host") ||
-      $("section-lmr") ||
-      d.querySelector("#section-lmr");
+    if (host && host.querySelector(".tj-align-fill")) return host;
+    if (host) host.remove();
+    var anchor = $("tj-score-stats") || $("tj-lmr-host") || $("section-lmr");
     if (!anchor) return null;
     host = d.createElement("div");
     host.id = "tj-alignment-card";
@@ -62,9 +78,9 @@
       '<div class="tj-align-head">Practice alignment</div>' +
       '<div class="tj-align-score" id="tj-align-score-num">—</div>' +
       '<div class="tj-align-bars">' +
-      '<div class="tj-align-row"><span>Timing</span><div class="tj-align-track"><i id="tj-bar-time"></i></div></div>' +
-      '<div class="tj-align-row"><span>Energy shape</span><div class="tj-align-track"><i id="tj-bar-energy"></i></div></div>' +
-      '<div class="tj-align-row"><span>Length match</span><div class="tj-align-track"><i id="tj-bar-len"></i></div></div>' +
+      '<div class="tj-align-row"><span>Timing</span><div class="tj-align-track"><span class="tj-align-fill" id="tj-bar-time"></span></div><span class="tj-align-pct" id="tj-pct-time">—</span></div>' +
+      '<div class="tj-align-row"><span>Energy shape</span><div class="tj-align-track"><span class="tj-align-fill" id="tj-bar-energy"></span></div><span class="tj-align-pct" id="tj-pct-energy">—</span></div>' +
+      '<div class="tj-align-row"><span>Length match</span><div class="tj-align-track"><span class="tj-align-fill" id="tj-bar-len"></span></div><span class="tj-align-pct" id="tj-pct-len">—</span></div>' +
       "</div>" +
       '<p class="tj-align-note" id="tj-align-note">Record, Stop, then Score vs master. Educational proxy — not a qāriʾ grade.</p>' +
       '<button type="button" class="btn primary" id="tj-score-vs-master-main">★ Score vs master</button>';
@@ -72,21 +88,77 @@
     return host;
   }
 
-  function injectCss() {
-    if ($("tj-align-css")) return;
-    var s = d.createElement("style");
-    s.id = "tj-align-css";
-    s.textContent = [
-      ".tj-alignment-card{margin:.75rem 0;padding:1rem;border-radius:16px;border:1px solid rgba(212,180,90,.35);background:rgba(15,76,58,.28)}",
-      ".tj-align-head{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;opacity:.85;margin-bottom:.25rem}",
-      ".tj-align-score{font-size:2rem;font-weight:700;color:#e8d5a3;margin:.2rem 0 .6rem}",
-      ".tj-align-row{display:grid;grid-template-columns:7.5rem 1fr;gap:.5rem;align-items:center;margin:.35rem 0;font-size:.8rem}",
-      ".tj-align-track{height:8px;border-radius:999px;background:rgba(0,0,0,.35);overflow:hidden}",
-      ".tj-align-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#1e7d5e,#7dcea0);transition:width .35s ease}",
-      ".tj-align-note{font-size:.78rem;opacity:.9;margin:.5rem 0}",
-      "#tj-score-vs-master-btn-inline,#tj-score-vs-master-btn{display:none}" /* reduce duplicate pills */
-    ].join("");
-    (d.head || d.documentElement).appendChild(s);
+  function setBars(timeScore, energyScore, lenScore, overall, note) {
+    ensureAlignmentCard();
+    function clamp(n) {
+      n = Math.round(Number(n) || 0);
+      return Math.max(0, Math.min(100, n));
+    }
+    timeScore = clamp(timeScore);
+    energyScore = clamp(energyScore);
+    lenScore = clamp(lenScore);
+    overall = clamp(overall);
+
+    var num = $("tj-align-score-num");
+    if (num) num.textContent = overall ? overall + " / 100" : "—";
+
+    var fills = [
+      ["tj-bar-time", "tj-pct-time", timeScore],
+      ["tj-bar-energy", "tj-pct-energy", energyScore],
+      ["tj-bar-len", "tj-pct-len", lenScore]
+    ];
+    fills.forEach(function (row) {
+      var bar = $(row[0]);
+      var pct = $(row[1]);
+      var v = row[2];
+      if (bar) {
+        bar.style.width = v + "%";
+        bar.setAttribute("data-w", String(v));
+      }
+      if (pct) pct.textContent = v + "%";
+    });
+
+    var n = $("tj-align-note");
+    if (n) n.textContent = note || "";
+
+    var box = $("tj-score-result");
+    if (box) {
+      box.hidden = false;
+      box.innerHTML =
+        "<strong>Score " +
+        overall +
+        "/100</strong>" +
+        (note ? "<br/><span class='tj-muted'>" + note + "</span>" : "");
+    }
+  }
+
+  function renderJournal() {
+    var host = $("tj-practice-journal");
+    if (!host) return;
+    var rows = [];
+    try {
+      rows = JSON.parse(localStorage.getItem(JOURNAL_KEY) || "[]") || [];
+    } catch (e) {}
+    if (!rows.length) {
+      host.innerHTML = '<p class="tj-muted">No real practice sessions logged yet.</p>';
+      return;
+    }
+    host.innerHTML =
+      '<table class="tj-journal-table"><thead><tr><th>When</th><th>Ref</th><th>Score</th></tr></thead><tbody>' +
+      rows.slice(0, 40).map(function (r) {
+        return (
+          "<tr><td>" +
+          new Date(r.t).toLocaleString() +
+          "</td><td>" +
+          (r.surah || "?") +
+          ":" +
+          (r.ayah || "?") +
+          "</td><td><strong>" +
+          (r.score || 0) +
+          "</strong></td></tr>"
+        );
+      }).join("") +
+      "</tbody></table>";
   }
 
   function downsampleEnvelope(ch, buckets) {
@@ -160,47 +232,16 @@
       }
     } catch (e) {}
     var el = $("tj-lmr-master-audio");
-    return el && el.src ? el.src : "";
-  }
-
-  function setBars(timeScore, energyScore, lenScore, overall, note) {
-    ensureAlignmentCard();
-    var num = $("tj-align-score-num");
-    if (num) num.textContent = overall + " / 100";
-    var bt = $("tj-bar-time");
-    var be = $("tj-bar-energy");
-    var bl = $("tj-bar-len");
-    if (bt) bt.style.width = timeScore + "%";
-    if (be) be.style.width = energyScore + "%";
-    if (bl) bl.style.width = lenScore + "%";
-    var n = $("tj-align-note");
-    if (n) n.textContent = note || "";
-    var val = $("tj-lmr-score-val");
-    if (val) val.textContent = overall + "/100";
-    var noteEl = $("tj-lmr-score-note");
-    if (noteEl) noteEl.textContent = note || "";
-    var te = $("tj-lmr-bar-time");
-    var ee = $("tj-lmr-bar-energy");
-    var le = $("tj-lmr-bar-len");
-    if (te) te.textContent = timeScore + "%";
-    if (ee) ee.textContent = energyScore + "%";
-    if (le) le.textContent = lenScore + "%";
+    return el && el.currentSrc ? el.currentSrc : el && el.src ? el.src : "";
   }
 
   async function scoreVsMaster() {
     patchMediaRecorder();
     ensureAlignmentCard();
-    var blob = null;
-    try {
-      blob = (w.state && w.state.userBlob) || w.__craftLastUserBlob;
-    } catch (e) {
-      blob = w.__craftLastUserBlob;
-    }
+    var blob = (w.state && w.state.userBlob) || w.__craftLastUserBlob;
     var url = masterUrl();
     if (!blob) {
       setBars(0, 0, 0, 0, "Need your recording first · Record, then Stop, then Score vs master");
-      var st = $("tj-lmr-rec-status");
-      if (st) st.textContent = "Need your recording first";
       return;
     }
     if (!url) {
@@ -208,8 +249,6 @@
       return;
     }
     setBars(0, 0, 0, 0, "Scoring on device…");
-    var st2 = $("tj-lmr-rec-status");
-    if (st2) st2.textContent = "Scoring (on device)…";
 
     var lenScore = 50, energyScore = 50, timeScore = 50;
     try {
@@ -235,8 +274,8 @@
         var envU = downsampleEnvelope(userBuf.getChannelData(0), 48);
         var c = corr(envM, envU);
         energyScore = Math.round(((c + 1) / 2) * 100);
-        var peakM = 0, peakU = 0, iM = 0, iU = 0;
-        for (var i = 0; i < 48; i++) {
+        var peakM = 0, peakU = 0, iM = 0, iU = 0, i;
+        for (i = 0; i < 48; i++) {
           if (envM[i] > peakM) {
             peakM = envM[i];
             iM = i;
@@ -260,10 +299,10 @@
     overall = Math.max(0, Math.min(100, overall));
     var tip =
       overall >= 75
-        ? "Strong timing/energy match. Keep one focused rule per session."
+        ? "Strong timing/energy match."
         : overall >= 50
-        ? "Decent timing/energy match. Replay master, then one focused retry."
-        : "Replay master slowly, then record a shorter, clearer take.";
+        ? "Decent match. Replay master, then one focused retry."
+        : "Replay master slowly, then record a clearer take.";
     setBars(
       timeScore,
       energyScore,
@@ -271,27 +310,11 @@
       overall,
       tip + " Educational proxy only — not a qāriʾ grade."
     );
-    if (st2) st2.textContent = "Scored · " + overall + "/100 · logged on this device";
 
-    /* session log list */
+    var surah = (w.state && w.state.surah) || 1;
+    var ayah = (w.state && w.state.ayah) || 1;
     try {
-      var surah = (w.state && w.state.surah) || 1;
-      var ayah = (w.state && w.state.ayah) || 1;
-      var list = $("practice-log-list") || $("tj-lmr-log-list");
-      if (list) {
-        var item = d.createElement("div");
-        item.textContent =
-          overall +
-          "/100 · Qur’an " +
-          surah +
-          ":" +
-          ayah +
-          " · " +
-          new Date().toLocaleString();
-        list.insertBefore(item, list.firstChild);
-      }
-      var key = "clarity_tajweed_practice_journal_v1";
-      var rows = JSON.parse(localStorage.getItem(key) || "[]") || [];
+      var rows = JSON.parse(localStorage.getItem(JOURNAL_KEY) || "[]") || [];
       rows.unshift({
         t: Date.now(),
         surah: surah,
@@ -302,10 +325,14 @@
         energy: energyScore,
         length: lenScore
       });
-      localStorage.setItem(key, JSON.stringify(rows.slice(0, 200)));
-      if (w.ClarityTajweedFlow && w.ClarityTajweedFlow.refreshScoreStats) {
-        w.ClarityTajweedFlow.refreshScoreStats();
-      }
+      localStorage.setItem(JOURNAL_KEY, JSON.stringify(rows.slice(0, 200)));
+    } catch (e3) {}
+
+    renderJournal();
+    if (w.ClarityTajweedFlow && w.ClarityTajweedFlow.refreshScoreStats) {
+      try { w.ClarityTajweedFlow.refreshScoreStats(); } catch (e4) {}
+    }
+    try {
       var CUR = "clarity_tajweed_curriculum_v2";
       var p = JSON.parse(localStorage.getItem(CUR) || "{}") || {};
       p.phases = p.phases || {};
@@ -318,25 +345,48 @@
       if (w.ClarityTajweedCurriculum && w.ClarityTajweedCurriculum.refreshAnalysis) {
         w.ClarityTajweedCurriculum.refreshAnalysis();
       }
-    } catch (e3) {}
+    } catch (e5) {}
+
+    var st = $("tj-lmr-rec-status");
+    if (st) st.textContent = "Scored · " + overall + "/100 · logged on this device";
+  }
+
+  function hideLegacyLogs() {
+    ["practice-log-list", "tj-lmr-log-list"].forEach(function (id) {
+      var el = $(id);
+      if (el) {
+        el.innerHTML = "";
+        el.style.display = "none";
+      }
+    });
+    d.querySelectorAll(".tj-lmr-session-log, [class*='session-log']").forEach(function (el) {
+      if (el.closest("#tj-practice-journal")) return;
+      if (el.id === "tj-practice-journal") return;
+      /* hide shell session log blocks inside LMR only */
+      if (el.closest("#tj-lmr-host") || el.closest("#tj-lmr")) {
+        el.style.display = "none";
+      }
+    });
   }
 
   function wire() {
     injectCss();
     patchMediaRecorder();
     ensureAlignmentCard();
+    hideLegacyLogs();
+    renderJournal();
     var main = $("tj-score-vs-master-main");
-    if (main && !main.__v2) {
-      main.__v2 = true;
+    if (main && !main.__v3) {
+      main.__v3 = true;
       main.addEventListener("click", function (e) {
         e.preventDefault();
         scoreVsMaster();
       });
     }
-    ["tj-score-vs-master-btn", "tj-score-vs-master-btn-inline", "tj-lmr-score-btn"].forEach(function (id) {
+    ["tj-lmr-score-btn", "tj-score-vs-master-btn"].forEach(function (id) {
       var b = $(id);
-      if (b && !b.__v2) {
-        b.__v2 = true;
+      if (b && !b.__v3) {
+        b.__v3 = true;
         b.addEventListener("click", function (e) {
           e.preventDefault();
           scoreVsMaster();
@@ -349,9 +399,9 @@
   else wire();
   w.addEventListener("load", function () {
     setTimeout(wire, 400);
-    setTimeout(wire, 1500);
+    setTimeout(wire, 1600);
   });
   setTimeout(wire, 800);
 
-  w.ClarityTajweedScorePill = { score: scoreVsMaster, patchMediaRecorder: patchMediaRecorder };
+  w.ClarityTajweedScorePill = { score: scoreVsMaster, renderJournal: renderJournal };
 })(window, document);
