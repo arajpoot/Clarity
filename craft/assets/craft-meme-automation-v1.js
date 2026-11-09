@@ -179,6 +179,7 @@
   }
 
   /* ——— Text format for desks ——— */
+
   function currentLine() {
     var card = $("craft-verse-card");
     var t = (card && card.textContent) || "";
@@ -186,47 +187,150 @@
     return t;
   }
 
+  function readDraft(id) {
+    var el = $(id);
+    return el ? String(el.value || "").trim() : "";
+  }
+
   function formatForX(text) {
-    var base = text || currentLine();
+    var base = (text || currentLine() || readDraft("x-draft") || "").trim();
+    if (!base) base = "Educational reminder · Clarity Craft";
     var stamp = "\n\nEducational only — not a fatwa · verify primary texts";
     var max = 280 - stamp.length - 2;
     if (base.length > max) base = base.slice(0, max - 1).trim() + "…";
-    return base + stamp;
+    if (base.indexOf("not a fatwa") !== -1) return base.slice(0, 280);
+    return (base + stamp).slice(0, 280);
   }
 
   function formatForFB(text) {
-    var base = text || currentLine();
+    var base = (text || currentLine() || readDraft("fb-draft") || "").trim();
+    if (!base) base = "Educational reminder · Clarity Craft";
+    if (base.indexOf("not a fatwa") !== -1) return base;
     return base + "\n\n—\nEducational only — not a fatwa.\nVerify on quran.com / sunnah.com · Clarity Craft";
   }
 
-  function fillDesks() {
-    var xText = formatForX();
-    var fbText = formatForFB();
-    var xBox = $("meme-x-text") || $("desk-x-text") || d.querySelector("[data-desk='x'] textarea, #x-desk-text");
-    var fbBox = $("meme-fb-text") || $("desk-fb-text") || d.querySelector("[data-desk='fb'] textarea, #fb-desk-text");
-    if (xBox) {
-      xBox.value = xText;
-      xBox.dispatchEvent(new Event("input", { bubbles: true }));
+  function setDraft(id, value, countId, statusId, statusMsg) {
+    var box = $(id);
+    if (!box) return;
+    box.value = value;
+    try { box.dispatchEvent(new Event("input", { bubbles: true })); } catch (e) {}
+    if (countId) {
+      var c = $(countId);
+      if (c) c.textContent = value.length + (id === "x-draft" ? " / 280" : "");
     }
-    if (fbBox) {
-      fbBox.value = fbText;
-      fbBox.dispatchEvent(new Event("input", { bubbles: true }));
+    if (statusId) {
+      var s = $(statusId);
+      if (s) s.textContent = statusMsg || ("Post-ready · " + value.length + " chars");
     }
-    var xc = $("meme-x-count");
-    if (xc) xc.textContent = xText.length + " / 280";
+  }
+
+  function fillDesks(preferExisting) {
+    var line = currentLine();
+    var xExisting = readDraft("x-draft");
+    var fbExisting = readDraft("fb-draft");
+    var xSrc = line || xExisting;
+    var fbSrc = line || fbExisting;
+    if (preferExisting) {
+      xSrc = xExisting || line;
+      fbSrc = fbExisting || line;
+    }
+    var xText = formatForX(xSrc);
+    var fbText = formatForFB(fbSrc);
+    setDraft("x-draft", xText, "x-count", "x-status", "Post-ready · " + xText.length + " / 280");
+    setDraft("fb-draft", fbText, null, "fb-status", "Post-ready · Facebook");
     return { x: xText, fb: fbText };
   }
 
-  function openIntent(network) {
-    var packed = fillDesks();
-    var url;
-    if (network === "x") {
-      url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(packed.x);
-    } else {
-      url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("https://clarity-dawah.fyi/craft/meme/") +
-        "&quote=" + encodeURIComponent(packed.fb.slice(0, 500));
+  function copyText(t) {
+    t = String(t || "");
+    if (!t) return Promise.resolve(false);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(t).then(function () { return true; }).catch(function () { return false; });
     }
-    w.open(url, "_blank", "noopener,noreferrer");
+    try {
+      var ta = d.createElement("textarea");
+      ta.value = t;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      d.body.appendChild(ta);
+      ta.select();
+      d.execCommand("copy");
+      d.body.removeChild(ta);
+      return Promise.resolve(true);
+    } catch (e) {
+      return Promise.resolve(false);
+    }
+  }
+
+  /** Export meme PNG for attach-in-compose (platforms block silent image upload) */
+  function exportMemePng() {
+    return new Promise(function (resolve) {
+      try {
+        if (typeof w.memeCopyPng === "function") {
+          try { w.memeCopyPng(); } catch (e0) {}
+        }
+        if (typeof w.craftMemeExportPng === "function") {
+          try { w.craftMemeExportPng(); resolve("export-fn"); return; } catch (e1) {}
+        }
+        var c = $("meme-canvas") || $("mr-canvas") || d.querySelector("#mr-root canvas") || d.querySelector("canvas");
+        if (c && c.toDataURL) {
+          var url = c.toDataURL("image/png");
+          var a = d.createElement("a");
+          a.href = url;
+          a.download = "clarity-meme-" + Date.now() + ".png";
+          d.body.appendChild(a);
+          a.click();
+          setTimeout(function () { try { d.body.removeChild(a); } catch (e2) {} }, 500);
+          /* also try clipboard image */
+          if (navigator.clipboard && w.ClipboardItem && c.toBlob) {
+            c.toBlob(function (blob) {
+              if (!blob) { resolve("download"); return; }
+              try {
+                navigator.clipboard.write([new w.ClipboardItem({ "image/png": blob })]).then(function () {
+                  resolve("clipboard+download");
+                }).catch(function () { resolve("download"); });
+              } catch (e3) { resolve("download"); }
+            }, "image/png");
+            return;
+          }
+          resolve("download");
+          return;
+        }
+      } catch (e) {}
+      resolve("none");
+    });
+  }
+
+  /**
+   * 1-click publish:
+   * 1) ensure desk text is post-ready
+   * 2) copy text
+   * 3) export/download meme PNG for attachment
+   * 4) open platform compose with text prefilled (X) or sharer + clipboard (FB)
+   */
+  function openIntent(network) {
+    var packed = fillDesks(false);
+    var text = network === "x" ? packed.x : packed.fb;
+
+    exportMemePng().then(function (imgMode) {
+      return copyText(text).then(function (ok) {
+        if (network === "x") {
+          var url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text);
+          w.open(url, "_blank", "noopener,noreferrer");
+          status("𝕏 opened · text prefilled · PNG " + (imgMode === "none" ? "— export canvas first" : "ready to attach"));
+          var xs = $("x-status");
+          if (xs) xs.textContent = "1-click Tweet ✓ · attach downloaded PNG in compose";
+        } else {
+          var url = "https://www.facebook.com/sharer/sharer.php?u=" +
+            encodeURIComponent("https://clarity-dawah.fyi/") +
+            "&quote=" + encodeURIComponent(text.slice(0, 600));
+          w.open(url, "_blank", "noopener,noreferrer");
+          status("Facebook opened · caption on clipboard · PNG ready to attach");
+          var fs = $("fb-status");
+          if (fs) fs.textContent = "1-click Facebook ✓ · paste caption + attach PNG";
+        }
+      });
+    });
   }
 
   /* ——— Daily automation: verse + matching scene ——— */
@@ -283,24 +387,41 @@
       daily._auto = true;
       daily.addEventListener("click", dailyPack);
     }
-    var postX = $("meme-post-x");
-    if (postX && !postX._auto) {
-      postX._auto = true;
-      postX.addEventListener("click", function () { openIntent("x"); });
-    }
-    var postFb = $("meme-post-fb");
-    if (postFb && !postFb._auto) {
-      postFb._auto = true;
-      postFb.addEventListener("click", function () { openIntent("fb"); });
-    }
     var fill = $("meme-fill-desks");
     if (fill && !fill._auto) {
       fill._auto = true;
       fill.addEventListener("click", function () {
-        fillDesks();
+        fillDesks(false);
         status("Desks filled · post-ready text");
       });
     }
+
+    /* 1-click publish — top bar + desk cards (does not replace data-action=open) */
+    function bindPublish(id, network) {
+      var b = $(id);
+      if (!b || b._pubBound) return;
+      b._pubBound = true;
+      b.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        openIntent(network);
+      });
+    }
+    bindPublish("x-publish", "x");
+    bindPublish("fb-publish", "fb");
+    bindPublish("meme-post-x", "x");
+    bindPublish("meme-post-fb", "fb");
+    d.querySelectorAll('[data-action="publish"]').forEach(function (btn) {
+      if (btn._pubBound) return;
+      btn._pubBound = true;
+      var net = btn.getAttribute("data-desk") === "fb" ? "fb" : "x";
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        openIntent(net);
+      });
+    });
+
     var next = $("meme-next-bg");
     if (next && !next._auto) {
       next._auto = true;
