@@ -1,11 +1,11 @@
-/*! craft-meme-automation-v1 · C19MEME3
+/*! craft-meme-automation-v1 · C19MEME4
  * Scenery-only BG · hardened fetch · daily verse+scene · post-ready desks
  * Educational only — not a fatwa · no free-type scripture as revelation
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_AUTO_C19MEME3__) return;
-  w.__CRAFT_MEME_AUTO_C19MEME3__ = true;
+  if (w.__CRAFT_MEME_AUTO_C19MEME4__) return;
+  w.__CRAFT_MEME_AUTO_C19MEME4__ = true;
 
   var SAFE_KINDS = ["nature", "night", "water", "flowers", "solid"];
   var KIND_QUERIES = {
@@ -376,38 +376,51 @@
    * 3) export/download meme PNG for attachment
    * 4) open platform compose with text prefilled (X) or sharer + clipboard (FB)
    */
+
   function openIntent(network) {
     var packed = fillDesks(false);
     var text = network === "x" ? packed.x : packed.fb;
+    if (!text || !String(text).trim()) {
+      text = formatStandardPost(currentLine() || "Educational reminder · Clarity Craft", network);
+    }
 
-    exportMemePng().then(function (imgMode) {
-      return copyText(text).then(function (ok) {
+    function afterExport() {
+      return copyText(text).then(function () {
         if (network === "x") {
           var url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text);
           w.open(url, "_blank", "noopener,noreferrer");
-          status("𝕏 opened · text prefilled · PNG " + (imgMode === "none" ? "— export canvas first" : "ready to attach"));
+          status("𝕏 opened · caption prefilled");
           var xs = $("x-status");
-          if (xs) xs.textContent = "1-click Tweet ✓ · attach downloaded PNG in compose";
-        } else {
-          var url = "https://www.facebook.com/sharer/sharer.php?u=" +
-            encodeURIComponent("https://clarity-dawah.fyi/") +
-            "&quote=" + encodeURIComponent(text.slice(0, 600));
-          w.open(url, "_blank", "noopener,noreferrer");
-          status("Facebook opened · caption on clipboard · PNG ready to attach");
-          var fs = $("fb-status");
-          if (fs) fs.textContent = "1-click Facebook ✓ · paste caption + attach PNG";
+          if (xs) xs.textContent = "Tweet compose · text prefilled ✓";
+          return;
         }
+        /* Facebook: quote param + clipboard; avoid generic site-only share */
+        var quote = String(text).slice(0, 1200);
+        var shareUrl =
+          "https://www.facebook.com/sharer/sharer.php?u=" +
+          encodeURIComponent("https://clarity-dawah.fyi/craft/meme/") +
+          "&quote=" + encodeURIComponent(quote);
+        /* Mobile deep-link style fallback via facebook.com with quote */
+        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
+        var url = shareUrl;
+        if (isMobile) {
+          url =
+            "https://m.facebook.com/composer/?text=" + encodeURIComponent(quote);
+        }
+        w.open(url, "_blank", "noopener,noreferrer");
+        status("Facebook · caption on clipboard + share window");
+        var fs = $("fb-status");
+        if (fs) fs.textContent = "Facebook · paste caption if needed (copied) ✓";
       });
-    });
+    }
+
+    if (typeof exportMemePng === "function") {
+      exportMemePng().then(afterExport).catch(afterExport);
+    } else {
+      afterExport();
+    }
   }
 
-  /* ——— Daily automation: verse + matching scene ——— */
-  var SECTION_BG = {
-    reminder: "nature",
-    reality: "night",
-    reflection: "water",
-    action: "flowers"
-  };
 
   function dailyPack() {
     status("Daily pack · loading line + scenery…");

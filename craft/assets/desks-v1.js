@@ -43,10 +43,20 @@
       }
       if (openUrl.indexOf("twitter") !== -1 || openUrl.indexOf("x.com") !== -1) {
         window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(t), "_blank", "noopener");
+      } else if (prefix === "fb" || openUrl.indexOf("facebook") !== -1) {
+        var quote = t.slice(0, 1200);
+        var share =
+          "https://www.facebook.com/sharer/sharer.php?u=" +
+          encodeURIComponent("https://clarity-dawah.fyi/craft/meme/") +
+          "&quote=" + encodeURIComponent(quote);
+        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "")) {
+          share = "https://m.facebook.com/composer/?text=" + encodeURIComponent(quote);
+        }
+        window.open(share, "_blank", "noopener");
       } else {
         window.open(openUrl, "_blank", "noopener");
       }
-      if (status) status.textContent = "Opened · paste if needed";
+      if (status) status.textContent = t ? "Opened · caption ready" : "Opened · paste if needed";
     }
 
     var copyBtn = document.getElementById(prefix + "-copy");

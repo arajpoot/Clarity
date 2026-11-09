@@ -1,5 +1,5 @@
-/*! craft-meme-paint-standard-v1 · C19MEME3-final
- * Single-owner paint: keep scenery · Arabic top · English center · ref bottom · gold frame
+/*! craft-meme-paint-standard-v1 · C19MEME4
+ * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
  */
@@ -16,6 +16,10 @@
   var STORE = "clarity.craft.meme.scale.v1";
 
   var scale = { ar: 1, en: 1, ref: 1 };
+  var paintTimer = null;
+  var urduCache = {};
+  var lastUrduKey = '';
+  var lastUrduText = '';
   try {
     var saved = JSON.parse(localStorage.getItem(STORE) || "null");
     if (saved && typeof saved.ar === "number") scale = saved;
@@ -81,7 +85,14 @@
     }
     en = raw.replace(/\s+/g, " ").replace(/\(\s*\)/g, "").replace(/^[\s\-–—:·]+|[\s\-–—:·]+$/g, "").trim();
     en = en.replace(/\s*clarity-dawah\.fyi.*$/i, "").replace(/\s*educational only.*$/i, "").replace(/^[—\-–:]+\s*/, "").trim();
-    return { ar: ar, en: en, ref: ref };
+    var ur = "";
+    /* Urdu-specific letters if present in leftover */
+    var urRe = /[\u0600-\u06FF]*[\u0679\u0688\u0691\u06BA\u06C1\u06BE\u06D2\u06AF\u0686\u06A9\u06A9][\u0600-\u06FF\s،؟؛]*/g;
+    var urParts = String(raw || "").match(urRe);
+    if (urParts && urParts.length) {
+      ur = urParts.map(function (s) { return s.trim(); }).filter(Boolean).join(" ").trim();
+    }
+    return { ar: ar, en: en, ur: ur, ref: ref };
   }
 
   function readSourceText() {
@@ -222,44 +233,65 @@
     ctx.restore();
   }
 
+
   function paintText(ctx, w, h) {
     drawVignette(ctx, w, h);
     drawGoldFrame(ctx, w, h);
     var layers = parseLayers(readSourceText());
     var ar = layers.ar || "";
     var en = layers.en || "";
+    var ur = layers.ur || lastUrduText || "";
     var ref = layers.ref || "";
     var padX = Math.round(w * 0.09);
     var maxW = w - padX * 2;
     var cx = w / 2;
     var arFamily = "Amiri, 'Scheherazade New', 'Noto Naskh Arabic', serif";
     var enFamily = "Georgia, 'Cormorant Garamond', 'Times New Roman', serif";
+    var urFamily = "'Noto Nastaliq Urdu', 'Noto Naskh Arabic', Amiri, serif";
     var refFamily = "Quicksand, Inter, system-ui, sans-serif";
 
+    var hasUr = !!(ur && ur.trim());
+    /* shared vertical bands: with Urdu, English higher, Urdu mid-lower */
+    var arBand = 0.22;
+    var enBand = hasUr ? 0.42 : 0.50;
+    var urBand = 0.62;
+    var refBand = 0.86;
+
     if (ar) {
-      var arBase = Math.round(h * 0.062 * scale.ar);
-      var arMin = Math.round(h * 0.034);
+      var arBase = Math.round(h * 0.058 * scale.ar);
+      var arMin = Math.round(h * 0.032);
       var probe = ar.length > 40 ? ar.slice(0, Math.ceil(ar.length / 2)) : ar;
       var arSize = fitSize(ctx, probe, arBase, arMin, maxW * 0.98, arFamily, "700");
       ctx.font = "700 " + arSize + "px " + arFamily;
       var arLines = wrapArabic(ctx, ar, maxW, 3);
-      var arLH = Math.round(arSize * 1.5);
+      var arLH = Math.round(arSize * 1.48);
       var arBlock = arLines.length * arLH;
-      var arY = Math.round(h * 0.26) - arBlock / 2 + arLH / 2;
+      var arY = Math.round(h * arBand) - arBlock / 2 + arLH / 2;
       drawCentered(ctx, arLines, cx, arY, arLH, CREAM);
     }
     if (en) {
-      var enBase = Math.round(h * 0.038 * scale.en);
-      var enMin = Math.round(h * 0.024);
-      var enSize = fitSize(ctx, en.split(/\s+/).slice(0, 7).join(" "), enBase, enMin, maxW * 0.94, enFamily, "600");
+      var enBase = Math.round(h * (hasUr ? 0.032 : 0.038) * scale.en);
+      var enMin = Math.round(h * 0.022);
+      var enSize = fitSize(ctx, en.split(/\\s+/).slice(0, 7).join(" "), enBase, enMin, maxW * 0.94, enFamily, "600");
       ctx.font = "600 " + enSize + "px " + enFamily;
-      var enLines = wrapLines(ctx, en, maxW, 4);
-      var enLH = Math.round(enSize * 1.38);
+      var enLines = wrapLines(ctx, en, maxW, hasUr ? 3 : 4);
+      var enLH = Math.round(enSize * 1.35);
       var enBlock = enLines.length * enLH;
-      var enY = Math.round(h * 0.52) - enBlock / 2 + enLH / 2;
+      var enY = Math.round(h * enBand) - enBlock / 2 + enLH / 2;
       drawCentered(ctx, enLines, cx, enY, enLH, GOLD);
     }
-    var refY = Math.round(h * 0.86);
+    if (hasUr) {
+      var urBase = Math.round(h * 0.034 * scale.en);
+      var urMin = Math.round(h * 0.022);
+      var urSize = fitSize(ctx, ur.split(/\\s+/).slice(0, 6).join(" "), urBase, urMin, maxW * 0.94, urFamily, "600");
+      ctx.font = "600 " + urSize + "px " + urFamily;
+      var urLines = wrapArabic(ctx, ur, maxW, 3);
+      var urLH = Math.round(urSize * 1.45);
+      var urBlock = urLines.length * urLH;
+      var urY = Math.round(h * urBand) - urBlock / 2 + urLH / 2;
+      drawCentered(ctx, urLines, cx, urY, urLH, CREAM_DIM);
+    }
+    var refY = Math.round(h * refBand);
     ctx.save();
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -276,7 +308,49 @@
     ctx.restore();
   }
 
-  function fullPaint() {
+  function schedulePaint() {
+    if (paintTimer) clearTimeout(paintTimer);
+    paintTimer = setTimeout(function () {
+      paintTimer = null;
+      fullPaintNow();
+    }, 48);
+  }
+
+  function fetchUrduThenPaint() {
+    var layers = parseLayers(readSourceText());
+    if (layers.ur) {
+      lastUrduText = layers.ur;
+      schedulePaint();
+      return;
+    }
+    var en = layers.en || "";
+    if (!en) { schedulePaint(); return; }
+    var key = en.slice(0, 180);
+    if (urduCache[key]) {
+      lastUrduText = urduCache[key];
+      schedulePaint();
+      return;
+    }
+    if (lastUrduKey === key && lastUrduText) {
+      schedulePaint();
+      return;
+    }
+    lastUrduKey = key;
+    /* try free translation endpoint; fail soft */
+    var url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(en.slice(0, 400)) + "&langpair=en|ur";
+    fetch(url, { credentials: "omit" }).then(function (r) { return r.json(); }).then(function (j) {
+      var out = (j && j.responseData && j.responseData.translatedText) || "";
+      out = String(out).trim();
+      if (/INVALID|QUERY LENGTH|MYMEMORY|ERROR/i.test(out)) out = "";
+      if (out) {
+        urduCache[key] = out;
+        lastUrduText = out;
+      }
+      schedulePaint();
+    }).catch(function () { schedulePaint(); });
+  }
+
+  function fullPaintNow() {
     var canvas = getCanvas();
     if (!canvas) return false;
     var ctx = canvas.getContext("2d");
@@ -303,7 +377,7 @@
     img.crossOrigin = "anonymous";
     img.onload = function () {
       rememberBg(img);
-      fullPaint();
+      fullPaintNow();
       var st = $("meme-fetch-status");
       if (st) st.textContent = "Background ready";
     };
@@ -340,7 +414,7 @@
     }
     try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e1) {}
     syncSliders();
-    fullPaint();
+    schedulePaint();
   }
 
   function syncSliders() {
@@ -390,7 +464,7 @@
     if (apply) apply.addEventListener("click", function () {
       onSlide();
       try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e) {}
-      fullPaint();
+      schedulePaint();
     });
     var auto = $("meme-scale-auto");
     if (auto) auto.addEventListener("click", autoScale);
@@ -399,7 +473,7 @@
       scale = { ar: 1, en: 1, ref: 1 };
       try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e2) {}
       syncSliders();
-      fullPaint();
+      schedulePaint();
     });
   }
 
@@ -410,11 +484,12 @@
     };
     w.memeLoadImageFromUrl._craftStd = true;
 
-    w.memeDraw = function () { fullPaint(); };
+    w.memeDraw = function () { schedulePaint(); };
     w.memeDraw._craftStd = true;
 
-    w.craftMemePaintStandard = fullPaint;
-    w.craftMemeRepaintStandard = fullPaint;
+    w.craftMemePaintStandard = schedulePaint;
+    w.craftMemeRepaintStandard = schedulePaint;
+    
     w.craftMemeParseLayers = parseLayers;
     w.memeAutoScaleLines = autoScale;
     w.craftMemeSetScale = function (ar, en) {
@@ -422,7 +497,7 @@
       if (typeof en === "number") scale.en = Math.min(1.4, Math.max(0.5, en));
       try { localStorage.setItem(STORE, JSON.stringify(scale)); } catch (e) {}
       syncSliders();
-      fullPaint();
+      schedulePaint();
     };
 
     /* if something sets memeState.img later, repaint */
@@ -467,7 +542,7 @@
         setTimeout(function () {
           var st = w.memeState;
           if (st && st.img) rememberBg(st.img);
-          fullPaint();
+          schedulePaint();
         }, 700);
       });
     }
@@ -486,7 +561,7 @@
     setTimeout(installHooks, 400);
     setTimeout(installHooks, 1200);
     setTimeout(wireUi, 600);
-    setTimeout(function () { fullPaint(); }, 900);
+    setTimeout(function () { fetchUrduThenPaint(); }, 900);
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
