@@ -110,8 +110,8 @@
 <div class="meme-auto-bar" role="group" aria-label="Automation">
   <button type="button" class="btn" id="meme-daily-pack">✦ Daily pack · verse + scene</button>
   <button type="button" class="btn secondary" id="meme-fill-desks">Fill desks (post-ready)</button>
-  <button type="button" class="btn secondary" id="meme-post-x">Post-ready → 𝕏</button>
-  <button type="button" class="btn secondary" id="meme-post-fb">Post-ready → Facebook</button>
+  <button type="button" class="btn" id="meme-post-x">1-click Tweet 𝕏</button>
+  <button type="button" class="btn" id="meme-post-fb">1-click Facebook</button>
 </div>
 
 <section class="tool-section">
@@ -199,7 +199,7 @@
           <textarea id="x-draft" class="composer-textarea" rows="4" maxlength="280" placeholder="Source or canvas fills this…"></textarea>
           <div class="desk-actions wire-actions">
             <button type="button" class="btn" data-desk="x" data-action="copy">Copy</button>
-            <button type="button" class="btn primary" data-desk="x" data-action="open">Open 𝕏</button>
+            <button type="button" class="btn primary" id="x-publish" data-desk="x" data-action="publish">1-click Tweet 𝕏</button>
           </div>
           <p class="char-count"><span id="x-count">0</span> / 280</p>
           <p id="x-status" class="panel-note">Ready</p>
@@ -209,7 +209,7 @@
           <textarea id="fb-draft" class="composer-textarea" rows="5" placeholder="Source or canvas fills this…"></textarea>
           <div class="desk-actions wire-actions">
             <button type="button" class="btn" data-desk="fb" data-action="copy">Copy</button>
-            <button type="button" class="btn primary" data-desk="fb" data-action="open">Open Facebook</button>
+            <button type="button" class="btn primary" id="fb-publish" data-desk="fb" data-action="publish">1-click Facebook</button>
           </div>
           <p id="fb-status" class="panel-note">Ready</p>
         </div>
@@ -219,7 +219,7 @@
 </main>
 
   <footer class="craft-footer">
-    <p>Clarity Craft · Meme Studio C17 · Educational only — not a fatwa</p>
+    <p>Clarity Craft · Meme Studio C19MEME1 · Educational only — not a fatwa</p>
   </footer>
 
   <!-- Existing Craft studio stack -->
