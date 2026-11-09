@@ -1,8 +1,9 @@
-# Meme Studio C19MEME3 — post-quality canvas
+# Meme Studio C19MEME4 — final polished
 
-- Single-pass paint matching clean X post style
-- Cover-fit background, soft vignette, gold frame
-- Text scale panel (Arabic / English) + auto-scale
-- Media Reminder dual-paint silenced on this page
+- Post-quality canvas: Arabic · English · **Urdu** · reference · gold frame
+- Scenery retained · debounced paint (no flash)
+- Text scale + auto-scale
+- X + Facebook share with caption
+- Governance & enrichment audit: PASS
 
 Educational only — not a fatwa.
