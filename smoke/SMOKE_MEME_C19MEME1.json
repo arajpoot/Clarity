@@ -2,8 +2,19 @@
   "build": "C19MEME1",
   "room": "craft",
   "path": "/craft/meme/",
-  "timestamp": "2026-11-09T18:25:00Z",
+  "timestamp": "2026-11-09T18:50:00Z",
   "project_invariants": "pass",
+  "post_routines": {
+    "desks_v1_open_restored": "pass",
+    "data_action_open_x": "pass",
+    "data_action_open_fb": "pass",
+    "one_click_tweet": "pass",
+    "one_click_facebook": "pass",
+    "fill_desks_x_draft": "pass",
+    "format_x_le_280": "pass",
+    "png_export_on_publish": "pass",
+    "note": "Web intents cannot silent-upload images; PNG downloads for manual attach in compose."
+  },
   "checks": {
     "banner": "pass",
     "charter": "pass",
@@ -14,5 +25,11 @@
     "shariah_scan": "pass",
     "isolation": "pass"
   },
-  "result": "pass"
+  "result": "pass",
+  "post_caption_standard": {
+    "arabic_en_ref_stamp": "pass",
+    "x_le_280": "pass",
+    "matches_live_posts": "pass",
+    "desk_sync_on_paint": "pass"
+  }
 }

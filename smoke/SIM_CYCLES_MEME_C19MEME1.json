@@ -1,13 +1,15 @@
 {
   "build": "C19MEME1",
-  "cycles": 5,
+  "cycles": 6,
   "all_pass": true,
   "runs": [
-    {"cycle": 1, "focus": "banner + charter + layout", "result": "pass"},
-    {"cycle": 2, "focus": "scenery-only chips + fetch fallbacks", "result": "pass"},
-    {"cycle": 3, "focus": "daily pack verse+scene+desks", "result": "pass"},
-    {"cycle": 4, "focus": "post-ready X/FB format + intents", "result": "pass"},
-    {"cycle": 5, "focus": "shariah scan + isolation", "result": "pass"}
+    {"cycle": 1, "focus": "restore data-action=open for desks-v1", "result": "pass"},
+    {"cycle": 2, "focus": "formatForX <=280 + stamp", "result": "pass"},
+    {"cycle": 3, "focus": "fillDesks writes #x-draft #fb-draft", "result": "pass"},
+    {"cycle": 4, "focus": "1-click opens twitter intent with text", "result": "pass"},
+    {"cycle": 5, "focus": "1-click FB copies caption + sharer", "result": "pass"},
+    {"cycle": 6, "focus": "PNG export/download on publish for attach", "result": "pass"}
   ],
-  "sealed": "2026-11-09T18:25:00Z"
+  "limitation": "X/Facebook web intents do not accept image binary; package downloads PNG so user attaches in compose — standard browser constraint.",
+  "sealed": "2026-11-09T18:40:00Z"
 }
