@@ -1,34 +1,29 @@
-# Clarity · Tajweed Deep Studio upgrade · C19TJ1
+# Clarity · Meme Studio upgrade · C19MEME1
 
-**Bismillah.** Educational only — not a fatwa · not a qāriʾ verdict.
+**Bismillah.** Educational only — not a fatwa.
 
 ## Architecture review (summary)
 
-Live flow already had four stages: **Curriculum (L0–L6) → Rules → LMR → Journal**, with partial score→curriculum bumps in `craft-tajweed-flow-v1` / `score-pill-v3`.
+| Stage | Role | C19MEME1 fix |
+|-------|------|----------------|
+| Section sources (RRRA) | Pack lines → canvas + desks | Unchanged; still governed |
+| Background pills | Online scenery | **Scenery-only** (nature/night/water/flowers/solid); holy/free hidden; hardened fetch + fallbacks |
+| Canvas / ratios | Export PNG | Unchanged |
+| Desks 𝕏 + Facebook | Caption boxes | **Post-ready format** + one-button intents |
+| Layout | Tool page | Banner + media daʿwah charter + automation bar |
 
-### Gaps closed in C19TJ1
-| Gap | Fix |
-|-----|-----|
-| Layout below DVI bar | Craft hero **banner** + bismillah + flow pills + practice charter |
-| Journal unbounded | **Collapsed to 5 recent** · expandable |
-| Path meters laggy / partial | **Realtime bridge**: every scored session → journal + active level meters + analysis refresh |
-| Weak student guidance | **Today's focus drill** from weakest phase · one-click Pull into studio |
-| Rule order clarity | Charter states research-aligned path: Makhārij → Ṣifāt → Madd → Nūn → Mīm/Ghunnah → Integration |
+## New automation
+- **Daily pack** — rotates Reminder/Reality/Reflection/Action by day · pulls matching scenery · fills desks  
+- **Fill desks** — formats text for X (≤280 + stamp) and Facebook  
+- **Post-ready → 𝕏 / Facebook** — opens share intents with formatted caption  
+- Fetch: Wikimedia Commons landscape queries → picsum seed → solid gradient fallback  
 
 ## Package
 ```
-craft/tajweed/index.html
-craft/assets/craft-tajweed-progress-bridge-v1.js
-docs/TAJWEED_DEPLOY.md
-governance/TAJWEED_GOVERNANCE_AUDIT.md
-smoke/SMOKE_TJ_C19TJ1.json
-smoke/SIM_CYCLES_TJ_C19TJ1.json
+craft/meme/index.html
+craft/assets/craft-meme-automation-v1.js
+docs/MEME_DEPLOY.md
+governance/ + smoke/
 ```
 
-Existing vendor/LMR scripts on the live site are **not replaced** — this pack adds the bridge and upgrades the shell HTML.
-
-## Storage
-- `clarity_tajweed_practice_journal_v1`
-- `clarity_tajweed_curriculum_v2`
-
-Isolation: Craft only. Educational stamps retained.
+Existing meme vendor scripts stay on the live site; this pack upgrades the shell and injects automation.
