@@ -80,7 +80,7 @@
   function fetchSection(sectionId) {
     var sec = SECTIONS[sectionId] || SECTIONS.reminder;
     var line = pick(sec.lines);
-    /* C19MEME2 self-contained: local SECTIONS packs only (no Companion bridge) */
+    /* C19MEME3 self-contained: local SECTIONS packs only (no Companion bridge) */
     return {
       section: sectionId,
       label: sec.label,
