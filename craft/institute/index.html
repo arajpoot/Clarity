@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
-  <meta name="clarity-build" content="C19DVI5" />
+  <meta name="clarity-build" content="C19DVI6" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Dawah Vocational Institute · App Building Lab · Craft · Clarity</title>
@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109C19DVI5" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261109C19DVI5" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109C19DVI6" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261109C19DVI6" />
   <script>window.__CLARITY_ROOM__ = 'craft'; window.__CLARITY_SKIP_DAY_LANDING__ = true;</script>
   <style>
     :root { --dvi-gold: rgba(212,180,90,0.35); --dvi-green: #1e7d5e; --dvi-panel: rgba(0,0,0,0.22); }
@@ -116,6 +116,65 @@
       font-size: 0.72rem; font-weight: 700; margin-top: 0.05rem;
     }
 
+    
+    .ex-rail { display:flex; flex-wrap:wrap; gap:0.4rem; margin:0.6rem 0 1rem; }
+    .ex-rail button {
+      border-radius:999px; border:1px solid var(--dvi-gold); background:rgba(15,76,58,0.25);
+      color:inherit; padding:0.35rem 0.85rem; font-weight:700; font-size:0.78rem; cursor:pointer;
+    }
+    .ex-rail button.active { background:var(--dvi-green); color:#fff; border-color:transparent; }
+    .ex-app { display:none; }
+    .ex-app.active { display:block; }
+    .nur-card {
+      border-radius:18px; border:1px solid rgba(212,180,90,0.4);
+      background:linear-gradient(165deg,rgba(15,76,58,0.35),rgba(8,20,16,0.5));
+      padding:1.4rem 1.3rem; text-align:center; max-width:420px; margin:0.5rem auto;
+      box-shadow:0 8px 28px rgba(0,0,0,0.25);
+    }
+    .nur-card .ar { font-family:Amiri,serif; font-size:1.35rem; line-height:1.7; direction:rtl; margin:0.4rem 0; }
+    .nur-card .en { font-size:0.95rem; opacity:0.92; margin:0.5rem 0; }
+    .nur-card .ref { font-size:0.78rem; opacity:0.75; }
+    .nur-card .stamp { font-size:0.72rem; opacity:0.8; margin-top:0.75rem; border-top:1px solid rgba(212,180,90,0.2); padding-top:0.55rem; }
+    .gate-grid { display:grid; gap:0.75rem; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); }
+    .gate {
+      border-radius:14px; border:1px solid rgba(212,180,90,0.28); background:rgba(0,0,0,0.22);
+      padding:0.9rem 1rem; cursor:pointer; transition:border-color .15s;
+    }
+    .gate:hover, .gate.open { border-color:rgba(212,180,90,0.6); background:rgba(15,76,58,0.2); }
+    .gate h4 { margin:0 0 0.3rem; color:#e8d5a3; font-size:0.95rem; }
+    .gate p { margin:0; font-size:0.82rem; opacity:0.88; line-height:1.4; }
+    .gate .g-src { font-size:0.72rem; opacity:0.7; margin-top:0.35rem; }
+    .gate-detail {
+      margin-top:0.85rem; padding:0.9rem 1rem; border-radius:12px;
+      border:1px solid rgba(212,180,90,0.25); background:rgba(0,0,0,0.25); display:none;
+    }
+    .gate-detail.show { display:block; }
+    .stem-q { font-size:1rem; margin:0.6rem 0 0.4rem; }
+    .stem-opts button {
+      display:block; width:100%; text-align:left; margin:0.3rem 0; padding:0.55rem 0.75rem;
+      border-radius:10px; border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.25);
+      color:inherit; cursor:pointer; font:inherit;
+    }
+    .stem-opts button:hover { border-color:var(--dvi-green); }
+    .stem-opts button.ok { border-color:#1e7d5e; background:rgba(30,125,94,0.35); }
+    .stem-opts button.no { border-color:rgba(180,80,80,0.5); opacity:0.7; }
+    .stem-fb { margin-top:0.6rem; font-size:0.88rem; line-height:1.45; min-height:2.5rem; }
+    .compass-feel { display:flex; flex-wrap:wrap; gap:0.4rem; margin:0.5rem 0; }
+    .compass-feel button {
+      border-radius:999px; border:1px solid var(--dvi-gold); background:rgba(15,76,58,0.25);
+      color:inherit; padding:0.4rem 0.9rem; font-weight:600; font-size:0.8rem; cursor:pointer;
+    }
+    .compass-feel button.active { background:var(--dvi-green); color:#fff; border-color:transparent; }
+    .compass-out {
+      margin-top:0.75rem; padding:1rem; border-radius:14px; border:1px solid rgba(212,180,90,0.3);
+      background:rgba(0,0,0,0.25); min-height:5rem;
+    }
+    .compass-out .ar { font-family:Amiri,serif; font-size:1.15rem; direction:rtl; margin:0.3rem 0; }
+    .surprise-badge {
+      display:inline-block; font-size:0.68rem; font-weight:700; letter-spacing:0.04em;
+      padding:0.15rem 0.5rem; border-radius:6px; background:rgba(212,180,90,0.25); color:#e8d5a3; margin-left:0.35rem;
+    }
+
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
   
@@ -172,7 +231,7 @@
 
   <!-- Banner (Craft pattern) -->
   <div class="craft-hero-banner" role="img" aria-label="Registan · Clarity Craft · Dawah Vocational Institute">
-    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261109C19DVI5" alt="Registan · Ulugh Beg Madrasa · Clarity Crafts" width="1600" height="680" loading="eager" />
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261109C19DVI6" alt="Registan · Ulugh Beg Madrasa · Clarity Crafts" width="1600" height="680" loading="eager" />
     <span class="banner-credit">Photo · Registan · educational use</span>
   </div>
 
@@ -227,6 +286,7 @@
       <button type="button" data-tab="curriculum">Curriculum</button>
       <button type="button" data-tab="tools">Extra tools</button>
       <button type="button" data-tab="examples">Seeker examples</button>
+      <button type="button" data-tab="demoapps">✦ Example apps</button>
       <button type="button" data-tab="resources">Authentic resources</button>
       <button type="button" data-tab="outline">App outline</button>
       <button type="button" data-tab="print">One-pager</button>
@@ -359,6 +419,87 @@ Each: title, 2–3 educational points, primary source citation field, reflection
       <ul class="example-list" id="seeker-examples"></ul>
     </section>
 
+
+    <!-- EXAMPLE APPS (embedded demos · charter-compliant) -->
+    <section class="dvi-panel tab-panel" id="panel-demoapps" role="tabpanel">
+      <h2>✦ Example apps <span class="surprise-badge">LIVE DEMOS</span></h2>
+      <p class="edu-note">
+        Four self-contained educational mini-apps. Local only · no accounts · no Campus progress · no fatwa.
+        Sources are pack-backed or primary-referenced. Use them as patterns for your own builds in the Lab.
+      </p>
+      <div class="ex-rail" role="tablist" aria-label="Example app switcher">
+        <button type="button" class="active" data-ex="nur">Nur Card</button>
+        <button type="button" data-ex="gates">Four Gates</button>
+        <button type="button" data-ex="stem">Stem Runner</button>
+        <button type="button" data-ex="compass">Sabr Compass</button>
+      </div>
+
+      <!-- 1 · Nur Card -->
+      <div class="ex-app active" id="ex-nur">
+        <div class="dvi-card">
+          <h3>Nur Card · reminder flip</h3>
+          <p>One sourced line at a time. Educational stamp always on.</p>
+          <div class="nur-card" id="nur-face">
+            <div class="ar" id="nur-ar">—</div>
+            <div class="en" id="nur-en">Tap Next for a line</div>
+            <div class="ref" id="nur-ref"></div>
+            <div class="stamp">Educational only — not a fatwa · clarity-dawah.fyi</div>
+          </div>
+          <div class="dvi-actions" style="justify-content:center;margin-top:0.75rem">
+            <button type="button" id="nur-next">Next line</button>
+            <button type="button" id="nur-copy" class="secondary">Copy text</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 · Four Gates -->
+      <div class="ex-app" id="ex-gates">
+        <div class="dvi-card">
+          <h3>Four Gates · Seeker path (static)</h3>
+          <p>Illustrative map only — not a grade, not Campus progress. Open a gate to read aim + source.</p>
+          <div class="gate-grid" id="gate-grid"></div>
+          <div class="gate-detail" id="gate-detail"></div>
+        </div>
+      </div>
+
+      <!-- 3 · Stem Runner -->
+      <div class="ex-app" id="ex-stem">
+        <div class="dvi-card">
+          <h3>Stem Runner · educational quiz</h3>
+          <p>Feedback points to sources — never a ruling. No cloud score · no īmān grade.</p>
+          <div id="stem-box">
+            <div class="stem-q" id="stem-q">Loading…</div>
+            <div class="stem-opts" id="stem-opts"></div>
+            <div class="stem-fb" id="stem-fb"></div>
+          </div>
+          <div class="dvi-actions" style="margin-top:0.7rem">
+            <button type="button" id="stem-next">Next stem</button>
+            <button type="button" id="stem-reset" class="secondary">Reset</button>
+          </div>
+          <p class="edu-note" id="stem-status" style="margin-top:0.5rem"></p>
+        </div>
+      </div>
+
+      <!-- 4 · Sabr Compass (surprise) -->
+      <div class="ex-app" id="ex-compass">
+        <div class="dvi-card">
+          <h3>Sabr Compass <span class="surprise-badge">SURPRISE</span></h3>
+          <p>Name a state of the heart → receive a sourced reflection + one small deed. Educational map only.</p>
+          <div class="compass-feel" id="compass-feel">
+            <button type="button" data-feel="anxious">Anxious</button>
+            <button type="button" data-feel="grateful">Grateful</button>
+            <button type="button" data-feel="tired">Tired</button>
+            <button type="button" data-feel="hopeful">Hopeful</button>
+            <button type="button" data-feel="lonely">Lonely</button>
+            <button type="button" data-feel="angry">Angry</button>
+          </div>
+          <div class="compass-out" id="compass-out">
+            <span style="opacity:0.75">Choose a state above</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- AUTHENTIC RESOURCES -->
     <section class="dvi-panel tab-panel" id="panel-resources" role="tabpanel">
       <h2>5 · Online authentic · Shariah-compliant primary resources</h2>
@@ -413,11 +554,11 @@ Each: title, 2–3 educational points, primary source citation field, reflection
   <div id="print-root" aria-hidden="true"></div>
 
   <footer class="craft-footer">
-    <p>Clarity Craft · Dawah Vocational Institute C19DVI5 · Educational only — not a fatwa · pure daʿwah charter</p>
+    <p>Clarity Craft · Dawah Vocational Institute C19DVI6 · Educational only — not a fatwa · pure daʿwah charter</p>
   </footer>
 
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109C19DVI5" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261109C19DVI5" defer></script>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109C19DVI6" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261109C19DVI6" defer></script>
   <script>
   (function () {
     "use strict";
@@ -748,7 +889,7 @@ Each: title, 2–3 educational points, primary source citation field, reflection
       });
       lines.push("");
       lines.push("Verify primary texts on quran.com / sunnah.com · consult a local teacher.");
-      lines.push("clarity-dawah.fyi/craft/institute · C19DVI5");
+      lines.push("clarity-dawah.fyi/craft/institute · C19DVI6");
       var text = lines.join("\n");
       document.getElementById("print-preview").textContent = text;
       document.getElementById("print-root").innerHTML = "<h1>Clarity · Dawah Vocational Institute</h1><p class='edu-stamp'>Educational only — not a fatwa</p><pre style='white-space:pre-wrap;font-family:inherit;font-size:0.95rem'>" + escapeHtml(text) + "</pre>";
@@ -760,6 +901,123 @@ Each: title, 2–3 educational points, primary source citation field, reflection
       window.print();
     });
   })();
+  
+    /* ——— Example apps (charter-compliant demos) ——— */
+    (function () {
+      var NUR = [
+        { ar: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", en: "Verily, in the remembrance of Allah do hearts find rest.", ref: "Qur’an 13:28" },
+        { ar: "إِنَّ مَعَ الْعُسْرِ يُسْرًا", en: "Indeed, with hardship comes ease.", ref: "Qur’an 94:6" },
+        { ar: "وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ", en: "And be patient, and your patience is only through Allah.", ref: "Qur’an 16:127" },
+        { ar: "فَاذْكُرُونِي أَذْكُرْكُمْ", en: "So remember Me; I will remember you.", ref: "Qur’an 2:152" },
+        { ar: "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ", en: "And He is with you wherever you are.", ref: "Qur’an 57:4" }
+      ];
+      var ni = 0;
+      function showNur() {
+        var L = NUR[ni % NUR.length];
+        document.getElementById("nur-ar").textContent = L.ar;
+        document.getElementById("nur-en").textContent = L.en;
+        document.getElementById("nur-ref").textContent = "(" + L.ref + ")";
+      }
+      document.getElementById("nur-next").addEventListener("click", function () { ni++; showNur(); });
+      document.getElementById("nur-copy").addEventListener("click", function () {
+        var L = NUR[ni % NUR.length];
+        var t = L.ar + "\n" + L.en + "\n(" + L.ref + ")\nEducational only — not a fatwa";
+        navigator.clipboard.writeText(t).catch(function(){});
+      });
+      showNur();
+
+      var GATES = [
+        { n: "1", title: "Tawḥīd", aim: "Hold that Allah is One — no partner in worship or lordship.", source: "Qur’an 112 · educational map", action: "Recite al-Ikhlāṣ with meaning once." },
+        { n: "2", title: "Prayer meaning", aim: "Know why ṣalāh stands five times — connection, not habit alone.", source: "Qur’an 20:14 · educational", action: "Pray one ṣalāh with slower recitation." },
+        { n: "3", title: "Character", aim: "Truthfulness and trustworthiness as the Prophet’s ﷺ mark.", source: "Bukhārī · educational summary", action: "Keep one promise today without delay." },
+        { n: "4", title: "Invitation etiquette", aim: "Call with wisdom and good instruction (16:125).", source: "Qur’an 16:125 · educational", action: "Share one calm reminder, not an argument." }
+      ];
+      var ggrid = document.getElementById("gate-grid");
+      var gdet = document.getElementById("gate-detail");
+      GATES.forEach(function (g) {
+        var d = document.createElement("div");
+        d.className = "gate";
+        d.innerHTML = "<h4>" + g.n + " · " + g.title + "</h4><p>" + g.aim + "</p>";
+        d.addEventListener("click", function () {
+          document.querySelectorAll(".gate").forEach(function (x) { x.classList.remove("open"); });
+          d.classList.add("open");
+          gdet.className = "gate-detail show";
+          gdet.innerHTML = "<strong>" + g.title + "</strong><br>Aim: " + g.aim +
+            "<br><span class='g-src'>Source: " + g.source + "</span><br>Small action: " + g.action +
+            "<br><span class='g-src'>Educational only — not a grade · not Campus progress</span>";
+        });
+        ggrid.appendChild(d);
+      });
+
+      var STEMS = [
+        { q: "What is the first truth a seeker holds?", opts: ["Tawḥīd — Allah is One", "Many paths are equal", "Only ritual matters"], ok: 0, fb: "Qur’an 112 · educational map — Tawḥīd is the foundation." },
+        { q: "With hardship, what does the Qur’an promise?", opts: ["More hardship", "Ease", "Silence"], ok: 1, fb: "Qur’an 94:6 — Indeed, with hardship comes ease. Educational only." },
+        { q: "How should invitation (daʿwah) be offered?", opts: ["With argument first", "With wisdom and good instruction", "With force"], ok: 1, fb: "Qur’an 16:125 — wisdom, good instruction, and the best manner." },
+        { q: "Where do hearts find rest, according to 13:28?", opts: ["In distraction", "In the remembrance of Allah", "In isolation from people"], ok: 1, fb: "Qur’an 13:28 — in the remembrance of Allah do hearts find rest." },
+        { q: "Is this workbench a fatwa desk?", opts: ["Yes", "No — educational only", "Sometimes"], ok: 1, fb: "Charter: Educational only — not a fatwa. Always verify primary texts." }
+      ];
+      var si = 0, answered = false;
+      function renderStem() {
+        answered = false;
+        var S = STEMS[si % STEMS.length];
+        document.getElementById("stem-q").textContent = S.q;
+        document.getElementById("stem-fb").textContent = "";
+        document.getElementById("stem-status").textContent = "Stem " + ((si % STEMS.length) + 1) + " of " + STEMS.length + " · educational only";
+        var box = document.getElementById("stem-opts");
+        box.innerHTML = "";
+        S.opts.forEach(function (o, i) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.textContent = o;
+          b.addEventListener("click", function () {
+            if (answered) return;
+            answered = true;
+            Array.prototype.forEach.call(box.children, function (c, j) {
+              if (j === S.ok) c.classList.add("ok");
+              else if (j === i) c.classList.add("no");
+            });
+            document.getElementById("stem-fb").textContent = S.fb;
+          });
+          box.appendChild(b);
+        });
+      }
+      document.getElementById("stem-next").addEventListener("click", function () { si++; renderStem(); });
+      document.getElementById("stem-reset").addEventListener("click", function () { si = 0; renderStem(); });
+      renderStem();
+
+      var COMPASS = {
+        anxious: { ar: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", en: "In the remembrance of Allah do hearts find rest.", ref: "Qur’an 13:28", deed: "Sit for one minute of quiet dhikr: Subḥānallāh." },
+        grateful: { ar: "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ", en: "If you are grateful, I will surely increase you.", ref: "Qur’an 14:7", deed: "Name three blessings out loud and thank Allah for each." },
+        tired: { ar: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا", en: "For indeed, with hardship comes ease.", ref: "Qur’an 94:5", deed: "Rest briefly, then pray two light rakʿahs if you can." },
+        hopeful: { ar: "وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ", en: "My mercy encompasses all things.", ref: "Qur’an 7:156", deed: "Make one sincere duʿā’ for someone else today." },
+        lonely: { ar: "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ", en: "And He is with you wherever you are.", ref: "Qur’an 57:4", deed: "Send a kind message to one person — or open a Qur’an page." },
+        angry: { ar: "وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ", en: "Those who restrain anger and pardon people…", ref: "Qur’an 3:134", deed: "Pause, seek refuge, and delay any reply until calm." }
+      };
+      document.querySelectorAll("#compass-feel [data-feel]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll("#compass-feel [data-feel]").forEach(function (b) { b.classList.remove("active"); });
+          btn.classList.add("active");
+          var C = COMPASS[btn.getAttribute("data-feel")];
+          document.getElementById("compass-out").innerHTML =
+            '<div class="ar">' + C.ar + '</div>' +
+            '<div>' + C.en + '</div>' +
+            '<div class="ref" style="opacity:0.75;font-size:0.8rem;margin-top:0.35rem">(' + C.ref + ')</div>' +
+            '<div style="margin-top:0.55rem"><strong>Small deed:</strong> ' + C.deed + '</div>' +
+            '<div style="font-size:0.72rem;opacity:0.75;margin-top:0.5rem">Educational only — not a fatwa · not therapy · verify primary texts</div>';
+        });
+      });
+
+      document.querySelectorAll(".ex-rail [data-ex]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".ex-rail [data-ex]").forEach(function (b) { b.classList.remove("active"); });
+          document.querySelectorAll(".ex-app").forEach(function (a) { a.classList.remove("active"); });
+          btn.classList.add("active");
+          var app = document.getElementById("ex-" + btn.getAttribute("data-ex"));
+          if (app) app.classList.add("active");
+        });
+      });
+    })();
+
   </script>
 </body>
 </html>
