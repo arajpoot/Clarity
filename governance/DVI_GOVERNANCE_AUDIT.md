@@ -1,25 +1,22 @@
-# DVI Governance Audit · C19DVI5
-
-**Bismillah.** Educational only — not a fatwa.
+# DVI Governance Audit · C19DVI6
 
 | Check | Result |
 |-------|--------|
 | PROJECT_CONTRACT P1–P7 | **PASS** |
-| Craft isolation | **PASS** — institute under `/craft/` only |
-| Landing tile present | **PASS** — `craft/index.html` plaque grid includes DVI |
-| Source discipline (RRRA) | **PASS** |
-| Seeker examples read-only | **PASS** |
-| Local storage prefix | `clarity.craft.institute.*` |
-| Lab enrichment clause | **PASS** — external tools + prompts, no cross-room scripts |
-| Short tutorial section | **PASS** — on-bench instructional steps |
+| Craft isolation | **PASS** |
+| Landing tile | **PASS** |
+| Tutorial section | **PASS** |
+| Example apps (4 demos) | **PASS** — local, sourced, stamped |
+| Source discipline | **PASS** |
+| Seeker / Four Gates readonly | **PASS** — no Campus coupling |
+| Lab enrichment | **PASS** |
 | Educational stamp | **PASS** |
-| Print / export local-first | **PASS** |
 
-## 5-cycle simulation (sealed)
+## 5-cycle sim
 1. Presence + isolation — pass  
-2. Landing tile + plaque href — pass  
-3. Tutorial + charter visible — pass  
-4. Lab cards + source chips + exports — pass  
-5. Seeker readonly + print one-pager — pass  
+2. Landing tile — pass  
+3. Tutorial + charter — pass  
+4. Example apps (Nur / Gates / Stem / Compass) — pass  
+5. Lab + exports + print — pass  
 
 **all_pass: true** · sealed 2026-11-09
