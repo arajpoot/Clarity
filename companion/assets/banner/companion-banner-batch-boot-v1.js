@@ -16,7 +16,8 @@
   var WAVE3 = [
     "/companion/assets/companion-banner-enrich-v1.js",
     "/companion/assets/companion-haramain-temps-v1.js",
-    "/companion/assets/banner/companion-banner-owner-v1.js"
+    "/companion/assets/banner/companion-banner-owner-v1.js",
+    "/companion/assets/banner/companion-banner-audio-v1.js"
   ];
   function loadOne(src) {
     return new Promise(function (resolve) {
