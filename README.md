@@ -1,11 +1,8 @@
-# Clarity · Meme Studio · C19MEME2
+# Meme Studio C19MEME3 — post-quality canvas
 
-Self-contained Craft Meme Studio.
-
-- Single-pass canvas (Arabic · English · ref · gold frame) — no double paint
-- Local RRRA section packs (no Companion dependency)
-- Standard post captions + top-rail 1-click
-- Desks: Copy / Open only
-- Scenery-only backgrounds
+- Single-pass paint matching clean X post style
+- Cover-fit background, soft vignette, gold frame
+- Text scale panel (Arabic / English) + auto-scale
+- Media Reminder dual-paint silenced on this page
 
 Educational only — not a fatwa.
