@@ -1,0 +1,92 @@
+/*! craft-tajweed-glass-v1 · full width plaques · educational only */
+:root {
+  --tj-gold: rgba(212, 180, 90, 0.4);
+  --tj-glass: rgba(15, 76, 58, 0.22);
+  --tj-glass-border: rgba(212, 180, 90, 0.32);
+}
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: linear-gradient(180deg, #0a1612 0%, #0c1c16 40%, #0a1410 100%);
+  color: #e8f0ec;
+  font-family: Quicksand, system-ui, sans-serif;
+}
+.craft-main.tool-page, .craft-main {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0.75rem clamp(0.75rem, 2vw, 1.5rem) 2.5rem !important;
+  box-sizing: border-box;
+}
+.tj-glass, .tool-section, #tj-deep-studio, #tj-curriculum-root, .tj-curriculum-plaque {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0.85rem 0;
+  padding: 1rem 1.15rem;
+  border-radius: 18px;
+  border: 1px solid var(--tj-glass-border);
+  background: var(--tj-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.craft-tool-header {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  border: 1px solid var(--tj-glass-border);
+  background: linear-gradient(135deg, rgba(15,76,58,0.35), rgba(0,0,0,0.25));
+  margin: 0.5rem 0 0.75rem;
+}
+.craft-tool-header h1 { margin: 0.2rem 0; color: #e8d5a3; font-family: Georgia, serif; }
+.tj-muted, .panel-note, .edu-stamp, .tagline { opacity: 0.9; font-size: 0.85rem; }
+.tj-toolbar-row {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0.6rem 0;
+}
+.tj-toolbar-row select, .tj-toolbar-row input[type="number"] {
+  border-radius: 12px; border: 1px solid var(--tj-gold);
+  background: rgba(0,0,0,0.35); color: inherit; padding: 0.45rem 0.65rem;
+  font-size: 0.9rem; max-width: 100%;
+}
+.tj-toolbar-row select#tj-lmr-surah { min-width: min(100%, 18rem); }
+.tj-ayah-nav { display: inline-flex; gap: 0.35rem; align-items: center; }
+.tj-ayah-nav button {
+  width: 2.25rem; height: 2.25rem; border-radius: 999px;
+  border: 1px solid var(--tj-gold); background: rgba(30,125,94,0.45);
+  color: inherit; font-weight: 700; cursor: pointer;
+}
+.btn, .btn primary, button.btn, button.btn.primary {
+  border-radius: 999px; border: 1px solid var(--tj-gold);
+  background: rgba(0,0,0,0.3); color: inherit; padding: 0.45rem 0.9rem;
+  font-weight: 600; cursor: pointer;
+}
+button.btn.primary, .btn.primary {
+  background: rgba(30,125,94,0.55);
+}
+.tj-lmr-steps { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.75rem 0; }
+.tj-lmr-step {
+  border-radius: 999px; border: 1px solid var(--tj-gold);
+  background: rgba(0,0,0,0.25); color: inherit; padding: 0.4rem 0.8rem; cursor: pointer;
+}
+.tj-lmr-step.active { background: rgba(30,125,94,0.5); font-weight: 700; }
+.arabic, .tj-lmr-ar {
+  font-family: Amiri, serif; font-size: 1.45rem; line-height: 1.9;
+  direction: rtl; text-align: center; margin: 0.5rem 0;
+}
+.tj-journal-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.tj-journal-table th, .tj-journal-table td {
+  text-align: left; padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.tj-tutorial {
+  font-size: 0.88rem; line-height: 1.5;
+  border-left: 3px solid rgba(212,180,90,0.55);
+  padding: 0.65rem 0.85rem; margin: 0.5rem 0 0.85rem;
+  background: rgba(0,0,0,0.2); border-radius: 0 12px 12px 0;
+}
+.tj-tutorial ol { margin: 0.35rem 0 0; padding-left: 1.2rem; }
+.companion-calling { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0; }
+.companion-calling a {
+  color: #e8d5a3; text-decoration: none; padding: 0.3rem 0.7rem;
+  border-radius: 999px; border: 1px solid var(--tj-gold); font-size: 0.8rem;
+}
