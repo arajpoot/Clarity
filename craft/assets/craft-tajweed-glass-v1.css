@@ -90,3 +90,11 @@ button.btn.primary, .btn.primary {
   color: #e8d5a3; text-decoration: none; padding: 0.3rem 0.7rem;
   border-radius: 999px; border: 1px solid var(--tj-gold); font-size: 0.8rem;
 }
+
+.tj-score-stats-panel{margin-top:.75rem}
+.tj-stats-heading{margin:0 0 .35rem;font-size:1rem;color:#e8d5a3}
+.tj-stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem;margin:.6rem 0}
+@media(max-width:520px){.tj-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tj-stat-card{border-radius:14px;border:1px solid rgba(212,180,90,.32);background:rgba(0,0,0,.28);padding:.65rem .5rem;text-align:center}
+.tj-stat-label{display:block;font-size:.72rem;opacity:.85;margin-bottom:.2rem}
+.tj-stat-card strong{font-size:1.15rem;color:#e8d5a3}

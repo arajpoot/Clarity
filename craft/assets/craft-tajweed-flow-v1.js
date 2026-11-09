@@ -170,6 +170,7 @@
               if (w.ClarityTajweedCurriculum && w.ClarityTajweedCurriculum.refreshAnalysis) {
                 w.ClarityTajweedCurriculum.refreshAnalysis();
               }
+            try { refreshScoreStats(); } catch (eStats) {}
             } catch (e4) {}
           });
         }, 500);
@@ -208,4 +209,29 @@
   else boot();
   w.addEventListener("load", function () { setTimeout(mountBooth, 400); setTimeout(mountBooth, 1500); });
   setTimeout(boot, 600);
+
+  function refreshScoreStats() {
+    var key = "clarity_tajweed_practice_journal_v1";
+    var rows = [];
+    try { rows = JSON.parse(localStorage.getItem(key) || "[]") || []; } catch (e) {}
+    var scores = rows.map(function (r) { return r.score || 0; }).filter(function (n) { return n > 0; });
+    var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
+    set("tj-stat-sessions", String(scores.length));
+    if (!scores.length) {
+      set("tj-stat-best", "—");
+      set("tj-stat-avg", "—");
+      set("tj-stat-last", "—");
+      return;
+    }
+    var best = Math.max.apply(null, scores);
+    var sum = scores.reduce(function (a, b) { return a + b; }, 0);
+    set("tj-stat-best", best + "/100");
+    set("tj-stat-avg", Math.round(sum / scores.length) + "/100");
+    set("tj-stat-last", scores[0] + "/100");
+  }
+  w.ClarityTajweedFlow = w.ClarityTajweedFlow || {};
+  w.ClarityTajweedFlow.refreshScoreStats = refreshScoreStats;
+  setTimeout(refreshScoreStats, 400);
+  setInterval(refreshScoreStats, 4000);
+
 })(window, document);
