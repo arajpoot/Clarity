@@ -7,12 +7,12 @@
 <meta name="description" content="Curriculum → rules → Listen-Match-Record → journal. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/craft/tajweed/"/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261108TJ10"/>
-<link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261108TJ10"/>
-<link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261108TJ10"/>
-<link rel="stylesheet" href="/craft/assets/vendor/nx-tajweed-deep-studio-v1.css?v=20261108TJ10"/>
-<link rel="stylesheet" href="/craft/assets/craft-tajweed-restore-v1.css?v=20261108TJ10"/>
-<link rel="stylesheet" href="/craft/assets/craft-tajweed-glass-v1.css?v=20261108TJ10"/>
+<link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261108TJ11"/>
+<link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261108TJ11"/>
+<link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261108TJ11"/>
+<link rel="stylesheet" href="/craft/assets/vendor/nx-tajweed-deep-studio-v1.css?v=20261108TJ11"/>
+<link rel="stylesheet" href="/craft/assets/craft-tajweed-restore-v1.css?v=20261108TJ11"/>
+<link rel="stylesheet" href="/craft/assets/craft-tajweed-glass-v1.css?v=20261108TJ11"/>
 <script>window.__CLARITY_ROOM__='craft';</script>
 </head>
 <body>
@@ -205,6 +205,14 @@
     <h2>3 · Listen · Match · Record</h2>
     <p class="panel-note" id="gov-tj-note">Single studio surface · score after Stop is an educational duration match vs master — not a qāriʾ grade.</p>
     <div id="tj-lmr-host" class="craft-studio-host"></div>
+    <div class="tj-toolbar-row" id="tj-score-actions" style="margin:.5rem 0">
+      <button type="button" class="btn primary" id="tj-score-vs-master-btn">★ Score vs master</button>
+      <button type="button" class="btn" id="tj-lmr-score-btn">Score this take</button>
+    </div>
+    <div id="tj-lmr-score-card" class="tj-score-plaque">
+      <p><span id="tj-lmr-score-val">—</span></p>
+      <p id="tj-lmr-score-note" class="panel-note">Record a take, then Score vs master. Educational proxy only.</p>
+    </div>
     <div id="tj-score-stats" class="tj-score-stats-panel" aria-label="Score stats">
       <h3 class="tj-stats-heading">Score stats · this device</h3>
       <p class="panel-note">From Record → Stop in the studio (educational duration match vs master — not a qāriʾ grade). Input level meter removed — use studio Record instead.</p>
@@ -236,20 +244,21 @@
   Clarity Craft · Tajweed flow · educational only — not a fatwa
 </footer>
 
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/clarity-craft-registry-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/craft-tajweed-lmr-shell-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/vendor/tajweed-studio-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/vendor/nx-tajweed-deep-studio-js-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/vendor/nx-tj-lmr-js-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/vendor/inline-clarity_lmr_read_sync.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/vendor/practice-coach.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/craft-tajweed-local-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/craft-tajweed-restore-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/craft-studio-boot-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/craft-tajweed-curriculum-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/craft-tajweed-studio-ux-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/craft-tajweed-isolate-v1.js?v=20261108TJ10" defer></script>
-<script src="/craft/assets/craft-tajweed-flow-v1.js?v=20261108TJ10" defer></script>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/clarity-craft-registry-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-tajweed-lmr-shell-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/vendor/tajweed-studio-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/vendor/nx-tajweed-deep-studio-js-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/vendor/nx-tj-lmr-js-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/vendor/inline-clarity_lmr_read_sync.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/vendor/practice-coach.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-tajweed-local-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-tajweed-restore-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-studio-boot-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-tajweed-curriculum-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-tajweed-studio-ux-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-tajweed-isolate-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-tajweed-flow-v1.js?v=20261108TJ11" defer></script>
+<script src="/craft/assets/craft-tajweed-score-pill-v1.js?v=20261108TJ11" defer></script>
 </body>
 </html>
