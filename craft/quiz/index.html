@@ -1,107 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="craft">
+<html lang="en" data-theme="dark" data-clarity-room="craft" data-craft-quiz-build="C19QUIZ1">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta name="clarity-build" content="C16QZ" />
-  <title>Sharia IQ · Daily Fiqh · Craft</title>
-  <meta name="description" content="Sharia IQ and Daily Fiqh self-check on Craft. Educational only — not a fatwa · not a grade of īmān." />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261105C16QZ" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261105C16QZ" />
-  <script>window.__CLARITY_ROOM__ = 'craft';</script>
-  <style>
-    .mode-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0; }
-    .mode-chips button {
-      border-radius: 999px; border: 1px solid rgba(212,180,90,0.35);
-      background: rgba(15,76,58,0.25); color: inherit; padding: 0.4rem 0.9rem;
-      font-weight: 700; cursor: pointer;
-    }
-    .mode-chips button.active { background: #1e7d5e; border-color: transparent; color: #fff; }
-    .quiz-q { font-size: 1.05rem; margin: 0.75rem 0; line-height: 1.5; }
-    .quiz-opts { display: grid; gap: 0.45rem; }
-    .quiz-opts button {
-      text-align: left; padding: 0.7rem 0.9rem; border-radius: 12px;
-      border: 1px solid rgba(212,180,90,0.28); background: rgba(15,76,58,0.2);
-      color: inherit; cursor: pointer; font: inherit;
-    }
-    .quiz-opts button:hover { border-color: rgba(212,180,90,0.55); }
-    .quiz-opts button.ok { background: #1e7d5e; color: #fff; }
-    .quiz-opts button.bad { background: rgba(120,40,40,0.55); }
-    #quiz-feedback { margin-top: 0.75rem; font-size: 0.9rem; min-height: 2.5rem; }
-    .studio-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0; }
-    .studio-actions .btn, button.btn {
-      border-radius: 10px; border: 1px solid rgba(212,180,90,0.35);
-      background: #1e7d5e; color: #fff; padding: 0.45rem 0.85rem; font-weight: 700; cursor: pointer;
-    }
-    .studio-actions .btn:not(.primary) { background: rgba(15,76,58,0.45); }
-    .panel-note { font-size: 0.85rem; opacity: 0.9; }
-    .opts-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0.5rem 0; font-size: 0.85rem; }
-  </style>
+  <title>Sharia IQ Deep Studio · Craft · Clarity</title>
+  <meta name="description" content="Curriculum path · teach cards · checks · journal. Educational only — not a fatwa." />
+  <meta name="clarity-build" content="C19QUIZ1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109C19QUIZ1" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261109C19QUIZ1" />
+  <link rel="stylesheet" href="/craft/assets/craft-quiz-layout-v1.css?v=20261109C19QUIZ1" />
+  <script>window.__CLARITY_ROOM__ = "craft"; window.__CLARITY_SKIP_DAY_LANDING__ = true;</script>
 </head>
 <body class="craft-room">
   <div class="craft-hero-banner" role="img" aria-label="Registan">
-    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261105C16QZ" alt="Registan" width="1600" height="680" loading="lazy" />
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261109C19QUIZ1" alt="Registan" width="1600" height="680" loading="lazy" />
   </div>
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
-      <h1>🧠 Sharia IQ &amp; Daily Fiqh</h1>
-      <p class="tagline">Self-check · local banks · sources on feedback · no cloud score</p>
+      <h1>🧠 Sharia IQ Deep Studio</h1>
+      <p class="tagline">Path → Teach → Checks → Journal</p>
       <p class="edu-stamp">Educational only — not a fatwa · not a grade of īmān · verify primary texts</p>
     </div>
   </header>
-  <aside class="companion-calling">
-    <span class="calling-label">Bridge</span>
-    <a href="/companion/#action">Companion Action · SIQ</a>
-    <a href="/craft/">← All tools</a>
-    <a href="/companion/" class="home-pill">Home</a>
+
+  <aside class="companion-calling" data-self-contained="craft-quiz">
+    <span class="calling-label">Craft</span>
+    <a href="/craft/">← Craft tools</a>
+    <a href="/craft/quiz/" class="home-pill">Sharia IQ</a>
   </aside>
 
   <main class="craft-main tool-page">
     <p class="panel-note" id="gov-quiz-note">
-      Governance · Craft workbench only · answers are educational self-checks ·
-      for a personal ruling ask a qualified local scholar · progress log stays on this device.
+      Governance · Craft workbench only · teach cards then self-checks · progress stays on this device ·
+      for a personal ruling ask a qualified local scholar.
     </p>
-
-    <div class="mode-chips" role="group" aria-label="Quiz mode">
-      <button type="button" data-quiz-mode="daily" class="active">📅 Daily Fiqh</button>
-      <button type="button" data-quiz-mode="iq">🧠 Sharia IQ session</button>
-    </div>
-
-    <div class="opts-row">
-      <label><input type="checkbox" id="siq-timed" /> Timed (IQ)</label>
-      <label><input type="checkbox" id="siq-hide-correct" /> Hide correct highlight</label>
-      <span id="quiz-timer" class="panel-note"></span>
-    </div>
-
-    <p class="panel-note" id="quiz-status">Loading banks…</p>
-    <p class="panel-note" id="quiz-progress"></p>
 
     <div id="quiz-stage">
       <div class="quiz-q" id="quiz-q"></div>
       <div class="quiz-opts" id="quiz-opts"></div>
       <div id="quiz-feedback"></div>
       <div class="studio-actions">
-        <button type="button" class="btn primary" id="quiz-next">Next</button>
-        <button type="button" class="btn" id="quiz-start-iq">Begin IQ (10)</button>
+        <button type="button" class="btn primary" id="quiz-next">Next check</button>
       </div>
     </div>
-    <div id="quiz-result" hidden></div>
-
-    <section style="margin-top:1.25rem">
-      <h2 style="font-size:1rem">Recent sessions · this device</h2>
-      <div id="quiz-daily-log"></div>
-    </section>
+    <p class="panel-note" id="quiz-status"></p>
+    <p class="panel-note" id="quiz-progress"></p>
   </main>
 
   <footer class="craft-footer">
-    <p>Clarity Craft · Quiz C16QZ · Educational only — not a fatwa</p>
+    <p>Clarity Craft · Quiz C19QUIZ1 · Educational only — not a fatwa</p>
   </footer>
 
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261105C16QZ" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261105C16QZ" defer></script>
-  <script src="/craft/assets/craft-quiz-studio-v1.js?v=20261105C16QZ" defer></script>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109C19QUIZ1" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261109C19QUIZ1" defer></script>
+  <script src="/craft/assets/craft-quiz-curriculum-v1.js?v=20261109C19QUIZ1" defer></script>
 </body>
 </html>
