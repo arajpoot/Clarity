@@ -1,9 +1,7 @@
-# Meme Studio C19MEME4 — final polished
+# Calligraphy C19CALLIG3 · Noorani + Listen/Speak
 
-- Post-quality canvas: Arabic · English · **Urdu** · reference · gold frame
-- Scenery retained · debounced paint (no flash)
-- Text scale + auto-scale
-- X + Facebook share with caption
-- Governance & enrichment audit: PASS
+- Indo-Pak **Noorani Qaaidah** 17-skill rail
+- **Listen** / **Slow** (speech synthesis) · **Speak along** (on-device recognition)
+- Natural pad · curriculum journal (Tajweed parity)
 
-Educational only — not a fatwa.
+Educational only — not an ijāzah or fatwa.
