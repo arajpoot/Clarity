@@ -216,8 +216,8 @@
       ar = arParts.map(function (s) { return s.trim(); }).filter(Boolean).join(" ").trim();
       raw = raw.replace(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]+/g, " ");
     }
-    en = raw.replace(/\s+/g, " ").replace(/\(\s*\)/g, " ").replace(/^[\s\-–—:·]+|[\s\-–—:·]+$/g, "").trim();
-    en = en.replace(/\s*clarity-dawah\.fyi.*$/i, "").replace(/\s*educational only.*$/i, "").trim();
+    en = raw.replace(/\s+/g, " ").replace(/\(\s*\)/g, " ").replace(/\(\s*\)/g, "").replace(/^[\s\-–—:·\(]+|[\s\-–—:·\)]+$/g, "").trim();
+    en = en.replace(/\s*clarity-dawah\.fyi.*$/i, "").replace(/\s*educational only.*$/i, "").replace(/\(\s*\)/g, "").replace(/\s+/g, " ").trim();
     if (!ref) ref = "";
     return { ar: ar, en: en, ref: ref };
   }
@@ -231,6 +231,7 @@
    */
   function formatStandardPost(raw, network) {
     var src = (raw || currentLine() || readDraft(network === "x" ? "x-draft" : "fb-draft") || "").trim();
+    src = src.replace(/clarity-dawah\.fyi[\s\S]*$/i, "").replace(/educational only[\s\S]*$/i, "").replace(/not a fatwa[\s\S]*$/i, "").trim();
     var L = parsePostLayers(src);
     var parts = [];
     if (L.ar) parts.push(L.ar);
@@ -474,19 +475,9 @@
         openIntent(network);
       });
     }
-    bindPublish("x-publish", "x");
-    bindPublish("fb-publish", "fb");
     bindPublish("meme-post-x", "x");
     bindPublish("meme-post-fb", "fb");
-    d.querySelectorAll('[data-action="publish"]').forEach(function (btn) {
-      if (btn._pubBound) return;
-      btn._pubBound = true;
-      var net = btn.getAttribute("data-desk") === "fb" ? "fb" : "x";
-      btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        openIntent(net);
-      });
+    
     });
 
     var next = $("meme-next-bg");
@@ -525,6 +516,24 @@
     setTimeout(wireUi, 500);
     setTimeout(wireUi, 1500);
   }
+
+
+  /* hard-bind top-rail 1-click (survive late DOM) */
+  function bindTopRail() {
+    function on(id, net) {
+      var b = d.getElementById(id);
+      if (!b) return;
+      b.onclick = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        openIntent(net);
+      };
+    }
+    on("meme-post-x", "x");
+    on("meme-post-fb", "fb");
+  }
+  setTimeout(bindTopRail, 0);
+  setTimeout(bindTopRail, 600);
+  setTimeout(bindTopRail, 1500);
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();

@@ -168,7 +168,8 @@
     ctx.save();
     var g = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.25, w / 2, h / 2, Math.max(w, h) * 0.72);
     g.addColorStop(0, "rgba(0,0,0,0)");
-    g.addColorStop(1, "rgba(0,0,0,0.45)");
+    g.addColorStop(0.55, "rgba(0,0,0,0.25)");
+    g.addColorStop(1, "rgba(0,0,0,0.55)");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
     /* bottom readable band */
@@ -319,24 +320,45 @@
     ctx.fillRect(0, 0, w, h);
   }
 
-  /* Hook memeDraw if present */
+  /* Hook memeDraw — replace text stack (no double paint) */
   function installHook() {
     var prev = w.memeDraw;
+    w.__craftMemeDrawPrev = (typeof prev === "function" && !prev._craftStd) ? prev : w.__craftMemeDrawPrev;
+
     w.memeDraw = function () {
-      if (typeof prev === "function" && prev !== w.memeDraw) {
-        try { prev.apply(this, arguments); } catch (e) {}
+      var canvas = getCanvas();
+      if (!canvas) {
+        if (w.__craftMemeDrawPrev) try { w.__craftMemeDrawPrev.apply(this, arguments); } catch (e0) {}
+        return;
       }
-      /* after core draw, apply standard typography + gold frame */
-      try {
-        paintStandard({});
-      } catch (e2) {}
+      var ctx = canvas.getContext("2d");
+      var W = canvas.width, H = canvas.height;
+      /* redraw scenery only, then ONE standard text pass */
+      var bg = w.__memeBgImage || canvas._craftBgImage;
+      if (bg && bg.complete) {
+        try { ctx.drawImage(bg, 0, 0, W, H); } catch (e1) { fillFallbackBg(ctx, W, H); }
+      } else if (w.__craftMemeDrawPrev) {
+        try { w.__craftMemeDrawPrev.apply(this, arguments); } catch (e2) {}
+        /* prev may have drawn old text — cover with vignette path inside paintStandard */
+      } else {
+        fillFallbackBg(ctx, W, H);
+      }
+      try { paintStandard({}); } catch (e3) {}
     };
     w.memeDraw._craftStd = true;
 
-    /* also expose explicit API */
     w.craftMemePaintStandard = paintStandard;
     w.craftMemeRepaintStandard = repaintAll;
     w.craftMemeParseLayers = parseLayers;
+
+    /* Re-paint button */
+    var rp = d.getElementById("meme-repaint") || d.querySelector("[data-action='repaint']");
+    if (rp && !rp._std) {
+      rp._std = true;
+      rp.addEventListener("click", function () {
+        setTimeout(function () { try { w.memeDraw(); } catch (e) {} }, 50);
+      });
+    }
   }
 
   function wireButtons() {
