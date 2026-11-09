@@ -1,4 +1,4 @@
-# Craft NAV · stations (C19DVI5)
+# Craft NAV · stations (C19DVI6)
 
 | Door | URL |
 |------|-----|
@@ -10,6 +10,4 @@
 
 Stations on Craft landing: meme · tajweed · calligraphy · quiz · notes · **institute**
 
-(DVI = Dawah Vocational Institute · pure daʿwah educational craft workbench · App Building Lab)
-
-Landing tile + full `craft/index.html` ship in this package.
+Institute tabs include **Example apps** (Nur Card · Four Gates · Stem Runner · Sabr Compass) — local demos only, charter-compliant.
