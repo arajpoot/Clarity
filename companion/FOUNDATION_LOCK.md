@@ -1,14 +1,14 @@
-# Companion FOUNDATION LOCK — C0/C1 · curtain architecture
+# Companion FOUNDATION LOCK — five-room model
 
 ## Owns
 - `/companion/` chrome and pathway UI
-- `/companion/assets/` boot, banner, pathway packs, companion CSS
+- `/companion/assets/` boot, banner, pathway packs
 
 ## Does not own
 - Yawm SoT → `/daily/`
-- Amānah vault / dayn / tree / farāʾiḍ product → `/amana/`
+- Amānah product → `/amana/`
 - University → `/campus/`
+- Craft atelier → `/craft/`
 
-## Curtain rule (C0–C1)
-Public chrome and URLs stay stable for users and indexing.
-Architecture upgrades happen via owned assets under `/companion/assets/`.
+## Nav
+Always expose **five** rooms: Companion · Yawm · University · Amānah · Craft.
