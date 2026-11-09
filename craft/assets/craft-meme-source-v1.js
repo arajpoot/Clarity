@@ -1,4 +1,4 @@
-/*! craft-meme-source-v1 · Companion RRRA section content for Craft Meme
+/*! craft-meme-source-v1 · Self-contained RRRA section packs for Craft Meme
  * Local packs + optional live Companion bridge. No free-type scripture.
  * Educational only — not a fatwa.
  */
@@ -80,16 +80,7 @@
   function fetchSection(sectionId) {
     var sec = SECTIONS[sectionId] || SECTIONS.reminder;
     var line = pick(sec.lines);
-    /* Prefer live Companion bridge if present (same tab / preloaded) */
-    try {
-      if (typeof w.clarityMemeFetchSection === "function") {
-        var live = w.clarityMemeFetchSection(sectionId);
-        if (live && (live.en || live.ar)) line = live;
-      } else if (typeof w.memeFetchForSection === "function") {
-        var live2 = w.memeFetchForSection(sectionId);
-        if (live2 && (live2.en || live2.ar)) line = live2;
-      }
-    } catch (e) {}
+    /* C19MEME2 self-contained: local SECTIONS packs only (no Companion bridge) */
     return {
       section: sectionId,
       label: sec.label,
@@ -138,7 +129,11 @@
       refresh.addEventListener("click", function () {
         var active = d.querySelector("[data-meme-section].active");
         var id = active ? active.getAttribute("data-meme-section") : "reminder";
-        applyToDesks(fetchSection(id).text);
+        var _r = fetchSection(id); applyToDesks(_r.text);
+          try {
+            if (typeof w.memeDraw === "function") w.memeDraw();
+            else if (typeof w.craftMemePaintStandard === "function") w.craftMemePaintStandard({});
+          } catch (_e) {}
       });
     }
   }

@@ -1,11 +1,11 @@
-/*! craft-meme-automation-v1 · C19MEME1
+/*! craft-meme-automation-v1 · C19MEME2
  * Scenery-only BG · hardened fetch · daily verse+scene · post-ready desks
  * Educational only — not a fatwa · no free-type scripture as revelation
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_AUTO_C19MEME1__) return;
-  w.__CRAFT_MEME_AUTO_C19MEME1__ = true;
+  if (w.__CRAFT_MEME_AUTO_C19MEME2__) return;
+  w.__CRAFT_MEME_AUTO_C19MEME2__ = true;
 
   var SAFE_KINDS = ["nature", "night", "water", "flowers", "solid"];
   var KIND_QUERIES = {
@@ -477,8 +477,6 @@
     }
     bindPublish("meme-post-x", "x");
     bindPublish("meme-post-fb", "fb");
-    
-    });
 
     var next = $("meme-next-bg");
     if (next && !next._auto) {

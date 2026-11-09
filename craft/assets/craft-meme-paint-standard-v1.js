@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME1
+/*! craft-meme-paint-standard-v1 · C19MEME2
  * Standard meme layout (matches live Clarity X posts):
  *   TOP    — Arabic āyah (Amiri)
  *   CENTER — English meaning
@@ -265,12 +265,9 @@
     ctx.restore();
 
 
-    /* surprise: keep desks in sync with canvas layers */
     try {
       if (w.ClarityMemeAutomation && typeof w.ClarityMemeAutomation.fillDesks === "function") {
-        setTimeout(function () { w.ClarityMemeAutomation.fillDesks(false); }, 80);
-      } else if (typeof w.formatForX === "function") {
-        /* automation may expose later */
+        setTimeout(function () { w.ClarityMemeAutomation.fillDesks(false); }, 100);
       }
     } catch (eSync) {}
     return true;
@@ -320,38 +317,41 @@
     ctx.fillRect(0, 0, w, h);
   }
 
-  /* Hook memeDraw — replace text stack (no double paint) */
+  
+  /* Hook memeDraw — single paint pass only (no prev text stack) */
   function installHook() {
     var prev = w.memeDraw;
-    w.__craftMemeDrawPrev = (typeof prev === "function" && !prev._craftStd) ? prev : w.__craftMemeDrawPrev;
+    if (typeof prev === "function" && !prev._craftStd) {
+      w.__craftMemeDrawPrev = prev;
+    }
 
     w.memeDraw = function () {
       var canvas = getCanvas();
-      if (!canvas) {
-        if (w.__craftMemeDrawPrev) try { w.__craftMemeDrawPrev.apply(this, arguments); } catch (e0) {}
-        return;
-      }
+      if (!canvas) return;
       var ctx = canvas.getContext("2d");
-      var W = canvas.width, H = canvas.height;
-      /* redraw scenery only, then ONE standard text pass */
-      var bg = w.__memeBgImage || canvas._craftBgImage;
-      if (bg && bg.complete) {
-        try { ctx.drawImage(bg, 0, 0, W, H); } catch (e1) { fillFallbackBg(ctx, W, H); }
-      } else if (w.__craftMemeDrawPrev) {
-        try { w.__craftMemeDrawPrev.apply(this, arguments); } catch (e2) {}
-        /* prev may have drawn old text — cover with vignette path inside paintStandard */
+      var W = canvas.width || 1280;
+      var H = canvas.height || 720;
+      var bg = w.__memeBgImage || canvas._craftBgImage || w.__memeBgImg;
+      if (bg && (bg.complete !== false)) {
+        try {
+          ctx.clearRect(0, 0, W, H);
+          ctx.drawImage(bg, 0, 0, W, H);
+        } catch (e1) {
+          fillFallbackBg(ctx, W, H);
+        }
       } else {
+        ctx.clearRect(0, 0, W, H);
         fillFallbackBg(ctx, W, H);
       }
+      /* ONE text + gold frame pass — never call prev (prevents double Arabic/English) */
       try { paintStandard({}); } catch (e3) {}
     };
     w.memeDraw._craftStd = true;
 
     w.craftMemePaintStandard = paintStandard;
-    w.craftMemeRepaintStandard = repaintAll;
+    w.craftMemeRepaintStandard = function () { w.memeDraw(); };
     w.craftMemeParseLayers = parseLayers;
 
-    /* Re-paint button */
     var rp = d.getElementById("meme-repaint") || d.querySelector("[data-action='repaint']");
     if (rp && !rp._std) {
       rp._std = true;
@@ -359,6 +359,17 @@
         setTimeout(function () { try { w.memeDraw(); } catch (e) {} }, 50);
       });
     }
+    /* Re-paint canvas button by text */
+    d.querySelectorAll("button").forEach(function (b) {
+      var t = (b.textContent || "").toLowerCase();
+      if (t.indexOf("re-paint") !== -1 || t.indexOf("repaint") !== -1) {
+        if (b._std) return;
+        b._std = true;
+        b.addEventListener("click", function () {
+          setTimeout(function () { try { w.memeDraw(); } catch (e) {} }, 80);
+        });
+      }
+    });
   }
 
   function wireButtons() {
@@ -369,8 +380,8 @@
       b._stdPaint = true;
       b.addEventListener("click", function () {
         setTimeout(function () {
-          try { paintStandard({}); } catch (e) {}
-        }, 350);
+          try { if (typeof w.memeDraw === "function") w.memeDraw(); else paintStandard({}); } catch (e) {}
+        }, 400);
       });
     });
     /* after section chip */
@@ -379,8 +390,8 @@
       btn._stdPaint = true;
       btn.addEventListener("click", function () {
         setTimeout(function () {
-          try { paintStandard({}); } catch (e) {}
-        }, 500);
+          try { if (typeof w.memeDraw === "function") w.memeDraw(); else paintStandard({}); } catch (e) {}
+        }, 450);
       });
     });
   }
@@ -392,9 +403,9 @@
     /* first paint once canvas exists */
     setTimeout(function () {
       try {
-        if (getCanvas()) paintStandard({});
+        if (getCanvas() && typeof w.memeDraw === "function") w.memeDraw();
       } catch (e) {}
-    }, 1200);
+    }, 900);
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
