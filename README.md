@@ -15,7 +15,8 @@
 ## New automation
 - **Daily pack** — rotates Reminder/Reality/Reflection/Action by day · pulls matching scenery · fills desks  
 - **Fill desks** — formats text for X (≤280 + stamp) and Facebook  
-- **Post-ready → 𝕏 / Facebook** — opens share intents with formatted caption  
+- **1-click Tweet 𝕏** — fills desk, prefills twitter.com/intent/tweet
+- **1-click Facebook** — fills desk, copies caption, opens Facebook sharer  
 - Fetch: Wikimedia Commons landscape queries → picsum seed → solid gradient fallback  
 
 ## Package
@@ -27,3 +28,13 @@ governance/ + smoke/
 ```
 
 Existing meme vendor scripts stay on the live site; this pack upgrades the shell and injects automation.
+
+
+## Canvas paint standard (C19MEME1)
+- Arabic (Amiri) top · English (Georgia) center · reference bottom
+- Gold double border + corner ticks + vignette
+- `craft-meme-paint-standard-v1.js` hooks `memeDraw`
+
+### Post caption standard
+Same layers as canvas: Arabic → English → (Qur’an x:y) → `clarity-dawah.fyi · educational only —`
+Desks auto-sync when canvas paints.
