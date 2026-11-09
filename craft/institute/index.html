@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-clarity-room="craft">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta name="clarity-build" content="C19DVI5" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Dawah Vocational Institute · App Building Lab · Craft · Clarity</title>
+  <meta name="description" content="Out-of-this-world Craft workbench for scaffolding pure daʿwah educational apps. AI app builders (Lovable, Bolt, Grok, AI Studio, v0, Replit, Base44, PWABuilder, Falah), source discipline, curriculum, quiz banks. Educational only — not a fatwa. Local-first." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109C19DVI5" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261109C19DVI5" />
+  <script>window.__CLARITY_ROOM__ = 'craft'; window.__CLARITY_SKIP_DAY_LANDING__ = true;</script>
+  <style>
+    :root { --dvi-gold: rgba(212,180,90,0.35); --dvi-green: #1e7d5e; --dvi-panel: rgba(0,0,0,0.22); }
+    .dvi-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1rem 0; }
+    .dvi-card, .dvi-panel {
+      border-radius: 16px; border: 1px solid var(--dvi-gold);
+      background: var(--dvi-panel); padding: 1.1rem 1.15rem;
+    }
+    .dvi-card h3, .dvi-panel h2 { margin: 0 0 0.45rem; color: #e8d5a3; font-size: 1.05rem; }
+    .dvi-panel h2 { font-size: 1.15rem; }
+    .dvi-card p, .dvi-panel p { margin: 0; font-size: 0.88rem; line-height: 1.45; opacity: 0.92; }
+    .dvi-card .meta { font-size: 0.72rem; opacity: 0.75; margin-top: 0.35rem; display: block; }
+    .edu-note {
+      font-size: 0.8rem; opacity: 0.9; line-height: 1.45;
+      border-left: 3px solid rgba(212,180,90,0.55); padding-left: 0.75rem; margin: 0.65rem 0 0.9rem;
+    }
+    .dvi-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.55rem; }
+    .dvi-actions button, .dvi-actions a.btn {
+      border-radius: 10px; border: 1px solid var(--dvi-gold);
+      background: var(--dvi-green); color: #fff; padding: 0.4rem 0.75rem;
+      font-weight: 700; font-size: 0.8rem; cursor: pointer; text-decoration: none;
+    }
+    .dvi-actions button.secondary, .dvi-actions a.secondary { background: rgba(15,76,58,0.5); }
+    .dvi-field {
+      width: 100%; box-sizing: border-box; margin: 0.35rem 0;
+      border-radius: 12px; border: 1px solid rgba(212,180,90,0.3);
+      background: rgba(0,0,0,0.28); color: inherit; padding: 0.6rem 0.8rem; font: inherit;
+    }
+    textarea.dvi-field { min-height: 90px; resize: vertical; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.55rem 0; }
+    .chips button {
+      border-radius: 999px; border: 1px solid var(--dvi-gold);
+      background: rgba(15,76,58,0.25); color: inherit; padding: 0.35rem 0.8rem;
+      font-weight: 700; font-size: 0.78rem; cursor: pointer;
+    }
+    .chips button.active, .chips button:hover { background: var(--dvi-green); border-color: transparent; color: #fff; }
+    .chips button small { display: block; font-weight: 600; opacity: 0.85; font-size: 0.62rem; }
+    #source-card {
+      white-space: pre-wrap; font-family: Amiri, serif; font-size: 1.02rem; line-height: 1.55;
+      padding: 0.9rem 1rem; border-radius: 14px; border: 1px solid rgba(212,180,90,0.28);
+      background: rgba(0,0,0,0.25); margin: 0.6rem 0 0.8rem; min-height: 3.5rem;
+    }
+    .module-list, .example-list { list-style: none; padding: 0; margin: 0.4rem 0 0; }
+    .module-list li, .example-list li {
+      display: flex; align-items: flex-start; gap: 0.55rem;
+      padding: 0.5rem 0; border-bottom: 1px solid rgba(212,180,90,0.12); font-size: 0.88rem;
+    }
+    .module-list li:last-child, .example-list li:last-child { border-bottom: none; }
+    .mod-num {
+      flex-shrink: 0; width: 1.55rem; height: 1.55rem; border-radius: 50%;
+      background: rgba(30,125,94,0.45); display: grid; place-items: center;
+      font-size: 0.72rem; font-weight: 700;
+    }
+    #dvi-status { font-size: 0.8rem; opacity: 0.9; min-height: 1.15em; margin-top: 0.35rem; }
+    .resource-grid a {
+      display: block; padding: 0.45rem 0.6rem; border-radius: 10px;
+      border: 1px solid rgba(212,180,90,0.2); margin: 0.3rem 0;
+      color: inherit; text-decoration: none; font-size: 0.85rem;
+      background: rgba(0,0,0,0.15);
+    }
+    .resource-grid a:hover { border-color: rgba(212,180,90,0.5); background: rgba(15,76,58,0.2); }
+    .resource-grid a small { display: block; opacity: 0.75; font-size: 0.72rem; }
+    .charter-box {
+      border-radius: 14px; border: 1px solid rgba(212,180,90,0.4);
+      background: linear-gradient(165deg, rgba(15,76,58,0.22), rgba(8,20,16,0.35));
+      padding: 1rem 1.1rem; margin: 1rem 0;
+    }
+    .charter-box h2 { margin-top: 0; }
+    .charter-box ol { margin: 0.4rem 0 0; padding-left: 1.2rem; font-size: 0.88rem; line-height: 1.5; }
+    #print-root { display: none; }
+    @media print {
+      body * { visibility: hidden; }
+      #print-root, #print-root * { visibility: visible; }
+      #print-root { display: block; position: absolute; left: 0; top: 0; width: 100%; color: #111; background: #fff; padding: 1.5rem; }
+      #print-root h1 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+      #print-root .edu-stamp { font-size: 0.75rem; color: #444; }
+    }
+    .tabs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.75rem 0 1rem; }
+    .tabs button {
+      border-radius: 999px; border: 1px solid var(--dvi-gold);
+      background: rgba(15,76,58,0.2); color: inherit; padding: 0.4rem 0.9rem;
+      font-weight: 700; font-size: 0.8rem; cursor: pointer;
+    }
+    .tabs button.active { background: var(--dvi-green); color: #fff; border-color: transparent; }
+    
+    .tutorial-box {
+      border-radius: 16px; border: 1px solid rgba(212,180,90,0.45);
+      background: linear-gradient(160deg, rgba(30,125,94,0.18), rgba(0,0,0,0.28));
+      padding: 1rem 1.15rem; margin: 0.85rem 0 1.1rem;
+    }
+    .tutorial-box h2 { margin: 0 0 0.5rem; color: #e8d5a3; font-size: 1.08rem; }
+    .tutorial-steps { list-style: none; padding: 0; margin: 0.35rem 0 0; counter-reset: tstep; }
+    .tutorial-steps li {
+      counter-increment: tstep; display: flex; gap: 0.65rem; align-items: flex-start;
+      padding: 0.45rem 0; border-bottom: 1px solid rgba(212,180,90,0.12); font-size: 0.88rem; line-height: 1.45;
+    }
+    .tutorial-steps li:last-child { border-bottom: none; }
+    .tutorial-steps li::before {
+      content: counter(tstep); flex-shrink: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%;
+      background: var(--dvi-green); color: #fff; display: grid; place-items: center;
+      font-size: 0.72rem; font-weight: 700; margin-top: 0.05rem;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+  
+    .lab-card {
+      position: relative; border-radius: 18px; border: 1px solid rgba(212,180,90,0.35);
+      background: linear-gradient(160deg, rgba(15,76,58,0.32), rgba(0,0,0,0.35));
+      padding: 1.2rem 1.25rem; overflow: hidden;
+    }
+    .lab-card::before {
+      content: ""; position: absolute; top: -40%; right: -20%; width: 140px; height: 140px;
+      background: radial-gradient(circle, rgba(30,125,94,0.25), transparent 70%);
+      pointer-events: none;
+    }
+    .lab-card .icon { font-size: 1.55rem; margin-bottom: 0.35rem; display: block; }
+    .lab-card h3 { margin: 0 0 0.35rem; font-size: 1.12rem; color: #e8d5a3; }
+    .lab-card .free-tag {
+      display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em;
+      padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(30,125,94,0.55);
+      color: #dff5ea; margin-bottom: 0.4rem;
+    }
+    .lab-card .prompt-box {
+      margin-top: 0.65rem; padding: 0.65rem 0.75rem; border-radius: 10px;
+      background: rgba(0,0,0,0.35); border: 1px dashed rgba(212,180,90,0.3);
+      font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.72rem;
+      line-height: 1.45; white-space: pre-wrap; max-height: 7.5rem; overflow: auto;
+    }
+    .lab-card .copy-prompt {
+      margin-top: 0.4rem; font-size: 0.72rem; cursor: pointer;
+      color: #e8d5a3; background: none; border: none; padding: 0; font-weight: 600;
+    }
+    .lab-card .copy-prompt:hover { text-decoration: underline; }
+    .lab-intro {
+      border-radius: 14px; border: 1px solid rgba(212,180,90,0.28);
+      background: rgba(15,76,58,0.15); padding: 0.9rem 1rem; margin-bottom: 1rem;
+      font-size: 0.88rem; line-height: 1.5;
+    }
+    .surprise-ribbon {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; font-weight: 700; color: #e8f5ef;
+      background: linear-gradient(90deg, #1e7d5e, #0f4c3a);
+      padding: 0.35rem 0.75rem; border-radius: 999px; margin-bottom: 0.75rem;
+    }
+    .build-badge {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+      padding: 0.22rem 0.55rem; border-radius: 999px;
+      background: rgba(30,125,94,0.55); border: 1px solid rgba(212,180,90,0.35);
+      color: #e8f5ef;
+    }
+
+  </style>
+</head>
+<body class="craft-room">
+
+  <!-- Banner (Craft pattern) -->
+  <div class="craft-hero-banner" role="img" aria-label="Registan · Clarity Craft · Dawah Vocational Institute">
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261109C19DVI5" alt="Registan · Ulugh Beg Madrasa · Clarity Crafts" width="1600" height="680" loading="eager" />
+    <span class="banner-credit">Photo · Registan · educational use</span>
+  </div>
+
+  <header class="craft-header">
+    <div class="craft-header-inner">
+      <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <h1>🏛️ Dawah Vocational Institute</h1>
+      <p class="tagline">Pure daʿwah craft · curricula · reminder cards · quiz banks · app outlines</p>
+      <p class="edu-stamp">Educational only — not a fatwa · not a seminary · not accreditation · not legal advice. Verify primary texts. On-device where possible.</p>
+    </div>
+  </header>
+
+  <aside class="companion-calling">
+    <span class="calling-label">Bridge</span>
+    <a href="/craft/">← All tools</a>
+    <a href="/campus/desk/?phase=seeker">Campus Seeker (read-only examples)</a>
+    <a href="/companion/" class="home-pill">Home</a>
+  </aside>
+
+  <main class="craft-main tool-page">
+
+    <!-- Charter -->
+    <section class="charter-box" id="charter">
+      <h2>Charter · pure daʿwah purposes</h2>
+      <p class="edu-note" style="margin-top:0">This workbench exists only to help Muslims and seekers design <strong>accurate, adab-first educational tools</strong>. It is not a fatwa desk, not a social network, and not a replacement for teachers or the local mosque.</p>
+      <ol>
+        <li><strong>Source discipline</strong> — Scripture lines come only from section packs or primary links (quran.com / sunnah.com). Free-type is personal reflection only — never presented as revelation.</li>
+        <li><strong>Adab of invitation</strong> — Wisdom, good instruction, and the best manner (16:125). No argument-first content; no weak reports as authority.</li>
+        <li><strong>Privacy &amp; offline</strong> — Drafts and progress stay on this device unless the user explicitly exports.</li>
+        <li><strong>Isolation</strong> — Lives under Craft only. Does not load Companion shell, Amānah vault, or Campus desk engines.</li>
+        <li><strong>Honesty of limits</strong> — Always stamp “Educational only — not a fatwa.” No certificates, no grades of īmān, no accreditation claims.</li>
+      </ol>
+    </section>
+
+    <section class="tutorial-box" id="tutorial" aria-label="Short tutorial">
+      <h2>✦ Short tutorial · how to use this workbench</h2>
+      <p class="edu-note" style="margin:0 0 0.35rem">Six steps · stay educational · pure daʿwah only.</p>
+      <ol class="tutorial-steps">
+        <li><strong>Read the charter</strong> above — source discipline, adab, privacy, isolation, honesty of limits. Never skip the educational stamp.</li>
+        <li><strong>Source chips first</strong> — open the Source chips tab and pick an RRRA line. Scripture stays pack-backed or primary-linked; free-type is reflection only.</li>
+        <li><strong>Sketch the outline</strong> — App outline tab: name, audience, offline needs, screens, hard limits. Save on this device.</li>
+        <li><strong>Build in the Lab</strong> — App Building Lab tab: copy a starter prompt, open Lovable / Bolt / Grok / AI Studio / v0 / Replit / Base44, iterate, keep “educational only” in every prompt.</li>
+        <li><strong>Pack extras</strong> — Curriculum modules, reminder cards, quiz bank (feedback points to sources, never a ruling). Export JSON locally.</li>
+        <li><strong>Print / share carefully</strong> — One-pager tab → browser Print → PDF. Verify primary texts on quran.com / sunnah.com. Consult a local teacher for real questions.</li>
+      </ol>
+    </section>
+
+    <!-- Tabs -->
+    <div class="tabs" role="tablist">
+      <button type="button" class="active" data-tab="lab">✦ App Building Lab</button>
+      <button type="button" data-tab="sources">Source chips</button>
+      <button type="button" data-tab="curriculum">Curriculum</button>
+      <button type="button" data-tab="tools">Extra tools</button>
+      <button type="button" data-tab="examples">Seeker examples</button>
+      <button type="button" data-tab="resources">Authentic resources</button>
+      <button type="button" data-tab="outline">App outline</button>
+      <button type="button" data-tab="print">One-pager</button>
+    </div>
+
+    <!-- LAB -->
+    <section class="dvi-panel tab-panel active" id="panel-lab" role="tabpanel">
+      <div class="surprise-ribbon">✦ Out-of-this-world App Building Lab · free tools curated for daʿwah</div>
+      <h2>0 · AI App Building Lab</h2>
+      <div class="lab-intro">
+        Research-backed free / freemium builders (2026). Prefer tools that export code or run offline-capable PWAs.
+        Always keep the <strong>educational-only stamp</strong> and primary-source discipline. Copy a starter prompt, open the tool, iterate, then bring the result back here for outline + print.
+        <br><br>
+        <strong>Recommended path:</strong>
+        (1) Sketch outline here → (2) Build with Lovable / Bolt / Google AI Studio / Grok → (3) Export or host → (4) Package as PWA with PWABuilder if needed → (5) Keep sources on quran.com / sunnah.com.
+      </div>
+      <div class="dvi-grid">
+        <div class="lab-card"><span class="icon">💚</span><span class="free-tag">FREE TIER · 5 credits/day</span><h3>Lovable</h3><p>Best overall for non-developers. Full-stack web apps with logins, database, GitHub sync.</p><p class="meta">lovable.dev · code ownership</p><div class="prompt-box" id="p-lovable">Build a calm, offline-first educational PWA for new Muslims learning the five pillars.
+Use soft green-and-gold palette, Amiri for Arabic, Quicksand for English.
+Screens: Home, Pillars (each with educational text + primary source ref only), Quiz, Resources (quran.com, sunnah.com).
+Footer on every screen: "Educational only — not a fatwa. Verify with a local teacher."
+No free-typed scripture as revelation. localStorage only.</div><button type="button" class="copy-prompt" data-target="p-lovable">Copy starter prompt</button><div class="dvi-actions"><a class="btn" href="https://lovable.dev" target="_blank" rel="noopener">Open Lovable →</a></div></div>
+        <div class="lab-card"><span class="icon">⚡</span><span class="free-tag">FREE · ~1M tokens/mo</span><h3>Bolt.new</h3><p>Fastest browser full-stack prototypes. Generous free tokens.</p><p class="meta">bolt.new · download / GitHub</p><div class="prompt-box" id="p-bolt">Create a single-page educational reminder app for morning and evening adhkār.
+Local-first, no accounts. Dark theme, gold accents. Three cards: Morning, Evening, Sleep.
+Each card: educational note + source reference field. Stamp "Educational only — not a fatwa". Static offline HTML+JS.</div><button type="button" class="copy-prompt" data-target="p-bolt">Copy starter prompt</button><div class="dvi-actions"><a class="btn" href="https://bolt.new" target="_blank" rel="noopener">Open Bolt →</a></div></div>
+        <div class="lab-card"><span class="icon">✦</span><span class="free-tag">GROK · xAI</span><h3>Grok Build / Chat</h3><p>xAI Grok for prompt-to-app and coding agent work.</p><p class="meta">grok.x.ai · x.ai/build</p><div class="prompt-box" id="p-grok">Design a minimal educational "Seeker Path" web app with 4 static modules: Tawḥīd, Prayer meaning, Character, Invitation etiquette.
+Each: title, 2–3 educational points, primary source citation field, reflection prompt. No fatwa language. Footer stamp. Single-file HTML/CSS/JS.</div><button type="button" class="copy-prompt" data-target="p-grok">Copy starter prompt</button><div class="dvi-actions"><a class="btn" href="https://grok.x.ai" target="_blank" rel="noopener">Open Grok →</a></div></div>
+        <div class="lab-card"><span class="icon">🤖</span><span class="free-tag">FREE · Gemini Build</span><h3>Google AI Studio</h3><p>Build mode → full-stack web or Android app with live preview.</p><p class="meta">aistudio.google.com</p><div class="prompt-box" id="p-aistudio">Build a simple educational "Daily Intention" app. User writes intention + optional source chip (Tawḥīd, Sabr, Shukr). Last 7 entries in localStorage. Soft dark UI, Arabic-friendly fonts, "Educational only — not a fatwa" footer. No backend.</div><button type="button" class="copy-prompt" data-target="p-aistudio">Copy starter prompt</button><div class="dvi-actions"><a class="btn" href="https://aistudio.google.com" target="_blank" rel="noopener">Open AI Studio →</a></div></div>
+        <div class="lab-card"><span class="icon">▲</span><span class="free-tag">FREE credits</span><h3>v0 by Vercel</h3><p>Production-grade React / Next.js components and landing pages.</p><p class="meta">v0.dev</p><div class="prompt-box" id="p-v0">Generate a beautiful landing section for an Islamic educational micro-app: soft green gradient hero, title "Clarity · Seeker Desk", subtitle "Educational maps only — not a fatwa". Three cards: Source discipline, Local-first, Pure daʿwah. CTA "Open workbench" + disclaimer.</div><button type="button" class="copy-prompt" data-target="p-v0">Copy starter prompt</button><div class="dvi-actions"><a class="btn" href="https://v0.dev" target="_blank" rel="noopener">Open v0 →</a></div></div>
+        <div class="lab-card"><span class="icon">◈</span><span class="free-tag">FREE Starter</span><h3>Replit Agent</h3><p>All-in-one IDE + agent + hosting. Learn while building.</p><p class="meta">replit.com</p><div class="prompt-box" id="p-replit">Create a static educational quiz bank viewer from local JSON (question, model answer, source note). One question at a time with Reveal / Next. Always show "Educational stems only — not a ruling". Dark theme, accessible contrast.</div><button type="button" class="copy-prompt" data-target="p-replit">Copy starter prompt</button><div class="dvi-actions"><a class="btn" href="https://replit.com" target="_blank" rel="noopener">Open Replit →</a></div></div>
+        <div class="lab-card"><span class="icon">📦</span><span class="free-tag">FREE · 25 msgs/mo</span><h3>Base44</h3><p>Managed backend + auth + database from one prompt.</p><p class="meta">base44.com</p><div class="prompt-box" id="p-base44">Build a private educational resource list for a study circle. Add title, URL, note; mark primary/secondary source. No public sharing. Footer: Educational only — not a fatwa.</div><button type="button" class="copy-prompt" data-target="p-base44">Copy starter prompt</button><div class="dvi-actions"><a class="btn" href="https://base44.com" target="_blank" rel="noopener">Open Base44 →</a></div></div>
+        <div class="lab-card"><span class="icon">📱</span><span class="free-tag">OPEN · FREE</span><h3>PWABuilder</h3><p>Turn any web app into a store-ready PWA. Manifest + service worker + packaging.</p><p class="meta">pwabuilder.com</p><div class="prompt-box" id="p-pwa">After a static educational app is hosted: open pwabuilder.com, paste URL, generate manifest + service worker, package for testing. Keep educational-only stamp visible in the installed app.</div><button type="button" class="copy-prompt" data-target="p-pwa">Copy workflow note</button><div class="dvi-actions"><a class="btn" href="https://www.pwabuilder.com" target="_blank" rel="noopener">Open PWABuilder →</a></div></div>
+        <div class="lab-card"><span class="icon">☪</span><span class="free-tag">OPEN SOURCE · SADAQAH</span><h3>Falah.io</h3><p>Privacy-first Islamic toolkit — prayer times, Quran, Qibla, Zakat. 100% client-side, no ads. Study the patterns.</p><p class="meta">falah.io · GitHub</p><div class="prompt-box" id="p-falah">Study Falah.io architecture: pure client-side Islamic utilities, no tracking. Use as reference for offline-first daʿwah educational tools. Fork patterns, not content claims. Always re-verify primary sources yourself.</div><button type="button" class="copy-prompt" data-target="p-falah">Copy note</button><div class="dvi-actions"><a class="btn" href="https://falah.io" target="_blank" rel="noopener">Open Falah →</a></div></div>
+      </div>
+      <p class="edu-note" style="margin-top:1.2rem"><strong>Governance:</strong> Generated apps are external to Clarity. Do not import code into Companion / Campus / Amānah. Keep Lab inside Craft isolation. Stamp educational-only; prefer quran.com / sunnah.com.</p>
+    </section>
+
+    <!-- SOURCE CHIPS (Meme Studio discipline) -->
+    <section class="dvi-panel tab-panel" id="panel-sources" role="tabpanel">
+      <h2>1 · Source chips · RRRA discipline</h2>
+      <p class="edu-note">Same section model as Meme Studio: Reminder · Reality · Reflection · Action. Lines are from local educational packs with primary references. No free-type scripture as revelation.</p>
+      <div class="chips" role="group" aria-label="Source sections">
+        <button type="button" data-section="reminder" class="active"><span>✦ Reminder</span><small>Qur’an · commands</small></button>
+        <button type="button" data-section="reality"><span>◉ Reality</span><small>accountability</small></button>
+        <button type="button" data-section="reflection"><span>☾ Reflection</span><small>heart · night</small></button>
+        <button type="button" data-section="action"><span>➤ Action</span><small>deed · daʿwah</small></button>
+      </div>
+      <div class="dvi-actions">
+        <button type="button" id="src-refresh">Refresh line</button>
+        <button type="button" id="src-to-reminder" class="secondary">Push → Reminder card</button>
+        <button type="button" id="src-to-quiz" class="secondary">Push → Quiz stem</button>
+      </div>
+      <div id="source-card" aria-live="polite">Tap a section</div>
+      <p id="src-status" class="edu-note" style="border:0;padding:0">Educational wording only — verify on quran.com / sunnah.com</p>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section class="dvi-panel tab-panel" id="panel-curriculum" role="tabpanel">
+      <h2>2 · Curriculum track builder</h2>
+      <p class="edu-note">Stages mirror Campus shape (Seeker → Practice → Consistency → Transmission). Data stays on this device. No progress coupling to Campus.</p>
+      <div class="chips" role="group" aria-label="Track stage">
+        <button type="button" data-track="seeker" class="active">Seeker</button>
+        <button type="button" data-track="practice">Practice</button>
+        <button type="button" data-track="consistency">Consistency</button>
+        <button type="button" data-track="transmission">Transmission</button>
+      </div>
+      <label for="mod-title">Module title</label>
+      <input id="mod-title" class="dvi-field" type="text" maxlength="120" placeholder="e.g. Allah is One — Tawḥīd foundations" />
+      <label for="mod-aim">Aim (one sentence)</label>
+      <input id="mod-aim" class="dvi-field" type="text" maxlength="200" placeholder="Know that Allah alone deserves worship" />
+      <label for="mod-source">Primary source note</label>
+      <input id="mod-source" class="dvi-field" type="text" maxlength="200" placeholder="Qur’an 112 · quran.com/112" />
+      <label for="mod-action">Junior action</label>
+      <input id="mod-action" class="dvi-field" type="text" maxlength="160" placeholder="Say Bismillāh before one ordinary task today" />
+      <div class="dvi-actions">
+        <button type="button" id="dvi-add-module">Add module</button>
+        <button type="button" id="dvi-export-json" class="secondary">Export JSON</button>
+        <button type="button" id="dvi-clear" class="secondary">Clear track</button>
+      </div>
+      <p id="dvi-status" aria-live="polite"></p>
+      <ul class="module-list" id="mod-list"></ul>
+    </section>
+
+    <!-- EXTRA TOOLS -->
+    <section class="dvi-panel tab-panel" id="panel-tools" role="tabpanel">
+      <h2>3 · Extra tools</h2>
+      <div class="dvi-grid">
+        <div class="dvi-card">
+          <h3>Reminder-card template</h3>
+          <p>Build a short, source-backed reminder for share or print.</p>
+          <label for="rc-top">Top line (optional)</label>
+          <input id="rc-top" class="dvi-field" maxlength="80" placeholder="Today’s reminder" />
+          <label for="rc-body">Body (prefer source chip)</label>
+          <textarea id="rc-body" class="dvi-field" placeholder="Paste or push from Source chips"></textarea>
+          <label for="rc-ref">Reference</label>
+          <input id="rc-ref" class="dvi-field" maxlength="100" placeholder="Qur’an 2:152 · educational" />
+          <div class="dvi-actions">
+            <button type="button" id="rc-preview">Preview</button>
+            <button type="button" id="rc-copy" class="secondary">Copy text</button>
+          </div>
+          <div id="rc-out" class="edu-note" style="margin-top:0.6rem;white-space:pre-wrap"></div>
+        </div>
+        <div class="dvi-card">
+          <h3>Quiz bank generator</h3>
+          <p>Local educational stems only. Feedback must point to sources — never a ruling.</p>
+          <label for="qz-q">Question</label>
+          <input id="qz-q" class="dvi-field" maxlength="200" placeholder="What is the first truth a seeker holds?" />
+          <label for="qz-a">Model answer (short)</label>
+          <input id="qz-a" class="dvi-field" maxlength="200" placeholder="Tawḥīd — Allah is One" />
+          <label for="qz-src">Source / feedback note</label>
+          <input id="qz-src" class="dvi-field" maxlength="160" placeholder="Qur’an 112 · educational map" />
+          <div class="dvi-actions">
+            <button type="button" id="qz-add">Add to bank</button>
+            <button type="button" id="qz-export" class="secondary">Export bank</button>
+            <button type="button" id="qz-clear" class="secondary">Clear bank</button>
+          </div>
+          <ul class="module-list" id="qz-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEEKER EXAMPLES (read-only) -->
+    <section class="dvi-panel tab-panel" id="panel-examples" role="tabpanel">
+      <h2>4 · Campus Seeker examples · read-only</h2>
+      <p class="edu-note">
+        These are <strong>illustrative</strong> module shapes from Clarity University Seeker track.
+        They are not live progress, not grades, and do not write to Campus storage.
+        Open the real desk only for study: <a href="/campus/desk/?phase=seeker" style="color:#c9a227">/campus/desk/?phase=seeker</a>
+      </p>
+      <ul class="example-list" id="seeker-examples"></ul>
+    </section>
+
+    <!-- AUTHENTIC RESOURCES -->
+    <section class="dvi-panel tab-panel" id="panel-resources" role="tabpanel">
+      <h2>5 · Online authentic · Shariah-compliant primary resources</h2>
+      <p class="edu-note">Prefer these for verification. Clarity does not replace them. Educational use only.</p>
+      <div class="resource-grid dvi-grid">
+        <a href="https://quran.com" target="_blank" rel="noopener noreferrer">Qur’an.com<small>Primary Arabic + translations · Uthmani text</small></a>
+        <a href="https://sunnah.com" target="_blank" rel="noopener noreferrer">Sunnah.com<small>Graded ḥadīth collections</small></a>
+        <a href="https://corpus.quran.com" target="_blank" rel="noopener noreferrer">Quranic Arabic Corpus<small>Word-by-word · educational</small></a>
+        <a href="https://dorar.net" target="_blank" rel="noopener noreferrer">Dorar.net<small>Encyclopedia of ḥadīth (Arabic)</small></a>
+        <a href="https://islamqa.info" target="_blank" rel="noopener noreferrer">IslamQA<small>Scholarly answers — verify locally too</small></a>
+        <a href="https://seekersguidance.org" target="_blank" rel="noopener noreferrer">SeekersGuidance<small>Courses &amp; answers · educational</small></a>
+        <a href="https://tafsir.app" target="_blank" rel="noopener noreferrer">Tafsir.app<small>Classical tafsīr access</small></a>
+        <a href="https://www.aladhan.com" target="_blank" rel="noopener noreferrer">AlAdhan<small>Prayer times API · educational</small></a>
+      </div>
+      <p class="edu-note">Remote image/media on any Clarity canvas must still pass Shariah URL scan where the surface implements it (Meme Studio rule).</p>
+    </section>
+
+    <!-- APP OUTLINE -->
+    <section class="dvi-panel tab-panel" id="panel-outline" role="tabpanel">
+      <h2>6 · App outline sketch</h2>
+      <p class="edu-note">Planning surface only — not a code generator. Export for your own notes.</p>
+      <label for="app-name">App working name</label>
+      <input id="app-name" class="dvi-field" maxlength="80" placeholder="e.g. Light for the Grave · Junior" />
+      <label for="app-audience">Primary audience</label>
+      <input id="app-audience" class="dvi-field" maxlength="120" placeholder="New Muslims · teens · family" />
+      <label for="app-offline">Offline-first promise</label>
+      <input id="app-offline" class="dvi-field" maxlength="160" placeholder="Progress and notes stay on device; no account required" />
+      <label for="app-screens">Core screens (one per line)</label>
+      <textarea id="app-screens" class="dvi-field" placeholder="Home / path chooser&#10;Today’s portion&#10;Lesson desk&#10;Quiz / practice&#10;Notes / reflection&#10;About / sources"></textarea>
+      <label for="app-limits">Hard limits (must say)</label>
+      <textarea id="app-limits" class="dvi-field" placeholder="Educational only — not a fatwa&#10;Not a replacement for a living teacher&#10;Verify Qur’an and ḥadīth on primary sites&#10;No free-type scripture as revelation"></textarea>
+      <div class="dvi-actions">
+        <button type="button" id="dvi-save-outline">Save outline (local)</button>
+        <button type="button" id="dvi-export-outline" class="secondary">Export outline</button>
+      </div>
+    </section>
+
+    <!-- ONE-PAGER / PRINT -->
+    <section class="dvi-panel tab-panel" id="panel-print" role="tabpanel">
+      <h2>7 · Printable one-pager</h2>
+      <p class="edu-note">Assembles charter summary + current source line + current track modules + limits into a single printable sheet. Use browser Print → Save as PDF.</p>
+      <div class="dvi-actions">
+        <button type="button" id="dvi-build-print">Build one-pager</button>
+        <button type="button" id="dvi-print" class="secondary">Print / Save PDF</button>
+      </div>
+      <div id="print-preview" class="edu-note" style="margin-top:0.8rem;white-space:pre-wrap;max-height:320px;overflow:auto"></div>
+    </section>
+
+  </main>
+
+  <!-- Hidden print root -->
+  <div id="print-root" aria-hidden="true"></div>
+
+  <footer class="craft-footer">
+    <p>Clarity Craft · Dawah Vocational Institute C19DVI5 · Educational only — not a fatwa · pure daʿwah charter</p>
+  </footer>
+
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109C19DVI5" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261109C19DVI5" defer></script>
+  <script>
+  (function () {
+    "use strict";
+
+    document.querySelectorAll(".copy-prompt").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-target");
+        var box = document.getElementById(id);
+        if (!box) return;
+        navigator.clipboard.writeText(box.textContent).then(function () {
+          var old = btn.textContent;
+          btn.textContent = "Copied ✓";
+          setTimeout(function () { btn.textContent = old; }, 1600);
+        }).catch(function () {});
+      });
+    });
+
+    /* ===== Source packs (Meme Studio discipline — educational only) ===== */
+    var SECTIONS = {
+      reminder: {
+        label: "Reminder",
+        lines: [
+          { ar: "فَاذْكُرُونِي أَذْكُرْكُمْ", en: "So remember Me; I will remember you.", ref: "Qur’an 2:152" },
+          { ar: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", en: "Verily, in the remembrance of Allah do hearts find rest.", ref: "Qur’an 13:28" },
+          { ar: "وَذَكِّرْ فَإِنَّ الذِّكْرَىٰ تَنفَعُ الْمُؤْمِنِينَ", en: "And remind, for reminder benefits the believers.", ref: "Qur’an 51:55" },
+          { ar: "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ", en: "Every soul will taste death.", ref: "Qur’an 3:185" }
+        ]
+      },
+      reality: {
+        label: "Reality",
+        lines: [
+          { ar: "وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ", en: "And the life of this world is only the enjoyment of deception.", ref: "Qur’an 3:185" },
+          { ar: "أَفَحَسِبْتُمْ أَنَّمَا خَلَقْنَاكُمْ عَبَثًا", en: "Did you think that We created you uselessly?", ref: "Qur’an 23:115" },
+          { en: "When a person dies, his deeds come to an end except three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.", ref: "Muslim 1631" }
+        ]
+      },
+      reflection: {
+        label: "Reflection",
+        lines: [
+          { ar: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", en: "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.", ref: "Qur’an 2:201" },
+          { ar: "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي", en: "My Lord, expand for me my breast and ease for me my task.", ref: "Qur’an 20:25–26" }
+        ]
+      },
+      action: {
+        label: "Action",
+        lines: [
+          { ar: "ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ وَالْمَوْعِظَةِ الْحَسَنَةِ", en: "Invite to the way of your Lord with wisdom and good instruction.", ref: "Qur’an 16:125" },
+          { en: "The most beloved of deeds to Allah are those done consistently, even if they are small.", ref: "Bukhari & Muslim" },
+          { en: "Convey from me, even if it is one verse.", ref: "Bukhari" }
+        ]
+      }
+    };
+
+    /* Campus Seeker examples — static, read-only, no progress coupling */
+    var SEEKER_EXAMPLES = [
+      { n: 1, title: "Allah is One", aim: "Know that Allah alone is Creator and deserves worship — without partners.", source: "Qur’an 112:1–4", action: "Bismillāh before one ordinary task today" },
+      { n: 2, title: "Allah sees and knows", aim: "Allah knows the open and the secret.", source: "Qur’an 6:59 / educational map", action: "One honest istighfār for a hidden fault" },
+      { n: 3, title: "Belief map — six articles", aim: "Hold the six articles of īmān as an overview map.", source: "Educational overview · verify with teacher", action: "Name the six articles once from memory" },
+      { n: 4, title: "Messengers and the Last Day", aim: "Messengers are chosen servants — not divine.", source: "Qur’an 18:110 · educational", action: "Send ṣalawāt ten times" },
+      { n: 5, title: "Five pillars — map", aim: "Shahādah · ṣalāh · zakāh · ṣawm · ḥajj as a map, not a fatwa.", source: "Educational map", action: "Guard the next prayer you can reach" },
+      { n: 6, title: "Who is Muḥammad ﷺ?", aim: "Final messenger — Seal of the Prophets.", source: "Qur’an 33:40 · educational", action: "One sentence of seerah into action" },
+      { n: 7, title: "Truth, kindness, clean tongue", aim: "Safety of tongue and hand is from the Sunnah definition of the Muslim.", source: "Bukhari · Muslim educational", action: "Replace one complaint with thanks" },
+      { n: 8, title: "Death is a door — hope and work", aim: "Death is certain; preparation is daily.", source: "Qur’an 3:185 · educational", action: "One small continuous deed today" }
+    ];
+
+    var STORAGE_TRACK = "clarity.craft.institute.track.v1";
+    var STORAGE_OUTLINE = "clarity.craft.institute.outline.v1";
+    var STORAGE_QUIZ = "clarity.craft.institute.quiz.v1";
+
+    var currentSection = "reminder";
+    var currentTrack = "seeker";
+    var lastLine = null;
+    var modules = loadJSON(STORAGE_TRACK, { seeker: [], practice: [], consistency: [], transmission: [] });
+    var quizBank = loadJSON(STORAGE_QUIZ, []);
+
+    function loadJSON(key, fallback) {
+      try { var r = localStorage.getItem(key); return r ? JSON.parse(r) : fallback; } catch (e) { return fallback; }
+    }
+    function saveJSON(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+    function escapeHtml(s) {
+      return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    function formatLine(line) {
+      var parts = [];
+      if (line.ar) parts.push(line.ar);
+      if (line.en) parts.push(line.en);
+      if (line.ref) parts.push("(" + line.ref + ")");
+      parts.push("— clarity-dawah.fyi · educational only — not a fatwa");
+      return parts.join("\n");
+    }
+    function setStatus(id, msg) { var el = document.getElementById(id); if (el) el.textContent = msg || ""; }
+
+    /* Tabs */
+    document.querySelectorAll(".tabs [data-tab]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tabs [data-tab]").forEach(function (b) { b.classList.remove("active"); });
+        document.querySelectorAll(".tab-panel").forEach(function (p) { p.classList.remove("active"); });
+        btn.classList.add("active");
+        var panel = document.getElementById("panel-" + btn.getAttribute("data-tab"));
+        if (panel) panel.classList.add("active");
+      });
+    });
+
+    /* Source chips */
+    function fetchSection(id) {
+      var sec = SECTIONS[id] || SECTIONS.reminder;
+      var line = pick(sec.lines);
+      lastLine = line;
+      return { section: id, label: sec.label, line: line, text: formatLine(line) };
+    }
+    function applySource(result) {
+      var card = document.getElementById("source-card");
+      if (card) card.textContent = result.text;
+      setStatus("src-status", "Section · " + result.label + " · educational only — verify primary texts");
+    }
+    document.querySelectorAll("[data-section]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll("[data-section]").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentSection = btn.getAttribute("data-section");
+        applySource(fetchSection(currentSection));
+      });
+    });
+    document.getElementById("src-refresh").addEventListener("click", function () {
+      applySource(fetchSection(currentSection));
+    });
+    document.getElementById("src-to-reminder").addEventListener("click", function () {
+      if (!lastLine) applySource(fetchSection(currentSection));
+      var body = document.getElementById("rc-body");
+      var ref = document.getElementById("rc-ref");
+      if (body && lastLine) {
+        body.value = (lastLine.ar ? lastLine.ar + "\n" : "") + (lastLine.en || "");
+        if (ref) ref.value = (lastLine.ref || "") + " · educational";
+        setStatus("src-status", "Pushed to Reminder-card template");
+      }
+    });
+    document.getElementById("src-to-quiz").addEventListener("click", function () {
+      if (!lastLine) applySource(fetchSection(currentSection));
+      var q = document.getElementById("qz-q");
+      var a = document.getElementById("qz-a");
+      var s = document.getElementById("qz-src");
+      if (q && lastLine) {
+        q.value = "What does this teaching call us to remember or do?";
+        a.value = lastLine.en || lastLine.ar || "";
+        if (s) s.value = (lastLine.ref || "") + " · educational map — not a fatwa";
+        setStatus("src-status", "Pushed to Quiz bank fields");
+      }
+    });
+    applySource(fetchSection("reminder"));
+
+    /* Curriculum */
+    function renderModules() {
+      var list = document.getElementById("mod-list");
+      var items = modules[currentTrack] || [];
+      list.innerHTML = "";
+      if (!items.length) {
+        list.innerHTML = '<li style="opacity:0.7">No modules yet for this track.</li>';
+        return;
+      }
+      items.forEach(function (m, i) {
+        var li = document.createElement("li");
+        li.innerHTML = '<span class="mod-num">' + (i + 1) + '</span><div><strong>' + escapeHtml(m.title) + '</strong><br><span style="opacity:0.85">' + escapeHtml(m.aim || "") + '</span><br><span style="font-size:0.78rem;opacity:0.75">' + escapeHtml(m.source || "") + (m.action ? " · Action: " + escapeHtml(m.action) : "") + "</span></div>";
+        list.appendChild(li);
+      });
+    }
+    document.querySelectorAll("[data-track]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll("[data-track]").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentTrack = btn.getAttribute("data-track");
+        renderModules();
+        setStatus("dvi-status", "Track · " + currentTrack);
+      });
+    });
+    document.getElementById("dvi-add-module").addEventListener("click", function () {
+      var title = document.getElementById("mod-title").value.trim();
+      if (!title) { setStatus("dvi-status", "Please add a module title."); return; }
+      modules[currentTrack] = modules[currentTrack] || [];
+      modules[currentTrack].push({
+        title: title,
+        aim: document.getElementById("mod-aim").value.trim(),
+        source: document.getElementById("mod-source").value.trim(),
+        action: document.getElementById("mod-action").value.trim(),
+        added: Date.now()
+      });
+      saveJSON(STORAGE_TRACK, modules);
+      ["mod-title", "mod-aim", "mod-source", "mod-action"].forEach(function (id) { document.getElementById(id).value = ""; });
+      renderModules();
+      setStatus("dvi-status", "Module added · " + currentTrack + " · stays on this device");
+    });
+    document.getElementById("dvi-clear").addEventListener("click", function () {
+      if (!confirm("Clear all modules in " + currentTrack + "?")) return;
+      modules[currentTrack] = [];
+      saveJSON(STORAGE_TRACK, modules);
+      renderModules();
+      setStatus("dvi-status", "Track cleared · " + currentTrack);
+    });
+    document.getElementById("dvi-export-json").addEventListener("click", function () {
+      var blob = new Blob([JSON.stringify({ track: currentTrack, modules: modules[currentTrack], exported: new Date().toISOString(), note: "Educational only — not a fatwa" }, null, 2)], { type: "application/json" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "clarity-dvi-" + currentTrack + ".json"; a.click(); URL.revokeObjectURL(a.href);
+      setStatus("dvi-status", "Exported current track JSON");
+    });
+    renderModules();
+
+    /* Reminder card */
+    document.getElementById("rc-preview").addEventListener("click", function () {
+      var top = document.getElementById("rc-top").value.trim();
+      var body = document.getElementById("rc-body").value.trim();
+      var ref = document.getElementById("rc-ref").value.trim();
+      var out = [];
+      if (top) out.push(top);
+      if (body) out.push(body);
+      if (ref) out.push("(" + ref + ")");
+      out.push("— clarity-dawah.fyi · educational only — not a fatwa");
+      document.getElementById("rc-out").textContent = out.join("\n\n");
+    });
+    document.getElementById("rc-copy").addEventListener("click", function () {
+      var t = document.getElementById("rc-out").textContent;
+      if (!t) return;
+      navigator.clipboard.writeText(t).then(function () { document.getElementById("rc-out").textContent = t + "\n\n[Copied]"; });
+    });
+
+    /* Quiz bank */
+    function renderQuiz() {
+      var list = document.getElementById("qz-list");
+      list.innerHTML = "";
+      if (!quizBank.length) { list.innerHTML = '<li style="opacity:0.7">Bank empty.</li>'; return; }
+      quizBank.forEach(function (item, i) {
+        var li = document.createElement("li");
+        li.innerHTML = '<span class="mod-num">' + (i + 1) + '</span><div><strong>' + escapeHtml(item.q) + '</strong><br><span style="opacity:0.85">' + escapeHtml(item.a) + '</span><br><span style="font-size:0.78rem;opacity:0.75">' + escapeHtml(item.src) + "</span></div>";
+        list.appendChild(li);
+      });
+    }
+    document.getElementById("qz-add").addEventListener("click", function () {
+      var q = document.getElementById("qz-q").value.trim();
+      if (!q) return;
+      quizBank.push({ q: q, a: document.getElementById("qz-a").value.trim(), src: document.getElementById("qz-src").value.trim() || "educational only — not a fatwa", added: Date.now() });
+      saveJSON(STORAGE_QUIZ, quizBank);
+      document.getElementById("qz-q").value = ""; document.getElementById("qz-a").value = ""; document.getElementById("qz-src").value = "";
+      renderQuiz();
+    });
+    document.getElementById("qz-clear").addEventListener("click", function () {
+      if (!confirm("Clear quiz bank?")) return;
+      quizBank = []; saveJSON(STORAGE_QUIZ, quizBank); renderQuiz();
+    });
+    document.getElementById("qz-export").addEventListener("click", function () {
+      var blob = new Blob([JSON.stringify({ bank: quizBank, note: "Educational quiz stems only — not a fatwa", exported: new Date().toISOString() }, null, 2)], { type: "application/json" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "clarity-dvi-quiz-bank.json"; a.click(); URL.revokeObjectURL(a.href);
+    });
+    renderQuiz();
+
+    /* Seeker examples (static) */
+    (function () {
+      var ul = document.getElementById("seeker-examples");
+      SEEKER_EXAMPLES.forEach(function (m) {
+        var li = document.createElement("li");
+        li.innerHTML = '<span class="mod-num">' + m.n + '</span><div><strong>' + escapeHtml(m.title) + '</strong><br><span style="opacity:0.85">' + escapeHtml(m.aim) + '</span><br><span style="font-size:0.78rem;opacity:0.75">Source: ' + escapeHtml(m.source) + ' · Action: ' + escapeHtml(m.action) + '</span></div>';
+        ul.appendChild(li);
+      });
+    })();
+
+    /* Outline */
+    (function () {
+      var o = loadJSON(STORAGE_OUTLINE, null);
+      if (o) {
+        document.getElementById("app-name").value = o.name || "";
+        document.getElementById("app-audience").value = o.audience || "";
+        document.getElementById("app-offline").value = o.offline || "";
+        document.getElementById("app-screens").value = o.screens || "";
+        document.getElementById("app-limits").value = o.limits || "";
+      }
+    })();
+    document.getElementById("dvi-save-outline").addEventListener("click", function () {
+      var data = {
+        name: document.getElementById("app-name").value.trim(),
+        audience: document.getElementById("app-audience").value.trim(),
+        offline: document.getElementById("app-offline").value.trim(),
+        screens: document.getElementById("app-screens").value.trim(),
+        limits: document.getElementById("app-limits").value.trim(),
+        saved: Date.now()
+      };
+      saveJSON(STORAGE_OUTLINE, data);
+      setStatus("dvi-status", "Outline saved on this device");
+    });
+    document.getElementById("dvi-export-outline").addEventListener("click", function () {
+      var data = {
+        name: document.getElementById("app-name").value.trim(),
+        audience: document.getElementById("app-audience").value.trim(),
+        offline: document.getElementById("app-offline").value.trim(),
+        screens: document.getElementById("app-screens").value.trim(),
+        limits: document.getElementById("app-limits").value.trim(),
+        exported: new Date().toISOString(),
+        note: "Educational only — not a fatwa · Clarity DVI"
+      };
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "clarity-dvi-app-outline.json"; a.click(); URL.revokeObjectURL(a.href);
+    });
+
+    /* One-pager */
+    function buildOnePager() {
+      var lines = [];
+      lines.push("CLARITY · DAWAH VOCATIONAL INSTITUTE");
+      lines.push("Educational only — not a fatwa · not accreditation · pure daʿwah charter");
+      lines.push("");
+      lines.push("CHARTER (summary)");
+      lines.push("1. Source discipline — no free-type scripture as revelation");
+      lines.push("2. Adab of invitation — wisdom & good instruction (16:125)");
+      lines.push("3. Privacy — drafts stay on device unless exported");
+      lines.push("4. Isolation — Craft workbench only");
+      lines.push("5. Honesty of limits — always stamp educational only");
+      lines.push("");
+      if (lastLine) {
+        lines.push("CURRENT SOURCE LINE");
+        if (lastLine.ar) lines.push(lastLine.ar);
+        if (lastLine.en) lines.push(lastLine.en);
+        if (lastLine.ref) lines.push("(" + lastLine.ref + ")");
+        lines.push("");
+      }
+      lines.push("CURRENT TRACK · " + currentTrack.toUpperCase());
+      var items = modules[currentTrack] || [];
+      if (!items.length) lines.push("(no modules yet)");
+      else items.forEach(function (m, i) {
+        lines.push((i + 1) + ". " + m.title);
+        if (m.aim) lines.push("   Aim: " + m.aim);
+        if (m.source) lines.push("   Source: " + m.source);
+        if (m.action) lines.push("   Action: " + m.action);
+      });
+      lines.push("");
+      lines.push("Verify primary texts on quran.com / sunnah.com · consult a local teacher.");
+      lines.push("clarity-dawah.fyi/craft/institute · C19DVI5");
+      var text = lines.join("\n");
+      document.getElementById("print-preview").textContent = text;
+      document.getElementById("print-root").innerHTML = "<h1>Clarity · Dawah Vocational Institute</h1><p class='edu-stamp'>Educational only — not a fatwa</p><pre style='white-space:pre-wrap;font-family:inherit;font-size:0.95rem'>" + escapeHtml(text) + "</pre>";
+      return text;
+    }
+    document.getElementById("dvi-build-print").addEventListener("click", buildOnePager);
+    document.getElementById("dvi-print").addEventListener("click", function () {
+      buildOnePager();
+      window.print();
+    });
+  })();
+  </script>
+</body>
+</html>
