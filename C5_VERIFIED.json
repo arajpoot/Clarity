@@ -1,73 +1,80 @@
 {
-  "phase": "C5",
   "ok": true,
   "cycles": [
     {
-      "name": "zero_inline_refs",
+      "name": "owner_globals",
       "ok": true,
       "detail": {
-        "count": 0,
         "issues": []
       }
     },
     {
-      "name": "boot_src",
+      "name": "streams",
       "ok": true,
       "detail": {
-        "count": 46,
         "issues": []
       }
     },
     {
-      "name": "deprecation_note",
+      "name": "banner_page_ids",
       "ok": true,
       "detail": {
-        "exists": true,
         "issues": []
       }
     },
     {
-      "name": "inline_not_deleted",
+      "name": "owner_on_companion",
       "ok": true,
       "detail": {
-        "shell": true,
         "issues": []
       }
     },
     {
-      "name": "room_audit",
+      "name": "syntax",
       "ok": true,
       "detail": {
-        "out": "PASS \u00b7 room isolation OK",
         "issues": []
       }
     },
     {
-      "name": "all_boot_syntax",
+      "name": "pathway_loader_kept",
       "ok": true,
       "detail": {
-        "files": 46,
-        "bad": [],
         "issues": []
       }
     },
     {
-      "name": "http_all_boot",
+      "name": "http_1",
       "ok": true,
-      "detail": {
-        "n": 46,
-        "fails": []
-      }
+      "fails": []
     },
     {
-      "name": "http_pages",
+      "name": "http_2",
       "ok": true,
-      "detail": {
-        "fails": []
-      }
+      "fails": []
+    },
+    {
+      "name": "http_3",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_4",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_5",
+      "ok": true,
+      "fails": []
     }
   ],
+  "issues": [],
   "status": "verified",
-  "boot_files": 46,
-  "companion_inline_script_refs": 0
+  "governance": {
+    "banner_self_contained": true,
+    "av_wiring": true,
+    "salah_hijri_temps": true,
+    "educational_only": true
+  }
 }
