@@ -1,4 +1,4 @@
-/*! craft-meme-auditor-v1 · C19MEME17
+/*! craft-meme-auditor-v1 · C19MEME19
  * Top-notch focal auditor — verse · English · Urdu · ref · scenery
  * Cross-layer consistency: all four must point at the same ayah when known
  * Auto-fix from curated bank · publish gate
@@ -250,10 +250,7 @@
   }
 
   function curatedUrdu(ref, en, ar) {
-    var k = normRef(ref) || detectRefFromArabic(ar) || detectRefFromEnglish(en);
-    if (k && VERSE_BANK[k]) return VERSE_BANK[k].ur;
-    if (k === "3:185" && VERSE_BANK["3:185"]) return VERSE_BANK["3:185"].ur;
-    return "";
+    return ""; /* C19MEME19: no bank Urdu */
   }
 
   function crossLayerAudit(L) {
@@ -444,7 +441,7 @@
     var fixUr = "";
     report.blocks.forEach(function (b) {
       if (b.fixRef) fixRef = b.fixRef;
-      if (b.fixUrdu) fixUr = b.fixUrdu;
+      if (false && b.fixUrdu) fixUr = b.fixUrdu;
     });
     if (fixRef) {
       var ent = bankEntry(fixRef);
@@ -454,7 +451,7 @@
         /* if English clearly wrong, do not invent Arabic — only urdu/ref */
       }
     }
-    /* C19MEME17: do not apply bank fixUrdu — trigger online fetch instead */
+    /* C19MEME19: do not apply bank fixUrdu — trigger online fetch instead */
 if (false && fixUr) L.ur = fixUr;
     if (!L.ur && w.CraftMemeUrduFetch) {
       var ref2 = normRef(L.ref) || detectRefFromArabic(L.ar) || detectRefFromEnglish(L.en);
@@ -520,40 +517,19 @@ if (false && fixUr) L.ur = fixUr;
   }
 
   function preferCuratedUrdu() {
-    /* C19MEME17: NEVER paint bank Urdu — online API only */
-    var L = getLayers();
-    var ref = normRef(L.ref) || detectRefFromArabic(L.ar) || detectRefFromEnglish(L.en);
-    if (ref && w.CraftMemeUrduFetch) {
-      var cached = w.CraftMemeUrduFetch.cache && w.CraftMemeUrduFetch.cache[ref];
-      if (cached) {
-        L.ur = cached;
+    if (w.CraftMemeUrduFetch && typeof w.CraftMemeUrduFetch.loadForCurrentLayers === "function") {
+      var L = getLayers();
+      var ref = "";
+      try { ref = w.CraftMemeUrduFetch.resolveRef(L); } catch (e) {}
+      if (ref && w.CraftMemeUrduFetch.cache && w.CraftMemeUrduFetch.cache[ref]) {
+        L.ur = w.CraftMemeUrduFetch.cache[ref];
         w.__memeLayers = L;
-        return cached;
+        return L.ur;
       }
-      try {
-        w.CraftMemeUrduFetch.fetchUrdu(ref).then(function (ur) {
-          if (!w.__memeLayers) w.__memeLayers = {};
-          w.__memeLayers.ur = ur || "";
-          if (typeof w.memeDraw === "function") {
-            try {
-              if (w.memeDraw._origDraw) w.memeDraw._origDraw();
-              else w.memeDraw();
-            } catch (e0) {}
-          }
-        });
-      } catch (e1) {}
-      /* while waiting, do not leave foreign/bank text */
-      if (L.ur && detectRefFromUrdu(L.ur) && detectRefFromUrdu(L.ur) !== ref) {
-        L.ur = "";
-        w.__memeLayers = L;
-      }
-      return L.ur || "";
+      try { w.CraftMemeUrduFetch.loadForCurrentLayers(true); } catch (e2) {}
+      return (w.__memeLayers && w.__memeLayers.ur) || "";
     }
-    /* no ref / no API — blank urdu rather than bank */
-    if (L.ur && !w.CraftMemeUrduFetch) {
-      /* keep only if already online-sourced in session; else clear */
-    }
-    return L.ur || "";
+    return "";
   }
   function preferCuratedUrdu_DISABLED_BANK() {
     var L = getLayers();

@@ -1,4 +1,4 @@
-/*! craft-meme-source-v1 · C19MEME18
+/*! craft-meme-source-v1 · C19MEME20
  * RRRA section packs · dual chip attrs · layer push · persist · optional companion bridge
  * Educational only — not a fatwa
  */
@@ -106,16 +106,17 @@
     w.__memeLayers = {
       ar: line.ar || "",
       en: line.en || "",
-      ur: line.ur || (w.__memeLayers && w.__memeLayers.ur) || "",
+      ur: "", /* always refetch online for this ref */
       ref: line.ref || ""
     };
+    /* English is local (bundled with line). Urdu is online-only for same ref. */
     try {
       if (w.CraftMemeUrduFetch) {
         w.CraftMemeUrduFetch.loadForCurrentLayers(true);
         setTimeout(function () {
           try { w.CraftMemeUrduFetch.loadForCurrentLayers(true); } catch (eR) {}
         }, 400);
-      } /* bank urdu removed C19MEME18 */
+      } /* bank urdu removed C19MEME20 */
     } catch (eU) {}
     try {
       if (w.CraftMemeAutomation && w.CraftMemeAutomation.setLayers) {

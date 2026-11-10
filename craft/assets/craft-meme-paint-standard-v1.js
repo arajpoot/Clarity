@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME18
+/*! craft-meme-paint-standard-v1 · C19MEME20
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -98,7 +98,7 @@
     if (urParts && urParts.length) {
       ur = urParts.map(function (s) { return s.trim(); }).filter(Boolean).join(" ").trim();
     }
-    /* C19MEME18: never drop online-fetched Urdu when desk text has no Urdu */
+    /* C19MEME20: never drop online-fetched Urdu when desk text has no Urdu */
     if (!ur && w.__memeLayers && w.__memeLayers.ur) ur = w.__memeLayers.ur;
     if (!ur && w.__memeUrduOnline) ur = w.__memeUrduOnline;
     if (!ar && w.__memeLayers && w.__memeLayers.ar) ar = w.__memeLayers.ar;
@@ -264,6 +264,10 @@
     var flags = (typeof window !== "undefined" && window.__memeLayerFlags) ? window.__memeLayerFlags : {ar:true,en:true,ur:true,ref:true};
     var inkMode = (w.__memeInkMode || "light");
     var CREAM = inkMode === "gold" ? "#e8c76b" : (inkMode === "dark" ? "#1a1a1a" : "#f5e6c8");
+    var colAr = (colors && colors.ar) || CREAM;
+    var colEn = (colors && colors.en) || CREAM;
+    var colUr = (colors && colors.ur) || CREAM;
+    var colRef = (colors && colors.ref) || (inkMode === "dark" ? "#333" : "rgba(245,230,200,0.85)");
     var inkShadow = inkMode === "dark" ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.55)";
 
     if (w.__memeVignetteOn !== false) drawVignette(ctx, w, h);
@@ -271,7 +275,7 @@
     var layers = parseLayers(readSourceText());
     var ar = layers.ar || "";
     var en = layers.en || "";
-    var ur = layers.ur || ""; /* C19MEME18: no lastUrduText bank bleed */
+    var ur = layers.ur || ""; /* C19MEME20: no lastUrduText bank bleed */
     var ref = layers.ref || "";
     if (flags) {
       if (flags.ar === false) ar = "";
@@ -282,9 +286,11 @@
     var padX = Math.round(w * 0.09);
     var maxW = w - padX * 2;
     var cx = w / 2;
-    var arFamily = "Amiri, 'Scheherazade New', 'Noto Naskh Arabic', serif";
-    var enFamily = "Georgia, 'Cormorant Garamond', 'Times New Roman', serif";
-    var urFamily = "'Noto Nastaliq Urdu', 'Noto Naskh Arabic', Amiri, serif";
+    var fonts = w.__memeFonts || {};
+    var colors = w.__memeColors || {};
+    var arFamily = (fonts.ar || "Amiri") + ", 'Scheherazade New', 'Noto Naskh Arabic', serif";
+    var enFamily = (fonts.en || "Georgia") + ", 'Cormorant Garamond', 'Times New Roman', serif";
+    var urFamily = (fonts.ur || "Noto Nastaliq Urdu") + ", 'Noto Naskh Arabic', Amiri, serif";
     var refFamily = "Quicksand, Inter, system-ui, sans-serif";
 
     var hasUr = !!(ur && ur.trim());
@@ -355,16 +361,11 @@
   }
 
   function fetchUrduThenPaint() {
-    /* C19MEME18: curated bank first — free API is last resort and audited */
+    /* C19MEME20: curated bank first — free API is last resort and audited */
     try {
-      if (w.CraftMemeAuditor && typeof w.CraftMemeAuditor.preferCuratedUrdu === "function") {
-        var cu = w.CraftMemeAuditor.preferCuratedUrdu();
-        if (cu) {
-          lastUrduText = cu;
-          if (w.__memeLayers) w.__memeLayers.ur = cu;
-          schedulePaint();
-          return;
-        }
+      if (w.CraftMemeUrduFetch) {
+        w.CraftMemeUrduFetch.loadForCurrentLayers(true);
+        return;
       }
     } catch (eAud) {}
 
@@ -388,7 +389,7 @@
     }
     lastUrduKey = key;
     /* try free translation endpoint; fail soft */
-    var url = null; /* C19MEME18: free EN→UR disabled — authentic ayah API only */
+    var url = null; /* C19MEME20: free EN→UR disabled — authentic ayah API only */
     if (w.CraftMemeUrduFetch) {
       var refGuess = "";
       try {
@@ -440,8 +441,7 @@
           }
         } catch (eR) {}
         if (reject && w.CraftMemeAuditor) {
-          var cu2 = w.CraftMemeAuditor.curatedUrdu((w.__memeLayers||{}).ref, (w.__memeLayers||{}).en);
-          if (cu2) out = cu2;
+          out = ""; /* no bank */
         }
         urduCache[key] = out;
         lastUrduText = out;
@@ -708,7 +708,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME18 · single-owner lock — neutralize legacy painters */
+  /* C19MEME20 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */
