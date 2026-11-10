@@ -16,7 +16,7 @@
 .mod-top a{color:#cfe0d6;text-decoration:none;font-size:.85rem}
 .mod-top .brand{color:#e8d5a3;font-weight:700}
 .yawm-mini-banner{margin:0;position:relative;overflow:hidden;border-radius:0 0 18px 18px}
-.yawm-mini-banner img{width:100%;height:auto;display:block;max-height:160px;object-fit:cover;opacity:.85}
+.yawm-mini-banner img{width:100%;height:clamp(200px,32vw,280px);display:block;object-fit:cover;opacity:.9}
 .yawm-mini-plaque{position:absolute;inset:auto 1rem 1rem 1rem;padding:.65rem .85rem;border-radius:12px;
   background:rgba(8,24,18,.82);border:1px solid rgba(212,180,90,.35)}
 .yawm-mini-plaque .mp-title{margin:0;font-family:Georgia,serif;color:#e8d5a3;font-size:1.15rem}
@@ -41,9 +41,10 @@
 .pillar-trio a.deep{color:#c9a84c;font-weight:700;font-size:.78rem;margin-right:.5rem}
 .disc{font-size:.78rem;padding:.5rem .65rem;border-radius:10px;border-left:3px solid rgba(212,180,90,.5);background:rgba(0,0,0,.25)}
 </style>
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109Y5" />
-  <link rel="stylesheet" href="/daily/assets/yawm-room-v1.css?v=20261109Y5" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109Y6" />
+  <link rel="stylesheet" href="/daily/assets/yawm-room-v1.css?v=20261109Y6" />
 <style id="yawm-qibla-safe">#yawm-qibla-label{color:#cfe0d6!important}.gap-card a,.yawm-deepen{color:#e8d5a3!important;text-decoration:none;border-bottom:1px solid rgba(212,180,90,.35)}#yawm-qada-root pre,#yawm-qibla-root pre{display:none!important}</style>
+<style id="yawm-mod-top-gold">.mod-top a,.mod-top nav a{color:#e8d5a3!important;text-decoration:none!important}.yawm-mini-banner img{height:clamp(200px,32vw,280px)!important;object-fit:cover;width:100%}.gap-card a,a.yawm-deepen{color:#e8d5a3!important}</style>
 </head>
 <body>
 <nav class="clarity-room-nav" data-room="yawm" aria-label="Clarity rooms">
@@ -54,29 +55,15 @@
   <a href="/craft/" data-room-link="craft"><span class="crn-label">Craft</span></a>
   <p class="crn-seal">Five rooms · educational only · not a fatwa</p>
 </nav>
-<nav class="yawm-mod-pills" aria-label="Yawm modules">
-  <a href="/daily/modules/now/">Now</a>
-  <a href="/daily/modules/deed/">Deed</a>
-  <a href="/daily/modules/adhkar/">Adhkār</a>
-  <a href="/daily/modules/tasbeeh/">Tasbeeh</a>
-  <a href="/daily/modules/salah/" class="is-here">Farḍ</a>
-  <a href="/daily/modules/light/">Light</a>
-</nav>
-<section class="yawm-teach" aria-label="Module cue">
-  <h2>Workbench cue</h2>
-  <p class="ar" dir="rtl" lang="ar">إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا</p>
-  <p class="en">Indeed, prayer has been decreed upon the believers a decree of specified times.</p>
-  <p class="ref">Qur’an 4:103 · educational · not a fatwa</p>
-</section>
 
 <div class="mod-shell yawm-mod-wide">
   <header class="mod-top">
     <a class="brand" href="/daily/">Clarity · Yawm</a>
     <nav>
-      <a href="/companion/">Companion</a> ·
-      <a href="/daily/">Hub</a> ·
-      <a href="/campus/">University</a> ·
-      <a href="/amana/">Amānah</a>
+      <a style="color:#e8d5a3;text-decoration:none" href="/companion/">Companion</a> ·
+      <a style="color:#e8d5a3;text-decoration:none" href="/daily/">Hub</a> ·
+      <a style="color:#e8d5a3;text-decoration:none" href="/campus/">University</a> ·
+      <a style="color:#e8d5a3;text-decoration:none" href="/amana/">Amānah</a>
     </nav>
   </header>
 
@@ -85,20 +72,27 @@
       onerror="this.style.display='none'"/>
     <div class="yawm-mini-plaque">
       <p class="mp-title">Farḍ · Qaḍāʾ · Qiblah</p>
-      <p class="mp-sub">Educational map · not a fatwa · on this device</p>
+      <p class="mp-sub">Educational map · Furnish your grave with the farḍ you can guard · not a fatwa · on this device</p>
     </div>
   </figure>
+<section class="yawm-teach" aria-label="Module cue">
+  <h2><img class="yawm-ico" src="/daily/assets/icons/nuros-salah.svg" alt="" width="22" height="22"/> Workbench cue</h2>
+  <p class="ar" dir="rtl" lang="ar">إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا</p>
+  <p class="en">Indeed, prayer has been decreed upon the believers a decree of specified times.</p>
+  <p class="ref">Qur’an 4:103 · educational · not a fatwa</p>
+</section>
+
+<nav class="yawm-mod-pills" aria-label="Yawm modules">
+  <a href="/daily/modules/now/">Now</a>
+  <a href="/daily/modules/deed/">Deed</a>
+  <a href="/daily/modules/adhkar/">Adhkār</a>
+  <a href="/daily/modules/tasbeeh/">Tasbeeh</a>
+  <a href="/daily/modules/salah/" class="is-here">Farḍ</a>
+  <a href="/daily/modules/light/">Light</a>
+</nav>
+
 
   <div class="yawm-quill-rule">Yawm · Ṣalāh tools</div>
-  <nav class="mod-pills" aria-label="Modules">
-    <a href="/daily/modules/now/">Now</a>
-    <a href="/daily/modules/deed/">Deed</a>
-    <a href="/daily/modules/adhkar/">Adhkār</a>
-    <a href="/daily/modules/tasbeeh/">Tasbeeh</a>
-    <a class="here" href="/daily/modules/salah/" aria-current="page">Ṣalāh</a>
-    <a href="/daily/modules/light/">Light</a>
-  </nav>
-
   <section class="gap-card">
     <h2><img class="yawm-ico" src="/daily/assets/icons/nuros-salah.svg" alt="" width="22" height="22"/> Farḍ rakʿahs · daily map</h2>
     <p class="sub">Standard farḍ units taught widely — sunnah units vary by school. Educational map · not a fatwa.</p>
@@ -172,8 +166,8 @@
   </p>
 </div>
 <script src="/daily/assets/yawm-qada-tracker-v1.js?v=20261102GAP1" defer></script>
-<script src="/daily/assets/yawm-qibla-v1.js?v=20261109Y5" defer></script>
+<script src="/daily/assets/yawm-qibla-v1.js?v=20261109Y6" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109Y5" defer></script>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109Y6" defer></script>
 </body>
 </html>
