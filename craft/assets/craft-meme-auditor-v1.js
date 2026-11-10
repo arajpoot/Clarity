@@ -1,4 +1,4 @@
-/*! craft-meme-auditor-v1 · C19MEME19
+/*! craft-meme-auditor-v1 · C19MEME21
  * Top-notch focal auditor — verse · English · Urdu · ref · scenery
  * Cross-layer consistency: all four must point at the same ayah when known
  * Auto-fix from curated bank · publish gate
@@ -250,7 +250,7 @@
   }
 
   function curatedUrdu(ref, en, ar) {
-    return ""; /* C19MEME19: no bank Urdu */
+    return ""; /* C19MEME21: no bank Urdu */
   }
 
   function crossLayerAudit(L) {
@@ -408,6 +408,9 @@
 
     var blocks = issues.filter(function (x) { return x.level === "block"; });
     var warns = issues.filter(function (x) { return x.level === "warn"; });
+    if (w.__memeUrduSource === "en-mt") {
+      warns.push({ level: "warn", code: "en-mt-fallback", msg: "Urdu is EN→UR of local English — educational, not official tarjuma" });
+    }
     var report = {
       ok: blocks.length === 0,
       blocks: blocks,
@@ -451,7 +454,7 @@
         /* if English clearly wrong, do not invent Arabic — only urdu/ref */
       }
     }
-    /* C19MEME19: do not apply bank fixUrdu — trigger online fetch instead */
+    /* C19MEME21: do not apply bank fixUrdu — trigger online fetch instead */
 if (false && fixUr) L.ur = fixUr;
     if (!L.ur && w.CraftMemeUrduFetch) {
       var ref2 = normRef(L.ref) || detectRefFromArabic(L.ar) || detectRefFromEnglish(L.en);
@@ -632,7 +635,7 @@ if (false && fixUr) L.ur = fixUr;
     panel.innerHTML =
       "<h2>🛡 Focal auditor · top-notch</h2>" +
       '<p class="panel-note">Cross-checks <strong>Arabic · English · Urdu · reference</strong> against a curated verse bank, ' +
-      "and scenery-only backgrounds. Urdu from <strong>alquran.cloud</strong> (authentic editions) · bank fallback only · audit before every paint. " +
+      "and scenery-only backgrounds. Urdu: <strong>alquran.cloud</strong> first · EN→UR of local English as fallback (authentic editions) · bank fallback only · audit before every paint. " +
       "<strong>Educational only — not a fatwa.</strong></p>" +
       '<p class="panel-note" id="meme-audit-status" aria-live="polite">Auditor idle</p>' +
       '<div class="wire-actions">' +

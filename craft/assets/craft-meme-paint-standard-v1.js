@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME20
+/*! craft-meme-paint-standard-v1 · C19MEME21
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -98,7 +98,7 @@
     if (urParts && urParts.length) {
       ur = urParts.map(function (s) { return s.trim(); }).filter(Boolean).join(" ").trim();
     }
-    /* C19MEME20: never drop online-fetched Urdu when desk text has no Urdu */
+    /* C19MEME21: never drop online-fetched Urdu when desk text has no Urdu */
     if (!ur && w.__memeLayers && w.__memeLayers.ur) ur = w.__memeLayers.ur;
     if (!ur && w.__memeUrduOnline) ur = w.__memeUrduOnline;
     if (!ar && w.__memeLayers && w.__memeLayers.ar) ar = w.__memeLayers.ar;
@@ -275,7 +275,7 @@
     var layers = parseLayers(readSourceText());
     var ar = layers.ar || "";
     var en = layers.en || "";
-    var ur = layers.ur || ""; /* C19MEME20: no lastUrduText bank bleed */
+    var ur = layers.ur || ""; /* C19MEME21: no lastUrduText bank bleed */
     var ref = layers.ref || "";
     if (flags) {
       if (flags.ar === false) ar = "";
@@ -361,7 +361,7 @@
   }
 
   function fetchUrduThenPaint() {
-    /* C19MEME20: curated bank first — free API is last resort and audited */
+    /* C19MEME21: curated bank first — free API is last resort and audited */
     try {
       if (w.CraftMemeUrduFetch) {
         w.CraftMemeUrduFetch.loadForCurrentLayers(true);
@@ -389,7 +389,7 @@
     }
     lastUrduKey = key;
     /* try free translation endpoint; fail soft */
-    var url = null; /* C19MEME20: free EN→UR disabled — authentic ayah API only */
+    var url = null; /* C19MEME21: free EN→UR disabled — authentic ayah API only */
     if (w.CraftMemeUrduFetch) {
       var refGuess = "";
       try {
@@ -708,7 +708,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME20 · single-owner lock — neutralize legacy painters */
+  /* C19MEME21 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */

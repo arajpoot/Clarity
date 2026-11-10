@@ -1,21 +1,24 @@
-/*! craft-meme-urdu-fetch-v1 · C19MEME19
- * STRICT online Urdu only — alquran.cloud
- * Ref resolved from Arabic text first (never stale ref / never bank)
- * If fetch fails or ref unknown → blank Urdu (no fallback text)
+/*! craft-meme-urdu-fetch-v1 · C19MEME21
+ * Urdu pipeline (strict order):
+ *  1) Authentic online ayah edition (alquran.cloud) by Arabic-resolved ref
+ *  2) Fallback: translate the LOCAL English line (bundled with verse) → Urdu
+ *  3) If both fail → blank Urdu
+ * Fallback is labeled educational EN→UR of the English rendering — not an official tarjuma.
  * Educational only — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_URDU_FETCH_V19__) return;
-  w.__CRAFT_MEME_URDU_FETCH_V19__ = true;
+  if (w.__CRAFT_MEME_URDU_FETCH_V21__) return;
+  w.__CRAFT_MEME_URDU_FETCH_V21__ = true;
 
-  var cache = {};
+  var cache = {};       /* ref → authentic urdu */
+  var enCache = {};     /* en hash → mt urdu */
   var EDITIONS = ["ur.jalandhry", "ur.maududi", "ur.ahmedali", "ur.jawadi"];
   var inflight = {};
   var lastError = "";
   var lastRef = "";
+  var lastSource = ""; /* "api" | "en-mt" | "" */
 
-  /* Distinctive Arabic fingerprints → ayah (no Urdu stored here) */
   var AR_REF = [
     { k: "تَطْمَئِنُّ الْقُلُوبُ", ref: "13:28" },
     { k: "تطمئن القلوب", ref: "13:28" },
@@ -67,13 +70,10 @@
 
   function resolveRef(L) {
     L = L || w.__memeLayers || {};
-    /* 1) Arabic wins */
     var fromAr = refFromArabic(L.ar || "");
     if (fromAr) return fromAr;
-    /* 2) explicit ref on layers */
     var fromL = normRef(L.ref);
     if (fromL) return fromL;
-    /* 3) auditor helpers if present */
     try {
       if (w.CraftMemeAuditor) {
         if (w.CraftMemeAuditor.detectRefFromArabic) {
@@ -124,21 +124,17 @@
     });
   }
 
-  function fetchUrdu(ref) {
+  function fetchAuthenticUrdu(ref) {
     var key = normRef(ref);
-    if (!key) {
-      lastError = "no-ref";
-      return Promise.resolve("");
-    }
-    if (cache[key]) return Promise.resolve(cache[key]);
+    if (!key) return Promise.reject(new Error("no-ref"));
+    if (cache[key]) return Promise.resolve({ text: cache[key], edition: "cache", ref: key });
     if (inflight[key]) return inflight[key];
 
-    status("Urdu · fetching " + key + "…");
     var chain = Promise.reject(new Error("start"));
     EDITIONS.forEach(function (ed) {
       chain = chain.catch(function () {
         return fetchEdition(key, ed).then(function (text) {
-          return { text: text, edition: ed };
+          return { text: text, edition: ed, ref: key };
         });
       });
     });
@@ -147,73 +143,142 @@
       .then(function (res) {
         cache[key] = res.text;
         delete inflight[key];
-        lastError = "";
-        lastRef = key;
-        status("Urdu · " + res.edition + " · " + key + " · educational only");
-        return res.text;
+        return res;
       })
       .catch(function (err) {
         delete inflight[key];
-        lastError = String((err && err.message) || err || "fetch-failed");
-        status("Urdu · fetch failed for " + key + " · blank Urdu · " + lastError);
-        return "";
+        throw err;
       });
     return inflight[key];
   }
 
-  function applyUrdu(text, ref) {
+  /** Fallback: MT of the local English line (same verse object) */
+  function translateEnglishToUrdu(en) {
+    en = String(en || "").trim();
+    if (!en || en.length < 3) return Promise.reject(new Error("no-english"));
+    var key = en.slice(0, 240).toLowerCase();
+    if (enCache[key]) return Promise.resolve(enCache[key]);
+
+    var url =
+      "https://api.mymemory.translated.net/get?q=" +
+      encodeURIComponent(en.slice(0, 400)) +
+      "&langpair=en|ur";
+
+    return fetch(url, { mode: "cors", credentials: "omit" })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        var out = (j && j.responseData && j.responseData.translatedText) || "";
+        out = String(out).trim();
+        if (!out || /INVALID|QUERY LENGTH|MYMEMORY|ERROR|PLEASE SELECT/i.test(out)) {
+          throw new Error("mt-empty");
+        }
+        /* soft reject if MT clearly looks like a different famous ayah theme vs en */
+        enCache[key] = out;
+        return out;
+      });
+  }
+
+  function applyUrdu(text, meta) {
+    meta = meta || {};
     if (!w.__memeLayers) w.__memeLayers = { ar: "", en: "", ur: "", ref: "" };
     w.__memeLayers.ur = text || "";
     w.__memeUrduOnline = text || "";
-    w.__memeUrduRef = ref || "";
-    if (ref && !normRef(w.__memeLayers.ref)) {
-      w.__memeLayers.ref = "Qur’an " + ref;
+    w.__memeUrduRef = meta.ref || "";
+    w.__memeUrduSource = meta.source || ""; /* api | en-mt */
+    if (meta.ref && !normRef(w.__memeLayers.ref)) {
+      w.__memeLayers.ref = "Qur’an " + meta.ref;
     }
-    /* if Arabic says a different ref than previous urdu, clear until match */
-    var arRef = refFromArabic(w.__memeLayers.ar || "");
-    if (arRef && ref && arRef !== ref) {
-      w.__memeLayers.ur = "";
-      w.__memeUrduOnline = "";
-    }
+    try {
+      if (w.CraftMemeSource && w.CraftMemeSource.saveState) {
+        w.CraftMemeSource.saveState({ layers: w.__memeLayers, urduSource: meta.source });
+      }
+    } catch (e) {}
   }
 
   function loadForCurrentLayers(thenPaint) {
     var L = w.__memeLayers || {};
     var ref = resolveRef(L);
-    if (!ref) {
-      applyUrdu("", "");
-      status("Urdu · no ayah ref from Arabic · blank");
-      if (thenPaint) paintNow();
-      return Promise.resolve("");
-    }
-    /* stale-guard: if layers.ref disagrees with Arabic, Arabic wins */
-    var stated = normRef(L.ref);
-    if (stated && stated !== ref) {
-      status("Urdu · ref corrected " + stated + " → " + ref);
-      if (!w.__memeLayers) w.__memeLayers = {};
-      w.__memeLayers.ref = "Qur’an " + ref;
-    }
-    return fetchUrdu(ref).then(function (ur) {
-      applyUrdu(ur, ref);
-      if (thenPaint) {
-        paintNow();
-        setTimeout(paintNow, 100);
+    var en = String(L.en || "").trim();
+
+    if (ref) {
+      var stated = normRef(L.ref);
+      if (stated && stated !== ref) {
+        if (!w.__memeLayers) w.__memeLayers = {};
+        w.__memeLayers.ref = "Qur’an " + ref;
+        status("Urdu · ref corrected " + stated + " → " + ref);
       }
-      return ur;
-    });
+    }
+
+    status(ref ? ("Urdu · authentic fetch " + ref + "…") : "Urdu · no ref · trying English fallback…");
+
+    var path = Promise.resolve();
+    if (ref) {
+      path = fetchAuthenticUrdu(ref).then(function (res) {
+        lastError = "";
+        lastRef = res.ref;
+        lastSource = "api";
+        applyUrdu(res.text, { ref: res.ref, source: "api", edition: res.edition });
+        status("Urdu · " + res.edition + " · " + res.ref + " · authentic edition · educational only");
+        return res.text;
+      });
+    } else {
+      path = Promise.reject(new Error("no-ref"));
+    }
+
+    return path
+      .catch(function (err) {
+        lastError = String((err && err.message) || err || "api-failed");
+        if (!en) {
+          applyUrdu("", {});
+          lastSource = "";
+          status("Urdu · no authentic edition & no English · blank");
+          return "";
+        }
+        status("Urdu · authentic miss · translating local English…");
+        return translateEnglishToUrdu(en).then(function (ur) {
+          lastSource = "en-mt";
+          lastRef = ref || "";
+          applyUrdu(ur, { ref: ref || "", source: "en-mt" });
+          status(
+            "Urdu · EN→UR fallback of local English" +
+              (ref ? " (" + ref + ")" : "") +
+              " · educational only — not official tarjuma"
+          );
+          return ur;
+        });
+      })
+      .catch(function (err2) {
+        lastError = String((err2 && err2.message) || err2 || "all-failed");
+        lastSource = "";
+        applyUrdu("", {});
+        status("Urdu · all sources failed · blank · " + lastError);
+        return "";
+      })
+      .then(function (ur) {
+        if (thenPaint) {
+          paintNow();
+          setTimeout(paintNow, 100);
+        }
+        return ur;
+      });
   }
 
   w.CraftMemeUrduFetch = {
-    fetchUrdu: fetchUrdu,
+    fetchUrdu: function (ref) {
+      return fetchAuthenticUrdu(ref).then(function (r) { return r.text; });
+    },
     loadForCurrentLayers: loadForCurrentLayers,
+    translateEnglishToUrdu: translateEnglishToUrdu,
     applyUrdu: applyUrdu,
     resolveRef: resolveRef,
     refFromArabic: refFromArabic,
     cache: cache,
+    enCache: enCache,
     normRef: normRef,
     lastError: function () { return lastError; },
     lastRef: function () { return lastRef; },
+    lastSource: function () { return lastSource; },
     strictOnline: true,
-    noBank: true
+    enFallback: true
   };
 })(window, document);
