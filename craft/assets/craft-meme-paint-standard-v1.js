@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME5
+/*! craft-meme-paint-standard-v1 · C19MEME6
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -571,7 +571,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME5 · single-owner lock — neutralize legacy painters */
+  /* C19MEME6 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */

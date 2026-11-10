@@ -257,3 +257,17 @@
 
   setStatus("Background fetch ready");
 })(typeof window !== "undefined" ? window : this);
+
+(function(w){
+  var inflight=false;
+  var _fetch = w.craftMemeFetchScene || w.fetchSceneForText;
+  if (typeof _fetch === "function" && !_fetch._singleFlight) {
+    w.craftMemeFetchScene = function(){
+      if (inflight) return;
+      inflight=true;
+      try { return _fetch.apply(this, arguments); }
+      finally { setTimeout(function(){ inflight=false; }, 1200); }
+    };
+    w.craftMemeFetchScene._singleFlight=true;
+  }
+})(window);
