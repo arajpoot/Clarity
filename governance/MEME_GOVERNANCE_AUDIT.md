@@ -1,10 +1,11 @@
-# Governance · C19MEME5
+# Governance C19MEME6
 
 | Clause | Result |
 |--------|--------|
+| Scenery-only BG | PASS |
 | Single paint owner | PASS |
-| Scenery / educational stamp | PASS |
-| No silent OAuth upload | PASS |
+| No silent upload | PASS |
 | Craft isolation | PASS |
+| Educational stamp | PASS |
 
 Educational only — not a fatwa.
