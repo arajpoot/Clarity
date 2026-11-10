@@ -1,17 +1,41 @@
-/grave  /prepare-for-death/  301
-/grave/  /prepare-for-death/  301
-/tajweed  /craft/tajweed/  301
-/tajweed/  /craft/tajweed/  301
-/janazah-prayer  /janazah-prayer/  301
-/islamic-will  /islamic-will/  301
-/yawm  /daily/  301
-/yawm/  /daily/  301
-/university  /campus/  301
-/university/  /campus/  301
-/vault  /amana/  301
-/vault/  /amana/  301
-/lab  /campus/lab/  301
-/lab/  /campus/lab/  301
-/lab/*  /campus/lab/:splat  301
-/quiz  /craft/quiz/  301
-/quiz/  /craft/quiz/  301
+# Clarity legacy → five-room architecture (301)
+# Host: Cloudflare Pages / Netlify style
+
+# Grave / legacy companion names
+/grave                    /prepare-for-death/     301
+/grave/                   /prepare-for-death/     301
+/prepare-for-death        /prepare-for-death/     301
+
+# Tajweed moved into Craft room
+/tajweed                  /craft/tajweed/         301
+/tajweed/                 /craft/tajweed/         301
+/quiz                     /craft/quiz/            301
+/quiz/                    /craft/quiz/            301
+
+# Yawm / University / Vault aliases
+/yawm                     /daily/                 301
+/yawm/                    /daily/                 301
+/university               /campus/                301
+/university/              /campus/                301
+/vault                    /amana/                 301
+/vault/                   /amana/                 301
+
+# Lab nested under Campus
+/lab                      /campus/lab/            301
+/lab/                     /campus/lab/            301
+/lab/*                    /campus/lab/:splat      301
+/library                  /campus/library/        301
+/library/                 /campus/library/        301
+
+# Education guides — force trailing slash
+/janazah-prayer           /janazah-prayer/        301
+/islamic-will             /islamic-will/          301
+/hajj-checklist           /hajj-checklist/        301
+/debts-and-trusts         /debts-and-trusts/      301
+/sadaqah-jariyah          /sadaqah-jariyah/       301
+/about                    /about/                 301
+/charter                  /charter/               301
+
+# Amānah dead gate alias
+/amana/gate               /amana/unlock/          301
+/amana/gate/              /amana/unlock/          301

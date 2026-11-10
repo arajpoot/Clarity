@@ -1,5 +1,11 @@
+# Clarity · https://clarity-dawah.fyi
+# Educational Islamic learning platform — five rooms
+# Educational only — not a fatwa
+
 User-agent: *
 Allow: /
 
-# Prefer apex host; www should 301 at CDN
+# Primary host is apex (non-www)
+# Static assets may be crawled; no private vault data is server-stored
+
 Sitemap: https://clarity-dawah.fyi/sitemap.xml
