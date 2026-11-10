@@ -1,6 +1,5 @@
-# Meme Studio · C19MEME5 integrity restore
+# Meme Studio C19MEME6
 
-Fixes double-painting by single-owner paint-standard and neutered legacy painters.
-Richness (Urdu, scale, automation, scenery) retained.
+Campus-quiet · logical flow · no dual painters · fixed BG single-flight.
 
 Educational only — not a fatwa.
