@@ -1,0 +1,30 @@
+{
+  "build": "C19MEME6",
+  "result": "pass",
+  "script_count": 14,
+  "ghosts": [],
+  "paint_is_last": true,
+  "flow": [
+    "message",
+    "scenery",
+    "canvas",
+    "scale",
+    "desks"
+  ],
+  "removed": [
+    "atelier",
+    "phase-bc",
+    "bench-logic",
+    "canvas-clean",
+    "wire dual paint",
+    "companion interlink",
+    "api-bridge"
+  ],
+  "bg_single_flight": false,
+  "checks": {
+    "no_ghost_painters": true,
+    "logical_ui_order": true,
+    "paint_owner_last": true,
+    "syntax": true
+  }
+}
