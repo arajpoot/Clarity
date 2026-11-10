@@ -1,4 +1,4 @@
-/*! craft-meme-auditor-v1 · C19MEME15
+/*! craft-meme-auditor-v1 · C19MEME16
  * Top-notch focal auditor — verse · English · Urdu · ref · scenery
  * Cross-layer consistency: all four must point at the same ayah when known
  * Auto-fix from curated bank · publish gate

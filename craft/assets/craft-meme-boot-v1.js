@@ -1,146 +1,144 @@
-/*! craft-meme-boot-v1 · C19MEME11
- * Default X post canvas 16:9 · restore state on refresh · else auto reminder + matching scene
- * Single paint owner only
+/*! craft-meme-boot-v1 · C19MEME16-CLEAN
+ * Single orchestrator — no competing wires
  * Educational only — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_BOOT_V1__) return;
-  w.__CRAFT_MEME_BOOT_V1__ = true;
+  if (w.__CRAFT_MEME_BOOT_CLEAN__) return;
+  w.__CRAFT_MEME_BOOT_CLEAN__ = true;
 
-  var X_W = 1200, X_H = 675; /* X landscape post-friendly */
+  var STATE = "clarity.craft.meme.state.v1";
 
   function $(id) { return d.getElementById(id); }
 
-  function setCanvasSize(w0, h0) {
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STATE) || "null") || {}; }
+    catch (e) { return {}; }
+  }
+  function saveState(patch) {
+    try {
+      var s = Object.assign(loadState(), patch || {});
+      localStorage.setItem(STATE, JSON.stringify(s));
+    } catch (e) {}
+  }
+
+  function paint() {
+    if (typeof w.memeDraw === "function") {
+      try { w.memeDraw(); } catch (e) {}
+    }
+  }
+
+  function setCanvasRatio(ratio) {
     var c = $("meme-canvas") || $("mr-canvas");
     if (!c) return;
-    c.width = w0 || X_W;
-    c.height = h0 || X_H;
+    var parts = String(ratio || "16:9").split(":");
+    var a = +parts[0] || 16, b = +parts[1] || 9;
+    c.width = 1200;
+    c.height = Math.max(400, Math.round(1200 * b / a));
+    saveState({ ratio: a + ":" + b });
+    paint();
   }
 
-  function markRatioActive(ratio) {
-    d.querySelectorAll("#meme-ratio-chips [data-ratio]").forEach(function (b) {
-      b.classList.toggle("active", b.getAttribute("data-ratio") === ratio);
-    });
-    var st = $("meme-ratio-status");
-    if (st) st.textContent = "Ratio " + ratio + " · X default";
+  function loadSection(sec) {
+    sec = sec || "reminder";
+    if (w.CraftMemeSource && typeof w.CraftMemeSource.loadSection === "function") {
+      w.CraftMemeSource.loadSection(sec, true);
+    }
+    if (w.CraftMemeUrduFetch) {
+      try { w.CraftMemeUrduFetch.loadForCurrentLayers(true); } catch (e) {}
+    } else paint();
   }
 
-  function loadBgUrl(url, thenPaint) {
-    if (!url) return;
-    var img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = function () {
-      w.__memeBgImage = img;
-      w.__memeBgImg = img;
-      w.__memeBgUrl = url;
-      if (thenPaint && typeof w.memeDraw === "function") {
-        try { w.memeDraw(); } catch (e) {}
-      }
-      var st = $("meme-fetch-status");
-      if (st) st.textContent = "Background restored · educational scenery";
-    };
-    img.onerror = function () {
-      var st = $("meme-fetch-status");
-      if (st) st.textContent = "Background restore failed · try Fetch scenery";
-    };
-    img.src = url;
-  }
-
-  function fetchMatchingScene() {
+  function fetchScene(kind) {
+    kind = kind || w.__memeSceneKind || "nature";
+    w.__memeSceneKind = kind;
     try {
-      if (typeof w.__memeOnlineFetch === "function") {
-        w.__memeOnlineFetch(w.__memeSceneKind || "nature");
-        return;
-      }
-      if (typeof w.memeFetchBg === "function") {
-        w.memeFetchBg(w.__memeSceneKind || "nature");
-        return;
-      }
-      var btn = $("meme-scene-for-text") || $("meme-surprise-bg");
-      if (btn) btn.click();
+      if (typeof w.__memeOnlineFetch === "function") w.__memeOnlineFetch(kind);
+      else if (typeof w.memeFetchBg === "function") w.memeFetchBg(kind);
+      else if (typeof w.memeFetchNature === "function") w.memeFetchNature();
     } catch (e) {}
   }
 
-  function restoreOrFresh() {
-    setCanvasSize(X_W, X_H);
-    markRatioActive("16:9");
+  function bindOnce(el, key, fn) {
+    if (!el || el[key]) return;
+    el[key] = true;
+    el.addEventListener("click", fn);
+  }
 
-    var state = null;
-    try {
-      if (w.CraftMemeSource && w.CraftMemeSource.loadState) state = w.CraftMemeSource.loadState();
-      else state = JSON.parse(localStorage.getItem("clarity.craft.meme.state.v1") || "null");
-    } catch (e) {}
-
-    if (state && state.layers && (state.layers.ar || state.layers.en)) {
-      w.__memeLayers = state.layers;
-      if (state.sceneKind) w.__memeSceneKind = state.sceneKind;
-      if (state.section) {
-        d.querySelectorAll("[data-rrra], [data-meme-section]").forEach(function (b) {
-          var id = b.getAttribute("data-rrra") || b.getAttribute("data-meme-section");
-          b.classList.toggle("active", id === state.section);
+  function bind() {
+    d.querySelectorAll("[data-meme-section], [data-rrra]").forEach(function (btn) {
+      bindOnce(btn, "_cleanSec", function () {
+        d.querySelectorAll("[data-meme-section], [data-rrra]").forEach(function (b) {
+          b.classList.remove("active");
         });
-      }
-      if (state.text && w.CraftMemeSource && w.CraftMemeSource.applyToDesks) {
-        w.CraftMemeSource.applyToDesks(state.text);
-      } else if (state.layers) {
-        var parts = [];
-        if (state.layers.ar) parts.push(state.layers.ar);
-        if (state.layers.en) parts.push(state.layers.en);
-        if (state.layers.ref) parts.push("(" + state.layers.ref + ")");
-        parts.push("— clarity-dawah.fyi · educational only");
-        if (w.CraftMemeSource) w.CraftMemeSource.applyToDesks(parts.join("\n"));
-      }
-      if (state.bgUrl) loadBgUrl(state.bgUrl, true);
-      else {
-        if (typeof w.memeDraw === "function") try { w.memeDraw(); } catch (e2) {}
-        setTimeout(fetchMatchingScene, 500);
-      }
-      var st = $("meme-source-status");
-      if (st) st.textContent = "Restored last session · refresh-safe · educational only";
-      return;
-    }
+        btn.classList.add("active");
+        var sec = btn.getAttribute("data-meme-section") || btn.getAttribute("data-rrra") || "reminder";
+        loadSection(sec);
+      });
+    });
 
-    /* Fresh visit: reminder + matching scene */
-    w.__memeSceneKind = "nature";
-    if (w.CraftMemeSource && w.CraftMemeSource.loadSection) {
-      w.CraftMemeSource.loadSection("reminder", true);
-    } else if (w.CraftMemeSource && w.CraftMemeSource.fetchSection) {
-      var r = w.CraftMemeSource.fetchSection("reminder");
-      if (w.CraftMemeSource.applyToDesks) w.CraftMemeSource.applyToDesks(r.text);
-      w.__memeLayers = { ar: r.line.ar || "", en: r.line.en || "", ur: "", ref: r.line.ref || "" };
-      if (typeof w.memeDraw === "function") try { w.memeDraw(); } catch (e3) {}
-    }
-    setTimeout(fetchMatchingScene, 600);
-    var st2 = $("meme-source-status");
-    if (st2) st2.textContent = "Auto · Reminder + scenery · educational only";
-  }
+    d.querySelectorAll("#meme-scene-chips [data-scene]").forEach(function (btn) {
+      bindOnce(btn, "_cleanScene", function () {
+        d.querySelectorAll("#meme-scene-chips [data-scene]").forEach(function (b) {
+          b.classList.remove("active");
+        });
+        btn.classList.add("active");
+        w.__memeSceneKind = btn.getAttribute("data-scene") || "nature";
+      });
+    });
 
-  function persistBgHooks() {
-    /* when online-bg sets image, remember URL if exposed */
-    var prev = w.__memeOnlineFetch;
-    if (typeof prev === "function" && !prev._bootWrap) {
-      w.__memeOnlineFetch = function (kind) {
-        var ret = prev.apply(this, arguments);
-        setTimeout(function () {
-          try {
-            if (w.CraftMemeSource && w.CraftMemeSource.saveState) w.CraftMemeSource.saveState({});
-          } catch (e) {}
-        }, 1500);
-        return ret;
-      };
-      w.__memeOnlineFetch._bootWrap = true;
-    }
+    d.querySelectorAll("#meme-ratio-chips [data-ratio]").forEach(function (btn) {
+      bindOnce(btn, "_cleanRatio", function () {
+        d.querySelectorAll("#meme-ratio-chips [data-ratio]").forEach(function (b) {
+          b.classList.remove("active");
+        });
+        btn.classList.add("active");
+        setCanvasRatio(btn.getAttribute("data-ratio"));
+      });
+    });
+
+    bindOnce($("meme-daily-pack"), "_c", function () { loadSection("reminder"); setTimeout(function () { fetchScene("nature"); }, 400); });
+    bindOnce($("meme-refresh-source"), "_c", function () {
+      var a = d.querySelector("[data-meme-section].active, [data-rrra].active");
+      loadSection(a ? (a.getAttribute("data-meme-section") || a.getAttribute("data-rrra")) : "reminder");
+    });
+    bindOnce($("meme-full-surprise"), "_c", function () {
+      loadSection("reminder");
+      setTimeout(function () { fetchScene(w.__memeSceneKind || "nature"); }, 400);
+    });
+    bindOnce($("meme-surprise-verse-only"), "_c", function () { loadSection("reminder"); });
+    bindOnce($("meme-surprise-scene-only"), "_c", function () { fetchScene(w.__memeSceneKind || "nature"); });
+    bindOnce($("meme-surprise-bg"), "_c", function () { fetchScene(w.__memeSceneKind || "nature"); });
+    bindOnce($("meme-next-bg"), "_c", function () { fetchScene(w.__memeSceneKind || "nature"); });
+    bindOnce($("meme-scene-for-text"), "_c", function () { fetchScene(w.__memeSceneKind || "nature"); });
+    bindOnce($("meme-wire-preview"), "_c", function () { paint(); });
+    bindOnce($("meme-fill-desks"), "_c", function () {
+      if (w.CraftMemeSource && w.__memeLayers) {
+        var L = w.__memeLayers;
+        var parts = [L.ar, L.en, L.ref && "(" + L.ref + ")", "— clarity-dawah.fyi · educational only"].filter(Boolean);
+        w.CraftMemeSource.applyToDesks(parts.join("\n"));
+      }
+    });
+    bindOnce($("meme-push-desks"), "_c", function () {
+      if ($("meme-fill-desks")) $("meme-fill-desks").click();
+    });
   }
 
   function boot() {
-    restoreOrFresh();
-    persistBgHooks();
-    setTimeout(persistBgHooks, 800);
+    setCanvasRatio((loadState().ratio) || "16:9");
+    bind();
+    var st = loadState();
+    if (st.layers && st.layers.ar) {
+      w.__memeLayers = st.layers;
+      if (w.CraftMemeUrduFetch) w.CraftMemeUrduFetch.loadForCurrentLayers(true);
+      else paint();
+    } else {
+      loadSection("reminder");
+      setTimeout(function () { fetchScene("nature"); }, 500);
+    }
   }
 
-  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 300); });
-  else setTimeout(boot, 300);
-  w.addEventListener("load", function () { setTimeout(boot, 700); });
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  w.addEventListener("load", function () { setTimeout(bind, 300); });
 })(window, document);

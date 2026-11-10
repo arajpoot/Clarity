@@ -1,4 +1,4 @@
-/*! craft-meme-urdu-fetch-v1 · C19MEME15
+/*! craft-meme-urdu-fetch-v1 · C19MEME16
  * Authentic Urdu from alquran.cloud (Jalandhry / Maududi) by verse ref
  * Bank is fallback only when API unavailable
  * Educational only — not a fatwa
