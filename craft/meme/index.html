@@ -1,318 +1,168 @@
 <!DOCTYPE html>
-<html data-craft-meme-build="C19MEME5" lang="en" data-theme="dark" data-clarity-room="craft">
+<html lang="en" data-theme="dark" data-clarity-room="craft" data-craft-meme-build="C19MEME6">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta name="clarity-build" content="C19MEME5" />
-  <title>Meme Studio · Craft</title>
-  <meta name="description" content="Complete Meme Studio — section sources, canvas, ratios, online backgrounds, desks. Educational only — not a fatwa." />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109C19MEME5" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261109C19MEME5" />
-  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261109C19MEME5" />
-  <link rel="stylesheet" href="/craft/assets/craft-meme-layout-v1.css?v=20261109C19MEME5" />
-  <link rel="stylesheet" href="/craft/assets/craft-meme-layout-branch-v1.css?v=20261109C19MEME5" />
-  <script>window.__CLARITY_ROOM__ = 'craft';</script>
+  <title>Meme Studio · Craft · Clarity</title>
+  <meta name="description" content="Sources → scenery → canvas → scale → desks. Educational only — not a fatwa." />
+  <meta name="clarity-build" content="C19MEME6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261110C19MEME6" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261110C19MEME6" />
+  <link rel="stylesheet" href="/craft/assets/craft-studio-host-v1.css?v=20261110C19MEME6" />
+  <link rel="stylesheet" href="/craft/assets/craft-meme-layout-v1.css?v=20261110C19MEME6" />
+  <link rel="stylesheet" href="/craft/assets/craft-meme-layout-branch-v1.css?v=20261110C19MEME6" />
+  <script>window.__CLARITY_ROOM__="craft"; window.__CLARITY_SKIP_DAY_LANDING__=true;</script>
   <style>
-    .section-chips, .bg-chips, .ratio-chips { display:flex; flex-wrap:wrap; gap:0.45rem; margin:0.75rem 0; }
-    .section-chips button, .bg-chips button, .ratio-chips button {
-      border-radius:999px; border:1px solid rgba(212,180,90,0.35);
-      background:rgba(15,76,58,0.25); color:inherit; padding:0.4rem 0.85rem;
-      font-weight:700; font-size:0.8rem; cursor:pointer;
-    }
-    .section-chips button.active, .section-chips button:hover,
-    .bg-chips button.active, .bg-chips button:hover,
-    .ratio-chips button.active, .ratio-chips button:hover {
-      background:#1e7d5e; border-color:transparent; color:#fff;
-    }
-    .section-chips button small { display:block; font-weight:600; opacity:0.85; font-size:0.65rem; }
-    #craft-verse-card {
-      white-space:pre-wrap; font-family:Amiri,serif; font-size:1.05rem; line-height:1.55;
-      padding:1rem; border-radius:14px; border:1px solid rgba(212,180,90,0.28);
-      background:rgba(0,0,0,0.25); margin:0.75rem 0 1rem; min-height:4rem;
-    }
-    .craft-canvas-wrap, #mr-root .craft-canvas-wrap {
-      width:100%; overflow:hidden; border-radius:14px;
-    }
-    #mr-canvas, #mr-root canvas, #meme-canvas {
-      width:100% !important; max-width:720px; height:auto !important;
-      display:block; margin:0.5rem auto; border-radius:12px;
-    }
-    #mr-root .craft-toolbar button, #mr-root button, .wire-actions .btn {
-      border-radius:10px; border:1px solid rgba(212,180,90,0.35);
-      background:#1e7d5e; color:#fff; padding:0.45rem 0.75rem; font-weight:700;
-      margin:0.2rem 0.25rem 0.2rem 0; cursor:pointer;
-    }
-    .wire-actions .btn:not(.primary) { background:rgba(15,76,58,0.45); }
-    #mr-root .craft-field, #mr-root input {
-      width:100%; box-sizing:border-box; margin:0.35rem 0;
-      border-radius:12px; border:1px solid rgba(212,180,90,0.3);
-      background:rgba(0,0,0,0.28); color:inherit; padding:0.65rem 0.85rem;
-    }
-    .wire-actions { display:flex; flex-wrap:wrap; gap:0.45rem; margin:0.75rem 0; }
-    .panel-note { font-size:0.8rem; opacity:0.9; }
-    .desk-grid { display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
-    .desk-card {
-      border-radius:14px; border:1px solid rgba(212,180,90,0.28);
-      background:rgba(0,0,0,0.22); padding:1rem;
-    }
-    .composer-textarea {
-      width:100%; box-sizing:border-box; border-radius:12px;
-      border:1px solid rgba(212,180,90,0.3); background:rgba(0,0,0,0.28);
-      color:inherit; padding:0.65rem; font:inherit; resize:vertical;
-    }
+    .meme-flow{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 1rem}
+    .meme-flow span{padding:.3rem .65rem;border-radius:999px;border:1px solid rgba(201,162,39,.35);
+      background:rgba(15,76,58,.15);font-size:.75rem}
+    .meme-flow span strong{color:#e8c76b}
+    .craft-canvas-wrap{max-width:min(100%,720px);margin:.5rem auto;border-radius:14px;
+      border:1px solid rgba(201,162,39,.35);overflow:hidden;background:#0b1612}
+    #mr-canvas,#meme-canvas{display:block;width:100%;height:auto;max-height:70vh;background:#0a1210}
+    .wire-actions,.studio-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin:.45rem 0}
+    .composer-textarea{width:100%;min-height:4.5rem;border-radius:10px;border:1px solid rgba(201,162,39,.3);
+      background:rgba(0,0,0,.25);color:inherit;padding:.55rem;font:inherit}
+    .panel-note{font-size:.82rem;opacity:.9;line-height:1.45}
   </style>
-<style id="meme-bench-inline-css">
-#meme-bench-flow{max-width:52rem;margin:0.5rem auto 0.75rem;padding:0.55rem 0.75rem;border-radius:12px;border:1px solid rgba(201,162,39,.35);background:rgba(15,76,58,.14);font-size:.8rem;line-height:1.45}
-#meme-bench-flow small{display:block;margin-top:.25rem;opacity:.8;font-size:.72rem}
-#meme-full-surprise-pack{border:1px solid rgba(201,162,39,.4);border-radius:14px;padding:.75rem .85rem;margin:.65rem 0;background:linear-gradient(165deg,rgba(15,76,58,.25),rgba(8,20,16,.4))}
-</style>
 </head>
 <body class="craft-room">
   <div class="craft-hero-banner" role="img" aria-label="Registan">
-    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261109C19MEME5" alt="Registan" width="1600" height="680" loading="lazy" />
+    <img src="/craft/assets/clarity-craft-banner.jpg?v=20261110C19MEME6" alt="Registan" width="1600" height="680" loading="lazy" />
   </div>
   <header class="craft-header">
     <div class="craft-header-inner">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
-      <h1>🖼️ Meme · Reminder Studio</h1>
-      <p class="tagline">Sources → canvas → desks · ratios · scenery · educational only</p>
-      <p class="edu-stamp">Not a fatwa · no free-type scripture as “revelation” · verify primary texts</p>
+      <h1>🖼️ Meme Studio</h1>
+      <p class="tagline">Sources → scenery → canvas → scale → desks</p>
+      <p class="edu-stamp">Educational only — not a fatwa · scenery-only backgrounds</p>
     </div>
   </header>
+
   <aside class="companion-calling" data-self-contained="craft-meme">
     <span class="calling-label">Craft</span>
     <a href="/craft/">← Craft tools</a>
-    <a href="/craft/meme/" class="home-pill">Meme Studio</a>
+    <a href="/craft/meme/" class="home-pill">Meme</a>
   </aside>
 
   <main class="craft-main tool-page">
-<div id="meme-bench-flow" role="note">
-      <strong>Studio flow</strong> ·
-      <span>1 Message</span> → <span>2 Full surprise</span> → <span>3 Canvas</span> →
-      <span>4 Scenery</span> → <span>5 Scale</span> → <span>6 Export</span> → <span>7 Desks</span>
-      <small>Educational only — not a fatwa. Benches reordered for logic; enrichment kept.</small>
+    <div class="meme-flow" aria-label="Flow">
+      <span><strong>1</strong> Message</span>
+      <span><strong>2</strong> Scenery</span>
+      <span><strong>3</strong> Canvas</span>
+      <span><strong>4</strong> Scale</span>
+      <span><strong>5</strong> Desks</span>
     </div>
 
-<div class="meme-charter" id="meme-charter">
-  <strong>Media daʿwah charter</strong>
-  <ol>
-    <li><strong>Source discipline</strong> — lines from section packs only; never free-type as revelation.</li>
-    <li><strong>Scenery only</strong> — backgrounds are nature / night / water / flowers / solid. No figurative people lists.</li>
-    <li><strong>Shariah scan</strong> — remote images must pass the on-page scan before paint.</li>
-    <li><strong>Educational stamp</strong> — every export and desk post carries “not a fatwa”.</li>
-    <li><strong>Adab</strong> — wisdom &amp; good instruction (16:125); post what you would stand by before Allah.</li>
-  </ol>
-</div>
-<div class="meme-auto-bar" role="group" aria-label="Automation">
-  <button type="button" class="btn" id="meme-daily-pack">✦ Daily pack · verse + scene</button>
-  <button type="button" class="btn secondary" id="meme-fill-desks">Fill desks (post-ready)</button>
-  <button type="button" class="btn" id="meme-post-x">1-click Tweet 𝕏</button>
-  <button type="button" class="btn" id="meme-post-fb">1-click Facebook</button>
-</div>
-
-<section class="tool-section">
+    <!-- 1 MESSAGE -->
+    <section class="tool-section" id="meme-source-section">
       <h2>1 · Message · section sources</h2>
-      <p class="panel-note">Loads onto <strong>canvas + 𝕏 + Facebook desks</strong> together.</p>
-      <div class="section-chips" role="group" aria-label="Section sources (local packs)">
-        <button type="button" data-meme-section="reminder" class="active"><span>✦ Reminder</span><small>Qur’an · commands</small></button>
-        <button type="button" data-meme-section="reality"><span>◉ Reality</span><small>accountability</small></button>
-        <button type="button" data-meme-section="reflection"><span>☾ Reflection</span><small>heart · night</small></button>
-        <button type="button" data-meme-section="action"><span>➤ Action</span><small>deed · dawah</small></button>
+      <p class="panel-note">Reminder · Reality · Reflection · Action banks. Loads text onto canvas and desks together.</p>
+      <div class="wire-actions" id="meme-bc-actions">
+        <button type="button" class="btn primary" id="meme-daily-pack" data-action="daily">Daily pack</button>
+        <button type="button" class="btn" id="meme-refresh-source">Refresh source</button>
+        <button type="button" class="btn" id="meme-full-surprise">✨ Verse + scene</button>
+        <button type="button" class="btn" id="meme-surprise-verse-only">Verse only</button>
+        <button type="button" class="btn" id="meme-surprise-scene-only">Scene only</button>
       </div>
-      <div class="wire-actions">
-        <button type="button" class="btn primary" id="meme-refresh-source">Refresh line</button>
-      </div>
-      <p id="meme-source-status">Tap a section</p>
-      <div id="craft-verse-card" aria-live="polite"></div>
+      <p class="panel-note" id="meme-source-status" aria-live="polite"></p>
+      <div id="craft-verse-card" class="panel-note"></div>
     </section>
-<section class="tool-section" id="meme-full-surprise-pack">
-      <h2>✨ Full surprise · verse + scene</h2>
-      <p class="panel-note">Picks a line from studio section fetch banks (Reminder · Reality · Reflection · Action), paints it, then matches scenery to the words. Not free-type scripture — same governed sources as the chips.</p>
-      <div class="wire-actions">
-        <button type="button" class="btn primary" id="meme-full-surprise">✨ Full surprise</button>
-        <button type="button" class="btn" id="meme-surprise-verse-only">📖 Surprise line</button>
-        <button type="button" class="btn" id="meme-surprise-scene-only">🖼 Surprise scene</button>
-      </div>
-      <p id="meme-surprise-status" class="panel-note" aria-live="polite">Full surprise = text from fetch banks + scenery + auto-scale.</p>
-    </section>
-<section class="tool-section">
+
+    <!-- 2 SCENERY -->
+    <section class="tool-section" id="meme-scenery-section">
       <h2>2 · Scenery backgrounds</h2>
-      <p class="panel-note">Safe scenery · Shariah scan on every URL · curated landscapes/architecture · no people/animal stock · Surprise + scene-for-text.</p>
-      <div class="bg-chips" role="group" aria-label="Backgrounds">
-        <button type="button" data-meme-bg="nature">🌿 Nature</button>
-        <button type="button" data-meme-bg="night">🌙 Night</button>
-        <button type="button" data-meme-bg="water">💧 Water</button>
-        <button type="button" data-meme-bg="holy">🕌 Holy</button>
-        <button type="button" data-meme-bg="flowers">🌸 Flowers</button>
-        <button type="button" data-meme-bg="galaxy">🌌 Galaxy</button>
-        <button type="button" data-meme-bg="desert">🏜️ Desert</button>
-        <button type="button" data-meme-bg="mountains">⛰️ Mountains</button>
-        <button type="button" data-meme-bg="spirit">✨ Spirit</button>
-        <button type="button" data-meme-bg="geometry">◈ Pattern</button>
-        <button type="button" data-meme-bg="free"><!-- free removed · scenery only --></button>
-        <button type="button" data-meme-bg="surprise">✨ Surprise</button>
-        <button type="button" data-meme-bg="blank" class="active">⬛ Solid</button>
+      <p class="panel-note">Shariah-compliant scenery / nature only · online fetch with local fallback. One flight at a time.</p>
+      <div class="wire-actions">
+        <button type="button" class="btn primary" id="meme-surprise-bg">Fetch scenery</button>
+        <button type="button" class="btn" id="meme-scene-for-text">Match text → scene</button>
+        <button type="button" class="btn" id="meme-next-bg">Next background</button>
       </div>
-      <div class="wire-actions" id="meme-bc-actions" style="margin-top:0.4rem">
-        <button type="button" class="btn primary" id="meme-surprise-bg">✨ Surprise scene</button>
-        <button type="button" class="btn" id="meme-scene-for-text">🖼 Scene for text</button>
-      </div>
-      <p id="meme-fetch-status" class="panel-note">Background: solid</p>
-      <p id="meme-wire-status" class="panel-note" hidden></p>
+      <p class="panel-note" id="meme-fetch-status" aria-live="polite"></p>
     </section>
-<section class="tool-section">
+
+    <!-- 3 CANVAS -->
+    <section class="tool-section" id="meme-canvas-section">
       <h2>3 · Canvas · export</h2>
-          <p class="panel-note" id="gov-g2-note">Governance · section sources are primary for scripture lines · any free-type field is personal reflection only — not revelation · Shariah scan required on every background URL</p>
-      <div id="mr-root" class="craft-studio-host"></div>
-      <div class="wire-actions meme-export-row">
-        <button type="button" class="btn primary" id="meme-export-png" data-meme-export="png">⬇ PNG</button>
+      <p class="panel-note">Single-owner paint · Arabic · English · Urdu · reference · gold frame.</p>
+      <div class="craft-canvas-wrap" id="mr-root">
+        <canvas id="mr-canvas" width="1080" height="1350" aria-label="Meme canvas"></canvas>
+      </div>
+      <div class="wire-actions">
+        <button type="button" class="btn" id="meme-wire-preview">Re-paint</button>
+        <button type="button" class="btn primary" id="meme-export-png">⬇ PNG</button>
         <button type="button" class="btn" id="meme-copy-png">Copy PNG</button>
+        <button type="button" class="btn" id="meme-push-desks">Push → desks</button>
+      </div>
+      <p class="panel-note" id="meme-export-status" aria-live="polite"></p>
+      <p class="panel-note" id="meme-wire-status"></p>
+    </section>
+
+    <!-- 4 SCALE -->
+    <section class="tool-section" id="meme-ratio-section">
+      <h2>4 · Scale · text size</h2>
+      <p class="panel-note">Adjust before publish · auto-scale available · saved on this device.</p>
+      <div id="meme-scale-host"></div>
+      <div class="wire-actions">
         <button type="button" class="btn" id="meme-auto-scale">Auto-scale text</button>
-        <button type="button" class="btn" id="meme-scale-hint" title="Use Text scale panel below ratio">Aa scale</button>
-        <button type="button" class="btn" id="meme-next-bg">Next scenery</button>
-        <button type="button" class="btn" id="meme-wire-preview">Re-paint canvas</button>
-        <button type="button" class="btn" id="meme-push-desks">Push canvas → desks</button>
       </div>
-      <p id="meme-export-status" class="panel-note"></p>
-    </section>
-<section class="tool-section" id="meme-ratio-section">
-      <h2>4 · Scale · ratio · text</h2>
-      <p class="panel-note">Canvas pixel size for desks · educational export.</p>
-      <div class="ratio-chips" role="group" aria-label="Canvas ratio">
-        <button type="button" data-meme-ratio="1:1">1:1</button>
-        <button type="button" data-meme-ratio="16:9" class="active">16:9</button>
-        <button type="button" data-meme-ratio="4:5">4:5</button>
-        <button type="button" data-meme-ratio="twitter">Twitter</button>
-        <button type="button" data-meme-ratio="facebook">Facebook</button>
-      </div>
-      <p id="meme-ratio-status" class="panel-note">Ratio · 16:9</p>
+      <p class="panel-note" id="meme-ratio-status"></p>
     </section>
 
-<p class="panel-note meme-std-note" id="meme-std-note">Canvas standard · <strong>Arabic top</strong> · <strong>English center</strong> · <strong>reference bottom</strong> · gold outline · Amiri + Georgia · educational stamp</p>
-
-<section class="tool-section desks-row" id="desks">
+    <!-- 5 DESKS -->
+    <section class="tool-section" id="desks">
       <h2>5 · Desks · share</h2>
-      <p class="panel-note">Filled from section sources and/or <strong>Push canvas → desks</strong>. <strong>1-click</strong> formats text, copies it, downloads the meme PNG (attach in the compose window), then opens 𝕏 / Facebook.</p>
-      <div class="desk-grid">
-        <div class="desk-card" id="desk-x">
-          <h3>𝕏 Desk</h3>
+      <p class="panel-note">Formatted caption + PNG attach in the compose window. Official share intents only — nothing uploaded silently.</p>
+      <div class="desk-grid" style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))">
+        <div class="desk" id="desk-x">
+          <h3>𝕏</h3>
           <textarea id="x-draft" class="composer-textarea" rows="4" maxlength="280" placeholder="Source or canvas fills this…"></textarea>
-          <div class="desk-actions wire-actions">
-            <button type="button" class="btn" data-desk="x" data-action="copy">Copy</button>
-            <button type="button" class="btn primary" data-desk="x" data-action="open" id="x-open">Open 𝕏</button>
+          <p class="panel-note"><span id="x-count">0</span>/280</p>
+          <div class="wire-actions">
+            <button type="button" class="btn primary" id="x-open" data-action="open">Open 𝕏 compose</button>
+            <button type="button" class="btn" id="meme-post-x">1-click 𝕏</button>
           </div>
-          <p class="char-count"><span id="x-count">0</span> / 280</p>
-          <p id="x-status" class="panel-note">Ready</p>
+          <p class="panel-note" id="x-status"></p>
         </div>
-        <div class="desk-card" id="desk-fb">
-          <h3>Facebook Desk</h3>
+        <div class="desk" id="desk-fb">
+          <h3>Facebook</h3>
           <textarea id="fb-draft" class="composer-textarea" rows="5" placeholder="Source or canvas fills this…"></textarea>
-          <div class="desk-actions wire-actions">
-            <button type="button" class="btn" data-desk="fb" data-action="copy">Copy</button>
-            <button type="button" class="btn primary" data-desk="fb" data-action="open" id="fb-open">Open Facebook</button>
+          <div class="wire-actions">
+            <button type="button" class="btn primary" id="fb-open" data-action="open">Open Facebook</button>
+            <button type="button" class="btn" id="meme-post-fb">1-click Facebook</button>
           </div>
-          <p id="fb-status" class="panel-note">Ready</p>
+          <p class="panel-note" id="fb-status"></p>
         </div>
       </div>
     </section>
 
-</main>
+    <p class="panel-note" id="gov-g2-note">
+      Governance · scenery-only backgrounds · educational reminder stamp · Craft self-contained · not a fatwa.
+    </p>
+  </main>
 
   <footer class="craft-footer">
-    <p>Clarity Craft · Meme Studio C19MEME5 · Educational only — not a fatwa</p>
+    <p>Clarity Craft · Meme Studio C19MEME6 · Educational only — not a fatwa</p>
   </footer>
 
-  <!-- Existing Craft studio stack -->
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/vendor/clarity-meme-api-bridge-v1.js?v=20261109C19MEME5" defer></script>
-  <!-- media-reminder-studio delinked · self-contained paint-standard only -->
-  <script src="/craft/assets/vendor/inline-clarity_meme_interlink_v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-source-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/desks-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-studio-boot-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-wire-v1.js?v=20261109C19MEME5" defer></script>
-
-  <!-- C15 enrich: shariah → online bg → catalog fetch → canvas clean → ratio → export -->
-  <script src="/craft/assets/craft-meme-shariah-scan-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-shariah-pools-v1.js?v=20261109C19MEME5" defer></script>
-<script src="/craft/assets/craft-meme-phase-bc-v1.js?v=20261109C19MEME5" defer></script>
-<script src="/craft/assets/craft-meme-bench-logic-v1.js?v=20261109C19MEME5" defer></script>
-
-<script src="/craft/assets/craft-meme-atelier-v1.js?v=20261109C19MEME5" defer></script>
-
-
-  <script src="/craft/assets/craft-meme-studio-enrich-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-online-bg-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-bg-fetch-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-canvas-clean-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-ratio-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-export-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-bridge-v1.js?v=20261109C19MEME5" defer></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.ClarityCraftStudioBoot) /* delinked media boot */ void 0;
-      else if (window.ClarityMediaReminder) {
-        var mr = document.getElementById("mr-root");
-        if (mr) try { /* delinked */ void(mr); } catch (e) {}
-      }
-      setTimeout(function () {
-        var b = document.querySelector("[data-meme-section].active");
-        if (b) b.click();
-      }, 600);
-
-      /* BG chips → online fetch when available */
-      document.querySelectorAll("[data-meme-bg]").forEach(function (btn) {
-        if (btn._craftBgBound) return;
-        btn._craftBgBound = true;
-        btn.addEventListener("click", function () {
-          document.querySelectorAll("[data-meme-bg]").forEach(function (x) { x.classList.remove("active"); });
-          btn.classList.add("active");
-          var kind = btn.getAttribute("data-meme-bg") || "blank";
-          var st = document.getElementById("meme-fetch-status");
-          if (st) st.textContent = "Background: " + kind;
-          if (kind === "blank") {
-            try {
-              if (typeof window.memeShowBlankPalette === "function") window.memeShowBlankPalette();
-            } catch (e) {}
-            return;
-          }
-          if (typeof window.__memeOnlineFetch === "function") {
-            window.__memeOnlineFetch(kind);
-          } else if (typeof window.memeFetchBg === "function") {
-            window.memeFetchBg(kind);
-          }
-        });
-      });
-    });
-  </script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var next = document.getElementById("meme-next-bg");
-    if (next) next.addEventListener("click", function () {
-      var a = document.querySelector("[data-meme-bg].active");
-      var kind = (a && a.getAttribute("data-meme-bg")) || "nature";
-      if (kind === "blank") kind = "nature";
-      if (typeof window.__memeOnlineFetch === "function") window.__memeOnlineFetch(kind);
-    });
-    var sc = document.getElementById("meme-auto-scale");
-    if (sc) sc.addEventListener("click", function () {
-      if (typeof window.memeAutoScaleLines === "function") window.memeAutoScaleLines();
-    });
-    var cp = document.getElementById("meme-copy-png");
-    if (cp) cp.addEventListener("click", function () {
-      if (typeof window.memeCopyPng === "function") window.memeCopyPng();
-      else if (typeof window.craftMemeExportPng === "function") window.craftMemeExportPng();
-    });
-  });
-  </script>
-<!-- C19MEME5 single-owner paint (must win) -->
-  <script src="/craft/assets/craft-meme-paint-standard-v1.js?v=20261109C19MEME5" defer></script>
-  <script src="/craft/assets/craft-meme-automation-v1.js?v=20261109C19MEME5" defer></script>
+  <!-- Logical load order · no ghost / dual painters -->
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-source-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/desks-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-shariah-scan-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-shariah-pools-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-fallback-scenes-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-online-bg-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-bg-fetch-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-ratio-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-export-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-studio-enrich-v1.js?v=20261110C19MEME6" defer></script>
+  <script src="/craft/assets/craft-meme-automation-v1.js?v=20261110C19MEME6" defer></script>
+  <!-- Single paint owner LAST -->
+  <script src="/craft/assets/craft-meme-paint-standard-v1.js?v=20261110C19MEME6" defer></script>
 </body>
 </html>
