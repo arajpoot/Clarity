@@ -1,9 +1,10 @@
-Yawm full upgrade Y0–Y4
+Yawm full upgrade Y0–Y5
 =======================
-Deploy paths (site root = clarity-dawah.fyi):
+Deploy:
 
   daily/index.html
   daily/assets/yawm-room-v1.css
+  daily/assets/yawm-qibla-v1.js
   daily/modules/now/index.html
   daily/modules/deed/index.html
   daily/modules/adhkar/index.html
@@ -11,14 +12,10 @@ Deploy paths (site root = clarity-dawah.fyi):
   daily/modules/salah/index.html
   daily/modules/light/index.html
 
-Existing site assets still required (not in this zip):
-  daily/assets/daily-banner.jpg
-  daily/assets/daily.css (module pages)
-  daily/assets/daily.js (module pages)
-  daily/assets/yawm-theme-v1.js
-  daily/assets/yawm-isolation-guard-v1.js
-  daily/assets/icons/*
-  /assets/room-nav/clarity-room-nav-v1.css + .js
+Also keep existing on host:
+  daily/assets/daily-banner.jpg, daily.css, daily.js, icons/*, yawm-theme, isolation-guard
+  daily/assets/yawm-qada-tracker-v1.js, yawm-salah-tools-v1.css
+  /assets/room-nav/*
 
 Hard-refresh after deploy.
 Educational only — not a fatwa.
