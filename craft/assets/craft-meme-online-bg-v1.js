@@ -1,4 +1,4 @@
-/*! C19MEME8 online-bg */
+/*! C19MEME18 online-bg */
 /* Craft port · load on /craft/meme/ only · educational */
 
 (function(){
@@ -29,9 +29,10 @@ function pick(arr, kind){
 }
 function loadImg(url, failMsg){
   if (!url) { status(failMsg || "No URL"); return; }
-  status("Loading…");
+  status("Loading scenery…");
+  window.__memeBgUrl = url;
   if (typeof memeLoadImageFromUrl === "function") {
-    memeLoadImageFromUrl(url, failMsg || "Could not load — try another");
+    try { memeLoadImageFromUrl(url, failMsg || "Could not load — try another"); } catch(e0) {}
     status("Background ready");
     return;
   }
@@ -39,13 +40,17 @@ function loadImg(url, failMsg){
   im.crossOrigin = "anonymous";
   im.onload = function(){
     try {
+      window.__memeBgImage = im;
+      window.__memeBgImg = im;
+      if (!window.memeState) window.memeState = {};
+      window.memeState.img = im;
       if (typeof memeState !== "undefined") memeState.img = im;
-      if (window.memeState) window.memeState.img = im;
       if (typeof memeDraw === "function") memeDraw();
+      else if (typeof window.craftMemeRepaintStandard === "function") window.craftMemeRepaintStandard();
     } catch(e){}
     status("Background ready");
   };
-  im.onerror = function(){ status(failMsg || "Load failed"); };
+  im.onerror = function(){ status(failMsg || "Scenery load failed — try Next"); };
   im.src = url;
 }
 function flickrLarge(u){

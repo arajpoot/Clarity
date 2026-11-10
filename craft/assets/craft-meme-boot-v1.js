@@ -1,4 +1,4 @@
-/*! craft-meme-boot-v1 · C19MEME16-CLEAN
+/*! craft-meme-boot-v1 · C19MEME18-CLEAN
  * Single orchestrator — no competing wires
  * Educational only — not a fatwa
  */
@@ -130,7 +130,7 @@
     var st = loadState();
     if (st.layers && st.layers.ar) {
       w.__memeLayers = st.layers;
-      if (w.CraftMemeUrduFetch) w.CraftMemeUrduFetch.loadForCurrentLayers(true);
+      if (w.CraftMemeUrduFetch) { w.CraftMemeUrduFetch.loadForCurrentLayers(true); setTimeout(function(){ try{w.CraftMemeUrduFetch.loadForCurrentLayers(true);}catch(e){} }, 600); }
       else paint();
     } else {
       loadSection("reminder");
