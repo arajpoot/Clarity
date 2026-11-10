@@ -1,0 +1,30 @@
+{
+  "gsc_summary": {
+    "indexed": 20,
+    "not_indexed": 27,
+    "reasons": [
+      "Redirect error",
+      "Not found (404)",
+      "Page with redirect",
+      "Discovered - currently not indexed",
+      "Crawled - currently not indexed",
+      "Duplicate, Google chose different canonical than user"
+    ]
+  },
+  "findings": [
+    "Sitemap only 21 URLs; many live rooms/modules missing (craft benches, most Yawm modules, campus lab paths, guides)",
+    "Sitemap lists 404: /grave, /tajweed",
+    "Sitemap lists non-trailing paths that 301 to slash: /janazah-prayer, /islamic-will (Page with redirect)",
+    "/lab/* redirects to /campus/lab/* \u2014 old URLs still discovered",
+    "www vs apex: ensure single host canonical (apex preferred in sitemap)",
+    "robots.txt is fine (Allow all + sitemap)"
+  ],
+  "repairs": [
+    "Replace sitemap.xml with full live inventory",
+    "Add _redirects for legacy 404s and clean 301s",
+    "Request recrawl of sitemap in GSC after deploy",
+    "Validate canonical tags point to apex trailing-slash URLs"
+  ],
+  "live_count": 39,
+  "missing_candidates": []
+}
