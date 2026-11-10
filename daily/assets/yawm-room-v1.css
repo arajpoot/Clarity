@@ -430,3 +430,157 @@ a.yawm-deepen:hover, .gap-card a:hover {
 }
 /* Hide any pills that somehow sit before banner via body order — structural fix preferred */
 .yawm-teach { margin: 0.75rem 1rem 1rem; }
+
+/* Y7 — al-ʿAṣr pinnacle + color-coded doors + reflection bridges */
+.yawm-asr-pinnacle {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 1.75rem 1.25rem 1.9rem;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212,180,90,.45);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,213,163,.16), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(30,125,94,.2), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(42,111,155,.15), transparent 50%),
+    linear-gradient(180deg, rgba(12,28,22,.95), rgba(8,16,14,.98));
+}
+.yawm-asr-pinnacle::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  border-radius: 24px;
+  border: 1px solid rgba(212,180,90,.35);
+  box-shadow:
+    0 0 40px rgba(232,213,163,.08),
+    inset 0 0 60px rgba(30,125,94,.12);
+  pointer-events: none;
+}
+.yawm-asr-glass {
+  position: relative;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.35rem 1.25rem 1.5rem;
+  border-radius: 20px;
+  border: 1.5px solid rgba(212,180,90,.55);
+  background: linear-gradient(160deg, rgba(30,125,94,.22), rgba(8,18,16,.55));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.05) inset,
+    0 20px 50px rgba(0,0,0,.4),
+    0 0 80px rgba(232,213,163,.07);
+  backdrop-filter: blur(12px);
+}
+.yawm-asr-glass .asr-kicker {
+  margin: 0 0 .5rem;
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #e8d5a3;
+  opacity: .9;
+}
+.yawm-asr-glass .asr-ar {
+  margin: 0 0 .75rem;
+  font-family: "Noto Naskh Arabic", Amiri, serif;
+  font-size: clamp(1.15rem, 3.8vw, 1.55rem);
+  line-height: 1.85;
+  direction: rtl;
+  color: #f5edd4;
+  text-shadow: 0 1px 0 rgba(0,0,0,.45), 0 0 24px rgba(232,213,163,.15);
+  font-weight: 700;
+}
+.yawm-asr-glass .asr-en {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+  line-height: 1.55;
+  color: #e8efe9;
+  font-style: italic;
+}
+.yawm-asr-glass .asr-ref {
+  margin: .65rem 0 0;
+  font-size: .78rem;
+  color: #e8d5a3;
+  letter-spacing: .04em;
+}
+.yawm-asr-glass .asr-shafii {
+  margin: .85rem 0 0;
+  padding-top: .65rem;
+  border-top: 1px solid rgba(212,180,90,.25);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .92rem;
+  line-height: 1.45;
+  opacity: .92;
+}
+
+/* Color-coded doors */
+a.yawm-door[data-door="now"] { border-color: rgba(61,155,110,.55); box-shadow: 0 0 0 1px rgba(61,155,110,.15); }
+a.yawm-door[data-door="deed"] { border-color: rgba(201,162,39,.55); box-shadow: 0 0 0 1px rgba(201,162,39,.15); }
+a.yawm-door[data-door="adhkar"] { border-color: rgba(107,155,209,.55); box-shadow: 0 0 0 1px rgba(107,155,209,.15); }
+a.yawm-door[data-door="tasbeeh"] { border-color: rgba(176,124,198,.55); box-shadow: 0 0 0 1px rgba(176,124,198,.15); }
+a.yawm-door[data-door="salah"] { border-color: rgba(42,111,155,.55); box-shadow: 0 0 0 1px rgba(42,111,155,.15); }
+a.yawm-door[data-door="light"] { border-color: rgba(212,165,116,.55); box-shadow: 0 0 0 1px rgba(212,165,116,.15); }
+a.yawm-door[data-door="now"]:hover { background: rgba(61,155,110,.18); }
+a.yawm-door[data-door="deed"]:hover { background: rgba(201,162,39,.15); }
+a.yawm-door[data-door="adhkar"]:hover { background: rgba(107,155,209,.15); }
+a.yawm-door[data-door="tasbeeh"]:hover { background: rgba(176,124,198,.15); }
+a.yawm-door[data-door="salah"]:hover { background: rgba(42,111,155,.18); }
+a.yawm-door[data-door="light"]:hover { background: rgba(212,165,116,.15); }
+a.yawm-door .door-chip {
+  display: inline-block;
+  margin-top: .35rem;
+  padding: .15rem .55rem;
+  border-radius: 999px;
+  font-size: .68rem;
+  letter-spacing: .04em;
+  border: 1px solid currentColor;
+  opacity: .9;
+}
+a.yawm-door[data-door="now"] .door-chip { color: #7dcea0; }
+a.yawm-door[data-door="deed"] .door-chip { color: #e8d5a3; }
+a.yawm-door[data-door="adhkar"] .door-chip { color: #a8c8e8; }
+a.yawm-door[data-door="tasbeeh"] .door-chip { color: #d2b4e0; }
+a.yawm-door[data-door="salah"] .door-chip { color: #8eb8d4; }
+a.yawm-door[data-door="light"] .door-chip { color: #e0c4a0; }
+
+/* Reflection bridges */
+.yawm-bridge {
+  margin: 1rem 0;
+  padding: 1rem 1.1rem 1.15rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212,180,90,.35);
+  background: rgba(0,0,0,.22);
+}
+.yawm-bridge[data-bridge="now"] { border-left: 3px solid #3d9b6e; }
+.yawm-bridge[data-bridge="deed"] { border-left: 3px solid #c9a227; }
+.yawm-bridge[data-bridge="adhkar"] { border-left: 3px solid #6b9bd1; }
+.yawm-bridge[data-bridge="tasbeeh"] { border-left: 3px solid #b07cc6; }
+.yawm-bridge[data-bridge="salah"] { border-left: 3px solid #2a6f9b; }
+.yawm-bridge[data-bridge="light"] { border-left: 3px solid #d4a574; }
+.yawm-bridge h3 {
+  margin: 0 0 .4rem;
+  font-size: .95rem;
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+.yawm-bridge p {
+  margin: 0 0 .55rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+.yawm-bridge .bridge-go {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: .25rem;
+  padding: .4rem .85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212,180,90,.45);
+  color: #e8d5a3 !important;
+  text-decoration: none !important;
+  font-size: .8rem;
+  background: rgba(30,125,94,.25);
+}
+.yawm-bridge .bridge-go:hover { background: rgba(30,125,94,.4); }
+.mf-body .yawm-bridge { margin: 1.1rem 0; }
