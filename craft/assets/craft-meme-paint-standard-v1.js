@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME4
+/*! craft-meme-paint-standard-v1 · C19MEME5
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -570,4 +570,35 @@
     setTimeout(installHooks, 200);
     setTimeout(fullPaint, 500);
   });
+
+  /* C19MEME5 · single-owner lock — neutralize legacy painters */
+  function neutralizeLegacyPainters() {
+    try {
+      /* wire / atelier / phase-bc direct paints must not stack text */
+      if (w.paintWithBg && !w.paintWithBg._std) {
+        w.paintWithBg = function () { schedulePaint(); };
+        w.paintWithBg._std = true;
+      }
+      if (w.paintCanvas && !w.paintCanvas._std) {
+        w.paintCanvas = function () { schedulePaint(); };
+        w.paintCanvas._std = true;
+      }
+      if (w.paintWithStoredBg && !w.paintWithStoredBg._std) {
+        w.paintWithStoredBg = function () { schedulePaint(); };
+        w.paintWithStoredBg._std = true;
+      }
+      /* reassert memeDraw ownership after late scripts */
+      w.memeDraw = function () { schedulePaint(); };
+      w.memeDraw._craftStd = true;
+      w.memeDraw._owner = "paint-standard-v1";
+    } catch (e) {}
+  }
+  neutralizeLegacyPainters();
+  setTimeout(neutralizeLegacyPainters, 400);
+  setTimeout(neutralizeLegacyPainters, 1200);
+  w.addEventListener("load", function () {
+    neutralizeLegacyPainters();
+    schedulePaint();
+  });
+
 })(window, document);

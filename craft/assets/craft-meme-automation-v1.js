@@ -1,11 +1,11 @@
-/*! craft-meme-automation-v1 · C19MEME4
+/*! craft-meme-automation-v1 · C19MEME5
  * Scenery-only BG · hardened fetch · daily verse+scene · post-ready desks
  * Educational only — not a fatwa · no free-type scripture as revelation
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_AUTO_C19MEME4__) return;
-  w.__CRAFT_MEME_AUTO_C19MEME4__ = true;
+  if (w.__CRAFT_MEME_AUTO_C19MEME5__) return;
+  w.__CRAFT_MEME_AUTO_C19MEME5__ = true;
 
   var SAFE_KINDS = ["nature", "night", "water", "flowers", "solid"];
   var KIND_QUERIES = {

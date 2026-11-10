@@ -1,3 +1,4 @@
+/*! craft-meme-wire-v1 · C19MEME5 · paint delegates to standard */
 /*! craft-meme-wire-v1 · C15R1
  * Unifies: Companion section sources → canvas (mr-text/mr-src) + X/FB desks
  * Background scenery chips · push canvas → desks · responsive scale
@@ -320,3 +321,10 @@
   else boot();
   w.addEventListener("load", function () { setTimeout(boot, 200); });
 })(window, document);
+
+(function(w){
+  function toStd(){ if (typeof w.memeDraw === "function") try { w.memeDraw(); } catch(e){} }
+  w.paintWithBg = toStd;
+  w.paintCanvas = toStd;
+  setTimeout(function(){ w.paintWithBg = toStd; w.paintCanvas = toStd; }, 600);
+})(window);
