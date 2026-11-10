@@ -1,0 +1,108 @@
+{
+  "ok": true,
+  "issues": [],
+  "cycles": [
+    {
+      "name": "files",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "syntax",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "siq_ux",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "taharah10",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "taharah_ids",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "citations",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "feedback_grade",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "session_cap",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "forbidden",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "edu",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "node_banks",
+      "ok": true,
+      "issues": [],
+      "out": "{\"cards\":10,\"pct\":50,\"ok\":true}"
+    },
+    {
+      "name": "http_1",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_2",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_3",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_4",
+      "ok": true,
+      "fails": []
+    },
+    {
+      "name": "http_5",
+      "ok": true,
+      "fails": []
+    }
+  ],
+  "governance": {
+    "room": "craft",
+    "path": "/craft/quiz/",
+    "forbidden_src_zero": true,
+    "educational_only": true,
+    "not_fatwa": true,
+    "not_iman_grade": true,
+    "chrome_seo_ok": true
+  },
+  "enrichment": {
+    "siq_stats_streak_today_best": true,
+    "topic_filters": true,
+    "curriculum_banks": true,
+    "taharah_10_teach_check": true,
+    "citation_collection_number_grade": true,
+    "path_meters": true,
+    "journal_5": true,
+    "session_soft_cap_5": true
+  },
+  "status": "verified",
+  "deployable": true
+}
