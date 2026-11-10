@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME11
+/*! craft-meme-paint-standard-v1 · C19MEME12
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -349,6 +349,19 @@
   }
 
   function fetchUrduThenPaint() {
+    /* C19MEME12: curated bank first — free API is last resort and audited */
+    try {
+      if (w.CraftMemeAuditor && typeof w.CraftMemeAuditor.preferCuratedUrdu === "function") {
+        var cu = w.CraftMemeAuditor.preferCuratedUrdu();
+        if (cu) {
+          lastUrduText = cu;
+          if (w.__memeLayers) w.__memeLayers.ur = cu;
+          schedulePaint();
+          return;
+        }
+      }
+    } catch (eAud) {}
+
     var layers = parseLayers(readSourceText());
     if (layers.ur) {
       lastUrduText = layers.ur;
@@ -375,8 +388,30 @@
       out = String(out).trim();
       if (/INVALID|QUERY LENGTH|MYMEMORY|ERROR/i.test(out)) out = "";
       if (out) {
+        /* reject free-API if auditor says mismatch */
+        var reject = false;
+        try {
+          if (w.CraftMemeAuditor) {
+            var tmp = Object.assign({}, w.__memeLayers || {}, { ur: out });
+            var prev = w.__memeLayers;
+            w.__memeLayers = tmp;
+            var rep = w.CraftMemeAuditor.audit({ autoFix: false });
+            w.__memeLayers = prev;
+            if (rep && !rep.ok && rep.blocks && rep.blocks.some(function(b){ return b.code === "urdu-mismatch"; })) {
+              reject = true;
+              var fix = (rep.blocks.find(function(b){ return b.fixUrdu; }) || {}).fixUrdu;
+              if (fix) out = fix;
+              else reject = true;
+            }
+          }
+        } catch (eR) {}
+        if (reject && w.CraftMemeAuditor) {
+          var cu2 = w.CraftMemeAuditor.curatedUrdu((w.__memeLayers||{}).ref, (w.__memeLayers||{}).en);
+          if (cu2) out = cu2;
+        }
         urduCache[key] = out;
         lastUrduText = out;
+        if (w.__memeLayers) w.__memeLayers.ur = out;
       }
       schedulePaint();
     }).catch(function () { schedulePaint(); });
@@ -639,7 +674,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME11 · single-owner lock — neutralize legacy painters */
+  /* C19MEME12 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */
