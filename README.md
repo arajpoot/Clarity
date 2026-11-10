@@ -1,5 +1,6 @@
-# Sharia IQ Deep Studio · C19QUIZ1
+# Meme Studio · C19MEME5 integrity restore
 
-Curriculum path (L0–L6) with **teach cards** then checks, path meters, and on-device journal.
+Fixes double-painting by single-owner paint-standard and neutered legacy painters.
+Richness (Urdu, scale, automation, scenery) retained.
 
-Educational only — not a fatwa · not a grade of īmān.
+Educational only — not a fatwa.
