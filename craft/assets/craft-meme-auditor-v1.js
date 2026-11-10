@@ -1,4 +1,4 @@
-/*! craft-meme-auditor-v1 · C19MEME13
+/*! craft-meme-auditor-v1 · C19MEME14
  * Top-notch focal auditor — verse · English · Urdu · ref · scenery
  * Cross-layer consistency: all four must point at the same ayah when known
  * Auto-fix from curated bank · publish gate
@@ -6,8 +6,8 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_AUDITOR_V13__) return;
-  w.__CRAFT_MEME_AUDITOR_V13__ = true;
+  if (w.__CRAFT_MEME_AUDITOR_V14__) return;
+  w.__CRAFT_MEME_AUDITOR_V14__ = true;
   w.__CRAFT_MEME_AUDITOR_V1__ = true;
 
   /**
@@ -497,6 +497,18 @@
     }
   }
 
+  function forceRepaint() {
+    try {
+      preferCuratedUrdu();
+      if (typeof w.memeDraw === "function") {
+        /* avoid re-entry loops: call underlying if wrapped */
+        var fn = w.memeDraw;
+        if (fn._origDraw) fn._origDraw();
+        else fn();
+      }
+    } catch (e) {}
+  }
+
   function status(id, msg) {
     var el = $(id);
     if (el) el.textContent = msg || "";
@@ -515,14 +527,17 @@
 
   function installHooks() {
     var origDraw = w.memeDraw;
-    if (typeof origDraw === "function" && !origDraw._auditWrap13) {
-      w.memeDraw = function () {
+    if (typeof origDraw === "function" && !origDraw._auditWrap14) {
+      function wrappedDraw() {
         preferCuratedUrdu();
-        audit({ autoFix: true });
+        var r = audit({ autoFix: true });
+        /* layers may have been fixed — paint with latest */
         return origDraw.apply(this, arguments);
-      };
-      w.memeDraw._auditWrap13 = true;
-      w.memeDraw._craftStd = true;
+      }
+      wrappedDraw._origDraw = origDraw;
+      wrappedDraw._auditWrap14 = true;
+      wrappedDraw._craftStd = true;
+      w.memeDraw = wrappedDraw;
     }
     ["meme-post-x", "meme-post-fb", "x-open", "fb-open", "meme-export-png"].forEach(function (id) {
       var el = $(id);
@@ -552,19 +567,29 @@
       panel.id = "meme-audit-panel";
       panel.className = "tool-section";
       var main = d.querySelector("main.craft-main") || d.body;
-      var desks = $("desks");
-      if (desks && desks.parentNode) desks.parentNode.insertBefore(panel, desks);
-      else main.appendChild(panel);
+      var canvasSec = $("meme-canvas-section") || ($("meme-canvas") && $("meme-canvas").closest("section"));
+      var layersSec = $("meme-layers-section");
+      if (canvasSec && canvasSec.parentNode) {
+        if (canvasSec.nextSibling) canvasSec.parentNode.insertBefore(panel, canvasSec.nextSibling);
+        else canvasSec.parentNode.appendChild(panel);
+      } else if (layersSec && layersSec.parentNode) {
+        layersSec.parentNode.insertBefore(panel, layersSec);
+      } else {
+        var desks = $("desks");
+        if (desks && desks.parentNode) desks.parentNode.insertBefore(panel, desks);
+        else main.appendChild(panel);
+      }
     }
     panel.innerHTML =
       "<h2>🛡 Focal auditor · top-notch</h2>" +
       '<p class="panel-note">Cross-checks <strong>Arabic · English · Urdu · reference</strong> against a curated verse bank, ' +
-      "and scenery-only backgrounds. Auto-fixes known mismatches. " +
+      "and scenery-only backgrounds. Auto-fixes known mismatches and <strong>re-paints immediately</strong>. " +
       "<strong>Educational only — not a fatwa.</strong></p>" +
       '<p class="panel-note" id="meme-audit-status" aria-live="polite">Auditor idle</p>' +
       '<div class="wire-actions">' +
       '<button type="button" class="btn primary" id="meme-audit-run">Run audit</button>' +
       '<button type="button" class="btn" id="meme-audit-fix">Auto-fix + re-paint</button>' +
+      '<button type="button" class="btn" id="meme-audit-override">Override · re-audit pass</button>' +
       "</div>";
     var run = $("meme-audit-run");
     if (run && !run._a13) {
@@ -580,11 +605,30 @@
       });
     }
     var fix = $("meme-audit-fix");
-    if (fix && !fix._a13) {
-      fix._a13 = true;
+    if (fix && !fix._a14) {
+      fix._a14 = true;
       fix.addEventListener("click", function () {
-        audit({ autoFix: true });
-        if (typeof w.memeDraw === "function") w.memeDraw();
+        var r = audit({ autoFix: true });
+        forceRepaint();
+        setTimeout(forceRepaint, 150);
+        status("meme-audit-status", r.ok ? "Fixed + painted · educational only" : "BLOCK remains · " + (r.blocks[0] && r.blocks[0].msg));
+      });
+    }
+    var ov = $("meme-audit-override");
+    if (ov && !ov._a14) {
+      ov._a14 = true;
+      ov.addEventListener("click", function () {
+        /* force full re-audit even if last was PASS; still auto-fix issues */
+        lastReport = null;
+        preferCuratedUrdu();
+        var r = audit({ autoFix: true });
+        forceRepaint();
+        setTimeout(forceRepaint, 150);
+        status(
+          "meme-audit-status",
+          (r.ok ? "Override re-audit · PASS" : "Override re-audit · BLOCK · " + r.blocks.map(function(b){return b.code;}).join(", ")) +
+            " · educational only — not a fatwa"
+        );
       });
     }
   }

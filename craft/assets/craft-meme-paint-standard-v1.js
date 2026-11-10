@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME13
+/*! craft-meme-paint-standard-v1 · C19MEME14
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -349,7 +349,7 @@
   }
 
   function fetchUrduThenPaint() {
-    /* C19MEME13: curated bank first — free API is last resort and audited */
+    /* C19MEME14: curated bank first — free API is last resort and audited */
     try {
       if (w.CraftMemeAuditor && typeof w.CraftMemeAuditor.preferCuratedUrdu === "function") {
         var cu = w.CraftMemeAuditor.preferCuratedUrdu();
@@ -674,7 +674,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME13 · single-owner lock — neutralize legacy painters */
+  /* C19MEME14 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */

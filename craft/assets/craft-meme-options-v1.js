@@ -73,10 +73,10 @@
     save();
     var b = d.querySelector('[data-layer="' + key + '"]');
     if (b) b.classList.toggle("active", !!opts.layers[key]);
-    /* expose for paint-standard consumers */
-    w.__memeLayerFlags = opts.layers;
+    w.__memeLayerFlags = Object.assign({}, opts.layers);
     status("Layer " + key + " · " + (opts.layers[key] ? "on" : "off"));
     paint();
+    setTimeout(paint, 50);
   }
 
   function setInk(mode) {
@@ -161,6 +161,11 @@
   function boot() {
     load();
     bind();
+    w.__memeLayerFlags = Object.assign({}, opts.layers);
+    w.__memeInkMode = opts.ink;
+    w.__memeFrameOn = opts.frame;
+    w.__memeVignetteOn = opts.vignette;
+    w.__memeTextDensity = opts.density;
   }
   w.CraftMemeOptions = { opts: function () { return opts; }, paint: paint, setSection: setSection };
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
