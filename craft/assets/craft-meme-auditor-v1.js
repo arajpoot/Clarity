@@ -1,4 +1,4 @@
-/*! craft-meme-auditor-v1 · C19MEME14
+/*! craft-meme-auditor-v1 · C19MEME15
  * Top-notch focal auditor — verse · English · Urdu · ref · scenery
  * Cross-layer consistency: all four must point at the same ayah when known
  * Auto-fix from curated bank · publish gate
@@ -6,8 +6,8 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_AUDITOR_V14__) return;
-  w.__CRAFT_MEME_AUDITOR_V14__ = true;
+  if (w.__CRAFT_MEME_AUDITOR_V15__) return;
+  w.__CRAFT_MEME_AUDITOR_V15__ = true;
   w.__CRAFT_MEME_AUDITOR_V1__ = true;
 
   /**
@@ -37,14 +37,14 @@
       arKey: "الذِّكْرَىٰ تَنفَعُ",
       enKeys: ["remind", "benefits", "believers"],
       enAnti: ["hearts find rest", "see your deeds"],
-      ur: "اور نصیحت کرتے رہو، کیونکہ نصیحت ایمان والوں کو نفع دیتی ہے۔",
+      ur: "اور نصیحت کرتے رہو کہ نصیحت مومنوں کو نفع دیتی ہے",
       urAnti: ["عمل کرو", "اطمینان حاصل"]
     },
     "59:18": {
       arKey: "اتَّقُوا اللَّهَ",
       enKeys: ["fear allah", "o you who believe"],
       enAnti: ["hearts find rest", "taste death"],
-      ur: "اے ایمان والو! اللہ سے ڈرو۔",
+      ur: "اے لوگو جو ایمان لائے ہو، اللہ سے ڈرو",
       urAnti: ["عمل کرو", "اطمینان"]
     },
     "3:185": {
@@ -516,13 +516,45 @@
 
   function preferCuratedUrdu() {
     var L = getLayers();
-    var u = curatedUrdu(L.ref, L.en, L.ar);
-    if (u) {
+    var ref = normRef(L.ref) || detectRefFromArabic(L.ar) || detectRefFromEnglish(L.en);
+    /* Never leave a foreign-bank Urdu on the wrong ref */
+    if (L.ur && ref) {
+      var fromU = detectRefFromUrdu(L.ur);
+      if (fromU && fromU !== ref) {
+        L.ur = "";
+        w.__memeLayers = L;
+      }
+    }
+    /* Sync API fetch when available (async); bank only if cache already has it */
+    if (ref && w.CraftMemeUrduFetch) {
+      var cached = w.CraftMemeUrduFetch.cache && w.CraftMemeUrduFetch.cache[ref];
+      if (cached) {
+        L.ur = cached;
+        w.__memeLayers = L;
+        return cached;
+      }
+      /* kick async load; paint will refresh when ready */
+      try {
+        w.CraftMemeUrduFetch.fetchUrdu(ref).then(function (ur) {
+          if (!ur) return;
+          if (!w.__memeLayers) w.__memeLayers = {};
+          w.__memeLayers.ur = ur;
+          if (typeof w.memeDraw === "function") {
+            try {
+              if (w.memeDraw._origDraw) w.memeDraw._origDraw();
+              else w.memeDraw();
+            } catch (e0) {}
+          }
+        });
+      } catch (e1) {}
+    }
+    var u = curatedUrdu(ref || L.ref, L.en, L.ar);
+    if (u && !L.ur) {
       L.ur = u;
       w.__memeLayers = L;
       return u;
     }
-    return L.ur || "";
+    return L.ur || u || "";
   }
 
   function installHooks() {
@@ -583,7 +615,7 @@
     panel.innerHTML =
       "<h2>🛡 Focal auditor · top-notch</h2>" +
       '<p class="panel-note">Cross-checks <strong>Arabic · English · Urdu · reference</strong> against a curated verse bank, ' +
-      "and scenery-only backgrounds. Auto-fixes known mismatches and <strong>re-paints immediately</strong>. " +
+      "and scenery-only backgrounds. Urdu from <strong>alquran.cloud</strong> (authentic editions) · bank fallback only · audit before every paint. " +
       "<strong>Educational only — not a fatwa.</strong></p>" +
       '<p class="panel-note" id="meme-audit-status" aria-live="polite">Auditor idle</p>' +
       '<div class="wire-actions">' +

@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME14
+/*! craft-meme-paint-standard-v1 · C19MEME15
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -349,7 +349,7 @@
   }
 
   function fetchUrduThenPaint() {
-    /* C19MEME14: curated bank first — free API is last resort and audited */
+    /* C19MEME15: curated bank first — free API is last resort and audited */
     try {
       if (w.CraftMemeAuditor && typeof w.CraftMemeAuditor.preferCuratedUrdu === "function") {
         var cu = w.CraftMemeAuditor.preferCuratedUrdu();
@@ -382,6 +382,32 @@
     }
     lastUrduKey = key;
     /* try free translation endpoint; fail soft */
+    var url = null; /* C19MEME15: free EN→UR disabled — authentic ayah API only */
+    if (w.CraftMemeUrduFetch) {
+      var refGuess = "";
+      try {
+        var L0 = w.__memeLayers || {};
+        refGuess = (L0.ref || "").match(/(\d{1,3})\s*[:：]\s*(\d{1,3})/);
+        refGuess = refGuess ? refGuess[1]+":"+refGuess[2] : "";
+        if (!refGuess && w.CraftMemeAuditor) {
+          refGuess = w.CraftMemeAuditor.detectRefFromArabic(L0.ar||"") || w.CraftMemeAuditor.detectRefFromEnglish(en) || "";
+        }
+      } catch (eG) {}
+      if (refGuess) {
+        w.CraftMemeUrduFetch.fetchUrdu(refGuess).then(function (out) {
+          if (out) {
+            lastUrduText = out;
+            urduCache[key] = out;
+            if (w.__memeLayers) w.__memeLayers.ur = out;
+          }
+          schedulePaint();
+        });
+        return;
+      }
+    }
+    /* no free machine translation of English — bank/API only */
+    schedulePaint();
+    return;
     var url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(en.slice(0, 400)) + "&langpair=en|ur";
     fetch(url, { credentials: "omit" }).then(function (r) { return r.json(); }).then(function (j) {
       var out = (j && j.responseData && j.responseData.translatedText) || "";
@@ -674,7 +700,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME14 · single-owner lock — neutralize legacy painters */
+  /* C19MEME15 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */
