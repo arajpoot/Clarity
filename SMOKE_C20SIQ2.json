@@ -1,0 +1,100 @@
+{
+  "ok": true,
+  "issues": [],
+  "cycles": [
+    {
+      "name": "syntax",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "salah10",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "adab10",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "taharah10",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "glass",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "color_bars",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "citations",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "forbidden",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "edu",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "bank_integrity",
+      "ok": true,
+      "issues": [],
+      "counts": {
+        "orientation": 2,
+        "taharah": 10,
+        "salah-map": 10,
+        "adab-speech": 10
+      }
+    },
+    {
+      "name": "http_1",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "http_2",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "http_3",
+      "ok": true,
+      "issues": []
+    },
+    {
+      "name": "http_4",
+      "ok": true,
+      "issues": []
+    }
+  ],
+  "governance": {
+    "room": "craft",
+    "path": "/craft/quiz/",
+    "forbidden_src_zero": true,
+    "educational_only": true,
+    "not_fatwa": true
+  },
+  "enrichment": {
+    "taharah_10": true,
+    "salah_10": true,
+    "adab_10": true,
+    "glass_plaques": true,
+    "embossed_headings": true,
+    "color_coded_bars": true,
+    "siq_stats_topics": true
+  },
+  "status": "verified",
+  "deployable": true
+}
