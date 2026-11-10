@@ -214,3 +214,80 @@ a.yawm-door .door-ref { font-size: 0.68rem; color: var(--yawm-gold); opacity: 0.
   font-size: 0.75rem;
   opacity: 0.8;
 }
+
+/* Y3–Y4 credits + module depth */
+.yawm-sources {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1.1rem 1.15rem;
+  border-radius: 18px;
+  border: 1px solid var(--yawm-border);
+  background: var(--yawm-glass);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.03) inset, 0 12px 36px rgba(0,0,0,.25);
+}
+.yawm-sources h2 { margin: 0 0 .5rem; color: var(--yawm-gold); font-size: 1.05rem; }
+.yawm-sources ul {
+  margin: .4rem 0 0;
+  padding-inline-start: 1.15rem;
+  font-size: .8rem;
+  line-height: 1.55;
+}
+.yawm-sources li { margin: .35rem 0; }
+.yawm-sources .duaa {
+  margin: .75rem 0 0;
+  font-size: .78rem;
+  opacity: .9;
+  direction: rtl;
+  font-family: "Noto Naskh Arabic", Amiri, serif;
+}
+.yawm-sources .duaa-en {
+  direction: ltr;
+  font-family: inherit;
+  display: block;
+  margin-top: .25rem;
+  opacity: .85;
+}
+.yawm-sources details {
+  margin-top: .65rem;
+  font-size: .8rem;
+}
+.yawm-sources summary {
+  cursor: pointer;
+  color: var(--yawm-gold);
+  font-weight: 600;
+}
+.yawm-teach {
+  margin: 0.75rem 1rem 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--yawm-border);
+  background: var(--yawm-glass);
+}
+.yawm-teach h2 {
+  margin: 0 0 .35rem;
+  font-size: 1rem;
+  color: var(--yawm-gold);
+}
+.yawm-teach .ar {
+  direction: rtl;
+  font-family: "Noto Naskh Arabic", Amiri, serif;
+  margin: .35rem 0;
+}
+.yawm-teach .en { font-size: .85rem; opacity: .9; margin: 0; }
+.yawm-teach .ref { font-size: .72rem; color: var(--yawm-gold); margin: .35rem 0 0; }
+.mod-shell {
+  width: 100%;
+  max-width: none;
+}
+.yawm-mini-banner {
+  width: 100%;
+  position: relative;
+  max-height: 180px;
+  overflow: hidden;
+}
+.yawm-mini-banner img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
