@@ -1,10 +1,11 @@
-/*! yawm-qibla-v1 · helper only — not a certified instrument · Y5 safe labels */
+/*! yawm-qibla-v1 · Y6 · on-device calibration until recalibrate · helper only */
 (function () {
   "use strict";
   if (window.__YAWM_QIBLA_V1__) return;
   window.__YAWM_QIBLA_V1__ = true;
 
   var KAABA = { lat: 21.4225, lng: 39.8262 };
+  var STORE = "clarity.yawm.qibla.cal.v1";
 
   function bearing(lat1, lng1, lat2, lng2) {
     var r = Math.PI / 180;
@@ -16,6 +17,29 @@
     return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
   }
 
+  function loadCal() {
+    try {
+      var o = JSON.parse(localStorage.getItem(STORE) || "null");
+      if (o && typeof o.qiblaDeg === "number" && typeof o.lat === "number") return o;
+    } catch (e) {}
+    return null;
+  }
+  function saveCal(o) {
+    try {
+      localStorage.setItem(
+        STORE,
+        JSON.stringify({
+          qiblaDeg: o.qiblaDeg,
+          lat: o.lat,
+          lng: o.lng,
+          t: Date.now()
+        })
+      );
+    } catch (e) {}
+  }
+  function clearCal() {
+    try { localStorage.removeItem(STORE); } catch (e) {}
+  }
   function safeText(el, text) {
     if (!el) return;
     el.textContent = String(text == null ? "" : text);
@@ -29,17 +53,36 @@
 
     var qiblaDeg = null;
     var heading = null;
+    var saved = loadCal();
+    if (saved) {
+      qiblaDeg = saved.qiblaDeg;
+      safeText(
+        label,
+        "Saved qibla ~ " +
+          Math.round(qiblaDeg) +
+          "° from N · on this device · helper only · not certified"
+      );
+      needle.style.transform = "rotate(" + qiblaDeg + "deg)";
+      btn.textContent = "Recalibrate compass";
+    } else {
+      safeText(label, "Allow location to estimate qibla · helper only · not certified");
+    }
 
     function paint() {
       if (typeof qiblaDeg === "number" && typeof heading === "number") {
         needle.style.transform = "rotate(" + (qiblaDeg - heading) + "deg)";
         safeText(
           label,
-          "Qibla ~ " + Math.round(qiblaDeg) + "° from N · helper only · not certified"
+          "Qibla ~ " + Math.round(qiblaDeg) + "° from N · live heading · helper only"
         );
       } else if (typeof qiblaDeg === "number") {
         needle.style.transform = "rotate(" + qiblaDeg + "deg)";
-        safeText(label, "Qibla bearing set · enable compass for live heading · helper only");
+        safeText(
+          label,
+          "Qibla ~ " +
+            Math.round(qiblaDeg) +
+            "° from N · enable compass for live heading · helper only"
+        );
       }
     }
 
@@ -71,13 +114,14 @@
       }
     }
 
-    safeText(label, "Allow location to estimate qibla · helper only · not certified");
+    if (saved) listenOrientation();
 
     btn.addEventListener("click", function () {
       if (!navigator.geolocation) {
         safeText(label, "Geolocation unavailable on this device · helper only");
         return;
       }
+      // Recalibrate always refreshes store
       safeText(label, "Requesting location…");
       navigator.geolocation.getCurrentPosition(
         function (pos) {
@@ -88,6 +132,12 @@
               KAABA.lat,
               KAABA.lng
             );
+            saveCal({
+              qiblaDeg: qiblaDeg,
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude
+            });
+            btn.textContent = "Recalibrate compass";
             paint();
             listenOrientation();
           } catch (err) {
@@ -95,7 +145,10 @@
           }
         },
         function () {
-          safeText(label, "Location denied · helper unavailable · not a certified instrument");
+          safeText(
+            label,
+            "Location denied · helper unavailable · not a certified instrument"
+          );
         },
         { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
       );

@@ -378,3 +378,55 @@ a.yawm-deepen:hover, .gap-card a:hover {
 #yawm-qibla-root code, #yawm-qada-root pre {
   display: none !important;
 }
+
+/* Y6 layout: room nav only above banner; cue below; larger banner; no blue leaks */
+.mod-top a, .mod-top .brand + nav a, header.mod-top a {
+  color: #e8d5a3 !important;
+  text-decoration: none !important;
+}
+.mod-top a:hover { border-bottom: 1px solid rgba(212,180,90,.5); }
+.yawm-mini-banner {
+  width: 100%;
+  position: relative;
+  max-height: none;
+  overflow: hidden;
+  border-radius: 0 0 18px 18px;
+}
+.yawm-mini-banner img {
+  width: 100%;
+  height: clamp(200px, 32vw, 280px);
+  object-fit: cover;
+  display: block;
+  opacity: 0.9;
+}
+.yawm-mini-plaque {
+  position: absolute;
+  inset: auto 1rem 1rem 1rem;
+  padding: 0.75rem 0.95rem;
+  border-radius: 12px;
+  background: rgba(8, 24, 18, 0.86);
+  border: 1px solid rgba(212, 180, 90, 0.4);
+}
+.yawm-mini-plaque .mp-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #e8d5a3;
+  font-size: 1.2rem;
+}
+.yawm-mini-plaque .mp-sub {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  opacity: 0.92;
+  line-height: 1.35;
+}
+.yawm-mod-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.55rem 1rem 0.35rem;
+  justify-content: center;
+  border-bottom: none;
+  background: transparent;
+}
+/* Hide any pills that somehow sit before banner via body order — structural fix preferred */
+.yawm-teach { margin: 0.75rem 1rem 1rem; }
