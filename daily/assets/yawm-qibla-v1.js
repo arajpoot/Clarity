@@ -1,4 +1,4 @@
-/*! yawm-qibla-v1 · helper only — not a certified instrument */
+/*! yawm-qibla-v1 · helper only — not a certified instrument · Y5 safe labels */
 (function () {
   "use strict";
   if (window.__YAWM_QIBLA_V1__) return;
@@ -16,20 +16,30 @@
     return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
   }
 
+  function safeText(el, text) {
+    if (!el) return;
+    el.textContent = String(text == null ? "" : text);
+  }
+
   function mount() {
     var needle = document.getElementById("yawm-qibla-needle");
     var label = document.getElementById("yawm-qibla-label");
     var btn = document.getElementById("yawm-qibla-cal");
     if (!needle || !btn) return;
 
-    var qiblaDeg = 0;
-    var heading = 0;
+    var qiblaDeg = null;
+    var heading = null;
 
     function paint() {
-      needle.style.transform = "rotate(" + (qiblaDeg - heading) + "deg)";
-      if (label) {
-        label.textContent =
-          "Qibla ~ " + Math.round(qiblaDeg) + "° from N · helper only · not certified";
+      if (typeof qiblaDeg === "number" && typeof heading === "number") {
+        needle.style.transform = "rotate(" + (qiblaDeg - heading) + "deg)";
+        safeText(
+          label,
+          "Qibla ~ " + Math.round(qiblaDeg) + "° from N · helper only · not certified"
+        );
+      } else if (typeof qiblaDeg === "number") {
+        needle.style.transform = "rotate(" + qiblaDeg + "deg)";
+        safeText(label, "Qibla bearing set · enable compass for live heading · helper only");
       }
     }
 
@@ -40,7 +50,7 @@
           : typeof e.alpha === "number"
             ? 360 - e.alpha
             : null;
-      if (typeof x === "number") {
+      if (typeof x === "number" && !isNaN(x)) {
         heading = x;
         paint();
       }
@@ -61,27 +71,33 @@
       }
     }
 
+    safeText(label, "Allow location to estimate qibla · helper only · not certified");
+
     btn.addEventListener("click", function () {
       if (!navigator.geolocation) {
-        if (label) label.textContent = "No geolocation on this device";
+        safeText(label, "Geolocation unavailable on this device · helper only");
         return;
       }
-      if (label) label.textContent = "Locating…";
+      safeText(label, "Requesting location…");
       navigator.geolocation.getCurrentPosition(
         function (pos) {
-          qiblaDeg = bearing(
-            pos.coords.latitude,
-            pos.coords.longitude,
-            KAABA.lat,
-            KAABA.lng
-          );
-          paint();
-          listenOrientation();
+          try {
+            qiblaDeg = bearing(
+              pos.coords.latitude,
+              pos.coords.longitude,
+              KAABA.lat,
+              KAABA.lng
+            );
+            paint();
+            listenOrientation();
+          } catch (err) {
+            safeText(label, "Could not compute bearing · helper only");
+          }
         },
         function () {
-          if (label) label.textContent = "Location denied · helper unavailable";
+          safeText(label, "Location denied · helper unavailable · not a certified instrument");
         },
-        { enableHighAccuracy: true, timeout: 12000 }
+        { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
       );
     });
   }
