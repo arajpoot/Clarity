@@ -1,4 +1,4 @@
-/*! craft-meme-urdu-fetch-v1 · C19MEME21
+/*! craft-meme-urdu-fetch-v1 · C19MEME22
  * Urdu pipeline (strict order):
  *  1) Authentic online ayah edition (alquran.cloud) by Arabic-resolved ref
  *  2) Fallback: translate the LOCAL English line (bundled with verse) → Urdu

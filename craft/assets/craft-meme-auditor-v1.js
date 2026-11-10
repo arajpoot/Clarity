@@ -1,4 +1,4 @@
-/*! craft-meme-auditor-v1 · C19MEME21
+/*! craft-meme-auditor-v1 · C19MEME22
  * Top-notch focal auditor — verse · English · Urdu · ref · scenery
  * Cross-layer consistency: all four must point at the same ayah when known
  * Auto-fix from curated bank · publish gate
@@ -250,7 +250,7 @@
   }
 
   function curatedUrdu(ref, en, ar) {
-    return ""; /* C19MEME21: no bank Urdu */
+    return ""; /* C19MEME22: no bank Urdu */
   }
 
   function crossLayerAudit(L) {
@@ -454,7 +454,7 @@
         /* if English clearly wrong, do not invent Arabic — only urdu/ref */
       }
     }
-    /* C19MEME21: do not apply bank fixUrdu — trigger online fetch instead */
+    /* C19MEME22: do not apply bank fixUrdu — trigger online fetch instead */
 if (false && fixUr) L.ur = fixUr;
     if (!L.ur && w.CraftMemeUrduFetch) {
       var ref2 = normRef(L.ref) || detectRefFromArabic(L.ar) || detectRefFromEnglish(L.en);
