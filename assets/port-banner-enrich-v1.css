@@ -1,117 +1,167 @@
-/*! port-banner-enrich-v1 · classic Yawm banner on live port shell · enrichment-preserving */
+/*! port-banner-enrich-v2 · force classic scene · dedupe lettering · tours safe */
 .port-sky-ambient {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
   background:
-    radial-gradient(ellipse 90% 50% at 50% -10%, rgba(232,213,163,.1), transparent 55%),
-    radial-gradient(ellipse 40% 30% at 12% 45%, rgba(30,125,94,.16), transparent 50%),
-    radial-gradient(ellipse 40% 30% at 88% 55%, rgba(42,111,155,.1), transparent 50%);
+    radial-gradient(ellipse 90% 50% at 50% -10%, rgba(232,213,163,.12), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 12% 45%, rgba(30,125,94,.18), transparent 50%),
+    radial-gradient(ellipse 40% 30% at 88% 55%, rgba(42,111,155,.12), transparent 50%) !important;
 }
 .port-sky-ambient .orb {
-  position: absolute; border-radius: 50%; filter: blur(48px); opacity: .3;
+  position: absolute; border-radius: 50%; filter: blur(48px); opacity: .32;
   animation: portDrift 24s ease-in-out infinite alternate;
 }
-.port-sky-ambient .orb-a { width: min(420px,42vw); height: min(420px,42vw); left: -8%; top: 8%; background: rgba(30,125,94,.4); }
-.port-sky-ambient .orb-b { width: min(360px,36vw); height: min(360px,36vw); right: -6%; top: 30%; background: rgba(201,162,39,.22); animation-delay: -8s; }
+.port-sky-ambient .orb-a {
+  width: min(420px,42vw); height: min(420px,42vw);
+  left: -8%; top: 8%; background: rgba(30,125,94,.42);
+}
+.port-sky-ambient .orb-b {
+  width: min(360px,36vw); height: min(360px,36vw);
+  right: -6%; top: 28%; background: rgba(201,162,39,.24);
+  animation-delay: -8s;
+}
 @keyframes portDrift {
   from { transform: translate(0,0) scale(1); }
   to { transform: translate(2.5%, -3%) scale(1.06); }
 }
-body > .port-sky-ambient { }
-body { position: relative; }
-.port-banner, .clarity-room-nav, .port-wrap, .port-foot, .room-tour-modal {
-  position: relative; z-index: 1;
-}
 
-/* Classic banner image layer */
-.port-banner.port-banner--classic {
+header.port-banner,
+nav.clarity-room-nav,
+nav.top.clarity-room-nav,
+main.port-wrap,
+footer.port-foot,
+#room-tour-modal {
   position: relative;
-  min-height: clamp(240px, 38vw, 380px);
-  padding: 0;
-  overflow: hidden;
-  border-radius: 0 0 20px 20px;
-  border-bottom: 1px solid rgba(212,180,90,.4);
-}
-.port-banner.port-banner--classic .port-banner-img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
-  z-index: 0;
-}
-.port-banner.port-banner--classic .banner-glow {
   z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(5,12,10,.2) 0%, rgba(5,12,10,.35) 45%, rgba(5,12,10,.82) 100%) !important;
-}
-.port-banner.port-banner--classic .port-tools {
-  position: relative; z-index: 3;
-}
-.port-banner.port-banner--classic .port-banner-inner {
-  position: relative; z-index: 2;
-  padding: 1.25rem 1.15rem 1.75rem;
-  text-align: center;
-}
-.port-banner.port-banner--classic .port-asr-plaque {
-  max-width: 40rem;
-  margin: 0 auto 0.85rem;
-  padding: 0.75rem 1rem;
-  border-radius: 14px;
-  border: 1px solid rgba(212,180,90,.5);
-  background: rgba(8,20,16,.7);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 0 1px rgba(255,255,255,.04) inset, 0 10px 32px rgba(0,0,0,.35);
-}
-.port-banner.port-banner--classic .port-asr-plaque .bismillah {
-  margin: 0 0 .3rem;
-  font-family: Amiri, serif;
-  color: #e8d5a3;
-  font-size: .9rem;
-}
-.port-banner.port-banner--classic .port-asr-plaque .verse-ar {
-  margin: 0;
-  font-family: Amiri, serif;
-  direction: rtl;
-  font-size: clamp(.9rem, 2.4vw, 1.15rem);
-  line-height: 1.7;
-  color: #f5edd4;
-}
-.port-banner.port-banner--classic .port-asr-plaque .verse-en {
-  margin: .35rem 0 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-style: italic;
-  font-size: clamp(.85rem, 2vw, 1rem);
-  color: #e6ebe7;
-}
-.port-banner.port-banner--classic .port-asr-plaque .verse-ref {
-  margin: .3rem 0 0;
-  font-size: .7rem;
-  color: #e8d5a3;
-}
-.port-banner.port-banner--classic .port-title {
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  color: #e8d5a3 !important;
-  text-shadow: 0 2px 12px rgba(0,0,0,.5);
-}
-.port-banner.port-banner--classic .port-tagline {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-style: italic;
 }
 
-/* Glass polish for existing plaques — do not remove structure */
-.port-tour,
-.castle-sym,
-.port-wrap > section {
+/* ===== Classic banner: full scene, image wins ===== */
+header.port-banner.port-banner--classic {
+  position: relative !important;
+  display: block !important;
+  min-height: clamp(280px, 48vw, 460px) !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border-radius: 0 0 20px 20px !important;
+  border-bottom: 1px solid rgba(212,180,90,.45) !important;
+  background: #0a1210 !important;
+}
+header.port-banner.port-banner--classic .port-banner-img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  /* zoom OUT — show more of Kaaba/quill scene */
+  object-position: center 35% !important;
+  transform: scale(1.0) !important;
+  z-index: 0 !important;
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+header.port-banner.port-banner--classic .banner-glow {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  /* light top so plaque reads; stronger bottom so baked image text is less double */
+  background:
+    linear-gradient(180deg,
+      rgba(5,12,10,.55) 0%,
+      rgba(5,12,10,.25) 28%,
+      rgba(5,12,10,.2) 55%,
+      rgba(5,12,10,.75) 100%) !important;
+  opacity: 1 !important;
+}
+header.port-banner.port-banner--classic .port-tools {
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  z-index: 5 !important;
+}
+
+/* Glass plaque HIGH — clears main image lettering band */
+header.port-banner.port-banner--classic .port-banner-inner {
+  position: relative !important;
+  z-index: 4 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  min-height: clamp(280px, 48vw, 460px) !important;
+  padding: 0.55rem 0.85rem 1.25rem !important;
+  text-align: center !important;
+  background: transparent !important;
+}
+header.port-banner.port-banner--classic .port-asr-plaque {
+  order: 0;
+  width: min(94%, 38rem) !important;
+  margin: 0.35rem auto 0.5rem !important;
+  padding: 0.65rem 0.9rem 0.7rem !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(212,180,90,.55) !important;
+  background: rgba(6,16,12,.78) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.05) inset, 0 12px 36px rgba(0,0,0,.4) !important;
+}
+header.port-banner.port-banner--classic .port-asr-plaque .bismillah {
+  margin: 0 0 0.25rem !important;
+  font-family: Amiri, serif !important;
+  color: #e8d5a3 !important;
+  font-size: 0.88rem !important;
+}
+header.port-banner.port-banner--classic .port-asr-plaque .verse-ar {
+  margin: 0 !important;
+  font-family: Amiri, serif !important;
+  direction: rtl !important;
+  font-size: clamp(0.88rem, 2.3vw, 1.12rem) !important;
+  line-height: 1.7 !important;
+  color: #f5edd4 !important;
+}
+header.port-banner.port-banner--classic .port-asr-plaque .verse-en {
+  margin: 0.3rem 0 0 !important;
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-style: italic !important;
+  font-size: clamp(0.82rem, 2vw, 0.98rem) !important;
+  color: #e6ebe7 !important;
+}
+header.port-banner.port-banner--classic .port-asr-plaque .verse-ref {
+  margin: 0.25rem 0 0 !important;
+  font-size: 0.68rem !important;
+  color: #e8d5a3 !important;
+}
+
+/* Dedupe: image already carries Clarity + Furnish Your Grave — hide HTML clones */
+header.port-banner.port-banner--classic .port-kicker,
+header.port-banner.port-banner--classic .port-title,
+header.port-banner.port-banner--classic .port-tagline,
+header.port-banner.port-banner--classic .port-ar {
+  display: none !important;
+}
+
+/* Tour modal always above castle chrome */
+#room-tour-modal.room-tour-modal {
+  z-index: 5000 !important;
+}
+#room-tour-modal .room-tour-dialog {
+  z-index: 5001 !important;
+}
+.tower-actions .room-tour-pill,
+button.room-tour-pill {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Soft glass on sections without breaking injectors */
+.port-tour, .castle-sym {
+  border: 1px solid rgba(212,180,90,.28);
   border-radius: 18px;
-}
-.tower, .room-tile {
-  backdrop-filter: blur(6px);
-}
-.port-wrap .port-disclaimer {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.02rem;
-}
-.castle-sym > h2,
-.port-tour > h2 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  letter-spacing: .02em;
 }
