@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME6
+/*! craft-meme-paint-standard-v1 · C19MEME8
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -235,6 +235,8 @@
 
 
   function paintText(ctx, w, h) {
+    var flags = (typeof window !== "undefined" && window.__memeLayerFlags) ? window.__memeLayerFlags : {ar:true,en:true,ur:true,ref:true};
+
     drawVignette(ctx, w, h);
     drawGoldFrame(ctx, w, h);
     var layers = parseLayers(readSourceText());
@@ -351,6 +353,8 @@
   }
 
   function fullPaintNow() {
+    var flags = w.__memeLayerFlags || {ar:true,en:true,ur:true,ref:true};
+
     var canvas = getCanvas();
     if (!canvas) return false;
     var ctx = canvas.getContext("2d");
@@ -428,8 +432,23 @@
     if (env) env.textContent = Math.round(scale.en * 100) + "%";
   }
 
+  function bindScaleControls() {
+    ["meme-scale-ar","meme-scale-en"].forEach(function(id){
+      var el=$(id); if(!el||el._bound) return; el._bound=true;
+      el.addEventListener("input", function(){
+        if(id.indexOf("ar")>=0) scale.ar=(+el.value||100)/100; else scale.en=(+el.value||100)/100;
+        try{localStorage.setItem(STORE, JSON.stringify(scale));}catch(e){}
+        syncSliders(); schedulePaint();
+      });
+    });
+    var ap=$("meme-scale-apply"); if(ap&&!ap._bound){ap._bound=true;ap.addEventListener("click",function(){schedulePaint();});}
+    var au=$("meme-scale-auto"); if(au&&!au._bound){au._bound=true;au.addEventListener("click",function(){if(typeof autoScale==="function")autoScale();else schedulePaint();});}
+    var rs=$("meme-scale-reset"); if(rs&&!rs._bound){rs._bound=true;rs.addEventListener("click",function(){scale.ar=1;scale.en=1;try{localStorage.setItem(STORE,JSON.stringify(scale));}catch(e){}syncSliders();schedulePaint();});}
+    var topAuto=$("meme-auto-scale"); if(topAuto&&!topAuto._bound){topAuto._bound=true;topAuto.addEventListener("click",function(){if(typeof autoScale==="function")autoScale();});}
+  }
   function injectScalePanel() {
     if ($("meme-scale-panel")) { syncSliders(); return; }
+    var hostPrefer = $("meme-scale-host");
     var panel = d.createElement("div");
     panel.id = "meme-scale-panel";
     panel.className = "tool-section";
@@ -444,6 +463,12 @@
       '<button type="button" class="btn" id="meme-scale-auto">Auto-scale text</button>' +
       '<button type="button" class="btn" id="meme-scale-reset">Reset 100%</button>' +
       "</div></div>";
+    if (hostPrefer) {
+      hostPrefer.appendChild(panel);
+      syncSliders();
+      bindScaleControls();
+      return;
+    }
     var ratioSec = null;
     d.querySelectorAll(".tool-section").forEach(function (sec) {
       if (/Scale|ratio/i.test(sec.textContent || "")) ratioSec = sec;
@@ -571,7 +596,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME6 · single-owner lock — neutralize legacy painters */
+  /* C19MEME8 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */

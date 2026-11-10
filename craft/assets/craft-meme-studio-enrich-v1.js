@@ -154,7 +154,7 @@
     try {
       if (!w.memeState) w.memeState = {};
       w.memeState.img = null;
-      var c = d.getElementById("meme-canvas");
+      var c = (d.getElementById("meme-canvas")||document.getElementById("mr-canvas")||d.getElementById("mr-canvas"));
       if (c && c.getContext) {
         if (c.width < 100) { c.width = 1200; c.height = 675; }
         var ctx = c.getContext("2d");
@@ -188,7 +188,7 @@
         if (typeof w.memeDraw === "function") w.memeDraw();
         else if (typeof w.clarityMemeUiSync === "function") w.clarityMemeUiSync();
         else {
-          var c = d.getElementById("meme-canvas");
+          var c = (d.getElementById("meme-canvas")||document.getElementById("mr-canvas")||d.getElementById("mr-canvas"));
           if (c && c.getContext) {
             if (c.width < 100) { c.width = 1200; c.height = 675; }
             c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
