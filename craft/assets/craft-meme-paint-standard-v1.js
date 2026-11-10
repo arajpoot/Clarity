@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME8
+/*! craft-meme-paint-standard-v1 · C19MEME9
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -54,7 +54,7 @@
 
   function rememberBg(img) {
     if (!img) return;
-    w.__memeBgImage = img;
+    w.__memeBgImage = img; try { if (img && img.src) w.__memeBgUrl = img.src; } catch(eU) {}
     w.__memeBgImg = img;
     var st = ensureMemeState();
     st.img = img;
@@ -64,6 +64,12 @@
   }
 
   function parseLayers(raw) {
+    if (w.__memeLayers && (w.__memeLayers.ar || w.__memeLayers.en) && !String(raw||"").trim()) {
+      return { ar: w.__memeLayers.ar||"", en: w.__memeLayers.en||"", ur: w.__memeLayers.ur||"", ref: w.__memeLayers.ref||"" };
+    }
+    if (w.__memeLayers && (w.__memeLayers.ar || w.__memeLayers.en) && String(raw||"").trim().length < 8) {
+      return { ar: w.__memeLayers.ar||"", en: w.__memeLayers.en||"", ur: w.__memeLayers.ur||"", ref: w.__memeLayers.ref||"" };
+    }
     raw = String(raw || "").replace(/\s+/g, " ").trim();
     var ar = "", en = "", ref = "";
     var mRef = raw.match(/(?:Qur[’']an|Quran|Qurʾān|Surah|Sūrat?)\s*([0-9]{1,3})\s*[:：]\s*([0-9]{1,3}(?:\s*[-–]\s*[0-9]{1,3})?)/i);
@@ -95,7 +101,21 @@
     return { ar: ar, en: en, ur: ur, ref: ref };
   }
 
+  function layersFromGlobal() {
+    var L = w.__memeLayers;
+    if (L && (L.ar || L.en || L.ref)) {
+      var parts = [];
+      if (L.ar) parts.push(L.ar);
+      if (L.en) parts.push(L.en);
+      if (L.ref) parts.push("(" + L.ref + ")");
+      return parts.join("\n");
+    }
+    return "";
+  }
+
   function readSourceText() {
+    var fromL = layersFromGlobal();
+    if (fromL) return fromL;
     var card = $("craft-verse-card");
     var t = (card && card.textContent) || "";
     if (!t.trim()) {
@@ -353,6 +373,11 @@
   }
 
   function fullPaintNow() {
+    /* prefer live source layers */
+    if (w.__memeLayers && (w.__memeLayers.ar || w.__memeLayers.en)) {
+      try { if (typeof setLayers === "function") setLayers(w.__memeLayers); } catch(e0) {}
+    }
+
     var flags = w.__memeLayerFlags || {ar:true,en:true,ur:true,ref:true};
 
     var canvas = getCanvas();
@@ -596,7 +621,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME8 · single-owner lock — neutralize legacy painters */
+  /* C19MEME9 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */
