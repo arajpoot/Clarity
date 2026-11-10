@@ -1,11 +1,11 @@
-/*! craft-quiz-curriculum-v1 · C20SIQ2
+/*! craft-quiz-curriculum-v1 · C20SIQ3
  * Sharia IQ — SIQ UX + full banks (ṭahārah · ṣalāh · adab) · glass path
  * Educational only — not a fatwa · not a grade of īmān · verify primary texts
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_QUIZ_CURR_C20SIQ2__) return;
-  w.__CRAFT_QUIZ_CURR_C20SIQ2__ = true;
+  if (w.__CRAFT_QUIZ_CURR_C20SIQ3__) return;
+  w.__CRAFT_QUIZ_CURR_C20SIQ3__ = true;
 
   var PATH_KEY = "clarity.craft.quiz.path.v2";
   var LOG_KEY = "clarity.craft.quiz.journal.v2";
