@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME9
+/*! craft-meme-paint-standard-v1 · C19MEME11
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -256,14 +256,23 @@
 
   function paintText(ctx, w, h) {
     var flags = (typeof window !== "undefined" && window.__memeLayerFlags) ? window.__memeLayerFlags : {ar:true,en:true,ur:true,ref:true};
+    var inkMode = (w.__memeInkMode || "light");
+    var CREAM = inkMode === "gold" ? "#e8c76b" : (inkMode === "dark" ? "#1a1a1a" : "#f5e6c8");
+    var inkShadow = inkMode === "dark" ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.55)";
 
-    drawVignette(ctx, w, h);
-    drawGoldFrame(ctx, w, h);
+    if (w.__memeVignetteOn !== false) drawVignette(ctx, w, h);
+    if (w.__memeFrameOn !== false) drawGoldFrame(ctx, w, h);
     var layers = parseLayers(readSourceText());
     var ar = layers.ar || "";
     var en = layers.en || "";
     var ur = layers.ur || lastUrduText || "";
     var ref = layers.ref || "";
+    if (flags) {
+      if (flags.ar === false) ar = "";
+      if (flags.en === false) en = "";
+      if (flags.ur === false) ur = "";
+      if (flags.ref === false) ref = "";
+    }
     var padX = Math.round(w * 0.09);
     var maxW = w - padX * 2;
     var cx = w / 2;
@@ -274,10 +283,11 @@
 
     var hasUr = !!(ur && ur.trim());
     /* shared vertical bands: with Urdu, English higher, Urdu mid-lower */
-    var arBand = 0.22;
-    var enBand = hasUr ? 0.42 : 0.50;
-    var urBand = 0.62;
-    var refBand = 0.86;
+    var dens = w.__memeTextDensity || "standard";
+    var arBand = dens === "compact" ? 0.18 : dens === "airy" ? 0.26 : 0.22;
+    var enBand = hasUr ? (dens === "compact" ? 0.36 : dens === "airy" ? 0.48 : 0.42) : (dens === "compact" ? 0.44 : dens === "airy" ? 0.56 : 0.50);
+    var urBand = dens === "compact" ? 0.55 : dens === "airy" ? 0.68 : 0.62;
+    var refBand = dens === "compact" ? 0.82 : dens === "airy" ? 0.90 : 0.86;
 
     if (ar) {
       var arBase = Math.round(h * 0.058 * scale.ar);
@@ -457,6 +467,11 @@
     if (env) env.textContent = Math.round(scale.en * 100) + "%";
   }
 
+  function ensureScaleWiring() {
+    try { injectScalePanel(); } catch (e1) {}
+    try { bindScaleControls(); } catch (e2) {}
+    try { syncSliders(); } catch (e3) {}
+  }
   function bindScaleControls() {
     ["meme-scale-ar","meme-scale-en"].forEach(function(id){
       var el=$(id); if(!el||el._bound) return; el._bound=true;
@@ -467,12 +482,12 @@
       });
     });
     var ap=$("meme-scale-apply"); if(ap&&!ap._bound){ap._bound=true;ap.addEventListener("click",function(){schedulePaint();});}
-    var au=$("meme-scale-auto"); if(au&&!au._bound){au._bound=true;au.addEventListener("click",function(){if(typeof autoScale==="function")autoScale();else schedulePaint();});}
+    var au=$("meme-scale-auto"); if(au&&!au._bound){au._bound=true;au.addEventListener("click",function(){if(typeof autoScale==="function") autoScale(); else if (typeof w.memeAutoScaleLines==="function") w.memeAutoScaleLines(); else schedulePaint();});}
     var rs=$("meme-scale-reset"); if(rs&&!rs._bound){rs._bound=true;rs.addEventListener("click",function(){scale.ar=1;scale.en=1;try{localStorage.setItem(STORE,JSON.stringify(scale));}catch(e){}syncSliders();schedulePaint();});}
     var topAuto=$("meme-auto-scale"); if(topAuto&&!topAuto._bound){topAuto._bound=true;topAuto.addEventListener("click",function(){if(typeof autoScale==="function")autoScale();});}
   }
   function injectScalePanel() {
-    if ($("meme-scale-panel")) { syncSliders(); return; }
+    if ($("meme-scale-panel")) { syncSliders(); bindScaleControls(); return; }
     var hostPrefer = $("meme-scale-host");
     var panel = d.createElement("div");
     panel.id = "meme-scale-panel";
@@ -558,6 +573,9 @@
   }
 
   function wireUi() {
+    try { bindScaleControls(); } catch (eB) {}
+    try { injectScalePanel(); } catch (eI) {}
+
     injectScalePanel();
     var autoBtn = $("meme-auto-scale");
     if (autoBtn && !autoBtn._std) {
@@ -621,7 +639,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME9 · single-owner lock — neutralize legacy painters */
+  /* C19MEME11 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */

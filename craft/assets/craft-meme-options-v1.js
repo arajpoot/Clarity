@@ -1,4 +1,4 @@
-/*! craft-meme-options-v1 · C19MEME8
+/*! craft-meme-options-v1 · C19MEME11
  * Full richness controls — RRRA section chips, layer toggles, ink, frame, density
  * Always delegates paint to memeDraw / paint-standard (single owner)
  * Educational only — not a fatwa
