@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-clarity-room="craft" data-craft-quiz-build="C20SIQ1">
+<html lang="en" data-theme="dark" data-clarity-room="craft" data-craft-quiz-build="C20SIQ2">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Sharia IQ Deep Studio · Craft · Clarity</title>
-  <meta name="description" content="Curriculum path · teach cards · checks · journal. Educational only — not a fatwa." />
-  <meta name="clarity-build" content="C20SIQ1" />
+  <meta name="description" content="Ṭahārah · ṣalāh map · adab — teach cards, checks, journal. Educational only — not a fatwa." />
+  <meta name="clarity-build" content="C20SIQ2" />
   <link rel="canonical" href="https://clarity-dawah.fyi/craft/quiz/" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109C20SIQ1" />
-  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261109C20SIQ1" />
-  <link rel="stylesheet" href="/craft/assets/craft-quiz-layout-v1.css?v=20261109C20SIQ1" />
+  <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261109C20SIQ2" />
+  <link rel="stylesheet" href="/craft/assets/craft-atelier-v1.css?v=20261109C20SIQ2" />
+  <link rel="stylesheet" href="/craft/assets/craft-quiz-layout-v1.css?v=20261109C20SIQ2" />
   <script>window.__CLARITY_ROOM__="craft"; window.__CLARITY_SKIP_DAY_LANDING__=true;</script>
 </head>
 <body class="craft-room">
@@ -43,44 +43,45 @@
       for a personal ruling ask a qualified local scholar.
     </p>
 
-    <div class="siq-stats" id="siq-stats" aria-label="Session stats">
-      <span class="siq-pill gold" id="siq-streak">🔥 Streak 0</span>
-      <span class="siq-pill" id="siq-today">Today 0/5</span>
-      <span class="siq-pill green" id="siq-best">Best 0</span>
-      <span class="siq-pill" id="siq-total">All-time 0</span>
-    </div>
+    <section class="siq-plaque" aria-label="Session stats">
+      <h2 class="siq-heading"><span class="siq-h-num">1</span> Session</h2>
+      <div class="siq-stats" id="siq-stats">
+        <span class="siq-pill gold" id="siq-streak">🔥 Streak 0</span>
+        <span class="siq-pill" id="siq-today">Today 0/5</span>
+        <span class="siq-pill green" id="siq-best">Best 0</span>
+        <span class="siq-pill" id="siq-total">All-time 0</span>
+      </div>
+      <div class="siq-topic-row" role="group" aria-label="Topic filters">
+        <button type="button" class="siq-topic on" data-topic="all">All</button>
+        <button type="button" class="siq-topic" data-topic="Fiqh">⚖️ Fiqh</button>
+        <button type="button" class="siq-topic" data-topic="Daily">🏠 Daily / adab</button>
+        <button type="button" class="siq-topic" data-topic="Orientation">Orient</button>
+      </div>
+      <div class="siq-bank-row" role="group" aria-label="Curriculum banks">
+        <button type="button" class="siq-bank on" data-bank="taharah">Ṭahārah (10)</button>
+        <button type="button" class="siq-bank" data-bank="salah-map">Ṣalāh map (10)</button>
+        <button type="button" class="siq-bank" data-bank="adab-speech">Adab of speech (10)</button>
+        <button type="button" class="siq-bank" data-bank="orientation">Orientation</button>
+      </div>
+    </section>
 
-    <div class="siq-topic-row" role="group" aria-label="Topic filters">
-      <button type="button" class="siq-topic on" data-topic="all">All</button>
-      <button type="button" class="siq-topic" data-topic="Fiqh">⚖️ Fiqh</button>
-      <button type="button" class="siq-topic" data-topic="Daily">🏠 Daily / adab</button>
-      <button type="button" class="siq-topic" data-topic="Orientation">Orient</button>
-    </div>
-
-    <div class="siq-bank-row" role="group" aria-label="Curriculum banks">
-      <button type="button" class="siq-bank on" data-bank="taharah">Ṭahārah (10)</button>
-      <button type="button" class="siq-bank" data-bank="salah-map">Ṣalāh map</button>
-      <button type="button" class="siq-bank" data-bank="adab-speech">Adab of speech</button>
-      <button type="button" class="siq-bank" data-bank="orientation">Orientation</button>
-    </div>
-
-    <section class="tj-glass" aria-label="Path strength">
-      <h2>Curriculum path</h2>
-      <p class="panel-note">Meters update from correct checks on this device — practice signals only.</p>
+    <section class="siq-plaque" aria-label="Path strength">
+      <h2 class="siq-heading"><span class="siq-h-num">2</span> Curriculum path</h2>
+      <p class="panel-note">Color bars = bank progress from correct checks on this device — practice signals only.</p>
       <div class="siq-path-meters" id="siq-path-meters"></div>
     </section>
 
-    <section class="tj-glass" aria-label="Studio">
-      <h2>Teach → Check</h2>
-      <p class="panel-note">Read the card · then answer · feedback shows collection · number · grade (or Qur’an ref).</p>
+    <section class="siq-plaque" aria-label="Studio">
+      <h2 class="siq-heading"><span class="siq-h-num">3</span> Teach → Check</h2>
+      <p class="panel-note">Read the card · answer · feedback shows collection · number · grade (or Qur’an ref).</p>
       <div id="siq-stage" class="siq-stage"></div>
-      <div class="studio-actions" style="margin-top:.6rem">
+      <div class="studio-actions" style="margin-top:.65rem">
         <button type="button" class="btn" id="siq-reset-today">Reset today</button>
       </div>
     </section>
 
-    <section class="tj-glass siq-journal" aria-label="Journal">
-      <h2>Check journal</h2>
+    <section class="siq-plaque siq-journal" aria-label="Journal">
+      <h2 class="siq-heading"><span class="siq-h-num">4</span> Check journal</h2>
       <p class="panel-note">5 recent by default · educational only.</p>
       <div id="siq-journal-list"></div>
     </section>
@@ -90,8 +91,8 @@
     Clarity Craft · Sharia IQ · educational only — not a fatwa · verify on Quran.com / Sunnah.com
   </footer>
 
-  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109C20SIQ1" defer></script>
-  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261109C20SIQ1" defer></script>
-  <script src="/craft/assets/craft-quiz-curriculum-v1.js?v=20261109C20SIQ1" defer></script>
+  <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109C20SIQ2" defer></script>
+  <script src="/craft/assets/clarity-craft-registry-v1.js?v=20261109C20SIQ2" defer></script>
+  <script src="/craft/assets/craft-quiz-curriculum-v1.js?v=20261109C20SIQ2" defer></script>
 </body>
 </html>
