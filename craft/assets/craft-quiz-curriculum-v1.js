@@ -1,11 +1,11 @@
-/*! craft-quiz-curriculum-v1 · C20SIQ1
- * Sharia IQ Deep Studio — SIQ-rich UX + curriculum path + Phase 1 banks
+/*! craft-quiz-curriculum-v1 · C20SIQ2
+ * Sharia IQ — SIQ UX + full banks (ṭahārah · ṣalāh · adab) · glass path
  * Educational only — not a fatwa · not a grade of īmān · verify primary texts
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_QUIZ_CURR_C20SIQ1__) return;
-  w.__CRAFT_QUIZ_CURR_C20SIQ1__ = true;
+  if (w.__CRAFT_QUIZ_CURR_C20SIQ2__) return;
+  w.__CRAFT_QUIZ_CURR_C20SIQ2__ = true;
 
   var PATH_KEY = "clarity.craft.quiz.path.v2";
   var LOG_KEY = "clarity.craft.quiz.journal.v2";
@@ -13,19 +13,25 @@
   var MAX_SHOW = 5;
   var SESSION_CAP = 5;
 
-  var BANKS = {"orientation": {"id": "orientation", "title": "Orientation", "topic": "Orientation", "cards": [{"id": "o1", "title": "This studio’s purpose", "teach": "Sharia IQ is an educational self-check path. It does not issue fatwas, rank īmān, or replace a teacher. Scores stay on this device.", "citation": {"type": "note", "ref": "Clarity governance", "text": "Educational only — not a fatwa."}, "q": "What is the primary purpose of Sharia IQ Deep Studio?", "opts": ["To issue fatwas", "Educational self-check only", "To rank īmān", "To replace scholars"], "a": 1}, {"id": "o2", "title": "When you need a ruling", "teach": "Personal rulings require a qualified local scholar who hears your situation. Online cards cannot carry that trust.", "citation": {"type": "note", "ref": "Adab of iftāʾ", "text": "Ask a qualified local scholar for personal rulings."}, "q": "If you need a personal ruling, you should…", "opts": ["Trust any quiz score", "Ask a qualified local scholar", "Follow the highest streak", "Ignore primary texts"], "a": 1}]}, "taharah": {"id": "taharah", "title": "Ṭahārah", "topic": "Fiqh", "cards": [{"id": "t1", "title": "Purity before prayer", "teach": "Ṣalāh requires ṭahārah. The believer prepares with wuḍūʾ (or ghusl when required) before standing before Allāh. This is literacy — details of edge cases belong with a qualified teacher.", "citation": {"type": "quran", "ref": "Qur’an 5:6", "text": "O you who believe, when you rise for prayer, wash…", "url": "https://quran.com/5/6"}, "q": "What does ṭahārah primarily prepare a Muslim for in daily practice?", "opts": ["Social ranking", "Standing for ṣalāh in a state of purity", "Replacing repentance", "A public certificate"], "a": 1}, {"id": "t2", "title": "Wuḍūʾ is from the Sunnah of prayer", "teach": "The Prophet ﷺ taught wuḍūʾ as the ordinary way to enter prayer when minor impurity is present. Learning the outline is part of basic worship literacy.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "159", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:159"}, "q": "Wuḍūʾ is most closely linked to which daily obligation?", "opts": ["Optional poetry", "Ṣalāh when minor impurity is present", "Replacing zakāh", "Cancelling fasting"], "a": 1}, {"id": "t3", "title": "Intention of the heart", "teach": "Actions are by intentions. Wuḍūʾ and prayer begin with a sincere intention for Allāh — not for display. Exact verbal formulas vary by school; sincerity is shared.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "1", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:1"}, "q": "According to the opening of Ṣaḥīḥ al-Bukhārī, actions are judged by…", "opts": ["Public applause", "Intentions", "Wealth", "Speed alone"], "a": 1}, {"id": "t4", "title": "Outline of wuḍūʾ limbs", "teach": "A widely taught outline includes: intention, washing the hands, rinsing mouth and nose, washing the face, arms to the elbows, wiping the head, and washing the feet to the ankles. Confirm full practice with a teacher.", "citation": {"type": "quran", "ref": "Qur’an 5:6", "text": "…wash your faces and your forearms to the elbows and wipe over your heads and wash your feet to the ankles…", "url": "https://quran.com/5/6"}, "q": "Which body areas are named in Qur’an 5:6 for the washing/wiping of wuḍūʾ?", "opts": ["Only the hands", "Face, arms to elbows, head (wipe), feet to ankles", "Only the hair", "Only the chest"], "a": 1}, {"id": "t5", "title": "What breaks wuḍūʾ — literacy, not a fatwa", "teach": "Classical fiqh discusses matters that nullify wuḍūʾ (e.g. exiting impurity from the private parts). Schools differ on some details. This studio teaches awareness — not a personal ruling.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "135", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:135"}, "q": "If you are unsure whether your wuḍūʾ is still valid for a complex case, the safest educational step is…", "opts": ["Argue online", "Ask a qualified local teacher", "Ignore purity", "Follow a random social post"], "a": 1}, {"id": "t6", "title": "Ghusl when required", "teach": "Major impurity requires ghusl before prayer. The obligation and causes are taught in fiqh; this card only flags that ghusl is part of ṭahārah literacy, not a substitute for a teacher.", "citation": {"type": "quran", "ref": "Qur’an 5:6", "text": "…and if you are in a state of janābah, then purify yourselves…", "url": "https://quran.com/5/6"}, "q": "Janābah is addressed in Qur’an 5:6 by commanding the believer to…", "opts": ["Skip prayer permanently", "Purify themselves (ghusl)", "Only wipe the face", "Give zakāh instead"], "a": 1}, {"id": "t7", "title": "Water and purity", "teach": "Clean water is the default means of purification when available. Tayammum is a mercy when water cannot be used — its conditions are fiqh details for a teacher.", "citation": {"type": "quran", "ref": "Qur’an 5:6", "text": "…and if you find no water, then seek clean earth and wipe…", "url": "https://quran.com/5/6"}, "q": "When water is not available, Qur’an 5:6 points to which concession (details with a teacher)?", "opts": ["Abandoning all prayer", "Tayammum with clean earth", "Replacing prayer with fasting only", "No purification ever"], "a": 1}, {"id": "t8", "title": "Siwāk and cleanliness of the mouth", "teach": "The Prophet ﷺ strongly encouraged siwāk (tooth-stick) as part of cleanliness and readiness for prayer. It is a recommended practice of purity and adab, not a replacement for wuḍūʾ.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "887", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:887"}, "q": "Siwāk is best understood as…", "opts": ["A replacement for wuḍūʾ", "A recommended practice of cleanliness linked to prayer readiness", "A tax", "An optional political symbol"], "a": 1}, {"id": "t9", "title": "Privacy and adab of the bathroom", "teach": "Islamic teaching encourages modesty, cleanliness, and avoiding harm when relieving oneself. These are manners of purity in daily life — practiced with dignity, not displayed for attention.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "156", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:156"}, "q": "Adab related to relieving oneself is primarily about…", "opts": ["Public performance", "Modesty, cleanliness, and care", "Skipping purity rules", "Competing with others"], "a": 1}, {"id": "t10", "title": "Ṭahārah is a means, not a spectacle", "teach": "Purity serves worship and presence with Allāh. Showing off acts of purification for praise empties the intention. Keep learning humble; verify details with those who teach with knowledge and adab.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ Muslim", "number": "1907", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/muslim:1907"}, "q": "The healthiest approach to learning ṭahārah in this studio is…", "opts": ["Treat scores as a fatwa", "Use cards as literacy, then verify practice with a qualified teacher", "Ignore Qur’an and Sunnah", "Debate strangers for status"], "a": 1}]}, "salah-map": {"id": "salah-map", "title": "Ṣalāh map", "topic": "Fiqh", "cards": [{"id": "s1", "title": "Five daily names", "teach": "The five daily prayers are Fajr, Ẓuhr, ʿAṣr, Maghrib, and ʿIshāʾ. Times depend on location; use a reliable timetable and local guidance.", "citation": {"type": "quran", "ref": "Qur’an 4:103", "text": "…indeed, prayer has been decreed upon the believers a decree of specified times.", "url": "https://quran.com/4/103"}, "q": "How many obligatory daily prayers are there in mainstream teaching?", "opts": ["Two", "Three", "Five", "Seven"], "a": 2}, {"id": "s2", "title": "Farḍ rakʿah map (literacy)", "teach": "A widely taught farḍ map: Fajr 2, Ẓuhr 4, ʿAṣr 4, Maghrib 3, ʿIshāʾ 4. Sunnah units vary by school — confirm with a teacher.", "citation": {"type": "note", "ref": "Common school teaching", "text": "Educational map — not a fatwa. Verify locally."}, "q": "How many farḍ rakʿahs are widely taught for Maghrib?", "opts": ["2", "3", "4", "8"], "a": 1}, {"id": "s3", "title": "Prayer is established, not abandoned", "teach": "The Qur’an commands establishing prayer. Consistency with calm wuḍūʾ and presence is the lifelong work — not a one-time quiz win.", "citation": {"type": "quran", "ref": "Qur’an 2:43", "text": "And establish prayer…", "url": "https://quran.com/2/43"}, "q": "Qur’an 2:43 commands believers to…", "opts": ["Abandon prayer when busy", "Establish prayer", "Replace prayer with debate", "Pray only once a year"], "a": 1}]}, "adab-speech": {"id": "adab-speech", "title": "Adab of speech", "topic": "Daily", "cards": [{"id": "a1", "title": "Speech is recorded", "teach": "A believer guards the tongue. Words can be charity or harm. Adab of speech begins with remembering that speech is accountable.", "citation": {"type": "quran", "ref": "Qur’an 50:18", "text": "Man does not utter any word except that with him is an observer prepared.", "url": "https://quran.com/50/18"}, "q": "Qur’an 50:18 reminds the believer that speech is…", "opts": ["Always private and unchecked", "Observed and accountable", "Only for politics", "Never important"], "a": 1}, {"id": "a2", "title": "Say that which is good", "teach": "Allāh commands speaking good words to people. Harshness without right, mockery, and false speech damage trust and hearts.", "citation": {"type": "quran", "ref": "Qur’an 2:83", "text": "…and speak to people good [words]…", "url": "https://quran.com/2/83"}, "q": "Qur’an 2:83 includes the command to…", "opts": ["Speak to people good words", "Always remain silent forever", "Insult opponents", "Ignore manners"], "a": 0}, {"id": "a3", "title": "Whoever believes — guard the tongue", "teach": "Faith is tied to safety of people from one’s tongue and hand. Adab is not optional decoration; it is part of living īmān.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "10", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:10"}, "q": "A sign of faith highlighted in a famous ḥadīth is that others are safe from one’s…", "opts": ["Wealth only", "Tongue and hand", "Sleep schedule", "Clothing brand"], "a": 1}]}};
+  var BANKS = {"orientation": {"id": "orientation", "title": "Orientation", "topic": "Orientation", "cards": [{"id": "o1", "title": "This studio’s purpose", "teach": "Sharia IQ is an educational self-check path. It does not issue fatwas, rank īmān, or replace a teacher. Scores stay on this device.", "citation": {"type": "note", "ref": "Clarity governance", "text": "Educational only — not a fatwa."}, "q": "What is the primary purpose of Sharia IQ Deep Studio?", "opts": ["To issue fatwas", "Educational self-check only", "To rank īmān", "To replace scholars"], "a": 1}, {"id": "o2", "title": "When you need a ruling", "teach": "Personal rulings require a qualified local scholar who hears your situation. Online cards cannot carry that trust.", "citation": {"type": "note", "ref": "Adab of iftāʾ", "text": "Ask a qualified local scholar for personal rulings."}, "q": "If you need a personal ruling, you should…", "opts": ["Trust any quiz score", "Ask a qualified local scholar", "Follow the highest streak", "Ignore primary texts"], "a": 1}]}, "taharah": {"id": "taharah", "title": "Ṭahārah", "topic": "Fiqh", "cards": [{"id": "t1", "title": "Purity before prayer", "teach": "Ṣalāh requires ṭahārah. The believer prepares with wuḍūʾ (or ghusl when required) before standing before Allāh. This is literacy — details of edge cases belong with a qualified teacher.", "citation": {"type": "quran", "ref": "Qur’an 5:6", "text": "O you who believe, when you rise for prayer, wash…", "url": "https://quran.com/5/6"}, "q": "What does ṭahārah primarily prepare a Muslim for in daily practice?", "opts": ["Social ranking", "Standing for ṣalāh in a state of purity", "Replacing repentance", "A public certificate"], "a": 1}, {"id": "t2", "title": "Wuḍūʾ is from the Sunnah of prayer", "teach": "The Prophet ﷺ taught wuḍūʾ as the ordinary way to enter prayer when minor impurity is present. Learning the outline is part of basic worship literacy.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "159", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:159"}, "q": "Wuḍūʾ is most closely linked to which daily obligation?", "opts": ["Optional poetry", "Ṣalāh when minor impurity is present", "Replacing zakāh", "Cancelling fasting"], "a": 1}, {"id": "t3", "title": "Intention of the heart", "teach": "Actions are by intentions. Wuḍūʾ and prayer begin with a sincere intention for Allāh — not for display. Exact verbal formulas vary by school; sincerity is shared.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "1", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:1"}, "q": "According to the opening of Ṣaḥīḥ al-Bukhārī, actions are judged by…", "opts": ["Public applause", "Intentions", "Wealth", "Speed alone"], "a": 1}, {"id": "t4", "title": "Outline of wuḍūʾ limbs", "teach": "A widely taught outline includes: intention, washing the hands, rinsing mouth and nose, washing the face, arms to the elbows, wiping the head, and washing the feet to the ankles. Confirm full practice with a teacher.", "citation": {"type": "quran", "ref": "Qur’an 5:6", "text": "…wash your faces and your forearms to the elbows and wipe over your heads and wash your feet to the ankles…", "url": "https://quran.com/5/6"}, "q": "Which body areas are named in Qur’an 5:6 for the washing/wiping of wuḍūʾ?", "opts": ["Only the hands", "Face, arms to elbows, head (wipe), feet to ankles", "Only the hair", "Only the chest"], "a": 1}, {"id": "t5", "title": "What breaks wuḍūʾ — literacy, not a fatwa", "teach": "Classical fiqh discusses matters that nullify wuḍūʾ (e.g. exiting impurity from the private parts). Schools differ on some details. This studio teaches awareness — not a personal ruling.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "135", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:135"}, "q": "If you are unsure whether your wuḍūʾ is still valid for a complex case, the safest educational step is…", "opts": ["Argue online", "Ask a qualified local teacher", "Ignore purity", "Follow a random social post"], "a": 1}, {"id": "t6", "title": "Ghusl when required", "teach": "Major impurity requires ghusl before prayer. The obligation and causes are taught in fiqh; this card only flags that ghusl is part of ṭahārah literacy, not a substitute for a teacher.", "citation": {"type": "quran", "ref": "Qur’an 5:6", "text": "…and if you are in a state of janābah, then purify yourselves…", "url": "https://quran.com/5/6"}, "q": "Janābah is addressed in Qur’an 5:6 by commanding the believer to…", "opts": ["Skip prayer permanently", "Purify themselves (ghusl)", "Only wipe the face", "Give zakāh instead"], "a": 1}, {"id": "t7", "title": "Water and purity", "teach": "Clean water is the default means of purification when available. Tayammum is a mercy when water cannot be used — its conditions are fiqh details for a teacher.", "citation": {"type": "quran", "ref": "Qur’an 5:6", "text": "…and if you find no water, then seek clean earth and wipe…", "url": "https://quran.com/5/6"}, "q": "When water is not available, Qur’an 5:6 points to which concession (details with a teacher)?", "opts": ["Abandoning all prayer", "Tayammum with clean earth", "Replacing prayer with fasting only", "No purification ever"], "a": 1}, {"id": "t8", "title": "Siwāk and cleanliness of the mouth", "teach": "The Prophet ﷺ strongly encouraged siwāk (tooth-stick) as part of cleanliness and readiness for prayer. It is a recommended practice of purity and adab, not a replacement for wuḍūʾ.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "887", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:887"}, "q": "Siwāk is best understood as…", "opts": ["A replacement for wuḍūʾ", "A recommended practice of cleanliness linked to prayer readiness", "A tax", "An optional political symbol"], "a": 1}, {"id": "t9", "title": "Privacy and adab of the bathroom", "teach": "Islamic teaching encourages modesty, cleanliness, and avoiding harm when relieving oneself. These are manners of purity in daily life — practiced with dignity, not displayed for attention.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "156", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:156"}, "q": "Adab related to relieving oneself is primarily about…", "opts": ["Public performance", "Modesty, cleanliness, and care", "Skipping purity rules", "Competing with others"], "a": 1}, {"id": "t10", "title": "Ṭahārah is a means, not a spectacle", "teach": "Purity serves worship and presence with Allāh. Showing off acts of purification for praise empties the intention. Keep learning humble; verify details with those who teach with knowledge and adab.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ Muslim", "number": "1907", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/muslim:1907"}, "q": "The healthiest approach to learning ṭahārah in this studio is…", "opts": ["Treat scores as a fatwa", "Use cards as literacy, then verify practice with a qualified teacher", "Ignore Qur’an and Sunnah", "Debate strangers for status"], "a": 1}]}, "salah-map": {"id": "salah-map", "title": "Ṣalāh map", "topic": "Fiqh", "cards": [{"id": "s1", "title": "Prayer at appointed times", "teach": "Ṣalāh is bound to known times. Learning the five names and seeking a reliable timetable is basic literacy — exact calculation for your city is local guidance, not this studio.", "citation": {"type": "quran", "ref": "Qur’an 4:103", "text": "…indeed, prayer has been decreed upon the believers a decree of specified times.", "url": "https://quran.com/4/103"}, "q": "Qur’an 4:103 describes prayer as decreed at…", "opts": ["Random hours only", "Specified times", "Once a year", "Only in Ramaḍān"], "a": 1}, {"id": "s2", "title": "Five daily prayers", "teach": "Mainstream teaching names five daily obligations: Fajr, Ẓuhr, ʿAṣr, Maghrib, and ʿIshāʾ. Guarding them is among the greatest practical pillars after the shahādah.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "8", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:8"}, "q": "How many obligatory daily prayers are taught as the daily pillar?", "opts": ["Two", "Three", "Five", "Seven"], "a": 2}, {"id": "s3", "title": "Farḍ rakʿah map (literacy)", "teach": "A widely taught farḍ map: Fajr 2, Ẓuhr 4, ʿAṣr 4, Maghrib 3, ʿIshāʾ 4. Sunnah units differ by school — this is a memory aid, not a fatwa.", "citation": {"type": "note", "ref": "Common school teaching", "text": "Educational map — verify locally with a teacher."}, "q": "How many farḍ rakʿahs are widely taught for Maghrib?", "opts": ["2", "3", "4", "8"], "a": 1}, {"id": "s4", "title": "Establish prayer", "teach": "The Qur’an commands establishing prayer — consistency with presence, not a one-time quiz win. Make-up and edge cases need a teacher.", "citation": {"type": "quran", "ref": "Qur’an 2:43", "text": "And establish prayer and give zakāh…", "url": "https://quran.com/2/43"}, "q": "Qur’an 2:43 commands believers to…", "opts": ["Abandon prayer when busy", "Establish prayer", "Replace prayer with argument", "Pray only on Fridays"], "a": 1}, {"id": "s5", "title": "Seek help through prayer", "teach": "Patience and prayer are paired as means of help. Ṣalāh is not only obligation — it is a refuge the believer returns to.", "citation": {"type": "quran", "ref": "Qur’an 2:45", "text": "And seek help through patience and prayer…", "url": "https://quran.com/2/45"}, "q": "Qur’an 2:45 links help with patience and…", "opts": ["Wealth only", "Prayer", "Debate", "Travel"], "a": 1}, {"id": "s6", "title": "Facing the qiblah", "teach": "Believers turn toward al-Masjid al-Ḥarām in prayer. Compass helpers are aids only — not certified instruments; verify orientation when unsure.", "citation": {"type": "quran", "ref": "Qur’an 2:144", "text": "…turn your face toward al-Masjid al-Ḥarām…", "url": "https://quran.com/2/144"}, "q": "Qur’an 2:144 directs the face in prayer toward…", "opts": ["Any random direction", "Al-Masjid al-Ḥarām", "Only one’s home wall", "The nearest tree"], "a": 1}, {"id": "s7", "title": "Prayer in congregation (virtue)", "teach": "Prayer in congregation is strongly encouraged for men in classical teaching. Details of obligation and women’s practice vary by context — ask a local teacher.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "645", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:645"}, "q": "Congregational prayer is best approached in this studio as…", "opts": ["A social media contest", "A highly valued practice whose details you confirm with a teacher", "A replacement for all private prayer", "Optional only on Eid"], "a": 1}, {"id": "s8", "title": "Khushūʿ — presence of heart", "teach": "Successful believers are described as those humble in their prayer. Presence of heart is a lifelong craft — more than finishing rakʿahs quickly.", "citation": {"type": "quran", "ref": "Qur’an 23:1–2", "text": "Certainly will the believers have succeeded: They who are during their prayer humbly submissive.", "url": "https://quran.com/23/1"}, "q": "Qur’an 23:1–2 links success of the believers with…", "opts": ["Pride in public", "Humility / khushūʿ in prayer", "Ignoring prayer times", "Mocking others’ prayer"], "a": 1}, {"id": "s9", "title": "Do not approach prayer in a careless state", "teach": "The Qur’an warns against approaching prayer while intoxicated (and by extension teaches clarity and awareness). Sobriety and presence protect the prayer.", "citation": {"type": "quran", "ref": "Qur’an 4:43", "text": "O you who believe, do not approach prayer while you are intoxicated…", "url": "https://quran.com/4/43"}, "q": "Qur’an 4:43 teaches that prayer should not be approached…", "opts": ["In a state of intoxication / loss of awareness", "Only after travel", "Without any clothing rules ever", "Only at night"], "a": 0}, {"id": "s10", "title": "Prayer is from the pillars", "teach": "In the famous report of the pillars of Islam, prayer stands after the testimony of faith. This studio teaches recognition — not a personal verdict on someone else’s prayer.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "8", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:8"}, "q": "In the pillars ḥadīth (educational summary), ṣalāh comes after…", "opts": ["Hajj only", "The testimony of faith", "Optional poetry", "Trade skills"], "a": 1}]}, "adab-speech": {"id": "adab-speech", "title": "Adab of speech", "topic": "Daily", "cards": [{"id": "a1", "title": "Speech is recorded", "teach": "Every word is observed. Adab of speech begins with knowing that the tongue is not free of accountability.", "citation": {"type": "quran", "ref": "Qur’an 50:18", "text": "Man does not utter any word except that with him is an observer prepared.", "url": "https://quran.com/50/18"}, "q": "Qur’an 50:18 teaches that speech is…", "opts": ["Unchecked and private always", "Observed and accountable", "Only for politics", "Never important"], "a": 1}, {"id": "a2", "title": "Speak good to people", "teach": "Allāh commands good speech to people. Mockery, false accusation, and needless harshness damage hearts and trust.", "citation": {"type": "quran", "ref": "Qur’an 2:83", "text": "…and speak to people good [words]…", "url": "https://quran.com/2/83"}, "q": "Qur’an 2:83 includes the command to…", "opts": ["Speak good words to people", "Remain silent forever", "Insult opponents", "Ignore manners"], "a": 0}, {"id": "a3", "title": "Safe from tongue and hand", "teach": "A sign of faith is that others are safe from one’s tongue and hand. Adab is part of living īmān, not optional decoration.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "10", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:10"}, "q": "A famous ḥadīth links the Muslim to others being safe from one’s…", "opts": ["Wealth only", "Tongue and hand", "Sleep schedule", "Clothing brand"], "a": 1}, {"id": "a4", "title": "Leave what does not concern you", "teach": "From the excellence of a person’s Islam is leaving what does not concern them. Curiosity that harms privacy is not adab.", "citation": {"type": "hadith", "collection": "Jāmiʿ at-Tirmidhī", "number": "2317", "grade": "Ḥasan", "url": "https://sunnah.com/tirmidhi:2317"}, "q": "Leaving what does not concern you is described as part of…", "opts": ["Excellence of one’s Islam", "Abandoning all learning", "Political campaigning", "Ignoring neighbors in need"], "a": 0}, {"id": "a5", "title": "Say what is best", "teach": "When addressing people, choose the better word. Truthfulness with gentleness is closer to prophetic character than clever cruelty.", "citation": {"type": "quran", "ref": "Qur’an 17:53", "text": "And tell My servants to say that which is best…", "url": "https://quran.com/17/53"}, "q": "Qur’an 17:53 instructs the believers to say…", "opts": ["Whatever angers the opponent", "That which is best", "Only jokes", "Nothing ever"], "a": 1}, {"id": "a6", "title": "Avoid suspicion and spying", "teach": "The Qur’an forbids much suspicion, spying, and backbiting. Adab protects community trust.", "citation": {"type": "quran", "ref": "Qur’an 49:12", "text": "O you who believe, avoid much assumption… and do not spy or backbite each other.", "url": "https://quran.com/49/12"}, "q": "Qur’an 49:12 warns against assumption, spying, and…", "opts": ["Backbiting", "Charity", "Prayer", "Travel"], "a": 0}, {"id": "a7", "title": "A word of charity", "teach": "Good words can be charity. The tongue can heal or harm; choosing a kind, true word is worship when done for Allāh.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "2989", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:2989"}, "q": "A kind word in prophetic teaching can be…", "opts": ["A form of charity", "Always a sin", "Only for rulers", "Useless"], "a": 0}, {"id": "a8", "title": "Do not ridicule others", "teach": "Believers are forbidden to ridicule one another. Mockery that lowers a person’s dignity is not “humor” in the prophetic ethic.", "citation": {"type": "quran", "ref": "Qur’an 49:11", "text": "O you who believe, let not a people ridicule [another] people…", "url": "https://quran.com/49/11"}, "q": "Qur’an 49:11 forbids believers from…", "opts": ["Ridiculing one another", "Greeting one another", "Giving charity", "Seeking knowledge"], "a": 0}, {"id": "a9", "title": "Truthfulness", "teach": "Truthfulness leads to righteousness, and righteousness leads to Paradise. Lying trains the soul toward corruption — adab of speech starts with truth.", "citation": {"type": "hadith", "collection": "Ṣaḥīḥ al-Bukhārī", "number": "6094", "grade": "Ṣaḥīḥ", "url": "https://sunnah.com/bukhari:6094"}, "q": "Truthfulness in a famous ḥadīth is linked toward…", "opts": ["Righteousness and Paradise", "Guaranteed wealth", "Public fame", "Winning arguments only"], "a": 0}, {"id": "a10", "title": "Lower the voice — adab with people", "teach": "The Qur’an praises moderating the voice. Loudness without need can be harshness; gentleness is strength under control.", "citation": {"type": "quran", "ref": "Qur’an 31:19", "text": "…and lower your voice; indeed, the most disagreeable of sounds is the voice of donkeys.", "url": "https://quran.com/31/19"}, "q": "Qur’an 31:19 encourages the believer to…", "opts": ["Lower the voice / moderate speech volume", "Always shout", "Never speak", "Only whisper secrets of others"], "a": 0}]}};
+
+  var BANK_COLORS = {
+    orientation: "#6b7c8a",
+    taharah: "#1e7d5e",
+    "salah-map": "#2a6f9b",
+    "adab-speech": "#8a6b2f"
+  };
 
   var state = {
     bankId: "taharah",
     cardIndex: 0,
-    mode: "teach", /* teach | check | feedback */
+    mode: "teach",
     sessionAnswered: 0,
     topic: "all",
     level: "path"
   };
 
   function $(id) { return d.getElementById(id); }
-
   function loadJSON(key, fallback) {
     try { return JSON.parse(localStorage.getItem(key) || "null") || fallback; }
     catch (e) { return fallback; }
@@ -33,7 +39,6 @@
   function saveJSON(key, val) {
     try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
   }
-
   function stats() {
     return loadJSON(STAT_KEY, { streak: 0, today: 0, best: 0, total: 0, day: "", lastOk: false });
   }
@@ -43,7 +48,6 @@
   function journal() {
     return loadJSON(LOG_KEY, []);
   }
-
   function todayKey() {
     var n = new Date();
     return n.getFullYear() + "-" + (n.getMonth() + 1) + "-" + n.getDate();
@@ -92,12 +96,16 @@
     if (!host) return;
     host.innerHTML = Object.keys(BANKS).map(function (id) {
       var sc = bankProgress(id);
+      var col = BANK_COLORS[id] || "#1e7d5e";
       return (
-        '<div class="siq-path-row"><span>' +
+        '<div class="siq-path-row"><span class="siq-path-label">' +
         BANKS[id].title +
         '</span><div class="siq-path-track"><i style="width:' +
         sc +
-        '%"></i></div><span>' +
+        "%;background:linear-gradient(90deg," +
+        col +
+        ",#e8d5a3)" +
+        '"></i></div><span class="siq-path-pct">' +
         sc +
         "%</span></div>"
       );
@@ -115,9 +123,7 @@
         ' · <span class="grade">' +
         (c.grade || "verify") +
         "</span>" +
-        (c.url
-          ? ' · <a href="' + c.url + '" target="_blank" rel="noopener">Open</a>'
-          : "") +
+        (c.url ? ' · <a href="' + c.url + '" target="_blank" rel="noopener">Open</a>' : "") +
         "</div>"
       );
     }
@@ -125,9 +131,7 @@
       return (
         '<div class="siq-cite"><strong>Source</strong> · ' +
         (c.ref || "") +
-        (c.url
-          ? ' · <a href="' + c.url + '" target="_blank" rel="noopener">quran.com</a>'
-          : "") +
+        (c.url ? ' · <a href="' + c.url + '" target="_blank" rel="noopener">quran.com</a>' : "") +
         (c.text ? "<br/>" + c.text : "") +
         "</div>"
       );
@@ -158,22 +162,20 @@
     var n = state.cardIndex + 1;
     var html = "";
 
-    if (state.mode === "teach" || state.mode === "check" || state.mode === "feedback") {
-      html +=
-        '<div class="siq-teach-card"><p class="panel-note">Card ' +
-        n +
-        " / " +
-        cards.length +
-        " · " +
-        (BANKS[state.bankId].title || "") +
-        "</p><h3>" +
-        card.title +
-        "</h3><p>" +
-        card.teach +
-        "</p>" +
-        citeHTML(card.citation) +
-        "</div>";
-    }
+    html +=
+      '<div class="siq-teach-card"><p class="panel-note">Card ' +
+      n +
+      " / " +
+      cards.length +
+      " · " +
+      (BANKS[state.bankId].title || "") +
+      "</p><h3>" +
+      card.title +
+      "</h3><p>" +
+      card.teach +
+      "</p>" +
+      citeHTML(card.citation) +
+      "</div>";
 
     if (state.mode === "teach") {
       html +=
@@ -181,14 +183,13 @@
     }
 
     if (state.mode === "check" || state.mode === "feedback") {
-      html += '<div class="siq-check"><p><strong>' + card.q + "</strong></p><div class='siq-opts' id='siq-opts'>";
+      html +=
+        '<div class="siq-check"><p><strong>' +
+        card.q +
+        "</strong></p><div class='siq-opts' id='siq-opts'>";
       (card.opts || []).forEach(function (opt, i) {
         html +=
-          '<button type="button" class="siq-opt" data-i="' +
-          i +
-          '">' +
-          opt +
-          "</button>";
+          '<button type="button" class="siq-opt" data-i="' + i + '">' + opt + "</button>";
       });
       html += "</div></div>";
     }
@@ -239,7 +240,6 @@
   function applyAnswer(card, choice, ok) {
     state.sessionAnswered += 1;
     touchStats(ok);
-
     var p = pathState();
     p.banks = p.banks || {};
     var b = p.banks[state.bankId] || { done: 0, correct: 0 };
@@ -267,11 +267,7 @@
       var citeLine = "";
       if (c.type === "hadith") {
         citeLine =
-          (c.collection || "") +
-          " · " +
-          (c.number || "") +
-          " · " +
-          (c.grade || "verify");
+          (c.collection || "") + " · " + (c.number || "") + " · " + (c.grade || "verify");
       } else if (c.type === "quran") {
         citeLine = c.ref || "Qur’an";
       } else {
@@ -358,7 +354,6 @@
     d.querySelectorAll(".siq-topic").forEach(function (btn) {
       btn.classList.toggle("on", btn.getAttribute("data-topic") === topic);
     });
-    /* pick first bank matching topic, or all keeps current */
     if (topic !== "all") {
       var found = Object.keys(BANKS).filter(function (id) {
         return BANKS[id].topic === topic;
