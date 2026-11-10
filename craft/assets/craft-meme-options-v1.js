@@ -1,27 +1,21 @@
-/*! craft-meme-options-v1 · C19MEME22
- * Layers · ink · density · fonts · colors — all wired to canvas
- * Apply Look forces publish + paint
+/*! craft-meme-options-v1 · C19MEME23 FINAL
+ * Layers · ink · density · fonts · colors → canvas
+ * Apply look always publishes + paints
  * Educational only — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_OPTIONS_V22__) return;
-  w.__CRAFT_MEME_OPTIONS_V22__ = true;
+  /* allow upgrade over older OPTIONS_V1 */
+  w.__CRAFT_MEME_OPTIONS_V23__ = true;
 
   var OPT_KEY = "clarity.craft.meme.opts.v1";
   var opts = {
-    section: "reminder",
     layers: { ar: true, en: true, ur: true, ref: true },
     ink: "light",
     frame: true,
     vignette: true,
     density: "standard",
-    fonts: {
-      ar: "Amiri",
-      en: "Georgia",
-      ur: "Noto Nastaliq Urdu",
-      ref: "Georgia"
-    },
+    fonts: { ar: "Amiri", en: "Georgia", ur: "Noto Nastaliq Urdu", ref: "Georgia" },
     colors: { ar: "", en: "", ur: "", ref: "" }
   };
 
@@ -30,15 +24,14 @@
   function load() {
     try {
       var o = JSON.parse(localStorage.getItem(OPT_KEY) || "null");
-      if (o) {
-        if (o.layers) opts.layers = Object.assign(opts.layers, o.layers);
-        if (o.ink) opts.ink = o.ink;
-        if (typeof o.frame === "boolean") opts.frame = o.frame;
-        if (typeof o.vignette === "boolean") opts.vignette = o.vignette;
-        if (o.density) opts.density = o.density;
-        if (o.fonts) opts.fonts = Object.assign(opts.fonts, o.fonts);
-        if (o.colors) opts.colors = Object.assign(opts.colors, o.colors);
-      }
+      if (!o) return;
+      if (o.layers) opts.layers = Object.assign(opts.layers, o.layers);
+      if (o.ink) opts.ink = o.ink;
+      if (typeof o.frame === "boolean") opts.frame = o.frame;
+      if (typeof o.vignette === "boolean") opts.vignette = o.vignette;
+      if (o.density) opts.density = o.density;
+      if (o.fonts) opts.fonts = Object.assign(opts.fonts, o.fonts);
+      if (o.colors) opts.colors = Object.assign(opts.colors, o.colors);
     } catch (e) {}
   }
 
@@ -48,10 +41,10 @@
 
   function publish() {
     w.__memeLayerFlags = {
-      ar: !!opts.layers.ar,
-      en: !!opts.layers.en,
-      ur: !!opts.layers.ur,
-      ref: !!opts.layers.ref
+      ar: opts.layers.ar !== false,
+      en: opts.layers.en !== false,
+      ur: opts.layers.ur !== false,
+      ref: opts.layers.ref !== false
     };
     w.__memeInkMode = opts.ink || "light";
     w.__memeFrameOn = opts.frame !== false;
@@ -63,48 +56,67 @@
       ur: (opts.fonts && opts.fonts.ur) || "Noto Nastaliq Urdu",
       ref: (opts.fonts && opts.fonts.ref) || "Georgia"
     };
+    /* empty string = use ink default; never force pure black unless user picked it */
     w.__memeColors = {
       ar: (opts.colors && opts.colors.ar) || "",
       en: (opts.colors && opts.colors.en) || "",
       ur: (opts.colors && opts.colors.ur) || "",
       ref: (opts.colors && opts.colors.ref) || ""
     };
+    w.__craftMemeOpts = opts;
   }
 
   function paint() {
     publish();
     save();
     try {
-      if (typeof w.craftMemeRepaintStandard === "function") w.craftMemeRepaintStandard();
-      else if (typeof w.memeDraw === "function") {
+      if (typeof w.craftMemeRepaintStandard === "function") {
+        w.craftMemeRepaintStandard();
+        return;
+      }
+    } catch (e) {}
+    try {
+      if (typeof w.memeDraw === "function") {
         if (w.memeDraw._origDraw) w.memeDraw._origDraw();
         else w.memeDraw();
       }
-    } catch (e) {}
+    } catch (e2) {}
   }
 
-  function applyLook() {
-    /* read current control values then paint */
+  function status(msg) {
+    var el = $("meme-options-status") || $("meme-source-status");
+    if (el) el.textContent = msg || "";
+  }
+
+  function readControlsIntoOpts() {
     ["ar", "en", "ur", "ref"].forEach(function (layer) {
       var sel = $("meme-font-" + layer);
-      if (sel && sel.value) opts.fonts[layer] = sel.value;
+      if (sel && sel.value) {
+        if (!opts.fonts) opts.fonts = {};
+        opts.fonts[layer] = sel.value;
+      }
       var col = $("meme-color-" + layer);
-      if (col && col.value) {
-        /* only store if user moved from pure default handling — always store picker value when Apply */
-        opts.colors[layer] = col.value;
+      if (col) {
+        if (!opts.colors) opts.colors = {};
+        /* data-use-custom marks intentional color */
+        if (col.getAttribute("data-custom") === "1") opts.colors[layer] = col.value;
       }
     });
     var fr = $("meme-opt-frame");
     if (fr) opts.frame = !!fr.checked;
     var vg = $("meme-opt-vignette");
     if (vg) opts.vignette = !!vg.checked;
-    paint();
-    status("Look applied · fonts/colors/layers on canvas");
   }
 
-  function status(msg) {
-    var el = $("meme-options-status") || $("meme-source-status");
-    if (el) el.textContent = msg || "";
+  function applyLook() {
+    readControlsIntoOpts();
+    paint();
+    status(
+      "Look applied · " +
+        (w.__memeFonts && w.__memeFonts.ar) +
+        " · ar color " +
+        ((w.__memeColors && w.__memeColors.ar) || "ink-default")
+    );
   }
 
   function toggleLayer(key) {
@@ -120,7 +132,6 @@
     d.querySelectorAll("[data-ink]").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-ink") === opts.ink);
     });
-    /* clearing custom colors lets ink mode drive defaults */
     status("Ink · " + opts.ink);
     paint();
   }
@@ -141,10 +152,12 @@
     paint();
   }
 
-  function setColor(layer, color) {
+  function setColor(layer, color, isCustom) {
     if (!opts.colors) opts.colors = {};
-    opts.colors[layer] = color || "";
-    status("Color · " + layer);
+    opts.colors[layer] = isCustom === false ? "" : color;
+    var col = $("meme-color-" + layer);
+    if (col) col.setAttribute("data-custom", isCustom === false ? "0" : "1");
+    status("Color · " + layer + " · " + (isCustom === false ? "ink default" : color));
     paint();
   }
 
@@ -156,56 +169,59 @@
       box.id = "meme-look-fonts";
       box.style.cssText = "display:grid;gap:0.55rem;margin-top:0.75rem;max-width:36rem";
       box.innerHTML =
-        '<p class="panel-note">Fonts &amp; colors · all layers · saved on this device</p>' +
+        '<p class="panel-note">Fonts &amp; colors · Apply look forces canvas update</p>' +
         '<div style="display:grid;gap:0.45rem">' +
         row("ar", "Arabic", ["Amiri", "Noto Naskh Arabic", "Scheherazade New", "serif"]) +
         row("en", "English", ["Georgia", "Cormorant Garamond", "Times New Roman", "serif"]) +
         row("ur", "Urdu", ["Noto Nastaliq Urdu", "Noto Naskh Arabic", "Amiri", "serif"]) +
         row("ref", "Reference", ["Georgia", "Quicksand", "system-ui", "serif"]) +
         "</div>" +
-        '<div class="wire-actions" style="margin-top:0.5rem">' +
+        '<div class="wire-actions" style="margin-top:0.55rem;display:flex;flex-wrap:wrap;gap:0.4rem">' +
         '<button type="button" class="btn primary" id="meme-apply-look">Apply look</button>' +
         '<button type="button" class="btn" id="meme-reset-look">Reset look</button>' +
         "</div>" +
         '<p class="panel-note" id="meme-options-status" aria-live="polite"></p>';
       host.appendChild(box);
     }
+
     ["ar", "en", "ur", "ref"].forEach(function (layer) {
       var sel = $("meme-font-" + layer);
       if (sel) {
         if (opts.fonts[layer]) sel.value = opts.fonts[layer];
-        if (!sel._bound) {
-          sel._bound = true;
-          sel.addEventListener("change", function () { setFont(layer, sel.value); });
-        }
+        sel.onchange = function () { setFont(layer, sel.value); };
       }
       var col = $("meme-color-" + layer);
       if (col) {
-        if (opts.colors[layer]) col.value = opts.colors[layer];
-        if (!col._bound) {
-          col._bound = true;
-          col.addEventListener("input", function () { setColor(layer, col.value); });
-          col.addEventListener("change", function () { setColor(layer, col.value); });
+        if (opts.colors[layer]) {
+          col.value = opts.colors[layer];
+          col.setAttribute("data-custom", "1");
+        } else {
+          col.value = "#f5e6c8";
+          col.setAttribute("data-custom", "0");
         }
+        col.oninput = function () {
+          col.setAttribute("data-custom", "1");
+          setColor(layer, col.value, true);
+        };
+        col.onchange = col.oninput;
       }
       var reset = $("meme-color-reset-" + layer);
-      if (reset && !reset._bound) {
-        reset._bound = true;
-        reset.addEventListener("click", function () {
-          if (col) col.value = "#f5e6c8";
-          setColor(layer, "");
-        });
+      if (reset) {
+        reset.onclick = function () {
+          if (col) {
+            col.value = "#f5e6c8";
+            col.setAttribute("data-custom", "0");
+          }
+          setColor(layer, "", false);
+        };
       }
     });
+
     var ap = $("meme-apply-look");
-    if (ap && !ap._bound) {
-      ap._bound = true;
-      ap.addEventListener("click", applyLook);
-    }
+    if (ap) ap.onclick = function () { applyLook(); };
     var rs = $("meme-reset-look");
-    if (rs && !rs._bound) {
-      rs._bound = true;
-      rs.addEventListener("click", function () {
+    if (rs) {
+      rs.onclick = function () {
         opts.fonts = { ar: "Amiri", en: "Georgia", ur: "Noto Nastaliq Urdu", ref: "Georgia" };
         opts.colors = { ar: "", en: "", ur: "", ref: "" };
         opts.ink = "light";
@@ -214,26 +230,28 @@
           var sel = $("meme-font-" + layer);
           if (sel) sel.value = opts.fonts[layer];
           var col = $("meme-color-" + layer);
-          if (col) col.value = "#f5e6c8";
+          if (col) {
+            col.value = "#f5e6c8";
+            col.setAttribute("data-custom", "0");
+          }
         });
         d.querySelectorAll("[data-ink]").forEach(function (b) {
           b.classList.toggle("active", b.getAttribute("data-ink") === "light");
         });
         paint();
-        status("Look reset · light ink defaults");
-      });
+        status("Look reset");
+      };
     }
   }
 
   function row(id, label, fonts) {
-    var optsHtml = fonts.map(function (f) {
-      return '<option value="' + f + '">' + f + "</option>";
-    }).join("");
     return (
       '<label style="display:grid;grid-template-columns:5.5rem 1fr auto auto;gap:0.4rem;align-items:center;font-size:0.8rem">' +
       "<span>" + label + "</span>" +
-      '<select id="meme-font-' + id + '">' + optsHtml + "</select>" +
-      '<input type="color" id="meme-color-' + id + '" value="#f5e6c8" title="Text color" style="width:2rem;height:1.6rem;border:none;background:transparent;cursor:pointer"/>' +
+      '<select id="meme-font-' + id + '">' +
+      fonts.map(function (f) { return '<option value="' + f + '">' + f + "</option>"; }).join("") +
+      "</select>" +
+      '<input type="color" id="meme-color-' + id + '" value="#f5e6c8" data-custom="0" style="width:2rem;height:1.6rem;border:none;background:transparent;cursor:pointer"/>' +
       '<button type="button" class="btn" id="meme-color-reset-' + id + '" style="font-size:0.7rem;padding:0.15rem 0.4rem">Ink</button>' +
       "</label>"
     );
@@ -241,41 +259,27 @@
 
   function bind() {
     d.querySelectorAll("[data-layer]").forEach(function (b) {
-      if (b._optBound) return;
-      b._optBound = true;
       var k = b.getAttribute("data-layer");
       b.classList.toggle("active", !!opts.layers[k]);
-      b.addEventListener("click", function () { toggleLayer(k); });
+      b.onclick = function () { toggleLayer(k); };
     });
     d.querySelectorAll("[data-ink]").forEach(function (b) {
-      if (b._optBound) return;
-      b._optBound = true;
       b.classList.toggle("active", b.getAttribute("data-ink") === opts.ink);
-      b.addEventListener("click", function () { setInk(b.getAttribute("data-ink")); });
+      b.onclick = function () { setInk(b.getAttribute("data-ink")); };
     });
     d.querySelectorAll("[data-density]").forEach(function (b) {
-      if (b._optBound) return;
-      b._optBound = true;
       b.classList.toggle("active", b.getAttribute("data-density") === opts.density);
-      b.addEventListener("click", function () { setDensity(b.getAttribute("data-density")); });
+      b.onclick = function () { setDensity(b.getAttribute("data-density")); };
     });
     var fr = $("meme-opt-frame");
-    if (fr && !fr._optBound) {
-      fr._optBound = true;
+    if (fr) {
       fr.checked = !!opts.frame;
-      fr.addEventListener("change", function () {
-        opts.frame = !!fr.checked;
-        paint();
-      });
+      fr.onchange = function () { opts.frame = !!fr.checked; paint(); };
     }
     var vg = $("meme-opt-vignette");
-    if (vg && !vg._optBound) {
-      vg._optBound = true;
+    if (vg) {
       vg.checked = !!opts.vignette;
-      vg.addEventListener("change", function () {
-        opts.vignette = !!vg.checked;
-        paint();
-      });
+      vg.onchange = function () { opts.vignette = !!vg.checked; paint(); };
     }
     injectLookPanel();
     publish();
@@ -284,18 +288,17 @@
   function boot() {
     load();
     bind();
-    setTimeout(bind, 300);
-    setTimeout(publish, 500);
+    setTimeout(bind, 250);
+    setTimeout(publish, 400);
   }
 
   w.CraftMemeOptions = {
     opts: function () { return opts; },
     paint: paint,
     applyLook: applyLook,
+    publish: publish,
     setFont: setFont,
-    setColor: setColor,
-    setInk: setInk,
-    publish: publish
+    setColor: setColor
   };
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);

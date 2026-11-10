@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME22
+/*! craft-meme-paint-standard-v1 · C19MEME23
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -98,7 +98,7 @@
     if (urParts && urParts.length) {
       ur = urParts.map(function (s) { return s.trim(); }).filter(Boolean).join(" ").trim();
     }
-    /* C19MEME22: never drop online-fetched Urdu when desk text has no Urdu */
+    /* C19MEME23: never drop online-fetched Urdu when desk text has no Urdu */
     if (!ur && w.__memeLayers && w.__memeLayers.ur) ur = w.__memeLayers.ur;
     if (!ur && w.__memeUrduOnline) ur = w.__memeUrduOnline;
     if (!ar && w.__memeLayers && w.__memeLayers.ar) ar = w.__memeLayers.ar;
@@ -264,8 +264,8 @@
     var flags = (typeof window !== "undefined" && window.__memeLayerFlags) ? window.__memeLayerFlags : {ar:true,en:true,ur:true,ref:true};
     var inkMode = (w.__memeInkMode || "light");
     var CREAM = inkMode === "gold" ? "#e8c76b" : (inkMode === "dark" ? "#1a1a1a" : "#f5e6c8");
-    var GOLD = inkMode === "dark" ? "#2a2a2a" : "#e8c76b";
-    var CREAM_DIM = inkMode === "dark" ? "#3a3a3a" : "rgba(245,230,200,0.88)";
+    var GOLD = inkMode === "dark" ? "#222" : "#e8c76b";
+    var CREAM_DIM = inkMode === "dark" ? "#333" : "rgba(245,230,200,0.88)";
     var fonts = w.__memeFonts || {};
     var colors = w.__memeColors || {};
     var colAr = (colors.ar && String(colors.ar).trim()) || CREAM;
@@ -279,7 +279,7 @@
     var layers = parseLayers(readSourceText());
     var ar = layers.ar || "";
     var en = layers.en || "";
-    var ur = layers.ur || ""; /* C19MEME22: no lastUrduText bank bleed */
+    var ur = layers.ur || ""; /* C19MEME23: no lastUrduText bank bleed */
     var ref = layers.ref || "";
     if (flags) {
       if (flags.ar === false) ar = "";
@@ -363,7 +363,7 @@
   }
 
   function fetchUrduThenPaint() {
-    /* C19MEME22: curated bank first — free API is last resort and audited */
+    /* C19MEME23: curated bank first — free API is last resort and audited */
     try {
       if (w.CraftMemeUrduFetch) {
         w.CraftMemeUrduFetch.loadForCurrentLayers(true);
@@ -391,7 +391,7 @@
     }
     lastUrduKey = key;
     /* try free translation endpoint; fail soft */
-    var url = null; /* C19MEME22: free EN→UR disabled — authentic ayah API only */
+    var url = null; /* C19MEME23: free EN→UR disabled — authentic ayah API only */
     if (w.CraftMemeUrduFetch) {
       var refGuess = "";
       try {
@@ -710,7 +710,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME22 · single-owner lock — neutralize legacy painters */
+  /* C19MEME23 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */

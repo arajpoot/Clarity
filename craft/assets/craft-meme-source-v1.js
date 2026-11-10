@@ -1,4 +1,4 @@
-/*! craft-meme-source-v1 · C19MEME22
+/*! craft-meme-source-v1 · C19MEME23
  * RRRA section packs · dual chip attrs · layer push · persist · optional companion bridge
  * Educational only — not a fatwa
  */
@@ -69,30 +69,93 @@
     return parts.join("\n");
   }
 
+  function normalizeCompanionLine(j) {
+    if (!j || typeof j !== "object") return null;
+    var ar = j.ar || j.arabic || j.ayah || j.text_ar || "";
+    var en = j.en || j.english || j.translation || j.text_en || "";
+    var ref = j.ref || j.reference || j.citation || "";
+    if (!ar && !en) return null;
+    if (ref && !/Qur/i.test(ref) && /\d+:\d+/.test(ref)) ref = "Qur’an " + ref;
+    return { ar: ar, en: en, ref: ref, ur: j.ur || "" };
+  }
+
   function tryCompanionLine(sectionId) {
     try {
-      /* optional bridges — never required */
-      if (w.ClarityCompanion && w.ClarityCompanion.rrraLine) {
-        var c = w.ClarityCompanion.rrraLine(sectionId);
-        if (c && (c.ar || c.en)) return c;
+      sectionId = sectionId || "reminder";
+      /* live APIs */
+      if (w.ClarityCompanion && typeof w.ClarityCompanion.rrraLine === "function") {
+        var c = normalizeCompanionLine(w.ClarityCompanion.rrraLine(sectionId));
+        if (c) return c;
+      }
+      if (w.ClarityCompanion && w.ClarityCompanion.rrra && w.ClarityCompanion.rrra[sectionId]) {
+        var c2 = normalizeCompanionLine(w.ClarityCompanion.rrra[sectionId]);
+        if (c2) return c2;
       }
       if (w.ClarityMediaReminder && typeof w.ClarityMediaReminder.pickLine === "function") {
-        var m = w.ClarityMediaReminder.pickLine(sectionId);
-        if (m && (m.ar || m.en)) return m;
+        var m = normalizeCompanionLine(w.ClarityMediaReminder.pickLine(sectionId));
+        if (m) return m;
       }
-      var raw = localStorage.getItem("clarity.companion.rrra." + sectionId);
-      if (raw) {
-        var j = JSON.parse(raw);
-        if (j && (j.ar || j.en)) return j;
+      /* storage keys used across rails */
+      var keys = [
+        "clarity.companion.rrra." + sectionId,
+        "clarity.companion.rrra.v1." + sectionId,
+        "clarity.companion." + sectionId,
+        "clarity.rrra." + sectionId,
+        "clarity.media.rrra." + sectionId,
+        "clarity.companion.daily." + sectionId,
+        "clarity.companion.lastLine",
+        "clarity.companion.rrra.current"
+      ];
+      for (var i = 0; i < keys.length; i++) {
+        var raw = localStorage.getItem(keys[i]);
+        if (!raw) continue;
+        try {
+          var j = JSON.parse(raw);
+          /* array of lines */
+          if (Array.isArray(j) && j.length) {
+            var line = normalizeCompanionLine(j[0]) || normalizeCompanionLine(j[Math.floor(Math.random()*j.length)]);
+            if (line) return line;
+          }
+          var n = normalizeCompanionLine(j);
+          if (n) {
+            /* if section-scoped object */
+            if (j[sectionId]) {
+              var ns = normalizeCompanionLine(j[sectionId]);
+              if (ns) return ns;
+            }
+            return n;
+          }
+        } catch (e0) {}
       }
     } catch (e) {}
     return null;
+  }
+
+  function syncFromCompanion(sectionId) {
+    sectionId = sectionId || "reminder";
+    var line = tryCompanionLine(sectionId);
+    if (!line) return false;
+    w.__memeLayers = {
+      ar: line.ar || "",
+      en: line.en || "",
+      ur: "",
+      ref: line.ref || ""
+    };
+    applyToDesks(formatLine(line));
+    saveState({ section: sectionId, layers: w.__memeLayers, text: formatLine(line), fromCompanion: true });
+    try {
+      if (w.CraftMemeUrduFetch) w.CraftMemeUrduFetch.loadForCurrentLayers(true);
+      else if (typeof w.memeDraw === "function") w.memeDraw();
+    } catch (e) {}
+    status("Companion rail · " + sectionId + " · synchronized · educational only");
+    return true;
   }
 
   function fetchSection(sectionId) {
     sectionId = sectionId || "reminder";
     var sec = SECTIONS[sectionId] || SECTIONS.reminder;
     var line = tryCompanionLine(sectionId) || pick(sec.lines);
+    /* companion wins when present — keeps rails synchronized */
     return {
       section: sectionId,
       label: sec.label,
@@ -116,7 +179,7 @@
         setTimeout(function () {
           try { w.CraftMemeUrduFetch.loadForCurrentLayers(true); } catch (eR) {}
         }, 400);
-      } /* bank urdu removed C19MEME22 */
+      } /* bank urdu removed C19MEME23 */
     } catch (eU) {}
     try {
       if (w.CraftMemeAutomation && w.CraftMemeAutomation.setLayers) {
@@ -218,7 +281,20 @@
     }
   }
 
+  /* cross-tab companion sync */
+  w.addEventListener("storage", function (ev) {
+    if (!ev || !ev.key) return;
+    if (/clarity\.(companion|rrra|media)/i.test(ev.key)) {
+      try {
+        var active = d.querySelector("[data-meme-section].active, [data-rrra].active");
+        var sec = active ? (active.getAttribute("data-meme-section") || active.getAttribute("data-rrra")) : "reminder";
+        syncFromCompanion(sec);
+      } catch (eS) {}
+    }
+  });
+
   w.CraftMemeSource = {
+    syncFromCompanion: syncFromCompanion,
     sections: SECTIONS,
     fetchSection: fetchSection,
     formatLine: formatLine,
