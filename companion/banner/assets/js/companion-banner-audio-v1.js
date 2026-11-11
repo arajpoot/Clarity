@@ -25,7 +25,9 @@
     ar_aymanswoed: "ar.aymanswoed",
     "ar.aymanswoed": "ar.aymanswoed",
     ar_tablawi: "ar.tablawi",
-    "ar.tablawi": "ar.tablawi"
+    "ar.tablawi": "ar.tablawi",
+    "ar.yasserdosari": "ar.yasserdosari",
+    ar_yasserdosari: "ar.yasserdosari"
   };
 
   var audio = null;

@@ -34,57 +34,56 @@
 
   function place() {
     var s = $("live-place-select") || $("stream-select");
-    if (s && /makkah|mecca/i.test(String(s.value || ""))) return "makkah";
-    if (s && /madinah|medina/i.test(String(s.value || ""))) return "madinah";
-    /* place dropdown on banner may say Madinah */
-    var opts = d.querySelectorAll("select option:checked");
-    for (var i = 0; i < opts.length; i++) {
-      if (/madinah|medina/i.test(opts[i].textContent || "")) return "madinah";
-      if (/makkah|mecca/i.test(opts[i].textContent || "")) return "makkah";
-    }
+    var v = s ? String(s.value || "") : "";
+    if (/madinah|medina/i.test(v)) return "madinah";
+    if (/makkah|mecca/i.test(v)) return "makkah";
+    /* option text fallback */
+    try {
+      if (s && s.selectedOptions && s.selectedOptions[0]) {
+        var t = s.selectedOptions[0].textContent || "";
+        if (/madinah|medina/i.test(t)) return "madinah";
+      }
+    } catch (e) {}
     return "makkah";
   }
 
   function setLabel(live) {
-    var lab = $("live-haramain-label") || $("stream-text");
-    if (lab && lab.closest && lab.closest("#live-haramain-btn, .live-haramain-btn, #stream-btn")) {
-      lab.textContent = live ? "Live" : "Stills";
-    }
+    var lab = $("live-haramain-label");
+    if (lab) lab.textContent = live ? "Live" : "Stills";
     var btn = $("live-haramain-btn");
     if (btn) {
       btn.setAttribute("aria-pressed", live ? "true" : "false");
-      var span = btn.querySelector("#live-haramain-label") || btn;
-      if (btn.childNodes.length && !lab) {
-        /* button may be the Stills pill itself */
-      }
+      btn.classList.toggle("is-live", !!live);
+      btn.classList.toggle("is-still", !live);
     }
-    /* Match UI pill text "Stills" */
-    d.querySelectorAll("#live-haramain-btn, .live-haramain-btn, [data-live-toggle]").forEach(function (el) {
-      if (el.id === "stream-btn") return;
-      var t = (el.textContent || "").trim();
-      if (/still|live/i.test(t) && t.length < 12) {
-        el.childNodes.forEach(function (n) {
-          if (n.nodeType === 3 && /still|live/i.test(n.textContent)) {
-            n.textContent = live ? " Live " : " Stills ";
-          }
-        });
-      }
-    });
   }
 
   function showStill() {
     liveOn = false;
     var iframe = $("banner-live");
+    var video = $("banner-video");
     var img = $("banner-img");
+    if (video) {
+      try { video.pause(); video.removeAttribute("src"); video.load(); } catch (e0) {}
+      video.hidden = true;
+      video.style.display = "none";
+    }
     if (iframe) {
       iframe.hidden = true;
       iframe.style.pointerEvents = "none";
       try { iframe.removeAttribute("src"); } catch (e1) {}
+      iframe.style.display = "none";
     }
     if (img) {
+      var src = STILLS[place()] || STILLS.makkah;
       img.hidden = false;
-      img.style.display = "";
-      img.src = STILLS[place()] || STILLS.makkah;
+      img.style.display = "block";
+      if (img.src !== src && !String(img.src || "").endsWith(src.split("/").pop() || "___")) {
+        img.src = src;
+      } else {
+        img.src = src; /* force city swap */
+      }
+      img.alt = place() === "madinah" ? "Masjid an-Nabawi" : "Masjid al-Haram";
     }
     setLabel(false);
   }
@@ -145,17 +144,17 @@
 
   w.toggleHaramainLive = function () {
     if (liveOn) showStill();
-    else { liveIdx = 0; /* no auto live */; }
+    else { liveIdx = 0; showLive(); }
   };
   w.changeHaramainPlace = function () {
-    if (liveOn) { liveIdx = 0; /* no auto live */; }
+    liveIdx = 0;
+    if (liveOn) showLive();
     else showStill();
   };
   w.changeStream = function () {
-    /* video next OR radio — if audio module owns radio, only cycle video when live */
     if (liveOn) {
-      liveIdx = (liveIdx + 1) % (STREAMS[place()] || STREAMS.makkah).length;
-      /* no auto live */;
+      liveIdx = (liveIdx + 1) % Math.max((STREAMS[place()] || STREAMS.makkah).length, 1);
+      showLive();
     }
   };
 
