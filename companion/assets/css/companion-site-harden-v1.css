@@ -1,0 +1,17 @@
+/*! Companion site harden v1 */
+button[data-meme-dup="1"],
+a[data-meme-dup="1"] {
+  
+  display: none !important;
+}
+.salah-loc-refresh:hover {
+  border-color: rgba(212, 180, 90, 0.55) !important;
+  background: rgba(30, 125, 94, 0.28) !important;
+}
+.cgs-track[data-path-hardened="1"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: center;
+}
