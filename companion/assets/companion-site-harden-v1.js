@@ -1,5 +1,5 @@
-/*! Companion site harden v1 · Bismillah
- * Site-wide Meme icon dedupe (all rails) · learning path section harden
+/*! Companion site harden v1.1 · Bismillah
+ * Site-wide Meme dedupe (all rails) · path harden · late DOM injects
  * Educational only — not a fatwa · enrichment held
  */
 (function (w, d) {
@@ -17,23 +17,13 @@
   }
 
   function normLabel(btn) {
-    return (btn.textContent || "")
-      .replace(/\s+/g, " ")
-      .trim()
-      .toLowerCase()
-      .replace(/^🎨\s*/, "");
+    return (btn.textContent || "").replace(/\s+/g, " ").trim().toLowerCase().replace(/^🎨\s*/, "");
   }
 
   function isMemeish(label) {
-    return (
-      label === "meme" ||
-      label === "to meme studio" ||
-      label === "to meme" ||
-      /^meme\b/.test(label)
-    );
+    return label === "meme" || label === "to meme studio" || label === "to meme" || /^meme\b/.test(label);
   }
 
-  /** Within each local rail/toolbar, keep first Meme control only */
   function dedupeMemeInScope(scope) {
     if (!scope) return;
     var found = false;
@@ -47,7 +37,7 @@
       } else {
         found = true;
         el.removeAttribute("data-meme-dup");
-        el.style.display = "";
+        if (el.style.display === "none") el.style.display = "";
         el.removeAttribute("aria-hidden");
       }
     });
@@ -55,29 +45,16 @@
 
   function dedupeAllRails() {
     var scopes = d.querySelectorAll(
-      ".card, .td-row, .cmd-action-row, .banner-controls, .banner-av-row, .rrra-hub-body, [role='toolbar'], .cgs-track, nav, .mv-toolbar, .callig-tools"
+      ".card, .td-row, .cmd-action-row, .banner-controls, .banner-av-row, .rrra-hub-body, [role='toolbar'], .cgs-track, nav, .mv-toolbar, .callig-tools, #commands-card, #tweet-desk-card"
     );
     if (!scopes.length) scopes = [d.body];
     scopes.forEach(dedupeMemeInScope);
-    /* Also consecutive meme siblings anywhere */
-    d.querySelectorAll("button, a").forEach(function (el) {
-      if (!isMemeish(normLabel(el))) return;
-      var prev = el.previousElementSibling;
-      while (prev && prev.nodeType === 1 && !(prev.matches && (prev.matches("button") || prev.matches("a")))) {
-        prev = prev.previousElementSibling;
-      }
-      if (prev && isMemeish(normLabel(prev))) {
-        el.setAttribute("data-meme-dup", "1");
-        el.style.display = "none";
-      }
-    });
   }
 
   function hardenPaths() {
     var track = d.querySelector(".cgs-track, #clarity-gate-strip, [data-clarity-path]");
     if (track) {
       track.setAttribute("data-path-hardened", "1");
-      /* ensure only one active gate button */
       var active = track.querySelectorAll(".cgs-btn.is-active, .cgs-btn[aria-pressed='true']");
       if (active.length > 1) {
         active.forEach(function (btn, i) {
@@ -88,17 +65,13 @@
         });
       }
     }
-    /* Path cards: keep visible, no display:none ghosts */
-    d.querySelectorAll("#ilm-pathway-card, .ilm-pathway-details, [data-path-section]").forEach(function (el) {
-      if (el.hasAttribute("hidden") && el.getAttribute("data-force-hold") === "enrichment") {
-        el.removeAttribute("hidden");
-      }
+    d.querySelectorAll("#ilm-pathway-card, .ilm-pathway-details").forEach(function (el) {
+      if (el.getAttribute("data-force-hold") === "enrichment") el.removeAttribute("hidden");
     });
-    /* Don't strip pathway loaders — enrichment hold */
     try {
       if (typeof w.claritySwitchGate === "function" && !w.claritySwitchGate.__hard) {
         var orig = w.claritySwitchGate;
-        w.claritySwitchGate = function (id) {
+        w.claritySwitchGate = function () {
           var r = orig.apply(this, arguments);
           setTimeout(dedupeAllRails, 100);
           return r;
@@ -118,7 +91,12 @@
   else setTimeout(settle, 300);
   setTimeout(settle, 1200);
   setTimeout(settle, 2800);
-  d.addEventListener("click", function () {
-    setTimeout(dedupeAllRails, 180);
-  });
+  d.addEventListener("click", function () { setTimeout(dedupeAllRails, 180); });
+
+  try {
+    var obs = new MutationObserver(function () {
+      setTimeout(dedupeAllRails, 50);
+    });
+    obs.observe(d.documentElement, { childList: true, subtree: true });
+  } catch (e2) {}
 })(window, document);

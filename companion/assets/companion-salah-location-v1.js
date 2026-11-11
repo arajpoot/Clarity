@@ -1,5 +1,6 @@
-/*! Companion salah location v1 · Bismillah
+/*! Companion salah location v1.1 · Bismillah
  * Location-based salah city; retain until user refetches
+ * Survives banner-owner loadSalah re-runs
  * Educational only — not a fatwa
  */
 (function (w, d) {
@@ -8,7 +9,7 @@
   w.__CLARITY_COMPANION_SALAH_LOCATION_V1__ = true;
 
   var KEY = "clarity_salah_location_v1";
-  /* { lat, lon, city, country, ts } */
+  var applying = false;
 
   function isCompanion() {
     try {
@@ -44,26 +45,15 @@
       loc.textContent = label || "—";
       loc.classList.add("salah-city");
     }
-    var title = d.querySelector(".salah-times-section .salah-city-title, #salah-title");
-    if (title && label) title.setAttribute("data-city", label);
   }
 
   function renderTimes(t, label) {
     var list = d.getElementById("salah-times-list");
     if (!list || !t) return;
-    var order = [
-      ["Fajr", "Fajr"],
-      ["Sunrise", "Sunrise"],
-      ["Dhuhr", "Dhuhr"],
-      ["Asr", "Asr"],
-      ["Maghrib", "Maghrib"],
-      ["Isha", "Isha"]
-    ];
+    var order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
     list.innerHTML = order
-      .map(function (pair) {
-        var k = pair[0];
-        var name = pair[1];
-        var val = t[k] || t[name] || "—";
+      .map(function (name) {
+        var val = t[name] || "—";
         if (typeof val === "string" && val.indexOf(" ") > -1) val = val.split(" ")[0];
         return (
           '<li><span class="salah-name">' +
@@ -190,29 +180,58 @@
     });
   }
 
+  function applySaved() {
+    var saved = readSaved();
+    if (!saved || applying) return !!saved;
+    applying = true;
+    setCityLabel(saved.city || "Saved location");
+    fetchByCoords(saved.lat, saved.lon, saved.city || "Saved location")
+      .catch(function () {
+        setCityLabel((saved.city || "Saved") + " (cached)");
+      })
+      .then(function () {
+        applying = false;
+      });
+    return true;
+  }
+
+  /** If owner exposes loadSalah, wrap so saved location wins */
+  function patchOwner() {
+    if (typeof w.loadSalah === "function" && !w.loadSalah.__locPatch) {
+      var orig = w.loadSalah;
+      w.loadSalah = function () {
+        if (readSaved()) {
+          applySaved();
+          return;
+        }
+        return orig.apply(this, arguments);
+      };
+      w.loadSalah.__locPatch = true;
+    }
+  }
+
   function load() {
     if (!isCompanion()) return;
     ensureUpdateBtn();
-    var saved = readSaved();
-    if (saved) {
-      /* retain — no re-prompt */
-      setCityLabel(saved.city || "Saved location");
-      fetchByCoords(saved.lat, saved.lon, saved.city || "Saved location").catch(function () {
-        setCityLabel((saved.city || "Saved") + " (offline)");
-      });
+    patchOwner();
+    if (applySaved()) {
+      /* Re-assert after owner delayed loadSalah (~5s) */
+      setTimeout(function () {
+        patchOwner();
+        applySaved();
+      }, 5500);
+      setTimeout(applySaved, 8000);
       return;
     }
-    /* First time only: try geo once, then persist */
     requestGeo(false).catch(function () {
-      /* leave owner/enrich fallbacks; label gently */
       var loc = d.getElementById("hijri-local-loc");
-      if (loc && (!loc.textContent || loc.textContent === "…" || loc.textContent === "—")) {
+      if (loc && (!loc.textContent || /^(…|—|\.\.\.)$/.test(loc.textContent.trim()))) {
         loc.textContent = "Tap Update location";
       }
     });
   }
 
-  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(load, 400); });
-  else setTimeout(load, 400);
-  setTimeout(load, 1800);
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(load, 350); });
+  else setTimeout(load, 350);
+  setTimeout(load, 1600);
 })(window, document);
