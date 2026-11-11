@@ -6,7 +6,7 @@
 <title>Companion Banner · Clarity</title>
 <meta name="description" content="Self-contained Clarity Companion banner: Hijrī, ṣalāh, Ḥaramain, radio. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/banner/"/>
-<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261110SC1"/>
+<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261110VP1"/>
 </head>
 <body>
 <p class="back"><a href="/companion/">← Companion</a> · banner module</p>
@@ -21,19 +21,23 @@
 
   <div class="banner-overlay">
     <section class="plaque hijri-cal-section" aria-label="Hijrī calendar">
-      <h2 id="hijri-cal-title">Hijrī</h2>
+      <div class="plaque-head" id="clarity-banner-moon-plaque">
+        <span class="moon-emoji" id="moon-emoji" aria-hidden="true">🌙</span>
+        <span class="moon-lab" id="moon-lab">Hijrī calendar</span>
+        <h2 id="hijri-cal-title">Hijrī</h2>
+      </div>
       <p id="hijri-cal-meta">…</p>
       <div id="hijri-cal-grid" class="hijri-cal-grid"></div>
       <p id="hijri-next-event" class="hijri-next-event"><span id="hijri-ms-event"></span></p>
       <div id="hijri-temps" class="hijri-temps">
-        <span class="ht-item"><span>🕋 Makkah</span> <strong id="temp-makkah">—</strong>°C</span>
-        <span class="ht-item"><span>🕌 Madinah</span> <strong id="temp-madinah">—</strong>°C</span>
+        <span class="ht-item"><span><span class="ht-ico">🕋</span> Makkah</span> <strong id="temp-makkah">—</strong>°C</span>
+        <span class="ht-item"><span><span class="ht-ico">🕌</span> Madinah</span> <strong id="temp-madinah">—</strong>°C</span>
       </div>
     </section>
 
     <section class="plaque center banner-center" aria-label="Clarity">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-      <h1 class="brand">Clarity <span class="ondev">On-device ✓</span></h1>
+      <h1 class="brand"><span class="title-icon" aria-hidden="true">✒️</span>Clarity <span class="ondev">On-device ✓</span></h1>
       <p class="sub">Furnish your grave · Prepare for the long stay</p>
       <div class="rabbana-box">
         <div class="rabbana-nav">
@@ -69,7 +73,10 @@
     </section>
 
     <section class="plaque salah-times-section" aria-label="Ṣalāh times">
-      <h2 id="salah-title">Ṣalāh</h2>
+      <div class="plaque-head">
+        <span class="salah-allah" lang="ar" aria-hidden="true">الله</span>
+        <h2 id="salah-title">Ṣalāh</h2>
+      </div>
       <p id="hijri-local-loc">Locating…</p>
       <ul id="salah-times-list" class="salah-times-list">
         <li class="salah-row"><span class="salah-name">…</span><span class="salah-time">…</span></li>
@@ -90,9 +97,9 @@
 
 <p class="disc">Educational only — not a fatwa. Confirm times locally.</p>
 
-<script src="assets/js/companion-banner-owner-v1.js?v=20261110SC1"></script>
-<script src="assets/js/companion-banner-audio-v1.js?v=20261110SC1"></script>
-<script src="assets/js/companion-haramain-temps-v1.js?v=20261110SC1"></script>
-<script src="assets/js/banner-module-settle-v1.js?v=20261110SC1"></script>
+<script src="assets/js/companion-banner-owner-v1.js?v=20261110VP1"></script>
+<script src="assets/js/companion-banner-audio-v1.js?v=20261110VP1"></script>
+<script src="assets/js/companion-haramain-temps-v1.js?v=20261110VP1"></script>
+<script src="assets/js/banner-module-settle-v1.js?v=20261110VP1"></script>
 </body>
 </html>
