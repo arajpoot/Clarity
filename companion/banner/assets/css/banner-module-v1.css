@@ -1,136 +1,190 @@
-/*! companion/banner module CSS v1 · self-contained · Bismillah */
+/*! companion/banner module CSS v1.1 · full width · glass · Bismillah */
 :root { color-scheme: dark; --gold:#e8d5a3; --edge:rgba(212,180,90,.36); }
 * { box-sizing: border-box; }
-html, body { margin: 0; }
+html, body { margin: 0; width: 100%; }
 body {
   font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-  background: #0a1210;
+  background: transparent;
   color: #e8f0ec;
+  width: 100%;
 }
-/* Hide any skip / chrome when framed or alone */
 .skip-link, a[href="#main"], a[href="#content"], .skip-to-content { display: none !important; }
-.back {
-  display: none; /* hidden when embedded; shown only if ?solo=1 */
-  font-size: .72rem; padding: .35rem .55rem 0;
-}
+.back { display: none; font-size: .72rem; padding: .35rem .55rem 0; }
 body.solo .back { display: block; }
 .back a { color: #c9a84c; text-decoration: none; font-weight: 700; }
 
+/* Full viewport width of host (iframe or page) */
 .banner {
   position: relative;
-  border-radius: 14px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
   overflow: hidden;
-  border: 1px solid var(--edge);
+  border: none;
+  border-bottom: 1px solid var(--edge);
   background: #0a1210;
-  /* compact overall height */
-  min-height: 11.5rem;
+  min-height: 12.5rem;
 }
 .banner-media { position: absolute; inset: 0; z-index: 0; }
 .banner-live-iframe, .banner-still-img {
-  width: 100%; height: 100%; min-height: 11.5rem; border: 0; display: block; object-fit: cover;
+  width: 100%; height: 100%; min-height: 12.5rem; border: 0; display: block; object-fit: cover;
 }
+
 .banner-overlay {
   position: relative; z-index: 1;
   display: grid;
-  /* balanced columns — sides equal, center flexes but not tall */
-  grid-template-columns: minmax(6.75rem, 9.25rem) minmax(0, 1.45fr) minmax(6.75rem, 9.25rem);
-  gap: .4rem;
-  padding: .4rem;
+  grid-template-columns: minmax(7rem, 10rem) minmax(0, 1.5fr) minmax(7rem, 10rem);
+  gap: .45rem;
+  padding: .45rem .55rem;
   align-items: stretch;
-  background: linear-gradient(180deg, rgba(8,16,12,.42), rgba(8,16,12,.64));
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(8,16,12,.28), rgba(8,16,12,.4));
 }
 @media (max-width: 700px) {
-  .banner-overlay { grid-template-columns: 1fr; }
-  .banner { min-height: 28rem; }
-  .banner-live-iframe, .banner-still-img { min-height: 28rem; }
+  .banner-overlay { grid-template-columns: 1fr; max-width: none; }
+  .banner { min-height: 30rem; }
+  .banner-live-iframe, .banner-still-img { min-height: 30rem; }
 }
 
 .plaque {
-  border-radius: 12px;
-  border: 1px solid rgba(232,213,163,.34);
+  border-radius: 14px;
+  border: 1px solid rgba(232,213,163,.38);
   background:
-    linear-gradient(155deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,.02) 42%, rgba(12,28,22,.55) 100%),
-    rgba(8,18,14,.52);
-  box-shadow: 0 1px 0 rgba(255,255,255,.1) inset, 0 6px 16px rgba(0,0,0,.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: .4rem .45rem;
+    linear-gradient(155deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.02) 42%, rgba(12,28,22,.58) 100%),
+    rgba(8,18,14,.55);
+  box-shadow: 0 1px 0 rgba(255,255,255,.12) inset, 0 8px 20px rgba(0,0,0,.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: .45rem .5rem;
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
+
+/* Top header plaques on calendar / salah */
+.plaque-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+  margin-bottom: .3rem;
+  padding-bottom: .3rem;
+  border-bottom: 1px solid rgba(212,180,90,.22);
+}
+.plaque-head .moon-emoji,
+.plaque-head .salah-allah {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+.plaque-head .moon-lab {
+  font-size: .6rem;
+  opacity: .9;
+  text-align: center;
+}
 .plaque h2 {
-  margin: 0 0 .25rem;
-  font-size: .65rem;
+  margin: 0;
+  font-size: .68rem;
   font-weight: 800;
-  letter-spacing: .07em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   text-align: center;
   color: var(--gold);
 }
-.center { align-items: center; text-align: center; gap: .2rem; }
-.bismillah { margin: 0; font-size: .88rem; color: var(--gold); line-height: 1.3; }
-.brand { margin: 0; font-size: 1.05rem; font-weight: 800; color: #f3e8c8; line-height: 1.2; }
+
+/* Center — lower opacity so stream shows */
+.center {
+  align-items: center;
+  text-align: center;
+  gap: .22rem;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.01) 45%, rgba(12,28,22,.32) 100%),
+    rgba(8,18,14,.28) !important;
+  border-color: rgba(232,213,163,.28) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+.bismillah { margin: 0; font-size: .9rem; color: var(--gold); line-height: 1.3; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
+
+/* Clarity title — pen + serif weight like classic banner */
+.brand {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f3e8c8;
+  line-height: 1.2;
+  letter-spacing: .02em;
+  text-shadow: 0 1px 0 rgba(0,0,0,.4), 0 0 12px rgba(232,213,163,.12);
+}
+.brand .title-icon {
+  display: inline-block;
+  margin-right: .28rem;
+  font-size: 1.05rem;
+  vertical-align: middle;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.35));
+}
 .ondev {
   display: inline-flex; font-size: .6rem; font-weight: 800;
-  padding: .1rem .34rem; border-radius: 999px; margin-left: .2rem;
+  padding: .1rem .34rem; border-radius: 999px; margin-left: .25rem;
   border: 1px solid rgba(120,200,140,.5); background: rgba(30,125,94,.4); color: #c8f0d4;
   vertical-align: middle;
+  font-family: system-ui, sans-serif;
 }
-.sub { margin: 0; font-size: .68rem; opacity: .88; line-height: 1.25; }
+.sub { margin: 0; font-size: .7rem; opacity: .9; line-height: 1.25; text-shadow: 0 1px 2px rgba(0,0,0,.4); }
 
 .rabbana-box {
-  width: 100%; max-width: 24rem;
-  padding: .3rem .4rem;
+  width: 100%; max-width: 26rem;
+  padding: .32rem .42rem;
   border-radius: 10px;
-  border: 1px solid rgba(212,180,90,.25);
-  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(212,180,90,.22);
+  background: rgba(0,0,0,.2);
 }
-.rabbana-nav { display: flex; justify-content: center; align-items: center; gap: .35rem; margin-bottom: .15rem; }
+.rabbana-nav { display: flex; justify-content: center; align-items: center; gap: .35rem; margin-bottom: .12rem; }
 .rabbana-cycle {
   width: 1.5rem; height: 1.5rem; border-radius: 999px; border: 1px solid var(--edge);
   background: rgba(0,0,0,.28); color: inherit; cursor: pointer; font-weight: 700; line-height: 1;
 }
 #rabbana-count { font-size: .68rem; font-weight: 700; opacity: .9; }
-.rabbana-arabic { font-size: .92rem; line-height: 1.55; color: #f0e6c8; min-height: 1.3em; }
-.rabbana-english { font-size: .7rem; opacity: .9; margin-top: .12rem; line-height: 1.35; min-height: 1em; }
-.rabbana-ref { font-size: .62rem; color: #c9a84c; margin-top: .1rem; }
+.rabbana-arabic { font-size: .95rem; line-height: 1.55; color: #f0e6c8; min-height: 1.3em; }
+.rabbana-english { font-size: .7rem; opacity: .92; margin-top: .1rem; line-height: 1.35; min-height: 1em; }
+.rabbana-ref { font-size: .62rem; color: #c9a84c; margin-top: .08rem; }
 
-/* AV enrichment — compact multi-row */
 .controls {
   display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-  gap: .25rem; margin-top: .2rem; width: 100%;
+  gap: .25rem; margin-top: .18rem; width: 100%;
 }
 .controls button, .controls select {
   border-radius: 999px; border: 1px solid rgba(212,180,90,.35);
-  background: rgba(30,125,94,.42); color: inherit;
+  background: rgba(30,125,94,.45); color: inherit;
   padding: .22rem .48rem; font-size: .66rem; font-weight: 700; cursor: pointer;
   max-width: 7.5rem;
 }
 .controls button#live-haramain-btn { background: rgba(160,50,50,.55); }
-.controls input[type="range"] {
-  width: 4.5rem; height: 1.2rem; accent-color: #c9a84c;
-}
+.controls input[type="range"] { width: 4.5rem; height: 1.2rem; accent-color: #c9a84c; }
 
-/* Calendar compact */
-.hijri-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: .12rem; margin-top: .2rem; }
+.hijri-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: .12rem; margin-top: .15rem; }
 .hijri-day {
   text-align: center; font-size: .6rem; padding: .12rem 0; border-radius: 4px;
   background: rgba(0,0,0,.25);
 }
 .hijri-day.is-today { background: rgba(30,125,94,.55); font-weight: 700; color: var(--gold); }
-#hijri-cal-meta { font-size: .62rem; text-align: center; opacity: .9; margin: 0 0 .15rem; line-height: 1.25; }
-.hijri-next-event { font-size: .6rem; text-align: center; opacity: .85; margin: .15rem 0 0; }
+#hijri-cal-meta { font-size: .62rem; text-align: center; opacity: .9; margin: 0 0 .12rem; line-height: 1.25; }
+.hijri-next-event { font-size: .6rem; text-align: center; opacity: .85; margin: .12rem 0 0; }
+
 .hijri-temps { display: flex; flex-direction: column; gap: .14rem; margin-top: auto; padding-top: .25rem; font-size: .62rem; }
 .ht-item {
-  display: flex; justify-content: space-between; gap: .25rem;
+  display: flex; justify-content: space-between; align-items: center; gap: .25rem;
   padding: .14rem .3rem; border-radius: 7px;
   border: 1px solid rgba(212,180,90,.2); background: rgba(0,0,0,.2);
 }
+.ht-item .ht-ico { font-size: .85rem; line-height: 1; }
 .ht-item strong { color: var(--gold); font-weight: 800; }
 
 #hijri-local-loc {
-  text-align: center; font-size: .7rem; font-weight: 800; color: #f0e6c8; margin: .1rem 0 .15rem;
+  text-align: center; font-size: .72rem; font-weight: 800; color: #f0e6c8; margin: .1rem 0 .15rem;
 }
 .salah-times-list { list-style: none; margin: 0; padding: 0; flex: 1; }
 .salah-times-list li, .salah-row {
@@ -155,5 +209,5 @@ body.solo .back { display: block; }
   background: rgba(0,0,0,.22); color: #f0e6c8; cursor: pointer;
 }
 .azan-row { margin-top: .2rem; font-size: .62rem; text-align: center; opacity: .9; }
-.disc { display: none; } /* keep module chrome-free when embedded */
+.disc { display: none; }
 body.solo .disc { display: block; font-size: .7rem; opacity: .85; margin: .5rem .55rem; }
