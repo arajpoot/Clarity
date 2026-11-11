@@ -1,25 +1,21 @@
-URL SHELL architecture 20261028URLSHELL
+BANNER UI UPGRADE 20261111BU1
 
-ONE OWNER — ends the mode war.
-
-URL is source of truth:
-  /?shell=day         → Day landing
-  /?shell=companion   → Companion (sticky on refresh)
-
-On switch, shell writes ?shell= into the address bar via history.replaceState.
-Refresh keeps Companion if URL still says companion.
+Upload preserving paths:
+  companion/banner/index.html
+  companion/banner/assets/css/banner-module-v1.css
+  companion/banner/assets/js/companion-banner-owner-v1.js
+  companion/banner/assets/js/companion-banner-audio-v1.js
+  companion/banner/assets/js/banner-module-settle-v1.js
+  companion/banner/assets/js/companion-haramain-temps-v1.js
+  companion/index.html  (iframe shell full-width only)
 
 Changes:
-  · Replaced shell-v3 with URL shell (no first-visit force)
-  · day-vault is PASSIVE CSS only (never sets mode)
-  · day-room fills only when mode is day
-  · 4-path TRACK restored on Companion only; killed on Day
-  · Inline head script sets data-shell-mode from URL before paint
+  · Full viewport width banner (no side padding / cramped strip)
+  · AV ribbon: Stills/Live · place · radio · Listen · Play · Stop · Surah 1–114 · expanded reciters · volume
+  · Rabbana list maximized (40 Qurʾānic Rabbana duʿās)
+  · More YouTube live fallbacks (Makkah + Madinah)
+  · Single-owner flag on banner module; audio exclusive vs live
+  · Companion iframe height matched to full banner
 
-Upload all files. Purge CF. Test:
-  1) Open site → Day
-  2) Companion path → URL shows ?shell=companion
-  3) Refresh → still Companion, no Day cards
-  4) Day landing → URL ?shell=day, no TRACK bar
-
-Campus untouched. Educational only — not a fatwa.
+Port / Campus / Amānah / Craft / Yawm untouched.
+Educational only — not a fatwa.
