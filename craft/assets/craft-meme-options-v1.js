@@ -1,4 +1,4 @@
-/*! craft-meme-options-v1 · C19MEME24
+/*! craft-meme-options-v1 · C19MEME25
  * Layers removed — text always paints when content exists
  * Contrast is auto from background (see paint-standard)
  * Frame / vignette / density / fonts only
@@ -6,8 +6,8 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_OPTIONS_V24__) return;
-  w.__CRAFT_MEME_OPTIONS_V24__ = true;
+  if (w.__CRAFT_MEME_OPTIONS_V25__) return;
+  w.__CRAFT_MEME_OPTIONS_V25__ = true;
 
   var OPT_KEY = "clarity.craft.meme.opts.v1";
   var opts = {
