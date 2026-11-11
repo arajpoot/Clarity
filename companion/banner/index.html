@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-clarity-room="companion-banner" data-theme="dark">
+<html lang="en" data-clarity-room="companion-banner" data-banner-ver="20261111BU1" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Companion Banner · Clarity</title>
 <meta name="description" content="Self-contained Clarity Companion banner: Hijrī, ṣalāh, Ḥaramain, radio. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/banner/"/>
-<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261111NP1"/>
+<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261111BU1"/>
 </head>
 <body>
 <p class="back"><a href="/companion/">← Companion</a> · banner module</p>
@@ -49,26 +49,38 @@
         <div class="rabbana-english" id="rabbana-english"></div>
         <div class="rabbana-ref" id="rabbana-ref"></div>
       </div>
-      <div class="controls" role="toolbar" aria-label="Audio and live controls">
-        <button type="button" id="live-haramain-btn" aria-pressed="false"><span id="live-haramain-label">Stills</span></button>
-        <select id="live-place-select" aria-label="Ḥaramain place" onchange="try{changeHaramainPlace()}catch(e){}">
-          <option value="makkah">Makkah</option>
-          <option value="madinah" selected>Madinah</option>
+      <div class="controls av-ribbon" role="toolbar" aria-label="Audio and live controls">
+        <button type="button" id="live-haramain-btn" class="pill" aria-pressed="false"><span id="live-haramain-label">Stills</span></button>
+        <select id="live-place-select" class="pill-select" aria-label="Ḥaramain place" onchange="try{changeHaramainPlace()}catch(e){}">
+          <option value="makkah" selected>Makkah</option>
+          <option value="madinah">Madinah</option>
         </select>
-        <select id="stream-select" aria-label="Radio" onchange="try{changeStream()}catch(e){}">
+        <select id="stream-select" class="pill-select" aria-label="Qurʾān radio" onchange="try{changeStream()}catch(e){}">
           <option value="https://qurango.net/radio/tarateel">Tarateel</option>
-          <option value="https://qurango.net/radio/maher">Maher</option>
+          <option value="https://qurango.net/radio/maher">Maher al-Muaiqly</option>
           <option value="https://qurango.net/radio/mix">Mix</option>
+          <option value="https://qurango.net/radio/salah">Beautiful recitation</option>
+          <option value="https://qurango.net/radio/yasser">Yasser al-Dosari</option>
         </select>
-        <button type="button" id="stream-btn">Listen</button>
-        <select id="surah-list-pill" aria-label="Surah" onchange="try{clarityPlaySurahFromSelect(this)}catch(e){}"></select>
-        <select id="reciter-select" aria-label="Reciter">
-          <option value="ar.alafasy">Alafasy</option>
-          <option value="ar.abdulsamad">Abdul Samad</option>
-          <option value="ar.husary">Husary</option>
-          <option value="ar.minshawi">Minshawi</option>
+        <button type="button" id="stream-btn" class="pill primary">Listen</button>
+        <button type="button" id="av-play-btn" class="pill primary" title="Play">Play</button>
+        <button type="button" id="av-stop-btn" class="pill" title="Stop">Stop</button>
+        <select id="surah-list-pill" class="pill-select surah-select" aria-label="Sūrah (1–114)" onchange="try{clarityPlaySurahFromSelect(this)}catch(e){}"></select>
+        <select id="reciter-select" class="pill-select" aria-label="Reciter">
+          <option value="ar.alafasy">Mishary Alafasy</option>
+          <option value="ar.husary">Mahmoud Husary</option>
+          <option value="ar.minshawi">Mohamed Minshawi</option>
+          <option value="ar.hudhaify">Ali al-Hudhaify</option>
+          <option value="ar.muaiqly">Maher al-Muaiqly</option>
+          <option value="ar.abdulbasitmurattal">Abdul Basit (Murattal)</option>
+          <option value="ar.abdulsamad">Abdul Basit (Mujawwad)</option>
+          <option value="ar.shaatree">Abu Bakr ash-Shatri</option>
+          <option value="ar.aymanswoed">Ayman Suwayd</option>
+          <option value="ar.tablawi">Mohamed al-Tablawi</option>
         </select>
-        <input type="range" id="volume-slider" min="0" max="100" value="82" aria-label="Volume"/>
+        <label class="vol-wrap" title="Volume"><span class="vol-ico" aria-hidden="true">🔊</span>
+          <input type="range" id="volume-slider" min="0" max="100" value="82" aria-label="Volume"/>
+        </label>
       </div>
     </section>
 
@@ -97,9 +109,10 @@
 
 <p class="disc">Educational only — not a fatwa. Confirm times locally.</p>
 
-<script src="assets/js/companion-banner-owner-v1.js?v=20261110VP1"></script>
-<script src="assets/js/companion-banner-audio-v1.js?v=20261110VP1"></script>
-<script src="assets/js/companion-haramain-temps-v1.js?v=20261110VP1"></script>
-<script src="assets/js/banner-module-settle-v1.js?v=20261110VP1"></script>
+<script src="assets/js/companion-banner-owner-v1.js?v=20261111BU1"></script>
+<script src="assets/js/companion-banner-audio-v1.js?v=20261111BU1"></script>
+<script src="assets/js/companion-haramain-temps-v1.js?v=20261111BU1"></script>
+<script src="assets/js/banner-module-settle-v1.js?v=20261111BU1"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
