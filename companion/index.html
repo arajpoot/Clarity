@@ -402,16 +402,65 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   .companion-banner-frame {
     display: block;
     width: 100%;
-    min-height: 13.5rem;
-    height: clamp(13rem, 30vw, 17rem);
+    min-height: 14rem;
+    height: clamp(13.5rem, 32vw, 17.5rem);
     border: 0;
     border-radius: 0;
     background: #0a1210;
   }
   @media (max-width: 720px) {
-    .companion-banner-frame { min-height: 32rem; height: 34rem; }
+    .companion-banner-frame { min-height: 34rem; height: 36rem; }
   }
   .skip-link, a.skip-to-content, .skip-to-content { display: none !important; }
+
+  /* Bottom door rail — larger pills */
+  #clarity-door-rail.door-rail-bottom,
+  nav.door-rail-bottom {
+    display: flex !important;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+    align-items: stretch;
+    gap: 0.35rem;
+    padding: 0.45rem 0.5rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
+  }
+  #clarity-door-rail .door-rail-btn,
+  nav.door-rail-bottom .door-rail-btn {
+    flex: 1 1 0;
+    min-height: 3.15rem;
+    padding: 0.45rem 0.35rem !important;
+    border-radius: 14px !important;
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
+    gap: 0.15rem;
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.15;
+  }
+  #clarity-door-rail .door-rail-btn .dr-ico,
+  nav.door-rail-bottom .door-rail-btn .dr-ico {
+    font-size: 1.05rem !important;
+    line-height: 1;
+  }
+  #clarity-door-rail .door-rail-btn .dr-label,
+  nav.door-rail-bottom .door-rail-btn .dr-label {
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+  }
+  @media (min-width: 720px) {
+    #clarity-door-rail .door-rail-btn,
+    nav.door-rail-bottom .door-rail-btn {
+      min-height: 3.35rem;
+      flex-direction: row;
+      gap: 0.35rem;
+      padding: 0.5rem 0.65rem !important;
+      font-size: 0.82rem !important;
+    }
+    #clarity-door-rail .door-rail-btn .dr-label {
+      font-size: 0.8rem !important;
+    }
+  }
 </style>
 
 <div id="clarity-visit-pill-bar" role="navigation" aria-label="Last visited sections" class="cv-stitched-banner">
