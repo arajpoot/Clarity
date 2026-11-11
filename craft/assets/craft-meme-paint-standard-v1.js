@@ -23,6 +23,7 @@
   try {
     var saved = JSON.parse(localStorage.getItem(STORE) || "null");
     if (saved && typeof saved.ar === "number") scale = saved;
+  try { window.__memeScale = { ar: scale.ar, en: scale.en, ref: scale.ref || 1 }; } catch (eMS) {}
   } catch (e0) {}
 
   function $(id) { return d.getElementById(id); }
@@ -286,6 +287,7 @@
           ar = parsed.ar || ""; en = parsed.en || ""; ur = ur || parsed.ur || ""; ref = ref || parsed.ref || "";
         } catch (eP) {}
       }
+      if (!ar && !en) return;
 
       var fonts = (typeof window !== "undefined" && window.__memeFonts) ? window.__memeFonts : {};
       var arFamily = (fonts.ar || "Amiri") + ", 'Scheherazade New', 'Noto Naskh Arabic', serif";
@@ -296,20 +298,17 @@
       var lum = 40;
       try {
         if (typeof sampleBgLuminance === "function") lum = sampleBgLuminance(ctx, width, height);
-        else if (typeof window !== "undefined" && typeof window.__memeBgLum === "number") lum = window.__memeBgLum;
       } catch (eL) { lum = 40; }
       try { if (typeof window !== "undefined") window.__memeBgLum = lum; } catch (eW) {}
 
-      var colAr, colEn, colUr, colRef, shadow;
-      if (lum >= 140) {
-        colAr = "#0a0a0a"; colEn = "#121212"; colUr = "#1a1a1a"; colRef = "#2a2a2a";
-        shadow = "rgba(255,255,255,0.4)";
-      } else if (lum >= 85) {
-        colAr = "#1a1008"; colEn = "#241608"; colUr = "#1e1408"; colRef = "#3a2810";
-        shadow = "rgba(255,255,255,0.25)";
+      var lightBg = lum >= 100;
+      var colAr, colEn, colUr, colRef, shadow, strokeCol;
+      if (lightBg) {
+        colAr = "#0b0b0b"; colEn = "#111"; colUr = "#151515"; colRef = "#222";
+        shadow = "rgba(255,255,255,0.55)"; strokeCol = "rgba(255,255,255,0.85)";
       } else {
-        colAr = "#f5e6c8"; colEn = "#e8c76b"; colUr = "rgba(245,230,200,0.92)"; colRef = "rgba(245,230,200,0.85)";
-        shadow = "rgba(0,0,0,0.65)";
+        colAr = "#f7ecd4"; colEn = "#f0d78a"; colUr = "rgba(247,236,212,0.95)"; colRef = "rgba(247,236,212,0.88)";
+        shadow = "rgba(0,0,0,0.7)"; strokeCol = "rgba(0,0,0,0.55)";
       }
 
       if ((typeof window === "undefined" || window.__memeVignetteOn !== false) && typeof drawVignette === "function") {
@@ -320,63 +319,77 @@
       }
 
       var dens = (typeof window !== "undefined" && window.__memeTextDensity) ? window.__memeTextDensity : "standard";
+      /* scale: module + window + storage — slider must update window.__memeScale */
       var scale = { ar: 1, en: 1, ref: 1 };
       try {
-        if (typeof window !== "undefined" && window.__memeScale) scale = window.__memeScale;
-        else {
+        if (typeof window !== "undefined" && window.__memeScale && typeof window.__memeScale.ar === "number") {
+          scale = { ar: window.__memeScale.ar, en: window.__memeScale.en || 1, ref: window.__memeScale.ref || 1 };
+        } else if (typeof getScale === "function") {
+          scale = getScale();
+        } else {
           var s = JSON.parse(localStorage.getItem("clarity.craft.meme.scale.v1") || "null");
           if (s && typeof s.ar === "number") scale = s;
         }
       } catch (eS) {}
 
-      var padX = Math.round(width * 0.09);
+      var padX = Math.round(width * 0.08);
       var maxW = width - padX * 2;
       var cx = width / 2;
       var hasUr = !!(ur && ur.trim());
-      var arBand = dens === "compact" ? 0.18 : dens === "airy" ? 0.26 : 0.22;
-      var enBand = hasUr ? (dens === "compact" ? 0.36 : dens === "airy" ? 0.48 : 0.42) : (dens === "compact" ? 0.44 : dens === "airy" ? 0.56 : 0.50);
-      var urBand = dens === "compact" ? 0.55 : dens === "airy" ? 0.68 : 0.62;
-      var refBand = dens === "compact" ? 0.82 : dens === "airy" ? 0.90 : 0.86;
+      var arBand = dens === "compact" ? 0.20 : dens === "airy" ? 0.28 : 0.24;
+      var enBand = hasUr ? (dens === "compact" ? 0.40 : dens === "airy" ? 0.50 : 0.45) : (dens === "compact" ? 0.48 : dens === "airy" ? 0.58 : 0.52);
+      var urBand = dens === "compact" ? 0.58 : dens === "airy" ? 0.70 : 0.64;
+      var refBand = dens === "compact" ? 0.84 : dens === "airy" ? 0.91 : 0.87;
 
       function drawLines(lines, y0, lineH, color, fontSpec) {
         if (!lines || !lines.length) return;
         ctx.save();
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.fillStyle = color;
         ctx.font = fontSpec;
+        ctx.lineJoin = "round";
+        ctx.miterLimit = 2;
+        /* outline for readability on busy scenery */
+        ctx.lineWidth = Math.max(2, Math.round(lineH * 0.08));
+        ctx.strokeStyle = strokeCol;
         ctx.shadowColor = shadow;
-        ctx.shadowBlur = 8;
-        ctx.shadowOffsetY = 2;
-        for (var i = 0; i < lines.length; i++) ctx.fillText(lines[i], cx, y0 + i * lineH);
+        ctx.shadowBlur = lightBg ? 4 : 10;
+        ctx.shadowOffsetY = lightBg ? 1 : 2;
+        for (var i = 0; i < lines.length; i++) {
+          var yy = y0 + i * lineH;
+          ctx.strokeText(lines[i], cx, yy);
+          ctx.fillStyle = color;
+          ctx.fillText(lines[i], cx, yy);
+        }
         ctx.restore();
       }
 
+      /* Larger base sizes — micro text is a fail */
       if (ar) {
-        var arBase = Math.round(height * 0.058 * (scale.ar || 1));
-        var arMin = Math.round(height * 0.032);
+        var arBase = Math.round(height * 0.072 * (scale.ar || 1));
+        var arMin = Math.round(height * 0.040);
         var probe = ar.length > 40 ? ar.slice(0, Math.ceil(ar.length / 2)) : ar;
         var arSize = fitSize(ctx, probe, arBase, arMin, maxW * 0.98, arFamily, "700");
         var arLines = wrapArabic(ctx, ar, maxW, 3);
-        var arLH = Math.round(arSize * 1.48);
+        var arLH = Math.round(arSize * 1.45);
         var arY = Math.round(height * arBand) - (arLines.length * arLH) / 2 + arLH / 2;
         drawLines(arLines, arY, arLH, colAr, "700 " + arSize + "px " + arFamily);
       }
       if (en) {
-        var enBase = Math.round(height * (hasUr ? 0.032 : 0.038) * (scale.en || 1));
-        var enMin = Math.round(height * 0.022);
-        var enSize = fitSize(ctx, en.split(/\s+/).slice(0, 7).join(" "), enBase, enMin, maxW * 0.94, enFamily, "600");
+        var enBase = Math.round(height * (hasUr ? 0.042 : 0.048) * (scale.en || 1));
+        var enMin = Math.round(height * 0.028);
+        var enSize = fitSize(ctx, en.split(/\s+/).slice(0, 8).join(" "), enBase, enMin, maxW * 0.94, enFamily, "600");
         var enLines = wrapLines(ctx, en, maxW, hasUr ? 3 : 4);
-        var enLH = Math.round(enSize * 1.35);
+        var enLH = Math.round(enSize * 1.38);
         var enY = Math.round(height * enBand) - (enLines.length * enLH) / 2 + enLH / 2;
         drawLines(enLines, enY, enLH, colEn, "600 " + enSize + "px " + enFamily);
       }
       if (hasUr) {
-        var urBase = Math.round(height * 0.034 * (scale.en || 1));
-        var urMin = Math.round(height * 0.022);
-        var urSize = fitSize(ctx, ur.split(/\s+/).slice(0, 6).join(" "), urBase, urMin, maxW * 0.94, urFamily, "600");
+        var urBase = Math.round(height * 0.040 * (scale.en || 1));
+        var urMin = Math.round(height * 0.026);
+        var urSize = fitSize(ctx, ur.split(/\s+/).slice(0, 7).join(" "), urBase, urMin, maxW * 0.94, urFamily, "600");
         var urLines = wrapArabic(ctx, ur, maxW, 3);
-        var urLH = Math.round(urSize * 1.45);
+        var urLH = Math.round(urSize * 1.42);
         var urY = Math.round(height * urBand) - (urLines.length * urLH) / 2 + urLH / 2;
         drawLines(urLines, urY, urLH, colUr, "600 " + urSize + "px " + urFamily);
       }
@@ -385,15 +398,19 @@
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.shadowColor = shadow;
-      ctx.shadowBlur = 5;
+      ctx.shadowBlur = 4;
       if (ref) {
-        ctx.font = "600 " + Math.round(height * 0.026 * (scale.ref || 1)) + "px " + refFamily;
+        var refPx = Math.round(height * 0.030 * (scale.ref || 1));
+        ctx.font = "600 " + refPx + "px " + refFamily;
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = strokeCol;
+        ctx.strokeText(ref, cx, refY);
         ctx.fillStyle = colRef;
         ctx.fillText(ref, cx, refY);
       }
-      ctx.font = "500 " + Math.round(height * 0.016) + "px " + refFamily;
-      ctx.fillStyle = lum >= 140 ? "rgba(0,0,0,0.55)" : "rgba(232,199,107,0.72)";
-      ctx.fillText("clarity-dawah.fyi · educational reminder", cx, refY + Math.round(height * 0.036));
+      ctx.font = "500 " + Math.round(height * 0.018) + "px " + refFamily;
+      ctx.fillStyle = lightBg ? "rgba(0,0,0,0.6)" : "rgba(232,199,107,0.75)";
+      ctx.fillText("clarity-dawah.fyi · educational reminder", cx, refY + Math.round(height * 0.038));
       ctx.restore();
     } catch (err) {
       try { console.warn("paintText", err); } catch (e0) {}
@@ -516,12 +533,15 @@ function schedulePaint() {
     if (!canvas.width) { canvas.width = W; canvas.height = H; }
 
     var bg = resolveBg(canvas);
-    ctx.clearRect(0, 0, W, H);
+    /* C19MEME26: no white flash — fill dark base first, then scenery, then text once */
+    if (typeof fillFallback === "function") fillFallback(ctx, W, H);
+    else {
+      ctx.fillStyle = "#0f2a22";
+      ctx.fillRect(0, 0, W, H);
+    }
     if (bg) {
       try { drawCoverBg(ctx, bg, W, H); }
-      catch (e) { fillFallback(ctx, W, H); }
-    } else {
-      fillFallback(ctx, W, H);
+      catch (e) { /* keep fallback */ }
     }
     paintText(ctx, W, H);
     return true;
@@ -594,11 +614,15 @@ function schedulePaint() {
       var el=$(id); if(!el||el._bound) return; el._bound=true;
       el.addEventListener("input", function(){
         if(id.indexOf("ar")>=0) scale.ar=(+el.value||100)/100; else scale.en=(+el.value||100)/100;
-        try{localStorage.setItem(STORE, JSON.stringify(scale));}catch(e){}
+        try{ localStorage.setItem(STORE, JSON.stringify(scale)); }catch(e){}
+        try{ window.__memeScale = { ar: scale.ar, en: scale.en, ref: scale.ref || 1 }; }catch(e2){}
         syncSliders(); schedulePaint();
       });
     });
-    var ap=$("meme-scale-apply"); if(ap&&!ap._bound){ap._bound=true;ap.addEventListener("click",function(){schedulePaint();});}
+    var ap=$("meme-scale-apply"); if(ap&&!ap._bound){ap._bound=true;ap.addEventListener("click",function(){
+      try{ window.__memeScale = { ar: scale.ar, en: scale.en, ref: scale.ref || 1 }; }catch(e){}
+      schedulePaint();
+    });}
     var au=$("meme-scale-auto"); if(au&&!au._bound){au._bound=true;au.addEventListener("click",function(){if(typeof autoScale==="function") autoScale(); else if (typeof w.memeAutoScaleLines==="function") w.memeAutoScaleLines(); else schedulePaint();});}
     var rs=$("meme-scale-reset"); if(rs&&!rs._bound){rs._bound=true;rs.addEventListener("click",function(){scale.ar=1;scale.en=1;try{localStorage.setItem(STORE,JSON.stringify(scale));}catch(e){}syncSliders();schedulePaint();});}
     var topAuto=$("meme-auto-scale"); if(topAuto&&!topAuto._bound){topAuto._bound=true;topAuto.addEventListener("click",function(){if(typeof autoScale==="function")autoScale();});}
