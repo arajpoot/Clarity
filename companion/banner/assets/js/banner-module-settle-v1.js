@@ -201,11 +201,13 @@
     var host = $("hijri-temps");
     if (!host) return;
     var mk = $("temp-makkah"), md = $("temp-madinah");
-    var mkV = mk ? mk.textContent : "—";
-    var mdV = md ? md.textContent : "—";
+    var mkV = mk ? mk.textContent.replace(/[^0-9.\-]/g, "") || "—" : "—";
+    var mdV = md ? md.textContent.replace(/[^0-9.\-]/g, "") || "—" : "—";
+    if (!mkV) mkV = "—";
+    if (!mdV) mdV = "—";
     host.innerHTML =
-      '<span class="ht-item"><span>🕋 Makkah</span> <strong id="temp-makkah">' + mkV + "</strong>°C</span>" +
-      '<span class="ht-item"><span>🕌 Madinah</span> <strong id="temp-madinah">' + mdV + "</strong>°C</span>";
+      '<span class="ht-item"><span><span class="ht-ico">🕋</span> Makkah</span> <strong id="temp-makkah">' + mkV + "</strong>°C</span>" +
+      '<span class="ht-item"><span><span class="ht-ico">🕌</span> Madinah</span> <strong id="temp-madinah">' + mdV + "</strong>°C</span>";
   }
 
   function patchOwnerCity() {
