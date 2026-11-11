@@ -476,6 +476,8 @@
   }
 
   function boot() {
+    /* HARD_BOOT 20261111HARD: stills media only — never hide overlay plaques */
+
     /* Default = sacred stills only — Live is user opt-in, no  */
     try { showStill(); } catch (e) {}
     liveOn = false;
