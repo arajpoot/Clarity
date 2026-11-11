@@ -1,4 +1,4 @@
-/*! craft-meme-paint-standard-v1 · C19MEME23
+/*! craft-meme-paint-standard-v1 · C19MEME24
  * Single-owner paint: keep scenery · Arabic top · English · Urdu · ref bottom · gold frame
  * Captures BG from memeLoadImageFromUrl, memeState.img, and canvas snapshot
  * Educational only — not a fatwa
@@ -98,7 +98,7 @@
     if (urParts && urParts.length) {
       ur = urParts.map(function (s) { return s.trim(); }).filter(Boolean).join(" ").trim();
     }
-    /* C19MEME23: never drop online-fetched Urdu when desk text has no Urdu */
+    /* C19MEME24: never drop online-fetched Urdu when desk text has no Urdu */
     if (!ur && w.__memeLayers && w.__memeLayers.ur) ur = w.__memeLayers.ur;
     if (!ur && w.__memeUrduOnline) ur = w.__memeUrduOnline;
     if (!ar && w.__memeLayers && w.__memeLayers.ar) ar = w.__memeLayers.ar;
@@ -252,7 +252,7 @@
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillStyle = color;
-    ctx.shadowColor = "rgba(0,0,0,0.55)";
+    ctx.shadowColor = (w.__memeInkShadow || "rgba(0,0,0,0.55)");
     ctx.shadowBlur = 8;
     ctx.shadowOffsetY = 2;
     for (var i = 0; i < lines.length; i++) ctx.fillText(lines[i], cx, y0 + i * lineH);
@@ -260,26 +260,78 @@
   }
 
 
+
+  function sampleBgLuminance(ctx, w, h) {
+    try {
+      var sw = Math.min(48, w);
+      var sh = Math.min(48, h);
+      var data = ctx.getImageData(0, 0, sw, sh).data;
+      var sum = 0, n = 0;
+      for (var i = 0; i < data.length; i += 16) {
+        var r = data[i], g = data[i+1], b = data[i+2];
+        sum += (0.2126 * r + 0.7152 * g + 0.0722 * b);
+        n++;
+      }
+      return n ? sum / n : 40;
+    } catch (e) {
+      return 40; /* tainted canvas → assume dark scenery */
+    }
+  }
+
+  function contrastPalette(lum) {
+    /* lum 0–255: low = dark bg → light text; high = light bg → dark text */
+    if (lum >= 150) {
+      return {
+        ar: "#0a0a0a",
+        en: "#141414",
+        ur: "#1a1a1a",
+        ref: "#2a2a2a",
+        shadow: "rgba(255,255,255,0.35)",
+        mode: "dark-on-light"
+      };
+    }
+    if (lum >= 90) {
+      return {
+        ar: "#1a1208",
+        en: "#2a1c0a",
+        ur: "#221808",
+        ref: "#3a2a12",
+        shadow: "rgba(255,255,255,0.25)",
+        mode: "mid"
+      };
+    }
+    /* dark background — cream / gold */
+    return {
+      ar: "#f5e6c8",
+      en: "#e8c76b",
+      ur: "rgba(245,230,200,0.92)",
+      ref: "rgba(245,230,200,0.85)",
+      shadow: "rgba(0,0,0,0.65)",
+      mode: "light-on-dark"
+    };
+  }
+
   function paintText(ctx, w, h) {
-    var flags = (typeof window !== "undefined" && window.__memeLayerFlags) ? window.__memeLayerFlags : {ar:true,en:true,ur:true,ref:true};
-    var inkMode = (w.__memeInkMode || "light");
-    var CREAM = inkMode === "gold" ? "#e8c76b" : (inkMode === "dark" ? "#1a1a1a" : "#f5e6c8");
-    var GOLD = inkMode === "dark" ? "#222" : "#e8c76b";
-    var CREAM_DIM = inkMode === "dark" ? "#333" : "rgba(245,230,200,0.88)";
+    var flags = {ar:true,en:true,ur:true,ref:true}; /* C19MEME24: layers always on */
     var fonts = w.__memeFonts || {};
-    var colors = w.__memeColors || {};
-    var colAr = (colors.ar && String(colors.ar).trim()) || CREAM;
-    var colEn = (colors.en && String(colors.en).trim()) || GOLD;
-    var colUr = (colors.ur && String(colors.ur).trim()) || CREAM_DIM;
-    var colRef = (colors.ref && String(colors.ref).trim()) || CREAM_DIM;
-    var inkShadow = inkMode === "dark" ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.55)";
+    var lum = typeof w.__memeBgLum === "number" ? w.__memeBgLum : 40;
+    var pal = contrastPalette(lum);
+    var CREAM = pal.ar;
+    var GOLD = pal.en;
+    var CREAM_DIM = pal.ur;
+    var colAr = pal.ar;
+    var colEn = pal.en;
+    var colUr = pal.ur;
+    var colRef = pal.ref;
+    var inkShadow = pal.shadow;
+    w.__memeInkShadow = inkShadow;
 
     if (w.__memeVignetteOn !== false) drawVignette(ctx, w, h);
     if (w.__memeFrameOn !== false) drawGoldFrame(ctx, w, h);
     var layers = parseLayers(readSourceText());
     var ar = layers.ar || "";
     var en = layers.en || "";
-    var ur = layers.ur || ""; /* C19MEME23: no lastUrduText bank bleed */
+    var ur = layers.ur || ""; /* C19MEME24: no lastUrduText bank bleed */
     var ref = layers.ref || "";
     if (flags) {
       if (flags.ar === false) ar = "";
@@ -363,7 +415,7 @@
   }
 
   function fetchUrduThenPaint() {
-    /* C19MEME23: curated bank first — free API is last resort and audited */
+    /* C19MEME24: curated bank first — free API is last resort and audited */
     try {
       if (w.CraftMemeUrduFetch) {
         w.CraftMemeUrduFetch.loadForCurrentLayers(true);
@@ -391,7 +443,7 @@
     }
     lastUrduKey = key;
     /* try free translation endpoint; fail soft */
-    var url = null; /* C19MEME23: free EN→UR disabled — authentic ayah API only */
+    var url = null; /* C19MEME24: free EN→UR disabled — authentic ayah API only */
     if (w.CraftMemeUrduFetch) {
       var refGuess = "";
       try {
@@ -710,7 +762,7 @@
     setTimeout(fullPaint, 500);
   });
 
-  /* C19MEME23 · single-owner lock — neutralize legacy painters */
+  /* C19MEME24 · single-owner lock — neutralize legacy painters */
   function neutralizeLegacyPainters() {
     try {
       /* wire / atelier / phase-bc direct paints must not stack text */
