@@ -380,3 +380,62 @@ body:not(.solo) .back { display: none !important; }
 }
 .disc { display: none; }
 body.solo .disc { display: block; text-align: center; font-size: 0.68rem; opacity: 0.8; padding: 0.35rem; }
+
+/* Enrichment AV plaques 20261111ENR1 */
+.av-ribbon.controls {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.45rem;
+  background: transparent !important;
+  border: none !important;
+  padding: 0.25rem 0 !important;
+}
+.av-plaque {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(232,213,163,0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 6px 16px rgba(0,0,0,0.25);
+}
+.av-plaque-lab {
+  width: 100%;
+  text-align: center;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 0.1rem;
+}
+.av-plaque.av-live {
+  background: linear-gradient(145deg, rgba(20,60,48,0.75), rgba(8,20,16,0.7));
+  border-color: rgba(80,180,140,0.4);
+}
+.av-plaque.av-radio {
+  background: linear-gradient(145deg, rgba(60,40,20,0.75), rgba(20,14,8,0.7));
+  border-color: rgba(220,170,80,0.4);
+}
+.av-plaque.av-surah {
+  background: linear-gradient(145deg, rgba(30,40,70,0.75), rgba(10,14,28,0.7));
+  border-color: rgba(120,150,220,0.4);
+}
+#live-haramain-btn.is-live {
+  background: linear-gradient(135deg, #b53a3a, #8b1e1e) !important;
+  border-color: rgba(255,150,150,0.5) !important;
+  color: #fff !important;
+}
+#live-haramain-btn.is-still {
+  background: linear-gradient(135deg, #1a6b52, #0f4c3a) !important;
+}
+.ht-ico .ht-svg { width: 26px !important; height: 26px !important; }
+.ht-chip .ht-ico { width: 2rem; height: 2rem; }
+/* Forbid emoji font fallback wiping chips */
+.ht-ico { font-size: 0 !important; }
