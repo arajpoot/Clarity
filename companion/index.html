@@ -393,24 +393,18 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   ></iframe>
 </section>
 <style id="companion-banner-shell-css">
-  .companion-banner-shell {
-    max-width: 56rem;
-    margin: 0.35rem auto 0.75rem;
-    padding: 0 0.5rem;
-  }
+  .companion-banner-shell { max-width: 56rem; margin: 0.25rem auto 0.55rem; padding: 0 0.45rem; }
   .companion-banner-frame {
-    display: block;
-    width: 100%;
-    min-height: 22rem;
-    height: clamp(20rem, 42vw, 28rem);
-    border: 0;
-    border-radius: 16px;
-    background: #0a1210;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+    display: block; width: 100%;
+    min-height: 13.5rem;
+    height: clamp(12.5rem, 28vw, 16.5rem);
+    border: 0; border-radius: 14px; background: #0a1210;
   }
   @media (max-width: 720px) {
-    .companion-banner-frame { min-height: 34rem; height: 36rem; }
+    .companion-banner-frame { min-height: 30rem; height: 32rem; }
   }
+  /* Hide parent skip pill when present */
+  .skip-link, a.skip-to-content, .skip-to-content { display: none !important; }
 </style>
 
 <div id="clarity-visit-pill-bar" role="navigation" aria-label="Last visited sections" class="cv-stitched-banner">
