@@ -453,74 +453,29 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   ></iframe>
 </section>
 <style id="companion-banner-shell-css">
-  .companion-banner-shell {
-    max-width: none;
-    width: 100%;
-    margin: 0 0 0.55rem;
-    padding: 0;
-  }
+/* companion banner shell · 20261111BU1 · full width */
+.companion-banner-shell {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 0 0.65rem !important;
+  padding: 0 !important;
+}
+.companion-banner-frame {
+  display: block !important;
+  width: 100% !important;
+  min-height: 18rem !important;
+  height: clamp(17rem, 36vw, 22rem) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #0a1210;
+}
+@media (max-width: 720px) {
   .companion-banner-frame {
-    display: block;
-    width: 100%;
-    min-height: 14rem;
-    height: clamp(13.5rem, 32vw, 17.5rem);
-    border: 0;
-    border-radius: 0;
-    background: #0a1210;
+    min-height: 44rem !important;
+    height: 46rem !important;
   }
-  @media (max-width: 720px) {
-    .companion-banner-frame { min-height: 34rem; height: 36rem; }
-  }
-  .skip-link, a.skip-to-content, .skip-to-content { display: none !important; }
+}
 
-  /* Bottom door rail — larger pills */
-  #clarity-door-rail.door-rail-bottom,
-  nav.door-rail-bottom {
-    display: flex !important;
-    flex-wrap: nowrap;
-    justify-content: stretch;
-    align-items: stretch;
-    gap: 0.35rem;
-    padding: 0.45rem 0.5rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
-  }
-  #clarity-door-rail .door-rail-btn,
-  nav.door-rail-bottom .door-rail-btn {
-    flex: 1 1 0;
-    min-height: 3.15rem;
-    padding: 0.45rem 0.35rem !important;
-    border-radius: 14px !important;
-    font-size: 0.78rem !important;
-    font-weight: 800 !important;
-    gap: 0.15rem;
-    display: inline-flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.15;
-  }
-  #clarity-door-rail .door-rail-btn .dr-ico,
-  nav.door-rail-bottom .door-rail-btn .dr-ico {
-    font-size: 1.05rem !important;
-    line-height: 1;
-  }
-  #clarity-door-rail .door-rail-btn .dr-label,
-  nav.door-rail-bottom .door-rail-btn .dr-label {
-    font-size: 0.72rem !important;
-    font-weight: 800 !important;
-  }
-  @media (min-width: 720px) {
-    #clarity-door-rail .door-rail-btn,
-    nav.door-rail-bottom .door-rail-btn {
-      min-height: 3.35rem;
-      flex-direction: row;
-      gap: 0.35rem;
-      padding: 0.5rem 0.65rem !important;
-      font-size: 0.82rem !important;
-    }
-    #clarity-door-rail .door-rail-btn .dr-label {
-      font-size: 0.8rem !important;
-    }
-  }
 </style>
 
 <!-- Learning path — global (always visible under banner) · enrichment held -->
@@ -2427,6 +2382,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <!-- C3 deduped cf beacon -->
 <!-- C3 deduped cf beacon -->
 <!-- C4 deduped cf beacon -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
