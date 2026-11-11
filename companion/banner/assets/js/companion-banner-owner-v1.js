@@ -55,6 +55,10 @@
       btn.setAttribute("aria-pressed", live ? "true" : "false");
       btn.classList.toggle("is-live", !!live);
       btn.classList.toggle("is-still", !live);
+      var si = btn.querySelector(".ico-still");
+      var li = btn.querySelector(".ico-live");
+      if (si) si.hidden = !!live;
+      if (li) li.hidden = !live;
     }
   }
 
