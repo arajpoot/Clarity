@@ -332,3 +332,18 @@ body:not(.solo) .back { display: none !important; }
   accent-color: #c9a227;
 }
 .disc { text-align: center; font-size: 0.68rem; opacity: 0.8; padding: 0.35rem; }
+
+
+/* Temps + stills foundation 20261111STILLS */
+.hijri-temps { display:flex!important; flex-direction:column; gap:0.4rem; margin-top:0.45rem; width:100%; }
+.ht-chip { display:flex; align-items:center; gap:0.5rem; padding:0.4rem 0.55rem; border-radius:12px;
+  border:1px solid rgba(201,162,39,0.35); background:linear-gradient(135deg,rgba(15,40,32,0.92),rgba(8,18,14,0.88)); }
+.ht-ico { display:inline-flex; align-items:center; justify-content:center; width:1.75rem; height:1.75rem; flex-shrink:0; }
+.ht-ico .ht-svg { display:block; width:22px; height:22px; }
+.ht-meta { display:flex; flex-direction:column; line-height:1.15; }
+.ht-name { font-size:0.68rem; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:#e8d5a3; }
+.ht-temp { font-size:0.95rem; font-weight:800; color:#f3e8c8; }
+.ht-unit { font-size:0.72rem; opacity:0.85; margin-left:0.1rem; }
+.banner-live-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2; background:#0a1210; }
+.banner-media { position:relative; overflow:hidden; }
+#banner-live[hidden], #banner-video[hidden] { display:none!important; }
