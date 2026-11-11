@@ -1,11 +1,11 @@
-/*! craft-meme-boot-v1 · C19MEME26
+/*! craft-meme-boot-v1 · C19MEME27
  * One ensureVerse · limited paint cycles · less flash
  * Educational only — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  if (w.__CRAFT_MEME_BOOT_V26__) return;
-  w.__CRAFT_MEME_BOOT_V26__ = true;
+  if (w.__CRAFT_MEME_BOOT_V27__) return;
+  w.__CRAFT_MEME_BOOT_V27__ = true;
 
   function $(id) { return d.getElementById(id); }
   function paint() {
@@ -38,6 +38,12 @@
     setTimeout(function () {
       ensureVerse();
       paint();
+      try {
+        if (!(w.__memeBgImage || (w.memeState && w.memeState.img))) {
+          if (typeof w.__memeOnlineFetch === "function") w.__memeOnlineFetch("nature");
+          else if (typeof w.memeFetchBg === "function") w.memeFetchBg("nature");
+        }
+      } catch (eF) {}
     }, 500);
   }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);

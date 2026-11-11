@@ -533,7 +533,7 @@ function schedulePaint() {
     if (!canvas.width) { canvas.width = W; canvas.height = H; }
 
     var bg = resolveBg(canvas);
-    /* C19MEME26: no white flash — fill dark base first, then scenery, then text once */
+    /* C19MEME27: no white flash — fill dark base first, then scenery, then text once */
     if (typeof fillFallback === "function") fillFallback(ctx, W, H);
     else {
       ctx.fillStyle = "#0f2a22";
