@@ -1,0 +1,79 @@
+Bismillah.
+
+HOW TO APPLY THE FIRST FILE (companion-boot.js)
+==============================================
+
+This is written for a non-coder.
+You can give these exact words to the person
+who edits the GitHub repo.
+
+----------------------------------------
+1. ADD THE FILE
+----------------------------------------
+
+Upload or copy this file:
+
+  companion-boot.js
+
+into this location in the repo:
+
+  assets/companion-boot.js
+
+(Full path should be: assets/companion-boot.js)
+
+----------------------------------------
+2. CHANGE THE COMPANION PAGE
+----------------------------------------
+
+Open the Companion page file:
+  companion/index.html
+
+Find the many <script> lines that load the old
+boot / shell / banner files.
+
+Replace those boot/shell lines with ONLY this:
+
+  <!-- T-BOOT-01 · companion-boot · enrichment: held -->
+  <script src="/assets/companion-boot.js?v=20261111BOOT"></script>
+
+Do NOT remove the other feature scripts yet.
+(Those will be handled in a later ticket.)
+
+----------------------------------------
+3. SAVE AND REFRESH
+----------------------------------------
+
+- Save the changes
+- Push / deploy to the live site
+- Hard refresh the page (Ctrl+Shift+R or Cmd+Shift+R)
+- If the site uses a CDN, purge/clear the cache
+
+----------------------------------------
+4. CHECK IT WORKED
+----------------------------------------
+
+Open these pages and confirm they still look normal:
+
+1. https://clarity-dawah.fyi/
+2. https://clarity-dawah.fyi/companion/
+3. https://clarity-dawah.fyi/daily/
+4. https://clarity-dawah.fyi/campus/
+5. https://clarity-dawah.fyi/amana/
+6. https://clarity-dawah.fyi/craft/
+
+On Companion you should still see the banner
+and the educational content (commands / hadith).
+No big error message should appear.
+
+If all six look normal → the first upgrade is successful.
+
+----------------------------------------
+5. SEAL
+----------------------------------------
+
+Write a short note:
+  "T-BOOT-01 done. Enrichment held. Bismillah."
+
+Then you can move to the next ticket later.
+
+Bismillah.
