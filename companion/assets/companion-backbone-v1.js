@@ -1,17 +1,16 @@
-/*! Companion backbone v1.2 · Bismillah
- * City name resolve · hide all Meme icons · Kaaba Makkah temp · glass settle
+/*! Companion backbone v1.3 · Bismillah
+ * Real city name · Kaaba Makkah · next prayer countdown · hide Meme
  * Educational only — not a fatwa · enrichment held
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_BACKBONE_V1__) {
-    /* allow hot-upgrade of functions via re-settle only if same build flag soft */
-  }
   w.__CLARITY_COMPANION_BACKBONE_V1__ = true;
-  w.__CLARITY_COMPANION_BACKBONE_BUILD__ = "20261110BB12";
+  w.__CLARITY_COMPANION_BACKBONE_BUILD__ = "20261110BB13";
 
   var KEY = "clarity_salah_location_v1";
   var applying = false;
+  var lastTimings = null;
+  var countdownTimer = null;
 
   function isCompanion() {
     try {
@@ -37,17 +36,113 @@
       if (o.city) localStorage.setItem("clarity_salah_city", o.city);
     } catch (e) {}
   }
+
+  function isVagueCity(s) {
+    s = (s || "").trim();
+    if (!s) return true;
+    if (/^near you$/i.test(s)) return true;
+    if (/locating/i.test(s)) return true;
+    if (/^-?\d+(\.\d+)?\s*°,?\s*-?\d+/.test(s)) return true;
+    if (/tap update/i.test(s)) return true;
+    return false;
+  }
+
   function setCityLabel(label) {
     var loc = d.getElementById("hijri-local-loc");
     if (!loc) return;
     var t = (label || "").trim();
-    if (!t || /^near you$/i.test(t)) t = "Locating…";
+    if (isVagueCity(t)) t = "Locating…";
     loc.textContent = t;
     loc.classList.add("salah-city");
   }
+
+  function parseHHMM(s) {
+    if (!s) return null;
+    s = String(s).trim().split(" ")[0];
+    var p = s.split(":");
+    if (p.length < 2) return null;
+    var h = parseInt(p[0], 10);
+    var m = parseInt(p[1], 10);
+    if (isNaN(h) || isNaN(m)) return null;
+    return { h: h, m: m };
+  }
+
+  function ensureNextPrayerEl() {
+    var host = d.querySelector(".salah-times-section");
+    if (!host) return null;
+    var el = d.getElementById("clarity-next-prayer");
+    if (!el) {
+      el = d.createElement("div");
+      el.id = "clarity-next-prayer";
+      el.innerHTML =
+        '<span class="np-label">Next prayer</span>' +
+        '<span class="np-name">—</span>' +
+        '<span class="np-count">—</span>';
+      var clock = d.getElementById("hijri-local-time");
+      if (clock && clock.parentNode) clock.parentNode.insertBefore(el, clock);
+      else host.appendChild(el);
+    }
+    return el;
+  }
+
+  function updateCountdown() {
+    var el = ensureNextPrayerEl();
+    if (!el || !lastTimings) return;
+    var order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    var now = new Date();
+    var nextName = null;
+    var nextDate = null;
+    for (var i = 0; i < order.length; i++) {
+      var name = order[i];
+      var hm = parseHHMM(lastTimings[name]);
+      if (!hm) continue;
+      var dt = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hm.h, hm.m, 0, 0);
+      if (dt.getTime() > now.getTime() + 500) {
+        nextName = name;
+        nextDate = dt;
+        break;
+      }
+    }
+    if (!nextName) {
+      /* tomorrow Fajr */
+      var f = parseHHMM(lastTimings.Fajr);
+      if (f) {
+        nextName = "Fajr";
+        nextDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, f.h, f.m, 0, 0);
+      }
+    }
+    var nameEl = el.querySelector(".np-name");
+    var countEl = el.querySelector(".np-count");
+    if (!nextName || !nextDate) {
+      if (nameEl) nameEl.textContent = "—";
+      if (countEl) countEl.textContent = "—";
+      return;
+    }
+    var ms = nextDate.getTime() - now.getTime();
+    if (ms < 0) ms = 0;
+    var totalMin = Math.floor(ms / 60000);
+    var hh = Math.floor(totalMin / 60);
+    var mm = totalMin % 60;
+    var ss = Math.floor((ms % 60000) / 1000);
+    if (nameEl) nameEl.textContent = nextName;
+    if (countEl) {
+      countEl.textContent =
+        (hh > 0 ? hh + "h " : "") +
+        mm + "m " +
+        (hh === 0 ? ss + "s" : "");
+    }
+  }
+
+  function startCountdown() {
+    updateCountdown();
+    if (countdownTimer) clearInterval(countdownTimer);
+    countdownTimer = setInterval(updateCountdown, 1000);
+  }
+
   function renderTimes(t, label) {
     var list = d.getElementById("salah-times-list");
     if (!list || !t) return;
+    lastTimings = t;
     var order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
     list.innerHTML = order
       .map(function (name) {
@@ -56,8 +151,10 @@
         return '<li><span class="salah-name">' + name + '</span><span class="salah-time">' + val + "</span></li>";
       })
       .join("");
-    if (label && !/^near you$/i.test(label)) setCityLabel(label);
+    if (label && !isVagueCity(label)) setCityLabel(label);
+    startCountdown();
   }
+
   function fetchByCoords(lat, lon, label) {
     return fetch(
       "https://api.aladhan.com/v1/timings?latitude=" +
@@ -77,36 +174,82 @@
         renderTimes(t, label);
       });
   }
-  /** Prefer a real city name — never leave "Near you" if reverse-geo works */
+
+  /** Multi-source city name — avoid leaving coordinates on screen */
   function reverseGeocode(lat, lon) {
-    return fetch(
+    var bdc =
       "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" +
-        lat +
-        "&longitude=" +
-        lon +
-        "&localityLanguage=en",
-      { credentials: "omit" }
-    )
+      lat +
+      "&longitude=" +
+      lon +
+      "&localityLanguage=en";
+    var nom =
+      "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
+      lat +
+      "&lon=" +
+      lon +
+      "&zoom=12&addressdetails=1";
+
+    function fromBdc(j) {
+      if (!j) return "";
+      return (
+        j.city ||
+        j.locality ||
+        (j.localityInfo &&
+          j.localityInfo.administrative &&
+          j.localityInfo.administrative[0] &&
+          j.localityInfo.administrative[0].name) ||
+        j.principalSubdivision ||
+        ""
+      );
+    }
+    function fromNom(j) {
+      if (!j || !j.address) return j && j.name ? j.name : "";
+      var a = j.address;
+      return a.city || a.town || a.village || a.municipality || a.county || a.state || "";
+    }
+
+    return fetch(bdc, { credentials: "omit" })
       .then(function (r) {
         return r.json();
       })
       .then(function (j) {
-        var city =
-          (j &&
-            (j.city ||
-              j.locality ||
-              j.localityInfo && j.localityInfo.administrative && j.localityInfo.administrative[0] && j.localityInfo.administrative[0].name ||
-              j.principalSubdivision)) ||
-          "";
+        var city = fromBdc(j);
         var country = (j && (j.countryName || j.countryCode)) || "";
-        if (!city && country) city = country;
-        if (!city) city = lat.toFixed(2) + "°, " + lon.toFixed(2) + "°";
-        return { city: city, country: country };
+        if (city && !isVagueCity(city)) return { city: city, country: country };
+        return fetch(nom, {
+          credentials: "omit",
+          headers: { Accept: "application/json" }
+        })
+          .then(function (r2) {
+            return r2.json();
+          })
+          .then(function (j2) {
+            var c2 = fromNom(j2);
+            if (c2) return { city: c2, country: country || (j2.address && j2.address.country) || "" };
+            return { city: city || "Saved location", country: country };
+          })
+          .catch(function () {
+            return { city: city || "Saved location", country: country };
+          });
       })
       .catch(function () {
-        return { city: lat.toFixed(2) + "°, " + lon.toFixed(2) + "°", country: "" };
+        return fetch(nom, {
+          credentials: "omit",
+          headers: { Accept: "application/json" }
+        })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (j) {
+            return { city: fromNom(j) || "Saved location", country: (j.address && j.address.country) || "" };
+          })
+          .catch(function () {
+            return { city: "Saved location", country: "" };
+          });
       });
   }
+
   function ensureUpdateBtn() {
     var host = d.querySelector(".salah-times-section");
     if (!host || d.getElementById("clarity-salah-loc-btn")) return;
@@ -136,6 +279,7 @@
     };
     host.appendChild(btn);
   }
+
   function requestGeo(force) {
     return new Promise(function (resolve, reject) {
       if (!navigator.geolocation) return reject(new Error("no geo"));
@@ -163,38 +307,35 @@
         function (err) {
           reject(err || new Error("geo denied"));
         },
-        { enableHighAccuracy: false, timeout: 10000, maximumAge: force ? 0 : 600000 }
+        { enableHighAccuracy: false, timeout: 12000, maximumAge: force ? 0 : 300000 }
       );
     });
   }
+
   function applySaved() {
     var saved = readSaved();
     if (!saved || applying) return !!saved;
     applying = true;
-    var label = saved.city;
-    if (!label || /^near you$/i.test(label)) {
-      /* refresh name once if old save was vague */
-      reverseGeocode(saved.lat, saved.lon).then(function (place) {
-        saved.city = place.city;
-        saved.country = place.country;
-        writeSaved(saved);
-        setCityLabel(place.city);
-        return fetchByCoords(saved.lat, saved.lon, place.city);
-      }).finally(function () {
-        applying = false;
-      });
+    function done() {
+      applying = false;
+    }
+    if (isVagueCity(saved.city)) {
+      reverseGeocode(saved.lat, saved.lon)
+        .then(function (place) {
+          saved.city = place.city;
+          saved.country = place.country;
+          writeSaved(saved);
+          setCityLabel(place.city);
+          return fetchByCoords(saved.lat, saved.lon, place.city);
+        })
+        .finally(done);
       return true;
     }
-    setCityLabel(label);
-    fetchByCoords(saved.lat, saved.lon, label)
-      .catch(function () {
-        setCityLabel(label + " (cached)");
-      })
-      .then(function () {
-        applying = false;
-      });
+    setCityLabel(saved.city);
+    fetchByCoords(saved.lat, saved.lon, saved.city).finally(done);
     return true;
   }
+
   function patchOwnerSalah() {
     if (typeof w.loadSalah === "function" && !w.loadSalah.__bb) {
       var orig = w.loadSalah;
@@ -209,67 +350,43 @@
     }
   }
 
-  /* ─── Remove ALL Meme icons/buttons site-wide ─── */
   function hideAllMeme() {
     d.querySelectorAll("button, a, [role='button']").forEach(function (el) {
       var t = (el.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
-      var title = (el.getAttribute("title") || "").toLowerCase();
       var oc = (el.getAttribute("onclick") || "").toLowerCase();
-      var meme =
+      if (
         /^🎨?\s*meme\b/.test(t) ||
         t === "meme" ||
         t === "to meme studio" ||
-        t === "to meme" ||
-        /meme/.test(title) && t.length < 28 ||
-        /sendtomeme|draft\('meme'\)|claritymem|tomemestudio|calligsendenglishtomeme/.test(oc);
-      if (meme) {
+        /sendtomeme|draft\('meme'\)|tomemestudio|calligsendenglishtomeme/.test(oc)
+      ) {
         el.setAttribute("data-meme-hide", "1");
         el.style.display = "none";
-        el.setAttribute("aria-hidden", "true");
       }
     });
   }
 
-  /* Kaaba icon for Makkah temperature row */
   function kaabaTempIcon() {
     var host = d.getElementById("hijri-temps");
     if (!host) return;
-    host.querySelectorAll(".ht-item, span").forEach(function (el) {
-      var t = el.textContent || "";
-      if (/Makkah|Mecca/i.test(t)) {
-        /* replace leading mosque/kaaba-ish with Kaaba */
-        if (el.childNodes.length && el.childNodes[0].nodeType === 3) {
-          el.childNodes[0].textContent = el.childNodes[0].textContent.replace(/^[🕌🕋]\s*/, "🕋 ");
-        } else {
-          var html = el.innerHTML;
-          if (/Makkah|Mecca/i.test(html) && !/🕋/.test(html)) {
-            el.innerHTML = html.replace(/(🕌\s*)?(Makkah|Mecca)/i, "🕋 $2");
-          } else if (/🕌/.test(html) && /Makkah|Mecca/i.test(html)) {
-            el.innerHTML = html.replace(/🕌/g, "🕋");
-          }
-        }
-      }
-    });
+    /* Rebuild rows cleanly if needed */
     var mk = d.getElementById("temp-makkah");
-    if (mk) {
-      var row = mk.closest(".ht-item") || mk.parentElement;
-      if (row && !/🕋/.test(row.textContent || "")) {
-        row.innerHTML = row.innerHTML.replace(/🕌/g, "🕋");
-        if (!/🕋/.test(row.innerHTML)) {
-          row.innerHTML = "🕋 Makkah <strong id=\"temp-makkah\">" + (mk.textContent || "—") + "</strong>°C";
-        }
-      }
-    }
-  }
-
-  function hardenPaths() {
-    var track = d.querySelector(".cgs-track, #clarity-gate-strip");
-    if (track) track.setAttribute("data-path-hardened", "1");
+    var md = d.getElementById("temp-madinah");
+    var mkVal = mk ? mk.textContent : "—";
+    var mdVal = md ? md.textContent : "—";
+    host.innerHTML =
+      '<span class="ht-item"><span>🕋 Makkah</span> <strong id="temp-makkah">' +
+      mkVal +
+      "</strong>°C</span>" +
+      '<span class="ht-item"><span>🕌 Madinah</span> <strong id="temp-madinah">' +
+      mdVal +
+      "</strong>°C</span>";
   }
 
   function settle() {
     if (!isCompanion()) return;
     ensureUpdateBtn();
+    ensureNextPrayerEl();
     patchOwnerSalah();
     if (!applySaved()) {
       requestGeo(false).catch(function () {
@@ -283,25 +400,18 @@
     }
     hideAllMeme();
     kaabaTempIcon();
-    hardenPaths();
+    setTimeout(kaabaTempIcon, 2000);
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(settle, 300); });
   else setTimeout(settle, 300);
-  setTimeout(settle, 1200);
-  setTimeout(function () {
-    hideAllMeme();
-    kaabaTempIcon();
-  }, 2500);
+  setTimeout(settle, 1400);
   d.addEventListener("click", function () {
-    setTimeout(hideAllMeme, 120);
+    setTimeout(hideAllMeme, 100);
   });
   try {
     new MutationObserver(function () {
-      setTimeout(function () {
-        hideAllMeme();
-        kaabaTempIcon();
-      }, 30);
+      setTimeout(hideAllMeme, 40);
     }).observe(d.documentElement, { childList: true, subtree: true });
   } catch (e) {}
 })(window, document);
