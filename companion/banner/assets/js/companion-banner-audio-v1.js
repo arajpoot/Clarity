@@ -7,10 +7,25 @@
   var RECITER = {
     afs: "ar.alafasy",
     ar_alafasy: "ar.alafasy",
+    "ar.alafasy": "ar.alafasy",
     ar_abdulbasitmurattal: "ar.abdulbasitmurattal",
+    "ar.abdulbasitmurattal": "ar.abdulbasitmurattal",
+    ar_abdulsamad: "ar.abdulsamad",
+    "ar.abdulsamad": "ar.abdulsamad",
     ar_hudhaify: "ar.hudhaify",
+    "ar.hudhaify": "ar.hudhaify",
     ar_minshawi: "ar.minshawi",
-    ar_muaiqly: "ar.muaiqly"
+    "ar.minshawi": "ar.minshawi",
+    ar_muaiqly: "ar.muaiqly",
+    "ar.muaiqly": "ar.muaiqly",
+    ar_husary: "ar.husary",
+    "ar.husary": "ar.husary",
+    ar_shaatree: "ar.shaatree",
+    "ar.shaatree": "ar.shaatree",
+    ar_aymanswoed: "ar.aymanswoed",
+    "ar.aymanswoed": "ar.aymanswoed",
+    ar_tablawi: "ar.tablawi",
+    "ar.tablawi": "ar.tablawi"
   };
 
   var audio = null;
@@ -273,7 +288,38 @@
     }
   }
 
+  
+  function stopAll() {
+    try { if (audio) { audio.pause(); audio.currentTime = 0; } } catch (e) {}
+    pauseOtherAudio(null);
+    setStreamUi(false);
+    var sb = document.getElementById("stream-btn");
+    if (sb) sb.textContent = "Listen";
+  }
+  function playSelected() {
+    var sel = document.getElementById("surah-list-pill");
+    if (sel && sel.value) {
+      if (typeof w.clarityPlaySurahFromSelect === "function") w.clarityPlaySurahFromSelect(sel);
+      return;
+    }
+    var streamBtn = document.getElementById("stream-btn");
+    if (streamBtn) streamBtn.click();
+  }
+  function wirePlayStop() {
+    var play = document.getElementById("av-play-btn");
+    var stop = document.getElementById("av-stop-btn");
+    if (play && !play.__wired) {
+      play.__wired = true;
+      play.addEventListener("click", function () { playSelected(); });
+    }
+    if (stop && !stop.__wired) {
+      stop.__wired = true;
+      stop.addEventListener("click", function () { stopAll(); });
+    }
+  }
+
   function boot() {
+    wirePlayStop();
     ensureAudio();
     applyVolume(ensureAudio());
     wirePills();

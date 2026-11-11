@@ -3,6 +3,7 @@
   "use strict";
   /* allow upgrade */
   w.__COMPANION_BANNER_OWNER_V1__ = true;
+  w.__CLARITY_BANNER_MODULE_OWNER__ = "20261111BU1";
 
   function $(id) { return d.getElementById(id); }
 
@@ -14,12 +15,16 @@
     makkah: [
       "https://www.youtube-nocookie.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
       "https://www.youtube.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
-      "https://www.youtube-nocookie.com/embed/NJfqVXQY5Sc?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
+      "https://www.youtube-nocookie.com/embed/NJfqVXQY5Sc?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube.com/embed/NJfqVXQY5Sc?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube-nocookie.com/embed/5IDQ-h5fEHc?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
     ],
     madinah: [
       "https://www.youtube-nocookie.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
       "https://www.youtube.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
-      "https://www.youtube-nocookie.com/embed/s17YH8xrCS8?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
+      "https://www.youtube-nocookie.com/embed/s17YH8xrCS8?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube.com/embed/s17YH8xrCS8?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube-nocookie.com/embed/2xyRm2q9Y7g?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
     ]
   };
 
