@@ -6,13 +6,14 @@
 <title>Companion Banner · Clarity</title>
 <meta name="description" content="Self-contained Clarity Companion banner: Hijrī, ṣalāh, Ḥaramain, radio. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/banner/"/>
-<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261111BU1"/>
+<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261111STILLS"/>
 </head>
 <body>
 <p class="back"><a href="/companion/">← Companion</a> · banner module</p>
 
 <main class="banner" id="clarity-final-banner-controls-v2">
   <div class="banner-media" id="banner-media">
+    <video id="banner-video" class="banner-live-video" playsinline controls muted hidden></video>
     <iframe id="banner-live" class="banner-live-iframe" title="Ḥaramain live" hidden
       allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen playsinline></iframe>
     <img id="banner-img" class="banner-still-img" alt="Masjid al-Haram"
@@ -29,9 +30,21 @@
       <p id="hijri-cal-meta">…</p>
       <div id="hijri-cal-grid" class="hijri-cal-grid"></div>
       <p id="hijri-next-event" class="hijri-next-event"><span id="hijri-ms-event"></span></p>
-      <div id="hijri-temps" class="hijri-temps">
-        <span class="ht-item"><span><span class="ht-ico">🕋</span> Makkah</span> <strong id="temp-makkah">—</strong>°C</span>
-        <span class="ht-item"><span><span class="ht-ico">🕌</span> Madinah</span> <strong id="temp-madinah">—</strong>°C</span>
+      <div id="hijri-temps" class="hijri-temps" role="group" aria-label="Haramain temperatures">
+        <div class="ht-chip" data-city="makkah">
+          <span class="ht-ico" aria-hidden="true"><svg class="ht-svg kaaba" viewBox="0 0 64 64" width="22" height="22" aria-hidden="true" focusable="false"><rect x="12" y="18" width="40" height="36" rx="3" fill="#1a1208" stroke="#c9a227" stroke-width="2"/><rect x="22" y="28" width="20" height="14" rx="1.5" fill="#c9a227" opacity=".9"/><path d="M12 26h40" stroke="#e8d5a3" stroke-width="1.5"/><path d="M20 18v-4h24v4" fill="none" stroke="#c9a227" stroke-width="2"/></svg></span>
+          <span class="ht-meta">
+            <span class="ht-name">Makkah</span>
+            <span class="ht-temp"><strong id="temp-makkah">—</strong><span class="ht-unit">°C</span></span>
+          </span>
+        </div>
+        <div class="ht-chip" data-city="madinah">
+          <span class="ht-ico" aria-hidden="true"><svg class="ht-svg masjid" viewBox="0 0 64 64" width="22" height="22" aria-hidden="true" focusable="false"><path d="M32 8l18 12v8H14v-8L32 8z" fill="#c9a227"/><circle cx="32" cy="14" r="3" fill="#f3e8c8"/><rect x="14" y="28" width="36" height="24" rx="2" fill="#0f4c3a" stroke="#c9a227" stroke-width="1.5"/><rect x="28" y="36" width="8" height="16" fill="#e8d5a3"/><path d="M20 28v-6m24 6v-6" stroke="#c9a227" stroke-width="2"/><circle cx="20" cy="20" r="2" fill="#c9a227"/><circle cx="44" cy="20" r="2" fill="#c9a227"/></svg></span>
+          <span class="ht-meta">
+            <span class="ht-name">Madinah</span>
+            <span class="ht-temp"><strong id="temp-madinah">—</strong><span class="ht-unit">°C</span></span>
+          </span>
+        </div>
       </div>
     </section>
 
@@ -109,10 +122,11 @@
 
 <p class="disc">Educational only — not a fatwa. Confirm times locally.</p>
 
-<script src="assets/js/companion-banner-owner-v1.js?v=20261111BU1"></script>
-<script src="assets/js/companion-banner-audio-v1.js?v=20261111BU1"></script>
-<script src="assets/js/companion-haramain-temps-v1.js?v=20261111BU1"></script>
-<script src="assets/js/banner-module-settle-v1.js?v=20261111BU1"></script>
+<script src="assets/js/companion-banner-owner-v1.js?v=20261111STILLS"></script>
+<script src="assets/js/companion-banner-audio-v1.js?v=20261111STILLS"></script>
+<script src="assets/js/companion-haramain-temps-v1.js?v=20261111STILLS"></script>
+<script src="assets/js/banner-module-settle-v1.js?v=20261111STILLS"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
