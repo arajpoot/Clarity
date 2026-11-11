@@ -453,29 +453,41 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   ></iframe>
 </section>
 <style id="companion-banner-shell-css">
-/* companion banner shell · 20261111BU1 · full width */
+/* companion banner shell · 20261111HARD */
+.skip-link, a.skip-link, .skip-to-content, a[href="#main-content"].skip-link {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
 .companion-banner-shell {
   max-width: none !important;
   width: 100% !important;
   margin: 0 0 0.65rem !important;
   padding: 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 .companion-banner-frame {
   display: block !important;
   width: 100% !important;
-  min-height: 18rem !important;
-  height: clamp(17rem, 36vw, 22rem) !important;
+  min-height: 16.5rem !important;
+  height: clamp(16rem, 34vw, 21rem) !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background: #0a1210;
+  background: #0a1210 !important;
 }
 @media (max-width: 720px) {
   .companion-banner-frame {
-    min-height: 44rem !important;
-    height: 46rem !important;
+    min-height: 38rem !important;
+    height: 40rem !important;
   }
 }
-
 </style>
 
 <!-- Learning path — global (always visible under banner) · enrichment held -->
@@ -596,7 +608,7 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   </div>
 </noscript>
 
-<a href="#main-content" class="skip-link">Skip to content</a>
+
 <audio id="quran-audio-dup1" preload="none" crossorigin="anonymous"></audio><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
 
 <div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub is-active active" data-rrra-hub="reminder" aria-hidden="false">
@@ -2382,6 +2394,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <!-- C3 deduped cf beacon -->
 <!-- C3 deduped cf beacon -->
 <!-- C4 deduped cf beacon -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
