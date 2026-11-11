@@ -345,6 +345,66 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   ]
 }
 </script>
+
+<style id="clarity-learning-path-css">
+  #clarity-learning-path.clarity-learning-path-strip {
+    display: block !important;
+    visibility: visible !important;
+    max-width: 56rem;
+    margin: 0.35rem auto 0.65rem;
+    padding: 0.55rem 0.75rem 0.65rem;
+    border-radius: 14px;
+    border: 1px solid rgba(212,180,90,0.32);
+    background: linear-gradient(165deg, rgba(15,76,58,0.2), rgba(8,18,14,0.45));
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 6px 18px rgba(0,0,0,0.2);
+  }
+  #clarity-learning-path .clp-hint {
+    margin: 0 0 0.45rem;
+    text-align: center;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    opacity: 0.92;
+    color: #e8f0ec;
+  }
+  #clarity-learning-path .clarity-gate-switcher {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  #clarity-learning-path .cgs-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #e8d5a3;
+    margin-right: 0.15rem;
+  }
+  #clarity-learning-path .cgs-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.28rem;
+    min-height: 2.55rem;
+    padding: 0.4rem 0.7rem !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(212,180,90,0.35);
+    background: rgba(0,0,0,0.28);
+    color: inherit;
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
+    cursor: pointer;
+  }
+  #clarity-learning-path .cgs-btn .cgs-ico { font-size: 1rem; }
+  #clarity-learning-path .cgs-btn.is-active,
+  #clarity-learning-path .cgs-btn[aria-pressed="true"] {
+    background: rgba(30,125,94,0.5);
+    border-color: rgba(212,180,90,0.55);
+  }
+  /* Avoid double track inside Reminder hub when global strip present */
+  .rrra-hub .clarity-gate-switcher.rrra-sitewide { display: none !important; }
+</style>
+
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -462,6 +522,20 @@ html[data-clarity-room="companion"] .amana-vault-interior {
     }
   }
 </style>
+
+<!-- Learning path — global (always visible under banner) · enrichment held -->
+<section id="clarity-learning-path" class="clarity-learning-path-strip" aria-label="Learning path">
+  <p class="clp-hint">Phased learning — start as Seeker. A short quiz unlocks the next door once; earlier sections stay with you.</p>
+  <div class="clarity-gate-switcher rrra-sitewide clp-switcher" role="group" aria-label="Learning track — switch anytime">
+    <span class="cgs-label">Track</span>
+    <button type="button" class="cgs-btn cgs-seeker" data-gate="seeker" onclick="try{claritySwitchGate('seeker')}catch(e){}" title="Curious Seeker — purpose, prophecy, Qur’an, next life"><span class="cgs-ico" aria-hidden="true">🔭</span><span class="cgs-txt"><span class="cgs-num">1</span> Seeker</span></button>
+    <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="try{claritySwitchGate('new_muslim')}catch(e){}" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
+    <button type="button" class="cgs-btn cgs-daily" data-gate="practicing" onclick="try{claritySwitchGate('practicing')}catch(e){}" title="Daily Muslim — streaks, tajweed, light legacy"><span class="cgs-ico" aria-hidden="true">📿</span><span class="cgs-txt"><span class="cgs-num">3</span> Daily</span></button>
+    <button type="button" class="cgs-btn cgs-dai" data-gate="dai" onclick="try{claritySwitchGate('dai')}catch(e){}" title="Aspiring Da’i — sincerity, sources, calm dawah"><span class="cgs-ico" aria-hidden="true">🕊️</span><span class="cgs-txt"><span class="cgs-num">4</span> Da’i</span></button>
+    <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn-global" title="Reset progress to Seeker level (optional)" onclick="try{clarityPathResetToSeeker()}catch(e){}"><span class="cgs-ico" aria-hidden="true">↺</span><span class="cgs-txt">Reset</span></button>
+  </div>
+</section>
+
 
 <div id="clarity-visit-pill-bar" role="navigation" aria-label="Last visited sections" class="cv-stitched-banner">
   <span class="cv-label">Last</span>
