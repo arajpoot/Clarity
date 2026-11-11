@@ -1,22 +1,22 @@
-/*! Companion backbone v1 · campus-quiet · one sheet
- * Bismillah · educational only — not a fatwa · enrichment held
+/*! Companion backbone v1.2 · glass plaques · embossed type · Bismillah
+ * Educational only — not a fatwa · enrichment held
  */
 
-/* Room nav — always visible */
-html[data-clarity-room="companion"] .clarity-room-nav {
-  display: flex !important;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.35rem;
+/* ═══ Hide Meme controls site-wide ═══ */
+html[data-clarity-room="companion"] button[data-meme-hide="1"],
+html[data-clarity-room="companion"] a[data-meme-hide="1"],
+html[data-clarity-room="companion"] button[data-meme-dup="1"],
+html[data-clarity-room="companion"] a[data-meme-dup="1"] {
+  display: none !important;
 }
 
-/* Banner overlay grid */
+/* ═══ Banner overlay symmetry ═══ */
 html[data-clarity-room="companion"] .banner-overlay {
   display: grid !important;
-  grid-template-columns: minmax(7.5rem, 10.5rem) minmax(0, 1fr) minmax(7.5rem, 10.5rem);
-  gap: 0.55rem 0.65rem;
+  grid-template-columns: minmax(8rem, 11rem) minmax(0, 1fr) minmax(8rem, 11rem);
+  gap: 0.6rem 0.7rem;
   align-items: stretch;
-  padding: 0.55rem 0.65rem 0.7rem;
+  padding: 0.6rem 0.7rem 0.75rem;
   box-sizing: border-box;
 }
 @media (max-width: 720px) {
@@ -28,84 +28,163 @@ html[data-clarity-room="companion"] .banner-overlay {
   html[data-clarity-room="companion"] .banner-side.right { order: 3; }
 }
 
+/* ═══ Glass plaque shared language ═══ */
 html[data-clarity-room="companion"] .banner-side .hijri-cal-section,
 html[data-clarity-room="companion"] .banner-side .salah-times-section,
-html[data-clarity-room="companion"] .banner-center .rabbana-box {
-  background: linear-gradient(160deg, rgba(12,28,22,0.72), rgba(8,18,14,0.55));
-  border: 1px solid rgba(212,180,90,0.32);
-  border-radius: 14px;
-  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 8px 22px rgba(0,0,0,0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+html[data-clarity-room="companion"] .banner-center .rabbana-box,
+html[data-clarity-room="companion"] .banner-center .banner-brand-plate,
+html[data-clarity-room="companion"] .banner-av-plaque {
+  position: relative;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 38%, rgba(12,28,22,0.55) 100%),
+    rgba(8, 18, 14, 0.52);
+  border: 1px solid rgba(232, 213, 163, 0.34);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.14) inset,
+    0 -1px 0 rgba(0,0,0,0.22) inset,
+    0 10px 28px rgba(0,0,0,0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+html[data-clarity-room="companion"] .banner-side .hijri-cal-section::before,
+html[data-clarity-room="companion"] .banner-side .salah-times-section::before,
+html[data-clarity-room="companion"] .banner-center .rabbana-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(125deg, rgba(255,255,255,0.12) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+}
+html[data-clarity-room="companion"] .banner-side .hijri-cal-section > *,
+html[data-clarity-room="companion"] .banner-side .salah-times-section > *,
+html[data-clarity-room="companion"] .banner-center .rabbana-box > * {
+  position: relative;
+  z-index: 1;
 }
 
+/* Embossed lettering */
+html[data-clarity-room="companion"] .banner-overlay,
+html[data-clarity-room="companion"] .salah-title,
+html[data-clarity-room="companion"] .cal-title,
+html[data-clarity-room="companion"] .banner-brand,
+html[data-clarity-room="companion"] .rabbana-arabic {
+  text-shadow: 0 1px 0 rgba(0,0,0,0.35), 0 0 1px rgba(232,213,163,0.15);
+}
+html[data-clarity-room="companion"] .salah-title,
+html[data-clarity-room="companion"] .cal-title {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: #e8d5a3;
+  text-align: center;
+}
+html[data-clarity-room="companion"] .banner-brand .brand-name {
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #f3e8c8;
+}
+html[data-clarity-room="companion"] .on-device-ok,
+html[data-clarity-room="companion"] .brand-ondev {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.66rem;
+  font-weight: 800;
+  padding: 0.14rem 0.42rem;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 200, 140, 0.5);
+  background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(30,125,94,0.4));
+  color: #c8f0d4;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+}
+html[data-clarity-room="companion"] .banner-brand .on-device-ok + .on-device-ok {
+  display: none !important;
+}
+
+/* Temps — Kaaba Makkah · Madinah mosque */
 html[data-clarity-room="companion"] .hijri-temps {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  margin-top: 0.35rem;
+  gap: 0.22rem;
+  margin-top: 0.4rem;
   font-size: 0.68rem;
 }
 html[data-clarity-room="companion"] .hijri-temps .ht-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 0.4rem;
-  padding: 0.2rem 0.35rem;
-  border-radius: 8px;
-  border: 1px solid rgba(212,180,90,0.18);
-  background: rgba(0,0,0,0.18);
+  padding: 0.22rem 0.4rem;
+  border-radius: 9px;
+  border: 1px solid rgba(212,180,90,0.22);
+  background: rgba(0,0,0,0.2);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset;
 }
+html[data-clarity-room="companion"] .hijri-temps .ht-item strong {
+  color: #e8d5a3;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+}
+
+/* Salah city */
 html[data-clarity-room="companion"] #hijri-local-loc,
 html[data-clarity-room="companion"] .salah-city {
   display: block;
-  margin-top: 0.25rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #e8d5a3;
+  margin-top: 0.28rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #f0e6c8;
   text-align: center;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.4);
 }
-html[data-clarity-room="companion"] #hijri-local-loc::before { content: "📍 "; opacity: 0.85; }
-
-html[data-clarity-room="companion"] .brand-ondev,
-html[data-clarity-room="companion"] .on-device-ok {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 0.15rem 0.45rem;
-  border-radius: 999px;
-  border: 1px solid rgba(120, 200, 140, 0.45);
-  background: rgba(30, 125, 94, 0.35);
-  color: #c8f0d4;
-}
-html[data-clarity-room="companion"] .banner-brand .on-device-ok + .on-device-ok,
-html[data-clarity-room="companion"] .banner-brand .brand-ondev + .brand-ondev {
-  display: none !important;
+html[data-clarity-room="companion"] #hijri-local-loc::before {
+  content: "📍 ";
+  opacity: 0.9;
 }
 
-button[data-meme-dup="1"],
-a[data-meme-dup="1"] {
-  display: none !important;
+/* AV controls as sleek plaque row */
+html[data-clarity-room="companion"] .banner-center .banner-controls,
+html[data-clarity-room="companion"] .banner-center .banner-av-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(232, 213, 163, 0.28);
+  background:
+    linear-gradient(155deg, rgba(255,255,255,0.08), rgba(8,18,14,0.45));
+  box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset, 0 6px 16px rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .salah-loc-refresh {
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
   width: 100%;
   font-size: 0.68rem;
-  font-weight: 700;
-  padding: 0.28rem 0.45rem;
-  border-radius: 8px;
-  border: 1px solid rgba(212,180,90,0.35);
-  background: rgba(0,0,0,0.22);
-  color: inherit;
+  font-weight: 800;
+  padding: 0.3rem 0.45rem;
+  border-radius: 9px;
+  border: 1px solid rgba(212,180,90,0.4);
+  background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(0,0,0,0.22));
+  color: #f0e6c8;
   cursor: pointer;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset;
 }
 .salah-loc-refresh:hover {
-  border-color: rgba(212, 180, 90, 0.55);
-  background: rgba(30, 125, 94, 0.28);
+  border-color: rgba(212, 180, 90, 0.6);
+  background: rgba(30, 125, 94, 0.32);
 }
 
-/* Path strip — campus-quiet */
 .cgs-track[data-path-hardened="1"],
 #clarity-gate-strip {
   display: flex;
