@@ -232,3 +232,103 @@ body.solo .back { display: block; }
 .azan-row { margin-top: .2rem; font-size: .62rem; text-align: center; opacity: .9; flex-shrink: 0; }
 .disc { display: none; }
 body.solo .disc { display: block; font-size: .7rem; opacity: .85; margin: .5rem .55rem; }
+
+
+/* Banner UI upgrade 20261111BU1 — full viewport width · fortified ribbon */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+body { padding: 0; }
+body:not(.solo) .back { display: none !important; }
+.banner,
+#clarity-final-banner-controls-v2 {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  min-height: clamp(16rem, 38vw, 22rem);
+}
+.banner-media {
+  width: 100% !important;
+  min-height: inherit;
+}
+.banner-overlay {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  padding: 0.55rem clamp(0.4rem, 1.5vw, 1.1rem);
+  display: grid !important;
+  grid-template-columns: minmax(10rem, 1fr) minmax(16rem, 1.6fr) minmax(10rem, 1fr);
+  gap: 0.55rem;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .banner, #clarity-final-banner-controls-v2 { min-height: 42rem; }
+  .banner-overlay {
+    grid-template-columns: 1fr;
+    min-height: 42rem;
+  }
+}
+.plaque { width: 100%; box-sizing: border-box; }
+.center, .plaque.center, .banner-center {
+  max-width: none !important;
+  width: 100%;
+}
+.rabbana-box { max-width: 36rem !important; width: 100%; }
+.av-ribbon.controls {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.4rem 0.45rem;
+  border-radius: 14px;
+  border: 1px solid rgba(232,213,163,0.28);
+  background: rgba(6,14,12,0.55);
+  backdrop-filter: blur(6px);
+}
+.av-ribbon .pill,
+.av-ribbon button.pill {
+  border: 1px solid rgba(232,213,163,0.35);
+  background: rgba(15,40,32,0.85);
+  color: #f3e8c8;
+  border-radius: 999px;
+  padding: 0.32rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  line-height: 1.2;
+}
+.av-ribbon .pill.primary {
+  background: linear-gradient(135deg, #0f4c3a, #1a6b52);
+  border-color: rgba(120,200,140,0.45);
+}
+.av-ribbon .pill-select,
+.av-ribbon select {
+  max-width: 9.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232,213,163,0.3);
+  background: rgba(8,18,14,0.9);
+  color: #f3e8c8;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.28rem 0.45rem;
+}
+.av-ribbon .surah-select { max-width: 11rem; }
+.av-ribbon .vol-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 6.5rem;
+}
+.av-ribbon .vol-wrap input[type="range"] {
+  width: 5.5rem;
+  accent-color: #c9a227;
+}
+.disc { text-align: center; font-size: 0.68rem; opacity: 0.8; padding: 0.35rem; }
