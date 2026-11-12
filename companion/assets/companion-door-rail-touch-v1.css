@@ -1,0 +1,116 @@
+/*! companion-door-rail-touch-v1
+ * Bottom #clarity-door-rail — larger pills, readable desktop type, touch targets.
+ * Companion room only. Educational only — not a fatwa.
+ */
+
+/* Base rail: more breathing room */
+html[data-clarity-room="companion"] #clarity-door-rail.door-rail-rrra5,
+html.rrra5-on #clarity-door-rail.door-rail-rrra5 {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  gap: 0.5rem !important;
+  padding: 0.55rem 0.65rem max(0.65rem, env(safe-area-inset-bottom)) !important;
+  min-height: 4.25rem !important;
+  z-index: 40 !important;
+}
+
+/* Pills: wider, taller, readable */
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn,
+html.rrra5-on #clarity-door-rail .door-rail-btn {
+  flex: 1 1 0 !important;
+  min-width: 5.5rem !important;
+  max-width: 11rem !important;
+  min-height: 3.35rem !important;
+  padding: 0.55rem 0.55rem 0.5rem !important;
+  border-radius: 14px !important;
+  gap: 0.15rem;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn .dr-ico,
+html.rrra5-on #clarity-door-rail .door-rail-btn .dr-ico {
+  font-size: 1.35rem !important;
+  line-height: 1.1 !important;
+  margin-bottom: 0.1rem;
+}
+
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn .dr-label,
+html.rrra5-on #clarity-door-rail .door-rail-btn .dr-label {
+  font-size: 0.92rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  opacity: 1 !important;
+}
+
+html[data-clarity-room="companion"] #clarity-door-rail .dr-count,
+html.rrra5-on #clarity-door-rail .dr-count {
+  font-size: 0.68rem !important;
+  font-weight: 650 !important;
+  opacity: 0.88 !important;
+}
+
+/* Desktop / wide: even clearer type + horizontal room */
+@media (min-width: 768px) {
+  html[data-clarity-room="companion"] #clarity-door-rail.door-rail-rrra5,
+  html.rrra5-on #clarity-door-rail.door-rail-rrra5 {
+    gap: 0.65rem !important;
+    padding: 0.65rem 1rem max(0.75rem, env(safe-area-inset-bottom)) !important;
+    min-height: 4.75rem !important;
+    max-width: 52rem;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+
+  html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn,
+  html.rrra5-on #clarity-door-rail .door-rail-btn {
+    min-height: 3.75rem !important;
+    min-width: 6.5rem !important;
+    max-width: 12rem !important;
+    padding: 0.65rem 0.75rem !important;
+    border-radius: 16px !important;
+  }
+
+  html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn .dr-label,
+  html.rrra5-on #clarity-door-rail .door-rail-btn .dr-label {
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+  }
+
+  html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn .dr-ico,
+  html.rrra5-on #clarity-door-rail .door-rail-btn .dr-ico {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1100px) {
+  html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn .dr-label,
+  html.rrra5-on #clarity-door-rail .door-rail-btn .dr-label {
+    font-size: 1.12rem !important;
+  }
+  html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn,
+  html.rrra5-on #clarity-door-rail .door-rail-btn {
+    min-height: 4rem !important;
+    padding: 0.7rem 0.85rem !important;
+  }
+}
+
+/* Body padding so content not hidden under taller rail */
+html[data-clarity-room="companion"] body {
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+@media (min-width: 768px) {
+  html[data-clarity-room="companion"] body {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
