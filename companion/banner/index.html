@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-clarity-room="companion-banner" data-banner-enrich="20261112E4" data-theme="dark">
+<html lang="en" data-clarity-room="companion-banner" data-banner-enrich="20261112E5" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Companion Banner · Clarity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@500;600;700&display=swap"/>
-<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261112E4"/>
+<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261112E5"/>
 </head>
 <body>
 <main class="banner" id="clarity-final-banner-controls-v2">
@@ -29,15 +29,15 @@
       <div id="hijri-cal-grid" class="hijri-cal-grid"></div>
       <p id="hijri-next-event" class="hijri-next-event"><span id="hijri-ms-event"></span></p>
       <div id="hijri-temps" class="hijri-temps" data-temps-lock="1">
-        <span class="ht-item"><span class="ht-label"><svg class="ht-svg nuros-city" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 10h6v4H9z" fill="currentColor"/><path d="M5 8h14" stroke="currentColor" stroke-width="1.2"/></svg><span class="ht-name">Makkah</span></span> <strong id="temp-makkah">—</strong><span class="ht-unit">°C</span></span>
-        <span class="ht-item"><span class="ht-label"><svg class="ht-svg nuros-city" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3l7 4v3H5V7l7-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h12v9H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="7" r="1.1" fill="currentColor"/></svg><span class="ht-name">Madinah</span></span> <strong id="temp-madinah">—</strong><span class="ht-unit">°C</span></span>
+        <span class="ht-item"><span class="ht-label"><svg class="ht-svg" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 10h6v4H9z" fill="currentColor"/></svg><span class="ht-name">Makkah</span></span><strong id="temp-makkah">—</strong><span class="ht-unit">°C</span></span>
+        <span class="ht-item"><span class="ht-label"><svg class="ht-svg" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3l7 4v3H5V7l7-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h12v9H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19v-5h4v5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg><span class="ht-name">Madinah</span></span><strong id="temp-madinah">—</strong><span class="ht-unit">°C</span></span>
       </div>
     </section>
 
     <!-- CENTER -->
     <section class="plaque center banner-center" aria-label="Clarity">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-      <h1 class="brand"><span class="title-icon" aria-hidden="true">✒️</span>Clarity <span class="ondev">On-device ✓</span></h1>
+      <h1 class="brand"><span class="title-icon" aria-hidden="true"></span>Clarity <span class="ondev">On-device ✓</span></h1>
       <p class="sub">Furnish your grave · Prepare for the long stay</p>
       <div class="rabbana-box">
         <div class="rabbana-nav">
@@ -51,33 +51,29 @@
       </div>
 
       <!-- Horizontal legacy color-pill AV bar -->
-      <div class="av-classic av-pills" role="toolbar" aria-label="Live and audio controls">
-        <button type="button" class="pill pill-stills is-active" id="btn-live-stop" title="Stills" aria-label="Stills" aria-pressed="true">
-          <span class="pill-dot" aria-hidden="true"></span> Stills
-        </button>
-        <button type="button" class="pill pill-live" id="btn-live-play" title="Live stream" aria-label="Live">● Live</button>
-        <button type="button" id="btn-live-makkah" hidden aria-hidden="true"></button>
-        <button type="button" id="btn-live-madinah" hidden aria-hidden="true"></button>
-        <select id="yt-live-select" class="pill pill-select pill-place" aria-label="Place" title="Haramain source">
-          <option value="madinah-primary">Madinah</option>
-          <option value="madinah-alt">Madinah · alt</option>
-          <option value="makkah-primary">Makkah</option>
-          <option value="makkah-alt">Makkah · alt</option>
-          <option value="makkah-channel">Makkah · live</option>
-          <option value="madinah-channel">Madinah · live</option>
-        </select>
-        <select id="stream-select" class="pill pill-select pill-stream" aria-label="Quran radio">
-          <option value="https://qurango.net/radio/tarateel">Tarateel (Ara)</option>
-          <option value="https://qurango.net/radio/maher">Maher</option>
-          <option value="https://qurango.net/radio/abdulbasit_abdulsamad_mojawwad">Abdulbasit</option>
-          <option value="https://qurango.net/radio/ajamy">Al-Ajmy</option>
-          <option value="https://qurango.net/radio/ghamdi">Al-Ghamdi</option>
-          <option value="https://qurango.net/radio/mix">Beautiful Mix</option>
-        </select>
-        <button type="button" class="pill pill-listen" id="stream-btn" title="Listen">
-          <span id="stream-icon">▶</span> <span id="stream-text">Listen</span>
-        </button>
-        <span class="surah-picker"><input type="search" id="surah-search" class="pill pill-search" placeholder="Search surah…" aria-label="Search surah" autocomplete="off"/><select id="surah-list-pill" class="pill pill-select pill-surah" aria-label="Surah">
+      
+      <div class="av-classic av-pills av-grid2" role="toolbar" aria-label="Live and audio controls">
+        <div class="av-row av-row-1">
+          <button type="button" class="pill pill-stills is-active" id="btn-live-stop" aria-pressed="true">Stills</button>
+          <button type="button" class="pill pill-live" id="btn-live-play">Live</button>
+          <select id="yt-live-select" class="pill pill-select" aria-label="Haramain live">
+            <option value="makkah-official">Makkah · official live</option>
+            <option value="madinah-official" selected>Madinah · official live</option>
+          </select>
+          <select id="stream-select" class="pill pill-select" aria-label="Quran radio">
+            <option value="https://qurango.net/radio/tarateel">Tarateel</option>
+            <option value="https://qurango.net/radio/maher">Maher</option>
+            <option value="https://qurango.net/radio/ajamy">Al-Ajmy</option>
+            <option value="https://qurango.net/radio/ghamdi">Al-Ghamdi</option>
+          </select>
+          <button type="button" class="pill pill-listen" id="stream-btn"><span id="stream-icon">Play</span> <span id="stream-text">Listen</span></button>
+        </div>
+        <div class="av-row av-row-2">
+          <div class="surah-combo" id="surah-combo">
+            <button type="button" class="pill pill-surah-toggle" id="surah-toggle" aria-expanded="false" aria-controls="surah-panel">Surah</button>
+            <div class="surah-panel" id="surah-panel" hidden>
+              <input type="search" id="surah-search" class="surah-search-in" placeholder="Search surah…" aria-label="Search surah" autocomplete="off"/>
+              <select id="surah-list-pill" class="surah-list-in" size="8" aria-label="Surah list">
           <option value="">📖 Surahs…</option>
           <option value="1">1 · Al-Fatihah</option>
           <option value="2">2 · Al-Baqarah</option>
@@ -193,29 +189,32 @@
           <option value="112">112 · Al-Ikhlas</option>
           <option value="113">113 · Al-Falaq</option>
           <option value="114">114 · An-Nas</option>
-        </select></span>
-        <select id="surah-reciter-pill" class="pill pill-select pill-reciter" aria-label="Reciter">
-          <option value="afs">Alafasy</option>
-          <option value="basit">Abdul Basit</option>
-          <option value="sds">As-Sudais</option>
-          <option value="maher">Maher</option>
-          <option value="ajm">Al-Ajmy</option>
-          <option value="ghamdi">Al-Ghamdi</option>
-          <option value="husary">Al-Husary</option>
-          <option value="minshawi">Minshawi</option>
         </select>
-        <button type="button" class="pill pill-icon" id="btn-surah-play" title="Play surah">▶</button>
-        <button type="button" class="pill pill-icon" id="btn-surah-stop" title="Stop">■</button>
-        <input type="range" id="volume-slider" class="pill-vol" min="0" max="100" value="82" aria-label="Volume"/>
+            </div>
+          </div>
+          <select id="surah-reciter-pill" class="pill pill-select" aria-label="Reciter">
+            <option value="afs">Alafasy</option>
+            <option value="basit">Abdul Basit</option>
+            <option value="sds">As-Sudais</option>
+            <option value="maher">Maher</option>
+            <option value="ajm">Al-Ajmy</option>
+            <option value="ghamdi">Al-Ghamdi</option>
+            <option value="husary">Al-Husary</option>
+            <option value="minshawi">Minshawi</option>
+          </select>
+          <button type="button" class="pill pill-icon" id="btn-surah-play" title="Play surah">Play</button>
+          <button type="button" class="pill pill-icon" id="btn-surah-stop" title="Stop">Stop</button>
+          <input type="range" id="volume-slider" class="pill-vol" min="0" max="100" value="82" aria-label="Volume"/>
+        </div>
         <select id="live-place-select" hidden>
           <option value="makkah">Makkah</option>
           <option value="madinah" selected>Madinah</option>
         </select>
         <button type="button" id="live-haramain-btn" hidden aria-hidden="true"><span id="live-haramain-label">Stills</span></button>
+        <button type="button" id="btn-live-makkah" hidden aria-hidden="true"></button>
+        <button type="button" id="btn-live-madinah" hidden aria-hidden="true"></button>
       </div>
-    </section>
 
-    <!-- RIGHT: Salah -->
     <section class="plaque salah-times-section side-plaque" aria-label="Salah times">
       <div class="plaque-head">
         <span class="salah-allah" lang="ar" aria-hidden="true">الله</span>
@@ -241,11 +240,11 @@
     </section>
   </div>
 </main>
-<script src="assets/js/companion-banner-owner-v1.js?v=20261112E4"></script>
-<script src="assets/js/companion-banner-audio-v1.js?v=20261112E4"></script>
-<script src="assets/js/companion-haramain-temps-v1.js?v=20261112E4"></script>
-<script src="assets/js/banner-module-settle-v1.js?v=20261112E4"></script>
-<script src="assets/js/banner-av-wire-v1.js?v=20261112E4"></script>
-<script src="assets/js/banner-enrich-polish-v1.js?v=20261112E4"></script>
+<script src="assets/js/companion-banner-owner-v1.js?v=20261112E5"></script>
+<script src="assets/js/companion-banner-audio-v1.js?v=20261112E5"></script>
+<script src="assets/js/companion-haramain-temps-v1.js?v=20261112E5"></script>
+<script src="assets/js/banner-module-settle-v1.js?v=20261112E5"></script>
+<script src="assets/js/banner-av-wire-v1.js?v=20261112E5"></script>
+<script src="assets/js/banner-enrich-polish-v1.js?v=20261112E5"></script>
 </body>
 </html>
