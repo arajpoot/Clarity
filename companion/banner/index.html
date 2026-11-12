@@ -4,9 +4,9 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Companion Banner · Clarity</title>
-<meta name="description" content="Self-contained Clarity Companion banner: Hijrī, ṣalāh, Ḥaramain, radio. Educational only — not a fatwa."/>
+<meta name="description" content="Self-contained Clarity Companion banner. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/companion/banner/"/>
-<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261111PT1"/>
+<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261111SVG1"/>
 </head>
 <body>
 <p class="back"><a href="/companion/">← Companion</a> · banner module</p>
@@ -20,9 +20,9 @@
   </div>
 
   <div class="banner-overlay">
-    <section class="plaque hijri-cal-section" aria-label="Hijrī calendar">
-      <div class="plaque-head" id="clarity-banner-moon-plaque">
-        <span class="moon-emoji" id="moon-emoji" aria-hidden="true">🌙</span>
+    <section class="plaque hijri-cal-section side-plaque" aria-label="Hijrī calendar">
+      <div class="plaque-head">
+        <span class="moon-emoji" id="moon-emoji" aria-hidden="true">☾</span>
         <span class="moon-lab" id="moon-lab">Hijrī calendar</span>
         <h2 id="hijri-cal-title">Hijrī</h2>
       </div>
@@ -30,8 +30,8 @@
       <div id="hijri-cal-grid" class="hijri-cal-grid"></div>
       <p id="hijri-next-event" class="hijri-next-event"><span id="hijri-ms-event"></span></p>
       <div id="hijri-temps" class="hijri-temps">
-        <span class="ht-item"><span><span class="ht-ico">🕋</span> Makkah</span> <strong id="temp-makkah">—</strong>°C</span>
-        <span class="ht-item"><span><span class="ht-ico">🕌</span> Madinah</span> <strong id="temp-madinah">—</strong>°C</span>
+        <span class="ht-item"><span class="ht-name">Makkah</span> <strong id="temp-makkah">—</strong><span class="ht-unit">°C</span></span>
+        <span class="ht-item"><span class="ht-name">Madinah</span> <strong id="temp-madinah">—</strong><span class="ht-unit">°C</span></span>
       </div>
     </section>
 
@@ -42,37 +42,175 @@
       <div class="rabbana-box">
         <div class="rabbana-nav">
           <button type="button" class="rabbana-cycle" id="rabbana-prev" aria-label="Previous">‹</button>
-          <span id="rabbana-count">1 / 24</span>
+          <span id="rabbana-count">1 / 8</span>
           <button type="button" class="rabbana-cycle" id="rabbana-next" aria-label="Next">›</button>
         </div>
         <div class="rabbana-arabic" id="rabbana-arabic" lang="ar" dir="rtl"></div>
         <div class="rabbana-english" id="rabbana-english"></div>
         <div class="rabbana-ref" id="rabbana-ref"></div>
       </div>
-      <div class="controls" role="toolbar" aria-label="Audio and live controls">
-        <button type="button" id="live-haramain-btn" aria-pressed="false"><span id="live-haramain-label">Stills</span></button>
-        <select id="live-place-select" aria-label="Ḥaramain place" onchange="try{changeHaramainPlace()}catch(e){}">
+
+      <!-- Classic dual AV rows with inline SVG (no external icon files) -->
+      <div class="av-stack" role="toolbar" aria-label="Live and audio controls">
+        <div class="av-row av-live-row">
+          <button type="button" class="av-btn av-kaaba" id="btn-live-makkah" title="Makkah live" aria-label="Makkah live"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 10h6v4H9z" fill="currentColor" opacity=".85"/><path d="M5 8h14" stroke="currentColor" stroke-width="1.2"/></svg></button>
+          <button type="button" class="av-btn av-play" id="btn-live-play" title="Play / pause live" aria-label="Play live"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor"/></svg></button>
+          <button type="button" class="av-btn av-stop" id="btn-live-stop" title="Stills" aria-label="Stills"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="8.5" y="8.5" width="7" height="7" rx="1" fill="currentColor"/></svg></button>
+          <button type="button" class="av-btn av-masjid" id="btn-live-madinah" title="Madinah live" aria-label="Madinah live"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v3H5V7l7-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h12v9H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="7" r="1" fill="currentColor"/></svg></button>
+          <button type="button" class="av-btn av-play" id="live-haramain-btn" title="Toggle live" aria-pressed="false" aria-label="Toggle Haramain live"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor"/></svg><span id="live-haramain-label" class="sr-only">Stills</span></button>
+          <button type="button" class="av-btn av-stop" id="btn-live-stop-2" title="Stop live" aria-label="Stop live"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="8.5" y="8.5" width="7" height="7" rx="1" fill="currentColor"/></svg></button>
+        </div>
+        <div class="av-row av-radio-row controls">
+          <select id="stream-select" aria-label="Radio stream" title="Qurʾān radio">
+            <option value="https://qurango.net/radio/tarateel">Tarateel (Arabic)</option>
+            <option value="https://qurango.net/radio/maher">Maher al-Muʿaiqly</option>
+            <option value="https://qurango.net/radio/abdulbasit">Abdul Basit</option>
+            <option value="https://qurango.net/radio/mix">Mix</option>
+            <option value="https://qurango.net/radio/salah">Salah Bukhatir</option>
+          </select>
+          <button type="button" class="av-btn av-radio" id="stream-btn" title="Listen radio" aria-label="Listen"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="13" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M14 11h5M14 14h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M7 7l3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+          <select id="surah-list-pill" aria-label="Surah">
+            <option value="">Surah…</option>
+          <option value="1">1 Al-Fātiḥah</option>
+          <option value="2">2 Al-Baqarah</option>
+          <option value="3">3 Āl ʿImrān</option>
+          <option value="4">4 An-Nisāʾ</option>
+          <option value="5">5 Al-Māʾidah</option>
+          <option value="6">6 Al-Anʿām</option>
+          <option value="7">7 Al-Aʿrāf</option>
+          <option value="8">8 Al-Anfāl</option>
+          <option value="9">9 At-Tawbah</option>
+          <option value="10">10 Yūnus</option>
+          <option value="11">11 Hūd</option>
+          <option value="12">12 Yūsuf</option>
+          <option value="13">13 Ar-Raʿd</option>
+          <option value="14">14 Ibrāhīm</option>
+          <option value="15">15 Al-Ḥijr</option>
+          <option value="16">16 An-Naḥl</option>
+          <option value="17">17 Al-Isrāʾ</option>
+          <option value="18">18 Al-Kahf</option>
+          <option value="19">19 Maryam</option>
+          <option value="20">20 Ṭā-Hā</option>
+          <option value="21">21 Al-Anbiyāʾ</option>
+          <option value="22">22 Al-Ḥajj</option>
+          <option value="23">23 Al-Muʾminūn</option>
+          <option value="24">24 An-Nūr</option>
+          <option value="25">25 Al-Furqān</option>
+          <option value="26">26 Ash-Shuʿarāʾ</option>
+          <option value="27">27 An-Naml</option>
+          <option value="28">28 Al-Qaṣaṣ</option>
+          <option value="29">29 Al-ʿAnkabūt</option>
+          <option value="30">30 Ar-Rūm</option>
+          <option value="31">31 Luqmān</option>
+          <option value="32">32 As-Sajdah</option>
+          <option value="33">33 Al-Aḥzāb</option>
+          <option value="34">34 Sabaʾ</option>
+          <option value="35">35 Fāṭir</option>
+          <option value="36">36 Yā-Sīn</option>
+          <option value="37">37 Aṣ-Ṣāffāt</option>
+          <option value="38">38 Ṣād</option>
+          <option value="39">39 Az-Zumar</option>
+          <option value="40">40 Ghāfir</option>
+          <option value="41">41 Fuṣṣilat</option>
+          <option value="42">42 Ash-Shūrā</option>
+          <option value="43">43 Az-Zukhruf</option>
+          <option value="44">44 Ad-Dukhān</option>
+          <option value="45">45 Al-Jāthiyah</option>
+          <option value="46">46 Al-Aḥqāf</option>
+          <option value="47">47 Muḥammad</option>
+          <option value="48">48 Al-Fatḥ</option>
+          <option value="49">49 Al-Ḥujurāt</option>
+          <option value="50">50 Qāf</option>
+          <option value="51">51 Adh-Dhāriyāt</option>
+          <option value="52">52 Aṭ-Ṭūr</option>
+          <option value="53">53 An-Najm</option>
+          <option value="54">54 Al-Qamar</option>
+          <option value="55">55 Ar-Raḥmān</option>
+          <option value="56">56 Al-Wāqiʿah</option>
+          <option value="57">57 Al-Ḥadīd</option>
+          <option value="58">58 Al-Mujādilah</option>
+          <option value="59">59 Al-Ḥashr</option>
+          <option value="60">60 Al-Mumtaḥanah</option>
+          <option value="61">61 Aṣ-Ṣaff</option>
+          <option value="62">62 Al-Jumuʿah</option>
+          <option value="63">63 Al-Munāfiqūn</option>
+          <option value="64">64 At-Taghābun</option>
+          <option value="65">65 Aṭ-Ṭalāq</option>
+          <option value="66">66 At-Taḥrīm</option>
+          <option value="67">67 Al-Mulk</option>
+          <option value="68">68 Al-Qalam</option>
+          <option value="69">69 Al-Ḥāqqah</option>
+          <option value="70">70 Al-Maʿārij</option>
+          <option value="71">71 Nūḥ</option>
+          <option value="72">72 Al-Jinn</option>
+          <option value="73">73 Al-Muzzammil</option>
+          <option value="74">74 Al-Muddaththir</option>
+          <option value="75">75 Al-Qiyāmah</option>
+          <option value="76">76 Al-Insān</option>
+          <option value="77">77 Al-Mursalāt</option>
+          <option value="78">78 An-Nabaʾ</option>
+          <option value="79">79 An-Nāziʿāt</option>
+          <option value="80">80 ʿAbasa</option>
+          <option value="81">81 At-Takwīr</option>
+          <option value="82">82 Al-Infiṭār</option>
+          <option value="83">83 Al-Muṭaffifīn</option>
+          <option value="84">84 Al-Inshiqāq</option>
+          <option value="85">85 Al-Burūj</option>
+          <option value="86">86 Aṭ-Ṭāriq</option>
+          <option value="87">87 Al-Aʿlā</option>
+          <option value="88">88 Al-Ghāshiyah</option>
+          <option value="89">89 Al-Fajr</option>
+          <option value="90">90 Al-Balad</option>
+          <option value="91">91 Ash-Shams</option>
+          <option value="92">92 Al-Layl</option>
+          <option value="93">93 Aḍ-Ḍuḥā</option>
+          <option value="94">94 Ash-Sharḥ</option>
+          <option value="95">95 At-Tīn</option>
+          <option value="96">96 Al-ʿAlaq</option>
+          <option value="97">97 Al-Qadr</option>
+          <option value="98">98 Al-Bayyinah</option>
+          <option value="99">99 Az-Zalzalah</option>
+          <option value="100">100 Al-ʿĀdiyāt</option>
+          <option value="101">101 Al-Qāriʿah</option>
+          <option value="102">102 At-Takāthur</option>
+          <option value="103">103 Al-ʿAṣr</option>
+          <option value="104">104 Al-Humazah</option>
+          <option value="105">105 Al-Fīl</option>
+          <option value="106">106 Quraysh</option>
+          <option value="107">107 Al-Māʿūn</option>
+          <option value="108">108 Al-Kawthar</option>
+          <option value="109">109 Al-Kāfirūn</option>
+          <option value="110">110 An-Naṣr</option>
+          <option value="111">111 Al-Masad</option>
+          <option value="112">112 Al-Ikhlāṣ</option>
+          <option value="113">113 Al-Falaq</option>
+          <option value="114">114 An-Nās</option>
+          </select>
+          <select id="surah-reciter-pill" aria-label="Reciter">
+            <option value="ar.alafasy">Alafasy</option>
+            <option value="ar.husary">Husary</option>
+            <option value="ar.minshawi">Minshawi</option>
+            <option value="ar.abdulsamad">Abdul Samad</option>
+            <option value="ar.shaatree">Al-Shatri</option>
+            <option value="ar.ayyoub">Muhammad Ayyoub</option>
+            <option value="ar.hudhaify">Al-Hudhaify</option>
+            <option value="ar.muhammadayyoub">Ayyoub (alt)</option>
+          </select>
+          <button type="button" class="av-btn av-play" id="btn-surah-play" title="Play surah" aria-label="Play surah"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor"/></svg></button>
+          <button type="button" class="av-btn av-stop" id="btn-surah-stop" title="Stop audio" aria-label="Stop audio"><svg class="av-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="8.5" y="8.5" width="7" height="7" rx="1" fill="currentColor"/></svg></button>
+        </div>
+        <div class="av-vol-row">
+          <input type="range" id="volume-slider" min="0" max="100" value="82" aria-label="Volume"/>
+        </div>
+        <!-- Hidden selects kept for owner API compatibility -->
+        <select id="live-place-select" hidden aria-hidden="true">
           <option value="makkah">Makkah</option>
           <option value="madinah" selected>Madinah</option>
         </select>
-        <select id="stream-select" aria-label="Radio" onchange="try{changeStream()}catch(e){}">
-          <option value="https://qurango.net/radio/tarateel">Tarateel</option>
-          <option value="https://qurango.net/radio/maher">Maher</option>
-          <option value="https://qurango.net/radio/mix">Mix</option>
-        </select>
-        <button type="button" id="stream-btn">Listen</button>
-        <select id="surah-list-pill" aria-label="Surah" onchange="try{clarityPlaySurahFromSelect(this)}catch(e){}"></select>
-        <select id="surah-reciter-pill" aria-label="Reciter">
-          <option value="ar.alafasy">Alafasy</option>
-          <option value="ar.abdulsamad">Abdul Samad</option>
-          <option value="ar.husary">Husary</option>
-          <option value="ar.minshawi">Minshawi</option>
-        </select>
-        <input type="range" id="volume-slider" min="0" max="100" value="82" aria-label="Volume"/>
       </div>
     </section>
 
-    <section class="plaque salah-times-section" aria-label="Ṣalāh times">
+    <section class="plaque salah-times-section side-plaque" aria-label="Ṣalāh times">
       <div class="plaque-head">
         <span class="salah-allah" lang="ar" aria-hidden="true">الله</span>
         <h2 id="salah-title">Ṣalāh</h2>
@@ -97,9 +235,10 @@
 
 <p class="disc">Educational only — not a fatwa. Confirm times locally.</p>
 
-<script src="assets/js/companion-banner-owner-v1.js?v=20261111PT1"></script>
-<script src="assets/js/companion-banner-audio-v1.js?v=20261111PT1"></script>
-<script src="assets/js/companion-haramain-temps-v1.js?v=20261111PT1"></script>
-<script src="assets/js/banner-module-settle-v1.js?v=20261111PT1"></script>
+<script src="assets/js/companion-banner-owner-v1.js?v=20261111SVG1"></script>
+<script src="assets/js/companion-banner-audio-v1.js?v=20261111SVG1"></script>
+<script src="assets/js/companion-haramain-temps-v1.js?v=20261111SVG1"></script>
+<script src="assets/js/banner-module-settle-v1.js?v=20261111SVG1"></script>
+<script src="assets/js/banner-av-wire-v1.js?v=20261111SVG1"></script>
 </body>
 </html>
