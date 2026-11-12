@@ -1,8 +1,8 @@
-/*! banner-enrich-polish-v1.5 · surah combo · viewport lock · emoji kill · educational only */
+/*! banner-enrich-polish-v1.5b · surah combo · viewport · educational only */
 (function (w, d) {
   "use strict";
-  if (w.__BANNER_ENRICH_POLISH_V15__) return;
-  w.__BANNER_ENRICH_POLISH_V15__ = true;
+  if (w.__BANNER_ENRICH_POLISH_V15B__) return;
+  w.__BANNER_ENRICH_POLISH_V15B__ = true;
 
   var EMOJI_RE = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu;
 
@@ -26,6 +26,10 @@
     var inp = d.getElementById("surah-search");
     var sel = d.getElementById("surah-list-pill");
     if (!toggle || !panel || !sel) return;
+    try {
+      sel.size = 8;
+      sel.classList.add("surah-list-in");
+    } catch (e) {}
 
     function close() {
       panel.hidden = true;
@@ -39,6 +43,7 @@
 
     toggle.onclick = function (e) {
       e.preventDefault();
+      e.stopPropagation();
       if (panel.hidden) open();
       else close();
     };
@@ -60,33 +65,28 @@
     sel.addEventListener("change", function () {
       var opt = sel.options[sel.selectedIndex];
       if (opt && opt.value) {
-        toggle.textContent = opt.textContent.slice(0, 18);
+        toggle.textContent = (opt.textContent || "Surah").slice(0, 22);
         close();
-        if (typeof w.clarityPlaySurahFromSelect === "function") {
-          /* user still presses Play — only update label */
-        }
       }
     });
   }
 
   function lockViewport() {
     try {
-      d.documentElement.style.overflow = "hidden";
-      d.body.style.overflow = "hidden";
       var ban = d.querySelector(".banner");
       if (!ban) return;
       var h = Math.round(ban.getBoundingClientRect().height);
       if (w.parent && w.parent !== w && h > 40) {
-        w.parent.postMessage({ type: "clarity-banner-height", height: Math.min(h, 420) }, "*");
+        w.parent.postMessage({ type: "clarity-banner-height", height: Math.min(Math.max(h, 280), 560) }, "*");
       }
     } catch (e) {}
   }
 
   function boot() {
-    killEmoji(d.body);
+    killEmoji(d.getElementById("hijri-temps") || d.body);
     wireSurahCombo();
     lockViewport();
-    d.documentElement.setAttribute("data-banner-enrich", "20261112E5");
+    d.documentElement.setAttribute("data-banner-enrich", "20261112E5b");
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
@@ -96,7 +96,6 @@
     setTimeout(lockViewport, 300);
   });
   setInterval(function () {
-    killEmoji(d.getElementById("hijri-temps") || d.body);
-    lockViewport();
-  }, 3000);
+    killEmoji(d.getElementById("hijri-temps"));
+  }, 4000);
 })(window, document);
