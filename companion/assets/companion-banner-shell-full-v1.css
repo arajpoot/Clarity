@@ -1,15 +1,22 @@
-/* Companion shell: banner iframe full width + tighter height */
 html[data-clarity-room="companion"] .companion-banner-shell {
   width: 100% !important;
-  max-width: none !important;
-  margin: 0 0 0.35rem !important;
+  margin: 0 0 0.3rem !important;
   padding: 0 !important;
+  overflow: hidden !important;
 }
 html[data-clarity-room="companion"] .companion-banner-frame {
   width: 100% !important;
-  min-height: 14.75rem !important;
-  height: clamp(14.75rem, 28vw, 17.5rem) !important;
-  max-height: 19.5rem !important;
-  border: 0 !important;
   display: block !important;
+  border: 0 !important;
+  height: 15.75rem !important;
+  min-height: 15.75rem !important;
+  max-height: 15.75rem !important;
+  overflow: hidden !important;
+}
+@media (min-width: 900px) {
+  html[data-clarity-room="companion"] .companion-banner-frame {
+    height: 16.5rem !important;
+    min-height: 16.5rem !important;
+    max-height: 16.5rem !important;
+  }
 }
