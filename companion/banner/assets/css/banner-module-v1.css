@@ -707,3 +707,83 @@ body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; background: 
   .banner-overlay { grid-template-columns: 1fr !important; }
   .av-classic.av-pills { flex-direction: row !important; }
 }
+
+
+
+/* ========== E4 · full viewport · plaques · surah search · tight · 20261112E4 ========== */
+html, body { width: 100% !important; max-width: none !important; }
+.banner {
+  width: 100vw !important;
+  max-width: none !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  min-height: 14.5rem !important;
+  overflow: hidden !important;
+}
+.banner-overlay {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 0.4rem 0.55rem 0.45rem !important;
+  gap: 0.4rem !important;
+  grid-template-columns: minmax(10rem, 1fr) minmax(0, 1.6fr) minmax(10rem, 1fr) !important;
+  font-family: "Quicksand", "Quill", system-ui, sans-serif !important;
+}
+.plaque {
+  font-family: "Quicksand", "Quill", system-ui, sans-serif !important;
+}
+.hijri-cal-section {
+  background:
+    linear-gradient(155deg, rgba(201,162,39,.14), rgba(8,18,14,.82)),
+    rgba(8, 18, 14, 0.8) !important;
+  border-color: rgba(201,162,39,.42) !important;
+}
+.salah-times-section {
+  background:
+    linear-gradient(155deg, rgba(15,76,58,.35), rgba(8,18,14,.85)),
+    rgba(8, 18, 14, 0.8) !important;
+  border-color: rgba(120, 200, 150, 0.35) !important;
+}
+.banner-center {
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.05), rgba(8,18,14,.55)),
+    rgba(6, 16, 12, 0.72) !important;
+}
+.rabbana-arabic, .bismillah, .salah-allah {
+  font-family: "Amiri", "Noto Naskh Arabic", serif !important;
+}
+.ht-svg { display: inline-block; vertical-align: -3px; margin-right: 0.25rem; color: #e8d5a3; }
+.ht-label { display: inline-flex; align-items: center; gap: 0.2rem; }
+.surah-picker {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: stretch;
+  max-width: 9.5rem;
+}
+.pill-search {
+  width: 100% !important;
+  max-width: 9.5rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(212,180,90,.4) !important;
+  background: rgba(20, 40, 32, 0.95) !important;
+  color: #f0e6c8 !important;
+  font-size: 0.7rem !important;
+  padding: 0.28rem 0.55rem !important;
+}
+#surah-list-pill option {
+  background: #0f241c;
+  color: #e8f0ec;
+}
+#surah-list-pill option:checked,
+#surah-list-pill option:hover {
+  background: #1b5e4a;
+}
+.av-classic.av-pills {
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+}
+@media (max-width: 720px) {
+  .banner { width: 100% !important; margin-left: 0 !important; margin-right: 0 !important; }
+  .banner-overlay { grid-template-columns: 1fr !important; }
+}
