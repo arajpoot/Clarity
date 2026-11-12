@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-mahtaab="1">
+<html lang="en" data-theme="light" data-mahtaab="1" data-clarity-room="university">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
@@ -51,7 +51,7 @@
     <button type="button" class="cu-theme-pill" data-cu-theme="light">Day</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="dark">Night</button>
     <button type="button" class="cu-theme-pill" data-cu-theme="system">Auto</button>
-    <a class="cu-companion-link" href="/">← Companion</a>
+    <a class="cu-companion-link" href="/companion/">← Companion</a>
   </div>
 </header>
 
@@ -60,8 +60,8 @@
   <a href="/charter/"><span class="cu-pill-ico" aria-hidden="true">◇</span> Charter</a>
   <a href="/campus/"><span class="cu-pill-ico" aria-hidden="true">▣</span> Map</a>
   <a href="/campus/desk/" class="here" aria-current="page"><span class="cu-pill-ico" aria-hidden="true">☰</span> Desk</a>
-  <a href="/lab/"><span class="cu-pill-ico" aria-hidden="true">◈</span> Lab</a>
-  <a href="/library/"><span class="cu-pill-ico" aria-hidden="true">▦</span> Library</a>
+  <a href="/campus/lab/"><span class="cu-pill-ico" aria-hidden="true">◈</span> Lab</a>
+  <a href="/campus/library/"><span class="cu-pill-ico" aria-hidden="true">▦</span> Library</a>
   <a href="/campus/buddy/"><span class="cu-pill-ico" aria-hidden="true">✦</span> Buddy</a>
   <a href="/vault/"><span class="cu-pill-ico" aria-hidden="true">◎</span> Vault</a>
 </nav>
@@ -82,7 +82,7 @@
     <div id="as-task-list"></div>
     <div class="as-row">
       <a id="as-desk-link" href="/campus/desk/seeker/">Open desk →</a>
-      <a class="ghost" href="/lab/">Lab hub</a>
+      <a class="ghost" href="/campus/lab/">Lab hub</a>
       <a class="ghost" href="/vault/">Pin a source</a>
       <button type="button" class="as-btn ghost" id="as-reset">Clear checks</button>
       <span class="as-status" id="as-status"></span>
@@ -105,7 +105,7 @@
     <div class="as-row">
       <a href="/campus/buddy/">Ask Study Buddy</a>
       <a class="ghost" href="/campus/">Journey Map</a>
-      <a class="ghost" href="/library/">Library</a>
+      <a class="ghost" href="/campus/library/">Library</a>
     </div>
   </section>
 
@@ -269,5 +269,7 @@
   else boot();
 })();
 </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script src="/campus/assets/js/cu-nav-integrity-v1.js?v=20261112NAV3" defer></script>
 </body>
 </html>
