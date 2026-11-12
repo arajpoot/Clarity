@@ -252,36 +252,31 @@
   }
 
   
-  /* Next major Hijri event countdown — honest educational estimate */
-  w.claritySetHijriEvent = function (day, month, year) {
+  function fillNextEvent() {
     var el = $("hijri-ms-event") || $("hijri-next-event");
     if (!el) return;
-    // targets: Ramadan (9/1), Eid al-Fitr (10/1), Eid al-Adha (12/10), Islamic New Year (1/1)
-    var targets = [
-      { m: 9, d: 1, name: "Ramaḍān" },
-      { m: 10, d: 1, name: "Eid al-Fiṭr" },
-      { m: 12, d: 10, name: "Eid al-Aḍḥā" },
-      { m: 1, d: 1, name: "Islamic New Year" }
+    /* Approximate upcoming Hijri anchors via known civil dates (educational display only) */
+    var events = [
+      { name: "Ramadan 1447", date: new Date(Date.UTC(2026, 1, 18)) },
+      { name: "Eid al-Fitr", date: new Date(Date.UTC(2026, 2, 20)) },
+      { name: "Dhul Hijjah", date: new Date(Date.UTC(2026, 4, 27)) },
+      { name: "Eid al-Adha", date: new Date(Date.UTC(2026, 4, 27)) },
+      { name: "Ramadan 1448", date: new Date(Date.UTC(2027, 1, 8)) }
     ];
-    function daysIn(m) { return (m === 12) ? 30 : 30; }
-    function dayOfYear(m, d) { return (m - 1) * 30 + d; }
-    var now = dayOfYear(month, day);
-    var best = null, bestDelta = 1e9, bestName = "";
-    for (var i = 0; i < targets.length; i++) {
-      var t = targets[i];
-      var td = dayOfYear(t.m, t.d);
-      var delta = td - now;
-      if (delta <= 0) delta += 354; // next year cycle (approx)
-      if (delta < bestDelta) { bestDelta = delta; bestName = t.name; }
+    var now = new Date();
+    var next = null;
+    for (var i = 0; i < events.length; i++) {
+      if (events[i].date.getTime() > now.getTime() - 86400000) { next = events[i]; break; }
     }
-    el.textContent = "Next: " + bestName + " · " + bestDelta + " days";
-    el.hidden = false;
-    el.style.display = "";
-    var wrap = $("hijri-next-event");
-    if (wrap) { wrap.hidden = false; wrap.style.display = ""; }
-  };
+    if (!next) { el.textContent = ""; return; }
+    var days = Math.max(0, Math.ceil((next.date.getTime() - now.getTime()) / 86400000));
+    var node = $("hijri-ms-event");
+    if (node) node.textContent = "Next: " + next.name + " · " + days + " days";
+    else el.textContent = "Next: " + next.name + " · " + days + " days";
+  }
 
   function wire() {
+    try { fillNextEvent(); setInterval(fillNextEvent, 3600000); } catch (e) {}
     if (/\bsolo=1\b/.test(location.search) || w.top === w) {
       d.body.classList.add("solo");
     }

@@ -5,12 +5,16 @@
   w.__COMPANION_BANNER_AUDIO_V1__ = true;
 
   var RECITER = {
-    afs: "ar.alafasy",
-    ar_alafasy: "ar.alafasy",
-    ar_abdulbasitmurattal: "ar.abdulbasitmurattal",
-    ar_hudhaify: "ar.hudhaify",
-    ar_minshawi: "ar.minshawi",
-    ar_muaiqly: "ar.muaiqly"
+    afs: "afs",
+    alafasy: "afs",
+    "ar.alafasy": "afs",
+    basit: "basit",
+    "ar.abdulsamad": "basit",
+    sds: "sds",
+    sudais: "sds",
+    "ar.abdurrahmaansudais": "sds",
+    ajm: "ajm",
+    ajmi: "ajm"
   };
 
   var audio = null;
@@ -197,7 +201,14 @@
     if (rsel && rsel.value) code = rsel.value;
     var edition = RECITER[code] || RECITER.afs || "ar.alafasy";
     var num = String(n).padStart(3, "0");
-    var primary = "https://cdn.islamic.network/quran/audio-surah/128/" + edition + "/" + n + ".mp3";
+    var servers = {
+      afs: "https://server8.mp3quran.net/afs/",
+      basit: "https://server7.mp3quran.net/basit/",
+      sds: "https://server11.mp3quran.net/sds/",
+      ajm: "https://server10.mp3quran.net/ajm/"
+    };
+    var base = servers[edition] || servers.afs;
+    var primary = base + num + ".mp3";
     var fallback = "https://server8.mp3quran.net/afs/" + num + ".mp3";
     var fallback2 = "https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/" + n + ".mp3";
     var a = ensureAudio();
