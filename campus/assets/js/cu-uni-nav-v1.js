@@ -1,7 +1,7 @@
 /* 20261023HK2 */
 /* 20261023CLEAN cleanse */
 /**
- * cu-uni-nav-v1.js — Unified University navigation + stage rail
+ * cu-uni-nav-v1.js — Unified University navigation + stage rail · NAV_WIRE_E1
  * Educational path only. Does not edit Companion files.
  */
 (function (g) {
@@ -10,15 +10,19 @@
   g.__CU_UNI_NAV_V1__ = true;
 
   var PRIMARY = [
-    { href: "/charter/", label: "Charter" },
     { href: "/campus/", label: "Campus" },
     { href: "/campus/desk/", label: "Desk" },
+    { href: "/campus/desk/seeker/", label: "Seeker" },
     { href: "/campus/faculty.html", label: "Faculty" },
     { href: "/campus/bots.html", label: "Bots" },
     { href: "/campus/grading.html", label: "Progress" },
-    { href: "/lab/", label: "Lab" },
-    { href: "/library/", label: "Library" },
-    { href: "/", label: "Companion" }
+    { href: "/campus/lab/", label: "Lab" },
+    { href: "/campus/library/", label: "Library" },
+    { href: "/campus/portal/", label: "Portal" },
+    { href: "/campus/journey/", label: "Journey" },
+    { href: "/charter/", label: "Charter" },
+    { href: "/companion/", label: "Companion" },
+    { href: "/", label: "Port" }
   ];
 
   var STAGES = [
@@ -131,7 +135,7 @@
       '<li><a href="/campus/">Campus</a> — admit &amp; continue learning</li>' +
       '<li><a href="/campus/desk/seeker/">Seeker</a> → <a href="/campus/desk/practice/">Practice</a> → <a href="/campus/desk/consistency/">Consistency</a> → <a href="/campus/desk/transmission/">Transmission</a></li>' +
       '<li><a href="/campus/faculty.html">Faculty</a> · <a href="/campus/bots.html">Bots</a> · <a href="/campus/grading.html">Progress</a></li>' +
-      '<li><a href="/lab/">Lab</a> · <a href="/library/">Library</a> — practice aids</li>' +
+      '<li><a href="/campus/lab/">Lab</a> · <a href="/campus/library/">Library</a> — practice aids</li>' +
       "</ol>" +
       '<p style="font-size:.8rem;opacity:.85;margin:.5rem 0 0">Nothing before its proper time. Markers are a study mirror — not a grade of īmān.</p>';
     var slot = document.getElementById("seq-continue-slot");
