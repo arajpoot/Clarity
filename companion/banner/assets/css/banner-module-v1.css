@@ -153,3 +153,19 @@ body.solo .back { display: block; font-size: .7rem; padding: .3rem .5rem 0; }
 .azan-row { margin-top: .15rem; font-size: .58rem; text-align: center; opacity: .9; }
 .disc { display: none; }
 body.solo .disc { display: block; font-size: .68rem; opacity: .85; margin: .45rem .5rem; }
+
+/* Error-fix: never show legacy text toggle */
+#live-haramain-btn,
+#live-haramain-label {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}
+/* Keep still image visible under failed live */
+.banner-still-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.banner-live-iframe { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; border: 0; }
+.banner-live-iframe[hidden] { display: none !important; }
+.hijri-temps { display: flex !important; visibility: visible !important; opacity: 1 !important; }
