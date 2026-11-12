@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-clarity-room="companion-banner" data-banner-enrich="20261112E5b" data-theme="dark">
+<html lang="en" data-clarity-room="companion-banner" data-banner-enrich="20261112E6eC" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Companion Banner · Clarity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@500;600;700&display=swap"/>
-<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261112E5b"/>
+<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261112E6eC"/>
 </head>
 <body>
 <main class="banner" id="clarity-final-banner-controls-v2">
@@ -21,33 +21,36 @@
     <!-- LEFT: Hijri -->
     <section class="plaque hijri-cal-section side-plaque" aria-label="Hijri calendar">
       <div class="plaque-head">
-        <span class="moon-emoji" id="moon-emoji" aria-hidden="true">☾</span>
+        <span class="moon-emoji" id="moon-emoji" aria-hidden="true"></span>
         <span class="moon-lab" id="moon-lab">Hijri calendar</span>
         <h2 id="hijri-cal-title">Hijri</h2>
       </div>
       <p id="hijri-cal-meta">…</p>
       <div id="hijri-cal-grid" class="hijri-cal-grid"></div>
-      <p id="hijri-next-event" class="hijri-next-event"><span id="hijri-ms-event"></span></p>
+      <div class="next-strip next-event-plaque" id="hijri-next-event" role="status">
+        <span class="next-strip-label">Next event</span>
+        <span class="next-strip-main" id="hijri-ms-event">Next: Ramadan · …</span>
+      </div>
       <div id="hijri-temps" class="hijri-temps" data-temps-lock="1">
-        <span class="ht-item"><span class="ht-label"><svg class="ht-svg" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 10h6v4H9z" fill="currentColor"/></svg><span class="ht-name">Makkah</span></span><strong id="temp-makkah">—</strong><span class="ht-unit">°C</span></span>
-        <span class="ht-item"><span class="ht-label"><svg class="ht-svg" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3l7 4v3H5V7l7-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h12v9H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19v-5h4v5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg><span class="ht-name">Madinah</span></span><strong id="temp-madinah">—</strong><span class="ht-unit">°C</span></span>
+        <span class="ht-item"><span class="ht-label"><svg class="ht-svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 10h6v4H9z" fill="currentColor"/></svg><span class="ht-name">Makkah</span></span><strong id="temp-makkah">—</strong><span class="ht-unit">°C</span></span>
+        <span class="ht-item"><span class="ht-label"><svg class="ht-svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3l7 4v3H5V7l7-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h12v9H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg><span class="ht-name">Madinah</span></span><strong id="temp-madinah">—</strong><span class="ht-unit">°C</span></span>
       </div>
     </section>
 
     <!-- CENTER -->
     <section class="plaque center banner-center" aria-label="Clarity">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-      <h1 class="brand"><span class="title-icon" aria-hidden="true"></span>Clarity <span class="ondev">On-device ✓</span></h1>
+      <h1 class="brand"><span class="title-icon" aria-hidden="true"><svg class="title-icon-svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm2.92 2.33H5v-.92l9.06-9.06.92.92L5.92 19.58zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></span>Clarity <span class="ondev">On-device </span></h1>
       <p class="sub">Furnish your grave · Prepare for the long stay</p>
       <div class="rabbana-box">
         <div class="rabbana-nav">
           <button type="button" class="rabbana-cycle" id="rabbana-prev" aria-label="Previous">‹</button>
-          <span id="rabbana-count">1 / 24</span>
+          <span id="rabbana-count">1 / 40</span>
           <button type="button" class="rabbana-cycle" id="rabbana-next" aria-label="Next">›</button>
         </div>
-        <div class="rabbana-arabic" id="rabbana-arabic" lang="ar" dir="rtl"></div>
-        <div class="rabbana-english" id="rabbana-english"></div>
-        <div class="rabbana-ref" id="rabbana-ref"></div>
+        <div class="rabbana-arabic" id="rabbana-arabic" lang="ar" dir="rtl">رَبَّنَا تَقَبَّلْ مِنَّا ۖ إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</div>
+        <div class="rabbana-english" id="rabbana-english">Our Lord, accept [this] from us. Indeed You are the Hearing, the Knowing.</div>
+        <div class="rabbana-ref" id="rabbana-ref">Qurʾān 2:127</div>
       </div>
 
       <!-- Horizontal legacy color-pill AV bar -->
@@ -74,7 +77,7 @@
             <div class="surah-panel" id="surah-panel" hidden>
               <input type="search" id="surah-search" class="surah-search-in" placeholder="Search surah…" aria-label="Search surah" autocomplete="off"/>
               <select id="surah-list-pill" class="surah-list-in" size="8" aria-label="Surah list">
-          <option value="">📖 Surahs…</option>
+          <option value=""> Surahs…</option>
           <option value="1">1 · Al-Fatihah</option>
           <option value="2">2 · Al-Baqarah</option>
           <option value="3">3 · Aal-Imran</option>
@@ -215,6 +218,8 @@
         <button type="button" id="btn-live-madinah" hidden aria-hidden="true"></button>
       </div>
 
+    </section>
+
     <section class="plaque salah-times-section side-plaque" aria-label="Salah times">
       <div class="plaque-head">
         <span class="salah-allah" lang="ar" aria-hidden="true">الله</span>
@@ -229,10 +234,13 @@
         <li class="salah-row"><span class="salah-name">Maghrib</span><span class="salah-time">…</span></li>
         <li class="salah-row"><span class="salah-name">Isha</span><span class="salah-time">…</span></li>
       </ul>
-      <div id="clarity-next-prayer">
-        <span class="np-label">Next prayer</span>
-        <span class="np-name">—</span>
-        <span class="np-count">—</span>
+      <div class="next-strip next-prayer-plaque" id="clarity-next-prayer" role="status">
+        <span class="next-strip-label">Next prayer</span>
+        <span class="next-strip-line">
+          <span class="np-name" id="np-name">—</span>
+          <span class="np-sep">·</span>
+          <span class="np-count" id="np-count">—</span>
+        </span>
       </div>
       <p id="hijri-local-time" hidden></p>
       <div class="azan-row"><label><input type="checkbox" id="azan-notify-toggle"/> Azan alert</label></div>
@@ -240,11 +248,11 @@
     </section>
   </div>
 </main>
-<script src="assets/js/companion-banner-owner-v1.js?v=20261112E5b"></script>
-<script src="assets/js/companion-banner-audio-v1.js?v=20261112E5b"></script>
-<script src="assets/js/companion-haramain-temps-v1.js?v=20261112E5b"></script>
-<script src="assets/js/banner-module-settle-v1.js?v=20261112E5b"></script>
-<script src="assets/js/banner-av-wire-v1.js?v=20261112E5b"></script>
-<script src="assets/js/banner-enrich-polish-v1.js?v=20261112E5b"></script>
+<script src="assets/js/companion-banner-owner-v1.js?v=20261112E6eC"></script>
+<script src="assets/js/companion-banner-audio-v1.js?v=20261112E6eC"></script>
+<script src="assets/js/companion-haramain-temps-v1.js?v=20261112E6eC"></script>
+<script src="assets/js/banner-module-settle-v1.js?v=20261112E6eC"></script>
+<script src="assets/js/banner-av-wire-v1.js?v=20261112E6eC"></script>
+<script src="assets/js/banner-enrich-polish-v1.js?v=20261112E6eC"></script>
 </body>
 </html>
