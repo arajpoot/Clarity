@@ -349,7 +349,15 @@
       }
       /* hide disclaimer meta */
       var meta = $("hijri-cal-meta");
-      if (meta) { meta.hidden = true; meta.style.display = "none"; meta.textContent = ""; }
+      /* meta reserved for next-event line — do not blank */
+
+      try {
+        var hDay = parseInt(hj.day, 10) || 1;
+        var hMonth = (hj.month && hj.month.number) ? parseInt(hj.month.number, 10) : 1;
+        var hYear = parseInt(hj.year, 10) || 1448;
+        if (typeof w.claritySetHijriEvent === "function") w.claritySetHijriEvent(hDay, hMonth, hYear);
+      } catch (eEv) {}
+
     });
   }
 
@@ -365,16 +373,10 @@
         });
     }
     Promise.all([temp(21.4225, 39.8262), temp(24.4672, 39.6111)]).then(function (arr) {
-      var host = $("hijri-temps") || d.querySelector(".hijri-temps");
-      if (!host) return;
-      var m = arr[0] != null ? arr[0] + "°C" : "—";
-      var md = arr[1] != null ? arr[1] + "°C" : "—";
-      host.innerHTML =
-        '<div class="c5-temp-row"><span class="c5-temp-ico" aria-hidden="true">🕌</span> ' +
-        '<span class="c5-temp-label">Makkah</span> <strong>' + m + "</strong></div>" +
-        '<div class="c5-temp-row"><span class="c5-temp-ico" aria-hidden="true">🕌</span> ' +
-        '<span class="c5-temp-label">Madinah</span> <strong>' + md + "</strong></div>";
-      host.classList.add("c5-temps");
+      /* HONEST: never wipe SVG structure; never inject emoji */
+      var mk = $("temp-makkah"), md = $("temp-madinah");
+      if (mk) mk.textContent = arr[0] != null ? String(arr[0]) : "—";
+      if (md) md.textContent = arr[1] != null ? String(arr[1]) : "—";
     }).catch(function () {});
   }
 

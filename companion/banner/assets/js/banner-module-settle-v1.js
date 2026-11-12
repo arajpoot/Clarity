@@ -251,6 +251,36 @@
     }
   }
 
+  
+  /* Next major Hijri event countdown — honest educational estimate */
+  w.claritySetHijriEvent = function (day, month, year) {
+    var el = $("hijri-ms-event") || $("hijri-next-event");
+    if (!el) return;
+    // targets: Ramadan (9/1), Eid al-Fitr (10/1), Eid al-Adha (12/10), Islamic New Year (1/1)
+    var targets = [
+      { m: 9, d: 1, name: "Ramaḍān" },
+      { m: 10, d: 1, name: "Eid al-Fiṭr" },
+      { m: 12, d: 10, name: "Eid al-Aḍḥā" },
+      { m: 1, d: 1, name: "Islamic New Year" }
+    ];
+    function daysIn(m) { return (m === 12) ? 30 : 30; }
+    function dayOfYear(m, d) { return (m - 1) * 30 + d; }
+    var now = dayOfYear(month, day);
+    var best = null, bestDelta = 1e9, bestName = "";
+    for (var i = 0; i < targets.length; i++) {
+      var t = targets[i];
+      var td = dayOfYear(t.m, t.d);
+      var delta = td - now;
+      if (delta <= 0) delta += 354; // next year cycle (approx)
+      if (delta < bestDelta) { bestDelta = delta; bestName = t.name; }
+    }
+    el.textContent = "Next: " + bestName + " · " + bestDelta + " days";
+    el.hidden = false;
+    el.style.display = "";
+    var wrap = $("hijri-next-event");
+    if (wrap) { wrap.hidden = false; wrap.style.display = ""; }
+  };
+
   function wire() {
     if (/\bsolo=1\b/.test(location.search) || w.top === w) {
       d.body.classList.add("solo");
