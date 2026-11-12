@@ -77,18 +77,7 @@
     });
 
     // Keep temps emoji-free even if haramain-temps rewrites DOM
-    function scrubTemps() {
-      var host = $("hijri-temps");
-      if (!host) return;
-      var mkEl = $("temp-makkah"), mdEl = $("temp-madinah");
-      var mkV = mkEl ? (mkEl.textContent || "—").replace(/[^\d.\-]/g, "") || "—" : "—";
-      var mdV = mdEl ? (mdEl.textContent || "—").replace(/[^\d.\-]/g, "") || "—" : "—";
-      host.innerHTML =
-        '<span class="ht-item"><span class="ht-name">Makkah</span> <strong id="temp-makkah">' + mkV + '</strong><span class="ht-unit">°C</span></span>' +
-        '<span class="ht-item"><span class="ht-name">Madinah</span> <strong id="temp-madinah">' + mdV + '</strong><span class="ht-unit">°C</span></span>';
-    }
-    scrubTemps();
-    setInterval(scrubTemps, 4000);
+    
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(wire, 200); });

@@ -183,14 +183,14 @@
   }
 
   function forceKaaba() {
-    var host = $("hijri-temps");
-    if (!host) return;
-    var mk = $("temp-makkah"), md = $("temp-madinah");
-    var mkV = mk ? (mk.textContent || "—").replace(/[^0-9.\-]/g, "") || "—" : "—";
-    var mdV = md ? (md.textContent || "—").replace(/[^0-9.\-]/g, "") || "—" : "—";
-    host.innerHTML =
-      '<span class="ht-item"><span class="ht-name">Makkah</span> <strong id="temp-makkah">' + mkV + '</strong><span class="ht-unit">°C</span></span>' +
-      '<span class="ht-item"><span class="ht-name">Madinah</span> <strong id="temp-madinah">' + mdV + '</strong><span class="ht-unit">°C</span></span>';
+    /* only touch numeric text — keep SVG labels intact */
+    function onlyNum(el) {
+      if (!el) return;
+      var n = (el.textContent || "").replace(/[^0-9.\-]/g, "");
+      if (n) el.textContent = n;
+    }
+    onlyNum($("temp-makkah"));
+    onlyNum($("temp-madinah"));
   }
 
   function patchOwnerCity() {
