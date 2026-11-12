@@ -1,32 +1,19 @@
-/*! banner-av-wire-v1.3 · Haramain live only · no third-party video feeds · educational only */
+/*! banner-av-wire-v1.5 · Official Haramain live only · educational only — not a fatwa */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_BANNER_AV_WIRE_V13__) return;
-  w.__CLARITY_BANNER_AV_WIRE_V13__ = true;
+  if (w.__CLARITY_BANNER_AV_WIRE_V15__) return;
+  w.__CLARITY_BANNER_AV_WIRE_V15__ = true;
 
-  /* Official-style Haramain channel live embeds only */
+  /**
+   * Only Haramain live channel embeds (youtube-nocookie live_stream).
+   * No third-party VOD / alternate entertainment feeds.
+   */
   var YT = {
-    "madinah-primary": {
-      place: "madinah",
-      url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0"
-    },
-    "madinah-alt": {
-      place: "madinah",
-      url: "https://www.youtube.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0"
-    },
-    "makkah-primary": {
+    "makkah-official": {
       place: "makkah",
       url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0"
     },
-    "makkah-alt": {
-      place: "makkah",
-      url: "https://www.youtube.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0"
-    },
-    "makkah-channel": {
-      place: "makkah",
-      url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0"
-    },
-    "madinah-channel": {
+    "madinah-official": {
       place: "madinah",
       url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0"
     }
@@ -56,31 +43,44 @@
     }
     var stop = $("btn-live-stop");
     var play = $("btn-live-play");
-    if (stop) stop.classList.add("is-active");
-    if (play) play.classList.remove("is-active");
+    if (stop) {
+      stop.classList.add("is-active");
+      stop.setAttribute("aria-pressed", "true");
+    }
+    if (play) {
+      play.classList.remove("is-active");
+      play.setAttribute("aria-pressed", "false");
+    }
   }
 
   function showLive(key) {
-    var meta = YT[key] || YT["madinah-primary"];
-    place = meta.place || place;
+    key = YT[key] ? key : "madinah-official";
+    var meta = YT[key];
+    place = meta.place;
     var iframe = $("banner-live");
     var img = $("banner-img");
     if (!iframe) return showStill();
     liveOn = true;
     iframe.hidden = false;
     iframe.src = meta.url;
-    if (img) img.style.opacity = "0.2";
+    if (img) img.style.opacity = "0.15";
     var stop = $("btn-live-stop");
     var play = $("btn-live-play");
-    if (play) play.classList.add("is-active");
-    if (stop) stop.classList.remove("is-active");
+    if (play) {
+      play.classList.add("is-active");
+      play.setAttribute("aria-pressed", "true");
+    }
+    if (stop) {
+      stop.classList.remove("is-active");
+      stop.setAttribute("aria-pressed", "false");
+    }
     var lp = $("live-place-select");
     if (lp) lp.value = place;
   }
 
-  function currentKey() {
+  function key() {
     var sel = $("yt-live-select");
-    return (sel && sel.value) || "madinah-primary";
+    return (sel && sel.value) || "madinah-official";
   }
 
   function wire() {
@@ -88,23 +88,25 @@
     var play = $("btn-live-play");
     var sel = $("yt-live-select");
     if (stop) stop.onclick = function () { showStill(); };
-    if (play) play.onclick = function () { showLive(currentKey()); };
+    if (play) play.onclick = function () { showLive(key()); };
     if (sel) {
+      /* hard-prune any non-official options */
+      [].slice.call(sel.options).forEach(function (opt) {
+        if (!YT[opt.value]) opt.remove();
+      });
+      if (!sel.options.length) {
+        sel.innerHTML =
+          '<option value="makkah-official">Makkah · official live</option>' +
+          '<option value="madinah-official" selected>Madinah · official live</option>';
+      }
       sel.onchange = function () {
-        var k = sel.value;
-        if (YT[k]) place = YT[k].place;
-        if (liveOn) showLive(k);
+        place = (YT[sel.value] || {}).place || place;
+        if (liveOn) showLive(sel.value);
         else {
           var img = $("banner-img");
           if (img) img.src = STILLS[place] || STILLS.makkah;
         }
       };
-    }
-    /* strip any non-Haramain options if present */
-    if (sel) {
-      [].slice.call(sel.options).forEach(function (opt) {
-        if (!YT[opt.value]) opt.remove();
-      });
     }
     showStill();
   }
