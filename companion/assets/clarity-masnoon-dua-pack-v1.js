@@ -1,9 +1,6 @@
-/*! clarity-masnoon-dua-pack-v1 · ~40 educational duʿās · not a fatwa */
+/*! clarity-masnoon-dua-pack-v1.1 · ~40 educational duʿās · hard override · not a fatwa */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_MASNOON_PACK_V1__) return;
-  w.__CLARITY_MASNOON_PACK_V1__ = true;
-
   var DUAS = [
     {t:"Morning",ar:"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ",en:"We have entered the morning and the dominion belongs to Allah.",src:"Morning adhkār — widely taught",tags:"morning protection"},
     {t:"Evening",ar:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ",en:"We have entered the evening and the dominion belongs to Allah.",src:"Evening adhkār — widely taught",tags:"evening protection"},
@@ -38,7 +35,7 @@
     {t:"Toilet enter",ar:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",en:"O Allah, I seek refuge in You from male and female unclean spirits.",src:"Bukhārī / Muslim",tags:"bathroom"},
     {t:"Toilet leave",ar:"غُفْرَانَكَ",en:"I seek Your forgiveness.",src:"Abū Dāwūd / Tirmidhī",tags:"bathroom"},
     {t:"Wearing clothes",ar:"الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَٰذَا",en:"Praise be to Allah who has clothed me with this.",src:"Abū Dāwūd / Tirmidhī",tags:"clothes"},
-    {t:"Mirror / beauty",ar:"اللَّهُمَّ كَمَا حَسَّنْتَ خَلْقِي فَحَسِّنْ خُلُقِي",en:"O Allah, as You have beautified my outward form, beautify my character.",src:"Aḥmad — widely taught",tags:"character"},
+    {t:"Character",ar:"اللَّهُمَّ كَمَا حَسَّنْتَ خَلْقِي فَحَسِّنْ خُلُقِي",en:"O Allah, as You have beautified my outward form, beautify my character.",src:"Aḥmad — widely taught",tags:"character"},
     {t:"Visiting sick",ar:"لَا بَأْسَ طَهُورٌ إِنْ شَاءَ اللَّهُ",en:"No harm; it is purification, if Allah wills.",src:"Bukhārī",tags:"sick"},
     {t:"For the deceased",ar:"اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ",en:"O Allah, forgive him, have mercy on him, grant him well-being, and pardon him.",src:"Muslim — funeral duʿāʾ",tags:"deceased funeral"},
     {t:"Istikhārah (core)",ar:"اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ",en:"O Allah, I seek Your guidance by Your knowledge and ability by Your power…",src:"Bukhārī — istikhārah",tags:"decision guidance"},
@@ -48,7 +45,6 @@
   ];
 
   function norm(s) { return String(s || "").toLowerCase(); }
-
   function render(list, q) {
     var box = d.getElementById("dua-results");
     if (!box) return;
@@ -56,37 +52,32 @@
       box.innerHTML = '<p class="search-empty">No match for “' + (q || "") + '”. Try morning, parents, travel, forgiveness…</p>';
       return;
     }
-    box.innerHTML = list.map(function (x) {
-      return '<article class="dua-card" style="margin:.55rem 0;padding:.65rem.75rem;border-radius:12px;border:1px solid rgba(212,180,90,.28);background:rgba(0,0,0,.18)">' +
-        "<strong>" + x.t + "</strong>" +
-        '<div class="arabic" lang="ar" dir="rtl" style="font-size:1.05rem;line-height:1.75;margin:.35rem 0">' + x.ar + "</div>" +
-        "<p style=\"margin:.2rem 0;font-size:.86rem\">" + x.en + "</p>" +
-        '<p style="margin:0;font-size:.72rem;opacity:.85"><strong>Educational only — not a fatwa.</strong> ' + x.src + "</p>" +
-        "</article>";
-    }).join("");
+    box.innerHTML = '<p class="dua-count" style="font-size:.78rem;opacity:.85;margin:.25rem 0 .5rem">' + list.length + ' duʿāʾ (educational only — not a fatwa)</p>' +
+      list.map(function (x) {
+        return '<article class="dua-card" style="margin:.55rem 0;padding:.65rem.75rem;border-radius:12px;border:1px solid rgba(212,180,90,.28);background:rgba(0,0,0,.18)">' +
+          "<strong>" + x.t + "</strong>" +
+          '<div lang="ar" dir="rtl" style="font-size:1.05rem;line-height:1.75;margin:.35rem 0">' + x.ar + "</div>" +
+          "<p style=\"margin:.2rem 0;font-size:.86rem\">" + x.en + "</p>" +
+          '<p style="margin:0;font-size:.72rem;opacity:.85">' + x.src + "</p></article>";
+      }).join("");
   }
-
-  w.searchMasnoonDua = function () {
+  function searchMasnoonDuaImpl() {
     var inp = d.getElementById("dua-search");
     var q = norm(inp && inp.value);
-    var list = DUAS;
-    if (q) {
-      list = DUAS.filter(function (x) {
-        return norm(x.t + " " + x.en + " " + x.tags + " " + x.src).indexOf(q) !== -1;
-      });
-    }
+    var list = !q ? DUAS : DUAS.filter(function (x) {
+      return norm(x.t + " " + x.en + " " + x.tags + " " + x.src).indexOf(q) !== -1;
+    });
     render(list, q);
-  };
-
+  }
+  w.searchMasnoonDua = searchMasnoonDuaImpl;
   w.clarityMasnoonDuaCount = function () { return DUAS.length; };
-
-  // Auto-show a sample set when results empty on load
   function boot() {
     var box = d.getElementById("dua-results");
-    if (box && !box.querySelector(".dua-card")) {
-      render(DUAS.slice(0, 12), "");
-    }
+    if (box) render(DUAS, "");
+    // re-assert override after late scripts
+    setTimeout(function () { w.searchMasnoonDua = searchMasnoonDuaImpl; }, 1500);
+    setTimeout(function () { w.searchMasnoonDua = searchMasnoonDuaImpl; }, 4000);
   }
-  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 400); });
-  else setTimeout(boot, 400);
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 300); });
+  else setTimeout(boot, 300);
 })(window, document);
