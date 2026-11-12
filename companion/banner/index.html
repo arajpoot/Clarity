@@ -1,38 +1,40 @@
 <!DOCTYPE html>
-<html data-banner-enrich="20261112E2" lang="en" data-clarity-room="companion-banner" data-theme="dark">
+<html lang="en" data-clarity-room="companion-banner" data-banner-enrich="20261112E3" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Companion Banner · Clarity</title>
-<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261112E2"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@500;600;700&display=swap"/>
+<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261112E3"/>
 </head>
 <body>
 <main class="banner" id="clarity-final-banner-controls-v2">
   <div class="banner-media" id="banner-media">
-    <iframe id="banner-live" class="banner-live-iframe" title="Ḥaramain live" hidden
+    <iframe id="banner-live" class="banner-live-iframe" title="Haramain live" hidden
       allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen playsinline></iframe>
     <img id="banner-img" class="banner-still-img" alt="Masjid al-Haram" style="object-position:center top"
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg"/>
   </div>
 
   <div class="banner-overlay">
-    <section class="plaque hijri-cal-section side-plaque" aria-label="Hijrī calendar">
+    <!-- LEFT: Hijri -->
+    <section class="plaque hijri-cal-section side-plaque" aria-label="Hijri calendar">
       <div class="plaque-head">
         <span class="moon-emoji" id="moon-emoji" aria-hidden="true">☾</span>
-        <span class="moon-lab" id="moon-lab">Hijrī calendar</span>
-        <h2 id="hijri-cal-title">Hijrī</h2>
+        <span class="moon-lab" id="moon-lab">Hijri calendar</span>
+        <h2 id="hijri-cal-title">Hijri</h2>
       </div>
       <p id="hijri-cal-meta">…</p>
       <div id="hijri-cal-grid" class="hijri-cal-grid"></div>
       <p id="hijri-next-event" class="hijri-next-event"><span id="hijri-ms-event"></span></p>
       <div id="hijri-temps" class="hijri-temps" data-temps-lock="1">
-        <span class="ht-item"><span class="ht-label"><svg class="ht-svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 10h6v4H9z" fill="currentColor"/></svg><span class="ht-name">Makkah</span></span><span><strong id="temp-makkah">—</strong><span class="ht-unit">°C</span></span></span>
-        <span class="ht-item"><span class="ht-label"><svg class="ht-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v3H5V7l7-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h12v9H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg><span class="ht-name">Madinah</span></span><span><strong id="temp-madinah">—</strong><span class="ht-unit">°C</span></span></span>
+        <span class="ht-item"><span class="ht-label"><span class="ht-name">🕋 Makkah</span></span> <strong id="temp-makkah">—</strong><span class="ht-unit">°C</span></span>
+        <span class="ht-item"><span class="ht-label"><span class="ht-name">🕌 Madinah</span></span> <strong id="temp-madinah">—</strong><span class="ht-unit">°C</span></span>
       </div>
-</section>
+    </section>
 
+    <!-- CENTER -->
     <section class="plaque center banner-center" aria-label="Clarity">
       <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
       <h1 class="brand"><span class="title-icon" aria-hidden="true">✒️</span>Clarity <span class="ondev">On-device ✓</span></h1>
@@ -40,7 +42,7 @@
       <div class="rabbana-box">
         <div class="rabbana-nav">
           <button type="button" class="rabbana-cycle" id="rabbana-prev" aria-label="Previous">‹</button>
-          <span id="rabbana-count">1 / 40</span>
+          <span id="rabbana-count">1 / 24</span>
           <button type="button" class="rabbana-cycle" id="rabbana-next" aria-label="Next">›</button>
         </div>
         <div class="rabbana-arabic" id="rabbana-arabic" lang="ar" dir="rtl"></div>
@@ -48,15 +50,15 @@
         <div class="rabbana-ref" id="rabbana-ref"></div>
       </div>
 
-      <!-- Legacy color-pill AV strip · same control ids for owner/av-wire/audio -->
+      <!-- Horizontal legacy color-pill AV bar -->
       <div class="av-classic av-pills" role="toolbar" aria-label="Live and audio controls">
-        <button type="button" class="pill pill-stills" id="btn-live-stop" title="Stills" aria-label="Stills">
+        <button type="button" class="pill pill-stills is-active" id="btn-live-stop" title="Stills" aria-label="Stills" aria-pressed="true">
           <span class="pill-dot" aria-hidden="true"></span> Stills
         </button>
-        <button type="button" class="pill pill-live" id="btn-live-play" title="Live" aria-label="Play live" hidden>Live</button>
-        <button type="button" class="av-btn-hidden" id="btn-live-makkah" hidden aria-hidden="true"></button>
-        <button type="button" class="av-btn-hidden" id="btn-live-madinah" hidden aria-hidden="true"></button>
-        <select id="yt-live-select" class="pill pill-select pill-place" aria-label="Live place" title="Ḥaramain source">
+        <button type="button" class="pill pill-live" id="btn-live-play" title="Live stream" aria-label="Live">● Live</button>
+        <button type="button" id="btn-live-makkah" hidden aria-hidden="true"></button>
+        <button type="button" id="btn-live-madinah" hidden aria-hidden="true"></button>
+        <select id="yt-live-select" class="pill pill-select pill-place" aria-label="Place" title="Haramain source">
           <option value="madinah-primary">Madinah</option>
           <option value="madinah-alt">Madinah · alt</option>
           <option value="makkah-primary">Makkah</option>
@@ -64,7 +66,7 @@
           <option value="makkah-channel">Makkah · live</option>
           <option value="madinah-channel">Madinah · live</option>
         </select>
-        <select id="stream-select" class="pill pill-select pill-stream" aria-label="Qurʾān radio">
+        <select id="stream-select" class="pill pill-select pill-stream" aria-label="Quran radio">
           <option value="https://qurango.net/radio/tarateel">Tarateel (Ara)</option>
           <option value="https://qurango.net/radio/maher">Maher</option>
           <option value="https://qurango.net/radio/abdulbasit_abdulsamad_mojawwad">Abdulbasit</option>
@@ -72,11 +74,125 @@
           <option value="https://qurango.net/radio/ghamdi">Al-Ghamdi</option>
           <option value="https://qurango.net/radio/mix">Beautiful Mix</option>
         </select>
-        <button type="button" class="pill pill-listen" id="stream-btn" title="Listen" aria-label="Listen">
+        <button type="button" class="pill pill-listen" id="stream-btn" title="Listen">
           <span id="stream-icon">▶</span> <span id="stream-text">Listen</span>
         </button>
-        <select id="surah-list-pill" class="pill pill-select pill-surah" aria-label="Surah" title="Full Surah list">
+        <select id="surah-list-pill" class="pill pill-select pill-surah" aria-label="Surah">
           <option value="">📖 Surahs…</option>
+          <option value="1">1 · Al-Fatihah</option>
+          <option value="2">2 · Al-Baqarah</option>
+          <option value="3">3 · Aal-Imran</option>
+          <option value="4">4 · An-Nisa</option>
+          <option value="5">5 · Al-Ma'idah</option>
+          <option value="6">6 · Al-An'am</option>
+          <option value="7">7 · Al-A'raf</option>
+          <option value="8">8 · Al-Anfal</option>
+          <option value="9">9 · At-Tawbah</option>
+          <option value="10">10 · Yunus</option>
+          <option value="11">11 · Hud</option>
+          <option value="12">12 · Yusuf</option>
+          <option value="13">13 · Ar-Ra'd</option>
+          <option value="14">14 · Ibrahim</option>
+          <option value="15">15 · Al-Hijr</option>
+          <option value="16">16 · An-Nahl</option>
+          <option value="17">17 · Al-Isra</option>
+          <option value="18">18 · Al-Kahf</option>
+          <option value="19">19 · Maryam</option>
+          <option value="20">20 · Ta-Ha</option>
+          <option value="21">21 · Al-Anbiya</option>
+          <option value="22">22 · Al-Hajj</option>
+          <option value="23">23 · Al-Mu'minun</option>
+          <option value="24">24 · An-Nur</option>
+          <option value="25">25 · Al-Furqan</option>
+          <option value="26">26 · Ash-Shu'ara</option>
+          <option value="27">27 · An-Naml</option>
+          <option value="28">28 · Al-Qasas</option>
+          <option value="29">29 · Al-Ankabut</option>
+          <option value="30">30 · Ar-Rum</option>
+          <option value="31">31 · Luqman</option>
+          <option value="32">32 · As-Sajdah</option>
+          <option value="33">33 · Al-Ahzab</option>
+          <option value="34">34 · Saba</option>
+          <option value="35">35 · Fatir</option>
+          <option value="36">36 · Ya-Sin</option>
+          <option value="37">37 · As-Saffat</option>
+          <option value="38">38 · Sad</option>
+          <option value="39">39 · Az-Zumar</option>
+          <option value="40">40 · Ghafir</option>
+          <option value="41">41 · Fussilat</option>
+          <option value="42">42 · Ash-Shura</option>
+          <option value="43">43 · Az-Zukhruf</option>
+          <option value="44">44 · Ad-Dukhan</option>
+          <option value="45">45 · Al-Jathiyah</option>
+          <option value="46">46 · Al-Ahqaf</option>
+          <option value="47">47 · Muhammad</option>
+          <option value="48">48 · Al-Fath</option>
+          <option value="49">49 · Al-Hujurat</option>
+          <option value="50">50 · Qaf</option>
+          <option value="51">51 · Adh-Dhariyat</option>
+          <option value="52">52 · At-Tur</option>
+          <option value="53">53 · An-Najm</option>
+          <option value="54">54 · Al-Qamar</option>
+          <option value="55">55 · Ar-Rahman</option>
+          <option value="56">56 · Al-Waqi'ah</option>
+          <option value="57">57 · Al-Hadid</option>
+          <option value="58">58 · Al-Mujadila</option>
+          <option value="59">59 · Al-Hashr</option>
+          <option value="60">60 · Al-Mumtahanah</option>
+          <option value="61">61 · As-Saff</option>
+          <option value="62">62 · Al-Jumu'ah</option>
+          <option value="63">63 · Al-Munafiqun</option>
+          <option value="64">64 · At-Taghabun</option>
+          <option value="65">65 · At-Talaq</option>
+          <option value="66">66 · At-Tahrim</option>
+          <option value="67">67 · Al-Mulk</option>
+          <option value="68">68 · Al-Qalam</option>
+          <option value="69">69 · Al-Haqqah</option>
+          <option value="70">70 · Al-Ma'arij</option>
+          <option value="71">71 · Nuh</option>
+          <option value="72">72 · Al-Jinn</option>
+          <option value="73">73 · Al-Muzzammil</option>
+          <option value="74">74 · Al-Muddaththir</option>
+          <option value="75">75 · Al-Qiyamah</option>
+          <option value="76">76 · Al-Insan</option>
+          <option value="77">77 · Al-Mursalat</option>
+          <option value="78">78 · An-Naba</option>
+          <option value="79">79 · An-Nazi'at</option>
+          <option value="80">80 · Abasa</option>
+          <option value="81">81 · At-Takwir</option>
+          <option value="82">82 · Al-Infitar</option>
+          <option value="83">83 · Al-Mutaffifin</option>
+          <option value="84">84 · Al-Inshiqaq</option>
+          <option value="85">85 · Al-Buruj</option>
+          <option value="86">86 · At-Tariq</option>
+          <option value="87">87 · Al-A'la</option>
+          <option value="88">88 · Al-Ghashiyah</option>
+          <option value="89">89 · Al-Fajr</option>
+          <option value="90">90 · Al-Balad</option>
+          <option value="91">91 · Ash-Shams</option>
+          <option value="92">92 · Al-Layl</option>
+          <option value="93">93 · Ad-Duha</option>
+          <option value="94">94 · Ash-Sharh</option>
+          <option value="95">95 · At-Tin</option>
+          <option value="96">96 · Al-Alaq</option>
+          <option value="97">97 · Al-Qadr</option>
+          <option value="98">98 · Al-Bayyinah</option>
+          <option value="99">99 · Az-Zalzalah</option>
+          <option value="100">100 · Al-Adiyat</option>
+          <option value="101">101 · Al-Qari'ah</option>
+          <option value="102">102 · At-Takathur</option>
+          <option value="103">103 · Al-Asr</option>
+          <option value="104">104 · Al-Humazah</option>
+          <option value="105">105 · Al-Fil</option>
+          <option value="106">106 · Quraysh</option>
+          <option value="107">107 · Al-Ma'un</option>
+          <option value="108">108 · Al-Kawthar</option>
+          <option value="109">109 · Al-Kafirun</option>
+          <option value="110">110 · An-Nasr</option>
+          <option value="111">111 · Al-Masad</option>
+          <option value="112">112 · Al-Ikhlas</option>
+          <option value="113">113 · Al-Falaq</option>
+          <option value="114">114 · An-Nas</option>
         </select>
         <select id="surah-reciter-pill" class="pill pill-select pill-reciter" aria-label="Reciter">
           <option value="afs">Alafasy</option>
@@ -88,8 +204,8 @@
           <option value="husary">Al-Husary</option>
           <option value="minshawi">Minshawi</option>
         </select>
-        <button type="button" class="pill pill-icon" id="btn-surah-play" title="Play surah" aria-label="Play surah">▶</button>
-        <button type="button" class="pill pill-icon" id="btn-surah-stop" title="Stop" aria-label="Stop audio">■</button>
+        <button type="button" class="pill pill-icon" id="btn-surah-play" title="Play surah">▶</button>
+        <button type="button" class="pill pill-icon" id="btn-surah-stop" title="Stop">■</button>
         <input type="range" id="volume-slider" class="pill-vol" min="0" max="100" value="82" aria-label="Volume"/>
         <select id="live-place-select" hidden>
           <option value="makkah">Makkah</option>
@@ -97,7 +213,39 @@
         </select>
         <button type="button" id="live-haramain-btn" hidden aria-hidden="true"><span id="live-haramain-label">Stills</span></button>
       </div>
-    </div>
     </section>
 
-    <section class="plaque salah
+    <!-- RIGHT: Salah -->
+    <section class="plaque salah-times-section side-plaque" aria-label="Salah times">
+      <div class="plaque-head">
+        <span class="salah-allah" lang="ar" aria-hidden="true">الله</span>
+        <h2 id="salah-title">Salah</h2>
+      </div>
+      <p id="hijri-local-loc" class="salah-city">Locating…</p>
+      <ul id="salah-times-list" class="salah-times-list">
+        <li class="salah-row"><span class="salah-name">Fajr</span><span class="salah-time">…</span></li>
+        <li class="salah-row"><span class="salah-name">Sunrise</span><span class="salah-time">…</span></li>
+        <li class="salah-row"><span class="salah-name">Dhuhr</span><span class="salah-time">…</span></li>
+        <li class="salah-row"><span class="salah-name">Asr</span><span class="salah-time">…</span></li>
+        <li class="salah-row"><span class="salah-name">Maghrib</span><span class="salah-time">…</span></li>
+        <li class="salah-row"><span class="salah-name">Isha</span><span class="salah-time">…</span></li>
+      </ul>
+      <div id="clarity-next-prayer">
+        <span class="np-label">Next prayer</span>
+        <span class="np-name">—</span>
+        <span class="np-count">—</span>
+      </div>
+      <p id="hijri-local-time" hidden></p>
+      <div class="azan-row"><label><input type="checkbox" id="azan-notify-toggle"/> Azan alert</label></div>
+      <button type="button" class="salah-loc-refresh" id="clarity-salah-loc-btn">Update location</button>
+    </section>
+  </div>
+</main>
+<script src="assets/js/companion-banner-owner-v1.js?v=20261112E3"></script>
+<script src="assets/js/companion-banner-audio-v1.js?v=20261112E3"></script>
+<script src="assets/js/companion-haramain-temps-v1.js?v=20261112E3"></script>
+<script src="assets/js/banner-module-settle-v1.js?v=20261112E3"></script>
+<script src="assets/js/banner-av-wire-v1.js?v=20261112E3"></script>
+<script src="assets/js/banner-enrich-polish-v1.js?v=20261112E3"></script>
+</body>
+</html>
