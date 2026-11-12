@@ -13,14 +13,16 @@
     { href: "/campus/", label: "Campus" },
     { href: "/campus/desk/", label: "Desk" },
     { href: "/campus/desk/seeker/", label: "Seeker" },
+    { href: "/campus/desk/foundation/", label: "Foundation" },
     { href: "/campus/faculty.html", label: "Faculty" },
-    { href: "/campus/bots.html", label: "Bots" },
     { href: "/campus/grading.html", label: "Progress" },
+    { href: "/campus/assignments/", label: "Assignments" },
     { href: "/campus/lab/", label: "Lab" },
     { href: "/campus/library/", label: "Library" },
+    { href: "/campus/buddy/", label: "Buddy" },
     { href: "/campus/portal/", label: "Portal" },
     { href: "/campus/journey/", label: "Journey" },
-    { href: "/charter/", label: "Charter" },
+    { href: "/campus/charter/", label: "Charter" },
     { href: "/companion/", label: "Companion" },
     { href: "/", label: "Port" }
   ];
