@@ -169,3 +169,36 @@ body.solo .disc { display: block; font-size: .68rem; opacity: .85; margin: .45re
 .banner-live-iframe { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; border: 0; }
 .banner-live-iframe[hidden] { display: none !important; }
 .hijri-temps { display: flex !important; visibility: visible !important; opacity: 1 !important; }
+
+/* Real-render fix · deeper AV · still visible */
+.banner-media { z-index: 0; }
+.banner-still-img {
+  position: absolute !important; inset: 0 !important;
+  width: 100% !important; height: 100% !important;
+  object-fit: cover !important; z-index: 0 !important;
+  opacity: 1 !important; display: block !important;
+}
+.banner-live-iframe[hidden] { display: none !important; }
+.banner-overlay {
+  background: linear-gradient(180deg, rgba(8,16,12,.08), rgba(8,16,12,.18)) !important;
+}
+.av-btn {
+  width: 2.45rem !important; height: 2.45rem !important;
+  border: 1px solid rgba(232,213,163,.55) !important;
+  background: linear-gradient(160deg, rgba(40,70,55,.95), rgba(12,28,22,.92)) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.12) !important;
+}
+.av-btn .av-ico { width: 1.2rem !important; height: 1.2rem !important; }
+.av-row {
+  padding: .4rem .55rem !important;
+  gap: .4rem !important;
+  border: 1px solid rgba(232,213,163,.35) !important;
+  background: rgba(6,14,12,.72) !important;
+}
+.av-radio-row select {
+  min-height: 2.1rem !important;
+  font-size: .7rem !important;
+  padding: .28rem .5rem !important;
+}
+.hijri-temps { display: flex !important; visibility: visible !important; opacity: 1 !important; }
+.ht-item { min-height: 1.55rem !important; }
