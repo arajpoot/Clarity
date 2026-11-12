@@ -34,22 +34,7 @@
     showRabbana();
   };
 
-  function fillSurahs() {
-    var sel = $("surah-list-pill");
-    if (!sel || sel.options.length > 5) return;
-    sel.innerHTML = '<option value="">Surahs…</option>';
-    var names = [
-      [1,"Al-Fātiḥah"],[2,"Al-Baqarah"],[3,"Āl ʿImrān"],[18,"Al-Kahf"],[19,"Maryam"],
-      [32,"As-Sajdah"],[36,"Yā-Sīn"],[55,"Ar-Raḥmān"],[56,"Al-Wāqiʿah"],[67,"Al-Mulk"],
-      [78,"An-Nabaʾ"],[112,"Al-Ikhlāṣ"],[113,"Al-Falaq"],[114,"An-Nās"]
-    ];
-    names.forEach(function (p) {
-      var o = d.createElement("option");
-      o.value = String(p[0]);
-      o.textContent = p[0] + " " + p[1];
-      sel.appendChild(o);
-    });
-  }
+  function fillSurahs() { /* full list in HTML */ }
 
   function vague(s) {
     s = (s || "").trim();
@@ -201,13 +186,11 @@
     var host = $("hijri-temps");
     if (!host) return;
     var mk = $("temp-makkah"), md = $("temp-madinah");
-    var mkV = mk ? mk.textContent.replace(/[^0-9.\-]/g, "") || "—" : "—";
-    var mdV = md ? md.textContent.replace(/[^0-9.\-]/g, "") || "—" : "—";
-    if (!mkV) mkV = "—";
-    if (!mdV) mdV = "—";
+    var mkV = mk ? (mk.textContent || "—").replace(/[^0-9.\-]/g, "") || "—" : "—";
+    var mdV = md ? (md.textContent || "—").replace(/[^0-9.\-]/g, "") || "—" : "—";
     host.innerHTML =
-      '<span class="ht-item"><span><span class="ht-ico">🕋</span> Makkah</span> <strong id="temp-makkah">' + mkV + "</strong>°C</span>" +
-      '<span class="ht-item"><span><span class="ht-ico">🕌</span> Madinah</span> <strong id="temp-madinah">' + mdV + "</strong>°C</span>";
+      '<span class="ht-item"><span class="ht-name">Makkah</span> <strong id="temp-makkah">' + mkV + '</strong><span class="ht-unit">°C</span></span>' +
+      '<span class="ht-item"><span class="ht-name">Madinah</span> <strong id="temp-madinah">' + mdV + '</strong><span class="ht-unit">°C</span></span>';
   }
 
   function patchOwnerCity() {
