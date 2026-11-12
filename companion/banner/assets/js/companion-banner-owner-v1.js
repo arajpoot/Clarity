@@ -369,11 +369,11 @@
       if (!host) return;
       var m = arr[0] != null ? arr[0] + "°C" : "—";
       var md = arr[1] != null ? arr[1] + "°C" : "—";
+      var svgM = '<svg class="ht-svg" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 10h6v4H9z" fill="currentColor"/></svg>';
+      var svgN = '<svg class="ht-svg" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3l7 4v3H5V7l7-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h12v9H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>';
       host.innerHTML =
-        '<div class="c5-temp-row"><span class="c5-temp-ico" aria-hidden="true">🕌</span> ' +
-        '<span class="c5-temp-label">Makkah</span> <strong>' + m + "</strong></div>" +
-        '<div class="c5-temp-row"><span class="c5-temp-ico" aria-hidden="true">🕌</span> ' +
-        '<span class="c5-temp-label">Madinah</span> <strong>' + md + "</strong></div>";
+        '<div class="c5-temp-row ht-item"><span class="ht-label">' + svgM + '<span class="ht-name c5-temp-label">Makkah</span></span> <strong id="temp-makkah">' + m.replace("°C","") + '</strong><span class="ht-unit">°C</span></div>' +
+        '<div class="c5-temp-row ht-item"><span class="ht-label">' + svgN + '<span class="ht-name c5-temp-label">Madinah</span></span> <strong id="temp-madinah">' + md.replace("°C","") + '</strong><span class="ht-unit">°C</span></div>';
       host.classList.add("c5-temps");
     }).catch(function () {});
   }

@@ -317,6 +317,9 @@
     setInterval(reassertCity, 10000);
   }
 
-  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(wire, 300); });
-  else setTimeout(wire, 300);
+  /* E6d immediate rabbana */
+  try { showRabbana(); } catch (e0) {}
+  try { fillNextEvent(); } catch (eF) {}
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { try { showRabbana(); } catch (e1) {} setTimeout(wire, 200); });
+  else { try { showRabbana(); } catch (e2) {} setTimeout(wire, 200); }
 })(window, document);
