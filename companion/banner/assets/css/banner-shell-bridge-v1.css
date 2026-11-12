@@ -1,0 +1,19 @@
+
+html[data-clarity-room="companion"] .companion-banner-shell {
+  width: 100% !important; margin: 0 0 0.2rem !important; padding: 0 !important; overflow: hidden !important; line-height: 0 !important;
+}
+html[data-clarity-room="companion"] .companion-banner-frame {
+  width: 100% !important; display: block !important; border: 0 !important;
+  height: 14.25rem !important; min-height: 14.25rem !important; max-height: 15rem !important;
+  overflow: hidden !important;
+}
+@media (min-width: 900px) {
+  html[data-clarity-room="companion"] .companion-banner-frame {
+    height: 14.75rem !important; min-height: 14.75rem !important; max-height: 15.5rem !important;
+  }
+}
+@media (max-width: 720px) {
+  html[data-clarity-room="companion"] .companion-banner-frame {
+    height: 28rem !important; min-height: 24rem !important; max-height: none !important;
+  }
+}
