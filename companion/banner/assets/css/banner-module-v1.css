@@ -669,3 +669,41 @@ body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; background: 
     min-height: 0 !important;
   }
 }
+
+
+/* ========== E3 restore · horizontal pills · full sections · 20261112E3 ========== */
+.av-classic.av-pills {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.35rem !important;
+}
+.av-classic.av-pills .pill,
+.av-classic.av-pills .pill-select,
+.av-classic.av-pills .pill-vol {
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+}
+/* Live is a normal green pill in the row (not a vertical stack) */
+.pill-live {
+  display: inline-flex !important;
+  background: #2e7d32 !important;
+  color: #fff !important;
+  border: 1px solid rgba(180,240,200,.35) !important;
+}
+.pill-live[hidden] { display: none !important; }
+/* Never hide side plaques */
+.hijri-cal-section, .salah-times-section, .banner-center {
+  display: flex !important;
+}
+.salah-times-section { flex-direction: column !important; }
+.banner-overlay {
+  display: grid !important;
+  grid-template-columns: minmax(9.5rem, 0.95fr) minmax(0, 1.55fr) minmax(9.5rem, 0.95fr) !important;
+}
+@media (max-width: 720px) {
+  .banner-overlay { grid-template-columns: 1fr !important; }
+  .av-classic.av-pills { flex-direction: row !important; }
+}
