@@ -161,3 +161,25 @@ body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; background: 
   border-radius: 8px; border: 1px solid rgba(212,180,90,.4); background: rgba(0,0,0,.22); color: #f0e6c8; cursor: pointer;
 }
 .azan-row { margin-top: .16rem; font-size: .6rem; text-align: center; opacity: .9; }
+
+/* Honest fix · spacing · event · full AV · no emoji temps */
+.banner { min-height: 17rem !important; }
+.banner-overlay { min-height: 16.5rem !important; }
+.hijri-next-event, #hijri-ms-event {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: .6rem !important;
+  text-align: center !important;
+  color: #e8d5a3 !important;
+  margin: .2rem 0 .15rem !important;
+  line-height: 1.3 !important;
+}
+.hijri-cal-grid { margin-bottom: .1rem !important; }
+.hijri-temps { margin-top: .2rem !important; padding-top: .2rem !important; gap: .1rem !important; }
+/* Neutralize any c5 emoji temp rows if owner races before patch */
+.c5-temp-ico { display: none !important; }
+.ht-svg { display: inline-block !important; }
+@media (max-width: 720px) {
+  .banner, .banner-overlay { min-height: 40rem !important; }
+}
