@@ -186,3 +186,309 @@ body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; background: 
 /* kill any emoji font glyph fallback in temps */
 .hijri-temps, .ht-item, .ht-label { font-family: system-ui, sans-serif !important; }
 .ht-svg { display: inline-block !important; }
+
+
+
+/* ========== ENRICH v20261112E1 · symmetry + beauty restore ========== */
+:root {
+  --gold: #e8d5a3;
+  --gold-soft: rgba(212, 180, 90, 0.42);
+  --plaque: rgba(8, 20, 16, 0.72);
+  --edge: rgba(212, 180, 90, 0.42);
+}
+
+.banner {
+  min-height: 17.5rem !important;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 12px 36px rgba(0,0,0,.28);
+}
+
+.banner-overlay {
+  grid-template-columns: minmax(11rem, 1.05fr) minmax(0, 1.55fr) minmax(11rem, 1.05fr) !important;
+  gap: 0.65rem !important;
+  padding: 0.7rem 0.75rem 0.8rem !important;
+  min-height: 16.5rem !important;
+  max-width: 78rem !important;
+  background: linear-gradient(180deg, rgba(6,14,12,.12) 0%, rgba(6,14,12,.35) 55%, rgba(6,14,12,.62) 100%) !important;
+  align-items: stretch !important;
+}
+
+.plaque {
+  border-radius: 16px !important;
+  border: 1px solid var(--gold-soft) !important;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.08), rgba(12,28,22,.35)),
+    rgba(8, 18, 14, 0.78) !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.1) inset,
+    0 10px 28px rgba(0,0,0,.32) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  padding: 0.55rem 0.6rem !important;
+}
+
+.side-plaque {
+  min-height: 100%;
+  justify-content: flex-start;
+}
+
+/* Hijri calendar grid beauty */
+.hijri-cal-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 0.12rem !important;
+  font-size: 0.72rem !important;
+  margin: 0.3rem 0 !important;
+}
+.hijri-cal-grid .hc-wd {
+  text-align: center;
+  opacity: 0.65;
+  font-weight: 800;
+  font-size: 0.62rem;
+}
+.hijri-cal-grid .hc-day {
+  text-align: center;
+  padding: 0.18rem 0;
+  border-radius: 6px;
+}
+.hijri-cal-grid .hc-day.is-today {
+  background: rgba(212, 180, 90, 0.38);
+  color: #fff8e0;
+  font-weight: 800;
+  box-shadow: 0 0 0 1px rgba(232, 213, 163, 0.35);
+}
+.hijri-cal-grid .hc-empty { visibility: hidden; }
+
+#hijri-cal-title, #salah-title {
+  font-size: 0.78rem !important;
+  letter-spacing: 0.06em !important;
+  color: var(--gold) !important;
+}
+#hijri-cal-meta {
+  text-align: center;
+  font-size: 0.72rem;
+  opacity: 0.92;
+  margin: 0.15rem 0;
+}
+
+/* Event countdown dashed */
+.hijri-next-event, #hijri-next-event {
+  margin: 0.35rem 0 0.2rem !important;
+  padding-top: 0.35rem !important;
+  border-top: 1px dashed rgba(212, 180, 90, 0.4) !important;
+  text-align: center !important;
+  font-size: 0.72rem !important;
+  color: var(--gold) !important;
+  line-height: 1.35;
+}
+
+/* Temps centered */
+.hijri-temps, #hijri-temps {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.2rem !important;
+  margin-top: 0.35rem !important;
+  font-size: 0.74rem !important;
+  width: 100%;
+  text-align: center;
+}
+.hijri-temps .ht-item {
+  display: flex !important;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+/* Center brand + Rabbana glass */
+.center, .banner-center {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 0.3rem !important;
+}
+.bismillah {
+  font-family: "Amiri", "Noto Naskh Arabic", serif !important;
+  font-size: clamp(0.95rem, 1.5vw, 1.2rem) !important;
+  color: var(--gold) !important;
+  margin: 0 !important;
+}
+.brand {
+  margin: 0 !important;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem) !important;
+  color: #f3efe4 !important;
+}
+.brand .ondev {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 200, 150, 0.45);
+  background: rgba(30, 100, 70, 0.35);
+  color: #c8f0d8;
+  vertical-align: middle;
+}
+.sub {
+  margin: 0 !important;
+  font-size: 0.8rem !important;
+  opacity: 0.9;
+}
+
+.rabbana-box {
+  width: 100% !important;
+  max-width: 36rem !important;
+  margin: 0.2rem auto !important;
+  padding: 0.55rem 0.75rem 0.6rem !important;
+  border-radius: 14px !important;
+  border: 1px solid var(--gold-soft) !important;
+  background: rgba(6, 16, 12, 0.72) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25) !important;
+}
+.rabbana-arabic {
+  font-family: "Amiri", "Noto Naskh Arabic", serif !important;
+  font-size: clamp(1rem, 1.55vw, 1.28rem) !important;
+  line-height: 1.55 !important;
+  color: #f3e6c0 !important;
+  direction: rtl;
+}
+.rabbana-english { font-size: 0.84rem !important; opacity: 0.92; margin-top: 0.2rem; }
+.rabbana-ref { font-size: 0.72rem !important; color: var(--gold) !important; margin-top: 0.12rem; }
+.rabbana-nav {
+  display: flex; align-items: center; justify-content: center; gap: 0.55rem; margin-bottom: 0.2rem;
+}
+.rabbana-cycle {
+  width: 1.85rem; height: 1.85rem; border-radius: 999px;
+  border: 1px solid var(--gold-soft); background: rgba(0,0,0,.35); color: #f0e6c8; cursor: pointer;
+}
+
+/* AV classic glass strip */
+.av-classic {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  width: 100% !important;
+  max-width: 42rem !important;
+  margin: 0.35rem auto 0 !important;
+  padding: 0.45rem 0.55rem !important;
+  border-radius: 16px !important;
+  border: 1px solid var(--gold-soft) !important;
+  background: rgba(6, 16, 12, 0.78) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.28) !important;
+  backdrop-filter: blur(10px);
+}
+.av-capsule {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.3rem !important;
+}
+.av-btn {
+  width: 2rem; height: 2rem; border-radius: 999px;
+  border: 1px solid rgba(212,180,90,.35);
+  background: rgba(15, 50, 38, 0.85);
+  color: #f0e6c8;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.av-btn:hover, .av-btn.is-active {
+  background: rgba(40, 120, 90, 0.75);
+  border-color: rgba(180, 240, 200, 0.45);
+}
+.av-ico { width: 1.05rem; height: 1.05rem; }
+.av-classic select {
+  font-size: 0.72rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(212,180,90,.35) !important;
+  background: rgba(15, 50, 38, 0.9) !important;
+  color: #f0e6c8 !important;
+  padding: 0.3rem 0.45rem !important;
+  max-width: 9.5rem;
+}
+#surah-list-pill {
+  background: rgba(160, 120, 40, 0.5) !important;
+}
+.av-vol-row {
+  width: 100%;
+  max-width: 12rem;
+  margin: 0.15rem auto 0;
+}
+#volume-slider { width: 100%; }
+
+/* Salah plaque */
+.salah-allah {
+  font-family: "Amiri", serif !important;
+  font-size: 1.25rem !important;
+  color: var(--gold) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem; height: 2.5rem;
+  margin: 0 auto 0.15rem;
+  border-radius: 50%;
+  border: 2px solid rgba(212,180,90,.5);
+  background: radial-gradient(circle at 35% 30%, rgba(40,90,70,.95), rgba(8,24,18,.98));
+  box-shadow: 0 0 0 3px rgba(212,180,90,.12);
+}
+#hijri-local-loc {
+  text-align: center !important;
+  font-size: 0.88rem !important;
+  font-weight: 650 !important;
+  color: var(--gold) !important;
+  margin: 0.1rem 0 0.35rem !important;
+}
+.salah-times-list, #salah-times-list {
+  list-style: none; margin: 0; padding: 0; width: 100%;
+}
+.salah-times-list li, #salah-times-list li {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 0.4rem;
+  padding: 0.22rem 0 !important;
+  font-size: 0.84rem !important;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+#salah-times-list li.is-next-salah .salah-time,
+#salah-times-list li.is-next-salah .salah-name {
+  color: #b8f0c8 !important;
+  font-weight: 800 !important;
+}
+#clarity-next-prayer {
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(120, 200, 150, 0.3);
+  background: rgba(20, 60, 45, 0.4);
+  text-align: center;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.azan-row {
+  margin-top: 0.35rem;
+  text-align: center;
+  font-size: 0.75rem;
+}
+.salah-loc-refresh {
+  margin-top: 0.35rem;
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid var(--gold-soft);
+  background: rgba(0,0,0,.28);
+  color: #e8d5a3;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .banner-overlay {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+  .banner { min-height: auto !important; }
+  .av-classic { max-width: 100% !important; }
+}
