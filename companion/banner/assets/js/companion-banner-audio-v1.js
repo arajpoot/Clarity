@@ -7,27 +7,10 @@
   var RECITER = {
     afs: "ar.alafasy",
     ar_alafasy: "ar.alafasy",
-    "ar.alafasy": "ar.alafasy",
     ar_abdulbasitmurattal: "ar.abdulbasitmurattal",
-    "ar.abdulbasitmurattal": "ar.abdulbasitmurattal",
-    ar_abdulsamad: "ar.abdulsamad",
-    "ar.abdulsamad": "ar.abdulsamad",
     ar_hudhaify: "ar.hudhaify",
-    "ar.hudhaify": "ar.hudhaify",
     ar_minshawi: "ar.minshawi",
-    "ar.minshawi": "ar.minshawi",
-    ar_muaiqly: "ar.muaiqly",
-    "ar.muaiqly": "ar.muaiqly",
-    ar_husary: "ar.husary",
-    "ar.husary": "ar.husary",
-    ar_shaatree: "ar.shaatree",
-    "ar.shaatree": "ar.shaatree",
-    ar_aymanswoed: "ar.aymanswoed",
-    "ar.aymanswoed": "ar.aymanswoed",
-    ar_tablawi: "ar.tablawi",
-    "ar.tablawi": "ar.tablawi",
-    "ar.yasserdosari": "ar.yasserdosari",
-    ar_yasserdosari: "ar.yasserdosari"
+    ar_muaiqly: "ar.muaiqly"
   };
 
   var audio = null;
@@ -210,12 +193,13 @@
     if (!n) return;
     var code = "afs";
     try { code = localStorage.getItem("clarity_reciter") || "afs"; } catch (e8) {}
-    var rsel = $("surah-reciter-pill");
+    var rsel = $("surah-reciter-pill") || $("reciter-select");
     if (rsel && rsel.value) code = rsel.value;
     var edition = RECITER[code] || RECITER.afs || "ar.alafasy";
     var num = String(n).padStart(3, "0");
     var primary = "https://cdn.islamic.network/quran/audio-surah/128/" + edition + "/" + n + ".mp3";
     var fallback = "https://server8.mp3quran.net/afs/" + num + ".mp3";
+    var fallback2 = "https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/" + n + ".mp3";
     var a = ensureAudio();
     applyVolume(a);
     pauseOtherAudio(a);
@@ -273,7 +257,7 @@
         w.clarityPlaySurahFromSelect(surah);
       });
     }
-    var reciter = $("surah-reciter-pill");
+    var reciter = $("surah-reciter-pill") || $("reciter-select");
     if (reciter && !reciter.__c5Audio) {
       reciter.__c5Audio = true;
       reciter.addEventListener("change", function () {
@@ -290,38 +274,7 @@
     }
   }
 
-  
-  function stopAll() {
-    try { if (audio) { audio.pause(); audio.currentTime = 0; } } catch (e) {}
-    pauseOtherAudio(null);
-    setStreamUi(false);
-    var sb = document.getElementById("stream-btn");
-    if (sb) sb.textContent = "Listen";
-  }
-  function playSelected() {
-    var sel = document.getElementById("surah-list-pill");
-    if (sel && sel.value) {
-      if (typeof w.clarityPlaySurahFromSelect === "function") w.clarityPlaySurahFromSelect(sel);
-      return;
-    }
-    var streamBtn = document.getElementById("stream-btn");
-    if (streamBtn) streamBtn.click();
-  }
-  function wirePlayStop() {
-    var play = document.getElementById("av-play-btn");
-    var stop = document.getElementById("av-stop-btn");
-    if (play && !play.__wired) {
-      play.__wired = true;
-      play.addEventListener("click", function () { playSelected(); });
-    }
-    if (stop && !stop.__wired) {
-      stop.__wired = true;
-      stop.addEventListener("click", function () { stopAll(); });
-    }
-  }
-
   function boot() {
-    wirePlayStop();
     ensureAudio();
     applyVolume(ensureAudio());
     wirePills();

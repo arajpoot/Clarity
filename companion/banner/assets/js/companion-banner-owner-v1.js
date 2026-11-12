@@ -3,8 +3,6 @@
   "use strict";
   /* allow upgrade */
   w.__COMPANION_BANNER_OWNER_V1__ = true;
-  w.__CLARITY_BANNER_MODULE_OWNER__ = "20261111STILLS";
-  w.__CLARITY_BANNER_MODULE_OWNER__ = "20261111BU1";
 
   function $(id) { return d.getElementById(id); }
 
@@ -13,19 +11,16 @@
     madinah: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg/1280px-Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg"
   };
   var STREAMS = {
-    /* Non- only — user must opt in via Live. HLS endpoints may fail by region. */
     makkah: [
-      "https://stream.live.gph.gov.sa/live/makkah/playlist.m3u8",
-      "https://win.holol.com/live/makkah/playlist.m3u8"
+      "https://www.youtube-nocookie.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube-nocookie.com/embed/NJfqVXQY5Sc?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
     ],
     madinah: [
-      "https://stream.live.gph.gov.sa/live/madinah/playlist.m3u8",
-      "https://win.holol.com/live/madinah/playlist.m3u8"
+      "https://www.youtube-nocookie.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube-nocookie.com/embed/s17YH8xrCS8?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
     ]
-  };
-  var EXTERNAL_LIVE = {
-    makkah: "https://www.gph.gov.sa/",
-    madinah: "https://www.gph.gov.sa/"
   };
 
   var liveOn = false;
@@ -34,60 +29,57 @@
 
   function place() {
     var s = $("live-place-select") || $("stream-select");
-    var v = s ? String(s.value || "") : "";
-    if (/madinah|medina/i.test(v)) return "madinah";
-    if (/makkah|mecca/i.test(v)) return "makkah";
-    /* option text fallback */
-    try {
-      if (s && s.selectedOptions && s.selectedOptions[0]) {
-        var t = s.selectedOptions[0].textContent || "";
-        if (/madinah|medina/i.test(t)) return "madinah";
-      }
-    } catch (e) {}
+    if (s && /makkah|mecca/i.test(String(s.value || ""))) return "makkah";
+    if (s && /madinah|medina/i.test(String(s.value || ""))) return "madinah";
+    /* place dropdown on banner may say Madinah */
+    var opts = d.querySelectorAll("select option:checked");
+    for (var i = 0; i < opts.length; i++) {
+      if (/madinah|medina/i.test(opts[i].textContent || "")) return "madinah";
+      if (/makkah|mecca/i.test(opts[i].textContent || "")) return "makkah";
+    }
     return "makkah";
   }
 
   function setLabel(live) {
-    var lab = $("live-haramain-label");
-    if (lab) lab.textContent = live ? "Live" : "Stills";
+    var lab = $("live-haramain-label") || $("stream-text");
+    if (lab && lab.closest && lab.closest("#live-haramain-btn, .live-haramain-btn, #stream-btn")) {
+      lab.textContent = live ? "Live" : "Stills";
+    }
     var btn = $("live-haramain-btn");
     if (btn) {
       btn.setAttribute("aria-pressed", live ? "true" : "false");
-      btn.classList.toggle("is-live", !!live);
-      btn.classList.toggle("is-still", !live);
-      var si = btn.querySelector(".ico-still");
-      var li = btn.querySelector(".ico-live");
-      if (si) si.hidden = !!live;
-      if (li) li.hidden = !live;
+      var span = btn.querySelector("#live-haramain-label") || btn;
+      if (btn.childNodes.length && !lab) {
+        /* button may be the Stills pill itself */
+      }
     }
+    /* Match UI pill text "Stills" */
+    d.querySelectorAll("#live-haramain-btn, .live-haramain-btn, [data-live-toggle]").forEach(function (el) {
+      if (el.id === "stream-btn") return;
+      var t = (el.textContent || "").trim();
+      if (/still|live/i.test(t) && t.length < 12) {
+        el.childNodes.forEach(function (n) {
+          if (n.nodeType === 3 && /still|live/i.test(n.textContent)) {
+            n.textContent = live ? " Live " : " Stills ";
+          }
+        });
+      }
+    });
   }
 
   function showStill() {
     liveOn = false;
     var iframe = $("banner-live");
-    var video = $("banner-video");
     var img = $("banner-img");
-    if (video) {
-      try { video.pause(); video.removeAttribute("src"); video.load(); } catch (e0) {}
-      video.hidden = true;
-      video.style.display = "none";
-    }
     if (iframe) {
       iframe.hidden = true;
       iframe.style.pointerEvents = "none";
       try { iframe.removeAttribute("src"); } catch (e1) {}
-      iframe.style.display = "none";
     }
     if (img) {
-      var src = STILLS[place()] || STILLS.makkah;
       img.hidden = false;
-      img.style.display = "block";
-      if (img.src !== src && !String(img.src || "").endsWith(src.split("/").pop() || "___")) {
-        img.src = src;
-      } else {
-        img.src = src; /* force city swap */
-      }
-      img.alt = place() === "madinah" ? "Masjid an-Nabawi" : "Masjid al-Haram";
+      img.style.display = "";
+      img.src = STILLS[place()] || STILLS.makkah;
     }
     setLabel(false);
   }
@@ -95,69 +87,51 @@
   function showLive() {
     liveOn = true;
     var iframe = $("banner-live");
-    var video = $("banner-video");
     var img = $("banner-img");
     var list = STREAMS[place()] || STREAMS.makkah;
-    liveIdx = liveIdx % Math.max(list.length, 1);
-    var url = list[liveIdx] || "";
-    if (img) { img.hidden = false; img.style.display = "block"; } /* keep still under until playing */
-    if (iframe) {
-      iframe.hidden = true;
-      try { iframe.removeAttribute("src"); } catch (e) {}
-      iframe.style.display = "none";
+    liveIdx = liveIdx % list.length;
+    var url = list[liveIdx];
+    if (url.indexOf("autoplay=1") < 0) {
+      url += (url.indexOf("?") >= 0 ? "&" : "?") + "autoplay=1&mute=1&playsinline=1";
     }
-    if (video && url && /\.m3u8(\?|$)/i.test(url)) {
-      video.hidden = false;
-      video.style.display = "block";
-      video.muted = true;
-      video.setAttribute("playsinline", "true");
-      /* Native HLS (Safari) or leave still if unsupported */
-      try {
-        if (video.canPlayType("application/vnd.apple.mpegurl")) {
-          video.src = url;
-          var p = video.play();
-          if (p && p.then) p.then(function () {
-            if (img) { img.hidden = true; img.style.display = "none"; }
-          }).catch(function () { fallbackStillLive(); });
-        } else {
-          fallbackStillLive();
-        }
-      } catch (e2) { fallbackStillLive(); }
-    } else {
-      fallbackStillLive();
+    if (img) {
+      img.hidden = true;
+      img.style.display = "none";
+    }
+    if (iframe) {
+      iframe.hidden = false;
+      iframe.style.display = "block";
+      iframe.style.pointerEvents = "auto";
+      iframe.style.zIndex = "2";
+      iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+      iframe.setAttribute("allowfullscreen", "true");
+      iframe.setAttribute("playsinline", "true");
+      /* force reload for autoplay */
+      iframe.src = "about:blank";
+      setTimeout(function () {
+        iframe.src = url;
+      }, 30);
     }
     setLabel(true);
+    /* pause competing audio */
     try {
-      if (w.ClarityBannerAudio && typeof w.ClarityBannerAudio.stopAll === "function") w.ClarityBannerAudio.stopAll();
-    } catch (e3) {}
+      if (w.ClarityBannerAudio && w.ClarityBannerAudio.stop) w.ClarityBannerAudio.stop();
+      d.querySelectorAll("audio").forEach(function (a) { try { a.pause(); } catch (e) {} });
+    } catch (e2) {}
   }
-  function fallbackStillLive() {
-    /* Stay on sacred still — no  Optional external open once per session. */
-    showStill();
-    setLabel(false);
-    liveOn = false;
-    try {
-      if (!w.__CLARITY_LIVE_HINT__) {
-        w.__CLARITY_LIVE_HINT__ = true;
-        var lab = $("live-haramain-label");
-        if (lab) lab.textContent = "Stills";
-      }
-    } catch (e) {}
-  }
-
 
   w.toggleHaramainLive = function () {
     if (liveOn) showStill();
     else { liveIdx = 0; showLive(); }
   };
   w.changeHaramainPlace = function () {
-    liveIdx = 0;
-    if (liveOn) showLive();
+    if (liveOn) { liveIdx = 0; showLive(); }
     else showStill();
   };
   w.changeStream = function () {
+    /* video next OR radio — if audio module owns radio, only cycle video when live */
     if (liveOn) {
-      liveIdx = (liveIdx + 1) % Math.max((STREAMS[place()] || STREAMS.makkah).length, 1);
+      liveIdx = (liveIdx + 1) % (STREAMS[place()] || STREAMS.makkah).length;
       showLive();
     }
   };
@@ -479,13 +453,6 @@
   }
 
   function boot() {
-    /* HARD_BOOT 20261111HARD: stills media only — never hide overlay plaques */
-
-    /* Default = sacred stills only — Live is user opt-in, no  */
-    try { showStill(); } catch (e) {}
-    liveOn = false;
-    setLabel(false);
-
     wire();
     renderHijriLocal();
     fetchHijri().catch(function () {});
@@ -494,7 +461,7 @@
     /* default still until user asks live */
     if (!liveOn) {
       var iframe = $("banner-live");
-      if (iframe && iframe.src && iframe.src.indexOf("") >= 0) {
+      if (iframe && iframe.src && iframe.src.indexOf("youtube") >= 0) {
         /* leave if already live */
         liveOn = true;
       }
