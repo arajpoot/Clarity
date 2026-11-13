@@ -1,15 +1,13 @@
-# Clarity SEO handbook · 20261112SEO2
+# SEO handbook · Phase S4 · 20261112S4
+
+## S4 pages (this pack)
+- `/docs/rooms/` — five-room map + ItemList
+- `/docs/start/` — orientation
+- `/docs/sources/` — Qur’an.com / Sunnah.com policy
+- `/docs/privacy/` — on-device overview
+- `/docs/` — index links
 
 ## Policy
-- **Rooms untouched:** do not edit `/companion/`, `/daily/`, `/campus/`, `/amana/`, `/craft/` HTML in SEO packs.
-- Room nav rails already exist — **do not add second room bars**.
-- SEO work lives in **root files**, **`/docs/`**, and optional **`/docs/seo/`** discovery page.
-
-## Root files
-- `robots.txt` · `sitemap.xml` · `site.webmanifest` · `favicon.svg`
-- Keep Search Console verification HTML if already present
-
-## Discovery page
-- `/docs/seo/` — ItemList JSON-LD for five rooms; links into existing rooms
+Rooms untouched. No second room-nav in room apps.
 
 Educational only — not a fatwa.
