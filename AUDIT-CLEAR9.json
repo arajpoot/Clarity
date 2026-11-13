@@ -1,0 +1,70 @@
+{
+  "ver": "20261113C9",
+  "phases": [
+    {
+      "phase": "A_YAWM",
+      "has_103_arabic": true,
+      "has_deed_sentence": true,
+      "has_adhkar_grade": true,
+      "has_fard_chips": true,
+      "has_muslim_1631": true,
+      "no_productive_muslim": true,
+      "enrichment_asr_kept": true,
+      "six_doors_kept": true
+    },
+    {
+      "phase": "B_COMPANION",
+      "ayah_ssr": true,
+      "hadith_graded": true,
+      "no_loading_in_fallback": true,
+      "path_step": true,
+      "amana_vault_pointer": true,
+      "enrichment_preserved": true
+    },
+    {
+      "phase": "C_UNIVERSITY",
+      "begin_button": true,
+      "module1_arabic_full": true,
+      "module1_quran_link": true,
+      "module1_deed": true,
+      "not_fatwa": true,
+      "faculty_softened": true
+    },
+    {
+      "phase": "D_CRAFT",
+      "today_craft": true,
+      "meme_link": true,
+      "not_qari": true
+    },
+    {
+      "phase": "E_AMANA",
+      "checklist": true,
+      "not_legal": true,
+      "isolation_note": true
+    },
+    {
+      "phase": "F_PORT",
+      "yawm_line": true,
+      "video_fallback_soft": true,
+      "five_rooms_kept": true
+    }
+  ],
+  "accept_tests": {
+    "1_daily_103_deed_adhkar": true,
+    "2_companion_ayah_hadith": true,
+    "3_campus_module1_one_click": true,
+    "4_craft_today": true,
+    "5_no_productive_muslim_daily": true,
+    "6_no_kitchen_sink": true,
+    "7_enrichment_yawm_doors": true,
+    "8_edu_stamp_rooms": true
+  },
+  "accept_pass": true,
+  "governance": {
+    "no_fatwa": true,
+    "on_device": true,
+    "quran_sunnah_primary": true,
+    "no_kitchen_sink": true,
+    "enrichment_not_deleted": true
+  }
+}
