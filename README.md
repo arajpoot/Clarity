@@ -1,3 +1,5 @@
-# Index enrichment PASS · 20261112ENR1
+# SEO + docs root-only pack · 20261112SEO2
 
-All audited indexes: maintain-or-upgrade only. See governance/AUDIT_RUN.md
+**Rooms remain untouched.** No second nav bars.
+
+Start: `DEPLOY.md`

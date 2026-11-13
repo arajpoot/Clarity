@@ -1,14 +1,28 @@
-# Deploy · 20261112ENR1
+# Deploy · 20261112SEO2 — SEO / docs / root only
 
-Replace matching paths only. Companion index is **larger** restored baseline + SEO — expected.
+## Upload these (site root)
 
-Upload:
-- index.html (port)
-- companion/index.html
-- companion/banner/index.html
-- daily/index.html + daily/modules/*/index.html
-- campus/index.html · amana/index.html · craft/index.html
-- robots.txt · sitemap.xml · site.webmanifest · favicon.svg
-- docs/ · governance/AUDIT_RUN.md · smoke/SMOKE.json
+- `robots.txt`
+- `sitemap.xml`
+- `site.webmanifest`
+- `favicon.svg`
+- `google888adb85ca4526c8.html` (skip if verification already live)
+- `ARCHITECTURE.md`
+- `NAV_CONTRACT.md`
+- entire `docs/` folder
+- `governance/AUDIT_RUN.md` (optional)
+- `smoke/SMOKE.json` (optional)
 
-Do not delete unrelated room assets.
+## Do NOT upload / replace
+
+- `companion/index.html`
+- `daily/**`
+- `campus/**`
+- `amana/**`
+- `craft/**` (except you may leave craft alone entirely)
+
+## After deploy
+
+Search Console → submit `https://clarity-dawah.fyi/sitemap.xml`
+
+Educational only — not a fatwa.

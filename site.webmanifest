@@ -1,13 +1,19 @@
 {
   "name": "Clarity \u2014 Furnish Your Grave",
   "short_name": "Clarity",
+  "description": "Five rooms: Companion, Yawm, University, Am\u0101nah, Craft. Educational only \u2014 not a fatwa.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "background_color": "#0d1f17",
+  "theme_color": "#0d1f17",
+  "lang": "en",
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }
