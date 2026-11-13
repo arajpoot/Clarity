@@ -1,28 +1,11 @@
-# Deploy · 20261112SEO2 — SEO / docs / root only
+# Deploy Phase S4 · 20261112S4
 
-## Upload these (site root)
+## Upload
+- entire `docs/` folder (rooms, start, sources, privacy, index, SEO.md)
+- `sitemap.xml` (root) — includes new docs URLs
 
-- `robots.txt`
-- `sitemap.xml`
-- `site.webmanifest`
-- `favicon.svg`
-- `google888adb85ca4526c8.html` (skip if verification already live)
-- `ARCHITECTURE.md`
-- `NAV_CONTRACT.md`
-- entire `docs/` folder
-- `governance/AUDIT_RUN.md` (optional)
-- `smoke/SMOKE.json` (optional)
+## Do not upload
+Any `companion/`, `daily/`, `campus/`, `amana/`, or `craft/` application HTML.
 
-## Do NOT upload / replace
-
-- `companion/index.html`
-- `daily/**`
-- `campus/**`
-- `amana/**`
-- `craft/**` (except you may leave craft alone entirely)
-
-## After deploy
-
-Search Console → submit `https://clarity-dawah.fyi/sitemap.xml`
-
-Educational only — not a fatwa.
+## After
+Search Console → resubmit sitemap · optional URL inspection on `/docs/rooms/` and `/docs/start/`.

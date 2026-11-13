@@ -1,5 +1,5 @@
-# SEO + docs root-only pack · 20261112SEO2
+# Phase S4 · SEO page set · 20261112S4
 
-**Rooms remain untouched.** No second nav bars.
+Bismillāh. New HTML under `/docs/` only.
 
-Start: `DEPLOY.md`
+See DEPLOY.md · governance/AUDIT_RUN.md
