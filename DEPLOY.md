@@ -1,11 +1,13 @@
-# Deploy Phase S4 · 20261112S4
+# Phase S5 · 20261112S5
 
-## Upload
-- entire `docs/` folder (rooms, start, sources, privacy, index, SEO.md)
-- `sitemap.xml` (root) — includes new docs URLs
+**Replace only** root `/index.html` (port lobby).
 
-## Do not upload
-Any `companion/`, `daily/`, `campus/`, `amana/`, or `craft/` application HTML.
+Additive head only:
+- manifest · favicon.svg (if missing)
+- robots / og:url / WebSite JSON-LD (if missing)
+- phase meta
 
-## After
-Search Console → resubmit sitemap · optional URL inspection on `/docs/rooms/` and `/docs/start/`.
+**Do not** touch companion/daily/campus/amana/craft.
+**Do not** add a second room-nav.
+
+11314 → 11421 bytes
