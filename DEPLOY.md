@@ -1,13 +1,13 @@
-# Phase S5 · 20261112S5
+# Deploy S6 + S7 (+ S3 checklist) · 20261112S6S7
 
-**Replace only** root `/index.html` (port lobby).
+## Upload
+1. `docs/seo/index.html` — WebSite + ItemList JSON-LD
+2. `sitemap.xml` — hygiene-verified 200 URLs only (32 entries)
+3. `docs/console/index.html` — GSC operator checklist (**noindex**)
+4. `docs/SEO.md` optional
 
-Additive head only:
-- manifest · favicon.svg (if missing)
-- robots / og:url / WebSite JSON-LD (if missing)
-- phase meta
+## Do not
+Touch companion / daily / campus / amana / craft app HTML.
 
-**Do not** touch companion/daily/campus/amana/craft.
-**Do not** add a second room-nav.
-
-11314 → 11421 bytes
+## After
+GSC → resubmit sitemap (S3).
