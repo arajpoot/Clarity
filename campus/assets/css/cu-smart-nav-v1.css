@@ -1,0 +1,212 @@
+/*! cu-smart-nav-v1 · single navigation system · campus only · educational only */
+:root {
+  --sn-bg: rgba(6, 14, 12, 0.97);
+  --sn-gold: #e8d5a3;
+  --sn-edge: rgba(201, 162, 39, 0.38);
+  --sn-ok: #1e7d5e;
+  --sn-text: #e8f0ec;
+}
+
+/* Hide legacy / duplicate rails once smart nav owns the page */
+html.cu-smart-nav-on #cu-site-rail,
+html.cu-smart-nav-on #cu-curr-rail,
+html.cu-smart-nav-on #cu-uni-path,
+html.cu-smart-nav-on .cu-uni-path,
+html.cu-smart-nav-on .cu-uni-stages,
+html.cu-smart-nav-on .cu-quick,
+html.cu-smart-nav-on .stage-nav,
+html.cu-smart-nav-on nav.cu-curr-rail,
+html.cu-smart-nav-on .cu-banner,
+html.cu-smart-nav-on [data-uni-replaced],
+html.cu-smart-nav-on .cu-journey-slim,
+html.cu-smart-nav-on #cu-uni-journey {
+  display: none !important;
+}
+/* Kill unstyled link dumps (no-gap concatenation) in legacy injects */
+html.cu-smart-nav-on body > a:not(.sn-pill):not(.sn-room) {
+  /* don't blanket-hide; only strip known broken hosts */
+}
+
+.sn-root {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--sn-bg);
+  border-bottom: 1px solid var(--sn-edge);
+  backdrop-filter: blur(12px);
+  font-family: Quicksand, system-ui, sans-serif;
+  color: var(--sn-text);
+}
+.sn-top {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.65rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.sn-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: var(--sn-gold);
+  font-weight: 800;
+  font-size: 0.82rem;
+  margin-right: 0.25rem;
+  white-space: nowrap;
+}
+.sn-brand small {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 650;
+  opacity: 0.75;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.sn-rooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  flex: 1 1 auto;
+}
+.sn-room {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  text-decoration: none;
+  color: var(--sn-text);
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.28);
+}
+.sn-room.is-here {
+  background: var(--sn-ok);
+  border-color: transparent;
+  color: #fff;
+}
+.sn-room .sn-ico {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 3px;
+  border: 1px solid rgba(232, 213, 163, 0.4);
+  background: rgba(232, 213, 163, 0.15);
+  font-size: 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sn-gold);
+}
+.sn-more-btn {
+  margin-left: auto;
+  border-radius: 999px;
+  border: 1px solid var(--sn-edge);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--sn-gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.28rem 0.65rem;
+  cursor: pointer;
+}
+.sn-crumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  padding: 0.25rem 0.65rem 0.4rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  font-size: 0.65rem;
+  opacity: 0.85;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+.sn-crumb a {
+  color: #c9e8d4;
+  text-decoration: none;
+}
+.sn-crumb span.sep { opacity: 0.45; margin: 0 0.1rem; }
+
+/* Layer 2: curriculum context */
+.sn-layer2 {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.3rem;
+  padding: 0.35rem 0.65rem 0.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.sn-pill {
+  flex: 0 0 auto;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  text-decoration: none;
+  color: var(--sn-text);
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.22);
+  white-space: nowrap;
+}
+.sn-pill.is-here {
+  background: var(--sn-ok);
+  border-color: transparent;
+  color: #fff;
+}
+.sn-pill.is-locked {
+  opacity: 0.5;
+}
+.sn-group-label {
+  flex: 0 0 auto;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(232, 213, 163, 0.7);
+  padding: 0.3rem 0.2rem;
+  align-self: center;
+}
+
+/* Drawer for overflow halls */
+.sn-drawer {
+  display: none;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.5rem 0.65rem 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.sn-drawer.open { display: block; }
+.sn-drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 0.35rem;
+}
+.sn-drawer a {
+  display: block;
+  padding: 0.45rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  text-decoration: none;
+  color: var(--sn-text);
+  font-size: 0.72rem;
+  font-weight: 650;
+  background: rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+.sn-drawer a.is-here {
+  background: var(--sn-ok);
+  color: #fff;
+  border-color: transparent;
+}
+.sn-hint {
+  font-size: 0.62rem;
+  opacity: 0.75;
+  margin: 0.35rem 0 0;
+  text-align: center;
+}
