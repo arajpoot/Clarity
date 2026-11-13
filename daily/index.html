@@ -40,6 +40,72 @@
       <p class="asr-shafii">“If the people were to reflect upon Sūrat al-ʿAṣr, it would be enough for them.” — attributed to Imam al-Shāfiʿī · educational citation</p>
     </div>
   </section>
+
+  <!-- CLEAR9 first rite · SSR · no Loading · enrichment below preserved -->
+  <section id="yawm-first-rite" class="yawm-first-rite" aria-label="Today’s portion — first session">
+    <div class="yfr-card">
+      <p class="yfr-kicker">Today’s portion · under two minutes · educational only — not a fatwa</p>
+      <p class="yfr-ar" lang="ar" dir="rtl">وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ ۝ إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ</p>
+      <p class="yfr-en">By time — mankind is in loss, except those who believe, do righteous deeds, and advise one another to truth and to patience.</p>
+      <p class="yfr-ref"><a href="https://quran.com/103" target="_blank" rel="noopener">Qur’an 103:1–3 · quran.com/103</a></p>
+
+      <div class="yfr-deed" id="yawm-deed-box">
+        <p class="yfr-deed-label">One concrete step</p>
+        <p class="yfr-deed-text" id="yawm-deed-text">Say <strong>Bismillāh</strong> before the next ordinary task — then do the task with presence.</p>
+        <p class="yfr-act-label">One way to act — not a ruling.</p>
+        <div class="yfr-actions">
+          <button type="button" class="yfr-btn" id="yawm-deed-done" onclick="try{localStorage.setItem('clarity_yawm_deed_done_v1', new Date().toISOString().slice(0,10));this.textContent='Marked · today';}catch(e){}">Mark done</button>
+          <button type="button" class="yfr-btn ghost" id="yawm-deed-another" onclick="try{var a=['Share one verified benefit today — with its source.','Pray the next farḍ with fuller presence — no rush in the recitation.','Close one idle screen and open Qur’an.com for three minutes.'];var i=Math.floor(Math.random()*a.length);document.getElementById('yawm-deed-text').innerHTML=a[i];}catch(e){}">Another</button>
+        </div>
+      </div>
+
+      <div class="yfr-dhikr">
+        <p class="yfr-deed-label">One adhkār</p>
+        <p class="yfr-ar small" lang="ar" dir="rtl">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ…</p>
+        <p class="yfr-en">O Allah, You are my Lord — none has the right to be worshipped but You. You created me and I am Your servant… (full wording: open module)</p>
+        <p class="yfr-ref">Sayyid al-istighfār · <strong>Bukhārī 6306</strong> · Ṣaḥīḥ · <a href="https://sunnah.com/bukhari:6306" target="_blank" rel="noopener">sunnah.com/bukhari:6306</a> · verify grade with a teacher if unsure</p>
+        <p><a class="yfr-link" href="/daily/modules/adhkar/">Open full morning / evening pack →</a></p>
+      </div>
+
+      <div class="yfr-fard">
+        <p class="yfr-deed-label">Farḍ rakʿāt · literacy map only</p>
+        <div class="yfr-chips" aria-label="Farḍ units">
+          <span class="yfr-chip">Fajr 2</span>
+          <span class="yfr-chip">Ẓuhr 4</span>
+          <span class="yfr-chip">ʿAṣr 4</span>
+          <span class="yfr-chip">Maghrib 3</span>
+          <span class="yfr-chip">ʿIshāʾ 4</span>
+        </div>
+        <p class="yfr-note">Open Companion for local times — cue only, not a timetable. <a href="/companion/">Companion ṣalāh →</a></p>
+      </div>
+
+      <div class="yfr-light">
+        <p class="yfr-deed-label">Send light</p>
+        <p class="yfr-en">Three continuing deeds: ongoing charity, beneficial knowledge, and a righteous child’s duʿāʾ.</p>
+        <p class="yfr-ref">Ṣaḥīḥ · Muslim · 1631 · <a href="https://sunnah.com/muslim:1631" target="_blank" rel="noopener">sunnah.com/muslim:1631</a></p>
+      </div>
+    </div>
+  </section>
+  <style>
+  .yawm-first-rite{max-width:42rem;margin:0.75rem auto 1rem;padding:0 0.75rem;box-sizing:border-box}
+  .yfr-card{border:1px solid rgba(212,180,90,0.35);border-radius:16px;padding:1rem 1.1rem;background:linear-gradient(165deg,rgba(12,28,22,0.94),rgba(8,16,12,0.97));color:#e8f0ec}
+  .yfr-kicker{margin:0 0 0.65rem;font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:#c9a84c;font-weight:800}
+  .yfr-ar{font-size:1.25rem;line-height:1.9;margin:0.35rem 0;color:#f3e8c8}
+  .yfr-ar.small{font-size:1.05rem}
+  .yfr-en{margin:0.25rem 0;font-size:0.92rem;line-height:1.45;opacity:0.95}
+  .yfr-ref{margin:0.25rem 0 0.5rem;font-size:0.78rem;color:#c9a84c}
+  .yfr-ref a,.yfr-link{color:#e8d5a3;font-weight:700}
+  .yfr-deed,.yfr-dhikr,.yfr-fard,.yfr-light{margin-top:0.85rem;padding-top:0.75rem;border-top:1px solid rgba(212,180,90,0.2)}
+  .yfr-deed-label{margin:0 0 0.3rem;font-size:0.7rem;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;color:#c9a84c}
+  .yfr-act-label{margin:0.35rem 0;font-size:0.72rem;opacity:0.85;font-style:italic}
+  .yfr-actions{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem}
+  .yfr-btn{border:1px solid rgba(212,180,90,0.4);background:linear-gradient(135deg,#1a6b52,#0f4c3a);color:#f3e8c8;border-radius:999px;padding:0.4rem 0.85rem;font-weight:800;font-size:0.8rem;cursor:pointer}
+  .yfr-btn.ghost{background:transparent}
+  .yfr-chips{display:flex;flex-wrap:wrap;gap:0.35rem}
+  .yfr-chip{display:inline-block;padding:0.28rem 0.55rem;border-radius:999px;border:1px solid rgba(212,180,90,0.35);font-size:0.78rem;font-weight:700;background:rgba(0,0,0,0.25)}
+  .yfr-note{margin:0.4rem 0 0;font-size:0.78rem;opacity:0.9}
+  </style>
+
 <main class="yawm-main">
     <p class="yawm-note">Yawm is today’s portion for daily modules on this site. Private vault tools live in Amānah. Educational only — not a fatwa.</p>
 
@@ -226,11 +292,12 @@
   </main>
 
   <footer class="yawm-footer">
-    Clarity · Yawm · educational only — not a fatwa · verify with a trusted local scholar
+    Clarity · Yawm · educational only — not a fatwa · private vault only in Amānah · verify with a trusted local scholar
   </footer>
 
   <script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261109Y7" defer></script>
   <script src="/daily/assets/yawm-theme-v1.js?v=20261109Y7" defer></script>
   <script src="/daily/assets/yawm-isolation-guard-v1.js?v=20261109Y7" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
