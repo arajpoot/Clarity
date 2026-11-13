@@ -305,7 +305,7 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 
   #clarity-path-tiles.clarity-path-tiles {
     display: block !important;
-    max-width: 56rem;
+    max-width: none;
     margin: 0.45rem auto 0.75rem;
     padding: 0.75rem 0.85rem 0.65rem;
     border-radius: 16px;
@@ -387,9 +387,9 @@ html[data-clarity-room="companion"] .amana-vault-interior {
     opacity: 0.8;
   }
 </style>
-<link rel="stylesheet" href="/companion/assets/companion-path-tiles-rich-v1.css?v=20261112E5"/>
-<link rel="stylesheet" href="/companion/assets/companion-banner-shell-full-v1.css?v=20261112E5b"/>
-<link rel="stylesheet" href="/companion/assets/companion-door-rail-touch-v1.css?v=20261112E5"/>
+<link rel="stylesheet" href="/companion/assets/companion-path-tiles-rich-v1.css?v=20261113W1"/>
+<link rel="stylesheet" href="/companion/assets/companion-desktop-fullwidth-v1.css?v=20261113W1"/>
+<link rel="stylesheet" href="/companion/assets/companion-door-rail-touch-v1.css?v=20261113W1"/>
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -436,9 +436,9 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   ></iframe>
 </section>
 <style id="companion-banner-shell-css">
-.companion-banner-shell { max-width: none; width: 100%; margin: 0 0 .5rem; padding: 0; }
+.companion-banner-shell { max-width: none !important; width: 100% !important; margin: 0 0 .5rem; padding: 0; }
 .companion-banner-frame {
-  display: block; width: 100%;
+  display: block; width: 100% !important; max-width: none !important;
   min-height: 17.5rem;
   height: clamp(17.5rem, 38vw, 20.5rem);
   border: 0; background: #0a1210;
@@ -2312,6 +2312,7 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 
 <!-- phase3-dedupe dup: /companion/assets/clarity-companion-unfreeze-v3.js -->
 <script defer src="/companion/assets/clarity-masnoon-dua-pack-v1.js?v=20261111RR1"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
