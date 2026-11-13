@@ -1,13 +1,5 @@
-# SEO handbook · Phase S4 · 20261112S4
+# SEO · 20261112S6S7
 
-## S4 pages (this pack)
-- `/docs/rooms/` — five-room map + ItemList
-- `/docs/start/` — orientation
-- `/docs/sources/` — Qur’an.com / Sunnah.com policy
-- `/docs/privacy/` — on-device overview
-- `/docs/` — index links
+Phases: S4 docs pages live · S5 port head live · **S6** WebSite+ItemList on `/docs/seo/` · **S7** sitemap hygiene · **S3** Console checklist at `/docs/console/` (noindex).
 
-## Policy
-Rooms untouched. No second room-nav in room apps.
-
-Educational only — not a fatwa.
+Rooms untouched.
