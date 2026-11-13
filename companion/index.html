@@ -1,25 +1,19 @@
 <!DOCTYPE html><html data-companion-banner-shell="1" data-nuros-phase="4" data-clarity-room="companion" data-theme="light" lang="en"><head>
-<!-- T-BOOT-01 · companion-boot · enrichment: held · Bismillah -->
-<script id="rb-companion-boot" src="/assets/companion-boot.js?v=20261111BOOT"></script>
-<!-- T-FEAT-01 · companion-features · enrichment: held · Bismillah -->
-<script src="/assets/companion-features.js?v=20261111FEAT" defer></script>
 
+<script id="rb-companion-boot" src="/companion/assets/companion-boot-v2.js?v=20261104EC"></script>
+<script src="/companion/assets/boot/companion-pathway-loader-v1.js?v=20261108C2" defer></script>
+<script src="/companion/assets/boot/companion-craft-idle-v1.js?v=20261108C3" defer></script>
 
-
-<!-- C3 noise: ai-maintainer deferred off critical path -->
+<script src="/companion/assets/companion-boot-shim-v1.js?v=20261106C1"></script>
+<script src="/companion/assets/companion-room-owner-v1.js?v=20261104EN"></script>
+<script src="/companion/assets/companion-shariah-guard-v1.js?v=20261106C1" defer></script>
+<script src="/companion/assets/companion-error-guard-v1.js?v=20261106C1" defer></script>
 <link rel="stylesheet" href="/companion/assets/clarity-companion-unfreeze-v3.css?v=20261104EC" />
-
-
 
 
 <meta name="clarity-surface" content="companion"/>
 <!-- A2 spine: overlays, chunk-8, feature, path, aux, sticky via companion-a2-spine-loader-v1 -->
 <meta name="companion-phase-build" content="G13-reminder-about-20261106" />
-
-
-
-
-
 
 
 <!-- Clarity publish SEO package v1 -->
@@ -53,8 +47,6 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:image" content="https://clarity-dawah.fyi/og-cover.png" />
-
-
 
 
 <meta charset="UTF-8" />
@@ -95,55 +87,12 @@
 <link id="clarity-scroll-fortress-css" rel="stylesheet" media="print" onload="this.media='all'" href="/assets/css/clarity-scroll-fortress-css.css?v=20261101WB1" />
 
 
-
-
-
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow" />
 <link id="clarity-amana-vault-gate-v1" rel="stylesheet" media="print" onload="this.media='all'" href="/assets/css/clarity-amana-vault-gate-v1.css?v=20261101WB1" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <link rel="stylesheet" media="print" onload="this.media='all'" href="/assets/css/nuros-shariah-palette-collapse-v1.css?v=20261101WB1" />
-
-
-
-
-
-
-
-
-
-
-
 
 
 <link rel="stylesheet" href="/assets/css/companion-lean-styles.css?v=20261101WB1"/>
@@ -218,6 +167,8 @@
 #clarity-day-landing,.clarity-day-landing,[data-clarity-day-landing],#clarity-landing-stack,.day-landing-stack{display:none!important}
 </style>
 <link rel="stylesheet" href="/assets/room-nav/clarity-room-nav-v1.css?v=20261104C10"/>
+<script src="/assets/room-nav/clarity-room-nav-v1.js?v=20261104C10" defer></script>
+
 <style id="rb-companion-sot-css">
 #clarity-day-landing,.clarity-day-landing,#clarity-landing-stack,.day-landing-stack,
 #clarity-reopen-bar,[data-clarity-day-landing],
@@ -298,7 +249,6 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/nuros/nuros-type-icons-v1.css?v=20261104P2"/>
-<!-- C2 pathway modules deferred (see packs) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -342,65 +292,104 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 }
 </script>
 
-<style id="clarity-learning-path-css">
-  #clarity-learning-path.clarity-learning-path-strip {
-    display: block !important;
-    visibility: visible !important;
-    max-width: 56rem;
-    margin: 0.35rem auto 0.65rem;
-    padding: 0.55rem 0.75rem 0.65rem;
-    border-radius: 14px;
-    border: 1px solid rgba(212,180,90,0.32);
-    background: linear-gradient(165deg, rgba(15,76,58,0.2), rgba(8,18,14,0.45));
-    box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 6px 18px rgba(0,0,0,0.2);
+<style id="clarity-path-tiles-css">
+  /* Hide pill bars — tiles are the single path UI */
+  #clarity-learning-path,
+  .clarity-learning-path-strip,
+  .rrra-hub .clarity-gate-switcher.rrra-sitewide,
+  .clarity-gate-switcher.rrra-sitewide:not(.cpt-keep) {
+    display: none !important;
   }
-  #clarity-learning-path .clp-hint {
-    margin: 0 0 0.45rem;
-    text-align: center;
-    font-size: 0.78rem;
-    line-height: 1.4;
-    opacity: 0.92;
+  /* Hide stray bottom floating track chips if any outside door rail */
+  body > .cgs-btn, .page-wrapper > .cgs-btn.cgs-dai { }
+
+  #clarity-path-tiles.clarity-path-tiles {
+    display: block !important;
+    max-width: none;
+    margin: 0.45rem auto 0.75rem;
+    padding: 0.75rem 0.85rem 0.65rem;
+    border-radius: 16px;
+    border: 1px solid rgba(212,180,90,0.35);
+    background: linear-gradient(165deg, rgba(12,28,22,0.92), rgba(8,16,12,0.96));
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     color: #e8f0ec;
   }
-  #clarity-learning-path .clarity-gate-switcher {
-    display: flex !important;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  #clarity-learning-path .cgs-label {
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  #clarity-path-tiles .cpt-head { text-align: center; margin-bottom: 0.65rem; }
+  #clarity-path-tiles .cpt-title {
+    margin: 0 0 0.25rem;
+    font-family: Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: #e8d5a3;
-    margin-right: 0.15rem;
   }
-  #clarity-learning-path .cgs-btn {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 0.28rem;
-    min-height: 2.55rem;
-    padding: 0.4rem 0.7rem !important;
-    border-radius: 12px !important;
-    border: 1px solid rgba(212,180,90,0.35);
-    background: rgba(0,0,0,0.28);
+  #clarity-path-tiles .cpt-sub {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.9;
+    line-height: 1.4;
+  }
+  #clarity-path-tiles .cpt-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.55rem;
+  }
+  @media (max-width: 800px) {
+    #clarity-path-tiles .cpt-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    #clarity-path-tiles .cpt-grid { grid-template-columns: 1fr; }
+  }
+  #clarity-path-tiles .cpt-tile {
+    text-align: left;
+    border-radius: 12px;
+    border: 1px solid rgba(212,180,90,0.4);
+    background: rgba(15, 40, 32, 0.85);
     color: inherit;
-    font-size: 0.78rem !important;
-    font-weight: 800 !important;
+    padding: 0.65rem 0.7rem;
     cursor: pointer;
+    min-height: 8.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
   }
-  #clarity-learning-path .cgs-btn .cgs-ico { font-size: 1rem; }
-  #clarity-learning-path .cgs-btn.is-active,
-  #clarity-learning-path .cgs-btn[aria-pressed="true"] {
-    background: rgba(30,125,94,0.5);
-    border-color: rgba(212,180,90,0.55);
+  #clarity-path-tiles .cpt-tile:hover {
+    border-color: rgba(232,213,163,0.65);
+    box-shadow: 0 0 0 1px rgba(212,180,90,0.25);
   }
-  /* Avoid double track inside Reminder hub when global strip present */
-  .rrra-hub .clarity-gate-switcher.rrra-sitewide { display: none !important; }
+  #clarity-path-tiles .cpt-tile strong {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #e8d5a3;
+    line-height: 1.3;
+  }
+  #clarity-path-tiles .cpt-desc {
+    font-size: 0.72rem;
+    line-height: 1.4;
+    opacity: 0.92;
+    flex: 1;
+  }
+  #clarity-path-tiles .cpt-tags {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: #c9a84c;
+    line-height: 1.35;
+  }
+  #clarity-path-tiles .cpt-seeker { border-color: rgba(201,168,76,0.45); }
+  #clarity-path-tiles .cpt-new { border-color: rgba(90,170,120,0.45); }
+  #clarity-path-tiles .cpt-daily { border-color: rgba(80,150,190,0.5); }
+  #clarity-path-tiles .cpt-dai { border-color: rgba(180,150,70,0.5); }
+  #clarity-path-tiles .cpt-foot {
+    margin: 0.55rem 0 0;
+    text-align: center;
+    font-size: 0.72rem;
+    opacity: 0.8;
+  }
 </style>
-
+<link rel="stylesheet" href="/companion/assets/companion-path-tiles-rich-v1.css?v=20261113W1"/>
+<link rel="stylesheet" href="/companion/assets/companion-desktop-fullwidth-v1.css?v=20261113W1"/>
+<link rel="stylesheet" href="/companion/assets/companion-door-rail-touch-v1.css?v=20261113W1"/>
 </head><body data-active-tab="reminder" data-section-fortress="1">
 
 <nav class="clarity-room-nav" data-room="companion" aria-label="Clarity rooms">
@@ -415,8 +404,6 @@ html[data-clarity-room="companion"] .amana-vault-interior {
 <!-- surface-doors removed unity-v2 -->
 
 
-
-
 <nav id="clarity-global-nav" class="global-nav">
     <div class="nav-left">
         <span class="nav-brand" onclick="resetToGateView()" style="cursor:pointer;font-weight:700;color:#0d4f3c" title="Clarity · NurOS — Furnish Your Grave">✦ Clarity</span>
@@ -429,8 +416,8 @@ html[data-clarity-room="companion"] .amana-vault-interior {
     </div>
     <div class="nav-buttons">
         <button type="button" onclick="typeof clarityPrintLegacyPack==='function'?clarityPrintLegacyPack():window.print()" title="Print educational legacy outline">🖨 Legacy pack</button>
-        <button type="button" id="amana-top-print-btn" onclick="clarityAmanaPrintPack()" title="Amana Vault pack — unlock required">🏦 Print vault pack</button>
-        <button type="button" onclick="resetToGateView()">🔄 Gate mode</button>
+        <button type="button" id="amana-top-print-btn" onclick="clarityAmanaPrintPack()" title="Amana Vault pack — unlock required">🏦 Amānah vault</button>
+        <button type="button" onclick="resetToGateView()">🔄 Amānah</button>
     </div>
 </nav>
 
@@ -449,54 +436,86 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   ></iframe>
 </section>
 <style id="companion-banner-shell-css">
-/* companion banner shell · 20261111HARD */
-.skip-link, a.skip-link, .skip-to-content, a[href="#main-content"].skip-link {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  position: absolute !important;
-  left: -9999px !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-}
-.companion-banner-shell {
-  max-width: none !important;
-  width: 100% !important;
-  margin: 0 0 0.65rem !important;
-  padding: 0 !important;
-  position: relative !important;
-  z-index: 2 !important;
-}
+.companion-banner-shell { max-width: none !important; width: 100% !important; margin: 0 0 .5rem; padding: 0; }
 .companion-banner-frame {
-  display: block !important;
-  width: 100% !important;
-  min-height: 16.5rem !important;
-  height: clamp(16rem, 34vw, 21rem) !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: #0a1210 !important;
+  display: block; width: 100% !important; max-width: none !important;
+  min-height: 17.5rem;
+  height: clamp(17.5rem, 38vw, 20.5rem);
+  border: 0; background: #0a1210;
 }
 @media (max-width: 720px) {
-  .companion-banner-frame {
-    min-height: 38rem !important;
-    height: 40rem !important;
-  }
+  .companion-banner-frame { min-height: 40rem; height: 42rem; }
 }
+.skip-link, a.skip-to-content, .skip-to-content { display: none !important; }
 </style>
 
-<!-- Learning path — global (always visible under banner) · enrichment held -->
-<section id="clarity-learning-path" class="clarity-learning-path-strip" aria-label="Learning path">
-  <p class="clp-hint">Phased learning — start as Seeker. A short quiz unlocks the next door once; earlier sections stay with you.</p>
-  <div class="clarity-gate-switcher rrra-sitewide clp-switcher" role="group" aria-label="Learning track — switch anytime">
-    <span class="cgs-label">Track</span>
-    <button type="button" class="cgs-btn cgs-seeker" data-gate="seeker" onclick="try{claritySwitchGate('seeker')}catch(e){}" title="Curious Seeker — purpose, prophecy, Qur’an, next life"><span class="cgs-ico" aria-hidden="true">🔭</span><span class="cgs-txt"><span class="cgs-num">1</span> Seeker</span></button>
-    <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="try{claritySwitchGate('new_muslim')}catch(e){}" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
-    <button type="button" class="cgs-btn cgs-daily" data-gate="practicing" onclick="try{claritySwitchGate('practicing')}catch(e){}" title="Daily Muslim — streaks, tajweed, light legacy"><span class="cgs-ico" aria-hidden="true">📿</span><span class="cgs-txt"><span class="cgs-num">3</span> Daily</span></button>
-    <button type="button" class="cgs-btn cgs-dai" data-gate="dai" onclick="try{claritySwitchGate('dai')}catch(e){}" title="Aspiring Da’i — sincerity, sources, calm dawah"><span class="cgs-ico" aria-hidden="true">🕊️</span><span class="cgs-txt"><span class="cgs-num">4</span> Da’i</span></button>
-    <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn-global" title="Reset progress to Seeker level (optional)" onclick="try{clarityPathResetToSeeker()}catch(e){}"><span class="cgs-ico" aria-hidden="true">↺</span><span class="cgs-txt">Reset</span></button>
+
+<!-- Path to furnish the grave — four doors under banner · enrichment held -->
+
+<!-- CLEAR9 Companion first paint · SSR · no Loading -->
+<section id="clarity-clear9-first" class="clear9-first" aria-label="First reading — works without scripts">
+  <div class="c9f-inner">
+    <p class="c9f-kicker">First reading · educational only — not a fatwa</p>
+    <p class="c9f-ar" lang="ar" dir="rtl">يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَلْتَنظُرْ نَفْسٌ مَّا قَدَّمَتْ لِغَدٍ</p>
+    <p class="c9f-en">O you who have believed, fear Allah. And let every soul look to what it has put forth for tomorrow.</p>
+    <p class="c9f-ref"><a href="https://quran.com/59/18" target="_blank" rel="noopener">Qur’an 59:18 · quran.com/59/18</a></p>
+    <div class="c9f-hadith">
+      <p class="c9f-en">The Messenger of Allah ﷺ said: <em>“Actions are but by intention, and every person shall have only that which they intended.”</em></p>
+      <p class="c9f-ref">Ṣaḥīḥ · al-Bukhārī · 1 · <a href="https://sunnah.com/bukhari:1" target="_blank" rel="noopener">sunnah.com/bukhari:1</a> · also Muslim · verify with a teacher if unsure</p>
+    </div>
+    <p class="c9f-path"><strong>Next path step:</strong> Seeker · Wake the heart — or open the path tiles below.</p>
+    <p class="c9f-bridges">
+      Full tools need JavaScript enabled ·
+      <a href="/craft/">Craft</a> for Meme / Tajweed ·
+      <a href="/daily/">Yawm</a> for today’s portion ·
+      <a href="/amana/">Amānah</a> for vault only
+    </p>
   </div>
+</section>
+<style>
+.clear9-first{max-width:48rem;margin:0.5rem auto 0.75rem;padding:0 0.75rem}
+.c9f-inner{border:1px solid rgba(212,180,90,0.35);border-radius:14px;padding:0.85rem 1rem;background:rgba(8,18,14,0.88);color:#e8f0ec}
+.c9f-kicker{margin:0 0 0.45rem;font-size:0.7rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#c9a84c}
+.c9f-ar{font-size:1.15rem;line-height:1.85;margin:0.3rem 0;color:#f3e8c8}
+.c9f-en{margin:0.25rem 0;font-size:0.9rem;line-height:1.45}
+.c9f-ref{margin:0.2rem 0 0.45rem;font-size:0.76rem;color:#c9a84c}
+.c9f-ref a,.c9f- a{color:#e8d5a3;font-weight:700}
+.c9f-hadith{margin-top:0.55rem;padding-top:0.55rem;border-top:1px solid rgba(212,180,90,0.2)}
+.c9f-path,.c9f-bridges{margin:0.4rem 0 0;font-size:0.8rem;line-height:1.4}
+</style>
+
+<section id="clarity-path-tiles" class="clarity-path-tiles" aria-label="Path to furnish the grave">
+  <header class="cpt-head">
+    <h2 class="cpt-title">Path to furnish the grave</h2>
+    <p class="cpt-sub">Four doors. One aim: send light ahead — not a fatwa path.</p>
+  </header>
+  <div class="cpt-grid">
+    <button type="button" class="cpt-tile cpt-seeker" data-gate="seeker" onclick="try{claritySwitchGate('seeker')}catch(e){}">
+      <span class="cpt-ico" aria-hidden="true"></span>
+      <strong>Seeker · Wake the heart</strong>
+      <span class="cpt-desc">Remember death. Send small light ahead. No overwhelm.</span>
+      <span class="cpt-tags">SOUL AUDIT · SHORT REMINDERS · SEERAH SPARK</span>
+    </button>
+    <button type="button" class="cpt-tile cpt-new" data-gate="new_muslim" onclick="try{claritySwitchGate('new_muslim')}catch(e){}">
+      <span class="cpt-ico" aria-hidden="true"></span>
+      <strong>New Muslim · Establish pillars</strong>
+      <span class="cpt-desc">Wudu, salah, short surahs, clear belief — stability first.</span>
+      <span class="cpt-tags">PRAYER · PURIFICATION · BASIC FIQH · GENTLE PATH</span>
+    </button>
+    <button type="button" class="cpt-tile cpt-daily" data-gate="practicing" onclick="try{claritySwitchGate('practicing')}catch(e){}">
+      <span class="cpt-ico" aria-hidden="true"></span>
+      <strong>Daily Muslim · Craft &amp; consistency</strong>
+      <span class="cpt-desc">Habits that outlive you: Qurʾān craft, character, weekly review.</span>
+      <span class="cpt-tags">TAJWEED · CALLIGRAPHY · DEED LEDGER · SEERAH MIRROR</span>
+    </button>
+    <button type="button" class="cpt-tile cpt-dai" data-gate="dai" onclick="try{claritySwitchGate('dai')}catch(e){}">
+      <span class="cpt-ico" aria-hidden="true"></span>
+      <strong>Aspiring Daʿi · Transmit light</strong>
+      <span class="cpt-desc">Teach with adab. Guard sources. Leave beneficial knowledge.</span>
+      <span class="cpt-tags">DAWAH TOOLS · CRITICAL STUDY · FAMILY LEGACY</span>
+    </button>
+  </div>
+  <p class="cpt-foot">Return anytime · on this device</p>
 </section>
 
 
@@ -504,9 +523,6 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   <span class="cv-label">Last</span>
   <span class="cv-hint">Scroll a section to pin it</span>
 </div>
-
-
-
 
 
 <div id="clarity-three-doors" class="hidden" style="display:none" role="dialog" aria-modal="true" aria-labelledby="td-title">
@@ -595,7 +611,7 @@ html[data-clarity-room="companion"] .amana-vault-interior {
       <li><a href="/companion/#action">Tajweed</a></li>
       <li><a href="/companion/#reality">Lectures</a></li>
       <li><a href="/companion/#notes">Fiqh tools (family tree, farāʾiḍ, wasiyyah)</a></li>
-      <li><a href="/companion/#action">Meme Studio</a></li>
+      <li><a href="/companion/#action">Meme Studio · <a href="/craft/meme/">Quick open → Craft</a></a></li>
       <li><a href="/companion/#notes">Notes &amp; Sharia IQ</a></li>
       <li><a href="/companion/#reminder">Commands</a></li>
       <li><a href="/about">About</a></li>
@@ -604,7 +620,7 @@ html[data-clarity-room="companion"] .amana-vault-interior {
   </div>
 </noscript>
 
-
+<a href="#main-content" class="skip-link">Skip to content</a>
 <audio id="quran-audio-dup1" preload="none" crossorigin="anonymous"></audio><audio id="verse-audio" preload="none" crossorigin="anonymous"></audio><div id="main-application-workspace" class="">
 
 <div class="page-wrapper" id="main-content"><aside class="sidebar" id="clarity-sidebar" style="display:none!important" aria-hidden="true"></aside><main class="main-content"><div id="tab-reminder" class="tab-panel rrra-hub is-active active" data-rrra-hub="reminder" aria-hidden="false">
@@ -2019,38 +2035,14 @@ Audio-visual study companion to <em>Ar-Raḥīq al-Makhtūm</em> (The Sealed Nec
 <link id="nx-tajweed-deep-studio-v1" rel="stylesheet" media="print" onload="this.media='all'" href="/companion/modules/css/nx-tajweed-deep-studio-v1.css?v=20261101WB1" />
 
 
-
 <link id="nuros-final-polish-v1" rel="stylesheet" media="print" onload="this.media='all'" href="/assets/css/nuros-final-polish-v1.css?v=20261101WB1" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <link id="clarity-rrra5-core-v1" rel="stylesheet" media="print" onload="this.media='all'" href="/assets/css/clarity-rrra5-core-v1.css?v=20261101WB1" />
 
 
 
-
 <link id="clarity-day-shariah-lock-v1" rel="stylesheet" media="print" onload="this.media='all'" href="/assets/css/clarity-day-shariah-lock-v1.css?v=20261101WB1" />
-
-
-
-
-
-
-
-
 
 
 <script id="companion-phase-controller">
@@ -2301,39 +2293,30 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 </script>
 
 
+<script src="/companion/assets/clarity-companion-unfreeze-v3.js?v=20261104EC" defer data-phase="2-after-shell"></script>
+<script src="/companion/assets/companion-tab-persist-v35.js?v=20261104EC" defer data-phase="n1-tab"></script>
+<script src="/companion/assets/companion-craft-core-v1.js?v=20261104EC" defer data-phase="n2-craft"></script>
 
-<!-- C3 deferred craft: meme-api-bridge -->
+
 <!-- REJ nuclear out -->
 
+<script src="/assets/clarity-path-progress-v1.js?v=20261101WB1" defer></script>
+<script src="/companion/assets/companion-path-governance-v1.js?v=20261106G1"></script>
+
+
+<script src="/assets/clarity-grave-path-curriculum-js.js?v=20261101WB1" defer></script>
+<script src="/assets/clarity-link-stubs-v1.js?v=20261101WB1"></script>
+
+
 <!-- phase3-dedupe removed: /assets/companion-inline/inline-clarity_lmr_read_sync.js -->
-
-
 
 
 <!-- phase3-dedupe removed: /assets/companion-inline/inline-clarity_callig_pad_boot.js -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 
 <!-- phase3-dedupe removed: /assets/companion-inline/inline-bundle-meme-v1.js -->
-
-
-
-
 
 
 <!-- Companion modules pack 20261031MOD1 -->
@@ -2360,15 +2343,8 @@ html.companion-landing-reorder [data-landing="paths"]{order:3;}
 <!-- phase3-dedupe removed: /companion/modules/inline-clarity_callig_pad_boot.js -->
 
 
-
-
 <!-- phase3-dedupe dup: /companion/assets/clarity-companion-unfreeze-v3.js -->
-<!-- C3 deferred craft: meme-studio -->
-<!-- C3 deduped cf beacon -->
-<!-- C3 deduped cf beacon -->
-<!-- C3 deduped cf beacon -->
-<!-- C3 deduped cf beacon -->
-<!-- C4 deduped cf beacon -->
+<script defer src="/companion/assets/clarity-masnoon-dua-pack-v1.js?v=20261111RR1"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
