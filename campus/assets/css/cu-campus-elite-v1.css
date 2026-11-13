@@ -1,0 +1,343 @@
+/*! cu-campus-elite-v1 · rooms top · path below banner · wide plaques · educational only */
+:root {
+  --el-gold: #e8d5a3;
+  --el-edge: rgba(201, 162, 39, 0.42);
+  --el-ok: #1e7d5e;
+  --el-bg: #0a1210;
+  --el-text: #e8f0ec;
+  --el-muted: rgba(232, 240, 236, 0.82);
+  --el-font: Quicksand, system-ui, sans-serif;
+  --el-display: "Cormorant Garamond", Georgia, serif;
+  --el-max: 72rem;
+  --el-room-h: 3.15rem;
+}
+
+html[data-clarity-room="university"] body.cu-page,
+body.cu-page {
+  margin: 0;
+  background: var(--el-bg);
+  color: var(--el-text);
+  font-family: var(--el-font);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+/* Hide every competing rail once elite is on */
+html.cu-elite-on #cu-site-rail,
+html.cu-elite-on #cu-curr-rail,
+html.cu-elite-on #cu-uni-path,
+html.cu-elite-on .cu-uni-path,
+html.cu-elite-on .cu-uni-stages,
+html.cu-elite-on .cu-quick,
+html.cu-elite-on .stage-nav,
+html.cu-elite-on nav.cu-curr-rail,
+html.cu-elite-on .cu-banner,
+html.cu-elite-on #cu-uni-journey,
+html.cu-elite-on .clarity-room-nav,
+html.cu-elite-on [data-clarity-room-nav],
+html.cu-elite-on .room-nav,
+html.cu-elite-on nav[aria-label="Clarity rooms"]:not(.sn-rooms),
+html.cu-elite-on .sn-root .sn-layer2,
+html.cu-elite-on .sn-root .sn-drawer,
+html.cu-elite-on .sn-root .sn-crumb {
+  display: none !important;
+}
+
+/* ===== Layer 1: Rooms only — top sticky ===== */
+.sn-root.sn-elite {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  background: rgba(6, 14, 12, 0.97);
+  border-bottom: 1px solid var(--el-edge);
+  backdrop-filter: blur(14px);
+  min-height: var(--el-room-h);
+}
+.sn-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--el-room-h);
+  padding: 0.45rem 0.85rem;
+  max-width: var(--el-max);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.sn-brand {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--el-gold);
+  line-height: 1.15;
+  min-width: 4.5rem;
+}
+.sn-brand small {
+  font-size: 0.58rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.sn-brand span {
+  font-size: 0.92rem;
+  font-weight: 800;
+  font-family: var(--el-display);
+}
+.sn-rooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+.sn-room {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2.1rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  text-decoration: none;
+  color: var(--el-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.28);
+}
+.sn-room.is-here {
+  background: var(--el-ok);
+  border-color: transparent;
+  color: #fff;
+}
+.sn-room .sn-ico {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 4px;
+  border: 1px solid rgba(232, 213, 163, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  color: var(--el-gold);
+  background: rgba(232, 213, 163, 0.12);
+}
+.sn-more-btn { display: none !important; } /* moved below banner */
+
+/* ===== University hero banner — match room bar weight ===== */
+.cu-elite-banner {
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--el-edge);
+  background:
+    linear-gradient(165deg, rgba(16, 32, 26, 0.98), rgba(8, 18, 14, 0.94));
+  padding: 1.1rem 1rem;
+  min-height: calc(var(--el-room-h) + 2.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cu-elite-banner-inner {
+  width: 100%;
+  max-width: var(--el-max);
+  margin: 0 auto;
+  text-align: center;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  border: 1px solid var(--el-edge);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.06), rgba(12, 28, 22, 0.4)),
+    rgba(8, 18, 14, 0.75);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+.cu-elite-banner .bismillah {
+  font-family: Amiri, serif;
+  font-size: 1.15rem;
+  color: var(--el-gold);
+  margin: 0 0 0.25rem;
+}
+.cu-elite-banner h1 {
+  margin: 0.15rem 0 0.35rem;
+  font-family: var(--el-display);
+  font-size: clamp(1.55rem, 3.2vw, 2.05rem);
+  color: var(--el-gold);
+  font-weight: 700;
+}
+.cu-elite-banner .lead {
+  margin: 0 auto;
+  max-width: 38rem;
+  font-size: 0.92rem;
+  color: var(--el-muted);
+  line-height: 1.5;
+}
+.cu-elite-banner .limits {
+  margin: 0.45rem 0 0;
+  font-size: 0.75rem;
+  opacity: 0.82;
+}
+
+/* ===== Path + halls BELOW banner — glass plaque ===== */
+.sn-below {
+  width: 100%;
+  max-width: var(--el-max);
+  margin: 0.75rem auto 0.5rem;
+  padding: 0 0.85rem;
+  box-sizing: border-box;
+}
+.sn-below-plaque {
+  border-radius: 16px;
+  border: 1px solid var(--el-edge);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.05), rgba(12, 28, 22, 0.35)),
+    rgba(8, 18, 14, 0.88);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 8px 20px rgba(0, 0, 0, 0.25);
+  padding: 0.65rem 0.75rem 0.75rem;
+}
+.sn-crumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  margin: 0 0 0.45rem;
+  color: var(--el-muted);
+}
+.sn-crumb a { color: #c9e8d4; text-decoration: none; font-weight: 650; }
+.sn-crumb .sep { opacity: 0.45; }
+.sn-layer2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  align-items: center;
+}
+.sn-group-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(232, 213, 163, 0.75);
+  margin-right: 0.15rem;
+}
+.sn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  text-decoration: none;
+  color: var(--el-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.25);
+}
+.sn-pill.is-here {
+  background: var(--el-ok);
+  border-color: transparent;
+  color: #fff;
+}
+.sn-pill.is-locked { opacity: 0.55; }
+.sn-below-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-top: 0.55rem;
+}
+.sn-more-btn {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--el-edge);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--el-gold);
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+}
+.sn-drawer {
+  display: none;
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sn-drawer.open { display: block; }
+.sn-drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.4rem;
+}
+.sn-drawer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.35rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  text-decoration: none;
+  color: var(--el-text);
+  font-size: 0.78rem;
+  font-weight: 650;
+  background: rgba(0, 0, 0, 0.28);
+  text-align: center;
+}
+.sn-drawer a.is-here {
+  background: var(--el-ok);
+  color: #fff;
+  border-color: transparent;
+}
+.sn-hint {
+  text-align: center;
+  font-size: 0.68rem;
+  opacity: 0.78;
+  margin: 0.45rem 0 0;
+}
+
+/* Wide page content */
+.cu-uplift-shell,
+.cu-landing-wrap,
+.cu-page main,
+main.cu-main,
+.desk-clean,
+.stage-clean {
+  width: 100% !important;
+  max-width: var(--el-max) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0.85rem !important;
+  padding-right: 0.85rem !important;
+  box-sizing: border-box !important;
+}
+
+/* Landing sections full width inside shell */
+html.cu-elite-on .cu-hero,
+html.cu-elite-on .cu-glass,
+html.cu-elite-on .cu-plaque,
+html.cu-elite-on [class*="continue"],
+html.cu-elite-on .cu-info-plaque {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+/* Harmonize type on plaques */
+.cu-glass h1, .cu-uplift-shell h1, .stage-clean h1 {
+  font-family: var(--el-display);
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+  color: var(--el-gold);
+}
+.cu-glass h2 { font-size: 1.05rem; color: var(--el-gold); }
+.cu-glass p, .cu-uplift-lead, .lead { font-size: 0.92rem; }
+
+@media (max-width: 720px) {
+  .sn-rooms { justify-content: flex-start; }
+  .sn-top { padding: 0.4rem 0.55rem; }
+  .cu-elite-banner { padding: 0.75rem 0.55rem; }
+}
