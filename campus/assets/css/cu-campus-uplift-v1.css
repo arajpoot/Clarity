@@ -1,0 +1,194 @@
+/*! cu-campus-uplift-v1 · glass plaques · wide viewport · NurOS-style icons · educational only */
+:root {
+  --cu-gold: #e8d5a3;
+  --cu-edge: rgba(201, 162, 39, 0.4);
+  --cu-bg: #0a1210;
+  --cu-plaque: rgba(8, 18, 14, 0.88);
+  --cu-ok: #1e7d5e;
+}
+html[data-clarity-room="university"] body.cu-page,
+body.cu-page {
+  margin: 0;
+  background: var(--cu-bg);
+  color: #e8f0ec;
+  font-family: Quicksand, system-ui, sans-serif;
+}
+/* Site room rail — top */
+.cu-site-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--cu-edge);
+  background: rgba(6, 14, 12, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 80;
+}
+.cu-site-rail a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  text-decoration: none;
+  color: #e8f0ec;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.25);
+}
+.cu-site-rail a.is-here {
+  background: var(--cu-ok);
+  border-color: transparent;
+  color: #fff;
+}
+.cu-site-rail .ico {
+  width: 0.9rem;
+  height: 0.9rem;
+  display: inline-block;
+  border-radius: 4px;
+  background: rgba(232, 213, 163, 0.25);
+  border: 1px solid rgba(232, 213, 163, 0.45);
+}
+
+/* Curriculum rail */
+.cu-curr-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: center;
+  padding: 0.5rem 0.6rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.cu-curr-rail a {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  text-decoration: none;
+  color: inherit;
+  background: rgba(0, 0, 0, 0.2);
+}
+.cu-curr-rail a.here {
+  background: var(--cu-ok);
+  color: #fff;
+  border-color: transparent;
+}
+.cu-curr-rail a.locked {
+  opacity: 0.55;
+}
+
+/* Wide shell */
+.cu-uplift-shell {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.75rem 1rem 2.5rem;
+  box-sizing: border-box;
+}
+.cu-uplift-shell h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--cu-gold);
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  margin: 0.35rem 0 0.4rem;
+  text-align: center;
+}
+.cu-uplift-lead {
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.92;
+  max-width: 40rem;
+  margin: 0 auto 1rem;
+  line-height: 1.45;
+}
+
+/* Glass plaques */
+.cu-glass {
+  border-radius: 16px;
+  border: 1px solid var(--cu-edge);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.06), rgba(12, 28, 22, 0.35)),
+    var(--cu-plaque);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 10px 24px rgba(0, 0, 0, 0.28);
+  padding: 0.85rem 1rem;
+  margin: 0.65rem 0;
+}
+.cu-glass h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  color: var(--cu-gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+.cu-glass ol, .cu-glass ul {
+  margin: 0.3rem 0 0.5rem;
+  padding-left: 1.15rem;
+  line-height: 1.45;
+  font-size: 0.9rem;
+}
+.cu-glass p { margin: 0.35rem 0; font-size: 0.9rem; line-height: 1.45; }
+
+.cu-verse-plaque {
+  text-align: center;
+}
+.cu-verse-plaque .ar {
+  font-family: Amiri, "Noto Naskh Arabic", serif;
+  font-size: 1.25rem;
+  color: #f0e6c8;
+  margin: 0.35rem 0;
+  line-height: 1.5;
+}
+.cu-verse-plaque .en { font-size: 0.88rem; opacity: 0.92; }
+.cu-verse-plaque .src { font-size: 0.72rem; color: #c9a84c; margin-top: 0.2rem; }
+.cu-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--cu-ok);
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cu-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.65rem;
+}
+.cu-btn {
+  display: inline-block;
+  margin: 0.25rem 0.25rem 0 0;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--cu-edge);
+  text-decoration: none;
+  color: #e8f0ec;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(30, 125, 94, 0.35);
+}
+.cu-btn.ghost { background: transparent; }
+.cu-status {
+  text-align: center;
+  font-size: 0.82rem;
+  padding: 0.55rem 0.75rem;
+}
+.cu-status.locked {
+  border-color: rgba(200, 120, 80, 0.45);
+}
+.cu-footer-note {
+  text-align: center;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin-top: 1.25rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 900px) {
+  .cu-uplift-shell { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
