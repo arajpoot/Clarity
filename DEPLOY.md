@@ -1,9 +1,14 @@
-# C16TJ · Craft Tajweed LMR shell
+# Deploy · 20261112ENR1
 
-1. Upload `craft/assets/craft-tajweed-lmr-shell-v1.js`
-2. Replace `/craft/tajweed/index.html`
-3. Hard refresh
+Replace matching paths only. Companion index is **larger** restored baseline + SEO — expected.
 
-Shell must load **before** `nx-tj-lmr-js-v1.js` (already ordered in index).
+Upload:
+- index.html (port)
+- companion/index.html
+- companion/banner/index.html
+- daily/index.html + daily/modules/*/index.html
+- campus/index.html · amana/index.html · craft/index.html
+- robots.txt · sitemap.xml · site.webmanifest · favicon.svg
+- docs/ · governance/AUDIT_RUN.md · smoke/SMOKE.json
 
-Educational only — not a fatwa · not a qāriʾ verdict.
+Do not delete unrelated room assets.

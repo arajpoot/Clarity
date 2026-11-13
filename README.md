@@ -1,7 +1,3 @@
-# Clarity Craft Governance C19G1.1
+# Index enrichment PASS · 20261112ENR1
 
-**One-word invoke:** `Bismillāh`
-
-≡ `GOVERNANCE FULL · sim-backed mandatory · audit-rich-smoke`
-
-See `governance/CLARITY_CRAFT_GOVERNANCE_CONTRACT.md`
+All audited indexes: maintain-or-upgrade only. See governance/AUDIT_RUN.md
