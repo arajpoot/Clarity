@@ -1,13 +1,21 @@
-BANNER ENRICH 20261111ENR1
+DESKTOP FULL-WIDTH 20261113W1
 
-Upload companion/banner/* (6 files).
+Scope (only):
+  · Banner shell + overlay → full desktop width
+  · Path to furnish the grave tiles → full width
+  · Bottom door rail (Reminder…About) → full width
 
-· Stills ↔ Live toggle fixed (calls showLive)
-· Makkah/Madinah place swaps stock stills
-· Stronger Kaaba/Masjid SVG temps (no emoji)
-· Yasser al-Dosari in reciters + radio
-· AV controls on color-coded glass plaques (Ḥaramain / Radio / Tilāwah)
-· Live pill turns red when Live, green when Stills
+Untouched: RRRA content, vault, campus, Yawm, enrichment scripts logic.
 
-Audit: all checks passed.
+Upload:
+  companion/index.html
+  companion/assets/companion-desktop-fullwidth-v1.css
+  companion/assets/companion-path-tiles-rich-v1.css
+  companion/assets/companion-door-rail-touch-v1.css
+  companion/banner/index.html
+  companion/banner/assets/css/banner-module-v1.css
+  companion/banner/assets/js/* (optional — unchanged logic; include if you want cache-bust parity)
+
+Also removes dead link to companion-banner-shell-full-v1.css (404).
+
 Educational only — not a fatwa.
