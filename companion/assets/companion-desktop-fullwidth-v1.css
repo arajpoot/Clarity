@@ -1,0 +1,41 @@
+/*! companion-desktop-fullwidth-v1 · 20261113W1
+ * Widen only: banner shell · path tiles · bottom door rail on desktop.
+ * Does not touch RRRA content, vault, campus, or enrichment scripts.
+ * Educational only — not a fatwa.
+ */
+html[data-clarity-room="companion"] .companion-banner-shell,
+.companion-banner-shell {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+html[data-clarity-room="companion"] .companion-banner-frame,
+.companion-banner-frame {
+  width: 100% !important;
+  max-width: none !important;
+}
+html[data-clarity-room="companion"] #clarity-path-tiles.clarity-path-tiles {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border-radius: 0 !important;
+  box-sizing: border-box !important;
+  padding-left: clamp(0.75rem, 2vw, 1.75rem) !important;
+  padding-right: clamp(0.75rem, 2vw, 1.75rem) !important;
+}
+html[data-clarity-room="companion"] #clarity-door-rail {
+  max-width: none !important;
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+html[data-clarity-room="companion"] #clarity-door-rail .door-rail-btn {
+  max-width: none !important;
+  flex: 1 1 0 !important;
+}
+/* Kill legacy 56rem / 72rem path caps from inline styles */
+html[data-clarity-room="companion"] #clarity-path-tiles {
+  max-width: none !important;
+}

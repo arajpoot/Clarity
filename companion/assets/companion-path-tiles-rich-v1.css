@@ -36,3 +36,28 @@ html[data-clarity-room="companion"] .cpt-daily { border-color: rgba(61,126,166,.
 html[data-clarity-room="companion"] .cpt-dai { border-color: rgba(196,122,58,.45); }
 html[data-clarity-room="companion"] .cpt-title { text-align: center; color: #e8d5a3; font-size: 1.1rem; margin: 0; }
 html[data-clarity-room="companion"] .cpt-sub, html[data-clarity-room="companion"] .cpt-foot { text-align: center; font-size: 0.78rem; opacity: .88; }
+
+
+/* Desktop full-width path tiles 20261113W1 */
+html[data-clarity-room="companion"] #clarity-path-tiles.clarity-path-tiles,
+#clarity-path-tiles.clarity-path-tiles {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  padding-left: clamp(0.75rem, 2vw, 1.5rem) !important;
+  padding-right: clamp(0.75rem, 2vw, 1.5rem) !important;
+  border-radius: 0 !important;
+}
+html[data-clarity-room="companion"] #clarity-path-tiles .cpt-grid,
+#clarity-path-tiles .cpt-grid {
+  max-width: none !important;
+  width: 100% !important;
+}
+@media (min-width: 900px) {
+  html[data-clarity-room="companion"] #clarity-path-tiles .cpt-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+}
