@@ -1,11 +1,19 @@
-# AUDIT_RUN · S5 · 20261112S5
+# AUDIT_RUN · S6/S7 · 20261112S6S7
 
+**Bismillāh** after S5 green.
+
+## Prior
+- S5 port meta live: PASS
+- Sitemap probe before ship: 27/27 200 on live sample
+
+## This pack
 | Gate | Result |
 |------|--------|
-| S4 live verified prior | PASS |
-| Port head only | PASS |
-| Rooms untouched in pack | PASS |
-| No extra room-nav | PASS |
-| Size ≥ baseline | PASS (11314→11421) |
+| S6 docs/seo WebSite + significantLink + ItemList | PASS |
+| S7 sitemap only 200 URLs (32 kept, 0 dropped) | PASS |
+| S3 checklist page noindex | PASS |
+| Rooms untouched | PASS |
+
+Broken/dropped: []
 
 Ship: **PASS**
