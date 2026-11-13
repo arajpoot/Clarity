@@ -1,12 +1,11 @@
-/*! cu-smart-nav-v1 · single campus navigation engine
- * Model: sticky global rooms + context strip + overflow drawer
- * Dedupes legacy rails (uni-nav, site-rail, curr-rail, stage-nav, path dumps)
- * Campus / university only · educational only — not a fatwa
+/*! cu-smart-nav-v1.2 · elite layout
+ * Layer1 rooms sticky top · path/halls glass below university banner
+ * Suppresses legacy rails · campus only · educational only — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  if (w.__CU_SMART_NAV_V1__) return;
-  w.__CU_SMART_NAV_V1__ = true;
+  if (w.__CU_SMART_NAV_V12__) return;
+  w.__CU_SMART_NAV_V12__ = true;
 
   var ROOMS = [
     { href: "/", label: "Port", ico: "P" },
@@ -16,8 +15,6 @@
     { href: "/amana/", label: "Amānah", ico: "A" },
     { href: "/craft/", label: "Craft", ico: "K" }
   ];
-
-  /* Layer 2 — primary curriculum (always visible, scrollable) */
   var STAGES = [
     { href: "/campus/desk/", label: "Desk" },
     { href: "/campus/desk/seeker/", label: "Seeker", stage: "seeker" },
@@ -26,8 +23,6 @@
     { href: "/campus/desk/transmission/", label: "Transmission", stage: "transmission" },
     { href: "/campus/grading.html", label: "Progress" }
   ];
-
-  /* Drawer — secondary halls / classic modules (not duplicated on layer 2) */
   var MORE = [
     { href: "/campus/", label: "Campus home" },
     { href: "/campus/desk/foundation/", label: "Foundation" },
@@ -54,7 +49,6 @@
   function path() {
     return (location.pathname || "/").replace(/\/+$/, "") || "/";
   }
-
   function isHere(href) {
     var p = path();
     var h = (href || "").replace(/\/+$/, "") || "/";
@@ -62,17 +56,13 @@
     if (h === "/campus") return p === "/campus";
     return p === h || p.indexOf(h + "/") === 0;
   }
-
   function crumb() {
     var p = path();
     var parts = [{ href: "/campus/", label: "Campus" }];
     if (p.indexOf("/campus/desk") === 0) {
       parts.push({ href: "/campus/desk/", label: "Desk" });
       var m = p.match(/\/campus\/desk\/([^/]+)/);
-      if (m) {
-        var lab = m[1].charAt(0).toUpperCase() + m[1].slice(1);
-        parts.push({ href: "/campus/desk/" + m[1] + "/", label: lab });
-      }
+      if (m) parts.push({ href: "/campus/desk/" + m[1] + "/", label: m[1].charAt(0).toUpperCase() + m[1].slice(1) });
     } else if (p.indexOf("/campus/") === 0 && p !== "/campus") {
       var seg = p.replace(/^\/campus\//, "").split("/")[0].replace(/\.html$/, "");
       if (seg) parts.push({ href: p, label: seg.charAt(0).toUpperCase() + seg.slice(1) });
@@ -81,36 +71,34 @@
   }
 
   function suppressLegacy() {
-    d.documentElement.classList.add("cu-smart-nav-on");
-    /* Remove injected uni-path / broken text-only dumps */
-    ["cu-uni-path", "cu-uni-journey", "cu-site-rail", "cu-curr-rail"].forEach(function (id) {
-      var el = d.getElementById(id);
-      if (el) el.setAttribute("data-sn-suppressed", "1");
+    d.documentElement.classList.add("cu-elite-on", "cu-smart-nav-on");
+    var selectors = [
+      "#cu-uni-path", "#cu-uni-journey", "#cu-site-rail", "#cu-curr-rail",
+      ".clarity-room-nav", "[data-room-nav]", ".cu-banner"
+    ];
+    selectors.forEach(function (sel) {
+      d.querySelectorAll(sel).forEach(function (el) {
+        el.setAttribute("data-sn-suppressed", "1");
+        el.style.display = "none";
+      });
     });
-    /* Hide any top-level naked link rows that look like concatenated dumps */
+    /* Hide concatenated dump nodes */
     try {
-      var kids = d.body.children;
-      for (var i = 0; i < kids.length; i++) {
-        var el = kids[i];
-        if (el.id === "cu-smart-nav") continue;
-        if (el.tagName === "A" && (el.textContent || "").length > 80) {
+      Array.prototype.forEach.call(d.body.children, function (el) {
+        if (el.id === "cu-smart-nav" || el.id === "cu-sn-below" || el.classList.contains("cu-elite-banner")) return;
+        var t = (el.textContent || "").replace(/\s+/g, "");
+        if (t.indexOf("CampusDeskSeeker") === 0 || (el.tagName === "A" && t.length > 60)) {
           el.style.display = "none";
         }
-        if (el.tagName === "DIV" || el.tagName === "NAV" || el.tagName === "P") {
-          var t = (el.textContent || "").replace(/\s+/g, "");
-          if (t.indexOf("CampusDeskSeeker") === 0 || t.indexOf("SeekerPracticeConsistency") >= 0) {
-            el.style.display = "none";
-          }
-        }
-      }
+      });
     } catch (e) {}
   }
 
-  function build() {
-    if (d.getElementById("cu-smart-nav")) return;
+  function buildRoomsBar() {
+    if (d.getElementById("cu-smart-nav")) return d.getElementById("cu-smart-nav");
     var root = d.createElement("header");
     root.id = "cu-smart-nav";
-    root.className = "sn-root";
+    root.className = "sn-root sn-elite";
     root.setAttribute("role", "banner");
 
     var top = d.createElement("div");
@@ -119,7 +107,7 @@
     var brand = d.createElement("a");
     brand.className = "sn-brand";
     brand.href = "/campus/";
-    brand.innerHTML = "<div><small>University</small>Clarity</div>";
+    brand.innerHTML = "<small>University</small><span>Clarity</span>";
     top.appendChild(brand);
 
     var rooms = d.createElement("nav");
@@ -133,23 +121,45 @@
       rooms.appendChild(a);
     });
     top.appendChild(rooms);
-
-    var moreBtn = d.createElement("button");
-    moreBtn.type = "button";
-    moreBtn.className = "sn-more-btn";
-    moreBtn.setAttribute("aria-expanded", "false");
-    moreBtn.setAttribute("aria-controls", "sn-drawer");
-    moreBtn.textContent = "More · halls";
-    top.appendChild(moreBtn);
-
     root.appendChild(top);
+    d.body.insertBefore(root, d.body.firstChild);
+    return root;
+  }
 
-    /* Breadcrumb */
+  function ensureBanner() {
+    var existing = d.querySelector(".cu-elite-banner");
+    if (existing) return existing;
+    /* Prefer promote existing hero if present */
+    var hero = d.querySelector(".cu-hero, .cu-info-plaque, main .cu-plaque");
+    var banner = d.createElement("div");
+    banner.className = "cu-elite-banner";
+    banner.setAttribute("role", "region");
+    banner.setAttribute("aria-label", "Clarity University");
+    var inner = d.createElement("div");
+    inner.className = "cu-elite-banner-inner";
+    inner.innerHTML =
+      '<p class="bismillah" lang="ar">بِسْمِ ٱللَّهِ</p>' +
+      "<h1>Clarity University</h1>" +
+      '<p class="lead">Sequential on-device path: Seeker → Practice → Consistency → Transmission. Progress stays on this device.</p>' +
+      '<p class="limits">Educational only — not a fatwa · not a grade of īmān · not a seminary</p>';
+    banner.appendChild(inner);
+    var rooms = d.getElementById("cu-smart-nav");
+    if (rooms && rooms.nextSibling) rooms.parentNode.insertBefore(banner, rooms.nextSibling);
+    else d.body.insertBefore(banner, d.body.firstChild);
+    return banner;
+  }
+
+  function buildBelow(banner) {
+    if (d.getElementById("cu-sn-below")) return;
+    var wrap = d.createElement("div");
+    wrap.id = "cu-sn-below";
+    wrap.className = "sn-below";
+    var plaque = d.createElement("div");
+    plaque.className = "sn-below-plaque";
+
     var crumbEl = d.createElement("div");
     crumbEl.className = "sn-crumb";
-    crumbEl.setAttribute("aria-label", "Location");
-    var parts = crumb();
-    parts.forEach(function (c, i) {
+    crumb().forEach(function (c, i) {
       if (i) {
         var sep = d.createElement("span");
         sep.className = "sep";
@@ -161,9 +171,8 @@
       a.textContent = c.label;
       crumbEl.appendChild(a);
     });
-    root.appendChild(crumbEl);
+    plaque.appendChild(crumbEl);
 
-    /* Layer 2 stages */
     var layer2 = d.createElement("nav");
     layer2.className = "sn-layer2";
     layer2.setAttribute("aria-label", "Ordered path");
@@ -186,13 +195,22 @@
       } catch (e) {}
       layer2.appendChild(a);
     });
-    root.appendChild(layer2);
+    plaque.appendChild(layer2);
 
-    /* Drawer */
+    var actions = d.createElement("div");
+    actions.className = "sn-below-actions";
+    var moreBtn = d.createElement("button");
+    moreBtn.type = "button";
+    moreBtn.className = "sn-more-btn";
+    moreBtn.setAttribute("aria-expanded", "false");
+    moreBtn.textContent = "More · halls & modules";
+    actions.appendChild(moreBtn);
+    plaque.appendChild(actions);
+
     var drawer = d.createElement("div");
-    drawer.id = "sn-drawer";
     drawer.className = "sn-drawer";
-    drawer.setAttribute("hidden", "");
+    drawer.id = "sn-drawer";
+    drawer.hidden = true;
     var grid = d.createElement("div");
     grid.className = "sn-drawer-grid";
     MORE.forEach(function (m) {
@@ -205,18 +223,20 @@
     drawer.appendChild(grid);
     var hint = d.createElement("p");
     hint.className = "sn-hint";
-    hint.textContent = "Educational only — not a fatwa. Halls & classic modules live here so the path rail stays clean.";
+    hint.textContent = "Educational only — not a fatwa. Path stays clear; halls live under More.";
     drawer.appendChild(hint);
-    root.appendChild(drawer);
+    plaque.appendChild(drawer);
 
     moreBtn.addEventListener("click", function () {
       var open = drawer.classList.toggle("open");
       moreBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      if (open) drawer.removeAttribute("hidden");
-      else drawer.setAttribute("hidden", "");
+      drawer.hidden = !open;
     });
 
-    d.body.insertBefore(root, d.body.firstChild);
+    wrap.appendChild(plaque);
+    if (banner && banner.nextSibling) banner.parentNode.insertBefore(wrap, banner.nextSibling);
+    else if (banner) banner.parentNode.appendChild(wrap);
+    else d.body.insertBefore(wrap, d.body.firstChild);
   }
 
   function boot() {
@@ -224,11 +244,12 @@
     var p = path();
     if (room !== "university" && p.indexOf("/campus") !== 0) return;
     suppressLegacy();
-    build();
-    /* Re-suppress after late injects (uni-nav, rails) */
-    setTimeout(suppressLegacy, 100);
-    setTimeout(suppressLegacy, 400);
-    setTimeout(suppressLegacy, 1200);
+    buildRoomsBar();
+    var banner = ensureBanner();
+    buildBelow(banner);
+    setTimeout(suppressLegacy, 120);
+    setTimeout(suppressLegacy, 500);
+    setTimeout(suppressLegacy, 1500);
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
