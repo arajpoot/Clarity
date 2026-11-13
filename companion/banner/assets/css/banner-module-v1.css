@@ -40,7 +40,7 @@ html, body {
   padding: 0.35rem 0.4rem;
   align-items: start;
   width: 100%;
-  max-width: 70rem;
+  max-width: none;
   margin: 0 auto;
   background: linear-gradient(180deg, rgba(8,16,12,.5), rgba(8,16,12,.78));
 }
@@ -363,4 +363,26 @@ html, body {
 @media (max-width: 720px) {
   .banner-overlay { grid-template-columns: 1fr; }
   html, body { overflow: auto; }
+}
+
+
+/* Desktop full-width governance 20261113W1 — overlay + banner fill viewport */
+.banner,
+#clarity-final-banner-controls-v2 {
+  width: 100% !important;
+  max-width: none !important;
+}
+.banner-overlay {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: clamp(0.5rem, 1.5vw, 1.25rem) !important;
+  padding-right: clamp(0.5rem, 1.5vw, 1.25rem) !important;
+  box-sizing: border-box !important;
+}
+@media (min-width: 1100px) {
+  .banner-overlay {
+    grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr) minmax(11rem, 14rem) !important;
+    gap: 0.75rem !important;
+  }
 }
