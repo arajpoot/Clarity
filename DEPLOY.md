@@ -1,9 +1,13 @@
-# C16TJ · Craft Tajweed LMR shell
+# Deploy S6 + S7 (+ S3 checklist) · 20261112S6S7
 
-1. Upload `craft/assets/craft-tajweed-lmr-shell-v1.js`
-2. Replace `/craft/tajweed/index.html`
-3. Hard refresh
+## Upload
+1. `docs/seo/index.html` — WebSite + ItemList JSON-LD
+2. `sitemap.xml` — hygiene-verified 200 URLs only (32 entries)
+3. `docs/console/index.html` — GSC operator checklist (**noindex**)
+4. `docs/SEO.md` optional
 
-Shell must load **before** `nx-tj-lmr-js-v1.js` (already ordered in index).
+## Do not
+Touch companion / daily / campus / amana / craft app HTML.
 
-Educational only — not a fatwa · not a qāriʾ verdict.
+## After
+GSC → resubmit sitemap (S3).
