@@ -1,4 +1,4 @@
-/*! cu-smart-nav-v1.2 · elite layout
+/*! cu-smart-nav-v1.3 · elite + locked campus pill hrefs
  * Layer1 rooms sticky top · path/halls glass below university banner
  * Suppresses legacy rails · campus only · educational only — not a fatwa
  */
@@ -30,8 +30,8 @@
     { href: "/campus/desk/ihsan/", label: "Iḥsān" },
     { href: "/campus/desk/amanah/", label: "Amānah module" },
     { href: "/campus/assignments/", label: "Assignments" },
-    { href: "/campus/faculty.html", label: "Faculty" },
-    { href: "/campus/bots.html", label: "Bots" },
+    { href: "/campus/faculty", label: "Faculty" },
+    { href: "/campus/bots", label: "Bots" },
     { href: "/campus/lab/", label: "Lab" },
     { href: "/campus/library/", label: "Library" },
     { href: "/campus/buddy/", label: "Buddy" },
@@ -45,6 +45,34 @@
     { href: "/campus/vault/", label: "Campus vault" },
     { href: "/campus/charter/", label: "Charter" }
   ];
+
+  
+  function lockCampusAnchors(root) {
+    var scope = root || d;
+    scope.querySelectorAll("a[data-cu-nav]").forEach(function (a) {
+      var want = a.getAttribute("data-cu-href") || a.getAttribute("href");
+      if (!want || want.charAt(0) !== "/") return;
+      /* Never allow Port (/) for labeled campus tools */
+      if (want === "/" || want.indexOf("/campus") !== 0) {
+        /* rooms bar may use / companion daily amana craft — those keep data-cu-nav=room */
+        if (a.getAttribute("data-cu-nav") === "room") return;
+      }
+      if (a.getAttribute("data-cu-nav") === "campus" || a.getAttribute("data-cu-nav") === "path") {
+        if (want.indexOf("/campus") === 0) {
+          a.setAttribute("href", want);
+          a.setAttribute("data-cu-href", want);
+        }
+      }
+    });
+  }
+
+  function stamp(a, href, kind) {
+    a.href = href;
+    a.setAttribute("href", href);
+    a.setAttribute("data-cu-href", href);
+    a.setAttribute("data-cu-nav", kind || "campus");
+    a.setAttribute("data-path-wire", "skip");
+  }
 
   function path() {
     return (location.pathname || "/").replace(/\/+$/, "") || "/";
@@ -116,7 +144,7 @@
     ROOMS.forEach(function (r) {
       var a = d.createElement("a");
       a.className = "sn-room" + (isHere(r.href) || (r.room === "university" && path().indexOf("/campus") === 0) ? " is-here" : "");
-      a.href = r.href;
+      stamp(a, r.href, "room");
       a.innerHTML = '<span class="sn-ico" aria-hidden="true">' + r.ico + "</span>" + r.label;
       rooms.appendChild(a);
     });
@@ -184,7 +212,7 @@
     STAGES.forEach(function (s) {
       var a = d.createElement("a");
       a.className = "sn-pill";
-      a.href = s.href;
+      stamp(a, s.href, "path");
       a.textContent = s.label;
       if (isHere(s.href) || (s.stage && s.stage === stage)) a.classList.add("is-here");
       try {
@@ -215,9 +243,9 @@
     grid.className = "sn-drawer-grid";
     MORE.forEach(function (m) {
       var a = d.createElement("a");
-      a.href = m.href;
+      stamp(a, m.href, "campus");
       a.textContent = m.label;
-      if (isHere(m.href)) a.className = "is-here";
+      if (isHere(m.href)) a.className = (a.className ? a.className + " " : "") + "is-here";
       grid.appendChild(a);
     });
     drawer.appendChild(grid);
@@ -248,8 +276,17 @@
     var banner = ensureBanner();
     buildBelow(banner);
     setTimeout(suppressLegacy, 120);
-    setTimeout(suppressLegacy, 500);
-    setTimeout(suppressLegacy, 1500);
+    setTimeout(function () { suppressLegacy(); lockCampusAnchors(d); }, 500);
+    setTimeout(function () { suppressLegacy(); lockCampusAnchors(d); }, 1500);
+    setTimeout(function () { lockCampusAnchors(d); }, 2500);
+    /* Click capture: force campus targets even if another script rewrote href */
+    d.addEventListener("click", function (ev) {
+      var a = ev.target && ev.target.closest ? ev.target.closest("a[data-cu-nav]") : null;
+      if (!a) return;
+      var want = a.getAttribute("data-cu-href");
+      if (!want) return;
+      if (a.getAttribute("href") !== want) a.setAttribute("href", want);
+    }, true);
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
