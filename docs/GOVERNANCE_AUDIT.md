@@ -1,9 +1,16 @@
-# Governance · curriculum enrich C1
+# Bismillāh · Companion calm chrome
 
-- Scope: campus stages + campus assets only; other rooms untouched
-- Enrichment: lesson-packs loaded from `/assets/curriculum/shared/` (not reduced)
-- Disclaimer preserved on painted cards
-- Pill hrefs remain `/campus/*` via smart-nav lock + integrity
-- Quarantine vault engines **not** auto-mounted
+**Verdict: GREEN**
 
-Educational only — not a fatwa. Not a grade of īmān.
+## What calmed
+- Single sticky room rail (emoji/sub labels hidden)
+- Global nav + visit pill bar suppressed
+- Path tiles in one glass plaque
+- Door rail larger, readable (desktop + mobile)
+- Banner shell kept (isolated iframe)
+
+## Isolation
+CSS/JS gated on `data-clarity-room="companion"` / `/companion` path only.
+Campus / Yawm / Amānah / Craft untouched.
+
+Educational only — not a fatwa.

@@ -1,9 +1,6 @@
-Deploy:
-  campus/assets/js/cu-vle-bridge-v1.js
-  campus/assets/css/cu-vle-desk-v1.css
-  campus/faculty/index.html
-  campus/bots/index.html
-  campus/library/index.html
-  (+ smart-nav / elite css if not already live)
+Deploy companion calm:
+  companion/assets/companion-calm-chrome-v1.css
+  companion/assets/companion-calm-chrome-v1.js
+  companion/index.html  (or inject snippet from docs/INJECT_SNIPPET.html)
 
-Vault JSON already at /assets/curriculum/vault/admin/{staff,faculty}/
+Hard-refresh /companion/

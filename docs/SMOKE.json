@@ -1,87 +1,12 @@
 {
-  "audit": "Bismillah governance + enrichment clause",
-  "contracts": [
-    "GOVERNANCE_CONTRACT.md",
-    "NUROS_V3_CONTRACT.md"
-  ],
-  "verdict": "GREEN",
-  "green_count": 15,
-  "red_count": 0,
-  "checks": [
-    {
-      "id": "gov_contract_reachable",
-      "status": "GREEN",
-      "detail": "GOVERNANCE_CONTRACT.md live"
-    },
-    {
-      "id": "enrichment_hold_clause",
-      "status": "GREEN",
-      "detail": "Enrichment protected language present"
-    },
-    {
-      "id": "campus_job_listed",
-      "status": "GREEN",
-      "detail": "Campus/University room job in contract"
-    },
-    {
-      "id": "edu_only_disclaimer",
-      "status": "GREEN",
-      "detail": "Educational only"
-    },
-    {
-      "id": "nuros_contract_reachable",
-      "status": "GREEN",
-      "detail": "NUROS_V3_CONTRACT.md live"
-    },
-    {
-      "id": "nuros_isolation",
-      "status": "GREEN",
-      "detail": "Hard isolation clause"
-    },
-    {
-      "id": "nuros_type",
-      "status": "GREEN",
-      "detail": "Type system"
-    },
-    {
-      "id": "vle_no_foundation_overwrite",
-      "status": "GREEN",
-      "detail": "VLE respects sealed foundation policy"
-    },
-    {
-      "id": "vle_personas_edu_only",
-      "status": "GREEN",
-      "detail": "Persona disclaimer"
-    },
-    {
-      "id": "vle_faculty_bots_library",
-      "status": "GREEN",
-      "detail": "Surfaces mapped"
-    },
-    {
-      "id": "staff_roster_path",
-      "status": "GREEN",
-      "detail": "Staff roster wired"
-    },
-    {
-      "id": "faculty_roster_path",
-      "status": "GREEN",
-      "detail": "Faculty roster wired"
-    },
-    {
-      "id": "pages_wired",
-      "status": "GREEN",
-      "detail": "HTML pages present"
-    },
-    {
-      "id": "curriculum_enrich_present",
-      "status": "GREEN",
-      "detail": "Stage lesson enrich held"
-    },
-    {
-      "id": "stage_pages_enrich",
-      "status": "GREEN",
-      "detail": "Stage pages held"
-    }
-  ]
+  "companion_only_js": true,
+  "suppress_global_nav": true,
+  "room_rail_restyle": true,
+  "hide_emoji_ico": true,
+  "door_rail_readable": true,
+  "path_tiles_plaque": true,
+  "isolation_attr": true,
+  "index_wired": true,
+  "gov_isolation": true,
+  "edu_only": true
 }
