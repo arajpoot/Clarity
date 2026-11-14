@@ -10,6 +10,11 @@
   if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V6__) return;
   w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V6__ = true;
 
+  /** Clarity feedback inbox (Cloudflare Email Routing → your mailbox) */
+  var FEEDBACK_TO = "feedback@clarity-dawah.fyi";
+  /** Optional Worker that accepts JSON and emails you (see CLOUDFLARE_FEEDBACK.md) */
+  var FEEDBACK_API = "/api/feedback";
+
   var VALID = {
     reminder: "tab-reminder",
     reality: "tab-reality",
@@ -122,9 +127,10 @@
       '<textarea id="caf-message" class="caf-message" rows="5" maxlength="4000" placeholder="What would make Clarity clearer, calmer, or more trustworthy for you?"></textarea>' +
       '<p class="caf-hint">Stays on this device until you send or copy. No account required.</p>' +
       '<div class="caf-actions">' +
-      '<button type="button" class="caf-btn caf-primary" id="caf-copy">Copy message</button>' +
-      '<button type="button" class="caf-btn" id="caf-github">Open GitHub note</button>' +
-      '<button type="button" class="caf-btn" id="caf-mail">Mail draft</button>' +
+      '<button type="button" class="caf-btn caf-primary" id="caf-send">Send to Clarity</button>' +
+      '<button type="button" class="caf-btn" id="caf-copy">Copy</button>' +
+      '<button type="button" class="caf-btn" id="caf-mail">Mail app</button>' +
+      '<button type="button" class="caf-btn" id="caf-github">GitHub</button>' +
       "</div>" +
       '<p class="caf-status" id="caf-status" aria-live="polite"></p>' +
       '<p class="td-src">Adab: be specific, kind, and source-aware. We may not reply to every note.</p>' +
@@ -165,6 +171,45 @@
     function status(t) {
       var s = d.getElementById("caf-status");
       if (s) s.textContent = t || "";
+    }
+    var sendBtn = d.getElementById("caf-send");
+    if (sendBtn) {
+      sendBtn.addEventListener("click", function () {
+        var text = msg();
+        if (!text) {
+          status("Write a short note first.");
+          return;
+        }
+        status("Sending…");
+        var payload = {
+          type: type,
+          message: text,
+          room: "companion-about",
+          url: (w.location && w.location.href) || "",
+          when: new Date().toISOString()
+        };
+        fetch(FEEDBACK_API, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload)
+        })
+          .then(function (r) {
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            return r.json().catch(function () { return {}; });
+          })
+          .then(function () {
+            status("Received — Jazak Allah khayran. Your note was sent to Clarity.");
+            var ta = d.getElementById("caf-message");
+            if (ta) ta.value = "";
+          })
+          .catch(function () {
+            // Fallback: open mail draft to Clarity address
+            var subject = encodeURIComponent("Clarity feedback · " + type);
+            var body = encodeURIComponent(buildFeedbackBody(type, text));
+            w.location.href = "mailto:" + FEEDBACK_TO + "?subject=" + subject + "&body=" + body;
+            status("Direct send unavailable — mail draft to " + FEEDBACK_TO + " opened.");
+          });
+      });
     }
     var copyBtn = d.getElementById("caf-copy");
     if (copyBtn) {
@@ -219,8 +264,8 @@
         var body = encodeURIComponent(buildFeedbackBody(type, text));
         // No invented inbox: user picks the destination in their mail client after paste, or uses GitHub.
         // mailto without address still opens a draft on many clients with subject/body.
-        w.location.href = "mailto:?subject=" + subject + "&body=" + body;
-        status("Mail draft opened — choose who should receive it.");
+        w.location.href = "mailto:" + encodeURIComponent(FEEDBACK_TO).replace(/%40/g, "@") + "?subject=" + subject + "&body=" + body;
+        status("Mail draft to " + FEEDBACK_TO + " opened — send when ready.");
       });
     }
   }
