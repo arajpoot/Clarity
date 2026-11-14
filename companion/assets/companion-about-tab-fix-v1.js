@@ -1,20 +1,16 @@
-/*! Companion About calm + feedback v6
- * - Noise-free: no MutationObserver thrash, minimal re-assert
- * - About top-level once; enrichment once
- * - Tajweed stays Action-only (light quarantine)
- * - Feedback card: suggestions / improvements / concerns
+/*! Companion About stick + feedback v7
+ * - Exclusive door for known tabs (does not chain prev → Reality steal)
+ * - Short stick window (not MutationObserver storm)
+ * - Feedback Send → /api/feedback · feedback@clarity-dawah.fyi
  * Educational only — not a fatwa. Companion only.
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V6__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V6__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V7__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V7__ = true;
 
-  /** Clarity feedback inbox (Cloudflare Email Routing → your mailbox) */
   var FEEDBACK_TO = "feedback@clarity-dawah.fyi";
-  /** Optional Worker that accepts JSON and emails you (see CLOUDFLARE_FEEDBACK.md) */
   var FEEDBACK_API = "/api/feedback";
-
   var VALID = {
     reminder: "tab-reminder",
     reality: "tab-reality",
@@ -23,7 +19,8 @@
     notes: "tab-notes",
     about: "tab-about"
   };
-  var booted = false;
+  var stickTimer = null;
+  var stickUntil = 0;
 
   function normalize(id) {
     id = String(id || "").toLowerCase().replace(/^#/, "");
@@ -63,11 +60,8 @@
     return about;
   }
 
-  function showTab(id, write) {
-    id = normalize(id) || "reminder";
+  function applyPanel(id) {
     var panelId = VALID[id];
-    ensureAboutTopLevel();
-
     d.querySelectorAll(".tab-panel").forEach(function (panel) {
       var on = panel.id === panelId;
       panel.classList.toggle("is-active", on);
@@ -81,24 +75,27 @@
         panel.style.setProperty("max-height", "none", "important");
         panel.style.setProperty("overflow", "visible", "important");
         panel.style.setProperty("position", "relative", "important");
+        panel.style.setProperty("width", "100%", "important");
       } else {
         panel.style.setProperty("display", "none", "important");
       }
     });
-
-    // Light Action quarantine — no loops
-    var studio = d.getElementById("tj-deep-studio");
-    var action = d.getElementById("tab-action");
-    if (studio && action && !action.contains(studio)) {
-      action.appendChild(studio);
-    }
-    d.body.setAttribute("data-active-tab", id);
-
     d.querySelectorAll("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]").forEach(function (btn) {
       var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
       btn.classList.toggle("is-active", t === id);
     });
+    try {
+      d.body.setAttribute("data-active-tab", id);
+    } catch (e) {}
+    var studio = d.getElementById("tj-deep-studio");
+    var action = d.getElementById("tab-action");
+    if (studio && action && !action.contains(studio)) action.appendChild(studio);
+  }
 
+  function showTab(id, write) {
+    id = normalize(id) || "reminder";
+    ensureAboutTopLevel();
+    applyPanel(id);
     if (write !== false) {
       try {
         localStorage.setItem("clarity_companion_tab_v1", id);
@@ -108,15 +105,52 @@
         if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
       } catch (e2) {}
     }
+    // Short stick window only — stops jump storm
+    if (id === "about") startStick();
+    else stopStick();
   }
 
-  function feedbackCardHtml() {
+  function panelLooksWrong(id) {
+    var panel = d.getElementById(VALID[id]);
+    if (!panel) return true;
+    var cs = w.getComputedStyle(panel);
+    if (cs.display === "none") return true;
+    if (!(panel.classList.contains("is-active") || panel.classList.contains("active"))) return true;
+    if (id === "about" && panel.offsetHeight < 8) return true;
+    var conflict = false;
+    d.querySelectorAll(".tab-panel.is-active, .tab-panel.active").forEach(function (p) {
+      if (p.id !== VALID[id]) conflict = true;
+    });
+    return conflict;
+  }
+
+  function startStick() {
+    stickUntil = Date.now() + 2500;
+    if (stickTimer) return;
+    stickTimer = setInterval(function () {
+      if (Date.now() > stickUntil) {
+        stopStick();
+        return;
+      }
+      var id = normalize((w.location.hash || "").replace(/^#/, "")) ||
+        normalize(d.body.getAttribute("data-active-tab"));
+      if (id === "about" && panelLooksWrong("about")) {
+        applyPanel("about");
+      }
+    }, 200);
+  }
+  function stopStick() {
+    if (stickTimer) {
+      clearInterval(stickTimer);
+      stickTimer = null;
+    }
+  }
+
+  function feedbackHtml() {
     return (
       '<div class="card companion-about-feedback" id="companion-about-feedback">' +
-      '<div class="caf-head">' +
       "<h2>Write to Clarity</h2>" +
-      '<p class="caf-sub">Suggestions, improvements, or concerns about content — from you, the user of this app. Educational space only; this is not a fatwa desk.</p>' +
-      "</div>" +
+      '<p class="caf-sub">Suggestions, improvements, or concerns about content. Educational only — not a fatwa desk.</p>' +
       '<div class="caf-chips" role="group" aria-label="Feedback type">' +
       '<button type="button" class="caf-chip is-on" data-caf-type="suggestion">Suggestion</button>' +
       '<button type="button" class="caf-chip" data-caf-type="improvement">Improvement</button>' +
@@ -124,29 +158,27 @@
       '<button type="button" class="caf-chip" data-caf-type="content">Content accuracy</button>' +
       "</div>" +
       '<label class="caf-label" for="caf-message">Your note</label>' +
-      '<textarea id="caf-message" class="caf-message" rows="5" maxlength="4000" placeholder="What would make Clarity clearer, calmer, or more trustworthy for you?"></textarea>' +
-      '<p class="caf-hint">Stays on this device until you send or copy. No account required.</p>' +
+      '<textarea id="caf-message" class="caf-message" rows="5" maxlength="4000" placeholder="What would make Clarity clearer or more trustworthy?"></textarea>' +
+      '<p class="caf-hint">On-device until you send. Goes to Clarity via secure channel.</p>' +
       '<div class="caf-actions">' +
       '<button type="button" class="caf-btn caf-primary" id="caf-send">Send to Clarity</button>' +
       '<button type="button" class="caf-btn" id="caf-copy">Copy</button>' +
       '<button type="button" class="caf-btn" id="caf-mail">Mail app</button>' +
-      '<button type="button" class="caf-btn" id="caf-github">GitHub</button>' +
       "</div>" +
       '<p class="caf-status" id="caf-status" aria-live="polite"></p>' +
-      '<p class="td-src">Adab: be specific, kind, and source-aware. We may not reply to every note.</p>' +
+      '<p class="td-src">Adab: specific, kind, source-aware.</p>' +
       "</div>"
     );
   }
 
-  function buildFeedbackBody(type, text) {
+  function buildBody(type, text) {
     return (
-      "Clarity app feedback\n" +
-      "Type: " + type + "\n" +
-      "Room: Companion · About\n" +
-      "URL: " + (w.location && w.location.href ? w.location.href.split("#")[0] : "https://clarity-dawah.fyi/companion/") + "\n" +
-      "When: " + new Date().toISOString() + "\n\n" +
-      text +
-      "\n\n— Sent from Clarity (educational only; not a fatwa)"
+      "Clarity app feedback\nType: " + type +
+      "\nRoom: Companion · About\nURL: " +
+      ((w.location && w.location.href) || "") +
+      "\nWhen: " + new Date().toISOString() +
+      "\n\n" + text +
+      "\n\n— Educational only; not a fatwa"
     );
   }
 
@@ -181,33 +213,37 @@
           return;
         }
         status("Sending…");
-        var payload = {
-          type: type,
-          message: text,
-          room: "companion-about",
-          url: (w.location && w.location.href) || "",
-          when: new Date().toISOString()
-        };
         fetch(FEEDBACK_API, {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({
+            type: type,
+            message: text,
+            room: "companion-about",
+            url: (w.location && w.location.href) || "",
+            when: new Date().toISOString()
+          })
         })
           .then(function (r) {
             if (!r.ok) throw new Error("HTTP " + r.status);
-            return r.json().catch(function () { return {}; });
+            return r.json().catch(function () {
+              return {};
+            });
           })
           .then(function () {
-            status("Received — Jazak Allah khayran. Your note was sent to Clarity.");
+            status("Received — Jazak Allah khayran.");
             var ta = d.getElementById("caf-message");
             if (ta) ta.value = "";
           })
           .catch(function () {
-            // Fallback: open mail draft to Clarity address
-            var subject = encodeURIComponent("Clarity feedback · " + type);
-            var body = encodeURIComponent(buildFeedbackBody(type, text));
-            w.location.href = "mailto:" + FEEDBACK_TO + "?subject=" + subject + "&body=" + body;
-            status("Direct send unavailable — mail draft to " + FEEDBACK_TO + " opened.");
+            w.location.href =
+              "mailto:" +
+              FEEDBACK_TO +
+              "?subject=" +
+              encodeURIComponent("Clarity feedback · " + type) +
+              "&body=" +
+              encodeURIComponent(buildBody(type, text));
+            status("Direct send unavailable — mail draft opened.");
           });
       });
     }
@@ -219,37 +255,17 @@
           status("Write a short note first.");
           return;
         }
-        var body = buildFeedbackBody(type, text);
+        var body = buildBody(type, text);
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(body).then(
             function () {
-              status("Copied — paste into mail, chat, or an issue when ready.");
+              status("Copied.");
             },
             function () {
-              status("Could not copy automatically. Select and copy from the box.");
+              status("Could not copy.");
             }
           );
-        } else {
-          status("Clipboard unavailable. Select your text and copy manually.");
         }
-      });
-    }
-    var gh = d.getElementById("caf-github");
-    if (gh) {
-      gh.addEventListener("click", function () {
-        var text = msg();
-        if (!text) {
-          status("Write a short note first.");
-          return;
-        }
-        var title = encodeURIComponent("App feedback · " + type);
-        var body = encodeURIComponent(buildFeedbackBody(type, text));
-        w.open(
-          "https://github.com/arajpoot/Clarity/issues/new?title=" + title + "&body=" + body,
-          "_blank",
-          "noopener,noreferrer"
-        );
-        status("GitHub draft opened in a new tab (public repo — avoid private details).");
       });
     }
     var mail = d.getElementById("caf-mail");
@@ -260,124 +276,109 @@
           status("Write a short note first.");
           return;
         }
-        var subject = encodeURIComponent("Clarity feedback · " + type);
-        var body = encodeURIComponent(buildFeedbackBody(type, text));
-        // No invented inbox: user picks the destination in their mail client after paste, or uses GitHub.
-        // mailto without address still opens a draft on many clients with subject/body.
-        w.location.href = "mailto:" + encodeURIComponent(FEEDBACK_TO).replace(/%40/g, "@") + "?subject=" + subject + "&body=" + body;
-        status("Mail draft to " + FEEDBACK_TO + " opened — send when ready.");
+        w.location.href =
+          "mailto:" +
+          FEEDBACK_TO +
+          "?subject=" +
+          encodeURIComponent("Clarity feedback · " + type) +
+          "&body=" +
+          encodeURIComponent(buildBody(type, text));
+        status("Mail draft to " + FEEDBACK_TO + " opened.");
       });
     }
   }
 
-  function enrichAboutOnce() {
+  function enrichOnce() {
     var about = ensureAboutTopLevel();
     if (!about) return;
     var root = about.querySelector("#companion-about-enriched-root");
     if (!root) return;
-
     var card = d.getElementById("about-clarity-card");
     if (card && !root.contains(card)) {
       card.setAttribute("data-rrra", "about");
       root.insertBefore(card, root.firstChild);
     }
-
-    // Remove Reality pointer if any
-    var ptr = d.getElementById("about-moved-pointer");
-    if (ptr && ptr.parentNode) ptr.parentNode.removeChild(ptr);
     var reality = d.getElementById("tab-reality");
     if (reality) {
       var stray = reality.querySelector("#about-clarity-card");
-      if (stray && root) {
+      if (stray) {
         stray.setAttribute("data-rrra", "about");
         root.insertBefore(stray, root.firstChild);
       }
     }
-
+    var ptr = d.getElementById("about-moved-pointer");
+    if (ptr && ptr.parentNode) ptr.parentNode.removeChild(ptr);
     if (!root.querySelector("#companion-about-amana")) {
       root.insertAdjacentHTML(
         "beforeend",
-        '<div class="card" id="companion-about-amana">' +
-          "<h2>Amānah vault · own room</h2>" +
-          '<p style="font-size:0.92rem;line-height:1.5">Vault unlock, dayn, heirs, family tree, farāʾiḍ study, and wasiyyah notes live in the <strong>Amānah</strong> room.</p>' +
+        '<div class="card" id="companion-about-amana"><h2>Amānah vault · own room</h2>' +
+          '<p style="font-size:0.92rem;line-height:1.5">Vault, dayn, heirs, tree, farāʾiḍ live in <strong>Amānah</strong>.</p>' +
           '<p><a class="btn-soft" href="/amana/" style="display:inline-block;padding:0.4rem 0.85rem;border-radius:999px;border:1px solid rgba(212,180,90,0.4);text-decoration:none;font-weight:700">Open Amānah →</a></p>' +
-          '<p class="td-src">Educational only — not a fatwa · passphrase on this device.</p>' +
-          "</div>"
+          '<p class="td-src">Educational only — not a fatwa.</p></div>'
       );
     }
     if (!root.querySelector("#companion-about-rooms")) {
       root.insertAdjacentHTML(
         "beforeend",
-        '<div class="card" id="companion-about-rooms">' +
-          "<h2>Five rooms</h2>" +
-          "<ul class=\"sources-list\">" +
-          '<li><a href="/companion/"><strong>Companion</strong></a> — pathways · Reminder · Reality · Reflection · Action · About</li>' +
-          '<li><a href="/daily/"><strong>Yawm</strong></a> — today’s portion</li>' +
-          '<li><a href="/campus/"><strong>University</strong></a> — ordered learning</li>' +
-          '<li><a href="/amana/"><strong>Amānah</strong></a> — trust desk &amp; optional vault</li>' +
-          '<li><a href="/craft/"><strong>Craft</strong></a> — atelier</li>' +
-          "</ul>" +
-          '<p style="font-size:0.85rem">Public page: <a href="/about/">/about/</a> · <a href="/charter/">Charter</a></p>' +
-          "</div>"
+        '<div class="card" id="companion-about-rooms"><h2>Five rooms</h2><ul class="sources-list">' +
+          '<li><a href="/companion/"><strong>Companion</strong></a></li>' +
+          '<li><a href="/daily/"><strong>Yawm</strong></a></li>' +
+          '<li><a href="/campus/"><strong>University</strong></a></li>' +
+          '<li><a href="/amana/"><strong>Amānah</strong></a></li>' +
+          '<li><a href="/craft/"><strong>Craft</strong></a></li></ul>' +
+          '<p style="font-size:0.85rem"><a href="/about/">/about/</a> · <a href="/charter/">Charter</a></p></div>'
       );
     }
     if (!root.querySelector("#companion-about-feedback")) {
-      root.insertAdjacentHTML("beforeend", feedbackCardHtml());
+      root.insertAdjacentHTML("beforeend", feedbackHtml());
     }
     wireFeedback(root);
   }
 
   function wireDoor() {
     w.clarityShowCompanionTab = showTab;
-    var prev = w.clarityOpenSectionDoor;
+
+    // Exclusive: known tabs do NOT chain previous handlers (stops Reality steal)
     w.clarityOpenSectionDoor = function (id) {
       var n = normalize(id);
       if (n) {
         showTab(n, true);
         return;
       }
-      if (typeof prev === "function") {
-        try {
-          return prev.apply(this, arguments);
-        } catch (e) {}
-      }
     };
 
-    d.querySelectorAll("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]").forEach(function (btn) {
-      btn.addEventListener(
-        "click",
-        function (ev) {
-          var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
-          var n = normalize(t);
-          if (!n) return;
-          ev.preventDefault();
-          ev.stopPropagation();
-          showTab(n, true);
-        },
-        true
-      );
-    });
+    function onRail(ev) {
+      var btn = ev.target && ev.target.closest
+        ? ev.target.closest("[data-rail-tab], [data-rrra]")
+        : null;
+      if (!btn || !btn.closest("#clarity-door-rail")) return;
+      var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
+      var n = normalize(t);
+      if (!n) return;
+      ev.preventDefault();
+      ev.stopPropagation();
+      if (ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+      showTab(n, true);
+    }
+    d.addEventListener("click", onRail, true);
   }
 
   function boot() {
-    if (booted) return;
-    booted = true;
     try {
       ensureAboutTopLevel();
-      enrichAboutOnce();
+      enrichOnce();
       wireDoor();
       var h = normalize((w.location.hash || "").replace(/^#/, ""));
       if (h) showTab(h, true);
-      // Single calm settle — no observer storm
       setTimeout(function () {
-        ensureAboutTopLevel();
-        enrichAboutOnce();
-        var id = normalize((w.location.hash || "").replace(/^#/, "")) ||
+        enrichOnce();
+        var id =
+          normalize((w.location.hash || "").replace(/^#/, "")) ||
           normalize(d.body.getAttribute("data-active-tab"));
         if (id) showTab(id, false);
-      }, 120);
+      }, 150);
     } catch (e) {
-      console.warn("about-tab-v6", e);
+      console.warn("about-tab-v7", e);
     }
   }
 
