@@ -1,20 +1,17 @@
-# Port castle layout + glass plaques
+# Companion About v6/A7 · feedback@Clarity via Cloudflare
 
 **Bismillah.** Educational only — not a fatwa.
 
-## Upload
+## App upload (GitHub Pages / static)
+| File | Path |
+|------|------|
+| `companion/assets/companion-about-tab-fix-v1.js` | same |
+| `companion/assets/companion-about-tab-fix-v1.css` | same |
+| `companion/index.html` | same (`?v=20261114A7`) |
 
-| File | GitHub path |
-|------|-------------|
-| `index.html` | `index.html` |
-| `port-room-tours-v1.css` | `assets/port-room-tours-v1.css` |
-| `port-room-tours-v1.js` | `assets/port-room-tours-v1.js` |
+## Cloudflare (your dashboard — required for inbox delivery)
+Follow **`CLOUDFLARE_FEEDBACK.md`**:
+1. Email Routing → `feedback@clarity-dawah.fyi` → your inbox  
+2. Optional Worker from `workers/clarity-feedback.js` on route `/api/feedback*`
 
-## What changes
-
-- **Yawm** is the **center keep** again (tall middle column).
-- Side stacks: Companion + University (left), Amānah + Craft (right).
-- **Enter** and **▶ Tour** same size on a **glass plaque** row at the bottom of each card.
-- Light glass enrichment on cards and Castle introduction.
-
-Hard-refresh Port after upload.
+Until the Worker exists, **Send to Clarity** falls back to a mail draft addressed to `feedback@clarity-dawah.fyi`.
