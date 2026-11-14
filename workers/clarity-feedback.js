@@ -4,7 +4,7 @@
  * Educational companion feedback only — not a fatwa channel.
  */
 
-const TO_INBOX = "REPLACE_WITH_YOUR_INBOX@example.com"; // e.g. your Gmail
+const TO_INBOX = "expatriatefamily@gmail.com"; // e.g. your Gmail
 const FROM_ON_DOMAIN = "feedback@clarity-dawah.fyi";
 
 export default {
