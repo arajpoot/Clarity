@@ -1,8 +1,7 @@
-# Deploy L2 · 20261113L2
+# Deploy L4 · 20261113L4
 
-1. Upload `docs/legacy/` (index + sources/)
-2. Upload `docs/index.html` (updated links)
-3. Upload root `sitemap.xml`
-4. Do **not** touch room app HTML
+Upload each guide folder `index.html` listed in AUDIT_RUN, plus:
+- docs/legacy/wiring/index.html
+- sitemap.xml
 
-After: GSC optional inspect `/docs/legacy/`
+Do **not** replace companion/daily/campus/amana/craft room application shells.
