@@ -1,4 +1,4 @@
-/*! cu-smart-nav-v1.4 · elite + pill matrix + no duplicate banner
+/*! cu-smart-nav-v1.5 · elite + pill matrix + no duplicate banner
  * Layer1 rooms sticky top · path/halls glass below university banner
  * Suppresses legacy rails · campus only · educational only — not a fatwa
  */
@@ -118,6 +118,19 @@
         stamp(a, PILL_LOCK[t], a.getAttribute("data-cu-nav") || "campus");
       }
     });
+  }
+
+  
+  function hideDuplicateHeroes() {
+    var banners = d.querySelectorAll(".cu-elite-banner");
+    if (banners.length > 1) {
+      for (var i = 1; i < banners.length; i++) banners[i].style.display = "none";
+    }
+    if (banners.length) {
+      d.querySelectorAll("main .cu-hero, main .cu-info-plaque.cu-hero").forEach(function (el) {
+        if (!el.closest(".cu-elite-banner")) el.style.display = "none";
+      });
+    }
   }
 
   function path() {
@@ -341,6 +354,9 @@
     setTimeout(function () { lockCampusAnchors(d); hardenAllPills(); }, 2500);
     setTimeout(hardenAllPills, 100);
     setTimeout(hardenAllPills, 800);
+    setTimeout(hideDuplicateHeroes, 50);
+    setTimeout(hideDuplicateHeroes, 400);
+    setTimeout(hideDuplicateHeroes, 1200);
     /* Click capture: force campus targets even if another script rewrote href */
     d.addEventListener("click", function (ev) {
       var a = ev.target && ev.target.closest ? ev.target.closest("a[data-cu-nav]") : null;

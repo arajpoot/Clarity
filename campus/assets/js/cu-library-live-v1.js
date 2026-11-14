@@ -1,5 +1,5 @@
 /**
- * cu-library-live-v1.js — Librarian + Scout active roles on Library
+ * cu-library-live-v1.js — Librarian + Scout · revamp L1 · gold links not browser-blue
  * Shelves, daily scout proposal, pin to vault, resource chips
  */
 (function (g) {
@@ -8,6 +8,7 @@
   g.__CU_LIBRARY_LIVE_V1__ = true;
 
   var SHELVES_URL = "/campus/assets/staff/library/shelves.json";
+  var SHELVES_FALLBACK = "/assets/curriculum/vault/admin/staff/library/shelves.json";
   var ROSTER_URL = "/campus/assets/staff/staff-roster.json";
   var RES_URL = "/campus/assets/faculty/resource-map.json";
   var SCOUT_KEY = "clarity_staff_scout_inbox_v1";
@@ -71,7 +72,7 @@
         var refs = (s.refs || [])
           .map(function (r) {
             return (
-              '<li><a href="' +
+              '<li><a class="lib-link" href="' +
               esc(r.url) +
               '" target="_blank" rel="noopener noreferrer">' +
               esc(r.title) +
@@ -151,7 +152,7 @@
       esc(item.note || "") +
       '</p><p><a class="lib-btn" href="' +
       esc(item.url) +
-      '" target="_blank" rel="noopener noreferrer">Open source</a> ' +
+      '" class="lib-link" target="_blank" rel="noopener noreferrer" class="lib-btn">Open source</a> ' +
       '<button type="button" class="lib-btn ghost" id="lib-scout-pin">Pin to Vault</button> ' +
       '<button type="button" class="lib-btn ghost" id="lib-scout-next">Another proposal</button></p>' +
       '<p class="lib-muted">Scout proposes · Librarian curates · You decide. Not a fatwa.</p></div>';
