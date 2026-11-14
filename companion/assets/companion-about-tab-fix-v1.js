@@ -1,4 +1,4 @@
-/*! Companion About isolate v10
+/*! Companion About isolate v11 · same-origin feedback allow
  * - Refresh with #about stays on About (wins over tab-persist default)
  * - Single feedback block (de-dupe)
  * - Textarea usable (no capture steal outside rail)
@@ -8,11 +8,43 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V10__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V10__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V11__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V11__ = true;
 
   var FEEDBACK_TO = "feedback@clarity-dawah.fyi";
-  var FEEDBACK_API = "https://clarity-dawah.fyi/api/feedback";
+  /* relative = same origin; Shariah guard must allow own host */
+  var FEEDBACK_API = "/api/feedback";
+
+  function allowSameOriginFeedback() {
+    try {
+      var host = (w.location && w.location.hostname) || "";
+      if (host && w.CLARITY_SHARIAH_ALLOW_HOSTS && w.CLARITY_SHARIAH_ALLOW_HOSTS.indexOf(host) < 0) {
+        w.CLARITY_SHARIAH_ALLOW_HOSTS.push(host);
+      }
+      if (w.CLARITY_SHARIAH_ALLOW_HOSTS && w.CLARITY_SHARIAH_ALLOW_HOSTS.indexOf("clarity-dawah.fyi") < 0) {
+        w.CLARITY_SHARIAH_ALLOW_HOSTS.push("clarity-dawah.fyi");
+      }
+      var prev = w.clarityShariahCheckUrl;
+      if (typeof prev === "function" && !prev.__clarityFeedbackAllow) {
+        w.clarityShariahCheckUrl = function (url) {
+          try {
+            var u = new URL(String(url || ""), w.location.href);
+            var h = (u.hostname || "").toLowerCase();
+            var path = u.pathname || "";
+            // Own site + feedback API always ok (not a deen-text source)
+            if (h && w.location && h === (w.location.hostname || "").toLowerCase()) {
+              return { ok: true, reason: "same-origin", educationalOnly: true };
+            }
+            if (h === "clarity-dawah.fyi" || path.indexOf("/api/feedback") === 0) {
+              return { ok: true, reason: "clarity-feedback-api", educationalOnly: true };
+            }
+          } catch (e) {}
+          return prev(url);
+        };
+        w.clarityShariahCheckUrl.__clarityFeedbackAllow = true;
+      }
+    } catch (e) {}
+  }
   var VALID = {
     reminder: "tab-reminder",
     reality: "tab-reality",
@@ -135,12 +167,22 @@
   }
 
   function dedupeFeedback(root) {
+    if (!root) return null;
     var cards = root.querySelectorAll("#companion-about-feedback, .companion-about-feedback");
+    // Also catch unlabeled duplicates by heading
+    root.querySelectorAll(".card").forEach(function (c) {
+      var h = (c.querySelector("h2") && c.querySelector("h2").textContent) || "";
+      if (/write to clarity/i.test(h) && c.id !== "companion-about-feedback") {
+        if (!c.classList.contains("companion-about-feedback")) c.classList.add("companion-about-feedback");
+      }
+    });
+    cards = root.querySelectorAll("#companion-about-feedback, .companion-about-feedback");
     if (cards.length <= 1) return cards[0] || null;
-    // Keep first, remove rest
     for (var i = 1; i < cards.length; i++) {
       if (cards[i].parentNode) cards[i].parentNode.removeChild(cards[i]);
     }
+    // Ensure single id
+    if (cards[0]) cards[0].id = "companion-about-feedback";
     return cards[0];
   }
 
@@ -237,6 +279,7 @@
           status("Write a short note first.");
           return;
         }
+        allowSameOriginFeedback();
         status("Sending…");
         sendBtn.disabled = true;
         fetch(FEEDBACK_API, {
@@ -458,6 +501,7 @@
 
   function boot() {
     try {
+      allowSameOriginFeedback();
       ensureAboutTopLevel();
       enrichOnce();
       lockDoor();
@@ -476,7 +520,7 @@
         hideTajweedUnlessAction(again);
       }, 250);
     } catch (e) {
-      console.warn("about-tab-v10", e);
+      console.warn("about-tab-v11", e);
     }
   }
 
