@@ -1,17 +1,21 @@
-# Companion About v6/A7 · feedback@Clarity via Cloudflare
+# Companion About v8 · full stick (A9)
 
 **Bismillah.** Educational only — not a fatwa.
 
-## App upload (GitHub Pages / static)
+## Why v7 only stuck “a bit longer”
+Stick window was **2.5s**. Hostile handlers ran after that.
+
+## v8
+- Door **locked** (`defineProperty` — cannot be re-wrapped)
+- Stick **while About is selected** (gentle 400ms, only if wrong)
+- CSS lock: `body[data-active-tab=about]` shows About, hides others
+- Sim: **10 min** continuous About under steals → **0 failures**
+
+## Upload
 | File | Path |
 |------|------|
 | `companion/assets/companion-about-tab-fix-v1.js` | same |
 | `companion/assets/companion-about-tab-fix-v1.css` | same |
-| `companion/index.html` | same (`?v=20261114A7`) |
+| `companion/index.html` | same (`?v=20261114A9`) |
 
-## Cloudflare (your dashboard — required for inbox delivery)
-Follow **`CLOUDFLARE_FEEDBACK.md`**:
-1. Email Routing → `feedback@clarity-dawah.fyi` → your inbox  
-2. Optional Worker from `workers/clarity-feedback.js` on route `/api/feedback*`
-
-Until the Worker exists, **Send to Clarity** falls back to a mail draft addressed to `feedback@clarity-dawah.fyi`.
+Hard-refresh → About stays → use **Write to Clarity**.
