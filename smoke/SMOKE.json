@@ -1,35 +1,10 @@
 {
-  "ver": "20261113L1",
-  "phase": "L1",
+  "ver": "20261113L2",
+  "phase": "L2",
   "ship": "PASS",
-  "audit": [
-    {
-      "path": "/dua-for-the-deceased/",
-      "before": 3578,
-      "after": 6111,
-      "delta": 2533,
-      "ok": true
-    },
-    {
-      "path": "/adhkar/",
-      "before": 2283,
-      "after": 4410,
-      "delta": 2127,
-      "ok": true
-    },
-    {
-      "path": "/what-benefits-the-deceased/",
-      "before": 4484,
-      "after": 6800,
-      "delta": 2316,
-      "ok": true
-    },
-    {
-      "path": "/islamic-inheritance-calculator/",
-      "before": 3717,
-      "after": 6016,
-      "delta": 2299,
-      "ok": true
-    }
+  "pages": [
+    "/docs/legacy/",
+    "/docs/legacy/sources/",
+    "/docs/"
   ]
 }
