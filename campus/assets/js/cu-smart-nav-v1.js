@@ -1,4 +1,4 @@
-/*! cu-smart-nav-v1.3 · elite + locked campus pill hrefs
+/*! cu-smart-nav-v1.4 · elite + pill matrix + no duplicate banner
  * Layer1 rooms sticky top · path/halls glass below university banner
  * Suppresses legacy rails · campus only · educational only — not a fatwa
  */
@@ -21,7 +21,7 @@
     { href: "/campus/desk/practice/", label: "Practice", stage: "practice" },
     { href: "/campus/desk/consistency/", label: "Consistency", stage: "consistency" },
     { href: "/campus/desk/transmission/", label: "Transmission", stage: "transmission" },
-    { href: "/campus/grading.html", label: "Progress" }
+    { href: "/campus/grading", label: "Progress" }
   ];
   var MORE = [
     { href: "/campus/", label: "Campus home" },
@@ -30,8 +30,8 @@
     { href: "/campus/desk/ihsan/", label: "Iḥsān" },
     { href: "/campus/desk/amanah/", label: "Amānah module" },
     { href: "/campus/assignments/", label: "Assignments" },
-    { href: "/campus/faculty", label: "Faculty" },
-    { href: "/campus/bots", label: "Bots" },
+    { href: "/campus/faculty/", label: "Faculty" },
+    { href: "/campus/bots/", label: "Bots" },
     { href: "/campus/lab/", label: "Lab" },
     { href: "/campus/library/", label: "Library" },
     { href: "/campus/buddy/", label: "Buddy" },
@@ -74,14 +74,65 @@
     a.setAttribute("data-path-wire", "skip");
   }
 
+  
+  var PILL_LOCK = {
+    "progress": "/campus/grading",
+    "faculty": "/campus/faculty/",
+    "bots": "/campus/bots/",
+    "desk": "/campus/desk/",
+    "seeker": "/campus/desk/seeker/",
+    "practice": "/campus/desk/practice/",
+    "consistency": "/campus/desk/consistency/",
+    "transmission": "/campus/desk/transmission/",
+    "campus home": "/campus/",
+    "foundation": "/campus/desk/foundation/",
+    "pillars": "/campus/desk/pillars/",
+    "iḥsān": "/campus/desk/ihsan/",
+    "ihsan": "/campus/desk/ihsan/",
+    "amānah module": "/campus/desk/amanah/",
+    "assignments": "/campus/assignments/",
+    "lab": "/campus/lab/",
+    "library": "/campus/library/",
+    "buddy": "/campus/buddy/",
+    "portal": "/campus/portal/",
+    "journey": "/campus/journey/",
+    "orientation": "/campus/orientation/",
+    "schedule": "/campus/schedule/",
+    "transcript": "/campus/transcript/",
+    "diploma": "/campus/diploma/",
+    "mīrāth": "/campus/mirath/",
+    "mirath": "/campus/mirath/",
+    "campus vault": "/campus/vault/",
+    "charter": "/campus/charter/"
+  };
+
+  function hardenAllPills() {
+    d.querySelectorAll("a[data-cu-nav], .sn-pill, .sn-drawer a, .sn-room").forEach(function (a) {
+      var t = String(a.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+      var locked = a.getAttribute("data-cu-href");
+      if (locked && locked.indexOf("/campus") === 0) {
+        a.setAttribute("href", locked);
+        return;
+      }
+      if (PILL_LOCK[t]) {
+        stamp(a, PILL_LOCK[t], a.getAttribute("data-cu-nav") || "campus");
+      }
+    });
+  }
+
   function path() {
     return (location.pathname || "/").replace(/\/+$/, "") || "/";
   }
   function isHere(href) {
     var p = path();
     var h = (href || "").replace(/\/+$/, "") || "/";
+    p = p.replace(/\.html$/, "");
+    h = h.replace(/\.html$/, "");
     if (h === "/") return p === "/";
     if (h === "/campus") return p === "/campus";
+    if (h === "/campus/grading") return p === "/campus/grading";
+    if (h === "/campus/faculty") return p === "/campus/faculty";
+    if (h === "/campus/bots") return p === "/campus/bots";
     return p === h || p.indexOf(h + "/") === 0;
   }
   function crumb() {
@@ -157,8 +208,17 @@
   function ensureBanner() {
     var existing = d.querySelector(".cu-elite-banner");
     if (existing) return existing;
-    /* Prefer promote existing hero if present */
-    var hero = d.querySelector(".cu-hero, .cu-info-plaque, main .cu-plaque");
+    /* Landing already has Clarity University hero — promote, do not duplicate */
+    var hero = d.querySelector(".cu-hero, [data-campus-hero], .cu-info-plaque.cu-hero");
+    if (hero && /Clarity University/i.test(hero.textContent || "")) {
+      hero.classList.add("cu-elite-banner-inner");
+      var wrap = d.createElement("div");
+      wrap.className = "cu-elite-banner";
+      wrap.setAttribute("data-sn-promoted", "1");
+      hero.parentNode.insertBefore(wrap, hero);
+      wrap.appendChild(hero);
+      return wrap;
+    }
     var banner = d.createElement("div");
     banner.className = "cu-elite-banner";
     banner.setAttribute("role", "region");
@@ -278,7 +338,9 @@
     setTimeout(suppressLegacy, 120);
     setTimeout(function () { suppressLegacy(); lockCampusAnchors(d); }, 500);
     setTimeout(function () { suppressLegacy(); lockCampusAnchors(d); }, 1500);
-    setTimeout(function () { lockCampusAnchors(d); }, 2500);
+    setTimeout(function () { lockCampusAnchors(d); hardenAllPills(); }, 2500);
+    setTimeout(hardenAllPills, 100);
+    setTimeout(hardenAllPills, 800);
     /* Click capture: force campus targets even if another script rewrote href */
     d.addEventListener("click", function (ev) {
       var a = ev.target && ev.target.closest ? ev.target.closest("a[data-cu-nav]") : null;
