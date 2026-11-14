@@ -1,5 +1,6 @@
-/* Companion About quiet v9 — no JS thrash; CSS holds About */
+/* Companion About isolate v10 */
 
+/* Active-tab CSS isolation */
 body[data-active-tab="about"] #tab-about.tab-panel {
   display: block !important;
   visibility: visible !important;
@@ -8,6 +9,7 @@ body[data-active-tab="about"] #tab-about.tab-panel {
   overflow: visible !important;
   position: relative !important;
   width: 100% !important;
+  pointer-events: auto !important;
 }
 body[data-active-tab="about"] #tab-reminder.tab-panel,
 body[data-active-tab="about"] #tab-reality.tab-panel,
@@ -21,6 +23,33 @@ body[data-active-tab="about"] #tab-notes.tab-panel {
 #tab-about.tab-panel.active {
   display: block !important;
   visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Feedback inputs must always be interactive */
+#tab-about #caf-message,
+#tab-about .caf-message,
+#tab-about .caf-btn,
+#tab-about .caf-chip {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 2;
+}
+#tab-about #caf-message,
+#tab-about .caf-message {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Tajweed: only when Action is the active tab */
+body:not([data-active-tab="action"]) #tj-deep-studio,
+body:not([data-active-tab="action"]) #tajweed-live-card,
+body:not([data-active-tab="action"]) #tajweed-path-card,
+body:not([data-active-tab="action"]) #tajweed-player,
+body:not([data-active-tab="action"]) #tajweed-player-dup1,
+body:not([data-active-tab="action"]) .card-tajweed {
+  display: none !important;
+  visibility: hidden !important;
 }
 
 .tab-panel:not(.is-active):not(.active) #tj-deep-studio,
@@ -35,6 +64,7 @@ body[data-active-tab="about"] #tab-notes.tab-panel {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+  pointer-events: auto;
 }
 #tab-about .card {
   border-radius: 14px;
@@ -47,6 +77,11 @@ body[data-active-tab="about"] #tab-notes.tab-panel {
   color: var(--gold2, #c9a84c);
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.2rem;
+}
+
+/* One feedback card only */
+#tab-about .companion-about-feedback ~ .companion-about-feedback {
+  display: none !important;
 }
 
 .companion-about-feedback .caf-sub {

@@ -1,14 +1,15 @@
-/*! Companion About quiet + feedback v9
- * - NO interval / MutationObserver (noise-free)
- * - CSS + one-shot panel apply on rail/hash only
- * - Locked door (defineProperty)
- * - Send uses absolute /api/feedback; mail is optional only
+/*! Companion About isolate v10
+ * - Refresh with #about stays on About (wins over tab-persist default)
+ * - Single feedback block (de-dupe)
+ * - Textarea usable (no capture steal outside rail)
+ * - Tajweed hard-hidden unless data-active-tab=action
+ * - No interval thrash
  * Educational only — not a fatwa. Companion only.
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V9__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V9__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V10__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V10__ = true;
 
   var FEEDBACK_TO = "feedback@clarity-dawah.fyi";
   var FEEDBACK_API = "https://clarity-dawah.fyi/api/feedback";
@@ -20,6 +21,7 @@
     notes: "tab-notes",
     about: "tab-about"
   };
+  var applying = false;
 
   function normalize(id) {
     id = String(id || "").toLowerCase().replace(/^#/, "");
@@ -59,48 +61,87 @@
     return about;
   }
 
-  function showTab(id, write) {
-    id = normalize(id) || "reminder";
-    ensureAboutTopLevel();
-    var panelId = VALID[id];
-
-    // Set body first so CSS lock engages without thrash
-    try {
-      d.body.setAttribute("data-active-tab", id);
-    } catch (e) {}
-
-    d.querySelectorAll(".tab-panel").forEach(function (panel) {
-      var on = panel.id === panelId;
-      panel.classList.toggle("is-active", on);
-      panel.classList.toggle("active", on);
-      panel.setAttribute("aria-hidden", on ? "false" : "true");
-      if (on) {
-        panel.removeAttribute("hidden");
-        panel.style.setProperty("display", "block", "important");
-        panel.style.setProperty("visibility", "visible", "important");
+  function hideTajweedUnlessAction(activeId) {
+    var show = activeId === "action";
+    var nodes = d.querySelectorAll(
+      "#tj-deep-studio, #tajweed-live-card, #tajweed-path-card, #tajweed-player, #tajweed-player-dup1, .card-tajweed"
+    );
+    nodes.forEach(function (el) {
+      if (show) {
+        el.style.removeProperty("display");
+        el.style.removeProperty("visibility");
+        el.removeAttribute("aria-hidden");
       } else {
-        panel.style.setProperty("display", "none", "important");
+        el.style.setProperty("display", "none", "important");
+        el.style.setProperty("visibility", "hidden", "important");
+        el.setAttribute("aria-hidden", "true");
       }
     });
-
-    d.querySelectorAll("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]").forEach(function (btn) {
-      var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
-      btn.classList.toggle("is-active", t === id);
-    });
-
+    // Re-home studio under action if it escaped
     var studio = d.getElementById("tj-deep-studio");
     var action = d.getElementById("tab-action");
-    if (studio && action && !action.contains(studio)) action.appendChild(studio);
-
-    if (write !== false) {
-      try {
-        localStorage.setItem("clarity_companion_tab_v1", id);
-      } catch (e2) {}
-      try {
-        var want = "#" + id;
-        if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
-      } catch (e3) {}
+    if (studio && action && !action.contains(studio)) {
+      action.appendChild(studio);
+      if (!show) {
+        studio.style.setProperty("display", "none", "important");
+      }
     }
+  }
+
+  function showTab(id, write) {
+    id = normalize(id) || "reminder";
+    if (applying) return;
+    applying = true;
+    try {
+      ensureAboutTopLevel();
+      try {
+        d.body.setAttribute("data-active-tab", id);
+      } catch (e) {}
+
+      var panelId = VALID[id];
+      d.querySelectorAll(".tab-panel").forEach(function (panel) {
+        var on = panel.id === panelId;
+        panel.classList.toggle("is-active", on);
+        panel.classList.toggle("active", on);
+        panel.setAttribute("aria-hidden", on ? "false" : "true");
+        if (on) {
+          panel.removeAttribute("hidden");
+          panel.style.setProperty("display", "block", "important");
+          panel.style.setProperty("visibility", "visible", "important");
+        } else {
+          panel.style.setProperty("display", "none", "important");
+        }
+      });
+
+      d.querySelectorAll("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]").forEach(function (btn) {
+        var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
+        btn.classList.toggle("is-active", t === id);
+      });
+
+      hideTajweedUnlessAction(id);
+
+      if (write !== false) {
+        try {
+          localStorage.setItem("clarity_companion_tab_v1", id);
+        } catch (e2) {}
+        try {
+          var want = "#" + id;
+          if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
+        } catch (e3) {}
+      }
+    } finally {
+      applying = false;
+    }
+  }
+
+  function dedupeFeedback(root) {
+    var cards = root.querySelectorAll("#companion-about-feedback, .companion-about-feedback");
+    if (cards.length <= 1) return cards[0] || null;
+    // Keep first, remove rest
+    for (var i = 1; i < cards.length; i++) {
+      if (cards[i].parentNode) cards[i].parentNode.removeChild(cards[i]);
+    }
+    return cards[0];
   }
 
   function feedbackHtml() {
@@ -115,7 +156,7 @@
       '<button type="button" class="caf-chip" data-caf-type="content">Content accuracy</button>' +
       "</div>" +
       '<label class="caf-label" for="caf-message">Your note</label>' +
-      '<textarea id="caf-message" class="caf-message" rows="5" maxlength="4000" placeholder="What would make Clarity clearer or more trustworthy?"></textarea>' +
+      '<textarea id="caf-message" class="caf-message" rows="5" maxlength="4000" autocomplete="off" placeholder="What would make Clarity clearer or more trustworthy?"></textarea>' +
       '<p class="caf-hint">On-device until you send. Delivered to Clarity inbox (no mail app required).</p>' +
       '<div class="caf-actions">' +
       '<button type="button" class="caf-btn caf-primary" id="caf-send">Send to Clarity</button>' +
@@ -143,13 +184,17 @@
   }
 
   function wireFeedback(root) {
+    dedupeFeedback(root);
     var card = root.querySelector("#companion-about-feedback");
-    if (!card || card.getAttribute("data-wired") === "1") return;
+    if (!card) return;
+    if (card.getAttribute("data-wired") === "1") return;
     card.setAttribute("data-wired", "1");
+
     var type = "suggestion";
     card.querySelectorAll(".caf-chip").forEach(function (chip) {
       chip.addEventListener("click", function (ev) {
         ev.preventDefault();
+        ev.stopPropagation();
         card.querySelectorAll(".caf-chip").forEach(function (c) {
           c.classList.remove("is-on");
         });
@@ -157,6 +202,7 @@
         type = chip.getAttribute("data-caf-type") || "suggestion";
       });
     });
+
     function msg() {
       var ta = d.getElementById("caf-message");
       return (ta && ta.value ? ta.value : "").trim();
@@ -164,6 +210,21 @@
     function status(t) {
       var s = d.getElementById("caf-status");
       if (s) s.textContent = t || "";
+    }
+
+    // Ensure textarea receives input (stop parent handlers)
+    var ta = d.getElementById("caf-message");
+    if (ta) {
+      ["click", "touchstart", "pointerdown", "keydown", "keypress", "input"].forEach(function (evName) {
+        ta.addEventListener(
+          evName,
+          function (ev) {
+            ev.stopPropagation();
+          },
+          true
+        );
+      });
+      ta.style.pointerEvents = "auto";
     }
 
     var sendBtn = d.getElementById("caf-send");
@@ -201,11 +262,10 @@
           .then(function (data) {
             if (data && data.ok === false) throw new Error(data.error || "send failed");
             status("Received — Jazak Allah khayran. Your note reached Clarity.");
-            var ta = d.getElementById("caf-message");
-            if (ta) ta.value = "";
+            var box = d.getElementById("caf-message");
+            if (box) box.value = "";
           })
           .catch(function (err) {
-            // Do NOT auto-open mail — keep user on About; offer retry + optional mail
             status(
               "Could not send directly (" +
                 (err && err.message ? err.message : "network") +
@@ -222,6 +282,7 @@
     if (copyBtn) {
       copyBtn.addEventListener("click", function (ev) {
         ev.preventDefault();
+        ev.stopPropagation();
         var text = msg();
         if (!text) {
           status("Write a short note first.");
@@ -244,12 +305,12 @@
     if (mail) {
       mail.addEventListener("click", function (ev) {
         ev.preventDefault();
+        ev.stopPropagation();
         var text = msg();
         if (!text) {
           status("Write a short note first.");
           return;
         }
-        // Optional only — explicit user choice
         var a = d.createElement("a");
         a.href =
           "mailto:" +
@@ -265,7 +326,7 @@
         setTimeout(function () {
           if (a.parentNode) a.parentNode.removeChild(a);
         }, 0);
-        status("Mail app opened (optional path). Prefer Send to Clarity when available.");
+        status("Mail app opened (optional). Prefer Send to Clarity when available.");
       });
     }
   }
@@ -275,6 +336,7 @@
     if (!about) return;
     var root = about.querySelector("#companion-about-enriched-root");
     if (!root) return;
+
     var card = d.getElementById("about-clarity-card");
     if (card && !root.contains(card)) {
       card.setAttribute("data-rrra", "about");
@@ -290,6 +352,16 @@
     }
     var ptr = d.getElementById("about-moved-pointer");
     if (ptr && ptr.parentNode) ptr.parentNode.removeChild(ptr);
+
+    // Remove legacy "About this Companion" duplicates if present outside card-about
+    root.querySelectorAll(".card").forEach(function (c) {
+      if (c.id === "about-clarity-card" || c.id === "companion-about-feedback") return;
+      var h = (c.querySelector("h2") && c.querySelector("h2").textContent) || "";
+      if (/^about this companion$/i.test(h.trim())) {
+        if (c.parentNode) c.parentNode.removeChild(c);
+      }
+    });
+
     if (!root.querySelector("#companion-about-amana")) {
       root.insertAdjacentHTML(
         "beforeend",
@@ -314,6 +386,7 @@
     if (!root.querySelector("#companion-about-feedback")) {
       root.insertAdjacentHTML("beforeend", feedbackHtml());
     }
+    dedupeFeedback(root);
     wireFeedback(root);
   }
 
@@ -350,16 +423,18 @@
   }
 
   function wireRail() {
+    // Only rail buttons — never intercept About panel inputs
     d.addEventListener(
       "click",
       function (ev) {
-        var btn =
-          ev.target && ev.target.closest
-            ? ev.target.closest("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]")
-            : null;
+        var t = ev.target;
+        if (!t || !t.closest) return;
+        // Never hijack events inside About content
+        if (t.closest("#tab-about")) return;
+        var btn = t.closest("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]");
         if (!btn) return;
-        var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
-        var n = normalize(t);
+        var key = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
+        var n = normalize(key);
         if (!n) return;
         ev.preventDefault();
         ev.stopPropagation();
@@ -370,25 +445,38 @@
     );
   }
 
+  function resolveBootTab() {
+    // Prefer hash, then body, then storage — keep About on refresh
+    var h = normalize((w.location.hash || "").replace(/^#/, ""));
+    if (h) return h;
+    try {
+      var saved = normalize(localStorage.getItem("clarity_companion_tab_v1"));
+      if (saved) return saved;
+    } catch (e) {}
+    return "reminder";
+  }
+
   function boot() {
     try {
       ensureAboutTopLevel();
       enrichOnce();
       lockDoor();
       wireRail();
-      var h = normalize((w.location.hash || "").replace(/^#/, ""));
-      if (h) showTab(h, true);
-      // Single late settle only — no loops
+      var id = resolveBootTab();
+      showTab(id, true);
+      // One late settle after tab-persist (no loops)
       setTimeout(function () {
         lockDoor();
         enrichOnce();
-        var id =
+        var again =
           normalize((w.location.hash || "").replace(/^#/, "")) ||
-          normalize(d.body.getAttribute("data-active-tab"));
-        if (id) showTab(id, false);
-      }, 180);
+          normalize(localStorage.getItem("clarity_companion_tab_v1")) ||
+          id;
+        showTab(again, false);
+        hideTajweedUnlessAction(again);
+      }, 250);
     } catch (e) {
-      console.warn("about-tab-v9", e);
+      console.warn("about-tab-v10", e);
     }
   }
 
