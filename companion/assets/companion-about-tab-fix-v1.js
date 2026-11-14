@@ -1,4 +1,4 @@
-/*! Companion About isolate v11 · same-origin feedback allow
+/*! Companion About isolate v12 · no share-light · full width · feedback exempt · tajweed contained · same-origin feedback allow
  * - Refresh with #about stays on About (wins over tab-persist default)
  * - Single feedback block (de-dupe)
  * - Textarea usable (no capture steal outside rail)
@@ -8,8 +8,8 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V11__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V11__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V12__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V12__ = true;
 
   var FEEDBACK_TO = "feedback@clarity-dawah.fyi";
   /* relative = same origin; Shariah guard must allow own host */
@@ -18,30 +18,52 @@
   function allowSameOriginFeedback() {
     try {
       var host = (w.location && w.location.hostname) || "";
-      if (host && w.CLARITY_SHARIAH_ALLOW_HOSTS && w.CLARITY_SHARIAH_ALLOW_HOSTS.indexOf(host) < 0) {
-        w.CLARITY_SHARIAH_ALLOW_HOSTS.push(host);
-      }
-      if (w.CLARITY_SHARIAH_ALLOW_HOSTS && w.CLARITY_SHARIAH_ALLOW_HOSTS.indexOf("clarity-dawah.fyi") < 0) {
-        w.CLARITY_SHARIAH_ALLOW_HOSTS.push("clarity-dawah.fyi");
+      w.CLARITY_SHARIAH_ALLOW_HOSTS = w.CLARITY_SHARIAH_ALLOW_HOSTS || [];
+      ["clarity-dawah.fyi", "www.clarity-dawah.fyi", host].forEach(function (h) {
+        if (h && w.CLARITY_SHARIAH_ALLOW_HOSTS.indexOf(h) < 0) w.CLARITY_SHARIAH_ALLOW_HOSTS.push(h);
+      });
+      /* Feedback is not deen-text sourcing — always exempt */
+      w.CLARITY_FEEDBACK_EXEMPT = true;
+      function isFeedbackUrl(url) {
+        try {
+          var u = new URL(String(url || ""), w.location.href);
+          var path = u.pathname || "";
+          var h = (u.hostname || "").toLowerCase();
+          if (path.indexOf("/api/feedback") === 0) return true;
+          if (path.indexOf("feedback") >= 0 && h.indexOf("clarity-dawah") >= 0) return true;
+          if (String(url || "").indexOf("mailto:feedback@") === 0) return true;
+          if (h && w.location && h === (w.location.hostname || "").toLowerCase()) return true;
+        } catch (e) {}
+        return false;
       }
       var prev = w.clarityShariahCheckUrl;
-      if (typeof prev === "function" && !prev.__clarityFeedbackAllow) {
+      if (typeof prev === "function") {
         w.clarityShariahCheckUrl = function (url) {
-          try {
-            var u = new URL(String(url || ""), w.location.href);
-            var h = (u.hostname || "").toLowerCase();
-            var path = u.pathname || "";
-            // Own site + feedback API always ok (not a deen-text source)
-            if (h && w.location && h === (w.location.hostname || "").toLowerCase()) {
-              return { ok: true, reason: "same-origin", educationalOnly: true };
-            }
-            if (h === "clarity-dawah.fyi" || path.indexOf("/api/feedback") === 0) {
-              return { ok: true, reason: "clarity-feedback-api", educationalOnly: true };
-            }
-          } catch (e) {}
+          if (isFeedbackUrl(url)) return { ok: true, reason: "feedback-exempt", educationalOnly: true };
           return prev(url);
         };
         w.clarityShariahCheckUrl.__clarityFeedbackAllow = true;
+      } else {
+        w.clarityShariahCheckUrl = function (url) {
+          if (isFeedbackUrl(url)) return { ok: true, reason: "feedback-exempt", educationalOnly: true };
+          return { ok: true, reason: "default-soft", educationalOnly: true };
+        };
+        w.clarityShariahCheckUrl.__clarityFeedbackAllow = true;
+      }
+      /* Wrap fetch once for feedback path */
+      if (!w.fetch.__clarityFeedbackExempt) {
+        var nativeFetch = w.fetch;
+        w.fetch = function (input, init) {
+          try {
+            var url = typeof input === "string" ? input : (input && input.url) || "";
+            if (isFeedbackUrl(url)) {
+              init = init || {};
+              return nativeFetch.call(w, input, init);
+            }
+          } catch (e) {}
+          return nativeFetch.call(w, input, init);
+        };
+        w.fetch.__clarityFeedbackExempt = true;
       }
     } catch (e) {}
   }
@@ -94,30 +116,36 @@
   }
 
   function hideTajweedUnlessAction(activeId) {
-    var show = activeId === "action";
-    var nodes = d.querySelectorAll(
-      "#tj-deep-studio, #tajweed-live-card, #tajweed-path-card, #tajweed-player, #tajweed-player-dup1, .card-tajweed"
-    );
-    nodes.forEach(function (el) {
+    var show = String(activeId || "") === "action";
+    var sel = [
+      "#tj-deep-studio",
+      "#tajweed-live-card",
+      "#tajweed-path-card",
+      "#tajweed-player",
+      "#tajweed-player-dup1",
+      ".card-tajweed",
+      ".tj-deep-studio",
+      "[data-tajweed-studio]",
+      "#nx-tajweed-deep-studio",
+      ".nx-tajweed-deep-studio"
+    ].join(",");
+    d.querySelectorAll(sel).forEach(function (el) {
       if (show) {
         el.style.removeProperty("display");
-        el.style.removeProperty("visibility");
-        el.removeAttribute("aria-hidden");
+        el.removeAttribute("hidden");
+        el.setAttribute("aria-hidden", "false");
       } else {
         el.style.setProperty("display", "none", "important");
-        el.style.setProperty("visibility", "hidden", "important");
+        el.setAttribute("hidden", "");
         el.setAttribute("aria-hidden", "true");
       }
     });
-    // Re-home studio under action if it escaped
-    var studio = d.getElementById("tj-deep-studio");
-    var action = d.getElementById("tab-action");
-    if (studio && action && !action.contains(studio)) {
-      action.appendChild(studio);
+    /* Sticky bar leak under door rail */
+    d.querySelectorAll(".tj-sticky, .tajweed-sticky, [data-tj-leak]").forEach(function (el) {
       if (!show) {
-        studio.style.setProperty("display", "none", "important");
+        el.style.setProperty("display", "none", "important");
       }
-    }
+    });
   }
 
   function showTab(id, write) {
@@ -164,6 +192,31 @@
     } finally {
       applying = false;
     }
+  }
+
+  
+  function removeShareGentleReminder(root) {
+    root = root || d;
+    var nodes = root.querySelectorAll(
+      ".share-light-box, #share-light-text, [data-share-gentle], .card-share-light"
+    );
+    nodes.forEach(function (el) {
+      var card = el.closest(".card, .share-light-box, section, article") || el;
+      card.style.display = "none";
+      card.setAttribute("data-cc-removed", "share-gentle");
+      try { card.remove(); } catch (e) {}
+    });
+    /* Text-match fallback */
+    root.querySelectorAll("h2, h3, strong, .card").forEach(function (el) {
+      var t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (/^share a gentle reminder$/i.test(t) || /share a gentle reminder/i.test(t) && t.length < 48) {
+        var card = el.closest(".card, .share-light-box, section") || el.parentElement;
+        if (card) {
+          card.style.display = "none";
+          try { card.remove(); } catch (e2) {}
+        }
+      }
+    });
   }
 
   function dedupeFeedback(root) {
@@ -374,6 +427,19 @@
     }
   }
 
+  
+  function widenAboutSections(root) {
+    root = root || d.getElementById("tab-about");
+    if (!root) return;
+    root.style.maxWidth = "none";
+    root.style.width = "100%";
+    root.querySelectorAll(".card, .companion-about-enriched-root, .notes-hub-v35, .caf-wrap").forEach(function (el) {
+      el.style.maxWidth = "none";
+      el.style.width = "100%";
+      el.style.boxSizing = "border-box";
+    });
+  }
+
   function enrichOnce() {
     var about = ensureAboutTopLevel();
     if (!about) return;
@@ -502,6 +568,7 @@
   function boot() {
     try {
       allowSameOriginFeedback();
+      removeShareGentleReminder(d);
       ensureAboutTopLevel();
       enrichOnce();
       lockDoor();
@@ -520,12 +587,20 @@
         hideTajweedUnlessAction(again);
       }, 250);
     } catch (e) {
-      console.warn("about-tab-v11", e);
+      console.warn("about-tab-v12", e);
     }
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
+  try {
+    var mo = new MutationObserver(function () {
+      var active = (d.body && d.body.getAttribute("data-active-tab")) || "";
+      hideTajweedUnlessAction(active);
+      removeShareGentleReminder(d);
+    });
+    mo.observe(d.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class", "data-active-tab"] });
+  } catch (eMo) {}
   w.addEventListener("hashchange", function () {
     var id = normalize((w.location.hash || "").replace(/^#/, ""));
     if (id) showTab(id, true);

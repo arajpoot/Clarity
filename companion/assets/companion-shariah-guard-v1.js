@@ -12,9 +12,11 @@
 (function (w) {
   "use strict";
   if (w.__CLARITY_SHARIAH_SOURCE_GUARD_V1__) return;
-  w.__CLARITY_SHARIAH_SOURCE_GUARD_V1__ = "20261025";
+  w.__CLARITY_SHARIAH_SOURCE_GUARD_V1__ = "20261114FB";
 
   var ALLOW_HOSTS = [
+    "clarity-dawah.fyi",
+    "www.clarity-dawah.fyi",
     "api.alquran.cloud",
     "api.quran.com",
     "cdn.qurancdn.com",
@@ -46,12 +48,29 @@
   var GRADE_SOFT = /daif|da'if|weak|mawdu|fabricat|no\s*grade|ungraded/i;
   var GRADE_OK = /sahih|hasan|muttafaq|authentic/i;
 
+  
+  function isFeedbackExempt(url) {
+    try {
+      var s = String(url || "");
+      if (s.indexOf("/api/feedback") >= 0) return true;
+      if (s.indexOf("mailto:feedback@") === 0) return true;
+      var u = new URL(s, w.location && w.location.href);
+      var h = (u.hostname || "").toLowerCase();
+      if ((h === "clarity-dawah.fyi" || h === (w.location && w.location.hostname || "").toLowerCase()) &&
+          ((u.pathname || "").indexOf("feedback") >= 0 || (u.pathname || "").indexOf("/api/") === 0)) {
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
   function hostOf(url) {
     try { return new URL(url, w.location && w.location.href).hostname.toLowerCase(); }
     catch (e) { return ""; }
   }
 
   function isBlocked(url) {
+    if (isFeedbackExempt(url)) return false;
     var h = hostOf(url);
     if (!h) return true;
     for (var i = 0; i < BLOCK_HOSTS.length; i++) {
@@ -61,6 +80,7 @@
   }
 
   function isAllowHost(url) {
+    if (isFeedbackExempt(url)) return true;
     var h = hostOf(url);
     for (var i = 0; i < ALLOW_HOSTS.length; i++) {
       if (h === ALLOW_HOSTS[i] || h.endsWith("." + ALLOW_HOSTS[i])) return true;

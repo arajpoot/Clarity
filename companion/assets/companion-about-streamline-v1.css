@@ -1,0 +1,33 @@
+/*! About tab streamline · full width · hide share-light · tajweed contained */
+html[data-clarity-room="companion"] #tab-about,
+html[data-clarity-room="companion"] #tab-about .companion-about-enriched-root,
+html[data-clarity-room="companion"] #tab-about .card {
+  max-width: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+html[data-clarity-room="companion"] #tab-about {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+html[data-clarity-room="companion"] .share-light-box,
+html[data-clarity-room="companion"] #share-light-text,
+html[data-clarity-room="companion"] [data-share-gentle] {
+  display: none !important;
+}
+/* Tajweed studio only when Action tab active */
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) #tj-deep-studio,
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) #tajweed-live-card,
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) .card-tajweed,
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) [data-tajweed-studio],
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) .tj-deep-studio,
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) .nx-tajweed-deep-studio,
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) #nx-tajweed-deep-studio {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
