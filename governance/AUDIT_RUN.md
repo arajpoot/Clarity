@@ -1,27 +1,23 @@
-# AUDIT_RUN · Guide enrichment · 20261113G1
+# AUDIT_RUN · Phase L1 · 20261113L1
 
 **Bismillāh**
 
-## Enrichment clause
-- Maintain or upgrade only (size Δ ≥ 0 on every guide)
-- Additive “Continue in the Clarity app” links to existing rooms
-- **Room app shells not in this pack** (no /companion /daily /campus /amana /craft index replace)
-- No second product room-nav bar (simple aside only on guides)
+## Scope
+Root guides only: dua-for-the-deceased, adhkar, what-benefits-the-deceased, islamic-inheritance-calculator.
 
-## Results
-- /islamic-will/: 3552→5128 (Δ1576) PASS
-- /wasiyyah/: 3599→5171 (Δ1572) PASS
-- /prepare-for-death/: 6194→7815 (Δ1621) PASS
-- /janazah-prayer/: 4380→5928 (Δ1548) PASS
-- /debts-and-trusts/: 3550→5092 (Δ1542) PASS
-- /sadaqah-jariyah/: 3587→5122 (Δ1535) PASS
-- /hajj-checklist/: 3560→5075 (Δ1515) PASS
-- /about/: 5696→7378 (Δ1682) PASS
-- /charter/: 1421→3024 (Δ1603) PASS
-- /library/: 4400→6093 (Δ1693) PASS
+## Gates
+| Gate | Result |
+|------|--------|
+| Rooms untouched | PASS |
+| Maintain or upgrade (Δ≥0) | PASS |
+| No second product room-nav | PASS |
+| Educational only — not a fatwa | PASS |
+| Cross-links to legacy + rooms + Sunnah/Quran | PASS |
 
-## Governance
-- Educational only — not a fatwa · not legal advice · not a court document: retained/emphasized
-- Amānah links labeled educational / not legal advice where relevant
+## Per page
+- /dua-for-the-deceased/: 3578→6111 Δ2533 PASS
+- /adhkar/: 2283→4410 Δ2127 PASS
+- /what-benefits-the-deceased/: 4484→6800 Δ2316 PASS
+- /islamic-inheritance-calculator/: 3717→6016 Δ2299 PASS
 
 Ship: **PASS**
