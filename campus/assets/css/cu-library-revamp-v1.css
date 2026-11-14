@@ -1,0 +1,103 @@
+/*! Library hall revamp — glass plaques · no default-blue link leaks */
+:root {
+  --lib-gold: #e8d5a3;
+  --lib-edge: rgba(201, 162, 39, 0.4);
+  --lib-text: #e8f0ec;
+  --lib-muted: rgba(232, 240, 236, 0.82);
+  --lib-link: #e6c86a;
+  --lib-link-hover: #fff3c4;
+}
+body.cu-page { background: #0a1210; color: var(--lib-text); margin: 0;
+  font-family: Quicksand, system-ui, sans-serif; }
+.lib-shell {
+  width: 100%; max-width: 72rem; margin: 0 auto;
+  padding: 0.75rem 0.85rem 2.5rem; box-sizing: border-box;
+}
+.lib-hero-plaque, .lib-plaque {
+  border-radius: 16px;
+  border: 1px solid var(--lib-edge);
+  background: linear-gradient(155deg, rgba(255,255,255,.06), rgba(12,28,22,.35)), rgba(8,18,14,.88);
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 10px 24px rgba(0,0,0,.28);
+  padding: 0.85rem 1rem;
+  margin: 0.65rem 0;
+}
+.lib-kicker {
+  margin: 0; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.07em;
+  text-transform: uppercase; color: rgba(232,213,163,.8);
+}
+.lib-hero-plaque h1 {
+  margin: 0.25rem 0 0.35rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--lib-gold); font-size: clamp(1.45rem, 3vw, 1.9rem);
+}
+.lib-lead { margin: 0; font-size: 0.92rem; line-height: 1.45; color: var(--lib-muted); }
+.lib-disc { margin: 0.4rem 0 0; font-size: 0.75rem; opacity: 0.85; }
+.lib-plaque h2 {
+  margin: 0 0 0.5rem; font-size: 0.95rem; color: var(--lib-gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+.lib-staff {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0.5rem;
+}
+.lib-staff-card {
+  border-radius: 12px; border: 1px solid rgba(201,162,39,.28);
+  background: rgba(0,0,0,.28); padding: 0.65rem 0.75rem;
+}
+.lib-staff-card strong { display: block; color: var(--lib-gold); font-size: 0.88rem; }
+.lib-staff-card p { margin: 0.25rem 0 0; font-size: 0.78rem; opacity: 0.9; line-height: 1.35; }
+.lib-staff-card .badge { margin-right: 0.25rem; }
+
+/* Kill default browser blue — all library links */
+.lib-shell a,
+.lib-shell a:link,
+.lib-shell a:visited {
+  color: var(--lib-link) !important;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(230, 200, 106, 0.35);
+}
+.lib-shell a:hover { color: var(--lib-link-hover) !important; border-bottom-color: var(--lib-link-hover); }
+.lib-shell a.lib-btn,
+.lib-shell .lib-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 2rem; padding: 0.3rem 0.75rem; margin: 0.2rem 0.25rem 0.2rem 0;
+  border-radius: 999px; border: 1px solid var(--lib-edge) !important;
+  background: rgba(30, 125, 94, 0.4); color: #fff !important;
+  font-size: 0.78rem; font-weight: 700; text-decoration: none !important;
+  border-bottom: none !important;
+}
+.lib-shell a.lib-btn.ghost { background: transparent; color: var(--lib-link) !important; }
+
+#lib-shelves .lib-phase {
+  border-radius: 12px; border: 1px solid rgba(201,162,39,.25);
+  background: rgba(0,0,0,.22); padding: 0.65rem 0.75rem; margin: 0.45rem 0;
+}
+#lib-shelves .lib-phase h3 { margin: 0 0 0.35rem; font-size: 0.9rem; color: var(--lib-gold); }
+#lib-shelves ul { margin: 0; padding-left: 1.05rem; }
+#lib-shelves li { margin: 0.25rem 0; font-size: 0.86rem; line-height: 1.4; }
+#lib-shelves .tag {
+  display: inline-block; margin-left: 0.25rem; padding: 0.05rem 0.35rem;
+  border-radius: 999px; font-size: 0.65rem; font-weight: 700;
+  background: rgba(201,162,39,.15); color: var(--lib-gold);
+  border: 1px solid rgba(201,162,39,.25);
+}
+#lib-shelves .pin-btn {
+  margin-left: 0.35rem; font-size: 0.68rem; padding: 0.1rem 0.4rem;
+  border-radius: 999px; border: 1px solid rgba(201,162,39,.35);
+  background: transparent; color: var(--lib-gold); cursor: pointer; font-family: inherit;
+}
+#lib-scout .lib-scout-card {
+  border-radius: 12px; border: 1px solid rgba(201,162,39,.3);
+  background: rgba(0,0,0,.25); padding: 0.75rem 0.85rem;
+}
+#lib-scout .lib-scout-card h3 { margin: 0 0 0.25rem; color: var(--lib-gold); font-size: 0.95rem; }
+.lib-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.lib-chips a {
+  padding: 0.35rem 0.7rem; border-radius: 999px;
+  border: 1px solid rgba(201,162,39,.3) !important;
+  background: rgba(0,0,0,.25); font-size: 0.75rem; font-weight: 700;
+  border-bottom: none !important;
+}
+.lib-muted { font-size: 0.84rem; opacity: 0.88; line-height: 1.45; }
+.lib-foot { text-align: center; font-size: 0.75rem; opacity: 0.85; margin-top: 1rem; line-height: 1.45; }
+/* Hide legacy thin header if any */
+body > header:not(.sn-root):not(.cu-elite-banner) { display: none !important; }

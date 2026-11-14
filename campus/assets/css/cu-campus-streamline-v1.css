@@ -1,13 +1,13 @@
-/*! streamline: one university banner, clean path plaque */
-html.cu-elite-on .cu-elite-banner + .cu-hero,
-html.cu-elite-on .cu-elite-banner ~ .cu-hero {
-  /* if a second raw hero remains, soften */
-}
-html.cu-elite-on .cu-elite-banner ~ .cu-elite-banner {
+/*! streamline S2 — single university banner on campus landing */
+html.cu-elite-on .cu-elite-banner ~ .cu-elite-banner,
+html.cu-smart-nav-on .cu-elite-banner ~ .cu-elite-banner {
   display: none !important;
 }
-html.cu-elite-on .cu-hero .cu-hero {
+/* Page-native hero when smart-nav already painted elite banner */
+html.cu-elite-on .cu-elite-banner ~ main .cu-hero,
+html.cu-elite-on .sn-below ~ main .cu-hero,
+html.cu-elite-on main > .cu-hero {
   display: none !important;
 }
-/* Prefer single counsel strip spacing */
-html.cu-elite-on .sn-below { margin-top: 0.5rem; }
+/* Keep first content plaques after continue learning */
+html.cu-elite-on .cu-hero[data-keep="1"] { display: block !important; }
