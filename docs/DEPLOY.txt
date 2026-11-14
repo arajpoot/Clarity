@@ -1,10 +1,9 @@
-Upload:
-  campus/assets/js/cu-curriculum-enrich-v1.js
-  campus/assets/css/cu-curriculum-enrich-v1.css
-  campus/assets/js/cu-smart-nav-v1.js
-  campus/assets/js/cu-nav-integrity-v1.js
-  campus/assets/css/cu-campus-elite-v1.css
-  campus/desk/seeker|practice|consistency|transmission/index.html
+Deploy:
+  campus/assets/js/cu-vle-bridge-v1.js
+  campus/assets/css/cu-vle-desk-v1.css
+  campus/faculty/index.html
+  campus/bots/index.html
+  campus/library/index.html
+  (+ smart-nav / elite css if not already live)
 
-Curriculum JSON already live at /assets/curriculum/shared/ — no copy required unless missing on host.
-Hard-refresh stage pages.
+Vault JSON already at /assets/curriculum/vault/admin/{staff,faculty}/
