@@ -3,36 +3,36 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Clarity · Search Console checklist</title>
-<meta name="description" content="Operator checklist for Google Search Console. Educational only — not a fatwa."/>
-<link rel="canonical" href="https://clarity-dawah.fyi/docs/console/"/>
+<title>Clarity · Search Console checklist (L5)</title>
 <meta name="robots" content="noindex, follow"/>
-<meta name="clarity-build" content="20261112S6S7"/>
+<link rel="canonical" href="https://clarity-dawah.fyi/docs/console/"/>
+<meta name="clarity-build" content="20261113L5"/>
 <style>
 body{margin:0;font-family:system-ui,sans-serif;background:#0d1f17;color:#e8f0ea;line-height:1.5}
 main{max-width:40rem;margin:0 auto;padding:1.25rem}
-h1{color:#e8d5a3} a{color:#d4af37}
+h1{color:#e8d5a3} a{color:#d4af37} code{font-size:.9em}
 </style>
 </head>
 <body>
 <main>
-<p><a href="/docs/">Docs</a></p>
-<h1>Search Console checklist (Phase S3)</h1>
-<p>Operator steps — this page is <strong>noindex</strong> (not for ranking).</p>
+<p><a href="/docs/">Docs</a> · <a href="/docs/legacy/">Legacy</a></p>
+<h1>Search Console checklist · L5</h1>
+<p><strong>noindex</strong> — operator only, not for ranking.</p>
 <ol>
-<li>Open Google Search Console for <code>clarity-dawah.fyi</code></li>
-<li>Sitemaps → submit/resubmit <code>https://clarity-dawah.fyi/sitemap.xml</code></li>
-<li>Confirm status Success (not Couldn’t fetch)</li>
-<li>URL Inspection → request indexing for:
+<li>Submit/resubmit <code>https://clarity-dawah.fyi/sitemap.xml</code></li>
+<li>Confirm sitemap status is Success</li>
+<li>URL Inspection → request indexing (as needed):
   <ul>
-    <li><code>/</code></li>
-    <li><code>/docs/seo/</code></li>
-    <li><code>/docs/rooms/</code></li>
-    <li><code>/companion/</code></li>
-    <li><code>/craft/</code></li>
+    <li><code>/dua-for-the-deceased/</code></li>
+    <li><code>/docs/legacy/</code></li>
+    <li><code>/docs/legacy/sources/</code></li>
+    <li><code>/docs/legacy/wiring/</code></li>
+    <li><code>/wasiyyah/</code></li>
+    <li><code>/</code> · <code>/companion/</code> · <code>/craft/</code></li>
   </ul>
 </li>
-<li>Coverage / Pages report → note “Crawled – not indexed” and fix via docs titles only if needed</li>
+<li>Confirm <code>/wasiyah/</code> redirects to <code>/wasiyyah/</code> after deploy</li>
+<li>Do not put <code>/docs/console/</code> in the sitemap (noindex)</li>
 <li>Do not edit room app HTML for SEO experiments</li>
 </ol>
 <p>Educational only — not a fatwa.</p>
