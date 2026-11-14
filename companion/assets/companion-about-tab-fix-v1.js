@@ -1,11 +1,13 @@
-/*! Companion About tab v4 · force own panel visible
- * Bug fixed: other handlers left Reality active while hash=#about.
+/*! Companion About + tab isolation v5
+ * - Reparent #tab-about if nested under another .tab-panel (notes leak)
+ * - Force sole visible panel per rail selection
+ * - Quarantine Tajweed deep studio to Action tab only
  * Educational only — not a fatwa. Companion only.
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V4__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V4__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V5__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V5__ = true;
 
   var VALID = {
     reminder: "tab-reminder",
@@ -26,16 +28,55 @@
     return id;
   }
 
-  function panelIdFor(id) {
-    return VALID[normalize(id) || "reminder"];
+  function ensureAboutTopLevel() {
+    var about = d.getElementById("tab-about");
+    var main = d.querySelector("main.main-content") || d.querySelector("main");
+    if (!about) {
+      if (!main) return null;
+      about = d.createElement("div");
+      about.id = "tab-about";
+      about.className = "tab-panel companion-about-home";
+      about.setAttribute("aria-hidden", "true");
+      about.style.display = "none";
+      main.appendChild(about);
+    }
+    // CRITICAL: must not live inside another tab-panel
+    var parentPanel = about.parentElement && about.parentElement.closest
+      ? about.parentElement.closest(".tab-panel")
+      : null;
+    if (parentPanel && parentPanel.id && parentPanel.id !== "tab-about") {
+      if (main) main.appendChild(about);
+      else parentPanel.parentNode && parentPanel.parentNode.appendChild(about);
+    } else if (about.parentElement && about.parentElement.id === "tab-notes") {
+      if (main) main.appendChild(about);
+    }
+    // If about is child of notes via non-class parent
+    var p = about.parentElement;
+    while (p && p !== main && p !== d.body) {
+      if (p.id && /^tab-/.test(p.id) && p.id !== "tab-about") {
+        if (main) main.appendChild(about);
+        break;
+      }
+      p = p.parentElement;
+    }
+    var root = about.querySelector("#companion-about-enriched-root");
+    if (!root) {
+      root = d.createElement("div");
+      root.id = "companion-about-enriched-root";
+      root.className = "companion-about-enriched-root";
+      about.appendChild(root);
+    }
+    return about;
   }
 
   function showTab(id, write) {
     id = normalize(id) || "reminder";
     var panelId = VALID[id];
+    ensureAboutTopLevel();
     applying = true;
     try {
       d.querySelectorAll(".tab-panel").forEach(function (p) {
+        // Nested panels that are children of another tab-panel: ignore for sole-active
         var on = p.id === panelId;
         p.classList.toggle("is-active", on);
         p.classList.toggle("active", on);
@@ -45,10 +86,16 @@
           p.style.removeProperty("display");
           p.style.setProperty("display", "block", "important");
           p.style.setProperty("visibility", "visible", "important");
+          p.style.setProperty("height", "auto", "important");
+          p.style.setProperty("max-height", "none", "important");
+          p.style.setProperty("overflow", "visible", "important");
+          p.style.setProperty("position", "relative", "important");
         } else {
           p.style.setProperty("display", "none", "important");
         }
       });
+      // Quarantine action-only modules when not on action
+      quarantineActionModules(id === "action");
       d.querySelectorAll("[data-rail-tab], [data-rrra]").forEach(function (btn) {
         var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
         btn.classList.toggle("is-active", t === id);
@@ -65,8 +112,51 @@
           if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
         } catch (e3) {}
       }
+      // Scroll About into view when opened
+      if (id === "about") {
+        var about = d.getElementById("tab-about");
+        if (about && about.scrollIntoView) {
+          try {
+            about.scrollIntoView({ block: "start" });
+          } catch (e4) {}
+        }
+      }
     } finally {
       applying = false;
+    }
+  }
+
+  function quarantineActionModules(show) {
+    var nodes = d.querySelectorAll(
+      "#tj-deep-studio, #tajweed-live-card, #tajweed-path-card, .card-tajweed, [data-tab-home='action']"
+    );
+    nodes.forEach(function (el) {
+      // Only touch nodes that belong under action (or claim to)
+      var home = el.getAttribute("data-tab-home");
+      var inAction = !!(el.closest && el.closest("#tab-action"));
+      if (home === "action" || inAction || /tajweed|tj-deep/i.test(el.id || "")) {
+        if (show) {
+          el.style.removeProperty("display");
+          el.removeAttribute("aria-hidden");
+        } else {
+          // If module escaped outside tab-action, force hide when not on Action
+          if (!inAction || !show) {
+            if (!inAction) {
+              el.style.setProperty("display", "none", "important");
+              el.setAttribute("aria-hidden", "true");
+            }
+          }
+        }
+      }
+    });
+    // If studio escaped the DOM tree of tab-action, reattach
+    var studio = d.getElementById("tj-deep-studio");
+    var action = d.getElementById("tab-action");
+    if (studio && action && !action.contains(studio)) {
+      action.appendChild(studio);
+      if (!show) {
+        studio.style.setProperty("display", "none", "important");
+      }
     }
   }
 
@@ -75,51 +165,33 @@
     if (h) return h;
     var body = normalize(d.body && d.body.getAttribute("data-active-tab"));
     if (body) return body;
-    var activeBtn = d.querySelector("#clarity-door-rail .is-active[data-rail-tab], #clarity-door-rail .is-active[data-rrra]");
-    if (activeBtn) {
-      return normalize(activeBtn.getAttribute("data-rail-tab") || activeBtn.getAttribute("data-rrra"));
-    }
     return null;
   }
 
   function assertVisible() {
     var id = desiredFromChrome();
     if (!id) return;
+    ensureAboutTopLevel();
     var panel = d.getElementById(VALID[id]);
     if (!panel) return;
     var cs = w.getComputedStyle(panel);
     var wrong =
       cs.display === "none" ||
       panel.getAttribute("aria-hidden") === "true" ||
-      !(panel.classList.contains("is-active") || panel.classList.contains("active"));
-    // Also: another panel wrongly active
+      !(panel.classList.contains("is-active") || panel.classList.contains("active")) ||
+      (id === "about" && panel.offsetHeight === 0 && panel.scrollHeight === 0);
     var conflict = false;
     d.querySelectorAll(".tab-panel.is-active, .tab-panel.active").forEach(function (p) {
       if (p.id !== VALID[id]) conflict = true;
     });
+    // Nested about still under notes?
+    if (id === "about") {
+      var parentPanel = panel.parentElement && panel.parentElement.closest
+        ? panel.parentElement.closest(".tab-panel")
+        : null;
+      if (parentPanel && parentPanel.id !== "tab-about") wrong = true;
+    }
     if (wrong || conflict) showTab(id, false);
-  }
-
-  function ensureAbout() {
-    var about = d.getElementById("tab-about");
-    if (!about) {
-      var main = d.querySelector("main.main-content") || d.querySelector("main");
-      if (!main) return null;
-      about = d.createElement("div");
-      about.id = "tab-about";
-      about.className = "tab-panel companion-about-home";
-      about.setAttribute("aria-hidden", "true");
-      about.style.display = "none";
-      main.appendChild(about);
-    }
-    var root = about.querySelector("#companion-about-enriched-root");
-    if (!root) {
-      root = d.createElement("div");
-      root.id = "companion-about-enriched-root";
-      root.className = "companion-about-enriched-root";
-      about.appendChild(root);
-    }
-    return about;
   }
 
   function supplementCards(root) {
@@ -153,20 +225,18 @@
   }
 
   function moveAboutCard() {
-    var about = ensureAbout();
+    var about = ensureAboutTopLevel();
     if (!about) return;
     var root = about.querySelector("#companion-about-enriched-root");
     var card = d.getElementById("about-clarity-card");
     if (card && root && !root.contains(card)) {
       card.setAttribute("data-rrra", "about");
-      card.removeAttribute("hidden");
-      card.style.removeProperty("display");
       root.insertBefore(card, root.firstChild);
     }
     supplementCards(root);
   }
 
-  function cleanRealityAboutCrossRefs() {
+  function cleanReality() {
     var reality = d.getElementById("tab-reality");
     if (!reality) return;
     var ptr = d.getElementById("about-moved-pointer");
@@ -183,7 +253,6 @@
 
   function wireDoor() {
     w.clarityShowCompanionTab = showTab;
-
     function wrap(name) {
       var prev = w[name];
       w[name] = function (id) {
@@ -193,12 +262,8 @@
           setTimeout(function () {
             showTab(n, false);
           }, 0);
-          setTimeout(function () {
-            assertVisible();
-          }, 50);
-          setTimeout(function () {
-            assertVisible();
-          }, 200);
+          setTimeout(assertVisible, 50);
+          setTimeout(assertVisible, 200);
           return;
         }
         if (typeof prev === "function") {
@@ -236,6 +301,8 @@
     var mo = new MutationObserver(function () {
       if (applying) return;
       assertVisible();
+      var id = desiredFromChrome();
+      quarantineActionModules(id === "action");
     });
     mo.observe(main, {
       attributes: true,
@@ -246,8 +313,10 @@
 
   function boot() {
     try {
+      ensureAboutTopLevel();
       moveAboutCard();
-      cleanRealityAboutCrossRefs();
+      cleanReality();
+      quarantineActionModules(normalize((w.location.hash || "").replace(/^#/, "")) === "action");
       wireDoor();
       observeConflicts();
       var h = normalize((w.location.hash || "").replace(/^#/, ""));
@@ -255,7 +324,7 @@
       setTimeout(assertVisible, 100);
       setTimeout(assertVisible, 400);
     } catch (e) {
-      console.warn("about-tab-v4", e);
+      console.warn("about-tab-v5", e);
     }
   }
 

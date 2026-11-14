@@ -1,14 +1,28 @@
-/* Companion About tab v4 */
+/* Companion About + Action isolation v5 */
+
+/* Active About must paint with real size */
 #tab-about.tab-panel.is-active,
 #tab-about.tab-panel.active {
   display: block !important;
   visibility: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  width: 100% !important;
 }
+
 html[data-clarity-room="companion"] #tab-about.tab-panel.is-active,
 html[data-clarity-room="companion"] #tab-about.tab-panel.active {
   display: block !important;
   visibility: visible !important;
 }
+
+/* Never show About when nested under a hidden panel (legacy markup) */
+.tab-panel:not(.is-active):not(.active) #tab-about {
+  display: none !important;
+}
+
 #tab-about .companion-about-enriched-root {
   max-width: 42rem;
   margin: 0.5rem auto 2rem;
@@ -29,6 +43,21 @@ html[data-clarity-room="companion"] #tab-about.tab-panel.active {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.2rem;
 }
+
+/* Tajweed / deep studio: only inside active Action */
+.tab-panel:not(.is-active):not(.active) #tj-deep-studio,
+.tab-panel:not(.is-active):not(.active) #tajweed-live-card,
+.tab-panel:not(.is-active):not(.active) #tajweed-path-card,
+.tab-panel:not(.is-active):not(.active) .card-tajweed {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* If studio escaped Action, hide unless body says action */
+body:not([data-active-tab="action"]) #tj-deep-studio:not(#tab-action #tj-deep-studio) {
+  display: none !important;
+}
+
 .door-rail-btn[data-rail-tab="about"].is-active,
 .door-rail-btn[data-rrra="about"].is-active {
   border-color: rgba(212, 180, 90, 0.65);
