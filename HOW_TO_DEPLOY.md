@@ -1,21 +1,15 @@
-# Companion About v8 · full stick (A9)
+# Companion About v9 · quiet + Send (B1)
 
 **Bismillah.** Educational only — not a fatwa.
 
-## Why v7 only stuck “a bit longer”
-Stick window was **2.5s**. Hostile handlers ran after that.
-
-## v8
-- Door **locked** (`defineProperty` — cannot be re-wrapped)
-- Stick **while About is selected** (gentle 400ms, only if wrong)
-- CSS lock: `body[data-active-tab=about]` shows About, hides others
-- Sim: **10 min** continuous About under steals → **0 failures**
+## Fixes
+1. **Noise-free:** removed 400ms stick interval (was causing jump)
+2. **Send to Clarity:** absolute `https://clarity-dawah.fyi/api/feedback` — **does not** open mail on failure
+3. **Mail app** is optional secondary only
 
 ## Upload
-| File | Path |
-|------|------|
-| `companion/assets/companion-about-tab-fix-v1.js` | same |
-| `companion/assets/companion-about-tab-fix-v1.css` | same |
-| `companion/index.html` | same (`?v=20261114A9`) |
+`companion/assets/companion-about-tab-fix-v1.js`  
+`companion/assets/companion-about-tab-fix-v1.css`  
+`companion/index.html` (`?v=20261114B1`)
 
-Hard-refresh → About stays → use **Write to Clarity**.
+Hard-refresh → About calm → **Send to Clarity** → inbox message, no mail app.
