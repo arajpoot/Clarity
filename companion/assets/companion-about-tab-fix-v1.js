@@ -1,13 +1,14 @@
-/*! Companion About stick + feedback v7
- * - Exclusive door for known tabs (does not chain prev → Reality steal)
- * - Short stick window (not MutationObserver storm)
- * - Feedback Send → /api/feedback · feedback@clarity-dawah.fyi
+/*! Companion About stick + feedback v8
+ * - Exclusive locked door (defineProperty — other scripts cannot re-wrap)
+ * - Stick while hash/body is About (gentle, only when wrong)
+ * - CSS body[data-active-tab=about] panel lock
+ * - Feedback → /api/feedback
  * Educational only — not a fatwa. Companion only.
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V7__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V7__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V8__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V8__ = true;
 
   var FEEDBACK_TO = "feedback@clarity-dawah.fyi";
   var FEEDBACK_API = "/api/feedback";
@@ -20,7 +21,7 @@
     about: "tab-about"
   };
   var stickTimer = null;
-  var stickUntil = 0;
+  var lastId = "reminder";
 
   function normalize(id) {
     id = String(id || "").toLowerCase().replace(/^#/, "");
@@ -29,6 +30,14 @@
     if (id === "info" || id === "meta") id = "about";
     if (!VALID[id]) return null;
     return id;
+  }
+
+  function desiredTab() {
+    var h = normalize((w.location.hash || "").replace(/^#/, ""));
+    if (h) return h;
+    var b = normalize(d.body && d.body.getAttribute("data-active-tab"));
+    if (b) return b;
+    return lastId;
   }
 
   function ensureAboutTopLevel() {
@@ -61,6 +70,8 @@
   }
 
   function applyPanel(id) {
+    id = normalize(id) || "reminder";
+    lastId = id;
     var panelId = VALID[id];
     d.querySelectorAll(".tab-panel").forEach(function (panel) {
       var on = panel.id === panelId;
@@ -92,6 +103,32 @@
     if (studio && action && !action.contains(studio)) action.appendChild(studio);
   }
 
+  function panelLooksWrong(id) {
+    var panel = d.getElementById(VALID[id]);
+    if (!panel) return true;
+    var cs = w.getComputedStyle(panel);
+    if (cs.display === "none") return true;
+    if (!(panel.classList.contains("is-active") || panel.classList.contains("active"))) return true;
+    if (id === "about" && panel.getBoundingClientRect && panel.getBoundingClientRect().height < 8) {
+      // still may be ok if content loading — only treat as wrong if another panel is active
+    }
+    var conflict = false;
+    d.querySelectorAll(".tab-panel.is-active, .tab-panel.active").forEach(function (p) {
+      if (p.id !== VALID[id]) conflict = true;
+    });
+    // Reality visible while we want about
+    if (id === "about") {
+      var reality = d.getElementById("tab-reality");
+      if (reality) {
+        var rcs = w.getComputedStyle(reality);
+        if (rcs.display !== "none" && (reality.classList.contains("is-active") || reality.classList.contains("active"))) {
+          conflict = true;
+        }
+      }
+    }
+    return conflict || cs.display === "none";
+  }
+
   function showTab(id, write) {
     id = normalize(id) || "reminder";
     ensureAboutTopLevel();
@@ -105,45 +142,17 @@
         if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
       } catch (e2) {}
     }
-    // Short stick window only — stops jump storm
-    if (id === "about") startStick();
-    else stopStick();
+    ensureStickLoop();
   }
 
-  function panelLooksWrong(id) {
-    var panel = d.getElementById(VALID[id]);
-    if (!panel) return true;
-    var cs = w.getComputedStyle(panel);
-    if (cs.display === "none") return true;
-    if (!(panel.classList.contains("is-active") || panel.classList.contains("active"))) return true;
-    if (id === "about" && panel.offsetHeight < 8) return true;
-    var conflict = false;
-    d.querySelectorAll(".tab-panel.is-active, .tab-panel.active").forEach(function (p) {
-      if (p.id !== VALID[id]) conflict = true;
-    });
-    return conflict;
-  }
-
-  function startStick() {
-    stickUntil = Date.now() + 2500;
+  function ensureStickLoop() {
     if (stickTimer) return;
+    // Gentle: every 400ms, only re-apply when chrome says About (or lastId) but DOM drifted
     stickTimer = setInterval(function () {
-      if (Date.now() > stickUntil) {
-        stopStick();
-        return;
-      }
-      var id = normalize((w.location.hash || "").replace(/^#/, "")) ||
-        normalize(d.body.getAttribute("data-active-tab"));
-      if (id === "about" && panelLooksWrong("about")) {
-        applyPanel("about");
-      }
-    }, 200);
-  }
-  function stopStick() {
-    if (stickTimer) {
-      clearInterval(stickTimer);
-      stickTimer = null;
-    }
+      var id = desiredTab();
+      if (!id) return;
+      if (panelLooksWrong(id)) applyPanel(id);
+    }, 400);
   }
 
   function feedbackHtml() {
@@ -173,11 +182,14 @@
 
   function buildBody(type, text) {
     return (
-      "Clarity app feedback\nType: " + type +
+      "Clarity app feedback\nType: " +
+      type +
       "\nRoom: Companion · About\nURL: " +
       ((w.location && w.location.href) || "") +
-      "\nWhen: " + new Date().toISOString() +
-      "\n\n" + text +
+      "\nWhen: " +
+      new Date().toISOString() +
+      "\n\n" +
+      text +
       "\n\n— Educational only; not a fatwa"
     );
   }
@@ -255,9 +267,8 @@
           status("Write a short note first.");
           return;
         }
-        var body = buildBody(type, text);
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(body).then(
+          navigator.clipboard.writeText(buildBody(type, text)).then(
             function () {
               status("Copied.");
             },
@@ -335,23 +346,51 @@
     wireFeedback(root);
   }
 
-  function wireDoor() {
-    w.clarityShowCompanionTab = showTab;
+  function doorFn(id) {
+    var n = normalize(id);
+    if (n) {
+      showTab(n, true);
+      return;
+    }
+  }
 
-    // Exclusive: known tabs do NOT chain previous handlers (stops Reality steal)
-    w.clarityOpenSectionDoor = function (id) {
-      var n = normalize(id);
-      if (n) {
-        showTab(n, true);
-        return;
-      }
-    };
+  function lockDoor() {
+    try {
+      Object.defineProperty(w, "clarityOpenSectionDoor", {
+        configurable: true,
+        enumerable: true,
+        get: function () {
+          return doorFn;
+        },
+        set: function () {
+          /* ignore hostile re-wrap */
+        }
+      });
+    } catch (e) {
+      w.clarityOpenSectionDoor = doorFn;
+    }
+    try {
+      Object.defineProperty(w, "clarityShowCompanionTab", {
+        configurable: true,
+        enumerable: true,
+        get: function () {
+          return showTab;
+        },
+        set: function () {
+          /* ignore */
+        }
+      });
+    } catch (e2) {
+      w.clarityShowCompanionTab = showTab;
+    }
+  }
 
+  function wireRail() {
     function onRail(ev) {
       var btn = ev.target && ev.target.closest
-        ? ev.target.closest("[data-rail-tab], [data-rrra]")
+        ? ev.target.closest("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]")
         : null;
-      if (!btn || !btn.closest("#clarity-door-rail")) return;
+      if (!btn) return;
       var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
       var n = normalize(t);
       if (!n) return;
@@ -367,18 +406,20 @@
     try {
       ensureAboutTopLevel();
       enrichOnce();
-      wireDoor();
+      lockDoor();
+      wireRail();
+      ensureStickLoop();
       var h = normalize((w.location.hash || "").replace(/^#/, ""));
       if (h) showTab(h, true);
       setTimeout(function () {
+        lockDoor();
         enrichOnce();
-        var id =
-          normalize((w.location.hash || "").replace(/^#/, "")) ||
-          normalize(d.body.getAttribute("data-active-tab"));
+        var id = desiredTab();
         if (id) showTab(id, false);
-      }, 150);
+      }, 200);
+      setTimeout(lockDoor, 1000);
     } catch (e) {
-      console.warn("about-tab-v7", e);
+      console.warn("about-tab-v8", e);
     }
   }
 
