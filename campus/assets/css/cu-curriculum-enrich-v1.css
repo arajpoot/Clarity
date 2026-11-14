@@ -1,0 +1,21 @@
+/*! curriculum enrich plaques */
+.cu-curr-lessons { margin-top: 0.75rem; }
+.cu-curr-note { font-size: 0.78rem; opacity: 0.85; margin: 0.25rem 0 0.6rem; }
+.cu-curr-head { margin-bottom: 0.65rem; text-align: center; }
+.cu-curr-head strong { color: #e8d5a3; font-size: 1rem; }
+.cu-curr-list { display: grid; gap: 0.55rem; }
+.cu-curr-card {
+  border-radius: 12px;
+  border: 1px solid rgba(201,162,39,.28);
+  background: rgba(0,0,0,.22);
+  padding: 0.7rem 0.8rem;
+}
+.cu-curr-card h3 { margin: 0 0 0.3rem; color: #e8d5a3; font-size: 0.98rem; }
+.cu-curr-card p { margin: 0.25rem 0; font-size: 0.88rem; line-height: 1.4; }
+.cu-curr-card ul { margin: 0.3rem 0 0.2rem; padding-left: 1.1rem; font-size: 0.86rem; line-height: 1.4; }
+.cu-curr-ayah { margin: 0.4rem 0; text-align: center; }
+.cu-curr-ayah .ref { font-size: 0.72rem; color: #c9a84c; }
+.cu-curr-ayah .en { font-size: 0.84rem; opacity: 0.92; }
+.cu-curr-links { margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.cu-curr-extra { margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,.06); }
+.cu-curr-extra h3 { color: #e8d5a3; font-size: 0.92rem; }
