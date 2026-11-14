@@ -1,0 +1,32 @@
+/* Companion About tab · re-enrich chrome */
+#tab-about.tab-panel.is-active,
+#tab-about.tab-panel.active {
+  display: block !important;
+}
+#tab-about .companion-about-enriched-root {
+  max-width: 42rem;
+  margin: 0.5rem auto 2rem;
+  padding: 0 0.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+#tab-about .card {
+  border-radius: 14px;
+  border: 1px solid rgba(212, 180, 90, 0.3);
+  background: rgba(15, 76, 58, 0.1);
+  padding: 1rem 1.1rem;
+}
+#tab-about h2 {
+  margin: 0 0 0.45rem;
+  color: var(--gold2, #e8d5a3);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.2rem;
+}
+#about-moved-pointer {
+  border-left: 3px solid rgba(212, 180, 90, 0.55);
+}
+.door-rail-btn[data-rail-tab="about"].is-active,
+.door-rail-btn[data-rrra="about"].is-active {
+  border-color: rgba(212, 180, 90, 0.65);
+}
