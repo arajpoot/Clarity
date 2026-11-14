@@ -1,0 +1,151 @@
+/*! companion-calm-chrome-v1 · campus-like calm · companion room only · educational only */
+html[data-clarity-room="companion"] {
+  --cc-gold: #e8d5a3;
+  --cc-edge: rgba(201, 162, 39, 0.38);
+  --cc-ok: #1e7d5e;
+  --cc-bg: #0a1210;
+  --cc-text: #e8f0ec;
+  --cc-muted: rgba(232, 240, 236, 0.82);
+}
+
+/* ===== Room rail: one calm strip (restyle existing) ===== */
+html[data-clarity-room="companion"] .clarity-room-nav {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.45rem 0.65rem;
+  margin: 0;
+  border-bottom: 1px solid var(--cc-edge);
+  background: rgba(6, 14, 12, 0.97);
+  backdrop-filter: blur(12px);
+}
+html[data-clarity-room="companion"] .clarity-room-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2.15rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  text-decoration: none;
+  color: var(--cc-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.28);
+}
+html[data-clarity-room="companion"] .clarity-room-nav a.is-here,
+html[data-clarity-room="companion"] .clarity-room-nav a[aria-current="page"] {
+  background: var(--cc-ok);
+  border-color: transparent;
+  color: #fff;
+}
+/* Hide emoji icons in room rail — letter marks via CSS if needed */
+html[data-clarity-room="companion"] .clarity-room-nav .crn-ico {
+  display: none !important;
+}
+html[data-clarity-room="companion"] .clarity-room-nav .crn-sub {
+  display: none !important; /* sublabels add noise on mobile */
+}
+html[data-clarity-room="companion"] .clarity-room-nav .crn-seal {
+  width: 100%;
+  text-align: center;
+  margin: 0.15rem 0 0;
+  font-size: 0.62rem;
+  opacity: 0.75;
+  order: 99;
+}
+
+/* ===== Suppress noisy chrome ===== */
+html[data-clarity-room="companion"].cc-calm-on #clarity-global-nav,
+html[data-clarity-room="companion"].cc-calm-on #clarity-visit-pill-bar,
+html[data-clarity-room="companion"].cc-calm-on #companion-nav-clean-n34 {
+  display: none !important;
+}
+/* Legacy gate / floating chips */
+html[data-clarity-room="companion"].cc-calm-on body > .cgs-btn,
+html[data-clarity-room="companion"].cc-calm-on .clarity-learning-path-strip,
+html[data-clarity-room="companion"].cc-calm-on #clarity-learning-path {
+  display: none !important;
+}
+
+/* ===== Path tiles: one quiet plaque ===== */
+html[data-clarity-room="companion"].cc-calm-on #clarity-path-tiles,
+html[data-clarity-room="companion"].cc-calm-on .clarity-path-tiles {
+  max-width: 72rem;
+  margin: 0.55rem auto 0.35rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 16px;
+  border: 1px solid var(--cc-edge);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.05), rgba(12, 28, 22, 0.35)),
+    rgba(8, 18, 14, 0.88);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  box-sizing: border-box;
+}
+
+/* ===== Banner shell: full width, no extra chrome ===== */
+html[data-clarity-room="companion"].cc-calm-on .companion-banner-shell {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.22);
+}
+
+/* ===== Door rail: readable, campus-like touch ===== */
+html[data-clarity-room="companion"].cc-calm-on #clarity-door-rail,
+html[data-clarity-room="companion"].cc-calm-on .door-rail-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.65rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--cc-edge);
+  background: rgba(6, 14, 12, 0.96);
+  backdrop-filter: blur(12px);
+}
+html[data-clarity-room="companion"].cc-calm-on .door-rail-btn {
+  min-height: 2.35rem;
+  min-width: 4.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  color: var(--cc-text) !important;
+  background: rgba(0, 0, 0, 0.28);
+}
+html[data-clarity-room="companion"].cc-calm-on .door-rail-btn.is-active,
+html[data-clarity-room="companion"].cc-calm-on .door-rail-btn[aria-current="true"] {
+  background: var(--cc-ok) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
+/* ===== Main sections breathe ===== */
+html[data-clarity-room="companion"].cc-calm-on .page-wrapper,
+html[data-clarity-room="companion"].cc-calm-on main,
+html[data-clarity-room="companion"].cc-calm-on #clarity-daily-deep {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Tone down excessive shadows / competing borders slightly */
+html[data-clarity-room="companion"].cc-calm-on .plaque,
+html[data-clarity-room="companion"].cc-calm-on [class*="plaque"] {
+  border-color: rgba(201, 162, 39, 0.32);
+}
+
+@media (min-width: 900px) {
+  html[data-clarity-room="companion"].cc-calm-on .door-rail-btn {
+    font-size: 0.88rem !important;
+    min-height: 2.5rem;
+    padding: 0.45rem 1rem;
+  }
+}
