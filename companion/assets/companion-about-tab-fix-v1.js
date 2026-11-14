@@ -1,17 +1,17 @@
-/*! Companion About stick + feedback v8
- * - Exclusive locked door (defineProperty — other scripts cannot re-wrap)
- * - Stick while hash/body is About (gentle, only when wrong)
- * - CSS body[data-active-tab=about] panel lock
- * - Feedback → /api/feedback
+/*! Companion About quiet + feedback v9
+ * - NO interval / MutationObserver (noise-free)
+ * - CSS + one-shot panel apply on rail/hash only
+ * - Locked door (defineProperty)
+ * - Send uses absolute /api/feedback; mail is optional only
  * Educational only — not a fatwa. Companion only.
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V8__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V8__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V9__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V9__ = true;
 
   var FEEDBACK_TO = "feedback@clarity-dawah.fyi";
-  var FEEDBACK_API = "/api/feedback";
+  var FEEDBACK_API = "https://clarity-dawah.fyi/api/feedback";
   var VALID = {
     reminder: "tab-reminder",
     reality: "tab-reality",
@@ -20,8 +20,6 @@
     notes: "tab-notes",
     about: "tab-about"
   };
-  var stickTimer = null;
-  var lastId = "reminder";
 
   function normalize(id) {
     id = String(id || "").toLowerCase().replace(/^#/, "");
@@ -30,14 +28,6 @@
     if (id === "info" || id === "meta") id = "about";
     if (!VALID[id]) return null;
     return id;
-  }
-
-  function desiredTab() {
-    var h = normalize((w.location.hash || "").replace(/^#/, ""));
-    if (h) return h;
-    var b = normalize(d.body && d.body.getAttribute("data-active-tab"));
-    if (b) return b;
-    return lastId;
   }
 
   function ensureAboutTopLevel() {
@@ -69,10 +59,16 @@
     return about;
   }
 
-  function applyPanel(id) {
+  function showTab(id, write) {
     id = normalize(id) || "reminder";
-    lastId = id;
+    ensureAboutTopLevel();
     var panelId = VALID[id];
+
+    // Set body first so CSS lock engages without thrash
+    try {
+      d.body.setAttribute("data-active-tab", id);
+    } catch (e) {}
+
     d.querySelectorAll(".tab-panel").forEach(function (panel) {
       var on = panel.id === panelId;
       panel.classList.toggle("is-active", on);
@@ -82,77 +78,29 @@
         panel.removeAttribute("hidden");
         panel.style.setProperty("display", "block", "important");
         panel.style.setProperty("visibility", "visible", "important");
-        panel.style.setProperty("height", "auto", "important");
-        panel.style.setProperty("max-height", "none", "important");
-        panel.style.setProperty("overflow", "visible", "important");
-        panel.style.setProperty("position", "relative", "important");
-        panel.style.setProperty("width", "100%", "important");
       } else {
         panel.style.setProperty("display", "none", "important");
       }
     });
+
     d.querySelectorAll("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]").forEach(function (btn) {
       var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
       btn.classList.toggle("is-active", t === id);
     });
-    try {
-      d.body.setAttribute("data-active-tab", id);
-    } catch (e) {}
+
     var studio = d.getElementById("tj-deep-studio");
     var action = d.getElementById("tab-action");
     if (studio && action && !action.contains(studio)) action.appendChild(studio);
-  }
 
-  function panelLooksWrong(id) {
-    var panel = d.getElementById(VALID[id]);
-    if (!panel) return true;
-    var cs = w.getComputedStyle(panel);
-    if (cs.display === "none") return true;
-    if (!(panel.classList.contains("is-active") || panel.classList.contains("active"))) return true;
-    if (id === "about" && panel.getBoundingClientRect && panel.getBoundingClientRect().height < 8) {
-      // still may be ok if content loading — only treat as wrong if another panel is active
-    }
-    var conflict = false;
-    d.querySelectorAll(".tab-panel.is-active, .tab-panel.active").forEach(function (p) {
-      if (p.id !== VALID[id]) conflict = true;
-    });
-    // Reality visible while we want about
-    if (id === "about") {
-      var reality = d.getElementById("tab-reality");
-      if (reality) {
-        var rcs = w.getComputedStyle(reality);
-        if (rcs.display !== "none" && (reality.classList.contains("is-active") || reality.classList.contains("active"))) {
-          conflict = true;
-        }
-      }
-    }
-    return conflict || cs.display === "none";
-  }
-
-  function showTab(id, write) {
-    id = normalize(id) || "reminder";
-    ensureAboutTopLevel();
-    applyPanel(id);
     if (write !== false) {
       try {
         localStorage.setItem("clarity_companion_tab_v1", id);
-      } catch (e) {}
+      } catch (e2) {}
       try {
         var want = "#" + id;
         if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
-      } catch (e2) {}
+      } catch (e3) {}
     }
-    ensureStickLoop();
-  }
-
-  function ensureStickLoop() {
-    if (stickTimer) return;
-    // Gentle: every 400ms, only re-apply when chrome says About (or lastId) but DOM drifted
-    stickTimer = setInterval(function () {
-      var id = desiredTab();
-      if (!id) return;
-      if (panelLooksWrong(id)) applyPanel(id);
-    }, 400);
   }
 
   function feedbackHtml() {
@@ -168,11 +116,11 @@
       "</div>" +
       '<label class="caf-label" for="caf-message">Your note</label>' +
       '<textarea id="caf-message" class="caf-message" rows="5" maxlength="4000" placeholder="What would make Clarity clearer or more trustworthy?"></textarea>' +
-      '<p class="caf-hint">On-device until you send. Goes to Clarity via secure channel.</p>' +
+      '<p class="caf-hint">On-device until you send. Delivered to Clarity inbox (no mail app required).</p>' +
       '<div class="caf-actions">' +
       '<button type="button" class="caf-btn caf-primary" id="caf-send">Send to Clarity</button>' +
       '<button type="button" class="caf-btn" id="caf-copy">Copy</button>' +
-      '<button type="button" class="caf-btn" id="caf-mail">Mail app</button>' +
+      '<button type="button" class="caf-btn caf-secondary" id="caf-mail">Mail app (optional)</button>' +
       "</div>" +
       '<p class="caf-status" id="caf-status" aria-live="polite"></p>' +
       '<p class="td-src">Adab: specific, kind, source-aware.</p>' +
@@ -200,7 +148,8 @@
     card.setAttribute("data-wired", "1");
     var type = "suggestion";
     card.querySelectorAll(".caf-chip").forEach(function (chip) {
-      chip.addEventListener("click", function () {
+      chip.addEventListener("click", function (ev) {
+        ev.preventDefault();
         card.querySelectorAll(".caf-chip").forEach(function (c) {
           c.classList.remove("is-on");
         });
@@ -216,52 +165,63 @@
       var s = d.getElementById("caf-status");
       if (s) s.textContent = t || "";
     }
+
     var sendBtn = d.getElementById("caf-send");
     if (sendBtn) {
-      sendBtn.addEventListener("click", function () {
+      sendBtn.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
         var text = msg();
         if (!text) {
           status("Write a short note first.");
           return;
         }
         status("Sending…");
+        sendBtn.disabled = true;
         fetch(FEEDBACK_API, {
           method: "POST",
-          headers: { "content-type": "application/json" },
+          headers: { "content-type": "application/json", accept: "application/json" },
           body: JSON.stringify({
             type: type,
             message: text,
             room: "companion-about",
             url: (w.location && w.location.href) || "",
             when: new Date().toISOString()
-          })
+          }),
+          mode: "cors",
+          credentials: "omit",
+          cache: "no-store"
         })
           .then(function (r) {
             if (!r.ok) throw new Error("HTTP " + r.status);
             return r.json().catch(function () {
-              return {};
+              return { ok: true };
             });
           })
-          .then(function () {
-            status("Received — Jazak Allah khayran.");
+          .then(function (data) {
+            if (data && data.ok === false) throw new Error(data.error || "send failed");
+            status("Received — Jazak Allah khayran. Your note reached Clarity.");
             var ta = d.getElementById("caf-message");
             if (ta) ta.value = "";
           })
-          .catch(function () {
-            w.location.href =
-              "mailto:" +
-              FEEDBACK_TO +
-              "?subject=" +
-              encodeURIComponent("Clarity feedback · " + type) +
-              "&body=" +
-              encodeURIComponent(buildBody(type, text));
-            status("Direct send unavailable — mail draft opened.");
+          .catch(function (err) {
+            // Do NOT auto-open mail — keep user on About; offer retry + optional mail
+            status(
+              "Could not send directly (" +
+                (err && err.message ? err.message : "network") +
+                "). Tap Send again, or use Mail app (optional)."
+            );
+          })
+          .finally(function () {
+            sendBtn.disabled = false;
           });
       });
     }
+
     var copyBtn = d.getElementById("caf-copy");
     if (copyBtn) {
-      copyBtn.addEventListener("click", function () {
+      copyBtn.addEventListener("click", function (ev) {
+        ev.preventDefault();
         var text = msg();
         if (!text) {
           status("Write a short note first.");
@@ -279,22 +239,33 @@
         }
       });
     }
+
     var mail = d.getElementById("caf-mail");
     if (mail) {
-      mail.addEventListener("click", function () {
+      mail.addEventListener("click", function (ev) {
+        ev.preventDefault();
         var text = msg();
         if (!text) {
           status("Write a short note first.");
           return;
         }
-        w.location.href =
+        // Optional only — explicit user choice
+        var a = d.createElement("a");
+        a.href =
           "mailto:" +
           FEEDBACK_TO +
           "?subject=" +
           encodeURIComponent("Clarity feedback · " + type) +
           "&body=" +
           encodeURIComponent(buildBody(type, text));
-        status("Mail draft to " + FEEDBACK_TO + " opened.");
+        a.rel = "noopener";
+        a.style.display = "none";
+        d.body.appendChild(a);
+        a.click();
+        setTimeout(function () {
+          if (a.parentNode) a.parentNode.removeChild(a);
+        }, 0);
+        status("Mail app opened (optional path). Prefer Send to Clarity when available.");
       });
     }
   }
@@ -348,10 +319,7 @@
 
   function doorFn(id) {
     var n = normalize(id);
-    if (n) {
-      showTab(n, true);
-      return;
-    }
+    if (n) showTab(n, true);
   }
 
   function lockDoor() {
@@ -362,9 +330,7 @@
         get: function () {
           return doorFn;
         },
-        set: function () {
-          /* ignore hostile re-wrap */
-        }
+        set: function () {}
       });
     } catch (e) {
       w.clarityOpenSectionDoor = doorFn;
@@ -376,9 +342,7 @@
         get: function () {
           return showTab;
         },
-        set: function () {
-          /* ignore */
-        }
+        set: function () {}
       });
     } catch (e2) {
       w.clarityShowCompanionTab = showTab;
@@ -386,20 +350,24 @@
   }
 
   function wireRail() {
-    function onRail(ev) {
-      var btn = ev.target && ev.target.closest
-        ? ev.target.closest("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]")
-        : null;
-      if (!btn) return;
-      var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
-      var n = normalize(t);
-      if (!n) return;
-      ev.preventDefault();
-      ev.stopPropagation();
-      if (ev.stopImmediatePropagation) ev.stopImmediatePropagation();
-      showTab(n, true);
-    }
-    d.addEventListener("click", onRail, true);
+    d.addEventListener(
+      "click",
+      function (ev) {
+        var btn =
+          ev.target && ev.target.closest
+            ? ev.target.closest("#clarity-door-rail [data-rail-tab], #clarity-door-rail [data-rrra]")
+            : null;
+        if (!btn) return;
+        var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
+        var n = normalize(t);
+        if (!n) return;
+        ev.preventDefault();
+        ev.stopPropagation();
+        if (ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+        showTab(n, true);
+      },
+      true
+    );
   }
 
   function boot() {
@@ -408,18 +376,19 @@
       enrichOnce();
       lockDoor();
       wireRail();
-      ensureStickLoop();
       var h = normalize((w.location.hash || "").replace(/^#/, ""));
       if (h) showTab(h, true);
+      // Single late settle only — no loops
       setTimeout(function () {
         lockDoor();
         enrichOnce();
-        var id = desiredTab();
+        var id =
+          normalize((w.location.hash || "").replace(/^#/, "")) ||
+          normalize(d.body.getAttribute("data-active-tab"));
         if (id) showTab(id, false);
-      }, 200);
-      setTimeout(lockDoor, 1000);
+      }, 180);
     } catch (e) {
-      console.warn("about-tab-v8", e);
+      console.warn("about-tab-v9", e);
     }
   }
 

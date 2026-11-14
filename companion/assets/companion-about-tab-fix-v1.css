@@ -1,4 +1,4 @@
-/* Companion About stick v8 */
+/* Companion About quiet v9 — no JS thrash; CSS holds About */
 
 body[data-active-tab="about"] #tab-about.tab-panel {
   display: block !important;
@@ -21,15 +21,9 @@ body[data-active-tab="about"] #tab-notes.tab-panel {
 #tab-about.tab-panel.active {
   display: block !important;
   visibility: visible !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  position: relative !important;
-  width: 100% !important;
 }
 
 .tab-panel:not(.is-active):not(.active) #tj-deep-studio,
-.tab-panel:not(.is-active):not(.active) #tajweed-live-card,
 .tab-panel:not(.is-active):not(.active) .card-tajweed {
   display: none !important;
 }
@@ -127,6 +121,10 @@ body[data-active-tab="about"] #tab-notes.tab-panel {
 }
 .companion-about-feedback .caf-btn.caf-primary {
   background: rgba(30, 125, 94, 0.4);
+}
+.companion-about-feedback .caf-btn.caf-secondary {
+  opacity: 0.85;
+  font-weight: 600;
 }
 .companion-about-feedback .caf-status {
   min-height: 1.1rem;
