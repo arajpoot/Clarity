@@ -1,11 +1,8 @@
-# Deploy L1 · 20261113L1
+# Deploy L2 · 20261113L2
 
-Upload folders:
-- dua-for-the-deceased/index.html
-- adhkar/index.html
-- what-benefits-the-deceased/index.html
-- islamic-inheritance-calculator/index.html
-- sitemap.xml
-- optional `_redirects` (wasiyah → wasiyyah) if host supports it
+1. Upload `docs/legacy/` (index + sources/)
+2. Upload `docs/index.html` (updated links)
+3. Upload root `sitemap.xml`
+4. Do **not** touch room app HTML
 
-**Do not** replace companion/daily/campus/amana/craft room apps.
+After: GSC optional inspect `/docs/legacy/`
