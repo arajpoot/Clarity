@@ -1,0 +1,29 @@
+.cu-vle-desk { width: 100%; max-width: 72rem; margin: 1rem auto 2rem; padding: 0 0.85rem; box-sizing: border-box; }
+.cu-vle-plaque {
+  border-radius: 16px;
+  border: 1px solid rgba(201,162,39,.4);
+  background: linear-gradient(155deg, rgba(255,255,255,.06), rgba(12,28,22,.4)), rgba(8,18,14,.9);
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 10px 24px rgba(0,0,0,.28);
+  padding: 0.9rem 1rem 1rem;
+}
+.cu-vle-kicker { margin: 0; font-size: 0.68rem; letter-spacing: .06em; text-transform: uppercase; color: rgba(232,213,163,.8); font-weight: 800; }
+.cu-vle-plaque h2 { margin: .25rem 0 .35rem; font-family: "Cormorant Garamond", Georgia, serif; color: #e8d5a3; font-size: 1.35rem; }
+.cu-vle-lead { margin: 0 0 .75rem; font-size: .9rem; opacity: .9; line-height: 1.45; }
+.cu-vle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: .5rem; }
+.cu-vle-card {
+  display: flex; flex-direction: column; gap: .25rem; align-items: flex-start;
+  text-align: left; cursor: pointer;
+  border-radius: 12px; border: 1px solid rgba(201,162,39,.3);
+  background: rgba(0,0,0,.28); color: #e8f0ec;
+  padding: .65rem .7rem; font-family: inherit;
+}
+.cu-vle-card strong { color: #e8d5a3; font-size: .88rem; }
+.cu-vle-card span { font-size: .75rem; opacity: .88; line-height: 1.35; }
+.cu-vle-badge { font-size: 1rem; }
+.cu-vle-panel {
+  margin-top: .75rem; padding: .75rem .85rem; border-radius: 12px;
+  border: 1px solid rgba(201,162,39,.28); background: rgba(0,0,0,.25);
+}
+.cu-vle-panel h3 { margin: 0 0 .35rem; color: #e8d5a3; }
+.cu-vle-panel ul { margin: .35rem 0; padding-left: 1.1rem; font-size: .86rem; }
+.cu-vle-disc { margin: .75rem 0 0; font-size: .72rem; opacity: .8; line-height: 1.4; }
