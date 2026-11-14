@@ -1,15 +1,16 @@
-# Companion About v9 · quiet + Send (B1)
+# Companion About v11 · feedback allowlist (B3)
 
 **Bismillah.** Educational only — not a fatwa.
 
-## Fixes
-1. **Noise-free:** removed 400ms stick interval (was causing jump)
-2. **Send to Clarity:** absolute `https://clarity-dawah.fyi/api/feedback` — **does not** open mail on failure
-3. **Mail app** is optional secondary only
+## Root cause of “didn’t receive”
+Shariah source guard blocked `fetch` to `clarity-dawah.fyi` (`host-not-allowlisted`).  
+Same-origin + `/api/feedback` are now allowlisted for feedback only (not a deen-text source).
+
+## Also
+- Stronger **single** Write to Clarity de-dupe  
+- Relative `/api/feedback` URL  
 
 ## Upload
 `companion/assets/companion-about-tab-fix-v1.js`  
 `companion/assets/companion-about-tab-fix-v1.css`  
-`companion/index.html` (`?v=20261114B1`)
-
-Hard-refresh → About calm → **Send to Clarity** → inbox message, no mail app.
+`companion/index.html` (`?v=20261114B3`)
