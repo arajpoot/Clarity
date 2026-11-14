@@ -1,7 +1,13 @@
-/* Companion About tab · re-enrich chrome */
+/* Companion About tab v4 */
 #tab-about.tab-panel.is-active,
 #tab-about.tab-panel.active {
   display: block !important;
+  visibility: visible !important;
+}
+html[data-clarity-room="companion"] #tab-about.tab-panel.is-active,
+html[data-clarity-room="companion"] #tab-about.tab-panel.active {
+  display: block !important;
+  visibility: visible !important;
 }
 #tab-about .companion-about-enriched-root {
   max-width: 42rem;
@@ -22,9 +28,6 @@
   color: var(--gold2, #e8d5a3);
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.2rem;
-}
-#about-moved-pointer {
-  border-left: 3px solid rgba(212, 180, 90, 0.55);
 }
 .door-rail-btn[data-rail-tab="about"].is-active,
 .door-rail-btn[data-rrra="about"].is-active {

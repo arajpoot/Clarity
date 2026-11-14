@@ -1,14 +1,11 @@
-/*! Companion About tab v3 · move About card out of Reality
- * - Moves #about-clarity-card → #tab-about (explicit tab hygiene override)
- * - About rail opens #tab-about only; Reality opens #tab-reality only
- * - Strips Reality cross-links/pointers to About
- * - Supplements About with purpose / Amānah room / five-room cards if missing
+/*! Companion About tab v4 · force own panel visible
+ * Bug fixed: other handlers left Reality active while hash=#about.
  * Educational only — not a fatwa. Companion only.
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V3__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V3__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V4__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V4__ = true;
 
   var VALID = {
     reminder: "tab-reminder",
@@ -18,6 +15,7 @@
     notes: "tab-notes",
     about: "tab-about"
   };
+  var applying = false;
 
   function normalize(id) {
     id = String(id || "").toLowerCase().replace(/^#/, "");
@@ -28,38 +26,78 @@
     return id;
   }
 
+  function panelIdFor(id) {
+    return VALID[normalize(id) || "reminder"];
+  }
+
   function showTab(id, write) {
     id = normalize(id) || "reminder";
     var panelId = VALID[id];
-    d.querySelectorAll(".tab-panel").forEach(function (p) {
-      var on = p.id === panelId;
-      p.classList.toggle("is-active", on);
-      p.classList.toggle("active", on);
-      p.setAttribute("aria-hidden", on ? "false" : "true");
-      if (on) {
-        p.removeAttribute("hidden");
-        p.style.removeProperty("display");
-        p.style.setProperty("display", "block", "important");
-      } else {
-        p.style.setProperty("display", "none", "important");
-      }
-    });
-    d.querySelectorAll("[data-rail-tab], [data-rrra]").forEach(function (btn) {
-      var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
-      btn.classList.toggle("is-active", t === id);
-    });
+    applying = true;
     try {
-      d.body.setAttribute("data-active-tab", id);
-    } catch (e) {}
-    if (write !== false) {
+      d.querySelectorAll(".tab-panel").forEach(function (p) {
+        var on = p.id === panelId;
+        p.classList.toggle("is-active", on);
+        p.classList.toggle("active", on);
+        p.setAttribute("aria-hidden", on ? "false" : "true");
+        if (on) {
+          p.removeAttribute("hidden");
+          p.style.removeProperty("display");
+          p.style.setProperty("display", "block", "important");
+          p.style.setProperty("visibility", "visible", "important");
+        } else {
+          p.style.setProperty("display", "none", "important");
+        }
+      });
+      d.querySelectorAll("[data-rail-tab], [data-rrra]").forEach(function (btn) {
+        var t = (btn.getAttribute("data-rail-tab") || btn.getAttribute("data-rrra") || "").toLowerCase();
+        btn.classList.toggle("is-active", t === id);
+      });
       try {
-        localStorage.setItem("clarity_companion_tab_v1", id);
-      } catch (e2) {}
-      try {
-        var want = "#" + id;
-        if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
-      } catch (e3) {}
+        d.body.setAttribute("data-active-tab", id);
+      } catch (e) {}
+      if (write !== false) {
+        try {
+          localStorage.setItem("clarity_companion_tab_v1", id);
+        } catch (e2) {}
+        try {
+          var want = "#" + id;
+          if ((w.location.hash || "") !== want) history.replaceState(null, "", want);
+        } catch (e3) {}
+      }
+    } finally {
+      applying = false;
     }
+  }
+
+  function desiredFromChrome() {
+    var h = normalize((w.location.hash || "").replace(/^#/, ""));
+    if (h) return h;
+    var body = normalize(d.body && d.body.getAttribute("data-active-tab"));
+    if (body) return body;
+    var activeBtn = d.querySelector("#clarity-door-rail .is-active[data-rail-tab], #clarity-door-rail .is-active[data-rrra]");
+    if (activeBtn) {
+      return normalize(activeBtn.getAttribute("data-rail-tab") || activeBtn.getAttribute("data-rrra"));
+    }
+    return null;
+  }
+
+  function assertVisible() {
+    var id = desiredFromChrome();
+    if (!id) return;
+    var panel = d.getElementById(VALID[id]);
+    if (!panel) return;
+    var cs = w.getComputedStyle(panel);
+    var wrong =
+      cs.display === "none" ||
+      panel.getAttribute("aria-hidden") === "true" ||
+      !(panel.classList.contains("is-active") || panel.classList.contains("active"));
+    // Also: another panel wrongly active
+    var conflict = false;
+    d.querySelectorAll(".tab-panel.is-active, .tab-panel.active").forEach(function (p) {
+      if (p.id !== VALID[id]) conflict = true;
+    });
+    if (wrong || conflict) showTab(id, false);
   }
 
   function ensureAbout() {
@@ -79,7 +117,6 @@
       root = d.createElement("div");
       root.id = "companion-about-enriched-root";
       root.className = "companion-about-enriched-root";
-      about.innerHTML = "";
       about.appendChild(root);
     }
     return about;
@@ -124,9 +161,7 @@
       card.setAttribute("data-rrra", "about");
       card.removeAttribute("hidden");
       card.style.removeProperty("display");
-      // Prefer About card first in About tab
-      if (root.firstChild) root.insertBefore(card, root.firstChild);
-      else root.appendChild(card);
+      root.insertBefore(card, root.firstChild);
     }
     supplementCards(root);
   }
@@ -134,34 +169,8 @@
   function cleanRealityAboutCrossRefs() {
     var reality = d.getElementById("tab-reality");
     if (!reality) return;
-
-    // Remove explicit pointers from older packs
-    ["about-moved-pointer", "about-moved-open-btn"].forEach(function (id) {
-      var el = d.getElementById(id);
-      if (el && el.parentNode) el.parentNode.removeChild(el);
-    });
-
-    // Remove leftover empty wrappers that only pointed at About
-    reality.querySelectorAll("a, button").forEach(function (el) {
-      var text = (el.textContent || "").toLowerCase();
-      var href = (el.getAttribute("href") || "").toLowerCase();
-      var onclick = (el.getAttribute("onclick") || "").toLowerCase();
-      if (
-        href === "#about" ||
-        onclick.indexOf("opensectiondoor('about") >= 0 ||
-        onclick.indexOf('opensectiondoor("about') >= 0 ||
-        (text.indexOf("open about") >= 0 && text.indexOf("tab") >= 0)
-      ) {
-        var card = el.closest(".card");
-        if (card && card.id !== "about-clarity-card" && /about/i.test(card.textContent || "") && (card.textContent || "").length < 280) {
-          if (card.parentNode) card.parentNode.removeChild(card);
-        } else if (el.parentNode) {
-          el.parentNode.removeChild(el);
-        }
-      }
-    });
-
-    // If about card somehow still under reality, move again
+    var ptr = d.getElementById("about-moved-pointer");
+    if (ptr && ptr.parentNode) ptr.parentNode.removeChild(ptr);
     var stray = reality.querySelector("#about-clarity-card");
     if (stray) {
       var root = d.querySelector("#companion-about-enriched-root");
@@ -174,19 +183,33 @@
 
   function wireDoor() {
     w.clarityShowCompanionTab = showTab;
-    var prev = w.clarityOpenSectionDoor;
-    w.clarityOpenSectionDoor = function (id) {
-      var n = normalize(id);
-      if (n) {
-        showTab(n, true);
-        return;
-      }
-      if (typeof prev === "function") {
-        try {
-          return prev.apply(this, arguments);
-        } catch (e) {}
-      }
-    };
+
+    function wrap(name) {
+      var prev = w[name];
+      w[name] = function (id) {
+        var n = normalize(id);
+        if (n) {
+          showTab(n, true);
+          setTimeout(function () {
+            showTab(n, false);
+          }, 0);
+          setTimeout(function () {
+            assertVisible();
+          }, 50);
+          setTimeout(function () {
+            assertVisible();
+          }, 200);
+          return;
+        }
+        if (typeof prev === "function") {
+          try {
+            return prev.apply(this, arguments);
+          } catch (e) {}
+        }
+      };
+    }
+    wrap("clarityOpenSectionDoor");
+    wrap("clarityShowCompanionTab");
 
     d.querySelectorAll("[data-rail-tab], #clarity-door-rail [data-rrra]").forEach(function (btn) {
       btn.addEventListener(
@@ -198,9 +221,26 @@
           ev.preventDefault();
           ev.stopPropagation();
           showTab(n, true);
+          setTimeout(assertVisible, 0);
+          setTimeout(assertVisible, 50);
+          setTimeout(assertVisible, 150);
         },
         true
       );
+    });
+  }
+
+  function observeConflicts() {
+    var main = d.querySelector("main") || d.body;
+    if (!main || typeof MutationObserver === "undefined") return;
+    var mo = new MutationObserver(function () {
+      if (applying) return;
+      assertVisible();
+    });
+    mo.observe(main, {
+      attributes: true,
+      subtree: true,
+      attributeFilter: ["class", "style", "aria-hidden", "hidden"]
     });
   }
 
@@ -209,25 +249,24 @@
       moveAboutCard();
       cleanRealityAboutCrossRefs();
       wireDoor();
+      observeConflicts();
       var h = normalize((w.location.hash || "").replace(/^#/, ""));
       if (h) showTab(h, true);
+      setTimeout(assertVisible, 100);
+      setTimeout(assertVisible, 400);
     } catch (e) {
-      console.warn("about-tab-v3", e);
+      console.warn("about-tab-v4", e);
     }
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  // Late scripts may re-inject; re-assert move once
-  setTimeout(function () {
-    try {
-      moveAboutCard();
-      cleanRealityAboutCrossRefs();
-    } catch (e) {}
-  }, 600);
-
   w.addEventListener("hashchange", function () {
     var id = normalize((w.location.hash || "").replace(/^#/, ""));
-    if (id) showTab(id, true);
+    if (id) {
+      showTab(id, true);
+      setTimeout(assertVisible, 0);
+      setTimeout(assertVisible, 100);
+    }
   });
 })(window, document);
