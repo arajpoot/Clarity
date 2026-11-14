@@ -1,57 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="system" data-campus-page="library" data-clarity-room="university">
+<html lang="en" data-theme="dark" data-clarity-room="university">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Library · Clarity University</title>
-<meta name="description" content="University library shelves with Librarian and Resource Scout. Educational pointers only — not a fatwa."/>
-<link rel="stylesheet" href="/campus/assets/css/cu-library-live-v1.css?v=20261024LIB"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-uplift-v1.css?v=20261112U1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>University Library · Clarity University</title>
 <link rel="stylesheet" href="/campus/assets/css/cu-campus-elite-v1.css?v=20261112E1"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-uplift-v1.css?v=20261112U1"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-vle-desk-v1.css?v=20261114V1"/>
-<link rel="stylesheet" href="/campus/assets/css/cu-campus-elite-v1.css?v=20261112E1"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-campus-streamline-v1.css?v=20261114S2"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-library-revamp-v1.css?v=20261114L1"/>
 </head>
-<body>
-<script src="/campus/assets/js/cu-smart-nav-v1.js?v=20261112E1"></script>
-
-<header style="display:flex;justify-content:space-between;gap:.5rem;padding:.75rem 1rem;border-bottom:1px solid rgba(201,162,39,.3);font-family:system-ui,sans-serif">
-  <a href="/campus/" style="color:inherit;text-decoration:none"><strong style="color:#d4b45a">Clarity University</strong> · Library</a>
-  <a href="/companion/" style="color:inherit;font-size:.85rem">← Companion</a>
-</header>
-<main class="lib-wrap" style="font-family:system-ui,sans-serif;max-width:48rem;margin:0 auto;padding:1rem 1rem 3rem;color:#e8efe9;background:#0a1210;min-height:100vh">
-  <nav class="cu-pills" aria-label="Campus"></nav>
-
-  <div class="lib-hero">
+<body class="cu-page" data-campus-page="library">
+<script src="/campus/assets/js/cu-smart-nav-v1.js?v=20261114S2"></script>
+<main class="lib-shell">
+  <header class="lib-hero-plaque">
+    <p class="lib-kicker">Hall · Library</p>
     <h1>University Library</h1>
-    <p class="lib-lead">Shelves of educational pointers for each phase. <strong>Librarian</strong> curates · <strong>Scout</strong> proposes allowlisted sources · you pin what helps. Not a fatwa. Prefer a local teacher for rulings.</p>
-  </div>
+    <p class="lib-lead">Shelves of educational pointers for each phase. <strong>Librarian</strong> curates · <strong>Scout</strong> proposes allowlisted sources · you pin what helps.</p>
+    <p class="lib-disc">Educational only — not a fatwa. Prefer a local teacher for rulings.</p>
+  </header>
 
-  <h2 style="font-size:.95rem;color:#d4b45a">On duty</h2>
-  <div id="lib-staff" class="lib-staff"></div>
+  <section class="lib-plaque" aria-label="On duty">
+    <h2>On duty</h2>
+    <div id="lib-staff" class="lib-staff"></div>
+  </section>
 
-  <div id="lib-scout"></div>
+  <section class="lib-plaque" aria-label="Scout proposal">
+    <div id="lib-scout"></div>
+  </section>
 
-  <h2 style="font-size:.95rem;color:#d4b45a">Phase shelves</h2>
-  <div id="lib-shelves"></div>
+  <section class="lib-plaque" aria-label="Phase shelves">
+    <h2>Phase shelves</h2>
+    <div id="lib-shelves"></div>
+  </section>
 
-  <h2 style="font-size:.95rem;color:#d4b45a">Quick resource chips</h2>
-  <div id="lib-chips" class="lib-chips"></div>
+  <section class="lib-plaque" aria-label="Quick resources">
+    <h2>Quick resource chips</h2>
+    <div id="lib-chips" class="lib-chips"></div>
+  </section>
 
-  <h2 style="font-size:.95rem;color:#d4b45a">How this hall works</h2>
-  <div id="lib-principles" class="lib-muted"></div>
+  <section class="lib-plaque" aria-label="Principles">
+    <h2>How this hall works</h2>
+    <div id="lib-principles" class="lib-muted"></div>
+  </section>
 
-  <p class="lib-muted" style="margin-top:1.5rem">Educational only — not a fatwa. Last reviewed Oct 2026 · Quran.com / Sunnah.com as reading aids.<br/>
-  <a href="/campus/vault/" style="color:#d4b45a">University Vault</a> holds your pins · <a href="/campus/journey/" style="color:#d4b45a">Journey</a> shows the four halls.</p>
+  <p class="lib-foot">Educational only — not a fatwa. Quran.com / Sunnah.com are reading aids.
+    <a class="lib-link" href="/campus/vault/">University Vault</a> ·
+    <a class="lib-link" href="/campus/journey/">Journey</a>
+  </p>
 </main>
-<script src="/campus/assets/js/cu-campus-nav-v1.js?v=20261024LIB" defer></script>
-<script src="/campus/assets/js/cu-library-live-v1.js?v=20261024LIB" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/campus/assets/js/cu-nav-integrity-v1.js?v=20261112NAV2" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/campus/assets/js/cu-nav-integrity-v1.js?v=20261112NAV3" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="/campus/assets/js/cu-vle-bridge-v1.js?v=20261114V1" defer></script>
+<script src="/campus/assets/js/cu-library-live-v1.js?v=20261114L1" defer></script>
+<script src="/campus/assets/js/cu-nav-integrity-v1.js?v=20261114S2" defer></script>
 </body>
 </html>
