@@ -1,1 +1,1 @@
-Guide SEO enrichment 20261113G1 · rooms untouched · ship PASS
+Phase L1 Legacy gaps · 20261113L1 · ship PASS
