@@ -1,0 +1,23 @@
+{
+  "build": "COMPANION_ABOUT_TAB_FIX_V5",
+  "asset_version": "20261114A5",
+  "date": "2026-11-14",
+  "verdict": "GREEN",
+  "rooms_touched": ["companion"],
+  "rooms_held": ["port", "yawm", "campus", "amana", "craft"],
+  "fixes": [
+    "reparent tab-about out of tab-notes",
+    "quarantine tj-deep-studio to action",
+    "about enrichment cards held"
+  ],
+  "sim": {
+    "about_top_level": "pass_html",
+    "path_tiles_held": true,
+    "learning_stack_held": true
+  },
+  "operator_smoke": {
+    "about_visible_enriched": "operator",
+    "tajweed_only_on_action": "operator",
+    "reality_no_about_card": "operator"
+  }
+}
