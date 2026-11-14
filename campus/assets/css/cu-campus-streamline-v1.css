@@ -1,0 +1,13 @@
+/*! streamline: one university banner, clean path plaque */
+html.cu-elite-on .cu-elite-banner + .cu-hero,
+html.cu-elite-on .cu-elite-banner ~ .cu-hero {
+  /* if a second raw hero remains, soften */
+}
+html.cu-elite-on .cu-elite-banner ~ .cu-elite-banner {
+  display: none !important;
+}
+html.cu-elite-on .cu-hero .cu-hero {
+  display: none !important;
+}
+/* Prefer single counsel strip spacing */
+html.cu-elite-on .sn-below { margin-top: 0.5rem; }
