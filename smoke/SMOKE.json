@@ -1,42 +1,76 @@
 {
-  "ver": "20261112S6S7",
-  "s5_live": true,
-  "s6": true,
-  "s7_clean_urls": [
-    "/",
-    "/docs/",
-    "/docs/seo/",
-    "/docs/rooms/",
-    "/docs/start/",
-    "/docs/sources/",
-    "/docs/privacy/",
-    "/companion/",
-    "/daily/",
-    "/campus/",
-    "/amana/",
-    "/craft/",
-    "/about/",
-    "/charter/",
-    "/library/",
-    "/companion/banner/",
-    "/daily/modules/now/",
-    "/daily/modules/deed/",
-    "/daily/modules/tasbeeh/",
-    "/daily/modules/salah/",
-    "/daily/modules/adhkar/",
-    "/daily/modules/light/",
-    "/craft/meme/",
-    "/craft/tajweed/",
-    "/craft/calligraphy/",
-    "/craft/quiz/",
-    "/craft/notes/",
-    "/craft/institute/",
-    "/campus/desk/",
-    "/campus/lab/",
-    "/campus/library/",
-    "/campus/journey/"
-  ],
-  "s7_broken": [],
-  "s3_checklist": "/docs/console/",
-  "ship": "PASS"
+  "ver": "20261113G1",
+  "ship": "PASS",
+  "audit": [
+    {
+      "path": "/islamic-will/",
+      "before": 3552,
+      "after": 5128,
+      "delta": 1576,
+      "ok": true
+    },
+    {
+      "path": "/wasiyyah/",
+      "before": 3599,
+      "after": 5171,
+      "delta": 1572,
+      "ok": true
+    },
+    {
+      "path": "/prepare-for-death/",
+      "before": 6194,
+      "after": 7815,
+      "delta": 1621,
+      "ok": true
+    },
+    {
+      "path": "/janazah-prayer/",
+      "before": 4380,
+      "after": 5928,
+      "delta": 1548,
+      "ok": true
+    },
+    {
+      "path": "/debts-and-trusts/",
+      "before": 3550,
+      "after": 5092,
+      "delta": 1542,
+      "ok": true
+    },
+    {
+      "path": "/sadaqah-jariyah/",
+      "before": 3587,
+      "after": 5122,
+      "delta": 1535,
+      "ok": true
+    },
+    {
+      "path": "/hajj-checklist/",
+      "before": 3560,
+      "after": 5075,
+      "delta": 1515,
+      "ok": true
+    },
+    {
+      "path": "/about/",
+      "before": 5696,
+      "after": 7378,
+      "delta": 1682,
+      "ok": true
+    },
+    {
+      "path": "/charter/",
+      "before": 1421,
+      "after": 3024,
+      "delta": 1603,
+      "ok": true
+    },
+    {
+      "path": "/library/",
+      "before": 4400,
+      "after": 6093,
+      "delta": 1693,
+      "ok": true
+    }
+  ]
 }
