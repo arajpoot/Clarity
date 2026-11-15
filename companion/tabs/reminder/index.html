@@ -138,7 +138,13 @@
 </div>
 </details>
 </div>
-<div class="card card-tools meme-card-realigned" id="meme-card" data-rrra="reminder" data-rrra-pin="reminder" style="border-top:3px solid var(--gold,#b8922a)">
+<div class="card card-tools meme-card-realigned" 
+<div class="cs-craft-handoff" data-cs-primary="1">
+  <p><strong>Craft modules</strong> — full Meme Studio &amp; Calligraphy ateliers also live in the Craft room (isolated upgrades).</p>
+  <a href="/craft/">Open Craft room →</a>
+</div>
+
+<div id="meme-card" data-rrra="reminder" data-rrra-pin="reminder" style="border-top:3px solid var(--gold,#b8922a)">
 <h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 Clarity Meme Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
 <p id="meme-fetch-status" style="font-size:.7rem;color:var(--accent);min-height:.85em;margin:0 0 .25rem"></p>
 
@@ -256,7 +262,7 @@
 
 <div class="callig-stage-wrap callig-lab-stage" id="callig-stage-wrap">
   <span class="callig-live-pill" id="callig-live-pill" aria-hidden="true">Listening…</span>
-  <canvas id="callig-canvas" width="900" height="420" aria-label="Calligraphy practice pad"></canvas>
+  <canvas id="callig-canvas" width="900" height="420" style="width:100%;min-height:240px;display:block" aria-label="Calligraphy practice pad"></canvas>
 </div>
 <div class="callig-pad-control-bar" id="callig-pad-control-bar" style="display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.45rem 0 .55rem">
   <button type="button" class="btn-soft" onclick="try{calligClear()}catch(e){}">⌫ Clear</button>
