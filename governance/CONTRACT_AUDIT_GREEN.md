@@ -1,17 +1,9 @@
-# Contract audit · Companion v5 (About reparent + Tajweed isolation)
+# Contract audit · RRRA quiet RR2
 
-**Bismillah.** Educational only — not a fatwa.
+**Scope:** companion only · other rooms held  
 
-**Verdict: GREEN** (pack + structural audit)
+**Enrichment:** held — only legacy hub chrome removed; educational cards retained  
 
-## Root causes fixed
-1. `#tab-about` was a **child of `#tab-notes`** → About “active” but **0×0** (not enriched on screen).
-2. Tajweed Deep Studio could paint outside Action → **CSS/JS quarantine** to Action only.
+**Phase 0:** shell owns path grid; tabs must not embed a second track rail  
 
-## Enrichment
-- About: `about-clarity-card` + Amānah + five-room supplements  
-- Reality: no About card (intentional) · path tiles + learning stack **held**  
-- Action: Tajweed remains available **inside Action**
-
-## Scope
-Companion only. Other rooms held.
+**Verdict: GREEN**
