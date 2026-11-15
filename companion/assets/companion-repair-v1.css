@@ -1,0 +1,10 @@
+/*! companion-repair-v1 */
+html[data-clarity-room="companion"] #command-box,
+html[data-clarity-room="companion"] #hadith,
+html[data-clarity-room="companion"] #prophet-name-box,
+html[data-clarity-room="companion"] #life-event,
+html[data-clarity-room="companion"] #seerah-content,
+html[data-clarity-room="companion"] #prophet-story {
+  min-height: 2.5rem;
+}
+html[data-clarity-room="companion"] .loading-msg:empty { display: none; }
