@@ -1,11 +1,6 @@
-# Companion NAV CONTRACT · five rooms
-
+# Companion NAV CONTRACT
 | Door | URL |
 |------|-----|
-| Companion (here) | `/companion/` |
-| Yawm | `/daily/` |
-| University | `/campus/` |
-| Amānah | `/amana/` |
-| Craft | `/craft/` |
-
-**Never** link Yawm to `/yawm/` (404). Pathway selection stays inside Companion chrome.
+| Yawm | `/daily/` **never** `/yawm/` |
+| Craft ateliers | `/craft/` (meme/callig full) |
+| Companion studios | Action tab + deep links, not dead hashes |
