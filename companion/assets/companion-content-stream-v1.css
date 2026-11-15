@@ -1,0 +1,71 @@
+/*! Content stream · calm progressive disclosure */
+.cc-stream-focus {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0.5rem auto;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+}
+.cc-stream-plaque {
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.06), rgba(12, 28, 22, 0.4)),
+    rgba(8, 18, 14, 0.9);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 8px 20px rgba(0, 0, 0, 0.25);
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.cc-stream-kicker {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(232, 213, 163, 0.8);
+}
+.cc-stream-path {
+  margin: 0.2rem 0 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #e8d5a3;
+}
+.cc-stream-msg {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #e8f0ec;
+}
+.cc-stream-disc {
+  margin: 0.4rem 0 0;
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+.cc-stream-more {
+  margin: 0.75rem 0;
+  padding: 0.55rem 0.75rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(201, 162, 39, 0.35);
+  background: rgba(0, 0, 0, 0.2);
+}
+.cc-stream-more summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #e8d5a3;
+  font-size: 0.88rem;
+}
+.cc-stream-primary {
+  order: 0;
+}
+/* Door rail emphasis for path */
+#clarity-door-rail .cc-stream-emph {
+  box-shadow: 0 0 0 1px rgba(30, 125, 94, 0.65);
+}
+#clarity-door-rail .cc-stream-soft {
+  opacity: 0.92;
+}
+html[data-clarity-room="companion"] .tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
