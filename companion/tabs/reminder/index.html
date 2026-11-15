@@ -4,9 +4,9 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Reminder · Companion</title>
-<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114RR1"/>
-<link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261114RR1"/>
-<link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261114RR1"/>
+<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261115HK1"/>
+<link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261115HK1"/>
+<link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261115HK1"/>
 </head>
 <body>
 <article data-cs-tab-body data-tab="reminder" class="cs-rich-tab cs-rich-reminder">
@@ -25,7 +25,7 @@
   </header>
 
 <!-- Beautiful Names · educational only — not a fatwa -->
-<section class="cs-plaque" id="beautiful-names-card" data-cs-primary="1">
+<section class="cs-plaque" id="beautiful-names-card" data-cs-primary="0">
   <div class="cs-plaque-head">
     <span class="cs-ico" aria-hidden="true">✦</span>
     <div>
@@ -78,7 +78,7 @@
 
 
 <!-- Samiʿnā wa aṭaʿnā · educational only — not a fatwa -->
-<section class="cs-plaque" id="samina-ataana-card" data-cs-primary="1">
+<section class="cs-plaque" id="samina-ataana-card" data-cs-primary="0">
   <div class="cs-plaque-head">
     <span class="cs-ico" aria-hidden="true">☪</span>
     <div>
@@ -133,7 +133,7 @@
 </section>
 
 
-<section class="cs-plaque" data-cs-path-only="dai" data-cs-primary="1">
+<section class="cs-plaque" data-cs-path-only="dai" data-cs-primary="0">
   <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
   <div>
     <h2>Daʿi path · transmission with adab</h2>
@@ -152,7 +152,7 @@
 
 
 
-<section class="cs-plaque" data-cs-primary="1" data-engine="verse">
+<section class="cs-plaque" data-cs-primary="0" data-engine="verse">
   <div class="cs-plaque-head"><span class="cs-ico">📖</span><div>
     <h2>Live āyah engine</h2>
     <p class="lead">Allowlisted fetch · educational rendering.</p></div></div>
@@ -163,7 +163,7 @@
   <div class="cs-actions"><button type="button" class="cs-btn" data-verse-next>Another āyah</button>
   <a class="cs-btn ghost" href="https://quran.com" target="_blank" rel="noopener">Quran.com</a></div>
 </section>
-<section class="cs-plaque" data-cs-primary="1" data-engine="hadith">
+<section class="cs-plaque" data-cs-primary="0" data-engine="hadith">
   <div class="cs-plaque-head"><span class="cs-ico">🕊</span><div>
     <h2>Ḥadīth spark</h2><p class="lead">Verify on Sunnah.com</p></div></div>
   <p class="eng-en" data-hadith-text></p>
@@ -173,8 +173,8 @@
 </section>
 
 <div class="cs-rich-legacy" data-rich-source="pre-shell-monolith">
-<div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
-<div class="rrra-hub-meta">8 sections</div></div>
+<p class="cs-hub-whisper" role="note">✦ Reminder What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words. 8 sections</p>
+</div>
 <div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · Meme Studio (auto verse/ḥadīth) · deepen-study links.</div>
 <div class="clarity-gate-switcher rrra-sitewide" role="group" aria-label="Learning track — switch anytime">
   <span class="cgs-label">Track</span>
@@ -267,7 +267,7 @@
 </details>
 </div>
 <div class="card card-tools meme-card-realigned" 
-<div class="cs-craft-handoff" data-cs-primary="1">
+<div class="cs-craft-handoff" data-cs-primary="0">
   <p><strong>Craft modules</strong> — full Meme Studio &amp; Calligraphy ateliers also live in the Craft room (isolated upgrades).</p>
   <a href="/craft/">Open Craft room →</a>
 </div>
@@ -276,7 +276,7 @@
 <h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 Clarity Meme Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
 <p id="meme-fetch-status" style="font-size:.7rem;color:var(--accent);min-height:.85em;margin:0 0 .25rem"></p>
 
-<div id="meme-studio-root" class="meme-studio meme-realign">
+<div id="companion-meme-studio" data-studio="meme" class="meme-studio meme-realign">
 
   <!-- 1. BACKGROUND CHIPS ON TOP -->
   <div class="meme-bar meme-bar-bg">
@@ -302,7 +302,7 @@
   <div class="meme-preview-only">
     <div id="meme-stage-wrap" class="meme-stage-wrap" data-ratio="twitter">
       <div id="meme-stage" class="meme-stage" data-ratio="twitter" style="aspect-ratio:16/9">
-        <canvas id="meme-canvas" width="1200" height="675" aria-label="Meme canvas"></canvas>
+        <canvas data-studio-canvas="1" id="meme-canvas" width="1200" height="675" aria-label="Meme canvas"></canvas>
         <div class="meme-text-box top" id="meme-box-top" data-which="top"><div class="meme-drag-handle">Top</div></div>
         <div class="meme-text-box middle" id="meme-box-mid" data-which="mid"><div class="meme-drag-handle">Mid</div></div>
         <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom"><div class="meme-drag-handle">Bot</div></div>
@@ -379,7 +379,7 @@
   </div>
 </div>
 </div>
-<div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)">
+<div data-rrra="reminder" class="card card-tools" id="callig-lab-card" data-studio="calligraphy" style="border-top:3px solid var(--gold,#9a7b24)">
 <h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
 <p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
 <div class="callig-stylus-hint" id="callig-stylus-hint">
