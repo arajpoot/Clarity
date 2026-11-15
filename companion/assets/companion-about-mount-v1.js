@@ -107,6 +107,25 @@
     }
   }
 
+  
+  function wireLedger(scope) {
+    var ta = scope.querySelector("#cs-ledger-note");
+    var save = scope.querySelector("#cs-ledger-save");
+    var status = scope.querySelector("#cs-ledger-status");
+    var KEY = "cu_companion_ledger_return_v1";
+    try { if (ta) ta.value = localStorage.getItem(KEY) || ""; } catch (e) {}
+    if (save) {
+      save.addEventListener("click", function () {
+        try {
+          localStorage.setItem(KEY, (ta && ta.value) || "");
+          if (status) status.textContent = "Saved on this device.";
+        } catch (e2) {
+          if (status) status.textContent = "Could not save locally.";
+        }
+      });
+    }
+  }
+
   function wireNotes(scope) {
     var ta = scope.querySelector("#cs-quick-note");
     var save = scope.querySelector("#cs-note-save");
@@ -131,7 +150,7 @@
     var about = d.querySelector("#cs-mount [data-cs-mounted='about']");
     if (about) wireFeedback(about);
     var notes = d.querySelector("#cs-mount [data-cs-mounted='notes']");
-    if (notes) wireNotes(notes);
+    if (notes) { wireNotes(notes); wireLedger(notes); }
   }
 
   /* Hook shell mount completion via MutationObserver limited to cs-mount — one shot debounce */
