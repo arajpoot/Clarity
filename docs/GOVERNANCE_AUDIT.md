@@ -1,8 +1,9 @@
-# Bismillāh · content stream
+# Craft width + pathway bridge audit
 
 **Verdict: GREEN**
 
-- Enrichment hold: secondaries collapsed, not stripped
-- Isolation: companion only
+- Pathway packs load on tab mount (restores meme/callig engines for Daily/Daʿi)
+- Stage/canvas min-heights + 100% width
+- Craft room handoff retained (isolation)
+- Enrichment: modules not stripped
 - Educational only — not a fatwa
-- Path×tab progressive disclosure + Today’s focus strip
