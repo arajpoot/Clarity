@@ -1,0 +1,28 @@
+/*! about + notes mount controls */
+.caf-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.5rem 0; }
+.caf-chip {
+  border-radius: 999px; border: 1px solid rgba(201,162,39,.35);
+  background: rgba(0,0,0,.28); color: #e8d5a3;
+  padding: 0.3rem 0.7rem; font-size: 0.75rem; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+.caf-chip.is-on { background: rgba(30,125,94,.55); color: #fff; border-color: transparent; }
+.caf-label { display: block; margin: 0.4rem 0 0.25rem; font-size: 0.78rem; font-weight: 700; color: #e8d5a3; }
+.caf-message {
+  width: 100%; box-sizing: border-box; min-height: 6rem;
+  border-radius: 12px; border: 1px solid rgba(201,162,39,.35);
+  background: rgba(0,0,0,.35); color: #e8f0ec;
+  padding: 0.65rem 0.75rem; font: inherit; resize: vertical;
+}
+.caf-hint { margin: 0.35rem 0; font-size: 0.72rem; opacity: 0.85; }
+.caf-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.45rem; }
+.caf-btn {
+  min-height: 2.15rem; padding: 0.35rem 0.85rem; border-radius: 999px;
+  border: 1px solid rgba(201,162,39,.35); background: rgba(0,0,0,.28);
+  color: #e8d5a3; font-weight: 700; font-size: 0.78rem; cursor: pointer; font-family: inherit;
+}
+.caf-btn.caf-primary { background: rgba(30,125,94,.5); color: #fff; border-color: transparent; }
+.caf-btn.caf-secondary { opacity: 0.95; }
+.caf-status { min-height: 1.2rem; margin: 0.35rem 0 0; font-size: 0.78rem; color: #e8d5a3; }
+a.cs-inline { color: #e6c86a; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(230,200,106,.35); }
+a.cs-inline:hover { color: #fff3c4; }
