@@ -10,18 +10,18 @@
 
   var ORDER = ["seeker", "new_muslim", "practicing", "dai"];
   var ALLOW = {
-    seeker: { "ledger-return-card": 1, "samina-ataana-card": 1, "calling-adab-card": 1, "steady-deeds-card": 1, "building-pillars-card": 1, "tawbah-nasuhah-card": 1,
+    seeker: { "mercy-path-card": 1, "furnish-grave-card": 1, "ledger-return-card": 1, "samina-ataana-card": 1, "calling-adab-card": 1, "steady-deeds-card": 1, "building-pillars-card": 1, "tawbah-nasuhah-card": 1,
       "commands-card": 1, "samina-verse-card": 1, "samina-card": 1, "about-clarity-card": 1,
       "soul-compass-card": 1, "hell-sins-card": 1, "night-breath-card": 1, "seerah-live-card": 1,
       "creation-tongue-reflection": 1, "grave-path-card": 1
     },
-    new_muslim: { "ledger-return-card": 1, "samina-ataana-card": 1, "calling-adab-card": 1, "steady-deeds-card": 1, "building-pillars-card": 1, "tawbah-nasuhah-card": 1,
+    new_muslim: { "mercy-path-card": 1, "furnish-grave-card": 1, "ledger-return-card": 1, "samina-ataana-card": 1, "calling-adab-card": 1, "steady-deeds-card": 1, "building-pillars-card": 1, "tawbah-nasuhah-card": 1,
       "commands-card": 1, "samina-verse-card": 1, "samina-card": 1, "ilm-pathway-card": 1,
       "about-clarity-card": 1, "soul-compass-card": 1, "seerah-live-card": 1, "night-breath-card": 1,
       "hajj-guide-card": 1, "fiqh-quiz-card": 1, "grave-path-card": 1,
       "new-muslim-foundations-card": 1, "salah-starter-card": 1
     },
-    practicing: { "ledger-return-card": 1, "samina-ataana-card": 1, "calling-adab-card": 1, "steady-deeds-card": 1, "building-pillars-card": 1, "tawbah-nasuhah-card": 1,
+    practicing: { "mercy-path-card": 1, "furnish-grave-card": 1, "ledger-return-card": 1, "samina-ataana-card": 1, "calling-adab-card": 1, "steady-deeds-card": 1, "building-pillars-card": 1, "tawbah-nasuhah-card": 1,
       "commands-card": 1, "samina-verse-card": 1, "samina-card": 1, "ilm-pathway-card": 1,
       "about-clarity-card": 1, "soul-compass-card": 1, "seerah-live-card": 1, "hell-sins-card": 1,
       "night-breath-card": 1, "weekly-review-card": 1, "tajweed-live-card": 1, "tajweed-path-card": 1,
@@ -31,7 +31,7 @@
       "creation-tongue-reflection": 1, "hajj-checklist-card": 1, "grave-path-card": 1,
       "daily-deed-ledger-card": 1
     },
-    dai: { "ledger-return-card": 1, "samina-ataana-card": 1, "calling-adab-card": 1, "steady-deeds-card": 1, "building-pillars-card": 1, "tawbah-nasuhah-card": 1,
+    dai: { "mercy-path-card": 1, "furnish-grave-card": 1, "ledger-return-card": 1, "samina-ataana-card": 1, "calling-adab-card": 1, "steady-deeds-card": 1, "building-pillars-card": 1, "tawbah-nasuhah-card": 1,
       "commands-card": 1, "samina-verse-card": 1, "samina-card": 1, "ilm-pathway-card": 1,
       "about-clarity-card": 1, "soul-compass-card": 1, "seerah-live-card": 1, "hell-sins-card": 1,
       "night-breath-card": 1, "deepen-study-card": 1, "asma-names-lecture-card": 1,
