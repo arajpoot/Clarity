@@ -1,0 +1,39 @@
+/* Companion housekeep v1 · single hero · studio isolation · educational only */
+
+/* Only one tab hero should read as the page hero */
+#cs-mount .cs-tab-hero ~ .cs-tab-hero,
+#cs-mount .rrra-hub-hero {
+  display: none !important;
+}
+
+#cs-mount [data-cs-dup="1"] {
+  display: none !important;
+}
+
+/* Quiet demoted primaries — not second heroes */
+#cs-mount [data-cs-primary="0"].cs-stream-primary {
+  /* stream may still tag them; keep visual weight lower */
+  box-shadow: none;
+}
+
+/* Tajweed chrome only when Action is mounted */
+body:not([data-active-tab="action"]) #tj-deep-studio,
+body:not([data-active-tab="action"]) #tajweed-path-card,
+body:not([data-active-tab="action"]) #tajweed-live-card,
+body:not([data-active-tab="action"]) .card-tajweed,
+body:not([data-active-tab="action"]) [data-studio="tajweed"] {
+  display: none !important;
+}
+
+/* Studio canvases interactive */
+#cs-mount canvas[data-studio-canvas],
+#companion-meme-studio,
+#companion-callig-pad,
+[data-studio="calligraphy"],
+[data-studio="meme"] {
+  pointer-events: auto;
+}
+
+#action-studios-board {
+  margin: 0.75rem 0 1rem;
+}
