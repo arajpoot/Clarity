@@ -1,0 +1,140 @@
+/*! companion-shell-v1 · Phase 1 shell chrome */
+html[data-clarity-room="companion"] {
+  --cs-gold: #e8d5a3;
+  --cs-edge: rgba(201, 162, 39, 0.4);
+  --cs-ok: #1e7d5e;
+  --cs-bg: #0a1210;
+  --cs-text: #e8f0ec;
+  --cs-muted: rgba(232, 240, 236, 0.82);
+}
+html, body {
+  margin: 0;
+  background: var(--cs-bg);
+  color: var(--cs-text);
+  font-family: Quicksand, system-ui, sans-serif;
+}
+.cs-room-nav {
+  position: sticky; top: 0; z-index: 120;
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  justify-content: center; align-items: center;
+  padding: 0.45rem 0.65rem;
+  border-bottom: 1px solid var(--cs-edge);
+  background: rgba(6, 14, 12, 0.97);
+  backdrop-filter: blur(12px);
+}
+.cs-room-nav a {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  min-height: 2.15rem; padding: 0.35rem 0.75rem;
+  border-radius: 999px; border: 1px solid rgba(201,162,39,.28);
+  text-decoration: none; color: var(--cs-text);
+  font-size: 0.78rem; font-weight: 700; background: rgba(0,0,0,.28);
+}
+.cs-room-nav a.is-here { background: var(--cs-ok); border-color: transparent; color: #fff; }
+.cs-room-nav .crn-seal {
+  width: 100%; text-align: center; margin: 0.15rem 0 0;
+  font-size: 0.62rem; opacity: 0.75;
+}
+.companion-banner-shell { width: 100%; margin: 0; border-bottom: 1px solid rgba(201,162,39,.22); }
+.companion-banner-frame {
+  display: block; width: 100%; border: 0;
+  height: min(42vh, 320px); background: #07110e;
+}
+.cs-path {
+  max-width: 72rem; margin: 0.55rem auto; padding: 0.55rem 0.75rem;
+  border-radius: 16px; border: 1px solid var(--cs-edge);
+  background: linear-gradient(155deg, rgba(255,255,255,.05), rgba(12,28,22,.35)), rgba(8,18,14,.88);
+  box-sizing: border-box;
+}
+.cs-path h2 { margin: 0 0 0.25rem; font-size: 1rem; color: var(--cs-gold); font-family: "Cormorant Garamond", Georgia, serif; }
+.cs-path p { margin: 0 0 0.5rem; font-size: 0.8rem; opacity: 0.88; }
+.cs-path-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: 0.4rem; }
+.cs-path button {
+  text-align: left; border-radius: 12px; border: 1px solid rgba(201,162,39,.3);
+  background: rgba(0,0,0,.28); color: var(--cs-text); padding: 0.55rem 0.65rem;
+  cursor: pointer; font: inherit;
+}
+.cs-path button.is-active { outline: 2px solid var(--cs-ok); }
+.cs-path button strong { display: block; color: var(--cs-gold); font-size: 0.82rem; }
+.cs-path button span { display: block; font-size: 0.72rem; opacity: 0.88; margin-top: 0.2rem; line-height: 1.3; }
+
+.cs-focus {
+  max-width: 72rem; margin: 0.45rem auto; padding: 0 0.75rem; box-sizing: border-box;
+}
+.cs-focus-plaque {
+  border-radius: 16px; border: 1px solid var(--cs-edge);
+  background: linear-gradient(155deg, rgba(255,255,255,.06), rgba(12,28,22,.4)), rgba(8,18,14,.9);
+  padding: 0.7rem 1rem; text-align: center;
+}
+.cs-focus-kicker { margin: 0; font-size: 0.62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(232,213,163,.8); }
+.cs-focus-path { margin: 0.15rem 0; font-size: 0.8rem; font-weight: 700; color: var(--cs-gold); }
+.cs-focus-msg { margin: 0; font-size: 0.95rem; line-height: 1.45; }
+.cs-focus-disc { margin: 0.35rem 0 0; font-size: 0.7rem; opacity: 0.8; }
+
+#cs-mount {
+  max-width: 72rem; margin: 0.5rem auto 5.5rem; padding: 0 0.75rem;
+  min-height: 40vh; box-sizing: border-box;
+}
+.cs-mount-status {
+  font-size: 0.8rem; opacity: 0.75; text-align: center; padding: 1rem;
+}
+
+.cs-door {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 130;
+  display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center;
+  padding: 0.5rem 0.65rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--cs-edge);
+  background: rgba(6, 14, 12, 0.96); backdrop-filter: blur(12px);
+}
+.cs-door button {
+  min-height: 2.4rem; min-width: 4.4rem; padding: 0.4rem 0.75rem;
+  border-radius: 999px; border: 1px solid rgba(201,162,39,.32);
+  background: rgba(0,0,0,.28); color: var(--cs-text);
+  font-size: 0.8rem; font-weight: 700; cursor: pointer; font: inherit;
+}
+.cs-door button.is-active { background: var(--cs-ok); border-color: transparent; color: #fff; }
+.cs-door .dr-ico { margin-right: 0.25rem; }
+
+/* Enriched content plaques (loaded tabs) */
+.cs-plaque {
+  border-radius: 16px; border: 1px solid var(--cs-edge);
+  background: linear-gradient(155deg, rgba(255,255,255,.05), rgba(12,28,22,.35)), rgba(8,18,14,.88);
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 10px 24px rgba(0,0,0,.25);
+  padding: 0.85rem 1rem; margin: 0.55rem 0;
+}
+.cs-plaque-head {
+  display: flex; align-items: flex-start; gap: 0.65rem; margin-bottom: 0.45rem;
+}
+.cs-ico {
+  width: 2.25rem; height: 2.25rem; border-radius: 12px;
+  display: grid; place-items: center; flex-shrink: 0;
+  background: rgba(30,125,94,.35); border: 1px solid rgba(201,162,39,.35);
+  color: var(--cs-gold); font-size: 1.1rem;
+}
+.cs-plaque h1, .cs-plaque h2 {
+  margin: 0; font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--cs-gold); font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+}
+.cs-plaque .lead { margin: 0.25rem 0 0; font-size: 0.9rem; line-height: 1.45; color: var(--cs-muted); }
+.cs-plaque .disc { margin: 0.45rem 0 0; font-size: 0.72rem; opacity: 0.85; }
+.cs-chip-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.55rem; }
+.cs-chip {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  padding: 0.28rem 0.65rem; border-radius: 999px;
+  border: 1px solid rgba(201,162,39,.3); background: rgba(0,0,0,.25);
+  font-size: 0.72rem; font-weight: 700; color: var(--cs-gold);
+}
+.cs-list { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.45; }
+.cs-list li { margin: 0.25rem 0; }
+.cs-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.65rem; }
+.cs-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 2.15rem; padding: 0.35rem 0.9rem; border-radius: 999px;
+  border: 1px solid rgba(201,162,39,.35); background: rgba(30,125,94,.45);
+  color: #fff; font-weight: 700; font-size: 0.8rem; text-decoration: none; cursor: pointer;
+}
+.cs-btn.ghost { background: transparent; color: var(--cs-gold); }
+details.cs-more {
+  margin: 0.55rem 0; padding: 0.55rem 0.75rem; border-radius: 12px;
+  border: 1px dashed rgba(201,162,39,.35); background: rgba(0,0,0,.2);
+}
+details.cs-more summary { cursor: pointer; font-weight: 700; color: var(--cs-gold); font-size: 0.88rem; }
