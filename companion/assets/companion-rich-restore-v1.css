@@ -1,0 +1,30 @@
+
+/*! rich restore — legacy tab bodies inside shell mount */
+.cs-rich-legacy {
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cs-rich-legacy .card,
+.cs-rich-legacy [class*="card"] {
+  max-width: none !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  margin: 0.55rem 0;
+  border-radius: 16px;
+  border: 1px solid rgba(201,162,39,0.35);
+  background: linear-gradient(155deg, rgba(255,255,255,.04), rgba(12,28,22,.3)), rgba(8,18,14,.88);
+  padding: 0.85rem 1rem;
+}
+.cs-rich-legacy h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #e8d5a3;
+}
+.cs-rich-legacy a { color: #e6c86a; }
+/* Hide duplicate RRRA hub headers already in shell focus */
+.cs-rich-legacy .rrra-hub-title-row { margin-top: 0.25rem; }
+/* Craft embeds: keep visible but note handoff */
+.cs-rich-legacy #meme-studio-root,
+.cs-rich-legacy .meme-studio-root {
+  border: 1px dashed rgba(201,162,39,.4);
+}
