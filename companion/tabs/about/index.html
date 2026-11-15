@@ -3,62 +3,124 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>About Companion · Companion</title>
-<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P1"/>
+<title>About · Companion</title>
+<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P2"/>
+<link rel="stylesheet" href="/companion/assets/companion-about-notes-v1.css?v=20261114P2"/>
 </head>
 <body>
 <article data-cs-tab-body data-tab="about">
-  <header class="cs-plaque">
+  <header class="cs-plaque" data-cs-primary="1">
     <div class="cs-plaque-head">
       <span class="cs-ico" aria-hidden="true">ℹ</span>
       <div>
-        <h1>About Companion</h1>
-        <p class="lead">Educational only — not a fatwa · not legal advice · not a seminary.</p>
+        <h1>About this Companion</h1>
+        <p class="lead">Local-first companion to help you <strong>prepare the heart and the grave</strong> — Qurʾān, authentic ḥadīth, character lessons, and small daily deeds.</p>
         <div class="cs-chip-row">
-          <span class="cs-chip">Tab shell</span>
-          <span class="cs-chip">Path-aware</span>
           <span class="cs-chip">Educational only</span>
+          <span class="cs-chip">Not a fatwa</span>
+          <span class="cs-chip">Not legal advice</span>
         </div>
-        <p class="disc">Phase 1 stub — enriched plaques. Full live modules migrate in Phase 2+ without stripping richness.</p>
+        <p class="disc">Not a full Qurʾān library, prayer engine, or seminary grade of īmān.</p>
       </div>
     </div>
   </header>
-  <div class="cs-plaque" data-cs-primary="1">
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">·</span>
-  <div><h2>Charter</h2><p class="lead">Local-first companion to furnish the grave with light.</p></div></div>
-</div><div class="cs-plaque" data-cs-primary="1">
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">·</span>
-  <div><h2>Write to Clarity</h2><p class="lead">Suggestions and content accuracy — kind and specific.</p></div></div>
-</div><div class="cs-plaque" data-cs-primary="1">
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">·</span>
-  <div><h2>Five rooms</h2><p class="lead">Companion · Yawm · University · Amānah · Craft</p></div></div>
-</div>
-  <div class="cs-plaque" data-cs-path-only="seeker" hidden>
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div><h2>Seeker emphasis</h2>
-  <p class="lead">Path-tuned prompts for <strong>seeker</strong> in About Companion — Phase 1 stub; full modules mount in later phases.</p>
-  <p class="disc">Educational only — not a fatwa.</p></div></div>
-</div><div class="cs-plaque" data-cs-path-only="new_muslim" hidden>
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div><h2>New Muslim emphasis</h2>
-  <p class="lead">Path-tuned prompts for <strong>new_muslim</strong> in About Companion — Phase 1 stub; full modules mount in later phases.</p>
-  <p class="disc">Educational only — not a fatwa.</p></div></div>
-</div><div class="cs-plaque" data-cs-path-only="practicing" hidden>
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div><h2>Daily emphasis</h2>
-  <p class="lead">Path-tuned prompts for <strong>practicing</strong> in About Companion — Phase 1 stub; full modules mount in later phases.</p>
-  <p class="disc">Educational only — not a fatwa.</p></div></div>
-</div><div class="cs-plaque" data-cs-path-only="dai" hidden>
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div><h2>Daʿi emphasis</h2>
-  <p class="lead">Path-tuned prompts for <strong>dai</strong> in About Companion — Phase 1 stub; full modules mount in later phases.</p>
-  <p class="disc">Educational only — not a fatwa.</p></div></div>
-</div>
+
+  <section class="cs-plaque" data-cs-primary="1">
+    <div class="cs-plaque-head">
+      <span class="cs-ico" aria-hidden="true">✦</span>
+      <div>
+        <h2>Positioning</h2>
+        <p class="lead">Clarity sits <em>beside</em> trusted libraries (Quran.com, Sunnah.com) — not instead of them. Focus: turning knowledge into consistent, grave-conscious practice while keeping data private on this device.</p>
+      </div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Qurʾān &amp; ḥadīth</strong> study aids with outbound links to primary hosts</li>
+      <li><strong>Progress and notes</strong> stay on this device by default</li>
+      <li><strong>Private vault / dayn / heirs</strong> → <a class="cs-inline" href="/amana/">Amānah room</a></li>
+      <li><strong>Deep ateliers</strong> (meme, tajweed, calligraphy) → <a class="cs-inline" href="/craft/">Craft room</a></li>
+      <li><strong>Ordered curriculum</strong> → <a class="cs-inline" href="/campus/">University room</a></li>
+    </ul>
+    <p class="disc">Quizzes and path markers are study mirrors — never rulings.</p>
+  </section>
+
+  <section class="cs-plaque" data-cs-primary="1" id="companion-about-feedback">
+    <div class="cs-plaque-head">
+      <span class="cs-ico" aria-hidden="true">✉</span>
+      <div>
+        <h2>Write to Clarity</h2>
+        <p class="lead">Suggestions, improvements, or concerns about content. Educational only — not a fatwa desk.</p>
+      </div>
+    </div>
+    <div class="caf-chips" role="group" aria-label="Feedback type">
+      <button type="button" class="caf-chip is-on" data-caf-type="suggestion">Suggestion</button>
+      <button type="button" class="caf-chip" data-caf-type="improvement">Improvement</button>
+      <button type="button" class="caf-chip" data-caf-type="concern">Concern</button>
+      <button type="button" class="caf-chip" data-caf-type="content">Content accuracy</button>
+    </div>
+    <label class="caf-label" for="caf-message">Your note</label>
+    <textarea id="caf-message" class="caf-message" rows="5" maxlength="4000" autocomplete="off" placeholder="What would make Clarity clearer or more trustworthy?"></textarea>
+    <p class="caf-hint">On-device until you send. Delivered to Clarity inbox (no mail app required).</p>
+    <div class="caf-actions">
+      <button type="button" class="caf-btn caf-primary" id="caf-send">Send to Clarity</button>
+      <button type="button" class="caf-btn" id="caf-copy">Copy</button>
+      <button type="button" class="caf-btn caf-secondary" id="caf-mail">Mail app (optional)</button>
+    </div>
+    <p class="caf-status" id="caf-status" aria-live="polite"></p>
+    <p class="disc">Adab: specific, kind, source-aware.</p>
+  </section>
+
+  <section class="cs-plaque" data-cs-primary="1">
+    <div class="cs-plaque-head">
+      <span class="cs-ico" aria-hidden="true">⌂</span>
+      <div>
+        <h2>Five rooms</h2>
+        <p class="lead">Isolated by design — upgrades in one room do not rewrite another.</p>
+      </div>
+    </div>
+    <ul class="cs-list">
+      <li><a class="cs-inline" href="/companion/">Companion</a> — tools · reminder</li>
+      <li><a class="cs-inline" href="/yawm/">Yawm</a> — today’s portion</li>
+      <li><a class="cs-inline" href="/campus/">University</a> — ordered path</li>
+      <li><a class="cs-inline" href="/amana/">Amānah</a> — vault · dayn · heirs</li>
+      <li><a class="cs-inline" href="/craft/">Craft</a> — meme · tajweed · calligraphy</li>
+    </ul>
+  </section>
+
+  <div class="cs-plaque" data-cs-path-only="seeker">
+    <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
+      <h2>Seeker emphasis</h2>
+      <p class="lead">This room is educational only — not a fatwa desk. Start small; send light ahead.</p>
+    </div></div>
+  </div>
+  <div class="cs-plaque" data-cs-path-only="new_muslim">
+    <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
+      <h2>New Muslim emphasis</h2>
+      <p class="lead">Charter: private by default; Amānah holds vault tools when you need them.</p>
+    </div></div>
+  </div>
+  <div class="cs-plaque" data-cs-path-only="practicing">
+    <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
+      <h2>Daily emphasis</h2>
+      <p class="lead">Feedback improves the craft — kind and specific.</p>
+    </div></div>
+  </div>
+  <div class="cs-plaque" data-cs-path-only="dai">
+    <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
+      <h2>Daʿi emphasis</h2>
+      <p class="lead">Limits: verify before you transmit. Name sources; prefer local teachers for rulings.</p>
+    </div></div>
+  </div>
+
   <details class="cs-more">
-    <summary>More in this tab · optional depth</summary>
-    <ul class="cs-list"><li>Source posture</li><li>Print legacy outline</li></ul>
+    <summary>How content is chosen · optional depth</summary>
+    <ul class="cs-list">
+      <li><strong>Qurʾān</strong> — via Quran.com / AlQuran.cloud APIs when used</li>
+      <li><strong>Ḥadīth</strong> — prefer linking to Sunnah.com for verification</li>
+      <li><strong>Live Ḥaramain</strong> — official stream posture in isolated banner</li>
+      <li><strong>Notes &amp; streaks</strong> — on-device storage only</li>
+    </ul>
+    <p class="disc">For personal rulings, consult a qualified local scholar.</p>
   </details>
-  <p class="disc" style="text-align:center">Educational only — not a fatwa. Verify with a local scholar.</p>
 </article>
 </body>
 </html>
