@@ -4,69 +4,349 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Reminder · Companion</title>
-<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P45"/>
-<link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261114P45"/>
+<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114RR1"/>
+<link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261114RR1"/>
+<link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261114RR1"/>
 </head>
 <body>
-<article data-cs-tab-body data-tab="reminder">
-  <header class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head"><span class="cs-ico">✦</span><div>
-      <h1>Reminder</h1>
-      <p class="lead">What Allah ﷻ and His Messenger ﷺ taught — Qurʾān, commands, Names, and living words.</p>
-      <div class="cs-chip-row"><span class="cs-chip">Live engines</span><span class="cs-chip">Educational only</span></div>
-    </div></div>
-  </header>
+<article data-cs-tab-body data-tab="reminder" class="cs-rich-tab cs-rich-reminder">
 
-  <section class="cs-plaque" data-cs-primary="1" data-engine="verse">
-    <div class="cs-plaque-head"><span class="cs-ico">📖</span><div>
-      <h2>Daily command-verse</h2>
-      <p class="lead">One āyah · Arabic · Sahih International meaning. Educational rendering — verify in a muṣḥaf.</p>
-    </div></div>
-    <p class="eng-ref" data-verse-ref>—</p>
-    <p class="eng-ar" data-verse-ar lang="ar" dir="rtl">…</p>
-    <p class="eng-en" data-verse-en>…</p>
-    <p class="eng-status" data-verse-status></p>
-    <div class="cs-actions">
-      <button type="button" class="cs-btn" data-verse-next>Another āyah</button>
-      <a class="cs-btn ghost" href="https://quran.com" target="_blank" rel="noopener">Open Quran.com</a>
+<section class="cs-plaque" data-cs-path-only="dai" data-cs-primary="1">
+  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
+  <div>
+    <h2>Daʿi path · transmission with adab</h2>
+    <p class="lead">Pick one verse or ḥadīth with a clear source. Share meaning with adab — not argument.</p>
+    <p class="disc">Educational only — not a fatwa. Verify before you transmit. Prefer local teachers for rulings.</p>
+  </div></div>
+</section>
+<section class="cs-plaque" data-cs-path-only="seeker"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Seeker</h2><p class="lead">One command-verse. Read · pause · one small act.</p></div></div></section>
+<section class="cs-plaque" data-cs-path-only="new_muslim"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>New Muslim</h2><p class="lead">Short reminder with clear meaning — stability first.</p></div></div></section>
+<section class="cs-plaque" data-cs-path-only="practicing"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Daily</h2><p class="lead">Refresh a known command; practice it.</p></div></div></section>
+
+
+<section class="cs-plaque" data-cs-primary="1" data-engine="verse">
+  <div class="cs-plaque-head"><span class="cs-ico">📖</span><div>
+    <h2>Live āyah engine</h2>
+    <p class="lead">Allowlisted fetch · educational rendering.</p></div></div>
+  <p class="eng-ref" data-verse-ref>—</p>
+  <p class="eng-ar" data-verse-ar lang="ar" dir="rtl"></p>
+  <p class="eng-en" data-verse-en></p>
+  <p class="eng-status" data-verse-status></p>
+  <div class="cs-actions"><button type="button" class="cs-btn" data-verse-next>Another āyah</button>
+  <a class="cs-btn ghost" href="https://quran.com" target="_blank" rel="noopener">Quran.com</a></div>
+</section>
+<section class="cs-plaque" data-cs-primary="1" data-engine="hadith">
+  <div class="cs-plaque-head"><span class="cs-ico">🕊</span><div>
+    <h2>Ḥadīth spark</h2><p class="lead">Verify on Sunnah.com</p></div></div>
+  <p class="eng-en" data-hadith-text></p>
+  <p class="eng-status" data-hadith-src></p>
+  <div class="cs-actions"><button type="button" class="cs-btn" data-hadith-next>Another</button>
+  <a class="cs-btn ghost" href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a></div>
+</section>
+
+<div class="cs-rich-legacy" data-rich-source="pre-shell-monolith">
+<div class="rrra-hub-hero" data-rrra="reminder"><h2>✦ Reminder</h2><p class="rrra-hub-sub">What Allah ﷻ and His Messenger ﷺ taught — Qur’an, commands, Names, and living words.</p>
+<div class="rrra-hub-meta">8 sections</div></div>
+<div class="rrra-hub-summary" role="note">Commands · daily command-verse · 99 Names · Qur’an reminders · Meme Studio (auto verse/ḥadīth) · deepen-study links.</div>
+<div class="clarity-gate-switcher rrra-sitewide" role="group" aria-label="Learning track — switch anytime">
+  <span class="cgs-label">Track</span>
+  <button type="button" class="cgs-btn cgs-seeker" data-gate="seeker" onclick="claritySwitchGate('seeker')" title="Curious Seeker — purpose, prophecy, Qur’an, next life"><span class="cgs-ico" aria-hidden="true">🔭</span><span class="cgs-txt"><span class="cgs-num">1</span> Seeker</span></button>
+  <button type="button" class="cgs-btn cgs-new" data-gate="new_muslim" onclick="claritySwitchGate('new_muslim')" title="New Muslim — shahada, prayer, character"><span class="cgs-ico" aria-hidden="true">🌱</span><span class="cgs-txt"><span class="cgs-num">2</span> New Muslim</span></button>
+  <button type="button" class="cgs-btn cgs-daily" data-gate="practicing" onclick="claritySwitchGate('practicing')" title="Daily Muslim — streaks, tajweed, light legacy"><span class="cgs-ico" aria-hidden="true">📿</span><span class="cgs-txt"><span class="cgs-num">3</span> Daily</span></button>
+  <button type="button" class="cgs-btn cgs-dai" data-gate="dai" onclick="claritySwitchGate('dai')" title="Aspiring Da’i — sincerity, sources, calm dawah"><span class="cgs-ico" aria-hidden="true">🕊️</span><span class="cgs-txt"><span class="cgs-num">4</span> Da’i</span></button>
+  <button type="button" class="cgs-btn cgs-reset" id="clarity-path-reset-btn" title="Reset progress to Seeker level (optional)" onclick="clarityPathResetToSeeker()">
+    <span class="cgs-ico" aria-hidden="true">↺</span><span class="cgs-txt">Reset</span>
+  </button>
+</div>
+<div class="rrra-hub-body" id="rrra-hub-body-reminder"><div data-rrra="reminder" class="card card-commands" id="commands-card"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
+ <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
+ <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a>.</div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
+ Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
+ </p><div class="command-box" id="command-box"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.75rem;"><button type="button" onclick="prevCommand()" class="btn-secondary">← Previous</button><button type="button" onclick="nextCommand()">Next Command →</button></div></div>
+<div data-rrra="reminder" class="card card-commands" id="samina-verse-card" style="border-top:3px solid var(--gold)">
+  <h2>📜 Daily command-verse — Samiʿnā wa aṭaʿnā</h2>
+  <p class="td-src">Verses that call believers to submit to Allāh ﷻ and follow the Messenger ﷺ. Educational reflection only.</p>
+  <p id="samina-verse-ref" style="font-weight:700;color:var(--gold);margin:.3rem 0"></p>
+  <div class="arabic" id="samina-verse-ar" dir="rtl" lang="ar" style="font-size:1.2rem;margin:.35rem 0;line-height:1.85"></div>
+  <p id="samina-verse-en" class="verse-en" style="font-size:.95rem;line-height:1.55"></p>
+  <p id="samina-verse-note" class="td-src" style="font-size:.85rem"></p>
+  <div class="td-row" style="flex-wrap:wrap;gap:.4rem">
+    <button type="button" class="btn-soft" onclick="clarityDailySaminaVerse(true)">↻ Another verse</button>
+    <a id="samina-verse-link" href="https://quran.com/4/59" target="_blank" rel="noopener">Open on Quran.com</a>
+  </div>
+</div>
+<div data-rrra="reminder" class="card card-hadith"><h2 data-i18n="hadith_title">A Saying of the Prophet ﷺ</h2>
+<p class="td-src clarity-disc" style="font-size:.82rem;margin:.25rem 0 .4rem"><strong>Educational only — not a fatwa.</strong> This card prefers <strong>ṣaḥīḥ</strong> reports and shows <strong>grade · collection · number</strong> on every item. Prefer ṣaḥīḥ collections; grades and context matter — check Sunnah.com / a scholar.</p>
+<div class="deep-learn"><strong>📚 Verify &amp; study the ḥadīth</strong>
+<div class="res-stack">
+<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
+<a href="https://dorar.net/en" target="_blank" rel="noopener">Dorar (Arabic)</a>
+<a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a>
+</div></div><div id="hadith"><div class="loading-msg">Loading…</div></div><button type="button" onclick="loadHadith()">Another hadith</button></div>
+<div data-rrra="reminder" class="card card-seerah"><h2>🕊️ Daily Name of the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">One name each day from the Qurʾān and authentic hadith — with meaning and blessing. Educational; not a fixed “99” in every narration.</p><div class="asma-box" id="prophet-name-box"><div class="loading-msg">Loading…</div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"> <button type="button" class="btn-secondary" onclick="loadProphetName(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadProphetName(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllProphetNames()">Show all names</button><input type="search" id="prophet-names-search" placeholder="Search a name…" oninput="filterProphetNames(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="prophet-names-list" class="prophet-names-grid" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div></div>
+
+<div data-rrra="reminder" class="card card-tools" id="ilm-pathway-card" style="border-top:3px solid var(--accent)">
+<details id="ilm-pathway-details" class="ilm-pathway-details">
+<summary class="ilm-pathway-summary">
+  <span class="ilm-sum-icon" aria-hidden="true">🗺️</span>
+  <span class="ilm-sum-text">
+    <strong>Ilm Pathway — 7-day starter</strong>
+    <span class="ilm-sum-meta" id="ilm-pathway-summary-meta">Tap to open · one focus per day</span>
+  </span>
+  <span class="ilm-sum-chevron" aria-hidden="true">▾</span>
+</summary>
+<div class="ilm-pathway-body">
+  <p style="font-size:.88rem;color:var(--text-muted);margin:0 0 .5rem">A light weekly path: one focus per day. Mark done on this device. Pairs with the stack above.</p>
+  <div id="ilm-pathway-list"></div>
+  <button type="button" class="btn-soft" style="margin-top:.5rem" onclick="ilmPathwayReset()">Reset week</button>
+</div>
+</details>
+</div>
+<div data-rrra="reminder" class="card card-tafseer" id="tafseer-resources-card">
+  <h2 data-i18n="tafseer_res">Tafseer Resources</h2>
+  <div class="deep-learn"><strong>Tafsīr libraries</strong>
+  <a href="https://corpus.quran.com" target="_blank" rel="noopener">word grammar</a> ·
+  <a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a> ·
+  <a href="https://islamqa.info" target="_blank" rel="noopener">fiqh of the ayah</a>.
+  </div>
+  <p class="td-src" style="font-size:.82rem;margin:.4rem 0 0">Educational only — verify with a local scholar. Ustazah Najiha lessons sit in the card below.</p>
+</div>
+
+<div data-rrra="reminder" class="card card-tafseer" id="najiha-tafseer-card">
+<details id="najiha-tafseer-details">
+<summary>
+  <h2 style="display:inline;font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--accent);margin:0">Tafseer by Ustazah Najiha Hashmi</h2>
+  <span style="font-weight:600;opacity:.8;font-size:.8em;margin-left:.35rem">(tap to expand)</span>
+</summary>
+<div class="najiha-body">
+<p style="margin-bottom:0.75rem;font-size:0.94rem">
+ From <strong>ArRahmah Islamic Institute</strong>. Track the lessons you study. Progress is saved only on this device.
+</p>
+<div class="tafseer-progress"><strong>Lessons studied:</strong> <span id="tafseer-count">0</span><br>
+<span id="tafseer-last" style="font-size:0.86rem;color:#666;"></span></div>
+<div style="margin-bottom:0.85rem;">
+<label style="font-size:0.88rem;color:#555;">Select a lesson:</label>
+<select id="tafseer-select" onchange="focusTafseerLesson(this.value)" style="margin-top:0.35rem;">
+<option value="all">Show all lessons</option>
+</select>
+</div>
+<div id="tafseer-list"></div>
+<p style="margin-top:0.95rem;font-size:0.86rem;color:#555;">
+ Full courses &amp; live classes: <a href="https://www.arrahmah.org/" target="_blank" rel="noopener">arrahmah.org</a> ·
+ <a href="https://www.youtube.com/c/arrahmahislamicinstitute" target="_blank" rel="noopener">YouTube Channel</a>
+</p>
+</div>
+</details>
+</div>
+<div class="card card-tools meme-card-realigned" id="meme-card" data-rrra="reminder" data-rrra-pin="reminder" style="border-top:3px solid var(--gold,#b8922a)">
+<h2 style="margin:0 0 .2rem;font-size:1.1rem">🎨 Clarity Meme Studio <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
+<p id="meme-fetch-status" style="font-size:.7rem;color:var(--accent);min-height:.85em;margin:0 0 .25rem"></p>
+
+<div id="meme-studio-root" class="meme-studio meme-realign">
+
+  <!-- 1. BACKGROUND CHIPS ON TOP -->
+  <div class="meme-bar meme-bar-bg">
+    <div class="meme-tool-label">Background</div>
+    <div class="meme-chip-row">
+      <button type="button" class="mv-chip" onclick="memeFetchBg('nature')">🌿 Nature</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('flickr')" title="Flickr public photostream + free Shariah-leaning nature/architecture (no figurative stock lists)">📸 Flickr</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('flowers')">🌸 Flowers</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('holy')">🕌 Holy</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Free online: Wikimedia · Picsum · Flickr public · Shariah-leaning nature/architecture">📷 Free photos</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('free')" title="Next free-catalogue image">↻ Next free</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('spirit')">✨ Spirit</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('night')">🌙 Night</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('water')">💧 Water</button>
+      <button type="button" class="mv-chip" onclick="memeFetchBg('dynamic')">🎬 Dynamic</button>
+      <button type="button" class="mv-chip" onclick="memeShowBlankPalette()">⬛ Blank</button>
+      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('mosque')}catch(e){}">🕌 Décor</button>
+      <button type="button" class="mv-chip" onclick="try{clarityMemeDecorBg('geometry')}catch(e){}">◈ Pattern</button>
+
     </div>
-    <p class="disc">Educational only — not a fatwa.</p>
-  </section>
+  </div>
 
-  <section class="cs-plaque" data-cs-primary="1" data-engine="hadith">
-    <div class="cs-plaque-head"><span class="cs-ico">🕊</span><div>
-      <h2>A saying of the Prophet ﷺ</h2>
-      <p class="lead">Short educational spark — verify wording on Sunnah.com.</p>
-    </div></div>
-    <p class="eng-en" data-hadith-text>…</p>
-    <p class="eng-status" data-hadith-src></p>
-    <div class="cs-actions">
-      <button type="button" class="cs-btn" data-hadith-next>Another spark</button>
-      <a class="cs-btn ghost" href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
+  <div class="meme-preview-only">
+    <div id="meme-stage-wrap" class="meme-stage-wrap" data-ratio="twitter">
+      <div id="meme-stage" class="meme-stage" data-ratio="twitter" style="aspect-ratio:16/9">
+        <canvas id="meme-canvas" width="1200" height="675" aria-label="Meme canvas"></canvas>
+        <div class="meme-text-box top" id="meme-box-top" data-which="top"><div class="meme-drag-handle">Top</div></div>
+        <div class="meme-text-box middle" id="meme-box-mid" data-which="mid"><div class="meme-drag-handle">Mid</div></div>
+        <div class="meme-text-box bottom" id="meme-box-bottom" data-which="bottom"><div class="meme-drag-handle">Bot</div></div>
+        <a id="meme-wm-link" href="https://clarity-dawah.fyi/#meme" target="_blank" rel="noopener noreferrer" title="Open Meme Studio"><span class="wm-hit-label">clarity-dawah.fyi/#meme</span></a>
+      </div>
+      <div id="meme-palette" class="meme-palette" hidden></div>
+      <input type="color" id="meme-blank-custom" style="display:none" onchange="memeSetBlankColor&&memeSetBlankColor(this.value)">
     </div>
-  </section>
+  </div>
 
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head"><span class="cs-ico">📜</span><div>
-      <h2>Allah’s commands to the believers</h2>
-      <p class="lead">Read · pause · move one limb toward obedience today.</p>
-      <div class="cs-chip-row"><span class="cs-chip">Samiʿnā wa aṭaʿnā</span></div>
-    </div></div>
-  </section>
+  <!-- 3. CONTROLS BELOW PREVIEW -->
+  <div class="meme-below">
+    <div class="meme-bar" id="meme-rrra-fetch-bar">
+      <div class="meme-tool-label">Fetch · verse &amp; ḥadīth (auto · no typing)</div>
+      <div class="meme-chip-row" role="group" aria-label="Fetch by learning category">
+        <button type="button" class="mv-chip mv-accent" data-rrra="reminder" onclick="memeFetchRrra('reminder')" title="Reminder — what Allah commanded">✦ Reminder</button>
+        <button type="button" class="mv-chip" data-rrra="reality" onclick="memeFetchRrra('reality')" title="Reality — what happened">◉ Reality</button>
+        <button type="button" class="mv-chip" data-rrra="reflection" onclick="memeFetchRrra('reflection')" title="Reflection — ponder the sign">☾ Reflection</button>
+        <button type="button" class="mv-chip" data-rrra="action" onclick="memeFetchRrra('action')" title="Action — do this next">➤ Action</button>
+        <button type="button" class="mv-chip" onclick="memeFetchRrra(null)" title="Random category">✨ Surprise</button>
 
-  <div class="cs-plaque" data-cs-path-only="seeker"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Seeker</h2><p class="lead">One command-verse. Read · pause · one small act today.</p></div></div></div>
-  <div class="cs-plaque" data-cs-path-only="new_muslim"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>New Muslim</h2><p class="lead">Short reminder with clear meaning — stability before volume.</p></div></div></div>
-  <div class="cs-plaque" data-cs-path-only="practicing"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Daily</h2><p class="lead">Refresh a known command; teach it to your own limbs.</p></div></div></div>
-  <div class="cs-plaque" data-cs-path-only="dai"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Daʿi</h2><p class="lead">Share with source and adab — not argument.</p></div></div></div>
+<button type="button" class="mv-chip" onclick="memeDailyVerse()">📖 Daily verse</button>
+<button type="button" class="mv-chip" onclick="memeFromJourney()">🧭 Journey</button>
+<button type="button" class="mv-chip" onclick="memeFromCommand()">📜 Command</button>
+<button type="button" class="mv-chip" onclick="memeMasnunDua()">🤲 Masnūn duʿā</button>
+<button type="button" class="mv-chip" onclick="memeNightQuote()">🌙 Night</button>
+<button type="button" class="mv-chip" onclick="memeFetchUrduDua()" title="Arabic + English only">✨ Duʿā pack</button>
+<button type="button" class="mv-chip" onclick="memeApplyUrduDua()">Apply duʿā</button>
+<button type="button" class="mv-chip" onclick="memeApplyUrduDua(true)">Apply + bg</button>
+      </div>
+      <p id="meme-rrra-status" style="font-size:.72rem;color:var(--text-muted);margin:.35rem 0 0;line-height:1.4">Tap a category — Arabic + English from Qur’an.com / authentic ḥadīth packs. No manual text or mic.</p>
 
-  <details class="cs-more"><summary>More in Reminder</summary>
-    <ul class="cs-list">
-      <li>Prophetic Names shelf</li>
-      <li>ʿIlm pathway pointers</li>
-      <li>Tafsīr resources · Craft handoffs</li>
-    </ul>
-  </details>
-  <p class="disc" style="text-align:center">Educational only — not a fatwa.</p>
+      <input type="hidden" id="meme-top-input" value="">
+      <input type="hidden" id="meme-mid-input" value="">
+      <input type="hidden" id="meme-bottom-input" value="">
+    </div>
+
+    <div class="meme-bar meme-bar-scale">
+      <div class="meme-tool-label">Scale · outline</div>
+      <div class="meme-chip-row meme-size-row-h" id="meme-line-sizes">
+<button type="button" class="mv-chip" onclick="memeAutoScaleLines()">⬚ Auto-scale</button>
+<button type="button" class="mv-chip" onclick="memeSendToTweetDesk()">↗ Tweet Desk</button>
+
+        <label>Top <input type="range" id="meme-size-top" min="14" max="72" value="42" oninput="memeOnLineSize('top',this.value)"><b id="meme-size-top-val">42</b></label>
+        <label>Mid <input type="range" id="meme-size-mid" min="14" max="72" value="42" oninput="memeOnLineSize('mid',this.value)"><b id="meme-size-mid-val">42</b></label>
+        <label>Bot <input type="range" id="meme-size-bottom" min="14" max="72" value="36" oninput="memeOnLineSize('bottom',this.value)"><b id="meme-size-bottom-val">36</b></label>
+        <label>All <input type="range" id="meme-size" min="14" max="72" value="42" oninput="memeOnSize&&memeOnSize(this.value)"><b id="meme-size-val">42</b></label>
+        <label>Outline <input type="range" id="meme-outline" min="0" max="12" value="4" oninput="memeOnOutline?memeOnOutline(this.value):(memeState.outline=+this.value,memeDraw())"><b id="meme-outline-val">4</b></label>
+      </div>
+    </div>
+
+    <div class="meme-bar">
+      <div class="meme-tool-label">Format · export</div>
+      <div class="meme-chip-row">
+        <select id="meme-ratio" onchange="memeSetRatio(this.value)" title="Canvas size"><option value="twitter" selected>X / Twitter · 16:9</option><option value="1:1">Instagram · 1:1</option><option value="facebook">Facebook · 1.91:1</option><option value="4:5">Portrait · 4:5</option></select>
+        <select id="meme-font" onchange="memeState.font=this.value;memeDraw()" title="Font style"><option value="impact">Impact</option><option value="serif">Serif</option><option value="naskh">Naskh</option><option value="sans">Sans</option><option value="arabic">Arabic</option></select>
+        <button type="button" class="mv-chip" onclick="memeDownload()">⬇ PNG</button>
+        <button type="button" class="mv-chip" onclick="memeSharePng()">📤 Share</button>
+        <button type="button" class="mv-chip" onclick="memeCopyPng()">📋 Copy</button>
+        <button type="button" class="mv-chip" onclick="try{memeState.top=memeState.mid=memeState.bottom='';['meme-top-input','meme-mid-input','meme-bottom-input'].forEach(function(id){var e=document.getElementById(id);if(e)e.value=''});memeDraw()}catch(e){}">↺ Clear</button>
+      </div>
+    </div>
+
+    <div id="meme-urdu-preview" style="display:none"></div>
+    <input type="url" id="meme-urdu-img-url" style="display:none">
+    <p id="meme-audio-status" style="font-size:.68rem;color:var(--text-muted);margin:.15rem 0 0">Watermark: clarity-dawah.fyi · text from sources only (no mic / no free-type)</p>
+    <details class="meme-tutorial-compact" id="meme-tutorial" style="margin-top:.35rem;font-size:.78rem;line-height:1.4;background:var(--accent-soft);border-radius:10px;padding:.3rem .6rem;border:1px solid var(--border)">
+      <summary style="cursor:pointer;font-weight:600;color:var(--gold);list-style:none">💡 How to · quick guide</summary>
+      <ol style="margin:.3rem 0 0;padding-left:1.1rem">
+        <li>Pick a background · tap ✦ Reminder / ◉ Reality / ☾ Reflection / ➤ Action for a verse or ḥadīth.</li>
+        <li>No typing or mic — drag text boxes on the preview · Download PNG. Educational only.</li>
+      </ol>
+    </details>
+  </div>
+</div>
+</div>
+<div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)">
+<h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
+<p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
+<div class="callig-stylus-hint" id="callig-stylus-hint">
+  <span class="callig-mode-badge" id="callig-mode-badge">Naskh · finger</span>
+  <span>One finger. Lift to end a stroke. <strong>Auto-enhance</strong> shapes ink after each stroke.</span>
+</div>
+<p id="callig-tajweed-tip" style="font-size:.84rem;color:var(--accent);margin:.3rem 0;min-height:1.2em">Select a letter, then Pronounce for tajweed-style tips.</p>
+
+<div class="callig-stage-wrap callig-lab-stage" id="callig-stage-wrap">
+  <span class="callig-live-pill" id="callig-live-pill" aria-hidden="true">Listening…</span>
+  <canvas id="callig-canvas" width="900" height="420" aria-label="Calligraphy practice pad"></canvas>
+</div>
+<div class="callig-pad-control-bar" id="callig-pad-control-bar" style="display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.45rem 0 .55rem">
+  <button type="button" class="btn-soft" onclick="try{calligClear()}catch(e){}">⌫ Clear</button>
+  <button type="button" class="btn-soft" onclick="try{if(calligState&&calligState.strokes){calligState.strokes.pop();calligDrawGuide();}}catch(e){}">↶ Undo</button>
+  <button type="button" class="btn-soft" onclick="try{calligDownload()}catch(e){}">⬇ PNG</button>
+  <button type="button" class="btn-soft" onclick="try{calligAutoEnhanceAll&&calligAutoEnhanceAll()}catch(e){}">✨ Enhance</button>
+  <button type="button" class="btn-soft" onclick="try{calligMarkPracticed&&calligMarkPracticed()}catch(e){}">✓ Practiced</button>
+  <label style="font-size:.72rem;display:inline-flex;align-items:center;gap:.25rem">
+    Size <input type="range" min="40" max="160" value="100" oninput="try{calligState.scale=+this.value;calligDrawGuide()}catch(e){}" style="width:5rem">
+  </label>
+</div>
+
+<div class="callig-topbar">
+  <div class="callig-canvas-tools" id="callig-canvas-tools">
+    <div class="ct-title">Type · translate · place</div>
+    <div class="ct-row">
+      <input type="text" id="callig-english-input" placeholder="Type English…" autocomplete="off" oninput="calligLiveTranslateFromInput()" onkeydown="if(event.key==='Enter'){event.preventDefault();calligTranslateToArabic();}">
+      <button type="button" class="btn-soft" id="callig-translate-btn" onclick="calligTranslateToArabic()">🌐 EN→AR</button>
+      <button type="button" class="btn-soft" onclick="calligSendEnglishToCanvas()">✏️ EN</button>
+      <button type="button" class="btn-soft" onclick="calligPlaceArabicOnCanvas()">📥 AR</button>
+      <button type="button" class="btn-secondary" onclick="calligSendEnglishToMeme()">🎨 Meme</button>
+    </div>
+
+    <div class="ct-row" id="callig-top-extra-row" style="margin-top:0.3rem">
+      <button type="button" class="btn-soft" onclick="calligSurprise && calligSurprise()" title="Puts your EN→AR phrase on the pad, or a practice letter if empty">✨ On pad</button>
+    </div>
+  </div>
+
+  </div>
+  <div class="callig-mic-panel" id="callig-mic-panel">
+    <div class="callig-mic-head">
+      <div class="ct-title">Speak → Whisper → Arabic</div>
+      <span class="callig-voice-status" id="callig-voice-status">Mic ready</span>
+    </div>
+    <div class="ct-row callig-voice-bar">
+      <button type="button" class="btn-soft" id="callig-mic-btn" onclick="calligMicToggle()">🎤 Start</button>
+      <button type="button" id="callig-mic-stop" class="btn-secondary" onclick="calligMicStop()" type="button">⏹ Stop</button>
+      <button type="button" class="btn-soft" onclick="calligMicPlaceEnglish()">EN→canvas</button>
+      <button type="button" class="btn-soft" onclick="calligMicPlaceArabic()">AR→canvas</button>
+      <label class="callig-live-toggle"><input type="checkbox" id="callig-live-ar" checked> Live AR</label>
+      <span class="wsp-badge" id="callig-wsp-badge">Whisper-tiny</span>
+    </div>
+    <div class="callig-live-grid">
+      <div>
+        <label class="callig-mic-capture-label" for="callig-voice-text">English</label>
+        <textarea id="callig-voice-text" class="callig-voice-text" rows="2" placeholder="Speech…" oninput="calligLiveTranslateFromCapture()"></textarea>
+      </div>
+      <div>
+        <label class="callig-mic-capture-label" for="callig-voice-ar">Arabic</label>
+        <textarea id="callig-voice-ar" class="callig-voice-text callig-voice-ar" rows="2" placeholder="الترجمة…" dir="rtl" lang="ar"></textarea>
+      </div>
+    </div>
+    <p class="callig-mic-help">Whisper-tiny on-device · tap Start, speak, tap Stop · online only for AR translate.</p>
+  </div>
+  <div id="callig-translate-preview"></div>
+</div>
+<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card">
+  <h2>𝕏 Tweet desk</h2>
+  <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
+  <div class="td-row">
+    <input type="text" id="td-handle" placeholder="@your_handle" autocomplete="username" style="min-width:10rem;padding:.4rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-elevated);color:var(--text)">
+    <button type="button" class="btn-soft" onclick="tdSaveHandle()">Save handle</button>
+    <button type="button" class="btn-secondary" onclick="tdConnectX()">Open X login</button>
+  </div>
+  <div class="td-row" role="group" aria-label="Section drafts">
+    <button type="button" class="btn-soft" onclick="tdDraft('verse')">🧭 Journey</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('commands')">📜 Commands</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('grave')">🌙 Grave</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('tafseer')">📖 Tafseer</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('seerah')">🕊 Seerah</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('sami')">⚖ Samiʿnā</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('tajweed')">🔤 Tajweed</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('quiz')">🧠 Quiz win</button>
+    <button type="button" class="btn-soft" onclick="tdDraft('meme')">🎨 Meme</button>
+    <button type="button" onclick="tdDraft('surprise')" onclick="claritySurpriseMe()">✨ Surprise me</button>
+    <button type="button" class="btn-soft" onclick="tdRefreshOnline()">↻ Refresh live</button>
+    <button type="button" class="btn-soft" onclick="tdSendToMeme()">🎨 To Meme Studio</button>
+  </div>
+  <textarea id="td-text" maxlength="280" rows="8" placeholder="﴿ Arabic ﴾&#10;English&#10;https://clarity-dawah.fyi/#journey" oninput="tdCount()"></textarea>
+  <div class="td-meta" id="td-meta"><span id="td-count">0 / 280</span><span id="td-status">Ready</span></div>
+  <div class="td-row">
+    <button type="button" onclick="tdPost()">Post on X</button>
+    <button type="button" class="btn-secondary" onclick="tdCopy()">Copy draft</button>
+    <button type="button" class="btn-soft" onclick="tdRemind()">Daily reminder</button>
+  </div>
+</div>
+
+</div></div>
+</div>
+<p class="disc" style="text-align:center;margin:1rem 0">Educational only — not a fatwa. Full module bodies restored from pre-shell Companion · interactive engines re-hydrated where hooked.</p>
 </article>
 </body>
 </html>
