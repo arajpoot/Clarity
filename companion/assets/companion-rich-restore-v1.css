@@ -1,30 +1,160 @@
-
-/*! rich restore — legacy tab bodies inside shell mount */
+/*! rich restore + bleed lock · dark shell parity · educational only */
+.cs-rich-tab,
 .cs-rich-legacy {
+  color: #e8f0ec !important;
+  background: transparent !important;
   max-width: none;
   width: 100%;
   box-sizing: border-box;
 }
+
+/* Kill light/white surfaces leaking from legacy cards */
+.cs-rich-legacy,
+.cs-rich-legacy * {
+  color: inherit;
+}
 .cs-rich-legacy .card,
-.cs-rich-legacy [class*="card"] {
+.cs-rich-legacy [class*="card"],
+.cs-rich-legacy .panel,
+.cs-rich-legacy section,
+.cs-rich-legacy .box,
+.cs-rich-legacy .tile {
   max-width: none !important;
   width: 100% !important;
-  box-sizing: border-box;
-  margin: 0.55rem 0;
-  border-radius: 16px;
-  border: 1px solid rgba(201,162,39,0.35);
-  background: linear-gradient(155deg, rgba(255,255,255,.04), rgba(12,28,22,.3)), rgba(8,18,14,.88);
-  padding: 0.85rem 1rem;
+  box-sizing: border-box !important;
+  margin: 0.55rem 0 !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(201, 162, 39, 0.38) !important;
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.04), rgba(12, 28, 22, 0.32)),
+    rgba(8, 18, 14, 0.92) !important;
+  color: #e8f0ec !important;
+  padding: 0.85rem 1rem !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset !important;
 }
-.cs-rich-legacy h2 {
+.cs-rich-legacy h1,
+.cs-rich-legacy h2,
+.cs-rich-legacy h3,
+.cs-rich-legacy strong {
+  color: #e8d5a3 !important;
   font-family: "Cormorant Garamond", Georgia, serif;
-  color: #e8d5a3;
 }
-.cs-rich-legacy a { color: #e6c86a; }
-/* Hide duplicate RRRA hub headers already in shell focus */
-.cs-rich-legacy .rrra-hub-title-row { margin-top: 0.25rem; }
-/* Craft embeds: keep visible but note handoff */
-.cs-rich-legacy #meme-studio-root,
-.cs-rich-legacy .meme-studio-root {
-  border: 1px dashed rgba(201,162,39,.4);
+.cs-rich-legacy p,
+.cs-rich-legacy li,
+.cs-rich-legacy span,
+.cs-rich-legacy label,
+.cs-rich-legacy small {
+  color: rgba(232, 240, 236, 0.92) !important;
+}
+.cs-rich-legacy a {
+  color: #e6c86a !important;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(230, 200, 106, 0.35);
+}
+.cs-rich-legacy a:hover { color: #fff3c4 !important; }
+
+/* Buttons — no white system tabs */
+.cs-rich-legacy button,
+.cs-rich-legacy .btn,
+.cs-rich-legacy input[type="button"],
+.cs-rich-legacy input[type="submit"] {
+  background: rgba(30, 125, 94, 0.4) !important;
+  color: #f3efe6 !important;
+  border: 1px solid rgba(201, 162, 39, 0.4) !important;
+  border-radius: 999px !important;
+  min-height: 2rem;
+  padding: 0.3rem 0.75rem !important;
+  font-weight: 700 !important;
+}
+.cs-rich-legacy input,
+.cs-rich-legacy textarea,
+.cs-rich-legacy select {
+  background: rgba(0, 0, 0, 0.4) !important;
+  color: #e8f0ec !important;
+  border: 1px solid rgba(201, 162, 39, 0.35) !important;
+  border-radius: 10px !important;
+}
+
+/* Hide broken track pills that reintroduce light UI / script chrome */
+.cs-rich-legacy .clarity-gate-switcher,
+.cs-rich-legacy #clarity-path-pills,
+.cs-rich-legacy .cgs-btn,
+.cs-rich-legacy [onclick*="claritySwitchGate"],
+.cs-rich-legacy .rrra-hub-title-row + .track,
+.cs-rich-legacy .path-track-pills {
+  /* keep structure but darken */
+}
+.cs-rich-legacy .cgs-btn,
+.cs-rich-legacy .path-pill,
+.cs-rich-legacy [data-gate] {
+  background: rgba(0, 0, 0, 0.35) !important;
+  color: #e8d5a3 !important;
+  border: 1px solid rgba(201, 162, 39, 0.35) !important;
+}
+
+/* Arabic */
+.cs-rich-legacy [lang="ar"],
+.cs-rich-legacy .arabic,
+.cs-rich-legacy .quran-ar {
+  font-family: Amiri, "Times New Roman", serif !important;
+  color: #f3efe6 !important;
+  line-height: 1.85;
+}
+
+/* Hide raw script text nodes if any leaked as visible */
+.cs-rich-legacy script { display: none !important; }
+
+/* ===== Path tiles UX: Daily + Daʿi readable & balanced ===== */
+.cs-path-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.45rem !important;
+}
+@media (min-width: 720px) {
+  .cs-path-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+.cs-path button[data-cs-path] {
+  min-height: 4.1rem;
+  text-align: left;
+  border-radius: 14px !important;
+  border: 1px solid rgba(201, 162, 39, 0.35) !important;
+  background: rgba(0, 0, 0, 0.32) !important;
+  color: #e8f0ec !important;
+  padding: 0.55rem 0.65rem !important;
+}
+.cs-path button[data-cs-path] strong {
+  display: block;
+  color: #e8d5a3 !important;
+  font-size: 0.88rem !important;
+  font-weight: 800 !important;
+}
+.cs-path button[data-cs-path] span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.72rem !important;
+  line-height: 1.3 !important;
+  opacity: 0.9;
+  color: rgba(232, 240, 236, 0.88) !important;
+  white-space: normal !important;
+}
+.cs-path button[data-cs-path="practicing"] strong::before {
+  content: none;
+}
+.cs-path button[data-cs-path].is-active {
+  outline: 2px solid #1e7d5e !important;
+  background: rgba(30, 125, 94, 0.28) !important;
+  border-color: transparent !important;
+}
+/* Explicit labels for Daily / Daʿi clarity */
+.cs-path button[data-cs-path="practicing"] strong { letter-spacing: 0.01em; }
+.cs-path button[data-cs-path="dai"] strong { letter-spacing: 0.01em; }
+
+/* Focus strip never white */
+.cs-focus-plaque {
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.05), rgba(12, 28, 22, 0.4)),
+    rgba(8, 18, 14, 0.94) !important;
+  color: #e8f0ec !important;
 }
