@@ -158,3 +158,107 @@
     rgba(8, 18, 14, 0.94) !important;
   color: #e8f0ec !important;
 }
+
+/* ===== Craft modules: full width + real stage height (Daily / Daʿi) ===== */
+.cs-rich-legacy #meme-card,
+.cs-rich-legacy #callig-lab-card,
+.cs-rich-legacy #tweet-desk-card,
+.cs-rich-legacy #tj-deep-studio,
+.cs-rich-legacy [id*="meme"],
+.cs-rich-legacy [id*="callig"] {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+.cs-rich-legacy #meme-studio-root,
+.cs-rich-legacy .meme-studio {
+  display: block !important;
+  width: 100% !important;
+  min-height: 320px !important;
+  box-sizing: border-box !important;
+}
+.cs-rich-legacy #meme-stage-wrap,
+.cs-rich-legacy .meme-stage-wrap,
+.cs-rich-legacy .meme-stage {
+  display: block !important;
+  width: 100% !important;
+  min-height: 240px !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(201, 162, 39, 0.28) !important;
+  margin: 0.45rem 0 !important;
+}
+.cs-rich-legacy #meme-studio-root canvas,
+.cs-rich-legacy .meme-stage canvas {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 240px !important;
+  height: auto !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  border-radius: 12px !important;
+}
+.cs-rich-legacy #callig-stage-wrap,
+.cs-rich-legacy .callig-stage-wrap,
+.cs-rich-legacy .callig-lab-stage {
+  display: block !important;
+  width: 100% !important;
+  min-height: 260px !important;
+  position: relative !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(201, 162, 39, 0.3) !important;
+  margin: 0.45rem 0 !important;
+}
+.cs-rich-legacy #callig-canvas {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 240px !important;
+  touch-action: none !important;
+}
+.cs-rich-legacy .meme-chip-row,
+.cs-rich-legacy .meme-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  width: 100% !important;
+}
+.cs-rich-legacy .mv-chip {
+  background: rgba(30, 125, 94, 0.35) !important;
+  color: #f3efe6 !important;
+  border: 1px solid rgba(201, 162, 39, 0.35) !important;
+  border-radius: 999px !important;
+  padding: 0.3rem 0.65rem !important;
+  font-size: 0.72rem !important;
+}
+/* Craft room handoff strip */
+.cs-craft-handoff {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.45rem 0 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background: linear-gradient(155deg, rgba(30, 125, 94, 0.25), rgba(8, 18, 14, 0.9));
+}
+.cs-craft-handoff p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(232, 240, 236, 0.92) !important;
+}
+.cs-craft-handoff a {
+  display: inline-flex;
+  min-height: 2.1rem;
+  align-items: center;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(30, 125, 94, 0.55);
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none;
+  border: none !important;
+}
