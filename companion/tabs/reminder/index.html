@@ -4,101 +4,69 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Reminder · Companion</title>
-<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P3"/>
+<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P45"/>
+<link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261114P45"/>
 </head>
 <body>
 <article data-cs-tab-body data-tab="reminder">
   <header class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">✦</span>
-      <div>
-        <h1>Reminder</h1>
-        <p class="lead">What Allah ﷻ and His Messenger ﷺ taught — Qurʾān, commands, Names, and living words.</p>
-        <div class="cs-chip-row">
-          <span class="cs-chip">Phase 3 extract</span>
-          <span class="cs-chip">Path-aware</span>
-          <span class="cs-chip">Educational only</span>
-        </div>
-        <p class="disc">Modules migrated as structured plaques. Interactive engines (live verse fetch, counters) re-bind in Phase 4 without stripping richness.</p>
-      </div>
-    </div>
+    <div class="cs-plaque-head"><span class="cs-ico">✦</span><div>
+      <h1>Reminder</h1>
+      <p class="lead">What Allah ﷻ and His Messenger ﷺ taught — Qurʾān, commands, Names, and living words.</p>
+      <div class="cs-chip-row"><span class="cs-chip">Live engines</span><span class="cs-chip">Educational only</span></div>
+    </div></div>
   </header>
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">📜</span>
-      <div>
-        <h2>Allah’s commands to the believers</h2>
-        <p class="lead">Curated “Yā ayyuhā alladhīna āmanū” style reminders with practical follow-ups. Read · pause · one limb of action.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Commands</span><span class="cs-chip">Samiʿnā wa aṭaʿnā</span></div>
-      </div>
+
+  <section class="cs-plaque" data-cs-primary="1" data-engine="verse">
+    <div class="cs-plaque-head"><span class="cs-ico">📖</span><div>
+      <h2>Daily command-verse</h2>
+      <p class="lead">One āyah · Arabic · Sahih International meaning. Educational rendering — verify in a muṣḥaf.</p>
+    </div></div>
+    <p class="eng-ref" data-verse-ref>—</p>
+    <p class="eng-ar" data-verse-ar lang="ar" dir="rtl">…</p>
+    <p class="eng-en" data-verse-en>…</p>
+    <p class="eng-status" data-verse-status></p>
+    <div class="cs-actions">
+      <button type="button" class="cs-btn" data-verse-next>Another āyah</button>
+      <a class="cs-btn ghost" href="https://quran.com" target="_blank" rel="noopener">Open Quran.com</a>
+    </div>
+    <p class="disc">Educational only — not a fatwa.</p>
+  </section>
+
+  <section class="cs-plaque" data-cs-primary="1" data-engine="hadith">
+    <div class="cs-plaque-head"><span class="cs-ico">🕊</span><div>
+      <h2>A saying of the Prophet ﷺ</h2>
+      <p class="lead">Short educational spark — verify wording on Sunnah.com.</p>
+    </div></div>
+    <p class="eng-en" data-hadith-text>…</p>
+    <p class="eng-status" data-hadith-src></p>
+    <div class="cs-actions">
+      <button type="button" class="cs-btn" data-hadith-next>Another spark</button>
+      <a class="cs-btn ghost" href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
     </div>
   </section>
+
   <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">📖</span>
-      <div>
-        <h2>Daily command-verse</h2>
-        <p class="lead">One living command-verse for today. Arabic · meaning · outbound source when available.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Verse</span><span class="cs-chip">Source-linked</span></div>
-      </div>
-    </div>
+    <div class="cs-plaque-head"><span class="cs-ico">📜</span><div>
+      <h2>Allah’s commands to the believers</h2>
+      <p class="lead">Read · pause · move one limb toward obedience today.</p>
+      <div class="cs-chip-row"><span class="cs-chip">Samiʿnā wa aṭaʿnā</span></div>
+    </div></div>
   </section>
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">🕊</span>
-      <div>
-        <h2>A saying of the Prophet ﷺ</h2>
-        <p class="lead">Short, educational ḥadīth spark. Prefer Sunnah.com for verification — not a ruling.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Ḥadīth</span><span class="cs-chip">Educational</span></div>
-      </div>
-    </div>
-  </section>
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">✦</span>
-      <div>
-        <h2>Daily Name of the Prophet ﷺ</h2>
-        <p class="lead">One prophetic name to sit with — love and recognition, not debate.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Names</span></div>
-      </div>
-    </div>
-  </section>
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">🕮</span>
-      <div>
-        <h2>ʿIlm pathway</h2>
-        <p class="lead">Ordered pointers for seeking knowledge: foundations before branches.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Path</span><span class="cs-chip">Tadarruj</span></div>
-      </div>
-    </div>
-  </section>
-  <div class="cs-plaque" data-cs-path-only="seeker">
-    <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-    <div><h2>Seeker emphasis</h2><p class="lead">One command-verse. Read · pause · one small act today.</p>
-    <p class="disc">Educational only — not a fatwa.</p></div></div>
-  </div>
-  <div class="cs-plaque" data-cs-path-only="new_muslim">
-    <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-    <div><h2>New Muslim emphasis</h2><p class="lead">Short reminder with clear meaning — stability before volume.</p>
-    <p class="disc">Educational only — not a fatwa.</p></div></div>
-  </div>
-  <div class="cs-plaque" data-cs-path-only="practicing">
-    <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-    <div><h2>Daily emphasis</h2><p class="lead">Refresh a known command; teach it to your own limbs.</p>
-    <p class="disc">Educational only — not a fatwa.</p></div></div>
-  </div>
-  <div class="cs-plaque" data-cs-path-only="dai">
-    <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-    <div><h2>Daʿi emphasis</h2><p class="lead">Choose a verse you can share with source and adab — not argument.</p>
-    <p class="disc">Educational only — not a fatwa.</p></div></div>
-  </div>
-  <details class="cs-more">
-    <summary>More in this tab · optional depth</summary>
-    <ul class="cs-list"><li>Tafsīr resources shelf</li><li>Tafsīr by Ustazah Najiha Hashmi (pointers)</li><li>Meme Studio handoff → Craft room</li><li>Calligraphy lab handoff → Craft</li><li>Tweet desk handoff → Craft</li></ul>
-    <p class="disc">Secondary modules preserved under More — enrichment hold.</p>
+
+  <div class="cs-plaque" data-cs-path-only="seeker"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Seeker</h2><p class="lead">One command-verse. Read · pause · one small act today.</p></div></div></div>
+  <div class="cs-plaque" data-cs-path-only="new_muslim"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>New Muslim</h2><p class="lead">Short reminder with clear meaning — stability before volume.</p></div></div></div>
+  <div class="cs-plaque" data-cs-path-only="practicing"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Daily</h2><p class="lead">Refresh a known command; teach it to your own limbs.</p></div></div></div>
+  <div class="cs-plaque" data-cs-path-only="dai"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Daʿi</h2><p class="lead">Share with source and adab — not argument.</p></div></div></div>
+
+  <details class="cs-more"><summary>More in Reminder</summary>
+    <ul class="cs-list">
+      <li>Prophetic Names shelf</li>
+      <li>ʿIlm pathway pointers</li>
+      <li>Tafsīr resources · Craft handoffs</li>
+    </ul>
   </details>
-  <p class="disc" style="text-align:center;margin-top:1rem">Educational only — not a fatwa. Verify with a local scholar.</p>
+  <p class="disc" style="text-align:center">Educational only — not a fatwa.</p>
 </article>
 </body>
 </html>
