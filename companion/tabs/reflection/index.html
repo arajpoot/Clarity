@@ -4,101 +4,71 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Reflection · Companion</title>
-<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P3"/>
+<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P45"/>
+<link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261114P45"/>
 </head>
 <body>
 <article data-cs-tab-body data-tab="reflection">
   <header class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">☾</span>
-      <div>
-        <h1>Reflection</h1>
-        <p class="lead">Heart work — character, dhikr, and honest self-audit before sleep.</p>
-        <div class="cs-chip-row">
-          <span class="cs-chip">Phase 3 extract</span>
-          <span class="cs-chip">Path-aware</span>
-          <span class="cs-chip">Educational only</span>
-        </div>
-        <p class="disc">Modules migrated as structured plaques. Interactive engines (live verse fetch, counters) re-bind in Phase 4 without stripping richness.</p>
-      </div>
-    </div>
+    <div class="cs-plaque-head"><span class="cs-ico">☾</span><div>
+      <h1>Reflection</h1>
+      <p class="lead">Heart work — character, dhikr, and honest self-audit.</p>
+      <div class="cs-chip-row"><span class="cs-chip">Live engines</span><span class="cs-chip">Educational only</span></div>
+    </div></div>
   </header>
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">🧭</span>
-      <div>
-        <h2>Soul Compass — three gates before sleep</h2>
-        <p class="lead">One hope, one fear, return to Allah. A nightly honesty check — not a score.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Heart</span><span class="cs-chip">Night</span></div>
-      </div>
+
+  <section class="cs-plaque" data-cs-primary="1" data-engine="compass">
+    <div class="cs-plaque-head"><span class="cs-ico">🧭</span><div>
+      <h2>Soul Compass — three gates</h2>
+      <p class="lead">Before sleep: hope · fear · return.</p>
+    </div></div>
+    <div class="cs-actions">
+      <button type="button" class="cs-btn" data-compass-gate="hope">Hope</button>
+      <button type="button" class="cs-btn" data-compass-gate="fear">Fear</button>
+      <button type="button" class="cs-btn" data-compass-gate="return">Return</button>
+    </div>
+    <p class="eng-status" data-compass-status>Tap a gate.</p>
+    <p class="disc">A mirror — not a score of īmān.</p>
+  </section>
+
+  <section class="cs-plaque" data-cs-primary="1" data-engine="dhikr">
+    <div class="cs-plaque-head"><span class="cs-ico">🤲</span><div>
+      <h2>Daily dhikr (on-device)</h2>
+      <p class="lead">Quality over quantity — educational counters only.</p>
+    </div></div>
+    <div class="eng-dhikr-grid">
+      <div><strong>Istighfār</strong><p class="eng-count" data-dhikr="istighfar">0</p>
+        <button type="button" class="cs-btn" data-dhikr-inc="istighfar">+1</button>
+        <button type="button" class="cs-btn ghost" data-dhikr-reset="istighfar">Reset</button></div>
+      <div><strong>Ṣalawāt</strong><p class="eng-count" data-dhikr="salawat">0</p>
+        <button type="button" class="cs-btn" data-dhikr-inc="salawat">+1</button>
+        <button type="button" class="cs-btn ghost" data-dhikr-reset="salawat">Reset</button></div>
+      <div><strong>Zikr</strong><p class="eng-count" data-dhikr="zikr">0</p>
+        <button type="button" class="cs-btn" data-dhikr-inc="zikr">+1</button>
+        <button type="button" class="cs-btn ghost" data-dhikr-reset="zikr">Reset</button></div>
     </div>
   </section>
+
   <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">🕯</span>
-      <div>
-        <h2>If I die tonight…</h2>
-        <p class="lead">Gentle memento mori. Furnish the grave with light, not panic.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Grave-conscious</span></div>
-      </div>
-    </div>
+    <div class="cs-plaque-head"><span class="cs-ico">🕯</span><div>
+      <h2>If I die tonight…</h2>
+      <p class="lead">Gentle memento mori. Furnish the grave with light, not panic.</p>
+    </div></div>
   </section>
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">📖</span>
-      <div>
-        <h2>Today’s character lesson</h2>
-        <p class="lead">One akhlāq lesson with a verse or report when available.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Character</span></div>
-      </div>
-    </div>
-  </section>
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">✨</span>
-      <div>
-        <h2>Asmāʾ Allāh al-Ḥusnā</h2>
-        <p class="lead">Search and sit with one Beautiful Name. Quality presence over speed.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Names</span></div>
-      </div>
-    </div>
-  </section>
-  <section class="cs-plaque" data-cs-primary="1">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">🤲</span>
-      <div>
-        <h2>Daily dhikr</h2>
-        <p class="lead">Istighfār · ṣalawāt · zikr counters on-device — educational trackers only.</p>
-        <div class="cs-chip-row"><span class="cs-chip">Dhikr</span></div>
-      </div>
-    </div>
-  </section>
-  <div class="cs-plaque" data-cs-path-only="seeker">
-    <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-    <div><h2>Seeker emphasis</h2><p class="lead">Soul audit: one hope, one fear, return to Allah.</p>
-    <p class="disc">Educational only — not a fatwa.</p></div></div>
-  </div>
-  <div class="cs-plaque" data-cs-path-only="new_muslim">
-    <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-    <div><h2>New Muslim emphasis</h2><p class="lead">A Name of Allah and one feeling it steadies.</p>
-    <p class="disc">Educational only — not a fatwa.</p></div></div>
-  </div>
-  <div class="cs-plaque" data-cs-path-only="practicing">
-    <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-    <div><h2>Daily emphasis</h2><p class="lead">Dhikr honesty — quality over count.</p>
-    <p class="disc">Educational only — not a fatwa.</p></div></div>
-  </div>
-  <div class="cs-plaque" data-cs-path-only="dai">
-    <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-    <div><h2>Daʿi emphasis</h2><p class="lead">Check intention before speech: guidance, not winning.</p>
-    <p class="disc">Educational only — not a fatwa.</p></div></div>
-  </div>
-  <details class="cs-more">
-    <summary>More in this tab · optional depth</summary>
-    <ul class="cs-list"><li>Note for the grave</li><li>Furnishing my grave prompts</li><li>Supplications for the deceased</li><li>What benefits the deceased — scholarly pointers</li><li>Live tafsīr āyah panel</li><li>Journey profile / streak display</li></ul>
-    <p class="disc">Secondary modules preserved under More — enrichment hold.</p>
+
+  <div class="cs-plaque" data-cs-path-only="seeker"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Seeker</h2><p class="lead">Soul audit: one hope, one fear, return to Allah.</p></div></div></div>
+  <div class="cs-plaque" data-cs-path-only="new_muslim"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>New Muslim</h2><p class="lead">A Name of Allah and one feeling it steadies.</p></div></div></div>
+  <div class="cs-plaque" data-cs-path-only="practicing"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Daily</h2><p class="lead">Dhikr honesty — quality over count.</p></div></div></div>
+  <div class="cs-plaque" data-cs-path-only="dai"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Daʿi</h2><p class="lead">Check intention before speech.</p></div></div></div>
+
+  <details class="cs-more"><summary>More in Reflection</summary>
+    <ul class="cs-list">
+      <li>Asmāʾ Allāh search</li>
+      <li>Note for the grave · furnishing prompts</li>
+      <li>Supplications for the deceased</li>
+    </ul>
   </details>
-  <p class="disc" style="text-align:center;margin-top:1rem">Educational only — not a fatwa. Verify with a local scholar.</p>
+  <p class="disc" style="text-align:center">Educational only — not a fatwa.</p>
 </article>
 </body>
 </html>
