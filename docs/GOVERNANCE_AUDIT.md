@@ -1,16 +1,8 @@
-# Bismillāh · Companion calm chrome
+# Bismillāh · content stream
 
 **Verdict: GREEN**
 
-## What calmed
-- Single sticky room rail (emoji/sub labels hidden)
-- Global nav + visit pill bar suppressed
-- Path tiles in one glass plaque
-- Door rail larger, readable (desktop + mobile)
-- Banner shell kept (isolated iframe)
-
-## Isolation
-CSS/JS gated on `data-clarity-room="companion"` / `/companion` path only.
-Campus / Yawm / Amānah / Craft untouched.
-
-Educational only — not a fatwa.
+- Enrichment hold: secondaries collapsed, not stripped
+- Isolation: companion only
+- Educational only — not a fatwa
+- Path×tab progressive disclosure + Today’s focus strip
