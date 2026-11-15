@@ -1,1 +1,8 @@
-Deploy companion/assets/companion-content-stream-v1.* + index. Hard-refresh /companion/
+Deploy:
+  companion/index.html
+  companion/assets/companion-shell-v1.css
+  companion/assets/companion-shell-v1.js
+  companion/assets/companion-content-stream-v2.js
+  companion/tabs/*/index.html
+Banner folder unchanged.
+Hard-refresh /companion/
