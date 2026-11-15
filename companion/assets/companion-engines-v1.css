@@ -1,0 +1,17 @@
+/*! engines UI */
+.eng-ref { margin: 0.35rem 0; font-weight: 800; color: #e8d5a3; font-size: 0.9rem; }
+.eng-ar {
+  margin: 0.35rem 0; font-size: 1.25rem; line-height: 1.85;
+  font-family: Amiri, "Times New Roman", serif; color: #f3efe6;
+}
+.eng-en { margin: 0.25rem 0; font-size: 0.92rem; line-height: 1.45; color: rgba(232,240,236,.92); }
+.eng-status { margin: 0.25rem 0; font-size: 0.75rem; opacity: 0.85; }
+.eng-count { font-size: 1.6rem; font-weight: 800; color: #e8d5a3; margin: 0.2rem 0; }
+.eng-dhikr-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.55rem; margin-top: 0.45rem;
+}
+.eng-dhikr-grid > div {
+  border-radius: 12px; border: 1px solid rgba(201,162,39,.28);
+  background: rgba(0,0,0,.25); padding: 0.55rem 0.65rem; text-align: center;
+}
