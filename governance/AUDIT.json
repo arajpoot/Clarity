@@ -1,0 +1,162 @@
+{
+  "urls": {
+    "shell": {
+      "ok": true,
+      "status": 200,
+      "len": 4092,
+      "final": "https://clarity-dawah.fyi/companion/"
+    },
+    "shell_js": {
+      "ok": true,
+      "status": 200,
+      "len": 4881,
+      "final": "https://clarity-dawah.fyi/companion/assets/companion-shell-v1.js"
+    },
+    "stream_v2": {
+      "ok": true,
+      "status": 200,
+      "len": 3142,
+      "final": "https://clarity-dawah.fyi/companion/assets/companion-content-stream-v2.js"
+    },
+    "engines": {
+      "ok": true,
+      "status": 200,
+      "len": 8953,
+      "final": "https://clarity-dawah.fyi/companion/assets/companion-tab-engines-v1.js"
+    },
+    "path_stacks": {
+      "ok": true,
+      "status": 200,
+      "len": 1402,
+      "final": "https://clarity-dawah.fyi/companion/assets/companion-path-stacks-v1.js"
+    },
+    "about_mount": {
+      "ok": true,
+      "status": 200,
+      "len": 5552,
+      "final": "https://clarity-dawah.fyi/companion/assets/companion-about-mount-v1.js"
+    },
+    "engines_css": {
+      "ok": true,
+      "status": 200,
+      "len": 795,
+      "final": "https://clarity-dawah.fyi/companion/assets/companion-engines-v1.css"
+    },
+    "banner": {
+      "ok": true,
+      "status": 200,
+      "len": 16382,
+      "final": "https://clarity-dawah.fyi/companion/banner/"
+    }
+  },
+  "content": {
+    "reminder": {
+      "status": 200,
+      "len": 4208,
+      "missing": [],
+      "paths": 4,
+      "more": true,
+      "edu": true
+    },
+    "reality": {
+      "status": 200,
+      "len": 3895,
+      "missing": [],
+      "paths": 4,
+      "more": true,
+      "edu": true
+    },
+    "reflection": {
+      "status": 200,
+      "len": 4443,
+      "missing": [],
+      "paths": 4,
+      "more": true,
+      "edu": true
+    },
+    "action": {
+      "status": 200,
+      "len": 4252,
+      "missing": [],
+      "paths": 4,
+      "more": true,
+      "edu": true
+    },
+    "notes": {
+      "status": 200,
+      "len": 4540,
+      "missing": [],
+      "paths": 4,
+      "more": true,
+      "edu": true
+    },
+    "about": {
+      "status": 200,
+      "len": 6685,
+      "missing": [],
+      "paths": 4,
+      "more": true,
+      "edu": true
+    }
+  },
+  "engines": {
+    "quran_api": true,
+    "hadith_sparks": true,
+    "dhikr": true,
+    "tajweed": true,
+    "hydrate": true,
+    "mount_watch": true,
+    "edu": true
+  },
+  "gov": {
+    "shell_only": true,
+    "banner_iframe": true,
+    "room_attr": true,
+    "no_campus_merge": true,
+    "engines_wired": true,
+    "about_mount_wired": true,
+    "contract_path": "/GOVERNANCE_CONTRACT.md",
+    "contract_enrichment": true,
+    "contract_isolation": false,
+    "contract_edu": true
+  },
+  "enrichment": {
+    "reminder": {
+      "len": 4208,
+      "min": 2000,
+      "ok": true
+    },
+    "reality": {
+      "len": 3895,
+      "min": 2000,
+      "ok": true
+    },
+    "reflection": {
+      "len": 4443,
+      "min": 2000,
+      "ok": true
+    },
+    "action": {
+      "len": 4252,
+      "min": 2000,
+      "ok": true
+    },
+    "notes": {
+      "len": 4540,
+      "min": 1500,
+      "ok": true
+    },
+    "about": {
+      "len": 6685,
+      "min": 2000,
+      "ok": true
+    },
+    "feedback": {
+      "send": true,
+      "copy": true,
+      "types": true
+    }
+  },
+  "fails": [],
+  "verdict": "GREEN"
+}
