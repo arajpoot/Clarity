@@ -21,10 +21,10 @@
       dai: "Study a transmitted report with care — name the source."
     },
     reflection: {
-      seeker: "Soul audit: one hope, one fear, return to Allah.",
-      new_muslim: "A Name of Allah and one feeling it steadies.",
-      practicing: "Dhikr honesty — quality over count.",
-      dai: "Check intention before speech: guidance, not winning."
+      seeker: "Tawbah wakes the heart: one honest return to Allah today.",
+      new_muslim: "Mercy first — learn prayer; return quickly when you slip.",
+      practicing: "After a slip: tawbah, next prayer, restore the wird.",
+      dai: "Clean your page before you invite others — adab with Allah first."
     },
     action: {
       seeker: "One deed you can finish before sleep.",
