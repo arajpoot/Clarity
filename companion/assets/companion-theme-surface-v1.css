@@ -1,0 +1,162 @@
+/*! companion-theme-surface-v1
+ * Fixes "white holes" (unstyled inputs/textareas/selects) and default blue links
+ * inside Companion dark (and light) theme. Educational only — not a fatwa.
+ */
+
+/* —— Links: kill browser default blue —— */
+html[data-clarity-room="companion"] a,
+html[data-clarity-room="companion"] #cs-mount a,
+html[data-clarity-room="companion"] .cs-mount a {
+  color: #d4b45a;
+  text-decoration: none;
+}
+html[data-clarity-room="companion"] a:hover,
+html[data-clarity-room="companion"] #cs-mount a:hover {
+  color: #f0d78c;
+  text-decoration: underline;
+}
+html[data-clarity-room="companion"] a:visited {
+  color: #c9a227;
+}
+
+/* External research links stay gold, not browser blue */
+html[data-clarity-room="companion"] .td-src a,
+html[data-clarity-room="companion"] .deep-learn a {
+  color: #c9e4c9;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.35);
+}
+
+/* —— Form controls: no more white holes —— */
+html[data-clarity-room="companion"] input,
+html[data-clarity-room="companion"] textarea,
+html[data-clarity-room="companion"] select,
+html[data-clarity-room="companion"] #cs-mount input,
+html[data-clarity-room="companion"] #cs-mount textarea,
+html[data-clarity-room="companion"] #cs-mount select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #0f1c17 !important;
+  background-color: #0f1c17 !important;
+  color: #e7efe9 !important;
+  border: 1px solid rgba(201, 162, 39, 0.35) !important;
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  font: inherit;
+  line-height: 1.4;
+  max-width: 100%;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  caret-color: #c9a227;
+}
+html[data-clarity-room="companion"] input::placeholder,
+html[data-clarity-room="companion"] textarea::placeholder {
+  color: rgba(231, 239, 233, 0.45) !important;
+  opacity: 1;
+}
+html[data-clarity-room="companion"] input:focus,
+html[data-clarity-room="companion"] textarea:focus,
+html[data-clarity-room="companion"] select:focus {
+  outline: none;
+  border-color: rgba(201, 162, 39, 0.75) !important;
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.18);
+}
+
+/* Textareas (Ask Grok, VT, notes) */
+html[data-clarity-room="companion"] textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+/* Select arrows readable on dark */
+html[data-clarity-room="companion"] select {
+  background-image: linear-gradient(45deg, transparent 50%, #c9a227 50%),
+    linear-gradient(135deg, #c9a227 50%, transparent 50%);
+  background-position: calc(100% - 14px) calc(50% - 3px), calc(100% - 9px) calc(50% - 3px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 1.6rem;
+}
+
+/* Buttons that were bare browser chrome */
+html[data-clarity-room="companion"] button:not(.door-rail-btn):not([data-cs-path]):not(.cs-door button),
+html[data-clarity-room="companion"] #cs-mount button,
+html[data-clarity-room="companion"] input[type="button"],
+html[data-clarity-room="companion"] input[type="submit"] {
+  background: rgba(15, 76, 58, 0.55);
+  color: #e7efe9;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  border-radius: 0.55rem;
+  padding: 0.4rem 0.7rem;
+  font: inherit;
+  cursor: pointer;
+  line-height: 1.3;
+}
+html[data-clarity-room="companion"] #cs-mount button:hover {
+  border-color: rgba(201, 162, 39, 0.75);
+  background: rgba(30, 100, 75, 0.65);
+}
+
+/* Soft / secondary already classed */
+html[data-clarity-room="companion"] .btn-soft,
+html[data-clarity-room="companion"] button.btn-soft {
+  background: rgba(0, 0, 0, 0.25);
+  color: #e7efe9;
+}
+html[data-clarity-room="companion"] .btn,
+html[data-clarity-room="companion"] button.btn {
+  background: rgba(30, 125, 94, 0.55);
+  color: #f2faf6;
+}
+
+/* Quiz choice rows — full width dark, not white bars */
+html[data-clarity-room="companion"] #fq-stage .fq-choice,
+html[data-clarity-room="companion"] #fq-stage button {
+  background: #0f1c17 !important;
+  color: #e7efe9 !important;
+  border: 1px solid rgba(201, 162, 39, 0.28) !important;
+  text-align: left;
+  width: 100%;
+  margin: 0.3rem 0;
+}
+
+/* Autofill (Chrome white flash) */
+html[data-clarity-room="companion"] input:-webkit-autofill,
+html[data-clarity-room="companion"] textarea:-webkit-autofill,
+html[data-clarity-room="companion"] select:-webkit-autofill {
+  -webkit-text-fill-color: #e7efe9 !important;
+  box-shadow: 0 0 0 1000px #0f1c17 inset !important;
+  transition: background-color 99999s ease-out;
+}
+
+/* Light theme companion (if user toggles) */
+html[data-clarity-room="companion"][data-theme="light"] input,
+html[data-clarity-room="companion"][data-theme="light"] textarea,
+html[data-clarity-room="companion"][data-theme="light"] select {
+  background: #f7f3ea !important;
+  background-color: #f7f3ea !important;
+  color: #14201a !important;
+  border-color: rgba(15, 76, 58, 0.25) !important;
+}
+html[data-clarity-room="companion"][data-theme="light"] a {
+  color: #0f4c3a;
+}
+html[data-clarity-room="companion"][data-theme="light"] a:visited {
+  color: #1e5c45;
+}
+
+/* Number / range inputs */
+html[data-clarity-room="companion"] input[type="number"],
+html[data-clarity-room="companion"] input[type="range"] {
+  background: #0f1c17 !important;
+  color: #e7efe9 !important;
+}
+html[data-clarity-room="companion"] input[type="checkbox"],
+html[data-clarity-room="companion"] input[type="radio"] {
+  appearance: auto;
+  width: auto;
+  height: auto;
+  accent-color: #c9a227;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+}
