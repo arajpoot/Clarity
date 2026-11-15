@@ -1,4 +1,4 @@
-/*! Companion About isolate v12 · no share-light · full width · feedback exempt · tajweed contained · same-origin feedback allow
+/*! Companion About isolate v13 · no MO thrash · no share-light · full width · feedback exempt · tajweed contained · same-origin feedback allow
  * - Refresh with #about stays on About (wins over tab-persist default)
  * - Single feedback block (de-dupe)
  * - Textarea usable (no capture steal outside rail)
@@ -8,8 +8,8 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V12__) return;
-  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V12__ = true;
+  if (w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V13__) return;
+  w.__CLARITY_COMPANION_ABOUT_TAB_FIX_V13__ = true;
 
   var FEEDBACK_TO = "feedback@clarity-dawah.fyi";
   /* relative = same origin; Shariah guard must allow own host */
@@ -505,30 +505,12 @@
   }
 
   function lockDoor() {
+    /* Yield to companion-tab-stable-v1 when present */
+    if (w.__COMPANION_TAB_STABLE_V1__) return;
     try {
-      Object.defineProperty(w, "clarityOpenSectionDoor", {
-        configurable: true,
-        enumerable: true,
-        get: function () {
-          return doorFn;
-        },
-        set: function () {}
-      });
-    } catch (e) {
-      w.clarityOpenSectionDoor = doorFn;
-    }
-    try {
-      Object.defineProperty(w, "clarityShowCompanionTab", {
-        configurable: true,
-        enumerable: true,
-        get: function () {
-          return showTab;
-        },
-        set: function () {}
-      });
-    } catch (e2) {
       w.clarityShowCompanionTab = showTab;
-    }
+      w.clarityOpenSectionDoor = function (id) { showTab(id, true); };
+    } catch (e) {}
   }
 
   function wireRail() {
@@ -587,20 +569,13 @@
         hideTajweedUnlessAction(again);
       }, 250);
     } catch (e) {
-      console.warn("about-tab-v12", e);
+      console.warn("about-tab-v13", e);
     }
   }
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  try {
-    var mo = new MutationObserver(function () {
-      var active = (d.body && d.body.getAttribute("data-active-tab")) || "";
-      hideTajweedUnlessAction(active);
-      removeShareGentleReminder(d);
-    });
-    mo.observe(d.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class", "data-active-tab"] });
-  } catch (eMo) {}
+  /* MutationObserver removed in v13 — caused Notes freeze / thrash */
   w.addEventListener("hashchange", function () {
     var id = normalize((w.location.hash || "").replace(/^#/, ""));
     if (id) showTab(id, true);

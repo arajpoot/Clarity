@@ -1,0 +1,34 @@
+/*! companion-tab-stable-v1 */
+html[data-clarity-room="companion"] .tab-panel {
+  max-width: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+/* Orphan tajweed outside Action panel never shows */
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) #tj-deep-studio:not(#tab-action #tj-deep-studio),
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) .card-tajweed:not(#tab-action .card-tajweed) {
+  display: none !important;
+}
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) #tab-action #tj-deep-studio,
+html[data-clarity-room="companion"] body:not([data-active-tab="action"]) #tab-action .card-tajweed {
+  /* still inside hidden panel */
+}
+/* Notes panel must receive clicks */
+html[data-clarity-room="companion"] #tab-notes.is-active,
+html[data-clarity-room="companion"] #tab-notes[aria-hidden="false"] {
+  pointer-events: auto !important;
+}
+html[data-clarity-room="companion"] #tab-notes textarea,
+html[data-clarity-room="companion"] #tab-notes input,
+html[data-clarity-room="companion"] #tab-notes button,
+html[data-clarity-room="companion"] #tab-about textarea,
+html[data-clarity-room="companion"] #tab-about input,
+html[data-clarity-room="companion"] #tab-about button {
+  pointer-events: auto !important;
+}
+html[data-clarity-room="companion"] .share-light-box { display: none !important; }
+/* Quiet chrome */
+html[data-clarity-room="companion"].cc-calm-on #clarity-global-nav,
+html[data-clarity-room="companion"].cc-calm-on #clarity-visit-pill-bar {
+  display: none !important;
+}
