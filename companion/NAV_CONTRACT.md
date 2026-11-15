@@ -8,4 +8,4 @@
 | Amānah | `/amana/` |
 | Craft | `/craft/` |
 
-Pathway selection stays inside Companion chrome. Craft is its own room at `/craft/`.
+**Never** link Yawm to `/yawm/` (404). Pathway selection stays inside Companion chrome.
