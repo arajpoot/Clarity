@@ -1,0 +1,26 @@
+/* NurOS Path Intelligence — visual priority (enrichment kept) */
+
+#cs-mount .nuros-priority {
+  box-shadow: 0 0 0 1px rgba(212, 180, 90, 0.35), 0 8px 28px rgba(0, 0, 0, 0.2);
+  border-color: rgba(212, 180, 90, 0.45);
+}
+
+#cs-mount .nuros-deferred {
+  opacity: 0.72;
+  order: 20;
+}
+
+#cs-mount [data-nuros-src="quran"] > h2::after {
+  content: " · Qurʾān";
+  font-size: 0.7em;
+  opacity: 0.65;
+  font-weight: 600;
+}
+#cs-mount [data-nuros-src="hadith"] > h2::after {
+  content: " · ḥadīth";
+  font-size: 0.7em;
+  opacity: 0.65;
+  font-weight: 600;
+}
+
+/* path engine never hides cards via display:none — only defer */
