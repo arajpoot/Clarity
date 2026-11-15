@@ -4,58 +4,99 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Notes · Companion</title>
-<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P1"/>
+<link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261114P2"/>
+<link rel="stylesheet" href="/companion/assets/companion-about-notes-v1.css?v=20261114P2"/>
 </head>
 <body>
 <article data-cs-tab-body data-tab="notes">
-  <header class="cs-plaque">
+  <header class="cs-plaque" data-cs-primary="1">
     <div class="cs-plaque-head">
       <span class="cs-ico" aria-hidden="true">✎</span>
       <div>
-        <h1>Notes</h1>
-        <p class="lead">On-device notes. Private vault tools live in Amānah.</p>
+        <h1>Notes · on-device</h1>
+        <p class="lead">Notes stay on this device. Private vault, dayn, and heirs tools live in the <strong>Amānah</strong> room.</p>
         <div class="cs-chip-row">
-          <span class="cs-chip">Tab shell</span>
-          <span class="cs-chip">Path-aware</span>
-          <span class="cs-chip">Educational only</span>
+          <span class="cs-chip">Local only</span>
+          <span class="cs-chip">Not a fatwa</span>
         </div>
-        <p class="disc">Phase 1 stub — enriched plaques. Full live modules migrate in Phase 2+ without stripping richness.</p>
       </div>
     </div>
   </header>
-  <div class="cs-plaque" data-cs-primary="1">
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">·</span>
-  <div><h2>Quick note</h2><p class="lead">Write one line for your own record on this device.</p></div></div>
-</div><div class="cs-plaque" data-cs-primary="1">
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">·</span>
-  <div><h2>Amānah room</h2><p class="lead">Passphrase vault, dayn, heirs — open Amānah.</p></div></div>
-</div>
-  <div class="cs-plaque" data-cs-path-only="seeker" hidden>
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div><h2>Seeker emphasis</h2>
-  <p class="lead">Path-tuned prompts for <strong>seeker</strong> in Notes — Phase 1 stub; full modules mount in later phases.</p>
-  <p class="disc">Educational only — not a fatwa.</p></div></div>
-</div><div class="cs-plaque" data-cs-path-only="new_muslim" hidden>
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div><h2>New Muslim emphasis</h2>
-  <p class="lead">Path-tuned prompts for <strong>new_muslim</strong> in Notes — Phase 1 stub; full modules mount in later phases.</p>
-  <p class="disc">Educational only — not a fatwa.</p></div></div>
-</div><div class="cs-plaque" data-cs-path-only="practicing" hidden>
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div><h2>Daily emphasis</h2>
-  <p class="lead">Path-tuned prompts for <strong>practicing</strong> in Notes — Phase 1 stub; full modules mount in later phases.</p>
-  <p class="disc">Educational only — not a fatwa.</p></div></div>
-</div><div class="cs-plaque" data-cs-path-only="dai" hidden>
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div><h2>Daʿi emphasis</h2>
-  <p class="lead">Path-tuned prompts for <strong>dai</strong> in Notes — Phase 1 stub; full modules mount in later phases.</p>
-  <p class="disc">Educational only — not a fatwa.</p></div></div>
-</div>
+
+  <section class="cs-plaque" data-cs-primary="1">
+    <div class="cs-plaque-head">
+      <span class="cs-ico" aria-hidden="true">🔐</span>
+      <div>
+        <h2>Amānah is its own room</h2>
+        <p class="lead">Passphrase-protected notes, dayn tracking, and heir guidance open at Amānah. Clarity does not store your passphrase.</p>
+        <div class="cs-actions">
+          <a class="cs-btn" href="/amana/">Open Amānah room →</a>
+        </div>
+        <p class="disc">Educational only — not a fatwa.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-plaque" data-cs-primary="1">
+    <div class="cs-plaque-head">
+      <span class="cs-ico" aria-hidden="true">📝</span>
+      <div>
+        <h2>Quick note</h2>
+        <p class="lead">One line for your own record on this device.</p>
+      </div>
+    </div>
+    <label class="caf-label" for="cs-quick-note">Your note</label>
+    <textarea id="cs-quick-note" class="caf-message" rows="4" maxlength="4000" placeholder="What do you want waiting in the next ṣalāh — or the grave?"></textarea>
+    <div class="caf-actions">
+      <button type="button" class="caf-btn caf-primary" id="cs-note-save">Save on device</button>
+    </div>
+    <p class="caf-status" id="cs-note-status" aria-live="polite"></p>
+  </section>
+
+  <section class="cs-plaque" data-cs-primary="1">
+    <div class="cs-plaque-head">
+      <span class="cs-ico" aria-hidden="true">📚</span>
+      <div>
+        <h2>Study list (not a fatwa)</h2>
+        <ul class="cs-list">
+          <li>List debts and trusts before any gift or wasiyyah share.</li>
+          <li>Learn the one-third wasiyyah ceiling and farāʾiḍ heirs.</li>
+          <li>Write clear notes for those you leave behind — confirm with a local scholar and, where needed, a solicitor.</li>
+          <li>Janazah wishes guide the living; burial follows local Muslim practice and law.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-plaque" data-cs-path-only="seeker">
+    <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
+      <h2>Seeker emphasis</h2>
+      <p class="lead">Write one line you want waiting in the grave.</p>
+    </div></div>
+  </div>
+  <div class="cs-plaque" data-cs-path-only="new_muslim">
+    <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
+      <h2>New Muslim emphasis</h2>
+      <p class="lead">Note a question for a local teacher — not the internet alone.</p>
+    </div></div>
+  </div>
+  <div class="cs-plaque" data-cs-path-only="practicing">
+    <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
+      <h2>Daily emphasis</h2>
+      <p class="lead">Log a debt of thanks or a trust to settle.</p>
+    </div></div>
+  </div>
+  <div class="cs-plaque" data-cs-path-only="dai">
+    <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
+      <h2>Daʿi emphasis</h2>
+      <p class="lead">Draft a transmission note: source · audience · adab limit.</p>
+    </div></div>
+  </div>
+
   <details class="cs-more">
-    <summary>More in this tab · optional depth</summary>
-    <ul class="cs-list"><li>Study list prompts</li></ul>
+    <summary>Room charter pointer</summary>
+    <p class="lead">Full companion charter lives under <strong>About</strong>. Vault crypto and heirs tooling stay in Amānah — never merged into University grades.</p>
   </details>
-  <p class="disc" style="text-align:center">Educational only — not a fatwa. Verify with a local scholar.</p>
 </article>
 </body>
 </html>
