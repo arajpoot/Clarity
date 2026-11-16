@@ -1,4 +1,4 @@
-Companion P5b
+Companion P5c
 Deploy: companion/index.html only
-Removed campus-calm-boot script tag
+Removed enrichment-nuclear script tag
 Hard-refresh.
