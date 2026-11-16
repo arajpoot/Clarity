@@ -1,0 +1,33 @@
+/*! companion-reminder-enrich-v1.css · meme + tweet desk visible */
+#cs-mount #meme-card,
+#cs-mount #tweet-desk-card {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#cs-mount #meme-stage-wrap,
+#cs-mount #meme-canvas {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 200px !important;
+}
+#cs-mount #tweet-desk-card .td-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.4rem 0;
+}
+#cs-mount #td-text {
+  width: 100%;
+  min-height: 7rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid rgba(201,162,39,.35);
+  background: rgba(0,0,0,.28);
+  color: #e8f0ec;
+  padding: 0.55rem 0.65rem;
+}
+#cs-mount #meme-fetch-status {
+  min-height: 1em;
+}
