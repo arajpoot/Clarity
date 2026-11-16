@@ -117,3 +117,45 @@ A phase is **not done** until:
 ---
 
 *Contract version: castle-wide-v1 · ships with Phase A · binds B–D+*
+
+---
+
+## 6. Higher Arch content ladder (L1–L6) — binding guidance
+
+**Bismillah.** All **future upgraded content** across rooms should be designed, labeled, and ordered with this educational ladder in mind. It does **not** issue rulings for a person’s obligations; it **streamlines deep learning** and continuity.
+
+### Source frame (educational)
+
+- **Hadith Jibrīl** (Muslim / Bukhārī): *Islām* · *Īmān* · *Iḥsān*
+- Learning adab: practical obedience and farḍ ʿayn **before** stacking optional volume
+- Life values: sincerity, consistency, guarding the tongue, household mercy, transmission with **source · audience · adab**
+
+### Levels
+
+| L | Id | Label | Guiding pointer for authors |
+|---|-----|--------|------------------------------|
+| **1** | `iman_tawhid` | Īmān & Tawḥīd | Allah, belief, commands, Names, orient the heart first |
+| **2** | `islam_fard` | Islām · farḍ practice | Pillars, prayer-protect, steady required practice |
+| **3** | `sunnah_character` | Sunnah & character | Seerah, prophetic adab, tongue, household |
+| **4** | `ihsan_tazkiya` | Iḥsān · purification | Tawbah, dhikr, night watch, grave-oriented sincerity |
+| **5** | `tools_craft` | Tools & craft | Studios, search, quiz, meme — **serve** L1–L4, never replace them |
+| **6** | `transmission` | Transmission with adab | Share only after personal practice is in view; name sources |
+
+### Rules for upgrades
+
+1. **New cards** should declare `data-arch-level="1"…"6"` when authored; otherwise Companion Arch Engine classifies by content.
+2. **Do not** promote L5/L6 above L1–L2 in default seeker/new-Muslim streams.
+3. **Do not** delete L1–L4 surfaces to make room for tools (enrichment hold).
+4. **Daʿi path** may surface L6 earlier *as aid*, never as substitute for L1–L4.
+5. **Yawm / Campus / Amānah / Craft** use the same ladder as *author guidance*; Companion hosts the live Arch Engine.
+6. Every surface remains: **educational only — not a fatwa; verify with Qur’an, Sunnah, and a local scholar.**
+
+### Continuity of deep learning
+
+- Path tiles (Seeker · New Muslim · Daily · Daʿi) change **emphasis**, not the existence of the ladder.
+- Offline/PWA and vault phases must keep L1–L4 entry points offline-capable where already static.
+- Changelog for content work should note arch level, e.g. `arch: L2 · islam_fard`.
+
+---
+
+*Higher Arch added · 20261116 · Companion Arch Engine is the runtime reflection of this section.*

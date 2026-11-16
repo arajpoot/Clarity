@@ -1,11 +1,10 @@
-Phase A Port v2 — classic chrome + symmetric castle
+Arch governance green · A2
 
-Restores Port banner title chrome + site room-nav.
-Castle layout: left wing Companion/Campus, center Yawm keep, right wing Amānah/Craft.
+Upload:
+  GOVERNANCE_CONTRACT.md          → site root
+  companion/index.html
+  companion/assets/companion-arch-engine-v1.js
+  companion/assets/companion-arch-engine-v1.css
+  companion/COMPANION_ARCH_CONTRACT.md
 
-Deploy to site ROOT:
-  index.html
-  sw.js (from Phase A)
-  GOVERNANCE_CONTRACT.md
-  assets/port-castle-v2.css
-  assets/port-castle-v2.js
+Hard-refresh. Foundation plaque + ribbon = Higher Arch live.
