@@ -1,10 +1,8 @@
-# Bismillāh · Port tiles P11
+# Bismillah Path restore P12
 
-**Verdict: GREEN**
+**GREEN**
 
-- Nuclear anti-thin (cards force-visible after governance)
-- Port-style full-viewport section tiles
-- L1–L6 deep-learning blurbs
-- Enrichment bodies retained
-
-Educational only — not a fatwa.
+- Primary modules first
+- Path one-liners active-path only
+- Single L1-L6 enriched grid
+- Educational only — not a fatwa.
