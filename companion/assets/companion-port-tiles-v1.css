@@ -110,3 +110,6 @@ html, body { max-width: 100vw; overflow-x: hidden; }
   padding:0.2rem 0.65rem; border-radius:999px; font-size:0.7rem; font-weight:800;
   border:1px solid rgba(201,162,39,0.4); color:#e8d5a3; background:rgba(30,125,94,0.22);
 }
+
+#cs-mount [data-arch-counts-only="1"]{display:none!important;}
+#cs-mount [id$="-card"]{min-height:4rem!important;}
