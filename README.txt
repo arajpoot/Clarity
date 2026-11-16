@@ -1,6 +1,6 @@
-Companion P2 observe trace
+Companion P4 path soft
 Deploy:
   companion/index.html
-  companion/assets/companion-trace-v1.js
-Default OFF. Enable with ?cs_trace=1 or localStorage clarity_cs_trace=1
-No DOM writes. Hard-refresh after deploy.
+  companion/assets/companion-path-soft-v1.js
+  companion/assets/companion-path-soft-v1.css
+Hard-refresh. Other rooms untouched.
