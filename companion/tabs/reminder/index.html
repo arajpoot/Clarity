@@ -30,7 +30,7 @@
 
   
 <!-- Beautiful Names · educational only — not a fatwa -->
-<section class="cs-plaque" id="beautiful-names-card" data-cs-primary="1">
+<section class="cs-plaque" id="beautiful-names-card" data-cs-primary="1" data-arch-level="1">
   <div class="cs-plaque-head">
     <span class="cs-ico" aria-hidden="true">✦</span>
     <div>
@@ -92,7 +92,7 @@
 
 
 <!-- Samiʿnā wa aṭaʿnā · educational only — not a fatwa -->
-<section class="cs-plaque" id="samina-ataana-card" data-cs-primary="1">
+<section class="cs-plaque" id="samina-ataana-card" data-cs-primary="1" data-arch-level="1">
   <div class="cs-plaque-head">
     <span class="cs-ico" aria-hidden="true">☪</span>
     <div>
@@ -121,7 +121,7 @@
   </div>
   <p class="disc">Educational only — not a fatwa.</p>
 </section>
-<section class="cs-plaque card" id="grave-path-card" data-cs-restored-missing="1">
+<section class="cs-plaque card" id="grave-path-card" data-cs-restored-missing="1" data-arch-level="4">
   <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◇</span>
   <div>
     <h2>Path to furnish the grave</h2>
@@ -223,12 +223,12 @@
     <span class="cgs-ico" aria-hidden="true">↺</span><span class="cgs-txt">Reset</span>
   </button>
 </div>
-<div class="rrra-hub-body" id="rrra-hub-body-reminder"><div data-rrra="reminder" class="card card-commands" id="commands-card"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
+<div class="rrra-hub-body" id="rrra-hub-body-reminder"><div data-rrra="reminder" class="card card-commands" id="commands-card" data-arch-level="1"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
  <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
  <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a>.</div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
  Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
  </p><div class="command-box" id="command-box"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><div style="margin-top:0.75rem;"><button type="button" onclick="prevCommand()" class="btn-secondary">← Previous</button><button type="button" onclick="nextCommand()">Next Command →</button></div></div>
-<div data-rrra="reminder" class="card card-commands" id="samina-verse-card" style="border-top:3px solid var(--gold)">
+<div data-rrra="reminder" class="card card-commands" id="samina-verse-card" style="border-top:3px solid var(--gold)" data-arch-level="1">
   <h2>📜 Daily command-verse — Samiʿnā wa aṭaʿnā</h2>
   <p class="td-src">Verses that call believers to submit to Allāh ﷻ and follow the Messenger ﷺ. Educational reflection only.</p>
   <p id="samina-verse-ref" style="font-weight:700;color:var(--gold);margin:.3rem 0"></p>
@@ -247,10 +247,10 @@
 <a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
 <a href="https://dorar.net/en" target="_blank" rel="noopener">Dorar (Arabic)</a>
 <a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a>
-</div></div><div id="hadith"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><button type="button" onclick="loadHadith()">Another hadith</button></div>
-<div data-rrra="reminder" class="card card-seerah"><h2>🕊️ Daily Name of the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">One name each day from the Qurʾān and authentic hadith — with meaning and blessing. Educational; not a fixed “99” in every narration.</p><div class="asma-box" id="prophet-name-box"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"> <button type="button" class="btn-secondary" onclick="loadProphetName(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadProphetName(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllProphetNames()">Show all names</button><input type="search" id="prophet-names-search" placeholder="Search a name…" oninput="filterProphetNames(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="prophet-names-list" class="prophet-names-grid" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div></div>
+</div></div><div id="hadith" data-arch-level="1"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><button type="button" onclick="loadHadith()">Another hadith</button></div>
+<div data-rrra="reminder" class="card card-seerah"><h2>🕊️ Daily Name of the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">One name each day from the Qurʾān and authentic hadith — with meaning and blessing. Educational; not a fixed “99” in every narration.</p><div class="asma-box" id="prophet-name-box" data-arch-level="1"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"> <button type="button" class="btn-secondary" onclick="loadProphetName(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadProphetName(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllProphetNames()">Show all names</button><input type="search" id="prophet-names-search" placeholder="Search a name…" oninput="filterProphetNames(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="prophet-names-list" class="prophet-names-grid" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div></div>
 
-<div data-rrra="reminder" class="card card-tools" id="ilm-pathway-card" style="border-top:3px solid var(--accent)">
+<div data-rrra="reminder" class="card card-tools" id="ilm-pathway-card" style="border-top:3px solid var(--accent)" data-arch-level="3">
 <details id="ilm-pathway-details" class="ilm-pathway-details">
 <summary class="ilm-pathway-summary">
   <span class="ilm-sum-icon" aria-hidden="true">🗺️</span>
@@ -267,7 +267,7 @@
 </div>
 </details>
 </div>
-<div data-rrra="reminder" class="card card-tafseer" id="tafseer-resources-card">
+<div data-rrra="reminder" class="card card-tafseer" id="tafseer-resources-card" data-arch-level="3">
   <h2 data-i18n="tafseer_res">Tafseer Resources</h2>
   <div class="deep-learn"><strong>Tafsīr libraries</strong>
   <a href="https://corpus.quran.com" target="_blank" rel="noopener">word grammar</a> ·
@@ -277,7 +277,7 @@
   <p class="td-src" style="font-size:.82rem;margin:.4rem 0 0">Educational only — verify with a local scholar. Ustazah Najiha lessons sit in the card below.</p>
 </div>
 
-<div data-rrra="reminder" class="card card-tafseer" id="najiha-tafseer-card">
+<div data-rrra="reminder" class="card card-tafseer" id="najiha-tafseer-card" data-arch-level="3">
 <details id="najiha-tafseer-details">
 <summary>
   <h2 style="display:inline;font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--accent);margin:0">Tafseer by Ustazah Najiha Hashmi</h2>
@@ -311,7 +311,7 @@
 
 
 <!-- Craft bridges + deepen exercise · Reminder stays light; full studios live in Craft -->
-<section class="cs-plaque craft-bridge-pack" id="craft-bridge-pack" data-rrra="reminder" aria-label="Craft room bridges">
+<section class="cs-plaque craft-bridge-pack" id="craft-bridge-pack" data-rrra="reminder" aria-label="Craft room bridges" data-arch-level="5">
   <header class="craft-bridge-head">
     <h2 class="craft-bridge-title">Atelier doors · open the full studio</h2>
     <p class="craft-bridge-lead">Reminder keeps the āyah and the heart. Full Meme Studio, Tweet desk, and Calligraphy live in the <strong>Craft</strong> room so this tab stays light and focused. Educational only — not a fatwa.</p>
@@ -349,7 +349,7 @@
   <p class="craft-bridge-foot"><a href="/craft/">Craft Atelier hub</a> · Tajweed · Quiz · Notes also live there.</p>
 </section>
 
-<section class="cs-plaque deepen-exercise" id="reminder-deepen-exercise" data-rrra="reminder" aria-label="Deepen exercise">
+<section class="cs-plaque deepen-exercise" id="reminder-deepen-exercise" data-rrra="reminder" aria-label="Deepen exercise" data-arch-level="4">
   <header>
     <h2 class="deepen-title">✦ One-minute deepen · Reminder</h2>
     <p class="deepen-lead">A short exercise before you leave this tab. On-device only. Educational reflection — not a fatwa.</p>
@@ -394,6 +394,7 @@
 <p class="disc" style="text-align:center;margin:1rem 0">Educational only — not a fatwa. Full studios: <a href="/craft/">Craft room</a>.</p>
 
 </article>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
