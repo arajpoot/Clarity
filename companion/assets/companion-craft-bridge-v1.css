@@ -1,0 +1,126 @@
+/*! companion-craft-bridge-v1 · Reminder → Craft pointers + deepen exercise
+ * Educational only — not a fatwa.
+ */
+#cs-mount .craft-bridge-pack,
+#cs-mount .deepen-exercise {
+  margin: 0.85rem 0;
+  padding: 1rem 1.05rem;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(201, 162, 39, 0.42);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.05) 0%, transparent 40%),
+    linear-gradient(165deg, rgba(14, 36, 28, 0.92), rgba(8, 16, 13, 0.96));
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+}
+#cs-mount .craft-bridge-title,
+#cs-mount .deepen-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  color: #f0e6c8;
+  letter-spacing: 0.02em;
+}
+#cs-mount .craft-bridge-lead,
+#cs-mount .deepen-lead {
+  margin: 0 0 0.85rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(220, 232, 224, 0.88);
+}
+#cs-mount .craft-bridge-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+@media (min-width: 720px) {
+  #cs-mount .craft-bridge-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+#cs-mount .craft-bridge-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: linear-gradient(165deg, rgba(30, 70, 55, 0.45), rgba(10, 22, 18, 0.85));
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.12s ease;
+}
+#cs-mount .craft-bridge-tile:hover {
+  border-color: rgba(212, 184, 74, 0.7);
+  transform: translateY(-1px);
+}
+#cs-mount .cbt-ico { font-size: 1.45rem; line-height: 1; }
+#cs-mount .cbt-title { display: block; font-weight: 750; color: #f5edd8; }
+#cs-mount .cbt-ar { display: block; font-size: 0.95rem; color: rgba(212, 184, 74, 0.95); margin: 0.15rem 0; }
+#cs-mount .cbt-sum { display: block; font-size: 0.78rem; line-height: 1.4; color: rgba(200, 218, 208, 0.85); }
+#cs-mount .cbt-go { font-size: 0.78rem; font-weight: 700; color: #7dcea0; margin-top: auto; }
+#cs-mount .craft-bridge-foot { margin: 0.75rem 0 0; font-size: 0.8rem; color: rgba(200,218,208,0.8); }
+#cs-mount .craft-bridge-foot a { color: #d4b84a; }
+
+#cs-mount .deepen-steps { display: flex; flex-direction: column; gap: 0.85rem; }
+#cs-mount .deepen-step {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.65rem;
+  align-items: start;
+}
+#cs-mount .ds-num {
+  width: 1.85rem; height: 1.85rem;
+  border-radius: 999px;
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 0.85rem;
+  background: linear-gradient(165deg, #2a9d6e, #145a40);
+  color: #fff9e8;
+  border: 1px solid rgba(212, 184, 74, 0.45);
+}
+#cs-mount .deepen-step p { margin: 0.25rem 0 0.4rem; font-size: 0.84rem; color: rgba(210, 224, 216, 0.9); }
+#cs-mount #deepen-obedience {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 3.2rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0,0,0,0.28);
+  color: #e8f0ec;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.9rem;
+}
+#cs-mount .deepen-actions {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.35rem;
+}
+#cs-mount .btn-deepen {
+  display: inline-flex; align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 184, 74, 0.5);
+  background: linear-gradient(165deg, #2a9d6e, #1a6b4c);
+  color: #fff9e8;
+  font-size: 0.78rem; font-weight: 700;
+  text-decoration: none; cursor: pointer;
+}
+#cs-mount .btn-deepen.secondary {
+  background: rgba(20, 40, 32, 0.85);
+  color: #e8f0ea;
+}
+#cs-mount .deepen-status { min-height: 1.1em; font-size: 0.78rem; color: #7dcea0; margin: 0.35rem 0 0; }
+#cs-mount .deepen-ayah {
+  margin: 1rem 0 0.25rem;
+  text-align: center;
+  font-size: 1.25rem;
+  color: #f0e6c8;
+  line-height: 1.7;
+}
+#cs-mount .deepen-ayah-en {
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(200, 218, 208, 0.85);
+  margin: 0;
+}
+#cs-mount .deepen-ayah-en a { color: #d4b84a; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}
