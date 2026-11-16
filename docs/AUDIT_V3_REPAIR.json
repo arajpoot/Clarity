@@ -1,0 +1,51 @@
+{
+  "phase": "ARCH-LADDER-V3-REPAIR",
+  "sim_cycles": [
+    {
+      "check": "reminder_has_commands",
+      "ok": true
+    },
+    {
+      "check": "reminder_has_names",
+      "ok": true
+    },
+    {
+      "check": "reminder_has_hadith",
+      "ok": true
+    },
+    {
+      "check": "reminder_has_craft",
+      "ok": true
+    },
+    {
+      "check": "node_ok",
+      "ok": true
+    },
+    {
+      "check": "index_has_ladder",
+      "ok": true
+    },
+    {
+      "check": "js_has_v3",
+      "ok": true
+    },
+    {
+      "check": "js_hides_empty",
+      "ok": true
+    },
+    {
+      "check": "js_pinned_only",
+      "ok": true
+    }
+  ],
+  "fixes": [
+    "Pinned IDs only \u2014 no vacuuming every .card into shelves",
+    "Hero/tab intro excluded and left at top",
+    "Empty L shelves display:none",
+    "Ladder inserted after intro, not as sink for chrome",
+    "MutationObserver ignores self-mutations to stop thrash"
+  ],
+  "green": true,
+  "enrichment_hold": true,
+  "other_rooms_untouched": true
+}
