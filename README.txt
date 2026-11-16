@@ -1,10 +1,5 @@
-Enrichment body restore · ER1
-
-Upload:
-  GOVERNANCE_CONTRACT.md   → site root
-  companion/index.html
-  companion/assets/companion-enrichment-restore-v1.js
-  companion/assets/companion-enrichment-restore-v1.css
-  companion/BODY_RICHNESS_BASELINE.md
-
-Hard-refresh. Switch paths — content stays; emphasis may change.
+Companion P0+P1 baseline
+- companion/index.html = live freeze (rollback)
+- docs/COMPANION_P0_P1_MOUNT_MAP.md = mount map
+- docs/AUDIT_P0_P1.json = audit
+No behavior change. Other rooms untouched.
