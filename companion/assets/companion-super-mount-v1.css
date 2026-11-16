@@ -1,0 +1,10 @@
+/*! companion-super-mount-v1.css · calm backbone · educational only */
+#cs-mount { min-height: 12rem; }
+#cs-mount [data-cs-mounted] { animation: csFade .25s ease; }
+@keyframes csFade { from { opacity: .6; } to { opacity: 1; } }
+.cs-loading-soft { opacity: .85; font-style: italic; }
+#clarity-door-rail .cs-door-btn.is-active,
+.cs-door .cs-door-btn.is-active {
+  border-color: rgba(212,180,90,.55);
+}
+[data-cs-path].is-active { outline: 1px solid rgba(212,180,90,.45); }
