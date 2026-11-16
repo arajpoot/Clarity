@@ -1,0 +1,61 @@
+/*! companion-overnight-repair-v1 · force enrichment visibility */
+html[data-clarity-room="companion"] #cs-mount .cpp-path-hidden,
+html[data-clarity-room="companion"] #cs-mount .card[hidden],
+html[data-clarity-room="companion"] #cs-mount [data-rrra][hidden],
+html[data-clarity-room="companion"] #dl-deep-learn-host[hidden] {
+  display: block !important;
+  visibility: visible !important;
+}
+html[data-clarity-room="companion"] #dl-deep-learn-host {
+  display: grid !important;
+  gap: 0.65rem;
+  max-width: 52rem;
+  margin: 0.5rem auto 1rem;
+  padding: 0 0.25rem;
+}
+html[data-clarity-room="companion"] .dl-card {
+  display: block !important;
+  padding: 0.85rem 0.95rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background: rgba(12, 28, 22, 0.88) !important;
+}
+html[data-clarity-room="companion"] .dl-card h2 {
+  margin: 0 0 0.35rem;
+  color: #e8d5a3;
+  font-size: 1.05rem;
+}
+html[data-clarity-room="companion"] .dl-ref a { color: #c9a227; }
+html[data-clarity-room="companion"] .dl-host-head {
+  color: #e8d5a3;
+  font-size: 0.88rem;
+}
+html[data-clarity-room="companion"] .on-tab-hero,
+html[data-clarity-room="companion"] #cs-tab-hero {
+  display: block !important;
+  max-width: 52rem;
+  margin: 0.35rem auto 0.75rem;
+  padding: 0.95rem 1.05rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  background: linear-gradient(145deg, rgba(14, 40, 30, 0.96), rgba(8, 22, 16, 0.94)) !important;
+}
+html[data-clarity-room="companion"] .on-tab-hero .cs-plaque-head {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+html[data-clarity-room="companion"] .on-tab-hero .cs-ico {
+  color: #c9a227;
+  font-size: 1.5rem;
+}
+html[data-clarity-room="companion"] .on-tab-hero h1 {
+  margin: 0 0 0.25rem;
+  color: #e8d5a3;
+  font-size: 1.3rem;
+}
+html[data-clarity-room="companion"] .on-path-ico {
+  margin-right: 0.3rem;
+  color: #c9a227;
+  font-weight: 700;
+}
