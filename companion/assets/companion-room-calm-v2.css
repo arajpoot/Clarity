@@ -1,0 +1,85 @@
+/*! companion-room-calm-v2 · room-wide plaque + Reality · educational only */
+#cs-mount {
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem 0.75rem 5.75rem;
+  color: rgba(232, 240, 236, 0.92);
+}
+#cs-mount .cs-plaque,
+#cs-mount section.cs-plaque,
+#cs-mount [id$="-card"],
+#cs-mount .card {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0.55rem 0 !important;
+  padding: 0.85rem 1rem !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(201, 162, 39, 0.34) !important;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,0.04), rgba(12,28,22,0.32)),
+    rgba(8, 18, 14, 0.94) !important;
+  color: rgba(232, 240, 236, 0.92) !important;
+}
+#cs-mount h2 {
+  color: #e8d5a3 !important;
+  margin: 1rem 0 0.35rem !important;
+  padding: 0.65rem 0.85rem !important;
+  border-radius: 14px 14px 0 0 !important;
+  border: 1px solid rgba(201,162,39,0.34) !important;
+  border-bottom: none !important;
+  background: rgba(8,18,14,0.95) !important;
+  font-size: 1.05rem !important;
+}
+#cs-mount h2 + p,
+#cs-mount h2 + div,
+#cs-mount h2 + ul,
+#cs-mount h2 + ol {
+  margin-top: 0 !important;
+  padding: 0.75rem 0.85rem 0.95rem !important;
+  border: 1px solid rgba(201,162,39,0.34) !important;
+  border-top: none !important;
+  border-radius: 0 0 14px 14px !important;
+  background: rgba(8,18,14,0.9) !important;
+}
+#cs-mount h1, #cs-mount h3 { color: #e8d5a3 !important; }
+#cs-mount p, #cs-mount li, #cs-mount label { color: rgba(232,240,236,0.9) !important; }
+#cs-mount a { color: #e6c86a !important; }
+#cs-mount button, #cs-mount .btn {
+  border-radius: 999px !important;
+  border: 1px solid rgba(201,162,39,0.35) !important;
+  background: rgba(30,125,94,0.38) !important;
+  color: #f3efe6 !important;
+  min-height: 2.1rem;
+  padding: 0.3rem 0.75rem !important;
+  font-weight: 700 !important;
+}
+#cs-mount [data-cs-path-only] {
+  border-left: 3px solid rgba(30,125,94,0.65) !important;
+}
+.cs-loading-soft { opacity: 0.8; font-size: 0.82rem; }
+.cs-tier-label {
+  display: inline-block;
+  margin: 0.55rem 0.25rem 0.3rem 0;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201,162,39,0.4);
+  color: #e8d5a3;
+  background: rgba(30,125,94,0.22);
+}
+.cs-door, nav.cs-door, #cs-door {
+  position: fixed !important; left: 0; right: 0; bottom: 0; width: 100% !important;
+  display: flex !important; gap: 0.3rem;
+  padding: 0.45rem 0.4rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(6,14,12,0.96) !important;
+  border-top: 1px solid rgba(201,162,39,0.35);
+  z-index: 90;
+  box-sizing: border-box;
+}
+.cs-door button { flex: 1 1 0 !important; min-width: 0; min-height: 3rem !important; font-weight: 800; }
