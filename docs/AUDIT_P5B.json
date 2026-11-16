@@ -1,0 +1,41 @@
+{
+  "phase": "P5b",
+  "tag": "p5b-dedupe-calm-boot-20261116P5B",
+  "p5_live_gate": {
+    "green": true,
+    "checks": {
+      "http_200": true,
+      "no_allowlist_seal": true,
+      "has_path_soft": true,
+      "has_trace": true,
+      "has_shell": true,
+      "has_fortify": true,
+      "no_super": true,
+      "cs_mount": true,
+      "rail": true,
+      "banner": true,
+      "js_count_31": true,
+      "assets_ok": true
+    },
+    "sha": "15ecc36249a7d4b9"
+  },
+  "removed": [
+    "companion-campus-calm-boot-v1.js \u2014 only rewrote 'Loading\u2026' text to softer label; no mount/cards/fetch"
+  ],
+  "js_before": 31,
+  "js_after": 30,
+  "kept": {
+    "shell": true,
+    "fortify": true,
+    "path_soft": true,
+    "trace": true,
+    "nuclear_still_present": true,
+    "no_super": true,
+    "no_allowlist": true,
+    "no_calm_boot": true
+  },
+  "other_rooms_untouched": true,
+  "enrichment_hold": true,
+  "behavior_change": "Loading placeholder text may stay default 'Loading\u2026' instead of soft phrase",
+  "green": true
+}
