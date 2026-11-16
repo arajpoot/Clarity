@@ -1,0 +1,80 @@
+/*! companion-deep-learn-v1 · Archive3 tab hero polish + deep learning cards */
+.dl-tab-hero.cs-plaque,
+#cs-tab-hero.dl-tab-hero {
+  max-width: 52rem;
+  margin: 0.35rem auto 0.75rem;
+  padding: 0.95rem 1.05rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background: linear-gradient(145deg, rgba(14, 40, 30, 0.95), rgba(8, 22, 16, 0.92));
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+}
+.dl-tab-hero .cs-plaque-head {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.dl-tab-hero .cs-ico {
+  font-size: 1.55rem;
+  line-height: 1;
+  color: #c9a227;
+  margin-top: 0.15rem;
+}
+.dl-tab-hero h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+  color: #e8d5a3;
+}
+.dl-tab-hero .lead {
+  margin: 0 0 0.45rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+.dl-tab-hero .cs-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.dl-tab-hero .cs-chip {
+  font-size: 0.72rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0,0,0,0.25);
+  color: #dce8df;
+}
+
+.dl-deep-learn-host {
+  max-width: 52rem;
+  margin: 0 auto 1rem;
+  display: grid;
+  gap: 0.65rem;
+}
+.dl-host-head {
+  font-size: 0.85rem;
+  color: #e8d5a3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+.dl-card {
+  padding: 0.85rem 0.95rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: rgba(12, 28, 22, 0.72);
+  backdrop-filter: blur(10px);
+}
+.dl-card h2 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 1.05rem;
+  color: #e8d5a3;
+}
+.dl-card p { margin: 0.35rem 0; line-height: 1.5; font-size: 0.92rem; }
+.dl-ref a {
+  color: #c9a227;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.dl-card .disc { font-size: 0.75rem; opacity: 0.8; }
