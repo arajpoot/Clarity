@@ -1,0 +1,199 @@
+/*! companion-ui-ramp-v1 · pre-split style rail + plaque gradients
+ * Sticky bottom pills, larger icons, section color rhythm.
+ * Architecture/objects only — no animate figures.
+ * Educational only — not a fatwa. Companion only.
+ */
+
+html[data-clarity-room="companion"] {
+  --cs-door-h: 4.65rem;
+  --cs-door-font: clamp(0.72rem, 2.4vw, 0.92rem);
+  --cs-door-ico: clamp(1.35rem, 3.8vw, 1.7rem);
+  --cs-rail-bg: linear-gradient(180deg, rgba(10, 22, 18, 0.72) 0%, rgba(6, 14, 11, 0.96) 55%, #050c0a 100%);
+  --cs-pill-idle: linear-gradient(165deg, rgba(28, 58, 48, 0.75), rgba(12, 28, 22, 0.9));
+  --cs-gold: #d4b84a;
+  --cs-ok: #1f8f6a;
+}
+
+@media (min-width: 720px) {
+  html[data-clarity-room="companion"] {
+    --cs-door-h: 5rem;
+    --cs-door-font: 0.95rem;
+    --cs-door-ico: 1.85rem;
+  }
+}
+
+/* Sticky full-width door rail */
+html[data-clarity-room="companion"] .cs-door,
+html[data-clarity-room="companion"] #clarity-door-rail {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 160 !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 0.35rem !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
+  padding: 0.55rem 0.45rem calc(0.55rem + env(safe-area-inset-bottom, 0px)) !important;
+  background: var(--cs-rail-bg) !important;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border-top: 1px solid rgba(212, 184, 74, 0.42) !important;
+  box-shadow:
+    0 -12px 40px rgba(0, 0, 0, 0.45),
+    0 -1px 0 rgba(255, 255, 255, 0.04) inset;
+}
+
+html[data-clarity-room="companion"] .cs-door .cs-door-btn,
+html[data-clarity-room="companion"] .cs-door button {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  min-height: var(--cs-door-h) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.28rem !important;
+  padding: 0.45rem 0.2rem !important;
+  border-radius: 1rem !important;
+  border: 1px solid rgba(201, 162, 39, 0.32) !important;
+  background: var(--cs-pill-idle) !important;
+  color: #eef6f0 !important;
+  font-size: var(--cs-door-font) !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.01em;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  transition: transform 0.12s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+html[data-clarity-room="companion"] .cs-door .cs-door-btn .dr-ico,
+html[data-clarity-room="companion"] .cs-door .dr-ico {
+  width: var(--cs-door-ico) !important;
+  height: var(--cs-door-ico) !important;
+  display: grid !important;
+  place-items: center !important;
+  flex-shrink: 0 !important;
+}
+
+html[data-clarity-room="companion"] .cs-door .cs-door-btn .dr-label {
+  display: block !important;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.95;
+}
+
+/* Active pill — emerald glass + gold rim */
+html[data-clarity-room="companion"] .cs-door .cs-door-btn.is-active,
+html[data-clarity-room="companion"] .cs-door button.is-active {
+  background: linear-gradient(165deg, #2a9d6e 0%, #1a6b4c 48%, #145a40 100%) !important;
+  border-color: rgba(232, 212, 120, 0.7) !important;
+  color: #fff9e8 !important;
+  box-shadow:
+    0 0 0 1px rgba(212, 184, 74, 0.35),
+    0 6px 18px rgba(30, 125, 94, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.12) inset !important;
+  transform: translateY(-1px);
+}
+
+/* Per-tab idle tint (subtle) */
+html[data-clarity-room="companion"] .cs-door .cs-door-btn[data-rail-tab="reminder"] {
+  background: linear-gradient(165deg, rgba(40, 55, 70, 0.7), rgba(12, 28, 22, 0.9)) !important;
+}
+html[data-clarity-room="companion"] .cs-door .cs-door-btn[data-rail-tab="reality"] {
+  background: linear-gradient(165deg, rgba(30, 70, 55, 0.75), rgba(12, 28, 22, 0.9)) !important;
+}
+html[data-clarity-room="companion"] .cs-door .cs-door-btn[data-rail-tab="reflection"] {
+  background: linear-gradient(165deg, rgba(45, 40, 70, 0.7), rgba(12, 22, 28, 0.9)) !important;
+}
+html[data-clarity-room="companion"] .cs-door .cs-door-btn[data-rail-tab="action"] {
+  background: linear-gradient(165deg, rgba(70, 50, 30, 0.7), rgba(22, 18, 12, 0.9)) !important;
+}
+html[data-clarity-room="companion"] .cs-door .cs-door-btn[data-rail-tab="notes"] {
+  background: linear-gradient(165deg, rgba(35, 55, 50, 0.7), rgba(12, 28, 22, 0.9)) !important;
+}
+html[data-clarity-room="companion"] .cs-door .cs-door-btn[data-rail-tab="about"] {
+  background: linear-gradient(165deg, rgba(40, 45, 55, 0.7), rgba(12, 18, 22, 0.9)) !important;
+}
+
+/* Clear content above rail */
+html[data-clarity-room="companion"] body {
+  padding-bottom: calc(var(--cs-door-h) + 1.75rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+html[data-clarity-room="companion"] #cs-mount {
+  padding-bottom: 1rem !important;
+}
+
+/* —— Mount plaques: richer glass + soft color bands —— */
+html[data-clarity-room="companion"] #cs-mount .cs-plaque,
+html[data-clarity-room="companion"] #cs-mount .cs-tab-hero,
+html[data-clarity-room="companion"] #cs-mount section.cs-plaque {
+  border-radius: 1.1rem !important;
+  border: 1px solid rgba(201, 162, 39, 0.4) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, transparent 42%),
+    linear-gradient(165deg, rgba(18, 42, 34, 0.92), rgba(8, 18, 14, 0.94)) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 12px 32px rgba(0, 0, 0, 0.28) !important;
+  padding: 0.95rem 1.05rem !important;
+  margin: 0.65rem 0 !important;
+}
+
+/* Hero plaque — stronger gold rim */
+html[data-clarity-room="companion"] #cs-mount .cs-tab-hero,
+html[data-clarity-room="companion"] #cs-mount #cs-tab-hero {
+  border-color: rgba(212, 184, 74, 0.55) !important;
+  background:
+    linear-gradient(120deg, rgba(212, 184, 74, 0.12) 0%, transparent 40%),
+    linear-gradient(165deg, rgba(22, 48, 38, 0.95), rgba(8, 18, 14, 0.96)) !important;
+}
+
+/* Deep-learn cards */
+html[data-clarity-room="companion"] #cs-mount .dl-card,
+html[data-clarity-room="companion"] #cs-mount .dl-tab-hero {
+  border-radius: 1rem !important;
+  border: 1px solid rgba(201, 162, 39, 0.36) !important;
+  background:
+    linear-gradient(145deg, rgba(30, 125, 94, 0.12), transparent 50%),
+    linear-gradient(165deg, rgba(14, 36, 28, 0.9), rgba(8, 16, 13, 0.94)) !important;
+}
+
+/* Path tiles under banner */
+html[data-clarity-room="companion"] .cs-path {
+  border-radius: 1.1rem !important;
+  border: 1px solid rgba(201, 162, 39, 0.35) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.05), transparent 45%),
+    linear-gradient(165deg, rgba(16, 38, 30, 0.88), rgba(8, 18, 14, 0.92)) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+html[data-clarity-room="companion"] .cs-path button.is-active {
+  border-color: rgba(212, 184, 74, 0.65) !important;
+  box-shadow: 0 0 0 1px rgba(31, 143, 106, 0.45);
+  background: linear-gradient(165deg, rgba(31, 143, 106, 0.35), rgba(12, 28, 22, 0.85)) !important;
+}
+
+/* Chip row polish */
+html[data-clarity-room="companion"] #cs-mount .cs-chip {
+  border-radius: 999px !important;
+  border: 1px solid rgba(201, 162, 39, 0.35) !important;
+  background: rgba(30, 125, 94, 0.28) !important;
+  color: #f0e6c8 !important;
+  font-size: 0.72rem !important;
+  padding: 0.2rem 0.55rem !important;
+}
+
+/* Tier labels */
+html[data-clarity-room="companion"] #cs-mount .cs-tier-label {
+  color: rgba(212, 184, 74, 0.9) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.72rem !important;
+  margin: 1rem 0 0.4rem !important;
+}
