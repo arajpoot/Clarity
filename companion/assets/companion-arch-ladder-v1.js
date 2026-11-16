@@ -1,10 +1,12 @@
-/*! companion-arch-ladder-v1 · real L1–L6 content groups (not empty count cards)
- * Uses Higher Arch taxonomy · moves real cards into level shelves
- * Path soft-emphasis · educational only — not a fatwa
+/*! companion-arch-ladder-v2 · full-section shelves · restore richness
+ * Moves complete Reminder modules into L1–L6 — no empty fake cards
+ * Educational only — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  if (w.__COMPANION_ARCH_LADDER_V1__) return;
+  if (w.__COMPANION_ARCH_LADDER_V2__) return;
+  w.__COMPANION_ARCH_LADDER_V2__ = true;
+  // supersede v1 flag so we own align
   w.__COMPANION_ARCH_LADDER_V1__ = true;
 
   var LEVELS = {
@@ -16,32 +18,47 @@
     6: { id: "transmission", label: "Transmission with adab", short: "Daʿwah aid", jibril: "—", hint: "Source · audience · limit", color: "#8a4a3a" }
   };
 
+  /* Explicit richness map — complete sections, not thin stubs */
+  var PIN = {
+    "beautiful-names-card": 1,
+    "samina-ataana-card": 1,
+    "commands-card": 1,
+    "samina-verse-card": 1,
+    "command-box": 1,
+    "hadith": 1,
+    "prophet-name-box": 1,
+    "grave-path-card": 4,
+    "ilm-pathway-card": 3,
+    "tafseer-resources-card": 3,
+    "najiha-tafseer-card": 3,
+    "craft-bridge-pack": 5,
+    "reminder-deepen-exercise": 4,
+    "daily-muslim-foundation": 1
+  };
+
   var RULES = [
-    { level: 1, re: /command|sami.?n|beautiful names|asma|tawhid|iman|belief|ya ayyuh|allah.?s commands|daily name of the prophet|hadith spark|live [aā]yah|foundation for a daily|one name|hear first/i },
-    { level: 2, re: /pillar|fard|farḍ|wudu|wu[dḍ]u|salah|salat|prayer|hajj checklist|building on pillars|stability before|protect the five/i },
-    { level: 3, re: /seerah|s[iī]rah|prophetic|mercy on the path|previous nations|character lesson|model consistency|household|adab of speech/i },
-    { level: 4, re: /tawbah|soul compass|grave|istighfar|dhikr|zikr|night|if i die|furnishing|ihsan|purif|deepen exercise|one-minute deepen/i },
-    { level: 5, re: /meme|callig|tweet desk|studio|tajweed|hifz|quiz|sharia iq|atelier|craft bridge|tools/i },
-    { level: 6, re: /da.?i|transmit|transmission|shareable|calling with adab|teach names with humility/i }
+    { level: 1, re: /command|sami.?n|beautiful names|asma|tawhid|iman|belief|ya ayyuh|allah.?s commands|daily name of the prophet|hadith spark|live [aā]yah|why we were created|remember me/i },
+    { level: 2, re: /pillar|fard|farḍ|wudu|salah|salat|prayer|hajj|intentions|actions are by/i },
+    { level: 3, re: /seerah|s[iī]rah|prophetic|character|household|tafseer|tafsīr|ilm pathway|najiha/i },
+    { level: 4, re: /tawbah|grave|istighfar|dhikr|zikr|night|deepen|furnish|ihsan|purif/i },
+    { level: 5, re: /meme|callig|tweet|studio|tajweed|hifz|quiz|atelier|craft bridge|tools/i },
+    { level: 6, re: /da.?i|transmit|transmission|teach names with humility|shareable/i }
   ];
 
   function pathBias() {
     try {
-      return (
-        localStorage.getItem("clarity.companion.path") ||
-        localStorage.getItem("cs_path") ||
-        "seeker"
-      );
+      return localStorage.getItem("clarity.companion.path") || localStorage.getItem("cs_path") || "seeker";
     } catch (e) {
       return "seeker";
     }
   }
 
   function textOf(el) {
-    return ((el.getAttribute("data-arch-title") || el.id || "") + " " + (el.textContent || "")).slice(0, 900);
+    return ((el.getAttribute("data-arch-title") || el.id || "") + " " + (el.textContent || "")).slice(0, 1200);
   }
 
   function classify(el) {
+    if (el.id && PIN[el.id]) return PIN[el.id];
     var forced = el.getAttribute("data-arch-level");
     if (forced && LEVELS[parseInt(forced, 10)]) return parseInt(forced, 10);
     var t = textOf(el);
@@ -51,29 +68,36 @@
     return 5;
   }
 
+  function isInsideLadder(el) {
+    return !!(el.closest && el.closest("#arch-ladder-root"));
+  }
+
   function cardCandidates(root) {
-    var nodes = root.querySelectorAll(
-      ".card, [data-rrra], section.cs-plaque, section.card, [id$='-card'], .craft-bridge-pack, .deepen-exercise, .daily-muslim-foundation"
-    );
     var out = [];
     var seen = {};
-    Array.prototype.forEach.call(nodes, function (n) {
-      if (n.closest && n.closest("#arch-ladder-root")) return;
-      if (n.id === "arch-ladder-root" || n.classList.contains("arch-level-shelf")) return;
-      if ((n.textContent || "").trim().length < 28) return;
-      // skip nested cards inside another candidate
-      var parentCard = n.parentElement && n.parentElement.closest && n.parentElement.closest(".card, [data-rrra], section.cs-plaque");
-      if (parentCard && parentCard !== n && root.contains(parentCard) && parentCard !== root) {
-        // allow if parent is mount/article wrapper
-        var pTag = (parentCard.tagName || "").toLowerCase();
-        if (pTag !== "article" && pTag !== "main") {
-          // if parent is also a candidate type, skip child
-          if (parentCard.classList.contains("card") || parentCard.hasAttribute("data-rrra") || parentCard.classList.contains("cs-plaque")) {
-            return;
-          }
-        }
+
+    // 1) Pinned rich IDs always
+    Object.keys(PIN).forEach(function (id) {
+      var el = root.querySelector("#" + id) || d.getElementById(id);
+      if (el && root.contains(el) && !isInsideLadder(el)) {
+        seen[id] = 1;
+        out.push(el);
       }
-      var key = n.id || textOf(n).slice(0, 48);
+    });
+
+    // 2) Broad section selectors
+    var nodes = root.querySelectorAll(
+      ".card, [data-rrra], section.cs-plaque, section.card, [id$='-card'], .craft-bridge-pack, .deepen-exercise, .daily-muslim-foundation, .dl-card, [data-dl-card]"
+    );
+    Array.prototype.forEach.call(nodes, function (n) {
+      if (isInsideLadder(n)) return;
+      if (n.id === "arch-ladder-root") return;
+      if ((n.textContent || "").trim().length < 24) return;
+      // skip nested inside another out candidate
+      for (var i = 0; i < out.length; i++) {
+        if (out[i] !== n && out[i].contains(n)) return;
+      }
+      var key = n.id || textOf(n).slice(0, 40);
       if (seen[key]) return;
       seen[key] = 1;
       out.push(n);
@@ -84,23 +108,20 @@
   function ensureLadder(host) {
     var root = d.getElementById("arch-ladder-root");
     if (root && host.contains(root)) return root;
+    if (root && !host.contains(root)) {
+      try { root.remove(); } catch (e) {}
+    }
     root = d.createElement("div");
     root.id = "arch-ladder-root";
     root.className = "arch-ladder-root";
-    root.setAttribute("data-arch-ladder", "1");
-
-    var nav = d.createElement("nav");
-    nav.className = "arch-ladder-nav";
-    nav.setAttribute("aria-label", "Higher Arch levels");
-    nav.innerHTML =
+    root.innerHTML =
+      '<nav class="arch-ladder-nav" aria-label="Higher Arch levels">' +
       '<div class="arch-ladder-nav-title">Higher Arch · L1–L6</div>' +
-      '<p class="arch-ladder-nav-hint">Content is grouped by learning ladder — not empty shells. Educational only — not a fatwa.</p>' +
-      '<div class="arch-ladder-chips" role="tablist"></div>';
-    root.appendChild(nav);
+      '<p class="arch-ladder-nav-hint">Full sections sorted by learning ladder. Empty levels stay quiet. Educational only — not a fatwa.</p>' +
+      '<div class="arch-ladder-chips" role="tablist"></div></nav>';
 
-    var chips = nav.querySelector(".arch-ladder-chips");
+    var chips = root.querySelector(".arch-ladder-chips");
     var path = pathBias();
-    // path soft order of attention
     var focus = {
       seeker: [1, 4, 3, 2, 5, 6],
       new_muslim: [2, 1, 3, 4, 5, 6],
@@ -109,13 +130,18 @@
     };
     var order = focus[path] || [1, 2, 3, 4, 5, 6];
 
+    var all = d.createElement("button");
+    all.type = "button";
+    all.className = "arch-chip is-all is-active";
+    all.setAttribute("data-chip-level", "all");
+    all.textContent = "All levels";
+    chips.appendChild(all);
+
     order.forEach(function (lv) {
       var meta = LEVELS[lv];
       var shelf = d.createElement("section");
       shelf.className = "arch-level-shelf";
-      shelf.id = "arch-shelf-L" + lv;
       shelf.setAttribute("data-arch-shelf", String(lv));
-      shelf.setAttribute("data-arch-id", meta.id);
       shelf.style.setProperty("--arch-lv-color", meta.color);
       shelf.innerHTML =
         '<header class="arch-shelf-head">' +
@@ -124,10 +150,8 @@
         '<span class="ash-label">' + meta.label + "</span>" +
         '<span class="ash-jibril">' + meta.jibril + "</span>" +
         '<span class="ash-count" data-count-for="' + lv + '">0</span>' +
-        '<span class="ash-chev" aria-hidden="true">▾</span>' +
-        "</button>" +
-        '<p class="ash-hint">' + meta.hint + "</p>" +
-        "</header>" +
+        '<span class="ash-chev" aria-hidden="true">▾</span></button>' +
+        '<p class="ash-hint">' + meta.hint + "</p></header>" +
         '<div class="arch-shelf-body" data-shelf-body="' + lv + '"></div>';
       root.appendChild(shelf);
 
@@ -135,68 +159,53 @@
       chip.type = "button";
       chip.className = "arch-chip";
       chip.setAttribute("data-chip-level", String(lv));
-      chip.setAttribute("aria-pressed", "false");
       chip.innerHTML = "<span>L" + lv + "</span> " + meta.short;
       chips.appendChild(chip);
     });
 
-    // All chip
-    var all = d.createElement("button");
-    all.type = "button";
-    all.className = "arch-chip is-all is-active";
-    all.setAttribute("data-chip-level", "all");
-    all.setAttribute("aria-pressed", "true");
-    all.textContent = "All levels";
-    chips.insertBefore(all, chips.firstChild);
-
-    // Insert ladder at top of host content (after hero if present)
-    var hero = host.querySelector(".cs-tab-hero, #cs-tab-hero, [data-cs-hero]");
-    if (hero && hero.parentNode === host) {
-      if (hero.nextSibling) host.insertBefore(root, hero.nextSibling);
-      else host.appendChild(root);
-    } else {
-      host.insertBefore(root, host.firstChild);
-    }
-
+    host.insertBefore(root, host.firstChild);
     bindNav(root);
     return root;
   }
 
   function bindNav(root) {
-    if (root.__ladderBound) return;
-    root.__ladderBound = true;
+    if (root.__bound) return;
+    root.__bound = true;
     root.addEventListener("click", function (ev) {
       var t = ev.target.closest("[data-toggle-shelf]");
       if (t) {
-        var lv = t.getAttribute("data-toggle-shelf");
-        var shelf = root.querySelector('[data-arch-shelf="' + lv + '"]');
+        var shelf = root.querySelector('[data-arch-shelf="' + t.getAttribute("data-toggle-shelf") + '"]');
         if (!shelf) return;
-        var open = shelf.classList.toggle("is-collapsed");
-        t.setAttribute("aria-expanded", open ? "false" : "true");
+        var col = shelf.classList.toggle("is-collapsed");
+        t.setAttribute("aria-expanded", col ? "false" : "true");
         return;
       }
       var chip = ev.target.closest("[data-chip-level]");
-      if (chip) {
-        var level = chip.getAttribute("data-chip-level");
-        root.querySelectorAll(".arch-chip").forEach(function (c) {
-          c.classList.toggle("is-active", c === chip);
-          c.setAttribute("aria-pressed", c === chip ? "true" : "false");
-        });
-        root.querySelectorAll(".arch-level-shelf").forEach(function (s) {
-          if (level === "all") {
-            s.classList.remove("is-filtered-out");
-          } else {
-            s.classList.toggle("is-filtered-out", s.getAttribute("data-arch-shelf") !== level);
-          }
-        });
-      }
+      if (!chip) return;
+      var level = chip.getAttribute("data-chip-level");
+      root.querySelectorAll(".arch-chip").forEach(function (c) {
+        c.classList.toggle("is-active", c === chip);
+      });
+      root.querySelectorAll(".arch-level-shelf").forEach(function (s) {
+        if (level === "all") s.classList.remove("is-filtered-out");
+        else s.classList.toggle("is-filtered-out", s.getAttribute("data-arch-shelf") !== level);
+      });
     });
+  }
+
+  function dedupeBadges(el) {
+    var badges = el.querySelectorAll(".arch-badge-inline, .arch-badge, [class*='arch-badge']");
+    if (badges.length > 1) {
+      for (var i = 1; i < badges.length; i++) {
+        try { badges[i].remove(); } catch (e) {}
+      }
+    }
   }
 
   function align(mount) {
     if (!mount) return;
     var host =
-      mount.querySelector("article, [data-cs-mounted], .tab-panel, .cs-tab-body") || mount;
+      mount.querySelector("article[data-cs-mounted], article, [data-cs-mounted], .tab-panel") || mount;
     var cards = cardCandidates(host);
     if (!cards.length) return;
 
@@ -204,18 +213,14 @@
     var buckets = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
     cards.forEach(function (el) {
-      if (el.id === "arch-ladder-root") return;
       var lv = classify(el);
       el.setAttribute("data-arch-level", String(lv));
-      if (!el.querySelector(":scope > .arch-badge-inline")) {
+      dedupeBadges(el);
+      if (!el.querySelector(".arch-badge-inline")) {
         var b = d.createElement("div");
         b.className = "arch-badge-inline";
         b.innerHTML =
-          '<span class="abi-lv">L' +
-          lv +
-          '</span><span class="abi-name">' +
-          LEVELS[lv].short +
-          "</span>";
+          '<span class="abi-lv">L' + lv + '</span><span class="abi-name">' + LEVELS[lv].short + "</span>";
         el.insertBefore(b, el.firstChild);
       }
       buckets[lv].push(el);
@@ -229,16 +234,13 @@
       var list = buckets[lv];
       if (countEl) countEl.textContent = String(list.length);
       if (!list.length) {
-        shelf.classList.add("is-empty");
-        // keep shelf but collapsed + empty state (not fake cards)
+        shelf.classList.add("is-empty", "is-collapsed");
         if (!body.querySelector(".arch-empty-note")) {
           body.innerHTML =
-            '<p class="arch-empty-note">No cards on this level in the current tab — the ladder stays honest.</p>';
+            '<p class="arch-empty-note">Nothing on this level in this tab right now.</p>';
         }
-        shelf.classList.add("is-collapsed");
       } else {
         shelf.classList.remove("is-empty");
-        // clear empty note
         var note = body.querySelector(".arch-empty-note");
         if (note) note.remove();
         list.forEach(function (el) {
@@ -247,14 +249,8 @@
       }
     });
 
-    // Path primary: expand focus levels
     var path = pathBias();
-    var primary = {
-      seeker: { 1: 1, 4: 1 },
-      new_muslim: { 2: 1, 1: 1 },
-      practicing: { 2: 1, 3: 1 },
-      dai: { 1: 1, 6: 1 }
-    }[path] || { 1: 1, 2: 1 };
+    var primary = { seeker: { 1: 1, 4: 1 }, new_muslim: { 1: 1, 2: 1 }, practicing: { 2: 1, 3: 1 }, dai: { 1: 1, 6: 1 } }[path] || { 1: 1 };
     ladder.querySelectorAll(".arch-level-shelf").forEach(function (s) {
       var lv = s.getAttribute("data-arch-shelf");
       if (s.classList.contains("is-empty")) return;
@@ -262,6 +258,7 @@
     });
 
     w.__COMPANION_ARCH_LADDER_AUDIT__ = {
+      version: "v2-rich",
       path: path,
       counts: {
         1: buckets[1].length,
@@ -270,33 +267,33 @@
         4: buckets[4].length,
         5: buckets[5].length,
         6: buckets[6].length
-      }
+      },
+      ids: cards.map(function (c) { return c.id || c.className.slice(0, 24); })
     };
   }
 
   function run() {
-    var mount = d.getElementById("cs-mount");
-    if (!mount) return;
-    align(mount);
+    align(d.getElementById("cs-mount"));
   }
 
   function boot() {
     run();
     d.addEventListener("clarity:tab-mounted", function () {
-      setTimeout(run, 100);
-      setTimeout(run, 400);
+      setTimeout(run, 80);
+      setTimeout(run, 350);
+      setTimeout(run, 900);
     });
     var mount = d.getElementById("cs-mount");
     if (mount && typeof MutationObserver !== "undefined") {
       var t = null;
       new MutationObserver(function () {
         if (t) clearTimeout(t);
-        t = setTimeout(run, 140);
-      }).observe(mount, { childList: true });
+        t = setTimeout(run, 160);
+      }).observe(mount, { childList: true, subtree: true });
     }
   }
 
-  w.ClarityArchLadder = { run: run, levels: LEVELS };
+  w.ClarityArchLadder = { run: run, levels: LEVELS, pin: PIN };
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();

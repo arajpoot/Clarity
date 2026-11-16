@@ -1,129 +1,78 @@
-/*! companion-arch-ladder-v1.css · L1–L6 shelves with real cards */
-#cs-mount .arch-ladder-root {
-  margin: 0.5rem 0 1rem;
-}
+/*! companion-arch-ladder-v2.css */
+#cs-mount .arch-ladder-root { margin: 0.4rem 0 1rem; }
 #cs-mount .arch-ladder-nav {
-  padding: 0.75rem 0.9rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(201, 162, 39, 0.4);
-  background: linear-gradient(165deg, rgba(16, 38, 30, 0.95), rgba(8, 16, 13, 0.98));
+  padding: 0.75rem 0.9rem; border-radius: 1rem;
+  border: 1px solid rgba(201,162,39,.4);
+  background: linear-gradient(165deg, rgba(16,38,30,.95), rgba(8,16,13,.98));
   margin-bottom: 0.75rem;
 }
-#cs-mount .arch-ladder-nav-title {
-  font-weight: 800;
-  color: #f0e6c8;
-  font-size: 1rem;
-  letter-spacing: 0.03em;
-}
-#cs-mount .arch-ladder-nav-hint {
-  margin: 0.25rem 0 0.55rem;
-  font-size: 0.78rem;
-  color: rgba(200, 218, 208, 0.85);
-}
-#cs-mount .arch-ladder-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
+#cs-mount .arch-ladder-nav-title { font-weight: 800; color: #f0e6c8; font-size: 1rem; }
+#cs-mount .arch-ladder-nav-hint { margin: .25rem 0 .55rem; font-size: .78rem; color: rgba(200,218,208,.85); }
+#cs-mount .arch-ladder-chips { display: flex; flex-wrap: wrap; gap: .35rem; }
 #cs-mount .arch-chip {
-  border-radius: 999px;
-  border: 1px solid rgba(201, 162, 39, 0.35);
-  background: rgba(12, 28, 22, 0.85);
-  color: #e4efe8;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.28rem 0.65rem;
-  cursor: pointer;
+  border-radius: 999px; border: 1px solid rgba(201,162,39,.35);
+  background: rgba(12,28,22,.85); color: #e4efe8;
+  font-size: .72rem; font-weight: 700; padding: .28rem .65rem; cursor: pointer;
 }
 #cs-mount .arch-chip.is-active {
-  background: linear-gradient(165deg, #2a9d6e, #145a40);
-  border-color: rgba(212, 184, 74, 0.65);
-  color: #fff9e8;
+  background: linear-gradient(165deg,#2a9d6e,#145a40);
+  border-color: rgba(212,184,74,.65); color: #fff9e8;
 }
 #cs-mount .arch-level-shelf {
-  margin: 0.65rem 0;
-  border-radius: 1.05rem;
-  border: 1px solid color-mix(in srgb, var(--arch-lv-color, #c9a227) 45%, transparent);
+  margin: .65rem 0; border-radius: 1.05rem;
+  border: 1px solid color-mix(in srgb, var(--arch-lv-color,#c9a227) 45%, transparent);
   background:
-    linear-gradient(145deg, color-mix(in srgb, var(--arch-lv-color, #c9a227) 18%, transparent), transparent 50%),
-    linear-gradient(165deg, rgba(12, 28, 22, 0.92), rgba(6, 14, 11, 0.96));
+    linear-gradient(145deg, color-mix(in srgb, var(--arch-lv-color,#c9a227) 16%, transparent), transparent 50%),
+    linear-gradient(165deg, rgba(12,28,22,.92), rgba(6,14,11,.96));
   overflow: hidden;
 }
 #cs-mount .arch-level-shelf.is-filtered-out { display: none !important; }
-#cs-mount .arch-level-shelf.is-empty {
-  opacity: 0.72;
-}
+#cs-mount .arch-level-shelf.is-empty { opacity: .65; }
 #cs-mount .arch-shelf-toggle {
-  width: 100%;
-  display: grid;
+  width: 100%; display: grid;
   grid-template-columns: auto 1fr auto auto auto;
-  gap: 0.45rem;
-  align-items: center;
-  text-align: left;
-  padding: 0.7rem 0.85rem;
-  border: 0;
-  background: transparent;
-  color: #f0e6c8;
-  cursor: pointer;
-  font: inherit;
+  gap: .45rem; align-items: center; text-align: left;
+  padding: .7rem .85rem; border: 0; background: transparent;
+  color: #f0e6c8; cursor: pointer; font: inherit;
 }
 #cs-mount .ash-lv {
-  font-weight: 900;
-  font-size: 0.8rem;
-  padding: 0.15rem 0.45rem;
-  border-radius: 0.4rem;
-  background: color-mix(in srgb, var(--arch-lv-color, #c9a227) 55%, #0a1612);
-  color: #fff9e8;
+  font-weight: 900; font-size: .8rem; padding: .15rem .45rem; border-radius: .4rem;
+  background: color-mix(in srgb, var(--arch-lv-color,#c9a227) 55%, #0a1612); color: #fff9e8;
 }
-#cs-mount .ash-label { font-weight: 750; font-size: 0.95rem; }
-#cs-mount .ash-jibril {
-  font-size: 0.72rem;
-  color: rgba(212, 184, 74, 0.9);
-  justify-self: end;
-}
+#cs-mount .ash-label { font-weight: 750; font-size: .95rem; }
+#cs-mount .ash-jibril { font-size: .72rem; color: rgba(212,184,74,.9); justify-self: end; }
 #cs-mount .ash-count {
-  font-size: 0.72rem;
-  font-weight: 800;
-  min-width: 1.4rem;
-  text-align: center;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.35);
-  padding: 0.1rem 0.4rem;
+  font-size: .72rem; font-weight: 800; min-width: 1.4rem; text-align: center;
+  border-radius: 999px; background: rgba(0,0,0,.35); padding: .1rem .4rem;
 }
-#cs-mount .ash-hint {
-  margin: 0;
-  padding: 0 0.85rem 0.55rem;
-  font-size: 0.78rem;
-  color: rgba(200, 218, 208, 0.82);
-}
+#cs-mount .ash-hint { margin: 0; padding: 0 .85rem .55rem; font-size: .78rem; color: rgba(200,218,208,.82); }
 #cs-mount .arch-level-shelf.is-collapsed .arch-shelf-body { display: none; }
 #cs-mount .arch-level-shelf.is-collapsed .ash-chev { transform: rotate(-90deg); }
-#cs-mount .ash-chev { transition: transform 0.15s ease; }
+#cs-mount .ash-chev { transition: transform .15s ease; }
 #cs-mount .arch-shelf-body {
-  padding: 0.35rem 0.65rem 0.85rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
+  padding: .35rem .65rem .85rem;
+  display: flex; flex-direction: column; gap: .75rem;
+}
+#cs-mount .arch-shelf-body > .card,
+#cs-mount .arch-shelf-body > [data-rrra],
+#cs-mount .arch-shelf-body > section,
+#cs-mount .arch-shelf-body > .cs-plaque {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100%;
+  max-width: 100%;
 }
 #cs-mount .arch-empty-note {
-  margin: 0.25rem 0.4rem 0.5rem;
-  font-size: 0.8rem;
-  color: rgba(180, 200, 190, 0.75);
-  font-style: italic;
+  margin: .25rem .4rem .5rem; font-size: .8rem;
+  color: rgba(180,200,190,.75); font-style: italic;
 }
 #cs-mount .arch-badge-inline {
-  display: inline-flex;
-  gap: 0.35rem;
-  align-items: center;
-  margin: 0 0 0.45rem;
-  font-size: 0.68rem;
-  font-weight: 750;
+  display: inline-flex; gap: .35rem; align-items: center;
+  margin: 0 0 .45rem; font-size: .68rem; font-weight: 750;
 }
 #cs-mount .abi-lv {
-  background: rgba(201, 162, 39, 0.25);
-  border: 1px solid rgba(201, 162, 39, 0.45);
-  border-radius: 0.35rem;
-  padding: 0.05rem 0.35rem;
-  color: #f0e6c8;
+  background: rgba(201,162,39,.25); border: 1px solid rgba(201,162,39,.45);
+  border-radius: .35rem; padding: .05rem .35rem; color: #f0e6c8;
 }
-#cs-mount .abi-name { color: rgba(200, 218, 208, 0.85); }
+#cs-mount .abi-name { color: rgba(200,218,208,.85); }
