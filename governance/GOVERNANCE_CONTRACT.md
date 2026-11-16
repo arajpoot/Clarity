@@ -159,3 +159,43 @@ A phase is **not done** until:
 ---
 
 *Higher Arch added · 20261116 · Companion Arch Engine is the runtime reflection of this section.*
+
+---
+
+## 7. Body richness audit (Companion and all rooms)
+
+**Bismillah.** Shell/allowlist audits are necessary but **not sufficient**.
+
+### Principle
+
+Educational richness lives in the **body** (tab HTML, fragments, mounted cards), not only in the shell script list. A green shell with a thinned body is a **governance fail**.
+
+### Companion body baseline (session-locked)
+
+| Tab | Minimum body bytes (approx) | Role |
+|-----|------------------------------|------|
+| reminder | ≥ 34 000 | Commands, hadith, names, path cards, craft reminders |
+| reality | ≥ 49 000 | Seerah, life events, nations, deepen study |
+| reflection | ≥ 36 000 | Tawbah, compass, grave, asma, dhikr |
+| action | ≥ 85 000 | Pillars, tajweed, hifz, ḥajj, quiz, search, studios |
+| notes | ≥ 6 500 | Ledger surfaces |
+| about | ≥ 6 800 | Charter |
+
+Also: `companion/content/main.fragment.html` remains a full-body backup (≥ 180 000 bytes, ~70 h2).
+
+### Required checks after every Companion deploy
+
+1. **Shell** — engine allowlist / boot order  
+2. **Body** — each tab URL returns baseline bytes ±10% and key feature strings present  
+3. **Visibility** — path governance may **emphasize**, must **not** `display:none` educational cards by default (enrichment hold). Progressive disclosure uses order (L1–L6) and soft emphasis, not deletion or hard hide of the full card set.  
+4. **Hydration** — Loading placeholders clear for commands/hadith/names/seerah within a few seconds online  
+
+### Fail conditions
+
+- Default Seeker (or any path) hides the majority of Action/Reminder/Reality cards  
+- Tab body drops >15% below baseline without a documented migration to another room with a live link  
+- Shell-only audit marked green while body smoke fails  
+
+Changelog tag: `enrichment: body-held` or `enrichment: body-restored`.
+
+---
