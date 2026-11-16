@@ -1,0 +1,89 @@
+/*! companion-arch-engine-v1 · hierarchy ribbon + badges */
+.companion-arch-ribbon {
+  max-width: 52rem;
+  margin: 0.5rem auto 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  border-radius: 0.85rem;
+  background: linear-gradient(180deg, rgba(15, 40, 32, 0.95), rgba(10, 22, 18, 0.92));
+  color: #e7efe9;
+}
+.car-head { font-size: 0.95rem; margin-bottom: 0.25rem; color: #e8d5a3; }
+.car-disc { font-weight: 400; opacity: 0.85; font-size: 0.8rem; }
+.car-jibril {
+  font-size: 0.78rem;
+  opacity: 0.9;
+  margin: 0 0 0.55rem;
+  line-height: 1.4;
+}
+.car-steps {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+@media (max-width: 720px) {
+  .car-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.car-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  padding: 0.4rem 0.45rem;
+  border-radius: 0.55rem;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background: rgba(0, 0, 0, 0.22);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.car-step:hover { border-color: rgba(201, 162, 39, 0.7); }
+.car-num {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #c9a227;
+}
+.car-lab { font-size: 0.72rem; line-height: 1.25; }
+.car-count { font-size: 0.65rem; opacity: 0.7; }
+.car-foot {
+  margin: 0.55rem 0 0;
+  font-size: 0.72rem;
+  opacity: 0.85;
+  line-height: 1.4;
+}
+
+#cs-mount [data-arch-level] {
+  scroll-margin-top: 5rem;
+}
+.arch-badge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  font-size: 0.68rem;
+  margin: 0 0 0.45rem;
+  opacity: 0.92;
+}
+.arch-badge .ab-lv {
+  background: rgba(201, 162, 39, 0.2);
+  color: #e8d5a3;
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.arch-badge .ab-name { color: #c9e4c9; }
+.arch-badge .ab-j {
+  opacity: 0.75;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+}
+
+/* Soft level accent bars */
+#cs-mount [data-arch-level="1"] { border-left: 3px solid #c9a227; }
+#cs-mount [data-arch-level="2"] { border-left: 3px solid #3d9e6f; }
+#cs-mount [data-arch-level="3"] { border-left: 3px solid #6b8f9e; }
+#cs-mount [data-arch-level="4"] { border-left: 3px solid #8a6bb0; }
+#cs-mount [data-arch-level="5"] { border-left: 3px solid rgba(255,255,255,0.2); }
+#cs-mount [data-arch-level="6"] { border-left: 3px solid #b8922a; }
