@@ -1,0 +1,22 @@
+{
+  "phase": "ARCH-LADDER",
+  "intent": "Realign tab content into L1\u2013L6 shelves with real cards \u2014 not empty count rail",
+  "levels": {
+    "1": "\u012am\u0101n & Taw\u1e25\u012bd",
+    "2": "Isl\u0101m \u00b7 far\u1e0d",
+    "3": "Sunnah & character",
+    "4": "I\u1e25s\u0101n",
+    "5": "Tools & craft",
+    "6": "Transmission"
+  },
+  "behavior": [
+    "Classify existing cards",
+    "Move into L1\u2013L6 shelf bodies (only real content)",
+    "Empty levels: honest note + collapsed \u2014 no fake cards",
+    "Chip filter All|L1\u2013L6",
+    "Path soft primary expand"
+  ],
+  "green": true,
+  "enrichment_hold": true,
+  "other_rooms_untouched": true
+}
