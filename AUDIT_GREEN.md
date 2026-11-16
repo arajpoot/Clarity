@@ -1,20 +1,16 @@
-# Post-audit · Arch governance green · A2
+# Enrichment body restore · AUDIT GREEN
 
-| Gate | Result |
-|------|--------|
-| GOVERNANCE §6 L1–L6 | Present in package root |
-| Companion Arch Contract | Present |
-| Engine A2: scan / tag / order | Yes |
-| Daily Muslim Foundation plaque | Injected, L1, first |
-| Enrichment hold (no delete) | Pass |
-| Educational disclaimer | On plaque + ribbon + audit |
-| Path bias | Seeker/NM L6 later; Daʿi soft-earlier |
-| Shell phase | arch-governance-green-20261116A2 |
+## Comparison
+- Tab body bytes: **at or above** session baseline (no HTML loss)
+- Feature strings: commands, seerah, hifz, ḥajj, quiz, meme — **present**
+- Root cause of “lost” content: **path ALLOW hide**, not missing files
+
+## Fix
+- enrichment-restore patches path governance → show-all
+- Soft emphasis only
+- GOVERNANCE §7 body richness audit required
 
 ## Smoke
-1. Ribbon L1–L6 counts after tab load  
-2. Foundation plaque at top of body  
-3. `window.__COMPANION_ARCH_AUDIT__.governance` includes §6  
-4. Cards badged; tools not above foundation for seeker  
-
-**Verdict: AUDIT GREEN**
+1. Seeker path: Action tab shows full studios (not only a few cards)
+2. Reminder: meme + commands both visible
+3. `window.__COMPANION_ENRICHMENT_STATUS__.mode` includes show-all
