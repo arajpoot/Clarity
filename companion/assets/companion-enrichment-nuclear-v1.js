@@ -44,13 +44,18 @@
   }
   function dedupeArch(){
     var m=root(); if(!m) return;
-    var hasBlurb=!!m.querySelector(".cs-arch-blurb");
-    if(!hasBlurb) return;
+    /* protect enriched */
+    m.querySelectorAll("[data-higher-arch='1']").forEach(function(el){
+      el.style.setProperty("display","block","important");
+      el.removeAttribute("hidden");
+    });
+    /* shallow only: Higher arch without .cs-arch-blurb */
     m.querySelectorAll("section, .cs-plaque").forEach(function(sec){
       if(sec.getAttribute("data-higher-arch")==="1") return;
-      if(sec.querySelector(".cs-arch-blurb")) return;
+      if(sec.querySelector && sec.querySelector(".cs-arch-blurb")) return;
       var t=sec.textContent||"";
-      if(t.indexOf("Higher arch")>=0 && t.indexOf("L1")>=0 && t.indexOf("L6")>=0){
+      if(t.indexOf("Higher arch")>=0 && t.indexOf("L1")>=0 && t.indexOf("L6")>=0 && t.indexOf("Foundation")>=0){
+        if(t.indexOf("salah spine")>=0 || t.indexOf("Fard before volume")>=0) return;
         sec.style.setProperty("display","none","important");
         sec.setAttribute("data-arch-counts-only","1");
       }
