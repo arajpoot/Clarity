@@ -1,4 +1,4 @@
-Companion P5
+Companion P5b
 Deploy: companion/index.html only
-Removed: allowlist-seal script tag
-Hard-refresh. Host may keep orphan allowlist-seal file (unused).
+Removed campus-calm-boot script tag
+Hard-refresh.
