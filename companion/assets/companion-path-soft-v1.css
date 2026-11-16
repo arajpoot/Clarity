@@ -1,0 +1,12 @@
+/*! companion-path-soft-v1.css · P4 soft emphasis · educational only */
+#cs-mount .is-path-primary {
+  box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.45);
+}
+#cs-mount .is-path-soft {
+  opacity: 0.92;
+}
+/* Never leave exclusive-hide class winning without soft script */
+#cs-mount .cs-plaque.cpp-path-hidden:not([data-cs-path-only]),
+#cs-mount [id$="-card"].cpp-path-hidden:not([data-cs-path-only]) {
+  /* soft script removes these; belt if race */
+}
