@@ -1,0 +1,16 @@
+/*! companion-enrichment-restore-v1 · soft path emphasis, never hide body */
+html[data-clarity-room="companion"] #cs-mount .cpp-path-hidden {
+  display: revert !important;
+  visibility: visible !important;
+}
+html[data-clarity-room="companion"] #cs-mount .path-secondary {
+  opacity: 0.92;
+}
+html[data-clarity-room="companion"] #cs-mount .path-emphasis {
+  box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.28);
+}
+/* Ensure path governance cannot leave sections blank */
+html[data-clarity-room="companion"] #cs-mount .card[hidden],
+html[data-clarity-room="companion"] #cs-mount [data-rrra][hidden] {
+  display: block !important;
+}
