@@ -262,3 +262,37 @@
   text-decoration: none;
   border: none !important;
 }
+
+/* P7 hierarchy */
+
+/* P7 hierarchy + anti-leak plaque skin */
+.cs-rich-legacy-wrap h2,
+.cs-rich-tab > h2,
+.cs-rich-legacy h2 {
+  margin: 1rem 0 0.4rem !important;
+  padding: 0.65rem 0.85rem !important;
+  border-radius: 14px 14px 0 0 !important;
+  border: 1px solid rgba(201,162,39,0.35) !important;
+  border-bottom: none !important;
+  background: rgba(8,18,14,0.92) !important;
+  color: #e8d5a3 !important;
+  font-size: 1.05rem !important;
+}
+.cs-loading-soft {
+  font-size: 0.82rem;
+  color: rgba(232,240,236,0.75) !important;
+  padding: 0.4rem 0;
+}
+.cs-tier-label {
+  display: inline-block;
+  margin: 0.75rem 0 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201,162,39,0.4);
+  color: #e8d5a3;
+  background: rgba(30,125,94,0.2);
+}
