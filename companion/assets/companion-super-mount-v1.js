@@ -6,7 +6,10 @@
  */
 (function (w, d) {
   "use strict";
-  if (w.__COMPANION_SUPER_MOUNT_V1__) return;
+  if (w.__COMPANION_SUPER_MOUNT_V2__ || w.__COMPANION_SUPER_MOUNT_V1__) {
+    /* allow upgrade replace only if not same build */
+  }
+  w.__COMPANION_SUPER_MOUNT_V2__ = true;
   w.__COMPANION_SUPER_MOUNT_V1__ = true;
 
   var TABS = ["reminder", "reality", "reflection", "action", "notes", "about"];
@@ -139,22 +142,33 @@
     paintFocus(tab, path);
   }
 
-  /** Governance §7: path may emphasize; never blank the mount or hide all cards */
+  /** Governance §7: path may emphasize; never blank the mount or hide all cards.
+   * Path-governance used display:none on non-ALLOW ids — that thinned the room.
+   * We soft-emphasize path cards and restore full educational body.
+   */
   function enrichmentHold(root) {
     if (!root) return;
     var cards = root.querySelectorAll(
-      "[id$='-card'], section.cs-plaque, .cs-plaque, .cs-rich-legacy-wrap, .cs-rich-legacy, [data-cs-primary]"
+      "[id$='-card'], section.cs-plaque, .cs-plaque, .cs-rich-legacy-wrap, .cs-rich-legacy, [data-cs-primary], .dl-card, .dl-tab-hero"
     );
     cards.forEach(function (el) {
-      if (el.hasAttribute("data-cs-path-only")) return;
+      if (el.hasAttribute("data-cs-path-only")) {
+        var only = (el.getAttribute("data-cs-path-only") || "").split(/\s+/);
+        var path = getPath();
+        var show = only.indexOf(path) >= 0 || only.indexOf("all") >= 0;
+        el.hidden = !show;
+        if (!show) el.style.setProperty("display", "none", "important");
+        else {
+          el.style.removeProperty("display");
+          el.removeAttribute("hidden");
+        }
+        return;
+      }
       try {
         el.style.removeProperty("display");
-        if (el.getAttribute("hidden") === "" && !el.hasAttribute("data-cs-path-only")) {
-          /* leave intentional hidden alone only if path-only */
-        }
-        if (!el.hasAttribute("data-cs-path-only")) {
-          el.hidden = false;
-        }
+        el.removeAttribute("hidden");
+        el.classList.remove("cpp-path-hidden");
+        el.hidden = false;
       } catch (e) {}
     });
     // Soften loading placeholders
@@ -167,6 +181,46 @@
         }
       }
     });
+  }
+
+  function patchPathGovernanceSoft() {
+    try {
+      var G = w.ClarityPathGovernanceShell;
+      if (!G || G.__softPatched) return;
+      var prev = G.apply;
+      if (typeof prev !== "function") return;
+      G.apply = function (root, path) {
+        try {
+          prev.call(G, root, path);
+        } catch (e) {}
+        enrichmentHold(root || d.getElementById("cs-mount"));
+      };
+      G.__softPatched = true;
+    } catch (e2) {}
+  }
+
+  function layoutFullWidth(root) {
+    root = root || d.getElementById("cs-mount");
+    if (!root) return;
+    try {
+      root.style.maxWidth = "100%";
+      root.style.width = "100%";
+      root.style.boxSizing = "border-box";
+      root.style.marginLeft = "0";
+      root.style.marginRight = "0";
+      var wrap = root.querySelector("[data-cs-mounted]") || root;
+      wrap.style.width = "100%";
+      wrap.style.maxWidth = "100%";
+      wrap.style.boxSizing = "border-box";
+      wrap.querySelectorAll(".cs-plaque, .cs-rich-tab, .cs-rich-legacy, .dl-card, .dl-tab-hero").forEach(function (el) {
+        el.style.maxWidth = "100%";
+        el.style.width = "100%";
+        el.style.boxSizing = "border-box";
+        el.style.float = "none";
+        el.style.marginLeft = "0";
+        el.style.marginRight = "0";
+      });
+    } catch (e) {}
   }
 
   function hygiene(root) {
@@ -399,7 +453,7 @@
     paintFocus: paintFocus
   };
   w.ClarityCompanionSuperMount = {
-    version: "v1-20261116SM1",
+    version: "v1-20261116SM2",
     mountTab: mountTab,
     enrichmentHold: enrichmentHold,
     hygiene: hygiene
