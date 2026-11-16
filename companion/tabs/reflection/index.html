@@ -30,7 +30,7 @@
 
   
 <!-- Furnishing the grave · educational only — not a fatwa -->
-<section class="cs-plaque" id="furnish-grave-card" data-cs-primary="1">
+<section class="cs-plaque" id="furnish-grave-card" data-cs-primary="1" data-arch-level="4">
   <div class="cs-plaque-head">
     <span class="cs-ico" aria-hidden="true">🕯</span>
     <div>
@@ -98,7 +98,7 @@
 
 
 
-id="tawbah-nasuhah-card" data-cs-primary="1">
+id="tawbah-nasuhah-card" data-cs-primary="1" data-arch-level="4">
   <div class="cs-plaque-head">
     <span class="cs-ico" aria-hidden="true">↩</span>
     <div>
@@ -140,7 +140,7 @@ id="tawbah-nasuhah-card" data-cs-primary="1">
   </div>
   <p class="disc">Educational only — not a fatwa. For personal cases (especially others’ rights), ask a qualified local teacher.</p>
 </section>
-<section class="cs-plaque card" id="new-muslim-foundations-card" data-cs-restored-missing="1">
+<section class="cs-plaque card" id="new-muslim-foundations-card" data-cs-restored-missing="1" data-arch-level="2">
   <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◇</span>
   <div>
     <h2>New Muslim foundations</h2>
@@ -148,7 +148,7 @@ id="tawbah-nasuhah-card" data-cs-primary="1">
     <p class="disc">Restored for path parity with pre-shell ALLOW map · educational only — not a fatwa.</p>
   </div></div>
 </section>
-<section class="cs-plaque card" id="salah-starter-card" data-cs-restored-missing="1">
+<section class="cs-plaque card" id="salah-starter-card" data-cs-restored-missing="1" data-arch-level="2">
   <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◇</span>
   <div>
     <h2>Ṣalāh starter</h2>
@@ -297,8 +297,8 @@ id="tawbah-nasuhah-card" data-cs-primary="1">
     </div>
   </div>
 </div>
-<div data-rrra="reflection" class="night-breath-card" id="night-breath-card"><h2 data-i18n="night_title">🕯️ If I die tonight…</h2><p class="nb-q" id="night-breath-q">What one deed would I want to have sent ahead?</p><p style="font-size:0.88rem;opacity:0.9;margin-bottom:0.55rem;" data-i18n="night_hint">The Prophet ﷺ said: “Remember often the destroyer of pleasures (death).” Let the question soften the heart — then act once.</p><button type="button" class="btn-soft" onclick="nightBreathAct()" data-i18n="night_act">I will do one deed now</button><button type="button" class="btn-secondary" onclick="nightBreathRefresh()" style="background:#3d5a4a;" data-i18n="night_another">Another question</button></div>
-<div data-rrra="reflection" class="card card-journey" id="soul-compass-card" style="border-top:3px solid var(--gold, #b8922a)!important">
+<div data-rrra="reflection" class="night-breath-card" id="night-breath-card" data-arch-level="4"><h2 data-i18n="night_title">🕯️ If I die tonight…</h2><p class="nb-q" id="night-breath-q">What one deed would I want to have sent ahead?</p><p style="font-size:0.88rem;opacity:0.9;margin-bottom:0.55rem;" data-i18n="night_hint">The Prophet ﷺ said: “Remember often the destroyer of pleasures (death).” Let the question soften the heart — then act once.</p><button type="button" class="btn-soft" onclick="nightBreathAct()" data-i18n="night_act">I will do one deed now</button><button type="button" class="btn-secondary" onclick="nightBreathRefresh()" style="background:#3d5a4a;" data-i18n="night_another">Another question</button></div>
+<div data-rrra="reflection" class="card card-journey" id="soul-compass-card" style="border-top:3px solid var(--gold, #b8922a)!important" data-arch-level="4">
 <h2>🧭 Soul Compass — three gates before sleep</h2>
 <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:.55rem">A Prophetic self-audit: guard the <strong>heart</strong>, the <strong>tongue</strong>, and the <strong>hands</strong>. Tap each gate. Educational reflection — not a fatwa.</p>
 <details style="border:1px solid var(--border);border-radius:12px;padding:.55rem .75rem;margin:.4rem 0;background:var(--card-bg)">
@@ -336,7 +336,7 @@ id="tawbah-nasuhah-card" data-cs-primary="1">
 <a href="https://tafsir.app" target="_blank" rel="noopener">Tafsir App</a>
 <a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a>
 </div></div><div id="verse"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><button type="button" onclick="loadVerse()" data-i18n="another_verse">Another verse</button><button type="button" class="verse-audio-btn" id="verse-audio-btn" onclick="playCurrentVerseAudio()" data-i18n="listen">🔊 Listen</button><button type="button" class="bm-btn" data-i18n="save_bm">🔖 Save</button></div>
-<div data-rrra="reflection" class="card card-commands"><h2>✨ The 99 Beautiful Names of Allah (Asmāʾ Allāh al-Ḥusnā)</h2><p style="margin-bottom:0.65rem; font-size:0.92rem; color:var(--text-muted);">Full classical list widely taught for education (cf. discussions on the Tirmidhī narration). Meanings and reflections are summaries — not exhaustive tafsīr. Call upon Allah by His Names; verify detailed claims with a scholar.</p><div class="asma-box" id="asma-box"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"><button type="button" class="btn-secondary" onclick="loadAsma(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadAsma(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllAsma()">Show all 99</button><input type="search" id="asma-search" placeholder="Search a Name…" oninput="filterAsmaList(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="asma-all-list" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div><div class="asma-audio" style="margin-top:1rem;"><h3 style="font-size:1rem;margin-bottom:0.45rem;">🎧 Listen — Names of Allah (Spotify)</h3><p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:0.45rem;">Embedded player (requires network). If blocked offline, open Spotify directly.</p><details class="clarity-embed-fold" data-embed-id="asma-spotify"><summary>▶ Open Spotify <span class="cef-title">Asma Allah Alhusna — Spotify</span></summary><div class="clarity-embed-body"><iframe id="asma-spotify-dup1" style="border-radius:12px;width:100%;min-height:152px;border:0;" src="https://open.spotify.com/embed/track/6jy0lafVq7EIAy243fxuv8?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Asma Allah Alhusna — Spotify"></iframe></div></details><p style="font-size:0.8rem;margin-top:0.35rem;"><a href="https://open.spotify.com/track/6jy0lafVq7EIAy243fxuv8" target="_blank" rel="noopener">Open track</a>
+<div data-rrra="reflection" class="card card-commands"><h2>✨ The 99 Beautiful Names of Allah (Asmāʾ Allāh al-Ḥusnā)</h2><p style="margin-bottom:0.65rem; font-size:0.92rem; color:var(--text-muted);">Full classical list widely taught for education (cf. discussions on the Tirmidhī narration). Meanings and reflections are summaries — not exhaustive tafsīr. Call upon Allah by His Names; verify detailed claims with a scholar.</p><div class="asma-box" id="asma-box" data-arch-level="1"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"><button type="button" class="btn-secondary" onclick="loadAsma(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadAsma(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllAsma()">Show all 99</button><input type="search" id="asma-search" placeholder="Search a Name…" oninput="filterAsmaList(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="asma-all-list" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div><div class="asma-audio" style="margin-top:1rem;"><h3 style="font-size:1rem;margin-bottom:0.45rem;">🎧 Listen — Names of Allah (Spotify)</h3><p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:0.45rem;">Embedded player (requires network). If blocked offline, open Spotify directly.</p><details class="clarity-embed-fold" data-embed-id="asma-spotify"><summary>▶ Open Spotify <span class="cef-title">Asma Allah Alhusna — Spotify</span></summary><div class="clarity-embed-body"><iframe id="asma-spotify-dup1" style="border-radius:12px;width:100%;min-height:152px;border:0;" src="https://open.spotify.com/embed/track/6jy0lafVq7EIAy243fxuv8?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Asma Allah Alhusna — Spotify"></iframe></div></details><p style="font-size:0.8rem;margin-top:0.35rem;"><a href="https://open.spotify.com/track/6jy0lafVq7EIAy243fxuv8" target="_blank" rel="noopener">Open track</a>
  · <a href="https://open.spotify.com/playlist/0eFhrgxFJQRjbYZnO1BQdc" target="_blank" rel="noopener">Playlist: Asma Ul Husna</a></p></div></div>
 <div data-rrra="reflection" class="card card-grave"><h2 data-i18n="note_grave">🌙 Note for the grave</h2><div class="deep-learn"><strong>Furnish the grave:</strong><a href="https://sunnah.com/search?q=grave" target="_blank" rel="noopener">ḥadīth on the grave</a> ·
  <a href="https://islamqa.info/en/answers/10401" target="_blank" rel="noopener">what benefits the deceased</a> ·
@@ -366,7 +366,7 @@ id="tawbah-nasuhah-card" data-cs-primary="1">
  </div><div class="ponder-box" style="margin-bottom:0.85rem;"><strong>Ibn ʿArabī (d. 638 AH)</strong> — While his metaphysical writings are specialised, he also emphasised the living connection of the believer’s heart with the Prophet ﷺ and the importance of constant remembrance and salutations (ṣalawāt). Many later scholars who drew from his spiritual insights stressed that the light of ṣalawāt and sincere dhikr becomes companionship for the soul after death.
  </div><div class="ponder-box" style="margin-bottom:0.85rem;"><strong>Practical summary (majority view of Ahl al-Sunnah):</strong><ul style="margin:0.4rem 0 0 1.1rem; font-size:0.92rem;"><li><strong>Duʿāʾ &amp; Istighfār</strong> — the most agreed-upon and powerful gift</li><li><strong>Ṣadaqah</strong> (including ongoing charity / waqf) on behalf of the deceased</li><li><strong>Qurʾān recitation</strong> with the intention that its reward reaches them (widely accepted)</li><li><strong>Ḥajj / ʿUmrah</strong> and fasting on their behalf when appropriate</li><li><strong>Righteous offspring</strong> who continue to pray and do good</li><li><strong>Ṣalawāt</strong> upon the Prophet ﷺ — a light that accompanies the believer</li></ul></div><div class="grave-note"><strong>Note:</strong> These teachings are educational. For specific rulings on a particular case, consult a qualified local scholar. The goal is to send light ahead while we are still able to act.
  </div><div class="ponder-box" style="margin-top:0.85rem;"><strong>Further online resources (open in new tab):</strong><ul style="margin:0.4rem 0 0 1.1rem; font-size:0.9rem;"><li><a href="https://islamqa.info/en/answers/12652" target="_blank" rel="noopener">IslamQA – Can the dead benefit from the living?</a></li><li><a href="https://islamqa.info/en/answers/763" target="_blank" rel="noopener">IslamQA – Duʿāʾ and charity for the deceased</a></li><li><a href="https://sunnah.com/search?q=grave" target="_blank" rel="noopener">Sunnah.com – Narrations about the grave</a></li><li><a href="https://www.ghazali.org/" target="_blank" rel="noopener">Ghazali.org – Ihya resources</a></li><li><a href="https://www.abuaminaelias.com/dailyhadithonline/tag/grave/" target="_blank" rel="noopener">Abu Amina Elias – Hadith on the grave</a></li></ul></div></div>
-<div data-rrra="reflection" class="card card-tafseer" id="tafseer-live-card" style="border-top:3px solid var(--gold)">
+<div data-rrra="reflection" class="card card-tafseer" id="tafseer-live-card" style="border-top:3px solid var(--gold)" data-arch-level="3">
   <h2>📡 Live tafsīr ayah</h2>
   <p class="td-src">Full Arabic + English from Quran.com. Tweet desk takes a short line from here.</p>
   <div class="arabic" id="tafseer-live-ar" dir="rtl" lang="ar" style="font-size:1.35rem;margin:.4rem 0"></div>
@@ -385,6 +385,7 @@ id="tawbah-nasuhah-card" data-cs-primary="1">
 
 </div>
 </article>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
