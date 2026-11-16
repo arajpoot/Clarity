@@ -1,10 +1,10 @@
-/*! companion-arch-ladder-v2.css · site-wide */
-#cs-mount .arch-ladder-root { margin: 0.4rem 0 1rem; }
+/*! companion-arch-ladder-v3.css · empty shelves hidden · hero safe */
+#cs-mount .arch-ladder-root { margin: 0.5rem 0 1rem; }
 #cs-mount .arch-ladder-nav {
   padding: 0.75rem 0.9rem; border-radius: 1rem;
   border: 1px solid rgba(201,162,39,.4);
   background: linear-gradient(165deg, rgba(16,38,30,.95), rgba(8,16,13,.98));
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 #cs-mount .arch-ladder-nav-title { font-weight: 800; color: #f0e6c8; font-size: 1rem; }
 #cs-mount .arch-ladder-nav-hint { margin: .25rem 0 .55rem; font-size: .78rem; color: rgba(200,218,208,.85); }
@@ -19,15 +19,16 @@
   border-color: rgba(212,184,74,.65); color: #fff9e8;
 }
 #cs-mount .arch-level-shelf {
-  margin: .65rem 0; border-radius: 1.05rem;
+  margin: .55rem 0; border-radius: 1.05rem;
   border: 1px solid color-mix(in srgb, var(--arch-lv-color,#c9a227) 45%, transparent);
   background:
     linear-gradient(145deg, color-mix(in srgb, var(--arch-lv-color,#c9a227) 16%, transparent), transparent 50%),
     linear-gradient(165deg, rgba(12,28,22,.92), rgba(6,14,11,.96));
   overflow: hidden;
 }
+/* housekeeping: no empty shelf chrome */
+#cs-mount .arch-level-shelf.is-empty { display: none !important; }
 #cs-mount .arch-level-shelf.is-filtered-out { display: none !important; }
-#cs-mount .arch-level-shelf.is-empty { opacity: .65; }
 #cs-mount .arch-shelf-toggle {
   width: 100%; display: grid;
   grid-template-columns: auto 1fr auto auto auto;
@@ -53,19 +54,12 @@
   padding: .35rem .65rem .85rem;
   display: flex; flex-direction: column; gap: .75rem;
 }
-#cs-mount .arch-shelf-body > .card,
-#cs-mount .arch-shelf-body > [data-rrra],
-#cs-mount .arch-shelf-body > section,
-#cs-mount .arch-shelf-body > .cs-plaque {
+#cs-mount .arch-shelf-body > * {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
   width: 100%;
   max-width: 100%;
-}
-#cs-mount .arch-empty-note {
-  margin: .25rem .4rem .5rem; font-size: .8rem;
-  color: rgba(180,200,190,.75); font-style: italic;
 }
 #cs-mount .arch-badge-inline {
   display: inline-flex; gap: .35rem; align-items: center;
@@ -76,3 +70,9 @@
   border-radius: .35rem; padding: .05rem .35rem; color: #f0e6c8;
 }
 #cs-mount .abi-name { color: rgba(200,218,208,.85); }
+/* Tab hero / intro never collapsed by ladder */
+#cs-mount .cs-tab-hero,
+#cs-mount #cs-tab-hero {
+  display: block !important;
+  order: -1;
+}
