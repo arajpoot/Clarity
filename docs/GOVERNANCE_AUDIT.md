@@ -1,9 +1,10 @@
-# Bismillāh · Hierarchy P7 audit
+# Bismillāh · Port tiles P11
 
 **Verdict: GREEN**
 
-- Tier labels on all main tabs: Qurʾān → Sunnah/Seerah → Tools & deeper study
-- Loading placeholders softened
-- Legacy h2 plaque skin CSS
-- Parallels retained; door full-width retained
+- Nuclear anti-thin (cards force-visible after governance)
+- Port-style full-viewport section tiles
+- L1–L6 deep-learning blurbs
+- Enrichment bodies retained
+
 Educational only — not a fatwa.
