@@ -1,0 +1,83 @@
+/*! companion-iconize-v1 · paths · L1–L6 · empty states
+ * NurOS-minded geometry · no animate figures · educational only — not a fatwa
+ */
+.nx-ico {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-right: 0.35rem;
+}
+.nx-ico.lg { width: 1.55rem; height: 1.55rem; }
+.nx-ico.sm { width: 1rem; height: 1rem; margin-right: 0.25rem; }
+
+/* Path tiles */
+html[data-clarity-room="companion"] [data-cs-path],
+html[data-clarity-room="companion"] .cs-path-grid button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem;
+}
+html[data-clarity-room="companion"] [data-cs-path] .nx-ico,
+html[data-clarity-room="companion"] .cs-path-grid .nx-ico {
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-right: 0.2rem;
+}
+
+/* Arch badge icon */
+.arch-badge .nx-ico {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-right: 0.2rem;
+}
+.car-step .nx-ico {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0 0 0.15rem 0;
+  display: block;
+}
+
+/* Empty / loading section plaque */
+.nx-empty-state {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.75rem 0.85rem;
+  margin: 0.35rem 0;
+  border-radius: 0.75rem;
+  border: 1px dashed rgba(201, 162, 39, 0.35);
+  background: rgba(12, 28, 22, 0.45);
+  color: #d7e4db;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.nx-empty-state .nx-ico {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.1rem;
+  opacity: 0.9;
+}
+.nx-empty-state strong { color: #e8d5a3; font-weight: 700; }
+.nx-empty-state .disc { display: block; margin-top: 0.35rem; font-size: 0.75rem; opacity: 0.8; }
+
+.loading-msg:not(:empty) {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nx-ico-path-seeker{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Ccircle%20cx%3D%2712%27%20cy%3D%2712%27%20r%3D%277%27/%3E%3Cpath%20d%3D%27M12%208v4l2.5%202.5%27/%3E%3C/svg%3E");}
+.nx-ico-path-new_muslim{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M12%204v16%27/%3E%3Cpath%20d%3D%27M8%208h8%27/%3E%3Cpath%20d%3D%27M9%2012h6%27/%3E%3Cpath%20d%3D%27M10%2016h4%27/%3E%3C/svg%3E");}
+.nx-ico-path-practicing{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M5%2012h14%27/%3E%3Cpath%20d%3D%27M12%205v14%27/%3E%3Ccircle%20cx%3D%2712%27%20cy%3D%2712%27%20r%3D%278%27/%3E%3C/svg%3E");}
+.nx-ico-path-dai{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M4%2018V8l8-4%208%204v10%27/%3E%3Cpath%20d%3D%27M12%2010v8%27/%3E%3C/svg%3E");}
+.nx-ico-arch-1{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M12%203l2%206h6l-5%203.5%202%206L12%2015l-5%203.5%202-6L4%209h6z%27/%3E%3C/svg%3E");}
+.nx-ico-arch-2{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M6%2018V11a6%206%200%200%201%2012%200v7%27/%3E%3Cpath%20d%3D%27M4%2018h16%27/%3E%3C/svg%3E");}
+.nx-ico-arch-3{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M4%2018h16%27/%3E%3Cpath%20d%3D%27M7%2018V12l5-6%205%206v6%27/%3E%3C/svg%3E");}
+.nx-ico-arch-4{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M12%204v3%27/%3E%3Cpath%20d%3D%27M8%209h8v2a4%204%200%200%201-8%200V9z%27/%3E%3Cpath%20d%3D%27M10%2015h4v4h-4z%27/%3E%3C/svg%3E");}
+.nx-ico-arch-5{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Crect%20x%3D%275%27%20y%3D%276%27%20width%3D%2714%27%20height%3D%2712%27%20rx%3D%272%27/%3E%3Cpath%20d%3D%27M8%2010h8M8%2014h5%27/%3E%3C/svg%3E");}
+.nx-ico-arch-6{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M5%2012h11%27/%3E%3Cpath%20d%3D%27M12%207l5%205-5%205%27/%3E%3Cpath%20d%3D%27M5%207v10%27/%3E%3C/svg%3E");}
+.nx-ico-empty{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2523c9a227%27%20stroke-width%3D%271.75%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Crect%20x%3D%274%27%20y%3D%275%27%20width%3D%2716%27%20height%3D%2714%27%20rx%3D%272%27/%3E%3Cpath%20d%3D%27M8%2010h8M8%2014h5%27/%3E%3C/svg%3E");}
