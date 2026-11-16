@@ -1,5 +1,6 @@
-Companion P0+P1 baseline
-- companion/index.html = live freeze (rollback)
-- docs/COMPANION_P0_P1_MOUNT_MAP.md = mount map
-- docs/AUDIT_P0_P1.json = audit
-No behavior change. Other rooms untouched.
+Companion P2 observe trace
+Deploy:
+  companion/index.html
+  companion/assets/companion-trace-v1.js
+Default OFF. Enable with ?cs_trace=1 or localStorage clarity_cs_trace=1
+No DOM writes. Hard-refresh after deploy.
