@@ -377,6 +377,29 @@
         <input type="hidden" id="meme-mid-input" value=""/>
         <input type="hidden" id="meme-bottom-input" value=""/>
       </div>
+      
+      <div class="meme-bar meme-bar-ratio">
+        <div class="meme-tool-label">Canvas size · auto fit</div>
+        <div class="meme-chip-row" role="group" aria-label="Canvas ratio">
+          <button type="button" class="mv-chip" data-meme-ratio="twitter">𝕏 Twitter 16:9</button>
+          <button type="button" class="mv-chip" data-meme-ratio="instagram">IG square 1:1</button>
+          <button type="button" class="mv-chip" data-meme-ratio="instagram_story">IG story 9:16</button>
+          <button type="button" class="mv-chip" data-meme-ratio="facebook">Facebook 1.91:1</button>
+        </div>
+      </div>
+      <div class="meme-bar meme-bar-arabic">
+        <div class="meme-tool-label">Arabic text style</div>
+        <div class="meme-chip-row" role="group" aria-label="Arabic font style">
+          <button type="button" class="mv-chip" data-meme-font="naskh">Naskh</button>
+          <button type="button" class="mv-chip" data-meme-font="thuluth">Thuluth</button>
+          <button type="button" class="mv-chip" data-meme-font="amiri">Amiri</button>
+          <button type="button" class="mv-chip" data-meme-font="kufi">Kufi</button>
+          <button type="button" class="mv-chip" data-meme-style="outline">Outline</button>
+          <button type="button" class="mv-chip" data-meme-style="fill">Fill</button>
+          <button type="button" class="mv-chip" data-meme-style="soft">Soft shadow</button>
+        </div>
+      </div>
+
       <div class="meme-bar meme-bar-scale">
         <div class="meme-tool-label">Scale · share</div>
         <div class="meme-chip-row">
@@ -389,7 +412,7 @@
   </div>
   <p class="disc">Educational only — not a fatwa. No figurative people/animals in fetched backgrounds.</p>
 </section>
-<div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)">
+<div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)" data-cs-path-only="practicing dai">
 <h2>✒️ Calligraphy lab <span class="rrra-badge" data-rrra="reminder">Reminder</span></h2>
 <p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .45rem">Finger · stylus · <strong>feather (qalam)</strong> · blunt — pressure &amp; speed shape the stroke. Local-first. Educational only.</p>
 <div class="callig-stylus-hint" id="callig-stylus-hint">
@@ -457,7 +480,7 @@
   </div>
   <div id="callig-translate-preview"></div>
 </div>
-<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card">
+<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card" data-cs-path-only="practicing dai">
   <h2>𝕏 Tweet desk</h2>
   <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
   <div class="td-row">
