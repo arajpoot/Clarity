@@ -86,7 +86,13 @@
     });
   }
 
-  function tick(){
+  function setActiveTab(){
+    try{
+      var b=d.querySelector(".cs-door button.is-active, [data-rail-tab].is-active");
+      if(b){ var t=b.getAttribute("data-rail-tab"); if(t) d.body.setAttribute("data-active-tab", t); }
+    }catch(e){}
+  }
+  function tick(){ setActiveTab();
     pathIcons();
     doorIcons();
     emptyStates();

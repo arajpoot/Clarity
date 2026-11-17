@@ -1,4 +1,4 @@
-/*! companion-meme-studio-v1 · layout · seeker/dai · educational only */
+/*! companion-meme-studio-v1 · layout · daily/dai · educational only */
 #meme-card, #cs-mount #meme-card {
   display: block;
 }
@@ -54,7 +54,7 @@
   margin: 0.25rem 0 0.4rem;
   line-height: 1.4;
 }
-/* path gate: hide card off seeker/dai when marked */
+/* path gate: hide card off daily/dai when marked */
 body[data-cs-path="new_muslim"] #meme-card[data-cs-path-only],
 body[data-cs-path="practicing"] #meme-card[data-cs-path-only],
 body[data-cs-path="daily"] #meme-card[data-cs-path-only] {

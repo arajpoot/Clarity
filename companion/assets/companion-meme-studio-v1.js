@@ -1,4 +1,4 @@
-/*! companion-meme-studio-v1 · wire + path gate seeker/dai · educational only */
+/*! companion-meme-studio-v1 · wire + path gate daily/dai · educational only */
 (function(w,d){
   "use strict";
   if(w.__COMPANION_MEME_STUDIO_V1__) return;
@@ -15,7 +15,7 @@
   }
   function allowed(){
     var p=path();
-    return p==="seeker"||p==="dai";
+    return p==="practicing"||p==="daily"||p==="dai";
   }
   function gate(){
     var card=d.getElementById("meme-card");
@@ -76,7 +76,7 @@
       var btn=ev.target && ev.target.closest && ev.target.closest("[data-meme-bg],[data-meme-decor],[data-meme-fetch],[data-meme-act]");
       if(!btn) return;
       ev.preventDefault();
-      if(!allowed()){ status("Meme Studio is on Seeker & Daʿī paths only."); return; }
+      if(!allowed()){ status("Meme Studio is on Daily Muslim & Daʿī paths only."); return; }
       var bg=btn.getAttribute("data-meme-bg");
       var decor=btn.getAttribute("data-meme-decor");
       var fetch=btn.getAttribute("data-meme-fetch");
