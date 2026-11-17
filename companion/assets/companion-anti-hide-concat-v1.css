@@ -1,0 +1,74 @@
+/*! companion-anti-hide-concat-v1.css · P18 · override all known hide rules · educational only */
+
+/* === Cards & primary plaques: never hide === */
+#cs-mount [id$="-card"],
+#cs-mount section.cs-plaque:not([data-cs-path-only]),
+#cs-mount .cs-plaque[data-cs-primary],
+#cs-mount .dl-card,
+#cs-mount .cs-rich-legacy-wrap,
+#cs-mount .cs-rich-legacy,
+#cs-mount [data-rrra]:not([data-cs-path-only]) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  position: relative !important;
+  clip: auto !important;
+}
+
+/* === Arch ladder: do not hide shelves that hold content === */
+#cs-mount .arch-level-shelf,
+#cs-mount .arch-level-shelf.is-filtered-out,
+#cs-mount .arch-level-shelf.is-empty,
+#cs-mount .arch-level-shelf.is-collapsed .arch-shelf-body {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-height: none !important;
+  height: auto !important;
+}
+#cs-mount .arch-shelf-body,
+#cs-mount .arch-shelf-body > * {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* === NurOS: no dim-collapse === */
+#cs-mount .nuros-deferred {
+  opacity: 1 !important;
+  filter: none !important;
+  order: 0 !important;
+}
+
+/* === Housekeep: never hide cards via dup/hero rules === */
+#cs-mount [id$="-card"][data-cs-dup],
+#cs-mount [id$="-card"].cs-tab-hero ~ [id$="-card"] {
+  display: block !important;
+}
+/* Tajweed cards visible when present in mount (Action tab content) */
+#cs-mount #tj-deep-studio,
+#cs-mount #tajweed-path-card,
+#cs-mount #tajweed-live-card,
+#cs-mount .card-tajweed {
+  display: block !important;
+}
+
+/* === Path classes must not hide cards === */
+#cs-mount .cpp-path-hidden[id$="-card"],
+#cs-mount .is-path-hidden[id$="-card"],
+#cs-mount .arch-hidden[id$="-card"],
+#cs-mount [hidden][id$="-card"] {
+  display: block !important;
+  visibility: visible !important;
+}
+#cs-mount [id$="-card"][hidden] {
+  hidden: false;
+}
+
+/* counts-only shallow arch may stay hidden */
+#cs-mount [data-arch-counts-only="1"]:not([id$="-card"]) {
+  /* allow shallow strip hide */
+}
