@@ -1,122 +1,293 @@
 <!DOCTYPE html>
-<html lang="en" data-clarity-room="port">
+<html lang="en" data-theme="dark" data-clarity-room="port">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<meta name="clarity-build" content="PORTROOT-20261116"/>
+<meta name="clarity-build" content="PORTORIG-20261116"/>
 <title>Clarity — Furnish Your Grave</title>
 <meta name="description" content="Castle of Clarity — five rooms for learning and craft. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/"/>
-
-<link rel="stylesheet" href="/assets/port-castle-v2.css?v=20261116PORTROOT"/>
-<link rel="stylesheet" href="/assets/port-door-registry-v1.css?v=20261116PORTROOT"/>
-<link rel="stylesheet" href="/assets/port-how-castle-v1.css?v=20261116PORTROOT"/>
-<link rel="stylesheet" href="/assets/port-banner-enrich-v1.css?v=20261116PORTROOT"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=EB+Garamond:wght@500;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/port-castle-v2.css?v=20261116PORTORIG"/>
+<link rel="stylesheet" href="/assets/port-door-registry-v1.css?v=20261116PORTORIG"/>
+<link rel="stylesheet" href="/assets/port-how-castle-v1.css?v=20261116PORTORIG"/>
+<link rel="stylesheet" href="/assets/port-banner-enrich-v1.css?v=20261116PORTORIG"/>
 <style>
-.cs-ssr-first-session{max-width:42rem;margin:1rem auto;padding:0 1rem}
-.cs-ssr-card{border:1px solid rgba(201,162,39,.32);border-radius:12px;padding:1rem 1.15rem;margin-bottom:.85rem;background:rgba(12,28,22,.92)}
-.cs-ssr-arabic{font-size:1.3rem;line-height:1.85;text-align:right;margin:.5rem 0;font-family:Amiri,serif}
-.cs-ssr-meta{font-size:.84rem;opacity:.85}
-.cs-ssr-meta a{color:inherit}
-.cs-ssr-tip,.cs-ssr-charter,.cs-ssr-path-step{font-size:.9rem;line-height:1.45;opacity:.9}
+  /* Original-layout restore · PORTORIG · educational only — not a fatwa */
+  .port-kicker-row {
+    text-align: center; font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; opacity: 0.85; margin: 0.35rem 0 0.15rem;
+  }
+  .port-subhead {
+    text-align: center; font-size: 0.9rem; opacity: 0.9; margin: 0.25rem auto 0.75rem;
+    max-width: 36rem;
+  }
+  .port-pill-row {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;
+    margin: 0.65rem auto 1rem; max-width: 40rem;
+  }
+  .port-pill-row span {
+    font-size: 0.72rem; padding: 0.28rem 0.65rem; border-radius: 999px;
+    border: 1px solid rgba(212,180,90,0.35); background: rgba(15,76,58,0.25);
+  }
+  nav.port-room-nav {
+    display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center;
+    margin: 0.5rem auto 1.25rem; max-width: 42rem;
+  }
+  nav.port-room-nav a {
+    text-decoration: none; color: inherit; font-size: 0.82rem; font-weight: 700;
+    padding: 0.4rem 0.85rem; border-radius: 999px;
+    border: 1px solid rgba(212,180,90,0.3); background: rgba(0,0,0,0.25);
+  }
+  nav.port-room-nav a.is-here, nav.port-room-nav a:hover {
+    background: #1e7d5e; border-color: transparent; color: #fff;
+  }
+  .castle-intro-card {
+    max-width: 42rem; margin: 0 auto 1.25rem; padding: 1rem 1.1rem;
+    border-radius: 16px; border: 1px solid rgba(212,180,90,0.28);
+    background: rgba(12,28,22,0.92);
+  }
+  .castle-intro-card h2 { margin: 0 0 0.35rem; color: #e8d48a; font-size: 1.1rem; }
+  .port-intro-video-wrap {
+    position: relative; border-radius: 14px; overflow: hidden;
+    background: #0a1210; margin: 0.75rem 0; border: 1px solid rgba(212,180,90,0.25);
+  }
+  .port-intro-video-wrap video {
+    width: 100%; display: block; max-height: 280px; object-fit: cover; background: #0a1210;
+  }
+  .port-intro-meta {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.9;
+  }
+  .port-intro-meta .edu-chip {
+    background: rgba(30,125,94,0.45); padding: 0.25rem 0.55rem; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 700;
+  }
+  .cs-ssr-first-session { max-width: 42rem; margin: 1rem auto; padding: 0 1rem; }
+  .cs-ssr-card {
+    border: 1px solid rgba(201,162,39,0.32); border-radius: 12px;
+    padding: 1rem 1.15rem; margin-bottom: 0.85rem; background: rgba(12,28,22,0.92);
+  }
+  .cs-ssr-arabic {
+    font-size: 1.25rem; line-height: 1.85; text-align: right; margin: 0.5rem 0;
+    font-family: Amiri, serif;
+  }
+  .cs-ssr-meta { font-size: 0.84rem; opacity: 0.85; }
+  .cs-ssr-meta a { color: inherit; }
+  .cs-ssr-tip { font-size: 0.9rem; line-height: 1.45; opacity: 0.9; margin-top: 0.45rem; }
+  .sym-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 0.85rem; max-width: 56rem; margin: 0 auto; padding: 0 1rem 1.5rem;
+  }
+  article.tower {
+    border-radius: 14px; border: 1px solid rgba(212,180,90,0.28);
+    background: rgba(8,22,18,0.95); padding: 0.9rem 1rem;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  article.tower h3 { margin: 0; color: #e8d48a; font-size: 1.05rem; }
+  article.tower .role { font-size: 0.82rem; opacity: 0.85; margin: 0; }
+  article.tower ul { margin: 0.25rem 0; padding-left: 1.1rem; font-size: 0.84rem; opacity: 0.92; }
+  article.tower .tower-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; padding-top: 0.5rem; }
+  article.tower a.enter, article.tower button.room-tour-pill {
+    font-size: 0.78rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 999px;
+    border: 1px solid rgba(212,180,90,0.35); cursor: pointer; text-decoration: none; color: #fff;
+    background: #1e7d5e;
+  }
+  article.tower button.room-tour-pill { background: rgba(15,76,58,0.55); color: inherit; }
+  .entered-chip {
+    font-size: 0.72rem; opacity: 0.75; border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; padding: 0.25rem 0.45rem; margin-top: 0.25rem;
+  }
+  .port-disclaimer { font-size: 0.82rem; opacity: 0.88; text-align: center; max-width: 40rem; margin: 0.5rem auto; }
+  .port-foot { text-align: center; padding: 1.25rem 1rem 2rem; font-size: 0.85rem; opacity: 0.9; }
 </style>
 </head>
 <body>
+<div class="port-sky-ambient" aria-hidden="true"><span class="orb orb-a"></span><span class="orb orb-b"></span></div>
 <div class="port-wrap">
 
   <header class="port-banner" role="banner">
     <div class="banner-glow" aria-hidden="true"></div>
     <div class="port-tools">
-      <span class="port-chip" id="cp-net-chip">Online</span>
-      <span class="port-chip" id="cp-sw-chip">PWA</span>
+      <span class="port-chip online" id="cp-net-chip">Online</span>
+      <span class="port-chip" id="cp-sw-chip">PWA ready</span>
       <button type="button" class="port-chip" id="cp-theme" aria-label="Toggle theme">Theme</button>
     </div>
     <div class="port-banner-inner">
-      <p class="port-kicker">Clarity</p>
+      <p class="port-kicker-row">Clarity · Local-first · Five rooms</p>
       <h1 class="port-title">Furnish Your <span>Grave</span></h1>
-      <p class="port-tagline">Wings for learning &amp; craft · keep for today’s portion · Phase A offline foundation</p>
-      <p class="port-ar arabic" lang="ar" dir="rtl">وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ</p>
+      <p class="port-subhead">Daily practice · private amānah · ordered learning — educational companion only</p>
+      <p class="port-ar arabic" lang="ar" dir="rtl">فَأَمَّا مَن ثَقُلَتْ مَوَازِينُهُ</p>
+      <div class="port-pill-row" aria-label="Stance">
+        <span>Local-first</span>
+        <span>On this device</span>
+        <span>Not a fatwa</span>
+        <span>Verify with Qur’an, Sunnah, scholar</span>
+      </div>
     </div>
   </header>
 
-  <section class="castle-intro" id="castle-intro" data-castle-intro="1">
-    <h2>The Castle of Clarity</h2>
-    <p>A short overview of Clarity’s five rooms. Room-specific tours sit on each card — tap <strong>▶ Tour</strong> when you want one.</p>
-    <p class="port-disclaimer">Educational only — not a fatwa, not legal advice. Verify with Quran.com, Sunnah.com, and a local scholar. Private data stays on this device unless you export it.</p>
+  <nav class="port-room-nav" aria-label="Clarity rooms">
+    <a href="/" class="is-here" aria-current="page">Port</a>
+    <a href="/companion/">Companion</a>
+    <a href="/daily/">Yawm</a>
+    <a href="/campus/">Campus</a>
+    <a href="/amana/">Amānah</a>
+    <a href="/craft/">Craft</a>
+  </nav>
+
+  <p class="port-disclaimer">Educational only — not a fatwa, not legal advice. Verify with Quran.com, Sunnah.com, and a local scholar. Private data stays on this device unless you export it.</p>
+
+  <!-- Original: Castle introduction + intro video on top -->
+  <section class="castle-intro-card" id="castle-intro" data-castle-intro="1">
+    <h2>Castle introduction</h2>
+    <p class="panel-note" style="margin:0;font-size:0.9rem;opacity:0.9">A short overview of Clarity’s five rooms. Room-specific tours sit on each card below — tap <strong>▶ Tour</strong> when you want one. Educational only — not a fatwa.</p>
+    <div class="port-intro-video-wrap">
+      <video
+        id="port-intro-video"
+        controls
+        playsinline
+        preload="metadata"
+        poster=""
+        aria-label="Clarity castle introduction">
+        <source src="/assets/media/tours/clarity-port-intro-v1.mp4" type="video/mp4"/>
+        Your browser does not play this video.
+      </video>
+    </div>
+    <div class="port-intro-meta">
+      <span class="edu-chip">Educational only — not a fatwa</span>
+      <span>Bismillah · Assalamu alaikum</span>
+    </div>
+    <p style="font-size:0.85rem;opacity:0.88;margin:0.5rem 0 0">Then open any room with Enter, or watch that room’s Tour.</p>
   </section>
 
-  <div class="cs-ssr-first-session" id="cs-ssr-first-session" data-ssr="port-reminder-v1">
+  <!-- Daily command / saying (SSR cards kept from port) -->
+  <div class="cs-ssr-first-session">
     <article class="cs-ssr-card" aria-label="Command verse">
-      <h2>✦ Command</h2>
-      <p class="cs-ssr-arabic" dir="rtl" lang="ar">يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ</p>
+      <h2 style="margin:0;color:#e8d48a;font-size:1rem">✦ Command</h2>
+      <p class="cs-ssr-arabic" lang="ar" dir="rtl">يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ</p>
       <p>O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient.</p>
-      <p class="cs-ssr-meta">Qur’an 2:153 · <a href="https://quran.com/2/153" rel="noopener">quran.com/2/153</a></p>
+      <p class="cs-ssr-meta">Qur’an 2:153 · <a href="https://quran.com/2/153" target="_blank" rel="noopener">quran.com/2/153</a></p>
       <p class="cs-ssr-tip">One way to act — not a ruling: pause before the next task and make a short duʿāʾ for ṣabr.</p>
     </article>
-    <article class="cs-ssr-card" aria-label="Hadith">
-      <h2>🕊 Saying of the Prophet ﷺ</h2>
+    <article class="cs-ssr-card" aria-label="Prophetic saying">
+      <h2 style="margin:0;color:#e8d48a;font-size:1rem">🕊 Saying of the Prophet ﷺ</h2>
       <p>None of you truly believes until he loves for his brother what he loves for himself.</p>
-      <p class="cs-ssr-meta">Ṣaḥīḥ · Bukhārī 13 · Muslim 45 · <a href="https://sunnah.com/bukhari:13" rel="noopener">sunnah.com/bukhari:13</a></p>
+      <p class="cs-ssr-meta">Ṣaḥīḥ · Bukhārī 13 · Muslim 45 · <a href="https://sunnah.com/bukhari:13" target="_blank" rel="noopener">sunnah.com/bukhari:13</a></p>
       <p class="cs-ssr-tip">One way to act — not a ruling: today choose one person and intend good for them as you would for yourself.</p>
     </article>
-    <p class="cs-ssr-path-step"><strong>Choose a door below</strong> — Companion, Yawm, University, Amānah, or Craft.</p>
-    <p class="cs-ssr-charter">Educational only — not a fatwa. Prefer a local teacher for rulings.</p>
+    <p class="port-disclaimer" style="text-align:left">Choose a door below — Companion, Yawm, University, Amānah, or Craft.</p>
   </div>
 
   <main class="castle-sym" id="castle-main">
-    <div class="sym-grid" role="list">
+    <h2 class="port-title" style="text-align:center;font-size:1.35rem;margin:0.5rem 0 0.15rem">The Castle of Clarity</h2>
+    <p class="port-subhead">Wings for learning &amp; craft · keep for today’s portion · Phase A offline foundation</p>
 
+    <!-- How the castle works is also injected by port-how-castle-v1 if missing; static copy for SSR -->
+    <section id="port-how-castle" class="port-how-castle" data-port-owned="how-castle-v1" style="max-width:42rem;margin:0 auto 1.25rem;padding:0 1rem">
+      <div class="phc-card" style="border:1px solid rgba(212,180,90,0.28);border-radius:16px;padding:1rem;background:rgba(12,28,22,0.9)">
+        <h2 class="phc-title" style="text-align:center;color:#e8d48a;margin:0">How the castle works</h2>
+        <p class="phc-sub" style="text-align:center;font-size:0.85rem;opacity:0.85">Three quiet steps · no enrollment · no fatwa desk</p>
+        <ol class="phc-steps" style="list-style:none;padding:0;display:grid;gap:0.55rem;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr))">
+          <li class="phc-step" style="border:1px solid rgba(212,180,90,0.2);border-radius:12px;padding:0.65rem">
+            <span class="phc-num">1</span>
+            <h3 style="margin:0.25rem 0;font-size:0.95rem">Arrive</h3>
+            <p style="margin:0;font-size:0.82rem;opacity:0.9">Educational companion only. Private data stays on this device unless you export it.</p>
+          </li>
+          <li class="phc-step" style="border:1px solid rgba(212,180,90,0.2);border-radius:12px;padding:0.65rem">
+            <span class="phc-num">2</span>
+            <h3 style="margin:0.25rem 0;font-size:0.95rem">Choose a door</h3>
+            <p style="margin:0;font-size:0.82rem;opacity:0.9">Each room has one job — path, today, trust, ordered study, or craft. Enter or watch ▶ Tour.</p>
+          </li>
+          <li class="phc-step" style="border:1px solid rgba(212,180,90,0.2);border-radius:12px;padding:0.65rem">
+            <span class="phc-num">3</span>
+            <h3 style="margin:0.25rem 0;font-size:0.95rem">Verify</h3>
+            <p style="margin:0;font-size:0.82rem;opacity:0.9">For real rulings return to the Qur’an, the Sunnah, and a teacher you trust.</p>
+          </li>
+        </ol>
+        <p class="phc-stamp" style="text-align:center;font-size:0.78rem;opacity:0.8;margin:0.65rem 0 0">Educational only — not a fatwa · not legal advice</p>
+      </div>
+    </section>
+
+    <div class="sym-grid" role="list">
       <article class="tower" data-room="companion" role="listitem">
         <h3>✦ Companion</h3>
         <p class="role">Reminder · path · tools</p>
-        <p class="sub">Commands &amp; daily verse · Hadith &amp; Prophet’s names ﷺ · Reality · Reflection · Action</p>
+        <ul>
+          <li>Commands &amp; daily verse</li>
+          <li>Hadith &amp; Prophet’s names ﷺ</li>
+          <li>Reality · Reflection · Action</li>
+          <li>Ḥajj · quiz · media desk</li>
+        </ul>
+        <div class="entered-chip" data-entered="companion">Not yet entered</div>
         <div class="tower-actions">
           <a class="enter" href="/companion/">Enter Companion</a>
-          <button type="button" class="room-tour-pill" data-room="companion" data-tour-src="/assets/tours/companion-tour.mp4">▶ Tour</button>
+          <button type="button" class="room-tour-pill" data-room="companion" data-tour-src="/assets/media/tours/companion-tour.mp4">▶ Tour</button>
         </div>
       </article>
 
       <article class="tower" data-room="yawm" role="listitem">
         <h3>☾ Yawm · Keep</h3>
         <p class="role">Today’s portion · heart of the castle</p>
-        <p class="sub">Sūrat al-ʿAṣr · Continuing deeds · Farḍ checklist · Offline-first daily loop</p>
+        <ul>
+          <li>Sūrat al-ʿAṣr</li>
+          <li>Continuing deeds (Muslim 1631)</li>
+          <li>Farḍ checklist · small deed</li>
+          <li>Offline-first daily loop</li>
+        </ul>
+        <div class="entered-chip" data-entered="yawm">Not yet entered</div>
         <div class="tower-actions">
           <a class="enter" href="/daily/">Enter Yawm</a>
-          <button type="button" class="room-tour-pill" data-room="yawm" data-tour-src="/assets/tours/yawm-tour.mp4">▶ Tour</button>
+          <button type="button" class="room-tour-pill" data-room="yawm" data-tour-src="/assets/media/tours/yawm-tour.mp4">▶ Tour</button>
         </div>
       </article>
 
-      <article class="tower keep" data-room="amana" role="listitem">
+      <article class="tower" data-room="amana" role="listitem">
         <h3>🔐 Amānah</h3>
         <p class="role">Trust · legacy desk</p>
-        <p class="sub">Desk notes · Optional vault chambers · Dayn · heirs · wasiyyah · You hold the passphrase</p>
+        <ul>
+          <li>Desk notes (no unlock)</li>
+          <li>Optional vault chambers</li>
+          <li>Dayn · heirs · wasiyyah</li>
+          <li>You hold the passphrase</li>
+        </ul>
+        <div class="entered-chip" data-entered="amana">Not yet entered</div>
         <div class="tower-actions">
           <a class="enter" href="/amana/">Enter Amānah</a>
-          <button type="button" class="room-tour-pill" data-room="amana" data-tour-src="/assets/tours/amana-tour.mp4">▶ Tour</button>
+          <button type="button" class="room-tour-pill" data-room="amana" data-tour-src="/assets/media/tours/amana-tour.mp4">▶ Tour</button>
         </div>
       </article>
 
       <article class="tower" data-room="campus" role="listitem">
         <h3>◉ University</h3>
         <p class="role">Ordered path</p>
-        <p class="sub">Curriculum tracks · Structured lessons · On-device progress · Not a physical university</p>
+        <ul>
+          <li>Curriculum tracks</li>
+          <li>Structured lessons</li>
+          <li>On-device progress</li>
+          <li>Not a physical university</li>
+        </ul>
+        <div class="entered-chip" data-entered="campus">Not yet entered</div>
         <div class="tower-actions">
           <a class="enter" href="/campus/">Enter Campus</a>
-          <button type="button" class="room-tour-pill" data-room="campus" data-tour-src="/assets/tours/campus-tour.mp4">▶ Tour</button>
+          <button type="button" class="room-tour-pill" data-room="campus" data-tour-src="/assets/media/tours/campus-tour.mp4">▶ Tour</button>
         </div>
       </article>
 
       <article class="tower" data-room="craft" role="listitem">
         <h3>✒️ Craft</h3>
         <p class="role">Workbenches only</p>
-        <p class="sub">Meme studio · Tajweed · Calligraphy · Quiz · Notes · Dawah Vocational Institute</p>
+        <ul>
+          <li>Meme studio · Tajweed · Calligraphy</li>
+          <li>Quiz · Notes</li>
+          <li>Dawah Vocational Institute</li>
+        </ul>
+        <div class="entered-chip" data-entered="craft">Not yet entered</div>
         <div class="tower-actions">
           <a class="enter" href="/craft/">Enter Craft</a>
-          <button type="button" class="room-tour-pill" data-room="craft" data-tour-src="/assets/tours/craft-tour.mp4">▶ Tour</button>
+          <button type="button" class="room-tour-pill" data-room="craft" data-tour-src="/assets/media/tours/craft-tour.mp4">▶ Tour</button>
         </div>
       </article>
-
     </div>
   </main>
 
@@ -135,9 +306,9 @@
   </footer>
 </div>
 
-<script src="/assets/port-castle-v2.js?v=20261116PORTROOT" defer></script>
-<script src="/assets/port-door-registry-v1.js?v=20261116PORTROOT" defer></script>
-<script src="/assets/port-how-castle-v1.js?v=20261116PORTROOT" defer></script>
-<script src="/assets/port-room-tours-fortify-v1.js?v=20261116PORTROOT" defer></script>
+<script src="/assets/port-castle-v2.js?v=20261116PORTORIG" defer></script>
+<script src="/assets/port-door-registry-v1.js?v=20261116PORTORIG" defer></script>
+<script src="/assets/port-how-castle-v1.js?v=20261116PORTORIG" defer></script>
+<script src="/assets/port-room-tours-fortify-v1.js?v=20261116PORTORIG" defer></script>
 </body>
 </html>

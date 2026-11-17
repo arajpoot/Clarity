@@ -1,0 +1,19 @@
+{
+  "build": "PORTORIG-20261116",
+  "date": "2026-11-16",
+  "binding": true,
+  "educational_only": true,
+  "not_a_fatwa": true,
+  "rooms_touched": [
+    "port"
+  ],
+  "checks": {
+    "intro_video_present": "pass",
+    "five_room_cards_matched": "pass",
+    "how_castle_works": "pass",
+    "room_nav_pills": "pass",
+    "root_is_port": "pass",
+    "companion_not_overwritten": "pass"
+  },
+  "status": "ready_for_deploy"
+}

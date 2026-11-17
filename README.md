@@ -1,6 +1,1 @@
-# Clarity Port root landing · 20261116
-
-Replaces site root `/` with Castle Port (`data-clarity-room="port"`).
-Companion remains at `/companion/`.
-
-See DEPLOY.md and SMOKE_PORTROOT.json.
+PORTORIG-20261116 — Original Castle Port layout with intro video player and full five-room grid.
