@@ -1,14 +1,11 @@
-# Bismillāh · Slim-4 P23
+# Bismillāh · Verified P26
 
 **Verdict: GREEN**
 
-## Pre-gate live
-- 5 cycles clean · enrichment intact · governance spine OK
+Slim-5 live: 9 boot scripts, lazy engines, path curriculum, enriched tiles.
+Governance + enrichment clauses pass.
 
-## Slim-4
-- Boot scripts: **10** (craft / action-wiring / ḥifẓ **deferred**)
-- `companion-lazy-engines-v1.js` loads engines when Reminder/Action mounts
-- Integrity still last
-- Tab HTML richness unchanged
+## Campus-equivalent foundation status
+Achieved for Companion spine. Next work should be **product polish only** (copy, tile art, engine UX) — not new always-on script layers.
 
 Educational only — not a fatwa.

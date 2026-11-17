@@ -1,8 +1,7 @@
-# Next phase · campus-equivalent foundation
+# After Slim-5 (foundation freeze recommended)
 
-Goal: fewer always-on scripts without losing engines.
-
-- Keep: shell, fortify, honest gov, pathway-bridge, tab-engines, about-mount, integrity, surface
-- Defer to mount: craft-studios, action-wiring, hifz (load when tab=action/reminder needs them)
-- Path-curriculum stays (small, focus only)
-- Do not reintroduce nuclear/ladder/anti-hide stacks
+Do not add nuclear/ladder/anti-hide stacks.
+Optional polish:
+- Path tile icons (SVG NurOS)
+- Engine empty-states
+- Notes/About form UX only
