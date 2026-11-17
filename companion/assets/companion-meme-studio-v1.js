@@ -1,43 +1,237 @@
-/*! companion-meme-studio-v1 · P30 · Daily+Dai · fetch/ratio/font wire · educational only */
+/*! companion-meme-studio-v1 · P32 slow mount · educational only */
 (function(w,d){
   "use strict";
-  if(w.__COMPANION_MEME_STUDIO_V1_P30__) return;
-  w.__COMPANION_MEME_STUDIO_V1_P30__=true;
+  if(w.__COMPANION_MEME_STUDIO_P32__) return;
+  w.__COMPANION_MEME_STUDIO_P32__=true;
 
-  var loaded=false;
-  var RATIO={
+  var CRAFT_OK = { practicing:1, daily:1, dai:1 };
+  var RATIO = {
     twitter:{w:1200,h:675,css:"16/9"},
     facebook:{w:1200,h:630,css:"1.91/1"},
     instagram:{w:1080,h:1080,css:"1/1"},
     instagram_story:{w:1080,h:1920,css:"9/16"}
   };
+  /* local educational packs — always available */
+  var PACKS = {
+    reminder: { verses:[
+      {ar:"كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ", en:"Every soul will taste death.", ref:"Qur'an 3:185"},
+      {ar:"فَاذْكُرُونِي أَذْكُرْكُمْ", en:"So remember Me; I will remember you.", ref:"Qur'an 2:152"},
+      {ar:"وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ", en:"I did not create jinn and mankind except to worship Me.", ref:"Qur'an 51:56"}
+    ], hadith:[
+      {ar:"إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ", en:"Actions are by intentions.", ref:"Bukhari & Muslim — educational"}
+    ]},
+    reality: { verses:[
+      {ar:"أَحَسِبَ النَّاسُ أَن يُتْرَكُوا أَن يَقُولُوا آمَنَّا وَهُمْ لَا يُفْتَنُونَ", en:"Do people think they will be left to say 'We believe' without being tested?", ref:"Qur'an 29:2"}
+    ], hadith:[]},
+    reflection: { verses:[
+      {ar:"يَا أَيُّهَا الَّذِينَ آمَنُوا تُوبُوا إِلَى اللَّهِ تَوْبَةً نَّصُوحًا", en:"O you who believe, turn to Allah in sincere repentance.", ref:"Qur'an 66:8"}
+    ], hadith:[]},
+    action: { verses:[
+      {ar:"وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ", en:"Say: Work, for Allah will see your work, and His Messenger, and the believers.", ref:"Qur'an 9:105"}
+    ], hadith:[]}
+  };
 
   function path(){
-    try{var b=d.querySelector("[data-cs-path].is-active");if(b)return (b.getAttribute("data-cs-path")||"").toLowerCase();}catch(e){}
+    try{var b=d.querySelector("[data-cs-path].is-active"); if(b) return (b.getAttribute("data-cs-path")||"").toLowerCase();}catch(e){}
     try{return (localStorage.getItem("cu_companion_path_v1")||"dai").toLowerCase();}catch(e2){}
     return "dai";
   }
-  function allowed(){
-    var p=path();
-    return p==="practicing"||p==="daily"||p==="dai";
+  function allowed(){ var p=path(); return !!(CRAFT_OK[p]); }
+
+  function status(msg){
+    var el=d.getElementById("meme-fetch-status")||d.getElementById("meme-rrra-status");
+    if(el) el.textContent = msg||"";
   }
-  function gate(){
-    ["meme-card","callig-lab-card","tweet-desk-card"].forEach(function(id){
-      var el=d.getElementById(id); if(!el) return;
-      if(allowed()){
-        el.style.setProperty("display","block","important");
-        el.removeAttribute("hidden");
-      } else {
-        el.style.setProperty("display","none","important");
-        el.setAttribute("hidden","");
-      }
+
+  function forceVisible(){
+    var card=d.getElementById("meme-card");
+    var root=d.getElementById("meme-studio-root");
+    if(!card||!root) return false;
+    if(!allowed()){
+      card.style.setProperty("display","none","important");
+      card.setAttribute("hidden","");
+      return false;
+    }
+    card.style.setProperty("display","block","important");
+    card.removeAttribute("hidden");
+    root.style.setProperty("display","flex","important");
+    root.style.setProperty("visibility","visible","important");
+    root.style.setProperty("opacity","1","important");
+    root.style.setProperty("max-height","none","important");
+    root.querySelectorAll(".meme-bar, .meme-preview-only, .meme-below, .meme-chip-row, #meme-stage, #meme-canvas").forEach(function(el){
+      el.style.setProperty("display", el.id==="meme-canvas"||el.classList.contains("meme-chip-row")?"(flex or block)":"block", "important");
     });
-    if(allowed()) if(allowed()) ensureEngines();
+    /* fix botched ternary — do explicit */
+    root.querySelectorAll(".meme-bar, .meme-preview-only, .meme-below, #meme-stage-wrap, #meme-stage").forEach(function(el){
+      el.style.setProperty("display","block","important");
+      el.style.setProperty("visibility","visible","important");
+    });
+    root.querySelectorAll(".meme-chip-row").forEach(function(el){
+      el.style.setProperty("display","flex","important");
+    });
+    var canvas=d.getElementById("meme-canvas");
+    if(canvas){
+      canvas.style.setProperty("display","block","important");
+      canvas.style.setProperty("width","100%","important");
+      if(!canvas.width) canvas.width=1200;
+      if(!canvas.height) canvas.height=675;
+    }
+    return true;
   }
+
+  function state(){
+    if(!w.memeState||typeof w.memeState!=="object"){
+      w.memeState={ratio:"twitter", top:"", mid:"", bottom:"", _lastRef:"", font:"naskh", style:"outline",
+        topSize:36, midSize:20, bottomSize:16, outline:4, img:null, topY:0.14, midY:0.42, bottomY:0.72};
+    }
+    return w.memeState;
+  }
+
+  function paintLocal(){
+    var canvas=d.getElementById("meme-canvas");
+    if(!canvas) return;
+    var s=state();
+    var ctx=canvas.getContext("2d");
+    if(!ctx) return;
+    var W=canvas.width, H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+    if(s.img && s.img.complete){
+      try{
+        var scale=Math.max(W/(s.img.width||W), H/(s.img.height||H));
+        var iw=(s.img.width||W)*scale, ih=(s.img.height||H)*scale;
+        ctx.drawImage(s.img, (W-iw)/2, (H-ih)/2, iw, ih);
+      }catch(e){ ctx.fillStyle="#0c1a14"; ctx.fillRect(0,0,W,H); }
+    } else {
+      ctx.fillStyle="#0c1a14"; ctx.fillRect(0,0,W,H);
+    }
+    function drawLine(text, yFrac, size, rtl){
+      if(!text) return;
+      ctx.save();
+      ctx.font = "bold "+size+"px Amiri, 'Noto Naskh Arabic', 'Segoe UI', serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      if(rtl) ctx.direction = "rtl";
+      ctx.lineWidth = s.outline||4;
+      ctx.strokeStyle = "rgba(0,0,0,0.75)";
+      ctx.fillStyle = "#f7f1e1";
+      var y=H*yFrac;
+      if(s.style!=="fill") ctx.strokeText(text, W/2, y);
+      ctx.fillText(text, W/2, y);
+      ctx.restore();
+    }
+    var topRtl=/[\u0600-\u06FF]/.test(s.top||"");
+    drawLine(s.top, s.topY||0.14, s.topSize||36, topRtl);
+    drawLine(s.mid, s.midY||0.42, s.midSize||20, false);
+    drawLine(s.bottom||s._lastRef, s.bottomY||0.72, s.bottomSize||16, false);
+  }
+
+  function paint(){
+    try{ if(typeof w.paintMeme==="function") w.paintMeme(); }catch(e){}
+    try{ if(typeof w.memeDraw==="function") w.memeDraw(); }catch(e2){}
+    paintLocal();
+  }
+
+  function setText(ar,en,ref){
+    var s=state();
+    s.top=String(ar||"").trim();
+    s.mid=String(en||"").trim();
+    s.bottom=String(ref||"").trim();
+    s._lastRef=s.bottom;
+    try{
+      if(typeof w.clarityMemeFill==="function") w.clarityMemeFill(s.top,s.mid,s._lastRef);
+      else if(typeof w.clarityMemeSetCanvas==="function") w.clarityMemeSetCanvas(s.top,s.mid,"",s._lastRef);
+    }catch(e){}
+    var top=d.getElementById("meme-top-input");
+    var mid=d.getElementById("meme-mid-input");
+    var bot=d.getElementById("meme-bottom-input");
+    if(top) top.value=s.top;
+    if(mid) mid.value=s.mid;
+    if(bot) bot.value=s.bottom;
+    paint();
+    setTimeout(paint, 120);
+    setTimeout(paint, 500);
+    status((ref||"Text")+" · on canvas");
+  }
+
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function fetchText(kind){
+    if(!allowed()){ status("Meme Studio · Daily Muslim & Daʿī only"); return; }
+    forceVisible();
+    var cat=kind;
+    if(kind==="surprise"||!kind) cat = pick(["reminder","reality","reflection","action"]);
+    if(kind==="daily"||kind==="command"||kind==="dua"||kind==="night") cat="reminder";
+    if(["reminder","reality","reflection","action"].indexOf(cat)<0) cat="reminder";
+
+    /* prefer engine packs if present */
+    try{
+      if(typeof w.memeFetchRrra==="function" && ["reminder","reality","reflection","action"].indexOf(kind)>=0){
+        w.memeFetchRrra(kind);
+        status("Fetched · "+kind);
+        setTimeout(function(){ paint(); fetchBg("dynamic"); }, 500);
+        return;
+      }
+      if(kind==="daily" && typeof w.memeDailyVerse==="function"){ w.memeDailyVerse(); setTimeout(paint,400); return; }
+      if(kind==="command" && typeof w.memeFromCommand==="function"){ w.memeFromCommand(); setTimeout(paint,400); return; }
+      if(kind==="dua" && typeof w.memeMasnunDua==="function"){ w.memeMasnunDua(); setTimeout(paint,400); return; }
+      if(kind==="night" && typeof w.memeNightQuote==="function"){ w.memeNightQuote(); setTimeout(paint,400); return; }
+    }catch(e){}
+
+    var pack=PACKS[cat]||PACKS.reminder;
+    var pool=(pack.verses||[]).concat(pack.hadith||[]);
+    var item=pick(pool);
+    setText(item.ar, item.en, item.ref);
+    setTimeout(function(){ fetchBg("dynamic"); }, 400);
+  }
+
+  function fetchBg(kind){
+    if(!allowed()) return;
+    forceVisible();
+    status("Loading scene · "+kind+"…");
+    try{
+      if(typeof w.memeFetchBg==="function"){
+        w.memeFetchBg(kind==="blank"?"nature":kind);
+        setTimeout(paint, 800);
+        setTimeout(paint, 1600);
+        status(kind+" · loading");
+        return;
+      }
+    }catch(e){}
+    /* minimal scenery fallback — solid + gradient (no figurative) */
+    var s=state();
+    s.img=null;
+    var canvas=d.getElementById("meme-canvas");
+    if(canvas){
+      var ctx=canvas.getContext("2d");
+      var g=ctx.createLinearGradient(0,0,0,canvas.height);
+      var colors={
+        holy:["#0b3d2e","#1a5c40"], night:["#0a1628","#1a2744"],
+        nature:["#0d2f1c","#1e4d32"], water:["#0a2a32","#144a58"],
+        spirit:["#1a1430","#2a2450"], flowers:["#2a1830","#3d2a40"],
+        free:["#123024","#1e4a34"], dynamic:["#0f2a22","#1a4034"]
+      };
+      var c=colors[kind]||colors.nature;
+      g.addColorStop(0,c[0]); g.addColorStop(1,c[1]);
+      ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);
+      paintLocal();
+    }
+    status(kind+" · ok");
+  }
+
+  function applyRatio(name){
+    var r=RATIO[name]||RATIO.twitter;
+    var s=state(); s.ratio=name;
+    var canvas=d.getElementById("meme-canvas");
+    var stage=d.getElementById("meme-stage");
+    if(canvas){ canvas.width=r.w; canvas.height=r.h; }
+    if(stage){ stage.style.aspectRatio=r.css; stage.setAttribute("data-ratio", name); }
+    paint(); status("Canvas · "+name);
+  }
+
   function loadScript(src){
     return new Promise(function(res){
-      if(d.querySelector('script[data-src="'+src+'"],script[src="'+src+'"]')){res();return;}
-      var s=d.createElement("script"); s.src=src; s.async=true; s.setAttribute("data-src",src);
+      if(d.querySelector('script[data-meme-src="'+src+'"]')){ res(); return; }
+      var s=d.createElement("script"); s.src=src; s.async=true; s.setAttribute("data-meme-src",src);
       s.onload=function(){res();}; s.onerror=function(){res();};
       d.head.appendChild(s);
     });
@@ -46,160 +240,81 @@
     if(d.querySelector('link[href="'+href+'"]')) return;
     var l=d.createElement("link"); l.rel="stylesheet"; l.href=href; d.head.appendChild(l);
   }
-  function status(msg){
-    var el=d.getElementById("meme-fetch-status")||d.getElementById("meme-rrra-status");
-    if(el) el.textContent=msg||"";
-  }
-  function state(){
-    if(!w.memeState || typeof w.memeState!=="object"){
-      w.memeState={vignette:0.28,ratio:"twitter",grade:"none",img:null,top:"",mid:"",bottom:"",_lastRef:"",
-        fontSize:42,topSize:34,midSize:20,bottomSize:16,outline:4,font:"naskh",style:"outline",
-        topY:0.12,midY:0.42,bottomY:0.70};
-    }
-    return w.memeState;
-  }
-  function paint(){
-    try{ if(typeof w.paintMeme==="function") w.paintMeme(); }catch(e){}
-    try{ if(typeof w.syncMemeUi==="function") w.syncMemeUi(); }catch(e2){}
-    try{
-      var s=state();
-      if(typeof w.clarityMemeSetCanvas==="function" && (s.top||s.mid)){
-        /* force redraw path */
-      }
-    }catch(e3){}
-    try{
-      // canvas-clean uses internal paint via setCanvas; trigger via state write
-      if(typeof w.memeDraw==="function") w.memeDraw();
-    }catch(e4){}
-  }
-  function applyRatio(name){
-    var r=RATIO[name]||RATIO.twitter;
-    var s=state();
-    s.ratio=name;
-    var canvas=d.getElementById("meme-canvas");
-    var stage=d.getElementById("meme-stage");
-    var wrap=d.getElementById("meme-stage-wrap");
-    if(canvas){ canvas.width=r.w; canvas.height=r.h; }
-    if(stage){ stage.style.aspectRatio=r.css; stage.setAttribute("data-ratio",name); }
-    if(wrap){ wrap.setAttribute("data-ratio",name); }
-    status("Canvas · "+name.replace("_"," "));
-    paint();
-    setTimeout(paint,100);
-    setTimeout(paint,400);
-  }
-  function applyFont(font){
-    var s=state(); s.font=font;
-    if(/[\u0600-\u06FF]/.test(s.top||"")) s.topSize=s.topSize||34;
-    status("Arabic style · "+font);
-    paint(); setTimeout(paint,80);
-  }
-  function applyStyle(style){
-    var s=state(); s.style=style;
-    status("Text style · "+style);
-    paint(); setTimeout(paint,80);
-  }
-  function fetchText(kind){
-    status("Fetching…");
-    function done(){
-      setTimeout(function(){
-        try{ if(typeof w.memeFetchBg==="function") w.memeFetchBg("dynamic"); }catch(e){}
-        paint();
-        setTimeout(paint,500);
-        setTimeout(paint,1200);
-      }, 400);
-    }
-    try{
-      if(kind==="surprise"){ if(typeof w.memeFetchRrra==="function") w.memeFetchRrra(null); else fallbackVerse(); }
-      else if(kind==="daily" && typeof w.memeDailyVerse==="function") w.memeDailyVerse();
-      else if(kind==="command" && typeof w.memeFromCommand==="function") w.memeFromCommand();
-      else if(kind==="dua" && typeof w.memeMasnunDua==="function") w.memeMasnunDua();
-      else if(kind==="night" && typeof w.memeNightQuote==="function") w.memeNightQuote();
-      else if(kind==="apply-bg"){
-        if(typeof w.memeApplyUrduDua==="function") w.memeApplyUrduDua(true);
-        else if(typeof w.memeFetchBg==="function") w.memeFetchBg("dynamic");
-      } else if(typeof w.memeFetchRrra==="function") w.memeFetchRrra(kind);
-      else fallbackVerse();
-    }catch(e){ fallbackVerse(); }
-    done();
-  }
-  function fallbackVerse(){
-    var ar="كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ";
-    var en="Every soul will taste death.";
-    var ref="Qur'an 3:185";
-    if(typeof w.clarityMemeFill==="function") w.clarityMemeFill(ar,en,ref);
-    else if(typeof w.clarityMemeSetCanvas==="function") w.clarityMemeSetCanvas(ar,en,"",ref);
-    else {
-      var s=state(); s.top=ar; s.mid=en; s.bottom=ref; s._lastRef=ref;
-      paint();
-    }
-    status(ref+" · on canvas");
-  }
-  function fetchBg(kind){
-    status("Loading scene…");
-    try{
-      if(kind==="blank"){
-        if(typeof w.memeShowBlankPalette==="function") w.memeShowBlankPalette();
-        else { state().img=null; paint(); }
-      } else if(typeof w.memeFetchBg==="function") w.memeFetchBg(kind);
-      else if(kind==="dynamic" && typeof w.clarityMemeAiBg==="function") w.clarityMemeAiBg();
-      else status("Background engine still loading — tap again");
-    }catch(e){ status("Background busy — retry"); }
-    setTimeout(paint,600);
-    setTimeout(paint,1500);
-  }
-  function ensureEngines(){
-    if(loaded){ bind(); return; }
-    loaded=true;
-    loadCss("/companion/assets/companion-meme-studio-v1.css?v=20261117M30");
-    loadCss("/companion/assets/clarity-meme-layout-v1.css?v=20261117M30");
+
+  var enginesReady=false;
+  function ensureEngines(cb){
+    if(enginesReady){ if(cb) cb(); return; }
+    loadCss("/companion/assets/companion-meme-studio-v1.css?v=20261117P32");
     Promise.all([
-      loadScript("/companion/assets/clarity-meme-bg-fetch-v1.js?v=20261117M30"),
-      loadScript("/companion/assets/clarity-meme-canvas-clean-v1.js?v=20261117M30")
+      loadScript("/companion/assets/clarity-meme-bg-fetch-v1.js?v=20261117P32"),
+      loadScript("/companion/assets/clarity-meme-canvas-clean-v1.js?v=20261117P32")
     ]).then(function(){
-      bind();
-      applyRatio((state().ratio)||"twitter");
-      paint();
+      enginesReady=true;
+      if(cb) cb();
     });
   }
+
   function bind(){
     var root=d.getElementById("meme-studio-root");
-    if(!root||root.__memeBoundP30) return;
-    root.__memeBoundP30=true;
+    if(!root || root.__p32Bound) return;
+    root.__p32Bound=true;
     root.addEventListener("click", function(ev){
-      var btn=ev.target&&ev.target.closest&&ev.target.closest("[data-meme-bg],[data-meme-decor],[data-meme-fetch],[data-meme-act],[data-meme-ratio],[data-meme-font],[data-meme-style]");
+      var btn=ev.target && ev.target.closest && ev.target.closest("[data-meme-bg],[data-meme-fetch],[data-meme-ratio],[data-meme-font],[data-meme-style],[data-meme-act],[data-meme-decor]");
       if(!btn) return;
       ev.preventDefault();
-      if(!allowed()){ status("Craft tools on Daily Muslim & Daʿī only."); return; }
+      if(!forceVisible()){ status("Meme Studio · Daily Muslim & Daʿī only"); return; }
       var bg=btn.getAttribute("data-meme-bg");
-      var decor=btn.getAttribute("data-meme-decor");
       var fetch=btn.getAttribute("data-meme-fetch");
-      var act=btn.getAttribute("data-meme-act");
       var ratio=btn.getAttribute("data-meme-ratio");
       var font=btn.getAttribute("data-meme-font");
       var style=btn.getAttribute("data-meme-style");
+      var act=btn.getAttribute("data-meme-act");
+      var decor=btn.getAttribute("data-meme-decor");
       if(ratio) applyRatio(ratio);
-      else if(font) applyFont(font);
-      else if(style) applyStyle(style);
-      else if(bg) fetchBg(bg);
-      else if(decor){ try{ if(typeof w.clarityMemeDecorBg==="function") w.clarityMemeDecorBg(decor);}catch(e){} setTimeout(paint,400); }
-      else if(fetch) fetchText(fetch);
-      else if(act==="autoscale"){ try{ if(typeof w.memeAutoScaleLines==="function") w.memeAutoScaleLines(); paint(); }catch(e){} }
-      else if(act==="tweet"){ try{ if(typeof w.memeSendToTweetDesk==="function") w.memeSendToTweetDesk(); }catch(e){} }
+      else if(font){ state().font=font; paint(); status("Font · "+font); }
+      else if(style){ state().style=style; paint(); status("Style · "+style); }
+      else if(bg) ensureEngines(function(){ fetchBg(bg); });
+      else if(decor){ ensureEngines(function(){ try{ if(w.clarityMemeDecorBg) w.clarityMemeDecorBg(decor);}catch(e){} fetchBg("holy"); }); }
+      else if(fetch) ensureEngines(function(){ fetchText(fetch==="apply-bg"?"reminder":fetch); if(fetch==="apply-bg") fetchBg("dynamic"); });
       else if(act==="download"){
         var c=d.getElementById("meme-canvas");
         if(c){ var a=d.createElement("a"); a.download="clarity-meme.png"; a.href=c.toDataURL("image/png"); a.click(); }
-      }
+      } else if(act==="autoscale"){ paint(); }
     });
   }
+
+  function gate(){
+    ["meme-card","callig-lab-card","tweet-desk-card"].forEach(function(id){
+      var el=d.getElementById(id); if(!el) return;
+      if(allowed()){ el.style.setProperty("display","block","important"); el.removeAttribute("hidden"); }
+      else { el.style.setProperty("display","none","important"); el.setAttribute("hidden",""); }
+    });
+    if(allowed()){
+      forceVisible();
+      ensureEngines(function(){ bind(); paint(); });
+    }
+  }
+
   function boot(){
     gate();
+    bind();
     var m=d.getElementById("cs-mount");
-    if(m){ var t=null; new MutationObserver(function(){ if(t)clearTimeout(t); t=setTimeout(function(){ gate(); bind(); },40); }).observe(m,{childList:true,subtree:true}); }
+    if(m){
+      var t=null;
+      new MutationObserver(function(){
+        if(t) clearTimeout(t);
+        t=setTimeout(function(){ gate(); bind(); forceVisible(); }, 50);
+      }).observe(m,{childList:true,subtree:true});
+    }
     d.addEventListener("click", function(ev){
-      if(ev.target&&ev.target.closest&&ev.target.closest("[data-cs-path]")) setTimeout(gate,30);
+      if(ev.target&&ev.target.closest&&ev.target.closest("[data-cs-path],[data-rail-tab]"))
+        setTimeout(function(){ gate(); forceVisible(); }, 40);
     }, true);
+    /* settle after mount */
+    [100,400,1000,2000].forEach(function(ms){ setTimeout(function(){ gate(); forceVisible(); bind(); }, ms); });
   }
+
   if(d.readyState==="loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  w.ClarityMemeStudio={gate:gate,ensureEngines:ensureEngines,applyRatio:applyRatio,version:"P30"};
+  w.ClarityMemeStudio={gate:gate,forceVisible:forceVisible,fetchText:fetchText,fetchBg:fetchBg,version:"P32"};
 })(window,document);
