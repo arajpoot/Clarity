@@ -32,7 +32,7 @@
         el.setAttribute("hidden","");
       }
     });
-    if(allowed()) ensureEngines();
+    if(allowed()) if(allowed()) ensureEngines();
   }
   function loadScript(src){
     return new Promise(function(res){
