@@ -1,4 +1,4 @@
-/*! companion-integrity-v1 · Slim-1 last word · educational only */
+/*! companion-integrity-v1 · Slim-2 integrity · educational only */
 (function(w,d){
   "use strict";
   if(w.__COMPANION_INTEGRITY_V1__) return;
