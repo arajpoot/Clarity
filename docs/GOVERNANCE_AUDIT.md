@@ -1,27 +1,14 @@
-# Bismillāh · Verified P22
+# Bismillāh · Slim-4 P23
 
 **Verdict: GREEN**
 
-## Live recrawl (5 cycles)
-- No HTML/function-leak issues
-- Slim spine live (curriculum + surface + integrity)
-- Path tiles enriched; noise stack absent
+## Pre-gate live
+- 5 cycles clean · enrichment intact · governance spine OK
 
-## Governance contract
-- Room shell + owned assets under `/companion/assets/`
-- Honest path governance (no exclusive card hide)
-- Path curriculum assigns **tips/focus only**
-- Educational only — not a fatwa
-
-## Enrichment clause
-- Reminder ≥11 cards (incl. meme/names)
-- Reality ≥11 · Action ≥16
-- Tab bodies retained from live
-
-## Next phase (campus-equivalent foundation)
-1. Optional: defer craft/hifz/action-wiring to tab-mount only
-2. Merge content-stream into shell if redundant
-3. Banner remains isolated
-4. One surface CSS owner — no new repair layers without deleting one
+## Slim-4
+- Boot scripts: **10** (craft / action-wiring / ḥifẓ **deferred**)
+- `companion-lazy-engines-v1.js` loads engines when Reminder/Action mounts
+- Integrity still last
+- Tab HTML richness unchanged
 
 Educational only — not a fatwa.

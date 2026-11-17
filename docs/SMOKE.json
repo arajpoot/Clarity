@@ -1,20 +1,26 @@
 {
-  "verdict": "GREEN",
-  "gov": {
-    "room_isolation": true,
-    "spine_slim": true,
-    "no_hide_stack": true,
-    "honest_gov": true,
-    "path_curriculum": true,
-    "surface_ui": true
+  "checks": {
+    "boot_js_le_12": true,
+    "deferred_not_in_boot": true,
+    "lazy_present": true,
+    "integrity_last": true,
+    "engines_on_disk": true,
+    "path_rich": true,
+    "curriculum": true,
+    "no_noise": true,
+    "enrich_reminder": true,
+    "enrich_action": true
   },
-  "enrich": {
-    "reminder_cards": true,
-    "meme": true,
-    "names": true,
-    "reality_11": true,
-    "action_16": true,
-    "path_tiles_rich": true,
-    "path_only_present": true
-  }
+  "boot": [
+    "/companion/assets/companion-shell-v1.js?v=20261117S1",
+    "/companion/assets/companion-mount-fortify-v1.js?v=20261117S1",
+    "/companion/assets/companion-path-governance-shell-v1.js?v=20261117S1",
+    "/companion/assets/companion-content-stream-v2.js?v=20261117S1",
+    "/companion/assets/companion-pathway-bridge-v1.js?v=20261117S1",
+    "/companion/assets/companion-tab-engines-v1.js?v=20261117S1",
+    "/companion/assets/companion-about-mount-v1.js?v=20261117S1",
+    "/companion/assets/companion-path-curriculum-v1.js?v=20261117S4",
+    "/companion/assets/companion-lazy-engines-v1.js?v=20261117S4",
+    "/companion/assets/companion-integrity-v1.js?v=20261117S4"
+  ]
 }
