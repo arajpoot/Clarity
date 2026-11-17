@@ -1,6 +1,5 @@
-Slim-1 deploy:
-  Overlay companion/
-  index.html loads ONLY spine + integrity + surface CSS
-  Do not re-add nuclear/backbone/anti-hide/arch-ladder to boot
-  Keep banner/ on server
-  Hard-refresh /companion/
+Deploy Slim-2:
+  companion/assets/companion-surface-v1.css  (critical UI)
+  companion/index.html (cache-bust S2)
+  rest of companion/ optional if already Slim-1
+Hard-refresh. Keep spine — do not re-add nuclear/ladder stacks.

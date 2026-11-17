@@ -1,17 +1,15 @@
-# Bismillāh · Slim-1 P19
+# Bismillāh · Slim-2 UI P20
 
 **Verdict: GREEN**
 
-## Campus-like spine
-- Companion asset scripts: **11** (was ~35+ unique / 60+ tags)
-- CSS: shell + **one surface**
-- Integrity last; honest governance; no nuclear/backbone/anti-hide stack
+## Live verify
+- Slim-1 spine deployed (11 JS, 2 CSS)
+- Tab bodies rich (11/11/16 cards)
+- UI gaps: surface CSS too thin for path/arch/deep-learn/notes
 
-## Removed from boot (not loaded)
-nuclear, backbone, anti-hide-concat, path-soft, hygiene, housekeep, rrra-quiet,
-arch-engine, arch-ladder, nuros-path, overnight, repair-v3, multiple calm CSS
-
-## Enrichment
-Tab HTML retained (Reminder 11 / Reality 11 / Action 16 cards).
+## Slim-2
+- Expanded **companion-surface-v1.css** (path tiles, arch shelves, dl-cards, door, forms, engines)
+- Spine unchanged — no noise scripts restored
+- 10 sim cycles pass
 
 Educational only — not a fatwa.
