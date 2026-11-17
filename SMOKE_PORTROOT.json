@@ -1,0 +1,30 @@
+{
+  "build": "PORTROOT-20261116",
+  "date": "2026-11-16",
+  "binding": true,
+  "educational_only": true,
+  "not_a_fatwa": true,
+  "rooms_touched": [
+    "port"
+  ],
+  "project_invariants": {
+    "P1_educational_stamp": "pass",
+    "P2_no_free_type_as_revelation": "n/a",
+    "P3_primary_text_links": "pass",
+    "P4_room_isolation": "pass",
+    "P5_amana_passphrase_local": "n/a",
+    "P6_remote_image_shariah_scan": "n/a",
+    "P7_pack_declares_rooms_and_smoke": "pass"
+  },
+  "isolation_checks": {
+    "root_is_port_not_companion_shell": "pass",
+    "companion_remains_at_companion_path": "pass",
+    "five_room_doors_present": "pass",
+    "no_companion_inline_on_port": "pass"
+  },
+  "files_changed": [
+    "index.html"
+  ],
+  "status": "ready_for_deploy",
+  "notes": "Root landing = Castle Port; Companion only via /companion/"
+}

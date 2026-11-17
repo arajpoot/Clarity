@@ -1,18 +1,25 @@
-# Deploy L5 · 20261113L5
+# PORTROOT · Castle Port as site landing
 
-## Upload
-1. Root `sitemap.xml` (42 verified 200 URLs)
-2. `_redirects` (or `public/_redirects` / `vercel.json` — pick what your host uses)
-3. Optional: `docs/console/index.html` (noindex checklist)
+**Bismillah.** Educational only — not a fatwa.
 
-## Host notes
-- **Cloudflare Pages / Netlify:** use `_redirects`
-- **Vercel:** use `vercel.json`
-- **GitHub Pages:** may need a meta refresh page at `wasiyah/index.html` if redirects unsupported — ask if needed
+## Goal
+`https://clarity-dawah.fyi/` serves the **Castle of Clarity** port page (not Companion shell).
 
-## After deploy
-1. Open `/wasiyah/` — should land on `/wasiyyah/`
-2. GSC → resubmit sitemap
-3. URL Inspection on `/dua-for-the-deceased/` and `/docs/legacy/`
+## Deploy
+1. **Backup** current root `index.html` (today it is Companion shell).
+2. Upload this pack’s **`index.html`** as the site **root** `index.html` (replace `/index.html`).
+3. Do **not** replace `/companion/index.html` — Companion stays at `/companion/`.
+4. Confirm assets still 200 under `/assets/port-*.js|css` (already on live).
+5. Hard refresh `/` and confirm title **Clarity — Furnish Your Grave** and `data-clarity-room="port"`.
 
-Rooms untouched.
+## Optional
+- Keep a copy of old root as e.g. `index.companion-shell-backup.html` for rollback.
+- `index-PORT-REPAIR.html` can remain as a mirror or be left as-is.
+
+## Smoke
+- `/` → Castle intro + five room cards (Companion, Yawm, Amānah, Campus, Craft)
+- Enter Companion → `/companion/` still full shell
+- Enter Craft → `/craft/` plaques
+- Nav “Port” = castle home
+
+Educational only — not a fatwa.
