@@ -1,21 +1,24 @@
-# PORTORIG · restore original Castle Port layout
+# PORTREVAMP · full-width · Yawm center · video order · tour repair
 
 **Bismillah.** Educational only — not a fatwa.
 
-## Restores (from richer form factor)
-1. Banner · local-first kicker · stance pills · Online / PWA chips  
-2. Room nav: Port · Companion · Yawm · Campus · Amānah · Craft  
-3. **Castle introduction + intro video** (`/assets/media/tours/clarity-port-intro-v1.mp4`) on top  
-4. Command + Saying SSR cards  
-5. How the castle works (3 steps)  
-6. **All five room cards** matched (Companion, Yawm, Amānah, University, Craft) with bullets + Enter + Tour  
+## Layout changes
+1. **Full-width** banner, nav, and all sections (`100vw` / full bleed)
+2. **Order:** Command + Saying → **then** Castle intro **video** → How the castle works → room grid
+3. **Yawm center pillar** of the castle grid (spans middle; wings: Companion | Amānah, Campus | Craft)
+4. **Tour wiring repair:** `port-room-tours-repair-v1.js` uses `data-room` + `data-tour-src`, tries room paths, falls back to castle intro if room MP4 missing (currently only intro is on server)
 
 ## Deploy
-1. Backup current root `index.html`  
-2. Upload this pack’s **`index.html`** as site root `/index.html`  
-3. Leave `/companion/` untouched  
-4. Hard refresh  
+1. Upload **`index.html`** as site root `/index.html`
+2. Upload **`assets/port-room-tours-repair-v1.js`** → `/assets/port-room-tours-repair-v1.js`
+3. Hard refresh `/`
+4. Optional later: add real room tour MP4s under `/assets/media/tours/{companion,yawm,amana,campus,craft}-tour.mp4`
 
-Intro video already **200** on live (~3.5 MB).
+## Smoke
+- Banner edge-to-edge
+- Verse/ḥadīth above intro video
+- Yawm card larger/center · “heart of the castle”
+- ▶ Tour opens modal (intro fallback if room file 404)
+- Enter links: /companion /daily /amana /campus /craft
 
 Educational only — not a fatwa.
