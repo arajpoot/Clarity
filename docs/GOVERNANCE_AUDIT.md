@@ -1,10 +1,9 @@
-# Bismillāh · Meme studio P28
+# Bismillāh · Meme craft P30
 
-**Verdict: GREEN**
-
-- Meme Studio gated to **Seeker + Daʿī** only (`data-cs-path-only="seeker dai"` + curriculum multi-token)
-- Layout: background pills **above** canvas; fetch/scale **below**
-- Wiring: data-* handlers + bg-fetch/canvas engines under `/companion/assets/`
-- Scenery/geometry only (existing Shariah-leaning fetch)
+**GREEN**
+- Calligraphy + Tweet desk + Meme: Daily Muslim & Daʿī only
+- Canvas ratios: Twitter / IG / Story / Facebook
+- Arabic styles: Naskh Thuluth Amiri Kufi + outline/fill/soft
+- Fetch wiring strengthened with paint retries + fallback verse
 
 Educational only — not a fatwa.
