@@ -387,9 +387,7 @@
           <button type="button" class="mv-chip" data-meme-ratio="facebook">Facebook 1.91:1</button>
         </div>
       </div>
-      <div class="meme-bar meme-bar-arabic">
-        <div class="meme-tool-label">Arabic text style</div>
-        <div class="meme-chip-row" role="group" aria-label="Arabic font style">
+      <div class="meme-chip-row" role="group" aria-label="Arabic font style">
           <button type="button" class="mv-chip" data-meme-font="naskh">Naskh</button>
           <button type="button" class="mv-chip" data-meme-font="thuluth">Thuluth</button>
           <button type="button" class="mv-chip" data-meme-font="amiri">Amiri</button>
@@ -400,9 +398,69 @@
         </div>
       </div>
 
-      <div class="meme-bar meme-bar-scale">
-        <div class="meme-tool-label">Scale · share</div>
-        <div class="meme-chip-row">
+      
+      <div class="meme-bar meme-bar-type" id="meme-type-bar">
+        <div class="meme-tool-label">Line size · text style</div>
+        <div class="meme-scale-grid">
+          <label class="meme-field">Top (Arabic)
+            <select id="meme-scale-top" data-meme-scale="top" aria-label="Top line size">
+              <option value="70">70%</option>
+              <option value="85">85%</option>
+              <option value="100" selected>100%</option>
+              <option value="115">115%</option>
+              <option value="130">130%</option>
+              <option value="150">150%</option>
+              <option value="175">175%</option>
+              <option value="200">200%</option>
+            </select>
+          </label>
+          <label class="meme-field">Middle (English)
+            <select id="meme-scale-mid" data-meme-scale="mid" aria-label="Middle line size">
+              <option value="70">70%</option>
+              <option value="85">85%</option>
+              <option value="100" selected>100%</option>
+              <option value="115">115%</option>
+              <option value="130">130%</option>
+              <option value="150">150%</option>
+              <option value="175">175%</option>
+              <option value="200">200%</option>
+            </select>
+          </label>
+          <label class="meme-field">Bottom (ref)
+            <select id="meme-scale-bottom" data-meme-scale="bottom" aria-label="Bottom line size">
+              <option value="70">70%</option>
+              <option value="85">85%</option>
+              <option value="100" selected>100%</option>
+              <option value="115">115%</option>
+              <option value="130">130%</option>
+              <option value="150">150%</option>
+              <option value="175">175%</option>
+              <option value="200">200%</option>
+            </select>
+          </label>
+          <label class="meme-field">Text style
+            <select id="meme-text-style" data-meme-style-select aria-label="Text style">
+              <option value="outline" selected>Outline</option>
+              <option value="fill">Fill</option>
+              <option value="soft">Soft shadow</option>
+            </select>
+          </label>
+          <label class="meme-field">Arabic face
+            <select id="meme-font-select" data-meme-font-select aria-label="Arabic font">
+              <option value="naskh" selected>Naskh</option>
+              <option value="thuluth">Thuluth</option>
+              <option value="amiri">Amiri</option>
+              <option value="kufi">Kufi</option>
+            </select>
+          </label>
+        </div>
+        <div class="meme-chip-row" style="margin-top:.35rem">
+          <button type="button" class="mv-chip" data-meme-act="autoscale">⬚ Auto-scale</button>
+          <button type="button" class="mv-chip" data-meme-act="download">⬇ Save</button>
+          <button type="button" class="mv-chip" data-meme-act="tweet">↗ Tweet Desk</button>
+        </div>
+      </div>
+<div class="meme-chip-row">
           <button type="button" class="mv-chip" data-meme-act="autoscale">⬚ Auto-scale</button>
           <button type="button" class="mv-chip" data-meme-act="download">⬇ Save</button>
           <button type="button" class="mv-chip" data-meme-act="tweet">↗ Tweet Desk</button>
