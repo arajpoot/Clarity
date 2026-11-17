@@ -1,8 +1,11 @@
-# Bismillah Path restore P12
+# Bismillāh · Deployable P14 · multi-cycle sim
 
-**GREEN**
+**Verdict: GREEN**
 
-- Primary modules first
-- Path one-liners active-path only
-- Single L1-L6 enriched grid
-- Educational only — not a fatwa.
+- 10 local sim cycles: shell + 6 tabs + critical assets
+- Reminder ≥10 cards including meme / calligraphy / tweet desk
+- Action ≥15 cards / ≥80KB
+- Nuclear + arch-enrich + port-tiles wired
+- No nested P12 folder
+
+Educational only — not a fatwa.

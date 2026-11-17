@@ -1,10 +1,28 @@
 {
-  "names": true,
-  "samina": true,
-  "commands": true,
-  "primary_first": true,
-  "nuclear2": true,
-  "arch2": true,
-  "tawbah": true,
-  "pillars": true
+  "verdict": "GREEN",
+  "sim_cycles": 10,
+  "checks": {
+    "sim_cycles_10": true,
+    "shell_mount": true,
+    "shell_nuclear": true,
+    "shell_arch": true,
+    "shell_port": true,
+    "reminder_cards": true,
+    "meme": true,
+    "callig": true,
+    "tweet": true,
+    "names": true,
+    "samina": true,
+    "commands": true,
+    "action_cards": true,
+    "action_len": true,
+    "tawbah": true,
+    "grave": true,
+    "mercy": true,
+    "adab": true,
+    "nuclear_js": true,
+    "arch_js": true,
+    "port_css": true,
+    "no_nested_p12": true
+  }
 }
