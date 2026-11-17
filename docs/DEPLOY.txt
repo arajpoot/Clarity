@@ -1,6 +1,6 @@
-Deploy MUST include:
-  companion/assets/companion-anti-hide-concat-v1.css
-  companion/assets/companion-anti-hide-concat-v1.js  (last script in index.html)
-  companion/assets/companion-path-governance-shell-v1.js
-  companion/index.html
-Hard-refresh. Arch chips "All levels" should show all shelves; all *-card visible every path.
+Slim-1 deploy:
+  Overlay companion/
+  index.html loads ONLY spine + integrity + surface CSS
+  Do not re-add nuclear/backbone/anti-hide/arch-ladder to boot
+  Keep banner/ on server
+  Hard-refresh /companion/

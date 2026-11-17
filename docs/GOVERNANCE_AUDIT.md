@@ -1,14 +1,17 @@
-# Bismillāh · Anti-hide concat P18
+# Bismillāh · Slim-1 P19
 
 **Verdict: GREEN**
 
-## Deep scan findings
-- JS hide: path-governance (ALLOW era), nuclear/backbone path-only, arch-enrich shallow
-- CSS hide: **arch-ladder** `.is-filtered-out` / `.is-empty`, housekeep dup/tajweed isolation, rrra-quiet
+## Campus-like spine
+- Companion asset scripts: **11** (was ~35+ unique / 60+ tags)
+- CSS: shell + **one surface**
+- Integrity last; honest governance; no nuclear/backbone/anti-hide stack
 
-## Concat repair
-- `companion-anti-hide-concat-v1.css` — overrides ladder/housekeep/nuros card hides
-- `companion-anti-hide-concat-v1.js` — last word: show all cards, open shelves, patch gov+ladder
-- Honest governance file (no ALLOW exclusive hide)
+## Removed from boot (not loaded)
+nuclear, backbone, anti-hide-concat, path-soft, hygiene, housekeep, rrra-quiet,
+arch-engine, arch-ladder, nuros-path, overnight, repair-v3, multiple calm CSS
+
+## Enrichment
+Tab HTML retained (Reminder 11 / Reality 11 / Action 16 cards).
 
 Educational only — not a fatwa.

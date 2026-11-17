@@ -1,10 +1,28 @@
 {
-  "concat_js": true,
-  "concat_css": true,
-  "gov_honest": true,
-  "ladder_override": true,
-  "shell_last": true,
-  "reminder_11": true,
-  "reality_11": true,
-  "action_16": true
+  "checks": {
+    "script_count_le_12": true,
+    "css_surface": true,
+    "integrity_last": true,
+    "no_nuclear": true,
+    "no_backbone": true,
+    "no_antihide_stack": true,
+    "honest_gov": true,
+    "reminder_11": true,
+    "reality_11": true,
+    "action_16": true,
+    "cs_mount": true
+  },
+  "scripts": [
+    "/companion/assets/companion-shell-v1.js?v=20261117S1",
+    "/companion/assets/companion-mount-fortify-v1.js?v=20261117S1",
+    "/companion/assets/companion-path-governance-shell-v1.js?v=20261117S1",
+    "/companion/assets/companion-content-stream-v2.js?v=20261117S1",
+    "/companion/assets/companion-pathway-bridge-v1.js?v=20261117S1",
+    "/companion/assets/companion-tab-engines-v1.js?v=20261117S1",
+    "/companion/assets/companion-about-mount-v1.js?v=20261117S1",
+    "/companion/assets/companion-craft-studios-v1.js?v=20261117S1",
+    "/companion/assets/companion-action-wiring-v1.js?v=20261117S1",
+    "/companion/assets/companion-hifz-engine-v1.js?v=20261117S1",
+    "/companion/assets/companion-integrity-v1.js?v=20261117S1"
+  ]
 }
