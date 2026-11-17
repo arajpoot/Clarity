@@ -60,3 +60,10 @@ body[data-cs-path="practicing"] #meme-card[data-cs-path-only],
 body[data-cs-path="daily"] #meme-card[data-cs-path-only] {
   /* JS also gates; CSS hint */
 }
+
+#meme-studio-root .meme-bar-ratio,
+#meme-studio-root .meme-bar-arabic { margin-top: 0.15rem; }
+#meme-stage[data-ratio="instagram"] { aspect-ratio: 1/1 !important; }
+#meme-stage[data-ratio="instagram_story"] { aspect-ratio: 9/16 !important; max-width: 420px; margin: 0 auto; }
+#meme-stage[data-ratio="facebook"] { aspect-ratio: 1.91/1 !important; }
+#meme-stage[data-ratio="twitter"] { aspect-ratio: 16/9 !important; }
