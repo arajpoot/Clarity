@@ -1,17 +1,14 @@
-# Bismillāh · Enrichment backbone P17
+# Bismillāh · Anti-hide concat P18
 
 **Verdict: GREEN**
 
-## Root cause of short-lived restore
-1. Live still served **old** path-governance with ALLOW + `display:none`
-2. Script flag `__COMPANION_PATH_GOV_SHELL_V1__` prevented a second honest file from installing
-3. Late scripts re-applied hide after nuclear
+## Deep scan findings
+- JS hide: path-governance (ALLOW era), nuclear/backbone path-only, arch-enrich shallow
+- CSS hide: **arch-ladder** `.is-filtered-out` / `.is-empty`, housekeep dup/tajweed isolation, rrra-quiet
 
-## Backbone repair
-- Replace governance: **show all cards**, path-only tips gated
-- **enrichment-backbone-v1.js last**: patches `ClarityPathGovernanceShell.apply`, sustained re-show 8s
-- Hygiene: no card hiding
-- path-soft: restore only
-- CSS: force card visibility
+## Concat repair
+- `companion-anti-hide-concat-v1.css` — overrides ladder/housekeep/nuros card hides
+- `companion-anti-hide-concat-v1.js` — last word: show all cards, open shelves, patch gov+ladder
+- Honest governance file (no ALLOW exclusive hide)
 
 Educational only — not a fatwa.
