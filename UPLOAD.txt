@@ -1,21 +1,14 @@
-DESKTOP FULL-WIDTH 20261113W1
-
-Scope (only):
-  · Banner shell + overlay → full desktop width
-  · Path to furnish the grave tiles → full width
-  · Bottom door rail (Reminder…About) → full width
-
-Untouched: RRRA content, vault, campus, Yawm, enrichment scripts logic.
+BANNER HARDEN 20261111HARD
 
 Upload:
-  companion/index.html
-  companion/assets/companion-desktop-fullwidth-v1.css
-  companion/assets/companion-path-tiles-rich-v1.css
-  companion/assets/companion-door-rail-touch-v1.css
-  companion/banner/index.html
-  companion/banner/assets/css/banner-module-v1.css
-  companion/banner/assets/js/* (optional — unchanged logic; include if you want cache-bust parity)
+  companion/banner/* (all 6 files)
+  companion/index.html  (skip-link removed + shell CSS)
 
-Also removes dead link to companion-banner-shell-full-v1.css (404).
+Fixes:
+  · Overlay z-index 5 above stills (z 0) — plaques visible again
+  · Green Skip-to-content pill removed + CSS killed
+  · Temps chips / stills foundation retained
+  · No YouTube; stills default
 
+Bismillah contract audit: see AUDIT.json
 Educational only — not a fatwa.
