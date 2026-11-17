@@ -82,7 +82,7 @@
   function state(){
     if(!w.memeState||typeof w.memeState!=="object"){
       w.memeState={ratio:"twitter", top:"", mid:"", bottom:"", _lastRef:"", font:"naskh", style:"outline",
-        topSize:36, midSize:20, bottomSize:16, outline:4, img:null, topY:0.14, midY:0.42, bottomY:0.72};
+        topSize:36, midSize:20, bottomSize:16, baseTopSize:36, baseMidSize:20, baseBottomSize:16, outline:4, img:null, topY:0.14, midY:0.42, bottomY:0.72, scaleTop:100, scaleMid:100, scaleBottom:100};
     }
     return w.memeState;
   }
@@ -203,6 +203,76 @@
     });
   }
 
+  
+  function applyScalePct(which, pct){
+    var s=state();
+    pct=Math.max(50, Math.min(220, parseInt(pct,10)||100));
+    if(which==="top"){ s.scaleTop=pct; s.topSize=Math.round((s.baseTopSize||36)*pct/100); }
+    if(which==="mid"){ s.scaleMid=pct; s.midSize=Math.round((s.baseMidSize||20)*pct/100); }
+    if(which==="bottom"){ s.scaleBottom=pct; s.bottomSize=Math.round((s.baseBottomSize||16)*pct/100); }
+    paint();
+    status("Size · "+which+" "+pct+"%");
+  }
+  function autoScaleLines(){
+    var canvas=d.getElementById("meme-canvas");
+    if(!canvas) return;
+    var s=state();
+    var ctx=canvas.getContext("2d");
+    if(!ctx) return;
+    var W=canvas.width;
+    function fit(text, base, maxPct){
+      if(!text) return 100;
+      var pct=100;
+      for(var guard=0; guard<40; guard++){
+        var size=Math.max(10, Math.round(base*pct/100));
+        ctx.font="bold "+size+"px Amiri, 'Noto Naskh Arabic', serif";
+        var w=ctx.measureText(text).width;
+        if(w <= W*0.88) break;
+        pct -= 5;
+        if(pct<55) break;
+      }
+      /* if too small on canvas, try grow once for short lines */
+      if(pct===100){
+        ctx.font="bold "+base+"px Amiri, 'Noto Naskh Arabic', serif";
+        var w0=ctx.measureText(text).width;
+        if(w0 < W*0.55 && text.length<40){
+          while(pct<160){
+            pct+=5;
+            var size2=Math.round(base*pct/100);
+            ctx.font="bold "+size2+"px Amiri, 'Noto Naskh Arabic', serif";
+            if(ctx.measureText(text).width > W*0.88){ pct-=5; break; }
+          }
+        }
+      }
+      return pct;
+    }
+    var pt=fit(s.top||"", s.baseTopSize||36);
+    var pm=fit(s.mid||"", s.baseMidSize||20);
+    var pb=fit(s.bottom||s._lastRef||"", s.baseBottomSize||16);
+    s.scaleTop=pt; s.scaleMid=pm; s.scaleBottom=pb;
+    s.topSize=Math.round((s.baseTopSize||36)*pt/100);
+    s.midSize=Math.round((s.baseMidSize||20)*pm/100);
+    s.bottomSize=Math.round((s.baseBottomSize||16)*pb/100);
+    /* sync selects */
+    var st=d.getElementById("meme-scale-top");
+    var sm=d.getElementById("meme-scale-mid");
+    var sb=d.getElementById("meme-scale-bottom");
+    function nearest(sel, val){
+      if(!sel) return;
+      var best=sel.options[0], bd=1e9;
+      for(var i=0;i<sel.options.length;i++){
+        var v=parseInt(sel.options[i].value,10);
+        var d=Math.abs(v-val);
+        if(d<bd){ bd=d; best=sel.options[i]; }
+      }
+      sel.value=best.value;
+    }
+    nearest(st, pt); nearest(sm, pm); nearest(sb, pb);
+    paint();
+    status("Auto-scale · top "+pt+"% · mid "+pm+"% · bottom "+pb+"%");
+  }
+
+
   function applyRatio(name){
     var r=RATIO[name]||RATIO.twitter;
     var s=state(); s.ratio=name;
@@ -264,7 +334,7 @@
       else if(act==="download"){
         var c=d.getElementById("meme-canvas");
         if(c){ var a=d.createElement("a"); a.download="clarity-meme.png"; a.href=c.toDataURL("image/png"); a.click(); }
-      } else if(act==="autoscale"){ paint(); }
+      } else if(act==="autoscale"){ autoScaleLines(); } else if(false){ paint(); }
     });
   }
 
@@ -301,5 +371,5 @@
 
   if(d.readyState==="loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  w.ClarityMemeStudio={gate:gate,forceVisible:forceVisible,fetchText:fetchText,fetchBg:fetchBg,paintLocal:paintLocal,paint:paint,version:"P33"};
+  w.ClarityMemeStudio={gate:gate,forceVisible:forceVisible,fetchText:fetchText,fetchBg:fetchBg,paintLocal:paintLocal,paint:paint,autoScaleLines:autoScaleLines,applyScalePct:applyScalePct,version:"P34"};
 })(window,document);

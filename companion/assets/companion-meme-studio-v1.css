@@ -72,3 +72,30 @@
 #meme-stage[data-ratio="instagram_story"] { aspect-ratio: 9/16 !important; max-width: 420px; margin: 0 auto; }
 #meme-stage[data-ratio="facebook"] { aspect-ratio: 1.91/1 !important; }
 .meme-status, .meme-hint { font-size: 0.75rem; color: rgba(200,218,208,0.88); margin: 0.25rem 0; }
+
+#meme-studio-root .meme-scale-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0.45rem;
+  width:100%;
+}
+@media(min-width:720px){
+  #meme-studio-root .meme-scale-grid{ grid-template-columns:repeat(5,minmax(0,1fr)); }
+}
+#meme-studio-root .meme-field{
+  display:flex;
+  flex-direction:column;
+  gap:0.2rem;
+  font-size:0.72rem;
+  font-weight:700;
+  color:#e8d5a3;
+}
+#meme-studio-root .meme-field select{
+  min-height:2.4rem;
+  border-radius:12px;
+  border:1px solid rgba(201,162,39,0.4);
+  background:rgba(6,14,12,0.95);
+  color:#e8f0ec;
+  padding:0.35rem 0.5rem;
+  font-weight:700;
+}
