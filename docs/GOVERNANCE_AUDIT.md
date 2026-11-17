@@ -1,11 +1,17 @@
-# Bismillāh · Deployable P14 · multi-cycle sim
+# Bismillāh · Enrichment backbone P17
 
 **Verdict: GREEN**
 
-- 10 local sim cycles: shell + 6 tabs + critical assets
-- Reminder ≥10 cards including meme / calligraphy / tweet desk
-- Action ≥15 cards / ≥80KB
-- Nuclear + arch-enrich + port-tiles wired
-- No nested P12 folder
+## Root cause of short-lived restore
+1. Live still served **old** path-governance with ALLOW + `display:none`
+2. Script flag `__COMPANION_PATH_GOV_SHELL_V1__` prevented a second honest file from installing
+3. Late scripts re-applied hide after nuclear
+
+## Backbone repair
+- Replace governance: **show all cards**, path-only tips gated
+- **enrichment-backbone-v1.js last**: patches `ClarityPathGovernanceShell.apply`, sustained re-show 8s
+- Hygiene: no card hiding
+- path-soft: restore only
+- CSS: force card visibility
 
 Educational only — not a fatwa.

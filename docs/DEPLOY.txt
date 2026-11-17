@@ -1,8 +1,8 @@
-DEPLOY (one pass)
-1. Unzip
-2. Overlay companion/ onto site root
-3. Keep live companion/banner/ if not in zip
-4. Hard-refresh /companion/
-5. Smoke: Reminder craft modules + one enriched L1–L6 + full Action
-
-Educational only — not a fatwa.
+MUST deploy these (order matters on shell):
+  companion/assets/companion-path-governance-shell-v1.js  (P17 honest)
+  companion/assets/companion-path-soft-v1.js
+  companion/assets/companion-hygiene-v1.js
+  companion/assets/companion-enrichment-backbone-v1.js  (LAST script)
+  companion/assets/companion-port-tiles-v1.css
+  companion/index.html
+Hard-refresh. Cycle all paths — cards must stay visible permanently.
