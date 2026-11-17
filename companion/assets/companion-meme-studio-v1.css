@@ -1,0 +1,62 @@
+/*! companion-meme-studio-v1 · layout · seeker/dai · educational only */
+#meme-card, #cs-mount #meme-card {
+  display: block;
+}
+#meme-studio-root.meme-studio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+#meme-studio-root .meme-bar-bg { order: 1; }
+#meme-studio-root .meme-preview-only { order: 2; width: 100%; }
+#meme-studio-root .meme-below { order: 3; display: flex; flex-direction: column; gap: 0.45rem; }
+#meme-studio-root .meme-tool-label {
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
+  text-transform: uppercase; color: #e8d5a3; margin: 0 0 0.3rem;
+}
+#meme-studio-root .meme-chip-row {
+  display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center;
+}
+#meme-studio-root .mv-chip {
+  border-radius: 999px !important;
+  border: 1px solid rgba(201,162,39,0.42) !important;
+  background: rgba(30,125,94,0.4) !important;
+  color: #f3efe6 !important;
+  min-height: 2.35rem !important;
+  padding: 0.3rem 0.75rem !important;
+  font-weight: 750 !important;
+  font-size: 0.78rem !important;
+  cursor: pointer;
+}
+#meme-studio-root .mv-chip.mv-accent {
+  background: linear-gradient(165deg, #2a9d6e, #145a40) !important;
+  border-color: rgba(212,184,74,0.55) !important;
+}
+#meme-stage-wrap, #meme-stage {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(201,162,39,0.35);
+  background: #0a1410;
+}
+#meme-canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%;
+  background: #0c1a14;
+}
+.meme-status, .meme-hint {
+  font-size: 0.75rem;
+  color: rgba(200,218,208,0.88);
+  margin: 0.25rem 0 0.4rem;
+  line-height: 1.4;
+}
+/* path gate: hide card off seeker/dai when marked */
+body[data-cs-path="new_muslim"] #meme-card[data-cs-path-only],
+body[data-cs-path="practicing"] #meme-card[data-cs-path-only],
+body[data-cs-path="daily"] #meme-card[data-cs-path-only] {
+  /* JS also gates; CSS hint */
+}
