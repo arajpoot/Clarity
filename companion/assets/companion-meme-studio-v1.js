@@ -95,34 +95,34 @@
     if(!ctx) return;
     var W=canvas.width, H=canvas.height;
     ctx.clearRect(0,0,W,H);
-    if(s.img && s.img.complete){
+    var bg=s.bgImage||s.img;
+    if(bg && (bg.complete || bg.naturalWidth)){
       try{
-        var scale=Math.max(W/(s.img.width||W), H/(s.img.height||H));
-        var iw=(s.img.width||W)*scale, ih=(s.img.height||H)*scale;
-        ctx.drawImage(s.img, (W-iw)/2, (H-ih)/2, iw, ih);
+        var nw=bg.naturalWidth||bg.width||W, nh=bg.naturalHeight||bg.height||H;
+        var scale=Math.max(W/nw, H/nh);
+        var iw=nw*scale, ih=nh*scale;
+        ctx.drawImage(bg, (W-iw)/2, (H-ih)/2, iw, ih);
+        ctx.fillStyle="rgba(0,0,0,0.28)";
+        ctx.fillRect(0,0,W,H);
       }catch(e){ ctx.fillStyle="#0c1a14"; ctx.fillRect(0,0,W,H); }
     } else {
       ctx.fillStyle="#0c1a14"; ctx.fillRect(0,0,W,H);
     }
-    function drawLine(text, yFrac, size, rtl){
+    function drawLine(text, yFrac, size){
       if(!text) return;
       ctx.save();
-      ctx.font = "bold "+size+"px Amiri, 'Noto Naskh Arabic', 'Segoe UI', serif";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      if(rtl) ctx.direction = "rtl";
-      ctx.lineWidth = s.outline||4;
-      ctx.strokeStyle = "rgba(0,0,0,0.75)";
-      ctx.fillStyle = "#f7f1e1";
-      var y=H*yFrac;
-      if(s.style!=="fill") ctx.strokeText(text, W/2, y);
-      ctx.fillText(text, W/2, y);
+      ctx.font="bold "+size+"px Amiri, 'Noto Naskh Arabic', serif";
+      ctx.textAlign="center"; ctx.textBaseline="middle";
+      ctx.lineWidth=s.outline||4;
+      ctx.strokeStyle="rgba(0,0,0,0.75)";
+      ctx.fillStyle="#f7f1e1";
+      if(s.style!=="fill") ctx.strokeText(text, W/2, H*yFrac);
+      ctx.fillText(text, W/2, H*yFrac);
       ctx.restore();
     }
-    var topRtl=/[\u0600-\u06FF]/.test(s.top||"");
-    drawLine(s.top, s.topY||0.14, s.topSize||36, topRtl);
-    drawLine(s.mid, s.midY||0.42, s.midSize||20, false);
-    drawLine(s.bottom||s._lastRef, s.bottomY||0.72, s.bottomSize||16, false);
+    drawLine(s.top, s.topY||0.14, s.topSize||36);
+    drawLine(s.mid, s.midY||0.42, s.midSize||20);
+    drawLine(s.bottom||s._lastRef, s.bottomY||0.72, s.bottomSize||16);
   }
 
   function paint(){
@@ -188,34 +188,19 @@
     if(!allowed()) return;
     forceVisible();
     status("Loading scene · "+kind+"…");
-    try{
-      if(typeof w.memeFetchBg==="function"){
-        w.memeFetchBg(kind==="blank"?"nature":kind);
-        setTimeout(paint, 800);
-        setTimeout(paint, 1600);
-        status(kind+" · loading");
-        return;
-      }
-    }catch(e){}
-    /* minimal scenery fallback — solid + gradient (no figurative) */
-    var s=state();
-    s.img=null;
-    var canvas=d.getElementById("meme-canvas");
-    if(canvas){
-      var ctx=canvas.getContext("2d");
-      var g=ctx.createLinearGradient(0,0,0,canvas.height);
-      var colors={
-        holy:["#0b3d2e","#1a5c40"], night:["#0a1628","#1a2744"],
-        nature:["#0d2f1c","#1e4d32"], water:["#0a2a32","#144a58"],
-        spirit:["#1a1430","#2a2450"], flowers:["#2a1830","#3d2a40"],
-        free:["#123024","#1e4a34"], dynamic:["#0f2a22","#1a4034"]
-      };
-      var c=colors[kind]||colors.nature;
-      g.addColorStop(0,c[0]); g.addColorStop(1,c[1]);
-      ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);
-      paintLocal();
-    }
-    status(kind+" · ok");
+    ensureEngines(function(){
+      try{
+        if(typeof w.memeFetchBg==="function"){
+          Promise.resolve(w.memeFetchBg(kind)).then(function(){
+            setTimeout(paint, 200);
+            setTimeout(paint, 800);
+            setTimeout(paint, 1600);
+          });
+          return;
+        }
+      }catch(e){}
+      status("BG engine missing");
+    });
   }
 
   function applyRatio(name){
@@ -316,5 +301,5 @@
 
   if(d.readyState==="loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  w.ClarityMemeStudio={gate:gate,forceVisible:forceVisible,fetchText:fetchText,fetchBg:fetchBg,version:"P32"};
+  w.ClarityMemeStudio={gate:gate,forceVisible:forceVisible,fetchText:fetchText,fetchBg:fetchBg,paintLocal:paintLocal,paint:paint,version:"P33"};
 })(window,document);
