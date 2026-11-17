@@ -88,12 +88,12 @@
   }
 
   function paintLocal(){
-    /* P36_PAINT_GUARD */
+    /* P37_PAINT_GUARD — block picsum/random only */
     try{
       var s0=state();
       var im=s0.bgImage||s0.img;
-      var src0=(im && (im.src||im.currentSrc))||s0._bgUrl||"";
-      if(src0 && src0.indexOf("upload.wikimedia.org")<0){
+      var src0=((im && (im.src||im.currentSrc))||s0._bgUrl||"").toLowerCase();
+      if(src0 && (/picsum\.photos|pexels\.com|pixabay\.com/.test(src0))){
         s0.bgImage=null; s0.img=null; s0._bgUrl="";
       }
     }catch(e0){}
@@ -107,8 +107,8 @@
     ctx.clearRect(0,0,W,H);
     var bg=s.bgImage||s.img;
     try{
-      var src=(bg && (bg.src||bg.currentSrc))||s._bgUrl||"";
-      if(src && !/upload\.wikimedia\.org/i.test(src)){
+      var src=((bg && (bg.src||bg.currentSrc))||s._bgUrl||"").toLowerCase();
+      if(src && /picsum\.photos|pexels\.com|pixabay\.com/.test(src)){
         s.bgImage=null; s.img=null; s._bgUrl=""; bg=null;
       }
     }catch(eG){}
@@ -321,7 +321,7 @@
     if(enginesReady){ if(cb) cb(); return; }
     loadCss("/companion/assets/companion-meme-studio-v1.css?v=20261117P32");
     Promise.all([
-      loadScript("/companion/assets/clarity-meme-bg-fetch-v1.js?v=20261117P36"),
+      loadScript("/companion/assets/clarity-meme-bg-fetch-v1.js?v=20261117P37"),
       loadScript("/companion/assets/clarity-meme-canvas-clean-v1.js?v=20261117P32")
     ]).then(function(){
       enginesReady=true;
