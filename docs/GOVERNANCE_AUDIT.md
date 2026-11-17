@@ -1,15 +1,7 @@
-# Bismillāh · Enrich restore P31
+# Bismillāh · Meme scale P34
 
-**Verdict: GREEN** (20 sim cycles)
+**Issue:** Auto-scale weak; no per-line control.
 
-## Problem
-Daily/Daʿī felt thin: path-only tips + craft gating noise competed with primary modules.
-
-## Fix
-- Curriculum: **all `*-card` always visible** except meme/callig/tweet
-- Craft still **Daily + Daʿī only**
-- Path-only applies to **tip plaques only**
-- Integrity P31 enforces enrichment on every mount
-- Noise meta stripped
+**Fix:** Top/Mid/Bottom % dropdowns · text style + Arabic face dropdowns · Auto-scale uses canvas measureText fit (shrink or slight grow).
 
 Educational only — not a fatwa.
