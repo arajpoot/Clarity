@@ -135,3 +135,8 @@ html, body { max-width: 100vw; overflow-x: hidden; }
   visibility: visible !important;
   opacity: 1 !important;
 }
+
+/* P17 backbone: cards always visible */
+#cs-mount [id$="-card"]{display:block!important;visibility:visible!important;opacity:1!important;max-height:none!important;}
+#cs-mount .nuros-deferred{opacity:1!important;filter:none!important;}
+#cs-mount .cpp-path-hidden[id$="-card"]{display:block!important;}
