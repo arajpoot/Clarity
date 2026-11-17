@@ -321,7 +321,7 @@
     if(enginesReady){ if(cb) cb(); return; }
     loadCss("/companion/assets/companion-meme-studio-v1.css?v=20261117P32");
     Promise.all([
-      loadScript("/companion/assets/clarity-meme-bg-fetch-v1.js?v=20261117P37"),
+      loadScript("/companion/assets/clarity-meme-bg-fetch-v1.js?v=20261117P38"),
       loadScript("/companion/assets/clarity-meme-canvas-clean-v1.js?v=20261117P32")
     ]).then(function(){
       enginesReady=true;
