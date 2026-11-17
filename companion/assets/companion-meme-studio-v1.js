@@ -210,7 +210,9 @@
     if(which==="top"){ s.scaleTop=pct; s.topSize=Math.round((s.baseTopSize||36)*pct/100); }
     if(which==="mid"){ s.scaleMid=pct; s.midSize=Math.round((s.baseMidSize||20)*pct/100); }
     if(which==="bottom"){ s.scaleBottom=pct; s.bottomSize=Math.round((s.baseBottomSize||16)*pct/100); }
+    try{ paintLocal(); }catch(e){}
     paint();
+    setTimeout(function(){ try{ paintLocal(); paint(); }catch(e2){} }, 50);
     status("Size · "+which+" "+pct+"%");
   }
   function autoScaleLines(){
@@ -268,7 +270,9 @@
       sel.value=best.value;
     }
     nearest(st, pt); nearest(sm, pm); nearest(sb, pb);
+    try{ paintLocal(); }catch(e){}
     paint();
+    setTimeout(function(){ try{ paintLocal(); paint(); }catch(e2){} }, 50);
     status("Auto-scale · top "+pt+"% · mid "+pm+"% · bottom "+pb+"%");
   }
 
@@ -350,6 +354,28 @@
     }
   }
 
+  
+  /* P35_SCALE — hard-wire dropdowns to canvas */
+  function wireScaleControls(){
+    function onScaleChange(ev){
+      var t=ev.target;
+      if(!t || !t.getAttribute) return;
+      if(t.getAttribute("data-meme-scale")){
+        applyScalePct(t.getAttribute("data-meme-scale"), t.value);
+        return;
+      }
+      if(t.id==="meme-text-style" || t.hasAttribute("data-meme-style-select")){
+        state().style=t.value; paint(); status("Style · "+t.value); return;
+      }
+      if(t.id==="meme-font-select" || t.hasAttribute("data-meme-font-select")){
+        state().font=t.value; paint(); status("Font · "+t.value); return;
+      }
+    }
+    d.addEventListener("change", onScaleChange, true);
+    d.addEventListener("input", onScaleChange, true);
+  }
+  wireScaleControls();
+
   function boot(){
     gate();
     bind();
@@ -371,5 +397,7 @@
 
   if(d.readyState==="loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  w.ClarityMemeStudio={gate:gate,forceVisible:forceVisible,fetchText:fetchText,fetchBg:fetchBg,paintLocal:paintLocal,paint:paint,autoScaleLines:autoScaleLines,applyScalePct:applyScalePct,version:"P34"};
+  w.ClarityMemeStudio={gate:gate,forceVisible:forceVisible,fetchText:fetchText,fetchBg:fetchBg,paintLocal:paintLocal,paint:paint,autoScaleLines:autoScaleLines,applyScalePct:applyScalePct,version:"P35"};
+  w.memeAutoScaleLines=autoScaleLines;
+  w.memeApplyScalePct=applyScalePct;
 })(window,document);
