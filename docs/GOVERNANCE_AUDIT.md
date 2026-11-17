@@ -1,11 +1,8 @@
-# Bismillāh · Verified P26
+# Bismillāh · Polish P27
 
 **Verdict: GREEN**
 
-Slim-5 live: 9 boot scripts, lazy engines, path curriculum, enriched tiles.
-Governance + enrichment clauses pass.
-
-## Campus-equivalent foundation status
-Achieved for Companion spine. Next work should be **product polish only** (copy, tile art, engine UX) — not new always-on script layers.
+Spine still slim (10 = Slim-5 + polish). No hide stacks.
+Polish: larger door pills, NurOS-style SVG path/door icons, glass plaques, craft pills, engine empty-states, Notes/About forms.
 
 Educational only — not a fatwa.
