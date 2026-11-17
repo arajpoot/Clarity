@@ -1,0 +1,154 @@
+/*! port-polish-v1 · PORTPOLISH
+ * Glossy gold plaques · tighter banner · room-tour modal full-viewport
+ * Educational only — not a fatwa.
+ */
+
+/* —— Banner: shorter, no empty black band —— */
+header.port-banner {
+  min-height: unset !important;
+  height: auto !important;
+  padding: 1rem 1rem 1.1rem !important;
+  margin: 0 !important;
+  border-radius: 0 0 18px 18px !important;
+}
+.port-banner-inner {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.15rem !important;
+}
+.port-title {
+  margin: 0.15rem 0 0 !important;
+}
+.port-subhead {
+  margin: 0.3rem auto 0 !important;
+}
+.port-ar {
+  margin: 0.45rem 0 0 !important;
+}
+.port-pill-row {
+  margin: 0.55rem 0 0 !important;
+}
+
+/* —— Glossy plaques · golden outline (original feel) —— */
+article.tower {
+  position: relative !important;
+  border: 1px solid rgba(212, 180, 90, 0.42) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(165deg, rgba(18, 42, 34, 0.98), rgba(8, 20, 16, 0.98)) !important;
+  box-shadow:
+    0 0 0 1px rgba(212, 180, 90, 0.12),
+    0 8px 28px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 235, 180, 0.08) !important;
+  overflow: hidden !important;
+}
+article.tower::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 235, 180, 0.07) 0%,
+    transparent 42%,
+    transparent 58%,
+    rgba(212, 180, 90, 0.05) 100%
+  );
+  z-index: 0;
+}
+article.tower > * {
+  position: relative;
+  z-index: 1;
+}
+article.tower h3 {
+  text-shadow: 0 0 18px rgba(212, 180, 90, 0.25);
+}
+
+/* Yawm center pillar — stronger gold ring */
+article.tower.tower-yawm {
+  border-color: rgba(232, 212, 138, 0.72) !important;
+  background:
+    linear-gradient(165deg, rgba(30, 125, 94, 0.28), rgba(10, 28, 22, 0.98)) !important;
+  box-shadow:
+    0 0 0 1px rgba(232, 212, 138, 0.35),
+    0 0 32px rgba(212, 180, 90, 0.18),
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 235, 180, 0.12) !important;
+}
+/* Don’t stretch Yawm into a hollow tower on desktop */
+.sym-grid-castle {
+  align-items: start !important;
+}
+article.tower.tower-yawm {
+  min-height: unset !important;
+  height: auto !important;
+}
+
+/* Soft gold edge on how-castle + intro + command cards */
+.cs-ssr-card,
+.castle-intro-card,
+.phc-card {
+  border: 1px solid rgba(212, 180, 90, 0.38) !important;
+  box-shadow:
+    0 0 0 1px rgba(212, 180, 90, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 235, 180, 0.06) !important;
+  background:
+    linear-gradient(165deg, rgba(14, 36, 28, 0.96), rgba(8, 20, 16, 0.98)) !important;
+}
+
+/* —— Room tour modal: true full viewport, never clipped by page —— */
+#room-tour-modal.room-tour-modal,
+.room-tour-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding: max(0.75rem, env(safe-area-inset-top)) 0.75rem max(0.75rem, env(safe-area-inset-bottom)) !important;
+  background: rgba(0, 0, 0, 0.82) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box !important;
+}
+.room-tour-modal[hidden],
+#room-tour-modal[hidden] {
+  display: none !important;
+}
+.room-tour-dialog {
+  width: min(100%, 540px) !important;
+  max-height: min(92dvh, 900px) !important;
+  overflow: auto !important;
+  margin: auto !important;
+  background: #0c1c16 !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(212, 180, 90, 0.45) !important;
+  box-shadow:
+    0 0 0 1px rgba(212, 180, 90, 0.15),
+    0 20px 60px rgba(0, 0, 0, 0.55) !important;
+  padding: 1rem !important;
+}
+.room-tour-dialog video,
+#room-tour-video {
+  width: 100% !important;
+  max-height: min(56dvh, 360px) !important;
+  object-fit: contain !important;
+  background: #000 !important;
+  border-radius: 10px !important;
+  display: block !important;
+}
+body.port-tour-open {
+  overflow: hidden !important;
+  touch-action: none !important;
+  height: 100% !important;
+}
