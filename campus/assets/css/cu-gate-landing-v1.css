@@ -1,29 +1,26 @@
-/*! cu-gate-landing-v1 · U25
- * Gate-first Campus landing: room nav → banner → New/Return → progressive body
+/*! cu-gate-landing-v1 · U25H · polished gate-first landing
  * Educational only — not a fatwa · not a grade of īmān
  */
 
-/* Order: hero/banner, path slim, gate, continue, stages, admission detail, write, footer */
-body.cu-page[data-campus-page="admit"] .cu-landing-wrap,
-body.cu-page[data-campus-page="admit"] main.adm-stage {
-  display: flex;
-  flex-direction: column;
+/* Kill duplicate U24 twoway block when gate is live */
+#cu-twoway-path,
+.cu-twoway,
+section[data-clarity-owned="twoway-v1"] {
+  display: none !important;
 }
 
-/* Write must never lead the page */
-body.cu-page[data-campus-page="admit"] .cu-write-clarity {
-  order: 80;
-  margin-top: 1.5rem;
-}
-body.cu-page[data-campus-page="admit"] footer.cu-foot,
-body.cu-page[data-campus-page="admit"] footer.cu-niyyah-footer {
-  order: 90;
+/* Soft archive / isolation note */
+#university-isolation-note,
+.cu-archive-note,
+[data-archive-note] {
+  font-size: 0.78rem;
+  opacity: 0.78;
+  line-height: 1.45;
 }
 
 .cu-gate-block {
-  order: 20;
   max-width: 46rem;
-  margin: 0.75rem auto 1.25rem;
+  margin: 0.85rem auto 1.15rem;
   padding: 0 1rem;
   width: 100%;
   box-sizing: border-box;
@@ -98,45 +95,18 @@ body.cu-page[data-campus-page="admit"] footer.cu-niyyah-footer {
   margin: 0.7rem 0 0;
 }
 
-/* Progressive sections */
-body.cu-page[data-campus-gate="gate"] .cu-gate-hide-on-gate {
+/* Progressive: hide until door chosen */
+html[data-campus-gate="gate"] .cu-gate-hide-on-gate,
+body[data-campus-gate="gate"] .cu-gate-hide-on-gate {
   display: none !important;
 }
-body.cu-page[data-campus-gate="new"] .cu-gate-return-only {
+html[data-campus-gate="new"] .cu-gate-return-only,
+body[data-campus-gate="new"] .cu-gate-return-only {
   display: none !important;
 }
-body.cu-page[data-campus-gate="return"] .cu-gate-new-only {
+html[data-campus-gate="return"] .cu-gate-new-only,
+body[data-campus-gate="return"] .cu-gate-new-only {
   display: none !important;
-}
-
-/* Soft: archive note quieter */
-#university-isolation-note,
-.cu-archive-note {
-  font-size: 0.78rem;
-  opacity: 0.8;
-  order: 5;
-}
-
-header.cu-hero,
-#cu-banner {
-  order: 10;
-}
-.cu-path-rail,
-nav.cu-pills,
-.cu-smart-stages {
-  order: 12;
-}
-#seq-continue-slot,
-.seq-stage-map {
-  order: 30;
-}
-.adm-stage .adm-steps,
-.adm-panel,
-#adm-returning {
-  order: 40;
-}
-#seq-after-clarity {
-  order: 50;
 }
 
 .cu-gate-back {
@@ -144,8 +114,10 @@ nav.cu-pills,
   margin: 0 auto 0.75rem;
   text-align: center;
 }
-body.cu-page[data-campus-gate="new"] .cu-gate-back,
-body.cu-page[data-campus-gate="return"] .cu-gate-back {
+html[data-campus-gate="new"] .cu-gate-back,
+html[data-campus-gate="return"] .cu-gate-back,
+body[data-campus-gate="new"] .cu-gate-back,
+body[data-campus-gate="return"] .cu-gate-back {
   display: block;
 }
 .cu-gate-back button {
@@ -157,4 +129,9 @@ body.cu-page[data-campus-gate="return"] .cu-gate-back {
   color: inherit;
   padding: 0.35rem 0.85rem;
   cursor: pointer;
+}
+
+/* Write near footer */
+.cu-write-clarity {
+  margin-top: 1.25rem;
 }
