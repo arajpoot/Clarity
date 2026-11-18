@@ -1,13 +1,8 @@
-# U22HARMONY deploy
+# U25GATE deploy
 
-**Bismillah.** Educational only — not a fatwa.
+1. Upload `/campus/assets/css/cu-gate-landing-v1.css`
+2. Upload `/campus/assets/js/cu-gate-landing-v1.js` (+ harmony / niyyah / write if not already live)
+3. Upload `/campus/index.html`
+4. Hard refresh `/campus/`
 
-1. Upload `campus/assets/css/cu-landing-clarity-v1.css`
-2. Upload `campus/assets/js/cu-chrome-harmony-v1.js`
-3. Upload patched HTML:
-   - `campus/index.html` (hub)
-   - `campus/desk/index.html`, `portal/`, `journey/`, `lab/`, `library/`, `orientation/`
-   - `campus/grading.html`, `campus/faculty.html`
-4. Hard refresh `/campus/` then a desk/portal page
-
-Smoke: single room rail · admit steps visible · Begin admission · Continue learning · no curriculum missing · build **U22HARMONY**
+Smoke: gate two cards → Start as new shows admission · Continue as returning shows continue/stages · Write near footer · name on-device explained
