@@ -1,0 +1,40 @@
+/*! cu-landing-clarity-v1 · U22
+ * Landing hierarchy only — does not hide curriculum or admission body.
+ * Educational only — not a fatwa · not a grade of īmān.
+ */
+
+/* Soften archive/base note without removing it */
+body.cu-page[data-campus-page="admit"] .cu-archive-note,
+body.cu-page[data-campus-page="admit"] [data-archive-note] {
+  opacity: 0.75;
+  font-size: 0.82rem;
+}
+
+/* Primary path CTAs breathe */
+body.cu-page[data-campus-page="admit"] .adm-primary,
+body.cu-page[data-campus-page="admit"] #adm-register,
+body.cu-page[data-campus-page="admit"] a[href="/campus/portal/"] {
+  font-weight: 700;
+}
+
+/* Secondary campus door chips — equal quiet weight */
+body.cu-page[data-campus-page="admit"] .cu-door-strip a,
+body.cu-page[data-campus-page="admit"] .cu-hall-links a {
+  opacity: 0.92;
+}
+
+/* Isolation reminder stays visible */
+#university-isolation-note {
+  opacity: 0.9;
+}
+
+/* Single room rail: if a second ever appears, hide extras until JS removes */
+nav.clarity-room-nav ~ nav.clarity-room-nav {
+  display: none !important;
+}
+header.cu-banner ~ header.cu-banner {
+  display: none !important;
+}
+nav.cu-pills ~ nav.cu-pills {
+  display: none !important;
+}
