@@ -1,14 +1,25 @@
-# C21F2 · atelier polish audit
+# C21F3 · Craft-room-wide niyyah footer
 
 **Bismillah.** Educational only — not a fatwa.
 
-## Changes
-1. **Sourced materials** — full-bleed band, 2×2 balanced credit cards, duʿāʾ line
-2. **Write to Clarity** — same full width shell (max 72rem inner)
-3. **Footer** — niyyah line *wa mā tawfīqī illā billāh*, quiet mission (for His sake), room pills, sources, stamp
+## Scope
+Shared footer module on **all Craft pages**:
+- `/craft/` hub
+- `/craft/meme/` · tajweed · calligraphy · quiz · notes · institute
 
-## Sim
-- Isolation · 6 plaques · order sources → write → footer · unique IDs · **GREEN**
+## Mechanism
+- `craft-room-footer-v1.css` — niyyah footer visual
+- `craft-room-footer-v1.js` — upgrades `footer.craft-footer` (station label from path)
+- Station HTML only gains CSS/JS links + build tag — **no studio logic rewritten**
 
-## Deploy
-Assets first, then `/craft/index.html`, hard refresh.
+## Multi-cycle sim
+1 Assets/idempotent · 2 every page linked · 3 non-regression · 4 path map · 5 hub Write preserved  
+**FAIL_COUNT 0 · GREEN**
+
+## Deploy order
+1. `/craft/assets/craft-room-footer-v1.css`
+2. `/craft/assets/craft-room-footer-v1.js`
+3. Replace each page `index.html` under `/craft/` and stations
+4. Hard refresh
+
+Educational only — not a fatwa.

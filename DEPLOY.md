@@ -1,8 +1,10 @@
-# C21F2 deploy
+# C21F3 deploy — Craft room one-soul footer
 
-1. Upload `/craft/assets/craft-atelier-polish-v1.css`
-2. Keep `/craft/assets/craft-write-to-clarity-v1.js` + `.css` (from C21F or this pack)
-3. Replace `/craft/index.html`
-4. Hard refresh `/craft/`
+**Bismillah.** Educational only — not a fatwa.
 
-Smoke: wide sourced grid · wide Write card · footer with Arabic niyyah · plaques intact · build **C21F2**
+1. Upload `craft/assets/craft-room-footer-v1.css` + `.js`
+2. Upload all `craft/**/index.html` from this pack (hub + 6 stations)
+3. Optional: keep `craft-atelier-polish-v1.css` + write-to-clarity assets on hub
+4. Hard refresh each Craft URL
+
+Smoke: same niyyah footer on meme → institute · station tools still work · Craft pill current

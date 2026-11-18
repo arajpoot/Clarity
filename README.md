@@ -1,1 +1,1 @@
-C21F2 GREEN — Full-bleed credits & Write · professional niyyah footer. For His sake alone.
+C21F3 GREEN — Shared Craft-room niyyah footer on hub + all stations. One soul.
