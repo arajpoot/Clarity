@@ -1,1 +1,1 @@
-C21F3 GREEN — Shared Craft-room niyyah footer on hub + all stations. One soul.
+U22HARMONY GREEN — Campus landing declutter + chrome/nav dedupe. Curriculum enrichment held. See docs/ + governance/.
