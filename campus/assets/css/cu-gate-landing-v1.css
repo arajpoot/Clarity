@@ -1,0 +1,160 @@
+/*! cu-gate-landing-v1 · U25
+ * Gate-first Campus landing: room nav → banner → New/Return → progressive body
+ * Educational only — not a fatwa · not a grade of īmān
+ */
+
+/* Order: hero/banner, path slim, gate, continue, stages, admission detail, write, footer */
+body.cu-page[data-campus-page="admit"] .cu-landing-wrap,
+body.cu-page[data-campus-page="admit"] main.adm-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Write must never lead the page */
+body.cu-page[data-campus-page="admit"] .cu-write-clarity {
+  order: 80;
+  margin-top: 1.5rem;
+}
+body.cu-page[data-campus-page="admit"] footer.cu-foot,
+body.cu-page[data-campus-page="admit"] footer.cu-niyyah-footer {
+  order: 90;
+}
+
+.cu-gate-block {
+  order: 20;
+  max-width: 46rem;
+  margin: 0.75rem auto 1.25rem;
+  padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cu-gate-title {
+  text-align: center;
+  margin: 0 0 0.35rem;
+  color: #e8c76b;
+  font-size: 1.15rem;
+}
+.cu-gate-lead {
+  text-align: center;
+  margin: 0 0 0.9rem;
+  font-size: 0.88rem;
+  opacity: 0.9;
+  line-height: 1.45;
+}
+.cu-gate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+@media (max-width: 640px) {
+  .cu-gate-grid { grid-template-columns: 1fr; }
+}
+.cu-gate-card {
+  border-radius: 18px;
+  border: 1px solid rgba(201, 162, 39, 0.38);
+  background: linear-gradient(155deg, rgba(16, 44, 56, 0.55), rgba(6, 16, 22, 0.95));
+  padding: 1.15rem 1.2rem;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28);
+}
+.cu-gate-card h3 {
+  margin: 0 0 0.4rem;
+  color: #e8c76b;
+  font-size: 1.08rem;
+}
+.cu-gate-card p {
+  margin: 0 0 0.85rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+.cu-gate-card .cu-g-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.cu-gate-card a,
+.cu-gate-card button.cu-g-btn {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  color: inherit;
+  background: rgba(20, 60, 80, 0.4);
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-gate-card a.primary,
+.cu-gate-card button.cu-g-btn.primary {
+  background: #1a6b8a;
+  border-color: transparent;
+  color: #fff;
+}
+.cu-gate-stamp {
+  text-align: center;
+  font-size: 0.76rem;
+  opacity: 0.82;
+  margin: 0.7rem 0 0;
+}
+
+/* Progressive sections */
+body.cu-page[data-campus-gate="gate"] .cu-gate-hide-on-gate {
+  display: none !important;
+}
+body.cu-page[data-campus-gate="new"] .cu-gate-return-only {
+  display: none !important;
+}
+body.cu-page[data-campus-gate="return"] .cu-gate-new-only {
+  display: none !important;
+}
+
+/* Soft: archive note quieter */
+#university-isolation-note,
+.cu-archive-note {
+  font-size: 0.78rem;
+  opacity: 0.8;
+  order: 5;
+}
+
+header.cu-hero,
+#cu-banner {
+  order: 10;
+}
+.cu-path-rail,
+nav.cu-pills,
+.cu-smart-stages {
+  order: 12;
+}
+#seq-continue-slot,
+.seq-stage-map {
+  order: 30;
+}
+.adm-stage .adm-steps,
+.adm-panel,
+#adm-returning {
+  order: 40;
+}
+#seq-after-clarity {
+  order: 50;
+}
+
+.cu-gate-back {
+  display: none;
+  margin: 0 auto 0.75rem;
+  text-align: center;
+}
+body.cu-page[data-campus-gate="new"] .cu-gate-back,
+body.cu-page[data-campus-gate="return"] .cu-gate-back {
+  display: block;
+}
+.cu-gate-back button {
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: transparent;
+  color: inherit;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+}
