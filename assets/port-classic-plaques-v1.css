@@ -1,0 +1,252 @@
+/*! port-classic-plaques-v1 · match classic gold-dash plaques + visit/write cards */
+.sym-grid-castle {
+  display: grid !important;
+  gap: 0.85rem !important;
+  grid-template-columns: 1fr 1.12fr 1fr !important;
+  grid-template-areas:
+    "companion yawm amana"
+    "campus yawm craft" !important;
+  align-items: stretch !important;
+}
+@media (max-width: 900px) {
+  .sym-grid-castle {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas:
+      "yawm yawm"
+      "companion amana"
+      "campus craft" !important;
+  }
+}
+@media (max-width: 560px) {
+  .sym-grid-castle {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "yawm" "companion" "amana" "campus" "craft" !important;
+  }
+}
+
+article.tower {
+  position: relative !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(212, 180, 90, 0.38) !important;
+  background: linear-gradient(180deg, rgba(12, 32, 26, 0.98), rgba(7, 18, 14, 0.98)) !important;
+  box-shadow:
+    0 0 0 1px rgba(212, 180, 90, 0.1),
+    0 10px 28px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 235, 180, 0.06) !important;
+  padding: 0.95rem 1rem 0.85rem !important;
+  overflow: hidden !important;
+}
+/* Classic dashed gold crown on plaques */
+article.tower::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 10px; right: 10px;
+  height: 0;
+  border-top: 3px dashed rgba(212, 180, 90, 0.72);
+  pointer-events: none;
+  z-index: 2;
+}
+article.tower.tower-yawm {
+  border-color: rgba(232, 212, 138, 0.65) !important;
+  background: linear-gradient(165deg, rgba(30, 125, 94, 0.26), rgba(8, 24, 18, 0.98)) !important;
+  box-shadow:
+    0 0 0 1px rgba(232, 212, 138, 0.28),
+    0 0 28px rgba(212, 180, 90, 0.14),
+    0 12px 36px rgba(0, 0, 0, 0.38) !important;
+}
+article.tower.tower-yawm a.enter {
+  background: #a67c2a !important;
+  border-color: transparent !important;
+}
+article.tower a.enter {
+  background: #1e7d5e !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  border: none !important;
+  font-weight: 700 !important;
+  padding: 0.4rem 0.85rem !important;
+  text-decoration: none !important;
+  font-size: 0.78rem !important;
+}
+article.tower button.room-tour-pill {
+  border-radius: 999px !important;
+  border: 1px solid rgba(212, 180, 90, 0.4) !important;
+  background: rgba(15, 76, 58, 0.45) !important;
+  color: inherit !important;
+  font-weight: 700 !important;
+  padding: 0.4rem 0.85rem !important;
+  font-size: 0.78rem !important;
+  cursor: pointer !important;
+}
+
+/* Visit notes + Write to Clarity shared card chrome */
+.port-visit-notes,
+.port-write-clarity {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0.85rem auto 1rem;
+  padding: 0 clamp(0.75rem, 3vw, 2rem);
+}
+.pvn-card,
+.pwc-card {
+  border-radius: 16px !important;
+  border: 1px solid rgba(212, 180, 90, 0.4) !important;
+  background: linear-gradient(180deg, rgba(12, 32, 26, 0.96), rgba(7, 18, 14, 0.98)) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
+  padding: 0.85rem 1rem !important;
+}
+.pvn-head,
+.pwc-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.pvn-title,
+.pwc-title {
+  margin: 0;
+  color: #e8d48a;
+  font-size: 1.05rem;
+  font-family: "EB Garamond", Georgia, serif;
+}
+.pvn-sub,
+.pwc-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  opacity: 0.88;
+}
+.pvn-toggle,
+.pwc-toggle {
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.4);
+  background: #1e7d5e;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.pvn-body,
+.pwc-body { margin-top: 0.75rem; }
+.pvn-stamp,
+.pwc-stamp {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin: 0 0 0.55rem;
+}
+.pvn-input,
+.pwc-input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.3);
+  background: rgba(0, 0, 0, 0.28);
+  color: inherit;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  resize: vertical;
+}
+.pvn-actions,
+.pwc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+.pvn-save,
+.pwc-send {
+  border-radius: 999px;
+  border: none;
+  background: #1e7d5e;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+.pvn-clear-all,
+.pwc-copy,
+.pwc-mail {
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: rgba(15, 76, 58, 0.4);
+  color: inherit;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+}
+.pwc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0 0.65rem;
+}
+.pwc-chip {
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+.pwc-chip.active {
+  background: #1e7d5e;
+  border-color: transparent;
+  color: #fff;
+}
+.pwc-status,
+.pvn-meta {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-top: 0.45rem;
+}
+.pvn-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.65rem 0 0;
+}
+.pvn-item {
+  border: 1px solid rgba(212, 180, 90, 0.2);
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  margin-bottom: 0.4rem;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 0.86rem;
+}
+.pvn-item-at {
+  font-size: 0.72rem;
+  opacity: 0.75;
+  margin-bottom: 0.25rem;
+}
+
+/* Surprise: subtle room accent dots under nav */
+nav.port-room-nav {
+  position: relative;
+}
+.port-trust-line {
+  text-align: center;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin: 0.35rem auto 0.5rem;
+  max-width: 36rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 180, 90, 0.22);
+  background: rgba(15, 76, 58, 0.18);
+}
+.port-foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+.port-foot-links a {
+  color: #e8d48a;
+  font-size: 0.82rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 180, 90, 0.35);
+}
