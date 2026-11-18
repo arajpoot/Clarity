@@ -1,0 +1,52 @@
+
+/* HK2 UX polish — plaque depth, spacing, typography · Companion tabs */
+.cs-rich-tab, article.cs-rich-tab {
+  --hk2-radius: 14px;
+  --hk2-pad: 1rem 1.1rem;
+  --hk2-gap: 1rem;
+  --hk2-gold: rgba(212,180,90,0.45);
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0.75rem 0.85rem 2rem;
+}
+.cs-rich-tab .card,
+.cs-rich-tab .cs-plaque,
+.cs-rich-tab .siq-suite,
+.cs-rich-tab .card-tools,
+.cs-rich-tab .card-notes {
+  border-radius: var(--hk2-radius) !important;
+  padding: var(--hk2-pad) !important;
+  margin: var(--hk2-gap) 0 !important;
+  border: 1px solid var(--hk2-gold) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.04);
+  background: linear-gradient(165deg, rgba(28,36,32,0.95), rgba(12,16,14,0.98));
+}
+.cs-rich-tab h1, .cs-rich-tab h2 {
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  font-weight: 650;
+}
+.cs-rich-tab h2 { font-size: 1.15rem; margin: 0 0 0.35rem; }
+.cs-rich-tab .lead, .cs-rich-tab .siq-sub, .cs-rich-tab .td-src {
+  line-height: 1.45;
+  opacity: 0.92;
+}
+.cs-rich-tab .btn-soft, .cs-rich-tab .siq-tab, .cs-rich-tab .fq-lvl, .cs-rich-tab .fq-topic {
+  border-radius: 999px !important;
+  padding: 0.35rem 0.75rem !important;
+  margin: 0.15rem !important;
+}
+.cs-rich-tab .fq-stage, .cs-rich-tab .siq-iq-stage {
+  min-height: 4.5rem;
+  margin-top: 0.65rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.22);
+}
+.cs-rich-tab .fq-stage:empty::before {
+  content: "Tap a level or Fetch online deck, then use Next for a card.";
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+.cs-plaque-deep { border-top-width: 3px !important; }
