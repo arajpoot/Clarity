@@ -1,9 +1,10 @@
-# Contract audit · RRRA quiet RR2
+# Contract audit · UX1
 
-**Scope:** companion only · other rooms held  
+**rooms_touched:** companion only  
+**rooms_held:** port, yawm, campus, amana, craft  
 
-**Enrichment:** held — only legacy hub chrome removed; educational cards retained  
-
-**Phase 0:** shell owns path grid; tabs must not embed a second track rail  
+**enrichment:** **increased** on Action/Reminder from content archive (never decreases)  
+**noise-free foundation:** held (quiet chrome retained)  
+**campus mount fortify:** unchanged  
 
 **Verdict: GREEN**
