@@ -1,0 +1,34 @@
+{
+  "build": "U22HARMONY",
+  "date": "2026-11-18",
+  "rooms_touched": ["campus"],
+  "enrichment": "held",
+  "binding": true,
+  "educational_only": true,
+  "not_a_fatwa": true,
+  "not_a_grade_of_iman": true,
+  "project_invariants": {
+    "P1_educational_stamp": "pass",
+    "P2_scripture_ui": "n/a",
+    "P3_primary_sources": "pass",
+    "P4_room_isolation": "pass",
+    "P5_amana_privacy": "n/a",
+    "P6_shariah_scan_media": "n/a",
+    "P7_pack_smoke": "pass"
+  },
+  "campus_invariants": {
+    "curriculum_frozen": "pass",
+    "admission_flow_intact": "pass",
+    "seeker_practice_path_held": "pass",
+    "body_text_richness": "pass",
+    "duplicate_scripts_only_removed": "pass",
+    "no_companion_inline": "pass"
+  },
+  "richness_clause": {
+    "hub_body_text": "held_or_grown",
+    "hub_byte_delta_note": "negative total bytes from deduped script tags (beacon/nav-integrity/theme duplicates) — not curriculum",
+    "station_pages": "GREEN_GTE additive CSS/JS links"
+  },
+  "status": "GREEN",
+  "ready_for_deploy": true
+}
