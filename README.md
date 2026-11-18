@@ -1,1 +1,1 @@
-PORTSMOKE-20261118 · Multi-cycle audited Port package. GREEN. Visit notes + Write to Clarity SSR+hydrate. See AUDIT_SMOKE.md.
+C21F GREEN — Craft hub enriched app-footer pattern + Write to Clarity. See AUDIT_SMOKE.md.
