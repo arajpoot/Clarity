@@ -1,46 +1,46 @@
-
-/**
- * Chrome harmony CH1 — dedupe theme pills injected by ui-chrome
+/*! cu-chrome-harmony-v1 · U22
+ * Dedupe room rails + campus chrome injected more than once.
+ * Does NOT remove admission steps, curriculum, or stage content.
+ * Educational only — not a fatwa · not a grade of īmān.
  */
-(function(){
-  function dedupeThemes(){
-    try{
-      var actions=document.querySelectorAll(".cu-banner-actions");
-      actions.forEach(function(box){
-        var seen={};
-        box.querySelectorAll("[data-cu-theme], .cu-theme-pill").forEach(function(btn){
-          var k=btn.getAttribute("data-cu-theme")||(btn.textContent||"").trim().toLowerCase();
-          if(seen[k]){ btn.style.display="none"; }
-          else seen[k]=true;
-        });
-        /* if a second cluster appears after main-link, hide those theme pills */
-        var main=box.querySelector(".cu-main-link");
-        if(main){
-          var n=main.nextElementSibling;
-          while(n){
-            if(n.classList&&(n.classList.contains("cu-theme-pill")||n.hasAttribute("data-cu-theme"))){
-              n.style.display="none";
-            }
-            n=n.nextElementSibling;
-          }
-        }
-      });
-      /* remove orphan theme bars outside banner */
-      document.querySelectorAll("body > .cu-theme-bar, .cu-ui-extra-themes").forEach(function(el){
-        el.style.display="none";
-      });
-    }catch(e){}
+(function (w, d) {
+  "use strict";
+  if (w.__CU_CHROME_HARMONY_V1__) return;
+  w.__CU_CHROME_HARMONY_V1__ = true;
+
+  function keepFirst(sel) {
+    var nodes = d.querySelectorAll(sel);
+    for (var i = 1; i < nodes.length; i++) {
+      try {
+        nodes[i].parentNode && nodes[i].parentNode.removeChild(nodes[i]);
+      } catch (e) {}
+    }
+    return nodes.length;
   }
-  function markPage(){
-    try{
-      if(!document.body.classList.contains("cu-page")){
-        if(document.querySelector(".cu-banner")||document.querySelector(".cu-pills")){
-          document.body.classList.add("cu-page");
-        }
-      }
-    }catch(e){}
+
+  function harmony() {
+    // Castle room rail (shared)
+    keepFirst("nav.clarity-room-nav");
+    // Campus banners / pill rails (JS may inject extras)
+    keepFirst("header.cu-banner");
+    keepFirst("nav.cu-pills");
+    keepFirst("nav.lab-station-nav");
+    keepFirst("[data-cu-student-status]");
+    keepFirst("#cu-day-flow");
+    // Smart-nav clones if any
+    keepFirst("nav.cu-smart-rooms");
+    keepFirst("nav.cu-smart-stages");
+    keepFirst(".cu-smart-nav-root");
   }
-  function boot(){ markPage(); dedupeThemes(); }
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", function(){ boot(); setTimeout(boot,300); });
-  else { boot(); setTimeout(boot,300); }
-})();
+
+  function boot() {
+    try {
+      harmony();
+    } catch (e) {}
+  }
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
+  else boot();
+  setTimeout(boot, 200);
+  setTimeout(boot, 800);
+  setTimeout(boot, 1600);
+})(window, document);
