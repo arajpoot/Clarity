@@ -1,0 +1,100 @@
+/*! companion-ux-restore-v1 · bottom rail + deep folds · educational only */
+
+/* —— Bottom nav rail (glory restore) —— */
+#clarity-door-rail.cs-door,
+.cs-door#clarity-door-rail {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  gap: 0.25rem;
+  justify-content: space-between;
+  padding: 0.4rem 0.45rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, rgba(8,16,12,0.72), rgba(6,12,10,0.94));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(212,180,90,0.28);
+  box-shadow: 0 -8px 28px rgba(0,0,0,0.35);
+}
+.cs-door .cs-door-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.35rem 0.2rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(247,240,221,0.72);
+  font-size: 0.68rem;
+  letter-spacing: 0.01em;
+  transition: background .15s, border-color .15s, color .15s, transform .12s;
+}
+.cs-door .cs-door-btn .dr-ico {
+  font-size: 1.05rem;
+  line-height: 1;
+  opacity: 0.9;
+}
+.cs-door .cs-door-btn .dr-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cs-door .cs-door-btn.is-active {
+  color: #f7f0dd;
+  background: linear-gradient(180deg, rgba(212,180,90,0.22), rgba(212,180,90,0.08));
+  border-color: rgba(212,180,90,0.45);
+  box-shadow: 0 0 0 1px rgba(212,180,90,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
+  transform: translateY(-1px);
+}
+.cs-door .cs-door-btn:active {
+  transform: scale(0.98);
+}
+
+/* Mount breathing room above sticky rail */
+#cs-mount {
+  padding-bottom: 5.5rem;
+}
+
+/* —— Deep learning folds —— */
+.cs-deep-fold {
+  margin: 0.75rem 0;
+  border: 1px solid rgba(212,180,90,0.28);
+  border-radius: 12px;
+  background: rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+.cs-deep-fold > summary {
+  cursor: pointer;
+  padding: 0.7rem 0.9rem;
+  font-weight: 650;
+  list-style: none;
+  color: #f7f0dd;
+}
+.cs-deep-fold > summary::-webkit-details-marker { display: none; }
+.cs-deep-fold[open] > summary {
+  border-bottom: 1px solid rgba(212,180,90,0.2);
+  background: rgba(212,180,90,0.08);
+}
+.cs-deep-body {
+  padding: 0.75rem 0.9rem 1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.cs-r7-r8 iframe {
+  width: 100%;
+  max-width: 100%;
+  min-height: 220px;
+  border: 0;
+  border-radius: 10px;
+  background: #000;
+}
+
+/* Keep legacy chrome dead */
+#cs-mount .rrra-hub-summary,
+#cs-mount .clarity-gate-switcher {
+  display: none !important;
+}
