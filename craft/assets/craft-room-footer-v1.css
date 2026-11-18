@@ -1,0 +1,102 @@
+/*! craft-room-footer-v1 · C21F3 · shared Craft-room niyyah footer + light UX
+ * Educational only — not a fatwa · for His sake alone
+ */
+footer.craft-footer.clarity-app-footer--niyyah,
+footer.clarity-app-footer--niyyah {
+  width: 100%;
+  margin: 2rem 0 0;
+  padding: 0;
+  border-top: none;
+  background: transparent;
+  text-align: center;
+}
+.clarity-app-footer--niyyah .caf-band {
+  width: 100%;
+  border-top: 1px solid rgba(201, 162, 39, 0.22);
+  background:
+    radial-gradient(ellipse 80% 100% at 50% 0%, rgba(30, 125, 94, 0.12), transparent 55%),
+    linear-gradient(180deg, rgba(6, 18, 14, 0.5), rgba(4, 12, 10, 0.97));
+  padding: 1.75rem clamp(1rem, 4vw, 2.5rem) 2.5rem;
+  box-sizing: border-box;
+}
+.clarity-app-footer--niyyah .caf-inner {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+.clarity-app-footer--niyyah .caf-niyyah {
+  margin: 0 0 0.85rem;
+  font-family: Amiri, "Times New Roman", serif;
+  font-size: 1.15rem;
+  color: #e8c76b;
+  direction: rtl;
+  line-height: 1.7;
+}
+.clarity-app-footer--niyyah .caf-mission {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  opacity: 0.92;
+  color: #d5e0d8;
+}
+.clarity-app-footer--niyyah .caf-rooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin: 0 0 1rem;
+}
+.clarity-app-footer--niyyah .caf-rooms a {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e8efe9;
+  text-decoration: none;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background: rgba(15, 76, 58, 0.25);
+}
+.clarity-app-footer--niyyah .caf-rooms a[aria-current="page"],
+.clarity-app-footer--niyyah .caf-rooms a:hover {
+  background: #1e7d5e;
+  border-color: transparent;
+  color: #fff;
+}
+.clarity-app-footer--niyyah .caf-bench {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  opacity: 0.88;
+  color: #e8c76b;
+}
+.clarity-app-footer--niyyah .caf-sources {
+  margin: 0 0 0.65rem;
+  font-size: 0.78rem;
+  opacity: 0.88;
+}
+.clarity-app-footer--niyyah .caf-sources a {
+  color: #e8c76b;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 199, 107, 0.28);
+}
+.clarity-app-footer--niyyah .caf-stamp {
+  margin: 0;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+.clarity-app-footer--niyyah .caf-build {
+  margin: 0.75rem 0 0;
+  font-size: 0.68rem;
+  opacity: 0.55;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Light UX: station pages breathe above footer */
+body.craft-room main,
+body.craft-room .craft-main,
+#meme-root,
+.meme-studio,
+.tj-studio,
+.craft-station {
+  margin-bottom: 0.5rem;
+}
