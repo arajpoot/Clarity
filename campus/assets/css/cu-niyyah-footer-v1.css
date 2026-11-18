@@ -1,0 +1,216 @@
+/*! cu-niyyah-footer-v1 · U23 · University-room footer
+ * Educational only — not a fatwa · not a grade of īmān · not a seminary
+ */
+footer.cu-foot.cu-niyyah-footer,
+footer.cu-niyyah-footer {
+  width: 100%;
+  margin: 2.25rem 0 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: center;
+}
+.cu-niyyah-footer .cuf-band {
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(201, 162, 39, 0.24);
+  background:
+    radial-gradient(ellipse 70% 90% at 50% 0%, rgba(30, 100, 140, 0.1), transparent 55%),
+    linear-gradient(180deg, rgba(8, 20, 28, 0.45), rgba(4, 12, 16, 0.96));
+  padding: 1.85rem clamp(1rem, 4vw, 2.5rem) 2.6rem;
+}
+.cu-niyyah-footer .cuf-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+.cu-niyyah-footer .cuf-ayah {
+  margin: 0 0 0.35rem;
+  font-family: Amiri, "Times New Roman", serif;
+  font-size: 1.2rem;
+  color: #e8c76b;
+  direction: rtl;
+  line-height: 1.75;
+}
+.cu-niyyah-footer .cuf-ayah-ref {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+.cu-niyyah-footer .cuf-ayah-ref a {
+  color: #e8c76b;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 199, 107, 0.3);
+}
+.cu-niyyah-footer .cuf-mission {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  opacity: 0.92;
+  color: #d5e0e6;
+}
+.cu-niyyah-footer .cuf-stages {
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  opacity: 0.88;
+  color: #c5d4c8;
+}
+.cu-niyyah-footer .cuf-rooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin: 0 0 0.9rem;
+}
+.cu-niyyah-footer .cuf-rooms a {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e8efe9;
+  text-decoration: none;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background: rgba(20, 60, 80, 0.28);
+}
+.cu-niyyah-footer .cuf-rooms a[aria-current="page"],
+.cu-niyyah-footer .cuf-rooms a:hover {
+  background: #1a6b8a;
+  border-color: transparent;
+  color: #fff;
+}
+.cu-niyyah-footer .cuf-sources {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  opacity: 0.88;
+}
+.cu-niyyah-footer .cuf-sources a {
+  color: #e8c76b;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 199, 107, 0.28);
+}
+.cu-niyyah-footer .cuf-stamp {
+  margin: 0;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+.cu-niyyah-footer .cuf-build {
+  margin: 0.7rem 0 0;
+  font-size: 0.68rem;
+  opacity: 0.55;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Write to Clarity — Campus landing only */
+.cu-write-clarity {
+  width: 100%;
+  max-width: 52rem;
+  margin: 1.5rem auto 0.5rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.cu-write-clarity .cuw-card {
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.34);
+  background: linear-gradient(145deg, rgba(16, 40, 52, 0.55), rgba(8, 18, 24, 0.94));
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.25);
+  padding: 1.1rem 1.2rem;
+}
+.cu-write-clarity .cuw-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.cu-write-clarity .cuw-title {
+  margin: 0;
+  color: #e8c76b;
+  font-size: 1.08rem;
+}
+.cu-write-clarity .cuw-sub {
+  margin: 0.25rem 0 0;
+  font-size: 0.84rem;
+  opacity: 0.9;
+  line-height: 1.45;
+}
+.cu-write-clarity .cuw-toggle {
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background: #1a6b8a;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.cu-write-clarity .cuw-body { margin-top: 0.75rem; }
+.cu-write-clarity .cuw-stamp {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin: 0 0 0.55rem;
+}
+.cu-write-clarity .cuw-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.65rem;
+}
+.cu-write-clarity .cuw-chip {
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0, 0, 0, 0.22);
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+.cu-write-clarity .cuw-chip.active {
+  background: #1a6b8a;
+  border-color: transparent;
+  color: #fff;
+}
+.cu-write-clarity .cuw-input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 5.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(0, 0, 0, 0.28);
+  color: inherit;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  resize: vertical;
+}
+.cu-write-clarity .cuw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+.cu-write-clarity .cuw-send {
+  border-radius: 999px;
+  border: none;
+  background: #1a6b8a;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+.cu-write-clarity .cuw-copy,
+.cu-write-clarity .cuw-mail {
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(20, 60, 80, 0.4);
+  color: inherit;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+}
+.cu-write-clarity .cuw-status,
+.cu-write-clarity .cuw-meta {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-top: 0.45rem;
+}
