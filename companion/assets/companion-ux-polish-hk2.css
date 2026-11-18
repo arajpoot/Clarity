@@ -50,3 +50,22 @@
   font-size: 0.9rem;
 }
 .cs-plaque-deep { border-top-width: 3px !important; }
+
+
+/* HK3 — all-tab extensions */
+.cs-rich-tab .cs-tab-hero,
+.cs-rich-tab header.cs-plaque {
+  border-radius: 14px !important;
+  padding: 1rem 1.15rem !important;
+  margin-bottom: 1rem !important;
+  border: 1px solid rgba(212,180,90,0.4) !important;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.3);
+}
+.cs-rich-tab .card + .card { margin-top: 1rem; }
+.cs-rich-tab p { line-height: 1.5; }
+.cs-rich-tab ul { line-height: 1.45; padding-left: 1.2rem; }
+.cs-rich-about, article[data-tab="about"] {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0.75rem 0.85rem 2rem;
+}
