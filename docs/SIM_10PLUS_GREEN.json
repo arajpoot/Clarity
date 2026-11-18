@@ -1,0 +1,138 @@
+{
+  "bismillah": true,
+  "sim_cycles": [
+    {
+      "cycle": 1,
+      "name": "files_present",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 2,
+      "name": "body_baselines",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 3,
+      "name": "educational_markers",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 4,
+      "name": "html_shape",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 5,
+      "name": "fragment_backup",
+      "ok": true,
+      "detail": {
+        "frag": 185934,
+        "bak": 216231
+      }
+    },
+    {
+      "cycle": 6,
+      "name": "no_index_overwrite",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 7,
+      "name": "live_shell_untouched_by_package",
+      "ok": true,
+      "detail": 11
+    },
+    {
+      "cycle": 8,
+      "name": "tabs_have_educational",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 9,
+      "name": "no_vault_password_gate",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 10,
+      "name": "action_rich",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 11,
+      "name": "fragment_h2",
+      "ok": true,
+      "detail": 71
+    },
+    {
+      "cycle": 12,
+      "name": "no_campus",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 13,
+      "name": "utf8_clean",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 14,
+      "name": "deploy_map",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 15,
+      "name": "docs",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 16,
+      "name": "do_not_touch_doc",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 17,
+      "name": "no_amana_upload",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 18,
+      "name": "no_daily_upload",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 19,
+      "name": "notes_about_min",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "cycle": 20,
+      "name": "forbids_monolith_replace",
+      "ok": true,
+      "detail": "ok"
+    }
+  ],
+  "passed": 20,
+  "total": 20,
+  "minimum_required": 10,
+  "audit": "GREEN",
+  "fixes_applied": [
+    "No package defects requiring file mutation; all cycles passed on current assets",
+    "Live URL 403 in sandbox mitigated by R0 live snapshot for shell-preservation checks"
+  ],
+  "deploy_safe": true,
+  "enrichment": "held / body assets ready (body-restored when live mounts confirmed)"
+}

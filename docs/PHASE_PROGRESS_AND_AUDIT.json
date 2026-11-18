@@ -1,0 +1,54 @@
+{
+  "phase_progress": {
+    "R0-INV": "GREEN (inventory only \u2014 no deploy required)",
+    "R1-BODY": "PACKAGED as additive tab+fragment assets from main (baselines green)",
+    "R2-FLOW": "held \u2014 do not replace live shell path governance",
+    "R3-ISO": "held \u2014 no vault in Companion; Craft remains linked",
+    "R4-UI": "held \u2014 presentation unchanged in this pack",
+    "R5-ARCH": "held \u2014 live 20261117P38 shell scripts stay",
+    "R6": "this package is the safe ship artifact for body re-enrichment"
+  },
+  "package_body_audit": {
+    "reminder": {
+      "bytes": 43224,
+      "baseline": 34000,
+      "status": "GREEN",
+      "has_educational": true
+    },
+    "reality": {
+      "bytes": 58366,
+      "baseline": 49000,
+      "status": "GREEN",
+      "has_educational": true
+    },
+    "reflection": {
+      "bytes": 45349,
+      "baseline": 36000,
+      "status": "GREEN",
+      "has_educational": true
+    },
+    "action": {
+      "bytes": 94631,
+      "baseline": 85000,
+      "status": "GREEN",
+      "has_educational": true
+    },
+    "notes": {
+      "bytes": 14086,
+      "baseline": 6500,
+      "status": "GREEN",
+      "has_educational": true
+    },
+    "about": {
+      "bytes": 14295,
+      "baseline": 6800,
+      "status": "GREEN",
+      "has_educational": true
+    }
+  },
+  "fragment_bytes": 185934,
+  "backup_bytes": 216231,
+  "all_tabs_green": true,
+  "safe_deploy_rule": "Upload ONLY paths under UPLOAD-SAFE/. Never replace companion/index.html with archive3 monolith. Never touch campus/, amana/ vault, or live shell JS list unless a later ticket says so.",
+  "enrichment": "body assets ready; live shell held; tag body-restored when mounts confirmed on live"
+}
