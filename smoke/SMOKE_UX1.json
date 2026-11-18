@@ -1,0 +1,15 @@
+{
+  "build": "COMPANION_UX_RESTORE_UX1",
+  "date": "2026-11-17",
+  "verdict": "GREEN",
+  "live_precheck": "GREEN_noise_free",
+  "rooms_touched": ["companion"],
+  "enrichment_never_decreases": true,
+  "sources": [
+    "companion/content/modules/r7-r8-integrated.partial.html",
+    "companion/content/modules/tajweed-deep.partial.html",
+    "companion/content/modules/meme-studio-rich.partial.html",
+    "companion/content/modules/calligraphy-rich.partial.html"
+  ],
+  "ux": ["sticky_glass_rail", "active_pill", "deep_folds", "lazy_iframes"]
+}
