@@ -1,0 +1,150 @@
+{
+  "phase": "R6-SHIP",
+  "bismillah": true,
+  "understanding": {
+    "companion_isolated_room": true,
+    "vault_in_amana_not_companion": true,
+    "yawm_isolated": true,
+    "shell_runs_tabs_content": true,
+    "do_not_replace_shell_with_monolith": true,
+    "upload_only_body_assets": true
+  },
+  "architecture_statement": "Companion is an isolated room. Its shell HTML loads layered JS and mounts tab bodies from companion/tabs/*. Vault lives only in Am\u0101nah (/amana/, unlock separate). Yawm is isolated at /daily/. Ship upgrades body assets only; do not replace live shell with archive monolith.",
+  "sim": {
+    "passed": 16,
+    "total": 16,
+    "audit": "GREEN",
+    "cycles": [
+      {
+        "cycle": 1,
+        "name": "tab_reminder_baseline",
+        "ok": true,
+        "detail": 43224
+      },
+      {
+        "cycle": 2,
+        "name": "tab_reality_baseline",
+        "ok": true,
+        "detail": 58366
+      },
+      {
+        "cycle": 3,
+        "name": "tab_reflection_baseline",
+        "ok": true,
+        "detail": 45349
+      },
+      {
+        "cycle": 4,
+        "name": "tab_action_baseline",
+        "ok": true,
+        "detail": 94631
+      },
+      {
+        "cycle": 5,
+        "name": "tab_notes_baseline",
+        "ok": true,
+        "detail": 14086
+      },
+      {
+        "cycle": 6,
+        "name": "tab_about_baseline",
+        "ok": true,
+        "detail": 14295
+      },
+      {
+        "cycle": 7,
+        "name": "fragment",
+        "ok": true,
+        "detail": 185934
+      },
+      {
+        "cycle": 8,
+        "name": "backup",
+        "ok": true,
+        "detail": 216231
+      },
+      {
+        "cycle": 9,
+        "name": "edu_markers",
+        "ok": true,
+        "detail": "ok"
+      },
+      {
+        "cycle": 10,
+        "name": "no_shell_overwrite",
+        "ok": true,
+        "detail": "ok"
+      },
+      {
+        "cycle": 11,
+        "name": "no_foreign_rooms",
+        "ok": true,
+        "detail": "ok"
+      },
+      {
+        "cycle": 12,
+        "name": "utf8",
+        "ok": true,
+        "detail": "ok"
+      },
+      {
+        "cycle": 13,
+        "name": "understanding_flags",
+        "ok": true,
+        "detail": {
+          "companion_isolated_room": true,
+          "vault_in_amana_not_companion": true,
+          "yawm_isolated": true,
+          "shell_runs_tabs_content": true,
+          "do_not_replace_shell_with_monolith": true,
+          "upload_only_body_assets": true
+        }
+      },
+      {
+        "cycle": 14,
+        "name": "action_rich",
+        "ok": true,
+        "detail": "ok"
+      },
+      {
+        "cycle": 15,
+        "name": "no_vault_gate_in_tabs",
+        "ok": true,
+        "detail": "ok"
+      },
+      {
+        "cycle": 16,
+        "name": "deploy_map",
+        "ok": true,
+        "detail": "ok"
+      }
+    ]
+  },
+  "upload": [
+    "companion/tabs/reminder/index.html",
+    "companion/tabs/reality/index.html",
+    "companion/tabs/reflection/index.html",
+    "companion/tabs/action/index.html",
+    "companion/tabs/notes/index.html",
+    "companion/tabs/about/index.html",
+    "companion/content/main.fragment.html",
+    "companion/content/full.backup.html"
+  ],
+  "do_not_upload": [
+    "companion/index.html (live shell)",
+    "campus/**",
+    "daily/**",
+    "amana/**",
+    "craft engines"
+  ],
+  "enrichment": "held / body-restored when bodies visible",
+  "prior_phases": {
+    "R0": "inventory GREEN",
+    "R1": "body package deployed/verified GREEN",
+    "R2": "flow lock GREEN",
+    "R3": "isolation GREEN",
+    "R4": "UI discipline GREEN",
+    "R5": "arch map GREEN",
+    "R6": "ship sim GREEN"
+  }
+}
