@@ -1,0 +1,74 @@
+/*! craft-enriched-footer-v1 · C21F · app-wide footer pattern (Craft first)
+ * Educational only — not a fatwa.
+ */
+footer.craft-footer,
+footer.clarity-app-footer {
+  width: 100%;
+  margin: 1.5rem 0 0;
+  padding: 1.35rem clamp(0.85rem, 3vw, 1.75rem) 2.25rem;
+  border-top: 1px solid rgba(201, 162, 39, 0.28);
+  background:
+    linear-gradient(180deg, rgba(8, 24, 18, 0.35), rgba(5, 14, 11, 0.92));
+  text-align: center;
+  box-sizing: border-box;
+}
+.clarity-app-footer-inner {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.clarity-app-footer .caf-kicker {
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
+  opacity: 0.9;
+  color: #e8c76b;
+}
+.clarity-app-footer .caf-kicker a {
+  color: #e8c76b;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 199, 107, 0.35);
+}
+.clarity-app-footer .caf-rooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+  justify-content: center;
+  margin: 0.55rem 0 0.75rem;
+}
+.clarity-app-footer .caf-rooms a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #e8efe9;
+  text-decoration: none;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(15, 76, 58, 0.28);
+}
+.clarity-app-footer .caf-rooms a:hover,
+.clarity-app-footer .caf-rooms a[aria-current="page"] {
+  background: #1e7d5e;
+  border-color: transparent;
+  color: #fff;
+}
+.clarity-app-footer .caf-sources {
+  margin: 0.35rem 0;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+.clarity-app-footer .caf-sources a {
+  color: #e8c76b;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 199, 107, 0.3);
+}
+.clarity-app-footer .caf-stamp {
+  margin: 0.45rem 0 0;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  line-height: 1.45;
+}
+.clarity-app-footer .caf-build {
+  margin: 0.55rem 0 0;
+  font-size: 0.72rem;
+  opacity: 0.7;
+  letter-spacing: 0.04em;
+}
