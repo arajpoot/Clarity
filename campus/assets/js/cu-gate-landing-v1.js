@@ -1,11 +1,11 @@
-/*! cu-gate-landing-v1 · U25H polished
- * Single gate · hide U24 twoway · place after banner · progressive body
- * KEY cu_uni_admit_v1 · Educational only — not a fatwa · not a grade of īmān
+/*! cu-gate-landing-v1 · U25F final order
+ * Room nav → Banner → Gate + Write → body
+ * Educational only — not a fatwa · not a grade of īmān
  */
 (function (w, d) {
   "use strict";
-  if (w.__CU_GATE_LANDING_V1H__) return;
-  w.__CU_GATE_LANDING_V1H__ = true;
+  if (w.__CU_GATE_LANDING_V1F__) return;
+  w.__CU_GATE_LANDING_V1F__ = true;
 
   var KEY = "cu_uni_admit_v1";
   var MODE_KEY = "cu_campus_gate_mode_v1";
@@ -48,26 +48,29 @@
   }
 
   function softArchiveNote() {
-    d.querySelectorAll("#university-isolation-note, .cu-archive-note").forEach(function (el) {
-      var t = el.textContent || "";
-      if (/archive3/i.test(t)) {
-        el.textContent =
-          "University room · on-device path. Path markers and progress are a study mirror, not a grade of īmān. Amānah vault is at /amana/. Educational only — not a fatwa.";
-      }
-    });
-    // also scan paragraphs
-    d.querySelectorAll("p, .cu-note, .edu-stamp").forEach(function (el) {
-      if (/archive3 campus base/i.test(el.textContent || "")) {
+    d.querySelectorAll("#university-isolation-note, .cu-archive-note, p, .cu-note").forEach(function (el) {
+      if (/archive3/i.test(el.textContent || "")) {
         el.innerHTML = (el.innerHTML || "").replace(
           /University room \(archive3 campus base\)\./gi,
           "University room · on-device path."
         );
+        el.innerHTML = (el.innerHTML || "").replace(/archive3 campus base/gi, "on-device path");
       }
     });
   }
 
+  function findBanner() {
+    return (
+      d.querySelector("#cu-banner") ||
+      d.querySelector("header.cu-hero") ||
+      d.querySelector("header.cu-banner") ||
+      d.querySelector(".cu-hero")
+    );
+  }
+
   function ensureGate() {
-    if (d.getElementById("cu-gate-block")) return d.getElementById("cu-gate-block");
+    var existing = d.getElementById("cu-gate-block");
+    if (existing) return existing;
     var wrap = d.createElement("section");
     wrap.id = "cu-gate-block";
     wrap.className = "cu-gate-block";
@@ -96,24 +99,56 @@
       "  </article>" +
       "</div>" +
       '<p class="cu-gate-stamp">Educational only — not a fatwa · not a grade of īmān · not a seminary</p>';
+    return wrap;
+  }
 
-    var back = d.createElement("div");
+  function ensureBack() {
+    var back = d.querySelector(".cu-gate-back");
+    if (back) return back;
+    back = d.createElement("div");
     back.className = "cu-gate-back";
     back.innerHTML = '<button type="button" data-gate-go="gate">← Both doors again</button>';
+    return back;
+  }
 
-    var anchor =
-      d.querySelector("#cu-banner") ||
-      d.querySelector("header.cu-hero") ||
-      d.querySelector("header.cu-banner") ||
-      d.querySelector(".cu-hero");
-    var parent = (anchor && anchor.parentNode) || d.querySelector("main") || d.body;
-    if (anchor && anchor.parentNode) {
-      if (anchor.nextSibling) parent.insertBefore(wrap, anchor.nextSibling);
-      else parent.appendChild(wrap);
-    } else {
-      parent.insertBefore(wrap, parent.firstChild);
+  /** Final order: room nav (left alone) → banner → gate → write → rest */
+  function orderDom() {
+    var banner = findBanner();
+    var gate = ensureGate();
+    var back = ensureBack();
+    var write = d.getElementById("cu-write-clarity") || d.querySelector(".cu-write-clarity");
+    var main = d.querySelector("main.adm-stage, main.cu-wrap, .cu-landing-wrap, main") || d.body;
+
+    // Place banner high in main if needed — after room nav is already outside main typically
+    var roomNav = d.querySelector("nav.clarity-room-nav");
+    if (banner && roomNav && banner.compareDocumentPosition(roomNav) & Node.DOCUMENT_POSITION_FOLLOWING) {
+      // banner is before room nav in DOM — move banner after room nav
+      if (roomNav.parentNode) {
+        roomNav.parentNode.insertBefore(banner, roomNav.nextSibling);
+      }
     }
-    wrap.parentNode.insertBefore(back, wrap.nextSibling);
+
+    var anchor = banner || roomNav;
+    var parent = (anchor && anchor.parentNode) || main;
+
+    // Insert gate right after banner
+    if (gate.parentNode) gate.parentNode.removeChild(gate);
+    if (back.parentNode) back.parentNode.removeChild(back);
+    if (anchor && anchor.parentNode) {
+      var ref = anchor.nextSibling;
+      parent.insertBefore(gate, ref);
+      parent.insertBefore(back, gate.nextSibling);
+    } else {
+      main.insertBefore(gate, main.firstChild);
+      main.insertBefore(back, gate.nextSibling);
+    }
+
+    // Write immediately after gate block (back)
+    if (write) {
+      if (write.parentNode) write.parentNode.removeChild(write);
+      var after = back.nextSibling;
+      parent.insertBefore(write, after);
+    }
 
     function onGo(ev) {
       var t = ev.target.closest("[data-gate-go]");
@@ -129,12 +164,11 @@
         if (cont) cont.scrollIntoView({ behavior: "smooth", block: "start" });
       } else if (go === "gate") {
         setMode("gate");
-        wrap.scrollIntoView({ behavior: "smooth", block: "start" });
+        gate.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
-    wrap.addEventListener("click", onGo);
-    back.addEventListener("click", onGo);
-    return wrap;
+    gate.onclick = onGo;
+    back.onclick = onGo;
   }
 
   function markProgressive() {
@@ -148,27 +182,15 @@
       "#adm-faculty-slot",
       ".cu-journey-slim"
     ];
-    // Continue learning heading + following block
     d.querySelectorAll("h2.cu-sec, h2").forEach(function (h) {
-      if (/continue learning/i.test(h.textContent || "")) {
+      var t = h.textContent || "";
+      if (/continue learning/i.test(t)) {
         h.classList.add("cu-gate-hide-on-gate", "cu-gate-return-only");
-        var n = h.nextElementSibling;
-        if (n) n.classList.add("cu-gate-hide-on-gate", "cu-gate-return-only");
+        if (h.nextElementSibling) h.nextElementSibling.classList.add("cu-gate-hide-on-gate", "cu-gate-return-only");
       }
-      if (/how phases work/i.test(h.textContent || "") || /admission/i.test(h.textContent || "")) {
-        // admission heading stays for new path; how phases hide on pure gate
-        if (/how phases/i.test(h.textContent || "")) {
-          h.classList.add("cu-gate-hide-on-gate");
-          var n2 = h.nextElementSibling;
-          if (n2) n2.classList.add("cu-gate-hide-on-gate");
-        }
-      }
-    });
-    // Academic precinct / journey preview blocks
-    d.querySelectorAll("section, div").forEach(function (el) {
-      var tx = (el.textContent || "").slice(0, 80);
-      if (/ACADEMIC PRECINCT|JOURNEY PREVIEW/i.test(tx) && el.children.length < 12) {
-        el.classList.add("cu-gate-hide-on-gate");
+      if (/how phases work/i.test(t)) {
+        h.classList.add("cu-gate-hide-on-gate");
+        if (h.nextElementSibling) h.nextElementSibling.classList.add("cu-gate-hide-on-gate");
       }
     });
     hideOnGate.forEach(function (sel) {
@@ -185,22 +207,13 @@
     });
   }
 
-  function moveWriteDown() {
-    var write = d.getElementById("cu-write-clarity") || d.querySelector(".cu-write-clarity");
-    var foot = d.querySelector("footer.cu-foot, footer.cu-niyyah-footer");
-    if (write && foot && foot.parentNode) {
-      foot.parentNode.insertBefore(write, foot);
-    }
-  }
-
   function boot() {
     if (!isLanding()) return;
     try {
       removeDupTwoway();
       softArchiveNote();
-      ensureGate();
+      orderDom();
       markProgressive();
-      moveWriteDown();
       var admit = loadAdmit();
       var saved = getSavedMode();
       if (saved === "new" || saved === "return" || saved === "gate") setMode(saved);
@@ -220,7 +233,7 @@
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  setTimeout(boot, 150);
-  setTimeout(boot, 600);
-  setTimeout(boot, 1200);
+  setTimeout(boot, 120);
+  setTimeout(boot, 500);
+  setTimeout(boot, 1100);
 })(window, document);
