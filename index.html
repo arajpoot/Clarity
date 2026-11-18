@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<meta name="clarity-build" content="PORTPOLISH-20261116"/>
+<meta name="clarity-build" content="PORTSMOKE-20261118"/>
 <title>Clarity — Furnish Your Grave</title>
 <meta name="description" content="Castle of Clarity — Yawm at the heart · five rooms. Educational only — not a fatwa."/>
 <link rel="canonical" href="https://clarity-dawah.fyi/"/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=EB+Garamond:wght@500;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/port-castle-v2.css?v=20261116PORTPOLISH"/>
-<link rel="stylesheet" href="/assets/port-door-registry-v1.css?v=20261116PORTPOLISH"/>
-<link rel="stylesheet" href="/assets/port-how-castle-v1.css?v=20261116PORTPOLISH"/>
-<link rel="stylesheet" href="/assets/port-banner-enrich-v1.css?v=20261116PORTPOLISH"/>
-<link rel="stylesheet" href="/assets/port-polish-v1.css?v=20261116PORTPOLISH"/>
+<link rel="stylesheet" href="/assets/port-castle-v2.css?v=20261118PORTSMOKE"/>
+<link rel="stylesheet" href="/assets/port-door-registry-v1.css?v=20261118PORTSMOKE"/>
+<link rel="stylesheet" href="/assets/port-how-castle-v1.css?v=20261118PORTSMOKE"/>
+<link rel="stylesheet" href="/assets/port-banner-enrich-v1.css?v=20261118PORTSMOKE"/>
+<link rel="stylesheet" href="/assets/port-polish-v1.css?v=20261118PORTSMOKE"/>
+<link rel="stylesheet" href="/assets/port-classic-plaques-v1.css?v=20261118PORTSMOKE"/>
+<link rel="stylesheet" href="/assets/port-visit-notes-v1.css?v=20261118PORTSMOKE"/>
+
 <style>
 /* PORTREVAMP · full-width · Yawm center pillar · video below verse/ḥadīth */
 *, *::before, *::after { box-sizing: border-box; }
@@ -286,6 +289,7 @@ article.tower button.room-tour-pill { background: rgba(15,76,58,.55); color: inh
     <a href="/amana/">Amānah</a>
     <a href="/craft/">Craft</a>
   </nav>
+  <p class="port-trust-line">Five doors · One castle · Private where it must be</p>
 
   <p class="port-disclaimer">Educational only — not a fatwa, not legal advice. Verify with Quran.com, Sunnah.com, and a local scholar. Private data stays on this device unless you export it.</p>
 
@@ -378,7 +382,7 @@ article.tower button.room-tour-pill { background: rgba(15,76,58,.55); color: inh
           <div class="entered-chip door-registry-stamp" data-entered="companion">Not yet entered</div>
           <div class="tower-actions">
             <a class="enter" href="/companion/">Enter Companion</a>
-            <button type="button" class="room-tour-pill" data-room="companion" data-tour-src="/assets/media/tours/companion-tour.mp4">▶ Tour</button>
+            <button type="button" class="room-tour-pill" data-room="companion" data-tour="companion" data-tour-src="/assets/media/tours/companion-tour.mp4" data-src="/assets/media/tours/companion-tour.mp4">▶ Tour</button>
           </div>
         </article>
 
@@ -394,7 +398,7 @@ article.tower button.room-tour-pill { background: rgba(15,76,58,.55); color: inh
           <div class="entered-chip door-registry-stamp" data-entered="yawm">Not yet entered</div>
           <div class="tower-actions">
             <a class="enter" href="/daily/">Enter Yawm</a>
-            <button type="button" class="room-tour-pill" data-room="yawm" data-tour-src="/assets/media/tours/yawm-tour.mp4">▶ Tour</button>
+            <button type="button" class="room-tour-pill" data-room="yawm" data-tour="yawm" data-tour-src="/assets/media/tours/yawm-tour.mp4" data-src="/assets/media/tours/yawm-tour.mp4">▶ Tour</button>
           </div>
         </article>
 
@@ -410,7 +414,7 @@ article.tower button.room-tour-pill { background: rgba(15,76,58,.55); color: inh
           <div class="entered-chip door-registry-stamp" data-entered="amana">Not yet entered</div>
           <div class="tower-actions">
             <a class="enter" href="/amana/">Enter Amānah</a>
-            <button type="button" class="room-tour-pill" data-room="amana" data-tour-src="/assets/media/tours/amana-tour.mp4">▶ Tour</button>
+            <button type="button" class="room-tour-pill" data-room="amana" data-tour="amana" data-tour-src="/assets/media/tours/amana-tour.mp4" data-src="/assets/media/tours/amana-tour.mp4">▶ Tour</button>
           </div>
         </article>
 
@@ -426,7 +430,7 @@ article.tower button.room-tour-pill { background: rgba(15,76,58,.55); color: inh
           <div class="entered-chip door-registry-stamp" data-entered="campus">Not yet entered</div>
           <div class="tower-actions">
             <a class="enter" href="/campus/">Enter Campus</a>
-            <button type="button" class="room-tour-pill" data-room="campus" data-tour-src="/assets/media/tours/campus-tour.mp4">▶ Tour</button>
+            <button type="button" class="room-tour-pill" data-room="campus" data-tour="campus" data-tour-src="/assets/media/tours/campus-tour.mp4" data-src="/assets/media/tours/campus-tour.mp4">▶ Tour</button>
           </div>
         </article>
 
@@ -441,10 +445,69 @@ article.tower button.room-tour-pill { background: rgba(15,76,58,.55); color: inh
           <div class="entered-chip door-registry-stamp" data-entered="craft">Not yet entered</div>
           <div class="tower-actions">
             <a class="enter" href="/craft/">Enter Craft</a>
-            <button type="button" class="room-tour-pill" data-room="craft" data-tour-src="/assets/media/tours/craft-tour.mp4">▶ Tour</button>
+            <button type="button" class="room-tour-pill" data-room="craft" data-tour="craft" data-tour-src="/assets/media/tours/craft-tour.mp4" data-src="/assets/media/tours/craft-tour.mp4">▶ Tour</button>
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+
+  <!-- SSR Visit notes + Write to Clarity (hydrated by JS) -->
+  <section class="full-bleed" aria-label="Port notes and feedback">
+    <div class="full-bleed-inner">
+      <section id="port-visit-notes" class="port-visit-notes" data-port-owned="visit-notes-v1">
+        <div class="pvn-card">
+          <header class="pvn-head">
+            <div class="pvn-titles">
+              <h2 class="pvn-title">Visit notes</h2>
+              <p class="pvn-sub">Optional · on this device · <strong>not Amānah</strong></p>
+            </div>
+            <button type="button" class="pvn-toggle" aria-expanded="false" aria-controls="pvn-body">Open</button>
+          </header>
+          <div id="pvn-body" class="pvn-body" hidden>
+            <p class="pvn-stamp">Educational only — not a fatwa · not a will · formal trusts live in Amānah</p>
+            <label class="pvn-label" for="pvn-input">Note on this visit</label>
+            <textarea id="pvn-input" class="pvn-input" maxlength="800" rows="3" placeholder="e.g. Return to Yawm after Maghrib · start tree outline later"></textarea>
+            <div class="pvn-meta"><span id="pvn-count">0 / 800</span></div>
+            <div class="pvn-actions">
+              <button type="button" class="pvn-save">Save with timestamp</button>
+              <button type="button" class="pvn-clear-all">Clear all</button>
+            </div>
+            <ul id="pvn-list" class="pvn-list" aria-label="Saved visit notes"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="port-write-clarity" class="port-write-clarity" data-port-owned="write-to-clarity-v1">
+        <div class="pwc-card">
+          <header class="pwc-head">
+            <div>
+              <h2 class="pwc-title">Write to Clarity</h2>
+              <p class="pwc-sub">Suggestions · questions · gentle reports · <strong>not a fatwa desk</strong></p>
+            </div>
+            <button type="button" class="pwc-toggle" aria-expanded="false" aria-controls="pwc-body">Open</button>
+          </header>
+          <div id="pwc-body" class="pwc-body" hidden>
+            <p class="pwc-stamp">Educational only — not a fatwa · not legal advice · verify with a teacher you trust</p>
+            <div class="pwc-chips" role="group" aria-label="Message type">
+              <button type="button" class="pwc-chip active" data-pwc-type="suggestion">Suggestion</button>
+              <button type="button" class="pwc-chip" data-pwc-type="question">Question</button>
+              <button type="button" class="pwc-chip" data-pwc-type="bug">Bug / glitch</button>
+              <button type="button" class="pwc-chip" data-pwc-type="barakah">Barakah note</button>
+            </div>
+            <label class="pwc-label" for="pwc-input">Your note</label>
+            <textarea id="pwc-input" class="pwc-input" rows="4" maxlength="2000" placeholder="Write briefly — what helped, what to improve, or a question about the app (not a personal ruling)."></textarea>
+            <div class="pwc-meta"><span id="pwc-count">0 / 2000</span></div>
+            <div class="pwc-actions">
+              <button type="button" class="pwc-send" id="pwc-send">Send to Clarity</button>
+              <button type="button" class="pwc-copy" id="pwc-copy">Copy</button>
+              <button type="button" class="pwc-mail" id="pwc-mail">Mail app</button>
+            </div>
+            <p class="pwc-status" id="pwc-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 
@@ -458,17 +521,29 @@ article.tower button.room-tour-pill { background: rgba(15,76,58,.55); color: inh
   </div>
 
   <footer class="port-foot">
-    <p>Five rooms · educational only · not a fatwa</p>
-    <p class="port-disclaimer">Verify primary texts on Quran.com / Sunnah.com. Prefer a local teacher for rulings.</p>
+    <p>Phase A · <a href="#castle-main" style="color:#e8d48a">castle-wide governance</a> · enrichment held for all rooms</p>
+    <div class="port-foot-links">
+      <a href="/companion/">Companion</a>
+      <a href="/daily/">Yawm</a>
+      <a href="/campus/">Campus</a>
+      <a href="/amana/">Amānah</a>
+      <a href="/craft/">Craft</a>
+    </div>
+    <p class="port-disclaimer">Sources: <a href="https://quran.com" target="_blank" rel="noopener" style="color:#e8d48a">Quran.com</a> · <a href="https://sunnah.com" target="_blank" rel="noopener" style="color:#e8d48a">Sunnah.com</a></p>
+    <p class="port-disclaimer">Five rooms · educational only · not a fatwa · Prefer a local teacher for rulings.</p>
   </footer>
 </div>
 
-<script src="/assets/port-castle-v2.js?v=20261116PORTPOLISH" defer></script>
-<script src="/assets/port-door-registry-v1.js?v=20261116PORTPOLISH" defer></script>
-<script src="/assets/port-how-castle-v1.js?v=20261116PORTPOLISH" defer></script>
-<script src="/assets/port-room-tours-fortify-v1.js?v=20261116PORTPOLISH" defer></script>
+<script src="/assets/port-castle-v2.js?v=20261118PORTSMOKE" defer></script>
+<script src="/assets/port-door-registry-v1.js?v=20261118PORTSMOKE" defer></script>
+<script src="/assets/port-how-castle-v1.js?v=20261118PORTSMOKE" defer></script>
+<script src="/assets/port-room-tours-fortify-v1.js?v=20261118PORTSMOKE" defer></script>
 <!-- Repair last: data-room wiring + multi-path fallback + intro fallback -->
-<script src="/assets/port-room-tours-repair-v1.js?v=20261116PORTPOLISH" defer></script>
-<script src="/assets/port-polish-modal-v1.js?v=20261116PORTPOLISH" defer></script>
+<script src="/assets/port-room-tours-repair-v1.js?v=20261118PORTSMOKE" defer></script>
+
+<script src="/assets/port-visit-notes-v1.js?v=20261118PORTSMOKE" defer></script>
+<script src="/assets/port-write-to-clarity-v1.js?v=20261118PORTSMOKE" defer></script>
+<script src="/assets/port-polish-modal-v1.js?v=20261118PORTSMOKE" defer></script>
+
 </body>
 </html>

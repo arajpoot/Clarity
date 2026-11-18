@@ -1,0 +1,23 @@
+{
+  "build": "PORTSMOKE-20261118",
+  "cycle": "predeploy-final-20261118",
+  "status": "GREEN",
+  "fail_count": 0,
+  "fails": [],
+  "warns": [
+    "room tour MP4s 404 on server \u2014 intro fallback by design"
+  ],
+  "live_baseline": "PORTPOLISH-20261116",
+  "feedback_api": "pass",
+  "ready_for_deploy": true,
+  "deploy_order": [
+    "1_upload_all_assets_first",
+    "2_replace_root_index_html",
+    "3_hard_refresh"
+  ],
+  "must_upload_new_assets": [
+    "port-classic-plaques-v1.css",
+    "port-write-to-clarity-v1.js",
+    "port-visit-notes-v1.js (overwrite smoked hydrate)"
+  ]
+}
