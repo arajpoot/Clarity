@@ -6,7 +6,7 @@
 <title>Action · Companion</title>
 <link rel="stylesheet" href="/companion/assets/companion-shell-v1.css?v=20261115RR2"/>
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261115RR2"/>
-<link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261115RR2"/>
+<link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261117HK1"/>
 </head>
 <body>
 <article data-cs-tab-body data-tab="action" class="cs-rich-tab cs-rich-action">
@@ -1010,89 +1010,12 @@
   <button type="button" class="theme-chip" onclick="document.getElementById('life-search').value='anxiety';searchLifeOrHadith()">💧 Anxiety</button>
 </div><div id="life-results"></div></div>
 <div data-rrra="action" class="card card-grok"><h2 data-i18n-html="ask_grok">✨ Ask Grok</h2><p>Ask about life events, previous nations, or any sincere question.</p><div class="grok-box"><textarea id="grok-question" placeholder="Example: What is the Islamic guidance when a child is born?"></textarea><button type="button" onclick="askGrok()">Open in Grok with my question</button><p class="grok-note">Your question is copied. Paste it when Grok opens.</p></div></div>
-<div data-rrra="action" class="card card-tools siq-suite" id="fiqh-quiz-card" data-disc="1" style="border-top:3px solid var(--gold,#d4b45a)">
-  <div class="siq-hero">
-    <div class="siq-hero-text">
-      <h2 style="margin:0;color:var(--gold)">🧠 Sharia IQ &amp; Daily Fiqh</h2>
-      <p class="td-src" style="font-size:.8rem;margin:.25rem 0 0"><strong>Educational only — not a fatwa.</strong> Self-check quizzes; verify every answer with authentic sources.</p>
-      <p class="siq-sub">Train the heart and mind · authentic sources · new draw every day</p>
-    </div>
-    <div class="siq-hero-glow" aria-hidden="true">✦</div>
-  </div>
-  <div id="clarity-daily-deep" class="clarity-daily-deep" aria-live="polite"></div>
 
-  <div class="siq-tabs" role="tablist">
-    <button type="button" class="siq-tab active" data-siq="daily" onclick="siqShow('daily')">📚 Daily Fiqh</button>
-    <button type="button" class="siq-tab" data-siq="iq" onclick="siqShow('iq')">🎯 Sharia IQ Test</button>
-  </div>
+<!-- moved: Sharia IQ → Reminder tab · housekeeping -->
 
-  <!-- DAILY FIQH -->
-  <div id="siq-panel-daily" class="siq-panel active">
-    <div class="fq-stats" id="fq-stats">
-      <span class="fq-pill gold" id="fq-streak">🔥 Streak 0</span>
-      <span class="fq-pill" id="fq-today">Today 0/10</span>
-      <span class="fq-pill green" id="fq-best">Best 0</span>
-      <span class="fq-pill" id="fq-total">All-time 0</span>
-    </div>
-    <div class="fq-level-row" role="group" aria-label="Level" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0">
-      <button type="button" class="btn-soft fq-lvl" data-lvl="beginner" onclick="fqSetLevel('beginner')">Beginner</button>
-      <button type="button" class="btn-soft fq-lvl" data-lvl="intermediate" onclick="fqSetLevel('intermediate')">Intermediate</button>
-      <button type="button" class="btn-soft fq-lvl" data-lvl="advanced" onclick="fqSetLevel('advanced')">Advanced</button>
-      <button type="button" class="btn-soft" onclick="fqForceNewDeck()" title="New unused cards">↻ New unused deck</button>
-    <button type="button" class="btn-soft" onclick="fqResetSeenDecks()" title="Clear memory and shuffle everything">↺ Reset seen cards</button>
-    </div>
-    <div class="fq-topic-row" role="group" aria-label="Topic" style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.25rem 0 .4rem">
-      <button type="button" class="btn-soft fq-topic on" data-topic="all" onclick="fqSetTopic('all')">All</button>
-      <button type="button" class="btn-soft fq-topic" data-topic="Tafseer" onclick="fqSetTopic('Tafseer')">📖 Tafseer</button>
-      <button type="button" class="btn-soft fq-topic" data-topic="Seerah" onclick="fqSetTopic('Seerah')">🕊 Seerah</button>
-      <button type="button" class="btn-soft fq-topic" data-topic="Daily" onclick="fqSetTopic('Daily')">🏠 Daily life</button>
-      <button type="button" class="btn-soft fq-topic" data-topic="Fiqh" onclick="fqSetTopic('Fiqh')">⚖️ Fiqh</button>
-    </div>
-    <div class="fq-online-bar" id="fq-online-bar">
-      <button type="button" class="fq-fetch-btn" onclick="fqFetchOnlineDeck()" title="Pull fresh questions from Qur’an &amp; Hadith APIs, fallback to stored bank">
-        <span style="font-size:1.1rem;line-height:1">☁</span> Fetch online deck
-      </button>
-      <button type="button" class="fq-stored-btn" onclick="fqUseStoredOnly()" title="Use only on-device bank">📦 Stored only</button>
-      <span id="fq-online-status" style="color:var(--text-muted);font-size:.78rem;flex:1;min-width:8rem">Offline bank ready · online optional</span>
-    </div>
-    <div class="fq-extra-controls" style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.35rem 0 .5rem">
-      <label style="display:inline-flex;align-items:center;gap:.35rem;font-size:.85rem;cursor:pointer" title="Off by default: correctly answered cards stay hidden for the day">
-        <input type="checkbox" id="fq-show-correct" onchange="fqToggleShowCorrect(this.checked)"> Show correctly answered cards
-      </label>
-      <button type="button" class="btn-soft" onclick="fqLogDailyProgress()" title="Save today score for this level">📝 Log this level</button>
-      <button type="button" class="btn-secondary" onclick="fqShowDailyLog()" title="View per-level daily log">View log</button>
-    </div>
-    <div id="fq-daily-log-panel" hidden style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:.65rem .8rem;margin-bottom:.55rem;font-size:.86rem;max-height:220px;overflow:auto"></div>
-    <div id="fq-stage" class="fq-stage"></div>
-    <div class="fq-actions" style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem">
-      <button type="button" class="btn-soft" id="fq-next-btn" onclick="fqNext()">Next →</button>
-      <button type="button" class="btn-secondary" onclick="fqResetToday()">Reset today</button>
-    </div>
-    <p class="siq-foot">Educational only · not a fatwa · verify on Sunnah.com / IslamQA / Quran.com</p>
-  </div>
 
-  <!-- SHARIA IQ TEST -->
-  <div id="siq-panel-iq" class="siq-panel" hidden>
-    <div class="siq-iq-intro" id="siq-iq-intro">
-      <p>Modeled on structured aptitude tests: <strong>15 questions</strong>, rising difficulty, mixed domains (ʿaqīdah, fiqh, Qurʾān, seerah, character). Score is a <em>Sharia practice index</em> — not a secular IQ number.</p>
-      <div class="siq-iq-opts" style="display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center">
-        <label class="siq-check"><input type="checkbox" id="siq-timed" checked> Timed (60s / question)</label>
-        <label class="siq-check"><input type="checkbox" id="siq-hide-correct" checked> Hide correctly answered (default)</label>
-        <label class="siq-check"><input type="checkbox" id="siq-online-fetch" checked> Fetch deeper questions online</label>
-      </div>
-      <div class="td-row" style="margin-top:.55rem;flex-wrap:wrap;gap:.4rem">
-        <button type="button" class="btn-soft siq-start-btn" onclick="siqStart()">Begin Sharia IQ Test</button>
-        <button type="button" class="btn-soft" onclick="siqFetchOnlineBank(true)">↻ Refresh online bank</button>
-        <button type="button" class="btn-soft" onclick="siqShowDailyLog()">📋 Daily IQ log</button>
-      </div>
-      <p id="siq-online-status" class="td-src" style="margin-top:.4rem;font-size:.82rem"></p>
-      <div id="siq-daily-log" class="siq-daily-log" hidden style="margin-top:.5rem;padding:.5rem .65rem;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);font-size:.85rem"></div>
-    </div>
-    <div id="siq-iq-stage" class="siq-iq-stage" hidden></div>
-    <div id="siq-iq-result" class="siq-iq-result" hidden></div>
-  </div>
-</div>
-<div data-rrra="action" class="card card-notes"><h2 data-i18n="notes_title">📝 Clarity Notes</h2><p style="font-size:0.94rem; margin-bottom:0.75rem;" data-i18n="notes_desc">A quiet place to write, remember, and send light ahead. Notes stay on this device — nothing is uploaded. Tag by section, write in Markdown, and optionally mark a reflection for the grave.</p><div class="notes-shell" id="notes-shell"><div class="notes-list-pane" id="notes-list-pane"><div class="notes-list-toolbar"><input type="text" class="notes-search" id="notes-search" placeholder="Search notes… (/ )" autocomplete="off" oninput="notesSetQuery(this.value)"><div class="notes-toolbar-row"><button type="button" onclick="notesCreate()">＋ New</button><button type="button" class="btn-secondary" onclick="notesExport()" title="Download notes JSON">⬇ Export</button><button type="button" class="btn-secondary" onclick="document.getElementById('notes-import-file').click()" title="Import notes JSON">⬆ Import</button><input type="file" id="notes-import-file" accept="application/json,.json" hidden onchange="notesImport(event)"><button type="button" class="btn-secondary" onclick="notesRestoreSeed()" title="Restore starter library">↺ Seed</button></div></div><div class="notes-tag-filter" id="notes-tag-filter"></div><div class="notes-list" id="notes-list" role="listbox" aria-label="Notes"></div></div><div class="notes-editor-pane" id="notes-editor-pane"><div id="notes-editor-empty" class="notes-empty" style="display:none"><div style="font-size:2rem">✒️</div><p><strong>No note selected</strong></p><p>Create a new note or pick one from the list.<br>Tip: press <kbd>Ctrl</kbd>+<kbd>N</kbd> for a blank page.</p><button type="button" onclick="notesCreate()">New note</button></div><div id="notes-editor-active" style="display:none; flex-direction:column; flex:1; min-height:0;"><div class="notes-editor-toolbar"><div class="notes-view-toggle" role="group" aria-label="View mode"><button type="button" id="nv-edit" onclick="notesSetView('edit')">Edit</button><button type="button" id="nv-split" onclick="notesSetView('split')">Split</button><button type="button" id="nv-preview" onclick="notesSetView('preview')">Preview</button></div><select id="notes-tag-select" onchange="notesUpdateField('tag', this.value)" title="Section tag"><option value="">Tag…</option><option value="Guide">Guide</option><option value="Journey">Journey</option><option value="Commands">Commands</option><option value="Quran">Quran</option><option value="Tafseer">Tafseer</option><option value="Tajweed">Tajweed</option><option value="Seerah">Seerah</option><option value="Lectures">Lectures</option><option value="Grave">Grave</option><option value="Practice">Practice</option><option value="Guidance">Guidance</option><option value="Reflection">Reflection</option></select><button type="button" class="btn-soft" onclick="notesToggleGrave()" id="notes-grave-btn" title="Mark as light for the grave">🌙 Grave</button><button type="button" class="btn-secondary" onclick="notesRequestDelete()" title="Delete note">🗑</button></div><input type="text" class="notes-title-input" id="notes-title" placeholder="Title" oninput="notesUpdateField('title', this.value)"><div class="notes-body-area edit-only" id="notes-body-area"><textarea class="notes-body-input" id="notes-body" placeholder="Write in Markdown… reflections, ayat, goals for the day." oninput="notesUpdateField('body', this.value)"></textarea><div class="notes-md-preview" id="notes-preview" aria-live="polite"></div></div><div class="notes-status"><span id="notes-save-status">Ready · stays on this device</span><span id="notes-char-count"></span><button type="button" class="notes-save-now" id="notes-save-now" onclick="notesSaveNow()">Save note</button><span id="notes-grave-status"></span></div></div></div></div><p class="notes-hint">Shortcuts: <kbd>Ctrl/⌘ N</kbd> new · <kbd>Ctrl/⌘ S</kbd> save · <kbd>/</kbd> search · <kbd>Ctrl/⌘ E</kbd> cycle view · <kbd>Esc</kbd> clear search. Everything stays on this device. Tasks on Today can open a dated deed note here.</p></div>
+<!-- moved: Clarity Notes → Notes tab · housekeeping -->
+
 </div></div>
 </div>
 <p class="disc" style="text-align:center;margin:1rem 0">Educational only — not a fatwa. Full module bodies restored from pre-shell Companion · interactive engines re-hydrated where hooked.</p>
