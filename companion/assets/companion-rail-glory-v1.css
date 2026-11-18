@@ -1,0 +1,116 @@
+/*! companion-rail-glory-v1 · bottom rail matching classic multi-color pills
+ * Educational only — not a fatwa.
+ */
+
+#clarity-door-rail.cs-door,
+.cs-door#clarity-door-rail {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  gap: 0.4rem;
+  justify-content: stretch;
+  align-items: stretch;
+  padding: 0.55rem 0.55rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, rgba(10,18,14,0.55), rgba(6,12,10,0.92));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(212,180,90,0.22);
+  box-shadow: 0 -10px 32px rgba(0,0,0,0.35);
+}
+
+.cs-door .cs-door-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.55rem 0.35rem 0.45rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: #f7f0dd;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.cs-door .cs-door-btn .dr-ico {
+  font-size: 1.15rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35));
+}
+.cs-door .cs-door-btn .dr-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Classic path colors (from attached glory rail) */
+.cs-door .cs-door-btn[data-rail-tab="reminder"] {
+  background: linear-gradient(180deg, #2f9b5b, #1e7a45);
+  border-color: rgba(120,220,160,0.35);
+}
+.cs-door .cs-door-btn[data-rail-tab="reality"] {
+  background: linear-gradient(180deg, #d4a017, #b8860b);
+  border-color: rgba(255,220,120,0.4);
+  color: #1a1408;
+  text-shadow: none;
+}
+.cs-door .cs-door-btn[data-rail-tab="reflection"] {
+  background: linear-gradient(180deg, #2a9d8f, #1d7a6f);
+  border-color: rgba(120,230,210,0.35);
+}
+.cs-door .cs-door-btn[data-rail-tab="action"] {
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  border-color: rgba(160,200,255,0.4);
+}
+.cs-door .cs-door-btn[data-rail-tab="notes"] {
+  background: linear-gradient(180deg, #6b7280, #4b5563);
+  border-color: rgba(200,200,210,0.25);
+}
+.cs-door .cs-door-btn[data-rail-tab="about"] {
+  background: linear-gradient(180deg, #64748b, #475569);
+  border-color: rgba(200,210,220,0.3);
+}
+
+.cs-door .cs-door-btn.is-active {
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 0 0 2px rgba(247,240,221,0.35),
+    0 8px 18px rgba(0,0,0,0.35);
+}
+.cs-door .cs-door-btn:active {
+  transform: scale(0.98);
+}
+
+/* Icons closer to classic set */
+.cs-door .cs-door-btn[data-rail-tab="reminder"] .dr-ico::before { content: "✦"; }
+.cs-door .cs-door-btn[data-rail-tab="reality"] .dr-ico { font-size: 1.05rem; }
+.cs-door .cs-door-btn[data-rail-tab="reality"] .dr-ico::before { content: "◎"; }
+.cs-door .cs-door-btn[data-rail-tab="reflection"] .dr-ico::before { content: "☾"; }
+.cs-door .cs-door-btn[data-rail-tab="action"] .dr-ico::before { content: "▶"; }
+.cs-door .cs-door-btn[data-rail-tab="notes"] .dr-ico::before { content: "✎"; }
+.cs-door .cs-door-btn[data-rail-tab="about"] .dr-ico::before { content: "ℹ"; }
+/* Hide duplicate text nodes inside ico if any */
+.cs-door .cs-door-btn .dr-ico {
+  font-family: inherit;
+}
+.cs-door .cs-door-btn .dr-ico.nuros-icon {
+  /* prefer our glyph via ::before — clear SVG/text clash */
+}
+.cs-door .cs-door-btn .dr-ico > * { display: none; }
+
+#cs-mount { padding-bottom: 5.75rem; }
+
+@media (max-width: 420px) {
+  .cs-door .cs-door-btn { font-size: 0.62rem; padding: 0.45rem 0.15rem 0.4rem; }
+  .cs-door .cs-door-btn .dr-ico { font-size: 1rem; }
+}
