@@ -11,7 +11,7 @@
   var NAMES = {1:"Al-Fatihah",2:"Al-Baqarah",18:"Al-Kahf",36:"Ya-Sin",55:"Ar-Rahman",67:"Al-Mulk",112:"Al-Ikhlas",113:"Al-Falaq",114:"An-Nas"};
 
   function $(id, root) {
-    return (root || d).getElementById(id);
+    return (function(r){if(r&&r.querySelector){var e=r.querySelector("#"+id);if(e)return e;}return d.getElementById(id);})(root);
   }
   function state() {
     try {

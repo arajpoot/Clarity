@@ -1,26 +1,14 @@
-/* Quiet legacy RRRA chrome inside mounted tabs · shell path grid is the only track UI */
-
+/* Quiet legacy RRRA chrome · enrichment cards kept */
 #cs-mount .rrra-hub-summary,
 #cs-mount .rrra-hub-hero,
 #cs-mount .rrra-hub-meta,
 #cs-mount .clarity-gate-switcher,
 #cs-mount .rrra-sitewide,
-#cs-mount [aria-label="Learning track — switch anytime"],
-#cs-mount .rrra-hub-summary[role="note"] {
+#cs-mount [aria-label="Learning track — switch anytime"] {
   display: none !important;
   height: 0 !important;
   overflow: hidden !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-}
-
-/* Keep educational cards — only chrome dies */
-#cs-mount .cs-tab-sections {
-  display: block;
-}
-
-/* Prevent second path track under tab hero */
-#cs-mount .clarity-path-tiles:not(.cs-shell-owned) {
-  display: none !important;
 }

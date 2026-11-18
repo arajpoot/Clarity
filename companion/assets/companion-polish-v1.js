@@ -99,6 +99,30 @@
     plaqueIcons();
   }
 
+  
+  /* —— RRRA chrome quiet (shell path grid is the only track UI) —— */
+  function quietLegacyRails(root){
+    root=root||d.getElementById("cs-mount");
+    if(!root||!root.querySelectorAll) return;
+    var KILL=[".rrra-hub-summary",".rrra-hub-hero",".rrra-hub-meta",".clarity-gate-switcher",".rrra-sitewide",'[aria-label="Learning track — switch anytime"]'];
+    KILL.forEach(function(sel){
+      root.querySelectorAll(sel).forEach(function(el){
+        el.setAttribute("hidden","");
+        el.style.setProperty("display","none","important");
+      });
+    });
+    root.querySelectorAll('[id^="rrra-hub-body"]').forEach(function(el){
+      try{ el.id=el.id.replace("rrra-hub-body","cs-tab-sections"); }catch(e){}
+      el.classList.remove("rrra-hub-body");
+      el.classList.add("cs-tab-sections");
+    });
+  }
+  var _emptyStates=emptyStates;
+  emptyStates=function(root){
+    try{ quietLegacyRails(root); }catch(e){}
+    try{ _emptyStates(root); }catch(e2){}
+  };
+
   function boot(){
     tick();
     var m=d.getElementById("cs-mount");
@@ -108,6 +132,6 @@
     }
     d.addEventListener("click", function(){ setTimeout(tick,30); }, true);
   }
-  if(d.readyState==="loading") d.addEventListener("DOMContentLoaded", boot);
+  d.addEventListener("clarity:tab-mounted",function(ev){try{quietLegacyRails(ev&&ev.detail&&ev.detail.root);}catch(e){}});if(d.readyState==="loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
 })(window,document);
