@@ -1,0 +1,58 @@
+/*! cu-twoway-path-v1 · U24 · New vs return paths on Campus landing */
+.cu-twoway {
+  max-width: 44rem;
+  margin: 0 auto 1.25rem;
+  padding: 0 1rem;
+}
+.cu-twoway-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+@media (max-width: 640px) {
+  .cu-twoway-grid { grid-template-columns: 1fr; }
+}
+.cu-twoway-card {
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: linear-gradient(160deg, rgba(16, 40, 52, 0.5), rgba(8, 18, 24, 0.94));
+  padding: 1.1rem 1.15rem;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+}
+.cu-twoway-card h3 {
+  margin: 0 0 0.35rem;
+  color: #e8c76b;
+  font-size: 1.05rem;
+}
+.cu-twoway-card p {
+  margin: 0 0 0.75rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+.cu-twoway-card .cu-tw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.cu-twoway-card a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  color: inherit;
+  background: rgba(20, 60, 80, 0.35);
+}
+.cu-twoway-card a.primary {
+  background: #1a6b8a;
+  border-color: transparent;
+  color: #fff;
+}
+.cu-twoway-note {
+  text-align: center;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin: 0.65rem 0 0;
+}
