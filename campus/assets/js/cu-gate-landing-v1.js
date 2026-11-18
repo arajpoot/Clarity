@@ -1,14 +1,19 @@
-/*! cu-gate-landing-v1 · U25
- * Campus landing gate: New seeker vs Returning student (on-device name).
+/*! cu-gate-landing-v1 · U25H polished
+ * Single gate · hide U24 twoway · place after banner · progressive body
  * KEY cu_uni_admit_v1 · Educational only — not a fatwa · not a grade of īmān
  */
 (function (w, d) {
   "use strict";
-  if (w.__CU_GATE_LANDING_V1__) return;
-  w.__CU_GATE_LANDING_V1__ = true;
+  if (w.__CU_GATE_LANDING_V1H__) return;
+  w.__CU_GATE_LANDING_V1H__ = true;
 
   var KEY = "cu_uni_admit_v1";
   var MODE_KEY = "cu_campus_gate_mode_v1";
+
+  function isLanding() {
+    var p = (location.pathname || "").replace(/\/+$/, "") || "";
+    return p === "/campus" || p === "";
+  }
 
   function loadAdmit() {
     try {
@@ -34,9 +39,35 @@
     }
   }
 
+  function removeDupTwoway() {
+    d.querySelectorAll("#cu-twoway-path, .cu-twoway, [data-clarity-owned='twoway-v1']").forEach(function (el) {
+      try {
+        el.parentNode && el.parentNode.removeChild(el);
+      } catch (e) {}
+    });
+  }
+
+  function softArchiveNote() {
+    d.querySelectorAll("#university-isolation-note, .cu-archive-note").forEach(function (el) {
+      var t = el.textContent || "";
+      if (/archive3/i.test(t)) {
+        el.textContent =
+          "University room · on-device path. Path markers and progress are a study mirror, not a grade of īmān. Amānah vault is at /amana/. Educational only — not a fatwa.";
+      }
+    });
+    // also scan paragraphs
+    d.querySelectorAll("p, .cu-note, .edu-stamp").forEach(function (el) {
+      if (/archive3 campus base/i.test(el.textContent || "")) {
+        el.innerHTML = (el.innerHTML || "").replace(
+          /University room \(archive3 campus base\)\./gi,
+          "University room · on-device path."
+        );
+      }
+    });
+  }
+
   function ensureGate() {
-    if (d.getElementById("cu-gate-block")) return;
-    var main = d.querySelector("main.adm-stage, main.cu-wrap, .cu-landing-wrap") || d.body;
+    if (d.getElementById("cu-gate-block")) return d.getElementById("cu-gate-block");
     var wrap = d.createElement("section");
     wrap.id = "cu-gate-block";
     wrap.className = "cu-gate-block";
@@ -70,42 +101,43 @@
     back.className = "cu-gate-back";
     back.innerHTML = '<button type="button" data-gate-go="gate">← Both doors again</button>';
 
-    // Insert gate after hero/banner if possible
-    var hero = d.querySelector("header.cu-hero, #cu-banner, .cu-hero");
-    if (hero && hero.parentNode) {
-      if (hero.nextSibling) hero.parentNode.insertBefore(wrap, hero.nextSibling);
-      else hero.parentNode.appendChild(wrap);
-    } else if (main.firstChild) {
-      main.insertBefore(wrap, main.firstChild);
+    var anchor =
+      d.querySelector("#cu-banner") ||
+      d.querySelector("header.cu-hero") ||
+      d.querySelector("header.cu-banner") ||
+      d.querySelector(".cu-hero");
+    var parent = (anchor && anchor.parentNode) || d.querySelector("main") || d.body;
+    if (anchor && anchor.parentNode) {
+      if (anchor.nextSibling) parent.insertBefore(wrap, anchor.nextSibling);
+      else parent.appendChild(wrap);
     } else {
-      main.appendChild(wrap);
+      parent.insertBefore(wrap, parent.firstChild);
     }
     wrap.parentNode.insertBefore(back, wrap.nextSibling);
 
-    wrap.addEventListener("click", function (ev) {
+    function onGo(ev) {
       var t = ev.target.closest("[data-gate-go]");
       if (!t) return;
       var go = t.getAttribute("data-gate-go");
       if (go === "new") {
         setMode("new");
-        var steps = d.getElementById("adm-steps");
+        var steps = d.getElementById("adm-steps") || d.querySelector(".adm-panel");
         if (steps) steps.scrollIntoView({ behavior: "smooth", block: "start" });
       } else if (go === "return") {
         setMode("return");
         var cont = d.getElementById("seq-continue-slot") || d.querySelector(".seq-stage-map");
         if (cont) cont.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-    back.addEventListener("click", function (ev) {
-      if (ev.target.closest('[data-gate-go="gate"]')) {
+      } else if (go === "gate") {
         setMode("gate");
         wrap.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    });
+    }
+    wrap.addEventListener("click", onGo);
+    back.addEventListener("click", onGo);
+    return wrap;
   }
 
   function markProgressive() {
-    // Hide heavy blocks until a door is chosen
     var hideOnGate = [
       "#seq-continue-slot",
       ".seq-stage-map",
@@ -113,18 +145,40 @@
       ".adm-panel",
       "#adm-returning",
       "#seq-after-clarity",
-      "#adm-faculty-slot"
+      "#adm-faculty-slot",
+      ".cu-journey-slim"
     ];
+    // Continue learning heading + following block
+    d.querySelectorAll("h2.cu-sec, h2").forEach(function (h) {
+      if (/continue learning/i.test(h.textContent || "")) {
+        h.classList.add("cu-gate-hide-on-gate", "cu-gate-return-only");
+        var n = h.nextElementSibling;
+        if (n) n.classList.add("cu-gate-hide-on-gate", "cu-gate-return-only");
+      }
+      if (/how phases work/i.test(h.textContent || "") || /admission/i.test(h.textContent || "")) {
+        // admission heading stays for new path; how phases hide on pure gate
+        if (/how phases/i.test(h.textContent || "")) {
+          h.classList.add("cu-gate-hide-on-gate");
+          var n2 = h.nextElementSibling;
+          if (n2) n2.classList.add("cu-gate-hide-on-gate");
+        }
+      }
+    });
+    // Academic precinct / journey preview blocks
+    d.querySelectorAll("section, div").forEach(function (el) {
+      var tx = (el.textContent || "").slice(0, 80);
+      if (/ACADEMIC PRECINCT|JOURNEY PREVIEW/i.test(tx) && el.children.length < 12) {
+        el.classList.add("cu-gate-hide-on-gate");
+      }
+    });
     hideOnGate.forEach(function (sel) {
       d.querySelectorAll(sel).forEach(function (el) {
         el.classList.add("cu-gate-hide-on-gate");
       });
     });
-    // New-only: full admission panels
     d.querySelectorAll(".adm-panel, #adm-steps").forEach(function (el) {
       el.classList.add("cu-gate-new-only");
     });
-    // Return-only: continue + stage map
     d.querySelectorAll("#seq-continue-slot, .seq-stage-map, #adm-returning").forEach(function (el) {
       el.classList.add("cu-gate-return-only");
       el.classList.remove("cu-gate-new-only");
@@ -134,37 +188,30 @@
   function moveWriteDown() {
     var write = d.getElementById("cu-write-clarity") || d.querySelector(".cu-write-clarity");
     var foot = d.querySelector("footer.cu-foot, footer.cu-niyyah-footer");
-    if (write && foot && foot.parentNode && write.parentNode) {
+    if (write && foot && foot.parentNode) {
       foot.parentNode.insertBefore(write, foot);
     }
   }
 
   function boot() {
-    if (!/\/campus\/?$/.test(location.pathname.replace(/\/+$/, "") + "/") && location.pathname.replace(/\/+$/, "") !== "/campus") {
-      // only landing
-      var p = location.pathname.replace(/\/+$/, "") || "";
-      if (p !== "/campus" && p !== "") return;
-    }
+    if (!isLanding()) return;
     try {
+      removeDupTwoway();
+      softArchiveNote();
       ensureGate();
       markProgressive();
       moveWriteDown();
       var admit = loadAdmit();
       var saved = getSavedMode();
-      if (saved === "new" || saved === "return" || saved === "gate") {
-        setMode(saved);
-      } else if (admit && admit.name) {
-        setMode("return");
-      } else {
-        setMode("gate");
-      }
-      // Show registered name on return card if present
+      if (saved === "new" || saved === "return" || saved === "gate") setMode(saved);
+      else if (admit && admit.name) setMode("return");
+      else setMode("gate");
       if (admit && admit.name) {
         var card = d.querySelector('.cu-gate-card[data-gate="return"] p');
-        if (card && card.textContent.indexOf(admit.name) < 0) {
+        if (card) {
           card.innerHTML =
             "Preferred name on this device: <strong>" +
-            String(admit.name).replace(/</g, "") +
+            String(admit.name).replace(/[<>]/g, "") +
             "</strong>. It is not sent to Clarity servers. Continue at the portal or desk.";
         }
       }
@@ -173,6 +220,7 @@
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  setTimeout(boot, 200);
-  setTimeout(boot, 800);
+  setTimeout(boot, 150);
+  setTimeout(boot, 600);
+  setTimeout(boot, 1200);
 })(window, document);
