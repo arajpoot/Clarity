@@ -1,1 +1,1 @@
-C21F GREEN — Craft hub enriched app-footer pattern + Write to Clarity. See AUDIT_SMOKE.md.
+C21F2 GREEN — Full-bleed credits & Write · professional niyyah footer. For His sake alone.

@@ -1,9 +1,8 @@
-# C21F · Craft enriched footer + Write to Clarity
+# C21F2 deploy
 
-**Bismillah.** Educational only — not a fatwa.
+1. Upload `/craft/assets/craft-atelier-polish-v1.css`
+2. Keep `/craft/assets/craft-write-to-clarity-v1.js` + `.css` (from C21F or this pack)
+3. Replace `/craft/index.html`
+4. Hard refresh `/craft/`
 
-1. Upload assets (footer CSS, write CSS/JS) under `/craft/assets/`
-2. Replace `/craft/index.html`
-3. Hard refresh `/craft/`
-
-Smoke: 6 plaques · Write Open/Send · footer room pills · Quran.com/Sunnah.com · build **C21F**
+Smoke: wide sourced grid · wide Write card · footer with Arabic niyyah · plaques intact · build **C21F2**
