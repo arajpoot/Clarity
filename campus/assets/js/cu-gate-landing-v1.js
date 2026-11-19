@@ -1,12 +1,12 @@
-/*! cu-gate-landing-v1 · U25R honest order fix
+/*! cu-gate-landing-v1 · U25W · Write closes landing above footer
  * Visual order: Room nav → cu-banner bar → cu-hero → path → GATE → WRITE → body
  * Anchor is header.cu-hero (big banner), NOT the slim #cu-banner theme bar.
  * Educational only — not a fatwa · not a grade of īmān
  */
 (function (w, d) {
   "use strict";
-  if (w.__CU_GATE_LANDING_V1R__) return;
-  w.__CU_GATE_LANDING_V1R__ = true;
+  if (w.__CU_GATE_LANDING_V1W__) return;
+  w.__CU_GATE_LANDING_V1W__ = true;
 
   var KEY = "cu_uni_admit_v1";
   var MODE_KEY = "cu_campus_gate_mode_v1";
@@ -168,8 +168,15 @@
       placeAfter(back, gate);
     }
 
-    // WRITE after gate/back
-    if (write) placeAfter(write, back);
+    // WRITE closes the landing — immediately before footer (not mid-page)
+    if (write) {
+      var foot = d.querySelector("footer.cu-foot, footer.cu-niyyah-footer, footer");
+      if (foot && foot.parentNode) {
+        foot.parentNode.insertBefore(write, foot);
+      } else if (back) {
+        placeAfter(write, back);
+      }
+    }
 
     function onGo(ev) {
       var t = ev.target.closest("[data-gate-go]");
