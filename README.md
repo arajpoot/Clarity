@@ -1,1 +1,1 @@
-U25GATE — Gate-first Campus landing (New vs Returning). Curriculum held; order clarified.
+U25R — Fix gate above banner: anchor to cu-hero, not slim cu-banner.
