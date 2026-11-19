@@ -1,11 +1,12 @@
-/*! cu-gate-landing-v1 · U25F final order
- * Room nav → Banner → Gate + Write → body
+/*! cu-gate-landing-v1 · U25R honest order fix
+ * Visual order: Room nav → cu-banner bar → cu-hero → path → GATE → WRITE → body
+ * Anchor is header.cu-hero (big banner), NOT the slim #cu-banner theme bar.
  * Educational only — not a fatwa · not a grade of īmān
  */
 (function (w, d) {
   "use strict";
-  if (w.__CU_GATE_LANDING_V1F__) return;
-  w.__CU_GATE_LANDING_V1F__ = true;
+  if (w.__CU_GATE_LANDING_V1R__) return;
+  w.__CU_GATE_LANDING_V1R__ = true;
 
   var KEY = "cu_uni_admit_v1";
   var MODE_KEY = "cu_campus_gate_mode_v1";
@@ -50,21 +51,24 @@
   function softArchiveNote() {
     d.querySelectorAll("#university-isolation-note, .cu-archive-note, p, .cu-note").forEach(function (el) {
       if (/archive3/i.test(el.textContent || "")) {
-        el.innerHTML = (el.innerHTML || "").replace(
-          /University room \(archive3 campus base\)\./gi,
-          "University room · on-device path."
-        );
-        el.innerHTML = (el.innerHTML || "").replace(/archive3 campus base/gi, "on-device path");
+        el.innerHTML = (el.innerHTML || "")
+          .replace(/University room \(archive3 campus base\)\./gi, "University room · on-device path.")
+          .replace(/archive3 campus base/gi, "on-device path");
       }
     });
   }
 
-  function findBanner() {
+  /** Big welcome banner — not the slim theme bar */
+  function findHero() {
+    return d.querySelector("header.cu-hero") || d.querySelector(".cu-hero");
+  }
+
+  function findPathRail() {
     return (
-      d.querySelector("#cu-banner") ||
-      d.querySelector("header.cu-hero") ||
-      d.querySelector("header.cu-banner") ||
-      d.querySelector(".cu-hero")
+      d.querySelector(".cu-path-rail") ||
+      d.querySelector("nav.cu-pills") ||
+      d.querySelector("[data-cu-path-rail]") ||
+      d.querySelector(".cu-smart-stages")
     );
   }
 
@@ -111,44 +115,61 @@
     return back;
   }
 
-  /** Final order: room nav (left alone) → banner → gate → write → rest */
+  function placeAfter(node, ref) {
+    if (!node || !ref || !ref.parentNode) return;
+    if (node.parentNode) node.parentNode.removeChild(node);
+    if (ref.nextSibling) ref.parentNode.insertBefore(node, ref.nextSibling);
+    else ref.parentNode.appendChild(node);
+  }
+
+  /**
+   * Order: room nav (untouched) → #cu-banner → isolation → hero → path rail
+   *        → GATE → back → WRITE → rest of main
+   */
   function orderDom() {
-    var banner = findBanner();
+    var roomNav = d.querySelector("nav.clarity-room-nav");
+    var slim = d.querySelector("#cu-banner, header.cu-banner");
+    var hero = findHero();
+    var path = findPathRail();
     var gate = ensureGate();
     var back = ensureBack();
     var write = d.getElementById("cu-write-clarity") || d.querySelector(".cu-write-clarity");
-    var main = d.querySelector("main.adm-stage, main.cu-wrap, .cu-landing-wrap, main") || d.body;
+    var iso = d.getElementById("university-isolation-note");
+    var main = d.querySelector("main.adm-stage, main.cu-wrap, main") || d.body;
 
-    // Place banner high in main if needed — after room nav is already outside main typically
-    var roomNav = d.querySelector("nav.clarity-room-nav");
-    if (banner && roomNav && banner.compareDocumentPosition(roomNav) & Node.DOCUMENT_POSITION_FOLLOWING) {
-      // banner is before room nav in DOM — move banner after room nav
-      if (roomNav.parentNode) {
-        roomNav.parentNode.insertBefore(banner, roomNav.nextSibling);
-      }
+    // Keep slim banner just under room nav
+    if (slim && roomNav && roomNav.parentNode) {
+      placeAfter(slim, roomNav);
     }
 
-    var anchor = banner || roomNav;
-    var parent = (anchor && anchor.parentNode) || main;
+    // Hero under slim banner (or under room nav)
+    if (hero) {
+      var afterSlim = slim || roomNav;
+      if (afterSlim) placeAfter(hero, afterSlim);
+    }
 
-    // Insert gate right after banner
-    if (gate.parentNode) gate.parentNode.removeChild(gate);
-    if (back.parentNode) back.parentNode.removeChild(back);
-    if (anchor && anchor.parentNode) {
-      var ref = anchor.nextSibling;
-      parent.insertBefore(gate, ref);
-      parent.insertBefore(back, gate.nextSibling);
+    // Path rail under hero
+    if (path && hero) placeAfter(path, hero);
+
+    // Isolation note: under slim / above hero for quiet context, or under path
+    if (iso && hero) {
+      try {
+        placeAfter(iso, path || hero);
+      } catch (e) {}
+    }
+
+    // GATE after path (or hero)
+    var anchor = path || hero || slim || roomNav;
+    if (anchor) {
+      placeAfter(gate, anchor);
+      placeAfter(back, gate);
     } else {
       main.insertBefore(gate, main.firstChild);
-      main.insertBefore(back, gate.nextSibling);
+      placeAfter(back, gate);
     }
 
-    // Write immediately after gate block (back)
-    if (write) {
-      if (write.parentNode) write.parentNode.removeChild(write);
-      var after = back.nextSibling;
-      parent.insertBefore(write, after);
-    }
+    // WRITE after gate/back
+    if (write) placeAfter(write, back);
 
     function onGo(ev) {
       var t = ev.target.closest("[data-gate-go]");
@@ -186,7 +207,8 @@
       var t = h.textContent || "";
       if (/continue learning/i.test(t)) {
         h.classList.add("cu-gate-hide-on-gate", "cu-gate-return-only");
-        if (h.nextElementSibling) h.nextElementSibling.classList.add("cu-gate-hide-on-gate", "cu-gate-return-only");
+        if (h.nextElementSibling)
+          h.nextElementSibling.classList.add("cu-gate-hide-on-gate", "cu-gate-return-only");
       }
       if (/how phases work/i.test(t)) {
         h.classList.add("cu-gate-hide-on-gate");
@@ -233,7 +255,9 @@
 
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  setTimeout(boot, 120);
-  setTimeout(boot, 500);
-  setTimeout(boot, 1100);
+  setTimeout(boot, 100);
+  setTimeout(boot, 400);
+  setTimeout(boot, 900);
+  // After smart-nav late injects
+  setTimeout(boot, 1800);
 })(window, document);
