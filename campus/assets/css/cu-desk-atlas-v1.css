@@ -1,0 +1,126 @@
+/*! cu-desk-atlas-v1 · U27 · Desk enrichment
+ * Educational only — not a fatwa · not a grade of īmān
+ */
+.cu-desk-atlas {
+  max-width: 44rem;
+  margin: 1.15rem auto 1.5rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.cu-desk-atlas .cda-kicker {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8c76b;
+  opacity: 0.9;
+  margin: 0 0 0.35rem;
+}
+.cu-desk-atlas .cda-title {
+  text-align: center;
+  margin: 0 0 0.4rem;
+  color: #e8c76b;
+  font-size: 1.2rem;
+}
+.cu-desk-atlas .cda-lead {
+  text-align: center;
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+.cu-desk-atlas .cda-layer {
+  margin: 0 0 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: linear-gradient(155deg, rgba(14, 36, 44, 0.55), rgba(6, 16, 20, 0.92));
+  padding: 1rem 1.05rem 1.1rem;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+}
+.cu-desk-atlas .cda-layer h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: #e8c76b;
+}
+.cu-desk-atlas .cda-layer p {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.9;
+}
+.cu-desk-atlas .cda-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+@media (min-width: 720px) {
+  .cu-desk-atlas .cda-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+}
+@media (max-width: 420px) {
+  .cu-desk-atlas .cda-grid { grid-template-columns: 1fr; }
+}
+.cu-desk-atlas a.cda-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background: rgba(0, 0, 0, 0.28);
+  padding: 0.75rem 0.8rem;
+  min-height: 5.5rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.cu-desk-atlas a.cda-card:hover {
+  border-color: rgba(201, 162, 39, 0.55);
+  background: rgba(26, 107, 138, 0.25);
+}
+.cu-desk-atlas .cda-ar {
+  display: block;
+  font-family: Amiri, "Times New Roman", serif;
+  font-size: 1.05rem;
+  color: #e8c76b;
+  direction: rtl;
+  margin-bottom: 0.15rem;
+}
+.cu-desk-atlas .cda-name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 0.2rem;
+}
+.cu-desk-atlas .cda-desc {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+.cu-desk-atlas .cda-halls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin: 0.25rem 0 0;
+}
+.cu-desk-atlas .cda-halls a {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(20, 60, 80, 0.35);
+}
+.cu-desk-atlas .cda-intent {
+  text-align: center;
+  margin: 0.85rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.88;
+  line-height: 1.45;
+}
+.cu-desk-atlas .cda-stamp {
+  text-align: center;
+  margin: 0.5rem 0 0;
+  font-size: 0.72rem;
+  opacity: 0.75;
+}
