@@ -1,0 +1,54 @@
+/*! cu-desk-shelf-v1 · U30 classic shelf hydrate */
+.cu-shelf-enrich {
+  max-width: 42rem;
+  margin: 1rem auto 1.5rem;
+  padding: 0 1rem;
+}
+.cu-shelf-enrich .cse-card {
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: linear-gradient(155deg, rgba(14, 36, 44, 0.5), rgba(6, 16, 20, 0.92));
+  padding: 1.1rem 1.15rem;
+  margin: 0 0 0.85rem;
+}
+.cu-shelf-enrich h2 {
+  margin: 0 0 0.4rem;
+  color: #e8c76b;
+  font-size: 1.15rem;
+}
+.cu-shelf-enrich h3 {
+  margin: 0.75rem 0 0.35rem;
+  color: #e8c76b;
+  font-size: 0.95rem;
+}
+.cu-shelf-enrich p, .cu-shelf-enrich li {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+.cu-shelf-enrich ul { margin: 0.35rem 0 0.5rem 1.1rem; }
+.cu-shelf-enrich .cse-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+.cu-shelf-enrich .cse-actions a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  background: #1a6b8a;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+}
+.cu-shelf-enrich .cse-actions a.ghost {
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+}
+.cu-shelf-enrich .cse-stamp {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
