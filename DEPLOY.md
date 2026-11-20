@@ -1,7 +1,21 @@
-# U45CHROME · Campus-wide nav/banner dedupe
+# U50G12 · G1 gate modal + G2 faculty floats
 
-1. Upload `/campus/assets/js/cu-campus-chrome-v2.js`
-2. Upload all HTML under `campus/` in this pack (hub, desks, halls, grading, faculty)
-3. Hard refresh a sample of pages (gate, seeker, bots, grading)
+## Upload (surface campus folder)
+1. `campus/assets/js/cu-gate-modal-v1.js`
+2. `campus/assets/css/cu-gate-modal-v1.css`
+3. `campus/assets/js/cu-faculty-lifecycle-v1.js`
+4. `campus/assets/css/cu-faculty-lifecycle-v1.css`
+5. `campus/assets/js/cu-faculty-live-v1.js` + css (optional faculty page)
+6. `campus/assets/faculty/faculty-roster.json`
+7. `campus/assets/faculty/help-book.json`
+8. `campus/assets/faculty/resource-map.json`
+9. `campus/index.html`
+10. `campus/desk/index.html` + `desk/{seeker,practice,consistency,transmission}/index.html`
 
-Smoke: single room rail · single top brand strip · no double UNIVERSITY bar · body content unchanged · build U45CHROME
+## Smoke
+- **First visit** (clear `cu_campus_gate_seen_v1` / mode): modal two doors on `/campus/`
+- **After choose/dismiss**: modal gone; inline gate hidden; path conductor remains
+- **Seeker desk**: “Ask advisor” FAB · counsel popover · edu stamp
+- No hub `vault/boot.js` · Junior still only on seeker station
+
+Educational only — not a fatwa · not a grade of īmān
