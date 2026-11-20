@@ -1,1 +1,1 @@
-U32CALM — Campus landing is gate-only; curriculum scoped to desk stages.
+U34PATH — Path conductor automation landing→desk→bots; Junior stays on Seeker station.
