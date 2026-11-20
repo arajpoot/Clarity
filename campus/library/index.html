@@ -4,13 +4,14 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>University Library · Clarity University</title>
-<meta name="clarity-build" content="U45CHROME"/>
+<meta name="clarity-build" content="U48CF16"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-campus-elite-v1.css?v=20261112E1"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-campus-streamline-v1.css?v=20261114S2"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-library-revamp-v1.css?v=20261114L1"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-landing-clarity-v1.css?v=20261118U22"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-niyyah-footer-v1.css?v=20261119U26"/>
 <link rel="stylesheet" href="/campus/assets/css/cu-chrome-harmony-v1.css?v=20261119U26"/>
+<link rel="stylesheet" href="/campus/assets/css/cu-write-to-clarity-v1.css?v=20261118U23"/>
 </head>
 <body class="cu-page" data-campus-page="library">
 <script src="/campus/assets/js/cu-smart-nav-v1.js?v=20261114S2"></script>
@@ -71,9 +72,39 @@
     <p style="font-size:.75rem;opacity:.8">Educational only — not a fatwa · not a grade of īmān · sources linked for further reading</p>
   </div>
 </section>
+<section id="cu-write-clarity" class="cu-write-clarity" data-clarity-owned="campus-write-v1" aria-label="Write to Clarity">
+  <div class="cuw-card">
+    <header class="cuw-head">
+      <div>
+        <h2 class="cuw-title">Write to Clarity</h2>
+        <p class="cuw-sub">Library · shelf notes · <strong>not a fatwa desk</strong><strong>not a fatwa desk</strong></p>
+      </div>
+      <button type="button" class="cuw-toggle" aria-expanded="false" aria-controls="cuw-body">Open</button>
+    </header>
+    <div id="cuw-body" class="cuw-body" hidden>
+      <p class="cuw-stamp">Educational only — not a fatwa · not a grade of īmān · verify with a teacher you trust</p>
+      <div class="cuw-chips" role="group" aria-label="Message type">
+        <button type="button" class="cuw-chip active" data-cuw-type="suggestion">Suggestion</button>
+        <button type="button" class="cuw-chip" data-cuw-type="question">Question</button>
+        <button type="button" class="cuw-chip" data-cuw-type="bug">Bug / glitch</button>
+        <button type="button" class="cuw-chip" data-cuw-type="barakah">Barakah note</button>
+      </div>
+      <label class="cuw-label" for="cuw-input">Your note</label>
+      <textarea id="cuw-input" class="cuw-input" rows="4" maxlength="2000" placeholder="Write briefly — admission flow, a stage lock, desk clarity, or a question about Campus (not a personal ruling)."></textarea>
+      <div class="cuw-meta"><span id="cuw-count">0 / 2000</span></div>
+      <div class="cuw-actions">
+        <button type="button" class="cuw-send" id="cuw-send">Send to Clarity</button>
+        <button type="button" class="cuw-copy" id="cuw-copy">Copy</button>
+        <button type="button" class="cuw-mail" id="cuw-mail">Mail app</button>
+      </div>
+      <p class="cuw-status" id="cuw-status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
 <footer class="cu-foot"><p>Educational only — not a fatwa.</p></footer>
 <script src="/campus/assets/js/cu-path-conductor-v1.js?v=20261120U34" defer></script>
 <script src="/campus/assets/js/cu-stage-station-v1.js?v=20261120U37" defer></script>
 <script src="/campus/assets/js/cu-campus-chrome-v2.js?v=20261120U45" defer></script>
+<script src="/campus/assets/js/cu-write-to-clarity-v1.js?v=20261118U23" defer></script>
 </body>
 </html>
