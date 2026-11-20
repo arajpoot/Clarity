@@ -1,0 +1,3 @@
+/* U33: hide junior card off seeker when body marks page */
+body[data-campus-page]:not([data-campus-page="seeker"]) #junior-curriculum-card { display: none !important; }
+html[data-junior-off="1"] #junior-curriculum-card { display: none !important; }
