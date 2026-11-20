@@ -1,26 +1,8 @@
-# U28S · Surface-local curriculum (no deep vault runtime)
+# U29R3 · Portal + Progress diplomas (surface)
 
-**Bismillah.** All desk curriculum assets live under `/campus/assets/curriculum/`.
+1. Upload `/campus/assets/curriculum/shared/diplomas.js`
+2. Upload `/campus/assets/curriculum/shared/office-controller.js`
+3. Upload `campus/portal/index.html` + `campus/grading/index.html`
+4. Hard refresh portal and grading
 
-## Layout
-```
-campus/assets/curriculum/
-  shared/   engine.js spark-quiz.js phase-plaque.js|.css curriculum-controller.js
-  seeker/   college-seeker.js loader.js
-  practice/ college-practice.js loader.js
-  consistency/ ...
-  transmission/ ...
-  manifest.json · CURRICULUM_RESTORE.txt
-campus/desk/{seeker|practice|consistency|transmission}/index.html
-campus/desk/index.html
-```
-
-## Deploy
-1. Upload **entire** `campus/assets/curriculum/` tree from pack
-2. Upload four stage `index.html` + desk hub
-3. Hard refresh stages — Network should show `/campus/assets/curriculum/...` only (not vault/foundation)
-
-## Smoke
-- loader.js + shared/engine.js 200
-- build **U28S**
-- curriculum host present
+Smoke: diploma host section · diplomas.js 200 from surface · educational recognition disclaimer · build U29R3
