@@ -202,7 +202,7 @@
       b.textContent =
         "Vault integrity warning: " +
         (rel || "file") +
-        " does not match SEAL. Learning records still local — re-deploy sealed package if unexpected.";
+        " does not match SEAL. Learning records still local. Surface seal U31S — re-hash SEAL if you replaced foundation files.";
       document.body.appendChild(b);
       setTimeout(function () {
         try {
