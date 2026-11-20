@@ -1,14 +1,11 @@
-# U31 · R4 surface vault boot + bots resurrection
+# U32CALM · Hub calm (curriculum back on desk)
 
-## R4
-- `/campus/assets/curriculum/vault/boot.js`
-- `/campus/assets/curriculum/vault/SEAL.json`
-- `/campus/assets/curriculum/vault/foundation/*` (mirrored chain)
-- `campus/index.html` loads surface boot
+**Problem:** `boot.js` on `/campus/` loaded all colleges → Junior curriculum painted above the gate.
 
-## Bots
-- `/campus/assets/bots/workers-ops-pack-v1.js` (from vault admin)
-- `staff-resource-scout-v1.js` · `cu-seq-bots-v1.js` · `cu-bots-resurrect-v1.js`
-- `campus/bots/index.html`
+**Fix:** Remove vault boot from campus landing. Curriculum stays on `/campus/desk/seeker|practice|…` via surface loaders (U28S).
 
-Deploy assets first, then hub + bots HTML. Hard refresh.
+1. Upload `campus/index.html` only (critical)
+2. Optional: `campus/assets/js/cu-hub-calm-v1.js` (already inlined in index)
+3. Hard refresh `/campus/`
+
+Smoke: Gate + banner first · no Junior curriculum block · no integrity noise · desk seeker still has modules

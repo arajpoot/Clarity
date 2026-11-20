@@ -1,1 +1,1 @@
-U31 R4 + bots — Surface vault boot/SEAL + resurrected workers ops on /campus/bots/.
+U32CALM — Campus landing is gate-only; curriculum scoped to desk stages.
