@@ -1,8 +1,7 @@
-# U29R3 · Portal + Progress diplomas (surface)
+# U30SHELF · Classic desk shelves hydrate (R5)
 
-1. Upload `/campus/assets/curriculum/shared/diplomas.js`
-2. Upload `/campus/assets/curriculum/shared/office-controller.js`
-3. Upload `campus/portal/index.html` + `campus/grading/index.html`
-4. Hard refresh portal and grading
+1. Upload `/campus/assets/css/cu-desk-shelf-v1.css`
+2. Upload `campus/desk/{foundation,pillars,ihsan,amanah}/index.html`
+3. Hard refresh each shelf
 
-Smoke: diploma host section · diplomas.js 200 from surface · educational recognition disclaimer · build U29R3
+Smoke: enrich cards · bridge to ordered stage · stage loader · build U30SHELF
