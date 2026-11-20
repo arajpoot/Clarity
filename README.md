@@ -1,1 +1,1 @@
-U36FOUND — Deep-scan archive foundation · phased CF0–CF2 restore · governance + richness.
+U38CF6 — CF6 library path-link + foundation CF0–CF6 consolidation after U37R GREEN.
