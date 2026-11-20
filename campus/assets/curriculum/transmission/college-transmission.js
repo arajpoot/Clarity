@@ -1,11 +1,19 @@
 /* Sequential curriculum Phase 4 — Da'i + lecture visual aides */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_DAI_UNIVERSITY_V2__) return;
+  
+  function stationIsDesk() {
+    try {
+      var path = (location.pathname || "").replace(/\/+$/, "");
+      return path === "/campus/desk/transmission" || /\/campus\/desk\/transmission$/.test(path);
+    } catch (e) { return false; }
+  }
+if (g.__CLARITY_DAI_UNIVERSITY_V2__) return;
   g.__CLARITY_DAI_UNIVERSITY_V2__ = true;
   g.__CLARITY_DAI_UNIVERSITY_V1__ = true;
 
   function boot() {
+    if (!stationIsDesk()) return;
     if (!g.ClarityCurriculumEngine) {
       setTimeout(boot, 80);
       return;
