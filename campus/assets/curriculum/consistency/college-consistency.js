@@ -1,10 +1,18 @@
 /* Sequential curriculum Phase 3 — Daily HS + lecture visual aides */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_DAILY_HS_CURRICULUM_V2__) return;
+  
+  function stationIsDesk() {
+    try {
+      var path = (location.pathname || "").replace(/\/+$/, "");
+      return path === "/campus/desk/consistency" || /\/campus\/desk\/consistency$/.test(path);
+    } catch (e) { return false; }
+  }
+if (g.__CLARITY_DAILY_HS_CURRICULUM_V2__) return;
   g.__CLARITY_DAILY_HS_CURRICULUM_V2__ = true;
 
   function boot() {
+    if (!stationIsDesk()) return;
     if (!g.ClarityCurriculumEngine) {
       setTimeout(boot, 80);
       return;
