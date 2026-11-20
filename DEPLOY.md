@@ -1,13 +1,26 @@
-# U25R · honest order fix
+# U28S · Surface-local curriculum (no deep vault runtime)
 
-**Root cause:** Gate was placed after `#cu-banner` (slim Day/Night bar), so it appeared *above* the big `header.cu-hero` “Clarity University” banner.
+**Bismillah.** All desk curriculum assets live under `/campus/assets/curriculum/`.
 
-**Fix:** Place **GATE + Write** after `header.cu-hero` (and path rail if present).
+## Layout
+```
+campus/assets/curriculum/
+  shared/   engine.js spark-quiz.js phase-plaque.js|.css curriculum-controller.js
+  seeker/   college-seeker.js loader.js
+  practice/ college-practice.js loader.js
+  consistency/ ...
+  transmission/ ...
+  manifest.json · CURRICULUM_RESTORE.txt
+campus/desk/{seeker|practice|consistency|transmission}/index.html
+campus/desk/index.html
+```
 
-**Deploy (critical):**
-1. Upload **`/campus/assets/js/cu-gate-landing-v1.js`** with cache-bust `?v=20261118U25R` (overwrite)
-2. Upload **`/campus/assets/css/cu-gate-landing-v1.css`**
-3. Upload **`/campus/index.html`** (build U25R)
-4. Hard refresh; if still wrong, clear CDN/browser cache for the JS file
+## Deploy
+1. Upload **entire** `campus/assets/curriculum/` tree from pack
+2. Upload four stage `index.html` + desk hub
+3. Hard refresh stages — Network should show `/campus/assets/curriculum/...` only (not vault/foundation)
 
-**Smoke order:** Room pills → (slim bar) → **Clarity University hero** → path → **Enter Campus** → **Write** → rest
+## Smoke
+- loader.js + shared/engine.js 200
+- build **U28S**
+- curriculum host present

@@ -1,1 +1,1 @@
-U25R — Fix gate above banner: anchor to cu-hero, not slim cu-banner.
+U28S — Foundation curriculum ported to campus surface folders per phase.
