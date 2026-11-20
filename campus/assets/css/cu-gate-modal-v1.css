@@ -1,0 +1,137 @@
+/*! cu-gate-modal-v1 · U50 G1 */
+#cu-gate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.cu-gm-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 12, 14, 0.72);
+  backdrop-filter: blur(4px);
+}
+.cu-gm-card {
+  position: relative;
+  z-index: 1;
+  width: min(36rem, 100%);
+  max-height: min(92vh, 40rem);
+  overflow: auto;
+  border-radius: 20px;
+  border: 1px solid rgba(201, 162, 39, 0.42);
+  background: linear-gradient(165deg, rgba(14, 36, 44, 0.97), rgba(6, 14, 18, 0.98));
+  color: #e8e6e1;
+  padding: 1.25rem 1.2rem 1.1rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+.cu-gm-x {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.55rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 1.45rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.85;
+}
+.cu-gm-kicker {
+  margin: 0 0 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e8c76b;
+}
+.cu-gm-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+  color: #e8c76b;
+  text-align: center;
+}
+.cu-gm-lead {
+  text-align: center;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0 0 0.9rem;
+  opacity: 0.92;
+}
+.cu-gm-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+@media (min-width: 560px) {
+  .cu-gm-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.cu-gm-door {
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  padding: 0.85rem 0.9rem;
+  background: rgba(0, 0, 0, 0.25);
+}
+.cu-gm-door h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: #e8c76b;
+}
+.cu-gm-door p {
+  margin: 0 0 0.65rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+.cu-gm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.cu-gm-btn {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.38rem 0.8rem;
+  text-decoration: none;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  background: transparent;
+}
+.cu-gm-btn.primary {
+  background: #1a6b8a;
+  color: #fff;
+  border-color: transparent;
+}
+.cu-gm-stamp {
+  font-size: 0.72rem;
+  opacity: 0.8;
+  text-align: center;
+  margin: 0.85rem 0 0.45rem;
+  line-height: 1.4;
+}
+.cu-gm-skip {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+body.cu-gate-modal-open {
+  overflow: hidden;
+}
+html[data-theme="light"] .cu-gm-card {
+  background: linear-gradient(165deg, #fffcf5, #f5f0e6);
+  color: #13201a;
+}
