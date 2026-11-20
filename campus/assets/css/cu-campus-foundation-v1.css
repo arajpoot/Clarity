@@ -1,0 +1,12 @@
+/*! cu-campus-foundation-v1 · U36 */
+html[data-cu-foundation="U36"] #junior-curriculum-card,
+html[data-cu-foundation="U36"] [data-cf-hide="1"] {
+  display: none !important;
+}
+/* Landing calm spacing */
+body[data-campus-page="admit"] .cu-gate-block,
+body[data-campus-page="admit"] #cu-path-conductor {
+  max-width: 46rem;
+  margin-left: auto;
+  margin-right: auto;
+}
