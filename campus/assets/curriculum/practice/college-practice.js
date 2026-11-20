@@ -1,11 +1,19 @@
 /* Sequential curriculum Phase 2 — generated full sequencing */
 (function (g) {
   "use strict";
-  if (g.__CLARITY_JUNIOR_HIGH_CURRICULUM_V2__) return;
+  
+  function stationIsDesk() {
+    try {
+      var path = (location.pathname || "").replace(/\/+$/, "");
+      return path === "/campus/desk/practice" || /\/campus\/desk\/practice$/.test(path);
+    } catch (e) { return false; }
+  }
+if (g.__CLARITY_JUNIOR_HIGH_CURRICULUM_V2__) return;
   g.__CLARITY_JUNIOR_HIGH_CURRICULUM_V2__ = true;
   g.__CLARITY_JUNIOR_HIGH_CURRICULUM_V1__ = true;
 
   function boot() {
+    if (!stationIsDesk()) return;
     if (!g.ClarityCurriculumEngine) {
       setTimeout(boot, 80);
       return;

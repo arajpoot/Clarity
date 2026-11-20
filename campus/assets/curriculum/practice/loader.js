@@ -10,7 +10,7 @@
 
   var SHARED = "/campus/assets/curriculum/shared/";
   var ROOM = "/campus/assets/curriculum/practice/";
-  var V = "20261119U28S";
+  var V = "20261120U37";
   var CSS = [SHARED + "phase-plaque.css"];
   var CHAIN = [
     SHARED + "engine.js",
