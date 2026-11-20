@@ -12,6 +12,16 @@
   var PROGRESS_KEY = "clarity_junior_progress_v1";
   var PHASE_KEY = "clarity_curriculum_phase_v1";
 
+  function stationIsSeekerDesk() {
+    try {
+      var path = (location.pathname || "").replace(/\/+$/, "");
+      return path === "/campus/desk/seeker" || /\/campus\/desk\/seeker$/.test(path);
+    } catch (e) {
+      return false;
+    }
+  }
+
+
 
   var UNITS = [
     {
@@ -425,6 +435,7 @@
   }
 
   function ensureCard() {
+    if (!stationIsSeekerDesk()) return null;
     var card = document.getElementById("junior-curriculum-card");
     if (card) {
       try {
@@ -450,11 +461,11 @@
       '<div id="junior-curriculum-progress" class="junior-progress"></div>' +
       '<div id="junior-curriculum-body" class="junior-body"></div>';
     var host =
+      document.getElementById("cu-curriculum-body") ||
+      document.getElementById("cu-curriculum-host") ||
       document.getElementById("campus-stage-body") ||
       document.getElementById("clarity-campus-stage") ||
-      document.querySelector("#tab-reminder .rrra-hub-body") ||
-      document.getElementById("tab-reminder") ||
-      document.getElementById("main-application-workspace") ||
+      document.querySelector("main") ||
       document.body;
     try {
       host.insertBefore(card, host.firstChild);
@@ -678,6 +689,7 @@
   }
 
   function pathIsSeeker() {
+    if (!stationIsSeekerDesk()) return false;
     try {
       var p =
         localStorage.getItem("clarity_path_focus") ||
@@ -772,6 +784,7 @@
   }
 
   function boot() {
+    if (!stationIsSeekerDesk()) return;
     mountBoost();
     setTimeout(mountBoost, 300);
     setTimeout(mountBoost, 1200);
