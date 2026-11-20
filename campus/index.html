@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <link rel="canonical" href="https://clarity-dawah.fyi/campus/"/>
-<meta name="clarity-build" content="U31R4" />
+<meta name="clarity-build" content="U32CALM" />
 <title>Clarity University</title>
 <meta name="description" content="Bismillah. On-device educational path. Not a physical university."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -346,10 +346,6 @@ Amānah vault is at <a href="/amana/">/amana/</a>. Educational only — not a fa
     </div>
   </div>
 </section>
-
-<aside id="cu-vault-badge" class="cu-vault-badge" style="max-width:42rem;margin:0.75rem auto;padding:0.65rem 1rem;border-radius:12px;border:1px solid rgba(201,162,39,0.3);font-size:0.82rem;opacity:0.9">
-  <strong>Curriculum vault</strong> · on-device seal probe (surface path). Educational only — not a fatwa · not a grade of īmān.
-</aside>
 <footer class="cu-foot">Educational only — not a fatwa. Not a grade of īmān. Last reviewed October 2026 · Quran.com / Sunnah.com.</footer>
 
 
@@ -373,6 +369,40 @@ Amānah vault is at <a href="/amana/">/amana/</a>. Educational only — not a fa
 <script src="/campus/assets/js/cu-niyyah-footer-v1.js?v=20261119U26" defer></script>
 <script src="/campus/assets/js/cu-write-to-clarity-v1.js?v=20261118U23" defer></script>
 <script src="/campus/assets/js/cu-gate-landing-v1.js?v=20261118U25W" defer></script>
-<script src="/campus/assets/curriculum/vault/boot.js?v=20261119U31" defer></script>
+
+<script>
+/*! cu-hub-calm-v1 · U32 — landing is gate only; curriculum lives on desk */
+(function () {
+  if (!/\/campus\/?$/.test(location.pathname.replace(/\/+$/, "") + "/") && location.pathname.replace(/\/+$/, "") !== "/campus") {
+    var p = (location.pathname || "").replace(/\/+$/, "");
+    if (p !== "/campus" && p !== "") return;
+  }
+  var p = (location.pathname || "").replace(/\/+$/, "");
+  if (p !== "/campus" && p !== "") return;
+  function scrub() {
+    document.querySelectorAll(
+      ".junior-curriculum-card, #junior-curriculum-card, [class*='Junior curriculum'], .cu-college-card, #clarity-campus-stage, .card-title"
+    ).forEach(function (el) {
+      var t = (el.textContent || "");
+      if (/Junior curriculum|Phase 1|Prove it/i.test(t) || (el.id === "junior-curriculum-card")) {
+        el.style.display = "none";
+        el.setAttribute("data-hub-calm-hide", "1");
+      }
+    });
+    document.querySelectorAll("h2.card-title, h2").forEach(function (el) {
+      if (/Junior curriculum/i.test(el.textContent || "")) {
+        var root = el.closest("section, article, div, .card") || el.parentElement;
+        if (root) { root.style.display = "none"; root.setAttribute("data-hub-calm-hide", "1"); }
+      }
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", scrub);
+  else scrub();
+  setTimeout(scrub, 200);
+  setTimeout(scrub, 800);
+  setTimeout(scrub, 2000);
+})();
+</script>
+
 </body>
 </html>
