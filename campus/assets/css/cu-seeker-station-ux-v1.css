@@ -1,0 +1,125 @@
+/*! cu-seeker-station-ux-v1 · U35
+ * Seeker station: no legacy sticky overlay · Junior matches Campus dark glass
+ * Educational only — not a fatwa · not a grade of īmān
+ */
+
+/* ---- Kill sticky/fixed phase rail noise on desk seeker ---- */
+body[data-campus-page="seeker"] #clarity-phase-plaque-rail,
+body[data-campus-page="seeker"] .clarity-phase-plaque-rail,
+[data-campus-page="seeker"] #clarity-phase-plaque-rail {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  z-index: 1 !important;
+  max-width: 42rem;
+  margin: 0.75rem auto 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: linear-gradient(155deg, rgba(14, 36, 44, 0.7), rgba(6, 16, 20, 0.95)) !important;
+  box-shadow: none !important;
+  float: none !important;
+}
+
+/* Hide name-plaque fixed float on seeker */
+body[data-campus-page="seeker"] .clarity-name-plaque-rail,
+body[data-campus-page="seeker"] .cnp-plaque {
+  position: relative !important;
+  bottom: auto !important;
+  right: auto !important;
+}
+
+/* ---- Junior curriculum card → Campus glass (not white sheet) ---- */
+body[data-campus-page="seeker"] #junior-curriculum-card,
+body[data-campus-page="seeker"] .curriculum-phase-card.junior-active {
+  max-width: 42rem;
+  margin: 0.75rem auto 1.25rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+  border-radius: 18px;
+  border: 1px solid rgba(201, 162, 39, 0.38) !important;
+  background: linear-gradient(155deg, rgba(16, 44, 56, 0.72), rgba(6, 16, 22, 0.96)) !important;
+  color: #e8e6e1 !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28) !important;
+}
+
+body[data-campus-page="seeker"] #junior-curriculum-card .card-title,
+body[data-campus-page="seeker"] #junior-curriculum-card h2 {
+  color: #e8c76b !important;
+  font-size: 1.2rem;
+  margin: 0 0 0.4rem;
+}
+
+body[data-campus-page="seeker"] #junior-curriculum-card .card-lead,
+body[data-campus-page="seeker"] #junior-curriculum-card p {
+  color: rgba(232, 230, 225, 0.92) !important;
+  line-height: 1.5;
+}
+
+body[data-campus-page="seeker"] #junior-curriculum-card .junior-progress {
+  color: rgba(232, 230, 225, 0.85) !important;
+  font-size: 0.88rem;
+  margin: 0.5rem 0 0.85rem;
+}
+
+/* Open module panel */
+body[data-campus-page="seeker"] #junior-curriculum-card .junior-module,
+body[data-campus-page="seeker"] #junior-curriculum-card .jm-open,
+body[data-campus-page="seeker"] #junior-curriculum-card details,
+body[data-campus-page="seeker"] #junior-curriculum-card .lesson-open {
+  border-radius: 14px !important;
+  border: 1px solid rgba(201, 162, 39, 0.28) !important;
+  background: rgba(0, 0, 0, 0.28) !important;
+  color: inherit !important;
+  padding: 0.85rem 1rem !important;
+}
+
+body[data-campus-page="seeker"] #junior-curriculum-card .jm-locked,
+body[data-campus-page="seeker"] #junior-curriculum-card .lesson-locked {
+  opacity: 0.72;
+  border-color: rgba(201, 162, 39, 0.15) !important;
+  background: rgba(0, 0, 0, 0.18) !important;
+}
+
+body[data-campus-page="seeker"] #junior-curriculum-card a {
+  color: #7ec8e3 !important;
+}
+
+body[data-campus-page="seeker"] #junior-curriculum-card button,
+body[data-campus-page="seeker"] #junior-curriculum-card .prove-btn,
+body[data-campus-page="seeker"] #junior-curriculum-card [data-prove] {
+  background: #1a6b8a !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-weight: 700;
+  padding: 0.4rem 0.9rem !important;
+}
+
+/* Unit headings */
+body[data-campus-page="seeker"] #junior-curriculum-card h3 {
+  color: #e8c76b !important;
+  margin: 1rem 0 0.35rem;
+}
+
+/* Dedupe: hide enrich "Curriculum lessons" when Junior card is present */
+body[data-campus-page="seeker"].cu-has-junior #cu-curr-lessons,
+body[data-campus-page="seeker"] #cu-curr-lessons.cu-dup-hide {
+  display: none !important;
+}
+
+/* Curriculum host framing */
+body[data-campus-page="seeker"] #cu-curriculum-host {
+  max-width: 44rem;
+  margin: 1rem auto 1.5rem;
+  padding: 0 1rem;
+}
+body[data-campus-page="seeker"] #cu-curriculum-host .cu-cur-head h2 {
+  color: #e8c76b;
+}
+body[data-campus-page="seeker"] #cu-curriculum-host .cu-cur-lead,
+body[data-campus-page="seeker"] #cu-curriculum-host .cu-cur-stamp {
+  font-size: 0.88rem;
+  opacity: 0.9;
+}
