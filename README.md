@@ -1,1 +1,1 @@
-U34PATH — Path conductor automation landing→desk→bots; Junior stays on Seeker station.
+U36FOUND — Deep-scan archive foundation · phased CF0–CF2 restore · governance + richness.
