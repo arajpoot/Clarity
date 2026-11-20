@@ -1,72 +1,82 @@
 {
-  "build": "20261017F6",
-  "note": "Surface room loaders; foundation remains deep source. One room one chain.",
-  "deep_base": "/assets/curriculum/vault/foundation/",
+  "build": "U28S",
+  "note": "Surface-local curriculum. Deep vault is archive/fallback only. F6 quarantine lifted.",
+  "surface_base": "/campus/assets/curriculum/",
+  "deep_archive": "/assets/curriculum/vault/foundation/",
+  "policy": {
+    "f6_quarantine_desk": false,
+    "surface_local": true,
+    "richness_clause": "shell and body must not thin; chains additive"
+  },
+  "shared": {
+    "path": "/campus/assets/curriculum/shared/",
+    "files": [
+      "engine.js",
+      "spark-quiz.js",
+      "phase-plaque.js",
+      "phase-plaque.css",
+      "curriculum-controller.js"
+    ]
+  },
   "rooms": {
     "seeker": {
-      "surface": "/campus/assets/curriculum/seeker.js",
+      "path": "/campus/assets/curriculum/seeker/",
+      "loader": "/campus/assets/curriculum/seeker/loader.js",
       "chain": [
-        "engine.js",
-        "spark-quiz.js",
-        "phase-plaque.js",
-        "college-seeker.js"
+        "/campus/assets/curriculum/shared/engine.js",
+        "/campus/assets/curriculum/shared/spark-quiz.js",
+        "/campus/assets/curriculum/shared/phase-plaque.js",
+        "/campus/assets/curriculum/seeker/college-seeker.js"
       ],
-      "api": "ClarityJuniorCurriculum",
-      "auto_boot_problem": true
+      "css": [
+        "/campus/assets/curriculum/shared/phase-plaque.css"
+      ],
+      "required": true
     },
     "practice": {
-      "surface": "/campus/assets/curriculum/practice.js",
+      "path": "/campus/assets/curriculum/practice/",
+      "loader": "/campus/assets/curriculum/practice/loader.js",
       "chain": [
-        "engine.js",
-        "spark-quiz.js",
-        "phase-plaque.js",
-        "college-practice.js"
+        "/campus/assets/curriculum/shared/engine.js",
+        "/campus/assets/curriculum/shared/spark-quiz.js",
+        "/campus/assets/curriculum/shared/phase-plaque.js",
+        "/campus/assets/curriculum/practice/college-practice.js"
       ],
-      "api": "ClarityJuniorHighCurriculum",
-      "auto_boot_problem": true
+      "css": [
+        "/campus/assets/curriculum/shared/phase-plaque.css"
+      ],
+      "required": true
     },
     "consistency": {
-      "surface": "/campus/assets/curriculum/consistency.js",
+      "path": "/campus/assets/curriculum/consistency/",
+      "loader": "/campus/assets/curriculum/consistency/loader.js",
       "chain": [
-        "engine.js",
-        "spark-quiz.js",
-        "phase-plaque.js",
-        "college-consistency.js"
+        "/campus/assets/curriculum/shared/engine.js",
+        "/campus/assets/curriculum/shared/spark-quiz.js",
+        "/campus/assets/curriculum/shared/phase-plaque.js",
+        "/campus/assets/curriculum/consistency/college-consistency.js"
       ],
-      "api": "ClarityDailyHsCurriculum",
-      "auto_boot_problem": true
+      "css": [
+        "/campus/assets/curriculum/shared/phase-plaque.css"
+      ],
+      "required": true
     },
     "transmission": {
-      "surface": "/campus/assets/curriculum/transmission.js",
+      "path": "/campus/assets/curriculum/transmission/",
+      "loader": "/campus/assets/curriculum/transmission/loader.js",
       "chain": [
-        "engine.js",
-        "spark-quiz.js",
-        "phase-plaque.js",
-        "college-transmission.js"
+        "/campus/assets/curriculum/shared/engine.js",
+        "/campus/assets/curriculum/shared/spark-quiz.js",
+        "/campus/assets/curriculum/shared/phase-plaque.js",
+        "/campus/assets/curriculum/transmission/college-transmission.js"
       ],
-      "api": "ClarityDaiUniversity",
-      "auto_boot_problem": true
+      "css": [
+        "/campus/assets/curriculum/shared/phase-plaque.css"
+      ],
+      "required": true
     }
   },
-  "not_in_room_chain": [
-    "curriculum-controller.js",
-    "diplomas.js",
-    "office-controller.js",
-    "boot.js full seal"
-  ],
-  "phases_complete": [
-    "F0",
-    "F1",
-    "F2",
-    "F3",
-    "F4",
-    "F5",
-    "F6"
-  ],
-  "f4": "phase-room orchestrator only; surface loaders own curriculum",
-  "f5": "campus/assets/curriculum/data/*.meta.json placeholders",
-  "f6_quarantine_desk": [
-    "Do NOT load from desk rooms: boot.js (full), curriculum-controller.js, diplomas.js, office-controller.js",
-    "Do NOT load cross-college scripts from another room loader"
-  ]
+  "educational_only": true,
+  "not_a_fatwa": true,
+  "not_a_grade_of_iman": true
 }

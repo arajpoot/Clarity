@@ -1,99 +1,67 @@
-/**
- * Surface curriculum loader — consistency only (F1-F3)
- * Does not load other colleges. Foundation files stay deep.
+/*! /campus/assets/curriculum/consistency/loader.js · U28S
+ * Surface-local curriculum chain (no deep vault dependency for runtime).
+ * Educational only — not a fatwa · not a grade of īmān.
  */
-(function (g) {
+(function (w, d) {
   "use strict";
-  var ROOM = "consistency";
-  var API = "ClarityDailyHsCurriculum";
-  var CHAIN = ["/assets/curriculum/vault/foundation/engine.js", "/assets/curriculum/vault/foundation/spark-quiz.js", "/assets/curriculum/vault/foundation/phase-plaque.js", "/assets/curriculum/vault/foundation/diplomas.js", "/assets/curriculum/vault/foundation/college-consistency.js"];
-  var VER = "20261017GUIDE";
-  if (g.__CU_CURRICULUM_LOADER__ === ROOM) return;
+  var FLAG = "__CU_CURRICULUM_SURFACE_CONSISTENCY_U28S__";
+  if (w[FLAG]) return;
+  w[FLAG] = true;
 
-  function currentRoom() {
-    return (document.body && document.body.getAttribute("data-phase-room")) || "";
+  var SHARED = "/campus/assets/curriculum/shared/";
+  var ROOM = "/campus/assets/curriculum/consistency/";
+  var V = "20261119U28S";
+  var CSS = [SHARED + "phase-plaque.css"];
+  var CHAIN = [
+    SHARED + "engine.js",
+    SHARED + "spark-quiz.js",
+    SHARED + "phase-plaque.js",
+    ROOM + "college-consistency.js"
+  ];
+
+  function loadCss(href) {
+    return new Promise(function (resolve) {
+      if (d.querySelector('link[data-cu-surf="' + href + '"]')) return resolve();
+      var l = d.createElement("link");
+      l.rel = "stylesheet";
+      l.href = href + (href.indexOf("?") >= 0 ? "&" : "?") + "v=" + V;
+      l.setAttribute("data-cu-surf", href);
+      l.onload = function () { resolve(); };
+      l.onerror = function () { resolve(); };
+      d.head.appendChild(l);
+    });
   }
-  if (currentRoom() && currentRoom() !== ROOM) {
-    console.info("[CU curriculum] skip " + ROOM + " loader on room=" + currentRoom());
-    return;
-  }
-  g.__CU_CURRICULUM_LOADER__ = ROOM;
 
   function loadScript(src) {
-    return new Promise(function (resolve, reject) {
-      var base = src.split("?").shift().split("/").pop();
-      if (document.querySelector('script[data-cu-curr="'+base+'"]')) return resolve();
-      var s = document.createElement("script");
-      s.src = src + (src.indexOf("?") >= 0 ? "&" : "?") + "v=" + VER;
-      s.defer = false;
-      s.dataset.cuCurr = base;
-      s.dataset.cuRoom = ROOM;
+    return new Promise(function (resolve) {
+      if (d.querySelector('script[data-cu-surf="' + src + '"]')) return resolve();
+      var s = d.createElement("script");
+      s.src = src + (src.indexOf("?") >= 0 ? "&" : "?") + "v=" + V;
+      s.setAttribute("data-cu-surf", src);
       s.onload = function () { resolve(); };
-      s.onerror = function () { console.warn("[CU curriculum] fail", src); resolve(); };
-      document.head.appendChild(s);
+      s.onerror = function () { resolve(); };
+      d.head.appendChild(s);
     });
   }
 
-  function isolate() {
-    var map = {
-      ClarityJuniorCurriculum: "seeker",
-      ClarityJuniorHighCurriculum: "practice",
-      ClarityDailyHsCurriculum: "consistency",
-      ClarityDaiUniversity: "transmission",
-      ClarityDaiUniversityCurriculum: "transmission"
-    };
-    Object.keys(map).forEach(function (name) {
-      var api = g[name];
-      if (!api || typeof api.render !== "function" || api.__cu_room_isolated) return;
-      var orig = api.render;
-      api.render = function () {
-        if (currentRoom() !== map[name]) return;
-        return orig.apply(api, arguments);
-      };
-      api.__cu_room_isolated = true;
-    });
+  function series(list, fn) {
+    return list.reduce(function (p, item) {
+      return p.then(function () { return fn(item); });
+    }, Promise.resolve());
   }
 
-  function stripForeign() {
-    var keepId = {
-      seeker: "junior-curriculum-card",
-      practice: "junior-high-curriculum-card",
-      consistency: "daily-hs-curriculum-card",
-      transmission: "dai-university-curriculum-card"
-    }[ROOM];
-    document.querySelectorAll("[id$='-curriculum-card'], .curriculum-phase-card").forEach(function (el) {
-      if (keepId && el.id === keepId) return;
-      try { el.remove(); } catch (e) {}
-    });
+  function boot() {
+    series(CSS, loadCss)
+      .then(function () { return series(CHAIN, loadScript); })
+      .then(function () {
+        try {
+          w.dispatchEvent(new CustomEvent("clarity-curriculum-ready", {
+            detail: { room: "consistency", build: "U28S", surface: true }
+          }));
+        } catch (e) {}
+      });
   }
 
-  function runChain(i) {
-    if (i >= CHAIN.length) {
-      isolate();
-      stripForeign();
-      try {
-        if (g[API] && typeof g[API].render === "function" && currentRoom() === ROOM) {
-          g[API].render();
-        }
-      } catch (eR) {}
-      stripForeign();
-      setTimeout(stripForeign, 400);
-      setTimeout(function () { isolate(); stripForeign(); }, 1000);
-      try {
-        document.dispatchEvent(new CustomEvent("cu-curriculum-ready", { detail: { room: ROOM, api: API } }));
-      } catch (eD) {}
-      return;
-    }
-    loadScript(CHAIN[i]).then(function () {
-      isolate();
-      runChain(i + 1);
-    });
-  }
-
-  function start() {
-    if (currentRoom() !== ROOM) return;
-    runChain(0);
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
-  else start();
-})(typeof window !== "undefined" ? window : this);
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})(window, document);
