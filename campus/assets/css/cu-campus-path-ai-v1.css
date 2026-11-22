@@ -1,0 +1,95 @@
+/*! cu-campus-path-ai-v1 · U55 Nur Path Engine */
+.cu-path-ai {
+  max-width: 42rem;
+  margin: 0.75rem auto 1.1rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.cu-path-ai .pai-card {
+  border-radius: 18px;
+  border: 1px solid rgba(126, 200, 227, 0.35);
+  background:
+    radial-gradient(ellipse at 90% 0%, rgba(26, 107, 138, 0.22), transparent 50%),
+    linear-gradient(155deg, rgba(8, 28, 36, 0.95), rgba(4, 12, 16, 0.98));
+  padding: 1.05rem 1.1rem;
+}
+.cu-path-ai .pai-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7ec8e3;
+  margin: 0 0 0.2rem;
+}
+.cu-path-ai h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  color: #e8c76b;
+}
+.cu-path-ai .pai-lead {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  opacity: 0.92;
+  margin: 0 0 0.7rem;
+}
+.cu-path-ai .pai-bench {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(0, 0, 0, 0.28);
+  padding: 0.7rem 0.85rem;
+  margin: 0.4rem 0;
+  transition: border-color 0.15s;
+}
+.cu-path-ai .pai-bench:hover {
+  border-color: rgba(126, 200, 227, 0.5);
+}
+.cu-path-ai .pai-bench strong {
+  display: block;
+  color: #e8c76b;
+  font-size: 0.92rem;
+  margin-bottom: 0.15rem;
+}
+.cu-path-ai .pai-bench span {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+.cu-path-ai .pai-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+.cu-path-ai input[type="search"] {
+  flex: 1 1 10rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
+  padding: 0.45rem 0.85rem;
+  font: inherit;
+  font-size: 0.86rem;
+}
+.cu-path-ai button.pai-go {
+  border-radius: 999px;
+  border: none;
+  background: #1a6b8a;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-path-ai .pai-stamp {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  margin: 0.65rem 0 0;
+  line-height: 1.4;
+}
+.cu-path-ai .pai-meta {
+  font-size: 0.78rem;
+  opacity: 0.88;
+  margin: 0 0 0.5rem;
+}
