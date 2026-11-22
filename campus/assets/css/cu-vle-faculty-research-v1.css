@@ -1,0 +1,130 @@
+/*! cu-vle-faculty-research-v1 · U54 */
+.cu-vle-fac {
+  max-width: 42rem;
+  margin: 0.75rem auto 1.2rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.cu-vle-fac .cvf-card {
+  border-radius: 18px;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(30, 125, 94, 0.18), transparent 55%),
+    linear-gradient(155deg, rgba(12, 30, 36, 0.95), rgba(5, 12, 16, 0.98));
+  padding: 1.05rem 1.1rem 1.15rem;
+}
+.cu-vle-fac .cvf-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7ec8e3;
+  margin: 0 0 0.2rem;
+}
+.cu-vle-fac h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.12rem;
+  color: #e8c76b;
+}
+.cu-vle-fac .cvf-teacher {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin: 0.55rem 0 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background: rgba(0, 0, 0, 0.28);
+}
+.cu-vle-fac .cvf-seal {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.cu-vle-fac .cvf-teacher h3 {
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+  color: #e8c76b;
+}
+.cu-vle-fac .cvf-teacher p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  opacity: 0.92;
+}
+.cu-vle-fac .cvf-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.cu-vle-fac input[type="search"] {
+  flex: 1 1 11rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
+  padding: 0.48rem 0.9rem;
+  font: inherit;
+  font-size: 0.88rem;
+}
+.cu-vle-fac button.cvf-go {
+  border-radius: 999px;
+  border: none;
+  background: #1e7d5e;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.48rem 0.95rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-vle-fac .cvf-out {
+  margin-top: 0.75rem;
+}
+.cu-vle-fac .cvf-block {
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.7rem 0.8rem;
+  margin: 0.4rem 0;
+}
+.cu-vle-fac .cvf-block h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.88rem;
+  color: #e8c76b;
+}
+.cu-vle-fac .cvf-ar {
+  direction: rtl;
+  text-align: right;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0.3rem 0;
+}
+.cu-vle-fac .cvf-block a {
+  color: #7ec8e3;
+  font-size: 0.82rem;
+  margin-right: 0.5rem;
+}
+.cu-vle-fac .cvf-stamp {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  line-height: 1.4;
+  margin: 0.55rem 0 0;
+}
+.cu-vle-fac .cvf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.45rem 0 0.2rem;
+}
+.cu-vle-fac .cvf-chips button {
+  font-size: 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: transparent;
+  color: inherit;
+  padding: 0.28rem 0.65rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-vle-fac .cvf-warn {
+  border-color: rgba(201, 120, 80, 0.45);
+  background: rgba(60, 30, 12, 0.35);
+}
