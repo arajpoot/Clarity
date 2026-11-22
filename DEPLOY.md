@@ -1,21 +1,7 @@
-# U50G12 · G1 gate modal + G2 faculty floats
+# U56TUT · VLE tutorial on bots
 
-## Upload (surface campus folder)
-1. `campus/assets/js/cu-gate-modal-v1.js`
-2. `campus/assets/css/cu-gate-modal-v1.css`
-3. `campus/assets/js/cu-faculty-lifecycle-v1.js`
-4. `campus/assets/css/cu-faculty-lifecycle-v1.css`
-5. `campus/assets/js/cu-faculty-live-v1.js` + css (optional faculty page)
-6. `campus/assets/faculty/faculty-roster.json`
-7. `campus/assets/faculty/help-book.json`
-8. `campus/assets/faculty/resource-map.json`
-9. `campus/index.html`
-10. `campus/desk/index.html` + `desk/{seeker,practice,consistency,transmission}/index.html`
+1. Upload `cu-vle-tutorial-v1.css` + `.js`
+2. Upload `campus/bots/index.html`
+3. Hard refresh `/campus/bots/`
 
-## Smoke
-- **First visit** (clear `cu_campus_gate_seen_v1` / mode): modal two doors on `/campus/`
-- **After choose/dismiss**: modal gone; inline gate hidden; path conductor remains
-- **Seeker desk**: “Ask advisor” FAB · counsel popover · edu stamp
-- No hub `vault/boot.js` · Junior still only on seeker station
-
-Educational only — not a fatwa · not a grade of īmān
+Smoke: tutorial steps visible · Run smart scanner → PASS/WAIT lines · links to Seeker/Craft/Gate
