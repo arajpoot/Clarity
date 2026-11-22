@@ -1,0 +1,117 @@
+/*! cu-vle-guide-pill-v1 · U61 */
+#cu-guide-pill {
+  position: fixed;
+  right: 0.85rem;
+  bottom: 5.5rem;
+  z-index: 9200;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  background: linear-gradient(135deg, #1e7d5e, #156b4f);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  font-family: inherit;
+}
+#cu-guide-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9300;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(4, 12, 14, 0.72);
+  backdrop-filter: blur(4px);
+}
+#cu-guide-modal[hidden] {
+  display: none !important;
+}
+.cu-gmod-card {
+  width: min(22rem, 100%);
+  max-height: min(88vh, 36rem);
+  overflow: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(201, 162, 39, 0.42);
+  background: linear-gradient(165deg, rgba(14, 36, 44, 0.98), rgba(6, 14, 18, 0.99));
+  color: #e6ebe8;
+  padding: 1.1rem 1.1rem 1rem;
+  position: relative;
+}
+.cu-gmod-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  color: #e8c76b;
+}
+.cu-gmod-x {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.5rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+.cu-gmod-card input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
+  padding: 0.45rem 0.85rem;
+  font: inherit;
+  margin: 0.45rem 0;
+}
+.cu-gmod-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.35rem 0;
+}
+.cu-gmod-chips button {
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: transparent;
+  color: inherit;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-gmod-go {
+  border-radius: 999px;
+  border: none;
+  background: #1e7d5e;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-gmod-out {
+  margin-top: 0.65rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.cu-gmod-out a {
+  color: #7ec8e3;
+  display: inline-block;
+  margin: 0.2rem 0.45rem 0.2rem 0;
+  font-size: 0.82rem;
+}
+.cu-gmod-stamp {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  margin-top: 0.65rem;
+  line-height: 1.4;
+}
+/* Hide bulky inline guide + old advisor fab when pill mode */
+html[data-guide-pill="1"] #cu-vle-faculty-research,
+html[data-guide-pill="1"] #cu-tutor-fab,
+html[data-guide-pill="1"] #cu-assess-modal,
+html[data-guide-pill="1"] .fac-duty-strip {
+  display: none !important;
+}
