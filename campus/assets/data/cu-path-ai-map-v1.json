@@ -1,66 +1,95 @@
 {
-  "version": "U55",
-  "disclaimer": "On-device learning router only — not a fatwa engine, not a living scholar, not a grade of īmān.",
-  "phases": {
+  "version": "U64",
+  "disclaimer": "On-device learning router only — not a fatwa engine, not a living scholar, not a grade of īmān. Inspired by public structured curricula (e.g. SeekersGuidance Steps: essentials → sciences) without copying proprietary course texts.",
+  "inspiration": {
+    "seekers_steps": "https://seekersguidance.org/articles/teaching/seekershub-steps-curriculum/",
+    "note": "External free structured learning; Campus remains on-device study mirror."
+  },
+  "levels": {
     "1": {
       "id": "seeker",
-      "label": "Seeker · Foundations",
+      "label": "Level 1 · Essentials (Seeker)",
       "desk": "/campus/desk/seeker/",
-      "intent": "Tawḥīd, sincerity, first modules",
+      "sg_analogy": "Personally essential knowledge — start slow",
+      "intent": "Tawḥīd, īmān map, short sūrahs, adab of seeking",
+      "vle": {
+        "show": ["path-ai-slim", "guide-pill", "hud-slim"],
+        "hide": ["research-desk", "faculty-inline", "bots-stack", "full-path-ai"]
+      },
       "benches": [
-        {"id": "notes", "href": "/craft/notes/", "title": "Notes bench", "why": "Capture one sincere line from each module"},
-        {"id": "quiz", "href": "/craft/quiz/", "title": "Quiz bench", "why": "Soft recall — not a grade of īmān"},
-        {"id": "meme", "href": "/craft/meme/", "title": "Meme studio", "why": "Visual reminder with sourced text only"}
+        {"id": "notes", "href": "/craft/notes/", "title": "Notes", "why": "One sincere line per module"},
+        {"id": "quiz", "href": "/craft/quiz/", "title": "Quiz", "why": "Soft recall only"}
+      ],
+      "outward": [
+        {"label": "SeekersGuidance · Absolute Essentials track", "href": "https://academy.seekersguidance.org/"}
       ]
     },
     "2": {
       "id": "practice",
-      "label": "Practice · Prayer & purity maps",
+      "label": "Level 2 · Practice (Worship maps)",
       "desk": "/campus/desk/practice/",
-      "intent": "Practice with a local teacher in mind",
+      "sg_analogy": "Worship essentials — confirm with a local teacher",
+      "intent": "Ṣalāh, purity, fasting maps",
+      "vle": {
+        "show": ["path-ai-slim", "guide-pill", "hud-slim", "research-desk"],
+        "hide": ["faculty-inline", "bots-stack"]
+      },
       "benches": [
-        {"id": "notes", "href": "/craft/notes/", "title": "Notes bench", "why": "Write one action you will try today"},
-        {"id": "quiz", "href": "/craft/quiz/", "title": "Quiz bench", "why": "Check maps — confirm with a teacher"},
-        {"id": "tajweed", "href": "/craft/tajweed/", "title": "Tajweed lab", "why": "Begin careful recitation practice"}
+        {"id": "notes", "href": "/craft/notes/", "title": "Notes", "why": "One action for today"},
+        {"id": "tajweed", "href": "/craft/tajweed/", "title": "Tajweed", "why": "Begin careful recitation"}
       ]
     },
     "3": {
       "id": "consistency",
-      "label": "Consistency · Adab & craft",
+      "label": "Level 3 · Consistency (Craft & adab)",
       "desk": "/campus/desk/consistency/",
-      "intent": "Steady application",
+      "intent": "Steady application, tajweed depth, character",
+      "vle": {
+        "show": ["path-ai-full", "guide-pill", "hud-slim"],
+        "hide": ["research-desk", "faculty-inline"]
+      },
       "benches": [
         {"id": "tajweed", "href": "/craft/tajweed/", "title": "Tajweed lab", "why": "One rule applied well"},
         {"id": "calligraphy", "href": "/craft/calligraphy/", "title": "Calligraphy", "why": "Beauty with humility"},
-        {"id": "notes", "href": "/craft/notes/", "title": "Notes bench", "why": "Weekly review honesty"}
+        {"id": "notes", "href": "/craft/notes/", "title": "Notes", "why": "Weekly review"}
       ]
     },
     "4": {
       "id": "transmission",
-      "label": "Transmission · Adab of sharing",
+      "label": "Level 4 · Transmission (Adab of sharing)",
       "desk": "/campus/desk/transmission/",
       "intent": "Share only what you can source",
+      "vle": {
+        "show": ["path-ai-full", "guide-pill", "research-desk", "hud-slim"],
+        "hide": ["faculty-inline"]
+      },
       "benches": [
-        {"id": "meme", "href": "/craft/meme/", "title": "Meme studio", "why": "Sourced reminders — adab before volume"},
-        {"id": "notes", "href": "/craft/notes/", "title": "Notes bench", "why": "Draft with sources pinned"},
-        {"id": "quiz", "href": "/craft/quiz/", "title": "Quiz bench", "why": "Self-check before sharing"}
+        {"id": "meme", "href": "/craft/meme/", "title": "Meme studio", "why": "Sourced reminders only"},
+        {"id": "notes", "href": "/craft/notes/", "title": "Notes", "why": "Pin sources before sharing"},
+        {"id": "quiz", "href": "/craft/quiz/", "title": "Quiz", "why": "Self-check"}
       ]
     }
   },
+  "phases": {
+    "1": {"ref": "1"},
+    "2": {"ref": "2"},
+    "3": {"ref": "3"},
+    "4": {"ref": "4"}
+  },
   "topics": {
-    "tajweed": ["tajweed", "recit", "makharij", "ghunnah"],
-    "calligraphy": ["calligraph", "khatt", "write arabic"],
-    "notes": ["note", "journal", "write"],
-    "quiz": ["quiz", "test", "recall"],
-    "meme": ["meme", "poster", "visual"],
+    "tajweed": ["tajweed", "recit", "makharij"],
+    "notes": ["note", "journal"],
+    "quiz": ["quiz", "test"],
+    "meme": ["meme", "poster"],
+    "calligraphy": ["calligraph", "khatt"],
     "wasiyyah": ["wasiy", "inherit", "faraid", "mirath"]
   },
   "topicBenches": {
     "tajweed": {"href": "/craft/tajweed/", "title": "Tajweed lab"},
-    "calligraphy": {"href": "/craft/calligraphy/", "title": "Calligraphy"},
     "notes": {"href": "/craft/notes/", "title": "Notes bench"},
     "quiz": {"href": "/craft/quiz/", "title": "Quiz bench"},
     "meme": {"href": "/craft/meme/", "title": "Meme studio"},
-    "wasiyyah": {"href": "/amana/wasiyyah/", "title": "Amānah · Wasiyyah (study only)"}
+    "calligraphy": {"href": "/craft/calligraphy/", "title": "Calligraphy"},
+    "wasiyyah": {"href": "/amana/wasiyyah/", "title": "Amānah · Wasiyyah (study)"}
   }
 }
