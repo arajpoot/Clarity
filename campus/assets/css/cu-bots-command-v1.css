@@ -1,0 +1,169 @@
+/*! cu-bots-command-v1 · U51 — on-device ops desk */
+.cu-bots-cmd {
+  max-width: 44rem;
+  margin: 0 auto 1.5rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.cu-bots-cmd .bcc-hero {
+  border-radius: 18px;
+  border: 1px solid rgba(201, 162, 39, 0.38);
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(26, 107, 138, 0.25), transparent 55%),
+    linear-gradient(155deg, rgba(10, 28, 34, 0.95), rgba(4, 12, 16, 0.98));
+  padding: 1.15rem 1.2rem 1.2rem;
+  margin-bottom: 0.85rem;
+}
+.cu-bots-cmd .bcc-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7ec8e3;
+  margin: 0 0 0.25rem;
+}
+.cu-bots-cmd .bcc-hero h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+  color: #e8c76b;
+}
+.cu-bots-cmd .bcc-lead {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  opacity: 0.92;
+  margin: 0 0 0.65rem;
+}
+.cu-bots-cmd .bcc-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.cu-bots-cmd .bcc-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(0, 0, 0, 0.28);
+}
+.cu-bots-cmd .bcc-chip.ok {
+  border-color: rgba(30, 125, 94, 0.55);
+  color: #9fe0c4;
+}
+.cu-bots-cmd .bcc-chip.warn {
+  border-color: rgba(201, 162, 39, 0.5);
+  color: #e8c76b;
+}
+.cu-bots-cmd .bcc-grid {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 520px) {
+  .cu-bots-cmd .bcc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.cu-bots-cmd .bcc-pill {
+  text-align: left;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: rgba(8, 22, 28, 0.85);
+  color: inherit;
+  padding: 0.85rem 0.95rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.cu-bots-cmd .bcc-pill:hover,
+.cu-bots-cmd .bcc-pill.is-on {
+  border-color: rgba(126, 200, 227, 0.55);
+  box-shadow: 0 0 0 1px rgba(126, 200, 227, 0.2);
+}
+.cu-bots-cmd .bcc-pill strong {
+  display: block;
+  color: #e8c76b;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+.cu-bots-cmd .bcc-pill span {
+  font-size: 0.78rem;
+  opacity: 0.88;
+  line-height: 1.35;
+}
+.cu-bots-cmd .bcc-panel {
+  margin-top: 0.75rem;
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: linear-gradient(160deg, rgba(12, 32, 40, 0.92), rgba(6, 14, 18, 0.96));
+  padding: 1rem 1.05rem;
+  display: none;
+}
+.cu-bots-cmd .bcc-panel.is-open {
+  display: block;
+}
+.cu-bots-cmd .bcc-panel h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  color: #e8c76b;
+}
+.cu-bots-cmd .bcc-panel pre,
+.cu-bots-cmd .bcc-log {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  margin: 0.5rem 0;
+  opacity: 0.92;
+  font-family: ui-monospace, monospace;
+}
+.cu-bots-cmd .bcc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+.cu-bots-cmd .bcc-actions button,
+.cu-bots-cmd .bcc-actions a {
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: #1a6b8a;
+  color: #fff;
+  padding: 0.38rem 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-bots-cmd .bcc-actions button.ghost,
+.cu-bots-cmd .bcc-actions a.ghost {
+  background: transparent;
+  color: inherit;
+}
+.cu-bots-cmd .bcc-stamp {
+  font-size: 0.72rem;
+  opacity: 0.8;
+  margin: 0.75rem 0 0;
+  line-height: 1.4;
+}
+.cu-bots-cmd .bcc-tip {
+  border-left: 3px solid #c9a227;
+  padding: 0.45rem 0.7rem;
+  margin: 0.4rem 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 10px 10px 0;
+}
+.cu-bots-cmd .bcc-link-list a {
+  display: block;
+  font-size: 0.84rem;
+  color: #7ec8e3;
+  margin: 0.25rem 0;
+}
+/* Hide legacy noisy stack when command center mounts */
+body.cu-bots-cmd-live #cit-scan,
+body.cu-bots-cmd-live .uni-grid,
+body.cu-bots-cmd-live [data-bots-legacy] {
+  /* keep security/IT/OM if present — only hide duplicate hero noise via JS */
+}
