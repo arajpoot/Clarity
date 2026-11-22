@@ -1,7 +1,9 @@
-# U56TUT · VLE tutorial on bots
+# U61PILL · Study with guide + expanded engine
 
-1. Upload `cu-vle-tutorial-v1.css` + `.js`
-2. Upload `campus/bots/index.html`
-3. Hard refresh `/campus/bots/`
+1. Upload `cu-vle-answer-engine-v1.js` (expanded keywords)
+2. Upload `cu-vle-guide-pill-v1.js` + `.css`
+3. Upload seeker + bots HTML
+4. Hard refresh
 
-Smoke: tutorial steps visible · Run smart scanner → PASS/WAIT lines · links to Seeker/Craft/Gate
+Expect: fixed green pill **Study with guide** → modal · Ask **Pray/wudu/zakat** → brief + full links  
+Inline bulky guide section hidden · old Ask advisor FAB replaced
