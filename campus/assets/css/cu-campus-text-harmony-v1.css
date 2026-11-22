@@ -1,0 +1,85 @@
+/*! cu-campus-text-harmony-v1 · U59
+ * Unified Campus text color + depth hydration across rooms.
+ * Does not strip content — only color / weight / soft depth.
+ */
+html[data-campus-surface],
+body[data-campus-page],
+body.cu-bots-cmd-live,
+main.cu-campus,
+.campus-shell {
+  color: #e6ebe8;
+}
+
+/* Primary reading text */
+html[data-campus-surface] p,
+html[data-campus-surface] li,
+html[data-campus-surface] label,
+html[data-campus-surface] .bcc-lead,
+html[data-campus-surface] .cvt-lead,
+html[data-campus-surface] .pai-lead,
+html[data-campus-surface] .cvf-teacher p,
+html[data-campus-surface] .cvr-lead,
+body.cu-bots-cmd-live p,
+body.cu-bots-cmd-live li {
+  color: #e6ebe8;
+  opacity: 1;
+}
+
+/* Soft secondary */
+html[data-campus-surface] .bcc-stamp,
+html[data-campus-surface] .cvt-stamp,
+html[data-campus-surface] .pai-stamp,
+html[data-campus-surface] .cvf-stamp,
+html[data-campus-surface] .cvr-stamp,
+html[data-campus-surface] small,
+html[data-campus-surface] .muted {
+  color: #b7c4be;
+  opacity: 1;
+}
+
+/* Gold headings — consistent */
+html[data-campus-surface] h1,
+html[data-campus-surface] h2,
+html[data-campus-surface] h3,
+html[data-campus-surface] h4,
+html[data-campus-surface] .bcc-pill strong,
+html[data-campus-surface] .pai-bench strong {
+  color: #e8c76b;
+}
+
+/* Links */
+html[data-campus-surface] a {
+  color: #7ec8e3;
+}
+html[data-campus-surface] a:hover {
+  color: #a8dff0;
+}
+
+/* Depth cards */
+html[data-campus-surface] .bcc-hero,
+html[data-campus-surface] .bcc-panel,
+html[data-campus-surface] .cvt-card,
+html[data-campus-surface] .cvf-card,
+html[data-campus-surface] .cvr-card,
+html[data-campus-surface] .pai-card,
+html[data-campus-surface] .cu-gm-card {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Inputs */
+html[data-campus-surface] input,
+html[data-campus-surface] textarea,
+html[data-campus-surface] select {
+  color: #e6ebe8;
+  background: rgba(0, 0, 0, 0.35);
+  border-color: rgba(201, 162, 39, 0.35);
+}
+
+/* Hide remaining legacy bots blocks when harmony active */
+html[data-bots-harmony="1"] #cit-scan,
+html[data-bots-harmony="1"] [data-bots-deduped="1"],
+html[data-bots-harmony="1"] .bots-legacy-stack {
+  display: none !important;
+}
