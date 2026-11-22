@@ -1,0 +1,96 @@
+/*! cu-vle-research-v1 · U53 */
+.cu-vle-research {
+  max-width: 42rem;
+  margin: 0.75rem auto 1.25rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.cu-vle-research .cvr-card {
+  border-radius: 18px;
+  border: 1px solid rgba(201, 162, 39, 0.38);
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(26, 107, 138, 0.2), transparent 50%),
+    linear-gradient(155deg, rgba(12, 32, 40, 0.94), rgba(5, 14, 18, 0.98));
+  padding: 1.05rem 1.1rem 1.15rem;
+}
+.cu-vle-research .cvr-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7ec8e3;
+  margin: 0 0 0.25rem;
+}
+.cu-vle-research h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  color: #e8c76b;
+}
+.cu-vle-research .cvr-lead {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  opacity: 0.92;
+  margin: 0 0 0.75rem;
+}
+.cu-vle-research .cvr-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.cu-vle-research input[type="search"] {
+  flex: 1 1 12rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
+  padding: 0.5rem 0.95rem;
+  font: inherit;
+  font-size: 0.9rem;
+}
+.cu-vle-research button.cvr-go {
+  border-radius: 999px;
+  border: none;
+  background: #1a6b8a;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-vle-research .cvr-out {
+  margin-top: 0.85rem;
+}
+.cu-vle-research .cvr-block {
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  background: rgba(0, 0, 0, 0.28);
+  padding: 0.75rem 0.85rem;
+  margin: 0.45rem 0;
+}
+.cu-vle-research .cvr-block h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+  color: #e8c76b;
+}
+.cu-vle-research .cvr-ar {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  direction: rtl;
+  text-align: right;
+  margin: 0.35rem 0;
+}
+.cu-vle-research .cvr-block a {
+  color: #7ec8e3;
+  font-size: 0.84rem;
+  display: inline-block;
+  margin: 0.2rem 0.45rem 0.2rem 0;
+}
+.cu-vle-research .cvr-stamp {
+  font-size: 0.72rem;
+  opacity: 0.82;
+  margin: 0.65rem 0 0;
+  line-height: 1.4;
+}
+.cu-vle-research .cvr-err {
+  color: #e8b4b4;
+  font-size: 0.85rem;
+}
