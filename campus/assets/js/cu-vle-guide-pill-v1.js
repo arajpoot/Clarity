@@ -1,4 +1,4 @@
-/*! cu-vle-guide-pill-v1 · U62 — Study with guide pill + modal (answer engine) */
+/*! cu-vle-guide-pill-v1 · U63 — Study with guide pill + modal (answer engine) */
 (function (w, d) {
   "use strict";
   if (w.__CU_VLE_GUIDE_PILL_V1__) return;
@@ -21,14 +21,14 @@
     if (d.querySelector('link[data-cu-guide-pill]')) return;
     var l = d.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/campus/assets/css/cu-vle-guide-pill-v1.css?v=20261121U62";
+    l.href = "/campus/assets/css/cu-vle-guide-pill-v1.css?v=20261121U63";
     l.setAttribute("data-cu-guide-pill", "1");
     d.head.appendChild(l);
   }
   function ensureEngine(cb) {
     if (w.ClarityAnswerEngine && w.ClarityAnswerEngine.version) return cb();
     var s = d.createElement("script");
-    s.src = "/campus/assets/js/cu-vle-answer-engine-v1.js?v=20261121U62";
+    s.src = "/campus/assets/js/cu-vle-answer-engine-v1.js?v=20261121U63";
     s.onload = cb;
     s.onerror = cb;
     d.head.appendChild(s);

@@ -1,4 +1,4 @@
-/*! cu-vle-answer-engine-v1 · U62
+/*! cu-vle-answer-engine-v1 · U63
  * Keyword briefs + concrete hadith citations + sunnah.com / quran.com links.
  * Educational only — not a fatwa · verify text and grading with a teacher / primary sources.
  */
@@ -302,6 +302,42 @@
         { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=hereafter' },
       ]
     },
+
+    {
+      id: 'parents',
+      keys: [/\bparents?\b/i, /\bmother\b/i, /\bfather\b/i, /walid/i, /wālid/i, /birr/i, /parental/i, /mom\b/i, /dad\b/i],
+      short: 'Dutifulness to parents (birr al-wālidayn) is among the greatest deeds after worship of Allāh. Kindness to them in old age is especially stressed. Campus only reminds — personal cases need local guidance.',
+      hadith: 'Hadith: A man asked who is most deserving of good companionship. The Prophet ﷺ said: «Your mother,» then «your mother,» then «your mother,» then «your father» — Ṣaḥīḥ al-Bukhārī 5971; Ṣaḥīḥ Muslim 2548. Also: pleasure of Allāh is in the pleasure of the parents — Jāmiʿ al-Tirmidhī 1899 (check grading with a teacher).',
+      links: [
+        { label: 'Bukhārī 5971 · full', href: 'https://sunnah.com/bukhari:5971' },
+        { label: 'Muslim 2548 · full', href: 'https://sunnah.com/muslim:2548' },
+        { label: 'Qurʾān 17:23 · full', href: 'https://quran.com/17/23' },
+        { label: 'SeekersGuidance · parents', href: 'https://seekersguidance.org/?s=parents' }
+      ]
+    },
+
+    {
+      id: 'kinship',
+      keys: [/\bkinship\b/i, /silat\s*al[- ]?rahim/i, /ṣilat/i, /relatives/i, /\bfamily\b/i],
+      short: 'Keeping ties of kinship is a major virtue; cutting them is a serious wrong. Balance rights with justice and local custom under scholarly guidance.',
+      hadith: 'Hadith: «The one who severs the ties of kinship will not enter Paradise» — Ṣaḥīḥ al-Bukhārī 5984; Ṣaḥīḥ Muslim 2556.',
+      links: [
+        { label: 'Bukhārī 5984 · full', href: 'https://sunnah.com/bukhari:5984' },
+        { label: 'Muslim 2556 · full', href: 'https://sunnah.com/muslim:2556' },
+        { label: 'SeekersGuidance · kinship', href: 'https://seekersguidance.org/?s=kinship' }
+      ]
+    },
+    {
+      id: 'neighbor',
+      keys: [/\bneighbor\b/i, /\bneighbour\b/i, /jar\b/i],
+      short: 'The neighbor has rights in Islam. Good treatment of neighbors is part of faith and social adab.',
+      hadith: 'Hadith: «Jibrīl kept recommending the neighbor to me until I thought he would make him an heir» — Ṣaḥīḥ al-Bukhārī 6014; Ṣaḥīḥ Muslim 2624.',
+      links: [
+        { label: 'Bukhārī 6014 · full', href: 'https://sunnah.com/bukhari:6014' },
+        { label: 'Muslim 2624 · full', href: 'https://sunnah.com/muslim:2624' },
+        { label: 'SeekersGuidance · neighbor', href: 'https://seekersguidance.org/?s=neighbor' }
+      ]
+    },
   ];
 
   function match(q) {
@@ -339,7 +375,7 @@
     };
   }
   w.ClarityAnswerEngine = {
-    version: "U62",
+    version: "U63",
     answer: answer,
     match: match,
     listIds: function () { return BRIEFS.map(function (b) { return b.id; }); }
