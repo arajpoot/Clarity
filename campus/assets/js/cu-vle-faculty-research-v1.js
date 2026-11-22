@@ -1,4 +1,4 @@
-/*! cu-vle-faculty-research-v1 · U54
+/*! cu-vle-faculty-research-v1 · U57 fix+upgrade
  * Assigned virtual faculty + research desk + educational wasiyyah bridge.
  * Educational personas only — NOT living scholars, NOT fatwa, NOT legal advice,
  * NOT a grade of īmān. Wasiyyah/farāʾiḍ study opens Amānah room tools.
@@ -8,8 +8,8 @@
   if (w.__CU_VLE_FACULTY_RESEARCH_V1__) return;
   w.__CU_VLE_FACULTY_RESEARCH_V1__ = true;
 
-  var ROSTER_URL = "/campus/assets/faculty/faculty-roster.json?v=20261121U54";
-  var HELP_URL = "/campus/assets/faculty/help-book.json?v=20261121U54";
+  var ROSTER_URL = "/campus/assets/faculty/faculty-roster.json?v=20261121U57";
+  var HELP_URL = "/campus/assets/faculty/help-book.json?v=20261121U57";
   var KEY_TEACHER = "cu_vle_assigned_teacher_v1";
 
   function path() {
@@ -55,7 +55,7 @@
     if (d.querySelector('link[data-cu-vle-fac]')) return;
     var l = d.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/campus/assets/css/cu-vle-faculty-research-v1.css?v=20261121U54";
+    l.href = "/campus/assets/css/cu-vle-faculty-research-v1.css?v=20261121U57";
     l.setAttribute("data-cu-vle-fac", "1");
     d.head.appendChild(l);
   }
@@ -85,22 +85,105 @@
     return assigned;
   }
 
+
+  function asTipText(item) {
+    if (item == null) return "";
+    if (typeof item === "string") return item;
+    if (typeof item === "object") {
+      if (typeof item.tip === "string") return item.tip;
+      if (typeof item.text === "string") return item.text;
+      if (typeof item.body === "string") return item.body;
+      if (typeof item.message === "string") return item.message;
+    }
+    return "";
+  }
+
+  /** Topic briefs — short educational answers + primary full-answer links */
+  var TOPIC_BRIEFS = [
+    {
+      keys: [/iman|īmān|faith|believe/i],
+      short:
+        "Īmān is belief in the heart, speech of the tongue, and action of the limbs — it increases with obedience and decreases with disobedience. Start with the six pillars as a map, then live them with sincerity.",
+      links: [
+        { label: "Qurʾān · 2:285", href: "https://quran.com/2/285" },
+        { label: "SeekersGuidance · īmān", href: "https://seekersguidance.org/?s=iman" },
+        { label: "Seeker desk", href: "/campus/desk/seeker/" }
+      ]
+    },
+    {
+      keys: [/tawhid|tawḥīd|oneness|shirk/i],
+      short:
+        "Tawḥīd is single-hearted loyalty to Allāh alone in Lordship, worship, and His Names and Attributes — not a slogan. Protect it by knowing what nullifies it, with a local teacher.",
+      links: [
+        { label: "Qurʾān · 112", href: "https://quran.com/112" },
+        { label: "SeekersGuidance · tawhid", href: "https://seekersguidance.org/?s=tawhid" },
+        { label: "Seeker desk", href: "/campus/desk/seeker/" }
+      ]
+    },
+    {
+      keys: [/salah|ṣalāh|prayer|wudu|wuḍū|purity/i],
+      short:
+        "Prayer is the pillar of practice. Use Campus maps for orientation only — confirm the steps of purification and ṣalāh with a local teacher you trust.",
+      links: [
+        { label: "SeekersGuidance · prayer", href: "https://seekersguidance.org/?s=prayer" },
+        { label: "Sunnah.com · prayer", href: "https://sunnah.com/search?q=prayer" },
+        { label: "Practice desk", href: "/campus/desk/practice/" }
+      ]
+    },
+    {
+      keys: [/quran|qurʾān|recit|tajweed/i],
+      short:
+        "The Qurʾān is recited with adab and understood with humility. Open one verse, sit with it, and learn tajweed gradually — Craft Tajweed lab supports practice, not certification.",
+      links: [
+        { label: "Qurʾān.com", href: "https://quran.com" },
+        { label: "Tajweed lab", href: "/craft/tajweed/" },
+        { label: "SeekersGuidance · Qurʾān", href: "https://seekersguidance.org/?s=quran" }
+      ]
+    },
+    {
+      keys: [/wasiy|inherit|faraid|mirath|will/i],
+      short:
+        "Wasiyyah and farāʾiḍ are serious trusts. Campus only points to educational Amānah tools — not a will, not a fatwa, not legal advice. Use qualified counsel in your jurisdiction.",
+      links: [
+        { label: "Amānah · Wasiyyah", href: "/amana/wasiyyah/" },
+        { label: "Campus Mīrāth study", href: "/campus/mirath/" },
+        { label: "Charter limits", href: "/campus/charter/" }
+      ]
+    }
+  ];
+
+  function topicBrief(q) {
+    var s = String(q || "");
+    for (var i = 0; i < TOPIC_BRIEFS.length; i++) {
+      var t = TOPIC_BRIEFS[i];
+      for (var k = 0; k < t.keys.length; k++) {
+        if (t.keys[k].test(s)) return t;
+      }
+    }
+    return null;
+  }
+
   function tipFor(help, ph, q) {
+    var brief = topicBrief(q);
+    if (brief) return brief.short;
+
     var tips = [];
     if (help && help.byPhase && help.byPhase[String(ph)]) tips = help.byPhase[String(ph)];
-    else if (help && help.default) tips = help.default;
-    if (!tips || !tips.length) {
-      tips = [
+    else if (help && Array.isArray(help.default)) tips = help.default;
+
+    var texts = [];
+    for (var i = 0; i < (tips || []).length; i++) {
+      var tx = asTipText(tips[i]);
+      if (tx) texts.push(tx);
+    }
+    if (!texts.length) {
+      texts = [
         "One sincere page is better than ten rushed ones.",
         "Verify practice with a local teacher.",
         "Charter limits protect sincerity."
       ];
     }
-    var low = String(q || "").toLowerCase();
-    if (/wasiy|will|inherit|fara|mirath|estate/.test(low)) {
-      return "Inheritance and wasiyyah study belongs in the Amānah room as education only — not a court filing, not a fatwa. Confirm with qualified counsel in your jurisdiction.";
-    }
-    return tips[Math.floor(Math.random() * tips.length)] || tips[0];
+    return texts[Math.floor(Math.random() * texts.length)] || texts[0];
   }
 
   function parseRef(q) {
@@ -161,7 +244,22 @@
     }
     host.innerHTML = '<p class="cvf-stamp">Consulting guide + allowlisted sources…</p>';
     var counsel = tipFor(help, teacher.phase, q);
+    if (typeof counsel !== "string") counsel = asTipText(counsel) || "Ask with sincerity; verify with a local teacher.";
+    var brief = topicBrief(q);
     var ref = parseRef(q);
+    var counselLinks = "";
+    if (brief && brief.links && brief.links.length) {
+      counselLinks = "<p>";
+      brief.links.forEach(function (L) {
+        counselLinks +=
+          '<a href="' +
+          esc(L.href) +
+          '" target="_blank" rel="noopener">' +
+          esc(L.label) +
+          " · full answer</a> ";
+      });
+      counselLinks += "</p>";
+    }
     var base =
       '<div class="cvf-block"><h4>Assigned guide · counsel</h4><p><strong>' +
       esc(teacher.name) +
@@ -169,7 +267,9 @@
       esc(teacher.title) +
       "</p><p>" +
       esc(counsel) +
-      "</p></div>";
+      "</p>" +
+      counselLinks +
+      "</div>";
 
     function links() {
       var enc = encodeURIComponent(q);
