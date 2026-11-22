@@ -1,0 +1,95 @@
+/*! cu-vle-tutorial-v1 · U56 */
+.cu-vle-tut {
+  max-width: 42rem;
+  margin: 0.85rem auto 1.25rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.cu-vle-tut .cvt-card {
+  border-radius: 18px;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background:
+    radial-gradient(ellipse at 0% 100%, rgba(30, 125, 94, 0.15), transparent 55%),
+    linear-gradient(155deg, rgba(10, 28, 34, 0.95), rgba(4, 12, 16, 0.98));
+  padding: 1.1rem 1.15rem 1.2rem;
+}
+.cu-vle-tut .cvt-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7ec8e3;
+  margin: 0 0 0.2rem;
+}
+.cu-vle-tut h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+  color: #e8c76b;
+}
+.cu-vle-tut .cvt-lead {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+  opacity: 0.92;
+}
+.cu-vle-tut ol.cvt-steps {
+  margin: 0;
+  padding: 0 0 0 1.15rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.cu-vle-tut ol.cvt-steps li {
+  margin: 0.45rem 0;
+}
+.cu-vle-tut ol.cvt-steps a {
+  color: #7ec8e3;
+}
+.cu-vle-tut .cvt-scan {
+  margin-top: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(126, 200, 227, 0.3);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.75rem 0.85rem;
+}
+.cu-vle-tut .cvt-scan h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.9rem;
+  color: #7ec8e3;
+}
+.cu-vle-tut .cvt-scan pre {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  font-family: ui-monospace, monospace;
+  opacity: 0.92;
+}
+.cu-vle-tut .cvt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+}
+.cu-vle-tut .cvt-actions button,
+.cu-vle-tut .cvt-actions a {
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.38rem 0.85rem;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: #1a6b8a;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cu-vle-tut .cvt-actions button.ghost,
+.cu-vle-tut .cvt-actions a.ghost {
+  background: transparent;
+  color: inherit;
+}
+.cu-vle-tut .cvt-stamp {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  margin: 0.7rem 0 0;
+  line-height: 1.4;
+}
