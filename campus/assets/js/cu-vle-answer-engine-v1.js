@@ -1,15 +1,15 @@
-/*! cu-vle-answer-engine-v1 · U58
- * Hardened short answers + full-answer links. Not help-book object tips.
+/*! cu-vle-answer-engine-v1 · U60
+ * Hardened short answers + full-answer links.
  * Educational only — not a fatwa · not a grade of īmān · not a living scholar
  */
 (function (w) {
   "use strict";
-  if (w.ClarityAnswerEngine) return;
+  w.ClarityAnswerEngine = null; // allow overwrite of older build
 
   var BRIEFS = [
     {
       id: "iman",
-      keys: [/\biman\b/i, /īmān/i, /\bfaith\b/i, /believe/i, /belief/i],
+      keys: [/\biman\b/i, /īmān/i, /\bfaith\b/i, /belie[fv]/i],
       short:
         "Īmān is belief held in the heart, affirmed by the tongue, and shown in action. It rises with obedience and falls with sin. Learn the six pillars as a map, then live them with sincerity — not as a slogan.",
       links: [
@@ -21,7 +21,7 @@
     },
     {
       id: "tawhid",
-      keys: [/tawhid/i, /tawḥīd/i, /oneness/i, /\bshirk\b/i],
+      keys: [/tawh[iī]d/i, /tawḥīd/i, /oneness/i, /\bshirk\b/i],
       short:
         "Tawḥīd is worshipping Allāh alone — in Lordship, worship, and His Names and Attributes. Protect it by learning what harms it, with a teacher you trust.",
       links: [
@@ -32,18 +32,18 @@
     },
     {
       id: "prayer",
-      keys: [/salah/i, /ṣalāh/i, /\bprayer\b/i, /wudu/i, /wuḍū/i, /purity/i],
+      keys: [/salah/i, /ṣalāh/i, /salaat/i, /\bpray(?:er|ing|s)?\b/i, /wudu/i, /wuḍū/i, /wudou/i, /purity/i, /ablution/i],
       short:
-        "Ṣalāh is the daily pillar of practice. Use Campus only as a study map — confirm purification and prayer steps with a local teacher.",
+        "Ṣalāh is the daily pillar of practice. Use Campus only as a study map — confirm purification and prayer steps with a local teacher you trust.",
       links: [
-        { label: "SeekersGuidance · prayer", href: "https://seekersguidance.org/?s=prayer" },
-        { label: "Sunnah.com · prayer", href: "https://sunnah.com/search?q=prayer" },
+        { label: "SeekersGuidance · prayer · full", href: "https://seekersguidance.org/?s=prayer" },
+        { label: "Sunnah.com · prayer · full", href: "https://sunnah.com/search?q=prayer" },
         { label: "Practice desk", href: "/campus/desk/practice/" }
       ]
     },
     {
       id: "quran",
-      keys: [/quran/i, /qurʾān/i, /qur'an/i, /recit/i, /tajweed/i],
+      keys: [/quran/i, /qur['']?an/i, /qurʾān/i, /recit/i, /tajweed/i],
       short:
         "Sit with one āyah at a time. Recite with adab; learn tajweed step by step. Craft labs support practice — they do not certify.",
       links: [
@@ -66,13 +66,14 @@
   ];
 
   var FALLBACKS = [
-    "Ask with sincerity. Use allowlisted sources below, then confirm with a local teacher.",
+    "Ask with a clear word (e.g. īmān, prayer, tawḥīd). Use allowlisted full links, then confirm with a local teacher.",
     "One clear question and one reliable source beat many hurried tabs.",
     "Campus is a study mirror — not a fatwa desk and not a grade of īmān."
   ];
 
   function match(q) {
-    var s = String(q || "");
+    var s = String(q || "").trim();
+    if (!s) return null;
     for (var i = 0; i < BRIEFS.length; i++) {
       var b = BRIEFS[i];
       for (var k = 0; k < b.keys.length; k++) {
@@ -85,9 +86,9 @@
   function answer(q) {
     var b = match(q);
     if (b) {
-      return { id: b.id, short: b.short, links: b.links.slice(), source: "answer-engine" };
+      return { id: b.id, short: String(b.short), links: b.links.slice(), source: "answer-engine" };
     }
-    var fb = FALLBACKS[Math.floor(Math.random() * FALLBACKS.length)];
+    var fb = FALLBACKS[0];
     var enc = encodeURIComponent(String(q || "").trim() || "islam");
     return {
       id: "general",
@@ -103,8 +104,15 @@
   }
 
   w.ClarityAnswerEngine = {
-    version: "U58",
+    version: "U60",
     answer: answer,
-    match: match
+    match: match,
+    _selfTest: function () {
+      var samples = ["Iman", "Pray", "prayer", "tawhid", "wasiyyah", "xyz"];
+      return samples.map(function (s) {
+        var a = answer(s);
+        return { q: s, id: a.id, short0: a.short.slice(0, 40) };
+      });
+    }
   };
 })(window);
