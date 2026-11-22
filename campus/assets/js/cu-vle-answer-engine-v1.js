@@ -1,106 +1,307 @@
-/*! cu-vle-answer-engine-v1 · U61
- * Expanded educational keyword briefs + allowlisted full links.
- * NOT a fatwa engine · NOT a mufti · NOT a grade of īmān
- * Confirm practice and rulings with a qualified local teacher.
+/*! cu-vle-answer-engine-v1 · U62
+ * Keyword briefs + concrete hadith citations + sunnah.com / quran.com links.
+ * Educational only — not a fatwa · verify text and grading with a teacher / primary sources.
  */
 (function (w) {
   "use strict";
-
-  function L(label, href) {
-    return { label: label, href: href };
-  }
-  function SG(q) {
-    return L("SeekersGuidance · full", "https://seekersguidance.org/?s=" + encodeURIComponent(q));
-  }
-  function SN(q) {
-    return L("Sunnah.com · full", "https://sunnah.com/search?q=" + encodeURIComponent(q));
-  }
-  function Q(path, label) {
-    return L(label || "Qurʾān.com", "https://quran.com/" + path);
-  }
-
   var BRIEFS = [
-    { id: "iman", keys: [/\biman\b/i, /īmān/i, /\bfaith\b/i, /belie[fv]/i],
-      short: "Īmān is belief in the heart, speech on the tongue, and action on the limbs. It increases with obedience and decreases with sin. Study the six pillars as a map, then live them with sincerity.",
-      links: [Q("2/285", "Qurʾān 2:285"), Q("4/136", "Qurʾān 4:136"), SG("iman"), L("Seeker desk", "/campus/desk/seeker/")] },
-    { id: "tawhid", keys: [/tawh[iī]d/i, /tawḥīd/i, /oneness/i, /\bshirk\b/i, /associat/i],
-      short: "Tawḥīd is single-hearted worship of Allāh alone. Learn what protects it and what harms it — with a teacher, not from slogans alone.",
-      links: [Q("112", "Sūrat al-Ikhlāṣ"), SG("tawhid"), L("Seeker desk", "/campus/desk/seeker/")] },
-    { id: "islam", keys: [/\bislam\b/i, /five pillars/i, /arkan/i],
-      short: "Islām’s five pillars (testimony, prayer, zakāh, fasting, ḥajj) structure practice. Campus maps are study aids — confirm details with a local teacher.",
-      links: [SG("five pillars"), SN("pillars of islam"), L("Seeker desk", "/campus/desk/seeker/")] },
-    { id: "ihsan", keys: [/ihsan/i, /iḥsān/i, /excellence/i],
-      short: "Iḥsān is to worship Allāh as though you see Him — and though you do not see Him, He sees you. It is excellence of heart and deed.",
-      links: [SN("ihsan"), SG("ihsan"), L("Consistency desk", "/campus/desk/consistency/")] },
-    { id: "prayer", keys: [/salah/i, /ṣalāh/i, /salaat/i, /\bpray(?:er|ing|s)?\b/i, /namaz/i],
-      short: "Ṣalāh is the daily pillar of practice. Use study maps only for orientation — confirm times, conditions, and form with a local teacher.",
-      links: [SG("prayer"), SN("prayer"), L("Practice desk", "/campus/desk/practice/")] },
-    { id: "wudu", keys: [/wudu/i, /wuḍū/i, /wudou/i, /ablution/i, /purity/i, /tahara/i, /ṭahāra/i],
-      short: "Wuḍūʾ is purification before prayer. Learn the obligatory acts and what breaks it from a reliable teacher; modules are reminders only.",
-      links: [SG("wudu"), SN("wudu"), L("Practice desk", "/campus/desk/practice/")] },
-    { id: "ghusl", keys: [/\bghusl\b/i, /major impurity/i, /janaba/i, /janāba/i],
-      short: "Ghusl is the full ritual wash when required. Because details matter, learn it from a qualified local teacher — not from a chatbot ruling.",
-      links: [SG("ghusl"), SN("ghusl"), L("Practice desk", "/campus/desk/practice/")] },
-    { id: "tayammum", keys: [/tayammum/i, /dry ablution/i],
-      short: "Tayammum is a concession when water cannot be used. Conditions are specific — confirm with a teacher before relying on a summary.",
-      links: [SG("tayammum"), SN("tayammum")] },
-    { id: "zakat", keys: [/zakat/i, /zakāh/i, /zakaah/i, /charity obligation/i],
-      short: "Zakāh is an obligatory share of defined wealth for defined recipients. Rates and thresholds need careful study with qualified guidance.",
-      links: [SG("zakat"), SN("zakat"), L("Charter limits", "/campus/charter/")] },
-    { id: "sadaqah", keys: [/sadaqah/i, /ṣadaqah/i, /voluntary charity/i],
-      short: "Ṣadaqah is voluntary giving for Allāh’s sake. It is broad and beautiful — sincerity matters more than display.",
-      links: [SG("sadaqah"), SN("sadaqah"), Q("2/271", "Qurʾān 2:271")] },
-    { id: "sawm", keys: [/\bsawm\b/i, /fasting/i, /ramadan/i, /ramaḍān/i, /\broza\b/i],
-      short: "Fasting in Ramaḍān is a pillar. Learn what invalidates the fast and the adab of the month with reliable local instruction.",
-      links: [SG("fasting"), SN("fasting"), Q("2/183", "Qurʾān 2:183")] },
-    { id: "hajj", keys: [/\bhajj\b/i, /umrah/i, /ʿumrah/i, /pilgrimage/i],
-      short: "Ḥajj is pilgrimage with defined rites and timings. Study early with qualified teachers; do not rely on a short app summary alone.",
-      links: [SG("hajj"), SN("hajj"), Q("3/97", "Qurʾān 3:97")] },
-    { id: "quran", keys: [/quran/i, /qur['']?an/i, /qurʾān/i, /mushaf/i, /muṣḥaf/i],
-      short: "Sit with one āyah at a time. Recite with adab; seek understanding with humility and trusted tafsīr teachers.",
-      links: [L("Qurʾān.com", "https://quran.com"), SG("quran"), L("Tajweed lab", "/craft/tajweed/")] },
-    { id: "tajweed", keys: [/tajweed/i, /tajwīd/i, /makharij/i, /makhārij/i, /recit/i],
-      short: "Tajweed is giving each letter its due. Practice slowly; a listening teacher is better than silent self-correction alone.",
-      links: [L("Tajweed lab", "/craft/tajweed/"), SG("tajweed"), L("Qurʾān.com", "https://quran.com")] },
-    { id: "sunnah", keys: [/sunnah/i, /hadith/i, /ḥadīth/i, /prophetic/i],
-      short: "The Sunnah explains and embodies the Qurʾān. Read with authentic collections and teachers who care about chains and adab.",
-      links: [L("Sunnah.com", "https://sunnah.com"), SG("sunnah"), SN("sunnah")] },
-    { id: "adab", keys: [/\badab\b/i, /manners/i, /character/i, /akhlaq/i, /akhlāq/i],
-      short: "Adab is the vessel of knowledge. Good character is part of faith — study it as seriously as rulings.",
-      links: [SG("adab"), SN("character"), L("Transmission desk", "/campus/desk/transmission/")] },
-    { id: "tawba", keys: [/tawba/i, /tawbah/i, /repent/i, /istighfar/i, /istighfār/i],
-      short: "Tawbah is returning to Allāh: leave the sin, regret it, resolve not to return, and restore rights if owed.",
-      links: [Q("66/8", "Qurʾān 66:8"), SG("repentance"), SN("tawbah")] },
-    { id: "dua", keys: [/\bdua\b/i, /duʿā/i, /supplicat/i, /dhikr/i, /\bzikr\b/i],
-      short: "Duʿāʾ is worship. Ask Allāh with humility; combine it with lawful means and patience.",
-      links: [SG("dua"), SN("dua"), Q("2/186", "Qurʾān 2:186")] },
-    { id: "halal", keys: [/halal/i, /ḥalāl/i, /haram/i, /ḥarām/i, /forbidden/i, /permissib/i],
-      short: "Ḥalāl and ḥarām are boundaries set by Allāh. For specific food, finance, or medical cases, ask a qualified local scholar — Campus will not issue a ruling.",
-      links: [SG("halal"), SG("haram"), L("Charter limits", "/campus/charter/")] },
-    { id: "nikah", keys: [/nikah/i, /nikāḥ/i, /marriage/i, /walima/i, /walīmah/i],
-      short: "Marriage in Islam has conditions, rights, and adab. For personal cases, consult a qualified local scholar and follow the law of your land.",
-      links: [SG("marriage"), SN("nikah"), L("Charter limits", "/campus/charter/")] },
-    { id: "divorce", keys: [/divorce/i, /talaq/i, /ṭalāq/i, /khula/i, /khulʿ/i],
-      short: "Divorce rulings are sensitive and case-specific. Do not treat any app text as a decree — seek qualified local counsel immediately.",
-      links: [SG("divorce"), L("Charter limits", "/campus/charter/")] },
-    { id: "wasiyyah", keys: [/wasiy/i, /waṣiy/i, /inherit/i, /faraid/i, /farā/i, /mirath/i, /mīrāth/i, /\bwill\b/i, /estate/i],
-      short: "Wasiyyah and farāʾiḍ are trusts with precise rules. Campus only points to educational Amānah tools — not a will, not a fatwa, not legal advice.",
-      links: [L("Amānah · Wasiyyah", "/amana/wasiyyah/"), L("Campus Mīrāth", "/campus/mirath/"), L("Charter", "/campus/charter/")] },
-    { id: "dayn", keys: [/\bdayn\b/i, /\bdebt\b/i, /loan/i, /qard/i, /qarḍ/i],
-      short: "Debts are serious rights of others. Document honestly and seek lawful resolution; for contracts, use qualified counsel.",
-      links: [SG("debt"), L("Amānah", "/amana/"), L("Charter", "/campus/charter/")] },
-    { id: "riba", keys: [/\briba\b/i, /usury/i, /interest/i],
-      short: "Ribā is prohibited. Modern finance is complex — for personal banking or business structures, ask a scholar who understands both fiqh and your local system.",
-      links: [SG("riba"), Q("2/275", "Qurʾān 2:275"), L("Charter", "/campus/charter/")] },
-    { id: "hijab", keys: [/hijab/i, /ḥijāb/i, /modesty/i, /awrah/i, /ʿawrah/i],
-      short: "Modesty is a Qurʾānic value for believers. Details of dress and conduct are best learned with teachers who know your context.",
-      links: [SG("hijab"), SG("modesty"), Q("24/31", "Qurʾān 24:31")] },
-    { id: "death", keys: [/janazah/i, /janāzah/i, /funeral/i, /burial/i, /ghusl mayyit/i],
-      short: "Funeral rites are communal trusts. Learn the outline, then follow local scholars and those handling the burial.",
-      links: [SG("janazah"), SN("funeral"), L("Charter", "/campus/charter/")] },
-    { id: "jannah", keys: [/jannah/i, /paradise/i, /akhirah/i, /ākhirah/i, /hereafter/i, /hell/i, /jahannam/i],
-      short: "Belief in the Hereafter shapes how we live today. Read the Qurʾān’s descriptions with hope, fear, and sincere deeds.",
-      links: [Q("2/25", "Qurʾān 2:25"), SG("hereafter"), SN("jannah")] }
+    {
+      id: 'iman',
+      keys: [/\biman\b/i, /īmān/i, /\bfaith\b/i, /belie[fv]/i],
+      short: 'Īmān is belief in the heart, speech on the tongue, and action on the limbs. It increases with obedience and decreases with sin.',
+      hadith: 'Hadith: «Faith has over seventy branches…» — Ṣaḥīḥ Muslim 35; also the Ḥadīth of Jibrīl defining īmān — Ṣaḥīḥ Muslim 8.',
+      links: [
+        { label: 'Qurʾān 2:285', href: 'https://quran.com/2/285' },
+        { label: 'Muslim 35 · full', href: 'https://sunnah.com/muslim:35' },
+        { label: 'Muslim 8 · Jibrīl · full', href: 'https://sunnah.com/muslim:8' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=iman' },
+      ]
+    },
+    {
+      id: 'tawhid',
+      keys: [/tawh[iī]d/i, /tawḥīd/i, /oneness/i, /\bshirk\b/i],
+      short: 'Tawḥīd is single-hearted worship of Allāh alone. Protect it by knowing what harms it, with a teacher.',
+      hadith: 'Hadith: «Whoever dies while not associating anything with Allāh will enter Paradise» — Ṣaḥīḥ al-Bukhārī 1294 / Muslim 93 (meaning as transmitted).',
+      links: [
+        { label: 'Sūrat al-Ikhlāṣ', href: 'https://quran.com/112' },
+        { label: 'Bukhārī · related · full', href: 'https://sunnah.com/bukhari:1294' },
+        { label: 'Muslim 93 · full', href: 'https://sunnah.com/muslim:93' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=tawhid' },
+      ]
+    },
+    {
+      id: 'islam',
+      keys: [/\bislam\b/i, /five pillars/i, /arkan/i],
+      short: 'Islām is built on five pillars: testimony, prayer, zakāh, fasting Ramaḍān, and ḥajj for those able.',
+      hadith: 'Hadith: «Islam is built upon five…» — Ṣaḥīḥ al-Bukhārī 8; Ṣaḥīḥ Muslim 16.',
+      links: [
+        { label: 'Bukhārī 8 · full', href: 'https://sunnah.com/bukhari:8' },
+        { label: 'Muslim 16 · full', href: 'https://sunnah.com/muslim:16' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=five+pillars' },
+      ]
+    },
+    {
+      id: 'ihsan',
+      keys: [/ihsan/i, /iḥsān/i, /excellence/i],
+      short: 'Iḥsān is to worship Allāh as though you see Him — and if you do not see Him, He sees you.',
+      hadith: 'Hadith: definition of iḥsān in the Ḥadīth of Jibrīl — Ṣaḥīḥ Muslim 8.',
+      links: [
+        { label: 'Muslim 8 · full', href: 'https://sunnah.com/muslim:8' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=ihsan' },
+      ]
+    },
+    {
+      id: 'prayer',
+      keys: [/salah/i, /ṣalāh/i, /salaat/i, /\bpray(?:er|ing|s)?\b/i, /namaz/i],
+      short: 'Ṣalāh is the pillar of practice after the testimony. Confirm form and conditions with a local teacher.',
+      hadith: 'Hadith: «The first of his deeds for which a servant will be called to account on the Day of Resurrection will be his prayer» — Jāmiʿ al-Tirmidhī 413 (graded ḥasan by many scholars).',
+      links: [
+        { label: 'Tirmidhī 413 · full', href: 'https://sunnah.com/tirmidhi:413' },
+        { label: 'Bukhārī 527 · full', href: 'https://sunnah.com/bukhari:527' },
+        { label: 'SeekersGuidance · prayer', href: 'https://seekersguidance.org/?s=prayer' },
+      ]
+    },
+    {
+      id: 'wudu',
+      keys: [/wudu/i, /wuḍū/i, /wudou/i, /ablution/i, /tahara/i, /ṭahāra/i],
+      short: 'Wuḍūʾ is purification before prayer. Learn the obligatory acts and what breaks it from a reliable teacher.',
+      hadith: 'Hadith: «Allāh does not accept prayer without purification» — Ṣaḥīḥ Muslim 224.',
+      links: [
+        { label: 'Muslim 224 · full', href: 'https://sunnah.com/muslim:224' },
+        { label: 'Bukhārī 135 · full', href: 'https://sunnah.com/bukhari:135' },
+        { label: 'SeekersGuidance · wudu', href: 'https://seekersguidance.org/?s=wudu' },
+      ]
+    },
+    {
+      id: 'ghusl',
+      keys: [/\bghusl\b/i, /janaba/i, /janāba/i, /major impurity/i],
+      short: 'Ghusl is the full ritual wash when required. Details matter — learn from a qualified local teacher.',
+      hadith: 'Hadith: descriptions of the Prophet’s ghusl — e.g. Ṣaḥīḥ al-Bukhārī 248; Ṣaḥīḥ Muslim 317.',
+      links: [
+        { label: 'Bukhārī 248 · full', href: 'https://sunnah.com/bukhari:248' },
+        { label: 'Muslim 317 · full', href: 'https://sunnah.com/muslim:317' },
+        { label: 'SeekersGuidance · ghusl', href: 'https://seekersguidance.org/?s=ghusl' },
+      ]
+    },
+    {
+      id: 'tayammum',
+      keys: [/tayammum/i, /dry ablution/i],
+      short: 'Tayammum is a concession when water cannot be used. Conditions are specific — confirm with a teacher.',
+      hadith: 'Hadith: tayammum granted as pure earth — Ṣaḥīḥ al-Bukhārī 334; Ṣaḥīḥ Muslim 368.',
+      links: [
+        { label: 'Bukhārī 334 · full', href: 'https://sunnah.com/bukhari:334' },
+        { label: 'Muslim 368 · full', href: 'https://sunnah.com/muslim:368' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=tayammum' },
+      ]
+    },
+    {
+      id: 'zakat',
+      keys: [/zakat/i, /zakāh/i, /zakaah/i],
+      short: 'Zakāh is an obligatory share of defined wealth for defined recipients. Thresholds need careful study.',
+      hadith: 'Hadith: zakāh listed among the five pillars — Ṣaḥīḥ al-Bukhārī 8; command to take ṣadaqah from their wealth — related in collections via Qurʾān 9:103 context.',
+      links: [
+        { label: 'Bukhārī 8 · full', href: 'https://sunnah.com/bukhari:8' },
+        { label: 'Qurʾān 9:60', href: 'https://quran.com/9/60' },
+        { label: 'SeekersGuidance · zakat', href: 'https://seekersguidance.org/?s=zakat' },
+      ]
+    },
+    {
+      id: 'sadaqah',
+      keys: [/sadaqah/i, /ṣadaqah/i, /voluntary charity/i],
+      short: 'Ṣadaqah is voluntary giving for Allāh’s sake; sincerity matters more than display.',
+      hadith: 'Hadith: «Charity extinguishes sin as water extinguishes fire» — Jāmiʿ al-Tirmidhī 2616 (check grading with a teacher).',
+      links: [
+        { label: 'Tirmidhī 2616 · full', href: 'https://sunnah.com/tirmidhi:2616' },
+        { label: 'Qurʾān 2:271', href: 'https://quran.com/2/271' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=sadaqah' },
+      ]
+    },
+    {
+      id: 'sawm',
+      keys: [/\bsawm\b/i, /fasting/i, /ramadan/i, /ramaḍān/i, /\broza\b/i],
+      short: 'Fasting in Ramaḍān is a pillar. Learn what invalidates the fast with reliable local instruction.',
+      hadith: 'Hadith: «Whoever fasts Ramaḍān out of faith and seeking reward, his past sins will be forgiven» — Ṣaḥīḥ al-Bukhārī 38.',
+      links: [
+        { label: 'Bukhārī 38 · full', href: 'https://sunnah.com/bukhari:38' },
+        { label: 'Qurʾān 2:183', href: 'https://quran.com/2/183' },
+        { label: 'SeekersGuidance · fasting', href: 'https://seekersguidance.org/?s=fasting' },
+      ]
+    },
+    {
+      id: 'hajj',
+      keys: [/\bhajj\b/i, /umrah/i, /ʿumrah/i, /pilgrimage/i],
+      short: 'Ḥajj has defined rites and timings. Study with qualified teachers; do not rely on a short summary alone.',
+      hadith: 'Hadith: «Ḥajj is ʿArafah» — Jāmiʿ al-Tirmidhī 889; pillars include ḥajj in Bukhārī 8.',
+      links: [
+        { label: 'Tirmidhī 889 · full', href: 'https://sunnah.com/tirmidhi:889' },
+        { label: 'Bukhārī 8 · full', href: 'https://sunnah.com/bukhari:8' },
+        { label: 'SeekersGuidance · hajj', href: 'https://seekersguidance.org/?s=hajj' },
+      ]
+    },
+    {
+      id: 'quran',
+      keys: [/quran/i, /qur['']?an/i, /qurʾān/i, /mushaf/i],
+      short: 'Sit with one āyah at a time. Recite with adab; seek understanding with trusted teachers.',
+      hadith: 'Hadith: «The best of you are those who learn the Qurʾān and teach it» — Ṣaḥīḥ al-Bukhārī 5027.',
+      links: [
+        { label: 'Bukhārī 5027 · full', href: 'https://sunnah.com/bukhari:5027' },
+        { label: 'Qurʾān.com', href: 'https://quran.com' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=quran' },
+      ]
+    },
+    {
+      id: 'tajweed',
+      keys: [/tajweed/i, /tajwīd/i, /makharij/i, /recit/i],
+      short: 'Tajweed is giving each letter its due. Practice slowly with a listening teacher when you can.',
+      hadith: 'Hadith: «Beautify the Qurʾān with your voices» — Sunan Abī Dāwūd 1468 (and parallel reports).',
+      links: [
+        { label: 'Abū Dāwūd 1468 · full', href: 'https://sunnah.com/abudawud:1468' },
+        { label: 'Bukhārī 5027 · full', href: 'https://sunnah.com/bukhari:5027' },
+        { label: 'Tajweed lab', href: '/craft/tajweed/' },
+      ]
+    },
+    {
+      id: 'sunnah',
+      keys: [/sunnah/i, /hadith/i, /ḥadīth/i, /prophetic/i],
+      short: 'The Sunnah explains and embodies the Qurʾān. Prefer authentic collections and teachers who care about chains.',
+      hadith: 'Hadith: «Whoever turns away from my Sunnah is not of me» — Ṣaḥīḥ al-Bukhārī 5063; Ṣaḥīḥ Muslim 1401 (context: marriage and balanced practice).',
+      links: [
+        { label: 'Bukhārī 5063 · full', href: 'https://sunnah.com/bukhari:5063' },
+        { label: 'Muslim 1401 · full', href: 'https://sunnah.com/muslim:1401' },
+        { label: 'Sunnah.com', href: 'https://sunnah.com' },
+      ]
+    },
+    {
+      id: 'adab',
+      keys: [/\badab\b/i, /manners/i, /character/i, /akhlaq/i, /akhlāq/i],
+      short: 'Adab is the vessel of knowledge. Good character is part of faith.',
+      hadith: 'Hadith: «I was sent to perfect good character» — Muwaṭṭaʾ Mālik 1614 (and widely cited parallels).',
+      links: [
+        { label: 'Related · character · full', href: 'https://sunnah.com/search?q=character' },
+        { label: 'Bukhārī 6035 · full', href: 'https://sunnah.com/bukhari:6035' },
+        { label: 'SeekersGuidance · adab', href: 'https://seekersguidance.org/?s=adab' },
+      ]
+    },
+    {
+      id: 'tawba',
+      keys: [/tawba/i, /tawbah/i, /repent/i, /istighfar/i],
+      short: 'Tawbah is leaving the sin, regret, resolve not to return, and restoring rights if owed.',
+      hadith: 'Hadith: «Allāh accepts the repentance of the servant so long as the death rattle has not reached his throat» — Jāmiʿ al-Tirmidhī 3537.',
+      links: [
+        { label: 'Tirmidhī 3537 · full', href: 'https://sunnah.com/tirmidhi:3537' },
+        { label: 'Qurʾān 66:8', href: 'https://quran.com/66/8' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=repentance' },
+      ]
+    },
+    {
+      id: 'dua',
+      keys: [/\bdua\b/i, /duʿā/i, /supplicat/i, /dhikr/i, /\bzikr\b/i],
+      short: 'Duʿāʾ is worship. Ask Allāh with humility; combine it with lawful means and patience.',
+      hadith: 'Hadith: «Duʿāʾ is worship» — Jāmiʿ al-Tirmidhī 3372; Abū Dāwūd 1479.',
+      links: [
+        { label: 'Tirmidhī 3372 · full', href: 'https://sunnah.com/tirmidhi:3372' },
+        { label: 'Abū Dāwūd 1479 · full', href: 'https://sunnah.com/abudawud:1479' },
+        { label: 'Qurʾān 2:186', href: 'https://quran.com/2/186' },
+      ]
+    },
+    {
+      id: 'halal',
+      keys: [/halal/i, /ḥalāl/i, /haram/i, /ḥarām/i, /forbidden/i],
+      short: 'Ḥalāl and ḥarām are boundaries set by Allāh. For specific cases, ask a qualified local scholar — Campus does not issue rulings.',
+      hadith: 'Hadith: «The ḥalāl is clear and the ḥarām is clear…» — Ṣaḥīḥ al-Bukhārī 52; Ṣaḥīḥ Muslim 1599.',
+      links: [
+        { label: 'Bukhārī 52 · full', href: 'https://sunnah.com/bukhari:52' },
+        { label: 'Muslim 1599 · full', href: 'https://sunnah.com/muslim:1599' },
+        { label: 'Charter limits', href: '/campus/charter/' },
+      ]
+    },
+    {
+      id: 'nikah',
+      keys: [/nikah/i, /nikāḥ/i, /marriage/i, /walima/i],
+      short: 'Marriage has conditions, rights, and adab. For personal cases, consult a qualified local scholar and follow the law of your land.',
+      hadith: 'Hadith: «O young people, whoever among you can marry, let him marry» — Ṣaḥīḥ al-Bukhārī 5065; Ṣaḥīḥ Muslim 1400.',
+      links: [
+        { label: 'Bukhārī 5065 · full', href: 'https://sunnah.com/bukhari:5065' },
+        { label: 'Muslim 1400 · full', href: 'https://sunnah.com/muslim:1400' },
+        { label: 'SeekersGuidance · marriage', href: 'https://seekersguidance.org/?s=marriage' },
+      ]
+    },
+    {
+      id: 'divorce',
+      keys: [/divorce/i, /talaq/i, /ṭalāq/i, /khula/i],
+      short: 'Divorce rulings are sensitive and case-specific. Do not treat any app text as a decree — seek qualified local counsel.',
+      hadith: 'Hadith: the Prophet ﷺ taught careful handling of divorce; details vary by school — study with a scholar (see collections under ṭalāq).',
+      links: [
+        { label: 'Sunnah.com · talaq · full', href: 'https://sunnah.com/search?q=talaq' },
+        { label: 'SeekersGuidance · divorce', href: 'https://seekersguidance.org/?s=divorce' },
+        { label: 'Charter limits', href: '/campus/charter/' },
+      ]
+    },
+    {
+      id: 'wasiyyah',
+      keys: [/wasiy/i, /waṣiy/i, /inherit/i, /faraid/i, /mirath/i, /\bwill\b/i],
+      short: 'Wasiyyah and farāʾiḍ are trusts with precise rules. Campus points only to educational tools — not a will or fatwa.',
+      hadith: 'Hadith: «It is not right for a Muslim who has something to bequeath to spend two nights without having his will written with him» — Ṣaḥīḥ al-Bukhārī 2738; Ṣaḥīḥ Muslim 1627.',
+      links: [
+        { label: 'Bukhārī 2738 · full', href: 'https://sunnah.com/bukhari:2738' },
+        { label: 'Muslim 1627 · full', href: 'https://sunnah.com/muslim:1627' },
+        { label: 'Amānah · Wasiyyah', href: '/amana/wasiyyah/' },
+      ]
+    },
+    {
+      id: 'dayn',
+      keys: [/\bdayn\b/i, /\bdebt\b/i, /loan/i, /qard/i],
+      short: 'Debts are serious rights of others. Document honestly; for contracts use qualified counsel.',
+      hadith: 'Hadith: the martyr is forgiven all except debt — Ṣaḥīḥ Muslim 1886 (among related reports).',
+      links: [
+        { label: 'Muslim 1886 · full', href: 'https://sunnah.com/muslim:1886' },
+        { label: 'SeekersGuidance · debt', href: 'https://seekersguidance.org/?s=debt' },
+        { label: 'Amānah', href: '/amana/' },
+      ]
+    },
+    {
+      id: 'riba',
+      keys: [/\briba\b/i, /usury/i, /interest/i],
+      short: 'Ribā is prohibited. Modern finance is complex — ask a scholar who understands fiqh and your local system.',
+      hadith: 'Hadith: the Prophet ﷺ cursed the consumer of ribā, its payer, its witnesses, and its scribe — Ṣaḥīḥ Muslim 1598.',
+      links: [
+        { label: 'Muslim 1598 · full', href: 'https://sunnah.com/muslim:1598' },
+        { label: 'Qurʾān 2:275', href: 'https://quran.com/2/275' },
+        { label: 'Charter limits', href: '/campus/charter/' },
+      ]
+    },
+    {
+      id: 'hijab',
+      keys: [/hijab/i, /ḥijāb/i, /modesty/i, /awrah/i],
+      short: 'Modesty is a Qurʾānic value. Details of dress and conduct are best learned with teachers who know your context.',
+      hadith: 'Hadith: modesty (ḥayāʾ) is part of faith — Ṣaḥīḥ al-Bukhārī 24; Ṣaḥīḥ Muslim 36.',
+      links: [
+        { label: 'Bukhārī 24 · full', href: 'https://sunnah.com/bukhari:24' },
+        { label: 'Muslim 36 · full', href: 'https://sunnah.com/muslim:36' },
+        { label: 'Qurʾān 24:31', href: 'https://quran.com/24/31' },
+      ]
+    },
+    {
+      id: 'death',
+      keys: [/janazah/i, /janāzah/i, /funeral/i, /burial/i],
+      short: 'Funeral rites are communal trusts. Learn the outline, then follow local scholars and those handling the burial.',
+      hadith: 'Hadith: «Promptly bury the deceased» — related in Ṣaḥīḥ al-Bukhārī 1315 (and parallels on haste in burial).',
+      links: [
+        { label: 'Bukhārī 1315 · full', href: 'https://sunnah.com/bukhari:1315' },
+        { label: 'SeekersGuidance · janazah', href: 'https://seekersguidance.org/?s=janazah' },
+      ]
+    },
+    {
+      id: 'jannah',
+      keys: [/jannah/i, /paradise/i, /akhirah/i, /ākhirah/i, /hereafter/i, /jahannam/i],
+      short: 'Belief in the Hereafter shapes how we live today. Read the Qurʾān with hope, fear, and sincere deeds.',
+      hadith: 'Hadith: «Paradise is surrounded by hardships and the Fire is surrounded by desires» — Ṣaḥīḥ Muslim 2822.',
+      links: [
+        { label: 'Muslim 2822 · full', href: 'https://sunnah.com/muslim:2822' },
+        { label: 'Qurʾān 2:25', href: 'https://quran.com/2/25' },
+        { label: 'SeekersGuidance', href: 'https://seekersguidance.org/?s=hereafter' },
+      ]
+    },
   ];
 
   function match(q) {
@@ -113,33 +314,34 @@
     }
     return null;
   }
-
   function answer(q) {
     var b = match(q);
-    if (b) return { id: b.id, short: b.short, links: b.links.slice(), source: "answer-engine" };
+    if (b) {
+      return {
+        id: b.id,
+        short: b.short,
+        hadith: b.hadith || "",
+        links: (b.links || []).slice(),
+        source: "answer-engine"
+      };
+    }
     var enc = encodeURIComponent(String(q || "").trim() || "islam");
     return {
       id: "general",
-      short:
-        "No built-in brief for that word yet. Use allowlisted full sources below, then verify with a local teacher. Campus does not issue fatwas.",
+      short: "No built-in brief for that word yet. Use allowlisted full sources, then verify with a local teacher.",
+      hadith: "Tip: search sunnah.com for the Arabic or English keyword with a teacher’s help.",
       links: [
-        L("Qurʾān.com search · full", "https://quran.com/search?q=" + enc),
-        L("Sunnah.com search · full", "https://sunnah.com/search?q=" + enc),
-        SG(String(q || "islam")),
-        L("Campus library", "/campus/library/")
+        { label: "Sunnah.com search · full", href: "https://sunnah.com/search?q=" + enc },
+        { label: "Qurʾān.com search · full", href: "https://quran.com/search?q=" + enc },
+        { label: "SeekersGuidance · full", href: "https://seekersguidance.org/?s=" + enc }
       ],
       source: "general"
     };
   }
-
   w.ClarityAnswerEngine = {
-    version: "U61",
+    version: "U62",
     answer: answer,
     match: match,
-    listIds: function () {
-      return BRIEFS.map(function (b) {
-        return b.id;
-      });
-    }
+    listIds: function () { return BRIEFS.map(function (b) { return b.id; }); }
   };
 })(window);

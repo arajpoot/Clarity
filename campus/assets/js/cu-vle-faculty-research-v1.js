@@ -1,4 +1,4 @@
-/*! cu-vle-faculty-research-v1 · U58
+/*! cu-vle-faculty-research-v1 · U62
  * Assigned guide UI — answers from ClarityAnswerEngine (not help-book objects).
  * Educational personas only — not a fatwa · not legal advice · not ijāzah
  */
@@ -7,7 +7,7 @@
   if (w.__CU_VLE_FACULTY_RESEARCH_V1__) return;
   w.__CU_VLE_FACULTY_RESEARCH_V1__ = true;
 
-  var ROSTER_URL = "/campus/assets/faculty/faculty-roster.json?v=20261121U58";
+  var ROSTER_URL = "/campus/assets/faculty/faculty-roster.json?v=20261121U62";
   var KEY_TEACHER = "cu_vle_assigned_teacher_v1";
 
   function path() {
@@ -86,7 +86,9 @@
       esc(teacher.title) +
       "</p><p>" +
       esc(short) +
-      "</p><p>" +
+      "</p>" +
+      (a.hadith ? "<p><strong>Hadith · citation</strong><br/>" + esc(a.hadith) + "</p>" : "") +
+      "<p>" +
       linksHtml +
       "</p></div>" +
       '<p class="cvf-stamp">Educational UX only — not a living mujtahid, not ijāzah, not a fatwa, not legal advice.</p>';
@@ -151,7 +153,7 @@
       // load answer engine if missing
       if (!w.ClarityAnswerEngine) {
         var s = d.createElement("script");
-        s.src = "/campus/assets/js/cu-vle-answer-engine-v1.js?v=20261121U58";
+        s.src = "/campus/assets/js/cu-vle-answer-engine-v1.js?v=20261121U62";
         s.onload = function () {
           mount(roster || {});
         };

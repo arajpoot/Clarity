@@ -1,4 +1,4 @@
-/*! cu-vle-guide-pill-v1 · U61 — Study with guide pill + modal (answer engine) */
+/*! cu-vle-guide-pill-v1 · U62 — Study with guide pill + modal (answer engine) */
 (function (w, d) {
   "use strict";
   if (w.__CU_VLE_GUIDE_PILL_V1__) return;
@@ -21,14 +21,14 @@
     if (d.querySelector('link[data-cu-guide-pill]')) return;
     var l = d.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/campus/assets/css/cu-vle-guide-pill-v1.css?v=20261121U61";
+    l.href = "/campus/assets/css/cu-vle-guide-pill-v1.css?v=20261121U62";
     l.setAttribute("data-cu-guide-pill", "1");
     d.head.appendChild(l);
   }
   function ensureEngine(cb) {
     if (w.ClarityAnswerEngine && w.ClarityAnswerEngine.version) return cb();
     var s = d.createElement("script");
-    s.src = "/campus/assets/js/cu-vle-answer-engine-v1.js?v=20261121U61";
+    s.src = "/campus/assets/js/cu-vle-answer-engine-v1.js?v=20261121U62";
     s.onload = cb;
     s.onerror = cb;
     d.head.appendChild(s);
@@ -41,11 +41,14 @@
             short: "Engine loading…",
             links: [{ label: "Qurʾān.com", href: "https://quran.com" }]
           };
-    var html = "<p>" + esc(a.short) + "</p><p>";
+    var html = "<p>" + esc(a.short) + "</p>";
+    if (a.hadith) html += '<p style="font-size:.84rem;opacity:.95;margin:.45rem 0"><strong>Hadith · citation</strong><br/>' + esc(a.hadith) + "</p>";
+    html += "<p>";
     (a.links || []).forEach(function (L) {
       html += '<a href="' + esc(L.href) + '" target="_blank" rel="noopener">' + esc(L.label) + "</a>";
     });
     html += "</p>";
+    html += '<p class="cu-gmod-stamp">Citations are study aids — confirm wording and grading in primary sources with a teacher.</p>';
     out.innerHTML = html;
   }
   function openModal() {
