@@ -1,0 +1,66 @@
+{
+  "version": "U55",
+  "disclaimer": "On-device learning router only — not a fatwa engine, not a living scholar, not a grade of īmān.",
+  "phases": {
+    "1": {
+      "id": "seeker",
+      "label": "Seeker · Foundations",
+      "desk": "/campus/desk/seeker/",
+      "intent": "Tawḥīd, sincerity, first modules",
+      "benches": [
+        {"id": "notes", "href": "/craft/notes/", "title": "Notes bench", "why": "Capture one sincere line from each module"},
+        {"id": "quiz", "href": "/craft/quiz/", "title": "Quiz bench", "why": "Soft recall — not a grade of īmān"},
+        {"id": "meme", "href": "/craft/meme/", "title": "Meme studio", "why": "Visual reminder with sourced text only"}
+      ]
+    },
+    "2": {
+      "id": "practice",
+      "label": "Practice · Prayer & purity maps",
+      "desk": "/campus/desk/practice/",
+      "intent": "Practice with a local teacher in mind",
+      "benches": [
+        {"id": "notes", "href": "/craft/notes/", "title": "Notes bench", "why": "Write one action you will try today"},
+        {"id": "quiz", "href": "/craft/quiz/", "title": "Quiz bench", "why": "Check maps — confirm with a teacher"},
+        {"id": "tajweed", "href": "/craft/tajweed/", "title": "Tajweed lab", "why": "Begin careful recitation practice"}
+      ]
+    },
+    "3": {
+      "id": "consistency",
+      "label": "Consistency · Adab & craft",
+      "desk": "/campus/desk/consistency/",
+      "intent": "Steady application",
+      "benches": [
+        {"id": "tajweed", "href": "/craft/tajweed/", "title": "Tajweed lab", "why": "One rule applied well"},
+        {"id": "calligraphy", "href": "/craft/calligraphy/", "title": "Calligraphy", "why": "Beauty with humility"},
+        {"id": "notes", "href": "/craft/notes/", "title": "Notes bench", "why": "Weekly review honesty"}
+      ]
+    },
+    "4": {
+      "id": "transmission",
+      "label": "Transmission · Adab of sharing",
+      "desk": "/campus/desk/transmission/",
+      "intent": "Share only what you can source",
+      "benches": [
+        {"id": "meme", "href": "/craft/meme/", "title": "Meme studio", "why": "Sourced reminders — adab before volume"},
+        {"id": "notes", "href": "/craft/notes/", "title": "Notes bench", "why": "Draft with sources pinned"},
+        {"id": "quiz", "href": "/craft/quiz/", "title": "Quiz bench", "why": "Self-check before sharing"}
+      ]
+    }
+  },
+  "topics": {
+    "tajweed": ["tajweed", "recit", "makharij", "ghunnah"],
+    "calligraphy": ["calligraph", "khatt", "write arabic"],
+    "notes": ["note", "journal", "write"],
+    "quiz": ["quiz", "test", "recall"],
+    "meme": ["meme", "poster", "visual"],
+    "wasiyyah": ["wasiy", "inherit", "faraid", "mirath"]
+  },
+  "topicBenches": {
+    "tajweed": {"href": "/craft/tajweed/", "title": "Tajweed lab"},
+    "calligraphy": {"href": "/craft/calligraphy/", "title": "Calligraphy"},
+    "notes": {"href": "/craft/notes/", "title": "Notes bench"},
+    "quiz": {"href": "/craft/quiz/", "title": "Quiz bench"},
+    "meme": {"href": "/craft/meme/", "title": "Meme studio"},
+    "wasiyyah": {"href": "/amana/wasiyyah/", "title": "Amānah · Wasiyyah (study only)"}
+  }
+}
