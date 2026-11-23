@@ -1,13 +1,7 @@
-# CM2MEME · Rich isolated Companion Meme Studio
+# CM3RICH · Archive3-class isolated Meme Studio
 
-**Better than CM1:** uses existing `redirects/meme` room (owner-v1, scenery chips, scale, X/FB desks) not the thin CM1 boot.
+1. Upload entire `companion/meme/` to `/companion/meme/`
+2. Upload `companion/redirects/meme/index.html` (redirect)
+3. Optional hub `companion/index.html`
 
-## Upload
-1. `companion/meme/` entire tree → `/companion/meme/`
-2. `companion/redirects/meme/index.html` → redirect to canonical
-3. Optional `companion/index.html` hub dock
-
-## Smoke
-- `/companion/meme/` paints scenery + text
-- `/companion/redirects/meme/` → `/companion/meme/`
-- Hub has no companion-meme-studio CSS on door
+Smoke: scenery chips · online bg status · paint · X/FB desks · fallback if fetch fails

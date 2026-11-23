@@ -1,1 +1,1 @@
-CM2MEME — Canonical /companion/meme/ from richer redirects/meme isolation architecture.
+CM3RICH — Banner-like isolation with modules/archive3 enrichment (online bg, solid-v6, bundle).
