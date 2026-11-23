@@ -7,7 +7,7 @@
     if (d.querySelector('link[data-cm-meme-portal]')) return;
     var l = d.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/companion/assets/css/companion-meme-portal-v1.css?v=20261122CM4";
+    l.href = "/companion/assets/css/companion-meme-portal-v1.css?v=20261122CM5";
     l.setAttribute("data-cm-meme-portal", "1");
     d.head.appendChild(l);
   }
