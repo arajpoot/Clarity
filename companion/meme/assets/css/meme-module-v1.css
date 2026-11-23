@@ -64,9 +64,4 @@ button.chip.primary { background: rgba(212,180,90,.22); border-color: rgba(212,1
 .sync-note { font-size: .7rem; color: rgba(243,239,230,.65); margin: .25rem 0 0; }
 footer.edu { margin-top: 1.25rem; }
 
-
-.desk-preview, .desk-preview-canvas {
-  width: 100% !important; height: auto !important; display: block !important;
-  border-radius: 12px; border: 1px solid rgba(201,162,39,.4); background:#0a1218;
-  max-height: 240px;
-}
+.desk-preview,.desk-preview-canvas{width:100%!important;display:block!important;border-radius:12px;max-height:240px}
