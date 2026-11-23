@@ -177,8 +177,45 @@
     updateDeskPreviews();
   }
 
+  function ensureDeskCanvas(imgEl) {
+    if (!imgEl || !imgEl.parentNode) return null;
+    var c = imgEl.previousElementSibling;
+    if (c && c.getAttribute("data-desk-canvas") === "1") return c;
+    c = d.createElement("canvas");
+    c.setAttribute("data-desk-canvas", "1");
+    c.className = "desk-preview desk-preview-canvas";
+    c.setAttribute("aria-hidden", "true");
+    imgEl.style.display = "none";
+    imgEl.parentNode.insertBefore(c, imgEl);
+    return c;
+  }
   function updateDeskPreviews() {
-    paint();
+    /* Prefer live redraw (works even when toDataURL is tainted by online scenery) */
+    try {
+      ["desk-x-preview", "desk-fb-preview"].forEach(function (id) {
+        var img = d.getElementById(id);
+        var c = ensureDeskCanvas(img);
+        if (!c) return;
+        var w = Math.max(280, Math.floor((img.parentElement && img.parentElement.clientWidth) || 320));
+        var s = S();
+        var h = Math.floor(w * ratioVal(s.ratio || "facebook"));
+        if (h > 220) {
+          h = 220;
+          w = Math.max(200, Math.floor(h / ratioVal(s.ratio || "facebook")));
+        }
+        c.width = w * 2;
+        c.height = h * 2;
+        c.style.width = "100%";
+        c.style.height = "auto";
+        c.style.display = "block";
+        var ctx = c.getContext("2d");
+        if (!ctx) return;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(2, 2);
+        paintToContext(ctx, w, h);
+      });
+    } catch (e1) {}
+    /* Also try PNG mirror when canvas is clean */
     try {
       var canvas = d.getElementById("meme-canvas");
       if (!canvas) return;
@@ -187,10 +224,10 @@
         var img = d.getElementById(id);
         if (img) {
           img.src = url;
-          img.style.display = "block";
+          /* keep canvas preview visible as primary */
         }
       });
-    } catch (e) {}
+    } catch (e2) {}
   }
 
   function normRef(r) {
@@ -268,20 +305,87 @@
     if (tmr) clearTimeout(tmr);
     tmr = setTimeout(function () {
       paint();
-      // keep desk previews in sync after paint
       try {
-        var canvas = d.getElementById("meme-canvas");
-        if (!canvas) return;
-        var url = canvas.toDataURL("image/png");
-        ["desk-x-preview", "desk-fb-preview"].forEach(function (id) {
-          var img = d.getElementById(id);
-          if (img) {
-            img.src = url;
-            img.style.display = "block";
-          }
-        });
+        updateDeskPreviews();
       } catch (e) {}
     }, 40);
+  }
+
+
+  function paintToContext(ctx, W, H) {
+    if (!ctx || !W || !H) return;
+    var s = syncFromFields();
+    var ref = normRef(s.ref);
+    var bg = s.bgImage || s.img;
+    if (bg && bg.complete && bg.naturalWidth) {
+      try {
+        var iw = bg.naturalWidth, ih = bg.naturalHeight;
+        var sc = Math.max(W / iw, H / ih);
+        ctx.drawImage(bg, (W - iw * sc) / 2, (H - ih * sc) / 2, iw * sc, ih * sc);
+        ctx.fillStyle = "rgba(0,0,0,0.3)";
+        ctx.fillRect(0, 0, W, H);
+      } catch (e) {
+        bg = null;
+      }
+    }
+    if (!bg || !bg.naturalWidth) {
+      var g = ctx.createLinearGradient(0, 0, 0, H);
+      g.addColorStop(0, s.blankColor1 || "#0b1220");
+      g.addColorStop(1, s.blankColor2 || "#152038");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    }
+    var fm = drawFrame(ctx, W, H);
+    var inset = fm.inset, stripH = fm.stripH;
+    var safeTop = inset * 1.3;
+    var safeBot = H - stripH - inset * 0.9;
+    var safeH = Math.max(40, safeBot - safeTop);
+    var place = (typeof s.place === "number" ? s.place : 50) / 100;
+    var midY = safeTop + safeH * place;
+    var ar = s.top || "";
+    var en = s.mid || "";
+    var st = (s.scaleTop || 100) / 100;
+    var sm = (s.scaleMid || 100) / 100;
+    var maxW = W - inset * 2.2;
+    if (ar) {
+      ctx.font = "bold " + Math.floor(22 * st) + "px " + fontStack(s.font, true);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      var lines = wrap(ctx, ar, maxW);
+      var lh = Math.floor(26 * st);
+      var y0 = midY - ((lines.length - 1) * lh) / 2 - (en ? lh * 0.8 : 0);
+      lines.forEach(function (ln, i) {
+        var y = y0 + i * lh;
+        if (s.style === "outline" || s.style === "soft") {
+          ctx.lineWidth = s.style === "soft" ? 2 : 3;
+          ctx.strokeStyle = "rgba(0,0,0,0.65)";
+          ctx.strokeText(ln, W / 2, y);
+        }
+        ctx.fillStyle = s.style === "fill" ? "#f5e6b8" : "#f8f4ea";
+        ctx.fillText(ln, W / 2, y);
+      });
+      midY = y0 + lines.length * lh + 8;
+    }
+    if (en) {
+      ctx.font = Math.floor(14 * sm) + "px Quicksand, system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
+      wrap(ctx, en, maxW).forEach(function (ln, i) {
+        var y = midY + i * Math.floor(18 * sm);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(0,0,0,0.55)";
+        ctx.strokeText(ln, W / 2, y);
+        ctx.fillStyle = "#f0ebe3";
+        ctx.fillText(ln, W / 2, y);
+      });
+    }
+    if (ref) {
+      ctx.font = "11px Quicksand, system-ui, sans-serif";
+      ctx.fillStyle = "rgba(240,215,140,0.95)";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "bottom";
+      ctx.fillText(ref, W / 2, H - stripH - 6);
+    }
   }
 
   function paint() {
@@ -543,7 +647,8 @@
       ["desk-fb-copy-text", function () { copyText("fb"); }],
       ["desk-x-open", openX],
       ["desk-fb-open", openFb],
-      ["desk-refresh", function () { refreshDeskCaptions(); schedulePaint(); }]
+      ["desk-refresh", function () { refreshDeskCaptions(); schedulePaint(); }],
+      ["meme-sync", function () { refreshDeskCaptions(); schedulePaint(); updateDeskPreviews(); }]
     ];
     map.forEach(function (pair) {
       var el = d.getElementById(pair[0]);
@@ -560,4 +665,7 @@
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
   w.addEventListener("resize", schedulePaint);
+  d.addEventListener("meme-bg-ready", function () { schedulePaint(); });
+  w.ClarityMemeOwnerPaint = schedulePaint;
+  w.ClarityMemeSyncDesks = updateDeskPreviews;
 })(window, document);
