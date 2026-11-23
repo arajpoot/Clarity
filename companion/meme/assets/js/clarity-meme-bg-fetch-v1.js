@@ -51,11 +51,18 @@
 
   function paintAll() {
     try {
+      if (typeof g.ClarityMemeRepaint === "function") g.ClarityMemeRepaint();
+    } catch (e0) {}
+    try {
+      if (typeof g.ClarityMemeOwnerPaint === "function") g.ClarityMemeOwnerPaint();
+    } catch (e0b) {}
+    try {
       if (g.ClarityMemeStudio && typeof g.ClarityMemeStudio.paintLocal === "function")
         g.ClarityMemeStudio.paintLocal();
     } catch (e) {}
     try { if (typeof g.paintMeme === "function") g.paintMeme(); } catch (e2) {}
     try { if (typeof g.memeDraw === "function") g.memeDraw(); } catch (e3) {}
+    try { document.dispatchEvent(new CustomEvent("meme-bg-ready")); } catch (e4) {}
   }
 
   function drawSafeFill(kind) {

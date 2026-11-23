@@ -457,6 +457,8 @@
   }
 
   w.ClarityMemeRepaint = schedulePaint;
+  w.paintMeme = schedulePaint;
+  w.memeDraw = schedulePaint;
   w.ClarityMemeOwnerPaint = schedulePaint;
   w.ClarityMemeSyncDesks = updateDeskPreviews;
 
