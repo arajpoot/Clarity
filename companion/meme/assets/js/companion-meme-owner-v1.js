@@ -68,8 +68,34 @@
       schedulePaint();
       return;
     }
+    /* CM4: prefer archive3 online pools (Commons / Flickr / Picsum) */
+    var onlineKinds = { nature:1, flowers:1, holy:1, spirit:1, night:1, water:1, flickr:1, free:1, decor:1, pattern:1, geometry:1 };
+    if (onlineKinds[kind] && typeof w.memeFetchBg === "function") {
+      status("Online scenery · " + kind + "…");
+      try {
+        w.memeFetchBg(kind === "geometry" ? "pattern" : kind);
+      } catch (e) {}
+      /* still cycle local SCENES as parallel fallback after delay if no img */
+      setTimeout(function () {
+        if (S().img || S().bgImage) {
+          schedulePaint();
+          return;
+        }
+        loadSceneLocal(kind);
+      }, 2800);
+      return;
+    }
+    loadSceneLocal(kind);
+  }
+  function loadSceneLocal(kind) {
+    kind = String(kind || "nature").toLowerCase();
     if (!SCENES[kind]) kind = "nature";
-    var list = SCENES[kind];
+    var list = SCENES[kind] || SCENES.nature || [];
+    if (!list.length) {
+      status("No local scene");
+      schedulePaint();
+      return;
+    }
     if (sidx[kind] == null) sidx[kind] = 0;
     var url = list[sidx[kind] % list.length];
     sidx[kind]++;
@@ -82,12 +108,12 @@
       bgLock = false;
       S().img = img;
       S().bgImage = img;
-      status("");
+      status("Background ready");
       schedulePaint();
     };
     img.onerror = function () {
       bgLock = false;
-      status("Scene unavailable");
+      status("Scene unavailable · try another");
       schedulePaint();
     };
     img.src = url;
