@@ -1,59 +1,52 @@
-/*! companion-meme-portal-v1 · sleek CTA to isolated /companion/meme/ */
+/*! companion-meme-portal-v1 · CM9 single pill — never double */
 (function (w, d) {
   "use strict";
-  if (w.__COMPANION_MEME_PORTAL_V1__) return;
-  w.__COMPANION_MEME_PORTAL_V1__ = true;
+  if (w.__COMPANION_MEME_PORTAL_CM9__) return;
+  w.__COMPANION_MEME_PORTAL_CM9__ = true;
+
   function ensureCss() {
-    if (d.querySelector('link[data-cm-meme-portal]')) return;
+    if (d.querySelector("link[data-cm-meme-portal]")) return;
     var l = d.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/companion/assets/css/companion-meme-portal-v1.css?v=20261122CM7";
+    l.href = "/companion/assets/css/companion-meme-portal-v1.css?v=20261122CM9";
     l.setAttribute("data-cm-meme-portal", "1");
     d.head.appendChild(l);
   }
-  function portalHtml() {
-    return (
-      '<section class="cm-meme-portal" id="cm-meme-portal">' +
-      '<p class="kicker">Companion · isolated atelier</p>' +
-      "<h2>Meme Art Studio</h2>" +
-      "<p>Scenery · verse layers · X &amp; Facebook desks — in its own room (banner pattern).</p>" +
-      '<a class="cta" href="/companion/meme/">Open Meme Art Studio →</a>' +
-      '<div class="sub">' +
-      '<a href="/companion/meme/">Canvas &amp; packs</a>' +
-      '<a href="/craft/meme/">Craft copy</a>' +
-      "</div>" +
-      '<p class="stamp">Educational only — not a fatwa · scenery preferred · export on this device</p>' +
-      "</section>"
-    );
+
+  function dedupe() {
+    var all = d.querySelectorAll("#cm-meme-portal, .cm-meme-portal");
+    if (all.length <= 1) return;
+    for (var i = 1; i < all.length; i++) {
+      try {
+        all[i].parentNode.removeChild(all[i]);
+      } catch (e) {}
+    }
   }
-  function soften(root) {
-    var h2 = (root || d).querySelector("#r8-meme, h2#r8-meme");
-    if (!h2) return;
-    var block = h2.closest("section, article, .cs-plaque") || h2.parentElement;
-    if (!block) return;
-    var ul = block.querySelector("ul");
-    if (ul) ul.classList.add("cm-meme-noise-hide");
-    var lead = block.querySelector("p.lead");
-    if (lead) lead.classList.add("cm-meme-noise-hide");
-  }
+
   function mount() {
     ensureCss();
     d.documentElement.setAttribute("data-meme-portal", "1");
+    dedupe();
     if (d.getElementById("cm-meme-portal")) {
-      soften(d);
-      return;
+      dedupe();
+      return; /* already in HTML — do not inject second */
     }
-    var host = d.getElementById("r8-meme") || d.querySelector("h2#r8-meme") || d.getElementById("cs-mount");
+    /* only inject if truly missing */
+    var host = d.getElementById("cs-mount") || d.querySelector("main");
+    if (!host) return;
     var wrap = d.createElement("div");
-    wrap.innerHTML = portalHtml();
-    var node = wrap.firstChild;
-    if (host && host.parentNode) {
-      if (host.id === "r8-meme" || (host.tagName || "").toLowerCase() === "h2")
-        host.parentNode.insertBefore(node, host);
-      else host.insertBefore(node, host.firstChild);
-    } else (d.querySelector("main") || d.body).appendChild(node);
-    soften(d);
+    wrap.innerHTML =
+      '<section class="cm-meme-portal" id="cm-meme-portal" aria-label="Meme Art Studio">' +
+      '<p class="kicker">Reminder · isolated atelier</p>' +
+      "<h2>Meme Art Studio</h2>" +
+      "<p>Paint a short reminder on scenery — open the isolated room.</p>" +
+      '<a class="cta" href="/companion/meme/">Open Meme Art Studio →</a>' +
+      '<div class="sub"><a href="/companion/meme/">Scenery · canvas</a><a href="/craft/meme/">Craft copy</a></div>' +
+      '<p class="stamp">Educational only — not a fatwa</p></section>';
+    host.insertBefore(wrap.firstChild, host.firstChild);
+    dedupe();
   }
+
   function boot() {
     try {
       mount();
@@ -61,11 +54,14 @@
   }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  setTimeout(boot, 400);
-  setTimeout(boot, 1200);
+  setTimeout(boot, 300);
+  setTimeout(boot, 1000);
   var m = d.getElementById("cs-mount");
   if (m)
     new MutationObserver(function () {
-      setTimeout(boot, 80);
+      setTimeout(function () {
+        dedupe();
+        mount();
+      }, 50);
     }).observe(m, { childList: true, subtree: true });
 })(window, document);
