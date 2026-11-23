@@ -1,1 +1,1 @@
-CM3RICH — Banner-like isolation with modules/archive3 enrichment (online bg, solid-v6, bundle).
+CM4UX — Soft Companion access portal + archive3 online scenery wired into isolated meme room.

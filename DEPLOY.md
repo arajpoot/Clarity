@@ -1,7 +1,8 @@
-# CM3RICH · Archive3-class isolated Meme Studio
+# CM4UX · Soft access + online scenery
 
-1. Upload entire `companion/meme/` to `/companion/meme/`
-2. Upload `companion/redirects/meme/index.html` (redirect)
-3. Optional hub `companion/index.html`
+1. Upload `companion/meme/**` (owner patch + online-bg + chips + bridge)
+2. Upload `companion/assets/js/companion-meme-portal-v1.js` + css
+3. Upload `companion/tabs/action/index.html` + optional hub index
+4. Hard refresh Action tab + `/companion/meme/`
 
-Smoke: scenery chips · online bg status · paint · X/FB desks · fallback if fetch fails
+Smoke: sleek “Open Meme Art Studio” portal · Geometry/Decor/Online pool chips · Next online cycles fetch
