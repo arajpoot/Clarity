@@ -170,3 +170,69 @@ body[data-active-tab="action"] #cs-mount .cs-tab-hero { border-color: rgba(120,1
   padding: 0.85rem 1rem;
   margin: 0.55rem 0;
 }
+
+/* P1D — mobile rail clearance + desktop path symmetry */
+.cs-door, .cs-door.cs-door-glory {
+  padding-bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px)) !important;
+  padding-top: 0.55rem !important;
+  margin: 0 !important;
+}
+/* Clear content so rail does not cover last plaque */
+#cs-mount {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+body {
+  padding-bottom: 0 !important;
+}
+@media (max-width: 720px) {
+  .cs-door .cs-door-btn {
+    min-height: 3.35rem !important;
+    border-radius: 16px !important;
+  }
+  #cs-mount {
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* Path grid — desktop 4 equal tiles, mobile 1 col */
+.cs-path-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+@media (min-width: 900px) {
+  .cs-path-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+  }
+  .cs-path-tile {
+    min-height: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+  .cs-path-tags { margin-top: auto; }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .cs-path-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Adhkār strip — visible bar above door rail */
+.cs-tab-adhkar {
+  position: sticky;
+  bottom: calc(4.1rem + env(safe-area-inset-bottom, 0px));
+  z-index: 39;
+  margin: 0.35rem 0.5rem !important;
+  display: block !important;
+}
+.cs-tab-adhkar[hidden] {
+  display: none !important;
+}
+.cs-tab-adhkar.is-on {
+  display: block !important;
+}

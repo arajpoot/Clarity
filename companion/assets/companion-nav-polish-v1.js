@@ -38,9 +38,29 @@
     }
   };
 
+  
+  function ensureAdhkarDom() {
+    var root = d.getElementById("cs-tab-adhkar");
+    if (root) return root;
+    root = d.createElement("div");
+    root.id = "cs-tab-adhkar";
+    root.className = "cs-tab-adhkar is-on";
+    root.setAttribute("role", "status");
+    root.setAttribute("aria-live", "polite");
+    root.innerHTML =
+      '<p class="cs-tab-adhkar-kicker" id="cs-tab-adhkar-kicker">Adhkār · this door</p>' +
+      '<p class="cs-tab-adhkar-ar" id="cs-tab-adhkar-ar" dir="rtl" lang="ar"></p>' +
+      '<p class="cs-tab-adhkar-en" id="cs-tab-adhkar-en"></p>' +
+      '<p class="cs-tab-adhkar-ref" id="cs-tab-adhkar-ref"></p>';
+    var door = d.getElementById("clarity-door-rail") || d.querySelector(".cs-door");
+    if (door && door.parentNode) door.parentNode.insertBefore(root, door);
+    else d.body.appendChild(root);
+    return root;
+  }
+
   function setAdhkar(tab) {
     var pack = ADHKAR[tab] || ADHKAR.reminder;
-    var root = d.getElementById("cs-tab-adhkar");
+    var root = ensureAdhkarDom();
     if (!root) return;
     var ar = d.getElementById("cs-tab-adhkar-ar");
     var en = d.getElementById("cs-tab-adhkar-en");
@@ -51,6 +71,9 @@
     if (ref) ref.textContent = pack.ref;
     if (kick) kick.textContent = "Adhkār · " + tab;
     root.hidden = false;
+    root.removeAttribute("hidden");
+    root.classList.add("is-on");
+    root.style.removeProperty("display");
   }
 
   function setActive(tab) {
@@ -74,6 +97,7 @@
   }
 
   function boot() {
+    ensureAdhkarDom();
     setActive(currentTab());
     d.addEventListener(
       "click",
