@@ -1,0 +1,73 @@
+/*! cs-tab-theme-v1 · CM13b — pill-matched outlines + calm depth */
+:root {
+  --tab-reminder: #1e7d5e;
+  --tab-reality: #c9a227;
+  --tab-reflection: #3d7ea6;
+  --tab-action: #3b6fd9;
+  --tab-notes: #8b9aab;
+  --tab-about: #5c7a8c;
+  --tab-accent: var(--tab-reminder);
+  --tab-accent-soft: rgba(30, 125, 94, 0.45);
+}
+
+body[data-cs-tab="reminder"] { --tab-accent: var(--tab-reminder); --tab-accent-soft: rgba(30, 125, 94, 0.42); }
+body[data-cs-tab="reality"] { --tab-accent: var(--tab-reality); --tab-accent-soft: rgba(201, 162, 39, 0.45); }
+body[data-cs-tab="reflection"] { --tab-accent: var(--tab-reflection); --tab-accent-soft: rgba(61, 126, 166, 0.45); }
+body[data-cs-tab="action"] { --tab-accent: var(--tab-action); --tab-accent-soft: rgba(59, 111, 217, 0.48); }
+body[data-cs-tab="notes"] { --tab-accent: var(--tab-notes); --tab-accent-soft: rgba(139, 154, 171, 0.45); }
+body[data-cs-tab="about"] { --tab-accent: var(--tab-about); --tab-accent-soft: rgba(92, 122, 140, 0.45); }
+
+/* Plaques / cards follow active tab */
+body[data-cs-tab] .cs-plaque,
+body[data-cs-tab] .card,
+body[data-cs-tab] [data-rrra].card,
+body[data-cs-tab] .cs-rich-legacy .card {
+  border-color: var(--tab-accent-soft) !important;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--tab-accent) 22%, transparent),
+    0 10px 28px rgba(0, 0, 0, 0.28);
+  border-radius: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Soft top edge wash */
+body[data-cs-tab] .cs-plaque,
+body[data-cs-tab] .card {
+  background-image:
+    linear-gradient(180deg, color-mix(in srgb, var(--tab-accent) 9%, transparent), transparent 48px);
+  background-blend-mode: normal;
+}
+
+/* Section titles pick up a hint of tab gold/green/blue */
+body[data-cs-tab] .cs-plaque h2,
+body[data-cs-tab] .card > h2,
+body[data-cs-tab] .cs-plaque-head h2 {
+  text-shadow: 0 0 24px color-mix(in srgb, var(--tab-accent) 25%, transparent);
+}
+
+/* Chips */
+body[data-cs-tab] .cs-chip {
+  border-color: color-mix(in srgb, var(--tab-accent) 35%, transparent);
+}
+
+/* Primary buttons soft-match tab */
+body[data-cs-tab] .cs-btn,
+body[data-cs-tab] button.btn:not(.btn-soft) {
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--tab-accent) 28%, transparent);
+}
+
+/* Full-width cards — kill nested shrink */
+body[data-cs-tab] .cs-plaque,
+body[data-cs-tab] .card[data-rrra] {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile: slightly tighter radius, same accent */
+@media (max-width: 520px) {
+  body[data-cs-tab] .cs-plaque,
+  body[data-cs-tab] .card {
+    border-radius: 14px;
+  }
+}
