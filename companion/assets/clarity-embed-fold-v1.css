@@ -1,0 +1,59 @@
+/*! clarity-embed-fold companion CSS · archive3 model · educational only */
+.clarity-embed-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.65rem 0.85rem;
+  font-weight: 750;
+  color: #e8d5a3;
+  font-size: 0.92rem;
+  display: block;
+}
+.clarity-embed-fold > summary::-webkit-details-marker { display: none; }
+.clarity-embed-fold .cef-title { color: #f3efe6; }
+
+/* Closed: no black rectangle */
+.clarity-embed-fold:not([open]) .clarity-embed-body {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.clarity-embed-fold:not([open]) iframe {
+  display: none !important;
+  height: 0 !important;
+}
+.hajj-video-frame.lecture-player-wrap,
+.lecture-player-wrap {
+  position: relative;
+  width: 100%;
+  /* default closed — JS sets padding when open; keep zero base */
+  padding-bottom: 0;
+  height: auto;
+  min-height: 0;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(201,162,39,0.35);
+  margin: 0.4rem 0 0.6rem;
+}
+/* When fold open, body provides 16:9 (archive3 JS also sets aspect-ratio) */
+.clarity-embed-fold[open] .clarity-embed-body {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.clarity-embed-fold[open] .clarity-embed-body iframe {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.cs-yt-moved {
+  font-size: 0.82rem;
+  color: rgba(210,220,214,0.9);
+  margin: 0.35rem 0;
+}
