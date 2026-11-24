@@ -1,0 +1,29 @@
+/*! companion-archive3-enrich-v1 · site-wide UX from archive3 surface/mahtaab · educational only */
+@import url("/companion/assets/archive3/clarity-companion-surface-v2.css");
+@import url("/companion/assets/archive3/clarity-companion-mahtaab-v1.css");
+@import url("/companion/assets/archive3/companion-doors-mobile-v1.css");
+@import url("/companion/assets/archive3/companion-lean-styles.css");
+@import url("/companion/assets/clarity-embed-fold-v1.css");
+
+/* Bridge: keep current tab shell readable with archive3 gold/green */
+:root {
+  --a3-gold: #c9a227;
+  --a3-bg: #070f0c;
+}
+#cs-mount .card,
+#cs-mount .cs-plaque,
+#cs-mount section.cs-plaque {
+  border-radius: 16px;
+  border: 1px solid rgba(201,162,39,0.35);
+  background: linear-gradient(165deg, rgba(12,28,22,0.97), rgba(7,16,13,0.99));
+}
+#cs-mount h2 {
+  color: #e8d5a3;
+  font-weight: 750;
+}
+#cs-mount [lang="ar"], #cs-mount [dir="rtl"] {
+  font-family: Amiri, "Noto Naskh Arabic", serif;
+}
+.cs-door .cs-door-btn {
+  border-radius: 16px;
+}
