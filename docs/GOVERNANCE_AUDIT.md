@@ -1,7 +1,11 @@
-# Bismillāh · P38 all pills BG
+# Bismillāh · P1C nav + meme host
 
-Live P37 verified. CDN probes unstable from audit host.
-**Every scenery pill:** try curated photo → on fail **safe scenery gradient** (no people) so UI never stays blank while saying ok.
-Picsum still blocked.
+**GREEN**
+
+- Meme host Phase 1b retained (`#cs-meme-mount` → `/companion/meme/`)
+- Bottom door rail: per-tab colors (Reminder green, Reality gold, Reflection teal, Action blue)
+- Tab adhkār strip restores on pill press (cited educational lines)
+- Path tile chrome aligned to “Path to furnish the grave” card UI
+- Craft / other rooms not in package scope edits
 
 Educational only — not a fatwa.
