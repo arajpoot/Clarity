@@ -1,0 +1,108 @@
+/*! companion-shariah-ui-v1 · P1G · modest chrome · educational only — not a fatwa */
+:root {
+  --cs-sh-bg: #070f0c;
+  --cs-sh-surface: rgba(10, 22, 18, 0.96);
+  --cs-sh-plaque: linear-gradient(165deg, rgba(12, 28, 22, 0.97), rgba(7, 16, 13, 0.99));
+  --cs-sh-gold: #c9a227;
+  --cs-sh-gold-soft: rgba(201, 162, 39, 0.38);
+  --cs-sh-text: #f3efe6;
+  --cs-sh-muted: rgba(210, 220, 214, 0.88);
+  --cs-sh-arabic: Amiri, "Noto Naskh Arabic", "Times New Roman", serif;
+  --cs-sh-latin: Quicksand, "Segoe UI", system-ui, sans-serif;
+}
+
+/* Type law */
+html, body, #cs-mount, .cs-plaque, .cs-door {
+  font-family: var(--cs-sh-latin) !important;
+  color: var(--cs-sh-text);
+}
+[dir="rtl"], [lang="ar"], .cs-ar, .cs-tab-adhkar-ar,
+#cs-mount [lang="ar"], #cs-mount .arabic, #cs-mount .ar-line {
+  font-family: var(--cs-sh-arabic) !important;
+  line-height: 1.75;
+}
+
+/* Modest surfaces — geometric, no flashy neon */
+body {
+  background: var(--cs-sh-bg) !important;
+}
+#cs-mount .cs-plaque,
+#cs-mount section.cs-plaque,
+#cs-mount .cs-path-tile,
+.cs-tab-adhkar,
+.cs-yt-collapse {
+  background: var(--cs-sh-plaque) !important;
+  border: 1px solid var(--cs-sh-gold-soft) !important;
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+
+/* Headings — calm gold, not shouty */
+#cs-mount h1, #cs-mount h2, #cs-mount h3,
+#cs-mount .cs-plaque-head h2 {
+  color: #e8d5a3 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+}
+
+/* Educational stamps always legible */
+#cs-mount .disc, #cs-mount .edu, #cs-mount .stamp,
+.cs-yt-fallback, .cs-tab-adhkar-ref {
+  color: var(--cs-sh-muted) !important;
+  font-size: 0.8rem;
+}
+
+/* Avoid autoplay-looking bright media chrome */
+.cs-yt-frame-wrap {
+  background: #0a1210 !important;
+  border-top: 1px solid var(--cs-sh-gold-soft);
+}
+.cs-yt-summary {
+  color: #e8d5a3 !important;
+}
+
+/* Door rail — already colored; keep dignified radii */
+.cs-door .cs-door-btn {
+  border-radius: 16px !important;
+}
+
+/* Links — gold, underline on focus for clarity */
+#cs-mount a {
+  color: #e0c36a !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+#cs-mount a:focus-visible {
+  outline: 2px solid rgba(201, 162, 39, 0.65);
+  outline-offset: 2px;
+}
+
+/* Hide decorative emoji overload where class marks optional decor */
+.cs-shariah-quiet .cs-ico {
+  opacity: 0.9;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Bismillah strip (optional subtle) */
+.cs-bismillah-bar {
+  text-align: center;
+  font-family: var(--cs-sh-arabic) !important;
+  font-size: 1.05rem;
+  color: #e8d5a3;
+  padding: 0.35rem 0.5rem 0.15rem;
+  letter-spacing: 0.02em;
+}
+.cs-bismillah-bar .lat {
+  display: block;
+  font-family: var(--cs-sh-latin) !important;
+  font-size: 0.68rem;
+  color: var(--cs-sh-muted);
+  margin-top: 0.1rem;
+}
