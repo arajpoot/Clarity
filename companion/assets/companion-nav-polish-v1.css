@@ -1,0 +1,172 @@
+/*! companion-nav-polish-v1 · door rail + tab adhkar · educational only */
+.cs-door, .cs-door.cs-door-glory {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 0.35rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.45rem 0.5rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(8,16,12,0.75), rgba(6,12,10,0.96));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(201,162,39,0.28);
+}
+.cs-door .cs-door-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 3.15rem;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0.35rem 0.25rem;
+  border-radius: 14px !important;
+  border: 1px solid rgba(201,162,39,0.28) !important;
+  background: rgba(18,28,24,0.92) !important;
+  color: rgba(247,240,221,0.82) !important;
+  font-weight: 750 !important;
+  cursor: pointer;
+}
+.cs-door .cs-door-btn .dr-ico {
+  font-size: 1.15rem !important;
+  line-height: 1 !important;
+  width: 1.35rem;
+  height: 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-door .cs-door-btn .dr-label {
+  font-size: clamp(0.62rem, 2.2vw, 0.78rem) !important;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+/* Active + per-tab color (screenshot: Reality gold, Reflection green, Action blue) */
+.cs-door .cs-door-btn[data-rail-tab="reminder"].is-active,
+.cs-door .cs-door-btn[data-rail-tab="reminder"]:hover {
+  background: linear-gradient(180deg, #2f9b5b, #1e7a45) !important;
+  border-color: rgba(120,220,160,0.55) !important;
+  color: #fff !important;
+}
+.cs-door .cs-door-btn[data-rail-tab="reality"].is-active,
+.cs-door .cs-door-btn[data-rail-tab="reality"]:hover {
+  background: linear-gradient(180deg, #d4a017, #b8860b) !important;
+  border-color: rgba(255,220,120,0.55) !important;
+  color: #1a1405 !important;
+}
+.cs-door .cs-door-btn[data-rail-tab="reflection"].is-active,
+.cs-door .cs-door-btn[data-rail-tab="reflection"]:hover {
+  background: linear-gradient(180deg, #2a9d8f, #1d7a6f) !important;
+  border-color: rgba(120,230,210,0.5) !important;
+  color: #fff !important;
+}
+.cs-door .cs-door-btn[data-rail-tab="action"].is-active,
+.cs-door .cs-door-btn[data-rail-tab="action"]:hover {
+  background: linear-gradient(180deg, #3b82f6, #2563eb) !important;
+  border-color: rgba(160,200,255,0.55) !important;
+  color: #fff !important;
+}
+.cs-door .cs-door-btn[data-rail-tab="notes"].is-active,
+.cs-door .cs-door-btn[data-rail-tab="about"].is-active,
+.cs-door .cs-door-btn[data-rail-tab="notes"]:hover,
+.cs-door .cs-door-btn[data-rail-tab="about"]:hover {
+  background: linear-gradient(180deg, #64748b, #475569) !important;
+  border-color: rgba(180,190,210,0.45) !important;
+  color: #fff !important;
+}
+
+/* Path tiles — screenshot card style */
+.cs-path-grid {
+  display: grid;
+  gap: 0.65rem;
+  width: 100%;
+}
+.cs-path-tile {
+  text-align: left;
+  border-radius: 16px !important;
+  border: 1px solid rgba(201,162,39,0.4) !important;
+  background: linear-gradient(165deg, rgba(12,28,22,0.96), rgba(7,16,13,0.98)) !important;
+  padding: 0.85rem 1rem !important;
+  color: #f3efe6 !important;
+  cursor: pointer;
+}
+.cs-path-tile.is-active,
+.cs-path-tile[data-cs-path].is-active {
+  border-color: rgba(212,184,74,0.75) !important;
+  box-shadow: 0 0 0 1px rgba(212,184,74,0.25);
+}
+.cs-path-tile strong {
+  display: block;
+  color: #e8d5a3 !important;
+  font-size: 1.02rem;
+  margin: 0.2rem 0;
+}
+.cs-path-desc { display: block; font-size: 0.88rem; opacity: 0.92; margin-bottom: 0.35rem; }
+.cs-path-tags {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(201,162,39,0.95) !important;
+  font-weight: 750;
+}
+
+/* Tab section hero tint */
+body[data-active-tab="reminder"] #cs-mount .cs-tab-hero { border-color: rgba(120,220,160,0.4); }
+body[data-active-tab="reality"] #cs-mount .cs-tab-hero { border-color: rgba(240,210,100,0.45); }
+body[data-active-tab="reflection"] #cs-mount .cs-tab-hero { border-color: rgba(100,210,190,0.4); }
+body[data-active-tab="action"] #cs-mount .cs-tab-hero { border-color: rgba(120,180,240,0.45); }
+
+/* Adhkār strip under banner / above mount */
+.cs-tab-adhkar {
+  margin: 0.5rem 0.75rem 0.25rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(201,162,39,0.35);
+  background: linear-gradient(165deg, rgba(14,32,26,0.95), rgba(8,18,14,0.98));
+}
+.cs-tab-adhkar[hidden] { display: none !important; }
+.cs-tab-adhkar-kicker {
+  margin: 0 0 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e8d5a3;
+}
+.cs-tab-adhkar-ar {
+  margin: 0.2rem 0;
+  font-family: Amiri, "Noto Naskh Arabic", serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #f7f1e1;
+}
+.cs-tab-adhkar-en {
+  margin: 0.15rem 0;
+  font-size: 0.9rem;
+  color: rgba(230,236,232,0.92);
+}
+.cs-tab-adhkar-ref {
+  margin: 0.15rem 0 0;
+  font-size: 0.75rem;
+  color: rgba(201,162,39,0.95);
+  font-weight: 700;
+}
+
+/* Plaques full width calm */
+#cs-mount .cs-plaque {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 16px;
+  border: 1px solid rgba(201,162,39,0.32);
+  background: linear-gradient(165deg, rgba(12,28,22,0.94), rgba(7,16,13,0.98));
+  padding: 0.85rem 1rem;
+  margin: 0.55rem 0;
+}

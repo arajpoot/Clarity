@@ -1,0 +1,54 @@
+/*! companion-meme-host-v1 · Phase 1 · educational only */
+#cs-mount .cs-meme-host,
+.cs-meme-host {
+  width: 100%;
+  max-width: 100%;
+}
+.cs-meme-host .meme-host-note {
+  font-size: 0.85rem;
+  color: rgba(200,218,208,0.9);
+  margin: 0.25rem 0 0.5rem;
+}
+.cs-meme-host .meme-host-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0.65rem;
+}
+.cs-meme-host .cs-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201,162,39,0.45);
+  background: linear-gradient(165deg, rgba(42,157,110,0.55), rgba(20,90,64,0.85));
+  color: #f3efe6;
+  font-weight: 750;
+  text-decoration: none;
+  font-size: 0.84rem;
+}
+.cs-meme-mount {
+  width: 100%;
+  min-height: 720px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(201,162,39,0.35);
+  background: #0a1410;
+  position: relative;
+}
+.cs-meme-frame {
+  display: block;
+  width: 100%;
+  min-height: 720px;
+  height: 78vh;
+  max-height: 1100px;
+  border: 0;
+  background: #0a1410;
+}
+@media (max-width: 640px) {
+  .cs-meme-mount, .cs-meme-frame {
+    min-height: 640px;
+    height: 85vh;
+  }
+}
