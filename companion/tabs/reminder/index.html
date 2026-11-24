@@ -295,34 +295,40 @@
 </details>
 </div>
 
-<section class="cs-plaque cs-meme-host" id="meme-section" data-cs-primary="1" data-rrra="reminder">
+<section class="cs-plaque cs-meme-host" id="meme-section" data-cs-primary="1" data-rrra="reminder" data-meme-phase="2">
   <div class="cs-plaque-head">
     <span class="cs-ico" aria-hidden="true">🎨</span>
     <div>
       <h2>Meme Studio</h2>
-      <p class="lead">Companion isolated studio · scenery backgrounds · educational only — not a fatwa</p>
+      <p class="lead">Companion isolated atelier · scenery only · educational only — not a fatwa</p>
       <div class="cs-chip-row">
         <span class="cs-chip">Daily · Daʿī</span>
-        <span class="cs-chip">Isolated SoT · /companion/meme/</span>
+        <span class="cs-chip">Banner-style host · SoT /companion/meme/</span>
       </div>
     </div>
   </div>
-  <p class="meme-host-note edu">Studio runs in its own Companion module (banner-style isolation). Open full page anytime.</p>
+  <p class="meme-host-note edu">Studio runs in its own Companion module (same isolation pattern as the banner). Expand for a taller canvas; open full page when you need desks roomy.</p>
   <div class="meme-host-actions">
-    <a class="cs-btn" href="/companion/meme/" target="_blank" rel="noopener">Open isolated studio</a>
+    <button type="button" class="cs-btn" id="cs-meme-expand" data-meme-host-act="expand">Expand studio</button>
+    <button type="button" class="cs-btn cs-btn-ghost" id="cs-meme-compact" data-meme-host-act="compact">Compact</button>
+    <a class="cs-btn cs-btn-ghost" href="/companion/meme/" target="_blank" rel="noopener">Open isolated studio</a>
   </div>
-  <!-- Phase 1 host surface — Phase 2 hardens embed -->
-  <div id="cs-meme-mount" class="cs-meme-mount" data-meme-host="1" data-meme-src="/companion/meme/?embed=1">
+  <div id="cs-meme-mount" class="cs-meme-mount" data-meme-host="2" data-meme-src="/companion/meme/?embed=1">
+    <div class="cs-meme-chrome" aria-hidden="true">
+      <span class="cs-meme-chrome-dot"></span>
+      <span class="cs-meme-chrome-label">Companion Meme · isolated</span>
+    </div>
     <iframe
       id="cs-meme-frame"
       class="cs-meme-frame"
       title="Companion Meme Studio"
-      src="/companion/meme/"
+      src="/companion/meme/?embed=1"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
       sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-forms"
     ></iframe>
   </div>
+  <p id="cs-meme-host-status" class="meme-host-status edu" role="status"></p>
   <p class="disc">Educational only — not a fatwa. No figurative people/animals in fetched backgrounds.</p>
 </section>
 
@@ -454,6 +460,7 @@
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/companion/assets/css/companion-meme-portal-v1.css?v=20261122CM7"/>
 <script src="/companion/assets/js/companion-meme-portal-v1.js?v=20261122CM7" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
