@@ -1,9 +1,6 @@
-/*! companion-meme-host-v1 · Phase 1 · educational only */
+/*! companion-meme-host-v1 · Phase 2 banner-style embed · educational only */
 #cs-mount .cs-meme-host,
-.cs-meme-host {
-  width: 100%;
-  max-width: 100%;
-}
+.cs-meme-host { width: 100%; max-width: 100%; }
 .cs-meme-host .meme-host-note {
   font-size: 0.85rem;
   color: rgba(200,218,208,0.9);
@@ -27,28 +24,78 @@
   font-weight: 750;
   text-decoration: none;
   font-size: 0.84rem;
+  cursor: pointer;
+}
+.cs-meme-host .cs-btn-ghost {
+  background: rgba(8,16,12,0.85);
+  border-color: rgba(201,162,39,0.35);
 }
 .cs-meme-mount {
   width: 100%;
-  min-height: 720px;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(201,162,39,0.35);
+  border: 1px solid rgba(201,162,39,0.4);
   background: #0a1410;
   position: relative;
+}
+.cs-meme-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  background: linear-gradient(180deg, rgba(14,28,22,0.98), rgba(8,16,12,0.98));
+  border-bottom: 1px solid rgba(201,162,39,0.28);
+  font-size: 0.72rem;
+  font-weight: 750;
+  color: #e8d5a3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cs-meme-chrome-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #2f9b5b;
+  box-shadow: 0 0 0 2px rgba(47,155,91,0.25);
 }
 .cs-meme-frame {
   display: block;
   width: 100%;
-  min-height: 720px;
-  height: 78vh;
-  max-height: 1100px;
+  min-height: 640px;
+  height: 72vh;
+  max-height: 900px;
   border: 0;
   background: #0a1410;
 }
+.cs-meme-mount.is-expanded .cs-meme-frame {
+  min-height: 820px;
+  height: 88vh;
+  max-height: 1200px;
+}
+.cs-meme-mount.is-compact .cs-meme-frame {
+  min-height: 480px;
+  height: 55vh;
+  max-height: 640px;
+}
+.meme-host-status {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: rgba(200,218,208,0.88);
+}
 @media (max-width: 640px) {
-  .cs-meme-mount, .cs-meme-frame {
-    min-height: 640px;
-    height: 85vh;
+  .cs-meme-frame {
+    min-height: 560px;
+    height: 78vh;
   }
+  .cs-meme-mount.is-expanded .cs-meme-frame {
+    min-height: 720px;
+    height: 90vh;
+  }
+}
+/* Path gate: seeker/new — mount collapsed */
+.cs-meme-host[data-path-gate="locked"] .cs-meme-mount {
+  display: none !important;
+}
+.cs-meme-host[data-path-gate="locked"] .meme-host-note-lock {
+  display: block !important;
 }
