@@ -119,7 +119,5 @@
   }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  w.ClarityMemeHost = { gate: gate, setHeightMode: setHeightMode, version: "P3" };
-  /* Phase 3: host never loads paint engines — SoT is /companion/meme/ only */
-
+  w.ClarityMemeHost = { gate: gate, setHeightMode: setHeightMode, version: "P2" };
 })(window, document);

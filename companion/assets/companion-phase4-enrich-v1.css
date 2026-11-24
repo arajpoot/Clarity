@@ -1,0 +1,137 @@
+/*! companion-phase4-enrich-v1 · enriched plaques + titles · shariah-modest · not a fatwa */
+:root {
+  --p4-gold: #c9a227;
+  --p4-gold-line: rgba(201,162,39,0.42);
+  --p4-ink: #f3efe6;
+  --p4-muted: rgba(210,220,214,0.9);
+  --p4-plaque: linear-gradient(165deg, rgba(12,28,22,0.98), rgba(7,16,13,0.99));
+  --p4-ar: Amiri, "Noto Naskh Arabic", serif;
+  --p4-en: Quicksand, system-ui, sans-serif;
+}
+
+#cs-mount,
+#cs-mount .cs-plaque,
+#cs-mount section {
+  font-family: var(--p4-en);
+  color: var(--p4-ink);
+}
+
+/* Enriched section / plaque shell */
+#cs-mount .cs-plaque,
+#cs-mount section.cs-plaque,
+#cs-mount > section,
+#cs-mount .cs-card {
+  background: var(--p4-plaque) !important;
+  border: 1px solid var(--p4-gold-line) !important;
+  border-radius: 18px !important;
+  padding: 0.95rem 1.1rem !important;
+  margin: 0.7rem 0 !important;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Title row with geometric mark (no figurative art) */
+#cs-mount .cs-plaque > h2:first-child,
+#cs-mount section > h2:first-child,
+#cs-mount .cs-plaque-head h2 {
+  font-family: var(--p4-en) !important;
+  font-weight: 750 !important;
+  font-size: clamp(1.05rem, 2.6vw, 1.28rem) !important;
+  color: #e8d5a3 !important;
+  letter-spacing: 0.015em;
+  margin: 0 0 0.35rem !important;
+  line-height: 1.3;
+  padding-left: 0.85rem;
+  border-left: 3px solid rgba(201,162,39,0.75);
+}
+
+#cs-mount .cs-plaque > h3,
+#cs-mount section > h3 {
+  color: #e0c36a !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  margin: 0.65rem 0 0.3rem !important;
+}
+
+#cs-mount .lead,
+#cs-mount .cs-plaque > p:first-of-type,
+#cs-mount section > p:first-of-type {
+  color: var(--p4-muted) !important;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* Arabic blocks */
+#cs-mount [lang="ar"],
+#cs-mount [dir="rtl"],
+#cs-mount .cs-ar {
+  font-family: var(--p4-ar) !important;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+/* Chip / kicker enrichment */
+#cs-mount .cs-chip,
+#cs-mount .kicker,
+#cs-mount .cs-path-tags {
+  display: inline-block;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e8d5a3 !important;
+  border: 1px solid rgba(201,162,39,0.35);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  margin: 0.15rem 0.2rem 0.15rem 0;
+  background: rgba(8,16,12,0.65);
+}
+
+/* Tab hero bar — per-tab soft tint */
+#cs-mount .cs-tab-hero {
+  border-radius: 18px !important;
+  border: 1px solid var(--p4-gold-line) !important;
+  padding: 0.85rem 1rem !important;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(120deg, rgba(20,40,32,0.95), rgba(10,22,18,0.98)) !important;
+}
+body[data-active-tab="reminder"] #cs-mount .cs-tab-hero {
+  background: linear-gradient(120deg, rgba(20,60,40,0.95), rgba(10,22,18,0.98)) !important;
+}
+body[data-active-tab="reality"] #cs-mount .cs-tab-hero {
+  background: linear-gradient(120deg, rgba(70,55,15,0.92), rgba(10,22,18,0.98)) !important;
+}
+body[data-active-tab="reflection"] #cs-mount .cs-tab-hero {
+  background: linear-gradient(120deg, rgba(20,55,50,0.95), rgba(10,22,18,0.98)) !important;
+}
+body[data-active-tab="action"] #cs-mount .cs-tab-hero {
+  background: linear-gradient(120deg, rgba(25,45,75,0.95), rgba(10,22,18,0.98)) !important;
+}
+
+/* Educational stamp */
+#cs-mount .disc,
+#cs-mount .edu,
+#cs-mount .stamp {
+  font-size: 0.78rem !important;
+  color: var(--p4-muted) !important;
+}
+
+/* YT collapse already modest — align radii */
+#cs-mount .cs-yt-collapse {
+  border-radius: 14px !important;
+  border-color: var(--p4-gold-line) !important;
+}
+
+/* Path tiles already enriched — ensure equal height desktop */
+@media (min-width: 900px) {
+  .cs-path-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Phase 4 marker */
+html[data-companion-phase="4"] #cs-mount {
+  --p4-on: 1;
+}
