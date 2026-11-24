@@ -1,41 +1,66 @@
-/*! companion-yt-collapse-v1 · collapsed lecture embeds · educational only */
+/*! companion-yt-collapse-v1 · HONEST · no black box until open · educational only */
 .cs-yt-collapse {
-  margin: 0.55rem 0 0.75rem;
+  margin: 0.45rem 0 0.65rem;
   border-radius: 14px;
-  border: 1px solid rgba(201,162,39,0.35);
-  background: rgba(8,16,12,0.85);
+  border: 1px solid rgba(201,162,39,0.4);
+  background: rgba(8,16,12,0.9);
   overflow: hidden;
 }
 .cs-yt-summary {
   cursor: pointer;
   list-style: none;
-  padding: 0.7rem 0.9rem;
+  padding: 0.7rem 0.95rem;
   font-weight: 750;
   color: #e8d5a3;
   font-size: 0.92rem;
 }
 .cs-yt-summary::-webkit-details-marker { display: none; }
-.cs-yt-frame-wrap {
+
+/* CRITICAL: no aspect-ratio / black until expanded */
+.cs-yt-collapse:not([open]) .cs-yt-frame-wrap,
+.cs-yt-collapse:not([open]) .cs-yt-frame {
+  display: none !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  background: transparent !important;
+}
+.cs-yt-collapse[open] .cs-yt-frame-wrap {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
-  background: #000;
+  height: 0;
+  background: #0a1210;
+  border-top: 1px solid rgba(201,162,39,0.28);
 }
-.cs-yt-frame {
+.cs-yt-collapse[open] .cs-yt-frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
+  display: block;
 }
-.cs-yt-fallback {
-  margin: 0;
-  padding: 0.4rem 0.85rem 0.65rem;
-  font-size: 0.78rem;
+
+/* Kill legacy permanent black stages */
+.hajj-video-frame,
+.cs-yt-slot {
+  position: relative !important;
+  padding-bottom: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  background: transparent !important;
+  overflow: visible !important;
+  border: none !important;
 }
+.hajj-video-frame[style],
+div[style*="padding-bottom:56.25%"] {
+  padding-bottom: 0 !important;
+  height: auto !important;
+  background: transparent !important;
+}
+
+.cs-yt-fallback { margin: 0; padding: 0.4rem 0.85rem 0.65rem; font-size: 0.78rem; color: rgba(210,220,214,0.9); }
 .cs-yt-fallback a { color: #e8d5a3; }
-.cs-yt-moved {
-  margin: 0.4rem 0 0.6rem;
-  font-size: 0.82rem;
-  color: rgba(210,220,214,0.9);
-}
+.cs-yt-moved { margin: 0.35rem 0 0.55rem; font-size: 0.82rem; color: rgba(210,220,214,0.9); }
+.cs-yt-slot { margin: 0.25rem 0; }
