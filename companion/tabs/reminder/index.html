@@ -8,7 +8,23 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261117HK3"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261117HK3"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261117HK3"/>
-<meta name="clarity-build" content="CM7HK"/>
+<meta name="clarity-build" content="CM12REM"/>
+
+<style id="clarity-embed-fold-css">
+.clarity-embed-fold:not([open]) .clarity-embed-body { display:none!important;height:0!important;overflow:hidden!important; }
+.clarity-embed-fold:not([open]) iframe { display:none!important;height:0!important; }
+.clarity-embed-fold[open] iframe { display:block;width:100%;height:280px;border:0;border-radius:12px; }
+.clarity-embed-fold > summary { cursor:pointer;padding:.5rem .7rem;border-radius:10px;background:rgba(30,80,90,.35);color:#d8e8ea;font-size:.86rem; }
+.clarity-embed-fold { margin:.4rem 0; }
+</style>
+<script>
+document.addEventListener("toggle", function(e){
+  var d = e.target;
+  if (!d || !d.open || !d.classList || !d.classList.contains("clarity-embed-fold")) return;
+  var f = d.querySelector("iframe[data-src]");
+  if (f && (!f.src || f.src.indexOf("about:blank")>=0)) f.src = f.getAttribute("data-src");
+}, true);
+</script>
 </head>
 <body class="cs-rich-tab">
 <article data-cs-tab-body data-tab="reminder" class="cs-rich-tab cs-rich-reminder">
@@ -299,7 +315,28 @@
   <div class="cs-plaque-head">
     <span class="cs-ico" aria-hidden="true">🎨</span>
     <div>
-      <h2>Meme Studio</h2>
+      <h2><div class="card" style="margin:0.75rem 0"><h3>Tafseer · video shelf</h3>
+<details class="clarity-embed-fold" style="margin:.5rem 0">
+  <summary>▶ Ustazah Najiha · sample lesson (ArRahmah)</summary>
+  <div class="clarity-embed-body" style="margin-top:.5rem">
+    <iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs&rel=0" src="about:blank" width="100%" height="280" title="Najiha Hashmi lessons" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    <p class="edu" style="font-size:.75rem">Educational only — not a fatwa · progress on this device · verify with a local scholar</p>
+  </div>
+</details>
+<details class="clarity-embed-fold" style="margin:.5rem 0">
+  <summary>▶ Open YouTube channel · ArRahmah</summary>
+  <div class="clarity-embed-body" style="margin-top:.5rem">
+    <p style="font-size:.88rem"><a href="https://www.youtube.com/@arrahmah" target="_blank" rel="noopener">ArRahmah YouTube</a> · full courses &amp; live classes</p>
+    <p class="edu" style="font-size:.75rem">Educational only — not a fatwa</p>
+  </div>
+</details>
+<ul class="cs-list" style="font-size:.88rem;margin:.5rem 0">
+  <li><a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a> — word &amp; ayah tools</li>
+  <li><a href="https://quran.com" target="_blank" rel="noopener">quran.com</a> — read &amp; listen</li>
+  <li><a href="https://www.arrahmah.org" target="_blank" rel="noopener">arrahmah.org</a> — institute courses</li>
+</ul>
+</div>
+Meme Studio</h2>
       <p class="lead">Companion isolated atelier · scenery only · educational only — not a fatwa</p>
       <div class="cs-chip-row">
         <span class="cs-chip">Daily · Daʿī</span>
