@@ -1,8 +1,7 @@
-# CM4UX · Soft access + online scenery
+# CM12CLEAN
 
-1. Upload `companion/meme/**` (owner patch + online-bg + chips + bridge)
-2. Upload `companion/assets/js/companion-meme-portal-v1.js` + css
-3. Upload `companion/tabs/action/index.html` + optional hub index
-4. Hard refresh Action tab + `/companion/meme/`
+1. companion/tabs/action/index.html — stubs + everything below Ask Grok removed
+2. companion/tabs/reminder/index.html — Tafseer video shelf
+3. companion/meme/assets/js/companion-meme-owner-v1.js — text spacing
 
-Smoke: sleek “Open Meme Art Studio” portal · Geometry/Decor/Online pool chips · Next online cycles fetch
+Hard refresh Action + Reminder + Meme.
