@@ -1,0 +1,103 @@
+/* Companion guide C0–C10 · 20261024C10 · Companion only */
+#cguide-root, #cguide-map, #cguide-orient {
+  font-family: system-ui, "Segoe UI", sans-serif;
+}
+#cguide-orient, #cguide-map {
+  position: fixed; inset: 0; z-index: 10050;
+  background: rgba(6,12,10,.72);
+  display: grid; place-items: center;
+  padding: 1rem;
+}
+#cguide-orient[hidden], #cguide-map[hidden] { display: none !important; }
+.cguide-card {
+  width: min(26rem, 100%);
+  max-height: min(90vh, 40rem);
+  overflow: auto;
+  border-radius: 18px;
+  padding: 1.15rem 1.2rem 1rem;
+  background: #0f1a16;
+  color: #e8efe9;
+  border: 1px solid rgba(212,180,90,.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+html[data-theme="light"] .cguide-card {
+  background: #fffcf5; color: #13201a;
+}
+.cguide-card h2 {
+  margin: 0 0 .35rem; font-size: 1.15rem; color: #d4b45a;
+}
+.cguide-card .lead {
+  font-size: .88rem; opacity: .9; line-height: 1.45; margin: 0 0 .85rem;
+}
+.cguide-paths {
+  display: grid; gap: .45rem; margin: 0 0 1rem;
+}
+.cguide-paths button {
+  text-align: left; border-radius: 14px; padding: .65rem .8rem;
+  border: 1px solid rgba(212,180,90,.35);
+  background: rgba(255,255,255,.04); color: inherit;
+  cursor: pointer; font: inherit;
+}
+.cguide-paths button strong { display: block; color: #d4b45a; font-size: .9rem; }
+.cguide-paths button span { font-size: .78rem; opacity: .88; }
+.cguide-paths button:hover, .cguide-paths button:focus {
+  border-color: #1e7d5e; outline: none;
+}
+.cguide-actions {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem;
+}
+.cguide-actions button, .cguide-chip, #cguide-fab {
+  border-radius: 999px; padding: .4rem .85rem; font-weight: 700;
+  font-size: .8rem; cursor: pointer; border: 1px solid rgba(30,125,94,.45);
+  background: #1e7d5e; color: #fff; font-family: inherit;
+}
+.cguide-actions .ghost, .cguide-chip.ghost {
+  background: transparent; color: inherit; border-color: rgba(212,180,90,.4);
+}
+.cguide-foot {
+  font-size: .72rem; opacity: .75; margin: .75rem 0 0; line-height: 1.4;
+}
+#cguide-fab {
+  position: fixed; bottom: 1rem; left: 1rem; z-index: 10040;
+  box-shadow: 0 4px 18px rgba(0,0,0,.3);
+}
+#cguide-tools {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+  margin: .65rem 0 1rem; padding: 0 .15rem;
+}
+.cguide-chip {
+  text-decoration: none; display: inline-flex; align-items: center; gap: .3rem;
+}
+.cguide-chip.secondary {
+  background: rgba(255,255,255,.06); color: inherit;
+  border-color: rgba(212,180,90,.3);
+}
+#cguide-continue {
+  margin: .5rem 0 1rem; padding: .65rem .85rem;
+  border-radius: 14px; border: 1px solid rgba(212,180,90,.3);
+  background: rgba(30,125,94,.12); font-size: .88rem;
+}
+#cguide-continue a { color: #d4b45a; font-weight: 700; }
+/* Vault daily note on passphrase surface */
+#cguide-vault-note {
+  margin: .75rem 0; padding: .75rem .85rem;
+  border-radius: 14px; border: 1px dashed rgba(212,180,90,.4);
+  background: rgba(0,0,0,.15);
+}
+#cguide-vault-note textarea {
+  width: 100%; min-height: 4.5rem; box-sizing: border-box;
+  border-radius: 10px; border: 1px solid rgba(212,180,90,.3);
+  background: transparent; color: inherit; padding: .5rem; font: inherit;
+}
+#cguide-vault-note .row {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .45rem;
+}
+.cguide-hall-tip {
+  position: fixed; bottom: 4.5rem; left: 50%; transform: translateX(-50%);
+  z-index: 10030; max-width: 22rem; width: calc(100% - 2rem);
+  padding: .7rem .9rem; border-radius: 14px;
+  background: #101c16; color: #e8efe9;
+  border: 1px solid rgba(212,180,90,.4);
+  font-size: .85rem; box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+.cguide-hall-tip[hidden] { display: none !important; }
