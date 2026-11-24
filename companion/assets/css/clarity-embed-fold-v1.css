@@ -1,0 +1,42 @@
+
+
+/* Collapsed lecture drawers — no black empty iframe height until open */
+.clarity-embed-fold:not([open]) .clarity-embed-body {
+  display: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.clarity-embed-fold:not([open]) iframe {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+}
+.clarity-embed-fold[open] .clarity-embed-body {
+  display: block;
+  margin-top: 0.5rem;
+}
+.clarity-embed-fold[open] iframe {
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  max-height: 56vw;
+  height: 315px;
+  border: 0;
+  border-radius: 12px;
+  background: #0a1218;
+}
+.clarity-embed-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(30, 80, 90, 0.35);
+  color: #d8e8ea;
+  font-size: 0.88rem;
+}
+.clarity-embed-fold > summary::-webkit-details-marker { display: none; }
+.clarity-embed-fold { margin: 0.45rem 0; border: 0; }
+
