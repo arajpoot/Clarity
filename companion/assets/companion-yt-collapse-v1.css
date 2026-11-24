@@ -1,0 +1,41 @@
+/*! companion-yt-collapse-v1 · collapsed lecture embeds · educational only */
+.cs-yt-collapse {
+  margin: 0.55rem 0 0.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(201,162,39,0.35);
+  background: rgba(8,16,12,0.85);
+  overflow: hidden;
+}
+.cs-yt-summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.7rem 0.9rem;
+  font-weight: 750;
+  color: #e8d5a3;
+  font-size: 0.92rem;
+}
+.cs-yt-summary::-webkit-details-marker { display: none; }
+.cs-yt-frame-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: #000;
+}
+.cs-yt-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.cs-yt-fallback {
+  margin: 0;
+  padding: 0.4rem 0.85rem 0.65rem;
+  font-size: 0.78rem;
+}
+.cs-yt-fallback a { color: #e8d5a3; }
+.cs-yt-moved {
+  margin: 0.4rem 0 0.6rem;
+  font-size: 0.82rem;
+  color: rgba(210,220,214,0.9);
+}
