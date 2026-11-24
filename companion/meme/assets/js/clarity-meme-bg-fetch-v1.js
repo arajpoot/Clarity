@@ -142,6 +142,7 @@
           setStatus((label || "BG") + " · displayed");
           paintAll();
           setTimeout(paintAll, 80);
+          setTimeout(paintAll, 400);
           finish(true);
         };
         img.onerror = function () {
