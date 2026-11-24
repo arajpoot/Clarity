@@ -295,17 +295,38 @@
 </details>
 </div>
 
-<section class="cm-meme-portal" id="cm-meme-portal" data-cs-primary="1" data-rrra="reminder" aria-label="Meme Art Studio">
-  <p class="kicker">Reminder · isolated atelier</p>
-  <h2>Meme Art Studio</h2>
-  <p>Paint a short reminder on scenery — own room, banner pattern. Open the studio, pick a scene, export on this device.</p>
-  <a class="cta" href="/companion/meme/">Open Meme Art Studio →</a>
-  <div class="sub">
-    <a href="/companion/meme/">Scenery · canvas · desks</a>
-    <a href="/craft/meme/">Craft copy</a>
+<section class="cs-plaque cs-meme-host" id="meme-section" data-cs-primary="1" data-rrra="reminder">
+  <div class="cs-plaque-head">
+    <span class="cs-ico" aria-hidden="true">🎨</span>
+    <div>
+      <h2>Meme Studio</h2>
+      <p class="lead">Companion isolated studio · scenery backgrounds · educational only — not a fatwa</p>
+      <div class="cs-chip-row">
+        <span class="cs-chip">Daily · Daʿī</span>
+        <span class="cs-chip">Isolated SoT · /companion/meme/</span>
+      </div>
+    </div>
   </div>
-  <p class="stamp">Educational only — not a fatwa · scenery preferred · no need to post</p>
+  <p class="meme-host-note edu">Studio runs in its own Companion module (banner-style isolation). Open full page anytime.</p>
+  <div class="meme-host-actions">
+    <a class="cs-btn" href="/companion/meme/" target="_blank" rel="noopener">Open isolated studio</a>
+  </div>
+  <!-- Phase 1 host surface — Phase 2 hardens embed -->
+  <div id="cs-meme-mount" class="cs-meme-mount" data-meme-host="1" data-meme-src="/companion/meme/?embed=1">
+    <iframe
+      id="cs-meme-frame"
+      class="cs-meme-frame"
+      title="Companion Meme Studio"
+      src="/companion/meme/"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-forms"
+    ></iframe>
+  </div>
+  <p class="disc">Educational only — not a fatwa. No figurative people/animals in fetched backgrounds.</p>
 </section>
+
+
 
 <div data-rrra="reminder" data-siq-home="reminder" class="card card-tools siq-suite cs-plaque-deep" id="fiqh-quiz-card" data-disc="1" style="border-top:3px solid var(--gold,#d4b45a)">
   <div class="siq-hero">
@@ -433,5 +454,6 @@
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/companion/assets/css/companion-meme-portal-v1.css?v=20261122CM7"/>
 <script src="/companion/assets/js/companion-meme-portal-v1.js?v=20261122CM7" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
