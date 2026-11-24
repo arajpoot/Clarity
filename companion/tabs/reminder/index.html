@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261117HK3"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261117HK3"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261117HK3"/>
-<meta name="clarity-build" content="CM12REM"/>
+<meta name="clarity-build" content="CM13REM"/>
 
 <style id="clarity-embed-fold-css">
 .clarity-embed-fold:not([open]) .clarity-embed-body { display:none!important;height:0!important;overflow:hidden!important; }
@@ -25,333 +25,50 @@ document.addEventListener("toggle", function(e){
   if (f && (!f.src || f.src.indexOf("about:blank")>=0)) f.src = f.getAttribute("data-src");
 }, true);
 </script>
+
+<style id="cs-tab-theme-v1">
+body[data-cs-tab="action"] .cs-plaque,
+body[data-cs-tab="action"] .card { border-color: rgba(59,111,217,.55)!important; box-shadow:0 0 0 1px rgba(59,111,217,.18),0 8px 24px rgba(0,0,0,.25); }
+body[data-cs-tab="reminder"] .cs-plaque,
+body[data-cs-tab="reminder"] .card { border-color: rgba(30,125,94,.5)!important; }
+body[data-cs-tab="reality"] .cs-plaque,
+body[data-cs-tab="reality"] .card { border-color: rgba(201,162,39,.5)!important; }
+body[data-cs-tab="reflection"] .cs-plaque,
+body[data-cs-tab="reflection"] .card { border-color: rgba(61,126,166,.5)!important; }
+.cs-plaque, .card[data-rrra] { max-width:100%; width:100%; box-sizing:border-box; }
+</style>
+<script>
+(function(){function s(){var t=(location.pathname.match(/tabs\/(\w+)/)||[])[1]||"reminder";document.body.setAttribute("data-cs-tab",t);}s();addEventListener("hashchange",s);})();
+</script>
 </head>
 <body class="cs-rich-tab">
 <article data-cs-tab-body data-tab="reminder" class="cs-rich-tab cs-rich-reminder">
 <header class="cs-plaque cs-tab-hero" data-cs-primary="1" id="cs-tab-hero">
-    <div class="cs-plaque-head">
-      <span class="cs-ico" aria-hidden="true">✦</span>
-      <div>
-        <h1>Reminder</h1>
-        <p class="lead">What Allah ﷻ and His Messenger ﷺ taught — Qurʾān, Names, and living words.</p>
-        <div class="cs-chip-row">
-          <span class="cs-chip">Section</span>
-          <span class="cs-chip">Educational only</span>
-        </div>
-      </div>
-    </div>
-  </header>
-<p class="cs-tier-label">Tier 1 · Qurʾān</p>
-<p class="cs-tier-label">Tier 2 · Sunnah &amp; Seerah</p>
-<p class="cs-tier-label">Tier 3 · Tools &amp; deeper study</p>
-<!-- hierarchy: Quran -> Sunnah -> deep -->
-
-  
-<!-- Beautiful Names · educational only — not a fatwa -->
-<section class="cs-plaque" id="beautiful-names-card" data-cs-primary="1">
+    <div id="cs-meme-mount" class="cs-meme-mount" data-meme-host="2" data-meme-src="/companion/meme/?embed=1">
+    
+<section class="cs-plaque card" id="tafseer-shelf" data-rrra="reminder">
   <div class="cs-plaque-head">
-    <span class="cs-ico" aria-hidden="true">✦</span>
+    <span class="cs-ico">📖</span>
     <div>
-      <h2>Living with the Beautiful Names</h2>
-      <p class="lead">Allah’s Names are not ornaments for speech — they shape how the servant hopes, fears, and acts.</p>
-      <div class="cs-chip-row">
-        <span class="cs-chip">Qurʾān 7:180</span>
-        <span class="cs-chip">Educational only</span>
-      </div>
+      <h2>Tafseer · study shelf</h2>
+      <p class="lead">Libraries and lessons — verify with a local scholar. Educational only — not a fatwa.</p>
     </div>
   </div>
-  <p class="eng-en"><em>“And to Allah belong the best names, so invoke Him by them…”</em> — Qurʾān 7:180 (read the full verse in context).</p>
-  <p class="disc">The Prophet ﷺ taught that Allah has ninety-nine Names; whoever enumerates them enters Paradise (Bukhārī &amp; Muslim — “enumerates” is explained by scholars as knowing, understanding, and living by them — verify on Sunnah.com and with a teacher).</p>
-  <h3 class="eng-ref">Today</h3>
-  <ul class="cs-list">
-    <li>Choose <strong>one</strong> Name (e.g. <em>ar-Raḥmān</em>, <em>al-Ghafūr</em>, <em>ash-Shakūr</em>).</li>
-    <li>Invoke Allah by it in duʿāʾ.</li>
-    <li>Do one deed that matches its meaning (mercy, seeking forgiveness, gratitude).</li>
-  </ul>
-  <div class="cs-actions">
-    <a class="cs-btn ghost" href="https://quran.com/7/180" target="_blank" rel="noopener">Qurʾān 7:180</a>
-    <a class="cs-btn ghost" href="https://sunnah.com/search?q=ninety-nine" target="_blank" rel="noopener">Sunnah.com · Names</a>
+  <div class="cs-chip-row" style="flex-wrap:wrap;gap:.35rem;margin:.5rem 0">
+    <a class="cs-chip" href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a>
+    <a class="cs-chip" href="https://quran.com" target="_blank" rel="noopener">quran.com</a>
+    <a class="cs-chip" href="https://www.arrahmah.org" target="_blank" rel="noopener">arrahmah.org</a>
   </div>
-  <p class="disc">Educational only — not a fatwa.</p>
-</section>
-<!-- path focus (deduped) -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- path focus cluster (streamlined) -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Samiʿnā wa aṭaʿnā · educational only — not a fatwa -->
-<section class="cs-plaque" id="samina-ataana-card" data-cs-primary="1">
-  <div class="cs-plaque-head">
-    <span class="cs-ico" aria-hidden="true">☪</span>
-    <div>
-      <h2>Samiʿnā wa aṭaʿnā — we hear and we obey</h2>
-      <p class="lead">The believer’s posture toward Allah’s command: listen with the heart, then move a limb in obedience.</p>
-      <div class="cs-chip-row">
-        <span class="cs-chip">Qurʾān</span>
-        <span class="cs-chip">Educational only</span>
-      </div>
+  <details class="clarity-embed-fold">
+    <summary>▶ Ustazah Najiha Hashmi · lesson playlist</summary>
+    <div class="clarity-embed-body" style="margin-top:.5rem">
+      <iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs&rel=0&modestbranding=1" src="about:blank" width="100%" height="280" title="Najiha lessons" allowfullscreen></iframe>
+      <p class="edu" style="font-size:.75rem;margin-top:.35rem">Educational only — not a fatwa</p>
     </div>
-  </div>
-  <p class="eng-ar" lang="ar" dir="rtl" style="font-size:1.12rem;line-height:1.85">
-    وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ
-  </p>
-  <p class="eng-en"><em>And they say, “We hear and we obey. Grant us Your forgiveness, our Lord. And to You is the [final] destination.”</em> — Qurʾān 2:285 (among the closing of al-Baqarah)</p>
-  <p class="disc">Contrast is drawn in the Book with those who say “we hear and we disobey.” Obedience is not theater — it is response after hearing.</p>
-  <h3 class="eng-ref">Practice</h3>
-  <ol class="cs-list">
-    <li>Take <strong>one</strong> known command today (prayer, truthfulness, kindness to parents, guarding the tongue).</li>
-    <li>Remove one barrier you control.</li>
-    <li>Ask forgiveness for what you still lag in — <em>ghufrānaka rabbanā</em>.</li>
-  </ol>
-  <div class="cs-actions">
-    <a class="cs-btn ghost" href="https://quran.com/2/285" target="_blank" rel="noopener">Qurʾān 2:285</a>
-    <a class="cs-btn ghost" href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
-  </div>
-  <p class="disc">Educational only — not a fatwa.</p>
-</section>
-<section class="cs-plaque card" id="grave-path-card" data-cs-restored-missing="1">
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◇</span>
-  <div>
-    <h2>Path to furnish the grave</h2>
-    <p class="lead">Short reminders that turn knowledge into light sent ahead — educational only.</p>
-    <p class="disc">Restored for path parity with pre-shell ALLOW map · educational only — not a fatwa.</p>
-  </div></div>
+  </details>
 </section>
 
-<!-- path focus -->
-<section class="cs-plaque" data-cs-path-only="seeker">
-  <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
-    <h2>One Name, one week</h2>
-    <p class="lead">Do not rush a list. Sit with <em>ar-Raḥmān</em> or <em>al-Ghafūr</em> until your duʿāʾ changes tone.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-path-only="seeker">
-  <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
-    <h2>Hear first</h2>
-    <p class="lead">Read one short command-verse slowly. Sit with it before you argue about it. Then do the smallest obedient act attached to it.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-path-only="seeker"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Seeker</h2><p class="lead">One command-verse. Read · pause · one small act.</p></div></div></section>
-<section class="cs-plaque" data-cs-path-only="new_muslim">
-  <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
-    <h2>Start with mercy and forgiveness</h2>
-    <p class="lead"><em>Ar-Raḥmān</em>, <em>ar-Raḥīm</em>, <em>al-Ghafūr</em> — call on them as you learn ṣalāh. You are approaching a Lord who loves those who return.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-path-only="new_muslim">
-  <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
-    <h2>Obey at your pace of learning</h2>
-    <p class="lead">You are not asked for scholarly debate on day one. Pray, learn, ask. “We hear and we obey” includes learning how to hear correctly from trusted teachers.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-path-only="new_muslim"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>New Muslim</h2><p class="lead">Short reminder with clear meaning — stability first.</p></div></div></section>
-<section class="cs-plaque" data-cs-path-only="practicing">
-  <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
-    <h2>Match deed to Name</h2>
-    <p class="lead">If you remember <em>ash-Shakūr</em>, increase gratitude in speech. If <em>al-ʿAdl</em>, repair one unfair habit.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-path-only="practicing">
-  <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
-    <h2>Close the gap</h2>
-    <p class="lead">Name one command you already know but postpone. Schedule it against a real prayer time today.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-path-only="practicing"><div class="cs-plaque-head"><span class="cs-ico">◎</span><div><h2>Daily</h2><p class="lead">Refresh a known command; practice it.</p></div></div></section>
-<section class="cs-plaque" data-cs-path-only="dai">
-  <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
-    <h2>Teach Names with humility</h2>
-    <p class="lead">Share meanings from reliable teachers. Do not reduce the Names to slogans or brand graphics without knowledge.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-path-only="dai">
-  <div class="cs-plaque-head"><span class="cs-ico">◎</span><div>
-    <h2>Transmit obedience, not slogans</h2>
-    <p class="lead">When you share a verse of command, pair it with how it can be lived — and with your own attempt, however small. Name the āyah; avoid harshness that blocks ears.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-path-only="dai" data-cs-primary="1">
-  <div class="cs-plaque-head"><span class="cs-ico" aria-hidden="true">◎</span>
-  <div>
-    <h2>Daʿi path · transmission with adab</h2>
-    <p class="lead">Pick one verse or ḥadīth with a clear source. Share meaning with adab — not argument.</p>
-    <p class="disc">Educational only — not a fatwa. Verify before you transmit. Prefer local teachers for rulings.</p>
-  </div></div>
-</section>
-<section class="cs-plaque" data-cs-primary="1" data-engine="verse">
-  <div class="cs-plaque-head"><span class="cs-ico">📖</span><div>
-    <h2>Live āyah engine</h2>
-    <p class="lead">Allowlisted fetch · educational rendering.</p></div></div>
-  <p class="eng-ref" data-verse-ref>—</p>
-  <p class="eng-ar" data-verse-ar lang="ar" dir="rtl"></p>
-  <p class="eng-en" data-verse-en></p>
-  <p class="eng-status" data-verse-status></p>
-  <div class="cs-actions"><button type="button" class="cs-btn" data-verse-next>Another āyah</button>
-  <a class="cs-btn ghost" href="https://quran.com" target="_blank" rel="noopener">Quran.com</a></div>
-</section>
-<section class="cs-plaque" data-cs-primary="1" data-engine="hadith">
-  <div class="cs-plaque-head"><span class="cs-ico">🕊</span><div>
-    <h2>Ḥadīth spark</h2><p class="lead">Verify on Sunnah.com</p></div></div>
-  <p class="eng-en" data-hadith-text></p>
-  <p class="eng-status" data-hadith-src></p>
-  <div class="cs-actions"><button type="button" class="cs-btn" data-hadith-next>Another</button>
-  <a class="cs-btn ghost" href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a></div>
-</section>
-
-<div class="cs-rich-legacy" data-rich-source="pre-shell-monolith">
-</div>
-<div class="cs-tab-sections" id="cs-tab-sections-reminder"><div data-rrra="reminder" class="card card-commands" id="commands-card"><h2 data-i18n="commands_title">📜 Allah’s Commands to the Believers</h2><div class="deep-learn"><strong>Live the command:</strong><a href="https://sunnah.com" target="_blank" rel="noopener">how the Prophet ﷺ practiced it</a> ·
- <a href="https://seekersguidance.org" target="_blank" rel="noopener">SeekersGuidance answers</a> ·
- <a href="https://islamqa.info" target="_blank" rel="noopener">IslamQA</a>.</div><p style="margin-bottom:0.75rem; font-size:0.94rem;">
- Verses beginning with <strong>يَا أَيُّهَا الَّذِينَ آمَنُوا</strong> — loaded live.
- </p><div class="command-box" id="command-box"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><div style="margin-top:0.75rem;"><button type="button" onclick="prevCommand()" class="btn-secondary">← Previous</button><button type="button" onclick="nextCommand()">Next Command →</button></div></div>
-<div data-rrra="reminder" class="card card-commands" id="samina-verse-card" style="border-top:3px solid var(--gold)">
-  <h2>📜 Daily command-verse — Samiʿnā wa aṭaʿnā</h2>
-  <p class="td-src">Verses that call believers to submit to Allāh ﷻ and follow the Messenger ﷺ. Educational reflection only.</p>
-  <p id="samina-verse-ref" style="font-weight:700;color:var(--gold);margin:.3rem 0"></p>
-  <div class="arabic" id="samina-verse-ar" dir="rtl" lang="ar" style="font-size:1.2rem;margin:.35rem 0;line-height:1.85"></div>
-  <p id="samina-verse-en" class="verse-en" style="font-size:.95rem;line-height:1.55"></p>
-  <p id="samina-verse-note" class="td-src" style="font-size:.85rem"></p>
-  <div class="td-row" style="flex-wrap:wrap;gap:.4rem">
-    <button type="button" class="btn-soft" onclick="clarityDailySaminaVerse(true)">↻ Another verse</button>
-    <a id="samina-verse-link" href="https://quran.com/4/59" target="_blank" rel="noopener">Open on Quran.com</a>
-  </div>
-</div>
-<div data-rrra="reminder" class="card card-hadith"><h2 data-i18n="hadith_title">A Saying of the Prophet ﷺ</h2>
-<p class="td-src clarity-disc" style="font-size:.82rem;margin:.25rem 0 .4rem"><strong>Educational only — not a fatwa.</strong> This card prefers <strong>ṣaḥīḥ</strong> reports and shows <strong>grade · collection · number</strong> on every item. Prefer ṣaḥīḥ collections; grades and context matter — check Sunnah.com / a scholar.</p>
-<div class="deep-learn"><strong>📚 Verify &amp; study the ḥadīth</strong>
-<div class="res-stack">
-<a href="https://sunnah.com" target="_blank" rel="noopener">Sunnah.com</a>
-<a href="https://dorar.net/en" target="_blank" rel="noopener">Dorar (Arabic)</a>
-<a href="https://islamqa.info/en" target="_blank" rel="noopener">IslamQA</a>
-</div></div><div id="hadith"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><button type="button" onclick="loadHadith()">Another hadith</button></div>
-<div data-rrra="reminder" class="card card-seerah"><h2>🕊️ Daily Name of the Prophet ﷺ</h2><p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.55rem;">One name each day from the Qurʾān and authentic hadith — with meaning and blessing. Educational; not a fixed “99” in every narration.</p><div class="asma-box" id="prophet-name-box"><div class="loading-msg"><span class="cs-loading-soft">Fetching from allowed educational sources…</span></div></div><div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;"> <button type="button" class="btn-secondary" onclick="loadProphetName(true)">Another Name</button><button type="button" class="btn-soft" onclick="loadProphetName(false)">Today’s Name</button><button type="button" class="btn-soft" onclick="showAllProphetNames()">Show all names</button><input type="search" id="prophet-names-search" placeholder="Search a name…" oninput="filterProphetNames(this.value)" style="max-width:11rem;padding:0.35rem 0.55rem;border-radius:8px;border:1px solid var(--border);"></div><div id="prophet-names-list" class="prophet-names-grid" style="display:none;margin-top:0.75rem;max-height:22rem;overflow:auto;"></div></div>
-
-<div data-rrra="reminder" class="card card-tools" id="ilm-pathway-card" style="border-top:3px solid var(--accent)">
-<details id="ilm-pathway-details" class="ilm-pathway-details">
-<summary class="ilm-pathway-summary">
-  <span class="ilm-sum-icon" aria-hidden="true">🗺️</span>
-  <span class="ilm-sum-text">
-    <strong>Ilm Pathway — 7-day starter</strong>
-    <span class="ilm-sum-meta" id="ilm-pathway-summary-meta">Tap to open · one focus per day</span>
-  </span>
-  <span class="ilm-sum-chevron" aria-hidden="true">▾</span>
-</summary>
-<div class="ilm-pathway-body">
-  <p style="font-size:.88rem;color:var(--text-muted);margin:0 0 .5rem">A light weekly path: one focus per day. Mark done on this device. Pairs with the stack above.</p>
-  <div id="ilm-pathway-list"></div>
-  <button type="button" class="btn-soft" style="margin-top:.5rem" onclick="ilmPathwayReset()">Reset week</button>
-</div>
-</details>
-</div>
-<div data-rrra="reminder" class="card card-tafseer" id="tafseer-resources-card">
-  <h2 data-i18n="tafseer_res">Tafseer Resources</h2>
-  <div class="deep-learn"><strong>Tafsīr libraries</strong>
-  <a href="https://corpus.quran.com" target="_blank" rel="noopener">word grammar</a> ·
-  <a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a> ·
-  <a href="https://islamqa.info" target="_blank" rel="noopener">fiqh of the ayah</a>.
-  </div>
-  <p class="td-src" style="font-size:.82rem;margin:.4rem 0 0">Educational only — verify with a local scholar. Ustazah Najiha lessons sit in the card below.</p>
-</div>
-
-<div data-rrra="reminder" class="card card-tafseer" id="najiha-tafseer-card">
-<details id="najiha-tafseer-details">
-<summary>
-  <h2 style="display:inline;font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--accent);margin:0">Tafseer by Ustazah Najiha Hashmi</h2>
-  <span style="font-weight:600;opacity:.8;font-size:.8em;margin-left:.35rem">(tap to expand)</span>
-</summary>
-<div class="najiha-body">
-<p style="margin-bottom:0.75rem;font-size:0.94rem">
- From <strong>ArRahmah Islamic Institute</strong>. Track the lessons you study. Progress is saved only on this device.
-</p>
-<div class="tafseer-progress"><strong>Lessons studied:</strong> <span id="tafseer-count">0</span><br>
-<span id="tafseer-last" style="font-size:0.86rem;color:#666;"></span></div>
-<div style="margin-bottom:0.85rem;">
-<label style="font-size:0.88rem;color:#555;">Select a lesson:</label>
-<select id="tafseer-select" onchange="focusTafseerLesson(this.value)" style="margin-top:0.35rem;">
-<option value="all">Show all lessons</option>
-</select>
-</div>
-<div id="tafseer-list"></div>
-<p style="margin-top:0.95rem;font-size:0.86rem;color:#555;">
- Full courses &amp; live classes: <a href="https://www.arrahmah.org/" target="_blank" rel="noopener">arrahmah.org</a> ·
- <a href="https://www.youtube.com/c/arrahmahislamicinstitute" target="_blank" rel="noopener">YouTube Channel</a>
-</p>
-</div>
-</details>
-</div>
-
-<section class="cs-plaque cs-meme-host" id="meme-section" data-cs-primary="1" data-rrra="reminder" data-meme-phase="5" data-meme-spine="host-iso">
-  <div class="cs-plaque-head">
-    <span class="cs-ico" aria-hidden="true">🎨</span>
-    <div>
-      <h2><div class="card" style="margin:0.75rem 0"><h3>Tafseer · video shelf</h3>
-<details class="clarity-embed-fold" style="margin:.5rem 0">
-  <summary>▶ Ustazah Najiha · sample lesson (ArRahmah)</summary>
-  <div class="clarity-embed-body" style="margin-top:.5rem">
-    <iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLVnvYMcW6CAEZSZcuwfeTO7EdqpPS3_qs&rel=0" src="about:blank" width="100%" height="280" title="Najiha Hashmi lessons" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-    <p class="edu" style="font-size:.75rem">Educational only — not a fatwa · progress on this device · verify with a local scholar</p>
-  </div>
-</details>
-<details class="clarity-embed-fold" style="margin:.5rem 0">
-  <summary>▶ Open YouTube channel · ArRahmah</summary>
-  <div class="clarity-embed-body" style="margin-top:.5rem">
-    <p style="font-size:.88rem"><a href="https://www.youtube.com/@arrahmah" target="_blank" rel="noopener">ArRahmah YouTube</a> · full courses &amp; live classes</p>
-    <p class="edu" style="font-size:.75rem">Educational only — not a fatwa</p>
-  </div>
-</details>
-<ul class="cs-list" style="font-size:.88rem;margin:.5rem 0">
-  <li><a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a> — word &amp; ayah tools</li>
-  <li><a href="https://quran.com" target="_blank" rel="noopener">quran.com</a> — read &amp; listen</li>
-  <li><a href="https://www.arrahmah.org" target="_blank" rel="noopener">arrahmah.org</a> — institute courses</li>
-</ul>
-</div>
-Meme Studio</h2>
-      <p class="lead">Companion isolated atelier · scenery only · educational only — not a fatwa</p>
-      <div class="cs-chip-row">
-        <span class="cs-chip">Daily · Daʿī</span>
-        <span class="cs-chip">Phase 3 single spine · SoT /companion/meme/</span>
-      </div>
-    </div>
-  </div>
-  <p class="meme-host-note edu">Studio runs in its own Companion module (same isolation pattern as the banner). Expand for a taller canvas; open full page when you need desks roomy.</p>
-  <div class="meme-host-actions">
-    <button type="button" class="cs-btn" id="cs-meme-expand" data-meme-host-act="expand">Expand studio</button>
-    <button type="button" class="cs-btn cs-btn-ghost" id="cs-meme-compact" data-meme-host-act="compact">Compact</button>
-    <a class="cs-btn cs-btn-ghost" href="/companion/meme/" target="_blank" rel="noopener">Open isolated studio</a>
-  </div>
-  <div id="cs-meme-mount" class="cs-meme-mount" data-meme-host="2" data-meme-src="/companion/meme/?embed=1">
-    <div class="cs-meme-chrome" aria-hidden="true">
+<div class="cs-meme-chrome" aria-hidden="true">
       <span class="cs-meme-chrome-dot"></span>
       <span class="cs-meme-chrome-label">Companion Meme · isolated</span>
     </div>
