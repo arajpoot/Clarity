@@ -13,7 +13,7 @@ This document is **binding** for work on Clarity (`clarity-dawah.fyi`): Port, Co
 ## Binding effect
 
 1. Phase A ships this contract at site root as `GOVERNANCE_CONTRACT.md` (or under `/docs/` if preferred; root preferred for visibility).
-2. **Phases B, C, D, and later** must treat this file as a **gate**: no phase exit if enrichment hold is violated.
+2. **Phases B, C, D, and later** must treat this file as a **gate**: no phase exit if **enrichment hold (§3)** or **visibility of enrichment (§3A)** is violated.
 3. Infrastructure (service worker, caching, vault, digests, Port UI) may **support** room jobs; it may **not** empty or thin rooms to chase performance metrics.
 4. Default changelog value for infrastructure work: `enrichment: held` for every room not explicitly in scope.
 
@@ -65,6 +65,87 @@ During Offline/PWA, vault, digest, and Port work:
 
 ---
 
+---
+
+## 3A. Visibility of enrichment (foundation clause)
+
+**Status:** Binding foundation clause — same force as §3 Enrichment hold.  
+**Why:** Human operators do not have infinite cycles. Work that is only green in DOM, flags, or sim logs — but not **seen** on screen — is a contract failure, not a success.
+
+### Rule
+
+Enrichment that cannot be **seen and used** by a normal user after a hard-refresh does **not** count as held or added.
+
+### Must
+
+1. **Screenshot test** — After deploy, the claimed enrichment must appear in a normal viewport (mobile or desktop) without requiring DevTools, grep, or knowledge of internal IDs.
+2. **Usable, not merely mounted** — Controls that look present but do nothing, canvases at 0×0, iframes with `display:none` / `src="about:blank"` left inert, and copy only inside closed folds with no discoverable open state, **fail** visibility.
+3. **No false green** — Phase exit, ship seal, and audit **GREEN** require **both**:
+   - §3 Enrichment hold (content not thinned), **and**
+   - §3A Visibility (content visible and operable on screen).
+4. **Prefer visible order** — Put restored heroes, primary cards, and media shelves where users actually look; do not bury them under chrome such that the first screen looks unchanged when the ticket promised visible restore.
+5. **Changelog** — Every Companion (and room) deploy line must include a visibility tag:
+   - `visibility: seen` — confirmed on screen after hard-refresh  
+   - `visibility: fold-open` — intentionally in a disclosure the user can open in one tap, and that control is obvious  
+   - `visibility: fail` — not allowed at phase exit  
+
+### Must not
+
+1. Call structural sims, flag checks, or “node exists in `#cs-mount`” a completed **glory** or **restore** ticket.
+2. Spend operator rounds on invisible architecture when the stated ask was visual restore — unless the operator explicitly ordered architecture-only work.
+3. Hide the majority of a tab’s educational media behind empty or zero-size players.
+
+### Smoke (visibility)
+
+| Surface | Minimum visibility smoke |
+|---------|---------------------------|
+| Companion tab | Hero or ladder readable without DevTools |
+| Meme / canvas | Non-zero on-screen stage; paint visible |
+| Lecture / YouTube shelves | Player area visible when section is on screen (open fold or inline) |
+| Deep learning / studios | Section on screen; primary actions respond |
+| Any “restored” block | Findable in one deliberate scroll on mobile |
+
+
+
+### Sandbox snapshot rule (binding — human time)
+
+DOM presence and “non-zero getBoundingClientRect” are **not** enough.
+
+A visibility claim is **GREEN** only when **all** of the following hold:
+
+1. **Sandbox / tool snapshot** — A real screenshot (or equivalent viewport capture) from the build or live hard-refresh shows the enrichment **in frame** without requiring the operator to know a secret scroll depth.
+2. **First intentional screen** — For tab-level restore tickets, primary restored enrichment appears **at or near** the top of the tab body (under hero/ladder), not only after several viewport-heights of scroll, unless the ticket explicitly says “appendix media.”
+3. **Operator sees it** — If the human operator reports “not on my screen” and a hard-refresh confirms absence or only far-below-fold placement when the ticket promised visible restore, the audit is **`visibility: fail`** regardless of sim flags.
+4. **Enrichment sticks** — After path-tile changes and leaving/returning to the tab, pinned educational sections and restored media **remain** visible. Disappearing enrichment is a §3 + §3A failure.
+
+**Changelog:** `visibility: seen` requires a snapshot path or explicit operator confirmation note.  
+**Forbidden:** marking GREEN from flag/sim-only runs when no snapshot evidence exists for the claimed surface.
+
+
+### Build sandbox sim snapshot (binding)
+
+Every phase package that claims **`visibility: seen`** must include evidence from **its own sandbox sim run** of the deployed (or deployable) build:
+
+1. **Viewport capture** — At least one screenshot from the agent/sandbox browser session after hard-refresh (or equivalent cache-bust load).
+2. **Target in frame** — The claimed enrichment heading or primary control is **legible in that capture** (not only in DOM metrics).
+3. **Record in package** — Ship under `governance/` or `smoke/`:
+   - short note of what was in frame
+   - timestamp / build id
+   - pass/fail against the ticket’s visibility claim
+4. **No sim-only green** — Flag checks and `getBoundingClientRect` without a sandbox snapshot **do not** satisfy §3A.
+
+Operator-phone confirmation remains valid when the operator attaches their own screenshot; sandbox sim snapshot is the **default** evidence path for agent-delivered packages.
+
+### Fail conditions (visibility)
+
+- Audit green while the operator reports “I don’t see it” and a hard-refresh confirms absence or zero-size UI  
+- Restored embeds present in HTML but all players 0×0 / `display:none` with no open path  
+- Duplicate removal or rewire that drops a section below visibility without migration + link  
+
+**Changelog tag:** `visibility: seen` | `visibility: fold-open` | `enrichment: held` + visibility tag together on every exit.
+
+---
+
 ## 4. Privacy & doctrine
 
 - Passphrase never stored or transmitted.
@@ -88,9 +169,10 @@ During Offline/PWA, vault, digest, and Port work:
 
 Every phase deploy notes:
 
-`room | offline | privacy | enrichment | user-visible copy`
+`room | offline | privacy | enrichment | visibility | user-visible copy`
 
 Where **enrichment** = `held` | `migrated:X→Y (linked)` | `added` | `explicit-remove:ticket#`.
+Where **visibility** = `seen` | `fold-open` (see §3A). Phase exit requires enrichment hold **and** visibility ≠ fail.
 
 ---
 
