@@ -1,0 +1,105 @@
+/*! companion-glory-seal-g5 · UX seal · educational only — not a fatwa */
+
+/* Single hero: demote duplicates inside mount */
+#cs-mount header.cs-tab-hero ~ header.cs-tab-hero,
+#cs-mount .cs-tab-hero ~ .cs-tab-hero {
+  display: none !important;
+}
+
+/* Path grid — readable under shell header */
+.cs-path-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0.5rem 0 0.75rem;
+}
+@media (max-width: 640px) {
+  .cs-path-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.cs-path-grid [data-cs-path] {
+  border-radius: 12px;
+  border: 1px solid rgba(212,180,90,0.28);
+  background: rgba(0,0,0,0.22);
+  padding: 0.55rem 0.45rem;
+  color: #f7f0dd;
+  font-size: 0.78rem;
+  text-align: center;
+}
+.cs-path-grid [data-cs-path].is-active,
+.cs-path-grid [data-cs-path][aria-current="true"] {
+  border-color: rgba(212,180,90,0.65);
+  box-shadow: 0 0 0 1px rgba(212,180,90,0.2);
+  background: rgba(42,107,74,0.35);
+}
+
+/* Soft dark rail + gold badge (glory language) */
+#clarity-door-rail.cs-door,
+.cs-door#clarity-door-rail {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.4rem 0.4rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(8, 14, 12, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(212, 180, 90, 0.22);
+  box-shadow: 0 -8px 28px rgba(0,0,0,0.4);
+}
+.cs-door .cs-door-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.4rem 0.15rem 0.35rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(18, 28, 24, 0.95);
+  color: rgba(247,240,221,0.8);
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+.cs-door .cs-door-btn .dr-ico {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  background: radial-gradient(circle at 35% 30%, #3d5c4a, #1a2e24 70%);
+  border: 1.5px solid rgba(212, 180, 90, 0.55);
+  color: #e8d48b;
+}
+.cs-door .cs-door-btn .dr-ico > * { display: none !important; }
+.cs-door .cs-door-btn[data-rail-tab="reminder"] .dr-ico::before { content: "✦"; }
+.cs-door .cs-door-btn[data-rail-tab="reality"] .dr-ico::before { content: "◉"; }
+.cs-door .cs-door-btn[data-rail-tab="reflection"] .dr-ico::before { content: "☾"; }
+.cs-door .cs-door-btn[data-rail-tab="action"] .dr-ico::before { content: "▶"; }
+.cs-door .cs-door-btn[data-rail-tab="notes"] .dr-ico::before { content: "✎"; }
+.cs-door .cs-door-btn[data-rail-tab="about"] .dr-ico::before { content: "ℹ"; }
+.cs-door .cs-door-btn.is-active {
+  background: linear-gradient(180deg, #2a6b4a, #1e5238);
+  border-color: rgba(120, 200, 150, 0.45);
+  color: #f7f0dd;
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(212,180,90,0.15), 0 6px 16px rgba(0,0,0,0.3);
+}
+#cs-mount { padding-bottom: 5.5rem; }
+
+/* Ladder always readable */
+.cs-ladder-g2 {
+  margin: 0.45rem 0 0.75rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(212,180,90,0.3);
+  border-radius: 12px;
+  background: rgba(0,0,0,0.22);
+}
+.cs-ladder-g2 .lead { margin: 0; font-size: 0.9rem; color: #f7f0dd; }
+
+/* Quiet legacy chrome */
+#cs-mount .rrra-hub-summary,
+#cs-mount .clarity-gate-switcher { display: none !important; }
