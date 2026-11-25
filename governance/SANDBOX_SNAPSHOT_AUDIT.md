@@ -1,33 +1,34 @@
-# Sandbox snapshot audit · Reflection deep learning
+# Good-kid audit · Reflection deep learning
 
-**Build:** live Companion + order-v1 / deep-hold  
 **Date:** 2026-11-25  
-**Contract:** §3 · §3A (build sandbox sim snapshot)
+**Contract:** §3 enrichment hold · §3A visibility (one sandbox proof)
 
-## Snapshot files (in this package)
+## Single proof file (only)
 
-| File | Meaning |
-|------|---------|
-| `governance/snapshots/reflection-deep-learning-viewport.jpg` | **Primary** — CDP sandbox sim, Reflection tab, deep shelf scrolled into frame |
-| `governance/snapshots/reflection-deep-learning-viewport.png` | PNG companion capture |
-| `governance/snapshots/sandbox-sim-reflection.jpg` | Full load capture (shell context) |
+`governance/snapshots/reflection-deep-learning-SEEN.jpg`
 
-## Primary snapshot claim
+| Field | Value |
+|-------|--------|
+| title | Deep learning · Reflection |
+| tab | reflection |
+| inView | true |
+| top | 0 |
+| height | 608 |
+| meta | `SNAPSHOT_META.json` → `"ok": true` |
 
-In `reflection-deep-learning-viewport.jpg` the viewport includes:
+No other image files are evidence. Wrong-tab captures are not included.
 
-- Heading **Deep learning · Reflection**
-- Deep shelf in view (`inView: true`, top ≈ 0, height ≈ 608)
+## Product order in package
 
-## Companion files included
-
-- `companion/index.html`
-- `companion/tabs/reflection/index.html`
-- `companion/assets/companion-reflection-order-v1.{css,js}`
-- `companion/assets/companion-reflection-deep-hold.{css,js}`
+1. Ladder  
+2. `#reflection-deep-learning`  
+3. Body  
+4. Media appendix at bottom (if present)
 
 ## Verdict
 
-**visibility: seen** · **enrichment: held** · **GREEN** for Reflection deep-learning visibility ticket  
+**GREEN** for this ticket: Deep learning · Reflection is visible on Reflection in sandbox sim.
+
+`companion | enrichment: held | visibility: seen`
 
 Educational only — not a fatwa.
