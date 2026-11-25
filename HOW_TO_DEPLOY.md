@@ -1,30 +1,18 @@
-# Companion deep streamlining · DG1
+# Companion hold-fix · path · reflection · meme
 
-**Bismillah.** Educational only — not a fatwa.
+**Bismillah.** Educational only — not a fatwa.  
+Gates: §3 enrichment hold · §3A visibility
 
-## Inventory found (enrichment held)
-| Module | Location |
-|--------|----------|
-| Meme studio + canvas | Reminder (`#meme-card`, `#companion-meme-studio`) |
-| Calligraphy lab | Reminder |
-| Tajweed Deep Studio | Action (`#tj-deep-studio`) |
-| Hifz coach | Action |
-| **Ḥajj ritual guide** | Action (`#hajj-guide-card` — Tamattuʿ/Qirān/Ifrād) |
-| Write to Clarity | About |
-| Craft room | `/craft/` (isolated upgrades; linked) |
-
-## Streamline in this pack
-1. **Deeplink aliases** — `#meme` `#tajweed` `#hajj` `#fiqh` `#callig` `#hifz` → correct tab + scroll to module  
-2. Redirects updated to those hashes  
-3. Action **Studios & rites** board with anchors  
-4. Housekeep + RRRA quiet retained  
+## Fixes
+1. **Path tiles** — full width of content viewport (4 columns → 2 → 1 responsive)
+2. **Reflection** — media enrichment **holds** (cache + re-inject if stripped; details open; players sized)
+3. **Reminder meme** — keep **Clarity Meme Studio** (full); hide compact host; one Tweet desk; canvas forced visible
 
 ## Upload
 - `companion/index.html`
-- `companion/assets/companion-deeplink-v1.js` **(new)**
-- `companion/assets/companion-housekeep-v1.{js,css}`
-- `companion/assets/companion-rrra-quiet-v1.{js,css}`
-- `companion/tabs/*/index.html`
-- `companion/redirects/{meme,tajweed,fiqh-tools}/index.html`
+- `companion/assets/companion-hold-fix-v1.css`
+- `companion/assets/companion-hold-fix-v1.js`
+- `companion/tabs/reminder/index.html`
+- `companion/tabs/reflection/index.html`
 
-Hard-refresh. Smoke: 10 tab cycles + open `/companion/#hajj` and `/companion/#tajweed`.
+Hard-refresh. Changelog: `companion | enrichment: held | visibility: seen`
