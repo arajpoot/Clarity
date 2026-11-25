@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261117HK3"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261117HK3"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261117HK3"/>
-<meta name="clarity-build" content="CM13REM"/>
+<meta name="clarity-build" content="CM13b-REMINDER"/>
 
 <style id="clarity-embed-fold-css">
 .clarity-embed-fold:not([open]) .clarity-embed-body { display:none!important;height:0!important;overflow:hidden!important; }
@@ -26,22 +26,12 @@ document.addEventListener("toggle", function(e){
 }, true);
 </script>
 
-<style id="cs-tab-theme-v1">
-body[data-cs-tab="action"] .cs-plaque,
-body[data-cs-tab="action"] .card { border-color: rgba(59,111,217,.55)!important; box-shadow:0 0 0 1px rgba(59,111,217,.18),0 8px 24px rgba(0,0,0,.25); }
-body[data-cs-tab="reminder"] .cs-plaque,
-body[data-cs-tab="reminder"] .card { border-color: rgba(30,125,94,.5)!important; }
-body[data-cs-tab="reality"] .cs-plaque,
-body[data-cs-tab="reality"] .card { border-color: rgba(201,162,39,.5)!important; }
-body[data-cs-tab="reflection"] .cs-plaque,
-body[data-cs-tab="reflection"] .card { border-color: rgba(61,126,166,.5)!important; }
-.cs-plaque, .card[data-rrra] { max-width:100%; width:100%; box-sizing:border-box; }
-</style>
-<script>
-(function(){function s(){var t=(location.pathname.match(/tabs\/(\w+)/)||[])[1]||"reminder";document.body.setAttribute("data-cs-tab",t);}s();addEventListener("hashchange",s);})();
-</script>
+
+<link rel="stylesheet" href="/companion/assets/css/cs-tab-theme-v1.css?v=20261124CM13b" data-cs-tab-theme="1"/>
+<script src="/companion/assets/js/cs-tab-theme-v1.js?v=20261124CM13b" defer data-cs-tab-theme="1"></script>
+
 </head>
-<body class="cs-rich-tab">
+<body class="cs-rich-tab" data-cs-tab="reminder">
 <article data-cs-tab-body data-tab="reminder" class="cs-rich-tab cs-rich-reminder">
 <header class="cs-plaque cs-tab-hero" data-cs-primary="1" id="cs-tab-hero">
     <div id="cs-meme-mount" class="cs-meme-mount" data-meme-host="2" data-meme-src="/companion/meme/?embed=1">
