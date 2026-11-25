@@ -1,0 +1,20 @@
+/* Reflection hold2 · media under ladder · pinned sections stay */
+#cs-mount #reflection-media-restored,
+#cs-mount [data-visibility-hold="1"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#cs-mount #reflection-media-restored {
+  margin: 0.5rem 0 0.85rem !important;
+  padding: 0.75rem 0.9rem !important;
+  border: 1px solid rgba(212,180,90,0.4) !important;
+  border-radius: 14px !important;
+  background: rgba(0,0,0,0.28) !important;
+}
+#cs-mount #reflection-media-restored iframe {
+  display: block !important;
+  width: 100% !important;
+  min-height: 220px !important;
+  height: 220px !important;
+}
