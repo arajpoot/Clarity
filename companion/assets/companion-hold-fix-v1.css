@@ -1,0 +1,55 @@
+/*! Hold-fix · path full width · enrichment hold · educational only */
+
+/* Path tiles → full viewport width of shell content */
+.cs-path,
+#cs-path,
+[class*="cs-path"]:not(.cs-path-tile):not(.cs-path-ico):not(.cs-path-desc):not(.cs-path-tags) {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+.cs-path-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  gap: 0.55rem !important;
+  box-sizing: border-box !important;
+}
+.cs-path-tile {
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 900px) {
+  .cs-path-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 520px) {
+  .cs-path-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Reflection media hold */
+#cs-mount #reflection-media-restored {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#cs-mount #reflection-media-restored iframe {
+  display: block !important;
+  width: 100% !important;
+  min-height: 240px !important;
+  height: 240px !important;
+}
+
+/* Single full meme studio */
+#cs-mount #cs-meme-compact { display: none !important; }
+#cs-mount #meme-card,
+#cs-mount #meme-stage,
+#cs-mount #meme-canvas {
+  display: block !important;
+  visibility: visible !important;
+}
+#cs-mount #meme-canvas {
+  width: 100% !important;
+  min-height: 220px !important;
+}
