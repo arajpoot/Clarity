@@ -1,21 +1,15 @@
-/* Reflection media restored · educational only */
-#reflection-media-restored .reflection-embed-stack details {
-  margin: 0.5rem 0;
-  border: 1px solid rgba(212,180,90,0.28);
-  border-radius: 12px;
-  background: rgba(0,0,0,0.2);
-  overflow: hidden;
+/* Reflection media repair · visible players */
+#reflection-media-restored{display:block!important;margin:1rem 0;padding:.85rem 1rem;border:1px solid rgba(212,180,90,.4);border-radius:14px;background:rgba(0,0,0,.25)}
+#reflection-media-restored h2{color:#f7f0dd;margin:.2rem 0 .4rem}
+#reflection-media-restored details{display:block!important;margin:.55rem 0;border:1px solid rgba(212,180,90,.28);border-radius:12px;background:rgba(0,0,0,.2);overflow:hidden}
+#reflection-media-restored details[open] iframe,
+#reflection-media-restored iframe{
+  display:block!important;
+  width:100%!important;
+  min-height:240px!important;
+  height:240px!important;
+  border:0!important;
+  visibility:visible!important;
+  opacity:1!important;
 }
-#reflection-media-restored .reflection-embed-stack summary {
-  cursor: pointer;
-  padding: 0.65rem 0.85rem;
-  font-weight: 650;
-  color: #f7f0dd;
-}
-#reflection-media-restored iframe {
-  width: 100% !important;
-  min-height: 220px !important;
-  border: 0;
-  border-radius: 0 0 12px 12px;
-  display: block;
-}
+#reflection-media-restored summary{cursor:pointer;padding:.65rem .85rem;font-weight:650;color:#f7f0dd}
