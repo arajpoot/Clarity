@@ -1,0 +1,115 @@
+/*! §3A Visibility foundation · educational only — not a fatwa */
+
+/* Heroes + ladders always on-screen sized */
+#cs-mount .cs-tab-hero,
+#cs-mount [data-visual-hero] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 4.5rem;
+  padding: 0.85rem 1rem !important;
+  margin: 0 0 0.65rem !important;
+  border: 1px solid rgba(212,180,90,0.4) !important;
+  border-radius: 14px !important;
+  background: rgba(0,0,0,0.32) !important;
+}
+#cs-mount .cs-ladder-g2,
+#cs-mount [data-g2-ladder] {
+  display: block !important;
+  visibility: visible !important;
+  min-height: 2.75rem;
+  margin: 0.45rem 0 0.75rem !important;
+  padding: 0.65rem 0.9rem !important;
+  border: 1px solid rgba(212,180,90,0.45) !important;
+  border-radius: 14px !important;
+  background: rgba(42,107,74,0.32) !important;
+  color: #f7f0dd !important;
+}
+
+/* Meme stage — never 0×0 */
+#cs-mount #meme-stage,
+#cs-mount .meme-stage,
+#cs-mount [data-meme-stage] {
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  min-height: 240px !important;
+  height: auto !important;
+}
+#cs-mount #meme-canvas,
+#cs-mount canvas#meme-canvas {
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 220px !important;
+  height: auto !important;
+  background: #0b1220 !important;
+  border-radius: 12px !important;
+}
+#cs-mount #meme-card,
+#cs-mount #companion-meme-studio,
+#cs-mount [data-meme-host],
+#cs-mount .meme-card {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 260px !important;
+}
+
+/* Reflection media shelf */
+#cs-mount #reflection-media-restored {
+  display: block !important;
+  visibility: visible !important;
+  margin: 1rem 0 !important;
+  padding: 0.85rem 1rem !important;
+  border: 1px solid rgba(212,180,90,0.4) !important;
+  border-radius: 14px !important;
+  background: rgba(0,0,0,0.28) !important;
+}
+#cs-mount #reflection-media-restored details {
+  display: block !important;
+  margin: 0.5rem 0 !important;
+}
+#cs-mount #reflection-media-restored iframe,
+#cs-mount #reflection-media-restored details[open] iframe {
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  min-height: 240px !important;
+  height: 240px !important;
+  border: 0 !important;
+  opacity: 1 !important;
+}
+
+/* Deep learning block */
+#cs-mount #r7-r8-enrichment,
+#cs-mount .cs-r7-r8 {
+  display: block !important;
+  visibility: visible !important;
+}
+#cs-mount #r7-r8-enrichment iframe {
+  display: block !important;
+  width: 100% !important;
+  min-height: 220px !important;
+}
+
+/* Quiet junk */
+#cs-mount .rrra-hub-summary,
+#cs-mount .clarity-gate-switcher { display: none !important; }
+
+#cs-mount { padding-bottom: 5.75rem !important; }
+
+@media (max-width: 720px) {
+  .hijri-calendar,
+  [data-hijri-calendar],
+  .cs-calendar,
+  #hijri-box {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+}
