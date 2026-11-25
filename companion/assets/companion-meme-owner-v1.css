@@ -1,0 +1,48 @@
+/*! Clear owner: #meme-card = Clarity full studio on Reminder · §3A */
+#cs-mount #cs-meme-compact,
+#cs-mount [data-meme-compact] {
+  display: none !important;
+}
+
+/* Owner card must stay visible on Reminder regardless of path filter */
+body[data-active-tab="reminder"] #cs-mount #meme-card,
+body[data-active-tab="reminder"] #cs-mount #meme-card[data-meme-owner="clarity-full"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+body[data-active-tab="reminder"] #cs-mount #meme-stage-wrap,
+body[data-active-tab="reminder"] #cs-mount #meme-stage,
+body[data-active-tab="reminder"] #cs-mount .meme-preview-only,
+body[data-active-tab="reminder"] #cs-mount .meme-below {
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  min-height: 0 !important;
+}
+
+body[data-active-tab="reminder"] #cs-mount #meme-stage {
+  min-height: 240px !important;
+}
+
+body[data-active-tab="reminder"] #cs-mount #meme-canvas {
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  min-height: 220px !important;
+  height: auto !important;
+  background: #0b1220 !important;
+}
+
+/* One tweet desk */
+body[data-active-tab="reminder"] #cs-mount #tweet-desk-card-dup {
+  display: none !important;
+}
+body[data-active-tab="reminder"] #cs-mount #tweet-desk-card {
+  display: block !important;
+  visibility: visible !important;
+}
