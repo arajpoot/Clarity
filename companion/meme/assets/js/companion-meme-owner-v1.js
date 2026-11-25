@@ -163,7 +163,7 @@
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       var lines = wrap(ctx, s.top, maxW);
-      var lh = Math.floor(28 * st);
+      var lh = Math.floor(26 * st);
       var y0 = midY - ((lines.length - 1) * lh) / 2 - (s.mid ? lh * 0.75 : 0);
       lines.forEach(function (ln, i) {
         var y = y0 + i * lh;
@@ -177,7 +177,6 @@
     }
     if (s.mid) {
       ctx.font = Math.floor(14 * sm) + "px Quicksand, system-ui, sans-serif";
-      ctx.letterSpacing = "0.02em";
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
       wrap(ctx, s.mid, maxW).forEach(function (ln, i) {
