@@ -1,18 +1,18 @@
-# Companion hold-fix · path · reflection · meme
+# Reflection hold2 + §3A snapshot rule
 
-**Bismillah.** Educational only — not a fatwa.  
-Gates: §3 enrichment hold · §3A visibility
+## Visibility truth (your screenshot)
+Top of Reflection shows hero, ladder, grave, tawbah — **not** the media shelf. Media was ~8000px down. That is **not** operator-visible green.
 
-## Fixes
-1. **Path tiles** — full width of content viewport (4 columns → 2 → 1 responsive)
-2. **Reflection** — media enrichment **holds** (cache + re-inject if stripped; details open; players sized)
-3. **Reminder meme** — keep **Clarity Meme Studio** (full); hide compact host; one Tweet desk; canvas forced visible
+## This repair
+1. Move **Reflection media** directly **under the ladder**
+2. Pin grave / tawbah / soul / media with `data-visibility-hold` + runtime hold (survives path switches)
+3. Governance §3A amended: **sandbox snapshot + operator-see** required for GREEN
 
 ## Upload
-- `companion/index.html`
-- `companion/assets/companion-hold-fix-v1.css`
-- `companion/assets/companion-hold-fix-v1.js`
-- `companion/tabs/reminder/index.html`
-- `companion/tabs/reflection/index.html`
+- companion/tabs/reflection/index.html
+- companion/assets/companion-reflection-hold2.css
+- companion/assets/companion-reflection-hold2.js
+- companion/index.html
+- GOVERNANCE_CONTRACT.md (root)
 
-Hard-refresh. Changelog: `companion | enrichment: held | visibility: seen`
+Hard-refresh Reflection — media shelf should appear under the ladder without a long scroll.
