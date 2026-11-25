@@ -121,6 +121,21 @@ A visibility claim is **GREEN** only when **all** of the following hold:
 **Changelog:** `visibility: seen` requires a snapshot path or explicit operator confirmation note.  
 **Forbidden:** marking GREEN from flag/sim-only runs when no snapshot evidence exists for the claimed surface.
 
+
+### Build sandbox sim snapshot (binding)
+
+Every phase package that claims **`visibility: seen`** must include evidence from **its own sandbox sim run** of the deployed (or deployable) build:
+
+1. **Viewport capture** — At least one screenshot from the agent/sandbox browser session after hard-refresh (or equivalent cache-bust load).
+2. **Target in frame** — The claimed enrichment heading or primary control is **legible in that capture** (not only in DOM metrics).
+3. **Record in package** — Ship under `governance/` or `smoke/`:
+   - short note of what was in frame
+   - timestamp / build id
+   - pass/fail against the ticket’s visibility claim
+4. **No sim-only green** — Flag checks and `getBoundingClientRect` without a sandbox snapshot **do not** satisfy §3A.
+
+Operator-phone confirmation remains valid when the operator attaches their own screenshot; sandbox sim snapshot is the **default** evidence path for agent-delivered packages.
+
 ### Fail conditions (visibility)
 
 - Audit green while the operator reports “I don’t see it” and a hard-refresh confirms absence or zero-size UI  
