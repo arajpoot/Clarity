@@ -1,0 +1,153 @@
+{
+  "build": "CM15CLEAN",
+  "cycles": [
+    {
+      "cycle": 1,
+      "op": "strip path-parity stubs",
+      "bytes": 54647,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1
+    },
+    {
+      "cycle": 2,
+      "op": "fix h2 badge + article balance",
+      "bytes": 54647,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1
+    },
+    {
+      "cycle": 3,
+      "op": "dedupe consecutive disc",
+      "bytes": 54647,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1
+    },
+    {
+      "cycle": 4,
+      "op": "wire meme scripts if chips present",
+      "bytes": 54926,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1
+    },
+    {
+      "cycle": 5,
+      "op": "empty tags",
+      "bytes": 54926,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1
+    },
+    {
+      "cycle": 6,
+      "op": "verify enrichment",
+      "bytes": 54926,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1,
+      "fails_so_far": []
+    },
+    {
+      "cycle": 7,
+      "op": "verify enrichment",
+      "bytes": 54926,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1,
+      "fails_so_far": []
+    },
+    {
+      "cycle": 8,
+      "op": "verify enrichment",
+      "bytes": 54926,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1,
+      "fails_so_far": []
+    },
+    {
+      "cycle": 9,
+      "op": "verify enrichment",
+      "bytes": 54926,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1,
+      "fails_so_far": []
+    },
+    {
+      "cycle": 10,
+      "op": "verify enrichment",
+      "bytes": 54926,
+      "buttons": 96,
+      "h2": 28,
+      "parity": 0,
+      "meme": 1,
+      "callig": 1,
+      "tweet": 1,
+      "fails_so_far": []
+    }
+  ],
+  "final": {
+    "bytes": 54923,
+    "buttons": 96,
+    "h2": 28,
+    "parity": 0,
+    "meme": 1,
+    "callig": 1,
+    "tweet": 1
+  },
+  "baseline_bytes": 44084,
+  "status": "GREEN",
+  "fails": [],
+  "tag_err_sample": [
+    "extra div",
+    "extra section",
+    "mismatched div",
+    "mismatched div",
+    "mismatched article"
+  ],
+  "unclosed_depth": 0,
+  "ready_for_deploy": true,
+  "noise_removed": [
+    "path-parity stubs",
+    "consecutive disc dupes",
+    "empty script/style"
+  ],
+  "enrichment_retained": [
+    "Clarity Meme Studio",
+    "Calligraphy lab",
+    "Tweet desk",
+    "Tafseer",
+    "Names/Ilm"
+  ]
+}
