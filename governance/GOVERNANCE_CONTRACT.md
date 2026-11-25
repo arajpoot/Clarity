@@ -105,6 +105,22 @@ Enrichment that cannot be **seen and used** by a normal user after a hard-refres
 | Deep learning / studios | Section on screen; primary actions respond |
 | Any “restored” block | Findable in one deliberate scroll on mobile |
 
+
+
+### Sandbox snapshot rule (binding — human time)
+
+DOM presence and “non-zero getBoundingClientRect” are **not** enough.
+
+A visibility claim is **GREEN** only when **all** of the following hold:
+
+1. **Sandbox / tool snapshot** — A real screenshot (or equivalent viewport capture) from the build or live hard-refresh shows the enrichment **in frame** without requiring the operator to know a secret scroll depth.
+2. **First intentional screen** — For tab-level restore tickets, primary restored enrichment appears **at or near** the top of the tab body (under hero/ladder), not only after several viewport-heights of scroll, unless the ticket explicitly says “appendix media.”
+3. **Operator sees it** — If the human operator reports “not on my screen” and a hard-refresh confirms absence or only far-below-fold placement when the ticket promised visible restore, the audit is **`visibility: fail`** regardless of sim flags.
+4. **Enrichment sticks** — After path-tile changes and leaving/returning to the tab, pinned educational sections and restored media **remain** visible. Disappearing enrichment is a §3 + §3A failure.
+
+**Changelog:** `visibility: seen` requires a snapshot path or explicit operator confirmation note.  
+**Forbidden:** marking GREEN from flag/sim-only runs when no snapshot evidence exists for the claimed surface.
+
 ### Fail conditions (visibility)
 
 - Audit green while the operator reports “I don’t see it” and a hard-refresh confirms absence or zero-size UI  
