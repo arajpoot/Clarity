@@ -1,16 +1,16 @@
 Bismillah.
 
-HYDRATE SOAK v2 — stronger chrome soak-in
-=========================================
-UPLOAD:
-  companion/index.html
-  companion/meme/index.html
-  companion/assets/companion-archive3-chrome-hydrate-v2.css
-  companion/assets/companion-archive3-chrome-hydrate-v2.js
+COMPANION FOUNDATION SEAL v1
+============================
+Like Campus curriculum freeze — Companion foundation cannot be destroyed in one upgrade.
 
-v2 uses !important on plaque depth, fonts, chips so older CSS cannot wash it out.
-JS re-soaks at 120ms, 600ms, 1500ms and on tab clicks.
+UPLOAD-SAFE/:
+  companion/FOUNDATION_SEAL.json     ← machine-readable protected layers
+  companion/index.html              ← data-companion-foundation-seal="v1"
+  docs/COMPANION_FOUNDATION_SEAL.md ← human binding rules
 
-Hard-refresh Companion + Meme after upload.
+Also keep a copy under site docs/ if you maintain /docs on the host.
+
+Future tickets: read the seal first; additive only; no wholesale wipe.
 
 Bismillah.
