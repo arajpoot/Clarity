@@ -1,3 +1,4 @@
+/* P3 allowlist spine v=20261126P3 */
 /*! companion-meme-owner-v1 · CM8 night fix
  * Single paint path for main canvas + X/FB desks · online bg via memeFetchBg
  * Educational only — not a fatwa · scenery only
