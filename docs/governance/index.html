@@ -168,17 +168,33 @@
     </div>
 
     <h2 id="upgrades">7. Upgrade &amp; preserve rules</h2>
+    <p>
+      These rules bind the <strong>Port lobby</strong> and <strong>every room</strong>:
+      Companion, Yawm, University (Campus), Amānah, and Craft.
+      A deploy to one door must not erase another.
+    </p>
     <div class="card">
-      <p><strong>No upgrade may cause loss of all Companion work in place.</strong></p>
+      <p><strong>No upgrade may cause loss of work in place — on the Port or in any room.</strong></p>
+      <h3>Castle-wide</h3>
       <ol>
-        <li><strong>Additive first.</strong> Prefer new versioned files (<code>*-v2.js</code>) over silent overwrite of foundation modules.</li>
-        <li><strong>Never strip the seal</strong> without a documented major foundation bump and migration notes.</li>
-        <li><strong>Cache honesty.</strong> Service worker and CDN query strings must allow users to receive the new layer without wiping unrelated room caches.</li>
-        <li><strong>Path progress stays on-device.</strong> Unlock keys and notes in localStorage are user data — do not rename keys without a read-migrate-write step.</li>
-        <li><strong>Rollback is a feature.</strong> Keeping a prior asset version query (or archive folder) is preferred to “delete and hope.”</li>
-        <li><strong>Room isolation.</strong> A Companion deploy must not require wiping Yawm, Campus, Amānah, or Craft.</li>
-        <li><strong>Empty shell is a defect.</strong> If a tab title promises sections the user cannot open or see, the deploy fails §R1 / §V1.</li>
+        <li><strong>Additive first.</strong> Prefer new versioned files (<code>*-v2.js</code> / <code>*-v2.css</code>) over silent overwrite of foundation modules.</li>
+        <li><strong>Room isolation.</strong> Deploying one room (or Port) must not require wiping another room’s HTML, assets, or service-worker bucket.</li>
+        <li><strong>Cache honesty.</strong> Service worker and CDN query strings must deliver the new layer without purging unrelated room caches. Phase A buckets stay per-room: port · yawm · companion · campus · amana · craft · assets.</li>
+        <li><strong>On-device user data.</strong> Path unlocks, notes, vault blobs, campus progress, and similar <code>localStorage</code> / IndexedDB keys are user data — rename only with read-migrate-write.</li>
+        <li><strong>Rollback is a feature.</strong> Keep a prior asset version query or archive folder; prefer roll-forward or roll-back over “delete and hope.”</li>
+        <li><strong>Empty shell is a defect.</strong> If a page or tab promises sections the user cannot open or see, the deploy fails §R1 / §V1 for that surface.</li>
+        <li><strong>Port is not disposable chrome.</strong> The lobby (<code>/</code>) is the map of the castle. Upgrades may refine it; they must not strand users without working door links to all five rooms.</li>
       </ol>
+      <h3>Per surface</h3>
+      <ul>
+        <li><strong>Port</strong> — preserve five-door entry, educational disclaimers, and room-nav assets; do not fold room apps back into a single monolith without an explicit architecture decision.</li>
+        <li><strong>Companion</strong> — never strip <code>data-companion-foundation-seal</code> without a major foundation bump; ship shell, mount fortify, path governance, visibility foundation, and integrity together.</li>
+        <li><strong>Yawm</strong> — preserve today’s-portion modules and daily loop structure; do not clear the user’s day markers without migration.</li>
+        <li><strong>University (Campus)</strong> — preserve charter limits and ordered stages; progress markers stay on-device study mirrors, not grades of īmān.</li>
+        <li><strong>Amānah</strong> — never ship a change that exfiltrates vault passphrases or rewrites encrypted blobs without a versioned migrator; desk remains usable without unlock.</li>
+        <li><strong>Craft</strong> — preserve media daʿwah charter (source discipline, scenery rules, educational stamp); studio state on-device is not to be wiped by a CSS-only deploy.</li>
+      </ul>
+      <p>Stricter room rules are allowed. Weaker preserve rules are not.</p>
     </div>
 
     <h2 id="rooms">8. Five rooms — boundaries</h2>
@@ -241,7 +257,7 @@
         <a href="/">Port lobby</a>
       </nav>
       <p>Educational only — not a fatwa · not legal advice · not a court document.</p>
-      <p>Build: governance-full · 20261126F · visibility · richness · foundation · upgrade-preserve.</p>
+      <p>Build: governance-full · 20261126G · visibility · richness · foundation · castle-wide upgrade-preserve.</p>
     </footer>
   </div>
 </body>

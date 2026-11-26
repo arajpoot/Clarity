@@ -49,3 +49,8 @@ This charter implements:
 - `/docs/governance/` § Upgrade & preserve  
 
 Session work on Companion assumes these rules until the seal major-versions.
+
+## Castle-wide preserve
+
+Governance §7 applies to **Port + all five rooms**, not Companion alone.
+Companion still ships its seal and must-ship modules; it must not be the only surface protected from wipe deploys.
