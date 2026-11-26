@@ -1,3 +1,4 @@
+/* P5 · online via memeFetchBg · scenery only */
 /* P3 allowlist spine v=20261126P3 */
 /*! companion-meme-owner-v1 · CM8 night fix
  * Single paint path for main canvas + X/FB desks · online bg via memeFetchBg
@@ -25,10 +26,10 @@
     night: ["https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1400&q=80"],
     water: ["https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1400&q=80"],
     flowers: ["https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1400&q=80"],
-    spirit: ["https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1400&q=80"],
+    spirit: ["https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1400&q=80"],
     pattern: ["https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1400&q=80"],
     decor: ["https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1400&q=80"],
-    flickr: [],
+    flickr: ["https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=80","https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=1400&q=80","https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80"],
     blank: []
   };
 
