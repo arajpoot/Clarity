@@ -1,0 +1,215 @@
+/*! companion-archive3-chrome-hydrate-v2.css
+ * SOAK layer · higher specificity · deeper Islamic UI · educational only — not a fatwa
+ */
+@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&family=Quicksand:wght@500;600;700&display=swap");
+
+:root {
+  --a3-ink: #f3efe6;
+  --a3-ink-dim: rgba(243, 239, 230, 0.82);
+  --a3-night: #070b14;
+  --a3-panel: rgba(14, 20, 34, 0.96);
+  --a3-gold: #e0c36a;
+  --a3-gold-soft: rgba(224, 195, 106, 0.38);
+  --a3-gold-glow: rgba(224, 195, 106, 0.55);
+  --a3-emerald: #1e7d5e;
+  --a3-emerald-deep: #0c4f3c;
+  --a3-radius: 16px;
+  --a3-font-ui: "Quicksand", system-ui, -apple-system, sans-serif;
+  --a3-font-ar: "Noto Naskh Arabic", "Amiri", "Traditional Arabic", serif;
+}
+
+/* —— Base soak (no data-attr required) —— */
+body,
+#cs-mount,
+.tab-panel,
+.rrra-hub-body {
+  font-family: var(--a3-font-ui) !important;
+  color: var(--a3-ink);
+}
+
+body {
+  background:
+    radial-gradient(1100px 520px at 8% -8%, rgba(30, 125, 94, 0.22), transparent 55%),
+    radial-gradient(900px 480px at 100% 0%, rgba(224, 195, 106, 0.14), transparent 52%),
+    radial-gradient(700px 400px at 50% 100%, rgba(15, 60, 50, 0.25), transparent 60%),
+    var(--a3-night) !important;
+}
+
+/* Arabic / Bismillah soak */
+.bismillah,
+[lang="ar"],
+.cs-ar,
+[dir="rtl"],
+.meme-room .bismillah,
+#cs-mount [lang="ar"] {
+  font-family: var(--a3-font-ar) !important;
+  font-weight: 600 !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3,
+#cs-mount h2,
+.tab-panel h2,
+.cs-plaque-head h2,
+.p4-glory-rail h2 {
+  font-family: var(--a3-font-ui) !important;
+  letter-spacing: 0.015em;
+  color: #f7efd8 !important;
+}
+
+/* —— Plaque depth soak —— */
+#cs-mount .cs-plaque,
+#cs-mount .cs-plaque-deep,
+#cs-mount .card,
+#cs-mount .card.card-tools,
+#cs-mount .siq-suite,
+.tab-panel .cs-plaque,
+.tab-panel .card,
+.p4-glory-rail,
+.meme-room .panel,
+.meme-room .desk-card {
+  border-radius: var(--a3-radius) !important;
+  border: 1px solid var(--a3-gold-soft) !important;
+  background:
+    linear-gradient(165deg, rgba(224, 195, 106, 0.11) 0%, transparent 42%),
+    linear-gradient(180deg, rgba(30, 125, 94, 0.08), transparent 55%),
+    var(--a3-panel) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 12px 36px rgba(0, 0, 0, 0.38),
+    0 2px 0 rgba(224, 195, 106, 0.12) !important;
+  padding: 0.95rem 1.05rem !important;
+  margin: 0.85rem 0 !important;
+}
+
+#cs-mount .cs-plaque-deep,
+#cs-mount [data-cs-primary="1"],
+#cs-mount .cs-plaque[data-cs-primary="1"] {
+  border-top: 3px solid var(--a3-gold) !important;
+  box-shadow:
+    0 0 0 1px rgba(224, 195, 106, 0.12) inset,
+    0 16px 42px rgba(0, 0, 0, 0.42) !important;
+}
+
+#cs-mount .cs-plaque:hover,
+.tab-panel .card:hover,
+.meme-room .panel:hover,
+.meme-room .desk-card:hover {
+  border-color: var(--a3-gold-glow) !important;
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgba(224, 195, 106, 0.18) inset,
+    0 18px 48px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Glory rail accent bar */
+.p4-glory-rail {
+  position: relative !important;
+  overflow: hidden !important;
+  border-top: 3px solid var(--a3-gold) !important;
+}
+.p4-glory-rail::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0; top: 0; bottom: 0;
+  width: 5px !important;
+  background: linear-gradient(180deg, var(--a3-gold), var(--a3-emerald)) !important;
+  border-radius: 4px 0 0 4px;
+}
+
+/* Chips / buttons soak */
+.p4-glory-chips a,
+#cs-mount .cs-chip,
+#cs-mount .cs-btn,
+.meme-room .chip {
+  font-family: var(--a3-font-ui) !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--a3-gold-soft) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  color: var(--a3-ink) !important;
+  padding: 0.38rem 0.85rem !important;
+  font-weight: 600 !important;
+}
+.p4-glory-chips a:hover,
+#cs-mount .cs-chip:hover,
+.meme-room .chip:hover {
+  border-color: var(--a3-gold-glow) !important;
+  background: rgba(224, 195, 106, 0.2) !important;
+}
+.meme-room .chip.primary,
+#cs-mount .cs-btn.primary,
+.chip.primary {
+  background: linear-gradient(135deg, var(--a3-emerald), var(--a3-emerald-deep)) !important;
+  border-color: rgba(240, 215, 140, 0.4) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+
+/* Icon stamps */
+.a3-ico {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem !important;
+  height: 1.7rem !important;
+  margin-inline-end: 0.45rem !important;
+  border-radius: 0.5rem !important;
+  background: rgba(224, 195, 106, 0.16) !important;
+  border: 1px solid var(--a3-gold-soft) !important;
+  font-size: 1rem !important;
+  vertical-align: -0.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Canvas / meme stage */
+#meme-stage,
+.meme-room #meme-stage {
+  border-radius: 18px !important;
+  border: 1px solid var(--a3-gold-soft) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45) !important;
+  background: #05080f !important;
+  overflow: hidden;
+}
+
+/* Desk cards */
+.desk-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem !important;
+}
+@media (max-width: 720px) {
+  .desk-grid { grid-template-columns: 1fr !important; }
+}
+.desk-card h3 { color: #f0d78c !important; margin: 0 0 0.45rem !important; }
+.desk-preview,
+.desk-preview-canvas {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 12px !important;
+  background: #0a101c !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Lead / edu text */
+.lead, .edu, .disc, .tagline {
+  color: var(--a3-ink-dim) !important;
+  line-height: 1.55 !important;
+}
+
+/* Tab mount breathing room */
+#cs-mount {
+  padding: 0.35rem 0.15rem 1.5rem !important;
+  max-width: none !important;
+}
+
+/* Hydrated fade */
+html[data-a3-hydrated="1"] #cs-mount,
+html[data-a3-hydrated="1"] .meme-room {
+  animation: a3soak 0.55s ease;
+}
+@keyframes a3soak {
+  from { opacity: 0.65; filter: saturate(0.85); }
+  to { opacity: 1; filter: saturate(1); }
+}
