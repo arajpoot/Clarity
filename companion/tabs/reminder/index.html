@@ -254,6 +254,7 @@ Meme Studio</h2>
   <p class="meme-host-note edu">Studio runs in its own Companion module (same isolation pattern as the banner). Expand for a taller canvas; open full page when you need desks roomy.</p>
   <div class="meme-host-actions">
     <button type="button" class="cs-btn" id="cs-meme-expand" data-meme-host-act="expand">Expand studio</button>
+    <a class="cs-btn" id="cs-meme-open-full" href="/companion/meme/" style="display:inline-block;margin-inline-start:.35rem;padding:.35rem .75rem;border-radius:999px;border:1px solid rgba(212,180,90,.4);text-decoration:none;color:inherit">Open full page</a>
     <!-- compact meme removed; full Clarity Meme Studio kept -->
   <div id="cs-meme-mount" class="cs-meme-mount" data-meme-host="2" data-meme-src="/companion/meme/?embed=1">
     <div class="cs-meme-chrome" aria-hidden="true">
@@ -641,5 +642,18 @@ Meme Studio</h2>
 
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+
+<script data-p1-expand-stub="1">
+(function(){
+  var b=document.getElementById('cs-meme-expand');
+  var m=document.getElementById('cs-meme-mount')||document.querySelector('.cs-meme-mount');
+  if(!b||!m)return;
+  b.addEventListener('click',function(){
+    m.classList.toggle('is-expanded');
+    var f=document.getElementById('cs-meme-frame');
+    if(f){ f.style.minHeight = m.classList.contains('is-expanded') ? '70vh' : ''; }
+  });
+})();
+</script>
 </body>
 </html>
