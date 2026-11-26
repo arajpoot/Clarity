@@ -327,43 +327,86 @@ document.addEventListener("toggle", function(e){
   <p><a class="cs-btn primary" href="/companion/meme/">Open full Companion Meme Studio</a></p>
 </div>
 
-<div data-rrra="reminder" class="card card-tools" id="callig-lab-card" style="border-top:3px solid var(--gold,#9a7b24)">
-<h2>✒️ 
 
-<!-- quiet-id #callig-lab-card -->
+<!-- Archive3 Calligraphy deep module · residual tweet desk cleared · enrichment: added · Bismillah -->
+<section class="cs-plaque cs-plaque-deep" id="callig-lab-card" data-rrra="reminder" data-enrichment="added" data-cs-primary="1">
+  <div class="cs-plaque-head">
+    <span class="cs-ico a3-ico" aria-hidden="true">✒️</span>
+    <div>
+      <h2>Calligraphy · deep practice pad</h2>
+      <p class="lead">Archive3 Companion module — one letter or basmala with patience. Educational practice — not a certificate · not a fatwa.</p>
+    </div>
+  </div>
+  <div class="p4-glory-chips" style="margin:.5rem 0">
+    <button type="button" class="chip primary" data-callig-glyph="ا">ا</button>
+    <button type="button" class="chip" data-callig-glyph="ب">ب</button>
+    <button type="button" class="chip" data-callig-glyph="ت">ت</button>
+    <button type="button" class="chip" data-callig-glyph="ل">ل</button>
+    <button type="button" class="chip" data-callig-glyph="م">م</button>
+    <button type="button" class="chip" data-callig-glyph="ن">ن</button>
+    <button type="button" class="chip" data-callig-glyph="ه">ه</button>
+    <button type="button" class="chip" data-callig-glyph="و">و</button>
+    <button type="button" class="chip" data-callig-glyph="ي">ي</button>
+    <button type="button" class="chip" data-callig-glyph="لا">لا</button>
+  </div>
+  <div class="callig-toolbar" style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0;align-items:center">
+    <label class="edu">Ink <input type="color" id="callig-ink" value="#0d4f3c"/></label>
+    <label class="edu">Size <input type="range" id="callig-size" min="6" max="36" value="14"/></label>
+    <label class="edu"><input type="checkbox" id="callig-guide" checked/> Guide</label>
+    <button type="button" class="cs-btn" id="callig-clear">Clear</button>
+    <button type="button" class="cs-btn primary" id="callig-undo">Undo</button>
+  </div>
+  <div class="callig-stage" style="border-radius:14px;border:1px solid rgba(212,180,90,.35);background:linear-gradient(180deg,#fffef8,#f5f0e4);padding:.35rem;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04)">
+    <canvas id="callig-canvas" width="720" height="360" style="width:100%;max-width:100%;height:auto;min-height:12rem;display:block;border-radius:12px;touch-action:none;cursor:crosshair"></canvas>
+  </div>
+  <p class="edu" style="margin-top:.55rem">Practice: one letter today; do not rush the full basmala. Noorani-style patience · Companion holds this pad until Craft is fully ported.</p>
+  <p class="edu"><a href="/craft/calligraphy/">Optional Craft pad</a> · Educational only — not a fatwa.</p>
+</section>
+<script src="/companion/modules/clarity-callig-engine-v1.js?v=20261126CALLIG"></script>
+<script>
+(function(){
+  /* lightweight pad boot — wires glyphs to engine if present */
+  function boot(){
+    try {
+      if (typeof calligInit === "function") calligInit();
+      else if (window.ClarityCallig && typeof ClarityCallig.init === "function") ClarityCallig.init();
+    } catch(e){}
+    var c = document.getElementById("callig-canvas");
+    if (!c) return;
+    var ctx = c.getContext("2d");
+    if (!ctx) return;
+    if (!window.__callig_local_boot) {
+      window.__callig_local_boot = true;
+      var drawing = false;
+      function pos(ev){
+        var r = c.getBoundingClientRect();
+        var x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+        var y = (ev.touches ? ev.touches[0].clientY : ev.clientY) - r.top;
+        return {x: x * (c.width/r.width), y: y * (c.height/r.height)};
+      }
+      function ink(){ var el=document.getElementById("callig-ink"); return el?el.value:"#0d4f3c"; }
+      function size(){ var el=document.getElementById("callig-size"); return el?+el.value:14; }
+      function start(ev){ drawing=true; var p=pos(ev); ctx.beginPath(); ctx.moveTo(p.x,p.y); ev.preventDefault(); }
+      function move(ev){ if(!drawing)return; var p=pos(ev); ctx.strokeStyle=ink(); ctx.lineWidth=size(); ctx.lineCap="round"; ctx.lineJoin="round"; ctx.lineTo(p.x,p.y); ctx.stroke(); ev.preventDefault(); }
+      function end(){ drawing=false; }
+      c.addEventListener("mousedown", start); c.addEventListener("mousemove", move); window.addEventListener("mouseup", end);
+      c.addEventListener("touchstart", start, {passive:false}); c.addEventListener("touchmove", move, {passive:false}); c.addEventListener("touchend", end);
+      var clr=document.getElementById("callig-clear");
+      if(clr) clr.addEventListener("click", function(){ ctx.clearRect(0,0,c.width,c.height); });
+      document.querySelectorAll("[data-callig-glyph]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var g=btn.getAttribute("data-callig-glyph")||"";
+          ctx.save(); ctx.fillStyle="rgba(13,79,60,0.12)"; ctx.font="120px 'Noto Naskh Arabic', Amiri, serif"; ctx.textAlign="center"; ctx.textBaseline="middle";
+          ctx.clearRect(0,0,c.width,c.height); ctx.fillText(g, c.width/2, c.height/2); ctx.restore();
+        });
+      });
+    }
+  }
+  if (document.readyState==="loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 200); });
+  else setTimeout(boot, 200);
+})();
+</script>
 
-<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card" data-tweet-desk="g1">
-  <h2>𝕏 
-<div data-rrra="reminder" class="card tweet-desk" id="tweet-desk-card-dup" hidden style="display:none!important">
-  <h2>𝕏 Tweet desk</h2>
-  <p class="td-src">Arabic + English + reference (no site URL, so more of the verse fits). Tafseer, Seerah, Tajweed and Samiʿnā refresh from those tabs. Posting opens X while you are logged in.</p>
-  <div class="td-row">
-    <input type="text" id="td-handle" placeholder="@your_handle" autocomplete="username" style="min-width:10rem;padding:.4rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-elevated);color:var(--text)">
-    <button type="button" class="btn-soft" onclick="tdSaveHandle()">Save handle</button>
-    <button type="button" class="btn-secondary" onclick="tdConnectX()">Open X login</button>
-  </div>
-  <div class="td-row" role="group" aria-label="Section drafts">
-    <button type="button" class="btn-soft" onclick="tdDraft('verse')">🧭 Journey</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('commands')">📜 Commands</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('grave')">🌙 Grave</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('tafseer')">📖 Tafseer</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('seerah')">🕊 Seerah</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('sami')">⚖ Samiʿnā</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('tajweed')">🔤 Tajweed</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('quiz')">🧠 Quiz win</button>
-    <button type="button" class="btn-soft" onclick="tdDraft('meme')">🎨 Meme</button>
-    <button type="button" onclick="tdDraft('surprise')" onclick="claritySurpriseMe()">✨ Surprise me</button>
-    <button type="button" class="btn-soft" onclick="tdRefreshOnline()">↻ Refresh live</button>
-    <button type="button" class="btn-soft" onclick="tdSendToMeme()">🎨 To Meme Studio</button>
-  </div>
-  <textarea id="td-text" maxlength="280" rows="8" placeholder="﴿ Arabic ﴾&#10;English&#10;https://clarity-dawah.fyi/#journey" oninput="tdCount()"></textarea>
-  <div class="td-meta" id="td-meta"><span id="td-count">0 / 280</span><span id="td-status">Ready</span></div>
-  <div class="td-row">
-    <button type="button" onclick="tdPost()">Post on X</button>
-    <button type="button" class="btn-secondary" onclick="tdCopy()">Copy draft</button>
-    <button type="button" class="btn-soft" onclick="tdRemind()">Daily reminder</button>
-  </div>
-</div>
 
 </div></div>
 
