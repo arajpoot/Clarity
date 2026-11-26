@@ -79,6 +79,7 @@
   }
 
   function buildDeck(forceAll) {
+    /* Q3F-STATE-EXPORT */
     try { w.__CLARITY_FQ_STATE__ = state; } catch (e) {}
 
     var pool = filtered();
@@ -113,6 +114,7 @@
   }
 
   function renderCard() {
+    /* Q3F-STATE-EXPORT */
     try { w.__CLARITY_FQ_STATE__ = state; } catch (e) {}
 
     var stage = $("fq-stage");
@@ -208,6 +210,7 @@
     buildDeck(true);
     renderCard();
   };
+  try { w.__CLARITY_FQ_STATE__ = state; } catch (e) {}
   w.fqNext = function () {
     state.idx += 1;
     renderCard();
