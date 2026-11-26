@@ -1,3 +1,6 @@
-# Archive3 — Companion Meme
+# Archive3 — Companion Meme assets
 
-SoT helpers for isolated meme room. Runtime allowlist loads canvas-clean; online-bg/shariah/bundle kept for enrichment stock without dual-paint war (online path uses companion-meme-online-fetch-v1.js).
+Full stock for isolated meme room.
+- canvas-clean (runtime allowlist)
+- online-bg / shariah-bg / bundle (stock)
+Online path at runtime uses companion-meme-online-fetch-v1.js to avoid dual-paint war.
