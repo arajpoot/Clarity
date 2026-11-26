@@ -1,0 +1,84 @@
+/* companion-siq-quest-plus-v1 */
+.siq-plus-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin: 0.4rem 0 0.55rem;
+}
+.siq-plus-timer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  border: 2px solid rgba(212, 180, 90, 0.55);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  background: rgba(12, 22, 36, 0.9);
+}
+.siq-plus-timer.urgent {
+  border-color: #c45c5c;
+  color: #ffb4b4;
+  animation: siqPulse 0.9s ease infinite;
+}
+@keyframes siqPulse {
+  50% { transform: scale(1.06); }
+}
+.siq-plus-combo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b8e0d0;
+}
+.siq-plus-note { font-size: 0.72rem; opacity: 0.8; }
+.siq-plus-badges {
+  margin: 0.35rem 0 0.6rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 12px;
+  border: 1px solid rgba(180, 200, 220, 0.15);
+  background: rgba(8, 14, 24, 0.55);
+}
+.siq-plus-badges-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #d4b45a;
+  margin-bottom: 0.35rem;
+}
+.siq-plus-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.siq-plus-badge {
+  font-size: 0.72rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 160, 180, 0.25);
+  opacity: 0.55;
+}
+.siq-plus-badge.on {
+  opacity: 1;
+  border-color: rgba(212, 180, 90, 0.55);
+  background: rgba(30, 125, 94, 0.2);
+  color: #f0d78c;
+}
+.siq-plus-toast {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  max-width: 92vw;
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  background: rgba(12, 28, 22, 0.96);
+  border: 1px solid rgba(212, 180, 90, 0.45);
+  color: #f5f0e6;
+  z-index: 9999;
+  transition: transform 0.25s ease;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+.siq-plus-toast.show {
+  transform: translateX(-50%) translateY(0);
+}
