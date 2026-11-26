@@ -4,192 +4,121 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Clarity · Governance contract</title>
-  <meta name="description" content="Clarity governance contract: educational only, not a fatwa, primary sources, on-device privacy, room boundaries. Discovery page — does not replace room apps.">
+  <meta name="description" content="Full Clarity governance: submission rules, sources, privacy, visibility & richness, companion foundation, upgrade safety. Discovery only — does not replace room apps.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://clarity-dawah.fyi/docs/governance/">
   <style>
     :root {
-      --bg: #0b1f1a;
-      --card: #0f2a22;
-      --text: #e8f0ea;
-      --muted: #9bb5a8;
-      --gold: #d4b45a;
-      --border: rgba(212, 180, 90, 0.28);
-      --accent: #1fa67a;
+      --bg: #0b1f1a; --card: #0f2a22; --text: #e8f0ea; --muted: #9bb5a8;
+      --gold: #d4b45a; --border: rgba(212, 180, 90, 0.28); --accent: #1fa67a;
       --soft: rgba(15, 76, 58, 0.45);
     }
     @media (prefers-color-scheme: light) {
       :root {
-        --bg: #f6f1e7;
-        --card: #fffdf8;
-        --text: #1c2a22;
-        --muted: #5a6358;
-        --gold: #8a6a1a;
-        --border: #e1dacb;
-        --accent: #0d4f3c;
-        --soft: #e6f2ec;
+        --bg: #f6f1e7; --card: #fffdf8; --text: #1c2a22; --muted: #5a6358;
+        --gold: #8a6a1a; --border: #e1dacb; --accent: #0d4f3c; --soft: #e6f2ec;
       }
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-      font-size: 1rem;
-    }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.55; font-size: 1rem; }
     a { color: var(--accent); }
     a:hover { text-decoration: underline; }
-    .wrap {
-      max-width: 42rem;
-      margin: 0 auto;
-      padding: 1.25rem 1.1rem 3rem;
-    }
-    .crumb {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
+    .wrap { max-width: 44rem; margin: 0 auto; padding: 1.25rem 1.1rem 3rem; }
+    .crumb { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; }
     .crumb a { color: var(--muted); text-decoration: none; }
     .crumb a:hover { color: var(--accent); }
-    h1 {
-      font-size: 1.55rem;
-      line-height: 1.25;
-      margin: 0 0 0.4rem;
-      color: var(--gold);
-      font-weight: 800;
-    }
-    .lede {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin: 0 0 1.25rem;
-    }
-    .stamp {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.28rem 0.65rem;
-      margin-bottom: 1.25rem;
-      background: var(--soft);
-    }
-    h2 {
-      font-size: 1.08rem;
-      margin: 1.6rem 0 0.55rem;
-      color: var(--gold);
-      font-weight: 700;
-    }
-    h3 {
-      font-size: 0.95rem;
-      margin: 1rem 0 0.35rem;
-      font-weight: 700;
-    }
+    h1 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 0.4rem; color: var(--gold); font-weight: 800; }
+    .lede { color: var(--muted); font-size: 0.95rem; margin: 0 0 1.25rem; }
+    .stamp { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid var(--border);
+      border-radius: 999px; padding: 0.28rem 0.65rem; margin-bottom: 1.25rem; background: var(--soft); }
+    h2 { font-size: 1.08rem; margin: 1.65rem 0 0.55rem; color: var(--gold); font-weight: 700; }
+    h3 { font-size: 0.95rem; margin: 1rem 0 0.35rem; font-weight: 700; }
     p, li { font-size: 0.94rem; }
     p { margin: 0.45rem 0; }
     ul, ol { margin: 0.35rem 0 0.75rem; padding-left: 1.2rem; }
     li { margin: 0.28rem 0; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 0.95rem 1rem;
-      margin: 0.85rem 0;
-    }
-    .card strong { color: var(--gold); }
-    .rule {
-      border-left: 3px solid var(--gold);
-      padding-left: 0.75rem;
-      margin: 0.65rem 0;
-      color: var(--text);
-    }
-    .grid {
-      display: grid;
-      gap: 0.55rem;
-      margin: 0.75rem 0;
-    }
-    @media (min-width: 640px) {
-      .grid.two { grid-template-columns: 1fr 1fr; }
-    }
-    .pill {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.7rem 0.8rem;
-      font-size: 0.88rem;
-    }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 0.95rem 1rem; margin: 0.85rem 0; }
+    .rule { border-left: 3px solid var(--gold); padding-left: 0.75rem; margin: 0.65rem 0; }
+    .grid { display: grid; gap: 0.55rem; margin: 0.75rem 0; }
+    @media (min-width: 640px) { .grid.two { grid-template-columns: 1fr 1fr; } }
+    .pill { background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 0.7rem 0.8rem; font-size: 0.88rem; }
     .pill b { display: block; color: var(--gold); margin-bottom: 0.2rem; }
-    .foot {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
+    .foot { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--muted); }
     .foot nav { margin-bottom: 0.65rem; }
     .foot a { margin-right: 0.75rem; }
-    code {
-      font-size: 0.86em;
-      background: var(--soft);
-      padding: 0.08rem 0.3rem;
-      border-radius: 4px;
-    }
+    code { font-size: 0.86em; background: var(--soft); padding: 0.08rem 0.3rem; border-radius: 4px; }
+    .toc { font-size: 0.88rem; }
+    .toc a { text-decoration: none; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb">
-      <a href="/">Port</a> ·
-      <a href="/docs/">Docs</a> ·
-      <a href="/docs/rooms/">Rooms</a> ·
-      <a href="/docs/sources/">Sources</a> ·
-      <a href="/docs/privacy/">Privacy</a>
+      <a href="/">Port</a> · <a href="/docs/">Docs</a> · <a href="/docs/rooms/">Rooms</a> ·
+      <a href="/docs/sources/">Sources</a> · <a href="/docs/privacy/">Privacy</a>
     </nav>
 
-    <p class="stamp">Educational only — not a fatwa</p>
+    <p class="stamp">Educational only — not a fatwa · full contract</p>
     <h1>Governance contract</h1>
     <p class="lede">
-      One page for the rules Clarity is bound by. This is a <strong>discovery document</strong> —
-      it does not replace Companion, Yawm, University, Amānah, or Craft, and it does not change their navigation.
+      Binding rules for the Clarity castle. This is a <strong>discovery document</strong> —
+      it does not replace Companion, Yawm, University, Amānah, or Craft, and it does not rewrite their navigation.
+      Room apps may be stricter; they may not be weaker.
     </p>
 
-    <div class="card">
-      <p class="rule"><strong>What Clarity is:</strong> a private, educational companion for learning and remembrance.</p>
-      <p class="rule"><strong>What Clarity is not:</strong> a fatwa desk, a court, a bank, a seminary, or a substitute for a living teacher you trust.</p>
+    <div class="card toc">
+      <strong>Contents</strong>
+      <ol>
+        <li><a href="#identity">Identity</a></li>
+        <li><a href="#submission">Core submission</a></li>
+        <li><a href="#sources">Sources</a></li>
+        <li><a href="#privacy">Privacy &amp; on-device</a></li>
+        <li><a href="#visibility">Visibility &amp; richness</a></li>
+        <li><a href="#foundation">Companion foundation (Campus-grade)</a></li>
+        <li><a href="#upgrades">Upgrade &amp; preserve rules</a></li>
+        <li><a href="#rooms">Five rooms</a></li>
+        <li><a href="#charters">Room charters (summary)</a></li>
+        <li><a href="#done">What “done” looks like</a></li>
+        <li><a href="#change">Change control</a></li>
+      </ol>
     </div>
 
-    <h2>1. Core submission rules</h2>
-    <p>These limits apply across the castle. Room apps may add stricter local rules; they may not weaken these.</p>
+    <h2 id="identity">1. Identity</h2>
+    <div class="card">
+      <p class="rule"><strong>What Clarity is:</strong> a private, educational companion for learning and remembrance.</p>
+      <p class="rule"><strong>What Clarity is not:</strong> a fatwa desk, a court, a bank, a seminary, a grade of īmān, or a substitute for a living teacher you trust.</p>
+    </div>
+
+    <h2 id="submission">2. Core submission rules</h2>
     <ol>
       <li><strong>Arabic on top</strong> where Qur’ān text is shown. Translation is a bridge, not a replacement.</li>
-      <li><strong>No practice card without a citation</strong> the user can open (Qur’ān reference or collection · number).</li>
+      <li><strong>No practice card without a citation</strong> the user can open (āyah reference or collection · number).</li>
       <li><strong>Do not say “the Sunnah is…”</strong> when you mean “this report in Bukhārī / Muslim …” — name the report.</li>
-      <li><strong>Do not mix ranks:</strong> Qur’ān, ṣaḥīḥ reports, and optional media must not look equal on the same visual tier.</li>
-      <li><strong>When two ṣaḥīḥ reports need fiqh to reconcile:</strong> show both and send the user to a scholar. Do not invent a third source called Clarity.</li>
+      <li><strong>Do not mix ranks:</strong> Qur’ān, ṣaḥīḥ reports, and optional media must not share the same visual tier.</li>
+      <li><strong>When two ṣaḥīḥ reports need fiqh to reconcile:</strong> print both and send the user to a scholar. Do not invent a third source called Clarity.</li>
       <li><strong>Night and grave-facing content</strong> stays Qur’ān, ṣaḥīḥ, death-awareness, and istighfār — not entertainment sīrah.</li>
     </ol>
 
-    <h2>2. Sources policy</h2>
+    <h2 id="sources">3. Sources policy</h2>
     <div class="card">
-      <h3>Preferred primary libraries</h3>
       <ul>
         <li><a href="https://quran.com" rel="noopener noreferrer" target="_blank">Quran.com</a> — Qur’ān text and translations</li>
         <li><a href="https://sunnah.com" rel="noopener noreferrer" target="_blank">Sunnah.com</a> — hadith collections with numbers</li>
       </ul>
-      <h3>How reports should appear</h3>
       <ul>
         <li>Prefer <strong>collection · number · grade</strong> when a report is shown as evidence.</li>
         <li>If a grade is not loaded: say so honestly and link the source page.</li>
         <li>Do not present machine translation as an official tafsīr.</li>
       </ul>
-      <p>Full page: <a href="/docs/sources/">Sources policy</a>.</p>
+      <p>Detail: <a href="/docs/sources/">Sources policy</a>.</p>
     </div>
 
-    <h2>3. Privacy &amp; on-device data</h2>
+    <h2 id="privacy">4. Privacy &amp; on-device data</h2>
     <div class="card">
       <ul>
         <li>Sensitive Amānah material is designed to stay <strong>on this device</strong> where implemented that way.</li>
@@ -198,71 +127,108 @@
         <li>Use a strong device passcode; back up anything important with a method you control.</li>
         <li>Treat educational screens as learning aids — not court filings.</li>
       </ul>
-      <p>Full page: <a href="/docs/privacy/">Privacy &amp; on-device data</a>. Product desk: <a href="/amana/">Amānah</a>.</p>
+      <p>Detail: <a href="/docs/privacy/">Privacy</a> · Desk: <a href="/amana/">Amānah</a>.</p>
     </div>
 
-    <h2>4. Five rooms — boundaries</h2>
-    <p>One lobby, five doors. Each room has one job. Product navigation lives in each room’s own rail.</p>
+    <h2 id="visibility">5. Visibility &amp; richness clauses</h2>
+    <p>These protect the user from “empty shell” upgrades and accidental hide-states. They bind Companion especially; other rooms should not regress them.</p>
+    <div class="card">
+      <h3>Visibility</h3>
+      <ul>
+        <li><strong>§V1 — Mounted work must be seeable.</strong> Content that belongs on the active tab/path must not sit at <code>display:none</code>, zero height, or near-zero opacity because of a stray style or parent chain.</li>
+        <li><strong>§V2 — Path lock ≠ hard wipe.</strong> Hiding sections for an educational path is allowed. Silently destroying markup, canvas, or media hosts is not.</li>
+        <li><strong>§V3 — Media hosts stay dimensional.</strong> Meme stage/canvas and reflection media frames keep a real minimum height when their section is legitimately open.</li>
+        <li><strong>§V4 — Details may open for access.</strong> Enrichment held in details elements may be opened by foundation scripts so the user can reach what the tab promises.</li>
+      </ul>
+      <h3>Richness</h3>
+      <ul>
+        <li><strong>§R1 — Intro honesty.</strong> Section counts and pathway blurbs must match what the active path/tab actually offers — not a global maximum.</li>
+        <li><strong>§R2 — Enrichment holds.</strong> Reflection / deep-hold / archive layers exist to preserve curated richness across deploys. An upgrade may refine them; it may not blank them without a named migration.</li>
+        <li><strong>§R3 — Engines rehydrate.</strong> Tab HTML injected into the mount must re-run its scripts (Campus-style mount fortify). A pretty shell with dead engines is a failed deploy.</li>
+        <li><strong>§R4 — Craft boundaries.</strong> Meme and heavy craft desks respect path governance and Craft’s media charter; they must not flash into Seeker-only views.</li>
+      </ul>
+    </div>
+
+    <h2 id="foundation">6. Companion foundation (Campus-grade)</h2>
+    <p>
+      University keeps a charter and ordered stages so progress is not a random pile of pages.
+      Companion keeps a <strong>foundation seal</strong> and layered modules so reminder work is not one fragile file.
+    </p>
+    <div class="card">
+      <ul>
+        <li><strong>Seal:</strong> <code>data-companion-foundation-seal="v1"</code> and <code>data-clarity-room="companion"</code> mark the shell.</li>
+        <li><strong>Own asset graph:</strong> Companion lives under <code>/companion/</code> + <code>/companion/assets/</code> — not inside another room’s bundle.</li>
+        <li><strong>Path governance:</strong> Seeker → New Muslim → Daily Muslim → Aspiring Daʿī are educational tracks, not ranks of īmān.</li>
+        <li><strong>Mount fortify:</strong> tab mount re-inserts scripts and dispatches mount events so hydrators run.</li>
+        <li><strong>Visibility foundation + hold-fix:</strong> protect richness after style/path races.</li>
+        <li><strong>Integrity pass:</strong> cards outside the active path stay gated; vault/craft boundaries respected.</li>
+        <li><strong>Archive layers:</strong> versioned archive/enrich modules may stack; newer layers refine, older layers are not deleted casually.</li>
+      </ul>
+      <p>Operator note: offline pulls and deploys should ship the seal, shell, path governance, mount fortify, visibility foundation, and integrity modules together.</p>
+    </div>
+
+    <h2 id="upgrades">7. Upgrade &amp; preserve rules</h2>
+    <div class="card">
+      <p><strong>No upgrade may cause loss of all Companion work in place.</strong></p>
+      <ol>
+        <li><strong>Additive first.</strong> Prefer new versioned files (<code>*-v2.js</code>) over silent overwrite of foundation modules.</li>
+        <li><strong>Never strip the seal</strong> without a documented major foundation bump and migration notes.</li>
+        <li><strong>Cache honesty.</strong> Service worker and CDN query strings must allow users to receive the new layer without wiping unrelated room caches.</li>
+        <li><strong>Path progress stays on-device.</strong> Unlock keys and notes in localStorage are user data — do not rename keys without a read-migrate-write step.</li>
+        <li><strong>Rollback is a feature.</strong> Keeping a prior asset version query (or archive folder) is preferred to “delete and hope.”</li>
+        <li><strong>Room isolation.</strong> A Companion deploy must not require wiping Yawm, Campus, Amānah, or Craft.</li>
+        <li><strong>Empty shell is a defect.</strong> If a tab title promises sections the user cannot open or see, the deploy fails §R1 / §V1.</li>
+      </ol>
+    </div>
+
+    <h2 id="rooms">8. Five rooms — boundaries</h2>
     <div class="grid two">
       <div class="pill"><b>Companion</b> Pathways · reminder · tools · RRRA</div>
       <div class="pill"><b>Yawm</b> Today’s portion · daily loop · heart of the castle</div>
-      <div class="pill"><b>University</b> Ordered study path · study mirror, not a grade of īmān</div>
+      <div class="pill"><b>University</b> Ordered study · study mirror, not a grade of īmān</div>
       <div class="pill"><b>Amānah</b> Trust desk · optional vault · not legal advice</div>
-      <div class="pill"><b>Craft</b> Workbenches only — meme, tajweed, calligraphy, quiz, notes</div>
+      <div class="pill"><b>Craft</b> Workbenches — meme, tajweed, calligraphy, quiz, notes</div>
     </div>
-    <p>Map: <a href="/docs/rooms/">Five rooms</a> · Start: <a href="/docs/start/">How to start</a>.</p>
+    <p>Map: <a href="/docs/rooms/">Five rooms</a> · <a href="/docs/start/">How to start</a>.</p>
 
-    <h2>5. Room-specific charters (summary)</h2>
+    <h2 id="charters">9. Room charters (summary)</h2>
     <h3>Campus · University</h3>
     <ul>
-      <li>Not a physical university or accredited degree.</li>
+      <li>Not a physical university or accredited degree; not a grade of īmān.</li>
       <li>Not affiliated with Al-Azhar, Madinah, IIUM, or any named institution.</li>
-      <li>Path markers are a <strong>study mirror</strong> — not a grade of īmān.</li>
-      <li>Not a substitute for a living teacher.</li>
+      <li>Full text: <a href="/charter/">Charter</a> · room: <a href="/campus/">University</a>.</li>
     </ul>
-    <p>See the room’s <a href="/charter/">Charter page</a> and <a href="/campus/">University</a>.</p>
-
     <h3>Craft · Media daʿwah</h3>
     <ul>
-      <li><strong>Source discipline</strong> — scripture lines from section packs; never free-type as revelation.</li>
-      <li><strong>Scenery only</strong> — nature, night, water, flowers, solid; no figurative people lists as “revelation art.”</li>
-      <li><strong>Shariah scan</strong> — remote background URLs must pass the on-page scan before paint.</li>
-      <li><strong>Educational stamp</strong> — exports carry “not a fatwa.”</li>
-      <li><strong>Adab</strong> — post what you would stand by before Allah (cf. 16:125).</li>
+      <li>Scripture lines from governed packs — not free-type as revelation.</li>
+      <li>Scenery discipline; shariah scan on remote backgrounds; educational stamp on export.</li>
+      <li>Workbench: <a href="/craft/meme/">Meme Studio</a>.</li>
     </ul>
-    <p>Workbench: <a href="/craft/meme/">Meme Studio</a>.</p>
-
     <h3>Amānah · Trust desk</h3>
     <ul>
-      <li>Desk notes need no unlock; deeper chambers use an optional on-device passphrase.</li>
-      <li>Not a fatwa, not a bank, not a court will, not an inheritance order.</li>
-      <li>Civil law may also apply in the user’s country — Clarity does not replace it.</li>
+      <li>Optional on-device passphrase; not a bank, court will, or inheritance order.</li>
     </ul>
-
     <h3>Companion · Pathways</h3>
     <ul>
-      <li>Four doors (Seeker → New Muslim → Daily Muslim → Aspiring Daʿī) are <strong>educational tracks</strong>, not ranks of īmān.</li>
-      <li>Ordered unlock / short quiz where implemented is a study ladder, not a certificate.</li>
-      <li>Section visibility should match the active path — tools must not silently reopen locked desks.</li>
+      <li>Four doors are educational tracks; ordered quiz/unlock is a study ladder, not a certificate.</li>
+      <li>Section visibility matches the active path — tools must not silently reopen locked desks.</li>
     </ul>
 
-    <h2>6. What “done” looks like</h2>
+    <h2 id="done">10. What “done” looks like</h2>
     <div class="card">
-      <p>A practicing Muslim can open Clarity at fajr and mainly see:</p>
       <ul>
         <li><strong>Hear this</strong> — Qur’ān / ṣaḥīḥ with a path to verify.</li>
         <li><strong>Obey this</strong> — one clear educational action, not a private ruling.</li>
         <li><strong>Send it ahead</strong> — deeds and notes that stay on the device unless exported.</li>
       </ul>
-      <p>They can study death, janāzah outlines, and wasiyyah education without mistaking the screen for a scholar or a court.</p>
-      <p>They never need a madhhab picker to use the home screen.</p>
+      <p>They never need a madhhab picker to use the home screen. Companion richness remains visible after upgrades.</p>
     </div>
 
-    <h2>7. Change control</h2>
+    <h2 id="change">11. Change control</h2>
     <ul>
       <li>This page consolidates policy. <strong>Room apps keep their own code and nav.</strong></li>
       <li>Stricter room rules are allowed; weaker ones are not.</li>
-      <li>If a feature cannot name its source or keep private data local, it does not ship under Clarity’s name.</li>
+      <li>If a feature cannot name its source, keep private data local, or preserve Companion foundation modules, it does not ship under Clarity’s name.</li>
     </ul>
 
     <footer class="foot">
@@ -275,7 +241,7 @@
         <a href="/">Port lobby</a>
       </nav>
       <p>Educational only — not a fatwa · not legal advice · not a court document.</p>
-      <p>Build: governance-doc · 20261126 · does not replace room apps.</p>
+      <p>Build: governance-full · 20261126F · visibility · richness · foundation · upgrade-preserve.</p>
     </footer>
   </div>
 </body>
