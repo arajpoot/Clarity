@@ -1,64 +1,16 @@
 Bismillah.
 
-COMPANION RE-ENRICH — SAFE FINAL PACKAGE
-========================================
+HYDRATE SOAK v2 — stronger chrome soak-in
+=========================================
+UPLOAD:
+  companion/index.html
+  companion/meme/index.html
+  companion/assets/companion-archive3-chrome-hydrate-v2.css
+  companion/assets/companion-archive3-chrome-hydrate-v2.js
 
-You did NOT need to deploy R0 (inventory only).
+v2 uses !important on plaque depth, fonts, chips so older CSS cannot wash it out.
+JS re-soaks at 120ms, 600ms, 1500ms and on tab clicks.
 
-This package re-enriches Companion BODY under Governance Contract
-WITHOUT replacing the live shell that is already working.
-
-----------------------------------------
-WHAT THIS DOES
-----------------------------------------
-Uploads educational tab bodies + content backups that already
-pass contract baselines (Reminder / Reality / Reflection /
-Action / Notes / About).
-
-It does NOT:
-- Replace companion/index.html with a huge archive file
-- Remove live shell scripts (20261117P38)
-- Touch Campus, Yawm, Amānah desk/vault, or Craft engines
-- Thin any educational surface
-
-----------------------------------------
-UPLOAD ONLY THESE PATHS
-----------------------------------------
-From folder: UPLOAD-SAFE/
-
-  companion/tabs/reminder/index.html
-  companion/tabs/reality/index.html
-  companion/tabs/reflection/index.html
-  companion/tabs/action/index.html
-  companion/tabs/notes/index.html
-  companion/tabs/about/index.html
-  companion/content/main.fragment.html
-  companion/content/full.backup.html
-
-Put them in the same paths on the site/repo.
-
-----------------------------------------
-DO NOT TOUCH
-----------------------------------------
-See DO-NOT-TOUCH/LIST.txt
-
-Especially:
-- companion/index.html (live shell) — leave it
-- /campus/**
-- amana vault unlock logic
-- live companion-shell / path-governance scripts
-
-----------------------------------------
-AFTER UPLOAD
-----------------------------------------
-1. Hard refresh / purge CDN cache for companion paths
-2. Run SMOKE/SMOKE-TEST.txt (6 rooms + Companion tabs)
-3. Confirm Companion still shows path + educational content
-4. If anything breaks: restore the previous file for that path only
-
-When smoke is green, write:
-  "Companion body re-enrich deployed. Enrichment body-restored/held. Bismillah."
-
-Educational only — not a fatwa.
+Hard-refresh Companion + Meme after upload.
 
 Bismillah.
