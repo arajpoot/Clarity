@@ -1,0 +1,29 @@
+/* companion-siq-rank-v1 · soft path badge */
+.siq-rank-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0.45rem 0 0.65rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 180, 90, 0.35);
+  background: linear-gradient(135deg, rgba(30, 125, 94, 0.18), rgba(12, 22, 36, 0.85));
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+.siq-rank-title {
+  font-weight: 700;
+  color: #f0d78c;
+  letter-spacing: 0.02em;
+}
+.siq-rank-blurb {
+  font-size: 0.85rem;
+  opacity: 0.92;
+}
+.siq-rank-prog {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+.siq-rank-disc {
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
