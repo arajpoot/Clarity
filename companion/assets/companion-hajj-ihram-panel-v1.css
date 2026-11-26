@@ -1,0 +1,8 @@
+/* companion-hajj-ihram-panel-v1 · additive · educational only */
+#hajj-ihram-do-avoid { margin: .75rem 0 1rem; }
+#hajj-ihram-do-avoid .hajj-do-avoid-grid { grid-template-columns: 1fr; }
+@media (min-width: 720px) {
+  #hajj-ihram-do-avoid .hajj-do-avoid-grid { grid-template-columns: 1fr 1fr; }
+}
+#hajj-ihram-do-avoid a { color: #d4af37; }
+#hajj-ihram-do-avoid .disc { opacity: .95; }
