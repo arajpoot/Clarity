@@ -213,7 +213,14 @@
   function boot() {
     scan();
     try {
-      new MutationObserver(scan).observe(d.documentElement, { childList: true, subtree: true });
+      var __questScanTimer = null;
+      new MutationObserver(function () {
+        if (__questScanTimer) return;
+        __questScanTimer = setTimeout(function () {
+          __questScanTimer = null;
+          scan();
+        }, 120);
+      }).observe(d.documentElement, { childList: true, subtree: true });
     } catch (e) {}
     setTimeout(scan, 400);
     setTimeout(scan, 1200);
