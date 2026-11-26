@@ -190,11 +190,17 @@
         spend("half");
         this.textContent = "½ 50/50 (" + budgetLeft("half") + ")";
         var btns = Array.prototype.slice.call(card.querySelectorAll(".siq-iq-ch"));
-        var wrongs = btns.slice().sort(function () {
-          return Math.random() - 0.5;
+        var correctIdx = null;
+        try {
+          var ses = w.__CLARITY_SIQ_SESSION__;
+          if (ses && ses.list && ses.list[ses.idx] && typeof ses.list[ses.idx].a === "number")
+            correctIdx = ses.list[ses.idx].a;
+        } catch (e) {}
+        var wrongs = btns.filter(function (b) {
+          if (correctIdx == null) return true;
+          return parseInt(b.getAttribute("data-i"), 10) !== correctIdx;
         });
-        /* Prefer elim non-correct if data-a known later; random two until answered */
-        wrongs.slice(0, 2).forEach(function (b) {
+        wrongs.sort(function () { return Math.random() - 0.5; }).slice(0, 2).forEach(function (b) {
           b.disabled = true;
           b.classList.add("siq-quest-elim");
         });

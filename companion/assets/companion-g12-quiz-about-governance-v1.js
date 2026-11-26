@@ -79,6 +79,8 @@
   }
 
   function buildDeck(forceAll) {
+    try { w.__CLARITY_FQ_STATE__ = state; } catch (e) {}
+
     var pool = filtered();
     if (!pool.length) pool = BANK.slice();
     var unused = pool.filter(function (c) {
@@ -98,6 +100,8 @@
   }
 
   function stats() {
+    try { w.__CLARITY_FQ_STATE__ = state; } catch (e) {}
+
     var streak = $("fq-streak");
     var today = $("fq-today");
     var best = $("fq-best");
@@ -109,6 +113,8 @@
   }
 
   function renderCard() {
+    try { w.__CLARITY_FQ_STATE__ = state; } catch (e) {}
+
     var stage = $("fq-stage");
     if (!stage) return;
     if (!state.deck.length) buildDeck(false);

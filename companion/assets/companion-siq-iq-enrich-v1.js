@@ -118,6 +118,7 @@
       '<div style="margin-top:.65rem;display:flex;gap:.4rem;flex-wrap:wrap">' +
       '<button type="button" class="btn-soft" id="siq-iq-next" style="display:none">Next →</button>' +
       "</div></div>";
+    try { w.__CLARITY_SIQ_SESSION__ = session; if (session && session.list && session.list[session.idx]) { /* current */ } } catch(e) {}
     stage.innerHTML = html;
 
     var answered = false;
