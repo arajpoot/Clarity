@@ -16,7 +16,8 @@
     fatiha: {
       ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
       en: "All praise is due to Allah, Lord of the worlds.",
-      ref: "Qur’an 1:2 · quran.com/1/2"
+      ref: "Qur’an 1:2 · quran.com/1/2",
+      bot: "تمام تعریف اللہ کے لیے ہے، جو تمام جہانوں کا رب ہے۔"
     },
     ikhlas: {
       ar: "قُلْ هُوَ اللَّهُ أَحَدٌ",
