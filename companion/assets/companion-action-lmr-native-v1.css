@@ -1,0 +1,56 @@
+/*! companion-action-lmr-native-v1.css · aligned single card */
+#tj-lmr-native-bar {
+  margin: 0.35rem 0 0.5rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background: rgba(6, 16, 12, 0.55);
+}
+.tj-lmr-native-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin: 0.35rem 0;
+}
+.tj-lmr-native-row label {
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.tj-lmr-native-row input[type="number"] {
+  width: 3.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  padding: 0.25rem 0.35rem;
+}
+.tj-lmr-n-ar {
+  font-family: Amiri, "Scheherazade New", serif;
+  font-size: 1.4rem;
+  line-height: 1.9;
+  margin: 0.4rem 0 0.2rem;
+  text-align: right;
+}
+.tj-lmr-n-en {
+  font-size: 0.9rem;
+  opacity: 0.92;
+  margin: 0 0 0.35rem;
+}
+#tj-lmr-native-bar audio {
+  width: 100%;
+  margin: 0.35rem 0;
+}
+/* hide legacy nx chrome still under #tj-lmr if any residual nodes */
+#tj-lmr .tj-lmr-mode-row,
+#tj-lmr .tj-lmr-toolbar,
+#tj-lmr #tj-lmr-read-panel,
+#tj-lmr .tj-lmr-step,
+#tj-lmr #tj-lmr-step1,
+#tj-lmr #tj-lmr-step2,
+#tj-lmr #tj-lmr-step3,
+#tj-lmr #tj-lmr-step4 {
+  display: none !important;
+}
