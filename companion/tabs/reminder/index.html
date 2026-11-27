@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261125ROLLBACK"/>
-<meta name="clarity-build" content="CM21-T1T2-TAB-20261127"/>
+<meta name="clarity-build" content="CM21-CALLIG-V2-20261127"/>
 
 <style id="clarity-embed-fold-css">
 .clarity-embed-fold:not([open]) .clarity-embed-body { display:none!important;height:0!important;overflow:hidden!important; }
@@ -328,41 +328,81 @@ document.addEventListener("toggle", function(e){
 </div>
 
 
-<!-- Archive3 Calligraphy deep module · residual tweet desk cleared · enrichment: added · Bismillah -->
-<section class="cs-plaque cs-plaque-deep" id="callig-lab-card" data-rrra="reminder" data-enrichment="added" data-cs-primary="1">
-  <div class="cs-plaque-head">
-    <span class="cs-ico a3-ico" aria-hidden="true">✒️</span>
-    <div>
-      <h2>Calligraphy · deep practice pad</h2>
-      <p class="lead">Archive3 Companion module — one letter or basmala with patience. Educational practice — not a certificate · not a fatwa.</p>
-    </div>
+<section class="cs-plaque cs-plaque-deep" id="callig-lab-card" data-rrra="reminder" data-enrichment="callig-v2" data-cs-primary="1">
+  <h2>✒️ Calligraphy · practice pad</h2>
+  <p class="lead">Finger · stylus · feather · guide glyph on the pad. Local-first. Educational only — not a fatwa.</p>
+  <div class="callig-stylus-hint" id="callig-stylus-hint">
+    <span class="callig-mode-badge" id="callig-mode-badge">Naskh · finger</span>
+    <span>Select a letter so the <strong>guide</strong> appears. Trace over it. Lift to end a stroke.</span>
   </div>
-  <div class="p4-glory-chips" style="margin:.5rem 0">
-    <button type="button" class="chip primary" data-callig-glyph="ا">ا</button>
+  <p id="callig-tajweed-tip" style="font-size:.84rem;margin:.35rem 0;min-height:1.2em;color:#c4a574">Select a letter — tip appears here.</p>
+
+  <div class="callig-glyph-row" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:.45rem 0">
+    <button type="button" class="chip on" data-callig-glyph="ا">ا</button>
     <button type="button" class="chip" data-callig-glyph="ب">ب</button>
     <button type="button" class="chip" data-callig-glyph="ت">ت</button>
-    <button type="button" class="chip" data-callig-glyph="ل">ل</button>
+    <button type="button" class="chip" data-callig-glyph="ح">ح</button>
+    <button type="button" class="chip" data-callig-glyph="س">س</button>
     <button type="button" class="chip" data-callig-glyph="م">م</button>
     <button type="button" class="chip" data-callig-glyph="ن">ن</button>
     <button type="button" class="chip" data-callig-glyph="ه">ه</button>
     <button type="button" class="chip" data-callig-glyph="و">و</button>
     <button type="button" class="chip" data-callig-glyph="ي">ي</button>
     <button type="button" class="chip" data-callig-glyph="لا">لا</button>
+    <button type="button" class="chip" data-callig-glyph="الله">الله</button>
   </div>
-  <div class="callig-toolbar" style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0;align-items:center">
+
+  <div class="callig-canvas-tools" id="callig-canvas-tools" style="margin:.5rem 0">
+    <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c4a574;margin-bottom:.3rem">Type · translate · place</div>
+    <div style="display:flex;flex-wrap:wrap;gap:.35rem;align-items:center">
+      <input type="text" id="callig-english-input" placeholder="Type English…" autocomplete="off" style="flex:1;min-width:10rem;padding:.4rem .55rem;border-radius:10px;border:1px solid rgba(196,165,116,.35);background:rgba(0,0,0,.2);color:inherit" oninput="try{calligLiveTranslateFromInput()}catch(e){}" onkeydown="if(event.key==='Enter'){event.preventDefault();try{calligTranslateToArabic()}catch(e){}}">
+      <button type="button" class="cs-btn" id="callig-translate-btn" onclick="try{calligTranslateToArabic()}catch(e){}">🌐 EN→AR</button>
+      <button type="button" class="cs-btn" onclick="try{calligSendEnglishToCanvas()}catch(e){}">✏️ EN</button>
+      <button type="button" class="cs-btn primary" onclick="try{calligPlaceArabicOnCanvas()}catch(e){}">📥 AR guide</button>
+      <button type="button" class="cs-btn" onclick="try{calligSurprise()}catch(e){}">✨ Surprise</button>
+    </div>
+    <div id="callig-bridge-ar" class="arabic" dir="rtl" style="min-height:1.5rem;margin-top:.4rem;font-size:1.2rem"></div>
+    <p id="callig-bridge-status" style="font-size:.78rem;opacity:.85;margin:.2rem 0 0">Guide text appears on the pad when you place AR.</p>
+  </div>
+
+  <div class="callig-toolbar" style="display:flex;flex-wrap:wrap;gap:.45rem;margin:.45rem 0;align-items:center">
+    <label class="edu">Script
+      <select id="callig-script" style="margin-left:.25rem;padding:.25rem .4rem;border-radius:8px">
+        <option value="naskh">Naskh</option>
+        <option value="ruqaa">Ruqʿah</option>
+        <option value="thuluth">Thuluth</option>
+        <option value="kufi">Kufi</option>
+      </select>
+    </label>
+    <label class="edu">Glyph
+      <select id="callig-glyph" style="margin-left:.25rem;padding:.25rem .4rem;border-radius:8px;font-family:Amiri,serif;font-size:1.1rem">
+        <option>ا</option><option>ب</option><option>ت</option><option>ث</option><option>ح</option>
+        <option>س</option><option>ع</option><option>م</option><option>ن</option><option>ه</option>
+        <option>و</option><option>ي</option><option>لا</option><option>الله</option>
+        <option>بسم</option><option>محمد</option>
+      </select>
+    </label>
     <label class="edu">Ink <input type="color" id="callig-ink" value="#0d4f3c"/></label>
     <label class="edu">Size <input type="range" id="callig-size" min="6" max="36" value="14"/></label>
     <label class="edu"><input type="checkbox" id="callig-guide" checked/> Guide</label>
     <button type="button" class="cs-btn" id="callig-clear">Clear</button>
     <button type="button" class="cs-btn primary" id="callig-undo">Undo</button>
   </div>
-  <div class="callig-stage" style="border-radius:14px;border:1px solid rgba(212,180,90,.35);background:linear-gradient(180deg,#fffef8,#f5f0e4);padding:.35rem;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04)">
-    <canvas id="callig-canvas" width="720" height="360" style="width:100%;max-width:100%;height:auto;min-height:12rem;display:block;border-radius:12px;touch-action:none;cursor:crosshair"></canvas>
+
+  <div class="callig-lab-stage" id="callig-lab-stage" style="touch-action:none;position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(212,180,90,.35);background:#f7f3eb">
+    <canvas id="callig-canvas" width="900" height="420" style="width:100%;max-width:100%;height:auto;display:block;touch-action:none"></canvas>
   </div>
-  <p class="edu" style="margin-top:.55rem">Practice: one letter today; do not rush the full basmala. Noorani-style patience · Companion holds this pad until Craft is fully ported.</p>
-  <p class="edu"><a href="/craft/calligraphy/">Optional Craft pad</a> · Educational only — not a fatwa.</p>
+  <p class="edu" style="margin-top:.5rem;font-size:.8rem">Trace the faint guide. Auto-enhance shapes strokes after lift. Optional craft pad: <a href="/craft/calligraphy/">/craft/calligraphy/</a>. Educational only — not a fatwa.</p>
 </section>
-<script src="/companion/modules/clarity-callig-engine-v1.js?v=20261126CALLIG"></script>
+<script src="/companion/modules/clarity-callig-engine-v2.js?v=20261127CALLIG2"></script>
+<style id="callig-v2-css">
+.callig-stylus-hint{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.78rem;margin:.35rem 0;padding:.4rem .65rem;border-radius:10px;background:rgba(15,76,58,.08);border:1px solid rgba(196,165,116,.25)}
+.callig-mode-badge{display:inline-flex;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .45rem;border-radius:999px;background:rgba(15,76,58,.2);color:#c4a574;border:1px solid rgba(196,165,116,.35)}
+#callig-lab-card .chip{border-radius:999px;border:1px solid rgba(196,165,116,.35);background:rgba(0,0,0,.15);padding:.28rem .65rem;cursor:pointer;font-family:Amiri,Scheherazade New,serif;font-size:1.15rem}
+#callig-lab-card .chip.on{background:rgba(15,76,58,.55);border-color:rgba(196,165,116,.6)}
+#callig-lab-card .cs-btn{cursor:pointer;border-radius:999px;border:1px solid rgba(196,165,116,.4);background:rgba(42,107,74,.3);color:inherit;padding:.32rem .7rem;font-size:.8rem}
+#callig-lab-card .cs-btn.primary{background:rgba(15,76,58,.75)}
+</style>
 <script>
 (function(){
   /* lightweight pad boot — wires glyphs to engine if present */
