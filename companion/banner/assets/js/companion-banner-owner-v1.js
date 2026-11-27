@@ -24,15 +24,31 @@
       "https://www.youtube-nocookie.com/embed/Rs7St51oDDc?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
       "https://www.youtube.com/embed/Rs7St51oDDc?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
       "https://www.youtube-nocookie.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
-      "https://www.youtube-nocookie.com/embed/NJfqVXQY5Sc?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
+      "https://www.youtube.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube-nocookie.com/embed/NJfqVXQY5Sc?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
+      "https://www.youtube-nocookie.com/embed/5M8jBHd9k0Y?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1"
     ],
     madinah: [
       "https://www.youtube-nocookie.com/embed/27cln-IxOGo?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
       "https://www.youtube.com/embed/27cln-IxOGo?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
       "https://www.youtube-nocookie.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
-      "https://www.youtube-nocookie.com/embed/s17YH8xrCS8?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
+      "https://www.youtube.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
+      "https://www.youtube-nocookie.com/embed/s17YH8xrCS8?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
+      "https://www.youtube-nocookie.com/embed/3T5Sn5bY3vY?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1"
     ]
   };
+  /* Optional HLS endpoints (used if <video id="banner-hls"> present) */
+  var HLS_STREAMS = {
+    makkah: [
+      "https://stream.live.gph.gov.sa/live/makkah/playlist.m3u8",
+      "https://win.holol.com/live/makkah/playlist.m3u8"
+    ],
+    madinah: [
+      "https://stream.live.gph.gov.sa/live/madinah/playlist.m3u8",
+      "https://win.holol.com/live/madinah/playlist.m3u8"
+    ]
+  };
+
 
 
   var liveOn = false;
@@ -111,7 +127,7 @@
       if (media) {
         media.classList.toggle("live-active", !!on);
         media.classList.toggle("live-fallback", !on);
-        media.style.opacity = on ? "0.92" : "";
+        media.style.opacity = on ? "1" : "";
       }
       var iframe = $("banner-live");
       if (iframe && on) {
@@ -119,6 +135,34 @@
         iframe.style.visibility = "visible";
       }
     } catch (e) {}
+  }
+
+  
+  function tryHls(placeName) {
+    var v = $("banner-hls");
+    if (!v) return false;
+    var list = (typeof HLS_STREAMS !== "undefined" && HLS_STREAMS[placeName]) || [];
+    if (!list.length) return false;
+    var src = list[liveIdx % list.length];
+    try {
+      v.hidden = false;
+      v.style.display = "block";
+      v.muted = true;
+      v.playsInline = true;
+      v.autoplay = true;
+      if (v.src !== src) v.src = src;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+      return true;
+    } catch (e) { return false; }
+  }
+  function stopHls() {
+    var v = $("banner-hls");
+    if (!v) return;
+    try { v.pause(); } catch (e) {}
+    try { v.removeAttribute("src"); v.load(); } catch (e2) {}
+    v.hidden = true;
+    v.style.display = "none";
   }
 
   function showStill() {
@@ -203,6 +247,7 @@
         }
       }, 8000);
     }
+    tryHls(place());
     setLabel(true);
     /* pause competing audio */
     try {
