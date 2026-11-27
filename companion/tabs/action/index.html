@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261125ROLLBACK"/>
-<meta name="clarity-build" content="CM21-ROLLBACK-ACTION"/>
+<meta name="clarity-build" content="CM21-T1T2-TAB-20261127"/>
 
 <style id="clarity-embed-fold-css">
 /* Collapsed lecture drawers — no black empty iframe height until open */
@@ -293,7 +293,7 @@
       if (a<1) a=1; if (a>max) a=max;
       if ($("hifz-ayah-num")) $("hifz-ayah-num").value=String(a);
       if ($("hifz-meta")) $("hifz-meta").textContent = "Qurʾān "+s+":"+a+(NAMES[s]?(" · "+NAMES[s]):"");
-      if ($("hifz-status")) $("hifz-status").textContent = "Loading āyah…";
+      if ($("hifz-status")) $("hifz-status").textContent = "Fetching āyah…";
       var url = "https://api.alquran.cloud/v1/ayah/"+s+":"+a+"/editions/quran-uthmani,en.sahih";
       fetch(url).then(function(r){ return r.json(); }).then(function(data){
         var arr = data && data.data;
@@ -369,7 +369,7 @@
   <p class="phase5-seerah-tone" style="font-size:.8rem;opacity:.9;margin:0 0 .45rem">Character walk — not entertainment sīrah. Prefer Qurʾān and graded reports; when two reports need fiqh, take both to a scholar. Night tone: death, istighfār, and obedience — not spectacle.</p>
   <div id="seerah-mirror-body">
     <p style="font-weight:700;color:var(--gold);margin:0 0 .25rem" id="sm-step-label">Step 1 of 7</p>
-    <h3 style="font-size:1.05rem;margin:.15rem 0" id="sm-title">Loading…</h3>
+    <h3 style="font-size:1.05rem;margin:.15rem 0" id="sm-title">Scholar mirror · educational</h3>
     <p style="font-size:.92rem;line-height:1.5" id="sm-moment"></p>
     <p class="td-src" id="sm-src"></p>
     <div class="ponder-box" style="margin-top:.5rem">
@@ -536,7 +536,7 @@
 </select>
 </div>
 <div class="cs-yt-slot">
-<div class="hajj-video-frame lecture-player-wrap" data-embed-host="hajj-yt-frame"><details class="clarity-embed-fold" data-embed-id="hajj-yt-frame"><summary>▶ Open lecture video <span class="cef-title">Hajj series — Ustazah Najiha Hashmi</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/MUDNDj4n7I4?rel=0&modestbranding=1" src="about:blank" id="hajj-yt-frame-frame" data-hajj-playlist="PL98jztrfutUSLooSrRiIWraakYkDGVgzd" data-hajj-default="MUDNDj4n7I4" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Hajj series — Ustazah Najiha Hashmi"></iframe></div></details></div>
+<div class="hajj-video-frame lecture-player-wrap" data-embed-host="hajj-yt-frame"><details class="clarity-embed-fold" data-embed-id="hajj-yt-frame"><summary>▶ Open lecture video <span class="cef-title">Hajj series — Ustazah Najiha Hashmi</span></summary><div class="clarity-embed-body"><iframe data-cef-lazy="1" loading="lazy" data-src="https://www.youtube-nocookie.com/embed/MUDNDj4n7I4?rel=0&modestbranding=1" src="about:blank" id="hajj-yt-frame-frame" data-hajj-playlist="PL98jztrfutUSLooSrRiIWraakYkDGVgzd" data-hajj-default="MUDNDj4n7I4" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Hajj series — Ustazah Najiha Hashmi"></iframe></div></details></div>
 </div>
 <p style="font-size:.74rem;opacity:.85;margin-top:.3rem">
 <a href="https://www.youtube.com/playlist?list=PL98jztrfutUSLooSrRiIWraakYkDGVgzd" target="_blank" rel="noopener">Open full playlist</a>
@@ -724,7 +724,7 @@
 <details class="clarity-embed-fold" data-embed-id="action-PLN-mM6iZUgp">
   <summary>▶ Open lecture · Tajweed / related study playlist</summary>
   <div class="clarity-embed-body">
-    <iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT&rel=0&modestbranding=1" src="about:blank" width="100%" height="315" title="Tajweed / related study playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe data-cef-lazy="1" loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT&rel=0&modestbranding=1" src="about:blank" width="100%" height="315" title="Tajweed / related study playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
     <p class="edu" style="font-size:0.75rem;margin:.35rem 0 0">Educational only — not a fatwa · verify with Qurʾān, Sunnah, local scholar</p>
   </div>
 </details>
@@ -738,7 +738,7 @@
 <details class="clarity-embed-fold" data-embed-id="action-PL98jztrfutU">
   <summary>▶ Open lecture · Further listening path</summary>
   <div class="clarity-embed-body">
-    <iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PL98jztrfutUSLooSrRiIWraakYkDGVgzd&rel=0&modestbranding=1" src="about:blank" width="100%" height="315" title="Further listening path" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe data-cef-lazy="1" loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PL98jztrfutUSLooSrRiIWraakYkDGVgzd&rel=0&modestbranding=1" src="about:blank" width="100%" height="315" title="Further listening path" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
     <p class="edu" style="font-size:0.75rem;margin:.35rem 0 0">Educational only — not a fatwa · verify with Qurʾān, Sunnah, local scholar</p>
   </div>
 </details>
@@ -984,12 +984,53 @@ Meme studio · Companion deep module</h2>
 <script src="/companion/assets/companion-callig-c1.js?v=20261126SEAL" defer></script>
 <link rel="stylesheet" href="/companion/assets/companion-action-lmr-native-v1.css?v=20261127LMR2"/>
 <script src="/companion/assets/companion-action-lmr-native-v1.js?v=20261127LMR2" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+
+<script id="clarity-embed-mount-boot">
+/*! T1 mount-safe embed activator · end of body · educational only — not a fatwa */
+(function(w,d){
+  if (w.__CLARITY_CEF_BOOT__) return;
+  w.__CLARITY_CEF_BOOT__ = true;
+  function activate(root){
+    root = root || d;
+    try {
+      root.querySelectorAll("details.clarity-embed-fold").forEach(function(det){
+        if (det.__cefBound) return;
+        det.__cefBound = true;
+        function open(){
+          if (!det.open) return;
+          var f = det.querySelector("iframe[data-src]");
+          if (!f) return;
+          var ds = f.getAttribute("data-src");
+          if (!ds) return;
+          var cur = f.getAttribute("src") || "";
+          if (!cur || cur === "about:blank" || cur.indexOf("blank") >= 0) {
+            f.src = ds;
+          }
+        }
+        det.addEventListener("toggle", open);
+        if (det.open) open();
+      });
+    } catch (e) {}
+  }
+  function boot(ev){
+    var root = (ev && ev.detail && ev.detail.root) || d.getElementById("cs-mount") || d;
+    activate(d);
+    activate(root);
+  }
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function(){ boot(); });
+  else boot();
+  w.addEventListener("clarity:tab-mounted", boot);
+  d.addEventListener("clarity:tab-mounted", boot);
+})(window, document);
+</script>
+
 </body>
 </html>
 
 <p class="edu cs-yt-moved">Seerah / primary lecture series live on the <strong>Reality</strong> tab.</p>
 
-<div class="hajj-video-frame lecture-player-wrap" data-embed-host="action-feat-1"><details class="clarity-embed-fold" data-embed-id="action-feat-1"><summary>▶ Open lecture video <span class="cef-title">Action · featured talk</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/MUDNDj4n7I4?rel=0&modestbranding=1" src="about:blank" id="action-feat-1-frame" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Action · featured talk"></iframe></div></details></div>
-<div class="hajj-video-frame lecture-player-wrap" data-embed-host="action-pl-1"><details class="clarity-embed-fold" data-embed-id="action-pl-1"><summary>▶ Open lecture video <span class="cef-title">Action · practical study playlist</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT&rel=0&modestbranding=1" src="about:blank" id="action-pl-1-frame" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Action · practical study playlist"></iframe></div></details></div>
-<div class="hajj-video-frame lecture-player-wrap" data-embed-host="action-pl-2"><details class="clarity-embed-fold" data-embed-id="action-pl-2"><summary>▶ Open lecture video <span class="cef-title">Action · consistency series</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PL98jztrfutUSLooSrRiIWraakYkDGVgzd&rel=0&modestbranding=1" src="about:blank" id="action-pl-2-frame" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Action · consistency series"></iframe></div></details></div>
-<div class="hajj-video-frame lecture-player-wrap" data-embed-host="action-feat-2"><details class="clarity-embed-fold" data-embed-id="action-feat-2"><summary>▶ Open lecture video <span class="cef-title">Action · featured talk</span></summary><div class="clarity-embed-body"><iframe loading="lazy" data-src="https://www.youtube-nocookie.com/embed/dyliFOsUPkU?rel=0&modestbranding=1" src="about:blank" id="action-feat-2-frame" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Action · featured talk"></iframe></div></details></div>
+<div class="hajj-video-frame lecture-player-wrap" data-embed-host="action-feat-1"><details class="clarity-embed-fold" data-embed-id="action-feat-1"><summary>▶ Open lecture video <span class="cef-title">Action · featured talk</span></summary><div class="clarity-embed-body"><iframe data-cef-lazy="1" loading="lazy" data-src="https://www.youtube-nocookie.com/embed/MUDNDj4n7I4?rel=0&modestbranding=1" src="about:blank" id="action-feat-1-frame" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Action · featured talk"></iframe></div></details></div>
+<div class="hajj-video-frame lecture-player-wrap" data-embed-host="action-pl-1"><details class="clarity-embed-fold" data-embed-id="action-pl-1"><summary>▶ Open lecture video <span class="cef-title">Action · practical study playlist</span></summary><div class="clarity-embed-body"><iframe data-cef-lazy="1" loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PLN-mM6iZUgps13pWdhZuBBqwb1CL78ynT&rel=0&modestbranding=1" src="about:blank" id="action-pl-1-frame" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Action · practical study playlist"></iframe></div></details></div>
+<div class="hajj-video-frame lecture-player-wrap" data-embed-host="action-pl-2"><details class="clarity-embed-fold" data-embed-id="action-pl-2"><summary>▶ Open lecture video <span class="cef-title">Action · consistency series</span></summary><div class="clarity-embed-body"><iframe data-cef-lazy="1" loading="lazy" data-src="https://www.youtube-nocookie.com/embed/videoseries?list=PL98jztrfutUSLooSrRiIWraakYkDGVgzd&rel=0&modestbranding=1" src="about:blank" id="action-pl-2-frame" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Action · consistency series"></iframe></div></details></div>
+<div class="hajj-video-frame lecture-player-wrap" data-embed-host="action-feat-2"><details class="clarity-embed-fold" data-embed-id="action-feat-2"><summary>▶ Open lecture video <span class="cef-title">Action · featured talk</span></summary><div class="clarity-embed-body"><iframe data-cef-lazy="1" loading="lazy" data-src="https://www.youtube-nocookie.com/embed/dyliFOsUPkU?rel=0&modestbranding=1" src="about:blank" id="action-feat-2-frame" width="100%" height="315" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Action · featured talk"></iframe></div></details></div>
