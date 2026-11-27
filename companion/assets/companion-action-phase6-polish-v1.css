@@ -1,0 +1,55 @@
+/*! companion-action-phase6-polish-v1.css — mobile + visibility polish */
+/* Mobile action density */
+@media (max-width: 640px) {
+  [data-rrra="action"].card,
+  #cs-mount [data-rrra="action"].card {
+    padding-left: .75rem;
+    padding-right: .75rem;
+  }
+  #hajj-guide-card .hajj-actions,
+  #seerah-mirror-card div[style*="flex-wrap"],
+  #hifz-coach-card .hifz-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem;
+  }
+  #hajj-guide-card .hajj-actions .btn-secondary,
+  #seerah-mirror-card .btn,
+  #seerah-mirror-card .btn-soft {
+    flex: 1 1 calc(50% - .35rem);
+    min-width: 7rem;
+    font-size: .8rem;
+  }
+  #hajj-ihram-do-avoid .hajj-do-avoid-grid {
+    grid-template-columns: 1fr !important;
+  }
+  #tj-deep-studio .tj-rule-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: .4rem;
+  }
+  .cs-hub-whisper { font-size: .8rem; line-height: 1.4; }
+}
+
+/* Visibility: never collapse primary promised panels to zero height without notice */
+#hajj-panel:empty::after,
+#seerah-mirror-body #sm-moment:empty::after,
+#tj-rule-grid:empty::after {
+  content: "Content loading — if this stays empty, reopen Action. Educational only.";
+  display: block;
+  font-size: .82rem;
+  opacity: .85;
+  padding: .4rem 0;
+}
+
+/* Soft path emphasis — do not hard-hide Archive3 body */
+[data-path-soft="1"] { opacity: 0.92; }
+[data-path-soft="1"] .path-deemph { opacity: 0.75; }
+
+/* Cite polish */
+.phase3-cite, .phase5-cite, .hajj-cite { color: #d4af37; }
+#phase5-search-allowlist, #phase4-craft-isolation, #hajj-ihram-do-avoid {
+  border-radius: 12px;
+}
+
+/* Focus targets for smoke */
+.phase6-smoke-ok { outline: none; }
