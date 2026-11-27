@@ -1,12 +1,29 @@
-/* companion-hajj-steps-v1 — phase 2 */
+/* companion-hajj-steps-v1 — phase2 + UX fix */
 #hajj-panel { font-size: .9rem; line-height: 1.5; }
 #hajj-panel .hajj-step-title { color: #e8d5a3; margin: .35rem 0 .4rem; font-size: 1.02rem; }
 #hajj-panel .hajj-step-disc { font-size: .8rem; opacity: .92; margin: 0 0 .55rem; }
 #hajj-panel .hajj-cites { font-size: .82rem; margin: .55rem 0 0; }
 #hajj-panel .hajj-cite { color: #d4af37; text-decoration: underline; }
 #hajj-panel .hajj-empty-defect { color: #f0c0c0; border: 1px solid rgba(180,90,90,.4); border-radius: 10px; padding: .55rem .7rem; }
+#hajj-panel .hajj-where { font-size: .84rem; margin: 0 0 .5rem; padding: .4rem .55rem; border-radius: 8px; background: rgba(212,175,55,.12); }
 #hajj-panel .dua-ar { font-family: "Scheherazade New", Amiri, serif; font-size: 1.15rem; line-height: 1.9; margin: .4rem 0; }
 #hajj-progress { display: flex; flex-direction: column; gap: .3rem; margin: .35rem 0 .5rem; font-size: .8rem; }
 #hajj-progress .hajj-prog-bar { display: block; height: 6px; background: rgba(212,175,55,.15); border-radius: 99px; overflow: hidden; }
 #hajj-progress .hajj-prog-bar > i { display: block; height: 100%; background: #c6a756; }
-#hajj-checklist-list .hajj-check-item { font-size: .86rem; padding: .25rem 0; }
+#hajj-guide-card .hajj-actions {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0 .65rem;
+}
+#hajj-guide-card .hajj-actions .btn-secondary {
+  flex: 1 1 auto; min-width: 6.5rem; max-width: 100%;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#hajj-checklist-list { display: flex; flex-direction: column; gap: .3rem; }
+#hajj-checklist-list .hajj-check-item {
+  text-align: left; font-size: .86rem; padding: .4rem .55rem;
+  border-radius: 8px; border: 1px solid rgba(212,175,55,.22);
+  background: rgba(18,38,28,.4); color: inherit; cursor: pointer;
+}
+#hajj-checklist-list .hajj-check-item:active { transform: scale(0.99); }
+@media (max-width: 520px) {
+  #hajj-guide-card .hajj-actions .btn-secondary { min-width: calc(50% - .3rem); font-size: .8rem; }
+}
