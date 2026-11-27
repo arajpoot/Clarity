@@ -1,0 +1,12 @@
+/* phase3 honesty */
+.phase3-cite { color: #d4af37; text-decoration: underline; }
+.phase3-hifz-cite { opacity: 0.95; }
+#guard-tongue-card .phase3-cites { margin: 0.4rem 0 0.5rem; padding-left: 1.15rem; }
+#hell-sins-card a.phase3-cite { color: #e8d5a3; }
+#hifz-arabic { font-size: 1.45rem; }
+#hifz-translation[data-role="bridge"]::before {
+  content: "Bridge · ";
+  font-size: 0.72rem;
+  opacity: 0.75;
+  letter-spacing: 0.02em;
+}
