@@ -127,7 +127,7 @@
       if (media) {
         media.classList.toggle("live-active", !!on);
         media.classList.toggle("live-fallback", !on);
-        media.style.opacity = on ? "1" : "0.88";
+        media.style.opacity = on ? "1" : "0.95";
       }
       var iframe = $("banner-live");
       if (iframe && on) {
