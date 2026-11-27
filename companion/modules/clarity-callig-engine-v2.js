@@ -69,11 +69,12 @@ var CALLIG_AUDIO={
 function calligFont(){
   var s=calligState.script||'naskh';
   var sc=(calligState.scale||100)/100;
-  var px=Math.round(120*sc);
-  if(s==='kufi') return "700 "+px+"px 'Reem Kufi', sans-serif";
-  if(s==='ruqaa') return "700 "+px+"px 'Aref Ruqaa', serif";
-  if(s==='thuluth') return "700 "+Math.round(130*sc)+"px 'Lateef', serif";
-  return "700 "+px+"px 'Amiri', 'Scheherazade New', serif";
+  var px=Math.round(Math.min(220, Math.max(90, (document.getElementById('callig-canvas')||{}).height||420) * 0.42 * sc));
+  var stack = "'Amiri','Scheherazade New','Noto Naskh Arabic','Arabic Typesetting','Traditional Arabic',serif";
+  if(s==='kufi') stack = "'Reem Kufi','Noto Kufi Arabic',Tahoma,sans-serif";
+  if(s==='ruqaa') stack = "'Aref Ruqaa','Amiri',serif";
+  if(s==='thuluth') stack = "'Lateef','Amiri','Scheherazade New',serif";
+  return "700 "+px+"px "+stack;
 }
 function calligSpeak(glyph){
   if(!calligState.audioOn) return;
@@ -231,23 +232,28 @@ function calligSetOffset(axis, v){
 }
 function calligDrawGuide(){
   var c=document.getElementById('callig-canvas'); if(!c) return;
-  var ctx=c.getContext('2d');
+  var ctx=c.getContext('2d'); if(!ctx) return;
+  if(!c.width || !c.height){ c.width=900; c.height=420; }
   ctx.clearRect(0,0,c.width,c.height);
-  ctx.fillStyle='#f7f3eb';
+  /* paper */
+  ctx.fillStyle='#f3efe6';
   ctx.fillRect(0,0,c.width,c.height);
-  ctx.strokeStyle='rgba(13,79,60,0.10)';
+  /* ruled lines */
+  ctx.strokeStyle='rgba(13,79,60,0.12)';
   ctx.lineWidth=1;
-  for(var y=40;y<c.height;y+=40){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(c.width,y); ctx.stroke(); }
-  /* soft midline */
-  ctx.strokeStyle='rgba(184,146,42,0.25)';
+  for(var y=36;y<c.height;y+=36){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(c.width,y); ctx.stroke(); }
+  /* midline */
+  ctx.strokeStyle='rgba(184,146,42,0.35)';
+  ctx.lineWidth=1.25;
   ctx.beginPath(); ctx.moveTo(0,c.height/2); ctx.lineTo(c.width,c.height/2); ctx.stroke();
-  if(calligState.guide){
+  /* always show guide when enabled (default true) */
+  var show = !calligState || calligState.guide !== false;
+  if(show){
     ctx.save();
-    ctx.fillStyle='rgba(13,79,60,0.22)';
-    var g=String(calligState.glyph||'ا');
+    var g=String((calligState && calligState.glyph) || 'ا');
     var isLatin=/[A-Za-z]/.test(g);
     if(isLatin){
-      ctx.font="600 "+Math.round(48*((calligState.scale||100)/100))+"px 'Cormorant Garamond', Georgia, serif";
+      ctx.font="600 "+Math.round(c.height*0.28)+"px Georgia, serif";
       ctx.direction='ltr';
     } else {
       ctx.font=calligFont();
@@ -255,215 +261,24 @@ function calligDrawGuide(){
     }
     ctx.textAlign='center';
     ctx.textBaseline='middle';
-    var ox=calligState.offsetX||0;
-    var oy=calligState.offsetY||0;
-    ctx.fillText(g, c.width/2+ox, c.height/2+oy);
-    ctx.lineWidth = Math.max(1.5, Math.round(((calligState.scale||100)/100)*2));
-    ctx.strokeStyle = 'rgba(13,79,60,0.28)';
-    ctx.strokeText(g, c.width/2+ox, c.height/2+oy);
+    var ox=(calligState && calligState.offsetX)||0;
+    var oy=(calligState && calligState.offsetY)||0;
+    var x=c.width/2+ox, y=c.height/2+oy;
+    /* high-visibility ghost glyph */
+    ctx.lineJoin='round';
+    ctx.lineWidth=Math.max(2, Math.round(c.height*0.012));
+    ctx.strokeStyle='rgba(13,79,60,0.38)';
+    ctx.strokeText(g, x, y);
+    ctx.fillStyle='rgba(13,79,60,0.20)';
+    ctx.fillText(g, x, y);
     ctx.restore();
   }
-  (calligState.strokes||[]).forEach(function(st){ calligStrokePath(ctx, st); });
+  /* user strokes on top */
+  (calligState && calligState.strokes || []).forEach(function(st){
+    try { if (typeof calligStrokePath === 'function') calligStrokePath(ctx, st); } catch(e){}
+  });
 }
-function calligStrokePath(ctx, st){
-  if(!st || st.length<1) return;
-  var ink = st.ink || calligState.ink;
-  var base = st.size || calligState.size;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  if(st.length===1){
-    ctx.beginPath();
-    ctx.fillStyle = ink;
-    ctx.arc(st[0].x, st[0].y, Math.max(1, base/3.2), 0, Math.PI*2);
-    ctx.fill();
-    return;
-  }
-  /* Variable-width qalam: width from point pressure/velocity */
-  for(var i=1;i<st.length;i++){
-    var a=st[i-1], b=st[i];
-    var w = (b.w!=null?b.w:(a.w!=null?a.w:base));
-    ctx.beginPath();
-    ctx.strokeStyle = ink;
-    ctx.lineWidth = Math.max(1.2, w);
-    if(i===1) ctx.moveTo(a.x,a.y);
-    else {
-      var px=st[i-2].x, py=st[i-2].y;
-      var mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
-      ctx.moveTo((px+a.x)/2,(py+a.y)/2);
-      ctx.quadraticCurveTo(a.x,a.y,mx,my);
-    }
-    if(i===st.length-1){
-      ctx.lineTo(b.x,b.y);
-    }
-    ctx.stroke();
-  }
-  /* Soft dark edge for reed-pen illusion */
-  if(calligState.stylusSim && st.length>3){
-    ctx.save();
-    ctx.globalAlpha=0.18;
-    ctx.strokeStyle='#0a2018';
-    for(var j=2;j<st.length;j+=2){
-      var p=st[j];
-      ctx.beginPath();
-      ctx.lineWidth=Math.max(0.6,(p.w||base)*0.35);
-      ctx.moveTo(st[j-1].x, st[j-1].y);
-      ctx.lineTo(p.x,p.y);
-      ctx.stroke();
-    }
-    ctx.restore();
-  }
-}
-/** Auto-enhance stroke geometry to match calligraphy script mode */
-function calligEnhanceStroke(st){
-  if(!st || st.length<3) return st;
-  var script=calligState.script||'naskh';
-  var out=[];
-  for(var i=0;i<st.length;i++){
-    var p={x:st[i].x,y:st[i].y,w:st[i].w,t:st[i].t};
-    out.push(p);
-  }
-  /* light Chaikin-ish smooth */
-  function smoothOnce(pts){
-    if(pts.length<3) return pts;
-    var n=[{x:pts[0].x,y:pts[0].y,w:pts[0].w,t:pts[0].t}];
-    for(var i=0;i<pts.length-1;i++){
-      var a=pts[i],b=pts[i+1];
-      n.push({x:a.x*0.75+b.x*0.25,y:a.y*0.75+b.y*0.25,w:(a.w+b.w)/2,t:a.t});
-      n.push({x:a.x*0.25+b.x*0.75,y:a.y*0.25+b.y*0.75,w:(a.w+b.w)/2,t:b.t});
-    }
-    n.push({x:pts[pts.length-1].x,y:pts[pts.length-1].y,w:pts[pts.length-1].w,t:pts[pts.length-1].t});
-    return n;
-  }
-  if(script==='naskh'||script==='thuluth'){
-    out=smoothOnce(out);
-    if(script==='thuluth') out=smoothOnce(out);
-  }
-  if(script==='kufi'){
-    /* quantize toward horizontal/vertical segments */
-    for(var i=1;i<out.length;i++){
-      var dx=out[i].x-out[i-1].x, dy=out[i].y-out[i-1].y;
-      if(Math.abs(dx)>Math.abs(dy)*1.35){ out[i].y=out[i-1].y; }
-      else if(Math.abs(dy)>Math.abs(dx)*1.35){ out[i].x=out[i-1].x; }
-    }
-    for(var i=0;i<out.length;i++){ out[i].w=Math.max(out[i].w||calligState.size, calligState.size*0.95); }
-  }
-  if(script==='ruqaa'){
-    /* shorten trailing tails; slightly reduce late widths */
-    var cut=Math.max(3, Math.floor(out.length*0.12));
-    if(out.length>8) out=out.slice(0, out.length-cut);
-    for(var i=Math.floor(out.length*0.55);i<out.length;i++){
-      out[i].w=Math.max(1.4,(out[i].w||calligState.size)*0.72);
-    }
-  }
-  if(script==='thuluth'){
-    for(var i=0;i<out.length;i++){
-      var t=i/(out.length-1||1);
-      out[i].w=(out[i].w||calligState.size)*(0.85+0.45*Math.sin(t*Math.PI));
-    }
-  }
-  if(script==='naskh'){
-    for(var i=1;i<out.length-1;i++){
-      out[i].x=out[i].x*0.92+(out[i-1].x+out[i+1].x)*0.04;
-      out[i].y=out[i].y*0.92+(out[i-1].y+out[i+1].y)*0.04;
-    }
-  }
-  out.ink=st.ink; out.size=st.size;
-  return out;
-}
-function calligAutoEnhanceAll(){
-  if(!(calligState.strokes&&calligState.strokes.length)){alert('Draw a stroke first, then enhance.');return;}
-  calligState.strokes=calligState.strokes.map(calligEnhanceStroke);
-  calligDrawGuide();
-  var tip=document.getElementById('callig-tajweed-tip');
-  if(tip) tip.innerHTML='✨ Enhanced <strong>'+calligState.strokes.length+'</strong> stroke(s) for <strong>'+(calligState.script||'naskh')+'</strong>';
-}
-function calligPos(ev,c){
-  var r=c.getBoundingClientRect();
-  var t=(ev.touches&&ev.touches[0])||(ev.changedTouches&&ev.changedTouches[0])||ev;
-  var x=(t.clientX-r.left)*(c.width/r.width);
-  var y=(t.clientY-r.top)*(c.height/r.height);
-  return {x:x, y:y};
-}
-function calligDist(a,b){
-  var dx=a.x-b.x, dy=a.y-b.y;
-  return Math.sqrt(dx*dx+dy*dy);
-}
-function calligStart(ev){
-  var c=document.getElementById('callig-canvas'); if(!c) return;
-  ev.preventDefault();
-  calligState.drawing=true;
-  var p=calligPos(ev,c);
-  var t=Date.now();
-  var press=0.85;
-  try{
-    if(ev.pressure!=null && ev.pressure>0) press=ev.pressure;
-    else if(ev.touches&&ev.touches[0]&&ev.touches[0].force) press=Math.max(0.25, Math.min(1, ev.touches[0].force));
-  }catch(e){}
-  var w=(typeof calligTipWidth==='function')?calligTipWidth(press,0,0.6):(calligState.size||14);
-  calligState.cur=[{x:p.x,y:p.y,w:w,t:t,a:0.6}];
-  calligState.cur.ink=calligState.ink;
-  calligState.cur.size=calligState.size;
-  calligState.lastPts=[p];
-  calligState.lastVel=0;
-  try{calligState.pointerType=(ev.pointerType||(ev.touches?'touch':'mouse'));}catch(e){}
-}
-function calligMove(ev){
-  if(!calligState.drawing) return;
-  var c=document.getElementById('callig-canvas'); if(!c) return;
-  ev.preventDefault();
-  var p=calligPos(ev,c);
-  var cur=calligState.cur; if(!cur) return;
-  var last = cur[cur.length-1];
-  var minD = calligState.stylusSim ? 1.1 : 1.6;
-  if(calligDist(last, p) < minD) return;
-  var now=Date.now();
-  var dt=Math.max(8, now-(last.t||now));
-  var dist=calligDist(last,p);
-  var vel=dist/dt; /* px/ms */
-  calligState.lastVel=vel;
-  var alpha = (ev.touches && ev.touches.length) ? 0.30 : 0.38;
-  if(calligState.stylusSim) alpha = Math.min(0.42, alpha+0.05);
-  var sm = {
-    x: last.x + (p.x - last.x) * alpha,
-    y: last.y + (p.y - last.y) * alpha,
-    t: now
-  };
-  var press=0.8;
-  try{
-    if(ev.pressure!=null && ev.pressure>0) press=ev.pressure;
-    else if(ev.touches&&ev.touches[0]&&ev.touches[0].force) press=Math.max(0.2, Math.min(1, ev.touches[0].force));
-  }catch(e){}
-  /* Finger has no real pressure — simulate from inverse velocity (slow=thick reed) */
-  if(calligState.stylusSim){
-    var feel=(calligState.stylusFeel||70)/100;
-    var speedFactor=1/(1+vel*14);
-    var base=calligState.size;
-    sm.w = base * (0.42 + 0.7*press) * (0.55 + 0.7*speedFactor) * (0.75 + 0.4*feel);
-    sm.w = Math.max(base*0.28, Math.min(base*1.55, sm.w));
-  } else {
-    sm.w = calligState.size;
-  }
-  cur.push(sm);
-  calligDrawGuide();
-  calligStrokePath(c.getContext('2d'), cur);
-}
-function calligEnd(ev){
-  if(!calligState.drawing) return;
-  calligState.drawing=false;
-  if(calligState.cur && calligState.cur.length>0){
-    var stroke=calligState.cur;
-    if(calligState.autoEnhance){
-      try{ stroke=calligEnhanceStroke(stroke); }catch(e){}
-    }
-    calligState.strokes.push(stroke);
-  }
-  calligState.cur=null;
-  calligDrawGuide();
-}
-function calligClear(){ calligState.strokes=[]; calligDrawGuide(); }
-function calligUndo(){ calligState.strokes.pop(); calligDrawGuide(); }
-function calligToggleGuide(){ calligState.guide=!calligState.guide; calligDrawGuide(); }
-function calligSetScript(v){ calligState.script=v||'naskh'; calligState.strokes=[]; calligState.cur=null; calligState.drawing=false; calligDrawGuide(); calligUpdateModeBadge(); }
+
 function calligSetGlyph(v){
   calligState.glyph=v||'ا';
   calligState.strokes=[];
@@ -512,27 +327,20 @@ function calligSurprise(){
 }
 function calligInit(){
   var c=document.getElementById('callig-canvas'); if(!c) return;
+  /* Fixed bitmap — CSS width:100% scales; avoids full/half pad size fight */
   var targetW = 900;
   var targetH = 420;
-  /* preserve aspect on narrow hosts */
-  try {
-    var rect = c.getBoundingClientRect();
-    if (rect.width > 80) {
-      targetW = Math.max(480, Math.min(1100, Math.round(rect.width * (window.devicePixelRatio || 1))));
-      targetH = Math.round(targetW * 0.48);
-    }
-  } catch (e0) {}
-  c.width = targetW;
-  c.height = targetH;
+  if (c.width !== targetW || c.height !== targetH) {
+    c.width = targetW;
+    c.height = targetH;
+  }
   if (typeof calligState !== 'undefined' && calligState) {
     if (calligState.guide == null) calligState.guide = true;
     if (!calligState.glyph) calligState.glyph = 'ا';
   }
   calligDrawGuide();
   calligUpdateModeBadge();
-  if (c.__calligListenersBound) {
-    return; /* already wired — only redrew guide */
-  }
+  if (c.__calligListenersBound) return;
   c.__calligListenersBound = true;
   /* Pointer Events unify mouse / finger / stylus with pressure when available */
   if(window.PointerEvent){
@@ -940,7 +748,7 @@ w.calligSetScript = typeof calligSetScript==='function'?calligSetScript:function
 /*! Companion mount bridge · Reminder tab calligraphy */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_CALLIG_COMPANION_BRIDGE_V2__) return;
+  if (w.__CLARITY_CALLIG_COMPANION_BRIDGE__) return;
   w.__CLARITY_CALLIG_COMPANION_BRIDGE__ = true;
 
   function isReminder() {
@@ -1037,4 +845,58 @@ w.calligSetScript = typeof calligSetScript==='function'?calligSetScript:function
   w.addEventListener("clarity:tab-mounted", onMounted);
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 200); });
   else setTimeout(boot, 200);
+})(window, document);
+
+
+/*! Callig quiet boot · visible guide · no pad-size fight */
+(function(w,d){
+  "use strict";
+  if (w.__CLARITY_CALLIG_QUIET_BOOT__) return;
+  w.__CLARITY_CALLIG_QUIET_BOOT__ = true;
+  var tries = 0;
+  function onceInit(){
+    var c = d.getElementById("callig-canvas");
+    if (!c) return false;
+    try {
+      if (typeof w.calligInit === "function") w.calligInit();
+      if (w.calligState) {
+        w.calligState.guide = true;
+        if (!w.calligState.glyph) w.calligState.glyph = "ا";
+      }
+      if (typeof w.calligDrawGuide === "function") w.calligDrawGuide();
+      var tip = d.getElementById("callig-tajweed-tip");
+      if (tip && (!tip.textContent || tip.textContent.indexOf("Select")===0)) {
+        tip.textContent = "Guide on · trace the letter · educational only — not a fatwa";
+      }
+    } catch (e) { try { console.warn("[callig-boot]", e); } catch(e2){} }
+    return true;
+  }
+  function tick(){
+    tries++;
+    if (onceInit()) {
+      /* fonts may load late — redraw */
+      try {
+        if (d.fonts && d.fonts.ready) {
+          d.fonts.ready.then(function(){ try { if (typeof w.calligDrawGuide==="function") w.calligDrawGuide(); } catch(e){} });
+        }
+      } catch (e3) {}
+      setTimeout(function(){ try { if (typeof w.calligDrawGuide==="function") w.calligDrawGuide(); } catch(e){} }, 400);
+      setTimeout(function(){ try { if (typeof w.calligDrawGuide==="function") w.calligDrawGuide(); } catch(e){} }, 1200);
+      return;
+    }
+    if (tries < 40) setTimeout(tick, 150);
+  }
+  function onMount(){ tries = 0; setTimeout(tick, 30); }
+  d.addEventListener("clarity:tab-mounted", onMount);
+  w.addEventListener("clarity:tab-mounted", onMount);
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", onMount);
+  else onMount();
+  /* fortify may inject later */
+  try {
+    var mo = new MutationObserver(function(){
+      if (d.getElementById("callig-canvas") && tries >= 40) { tries = 0; tick(); }
+      else if (d.getElementById("callig-canvas")) { onceInit(); }
+    });
+    mo.observe(d.documentElement, { childList: true, subtree: true });
+  } catch (e4) {}
 })(window, document);
