@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-ux-restore-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rail-glory-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rail-icons-v2.css?v=20261125ROLLBACK"/>
-<meta name="clarity-build" content="CM21-P1-SSR-FOUNDATION-20261127"/>
+<meta name="clarity-build" content="CM21-SHELL-LIVE4-20261127"/>
 <link rel="stylesheet" href="/companion/assets/companion-meme-host-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-nav-polish-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-yt-collapse-v1.css?v=20261125ROLLBACK"/>
@@ -59,10 +59,9 @@
   <link rel="stylesheet" href="/companion/assets/archive3/companion-doors-mobile-v1.css?v=20261126P6U"/>
   <link rel="stylesheet" href="/companion/assets/companion-archive3-chrome-hydrate-v1.css?v=20261126P6U"/>
   <link rel="stylesheet" href="/companion/assets/companion-archive3-chrome-hydrate-v2.css?v=20261126SOAK"/>
-<link rel="stylesheet" href="/companion/assets/companion-nuros-chrome-n1.css
+<link rel="stylesheet" href="/companion/assets/companion-nuros-chrome-n1.css?v=20261126N1R"/>
 <link rel="stylesheet" href="/companion/assets/companion-nuros-tokens-v1.css?v=20261127GH"/>
 <script src="/companion/assets/companion-nuros-tokens-v1.js?v=20261127GH" defer></script>
-?v=20261126N1R"/>
 <script src="/companion/assets/companion-nuros-chrome-n1.js?v=20261126N1R" defer></script>
 <link rel="stylesheet" href="/companion/assets/companion-path-polish-n2.css?v=20261126N2"/>
 <script src="/companion/assets/companion-path-polish-n2.js?v=20261126N2" defer></script>
@@ -85,6 +84,29 @@
 .cs-ssr-more{font-size:.78rem;color:#8a968c;margin:.5rem 0 0;text-align:center}
 .cs-ssr-more code{font-size:.75rem;color:#c4a574}
 /* When shell/mount-fortify injects [data-cs-mounted], SSR can stay or be cleared by existing mount.innerHTML="" */
+</style>
+
+
+<style id="cs-room-nav-live4">
+.cs-room-nav,.port-room-nav{
+  display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;align-items:center;
+  padding:.65rem .75rem .35rem;margin:0 auto;max-width:920px;
+}
+.cs-room-nav a,.port-room-nav a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:4.6rem;padding:.42rem .9rem;border-radius:999px;
+  border:1px solid rgba(232,199,107,.45);background:rgba(8,18,14,.55);
+  color:#f0ebe3;text-decoration:none;font:600 .82rem Quicksand,system-ui,sans-serif;
+  letter-spacing:.02em;
+}
+.cs-room-nav a.is-here,.port-room-nav a.is-here,.cs-room-nav a[aria-current="page"]{
+  background:#1f6b4a;border-color:rgba(232,199,107,.75);box-shadow:0 0 0 1px rgba(232,199,107,.25);
+}
+.cs-room-nav .crn-seal,.port-room-nav + .port-trust-line,.crn-seal{
+  width:100%;text-align:center;margin:.25rem 0 0;font-size:.72rem;opacity:.8;color:#c4a574;
+}
+/* strip broken text nodes leaking above banner */
+body > :not(script):first-child { }
 </style>
 
 </head>
@@ -255,6 +277,7 @@
   <script src="/companion/assets/companion-archive3-chrome-hydrate-v1.js?v=20261126P6U" defer></script>
   <script src="/companion/assets/companion-archive3-chrome-hydrate-v2.js?v=20261126SOAK" defer></script>
 <script src="/companion/assets/companion-action-lmr-native-v1.js?v=20261126LMRN" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
