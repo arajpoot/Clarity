@@ -25,7 +25,23 @@ html, body {
   background: #0a1210;
   border-bottom: 1px solid var(--edge);
 }
-.banner-media { position: absolute; inset: 0; z-index: 0; opacity: 0.32; }
+.banner-media { position: absolute; inset: 0; z-index: 0; opacity: 0.42; }
+/* Live stream visibility — transparent foreground, full media */
+.banner-media.live-active { opacity: 0.92; }
+.banner-media.live-active .banner-live-iframe {
+  opacity: 1;
+  filter: none;
+}
+.banner-media.live-fallback { opacity: 0.48; }
+body.banner-live-on .banner-overlay .plaque,
+body.banner-live-on .banner-overlay .side-plaque,
+body.banner-live-on .banner-overlay .center {
+  background: rgba(8, 18, 14, 0.38) !important;
+  backdrop-filter: blur(4px);
+}
+body.banner-live-on .banner-overlay {
+  background: transparent;
+}
 .banner-still-img, .banner-live-iframe {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0;
 }
