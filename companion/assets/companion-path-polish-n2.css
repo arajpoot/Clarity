@@ -1,0 +1,107 @@
+/*! companion-path-polish-n2.css · N2 gap-fill · path tiles + ilm pathway depth
+ * Additive on live path grid + ilm-pathway — educational only — not a fatwa
+ */
+html.nuros-chrome-n1 .cs-path-grid,
+.cs-path-grid {
+  gap: 0.55rem;
+}
+
+.cs-path-tile.is-active,
+.cs-path-tile.active,
+button[data-cs-path].is-active,
+button[data-cs-path].active {
+  border-color: rgba(224, 195, 106, 0.65) !important;
+  box-shadow: 0 0 0 1px rgba(224, 195, 106, 0.35), 0 8px 22px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(165deg, rgba(30, 125, 94, 0.22), rgba(8, 14, 24, 0.92));
+}
+
+.cs-path-tile strong {
+  display: block;
+  margin: 0.15rem 0;
+}
+
+.cs-path-desc {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.9;
+}
+
+.cs-path-tags {
+  display: block;
+  font-size: 0.72rem;
+  margin-top: 0.35rem;
+  opacity: 0.75;
+  color: #e0c36a;
+}
+
+.cs-focus-plaque {
+  border-radius: 16px;
+  border: 1px solid rgba(184, 146, 42, 0.3);
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.cs-focus-kicker {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #e0c36a;
+  font-weight: 700;
+}
+
+.cs-focus-path {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0.2rem 0;
+}
+
+#ilm-pathway-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ilm-pathway-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ilm-pathway-summary::-webkit-details-marker { display: none; }
+
+.ilm-day {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 0.55rem 0.65rem;
+  margin: 0.35rem 0;
+  border-radius: 12px;
+  border: 1px solid rgba(180, 200, 220, 0.15);
+  background: rgba(8, 14, 24, 0.45);
+}
+
+.ilm-day.done {
+  border-color: rgba(30, 125, 94, 0.45);
+  background: rgba(30, 125, 94, 0.12);
+}
+
+.ilm-day-label {
+  font-weight: 700;
+  color: #e0c36a;
+  min-width: 3.2rem;
+}
+
+.ilm-day-focus {
+  flex: 1;
+  min-width: 12rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.ilm-day button {
+  font-size: 0.78rem;
+}
