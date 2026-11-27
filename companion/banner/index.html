@@ -6,11 +6,11 @@
 <title>Companion Banner · Clarity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@500;600;700&display=swap"/>
-<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261127LIVE3"/>
+<link rel="stylesheet" href="assets/css/banner-module-v1.css?v=20261127LIVE4"/>
 </head>
 <body>
 <main class="banner" id="clarity-final-banner-controls-v2">
-  <div class="banner-media" id="banner-media" style="opacity:0.88">
+  <div class="banner-media" id="banner-media" style="opacity:0.95!important">
     <video id="banner-hls" class="banner-live-iframe" playsinline muted autoplay hidden style="object-fit:cover"></video>
     <iframe id="banner-live" class="banner-live-iframe" title="Haramain live" hidden
       allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen playsinline></iframe>
@@ -249,15 +249,39 @@
     </section>
   </div>
 </main>
-<script src="assets/js/companion-banner-owner-v1.js?v=20261127LIVE3"></script>
-<script src="assets/js/companion-banner-audio-v1.js?v=20261127LIVE3"></script>
+<script src="assets/js/companion-banner-owner-v1.js?v=20261127LIVE4"></script>
+<script src="assets/js/companion-banner-audio-v1.js?v=20261127LIVE4"></script>
 <script src="assets/js/companion-haramain-temps-v1.js?v=20261112E6eC"></script>
-<script src="assets/js/banner-module-settle-v1.js?v=20261112E6eC"></script>
-<script src="assets/js/banner-av-wire-v1.js?v=20261127LIVE3"></script>
+<script src="assets/js/banner-module-settle-v1.js?v=20261127LIVE4"></script>
+<script src="assets/js/banner-av-wire-v1.js?v=20261127LIVE4"></script>
 <script src="assets/js/banner-enrich-polish-v1.js?v=20261112E6eC"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+
+<script id="banner-opacity-watch-live4">
+(function(w,d){
+  if(w.__BANNER_OPACITY_LIVE4__) return; w.__BANNER_OPACITY_LIVE4__=true;
+  function stick(){
+    var m=d.getElementById("banner-media");
+    if(!m) return;
+    var live=m.classList.contains("live-active")||d.body.classList.contains("banner-live-on");
+    m.style.setProperty("opacity", live?"1":"0.95", "important");
+    var img=d.getElementById("banner-img");
+    if(img) img.style.setProperty("opacity", live?"0.15":"1", "important");
+    var iframe=d.getElementById("banner-live");
+    if(iframe && live){ iframe.style.setProperty("opacity","1","important"); iframe.style.visibility="visible"; }
+  }
+  stick();
+  setInterval(stick, 1200);
+  d.addEventListener("visibilitychange", stick);
+  try{
+    new MutationObserver(stick).observe(d.documentElement,{attributes:true,subtree:true,attributeFilter:["style","class"]});
+  }catch(e){}
+})(window,document);
+</script>
+
 </body>
 </html>
