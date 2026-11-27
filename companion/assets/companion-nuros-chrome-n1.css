@@ -1,0 +1,88 @@
+/*! companion-nuros-chrome-n1.css
+ * N1 REFRAME — NurOS font/token BRIDGE onto live Archive3 hydrate
+ * Does not replace companion-archive3-chrome-hydrate-v2 — layers beside it.
+ * Live already has Amiri/Noto/Quicksand; this adds Scheherazade, Cormorant, Kufi, Ruqaa, NurOS refs.
+ * Educational only — not a fatwa · foundation-safe
+ */
+@import url("https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&family=Lateef:wght@400;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Cairo:wght@500;600;700&display=swap");
+
+:root {
+  --nuros-accent: #0d4f3c;
+  --nuros-gold: #b8922a;
+  --nuros-gold-soft: #f5edd6;
+  --nuros-radius: 16px;
+  --nuros-shadow: 0 10px 28px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Mark soak — additive class from n1.js */
+html.nuros-chrome-n1 {
+  --n1-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --n1-arabic: "Scheherazade New", Amiri, "Noto Naskh Arabic", Lateef, serif;
+  --n1-kufi: "Reem Kufi", Cairo, system-ui, sans-serif;
+  --n1-ruqaa: "Aref Ruqaa", Amiri, serif;
+}
+
+/* Titles — serif depth without wiping Quicksand UI chrome */
+html.nuros-chrome-n1 .cs-plaque h2,
+html.nuros-chrome-n1 .cs-plaque-deep h2,
+html.nuros-chrome-n1 .siq-hero-text h2,
+html.nuros-chrome-n1 .cs-path-tile strong,
+html.nuros-chrome-n1 #cs-focus-path h2,
+html.nuros-chrome-n1 .a3-parity-title {
+  font-family: var(--n1-serif) !important;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+}
+
+/* Arabic — Scheherazade primary where lang/ar class present */
+html.nuros-chrome-n1 .arabic,
+html.nuros-chrome-n1 [lang="ar"],
+html.nuros-chrome-n1 .rabbana-arabic,
+html.nuros-chrome-n1 #seerah-live-ar,
+html.nuros-chrome-n1 #tibbe-ar,
+html.nuros-chrome-n1 [data-callig-glyph],
+html.nuros-chrome-n1 .callig-sample {
+  font-family: var(--n1-arabic) !important;
+  direction: rtl;
+  line-height: 2.05;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.nuros-chrome-n1 .kufi-accent,
+html.nuros-chrome-n1 .cs-path-ico {
+  font-family: var(--n1-kufi);
+}
+
+html.nuros-chrome-n1 .ruqaa-accent {
+  font-family: var(--n1-ruqaa) !important;
+}
+
+/* Plaque depth — soft NurOS radius on existing deep plaques only */
+html.nuros-chrome-n1 .cs-plaque-deep,
+html.nuros-chrome-n1 .siq-quest-card,
+html.nuros-chrome-n1 .siq-rank-badge,
+html.nuros-chrome-n1 .siq-plus-badges,
+html.nuros-chrome-n1 .cs-path-tile {
+  border-radius: var(--nuros-radius);
+  box-shadow: var(--nuros-shadow);
+}
+
+html.nuros-chrome-n1 .cs-path-tile {
+  border: 1px solid rgba(184, 146, 42, 0.28);
+  transition: border-color 0.15s ease, transform 0.12s ease;
+}
+html.nuros-chrome-n1 .cs-path-tile:hover {
+  border-color: rgba(224, 195, 106, 0.55);
+}
+
+html.nuros-chrome-n1 .cs-plaque-head h2,
+html.nuros-chrome-n1 .siq-hero-text h2 {
+  border-bottom: 1px solid rgba(184, 146, 42, 0.28);
+  padding-bottom: 0.25rem;
+}
+
+/* Do not fight meme iframe internals */
+html.nuros-chrome-n1 iframe[src*="/companion/meme"] {
+  border-radius: 12px;
+}
