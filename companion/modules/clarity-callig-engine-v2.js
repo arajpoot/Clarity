@@ -243,7 +243,7 @@ function calligDrawGuide(){
   ctx.beginPath(); ctx.moveTo(0,c.height/2); ctx.lineTo(c.width,c.height/2); ctx.stroke();
   if(calligState.guide){
     ctx.save();
-    ctx.fillStyle='rgba(13,79,60,0.13)';
+    ctx.fillStyle='rgba(13,79,60,0.22)';
     var g=String(calligState.glyph||'ا');
     var isLatin=/[A-Za-z]/.test(g);
     if(isLatin){
@@ -258,6 +258,9 @@ function calligDrawGuide(){
     var ox=calligState.offsetX||0;
     var oy=calligState.offsetY||0;
     ctx.fillText(g, c.width/2+ox, c.height/2+oy);
+    ctx.lineWidth = Math.max(1.5, Math.round(((calligState.scale||100)/100)*2));
+    ctx.strokeStyle = 'rgba(13,79,60,0.28)';
+    ctx.strokeText(g, c.width/2+ox, c.height/2+oy);
     ctx.restore();
   }
   (calligState.strokes||[]).forEach(function(st){ calligStrokePath(ctx, st); });
@@ -511,10 +514,26 @@ function calligInit(){
   var c=document.getElementById('callig-canvas'); if(!c) return;
   var targetW = 900;
   var targetH = 420;
+  /* preserve aspect on narrow hosts */
+  try {
+    var rect = c.getBoundingClientRect();
+    if (rect.width > 80) {
+      targetW = Math.max(480, Math.min(1100, Math.round(rect.width * (window.devicePixelRatio || 1))));
+      targetH = Math.round(targetW * 0.48);
+    }
+  } catch (e0) {}
   c.width = targetW;
   c.height = targetH;
+  if (typeof calligState !== 'undefined' && calligState) {
+    if (calligState.guide == null) calligState.guide = true;
+    if (!calligState.glyph) calligState.glyph = 'ا';
+  }
   calligDrawGuide();
   calligUpdateModeBadge();
+  if (c.__calligListenersBound) {
+    return; /* already wired — only redrew guide */
+  }
+  c.__calligListenersBound = true;
   /* Pointer Events unify mouse / finger / stylus with pressure when available */
   if(window.PointerEvent){
     c.style.touchAction='none';
@@ -921,7 +940,7 @@ w.calligSetScript = typeof calligSetScript==='function'?calligSetScript:function
 /*! Companion mount bridge · Reminder tab calligraphy */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_CALLIG_COMPANION_BRIDGE__) return;
+  if (w.__CLARITY_CALLIG_COMPANION_BRIDGE_V2__) return;
   w.__CLARITY_CALLIG_COMPANION_BRIDGE__ = true;
 
   function isReminder() {
