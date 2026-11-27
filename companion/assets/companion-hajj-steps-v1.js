@@ -1,11 +1,14 @@
 /*! companion-hajj-steps-v1.js
- * Phase 2 — Hajj step depth + tap citations + empty-panel guard
- * Educational only — not a fatwa. Companion-only. Additive.
+ * Phase 2 + FIX — durable API, remount boot, button bind, empty-panel guard
+ * Educational only — not a fatwa. Companion-only.
  */
 (function (w, d) {
   'use strict';
-  if (w.__COMPANION_HAJJ_STEPS_V1__) return;
-  w.__COMPANION_HAJJ_STEPS_V1__ = true;
+  // Allow re-init of DOM bindings; keep data constants once
+  var CORE = w.__COMPANION_HAJJ_STEPS_CORE__;
+  if (!CORE) {
+    CORE = w.__COMPANION_HAJJ_STEPS_CORE__ = { version: '20261126H2F' };
+  }
 
   var KEY = 'clarity_hajj_steps_v1';
   var DISC =
@@ -13,16 +16,9 @@
     'Madhāhib differ on sequence details and what incurs a penalty. Confirm with a local teacher and official guidance before you travel.</p>';
 
   function cite(label, href) {
-    return (
-      '<a class="hajj-cite" href="' +
-      href +
-      '" target="_blank" rel="noopener">' +
-      label +
-      '</a>'
-    );
+    return '<a class="hajj-cite" href="' + href + '" target="_blank" rel="noopener">' + label + '</a>';
   }
 
-  /** Shared educational steps (keys used across nusks). */
   var STEPS = {
     intention: {
       title: 'Intention & knowledge before travel',
@@ -36,14 +32,14 @@
       ]
     },
     miqat: {
-      title: 'Mīqāt — boundary of iḥrām',
+      title: 'Iḥrām for ʿUmrah / at mīqāt',
       body:
-        '<p>Enter iḥrām from the mīqāt that applies to your route. Do not delay past the boundary without the state of iḥrām your teacher taught for your case.</p>' +
-        '<ul><li>Make ghusl if able; wear the garments taught for your gender and school.</li>' +
-        '<li>Form the intention for ʿUmrah or Ḥajj as instructed for your nusk.</li></ul>',
+        '<p>Enter iḥrām from the mīqāt with the intention your teacher gave for your nusk. Men: iḥrām garments. Women: modest dress; face-veil/gloves rules as taught — not from this card alone.</p>' +
+        '<p>Begin talbiyah. Educational outline — confirm details with your teacher / official guide.</p>',
       cites: [
         { label: 'Sunnah.com · mīqāt', href: 'https://sunnah.com/search?q=miqat' },
-        { label: 'Qurʾān 2:196', href: 'https://quran.com/2/196' }
+        { label: 'Qurʾān 2:196', href: 'https://quran.com/2/196' },
+        { label: 'Do / avoid panel', href: '#hajj-ihram-do-avoid' }
       ]
     },
     ihram_rules: {
@@ -67,9 +63,9 @@
       ]
     },
     umrah_tawaf: {
-      title: 'ʿUmrah — ṭawāf of arrival (Tamattuʿ)',
+      title: 'ʿUmrah — ṭawāf',
       body:
-        '<p>For Tamattuʿ, perform ʿUmrah first: ṭawāf around the Kaʿbah with the conditions and sunan your teacher taught, then two rakʿahs if able in the proper place.</p>' +
+        '<p>For Tamattuʿ, perform ʿUmrah ṭawāf with the conditions and sunan your teacher taught, then two rakʿahs if able in the proper place.</p>' +
         '<p>Video lectures are secondary rank — not equal to Qurʾān or graded reports.</p>',
       cites: [
         { label: 'Sunnah.com · ṭawāf', href: 'https://sunnah.com/search?q=tawaf' },
@@ -88,27 +84,25 @@
     tahallul_umrah: {
       title: 'Release from ʿUmrah iḥrām (Tamattuʿ)',
       body:
-        '<p>After ʿUmrah rites, release from iḥrām as your teacher taught (shortening or shaving) until iḥrām for Ḥajj on the 8th.</p>' +
-        '<p>If two reports seem to conflict, take both to a scholar — do not invent a third source.</p>',
+        '<p>After ʿUmrah rites, release from iḥrām as your teacher taught (shortening or shaving) until iḥrām for Ḥajj on the 8th.</p>',
       cites: [
         { label: 'Sunnah.com · tahallul', href: 'https://sunnah.com/search?q=tahallul' },
         { label: 'Qurʾān 2:196', href: 'https://quran.com/2/196' }
       ]
     },
     hajj_ihram: {
-      title: 'Iḥrām for Ḥajj (8th of Dhul-Ḥijjah)',
+      title: 'Iḥrām for Ḥajj (8th)',
       body:
         '<p>Enter iḥrām for Ḥajj from Makkah (Tamattuʿ) or continue as taught for Qirān/Ifrād. Proceed toward Minā with the pilgrims.</p>',
       cites: [
-        { label: 'Sunnah.com · 8th Dhul-Hijjah', href: 'https://sunnah.com/search?q=mina%20tarwiyah' },
+        { label: 'Sunnah.com · Minā', href: 'https://sunnah.com/search?q=mina%20tarwiyah' },
         { label: 'Qurʾān 2:197', href: 'https://quran.com/2/197' }
       ]
     },
     arafah: {
-      title: 'ʿArafah (9th) — the core of Ḥajj',
+      title: 'ʿArafah (9th)',
       body:
-        '<p>Presence at ʿArafah is the pillar without which Ḥajj is not complete in the way scholars teach. Stand, remember Allah, make duʿāʾ, and follow the timing your group and teacher use.</p>' +
-        '<p>Keep phones and arguments from eating the day.</p>',
+        '<p>Presence at ʿArafah is the pillar without which Ḥajj is not complete in the way scholars teach. Stand, remember Allah, make duʿāʾ, and follow the timing your group and teacher use.</p>',
       cites: [
         { label: 'Sunnah.com · ʿArafah', href: 'https://sunnah.com/search?q=arafah' },
         { label: 'Qurʾān 2:198', href: 'https://quran.com/2/198' }
@@ -117,7 +111,7 @@
     muzdalifah: {
       title: 'Muzdalifah',
       body:
-        '<p>After ʿArafah, go to Muzdalifah. Combine and shorten as taught; rest if able; collect pebbles if that is your group’s practice for the next day.</p>',
+        '<p>After ʿArafah, go to Muzdalifah. Combine and shorten as taught; rest if able; collect pebbles if that is your group’s practice.</p>',
       cites: [
         { label: 'Sunnah.com · Muzdalifah', href: 'https://sunnah.com/search?q=muzdalifah' },
         { label: 'Qurʾān 2:198', href: 'https://quran.com/2/198' }
@@ -126,17 +120,16 @@
     jamarat: {
       title: 'Stoning the Jamarāt',
       body:
-        '<p>Stone as sequenced for your days (10th and the days of tashrīq). Follow crowd safety and the number of pebbles your teacher specified.</p>' +
-        '<p>This panel does not adjudicate disputed timings — ask your scholar.</p>',
+        '<p>Stone as sequenced for your days. Follow crowd safety and the number of pebbles your teacher specified. Disputed timings → ask your scholar.</p>',
       cites: [
         { label: 'Sunnah.com · jamarāt', href: 'https://sunnah.com/search?q=jamarat' },
         { label: 'Qurʾān 2:203', href: 'https://quran.com/2/203' }
       ]
     },
     sacrifice: {
-      title: 'Hady / sacrifice (if required for your nusk)',
+      title: 'Hady / sacrifice (if required)',
       body:
-        '<p>Tamattuʿ and Qirān require a hady in the way taught; arrangements may be through official programs. Confirm what is required for <em>your</em> nusk with a teacher.</p>',
+        '<p>Tamattuʿ and Qirān require a hady in the way taught. Confirm what is required for <em>your</em> nusk with a teacher.</p>',
       cites: [
         { label: 'Qurʾān 2:196', href: 'https://quran.com/2/196' },
         { label: 'Sunnah.com · hady', href: 'https://sunnah.com/search?q=hady%20hajj' }
@@ -145,7 +138,7 @@
     halq: {
       title: 'Ḥalq or taqṣīr',
       body:
-        '<p>Shave or shorten the hair as taught for release from the first stage of iḥrām after the rites of the 10th. Women shorten; they do not shave.</p>',
+        '<p>Shave or shorten the hair as taught for release after the rites of the 10th. Women shorten; they do not shave.</p>',
       cites: [
         { label: 'Sunnah.com · shave / shorten', href: 'https://sunnah.com/search?q=shave%20hajj' },
         { label: 'Qurʾān 2:196', href: 'https://quran.com/2/196' }
@@ -154,7 +147,7 @@
     ifadah: {
       title: 'Ṭawāf al-ifāḍah',
       body:
-        '<p>Perform the ifāḍah ṭawāf — a pillar of Ḥajj in the way scholars teach — then saʿī if required for your nusk and prior rites.</p>',
+        '<p>Perform the ifāḍah ṭawāf — a pillar of Ḥajj in the way scholars teach — then saʿī if required for your nusk.</p>',
       cites: [
         { label: 'Sunnah.com · ifāḍah', href: 'https://sunnah.com/search?q=tawaf%20ifadah' },
         { label: 'Qurʾān 22:29', href: 'https://quran.com/22/29' }
@@ -163,7 +156,7 @@
     tashriq: {
       title: 'Days of tashrīq',
       body:
-        '<p>Remain in Minā for the days of tashrīq as taught; stone on those days; remember Allah. Leaving early has conditions — do not self-issue a ruling from this card.</p>',
+        '<p>Remain in Minā for the days of tashrīq as taught; stone on those days. Leaving early has conditions — do not self-issue a ruling from this card.</p>',
       cites: [
         { label: 'Qurʾān 2:203', href: 'https://quran.com/2/203' },
         { label: 'Sunnah.com · tashrīq', href: 'https://sunnah.com/search?q=tashriq' }
@@ -172,7 +165,7 @@
     wada: {
       title: 'Farewell ṭawāf',
       body:
-        '<p>Before leaving Makkah, perform the farewell ṭawāf if it is required in your case (exceptions exist for some women in menses — ask a teacher).</p>',
+        '<p>Before leaving Makkah, perform the farewell ṭawāf if required in your case (exceptions exist — ask a teacher).</p>',
       cites: [
         { label: 'Sunnah.com · farewell ṭawāf', href: 'https://sunnah.com/search?q=farewell%20tawaf' },
         { label: 'Qurʾān 22:29', href: 'https://quran.com/22/29' }
@@ -199,11 +192,12 @@
   function root() {
     return d.getElementById('cs-mount') || d;
   }
-  function $(id) {
-    return root().querySelector('#' + id) || d.getElementById(id);
+  function byId(id) {
+    var r = root();
+    return (r.querySelector && r.querySelector('#' + id)) || d.getElementById(id);
   }
   function nusk() {
-    var el = $('hajj-nusk');
+    var el = byId('hajj-nusk');
     var v = el && el.value;
     return NUSK[v] ? v : 'tamattu';
   }
@@ -228,14 +222,15 @@
 
   function renderCites(cites) {
     if (!cites || !cites.length) return '';
-    var html = '<p class="hajj-cites"><strong>Tap citations:</strong> ';
-    html += cites
-      .map(function (c) {
-        return cite(c.label, c.href);
-      })
-      .join(' · ');
-    html += '</p>';
-    return html;
+    return (
+      '<p class="hajj-cites"><strong>Tap citations:</strong> ' +
+      cites
+        .map(function (c) {
+          return cite(c.label, c.href);
+        })
+        .join(' · ') +
+      '</p>'
+    );
   }
 
   function panelHtml(key) {
@@ -243,22 +238,17 @@
     if (!step) {
       return (
         DISC +
-        '<p class="hajj-empty-defect"><strong>Empty step.</strong> This step id is missing content — that is a defect. Choose another step or update the module.</p>'
+        '<p class="hajj-empty-defect"><strong>Empty step.</strong> Missing content for “' +
+        String(key || '') +
+        '”. Choose another step.</p>'
       );
     }
-    return (
-      DISC +
-      '<h4 class="hajj-step-title">' +
-      step.title +
-      '</h4>' +
-      step.body +
-      renderCites(step.cites)
-    );
+    return DISC + '<h4 class="hajj-step-title">' + step.title + '</h4>' + step.body + renderCites(step.cites);
   }
 
   function fillSelect() {
-    var sel = $('hajj-step-select');
-    if (!sel) return;
+    var sel = byId('hajj-step-select');
+    if (!sel) return false;
     var keys = NUSK[nusk()];
     var cur = sel.value;
     sel.innerHTML = '';
@@ -270,10 +260,11 @@
     });
     if (cur && keys.indexOf(cur) >= 0) sel.value = cur;
     else sel.value = keys[0];
+    return true;
   }
 
   function renderProgress() {
-    var box = $('hajj-progress');
+    var box = byId('hajj-progress');
     if (!box) return;
     var keys = NUSK[nusk()];
     var map = doneSet().map;
@@ -281,54 +272,69 @@
       return !!map[k];
     }).length;
     box.innerHTML =
-      '<span class="hajj-prog-text">' +
+      '<span class="hajj-prog-text">Progress: ' +
       done +
       ' / ' +
       keys.length +
-      ' steps marked on this device</span>' +
+      ' marked on this device · educational only — not a fatwa</span>' +
       '<span class="hajj-prog-bar" aria-hidden="true"><i style="width:' +
-      Math.round((done / keys.length) * 100) +
+      Math.round((done / Math.max(keys.length, 1)) * 100) +
       '%"></i></span>';
   }
 
   function showStep(v) {
-    var panel = $('hajj-panel');
+    var panel = byId('hajj-panel');
     if (!panel) return;
-    var key = v || ($('hajj-step-select') && $('hajj-step-select').value) || NUSK[nusk()][0];
-    var html = panelHtml(key);
-    panel.innerHTML = html;
-    // Empty panel defect: if somehow blank
-    if (!panel.textContent || !panel.textContent.trim()) {
+    var sel = byId('hajj-step-select');
+    var key = v || (sel && sel.value) || NUSK[nusk()][0];
+    if (sel && key && sel.value !== key) {
+      try {
+        sel.value = key;
+      } catch (e) {}
+    }
+    panel.innerHTML = panelHtml(key);
+    if (!panel.textContent || !String(panel.textContent).trim()) {
       panel.innerHTML =
         DISC +
-        '<p class="hajj-empty-defect"><strong>Empty panel defect.</strong> Guidance failed to render. Re-select the step or reload Action.</p>';
+        '<p class="hajj-empty-defect"><strong>Empty panel defect.</strong> Re-select the step or reopen Action.</p>';
     }
     renderProgress();
-    // in-page cite for do/avoid
     panel.querySelectorAll('a[href="#hajj-ihram-do-avoid"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        var el = $('hajj-ihram-do-avoid');
+        var el = byId('hajj-ihram-do-avoid');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   }
 
   function markDone() {
-    var sel = $('hajj-step-select');
-    if (!sel) return;
+    var sel = byId('hajj-step-select');
+    if (!sel || !sel.value) return;
     var o = doneSet();
     o.map[sel.value] = true;
     saveState(o.st);
     renderProgress();
+    // advance to next unmarked
+    var keys = NUSK[nusk()];
+    var next = keys.find(function (k) {
+      return !o.map[k];
+    });
+    if (next) {
+      sel.value = next;
+      showStep(next);
+    } else {
+      showStep(sel.value);
+    }
   }
   function markUndone() {
-    var sel = $('hajj-step-select');
-    if (!sel) return;
+    var sel = byId('hajj-step-select');
+    if (!sel || !sel.value) return;
     var o = doneSet();
     delete o.map[sel.value];
     saveState(o.st);
     renderProgress();
+    showStep(sel.value);
   }
   function whereAmI() {
     var keys = NUSK[nusk()];
@@ -336,149 +342,213 @@
     var next = keys.find(function (k) {
       return !map[k];
     });
-    var sel = $('hajj-step-select');
-    if (sel && next) {
-      sel.value = next;
-      showStep(next);
-    } else if (sel) {
+    var sel = byId('hajj-step-select');
+    if (sel) {
+      if (next) sel.value = next;
       showStep(sel.value);
     }
-    var panel = $('hajj-panel');
+    var panel = byId('hajj-panel');
     if (panel) {
+      var old = panel.querySelector('.hajj-where');
+      if (old) old.remove();
       var note = d.createElement('p');
       note.className = 'hajj-where';
       note.innerHTML = next
         ? '<strong>Where am I?</strong> Next unmarked step selected. On-device only.'
         : '<strong>Where am I?</strong> All listed steps marked on this device. Still confirm with your teacher.';
       panel.insertBefore(note, panel.firstChild);
+      try {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (e) {}
     }
   }
 
-  // Public API — overwrite stubs
+  function checklistRender() {
+    var list = byId('hajj-checklist-list');
+    if (!list) return;
+    var keys = NUSK[nusk()];
+    var map = doneSet().map;
+    list.innerHTML = keys
+      .map(function (k, i) {
+        var ok = map[k] ? '✓' : '○';
+        return (
+          '<button type="button" class="hajj-check-item" data-hajj-step="' +
+          k +
+          '"><span>' +
+          ok +
+          '</span> ' +
+          (i + 1) +
+          '. ' +
+          (STEPS[k] ? STEPS[k].title : k) +
+          '</button>'
+        );
+      })
+      .join('');
+    var prog = byId('hajj-checklist-progress');
+    if (prog) {
+      var done = keys.filter(function (k) {
+        return !!map[k];
+      }).length;
+      prog.textContent = done + ' / ' + keys.length + ' marked on this device';
+    }
+  }
+
+  function bindButtons() {
+    var actions = byId('hajj-guide-card') || root();
+    if (!actions) return;
+    // Prefer data attributes; also rewrite inline onclick to durable globals
+    var map = [
+      ['hajjMarkDone()', markDone],
+      ['hajjMarkUndone()', markUndone],
+      ['hajjWhereAmI()', whereAmI],
+      ['hajjPrintChecklist()', function () { w.print(); }],
+      ['hajjTalbiyah(-1)', function () { w.hajjTalbiyah(-1); }],
+      ['hajjTalbiyah(1)', function () { w.hajjTalbiyah(1); }],
+      ['hajjPlayTalbiyah()', function () { w.hajjPlayTalbiyah(); }]
+    ];
+    actions.querySelectorAll('button[onclick]').forEach(function (btn) {
+      var oc = btn.getAttribute('onclick') || '';
+      map.forEach(function (pair) {
+        if (oc.indexOf(pair[0].replace('()', '')) >= 0 || oc.indexOf(pair[0]) >= 0) {
+          if (btn.dataset.hajjBound === pair[0]) return;
+          btn.dataset.hajjBound = pair[0];
+          btn.addEventListener('click', function (e) {
+            try {
+              pair[1]();
+            } catch (err) {
+              console && console.warn && console.warn('[hajj]', err);
+            }
+          });
+        }
+      });
+    });
+    // Checklist open
+    var list = byId('hajj-checklist-list');
+    if (list && !list.dataset.hajjBound) {
+      list.dataset.hajjBound = '1';
+      list.addEventListener('click', function (e) {
+        var t = e.target.closest('[data-hajj-step]');
+        if (!t) return;
+        var sel = byId('hajj-step-select');
+        if (sel) {
+          sel.value = t.getAttribute('data-hajj-step');
+          showStep(sel.value);
+        }
+        var g = byId('hajj-guide-card');
+        if (g) g.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }
+
+  // Durable globals (overwrite stubs every boot)
   w.hajjShowStep = showStep;
   w.hajjMarkDone = markDone;
   w.hajjMarkUndone = markUndone;
   w.hajjWhereAmI = whereAmI;
+  w.hajjChecklistRender = checklistRender;
+  w.hajjPrintChecklist = function () {
+    w.print();
+  };
+  w.hajjChecklistPrint = w.hajjPrintChecklist;
+  w.hajjChecklistReset = function () {
+    var o = doneSet();
+    o.st[o.n] = {};
+    saveState(o.st);
+    renderProgress();
+    checklistRender();
+  };
 
-  if (typeof w.hajjTalbiyah !== 'function') {
-    w.hajjTalbiyah = function (delta) {
-      var el = $('hajj-talbiyah-count');
-      if (!el) return;
-      var n = parseInt(el.textContent, 10) || 0;
-      n = Math.max(0, n + (delta || 0));
-      el.textContent = String(n);
-      try {
-        w.localStorage.setItem('clarity_hajj_talbiyah_v1', String(n));
-      } catch (e) {}
-    };
-  }
-  if (typeof w.hajjPlayTalbiyah !== 'function') {
-    w.hajjPlayTalbiyah = function () {
-      try {
-        if (!w.speechSynthesis) return;
-        var u = new SpeechSynthesisUtterance(
-          'Labbayk Allahumma labbayk, labbayk la shareeka laka labbayk'
-        );
-        u.lang = 'ar-SA';
-        w.speechSynthesis.speak(u);
-      } catch (e) {}
-    };
-  }
-  if (typeof w.hajjLoadEpisode !== 'function') {
-    w.hajjLoadEpisode = function (id) {
-      var frame = d.getElementById('hajj-yt-frame-frame') || d.querySelector('#hajj-yt-frame iframe');
-      var open = d.getElementById('hajj-yt-open');
-      if (open) open.href = 'https://www.youtube-nocookie.com/embed/' + id;
-      // prefer details open
-      var host = d.querySelector('[data-embed-id="hajj-yt-frame"]');
-      if (host) host.open = true;
-      if (frame && frame.tagName === 'IFRAME') {
+  w.hajjTalbiyah = function (delta) {
+    var el = byId('hajj-talbiyah-count');
+    if (!el) return;
+    var n = parseInt(el.textContent, 10) || 0;
+    n = Math.max(0, n + (delta || 0));
+    el.textContent = String(n);
+    try {
+      w.localStorage.setItem('clarity_hajj_talbiyah_v1', String(n));
+    } catch (e) {}
+  };
+  w.hajjPlayTalbiyah = function () {
+    try {
+      if (!w.speechSynthesis) return;
+      var u = new SpeechSynthesisUtterance(
+        'Labbayk Allahumma labbayk, labbayk la shareeka laka labbayk'
+      );
+      u.lang = 'ar-SA';
+      w.speechSynthesis.speak(u);
+    } catch (e) {}
+  };
+  w.hajjLoadEpisode = function (id) {
+    if (!id) return;
+    var frame = d.getElementById('hajj-yt-frame-frame');
+    var open = d.getElementById('hajj-yt-open');
+    if (open) open.href = 'https://youtu.be/' + id;
+    var host = d.querySelector('[data-embed-id="hajj-yt-frame"]');
+    if (host) host.open = true;
+    if (frame) {
+      if (frame.tagName === 'IFRAME') {
         frame.src = 'https://www.youtube-nocookie.com/embed/' + id;
       }
-    };
-  }
-  if (typeof w.hajjChecklistRender !== 'function') {
-    w.hajjChecklistRender = function () {
-      var list = $('hajj-checklist-list');
-      if (!list) return;
-      var keys = NUSK[nusk()];
-      var map = doneSet().map;
-      list.innerHTML = keys
-        .map(function (k, i) {
-          var ok = map[k] ? '✓' : '○';
-          return (
-            '<label class="hajj-check-item"><span>' +
-            ok +
-            '</span> ' +
-            (i + 1) +
-            '. ' +
-            (STEPS[k] ? STEPS[k].title : k) +
-            '</label>'
-          );
-        })
-        .join('');
-    };
-  }
-  if (typeof w.hajjChecklistPrint !== 'function') {
-    w.hajjChecklistPrint = function () {
-      w.print();
-    };
-  }
-  if (typeof w.hajjChecklistReset !== 'function') {
-    w.hajjChecklistReset = function () {
-      var o = doneSet();
-      o.st[o.n] = {};
-      saveState(o.st);
-      renderProgress();
-      if (typeof w.hajjChecklistRender === 'function') w.hajjChecklistRender();
-    };
-  }
+    }
+  };
 
   function boot() {
+    var sel = byId('hajj-step-select');
+    if (!sel) return false;
     fillSelect();
-    var sel = $('hajj-step-select');
-    if (sel) {
+    if (!sel._hajjChangeBound) {
+      sel._hajjChangeBound = true;
       sel.addEventListener('change', function () {
         showStep(sel.value);
       });
     }
-    var nuskEl = $('hajj-nusk');
-    if (nuskEl) {
+    var nuskEl = byId('hajj-nusk');
+    if (nuskEl && !nuskEl._hajjChangeBound) {
+      nuskEl._hajjChangeBound = true;
       nuskEl.addEventListener('change', function () {
         fillSelect();
         showStep();
-        if (typeof w.hajjChecklistRender === 'function') w.hajjChecklistRender();
+        checklistRender();
       });
     }
-    // restore talbiyah
     try {
       var tc = w.localStorage.getItem('clarity_hajj_talbiyah_v1');
-      var el = $('hajj-talbiyah-count');
+      var el = byId('hajj-talbiyah-count');
       if (el && tc) el.textContent = tc;
     } catch (e) {}
     showStep();
     renderProgress();
-    // Empty initial panel guard
-    var panel = $('hajj-panel');
-    if (panel && !panel.textContent.trim()) {
-      panel.innerHTML =
-        DISC +
-        '<p class="hajj-empty-defect"><strong>Empty panel defect.</strong> Select a step.</p>';
-    }
+    checklistRender();
+    bindButtons();
+    return true;
   }
 
-  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', boot);
-  else boot();
-  // remount observer (short)
+  function scheduleBoot() {
+    if (boot()) return;
+    var tries = 0;
+    var t = setInterval(function () {
+      tries++;
+      if (boot() || tries > 40) clearInterval(t);
+    }, 250);
+  }
+
+  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', scheduleBoot);
+  else scheduleBoot();
+
+  // Shell remounts Action into #cs-mount without running tab scripts again
   try {
     var mo = new MutationObserver(function () {
-      if ($('hajj-step-select') && !$('hajj-step-select').options.length) boot();
+      if (byId('hajj-step-select')) scheduleBoot();
     });
     mo.observe(d.documentElement, { childList: true, subtree: true });
-    setTimeout(function () {
-      try {
-        mo.disconnect();
-      } catch (e) {}
-    }, 20000);
   } catch (e) {}
+
+  // Also listen for custom companion tab events if present
+  ['cs-tab-loaded', 'clarity-tab-mounted', 'hashchange'].forEach(function (ev) {
+    try {
+      w.addEventListener(ev, function () {
+        setTimeout(scheduleBoot, 50);
+      });
+    } catch (e) {}
+  });
 })(window, document);
