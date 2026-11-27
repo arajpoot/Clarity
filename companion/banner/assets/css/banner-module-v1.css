@@ -420,3 +420,35 @@ body.banner-live-on .banner-overlay,
 .banner-media.live-active .banner-still-img {
   opacity: 0.25;
 }
+
+
+/* LIVE3 hardened opacity — survives refresh; beats inline fights */
+#banner-media {
+  opacity: 0.88 !important;
+}
+#banner-media.live-active,
+body.banner-live-on #banner-media {
+  opacity: 1 !important;
+}
+#banner-media.live-active #banner-live,
+body.banner-live-on #banner-live {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+}
+#banner-media.live-fallback {
+  opacity: 0.88 !important;
+}
+#banner-media #banner-img {
+  opacity: 1 !important;
+}
+#banner-media.live-active #banner-img {
+  opacity: 0.2 !important;
+}
+.banner-overlay .plaque,
+.banner-overlay .side-plaque,
+.banner-overlay .center {
+  background: rgba(8, 18, 14, 0.36) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
