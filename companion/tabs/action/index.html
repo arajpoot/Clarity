@@ -712,7 +712,163 @@
             <a class="tj-lmr-ext" id="tj-lmr-quran-link-dup1" data-cs-dup="1" hidden href="https://quran.com" target="_blank" rel="noopener">Open on Quran.com ↗</a>
           </div>
         </div>
-<div id="tj-booth-root" class="craft-studio-host" style="min-height:2rem"></div>
+
+
+<!-- Phase T-LMR: Deep read-along · LMR (shared Craft studio assets · isolation held) -->
+<div class="card phase-tlmr" id="action-tj-lmr-panel" data-rrra="action" data-studio="tajweed-lmr" style="border-top:3px solid var(--gold,#c6a756);margin:0.75rem 0">
+  <h2>🎧 Tajweed · Listen · Match · Record</h2>
+  <p style="font-size:.86rem;line-height:1.45;margin:0 0 .5rem">
+    Deep practice surface restored from Craft Tajweed bench — <strong>read-along</strong>, master audio, record, educational score.
+    Score is a duration/match <em>proxy</em> on this device — <strong>not a qāriʾ grade or ijāzah</strong>.
+    Learn with a qualified teacher. Educational only — not a fatwa.
+  </p>
+  <p style="font-size:.8rem;opacity:.9;margin:0 0 .55rem">
+    Craft isolation held: engines load from <code>/craft/assets/</code>; full atelier chrome stays in
+    <a href="/craft/tajweed/">/craft/tajweed/</a>.
+  </p>
+
+  <section class="tj-surah-bridge" id="tj-surah-bridge" style="margin:.4rem 0 .65rem">
+    <h3 style="font-size:1rem;color:#e8d5a3;margin:0 0 .35rem">Verse picker</h3>
+    <div class="tj-toolbar-row" style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:end">
+      <label style="font-size:.82rem">Sūrah
+        <select id="tj-bridge-surah" aria-label="Sūrah list" style="display:block;min-width:12rem;max-width:100%">
+
+<option value="1" data-ayah="7">1. Al-Fātiḥah (7)</option>
+<option value="2" data-ayah="286">2. Al-Baqarah (286)</option>
+<option value="3" data-ayah="200">3. Āl ʿImrān (200)</option>
+<option value="4" data-ayah="176">4. An-Nisāʾ (176)</option>
+<option value="5" data-ayah="120">5. Al-Māʾidah (120)</option>
+<option value="6" data-ayah="165">6. Al-Anʿām (165)</option>
+<option value="7" data-ayah="206">7. Al-Aʿrāf (206)</option>
+<option value="8" data-ayah="75">8. Al-Anfāl (75)</option>
+<option value="9" data-ayah="129">9. At-Tawbah (129)</option>
+<option value="10" data-ayah="109">10. Yūnus (109)</option>
+<option value="11" data-ayah="123">11. Hūd (123)</option>
+<option value="12" data-ayah="111">12. Yūsuf (111)</option>
+<option value="13" data-ayah="43">13. Ar-Raʿd (43)</option>
+<option value="14" data-ayah="52">14. Ibrāhīm (52)</option>
+<option value="15" data-ayah="99">15. Al-Ḥijr (99)</option>
+<option value="16" data-ayah="128">16. An-Naḥl (128)</option>
+<option value="17" data-ayah="111">17. Al-Isrāʾ (111)</option>
+<option value="18" data-ayah="110">18. Al-Kahf (110)</option>
+<option value="19" data-ayah="98">19. Maryam (98)</option>
+<option value="20" data-ayah="135">20. Ṭā-Hā (135)</option>
+<option value="21" data-ayah="112">21. Al-Anbiyāʾ (112)</option>
+<option value="22" data-ayah="78">22. Al-Ḥajj (78)</option>
+<option value="23" data-ayah="118">23. Al-Muʾminūn (118)</option>
+<option value="24" data-ayah="64">24. An-Nūr (64)</option>
+<option value="25" data-ayah="77">25. Al-Furqān (77)</option>
+<option value="26" data-ayah="227">26. Ash-Shuʿarāʾ (227)</option>
+<option value="27" data-ayah="93">27. An-Naml (93)</option>
+<option value="28" data-ayah="88">28. Al-Qaṣaṣ (88)</option>
+<option value="29" data-ayah="69">29. Al-ʿAnkabūt (69)</option>
+<option value="30" data-ayah="60">30. Ar-Rūm (60)</option>
+<option value="31" data-ayah="34">31. Luqmān (34)</option>
+<option value="32" data-ayah="30">32. As-Sajdah (30)</option>
+<option value="33" data-ayah="73">33. Al-Aḥzāb (73)</option>
+<option value="34" data-ayah="54">34. Sabaʾ (54)</option>
+<option value="35" data-ayah="45">35. Fāṭir (45)</option>
+<option value="36" data-ayah="83">36. Yā-Sīn (83)</option>
+<option value="37" data-ayah="182">37. Aṣ-Ṣāffāt (182)</option>
+<option value="38" data-ayah="88">38. Ṣād (88)</option>
+<option value="39" data-ayah="75">39. Az-Zumar (75)</option>
+<option value="40" data-ayah="85">40. Ghāfir (85)</option>
+<option value="41" data-ayah="54">41. Fuṣṣilat (54)</option>
+<option value="42" data-ayah="53">42. Ash-Shūrā (53)</option>
+<option value="43" data-ayah="89">43. Az-Zukhruf (89)</option>
+<option value="44" data-ayah="59">44. Ad-Dukhān (59)</option>
+<option value="45" data-ayah="37">45. Al-Jāthiyah (37)</option>
+<option value="46" data-ayah="35">46. Al-Aḥqāf (35)</option>
+<option value="47" data-ayah="38">47. Muḥammad (38)</option>
+<option value="48" data-ayah="29">48. Al-Fatḥ (29)</option>
+<option value="49" data-ayah="18">49. Al-Ḥujurāt (18)</option>
+<option value="50" data-ayah="45">50. Qāf (45)</option>
+<option value="51" data-ayah="60">51. Adh-Dhāriyāt (60)</option>
+<option value="52" data-ayah="49">52. Aṭ-Ṭūr (49)</option>
+<option value="53" data-ayah="62">53. An-Najm (62)</option>
+<option value="54" data-ayah="55">54. Al-Qamar (55)</option>
+<option value="55" data-ayah="78">55. Ar-Raḥmān (78)</option>
+<option value="56" data-ayah="96">56. Al-Wāqiʿah (96)</option>
+<option value="57" data-ayah="29">57. Al-Ḥadīd (29)</option>
+<option value="58" data-ayah="22">58. Al-Mujādilah (22)</option>
+<option value="59" data-ayah="24">59. Al-Ḥashr (24)</option>
+<option value="60" data-ayah="13">60. Al-Mumtaḥanah (13)</option>
+<option value="61" data-ayah="14">61. Aṣ-Ṣaff (14)</option>
+<option value="62" data-ayah="11">62. Al-Jumuʿah (11)</option>
+<option value="63" data-ayah="11">63. Al-Munāfiqūn (11)</option>
+<option value="64" data-ayah="18">64. At-Taghābun (18)</option>
+<option value="65" data-ayah="12">65. Aṭ-Ṭalāq (12)</option>
+<option value="66" data-ayah="12">66. At-Taḥrīm (12)</option>
+<option value="67" data-ayah="30">67. Al-Mulk (30)</option>
+<option value="68" data-ayah="52">68. Al-Qalam (52)</option>
+<option value="69" data-ayah="52">69. Al-Ḥāqqah (52)</option>
+<option value="70" data-ayah="44">70. Al-Maʿārij (44)</option>
+<option value="71" data-ayah="28">71. Nūḥ (28)</option>
+<option value="72" data-ayah="28">72. Al-Jinn (28)</option>
+<option value="73" data-ayah="20">73. Al-Muzzammil (20)</option>
+<option value="74" data-ayah="56">74. Al-Muddaththir (56)</option>
+<option value="75" data-ayah="40">75. Al-Qiyāmah (40)</option>
+<option value="76" data-ayah="31">76. Al-Insān (31)</option>
+<option value="77" data-ayah="50">77. Al-Mursalāt (50)</option>
+<option value="78" data-ayah="40">78. An-Nabaʾ (40)</option>
+<option value="79" data-ayah="46">79. An-Nāziʿāt (46)</option>
+<option value="80" data-ayah="42">80. ʿAbasa (42)</option>
+<option value="81" data-ayah="29">81. At-Takwīr (29)</option>
+<option value="82" data-ayah="19">82. Al-Infiṭār (19)</option>
+<option value="83" data-ayah="36">83. Al-Muṭaffifīn (36)</option>
+<option value="84" data-ayah="25">84. Al-Inshiqāq (25)</option>
+<option value="85" data-ayah="22">85. Al-Burūj (22)</option>
+<option value="86" data-ayah="17">86. Aṭ-Ṭāriq (17)</option>
+<option value="87" data-ayah="19">87. Al-Aʿlā (19)</option>
+<option value="88" data-ayah="26">88. Al-Ghāshiyah (26)</option>
+<option value="89" data-ayah="30">89. Al-Fajr (30)</option>
+<option value="90" data-ayah="20">90. Al-Balad (20)</option>
+<option value="91" data-ayah="15">91. Ash-Shams (15)</option>
+<option value="92" data-ayah="21">92. Al-Layl (21)</option>
+<option value="93" data-ayah="11">93. Aḍ-Ḍuḥā (11)</option>
+<option value="94" data-ayah="8">94. Ash-Sharḥ (8)</option>
+<option value="95" data-ayah="8">95. At-Tīn (8)</option>
+<option value="96" data-ayah="19">96. Al-ʿAlaq (19)</option>
+<option value="97" data-ayah="5">97. Al-Qadr (5)</option>
+<option value="98" data-ayah="8">98. Al-Bayyinah (8)</option>
+<option value="99" data-ayah="8">99. Az-Zalzalah (8)</option>
+<option value="100" data-ayah="11">100. Al-ʿĀdiyāt (11)</option>
+<option value="101" data-ayah="11">101. Al-Qāriʿah (11)</option>
+<option value="102" data-ayah="8">102. At-Takāthur (8)</option>
+<option value="103" data-ayah="3">103. Al-ʿAṣr (3)</option>
+<option value="104" data-ayah="9">104. Al-Humazah (9)</option>
+<option value="105" data-ayah="5">105. Al-Fīl (5)</option>
+<option value="106" data-ayah="4">106. Quraysh (4)</option>
+<option value="107" data-ayah="7">107. Al-Māʿūn (7)</option>
+<option value="108" data-ayah="3">108. Al-Kawthar (3)</option>
+<option value="109" data-ayah="6">109. Al-Kāfirūn (6)</option>
+<option value="110" data-ayah="3">110. An-Naṣr (3)</option>
+<option value="111" data-ayah="5">111. Al-Masad (5)</option>
+<option value="112" data-ayah="4">112. Al-Ikhlāṣ (4)</option>
+<option value="113" data-ayah="5">113. Al-Falaq (5)</option>
+<option value="114" data-ayah="6">114. An-Nās (6)</option>
+        
+        </select>
+      </label>
+      <label style="font-size:.82rem">Āyah
+        <span style="display:flex;gap:.25rem;align-items:center">
+          <button type="button" class="btn-secondary" id="tj-bridge-prev" aria-label="Previous āyah">←</button>
+          <input id="tj-bridge-ayah" type="number" min="1" value="1" style="width:4rem"/>
+          <span id="tj-bridge-ayah-max" style="opacity:.8;font-size:.75rem">/ 7</span>
+          <button type="button" class="btn-secondary" id="tj-bridge-next" aria-label="Next āyah">→</button>
+        </span>
+      </label>
+      <button type="button" class="btn" id="tj-bridge-pull">Pull verse</button>
+    </div>
+    <p id="tj-bridge-status" style="font-size:.8rem;min-height:1.2em;margin:.35rem 0 0;color:var(--accent,#c9a84c)"></p>
+    <p id="tj-flow-status" style="font-size:.78rem;opacity:.85;margin:.2rem 0 0"></p>
+  </section>
+
+  <section class="tool-section" id="section-lmr" style="margin:.5rem 0">
+    <h3 style="font-size:1rem;color:#e8d5a3;margin:0 0 .35rem">3 · Listen · Match · Record</h3>
+    <p class="panel-note" id="gov-tj-note" style="font-size:.8rem;margin:0 0 .4rem">Single studio surface · score after Stop is an educational duration match vs master — not a qāriʾ grade.</p>
+    <div id="tj-lmr-host" class="craft-studio-host" style="min-height:8rem;border:1px solid rgba(212,175,55,.25);border-radius:12px;padding:.5rem;background:rgba(0,0,0,.15)"></div>
+    <div id="tj-booth-root" class="craft-studio-host" style="min-height:2rem"></div>
     <div id="tj-coach-host" class="craft-studio-host" style="min-height:2rem"></div>
     <div class="tj-toolbar-row" id="tj-score-actions" style="margin:.5rem 0;display:flex;flex-wrap:wrap;gap:.4rem">
       <button type="button" class="btn-secondary" id="tj-score-vs-master-btn">★ Score vs master</button>
@@ -1184,7 +1340,22 @@
 <link rel="stylesheet" href="/companion/assets/companion-action-phase6-polish-v1.css?v=20261126P6">
 <script defer src="/companion/assets/companion-action-phase6-polish-v1.js?v=20261126P6"></script>
 <script defer src="/companion/assets/companion-action-hygiene-v1.js?v=20261126HY1"></script>
-<script defer src="/companion/assets/companion-action-tj-lmr-native-v1.js?v=20261126LMR3"></script>
+
+  <!-- Tajweed LMR · shared Craft engines (isolation: no Craft nav/banner) -->
+  <link rel="stylesheet" href="/craft/assets/vendor/nx-tajweed-deep-studio-v1.css?v=20261109C20TJ"/>
+  <link rel="stylesheet" href="/craft/assets/craft-tajweed-restore-v1.css?v=20261109C20TJ"/>
+  <link rel="stylesheet" href="/companion/assets/companion-action-tajweed-lmr-v1.css?v=20261126LMR"/>
+  <script defer src="/craft/assets/craft-tajweed-lmr-shell-v1.js?v=20261109C20TJ"></script>
+  <script defer src="/craft/assets/vendor/tajweed-studio-v1.js?v=20261109C20TJ"></script>
+  <script defer src="/craft/assets/vendor/nx-tajweed-deep-studio-js-v1.js?v=20261109C20TJ"></script>
+  <script defer src="/craft/assets/vendor/nx-tj-lmr-js-v1.js?v=20261109C20TJ"></script>
+  <script defer src="/craft/assets/vendor/inline-clarity_lmr_read_sync.js?v=20261109C20TJ"></script>
+  <script defer src="/craft/assets/craft-tajweed-local-v1.js?v=20261109C20TJ"></script>
+  <script defer src="/craft/assets/craft-tajweed-restore-v1.js?v=20261109C20TJ"></script>
+  <script defer src="/craft/assets/craft-tajweed-score-pill-v1.js?v=20261109C20TJ"></script>
+  <script defer src="/craft/assets/craft-tajweed-progress-bridge-v1.js?v=20261109C20TJ"></script>
+  <script defer src="/companion/assets/companion-action-tajweed-lmr-v1.js?v=20261126LMR"></script>
+
 </body>
 </html>
 
