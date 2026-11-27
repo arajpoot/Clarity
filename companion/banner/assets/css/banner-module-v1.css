@@ -452,3 +452,35 @@ body.banner-live-on #banner-live {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
+
+
+/* LIVE4 · stick opacity (notch higher) */
+#banner-media, .banner-media {
+  opacity: 0.95 !important;
+}
+#banner-media.live-active,
+body.banner-live-on #banner-media,
+.banner-media.live-active {
+  opacity: 1 !important;
+}
+#banner-media #banner-img, .banner-still-img {
+  opacity: 1 !important;
+}
+#banner-media.live-active #banner-img {
+  opacity: 0.15 !important;
+}
+#banner-media.live-active #banner-live,
+#banner-live {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.banner-overlay .plaque,
+.banner-overlay .side-plaque,
+.banner-overlay .center {
+  background: rgba(8, 18, 14, 0.32) !important;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+/* Brand pen icon — gold line icon */
+.brand .title-icon-svg { color: #e8c76b; opacity: 1; vertical-align: -2px; }
+.brand .title-icon { display: inline-flex; align-items: center; margin-inline-end: .2rem; }
