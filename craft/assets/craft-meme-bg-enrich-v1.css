@@ -1,0 +1,11 @@
+/* craft-meme-bg-enrich-v1 */
+#meme-fetch-status { font-size: .8rem; min-height: 1.2em; color: var(--accent, #0d4f3c); }
+button[data-meme-bg-enrich] {
+  border: 1px solid rgba(184,146,42,.45);
+  background: rgba(13,79,60,.12);
+  border-radius: 999px;
+  padding: .28rem .65rem;
+  font-size: .78rem;
+  cursor: pointer;
+}
+button[data-meme-bg-enrich]:hover { background: rgba(13,79,60,.22); }
