@@ -103,8 +103,27 @@
     };
   }
 
+  function setLiveChrome(on) {
+    try {
+      if (on) d.body.classList.add("banner-live-on");
+      else d.body.classList.remove("banner-live-on");
+      var media = $("banner-media");
+      if (media) {
+        media.classList.toggle("live-active", !!on);
+        media.classList.toggle("live-fallback", !on);
+        media.style.opacity = on ? "0.92" : "";
+      }
+      var iframe = $("banner-live");
+      if (iframe && on) {
+        iframe.style.opacity = "1";
+        iframe.style.visibility = "visible";
+      }
+    } catch (e) {}
+  }
+
   function showStill() {
     liveOn = false;
+    setLiveChrome(false);
     try { if (w.__bannerLiveWatchdog) { clearTimeout(w.__bannerLiveWatchdog); w.__bannerLiveWatchdog = null; } } catch (e0) {}
     var iframe = $("banner-live");
     var img = $("banner-img");
@@ -112,7 +131,7 @@
     if (iframe) {
       iframe.hidden = true;
       iframe.style.pointerEvents = "none";
-      iframe.style.opacity = "0";
+      iframe.style.opacity = "0"; /* still mode */
       try { iframe.removeAttribute("src"); } catch (e1) {}
     }
     if (media) {
@@ -133,6 +152,7 @@
 
   function showLive() {
     liveOn = true;
+    setLiveChrome(true);
     var iframe = $("banner-live");
     var img = $("banner-img");
     var media = $("banner-media");
