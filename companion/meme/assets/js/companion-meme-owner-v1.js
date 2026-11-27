@@ -35,13 +35,18 @@
   };
 
   var PACKS = {
-    daily: [{ ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", en: "All praise is for Allah, Lord of the worlds.", ref: "Qur'an 1:2" }],
-    reminder: [{ ar: "فَاذْكُرُونِي أَذْكُرْكُمْ", en: "So remember Me; I will remember you.", ref: "Qur'an 2:152" }],
-    reality: [{ ar: "وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ", en: "And cooperate in righteousness and piety.", ref: "Qur'an 5:2" }],
-    reflection: [{ ar: "إِنَّ مَعَ الْعُسْرِ يُسْرًا", en: "Indeed, with hardship comes ease.", ref: "Qur'an 94:6" }],
-    action: [{ ar: "وَأَقِيمُوا الصَّلَاةَ", en: "And establish prayer.", ref: "Qur'an 2:43" }],
-    night: [{ ar: "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ", en: "Every soul will taste death.", ref: "Qur'an 3:185" }]
+    daily: [{ ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", en: "All praise is for Allah, Lord of the worlds.", bot: "تمام تعریف اللہ کے لیے ہے، جو تمام جہانوں کا رب ہے۔", ref: "Qur'an 1:2" }],
+    fatiha: [{ ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", en: "All praise is for Allah, Lord of the worlds.", bot: "تمام تعریف اللہ کے لیے ہے، جو تمام جہانوں کا رب ہے۔", ref: "Qur'an 1:2" }],
+    ikhlas: [{ ar: "قُلْ هُوَ اللَّهُ أَحَدٌ", en: "Say, He is Allah, [who is] One.", bot: "کہو: وہ اللہ ایک ہے۔", ref: "Qur'an 112:1" }],
+    kursi: [{ ar: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ", en: "Allah — there is no deity except Him, the Ever-Living, the Sustainer.", bot: "اللہ — اس کے سوا کوئی معبود نہیں، زندہ، سب کا تھامنے والا۔", ref: "Qur'an 2:255" }],
+    adhkar: [{ ar: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", en: "Glory be to Allah and praise be to Him.", bot: "اللہ پاک ہے اور تعریف اسی کے لیے ہے۔", ref: "Bukhārī & Muslim" }],
+    reminder: [{ ar: "فَاذْكُرُونِي أَذْكُرْكُمْ", en: "So remember Me; I will remember you.", bot: "پس تم مجھے یاد کرو، میں تمہیں یاد رکھوں گا۔", ref: "Qur'an 2:152" }],
+    reality: [{ ar: "وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ", en: "And cooperate in righteousness and piety.", bot: "نیکی اور تقویٰ پر ایک دوسرے کی مدد کرو۔", ref: "Qur'an 5:2" }],
+    reflection: [{ ar: "إِنَّ مَعَ الْعُسْرِ يُسْرًا", en: "Indeed, with hardship comes ease.", bot: "بیشک تنگی کے ساتھ آسانی ہے۔", ref: "Qur'an 94:6" }],
+    action: [{ ar: "وَأَقِيمُوا الصَّلَاةَ", en: "And establish prayer.", bot: "اور نماز قائم کرو۔", ref: "Qur'an 2:43" }],
+    night: [{ ar: "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ", en: "Every soul will taste death.", bot: "ہر جان موت کا مزہ چکھنے والی ہے۔", ref: "Qur'an 3:185" }]
   };
+
 
   function S() {
     if (!w.memeState || typeof w.memeState !== "object") w.memeState = {};
@@ -49,6 +54,8 @@
     if (s.top == null) s.top = "";
     if (s.mid == null) s.mid = "";
     if (s.ref == null) s.ref = "";
+    if (s.bot == null) s.bot = "";
+    if (s.scaleBot == null) s.scaleBot = 100;
     if (s.scaleTop == null) s.scaleTop = 100;
     if (s.scaleMid == null) s.scaleMid = 100;
     if (s.font == null) s.font = "naskh";
@@ -195,7 +202,7 @@
   }
 
   function paintTextBlock(ctx, text, x, y, maxW, font, fill, stroke, lh) {
-    if (!text) return y;
+    if (!text) return { y: y, h: 0 };
     ctx.font = font;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -206,16 +213,15 @@
         ctx.lineJoin = "round";
         ctx.miterLimit = 2;
         ctx.lineWidth = stroke.width || 3;
-        ctx.strokeStyle = stroke.color || "rgba(0,0,0,0.7)";
+        ctx.strokeStyle = stroke.color || "rgba(0,0,0,0.75)";
         ctx.strokeText(ln, x, yy);
       }
-      /* depth shadow */
-      ctx.fillStyle = "rgba(0,0,0,0.45)";
-      ctx.fillText(ln, x + 1.2, yy + 1.5);
+      ctx.fillStyle = "rgba(0,0,0,0.5)";
+      ctx.fillText(ln, x + 1.5, yy + 2);
       ctx.fillStyle = fill || "#f8f4ea";
       ctx.fillText(ln, x, yy);
     });
-    return y + lines.length * lh;
+    return { y: y + lines.length * lh, h: lines.length * lh };
   }
 
   function paintToContext(ctx, W, H) {
@@ -224,16 +230,12 @@
     var bg = s.bgImage || s.img;
     if (bg && bg.complete && bg.naturalWidth) {
       try {
-        var iw = bg.naturalWidth,
-          ih = bg.naturalHeight;
+        var iw = bg.naturalWidth, ih = bg.naturalHeight;
         var sc = Math.max(W / iw, H / ih);
         ctx.drawImage(bg, (W - iw * sc) / 2, (H - ih * sc) / 2, iw * sc, ih * sc);
-        /* soft readable wash */
-        ctx.fillStyle = "rgba(0,0,0,0.28)";
+        ctx.fillStyle = "rgba(0,0,0,0.30)";
         ctx.fillRect(0, 0, W, H);
-      } catch (e) {
-        bg = null;
-      }
+      } catch (e) { bg = null; }
     }
     if (!bg || !bg.naturalWidth) {
       var g = ctx.createLinearGradient(0, 0, 0, H);
@@ -243,87 +245,72 @@
       ctx.fillRect(0, 0, W, H);
     }
     var fm = drawFrame(ctx, W, H);
-    var inset = fm.inset,
-      stripH = fm.stripH;
-    var safeTop = inset * 1.55;
-    var safeBot = H - stripH - inset * 1.1;
-    var safeH = Math.max(40, safeBot - safeTop);
-    var place = (typeof s.place === "number" ? s.place : 42) / 100;
-    var y = safeTop + safeH * place * 0.35;
-    var maxW = W - inset * 2.4;
+    var inset = fm.inset, stripH = fm.stripH;
+    var maxW = W - inset * 2.5;
     var st = (s.scaleTop || 100) / 100;
     var sm = (s.scaleMid || 100) / 100;
     var sb = (s.scaleBot || 100) / 100;
-    var arSize = Math.max(20, Math.floor(W * 0.055 * st));
-    var enSize = Math.max(13, Math.floor(W * 0.036 * sm));
-    var botSize = Math.max(12, Math.floor(W * 0.032 * sb));
+    var arSize = Math.max(24, Math.floor(W * 0.062 * st));
+    var enSize = Math.max(14, Math.floor(W * 0.038 * sm));
+    var botSize = Math.max(13, Math.floor(W * 0.034 * sb));
     var arFont = "700 " + arSize + "px 'Amiri','Scheherazade New','Noto Naskh Arabic',serif";
     var enFont = "600 " + enSize + "px Quicksand, Georgia, 'Segoe UI', sans-serif";
     var botFont = "600 " + botSize + "px 'Noto Nastaliq Urdu','Noto Naskh Arabic',Georgia,serif";
 
+    ctx.font = arFont;
+    var arLines = s.top ? wrap(ctx, s.top, maxW).length : 0;
+    ctx.font = enFont;
+    var enLines = s.mid ? wrap(ctx, s.mid, maxW).length : 0;
+    ctx.font = botFont;
+    var botLines = s.bot ? wrap(ctx, s.bot, maxW).length : 0;
+    var arLH = Math.floor(arSize * 1.38);
+    var enLH = Math.floor(enSize * 1.38);
+    var botLH = Math.floor(botSize * 1.42);
+    var blockH = arLines * arLH + (arLines && enLines ? arSize * 0.35 : 0) + enLines * enLH
+      + ((arLines || enLines) && botLines ? enSize * 0.4 : 0) + botLines * botLH + 28;
+    var place = (typeof s.place === "number" ? s.place : 45) / 100;
+    var safeTop = inset * 1.6;
+    var safeBot = H - stripH - inset * 1.2;
+    var y = safeTop + (safeBot - safeTop - blockH) * place;
+    if (y < safeTop) y = safeTop;
+
     if (s.top) {
-      y = paintTextBlock(
-        ctx,
-        s.top,
-        W / 2,
-        y + arSize * 0.2,
-        maxW,
-        arFont,
-        "#f7f1e4",
-        { width: Math.max(2.5, arSize * 0.08), color: "rgba(0,0,0,0.72)" },
-        Math.floor(arSize * 1.35)
-      );
-      y += Math.floor(arSize * 0.35);
+      var r1 = paintTextBlock(ctx, s.top, W / 2, y + arSize * 0.15, maxW, arFont, "#faf6ec",
+        { width: Math.max(3, arSize * 0.09), color: "rgba(0,0,0,0.78)" }, arLH);
+      y = r1.y + Math.floor(arSize * 0.32);
     }
     if (s.mid) {
-      y = paintTextBlock(
-        ctx,
-        s.mid,
-        W / 2,
-        y + enSize * 0.35,
-        maxW,
-        enFont,
-        "#f0ebe3",
-        { width: 2.2, color: "rgba(0,0,0,0.55)" },
-        Math.floor(enSize * 1.35)
-      );
-      y += Math.floor(enSize * 0.4);
+      var r2 = paintTextBlock(ctx, s.mid, W / 2, y + enSize * 0.2, maxW, enFont, "#f3eee6",
+        { width: 2.4, color: "rgba(0,0,0,0.6)" }, enLH);
+      y = r2.y + Math.floor(enSize * 0.38);
     }
-    /* third line — optional translation / Urdu / caption */
     if (s.bot) {
-      y = paintTextBlock(
-        ctx,
-        s.bot,
-        W / 2,
-        y + botSize * 0.35,
-        maxW,
-        botFont,
-        "#f5e6c8",
-        { width: 2, color: "rgba(0,0,0,0.5)" },
-        Math.floor(botSize * 1.4)
-      );
-      y += Math.floor(botSize * 0.45);
+      var r3 = paintTextBlock(ctx, s.bot, W / 2, y + botSize * 0.2, maxW, botFont, "#f5e6c8",
+        { width: 2.1, color: "rgba(0,0,0,0.55)" }, botLH);
+      y = r3.y + Math.floor(botSize * 0.3);
     }
-    /* decorative rule */
     if (s.top || s.mid || s.bot) {
-      ctx.strokeStyle = "rgba(232,199,107,0.55)";
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(232,199,107,0.65)";
+      ctx.lineWidth = 1.2;
       ctx.beginPath();
-      ctx.moveTo(W * 0.35, y + 4);
-      ctx.lineTo(W * 0.65, y + 4);
+      ctx.moveTo(W * 0.32, y + 6);
+      ctx.lineTo(W * 0.68, y + 6);
       ctx.stroke();
-      ctx.fillStyle = "rgba(232,199,107,0.85)";
+      ctx.fillStyle = "rgba(232,199,107,0.9)";
       ctx.beginPath();
-      ctx.arc(W / 2, y + 4, 2.2, 0, Math.PI * 2);
+      ctx.moveTo(W / 2, y + 2);
+      ctx.lineTo(W / 2 + 4, y + 6);
+      ctx.lineTo(W / 2, y + 10);
+      ctx.lineTo(W / 2 - 4, y + 6);
+      ctx.closePath();
       ctx.fill();
-      y += 16;
     }
     if (s.ref) {
-      ctx.font = "500 " + Math.max(11, Math.floor(W * 0.028)) + "px Quicksand, Georgia, sans-serif";
-      ctx.fillStyle = "rgba(240,215,140,0.95)";
+      ctx.font = "500 " + Math.max(12, Math.floor(W * 0.03)) + "px Quicksand, Georgia, sans-serif";
+      ctx.fillStyle = "rgba(240,215,140,0.98)";
       ctx.textAlign = "center";
       ctx.textBaseline = "bottom";
-      ctx.fillText(normRef(s.ref), W / 2, H - stripH - Math.max(8, inset * 0.35));
+      ctx.fillText(normRef(s.ref), W / 2, H - stripH - Math.max(10, inset * 0.4));
     }
   }
 
@@ -466,17 +453,35 @@
   }
 
   function applyPack(name) {
+    name = String(name || "daily").toLowerCase();
+    name = name.replace("ā", "a").replace("ī", "i").replace("ū", "u").replace("ṣ", "s").replace("ḥ", "h");
+    name = name.replace(/^al-/, "").replace(/[^a-z0-9]/g, "");
+    if (name === "fatihah" || name === "fatiha") name = "fatiha";
+    if (name === "ikhlas" || name === "ikhlass") name = "ikhlas";
+    if (name.indexOf("kursi") >= 0) name = "kursi";
+    if (name.indexOf("adhkar") >= 0) name = "adhkar";
     var list = PACKS[name] || PACKS.daily;
     var item = list[Math.floor(Math.random() * list.length)];
     var t = d.getElementById("meme-top") || d.getElementById("meme-top-input");
     var m = d.getElementById("meme-mid") || d.getElementById("meme-mid-input");
+    var b = d.getElementById("meme-bot") || d.getElementById("meme-third") || d.getElementById("meme-bot-input");
     var r = d.getElementById("meme-ref") || d.getElementById("meme-bottom-input");
-    if (t) t.value = item.ar;
-    if (m) m.value = item.en;
-    if (r) r.value = item.ref;
-    S().top = item.ar;
-    S().mid = item.en;
-    S().ref = item.ref;
+    if (t) t.value = item.ar || "";
+    if (m) m.value = item.en || "";
+    if (b) b.value = item.bot || "";
+    if (r) r.value = item.ref || "";
+    var st = S();
+    st.top = item.ar || "";
+    st.mid = item.en || "";
+    st.bot = item.bot || "";
+    st.ref = item.ref || "";
+    d.querySelectorAll("[data-meme-pack]").forEach(function (btn) {
+      var k = (btn.getAttribute("data-meme-pack") || "").toLowerCase();
+      btn.classList.toggle("is-active", k === name);
+    });
+    status("Pack · " + name + " · " + (item.ref || "") + " · educational only — not a fatwa");
+    var fs = d.getElementById("meme-fetch-status");
+    if (fs) fs.textContent = "Verse loaded · educational only — not a fatwa";
     refreshDeskCaptions();
     schedulePaint();
   }
@@ -485,7 +490,7 @@
     var s = syncFromFields();
     var x = d.getElementById("desk-x-caption");
     var fb = d.getElementById("desk-fb-caption");
-    var cap = [s.top, s.mid, s.ref].filter(Boolean).join("\n");
+    var cap = [s.top, s.mid, s.bot, s.ref].filter(Boolean).join("\n");
     if (x) x.value = cap;
     if (fb) fb.value = cap + (cap ? "\n" : "") + "Educational only — not a fatwa.";
   }
@@ -523,9 +528,10 @@
       });
     });
     d.querySelectorAll("[data-meme-pack]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
+      btn.onclick = function (ev) {
+        try { if (ev && ev.preventDefault) ev.preventDefault(); } catch (e) {}
         applyPack(btn.getAttribute("data-meme-pack"));
-      });
+      };
     });
     d.querySelectorAll("[data-meme-font]").forEach(function (btn) {
       btn.addEventListener("click", function () {
