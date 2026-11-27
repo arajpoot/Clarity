@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261125ROLLBACK"/>
-<meta name="clarity-build" content="CM21-ROLLBACK-REMINDER"/>
+<meta name="clarity-build" content="CM21-T1T2-TAB-20261127"/>
 
 <style id="clarity-embed-fold-css">
 .clarity-embed-fold:not([open]) .clarity-embed-body { display:none!important;height:0!important;overflow:hidden!important; }
@@ -564,5 +564,46 @@ document.addEventListener("toggle", function(e){
   });
 })();
 </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
+
+<script id="clarity-embed-mount-boot">
+/*! T1 mount-safe embed activator · end of body · educational only — not a fatwa */
+(function(w,d){
+  if (w.__CLARITY_CEF_BOOT__) return;
+  w.__CLARITY_CEF_BOOT__ = true;
+  function activate(root){
+    root = root || d;
+    try {
+      root.querySelectorAll("details.clarity-embed-fold").forEach(function(det){
+        if (det.__cefBound) return;
+        det.__cefBound = true;
+        function open(){
+          if (!det.open) return;
+          var f = det.querySelector("iframe[data-src]");
+          if (!f) return;
+          var ds = f.getAttribute("data-src");
+          if (!ds) return;
+          var cur = f.getAttribute("src") || "";
+          if (!cur || cur === "about:blank" || cur.indexOf("blank") >= 0) {
+            f.src = ds;
+          }
+        }
+        det.addEventListener("toggle", open);
+        if (det.open) open();
+      });
+    } catch (e) {}
+  }
+  function boot(ev){
+    var root = (ev && ev.detail && ev.detail.root) || d.getElementById("cs-mount") || d;
+    activate(d);
+    activate(root);
+  }
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function(){ boot(); });
+  else boot();
+  w.addEventListener("clarity:tab-mounted", boot);
+  d.addEventListener("clarity:tab-mounted", boot);
+})(window, document);
+</script>
+
 </body>
 </html>
