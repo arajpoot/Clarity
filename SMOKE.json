@@ -1,13 +1,20 @@
 {
-  "ver": "20261102M3",
+  "build": "CM21-BANNER-AV-20261127-r2",
+  "utc": "2026-11-27T17:30:27.923874+00:00",
+  "repair": "Primary still 404 \u2192 wiki Kaaba + YouTube thumb fallbacks",
   "checks": {
-    "no_landing_v3": true,
-    "no_qada_comp_script": false,
-    "scrap_css": true,
-    "no_force_show": true,
-    "banner_kept": true,
-    "tabs_kept": true,
-    "fortify_or_boot": true
+    "makkah_wiki_primary": true,
+    "makkah_yt_fallback": true,
+    "madinah_yt_primary": true,
+    "no_404_hajj_still": true,
+    "streams_ids": true,
+    "watchdog": true,
+    "cache_av2": true,
+    "html_no_404_still": true
   },
-  "len": 210235
+  "all_green": true,
+  "changed": [
+    "companion/banner/assets/js/companion-banner-owner-v1.js",
+    "companion/banner/index.html"
+  ]
 }
