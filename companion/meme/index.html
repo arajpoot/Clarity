@@ -18,7 +18,7 @@
   <header>
     <h1>🎨 Companion Meme Studio</h1>
     <p class="tagline">Isolated room · Banner architecture · in-room desks</p>
-    <p class="edu">Educational only — not a fatwa · scenery only</p>
+    <p class="edu">Educational only — not a fatwa · scenery · no humans/animals as backgrounds</p>
   </header>
 
   <nav class="nav-row" aria-label="Companion">
@@ -39,6 +39,7 @@
       <button type="button" class="chip" data-meme-bg="pattern">📐 Geometry</button>
       <button type="button" class="chip" data-meme-bg="decor">🏛️ Decor</button>
       <button type="button" class="chip" data-meme-bg="flickr">📷 Online pool</button>
+      <button type="button" class="chip" data-meme-bg="wikimedia" id="meme-bg-wikimedia">📚 Wikimedia</button>
       <button type="button" class="chip" data-meme-bg="blank">⬛ Blank</button>
       <button type="button" class="chip" id="meme-bg-next" data-meme-bg-next="1">↻ Next online</button>
     </div>
@@ -64,6 +65,10 @@
     <div class="chips">
       <p class="edu">Message packs pull short Qur'an / Sunnah lines for Companion sections · cycle each tap · educational only — not a fatwa</p>
 <button type="button" class="chip" data-meme-pack="daily">Daily verse</button>
+      <button type="button" class="chip" data-meme-pack="fatiha">Al-Fātiḥah</button>
+      <button type="button" class="chip" data-meme-pack="ikhlas">Al-Ikhlāṣ</button>
+      <button type="button" class="chip" data-meme-pack="kursi">Āyat al-Kursī</button>
+      <button type="button" class="chip" data-meme-pack="adhkar">Adhkār</button>
       <button type="button" class="chip" data-meme-pack="reminder">Reminder</button>
       <button type="button" class="chip" data-meme-pack="reality">Reality</button>
       <button type="button" class="chip" data-meme-pack="reflection">Reflection</button>
@@ -126,7 +131,7 @@
     </div>
   </section>
 
-  <p class="edu footer.edu">Educational only — not a fatwa. Scenery only. Craft room untouched.</p>
+  <p class="edu footer.edu">Educational only — not a fatwa. Backgrounds: scenery & patterns · humans/animals filtered. Craft room untouched.</p>
 </main>
 
 
@@ -138,7 +143,9 @@
 
 <!-- P3 Bismillah: single-owner allowlist · Archive3 path fixed · no 404 · no dual paint -->
 <script src="/companion/meme/assets/js/meme-scene-fallback-v1.js?v=20261126P3"></script>
-<script src="/companion/meme/assets/js/companion-meme-shariah-bg-v1.js?v=20261126P3"></script>
+<script src="/companion/meme/assets/js/companion-meme-shariah-bg-v1.js?v=20261127BG2"></script>
+<script src="/companion/meme/assets/js/companion-meme-wikimedia-fetch-v1.js?v=20261127BG2"></script>
+<script src="/companion/meme/assets/js/companion-meme-verse-rewire-v1.js?v=20261127BG2"></script>
 <script src="/companion/meme/assets/js/companion-meme-online-fetch-v1.js?v=20261126ON1"></script>
 <script src="/companion/meme/assets/js/companion-meme-owner-v1.js?v=20261126P6U"></script>
 <script src="/companion/meme/assets/js/companion-meme-desks-v1.js?v=20261126P6U"></script>
@@ -148,5 +155,6 @@
 <script src="/companion/assets/companion-archive3-chrome-hydrate-v1.js?v=20261126P6U" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
   <script src="/companion/assets/companion-archive3-chrome-hydrate-v2.js?v=20261126SOAK" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
