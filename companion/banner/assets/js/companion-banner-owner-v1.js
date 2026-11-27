@@ -8,14 +8,14 @@
 
   var STILLS = {
     makkah: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/The_Kaaba_during_Hajj.jpg/1280px-The_Kaaba_during_Hajj.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Kaaba%2C_Great_Mosque_of_Mecca.jpg/1280px-Kaaba%2C_Great_Mosque_of_Mecca.jpg"
+      "https://img.youtube.com/vi/Rs7St51oDDc/maxresdefault.jpg",
+      "https://img.youtube.com/vi/Rs7St51oDDc/hqdefault.jpg"
     ],
     madinah: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Al-Masjid_an-Nabawi.jpg/1280px-Al-Masjid_an-Nabawi.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg/1280px-Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Green_Dome.jpg/1280px-Green_Dome.jpg"
+      "https://img.youtube.com/vi/27cln-IxOGo/maxresdefault.jpg",
+      "https://img.youtube.com/vi/27cln-IxOGo/hqdefault.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg/1280px-Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg"
     ]
   };
   /* Prefer concrete embed IDs first (channel live_stream often fails in iframes) */
