@@ -1,0 +1,80 @@
+/*! companion-nuros-tokens-v1.css · Phase G visual system
+ * Shared tokens for Companion + Craft · max 3 font families on critical path
+ * Inter (UI) · Scheherazade New (Arabic display) · Amiri (Arabic body)
+ * Icons: emoji + existing .cs-ico — no icon-font blob
+ * Educational only — not a fatwa
+ */
+:root {
+  --nuros-bg: #071410;
+  --nuros-bg-elev: #0b1612;
+  --nuros-surface: rgba(8, 18, 14, 0.72);
+  --nuros-surface-soft: rgba(12, 28, 22, 0.55);
+  --nuros-text: #e7efe9;
+  --nuros-text-muted: rgba(231, 239, 233, 0.78);
+  --nuros-accent: #1e7d5e;
+  --nuros-gold: #e0c36a;
+  --nuros-gold-line: rgba(224, 195, 106, 0.45);
+  --nuros-border: rgba(201, 162, 39, 0.32);
+  --nuros-radius: 14px;
+  --nuros-radius-sm: 10px;
+  --nuros-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  --nuros-font-ui: Inter, system-ui, "Segoe UI", Roboto, sans-serif;
+  --nuros-font-ar-display: "Scheherazade New", Amiri, serif;
+  --nuros-font-ar-body: Amiri, "Scheherazade New", serif;
+  --accent: var(--nuros-accent);
+  --gold: var(--nuros-gold);
+  --text-muted: var(--nuros-text-muted);
+}
+
+html.nuros-tokens-g1 body,
+body.nuros-tokens-g1 {
+  font-family: var(--nuros-font-ui);
+  color: var(--nuros-text);
+}
+
+/* Soft cards shared */
+.nuros-tokens-g1 .card,
+.nuros-tokens-g1 .cs-plaque,
+.nuros-tokens-g1 .cs-path-tile,
+html.nuros-tokens-g1 .card {
+  border-radius: var(--nuros-radius);
+  border-color: var(--nuros-border);
+  box-shadow: var(--nuros-shadow);
+}
+
+.nuros-tokens-g1 [dir="rtl"],
+.nuros-tokens-g1 [lang="ar"],
+html.nuros-tokens-g1 [lang="ar"] {
+  font-family: var(--nuros-font-ar-body);
+}
+
+.nuros-tokens-g1 h1[lang="ar"],
+.nuros-tokens-g1 h2[lang="ar"],
+.nuros-tokens-g1 .tj-lmr-n-ar,
+html.nuros-tokens-g1 .arabic {
+  font-family: var(--nuros-font-ar-display);
+}
+
+/* Mobile readability */
+@media (max-width: 640px) {
+  .nuros-tokens-g1 body,
+  html.nuros-tokens-g1 {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  .nuros-tokens-g1 .card,
+  html.nuros-tokens-g1 .card {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+  .nuros-tokens-g1 p,
+  html.nuros-tokens-g1 p {
+    line-height: 1.55;
+  }
+}
+
+/* Existing CS ico — no new icon font */
+.cs-ico {
+  font-style: normal;
+  speak: never;
+}
