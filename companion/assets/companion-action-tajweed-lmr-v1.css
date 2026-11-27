@@ -1,0 +1,7 @@
+/* companion-action-tajweed-lmr-v1 — Action host for Craft LMR engines */
+#action-tj-lmr-panel .craft-studio-host { max-width: 100%; overflow: auto; }
+#action-tj-lmr-panel select, #action-tj-lmr-panel input { max-width: 100%; }
+@media (max-width: 640px) {
+  #action-tj-lmr-panel .tj-stats-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+}
+#action-tj-lmr-panel a { color: #d4af37; }
