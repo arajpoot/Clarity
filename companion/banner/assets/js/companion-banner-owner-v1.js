@@ -1,4 +1,4 @@
-/*! companion-banner-owner-v1 · C5b · location salah · autoplay · educational only — not a fatwa */
+/*! companion-banner-owner-v1 · AV-fix 20261127 streams+stills · C5b · location salah · autoplay · educational only — not a fatwa */
 (function (w, d) {
   "use strict";
   /* allow upgrade */
@@ -7,21 +7,33 @@
   function $(id) { return d.getElementById(id); }
 
   var STILLS = {
-    makkah: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
-    madinah: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg/1280px-Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg"
+    makkah: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/The_Kaaba_during_Hajj.jpg/1280px-The_Kaaba_during_Hajj.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kaaba_Masjid_Haraam_Makkah.jpg/1280px-Kaaba_Masjid_Haraam_Makkah.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Kaaba%2C_Great_Mosque_of_Mecca.jpg/1280px-Kaaba%2C_Great_Mosque_of_Mecca.jpg"
+    ],
+    madinah: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Al-Masjid_an-Nabawi.jpg/1280px-Al-Masjid_an-Nabawi.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg/1280px-Al-Masjid_an-Nabawi_as_viewed_from_the_east.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Green_Dome.jpg/1280px-Green_Dome.jpg"
+    ]
   };
+  /* Prefer concrete embed IDs first (channel live_stream often fails in iframes) */
   var STREAMS = {
     makkah: [
+      "https://www.youtube-nocookie.com/embed/Rs7St51oDDc?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
+      "https://www.youtube.com/embed/Rs7St51oDDc?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
       "https://www.youtube-nocookie.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
-      "https://www.youtube.com/embed/live_stream?channel=UCuh7oUaZwF1BeY1vSzn1wrw&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
       "https://www.youtube-nocookie.com/embed/NJfqVXQY5Sc?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
     ],
     madinah: [
+      "https://www.youtube-nocookie.com/embed/27cln-IxOGo?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
+      "https://www.youtube.com/embed/27cln-IxOGo?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1",
       "https://www.youtube-nocookie.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
-      "https://www.youtube.com/embed/live_stream?channel=UCpO77QKWGadMHkait73uD4A&autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1",
       "https://www.youtube-nocookie.com/embed/s17YH8xrCS8?autoplay=1&mute=1&playsinline=1&rel=0&enablejsapi=1"
     ]
   };
+
 
   var liveOn = false;
   var liveIdx = 0;
@@ -67,19 +79,54 @@
     });
   }
 
+  function stillUrl(p) {
+    var list = STILLS[p] || STILLS.makkah;
+    if (typeof list === "string") return list;
+    return list[0];
+  }
+
+  function bindStillFallbacks(img, p) {
+    if (!img) return;
+    var list = STILLS[p] || STILLS.makkah;
+    if (typeof list === "string") list = [list];
+    var idx = 0;
+    img.onerror = function () {
+      idx++;
+      if (idx < list.length) {
+        img.src = list[idx];
+      } else {
+        img.onerror = null;
+        /* last-resort solid */
+        img.removeAttribute("src");
+        img.style.background = "linear-gradient(135deg,#0a3d30,#0d4f3c 50%,#1a6b52)";
+      }
+    };
+  }
+
   function showStill() {
     liveOn = false;
+    try { if (w.__bannerLiveWatchdog) { clearTimeout(w.__bannerLiveWatchdog); w.__bannerLiveWatchdog = null; } } catch (e0) {}
     var iframe = $("banner-live");
     var img = $("banner-img");
+    var media = $("banner-media");
     if (iframe) {
       iframe.hidden = true;
       iframe.style.pointerEvents = "none";
+      iframe.style.opacity = "0";
       try { iframe.removeAttribute("src"); } catch (e1) {}
     }
+    if (media) {
+      media.classList.remove("live-active");
+      media.classList.add("live-fallback");
+    }
     if (img) {
+      var p = place();
       img.hidden = false;
-      img.style.display = "";
-      img.src = STILLS[place()] || STILLS.makkah;
+      img.style.display = "block";
+      img.style.opacity = "0.85";
+      bindStillFallbacks(img, p);
+      img.src = stillUrl(p);
+      img.alt = p === "madinah" ? "Al-Masjid an-Nabawi" : "Masjid al-Haram";
     }
     setLabel(false);
   }
@@ -88,29 +135,53 @@
     liveOn = true;
     var iframe = $("banner-live");
     var img = $("banner-img");
+    var media = $("banner-media");
     var list = STREAMS[place()] || STREAMS.makkah;
-    liveIdx = liveIdx % list.length;
+    liveIdx = ((liveIdx % list.length) + list.length) % list.length;
     var url = list[liveIdx];
     if (url.indexOf("autoplay=1") < 0) {
       url += (url.indexOf("?") >= 0 ? "&" : "?") + "autoplay=1&mute=1&playsinline=1";
     }
+    /* keep still visible under iframe until stream paints */
     if (img) {
-      img.hidden = true;
-      img.style.display = "none";
+      img.hidden = false;
+      img.style.display = "block";
+      img.style.opacity = "0.55";
+      bindStillFallbacks(img, place());
+      if (!img.src || img.src.indexOf("blob:") === 0) img.src = stillUrl(place());
+    }
+    if (media) {
+      media.classList.add("live-active");
+      media.classList.remove("live-fallback");
     }
     if (iframe) {
       iframe.hidden = false;
       iframe.style.display = "block";
       iframe.style.pointerEvents = "auto";
       iframe.style.zIndex = "2";
+      iframe.style.opacity = "1";
       iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
       iframe.setAttribute("allowfullscreen", "true");
       iframe.setAttribute("playsinline", "true");
+      iframe.setAttribute("title", place() === "madinah" ? "Madinah live" : "Makkah live");
       /* force reload for autoplay */
-      iframe.src = "about:blank";
+      try { iframe.src = "about:blank"; } catch (e2) {}
       setTimeout(function () {
+        if (!liveOn) return;
         iframe.src = url;
-      }, 30);
+      }, 40);
+      /* watchdog: if stream blank, try next source then fall back to still */
+      try { if (w.__bannerLiveWatchdog) clearTimeout(w.__bannerLiveWatchdog); } catch (e3) {}
+      w.__bannerLiveWatchdog = setTimeout(function () {
+        if (!liveOn) return;
+        if (liveIdx + 1 < list.length) {
+          liveIdx++;
+          showLive();
+        } else {
+          /* exhausted — keep last attempt; still remains under iframe */
+          setLabel(true);
+        }
+      }, 8000);
     }
     setLabel(true);
     /* pause competing audio */
