@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261125ROLLBACK"/>
-<meta name="clarity-build" content="CM21-CALLIG-V2-20261127"/>
+<meta name="clarity-build" content="CM21-CALLIG-V2Q-20261127"/>
 
 <style id="clarity-embed-fold-css">
 .clarity-embed-fold:not([open]) .clarity-embed-body { display:none!important;height:0!important;overflow:hidden!important; }
@@ -328,9 +328,9 @@ document.addEventListener("toggle", function(e){
 </div>
 
 
-<section class="cs-plaque cs-plaque-deep" id="callig-lab-card" data-rrra="reminder" data-enrichment="callig-v2" data-cs-primary="1">
+<section class="cs-plaque cs-plaque-deep" id="callig-lab-card" data-rrra="reminder" data-enrichment="callig-v2q" data-cs-primary="1">
   <h2>✒️ Calligraphy · practice pad</h2>
-  <p class="lead">Finger · stylus · feather · guide glyph on the pad. Local-first. Educational only — not a fatwa.</p>
+  <p class="lead">Finger · stylus · feather · <strong>guide glyph</strong> on the pad. Local-first. Educational only — not a fatwa.</p>
   <div class="callig-stylus-hint" id="callig-stylus-hint">
     <span class="callig-mode-badge" id="callig-mode-badge">Naskh · finger</span>
     <span>Select a letter so the <strong>guide</strong> appears. Trace over it. Lift to end a stroke.</span>
@@ -352,19 +352,6 @@ document.addEventListener("toggle", function(e){
     <button type="button" class="chip" data-callig-glyph="الله">الله</button>
   </div>
 
-  <div class="callig-canvas-tools" id="callig-canvas-tools" style="margin:.5rem 0">
-    <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c4a574;margin-bottom:.3rem">Type · translate · place</div>
-    <div style="display:flex;flex-wrap:wrap;gap:.35rem;align-items:center">
-      <input type="text" id="callig-english-input" placeholder="Type English…" autocomplete="off" style="flex:1;min-width:10rem;padding:.4rem .55rem;border-radius:10px;border:1px solid rgba(196,165,116,.35);background:rgba(0,0,0,.2);color:inherit" oninput="try{calligLiveTranslateFromInput()}catch(e){}" onkeydown="if(event.key==='Enter'){event.preventDefault();try{calligTranslateToArabic()}catch(e){}}">
-      <button type="button" class="cs-btn" id="callig-translate-btn" onclick="try{calligTranslateToArabic()}catch(e){}">🌐 EN→AR</button>
-      <button type="button" class="cs-btn" onclick="try{calligSendEnglishToCanvas()}catch(e){}">✏️ EN</button>
-      <button type="button" class="cs-btn primary" onclick="try{calligPlaceArabicOnCanvas()}catch(e){}">📥 AR guide</button>
-      <button type="button" class="cs-btn" onclick="try{calligSurprise()}catch(e){}">✨ Surprise</button>
-    </div>
-    <div id="callig-bridge-ar" class="arabic" dir="rtl" style="min-height:1.5rem;margin-top:.4rem;font-size:1.2rem"></div>
-    <p id="callig-bridge-status" style="font-size:.78rem;opacity:.85;margin:.2rem 0 0">Guide text appears on the pad when you place AR.</p>
-  </div>
-
   <div class="callig-toolbar" style="display:flex;flex-wrap:wrap;gap:.45rem;margin:.45rem 0;align-items:center">
     <label class="edu">Script
       <select id="callig-script" style="margin-left:.25rem;padding:.25rem .4rem;border-radius:8px">
@@ -372,14 +359,6 @@ document.addEventListener("toggle", function(e){
         <option value="ruqaa">Ruqʿah</option>
         <option value="thuluth">Thuluth</option>
         <option value="kufi">Kufi</option>
-      </select>
-    </label>
-    <label class="edu">Glyph
-      <select id="callig-glyph" style="margin-left:.25rem;padding:.25rem .4rem;border-radius:8px;font-family:Amiri,serif;font-size:1.1rem">
-        <option>ا</option><option>ب</option><option>ت</option><option>ث</option><option>ح</option>
-        <option>س</option><option>ع</option><option>م</option><option>ن</option><option>ه</option>
-        <option>و</option><option>ي</option><option>لا</option><option>الله</option>
-        <option>بسم</option><option>محمد</option>
       </select>
     </label>
     <label class="edu">Ink <input type="color" id="callig-ink" value="#0d4f3c"/></label>
@@ -390,12 +369,12 @@ document.addEventListener("toggle", function(e){
   </div>
 
   <div class="callig-lab-stage" id="callig-lab-stage" style="touch-action:none;position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(212,180,90,.35);background:#f7f3eb">
-    <canvas id="callig-canvas" width="900" height="420" style="width:100%;max-width:100%;height:auto;display:block;touch-action:none"></canvas>
+    <canvas id="callig-canvas" width="900" height="420" style="width:100%;max-width:100%;height:auto;display:block;touch-action:none;background:#f7f3eb"></canvas>
   </div>
-  <p class="edu" style="margin-top:.5rem;font-size:.8rem">Trace the faint guide. Auto-enhance shapes strokes after lift. Optional craft pad: <a href="/craft/calligraphy/">/craft/calligraphy/</a>. Educational only — not a fatwa.</p>
+  <p class="edu" style="margin-top:.5rem;font-size:.8rem">Guide is the faint letter on the pad — toggle Guide if hidden. Educational only — not a fatwa.</p>
 </section>
-<script src="/companion/modules/clarity-callig-engine-v2.js?v=20261127CALLIG2"></script>
-<style id="callig-v2-css">
+<script src="/companion/modules/clarity-callig-engine-v2.js?v=20261127CALLIG3"></script>
+<style id="callig-v2q-css">
 .callig-stylus-hint{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.78rem;margin:.35rem 0;padding:.4rem .65rem;border-radius:10px;background:rgba(15,76,58,.08);border:1px solid rgba(196,165,116,.25)}
 .callig-mode-badge{display:inline-flex;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .45rem;border-radius:999px;background:rgba(15,76,58,.2);color:#c4a574;border:1px solid rgba(196,165,116,.35)}
 #callig-lab-card .chip{border-radius:999px;border:1px solid rgba(196,165,116,.35);background:rgba(0,0,0,.15);padding:.28rem .65rem;cursor:pointer;font-family:Amiri,Scheherazade New,serif;font-size:1.15rem}
@@ -403,51 +382,6 @@ document.addEventListener("toggle", function(e){
 #callig-lab-card .cs-btn{cursor:pointer;border-radius:999px;border:1px solid rgba(196,165,116,.4);background:rgba(42,107,74,.3);color:inherit;padding:.32rem .7rem;font-size:.8rem}
 #callig-lab-card .cs-btn.primary{background:rgba(15,76,58,.75)}
 </style>
-<script>
-(function(){
-  /* lightweight pad boot — wires glyphs to engine if present */
-  function boot(){
-    try {
-      if (typeof calligInit === "function") calligInit();
-      else if (window.ClarityCallig && typeof ClarityCallig.init === "function") ClarityCallig.init();
-    } catch(e){}
-    var c = document.getElementById("callig-canvas");
-    if (!c) return;
-    var ctx = c.getContext("2d");
-    if (!ctx) return;
-    if (!window.__callig_local_boot) {
-      window.__callig_local_boot = true;
-      var drawing = false;
-      function pos(ev){
-        var r = c.getBoundingClientRect();
-        var x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
-        var y = (ev.touches ? ev.touches[0].clientY : ev.clientY) - r.top;
-        return {x: x * (c.width/r.width), y: y * (c.height/r.height)};
-      }
-      function ink(){ var el=document.getElementById("callig-ink"); return el?el.value:"#0d4f3c"; }
-      function size(){ var el=document.getElementById("callig-size"); return el?+el.value:14; }
-      function start(ev){ drawing=true; var p=pos(ev); ctx.beginPath(); ctx.moveTo(p.x,p.y); ev.preventDefault(); }
-      function move(ev){ if(!drawing)return; var p=pos(ev); ctx.strokeStyle=ink(); ctx.lineWidth=size(); ctx.lineCap="round"; ctx.lineJoin="round"; ctx.lineTo(p.x,p.y); ctx.stroke(); ev.preventDefault(); }
-      function end(){ drawing=false; }
-      c.addEventListener("mousedown", start); c.addEventListener("mousemove", move); window.addEventListener("mouseup", end);
-      c.addEventListener("touchstart", start, {passive:false}); c.addEventListener("touchmove", move, {passive:false}); c.addEventListener("touchend", end);
-      var clr=document.getElementById("callig-clear");
-      if(clr) clr.addEventListener("click", function(){ ctx.clearRect(0,0,c.width,c.height); });
-      document.querySelectorAll("[data-callig-glyph]").forEach(function(btn){
-        btn.addEventListener("click", function(){
-          var g=btn.getAttribute("data-callig-glyph")||"";
-          ctx.save(); ctx.fillStyle="rgba(13,79,60,0.12)"; ctx.font="120px 'Noto Naskh Arabic', Amiri, serif"; ctx.textAlign="center"; ctx.textBaseline="middle";
-          ctx.clearRect(0,0,c.width,c.height); ctx.fillText(g, c.width/2, c.height/2); ctx.restore();
-        });
-      });
-    }
-  }
-  if (document.readyState==="loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 200); });
-  else setTimeout(boot, 200);
-})();
-</script>
-
-
 </div></div>
 
 </div>
@@ -645,5 +579,6 @@ document.addEventListener("toggle", function(e){
 })(window, document);
 </script>
 
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
