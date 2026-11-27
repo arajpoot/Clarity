@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-ux-restore-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rail-glory-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rail-icons-v2.css?v=20261125ROLLBACK"/>
-<meta name="clarity-build" content="CM21-ROLLBACK-HUB"/>
+<meta name="clarity-build" content="CM21-P1-SSR-FOUNDATION-20261127"/>
 <link rel="stylesheet" href="/companion/assets/companion-meme-host-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-nav-polish-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-yt-collapse-v1.css?v=20261125ROLLBACK"/>
@@ -69,6 +69,24 @@
 
 
   <!-- COMPANION-FOUNDATION-SEAL-v1 · binding · see /companion/FOUNDATION_SEAL.json + docs/COMPANION_FOUNDATION_SEAL.md -->
+<style id="cs-p1-ssr-css">
+/* P1 SSR only — does not alter tab pages, banner, or meme */
+.cs-ssr-first{padding:1rem 1.1rem 1.25rem;max-width:42rem;margin:0 auto}
+.cs-ssr-kicker{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c4a574;margin:0 0 .35rem}
+.cs-ssr-title{font-family:Georgia,"EB Garamond",serif;font-size:1.35rem;margin:.1rem 0 .35rem;color:#f3ecd7}
+.cs-ssr-sub{margin:0 0 1rem;color:#c5d0c6;font-size:.92rem;line-height:1.45}
+.cs-ssr-card{border:1px solid rgba(196,165,116,.35);border-radius:14px;padding:.85rem 1rem;margin:0 0 .75rem;background:rgba(12,28,20,.55)}
+.cs-ssr-label{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#c4a574;margin:0 0 .4rem}
+.cs-ssr-ar{font-family:Amiri,"Scheherazade New",serif;font-size:1.25rem;line-height:1.85;color:#f7f0dd;margin:.2rem 0 .5rem}
+.cs-ssr-en{margin:.2rem 0 .45rem;line-height:1.5;color:#e6efe8}
+.cs-ssr-ref{font-size:.8rem;color:#aeb8b0;margin:0}
+.cs-ssr-ref a{color:#d4b483}
+.cs-ssr-tip{font-size:.85rem;color:#c5d0c6;margin:.5rem 0 0;line-height:1.4}
+.cs-ssr-more{font-size:.78rem;color:#8a968c;margin:.5rem 0 0;text-align:center}
+.cs-ssr-more code{font-size:.75rem;color:#c4a574}
+/* When shell/mount-fortify injects [data-cs-mounted], SSR can stay or be cleared by existing mount.innerHTML="" */
+</style>
+
 </head>
 <body class="cs-shariah-quiet" data-shariah-ui="1" data-cs-tab="reminder">
 <nav class="cs-room-nav" aria-label="Clarity rooms">
@@ -134,7 +152,27 @@
 </section>
 
 
-<main id="cs-mount" aria-live="polite">
+<main id="cs-mount" aria-live="polite" data-cs-p1="1">
+  <div class="cs-ssr-first" data-cs-ssr-first="1">
+    <header class="cs-ssr-hero">
+      <p class="cs-ssr-kicker">Reminder · first session</p>
+      <h2 class="cs-ssr-title">✦ What Allah ﷻ taught</h2>
+      <p class="cs-ssr-sub">One āyah · one ḥadīth · one small step — educational only, not a fatwa.</p>
+    </header>
+    <article class="cs-ssr-card" data-ssr="ayah">
+      <p class="cs-ssr-label">Command-verse · Qur’an 59:18</p>
+      <p class="cs-ssr-ar" dir="rtl" lang="ar">يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَلْتَنظُرْ نَفْسٌ مَّا قَدَّمَتْ لِغَدٍ ۖ وَاتَّقُوا اللَّهَ ۚ إِنَّ اللَّهَ خَبِيرٌ بِمَا تَعْمَلُونَ</p>
+      <p class="cs-ssr-en">O you who believe, fear Allah, and let every soul look to what it has put forth for tomorrow — and fear Allah. Indeed, Allah is Aware of what you do.</p>
+      <p class="cs-ssr-ref"><a href="https://quran.com/59/18" rel="noopener">quran.com/59/18</a> · educational</p>
+    </article>
+    <article class="cs-ssr-card" data-ssr="hadith">
+      <p class="cs-ssr-label">A saying of the Prophet ﷺ</p>
+      <p class="cs-ssr-en">“Actions are but by intention, and every person shall have only that which they intended.”</p>
+      <p class="cs-ssr-ref">Ṣaḥīḥ · Bukhārī 1 · Muslim 1907 · <a href="https://sunnah.com/bukhari:1" rel="noopener">sunnah.com/bukhari:1</a></p>
+      <p class="cs-ssr-tip">One way to act — not a ruling: renew intention before the next ordinary task.</p>
+    </article>
+    <p class="cs-ssr-more">Tabs load from <code>/companion/tabs/</code> · banner and meme stay their own pages.</p>
+  </div>
   <p class="cs-mount-status" id="cs-mount-status">Loading Companion…</p>
 </main>
 
@@ -142,7 +180,7 @@
   <p class="cs-tab-adhkar-kicker" id="cs-tab-adhkar-kicker">Adhkār · reminder</p>
   <p class="cs-tab-adhkar-ar" id="cs-tab-adhkar-ar" dir="rtl" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
   <p class="cs-tab-adhkar-en" id="cs-tab-adhkar-en">Glory be to Allah and His is the praise.</p>
-  <p class="cs-tab-adhkar-ref" id="cs-tab-adhkar-ref">Bukhari &amp; Muslim — educational wording</p>
+  <p class="cs-tab-adhkar-ref" id="cs-tab-adhkar-ref">Ṣaḥīḥ · educational wording · verify grade with a teacher · Sunnah.com</p>
 </div>
 
 <nav class="cs-door cs-door-glory" id="clarity-door-rail" aria-label="Companion tabs">
@@ -217,5 +255,6 @@
   <script src="/companion/assets/companion-archive3-chrome-hydrate-v1.js?v=20261126P6U" defer></script>
   <script src="/companion/assets/companion-archive3-chrome-hydrate-v2.js?v=20261126SOAK" defer></script>
 <script src="/companion/assets/companion-action-lmr-native-v1.js?v=20261126LMRN" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
