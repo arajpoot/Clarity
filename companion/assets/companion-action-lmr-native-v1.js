@@ -1,13 +1,12 @@
-/*! companion-action-lmr-native-v1.js · N2 align
- * One clean Action LMR card · no stacked legacy chrome
- * Pull · Play Ḥuṣarī · Record · Score · fixes mount into #tj-lmr-native-root
+/*! companion-action-lmr-native-v1.js · N3 action-only scope
+ * LMR mounts ONLY on Action tab — removed from reminder/reality/reflection/notes/about
+ * Pull · Play Ḥuṣarī · Record · Score
  * Educational only — not a qāriʾ grade — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  /* allow reinstall over older native */
   w.__CLARITY_LMR_NATIVE_V1__ = true;
-  w.__CLARITY_LMR_NATIVE_V2__ = true;
+  w.__CLARITY_LMR_NATIVE_V3__ = true; /* action-only */
 
   var state = {
     ar: "",
@@ -27,6 +26,23 @@
     return d.getElementById(id);
   }
 
+  function activeTab() {
+    try {
+      var t = (d.body && (d.body.getAttribute("data-active-tab") || d.body.getAttribute("data-cs-tab"))) || "";
+      t = String(t || "").toLowerCase().replace(/^#/, "");
+      if (t) return t;
+      var btn = d.querySelector("#clarity-door-rail [data-rail-tab].is-active, .cs-door [data-rail-tab].is-active");
+      if (btn) return String(btn.getAttribute("data-rail-tab") || "").toLowerCase();
+      var h = String((w.location && w.location.hash) || "").replace(/^#/, "").toLowerCase();
+      if (h) return h;
+    } catch (e) {}
+    return "";
+  }
+
+  function isAction() {
+    return activeTab() === "action";
+  }
+
   function status(msg) {
     var el = $("tj-lmr-n-status");
     if (el) el.textContent = msg || "";
@@ -38,147 +54,162 @@
     return "https://everyayah.com/data/Husary_128kbps/" + s + a + ".mp3";
   }
 
+  /** Remove any LMR chrome that leaked outside Action */
+  function dismantle() {
+    try {
+      ["tj-lmr-native-bar", "action-tj-lmr-panel"].forEach(function (id) {
+        var el = $(id);
+        if (el && el.parentNode) el.parentNode.removeChild(el);
+      });
+      d.querySelectorAll("#tj-lmr-native-bar, .tj-lmr-native-grid, [data-lmr-native='1']").forEach(function (el) {
+        if (el && el.parentNode) el.parentNode.removeChild(el);
+      });
+      /* stop mic if user left Action mid-record */
+      try {
+        if (state.rec && state.rec.state === "recording") state.rec.stop();
+      } catch (e2) {}
+    } catch (e) {}
+  }
+
   function killDupes() {
     var dup = $("action-tj-lmr-panel");
     if (dup && dup.parentNode) dup.parentNode.removeChild(dup);
-    /* hide any leftover native bars from v1 stacked on old chrome */
     d.querySelectorAll("#tj-lmr-native-bar").forEach(function (el, idx) {
       if (idx > 0 && el.parentNode) el.parentNode.removeChild(el);
     });
   }
 
+  /** Host only inside Action-mounted roots — never fall back to random page nodes */
   function host() {
-    return (
-      $("tj-lmr-native-root") ||
-      $("tj-lmr") ||
-      $("tj-lmr-panel") ||
-      $("tj-deep-studio")
-    );
+    if (!isAction()) return null;
+    var mount = $("cs-mount");
+    var scope = mount || d;
+    var ids = ["tj-lmr-native-root", "tj-lmr", "tj-lmr-panel", "tj-deep-studio"];
+    for (var i = 0; i < ids.length; i++) {
+      var el = scope.querySelector ? scope.querySelector("#" + ids[i]) : $(ids[i]);
+      if (el) return el;
+    }
+    /* last resort: only if Action tab body contains a known action marker */
+    if (mount && mount.querySelector && (
+      mount.querySelector("[data-rrra-hub='action']") ||
+      mount.querySelector("#tab-action") ||
+      mount.getAttribute("data-cs-mounted") === "action"
+    )) {
+      var root = $("tj-lmr-native-root");
+      if (root) return root;
+    }
+    return null;
   }
 
   function paintUI(h) {
-    if (!h) return null;
+    if (!h || !isAction()) return null;
     killDupes();
     var bar = $("tj-lmr-native-bar");
     if (bar) return bar;
     bar = d.createElement("div");
     bar.id = "tj-lmr-native-bar";
+    bar.setAttribute("data-lmr-native", "1");
     bar.innerHTML =
       '<div class="tj-lmr-native-grid">' +
+      '<p class="tj-lmr-native-kicker">LMR · native mount (Action only)</p>' +
+      '<p class="tj-lmr-native-disc">Pull → Play master (Ḥuṣarī) → Record → Score. Educational proxy only — not a qāriʾ grade. Full atelier: <a href="/craft/tajweed/">/craft/tajweed/</a></p>' +
       '<div class="tj-lmr-native-row">' +
-      '<label>Sūrah <input id="tj-lmr-n-surah" type="number" min="1" max="114" value="1"/></label>' +
-      '<label>Āyah <input id="tj-lmr-n-ayah" type="number" min="1" value="1"/></label>' +
+      '<label>Sūrah <input id="tj-lmr-n-surah" type="number" min="1" max="114" value="1"/></label> ' +
+      '<label>Āyah <input id="tj-lmr-n-ayah" type="number" min="1" value="1"/></label> ' +
       '<button type="button" class="btn primary" id="tj-lmr-n-pull">Pull āyah</button>' +
       "</div>" +
       '<p id="tj-lmr-n-ar" class="tj-lmr-n-ar" dir="rtl" lang="ar"></p>' +
       '<p id="tj-lmr-n-en" class="tj-lmr-n-en"></p>' +
       '<div class="tj-lmr-native-row">' +
-      '<button type="button" class="btn primary" id="tj-lmr-n-play">▶ Play master</button>' +
-      '<button type="button" class="btn" id="tj-lmr-n-rec">● Record</button>' +
-      '<button type="button" class="btn" id="tj-lmr-n-stop">Stop</button>' +
-      '<button type="button" class="btn" id="tj-lmr-n-playuser">Play take</button>' +
-      '<button type="button" class="btn" id="tj-lmr-n-score">★ Score</button>' +
+      '<button type="button" class="btn primary" id="tj-lmr-n-play">▶ Play master</button> ' +
+      '<button type="button" class="btn" id="tj-lmr-n-rec">● Record</button> ' +
+      '<button type="button" class="btn" id="tj-lmr-n-stop">Stop</button> ' +
+      '<button type="button" class="btn" id="tj-lmr-n-user-play">Play take</button> ' +
+      '<button type="button" class="btn" id="tj-lmr-n-score">★ Score vs master</button>' +
       "</div>" +
-      '<audio id="tj-lmr-n-master" controls preload="none"></audio>' +
-      '<audio id="tj-lmr-n-user" controls preload="none" hidden></audio>' +
-      '<p id="tj-lmr-n-status" class="td-src">Ready · educational only — not a fatwa</p>' +
-      '<p id="tj-lmr-n-scoreline" class="td-src"></p>' +
+      '<audio id="tj-lmr-n-master" controls preload="metadata"></audio> ' +
+      '<audio id="tj-lmr-n-user" controls preload="metadata" hidden></audio>' +
+      '<p id="tj-lmr-n-status" class="tj-lmr-n-status">Ready · Ḥuṣarī / fallback · educational only</p>' +
+      '<p id="tj-lmr-n-scoreline" class="tj-lmr-n-scoreline"></p>' +
       "</div>";
     h.appendChild(bar);
-    bind();
+    wire(bar);
     return bar;
   }
 
-  function bind() {
-    function on(id, fn) {
-      var el = $(id);
-      if (el && !el.__n2) {
-        el.__n2 = true;
-        el.addEventListener("click", fn);
-      }
-    }
-    on("tj-lmr-n-pull", pull);
-    on("tj-lmr-n-play", playMaster);
-    on("tj-lmr-n-rec", startRec);
-    on("tj-lmr-n-stop", stopRec);
-    on("tj-lmr-n-playuser", playUser);
-    on("tj-lmr-n-score", score);
+  function wire(bar) {
+    if (!bar || bar.__lmrWired) return;
+    bar.__lmrWired = true;
+    var pullBtn = $("tj-lmr-n-pull");
+    if (pullBtn) pullBtn.addEventListener("click", pull);
+    var playBtn = $("tj-lmr-n-play");
+    if (playBtn) playBtn.addEventListener("click", playMaster);
+    var recBtn = $("tj-lmr-n-rec");
+    if (recBtn) recBtn.addEventListener("click", startRec);
+    var stopBtn = $("tj-lmr-n-stop");
+    if (stopBtn) stopBtn.addEventListener("click", stopRec);
+    var userPlay = $("tj-lmr-n-user-play");
+    if (userPlay) userPlay.addEventListener("click", playUser);
+    var scoreBtn = $("tj-lmr-n-score");
+    if (scoreBtn) scoreBtn.addEventListener("click", score);
   }
 
   function pull() {
-    var s = Math.max(1, Math.min(114, parseInt(($("tj-lmr-n-surah") || {}).value, 10) || 1));
-    var a = Math.max(1, parseInt(($("tj-lmr-n-ayah") || {}).value, 10) || 1);
+    if (!isAction()) return;
+    var s = parseInt(($("tj-lmr-n-surah") || {}).value || "1", 10) || 1;
+    var a = parseInt(($("tj-lmr-n-ayah") || {}).value || "1", 10) || 1;
     state.surah = s;
     state.ayah = a;
-    status("Loading " + s + ":" + a + "…");
-    fetch(
-      "https://api.alquran.cloud/v1/ayah/" + s + ":" + a + "/editions/quran-uthmani,en.sahih"
-    )
-      .then(function (r) {
-        if (!r.ok) throw new Error("http");
-        return r.json();
-      })
-      .then(function (j) {
-        var arr = (j && j.data) || [];
-        if (!Array.isArray(arr)) arr = [arr];
-        var ar = "",
-          en = "",
-          num = null;
-        arr.forEach(function (item) {
-          if (!item) return;
-          var id = (item.edition && item.edition.identifier) || "";
-          if (/uthmani|quran/i.test(id) && item.text) ar = item.text;
-          if (/sahih|en\./i.test(id) && item.text) en = item.text;
-          if (item.number) num = item.number;
+    status("Fetching āyah…");
+    var api = "https://api.alquran.cloud/v1/ayah/" + s + ":" + a + "/editions/quran-uthmani,en.sahih";
+    fetch(api)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var arr = (data && data.data) || [];
+        var ar = "", en = "";
+        arr.forEach(function (ed) {
+          if (ed && ed.edition && ed.edition.identifier === "quran-uthmani") ar = ed.text || "";
+          if (ed && ed.edition && String(ed.edition.identifier || "").indexOf("en") === 0) en = ed.text || "";
         });
         if (!ar && arr[0]) ar = arr[0].text || "";
         if (!en && arr[1]) en = arr[1].text || "";
         state.ar = ar;
         state.en = en;
-        state.masterUrl = everyAyahUrl(s, a);
         if ($("tj-lmr-n-ar")) $("tj-lmr-n-ar").textContent = ar;
         if ($("tj-lmr-n-en")) $("tj-lmr-n-en").textContent = en;
+        state.masterUrl = everyAyahUrl(s, a);
         var master = $("tj-lmr-n-master");
         if (master) {
           master.src = state.masterUrl;
           master.onloadedmetadata = function () {
             state.masterDur = master.duration || 0;
           };
-          master.onerror = function () {
-            if (num) {
-              state.masterUrl =
-                "https://cdn.islamic.network/quran/audio/128/ar.alafasy/" + num + ".mp3";
-              master.src = state.masterUrl;
-            }
-          };
         }
-        status("Ready " + s + ":" + a + " · Ḥuṣarī · educational only");
+        status("Ready · Ḥuṣarī / fallback · educational only");
       })
       .catch(function () {
-        status("Load failed — try again or open /craft/tajweed/");
+        status("Could not load verse — check network. Educational only.");
       });
   }
 
   function playMaster() {
-    var a = $("tj-lmr-n-master");
-    if (!a || !a.src) {
-      pull();
+    if (!isAction()) return;
+    var master = $("tj-lmr-n-master");
+    if (!master || !master.src) {
+      status("Pull āyah first");
       return;
     }
-    try {
-      a.play();
-    } catch (e) {
-      status("Tap Play again");
-    }
+    try { master.play(); } catch (e) {}
   }
 
   function startRec() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      status("Mic unavailable");
+    if (!isAction()) return;
+    if (!w.navigator || !w.navigator.mediaDevices || !w.navigator.mediaDevices.getUserMedia) {
+      status("Mic not available");
       return;
     }
     state.chunks = [];
-    navigator.mediaDevices
+    w.navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then(function (stream) {
         state.rec = new MediaRecorder(stream);
@@ -187,9 +218,7 @@
           if (ev.data && ev.data.size) state.chunks.push(ev.data);
         };
         state.rec.onstop = function () {
-          stream.getTracks().forEach(function (t) {
-            t.stop();
-          });
+          stream.getTracks().forEach(function (t) { t.stop(); });
           state.userBlob = new Blob(state.chunks, { type: "audio/webm" });
           if (state.userUrl) URL.revokeObjectURL(state.userUrl);
           state.userUrl = URL.createObjectURL(state.userBlob);
@@ -215,17 +244,17 @@
   }
 
   function playUser() {
+    if (!isAction()) return;
     var u = $("tj-lmr-n-user");
     if (!u || !u.src) {
       status("Record first");
       return;
     }
-    try {
-      u.play();
-    } catch (e) {}
+    try { u.play(); } catch (e) {}
   }
 
   function score() {
+    if (!isAction()) return;
     var master = $("tj-lmr-n-master");
     var user = $("tj-lmr-n-user");
     if (!user || !user.src) {
@@ -243,26 +272,50 @@
   }
 
   function boot() {
+    if (!isAction()) {
+      dismantle();
+      return;
+    }
     killDupes();
     var h = host();
     if (!h) return;
     paintUI(h);
-    if (!state.ar) setTimeout(pull, 200);
+    if (!state.ar) setTimeout(function () {
+      if (isAction()) pull();
+    }, 200);
   }
 
   function onMounted(ev) {
+    var tab = "";
     try {
-      var tab = (ev && ev.detail && ev.detail.tab) || "";
-      if (tab && String(tab).toLowerCase() !== "action") return;
+      tab = (ev && ev.detail && ev.detail.tab) || activeTab();
     } catch (e) {}
-    setTimeout(boot, 30);
-    setTimeout(boot, 350);
+    tab = String(tab || "").toLowerCase();
+    if (tab && tab !== "action") {
+      dismantle();
+      return;
+    }
+    if (tab === "action" || isAction()) {
+      setTimeout(boot, 30);
+      setTimeout(boot, 350);
+    } else {
+      dismantle();
+    }
   }
 
+  /* ONLY react to tab mounts — no global DOMContentLoaded paint on Reminder */
   d.addEventListener("clarity:tab-mounted", onMounted);
   w.addEventListener("clarity:tab-mounted", onMounted);
-  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  setTimeout(boot, 200);
-  setTimeout(boot, 900);
+
+  /* If user lands with #action hash */
+  function initial() {
+    if (isAction()) {
+      setTimeout(boot, 50);
+      setTimeout(boot, 400);
+    } else {
+      dismantle();
+    }
+  }
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", initial);
+  else initial();
 })(window, document);
