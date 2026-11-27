@@ -3,7 +3,7 @@
   color-scheme: dark;
   --gold: #e8d5a3;
   --edge: rgba(212, 180, 90, 0.4);
-  --plaque: rgba(8, 18, 14, 0.82);
+  --plaque: rgba(8, 18, 14, 0.42);
 }
 * { box-sizing: border-box; }
 html, body {
@@ -25,23 +25,15 @@ html, body {
   background: #0a1210;
   border-bottom: 1px solid var(--edge);
 }
-.banner-media { position: absolute; inset: 0; z-index: 0; opacity: 0.42; }
+.banner-media { position: absolute; inset: 0; z-index: 0; opacity: 0.88; }
 /* Live stream visibility — transparent foreground, full media */
-.banner-media.live-active { opacity: 0.92; }
+.banner-media.live-active { opacity: 1; }
 .banner-media.live-active .banner-live-iframe {
   opacity: 1;
   filter: none;
 }
-.banner-media.live-fallback { opacity: 0.48; }
-body.banner-live-on .banner-overlay .plaque,
-body.banner-live-on .banner-overlay .side-plaque,
-body.banner-live-on .banner-overlay .center {
-  background: rgba(8, 18, 14, 0.38) !important;
-  backdrop-filter: blur(4px);
-}
-body.banner-live-on .banner-overlay {
-  background: transparent;
-}
+.banner-media.live-fallback { opacity: 0.88; }
+
 .banner-still-img, .banner-live-iframe {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0;
 }
@@ -401,4 +393,30 @@ body.banner-live-on .banner-overlay {
     grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr) minmax(11rem, 14rem) !important;
     gap: 0.75rem !important;
   }
+}
+
+
+/* Reference visibility · Madinah umbrellas readable under UI */
+body.banner-live-on .banner-overlay .plaque,
+body.banner-live-on .banner-overlay .side-plaque,
+body.banner-live-on .banner-overlay .center,
+.banner-overlay .plaque,
+.banner-overlay .side-plaque {
+  background: rgba(8, 18, 14, 0.36) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: none;
+}
+body.banner-live-on .banner-overlay,
+.banner-overlay {
+  background: transparent !important;
+}
+.banner-media.live-active .banner-live-iframe {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  z-index: 1;
+}
+.banner-media.live-active .banner-still-img {
+  opacity: 0.25;
 }
