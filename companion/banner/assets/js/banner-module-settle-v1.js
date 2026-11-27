@@ -197,20 +197,61 @@
 
   function geo(force) {
     return new Promise(function (resolve, reject) {
-      if (!navigator.geolocation) return reject();
-      navigator.geolocation.getCurrentPosition(
-        function (pos) {
-          var lat = pos.coords.latitude, lon = pos.coords.longitude;
-          reverse(lat, lon).then(function (city) {
-            var o = { lat: lat, lon: lon, city: city || "Saved location", ts: Date.now() };
+      function fromIp() {
+        /* IP-based city (no browser prompt) — educational only */
+        var endpoints = [
+          "https://ipapi.co/json/",
+          "https://ipwho.is/"
+        ];
+        var i = 0;
+        function next() {
+          if (i >= endpoints.length) return Promise.reject();
+          var url = endpoints[i++];
+          return fetch(url, { credentials: "omit" }).then(function (r) { return r.json(); }).then(function (j) {
+            var lat = parseFloat(j.latitude != null ? j.latitude : j.lat);
+            var lon = parseFloat(j.longitude != null ? j.longitude : j.lon);
+            var city = j.city || j.region || j.country_name || "";
+            if (j.success === false) throw new Error("ipwho");
+            if (isNaN(lat) || isNaN(lon)) throw new Error("coords");
+            var o = { lat: lat, lon: lon, city: city || "Near you", ts: Date.now(), source: "ip" };
             saveLoc(o);
             setCity(o.city);
-            fetchTimes(lat, lon, o.city).then(resolve).catch(reject);
-          });
-        },
-        reject,
-        { enableHighAccuracy: false, timeout: 12000, maximumAge: force ? 0 : 300000 }
-      );
+            return fetchTimes(lat, lon, o.city).then(function () { return o; });
+          }).catch(function () { return next(); });
+        }
+        return next();
+      }
+      function fromBrowser() {
+        return new Promise(function (res, rej) {
+          if (!navigator.geolocation) return rej();
+          navigator.geolocation.getCurrentPosition(
+            function (pos) {
+              var lat = pos.coords.latitude, lon = pos.coords.longitude;
+              reverse(lat, lon).then(function (city) {
+                var o = { lat: lat, lon: lon, city: city || "Saved location", ts: Date.now(), source: "gps" };
+                saveLoc(o);
+                setCity(o.city);
+                fetchTimes(lat, lon, o.city).then(function () { res(o); }).catch(rej);
+              });
+            },
+            rej,
+            { enableHighAccuracy: false, timeout: 8000, maximumAge: force ? 0 : 600000 }
+          );
+        });
+      }
+      /* Prefer saved, then IP, then GPS only if forced */
+      var saved = typeof readLoc === "function" ? readLoc() : null;
+      if (!force && saved && saved.lat && saved.lon && saved.city && !/^saved location$/i.test(saved.city)) {
+        setCity(saved.city);
+        fetchTimes(saved.lat, saved.lon, saved.city).then(function () { resolve(saved); }).catch(function () {
+          fromIp().then(resolve).catch(function () { fromBrowser().then(resolve).catch(reject); });
+        });
+        return;
+      }
+      fromIp().then(resolve).catch(function () {
+        if (force) fromBrowser().then(resolve).catch(reject);
+        else reject();
+      });
     });
   }
 
@@ -308,7 +349,7 @@
 
     patchOwnerCity();
     if (!applySaved()) {
-      geo(false).catch(function () { setCity("Tap Update location"); });
+      geo(true).catch(function () { setCity("Tap Update location"); });
     } else {
       setTimeout(function () { patchOwnerCity(); applySaved(); reassertCity(); }, 1200);
       setTimeout(reassertCity, 3500);
