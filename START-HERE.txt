@@ -1,16 +1,19 @@
 Bismillah.
 
-COMPANION FOUNDATION SEAL v1
-============================
-Like Campus curriculum freeze — Companion foundation cannot be destroyed in one upgrade.
+GOVERNANCE-SMOKED package
+=========================
+Baseline: https://clarity-dawah.fyi/docs/ (+ governance contract)
 
-UPLOAD-SAFE/:
-  companion/FOUNDATION_SEAL.json     ← machine-readable protected layers
-  companion/index.html              ← data-companion-foundation-seal="v1"
-  docs/COMPANION_FOUNDATION_SEAL.md ← human binding rules
+UPLOAD from UPLOAD-SAFE/:
+  companion/index.html
+  companion/assets/companion-action-lmr-native-v1.js
+  companion/tabs/*/index.html
+  docs/SESSION_GOVERNANCE_BASELINE.md  (optional, for your docs/)
 
-Also keep a copy under site docs/ if you maintain /docs on the host.
-
-Future tickets: read the seal first; additive only; no wholesale wipe.
+Smoke:
+  About/Notes — no LMR
+  Action — LMR works
+  Beacons gone
+  Path + body enrichment held
 
 Bismillah.
