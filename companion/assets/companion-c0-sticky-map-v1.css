@@ -1,7 +1,7 @@
 /*! companion-c0-sticky-map-v1.css
  * Phase C0.1 — full-width sleek Map pill as section break + green Bismillah strip
  * Additive · Companion only · educational only — not a fatwa
- * Version: 20261128C0.1
+ * Version: 20261128C0.2
  */
 
 html[data-clarity-room="companion"] .cs-room-nav,
@@ -138,17 +138,19 @@ button.c0-map-pill:focus-visible {
   }
 }
 
-/* Green Bismillah strip — below Map pill, above path tiles */
+/* Sleek green Bismillah strip — narrow, two lines max, like Map pill */
 #c0-bismillah-strip {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
+  gap: 0.35rem 0.65rem;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 0.55rem 0.85rem 0.6rem;
+  padding: 0.35rem 0.75rem;
+  min-height: 2.15rem;
   text-align: center;
   color: #e8f5ee;
   background: linear-gradient(180deg, #1e7d5e 0%, #176b50 55%, #0f4c3a 100%);
@@ -160,33 +162,46 @@ button.c0-map-pill:focus-visible {
 
 #c0-bismillah-strip .c0-bis-ar {
   font-family: "Scheherazade New", Amiri, "Noto Naskh Arabic", serif;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  line-height: 1.55;
+  line-height: 1.2;
   direction: rtl;
   color: #f7f0dd;
+  margin: 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 #c0-bismillah-strip .c0-bis-en {
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 650;
   opacity: 0.92;
   color: #d8efe4;
-  letter-spacing: 0.01em;
-  max-width: 36rem;
-  line-height: 1.35;
+  margin: 0;
+  line-height: 1.2;
+  max-width: 100%;
 }
 
 #c0-bismillah-strip .c0-bis-seal {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  opacity: 0.8;
-  color: #e8d5a3;
-  margin-top: 0.1rem;
+  display: none; /* keep strip to two lines max */
 }
+
+/* Hide legacy / duplicate Bismillah blocks below path (keep only #c0-bismillah-strip) */
+html[data-clarity-room="companion"] .cs-path ~ .cs-bismillah,
+html[data-clarity-room="companion"] .cs-focus ~ .cs-bismillah,
+html[data-clarity-room="companion"] .cs-path ~ [data-cs-bismillah],
+html[data-clarity-room="companion"] .cs-focus + p.cs-bis,
+html[data-clarity-room="companion"] .cs-ssr-bismillah,
+html[data-clarity-room="companion"] #cs-mount > .cs-bismillah-legacy,
+html[data-clarity-room="companion"] .c0-legacy-bismillah {
+  display: none !important;
+}
+
+/* Seeker Reminder calm: collapse duplicate ladder intros */
+html[data-clarity-room="companion"][data-cs-path="seeker"] #cs-mount .cs-ladder-intro + .cs-ladder-intro,
+html[data-clarity-room="companion"] #cs-mount .cs-reminder-ladder-dup {
+  display: none !important;
+}
+
 
 /* Map modal */
 .c0-map-backdrop {

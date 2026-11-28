@@ -2,7 +2,7 @@
  * Phase C0.1 — full-width Map pill · Bismillah strip · Reminder rail label
  * Additive · Companion only · educational only — not a fatwa
  * Hooks: #companion-banner-shell, #cs-banner-strip, #clarity-door-rail [data-rail-tab]
- * Version: 20261128C0.1
+ * Version: 20261128C0.2
  */
 (function (w, d) {
   "use strict";
@@ -86,8 +86,7 @@
     strip.setAttribute("aria-label", "Bismillah");
     strip.innerHTML =
       '<p class="c0-bis-ar" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>' +
-      '<p class="c0-bis-en">In the name of Allah, the Most Gracious, the Most Merciful</p>' +
-      '<p class="c0-bis-seal">Educational companion · not a fatwa</p>';
+      '<p class="c0-bis-en">In the name of Allah, the Most Gracious, the Most Merciful</p>';
     var path = qs(".cs-path");
     if (afterEl && afterEl.parentNode) {
       if (afterEl.nextSibling) {
@@ -103,20 +102,89 @@
     return strip;
   }
 
+
+
+  function dedupeLegacyBismillah() {
+    var keep = qs("#c0-bismillah-strip");
+    var nodes = d.querySelectorAll("p, div, section, span");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (keep && (el === keep || (keep.contains && keep.contains(el)))) continue;
+      if (el.id === "c0-bismillah-strip") continue;
+      var t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (!t) continue;
+      /* Mid-page legacy lines under path/focus */
+      var isBis =
+        t.indexOf("بِسْمِ اللّ") !== -1 ||
+        t.indexOf("In the name of Allah, the Most Gracious") !== -1;
+      if (!isBis) continue;
+      /* Keep banner iframe content alone; only hide small standalone strips */
+      if (el.closest && el.closest("#companion-banner-shell, .companion-banner-shell, #c0-bismillah-strip, .c0-map-modal"))
+        continue;
+      var inPathZone =
+        (el.closest && (el.closest(".cs-path") || el.closest(".cs-focus") || el.closest("#cs-mount"))) ||
+        false;
+      /* Prefer hiding nodes that are short pure bismillah captions */
+      if (t.length < 180 && isBis) {
+        el.classList.add("c0-legacy-bismillah");
+        try {
+          el.style.setProperty("display", "none", "important");
+        } catch (e) {}
+      }
+    }
+  }
+
   function forceReminderRailLabel() {
     var btn =
       qs('#clarity-door-rail [data-rail-tab="reminder"]') ||
-      qs('.cs-door [data-rail-tab="reminder"]');
+      qs('.cs-door [data-rail-tab="reminder"]') ||
+      qs('nav.cs-door button[data-rail-tab="reminder"]');
     if (!btn) return;
     var lab = btn.querySelector(".dr-label");
     if (lab) {
-      lab.textContent = "Reminder";
-    } else {
-      btn.setAttribute("aria-label", "Reminder");
+      var cur = (lab.textContent || "").trim();
+      if (/map/i.test(cur) || cur !== "Reminder") lab.textContent = "Reminder";
     }
-    /* Remove legacy "Map" only label if some packs set data-rail-label */
-    if (btn.getAttribute("data-rail-label") === "Map") {
-      btn.setAttribute("data-rail-label", "Reminder");
+    btn.setAttribute("aria-label", "Reminder");
+    if (btn.childNodes) {
+      /* Remove bare text nodes that say Map */
+      for (var i = 0; i < btn.childNodes.length; i++) {
+        var n = btn.childNodes[i];
+        if (n.nodeType === 3 && /map/i.test(n.textContent || "")) {
+          n.textContent = "";
+        }
+      }
+    }
+  }
+
+  function calmSeekerReminder() {
+    var path = "seeker";
+    try {
+      var active = qs("[data-cs-path].is-active");
+      if (active) path = active.getAttribute("data-cs-path") || path;
+      else path = localStorage.getItem("cu_companion_path_v1") || path;
+    } catch (e) {}
+    if (String(path).toLowerCase() !== "seeker") return;
+    var mount = qs("#cs-mount");
+    if (!mount) return;
+    /* Collapse duplicate identical ladder intros */
+    var seen = {};
+    var cards = mount.querySelectorAll("section, article, .card, .cs-plaque, .cs-ssr-card, div");
+    for (var i = 0; i < cards.length; i++) {
+      var el = cards[i];
+      var t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (t.length < 40 || t.length > 220) continue;
+      if (/Reminder ladder/i.test(t) && /Educational only/i.test(t)) {
+        var key = t.slice(0, 120);
+        if (seen[key]) {
+          el.classList.add("cs-reminder-ladder-dup");
+          try {
+            el.style.setProperty("display", "none", "important");
+          } catch (e2) {}
+        } else {
+          seen[key] = true;
+        }
+      }
     }
   }
 
@@ -350,6 +418,8 @@
     ensurePill(strip);
     ensureBismillah(strip);
     forceReminderRailLabel();
+    dedupeLegacyBismillah();
+    calmSeekerReminder();
     ensureModal();
   }
 
@@ -363,7 +433,16 @@
   w.addEventListener("load", function () {
     setTimeout(boot, 120);
     setTimeout(forceReminderRailLabel, 400);
-    setTimeout(forceReminderRailLabel, 1200);
+    setTimeout(function () {
+      forceReminderRailLabel();
+      dedupeLegacyBismillah();
+      calmSeekerReminder();
+    }, 900);
+    setTimeout(function () {
+      forceReminderRailLabel();
+      dedupeLegacyBismillah();
+      calmSeekerReminder();
+    }, 2000);
   });
 
   /* Public hooks for later phases / tests */
@@ -371,6 +450,6 @@
     openMap: openMap,
     openWelcome: openWelcome,
     closeModal: closeModal,
-    version: "20261128C0.1",
+    version: "20261128C0.2",
   };
 })(window, document);
