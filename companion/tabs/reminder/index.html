@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261125ROLLBACK"/>
-<meta name="clarity-build" content="CM21-CALLIG-V2Q4-20261127"/>
+<meta name="clarity-build" content="CM21-CALLIG-NUKE-20261127"/>
 
 <style id="clarity-embed-fold-css">
 .clarity-embed-fold:not([open]) .clarity-embed-body { display:none!important;height:0!important;overflow:hidden!important; }
@@ -268,6 +268,59 @@ document.addEventListener("toggle", function(e){
 
 
 <!-- Meme SoT host · isolated · untangled from Tafseer · Bismillah -->
+
+<section class="cs-plaque cs-plaque-deep" id="callig-lab-card" data-rrra="reminder" data-enrichment="callig-nuke" data-cs-primary="1">
+  <h2>✒️ Calligraphy · practice pad</h2>
+  <p class="lead">Finger · stylus · <strong>guide glyph</strong> on the pad. One engine. Educational only — not a fatwa.</p>
+  <div class="callig-stylus-hint" id="callig-stylus-hint">
+    <span class="callig-mode-badge" id="callig-mode-badge">NASKH · GUIDE ON</span>
+    <span>Select a letter — guide appears. Trace over it.</span>
+  </div>
+  <p id="callig-tajweed-tip" style="font-size:.84rem;margin:.35rem 0;min-height:1.2em;color:#c4a574">Guide: ا · educational only — not a fatwa</p>
+  <div class="callig-glyph-row" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:.45rem 0">
+    <button type="button" class="chip on" data-callig-glyph="ا">ا</button>
+    <button type="button" class="chip" data-callig-glyph="ب">ب</button>
+    <button type="button" class="chip" data-callig-glyph="ت">ت</button>
+    <button type="button" class="chip" data-callig-glyph="ح">ح</button>
+    <button type="button" class="chip" data-callig-glyph="س">س</button>
+    <button type="button" class="chip" data-callig-glyph="م">م</button>
+    <button type="button" class="chip" data-callig-glyph="ن">ن</button>
+    <button type="button" class="chip" data-callig-glyph="ه">ه</button>
+    <button type="button" class="chip" data-callig-glyph="و">و</button>
+    <button type="button" class="chip" data-callig-glyph="ي">ي</button>
+    <button type="button" class="chip" data-callig-glyph="لا">لا</button>
+    <button type="button" class="chip" data-callig-glyph="الله">الله</button>
+  </div>
+  <div class="callig-toolbar" style="display:flex;flex-wrap:wrap;gap:.45rem;margin:.45rem 0;align-items:center">
+    <label class="edu">Script
+      <select id="callig-script" style="margin-left:.25rem;padding:.25rem .4rem;border-radius:8px">
+        <option value="naskh">Naskh</option>
+        <option value="ruqaa">Ruqʿah</option>
+        <option value="thuluth">Thuluth</option>
+        <option value="kufi">Kufi</option>
+      </select>
+    </label>
+    <label class="edu">Ink <input type="color" id="callig-ink" value="#0d4f3c"/></label>
+    <label class="edu">Size <input type="range" id="callig-size" min="6" max="36" value="14"/></label>
+    <label class="edu"><input type="checkbox" id="callig-guide" checked/> Guide</label>
+    <button type="button" class="cs-btn" id="callig-clear">Clear</button>
+    <button type="button" class="cs-btn primary" id="callig-undo">Undo</button>
+  </div>
+  <div class="callig-lab-stage" id="callig-lab-stage" style="touch-action:none;position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(212,180,90,.35);background:#f3efe6">
+    <canvas id="callig-canvas" width="900" height="420" style="width:100%;max-width:100%;height:auto;display:block;touch-action:none;background:#f3efe6"></canvas>
+  </div>
+  <p class="edu" style="margin-top:.5rem;font-size:.8rem">Guide is the letter on the pad. Educational only — not a fatwa.</p>
+</section>
+<script src="/companion/modules/clarity-callig-nuke-v1.js?v=20261127NUKE1"></script>
+<style id="callig-nuke-css">
+.callig-stylus-hint{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.78rem;margin:.35rem 0;padding:.4rem .65rem;border-radius:10px;background:rgba(15,76,58,.08);border:1px solid rgba(196,165,116,.25)}
+.callig-mode-badge{display:inline-flex;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .45rem;border-radius:999px;background:rgba(15,76,58,.2);color:#c4a574;border:1px solid rgba(196,165,116,.35)}
+#callig-lab-card .chip{border-radius:999px;border:1px solid rgba(196,165,116,.35);background:rgba(0,0,0,.15);padding:.28rem .65rem;cursor:pointer;font-family:Amiri,Scheherazade New,serif;font-size:1.15rem}
+#callig-lab-card .chip.on{background:rgba(15,76,58,.55);border-color:rgba(196,165,116,.6)}
+#callig-lab-card .cs-btn{cursor:pointer;border-radius:999px;border:1px solid rgba(196,165,116,.4);background:rgba(42,107,74,.3);color:inherit;padding:.32rem .7rem;font-size:.8rem}
+#callig-lab-card .cs-btn.primary{background:rgba(15,76,58,.75)}
+</style>
+
 <section class="cs-plaque cs-meme-host" id="meme-section" data-cs-primary="0" data-rrra="reminder" data-meme-phase="5" data-meme-spine="host-iso">
   <div class="cs-plaque-head">
     <span class="cs-ico a3-ico" aria-hidden="true">🎨</span>
@@ -328,60 +381,7 @@ document.addEventListener("toggle", function(e){
 </div>
 
 
-<section class="cs-plaque cs-plaque-deep" id="callig-lab-card" data-rrra="reminder" data-enrichment="callig-v2q" data-cs-primary="1">
-  <h2>✒️ Calligraphy · practice pad</h2>
-  <p class="lead">Finger · stylus · feather · <strong>guide glyph</strong> on the pad. Local-first. Educational only — not a fatwa.</p>
-  <div class="callig-stylus-hint" id="callig-stylus-hint">
-    <span class="callig-mode-badge" id="callig-mode-badge">Naskh · finger</span>
-    <span>Select a letter so the <strong>guide</strong> appears. Trace over it. Lift to end a stroke.</span>
-  </div>
-  <p id="callig-tajweed-tip" style="font-size:.84rem;margin:.35rem 0;min-height:1.2em;color:#c4a574">Select a letter — tip appears here.</p>
 
-  <div class="callig-glyph-row" style="display:flex;flex-wrap:wrap;gap:.35rem;margin:.45rem 0">
-    <button type="button" class="chip on" data-callig-glyph="ا">ا</button>
-    <button type="button" class="chip" data-callig-glyph="ب">ب</button>
-    <button type="button" class="chip" data-callig-glyph="ت">ت</button>
-    <button type="button" class="chip" data-callig-glyph="ح">ح</button>
-    <button type="button" class="chip" data-callig-glyph="س">س</button>
-    <button type="button" class="chip" data-callig-glyph="م">م</button>
-    <button type="button" class="chip" data-callig-glyph="ن">ن</button>
-    <button type="button" class="chip" data-callig-glyph="ه">ه</button>
-    <button type="button" class="chip" data-callig-glyph="و">و</button>
-    <button type="button" class="chip" data-callig-glyph="ي">ي</button>
-    <button type="button" class="chip" data-callig-glyph="لا">لا</button>
-    <button type="button" class="chip" data-callig-glyph="الله">الله</button>
-  </div>
-
-  <div class="callig-toolbar" style="display:flex;flex-wrap:wrap;gap:.45rem;margin:.45rem 0;align-items:center">
-    <label class="edu">Script
-      <select id="callig-script" style="margin-left:.25rem;padding:.25rem .4rem;border-radius:8px">
-        <option value="naskh">Naskh</option>
-        <option value="ruqaa">Ruqʿah</option>
-        <option value="thuluth">Thuluth</option>
-        <option value="kufi">Kufi</option>
-      </select>
-    </label>
-    <label class="edu">Ink <input type="color" id="callig-ink" value="#0d4f3c"/></label>
-    <label class="edu">Size <input type="range" id="callig-size" min="6" max="36" value="14"/></label>
-    <label class="edu"><input type="checkbox" id="callig-guide" checked/> Guide</label>
-    <button type="button" class="cs-btn" id="callig-clear">Clear</button>
-    <button type="button" class="cs-btn primary" id="callig-undo">Undo</button>
-  </div>
-
-  <div class="callig-lab-stage" id="callig-lab-stage" style="touch-action:none;position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(212,180,90,.35);background:#f7f3eb">
-    <canvas id="callig-canvas" width="900" height="420" style="width:100%;max-width:100%;height:auto;display:block;touch-action:none;background:#f7f3eb"></canvas>
-  </div>
-  <p class="edu" style="margin-top:.5rem;font-size:.8rem">Guide is the faint letter on the pad — toggle Guide if hidden. Educational only — not a fatwa.</p>
-</section>
-<script src="/companion/modules/clarity-callig-engine-v2.js?v=20261127CALLIG4"></script>
-<style id="callig-v2q-css">
-.callig-stylus-hint{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.78rem;margin:.35rem 0;padding:.4rem .65rem;border-radius:10px;background:rgba(15,76,58,.08);border:1px solid rgba(196,165,116,.25)}
-.callig-mode-badge{display:inline-flex;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .45rem;border-radius:999px;background:rgba(15,76,58,.2);color:#c4a574;border:1px solid rgba(196,165,116,.35)}
-#callig-lab-card .chip{border-radius:999px;border:1px solid rgba(196,165,116,.35);background:rgba(0,0,0,.15);padding:.28rem .65rem;cursor:pointer;font-family:Amiri,Scheherazade New,serif;font-size:1.15rem}
-#callig-lab-card .chip.on{background:rgba(15,76,58,.55);border-color:rgba(196,165,116,.6)}
-#callig-lab-card .cs-btn{cursor:pointer;border-radius:999px;border:1px solid rgba(196,165,116,.4);background:rgba(42,107,74,.3);color:inherit;padding:.32rem .7rem;font-size:.8rem}
-#callig-lab-card .cs-btn.primary{background:rgba(15,76,58,.75)}
-</style>
 </div></div>
 
 </div>
@@ -579,6 +579,7 @@ document.addEventListener("toggle", function(e){
 })(window, document);
 </script>
 
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"157c910764cd44f79370f8b885647367","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
