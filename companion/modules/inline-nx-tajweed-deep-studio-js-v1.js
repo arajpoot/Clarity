@@ -188,7 +188,17 @@
       try { tjRender(); } catch(e){}
     }
   }
+  window.clarityBootTjDeepStudio = boot;
+  document.addEventListener("clarity:tab-mounted", function(ev){
+    try {
+      var t = (ev && ev.detail && (ev.detail.tab || ev.detail.name)) || "";
+      if (t && String(t).toLowerCase() !== "action") return;
+    } catch (e) {}
+    setTimeout(boot, 80);
+    setTimeout(boot, 500);
+  });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(boot, 100); });
   else setTimeout(boot, 100);
   window.addEventListener("load", function(){ setTimeout(boot, 300); });
+  setTimeout(boot, 1200);
 })();

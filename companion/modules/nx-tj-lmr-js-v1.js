@@ -509,37 +509,74 @@
     if (el) el.textContent = "Loops today: " + n + " · may Allah accept";
   }
 
+  function on(el, fn){
+    if (!el) return;
+    if (el.getAttribute("data-lmr-wired") === "1") return;
+    el.setAttribute("data-lmr-wired", "1");
+    el.addEventListener("click", fn);
+  }
+
   function wire(){
     if (!$("tj-lmr")) return;
     document.querySelectorAll(".tj-lmr-step").forEach(function(b){
-      b.addEventListener("click", function(){ setStep(b.getAttribute("data-step")); });
+      on(b, function(){ setStep(b.getAttribute("data-step")); });
     });
     document.querySelectorAll(".tj-lmr-mode").forEach(function(b){
-      b.addEventListener("click", function(){ setMode(b.getAttribute("data-mode")); });
+      on(b, function(){ setMode(b.getAttribute("data-mode")); });
     });
-    var f = $("tj-lmr-fetch"); if (f) f.addEventListener("click", fetchAyah);
-    var r = $("tj-lmr-random"); if (r) r.addEventListener("click", randomShort);
-    var fr = $("tj-lmr-fetch-rule"); if (fr) fr.addEventListener("click", function(){ state.ruleIdx = 0; loadRuleExample(); });
-    var nr = $("tj-lmr-rule-next"); if (nr) nr.addEventListener("click", nextRuleExample);
+    on($("tj-lmr-fetch"), fetchAyah);
+    on($("tj-lmr-random"), randomShort);
+    on($("tj-lmr-fetch-rule"), function(){ state.ruleIdx = 0; loadRuleExample(); });
+    on($("tj-lmr-rule-next"), nextRuleExample);
     var ruleSel = $("tj-lmr-rule");
-    if (ruleSel) ruleSel.addEventListener("change", function(){ state.ruleIdx = 0; loadRuleExample(); });
-    var p1 = $("tj-lmr-play-master"); if (p1) p1.addEventListener("click", playMaster);
-    var p2 = $("tj-lmr-play-master2"); if (p2) p2.addEventListener("click", playMaster);
-    var p3 = $("tj-lmr-play-master3"); if (p3) p3.addEventListener("click", playMaster);
-    var rb = $("tj-lmr-rec-btn"); if (rb) rb.addEventListener("click", startRec);
-    var rs = $("tj-lmr-rec-stop"); if (rs) rs.addEventListener("click", stopRec);
-    var rp = $("tj-lmr-rec-play"); if (rp) rp.addEventListener("click", playUser);
-    var sc = $("tj-lmr-score-btn"); if (sc) sc.addEventListener("click", scoreVsMaster);
-    var md = $("tj-lmr-mark-done"); if (md) md.addEventListener("click", markLoopDone);
+    if (ruleSel && ruleSel.getAttribute("data-lmr-wired") !== "1") {
+      ruleSel.setAttribute("data-lmr-wired", "1");
+      ruleSel.addEventListener("change", function(){ state.ruleIdx = 0; loadRuleExample(); });
+    }
+    on($("tj-lmr-play-master"), playMaster);
+    on($("tj-lmr-play-master2"), playMaster);
+    on($("tj-lmr-play-master3"), playMaster);
+    on($("tj-lmr-rec-btn"), startRec);
+    on($("tj-lmr-rec-stop"), stopRec);
+    on($("tj-lmr-rec-play"), playUser);
+    on($("tj-lmr-score-btn"), scoreVsMaster);
+    on($("tj-lmr-mark-done"), markLoopDone);
     setTimeout(function(){
-      if ($("tj-lmr-surah")) $("tj-lmr-surah").value = "1";
-      if ($("tj-lmr-ayah")) $("tj-lmr-ayah").value = "1";
-      fetchAyah();
-      renderLog();
+      if ($("tj-lmr-surah") && !$("tj-lmr-ar").textContent.replace(/[…\s]/g,"")) {
+        if ($("tj-lmr-surah")) $("tj-lmr-surah").value = "1";
+        if ($("tj-lmr-ayah")) $("tj-lmr-ayah").value = "1";
+        fetchAyah();
+      }
+      if (typeof renderLog === "function") renderLog();
     }, 200);
   }
+
+  window.clarityWireTjLmr = wire;
+  window.clarityTjLmrVersion = "20261128MOD";
+
+  function remountLmr(){
+    try { wire(); } catch (e) {}
+  }
+
+  document.addEventListener("clarity:tab-mounted", function(ev){
+    try {
+      var t = (ev && ev.detail && (ev.detail.tab || ev.detail.name)) || "";
+      if (t && String(t).toLowerCase() !== "action") return;
+    } catch (e) {}
+    setTimeout(remountLmr, 50);
+    setTimeout(remountLmr, 400);
+  });
+  window.addEventListener("clarity:tab-mounted", function(ev){
+    try {
+      var t = (ev && ev.detail && (ev.detail.tab || ev.detail.name)) || "";
+      if (t && String(t).toLowerCase() !== "action") return;
+    } catch (e) {}
+    setTimeout(remountLmr, 50);
+  });
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(wire, 120); });
   else setTimeout(wire, 120);
   window.addEventListener("load", function(){ setTimeout(wire, 400); });
+  setTimeout(wire, 900);
+  setTimeout(wire, 2000);
 })();
