@@ -1,0 +1,252 @@
+/*! tajweed-night-palette-v1.css
+ * Force Tajweed / LMR / Makhārij panels to Companion night tokens
+ * Additive · Action tab · educational only — not a fatwa
+ * Version: 20261128NIGHT
+ */
+
+/* --- Shared night tokens (align live Companion) --- */
+#tj-lmr,
+#tj-deep-studio,
+#tajweed-path-card,
+#tajweed-live-card,
+[data-engine="tajweed"],
+.card-tajweed,
+.tj-tool-panel,
+.tj-practice-loop {
+  --tj-bg: #0b1612;
+  --tj-bg-elev: #0f1c18;
+  --tj-surface: rgba(12, 28, 22, 0.92);
+  --tj-surface-2: rgba(18, 36, 28, 0.95);
+  --tj-text: #e7efe9;
+  --tj-muted: rgba(231, 239, 233, 0.78);
+  --tj-accent: #3d9b78;
+  --tj-accent-deep: #1e7d5e;
+  --tj-gold: #e0c36a;
+  --tj-gold-line: rgba(224, 195, 106, 0.4);
+  --tj-border: rgba(201, 162, 39, 0.28);
+  --tj-chip: rgba(30, 125, 94, 0.35);
+  color: var(--tj-text);
+}
+
+/* Main LMR / deep studio shells — kill light gray */
+#tj-lmr,
+#tj-deep-studio,
+#tj-lmr .tj-practice-loop,
+.tj-tool-panel,
+details.tj-tool-panel,
+#tj-lmr-panel,
+.card.card-tajweed,
+#tajweed-path-card,
+#tajweed-live-card {
+  background: linear-gradient(165deg, #0f1c18 0%, #0a1410 55%, #07110e 100%) !important;
+  border: 1px solid var(--tj-border, rgba(201, 162, 39, 0.28)) !important;
+  color: var(--tj-text, #e7efe9) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+}
+
+#tj-lmr summary,
+#tj-deep-studio summary,
+.tj-tool-panel > summary {
+  color: var(--tj-gold, #e0c36a) !important;
+  background: transparent !important;
+}
+
+.tj-tool-hint,
+#tj-lmr .tj-tool-hint,
+#tj-lmr p,
+#tj-deep-studio p,
+.card-tajweed .lead,
+.card-tajweed .td-src {
+  color: var(--tj-muted, rgba(231, 239, 233, 0.78)) !important;
+}
+
+/* Makhārij map (light card in screenshot) */
+#tj-lmr [class*="makharij"],
+#tj-deep-studio [class*="makharij"],
+.tj-makharij-map,
+.tj-makharij-svg,
+.card-tajweed .makharij-wrap,
+section:has(.tj-makharij-svg),
+#tj-deep-studio > div:first-child {
+  background: var(--tj-surface-2, rgba(18, 36, 28, 0.95)) !important;
+  border-color: var(--tj-border) !important;
+  color: var(--tj-text) !important;
+}
+
+/* Mode / step chips */
+#tj-lmr .tj-lmr-mode,
+#tj-lmr .tj-lmr-step,
+#tj-lmr button.btn-soft,
+#tj-lmr button.btn-secondary,
+#tj-lmr .tj-lmr-mode-row button,
+#tj-lmr .tj-lmr-steps button {
+  background: rgba(18, 36, 28, 0.95) !important;
+  border: 1px solid var(--tj-border) !important;
+  color: var(--tj-text) !important;
+  box-shadow: none !important;
+}
+
+#tj-lmr .tj-lmr-mode.active,
+#tj-lmr .tj-lmr-step.active,
+#tj-lmr button.btn-soft:hover,
+#tj-lmr button.primary {
+  background: linear-gradient(180deg, #1e7d5e, #176b50) !important;
+  border-color: rgba(120, 220, 160, 0.35) !important;
+  color: #f7f0dd !important;
+}
+
+/* Form controls */
+#tj-lmr select,
+#tj-lmr input[type="number"],
+#tj-lmr input[type="text"],
+#tj-lmr .tj-lmr-label {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid var(--tj-border) !important;
+  color: var(--tj-text) !important;
+  border-radius: 10px;
+}
+
+#tj-lmr select option {
+  background: #0f1c18;
+  color: #e7efe9;
+}
+
+/* Read / practice text plaque */
+#tj-lmr .tj-lmr-read-panel,
+#tj-lmr .tj-lmr-ayah-card,
+#tj-lmr #tj-lmr-read-panel,
+#tj-lmr .tj-lmr-panel {
+  background: linear-gradient(160deg, rgba(20, 40, 32, 0.98), rgba(10, 22, 18, 0.95)) !important;
+  border: 1px solid var(--tj-gold-line) !important;
+  color: var(--tj-text) !important;
+  border-radius: 14px;
+}
+
+#tj-lmr .tj-lmr-ar,
+#tj-lmr .arabic,
+#tj-lmr [dir="rtl"] {
+  color: #f7f0dd !important;
+}
+
+#tj-lmr .tj-lmr-en,
+#tj-lmr .tj-lmr-meta,
+#tj-lmr .tj-lmr-read-label {
+  color: var(--tj-muted) !important;
+}
+
+/* Record row status */
+#tj-lmr-rec-status,
+#tj-lmr .tj-lmr-rec-status {
+  color: #c8e6d4 !important;
+}
+
+/* Score card */
+#tj-lmr .tj-lmr-score-card,
+#tj-lmr-score-card {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid var(--tj-border) !important;
+  color: var(--tj-text) !important;
+}
+
+#tj-lmr .tj-lmr-bar .track {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+#tj-lmr .tj-lmr-bar .fill {
+  background: linear-gradient(90deg, #1e7d5e, #e0c36a) !important;
+}
+
+/* Session log / input level */
+#tj-lmr .tj-lmr-log,
+#tj-lmr .tj-lmr-log-title,
+#tj-lmr .meter-track,
+#tj-lmr .tj-lmr-live-meter {
+  background: rgba(0, 0, 0, 0.28) !important;
+  border-color: var(--tj-border) !important;
+  color: var(--tj-muted) !important;
+}
+
+/* Rule tiles night */
+.tj-rule-tile {
+  background: linear-gradient(160deg, rgba(12, 36, 30, 0.95), rgba(18, 48, 40, 0.9)) !important;
+  border-color: rgba(212, 180, 90, 0.28) !important;
+  color: var(--tj-text) !important;
+}
+
+.tj-rule-tile .tj-rule-pic {
+  background: rgba(30, 125, 94, 0.25) !important;
+}
+
+.tj-rule-tile[data-rule] .tj-rule-pic {
+  background: rgba(30, 125, 94, 0.3) !important;
+}
+
+/* Challenge / surprise rows */
+.tj-challenge,
+#tj-lmr .tj-challenge,
+details.tj-challenge {
+  background: rgba(12, 28, 22, 0.9) !important;
+  border: 1px solid var(--tj-border) !important;
+  color: var(--tj-text) !important;
+}
+
+/* Audio element chrome (browser-native still OS-themed; frame it) */
+#tj-lmr audio {
+  width: 100%;
+  filter: invert(0.92) hue-rotate(120deg) brightness(0.9) contrast(1.05);
+  border-radius: 8px;
+  opacity: 0.95;
+}
+
+/* Links gold */
+#tj-lmr a,
+#tj-deep-studio a,
+.card-tajweed a {
+  color: var(--tj-gold, #e0c36a) !important;
+}
+
+/* Focus step panels when not hidden */
+#tj-lmr-step1,
+#tj-lmr-step2,
+#tj-lmr-step3,
+#tj-lmr-step4 {
+  background: transparent !important;
+  color: var(--tj-text) !important;
+}
+
+/* Toolbar labels */
+#tj-lmr .tj-lmr-label,
+#tj-lmr label {
+  color: var(--tj-muted) !important;
+}
+
+/* Progress bars in path card */
+#tj-overall-progress .track {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+#tj-overall-fill {
+  background: linear-gradient(90deg, #1e7d5e, #c9a227) !important;
+}
+
+/* Reduce leftover pure-white panels inside tajweed hosts */
+#tj-lmr [style*="background: #fff"],
+#tj-lmr [style*="background:#fff"],
+#tj-lmr [style*="background: white"],
+#tj-lmr [style*="background-color: #fff"],
+#tj-deep-studio [style*="background: #fff"],
+#tj-deep-studio [style*="background:#f"],
+#tj-lmr [style*="background: rgb(255"],
+#tj-lmr [style*="background-color: rgb(255"] {
+  background: rgba(12, 28, 22, 0.95) !important;
+  color: #e7efe9 !important;
+}
+
+/* Light gray surfaces → night */
+#tj-lmr [style*="background: #f"],
+#tj-lmr [style*="background:#f"],
+#tj-lmr [style*="background: rgb(245"],
+#tj-lmr [style*="background: rgb(248"],
+#tj-lmr [style*="background: rgb(250"] {
+  background: rgba(15, 28, 22, 0.95) !important;
+  color: #e7efe9 !important;
+}
