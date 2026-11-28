@@ -1,0 +1,105 @@
+/*! companion-night-polish-v1.css · Phase Night
+ * Unified night surfaces + review seal across Companion RRRA
+ * Additive · educational only — not a fatwa · Version 20261128NIGHT
+ */
+
+html[data-clarity-room="companion"] {
+  --cn-bg: #07110e;
+  --cn-elev: #0f1c18;
+  --cn-text: #e7efe9;
+  --cn-muted: rgba(231, 239, 233, 0.78);
+  --cn-gold: #e0c36a;
+  --cn-gold-line: rgba(224, 195, 106, 0.35);
+  --cn-green: #1e7d5e;
+  --cn-border: rgba(201, 162, 39, 0.28);
+}
+
+/* Residual light plaques inside mount → night */
+html[data-clarity-room="companion"] #cs-mount .cs-plaque,
+html[data-clarity-room="companion"] #cs-mount .card,
+html[data-clarity-room="companion"] #cs-mount section.cs-plaque-deep,
+html[data-clarity-room="companion"] #cs-mount .siq-suite {
+  background: linear-gradient(165deg, #0f1c18, #0a1410 62%) !important;
+  border-color: var(--cn-border) !important;
+  color: var(--cn-text) !important;
+}
+
+html[data-clarity-room="companion"] #cs-mount h1,
+html[data-clarity-room="companion"] #cs-mount h2,
+html[data-clarity-room="companion"] #cs-mount h3 {
+  color: #e8d5a3 !important;
+}
+
+html[data-clarity-room="companion"] #cs-mount p,
+html[data-clarity-room="companion"] #cs-mount .lead,
+html[data-clarity-room="companion"] #cs-mount .disc,
+html[data-clarity-room="companion"] #cs-mount .edu,
+html[data-clarity-room="companion"] #cs-mount .td-src {
+  color: var(--cn-muted) !important;
+}
+
+/* Chips / buttons */
+html[data-clarity-room="companion"] #cs-mount .cs-chip,
+html[data-clarity-room="companion"] #cs-mount .chip {
+  background: rgba(0, 0, 0, 0.32) !important;
+  border-color: var(--cn-border) !important;
+  color: #d8efe4 !important;
+}
+
+html[data-clarity-room="companion"] #cs-mount .cs-btn,
+html[data-clarity-room="companion"] #cs-mount button.btn-soft,
+html[data-clarity-room="companion"] #cs-mount button.btn-secondary {
+  background: rgba(18, 36, 28, 0.95) !important;
+  border: 1px solid var(--cn-border) !important;
+  color: var(--cn-text) !important;
+}
+
+html[data-clarity-room="companion"] #cs-mount button.primary,
+html[data-clarity-room="companion"] #cs-mount .cs-btn.primary,
+html[data-clarity-room="companion"] #cs-mount .siq-tab.active {
+  background: linear-gradient(180deg, #1e7d5e, #176b50) !important;
+  color: #f7f0dd !important;
+  border-color: rgba(120, 220, 160, 0.3) !important;
+}
+
+/* Light calligraphy pad stage when revealed */
+html[data-clarity-room="companion"] #callig-lab-stage,
+html[data-clarity-room="companion"] #callig-lab-card [style*="background:#f3efe6"],
+html[data-clarity-room="companion"] #callig-lab-card [style*="background: #f"] {
+  background: #0c1814 !important;
+  border-color: var(--cn-border) !important;
+}
+
+/* SIQ panels */
+html[data-clarity-room="companion"] #cs-mount .siq-panel,
+html[data-clarity-room="companion"] #cs-mount .siq-hero {
+  background: transparent !important;
+  color: var(--cn-text) !important;
+}
+
+/* Review footer strip (injected by JS) */
+#cn-review-footer {
+  margin: 1.25rem auto 0.5rem;
+  max-width: 42rem;
+  padding: 0.55rem 0.85rem;
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: rgba(231, 239, 233, 0.75);
+  border-top: 1px solid var(--cn-gold-line);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 12px 12px;
+}
+#cn-review-footer strong {
+  color: #e8d5a3;
+  font-weight: 700;
+}
+#cn-review-footer a {
+  color: var(--cn-gold);
+}
+
+/* Don't double-night path tiles (already themed) */
+html[data-clarity-room="companion"] .cs-path {
+  /* leave path grid alone beyond text color if needed */
+}
