@@ -1,0 +1,107 @@
+/*! companion-seerah-mirror-v1.css · Phase 3 · Reality · night · educational only */
+#c3-seerah-card[hidden],
+#c3-seerah-card[data-c3-visible="0"] {
+  display: none !important;
+}
+#c3-seerah-card {
+  margin: 0.75rem auto 1rem;
+  max-width: 42rem;
+  padding: 0.9rem 1rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: linear-gradient(165deg, #0f1c18, #0a1410 60%);
+  color: #e7efe9;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+.c3-head {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  margin-bottom: 0.45rem;
+}
+.c3-ico {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 35% 30%, #5a9ec8, #1a4a6b 75%);
+  border: 1.5px solid rgba(212, 180, 90, 0.55);
+  color: #e8d48b;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+}
+.c3-title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+.c3-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+.c3-event {
+  margin: 0.5rem 0 0.55rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #eef6f1;
+}
+.c3-lesson {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  border-left: 3px solid #3d7a9b;
+  background: rgba(61, 122, 155, 0.14);
+  margin-bottom: 0.55rem;
+}
+.c3-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.55rem;
+}
+.c3-chip {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(0, 0, 0, 0.28);
+  color: #d8efe4;
+  text-decoration: none;
+}
+.c3-link { color: #e0c36a; }
+.c3-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
+}
+.c3-btn {
+  appearance: none;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: #1e7d5e;
+  color: #fff;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+}
+.c3-soft {
+  background: rgba(0, 0, 0, 0.35);
+  color: #e7efe9;
+}
+.c3-btn:disabled { opacity: 0.75; cursor: default; }
+.c3-foot {
+  margin: 0;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  text-align: center;
+}
