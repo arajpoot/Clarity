@@ -1,8 +1,8 @@
 /*! companion-c0-sticky-map-v1.js
- * Phase C0 — inject #cs-banner-strip Map pill · sticky banner · map/welcome modals
+ * Phase C0.1 — full-width Map pill · Bismillah strip · Reminder rail label
  * Additive · Companion only · educational only — not a fatwa
  * Hooks: #companion-banner-shell, #cs-banner-strip, #clarity-door-rail [data-rail-tab]
- * Version: 20261128C0
+ * Version: 20261128C0.1
  */
 (function (w, d) {
   "use strict";
@@ -68,12 +68,56 @@
       '<span class="c0-map-label">Map · paths &amp; halls</span>' +
       '<span class="c0-map-sub">Today · Learn · Prepare · Studios</span>' +
       "</span>";
+    btn.setAttribute("title", "Open Companion map");
     strip.appendChild(btn);
     on(btn, "click", function (e) {
       e.preventDefault();
       openMap();
     });
     return btn;
+  }
+
+
+  function ensureBismillah(afterEl) {
+    if (qs("#c0-bismillah-strip")) return qs("#c0-bismillah-strip");
+    var strip = d.createElement("div");
+    strip.id = "c0-bismillah-strip";
+    strip.setAttribute("role", "note");
+    strip.setAttribute("aria-label", "Bismillah");
+    strip.innerHTML =
+      '<p class="c0-bis-ar" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>' +
+      '<p class="c0-bis-en">In the name of Allah, the Most Gracious, the Most Merciful</p>' +
+      '<p class="c0-bis-seal">Educational companion · not a fatwa</p>';
+    var path = qs(".cs-path");
+    if (afterEl && afterEl.parentNode) {
+      if (afterEl.nextSibling) {
+        afterEl.parentNode.insertBefore(strip, afterEl.nextSibling);
+      } else {
+        afterEl.parentNode.appendChild(strip);
+      }
+    } else if (path && path.parentNode) {
+      path.parentNode.insertBefore(strip, path);
+    } else {
+      d.body.appendChild(strip);
+    }
+    return strip;
+  }
+
+  function forceReminderRailLabel() {
+    var btn =
+      qs('#clarity-door-rail [data-rail-tab="reminder"]') ||
+      qs('.cs-door [data-rail-tab="reminder"]');
+    if (!btn) return;
+    var lab = btn.querySelector(".dr-label");
+    if (lab) {
+      lab.textContent = "Reminder";
+    } else {
+      btn.setAttribute("aria-label", "Reminder");
+    }
+    /* Remove legacy "Map" only label if some packs set data-rail-label */
+    if (btn.getAttribute("data-rail-label") === "Map") {
+      btn.setAttribute("data-rail-label", "Reminder");
+    }
   }
 
   function clickRail(tab) {
@@ -304,6 +348,8 @@
     markStickyClass();
     var strip = ensureStrip();
     ensurePill(strip);
+    ensureBismillah(strip);
+    forceReminderRailLabel();
     ensureModal();
   }
 
@@ -316,6 +362,8 @@
   }
   w.addEventListener("load", function () {
     setTimeout(boot, 120);
+    setTimeout(forceReminderRailLabel, 400);
+    setTimeout(forceReminderRailLabel, 1200);
   });
 
   /* Public hooks for later phases / tests */
@@ -323,6 +371,6 @@
     openMap: openMap,
     openWelcome: openWelcome,
     closeModal: closeModal,
-    version: "20261128C0",
+    version: "20261128C0.1",
   };
 })(window, document);
