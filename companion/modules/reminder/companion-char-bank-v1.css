@@ -1,0 +1,116 @@
+/*! companion-char-bank-v1.css · Phase 2 · night Reminder card · educational only */
+#c2-char-card,
+.c2-char-card {
+  margin: 0.75rem auto 1rem;
+  max-width: 42rem;
+  padding: 0.9rem 1rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: linear-gradient(165deg, #0f1c18, #0a1410 60%);
+  color: #e7efe9;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+.c2-char-head {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  margin-bottom: 0.45rem;
+}
+.c2-char-ico {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 35% 30%, #4caf82, #1a6b52 75%);
+  border: 1.5px solid rgba(212, 180, 90, 0.55);
+  color: #e8d48b;
+  flex-shrink: 0;
+}
+.c2-char-title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+.c2-char-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+.c2-char-text {
+  margin: 0.55rem 0 0.65rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #eef6f1;
+}
+.c2-char-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.55rem;
+}
+.c2-chip {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(0, 0, 0, 0.28);
+  color: #d8efe4;
+  text-decoration: none;
+}
+.c2-grade {
+  background: #1e3329;
+  color: #8fd4a0;
+  border-color: rgba(143, 212, 160, 0.35);
+}
+.c2-link { color: #e0c36a; }
+.c2-char-ponder {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  border-left: 3px solid #1e7d5e;
+  background: rgba(30, 125, 94, 0.12);
+  margin-bottom: 0.65rem;
+}
+.c2-char-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
+}
+.c2-btn {
+  appearance: none;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: #1e7d5e;
+  color: #fff;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+}
+.c2-btn-soft {
+  background: rgba(0, 0, 0, 0.35);
+  color: #e7efe9;
+}
+.c2-btn:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+.c2-char-foot {
+  margin: 0;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* Seeker calm: only one char card */
+html[data-clarity-room="companion"] #c2-char-card + #c2-char-card {
+  display: none !important;
+}
