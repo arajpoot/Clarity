@@ -1,7 +1,7 @@
 /*! companion-char-bank-v1.js · Phase 2 Reminder densify
  * One graded character card on Reminder · Another rotates bank
  * Form factor: does not replace Beautiful Names · educational only — not a fatwa
- * Version: 20261128P2
+ * Version: 20261128P2.1
  */
 (function (w, d) {
   "use strict";
@@ -37,43 +37,106 @@
     }
   }
 
+  function isReminderActive() {
+    var btn =
+      qs('#clarity-door-rail [data-rail-tab="reminder"].is-active') ||
+      qs('.cs-door [data-rail-tab="reminder"].is-active') ||
+      qs('button[data-rail-tab="reminder"][aria-current="page"]');
+    if (btn) return true;
+    try {
+      var tab = (d.body && d.body.getAttribute("data-active-tab")) || "";
+      if (String(tab).toLowerCase() === "reminder") return true;
+    } catch (e) {}
+    /* hash */
+    var h = (w.location.hash || "").replace(/^#/, "").toLowerCase();
+    if (h === "reminder" || h === "") {
+      /* empty hash often defaults to reminder on first paint — still require active class if present */
+      if (!qs("#clarity-door-rail .is-active") && !qs(".cs-door .is-active")) return true;
+    }
+    return false;
+  }
+
+  function hideCard() {
+    var el = qs("#c2-char-card");
+    if (el) {
+      el.setAttribute("hidden", "");
+      el.style.display = "none";
+      el.setAttribute("data-c2-visible", "0");
+    }
+  }
+
+  function showCard(el) {
+    if (!el) return;
+    el.removeAttribute("hidden");
+    el.style.display = "";
+    el.setAttribute("data-c2-visible", "1");
+  }
+
+  function findReminderAnchor() {
+    var mount = qs("#cs-mount");
+    if (!mount) return null;
+    /* Prefer after Reminder intro heading/plaque that contains "What Allah and His Messenger" */
+    var nodes = mount.querySelectorAll("section, article, .cs-plaque, .card, h2, h1, .cs-tab-head");
+    var i, el, t;
+    for (i = 0; i < nodes.length; i++) {
+      el = nodes[i];
+      t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (/What Allah and His Messenger taught/i.test(t) && t.length < 280) {
+        return el;
+      }
+    }
+    for (i = 0; i < nodes.length; i++) {
+      el = nodes[i];
+      t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (/^Reminder\b/i.test(t) && /Educational only/i.test(t) && t.length < 320) {
+        return el;
+      }
+    }
+    /* ladder strip */
+    for (i = 0; i < nodes.length; i++) {
+      el = nodes[i];
+      t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (/Reminder ladder/i.test(t) && t.length < 400) {
+        return el;
+      }
+    }
+    return null;
+  }
+
   function mountHost() {
     var existing = qs("#c2-char-card");
     if (existing) return existing;
 
-    /* Prefer after Names card / inside reminder mount */
-    var mount =
-      qs("#cs-mount") ||
-      qs('[data-rail-panel="reminder"]') ||
-      qs("main");
-
+    var mount = qs("#cs-mount");
     var host = d.createElement("section");
     host.id = "c2-char-card";
     host.className = "c2-char-card cs-plaque";
     host.setAttribute("data-cs-module", "character-bank");
     host.setAttribute("aria-label", "Character lesson");
+    host.setAttribute("data-c2-tab", "reminder");
 
-    /* Insert near Names if present, else top of mount content */
-    var names =
-      qs("#cs-mount .cs-plaque") ||
-      qs("#cs-mount section") ||
-      qs("#cs-mount article");
-    if (mount) {
-      if (names && names.parentNode === mount) {
-        if (names.nextSibling) mount.insertBefore(host, names.nextSibling);
-        else mount.appendChild(host);
-      } else {
-        mount.insertBefore(host, mount.firstChild);
-      }
+    var anchor = findReminderAnchor();
+    if (anchor && anchor.parentNode) {
+      /* place AFTER Reminder intro / ladder — not above */
+      if (anchor.nextSibling) anchor.parentNode.insertBefore(host, anchor.nextSibling);
+      else anchor.parentNode.appendChild(host);
+    } else if (mount) {
+      /* bottom of mount rather than top — avoids path/focus leak look */
+      mount.appendChild(host);
     } else {
-      d.body.appendChild(host);
+      return null;
     }
     return host;
   }
 
   function render(forceNew) {
+    if (!isReminderActive()) {
+      hideCard();
+      return;
+    }
     var host = mountHost();
     if (!host) return;
+    showCard(host);
     var i = pickIndex(!!forceNew);
     var h = BANK[i];
     if (!h) return;
@@ -145,32 +208,46 @@
   }
 
   function onTab(ev) {
+    var t = "";
     try {
-      var t = (ev && ev.detail && (ev.detail.tab || ev.detail.name)) || "";
-      if (t && String(t).toLowerCase() !== "reminder") return;
+      t = (ev && ev.detail && (ev.detail.tab || ev.detail.name)) || "";
     } catch (e) {}
-    setTimeout(function () {
-      render(false);
-    }, 80);
-    setTimeout(function () {
-      render(false);
-    }, 400);
+    t = String(t || "").toLowerCase();
+    if (t && t !== "reminder") {
+      hideCard();
+      return;
+    }
+    setTimeout(function () { render(false); }, 80);
+    setTimeout(function () { render(false); }, 450);
   }
 
   d.addEventListener("clarity:tab-mounted", onTab);
   w.addEventListener("clarity:tab-mounted", onTab);
+  d.addEventListener("cs:rail-tab", onTab);
+  w.addEventListener("cs:rail-tab", onTab);
+
+  /* Click rail: hide immediately on non-reminder */
+  d.addEventListener(
+    "click",
+    function (ev) {
+      var t = ev.target && ev.target.closest && ev.target.closest("[data-rail-tab]");
+      if (!t) return;
+      var name = (t.getAttribute("data-rail-tab") || "").toLowerCase();
+      if (name && name !== "reminder") hideCard();
+      else if (name === "reminder") setTimeout(function () { render(false); }, 100);
+    },
+    true
+  );
 
   function boot() {
-    /* Default first paint is often Reminder */
-    var active =
-      qs('#clarity-door-rail [data-rail-tab="reminder"].is-active') ||
-      qs('.cs-door [data-rail-tab="reminder"].is-active');
-    if (active || !qs("#c2-char-card")) render(false);
+    if (isReminderActive()) render(false);
+    else hideCard();
   }
 
-  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 150); });
-  else setTimeout(boot, 150);
-  w.addEventListener("load", function () { setTimeout(boot, 500); });
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 200); });
+  else setTimeout(boot, 200);
+  w.addEventListener("load", function () { setTimeout(boot, 600); });
+  setTimeout(boot, 1200);
 
-  w.CompanionCharBank = { render: render, version: "20261128P2", size: BANK.length };
+  w.CompanionCharBank = { render: render, version: "20261128P2.1", size: BANK.length };
 })(window, document);

@@ -114,3 +114,13 @@
 html[data-clarity-room="companion"] #c2-char-card + #c2-char-card {
   display: none !important;
 }
+
+
+/* Isolation: never show on non-reminder */
+#c2-char-card[hidden],
+#c2-char-card[data-c2-visible="0"] {
+  display: none !important;
+}
+html[data-clarity-room="companion"] body[data-active-tab]:not([data-active-tab="reminder"]) #c2-char-card {
+  display: none !important;
+}
