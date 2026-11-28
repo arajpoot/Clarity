@@ -69,13 +69,14 @@
       var x = c.width / 2, yy = c.height / 2;
       ctx.lineJoin = "round";
       ctx.lineWidth = Math.max(2.5, c.height * 0.014);
-      ctx.strokeStyle = "rgba(13,79,60,0.42)";
+      ctx.strokeStyle = "rgba(13,79,60,0.55)";
       ctx.strokeText(g, x, yy);
-      ctx.fillStyle = "rgba(13,79,60,0.22)";
+      ctx.fillStyle = "rgba(13,79,60,0.30)";
       ctx.fillText(g, x, yy);
       ctx.restore();
     }
     /* user ink */
+    /* ___inline_sync */
     state.strokes.forEach(function (st) {
       if (!st || !st.pts || st.pts.length < 2) return;
       ctx.beginPath();
@@ -90,6 +91,7 @@
   }
 
   function pos(ev, c) {
+
     var r = c.getBoundingClientRect();
     var src = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
     if (ev.clientX == null && ev.touches) src = ev.touches[0];
