@@ -1,17 +1,16 @@
-# Companion C0.1 drop-in · fully deployable
-
-No manual HTML editing.
+# Companion Phase 2 · Reminder character bank
 
 ```
 companion/
   index.html
-  assets/
-    companion-c0-sticky-map-v1.css
-    companion-c0-sticky-map-v1.js
+  modules/reminder/
+    companion-char-bank-v1.js
+    companion-char-bank-v1.css
 ```
 
-Deploy: `rsync -av companion/ /path/to/site/companion/`
+- One graded character card on Reminder (10 lessons from CHAR_BANK)
+- Chips: **grade · collection · number** + Sunnah.com
+- "Another lesson" rotates; "I will act" shares companion day key
+- Does not replace Beautiful Names; educational only — not a fatwa
 
-C0.1: full-width Map pill · single-line label · green Bismillah strip · Reminder rail label · sticky banner
-
-Version 20261128C0.1 · educational only — not a fatwa
+Deploy: rsync -av companion/ /path/to/site/companion/
