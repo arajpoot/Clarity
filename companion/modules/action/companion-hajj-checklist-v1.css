@@ -1,0 +1,102 @@
+/*! companion-hajj-checklist-v1.css · Phase 4 · night Action · educational only */
+#c4-hajj-checklist[hidden] { display: none !important; }
+#c4-hajj-checklist {
+  margin: 0.85rem auto 1.25rem;
+  max-width: 42rem;
+  padding: 0.9rem 1rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: linear-gradient(165deg, #0f1c18, #0a1410 60%);
+  color: #e7efe9;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+.c4-title {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+.c4-lead {
+  margin: 0.2rem 0 0.55rem;
+  font-size: 0.82rem;
+  opacity: 0.88;
+}
+.c4-progress { margin-bottom: 0.65rem; }
+#c4-prog-label { font-size: 0.78rem; color: #c8e6d4; }
+.c4-track {
+  margin-top: 0.25rem;
+  height: 0.4rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.c4-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1e7d5e, #e0c36a);
+  transition: width 0.25s ease;
+}
+.c4-step {
+  border: 1px solid rgba(201, 162, 39, 0.22);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.28);
+  margin-bottom: 0.4rem;
+  padding: 0.15rem 0.45rem 0.35rem;
+}
+.c4-step.is-done {
+  border-color: rgba(143, 212, 160, 0.35);
+  background: rgba(30, 125, 94, 0.12);
+}
+.c4-step summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.4rem 0.15rem;
+}
+.c4-step summary::-webkit-details-marker { display: none; }
+.c4-check-wrap { flex-shrink: 0; padding-top: 0.15rem; }
+.c4-check { width: 1.05rem; height: 1.05rem; accent-color: #1e7d5e; }
+.c4-step-title {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #f0e6c8;
+}
+.c4-step-meta {
+  display: block;
+  font-size: 0.72rem;
+  opacity: 0.85;
+  margin-top: 0.1rem;
+}
+.c4-note {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.9;
+  margin: 0.25rem 0.25rem 0.4rem;
+}
+.c4-do {
+  margin: 0.2rem 0.4rem 0.35rem 1.4rem;
+  padding: 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+.c4-src, .c4-foot {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  margin: 0.25rem 0.35rem;
+}
+.c4-foot { margin-top: 0.65rem; line-height: 1.4; }
+.c4-reset {
+  appearance: none;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(0, 0, 0, 0.35);
+  color: #e7efe9;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+}
