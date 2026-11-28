@@ -1,0 +1,273 @@
+/*! companion-c0-sticky-map-v1.css
+ * Phase C0 — sticky banner shell + vivid Map pill in #cs-banner-strip
+ * Additive · Companion room only · educational only — not a fatwa
+ * Selectors aligned to live: #companion-banner-shell, #cs-banner-strip, #clarity-door-rail
+ * Version: 20261128C0
+ */
+
+/* --- Sticky banner under room nav --- */
+html[data-clarity-room="companion"] .cs-room-nav,
+html[data-clarity-room="companion"] nav.cs-room-nav {
+  position: sticky;
+  top: 0;
+  z-index: 130;
+}
+
+html[data-clarity-room="companion"] #companion-banner-shell,
+html[data-clarity-room="companion"] .companion-banner-shell {
+  position: sticky;
+  top: 0;
+  z-index: 125;
+  background: #07110e;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* When room-nav is present, park banner below it */
+@supports (top: 1px) {
+  html[data-clarity-room="companion"] #companion-banner-shell {
+    top: 0;
+  }
+}
+
+/* Desktop: keep banner sticky; door rail stays bottom as live */
+@media (min-width: 900px) {
+  html[data-clarity-room="companion"] #companion-banner-shell {
+    position: sticky;
+    top: 0;
+    z-index: 125;
+  }
+}
+
+/* --- Banner strip slot (G3 policy already hides :empty) --- */
+#cs-banner-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45rem 0.75rem calc(0.5rem + env(safe-area-inset-top, 0px) * 0);
+  background: linear-gradient(180deg, rgba(8, 18, 14, 0.98), rgba(6, 14, 12, 0.96));
+  border-bottom: 1px solid rgba(201, 162, 39, 0.28);
+}
+
+#cs-banner-strip:empty {
+  display: none !important;
+}
+
+/* --- Vivid Map / help pill --- */
+#cs-banner-strip .c0-map-pill,
+button.c0-map-pill {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  min-width: min(22rem, 92vw);
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(224, 195, 106, 0.65);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+  color: #1a1408;
+  background: linear-gradient(180deg, #f0d78c 0%, #c9a227 55%, #a67c1a 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 4px 14px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(224, 195, 106, 0.25);
+  transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+}
+
+#cs-banner-strip .c0-map-pill:hover,
+button.c0-map-pill:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+#cs-banner-strip .c0-map-pill:active,
+button.c0-map-pill:active {
+  transform: scale(0.98);
+}
+
+#cs-banner-strip .c0-map-pill:focus-visible,
+button.c0-map-pill:focus-visible {
+  outline: 2px solid #f7f0dd;
+  outline-offset: 3px;
+}
+
+#cs-banner-strip .c0-map-pill .c0-map-ico {
+  font-size: 1.15rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+#cs-banner-strip .c0-map-pill .c0-map-label {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+#cs-banner-strip .c0-map-pill .c0-map-sub {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 650;
+  opacity: 0.85;
+  margin-top: 0.05rem;
+}
+
+#cs-banner-strip .c0-map-pill-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  line-height: 1.15;
+}
+
+@media (max-width: 420px) {
+  #cs-banner-strip .c0-map-pill {
+    min-width: 94vw;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+  #cs-banner-strip .c0-map-pill .c0-map-label {
+    font-size: 0.98rem;
+  }
+}
+
+/* --- Map modal (mirrors live Companion map halls) --- */
+.c0-map-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.c0-map-backdrop[hidden] {
+  display: none !important;
+}
+
+.c0-map-modal {
+  width: min(26rem, 100%);
+  max-height: min(88vh, 36rem);
+  overflow: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(224, 195, 106, 0.4);
+  background: linear-gradient(165deg, #0f1c18, #0a1410 60%);
+  color: #e8f0ec;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  padding: 1rem 1rem 1.1rem;
+}
+
+.c0-map-modal h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  color: #e8d5a3;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.c0-map-modal .c0-map-lead {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  opacity: 0.88;
+  line-height: 1.4;
+}
+
+.c0-map-halls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0 0 0.85rem;
+}
+
+.c0-map-hall {
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.32);
+  background: rgba(0, 0, 0, 0.28);
+  color: #e8f0ec;
+  padding: 0.65rem 0.75rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.c0-map-hall:hover,
+.c0-map-hall:focus-visible {
+  border-color: rgba(224, 195, 106, 0.65);
+  background: rgba(30, 125, 94, 0.22);
+  outline: none;
+}
+
+.c0-map-hall strong {
+  display: block;
+  color: #e8d5a3;
+  font-size: 0.92rem;
+  margin-bottom: 0.15rem;
+}
+
+.c0-map-hall span {
+  display: block;
+  font-size: 0.76rem;
+  opacity: 0.88;
+  line-height: 1.35;
+}
+
+.c0-map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.c0-map-actions button {
+  appearance: none;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: #e8f0ec;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+}
+
+.c0-map-actions button.c0-primary {
+  background: #1e7d5e;
+  border-color: transparent;
+  color: #fff;
+}
+
+.c0-map-foot {
+  margin: 0.65rem 0 0;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* Welcome interest sheet */
+.c0-welcome-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0 0 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cs-banner-strip .c0-map-pill,
+  button.c0-map-pill {
+    transition: none;
+  }
+}
