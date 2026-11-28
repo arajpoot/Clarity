@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/companion/assets/companion-engines-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-rich-restore-v1.css?v=20261125ROLLBACK"/>
 <link rel="stylesheet" href="/companion/assets/companion-ux-polish-hk2.css?v=20261125ROLLBACK"/>
-<meta name="clarity-build" content="CM21-CALLIG-NUKE-20261127"/>
+<meta name="clarity-build" content="CM21-CALLIG-NUKE2-20261127"/>
 
 <style id="clarity-embed-fold-css">
 .clarity-embed-fold:not([open]) .clarity-embed-body { display:none!important;height:0!important;overflow:hidden!important; }
@@ -309,9 +309,74 @@ document.addEventListener("toggle", function(e){
   <div class="callig-lab-stage" id="callig-lab-stage" style="touch-action:none;position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(212,180,90,.35);background:#f3efe6">
     <canvas id="callig-canvas" width="900" height="420" style="width:100%;max-width:100%;height:auto;display:block;touch-action:none;background:#f3efe6"></canvas>
   </div>
+
+<script id="callig-inline-guide">
+(function(){
+  function paintGuide(glyph){
+    var c=document.getElementById("callig-canvas");
+    if(!c) return false;
+    var rect=c.getBoundingClientRect();
+    var w=Math.max(300, Math.round(rect.width||c.clientWidth||900));
+    var h=Math.max(180, Math.round(w*0.48));
+    if(c.width!==900) c.width=900;
+    if(c.height!==420) c.height=420;
+    var ctx=c.getContext("2d");
+    if(!ctx) return false;
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.fillStyle="#f3efe6";
+    ctx.fillRect(0,0,c.width,c.height);
+    ctx.strokeStyle="rgba(13,79,60,0.18)";
+    ctx.lineWidth=1;
+    for(var y=40;y<c.height;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(c.width,y);ctx.stroke();}
+    ctx.strokeStyle="rgba(184,146,42,0.55)";
+    ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(0,c.height/2);ctx.lineTo(c.width,c.height/2);ctx.stroke();
+    var g=glyph||"ا";
+    var guideEl=document.getElementById("callig-guide");
+    if(guideEl && !guideEl.checked) return true;
+    ctx.save();
+    ctx.font="700 "+Math.round(c.height*0.45)+"px Amiri, 'Scheherazade New', 'Noto Naskh Arabic', serif";
+    ctx.textAlign="center";
+    ctx.textBaseline="middle";
+    ctx.direction="rtl";
+    ctx.lineJoin="round";
+    ctx.lineWidth=Math.max(3, c.height*0.016);
+    ctx.strokeStyle="rgba(13,79,60,0.5)";
+    ctx.strokeText(g, c.width/2, c.height/2);
+    ctx.fillStyle="rgba(13,79,60,0.28)";
+    ctx.fillText(g, c.width/2, c.height/2);
+    ctx.restore();
+    return true;
+  }
+  window.__calligInlinePaint=paintGuide;
+  function run(){
+    var g="ا";
+    var on=document.querySelector("[data-callig-glyph].on");
+    if(on) g=on.getAttribute("data-callig-glyph")||g;
+    paintGuide(g);
+  }
+  run();
+  setTimeout(run, 100);
+  setTimeout(run, 400);
+  setTimeout(run, 1000);
+  document.addEventListener("clarity:tab-mounted", function(){ setTimeout(run, 50); setTimeout(run, 300); });
+  document.querySelectorAll("[data-callig-glyph]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll("[data-callig-glyph]").forEach(function(b){b.classList.toggle("on", b===btn);});
+      paintGuide(btn.getAttribute("data-callig-glyph")||"ا");
+      var tip=document.getElementById("callig-tajweed-tip");
+      if(tip) tip.textContent="Guide: "+(btn.getAttribute("data-callig-glyph")||"ا")+" · educational only — not a fatwa";
+    });
+  });
+  var ge=document.getElementById("callig-guide");
+  if(ge) ge.addEventListener("change", run);
+})();
+</script>
+
   <p class="edu" style="margin-top:.5rem;font-size:.8rem">Guide is the letter on the pad. Educational only — not a fatwa.</p>
 </section>
-<script src="/companion/modules/clarity-callig-nuke-v1.js?v=20261127NUKE1"></script>
+<script src="/companion/modules/clarity-callig-nuke-v1.js?v=20261127NUKE2"></script>
 <style id="callig-nuke-css">
 .callig-stylus-hint{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.78rem;margin:.35rem 0;padding:.4rem .65rem;border-radius:10px;background:rgba(15,76,58,.08);border:1px solid rgba(196,165,116,.25)}
 .callig-mode-badge{display:inline-flex;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .45rem;border-radius:999px;background:rgba(15,76,58,.2);color:#c4a574;border:1px solid rgba(196,165,116,.35)}
@@ -372,19 +437,6 @@ document.addEventListener("toggle", function(e){
   <a href="/craft/calligraphy/" style="padding:.45rem .9rem;border-radius:999px;border:1px solid rgba(30,125,94,.45);color:#b8e0d0;text-decoration:none;font-weight:700">✒️ Craft calligraphy</a>
 </div>
 
-
-<!-- foundation-repair: inert inline meme studio removed; SoT /companion/meme/ + iframe held -->
-<div class="cs-plaque" data-enrichment="migrated:inline-meme→companion/meme (linked)" id="meme-card-sot-note">
-  <h2>🎨 Meme Studio</h2>
-  <p class="lead">Runs in the isolated Companion module above (and full page). Educational only — not a fatwa.</p>
-  <p><a class="cs-btn primary" href="/companion/meme/">Open full Companion Meme Studio</a></p>
-</div>
-
-
-
-</div></div>
-
-</div>
 
 <div class="siq-hero-text">
       <h2 style="margin:0;color:var(--gold)">🧠 Sharia IQ &amp; Daily Fiqh</h2>
