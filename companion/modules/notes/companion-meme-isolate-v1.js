@@ -1,12 +1,22 @@
-/*! companion-meme-isolate-v1.js · Phase 6 Meme isolation
- * Hide meme host outside Notes · door card on Notes → /companion/meme/
- * Map Studios hall already links out · educational only — not a fatwa
- * Version: 20261128P6
+/*! companion-meme-isolate-v1.js · Phase 6.1
+ * Kill residual Meme (+ calligraphy host noise) outside Notes
+ * Educational only — not a fatwa · Version 20261128P6.1
  */
 (function (w, d) {
   "use strict";
-  if (w.__COMPANION_MEME_ISOLATE_V1__) return;
   w.__COMPANION_MEME_ISOLATE_V1__ = true;
+
+  var HIDE_SEL = [
+    "#meme-section",
+    "#cs-meme-mount",
+    "#cs-meme-frame",
+    ".cs-meme-host",
+    ".cs-meme-mount",
+    ".cs-meme-frame",
+    "[data-meme-spine]",
+    "[data-meme-host]",
+    "#callig-lab-card"
+  ];
 
   function qs(sel, root) {
     try {
@@ -29,71 +39,129 @@
     }
   }
 
-  function hideHosts() {
-    ["#meme-section", "#cs-meme-mount", "#cs-meme-frame", ".cs-meme-host"].forEach(function (sel) {
-      d.querySelectorAll(sel).forEach(function (el) {
-        el.removeAttribute("data-p6-notes");
-        el.setAttribute("hidden", "");
-        try {
-          el.style.setProperty("display", "none", "important");
-        } catch (e) {}
-      });
-    });
-    /* promo strips that leak into Reminder */
-    d.querySelectorAll("#cs-mount .cs-meme-promo, #cs-mount [data-meme-promo]").forEach(function (el) {
+  function forceHide(el) {
+    if (!el) return;
+    el.setAttribute("hidden", "");
+    el.setAttribute("data-p6-hidden", "1");
+    try {
+      el.style.setProperty("display", "none", "important");
+      el.style.setProperty("visibility", "hidden", "important");
+      el.style.setProperty("height", "0", "important");
+      el.style.setProperty("overflow", "hidden", "important");
+      el.style.setProperty("margin", "0", "important");
+      el.style.setProperty("padding", "0", "important");
+      el.style.setProperty("border", "0", "important");
+    } catch (e) {}
+    /* unload iframe so it does not keep network */
+    if (el.tagName === "IFRAME") {
       try {
-        el.style.setProperty("display", "none", "important");
+        el.removeAttribute("src");
+        el.src = "about:blank";
       } catch (e2) {}
+    }
+    el.querySelectorAll &&
+      el.querySelectorAll("iframe").forEach(function (f) {
+        try {
+          f.removeAttribute("src");
+          f.src = "about:blank";
+        } catch (e3) {}
+      });
+  }
+
+  function hideResiduals() {
+    HIDE_SEL.forEach(function (sel) {
+      d.querySelectorAll(sel).forEach(forceHide);
+    });
+    /* text-matched shells that lost ids */
+    d.querySelectorAll("#cs-mount section, #cs-mount .cs-plaque, #cs-mount .card").forEach(function (el) {
+      if (el.id === "c6-meme-door" || el.id === "c6-callig-door") return;
+      var t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (/^Meme Studio\b/i.test(t) || /Companion Meme · isolated/i.test(t) || /Expand studio/i.test(t) && /Open full page/i.test(t)) {
+        forceHide(el);
+      }
     });
   }
 
-  function showHostsOnNotes() {
-    /* still prefer external studio — keep embed collapsed; door is enough */
-    hideHosts();
-  }
-
-  function mountDoor() {
-    var existing = qs("#c6-meme-door");
-    if (existing) return existing;
+  function mountDoors() {
     var mount = qs("#cs-mount");
-    if (!mount) return null;
-    var host = d.createElement("section");
-    host.id = "c6-meme-door";
-    host.setAttribute("data-cs-module", "meme-door");
-    host.innerHTML =
-      '<h2 class="c6-meme-title">Meme Studio · isolated</h2>' +
-      '<p class="c6-meme-lead">Scenery &amp; shareable cards live in their own studio — not on Reminder or home scroll. Educational scenery only.</p>' +
-      '<div class="c6-meme-actions">' +
-      '<a href="/companion/meme/" rel="noopener">Open Meme Studio</a>' +
-      '<a class="c6-soft" href="/companion/redirects/meme/">Redirect door</a>' +
-      "</div>" +
-      '<p class="c6-meme-foot">Educational only — not a fatwa · single spine · /companion/meme/</p>';
-    mount.appendChild(host);
-    return host;
-  }
+    if (!mount) return;
 
-  function sync() {
-    var tab = activeTab();
-    if (tab === "notes") {
-      showHostsOnNotes();
-      var door = mountDoor();
-      if (door) {
-        door.removeAttribute("hidden");
-        door.style.display = "";
-      }
-    } else {
-      hideHosts();
-      var door2 = qs("#c6-meme-door");
-      if (door2) {
-        door2.setAttribute("hidden", "");
-        door2.style.display = "none";
+    if (!qs("#c6-meme-door")) {
+      var meme = d.createElement("section");
+      meme.id = "c6-meme-door";
+      meme.setAttribute("data-cs-module", "meme-door");
+      meme.innerHTML =
+        '<h2 class="c6-meme-title">Meme Studio · isolated</h2>' +
+        '<p class="c6-meme-lead">Scenery atelier lives on its own page — not on Reminder. Educational scenery only.</p>' +
+        '<div class="c6-meme-actions"><a href="/companion/meme/">Open Meme Studio</a></div>' +
+        '<p class="c6-meme-foot">Educational only — not a fatwa · /companion/meme/</p>';
+      mount.appendChild(meme);
+    }
+
+    if (!qs("#c6-callig-door")) {
+      var callig = d.createElement("section");
+      callig.id = "c6-callig-door";
+      callig.className = "c6-meme-door";
+      callig.setAttribute("data-cs-module", "callig-door");
+      callig.innerHTML =
+        '<h2 class="c6-meme-title">Calligraphy · practice pad</h2>' +
+        '<p class="c6-meme-lead">Letter practice stays off the Reminder scroll. Open when you want a quiet pad.</p>' +
+        '<div class="c6-meme-actions"><button type="button" class="c6-soft" id="c6-callig-reveal">Show pad here</button></div>' +
+        '<p class="c6-meme-foot">Educational only — not a fatwa</p>';
+      mount.appendChild(callig);
+      var btn = callig.querySelector("#c6-callig-reveal");
+      if (btn) {
+        btn.onclick = function () {
+          var lab = qs("#callig-lab-card");
+          if (lab) {
+            lab.removeAttribute("hidden");
+            lab.removeAttribute("data-p6-hidden");
+            lab.style.removeProperty("display");
+            lab.style.removeProperty("visibility");
+            lab.style.removeProperty("height");
+            lab.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+        };
       }
     }
   }
 
-  function onTab(ev) {
-    setTimeout(sync, 40);
-    setTimeout(sync, 300);
+  function setDoorVisible(on) {
+    ["#c6-meme-door", "#c6-callig-door"].forEach(function (id) {
+      var el = qs(id);
+      if (!el) return;
+      if (on) {
+        el.removeAttribute("hidden");
+        el.style.display = "";
+      } else {
+        el.setAttribute("hidden", "");
+        el.style.display = "none";
+      }
+    });
+  }
+
+  function sync() {
+    var tab = activeTab();
+    /* Always strip residual meme/callig hosts from Reminder and non-Notes */
+    if (tab !== "notes") {
+      hideResiduals();
+      setDoorVisible(false);
+    } else {
+      hideResiduals();
+      mountDoors();
+      setDoorVisible(true);
+    }
+    /* Reminder: still hide meme even if Notes logic differs */
+    if (tab === "reminder" || tab === "reality" || tab === "reflection" || tab === "action" || tab === "about") {
+      hideResiduals();
+      setDoorVisible(false);
+    }
+  }
+
+  function onTab() {
+    setTimeout(sync, 30);
+    setTimeout(sync, 200);
+    setTimeout(sync, 600);
   }
 
   d.addEventListener("clarity:tab-mounted", onTab);
@@ -102,26 +170,25 @@
     "click",
     function (ev) {
       var t = ev.target && ev.target.closest && ev.target.closest("[data-rail-tab]");
-      if (t) setTimeout(sync, 50);
+      if (t) onTab();
     },
     true
   );
 
-  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(sync, 150); });
-  else setTimeout(sync, 150);
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", onTab);
+  else onTab();
   w.addEventListener("load", function () {
-    setTimeout(sync, 400);
-    setTimeout(sync, 1200);
+    onTab();
+    setTimeout(sync, 1500);
   });
 
-  /* Observer: if meme injects into mount on Reminder, re-hide */
   try {
     var mo = new MutationObserver(function () {
       var tab = activeTab();
-      if (tab !== "notes") hideHosts();
+      if (tab !== "notes") hideResiduals();
     });
     mo.observe(d.documentElement, { childList: true, subtree: true });
   } catch (e) {}
 
-  w.CompanionMemeIsolate = { sync: sync, version: "20261128P6" };
+  w.CompanionMemeIsolate = { sync: sync, version: "20261128P6.1" };
 })(window, document);

@@ -1,43 +1,30 @@
-/*! companion-meme-isolate-v1.css · Phase 6
- * Keep Meme Studio off home / RRRA first paint · Notes or /companion/meme/ only
- * Educational only — not a fatwa · Version 20261128P6
- */
-
-/* Hide embedded meme chrome on non-Notes tabs */
-html[data-clarity-room="companion"] #meme-section,
-html[data-clarity-room="companion"] #cs-meme-mount,
-html[data-clarity-room="companion"] #cs-meme-frame,
-html[data-clarity-room="companion"] .cs-meme-host,
-html[data-clarity-room="companion"] [data-cs-module="meme-host"] {
-  /* default: collapsed unless Notes unlocks */
-}
-
-html[data-clarity-room="companion"] body:not([data-active-tab="notes"]) #meme-section,
-html[data-clarity-room="companion"] body:not([data-active-tab="notes"]) #cs-meme-mount,
-html[data-clarity-room="companion"] body:not([data-active-tab="notes"]) #cs-meme-frame {
+/*! companion-meme-isolate-v1.css · Phase 6.1 · educational only — not a fatwa */
+#meme-section[data-p6-hidden="1"],
+#cs-meme-mount[data-p6-hidden="1"],
+#cs-meme-frame[data-p6-hidden="1"],
+.cs-meme-host[data-p6-hidden="1"],
+#callig-lab-card[data-p6-hidden="1"],
+#meme-section[hidden],
+#cs-meme-mount[hidden],
+.cs-meme-host[hidden],
+#callig-lab-card[hidden] {
   display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
 }
 
-/* When rail has is-active on non-notes, hide meme hosts inside mount */
-html[data-clarity-room="companion"] #clarity-door-rail [data-rail-tab="reminder"].is-active ~ *,
-html[data-clarity-room="companion"] #cs-mount #meme-section {
-  /* JS handles primarily; CSS backup for known ids */
+/* Backup: when Reminder rail is active, never show meme host */
+html[data-clarity-room="companion"] #clarity-door-rail [data-rail-tab="reminder"].is-active ~ * {
+  /* no sibling trick for mount; JS is primary */
 }
 
-html[data-clarity-room="companion"] #cs-mount #meme-section:not([data-p6-notes="1"]),
-html[data-clarity-room="companion"] #cs-mount #cs-meme-mount:not([data-p6-notes="1"]) {
-  display: none !important;
-}
-
-/* Quiet any meme promo cards injected into Reminder ladder */
-html[data-clarity-room="companion"] #cs-mount .cs-meme-promo,
-html[data-clarity-room="companion"] #cs-mount [data-meme-promo],
-html[data-clarity-room="companion"] #c2-char-card ~ #meme-section {
-  display: none !important;
-}
-
-/* Notes: compact door card instead of full studio chrome on first paint */
-#c6-meme-door {
+/* Door cards (Notes) */
+#c6-meme-door,
+#c6-callig-door {
   margin: 0.75rem auto 1rem;
   max-width: 42rem;
   padding: 0.85rem 1rem;
@@ -47,7 +34,10 @@ html[data-clarity-room="companion"] #c2-char-card ~ #meme-section {
   color: #e7efe9;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
-#c6-meme-door[hidden] { display: none !important; }
+#c6-meme-door[hidden],
+#c6-callig-door[hidden] {
+  display: none !important;
+}
 .c6-meme-title {
   margin: 0 0 0.25rem;
   font-size: 1.05rem;
@@ -79,8 +69,8 @@ html[data-clarity-room="companion"] #c2-char-card ~ #meme-section {
   text-decoration: none;
   cursor: pointer;
 }
-.c6-meme-actions a.c6-soft,
-.c6-meme-actions button.c6-soft {
+.c6-meme-actions .c6-soft,
+.c6-meme-actions a.c6-soft {
   background: rgba(0, 0, 0, 0.35);
   color: #e7efe9;
 }
