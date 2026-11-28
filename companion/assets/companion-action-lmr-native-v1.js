@@ -1,13 +1,13 @@
-/*! companion-action-lmr-native-v1.js · NUKE mount
- * Self-contained Action LMR — does not wait for nx re-wire after shell innerHTML mount.
- * Pull āyah · Play Ḥuṣarī (EveryAyah) · Record · educational score
- * Single card #tj-lmr · kills duplicate panels · clarity:tab-mounted aware
+/*! companion-action-lmr-native-v1.js · N2 align
+ * One clean Action LMR card · no stacked legacy chrome
+ * Pull · Play Ḥuṣarī · Record · Score · fixes mount into #tj-lmr-native-root
  * Educational only — not a qāriʾ grade — not a fatwa
  */
 (function (w, d) {
   "use strict";
-  if (w.__CLARITY_LMR_NATIVE_V1__) return;
+  /* allow reinstall over older native */
   w.__CLARITY_LMR_NATIVE_V1__ = true;
+  w.__CLARITY_LMR_NATIVE_V2__ = true;
 
   var state = {
     ar: "",
@@ -19,7 +19,8 @@
     userUrl: "",
     rec: null,
     chunks: [],
-    t0: 0
+    t0: 0,
+    masterDur: 0
   };
 
   function $(id) {
@@ -27,7 +28,7 @@
   }
 
   function status(msg) {
-    var el = $("tj-lmr-native-status") || $("tj-lmr-rec-status") || $("tj-lmr-meta");
+    var el = $("tj-lmr-n-status");
     if (el) el.textContent = msg || "";
   }
 
@@ -37,87 +38,71 @@
     return "https://everyayah.com/data/Husary_128kbps/" + s + a + ".mp3";
   }
 
-  function alafasyFallback(globalNum) {
-    if (!globalNum) return "";
-    return "https://cdn.islamic.network/quran/audio/128/ar.alafasy/" + globalNum + ".mp3";
-  }
-
   function killDupes() {
     var dup = $("action-tj-lmr-panel");
     if (dup && dup.parentNode) dup.parentNode.removeChild(dup);
-    d.querySelectorAll(".phase-tlmr").forEach(function (el) {
-      if (!el.querySelector("#tj-lmr") && el.id !== "tj-lmr-panel") {
-        try {
-          el.style.display = "none";
-        } catch (e) {}
-      }
+    /* hide any leftover native bars from v1 stacked on old chrome */
+    d.querySelectorAll("#tj-lmr-native-bar").forEach(function (el, idx) {
+      if (idx > 0 && el.parentNode) el.parentNode.removeChild(el);
     });
   }
 
-  function ensureCard() {
-    killDupes();
-    var root = $("tj-lmr");
-    if (!root) {
-      /* create under deep studio if missing */
-      var host = $("tj-deep-studio") || $("tj-lmr-panel") || $("cs-mount") || d.body;
-      var wrap = d.createElement("div");
-      wrap.className = "tj-practice-loop";
-      wrap.id = "tj-lmr";
-      host.appendChild(wrap);
-      root = wrap;
-    }
-    var panel = $("tj-lmr-panel");
-    if (panel && panel.tagName === "DETAILS") panel.open = true;
-
-    if ($("tj-lmr-native-bar")) return root;
-
-    var bar = d.createElement("div");
-    bar.id = "tj-lmr-native-bar";
-    bar.setAttribute(
-      "style",
-      "margin:.65rem 0;padding:.75rem;border-radius:14px;border:1px solid rgba(201,162,39,.4);background:rgba(6,16,12,.65)"
+  function host() {
+    return (
+      $("tj-lmr-native-root") ||
+      $("tj-lmr") ||
+      $("tj-lmr-panel") ||
+      $("tj-deep-studio")
     );
+  }
+
+  function paintUI(h) {
+    if (!h) return null;
+    killDupes();
+    var bar = $("tj-lmr-native-bar");
+    if (bar) return bar;
+    bar = d.createElement("div");
+    bar.id = "tj-lmr-native-bar";
     bar.innerHTML =
-      '<p style="margin:0 0 .4rem;font-weight:700">🎧 LMR · native mount (Action)</p>' +
-      '<p class="td-src" style="margin:0 0 .5rem">Pull → Play master (Ḥuṣarī) → Record → Score. Educational proxy only — not a qāriʾ grade. Full atelier: <a href="/craft/tajweed/">/craft/tajweed/</a></p>' +
-      '<div style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:end;margin:.35rem 0">' +
-      '<label style="font-size:.8rem">Sūrah <input id="tj-lmr-n-surah" type="number" min="1" max="114" value="1" style="width:4rem"/></label>' +
-      '<label style="font-size:.8rem">Āyah <input id="tj-lmr-n-ayah" type="number" min="1" value="1" style="width:4rem"/></label>' +
+      '<div class="tj-lmr-native-grid">' +
+      '<div class="tj-lmr-native-row">' +
+      '<label>Sūrah <input id="tj-lmr-n-surah" type="number" min="1" max="114" value="1"/></label>' +
+      '<label>Āyah <input id="tj-lmr-n-ayah" type="number" min="1" value="1"/></label>' +
       '<button type="button" class="btn primary" id="tj-lmr-n-pull">Pull āyah</button>' +
       "</div>" +
-      '<div id="tj-lmr-n-text" style="margin:.5rem 0;min-height:3rem">' +
-      '<p dir="rtl" lang="ar" id="tj-lmr-n-ar" style="font-size:1.35rem;line-height:1.9;font-family:Amiri,Scheherazade New,serif;margin:0"></p>' +
-      '<p id="tj-lmr-n-en" style="font-size:.9rem;opacity:.9;margin:.35rem 0 0"></p>' +
-      "</div>" +
-      '<div style="display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0">' +
+      '<p id="tj-lmr-n-ar" class="tj-lmr-n-ar" dir="rtl" lang="ar"></p>' +
+      '<p id="tj-lmr-n-en" class="tj-lmr-n-en"></p>' +
+      '<div class="tj-lmr-native-row">' +
       '<button type="button" class="btn primary" id="tj-lmr-n-play">▶ Play master</button>' +
       '<button type="button" class="btn" id="tj-lmr-n-rec">● Record</button>' +
       '<button type="button" class="btn" id="tj-lmr-n-stop">Stop</button>' +
       '<button type="button" class="btn" id="tj-lmr-n-playuser">Play take</button>' +
-      '<button type="button" class="btn" id="tj-lmr-n-score">★ Score vs master</button>' +
+      '<button type="button" class="btn" id="tj-lmr-n-score">★ Score</button>' +
       "</div>" +
-      '<audio id="tj-lmr-n-master" controls preload="none" style="width:100%;margin:.35rem 0"></audio>' +
-      '<audio id="tj-lmr-n-user" controls preload="none" style="width:100%;margin:.35rem 0;display:none"></audio>' +
-      '<p id="tj-lmr-native-status" class="td-src" style="margin:.35rem 0 0">Ready · educational only — not a fatwa</p>' +
-      '<p id="tj-lmr-n-scoreline" class="td-src" style="margin:.25rem 0 0"></p>';
-
-    /* place at top of #tj-lmr so it's visible */
-    if (root.firstChild) root.insertBefore(bar, root.firstChild);
-    else root.appendChild(bar);
-
-    bind(bar);
-    return root;
+      '<audio id="tj-lmr-n-master" controls preload="none"></audio>' +
+      '<audio id="tj-lmr-n-user" controls preload="none" hidden></audio>' +
+      '<p id="tj-lmr-n-status" class="td-src">Ready · educational only — not a fatwa</p>' +
+      '<p id="tj-lmr-n-scoreline" class="td-src"></p>' +
+      "</div>";
+    h.appendChild(bar);
+    bind();
+    return bar;
   }
 
-  function bind(root) {
-    if (root.__native_bound) return;
-    root.__native_bound = true;
-    $("tj-lmr-n-pull").addEventListener("click", pull);
-    $("tj-lmr-n-play").addEventListener("click", playMaster);
-    $("tj-lmr-n-rec").addEventListener("click", startRec);
-    $("tj-lmr-n-stop").addEventListener("click", stopRec);
-    $("tj-lmr-n-playuser").addEventListener("click", playUser);
-    $("tj-lmr-n-score").addEventListener("click", score);
+  function bind() {
+    function on(id, fn) {
+      var el = $(id);
+      if (el && !el.__n2) {
+        el.__n2 = true;
+        el.addEventListener("click", fn);
+      }
+    }
+    on("tj-lmr-n-pull", pull);
+    on("tj-lmr-n-play", playMaster);
+    on("tj-lmr-n-rec", startRec);
+    on("tj-lmr-n-stop", stopRec);
+    on("tj-lmr-n-playuser", playUser);
+    on("tj-lmr-n-score", score);
   }
 
   function pull() {
@@ -126,9 +111,9 @@
     state.surah = s;
     state.ayah = a;
     status("Loading " + s + ":" + a + "…");
-    var url =
-      "https://api.alquran.cloud/v1/ayah/" + s + ":" + a + "/editions/quran-uthmani,en.sahih";
-    fetch(url)
+    fetch(
+      "https://api.alquran.cloud/v1/ayah/" + s + ":" + a + "/editions/quran-uthmani,en.sahih"
+    )
       .then(function (r) {
         if (!r.ok) throw new Error("http");
         return r.json();
@@ -151,27 +136,26 @@
         state.ar = ar;
         state.en = en;
         state.masterUrl = everyAyahUrl(s, a);
+        if ($("tj-lmr-n-ar")) $("tj-lmr-n-ar").textContent = ar;
+        if ($("tj-lmr-n-en")) $("tj-lmr-n-en").textContent = en;
         var master = $("tj-lmr-n-master");
         if (master) {
           master.src = state.masterUrl;
+          master.onloadedmetadata = function () {
+            state.masterDur = master.duration || 0;
+          };
           master.onerror = function () {
             if (num) {
-              state.masterUrl = alafasyFallback(num);
+              state.masterUrl =
+                "https://cdn.islamic.network/quran/audio/128/ar.alafasy/" + num + ".mp3";
               master.src = state.masterUrl;
             }
           };
         }
-        if ($("tj-lmr-n-ar")) $("tj-lmr-n-ar").textContent = ar;
-        if ($("tj-lmr-n-en")) $("tj-lmr-n-en").textContent = en;
-        /* mirror into classic nodes if present */
-        if ($("tj-lmr-ar")) $("tj-lmr-ar").textContent = ar;
-        if ($("tj-lmr-en")) $("tj-lmr-en").textContent = en;
-        if ($("tj-lmr-ar-read")) $("tj-lmr-ar-read").textContent = ar;
-        if ($("tj-lmr-master-audio")) $("tj-lmr-master-audio").src = state.masterUrl;
-        status("Ready " + s + ":" + a + " · Ḥuṣarī / fallback · educational only");
+        status("Ready " + s + ":" + a + " · Ḥuṣarī · educational only");
       })
       .catch(function () {
-        status("Could not load āyah — check network or open /craft/tajweed/");
+        status("Load failed — try again or open /craft/tajweed/");
       });
   }
 
@@ -179,34 +163,25 @@
     var a = $("tj-lmr-n-master");
     if (!a || !a.src) {
       pull();
-      status("Pull an āyah first");
       return;
     }
     try {
       a.play();
     } catch (e) {
-      status("Play blocked — tap again");
+      status("Tap Play again");
     }
   }
 
   function startRec() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      status("Mic not available on this device/browser");
+      status("Mic unavailable");
       return;
     }
     state.chunks = [];
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then(function (stream) {
-        try {
-          state.rec = new MediaRecorder(stream);
-        } catch (e) {
-          status("Recorder unavailable");
-          stream.getTracks().forEach(function (t) {
-            t.stop();
-          });
-          return;
-        }
+        state.rec = new MediaRecorder(stream);
         state.t0 = Date.now();
         state.rec.ondataavailable = function (ev) {
           if (ev.data && ev.data.size) state.chunks.push(ev.data);
@@ -220,13 +195,13 @@
           state.userUrl = URL.createObjectURL(state.userBlob);
           var u = $("tj-lmr-n-user");
           if (u) {
+            u.hidden = false;
             u.src = state.userUrl;
-            u.style.display = "block";
           }
           status("Take saved on device · nothing uploaded");
         };
         state.rec.start();
-        status("Recording… tap Stop when done");
+        status("Recording…");
       })
       .catch(function () {
         status("Mic permission denied");
@@ -242,7 +217,7 @@
   function playUser() {
     var u = $("tj-lmr-n-user");
     if (!u || !u.src) {
-      status("No take yet — Record first");
+      status("Record first");
       return;
     }
     try {
@@ -253,48 +228,41 @@
   function score() {
     var master = $("tj-lmr-n-master");
     var user = $("tj-lmr-n-user");
-    var line = $("tj-lmr-n-scoreline");
     if (!user || !user.src) {
-      status("Record a take before scoring");
+      status("Record a take first");
       return;
     }
-    var md = master && isFinite(master.duration) ? master.duration : 0;
-    var ud = user && isFinite(user.duration) ? user.duration : 0;
-    /* if duration not ready, use recording wall time */
-    if (!ud && state.t0) ud = Math.max(0.5, (Date.now() - state.t0) / 1000);
-    var ratio = md > 0 ? Math.min(ud, md) / Math.max(ud, md) : 0.5;
-    var pct = Math.round(ratio * 100);
+    var md = state.masterDur || (master && master.duration) || 0;
+    var ud = (user && user.duration) || 0;
+    if (!ud || !isFinite(ud)) ud = Math.max(0.5, (Date.now() - state.t0) / 1000);
+    var pct = md > 0 ? Math.round((Math.min(ud, md) / Math.max(ud, md)) * 100) : 50;
     var note =
-      "Educational proxy ~" +
-      pct +
-      "% length match vs master · not a qāriʾ grade · learn with a teacher";
-    if (line) line.textContent = note;
+      "Educational proxy ~" + pct + "% length match · not a qāriʾ grade · learn with a teacher";
+    if ($("tj-lmr-n-scoreline")) $("tj-lmr-n-scoreline").textContent = note;
     status(note);
   }
 
   function boot() {
-    ensureCard();
-    /* auto-pull Fatiha 1 once */
-    setTimeout(function () {
-      if (!state.ar) pull();
-    }, 400);
+    killDupes();
+    var h = host();
+    if (!h) return;
+    paintUI(h);
+    if (!state.ar) setTimeout(pull, 200);
   }
 
   function onMounted(ev) {
     try {
-      var tab = ev && ev.detail && ev.detail.tab;
-      if (tab && String(tab).toLowerCase().indexOf("action") < 0 && tab !== "action") return;
+      var tab = (ev && ev.detail && ev.detail.tab) || "";
+      if (tab && String(tab).toLowerCase() !== "action") return;
     } catch (e) {}
-    setTimeout(boot, 50);
-    setTimeout(boot, 400);
+    setTimeout(boot, 30);
+    setTimeout(boot, 350);
   }
 
   d.addEventListener("clarity:tab-mounted", onMounted);
   w.addEventListener("clarity:tab-mounted", onMounted);
-
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", boot);
   else boot();
-  setTimeout(boot, 300);
-  setTimeout(boot, 1000);
-  setTimeout(boot, 2500);
+  setTimeout(boot, 200);
+  setTimeout(boot, 900);
 })(window, document);
